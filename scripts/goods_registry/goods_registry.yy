@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"goods_registry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"goods_registry",
+  "parent":{
+    "name":"Shop",
+    "path":"folders/脚本/Menu/Shop.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

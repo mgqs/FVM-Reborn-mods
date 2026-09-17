@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"can_place_at_position",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"can_place_at_position",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

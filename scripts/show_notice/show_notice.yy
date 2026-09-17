@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"show_notice",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"show_notice",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

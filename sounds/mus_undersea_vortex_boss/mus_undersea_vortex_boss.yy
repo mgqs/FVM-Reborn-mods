@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mus_undersea_vortex_boss",
+  "audioGroupId":{
+    "name":"music",
+    "path":"audiogroups/music",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":86.292015,
+  "exportDir":"",
+  "name":"mus_undersea_vortex_boss",
+  "parent":{
+    "name":"undersea_vortex",
+    "path":"folders/声音/Battle BGM/undersea_vortex.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_undersea_vortex_boss.mp3",
+  "volume":1.0,
+}

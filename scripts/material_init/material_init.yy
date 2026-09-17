@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"material_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"material_init",
+  "parent":{
+    "name":"Craft",
+    "path":"folders/脚本/Menu/Craft.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

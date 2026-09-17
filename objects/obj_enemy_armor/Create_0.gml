@@ -1,0 +1,11 @@
+image_xscale = 1.8
+image_yscale = 1.8
+image_speed = 0
+type = "helmet"
+timer = 0
+cgravity = 0
+x_speed = 0
+y_speed = 0
+ground_y = 0
+can_destroy = false
+water = false

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_skill",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_skill",
+  "parent":{
+    "name":"Card",
+    "path":"folders/脚本/Card.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

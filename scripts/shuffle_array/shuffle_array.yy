@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"shuffle_array",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"shuffle_array",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"NativeUtil",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"NativeUtil",
+  "parent":{
+    "name":"Util",
+    "path":"folders/Util.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

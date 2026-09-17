@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_info",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_info",
+  "parent":{
+    "name":"File",
+    "path":"folders/脚本/File.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,1 @@
+if not obj_tower_cake_bg.is_submenu_opened image_index = 1

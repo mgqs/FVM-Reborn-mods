@@ -1,0 +1,8 @@
+draw_sprite(global.level_data.level_sprite,map_spr_index,0,0)
+draw_set_valign(fa_top)
+draw_set_halign(fa_left)
+draw_set_color(c_white)
+draw_set_font(font_yuan)
+draw_text(0,0,"FPS:"+string(fps))
+draw_text(0,25,"加速:"+(speed_up ? "开" : "关") + "（shift）")
+draw_text(0,50,"暂停（空格）\n菜单（ESC）")

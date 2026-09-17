@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_info_island_registry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_info_island_registry",
+  "parent":{
+    "name":"Card",
+    "path":"folders/脚本/Card.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

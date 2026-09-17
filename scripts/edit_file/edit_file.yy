@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"edit_file",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"edit_file",
+  "parent":{
+    "name":"File",
+    "path":"folders/脚本/File.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

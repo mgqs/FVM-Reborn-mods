@@ -1,0 +1,2 @@
+instance_destroy(obj_gem_edit_select_btn)
+instance_destroy(obj_gem_edit_btn)

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"select_shovel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"select_shovel",
+  "parent":{
+    "name":"Shovel",
+    "path":"folders/脚本/Shovel.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,2172 @@
+{
+    "version": "1.1.0",
+    "level_name": "cocoa_island_daytime",
+    "level_time_feature": "daytime",
+    "map_sprite": "spr_cocoa_island_daytime",
+    "time_limit": 0.0,
+    "map_cols": 9.0,
+    "map_rows": 7.0,
+    "starting_flame": 50.0,
+    "first_wave_delay": 30.0,
+    "total_waves": 5.0,
+    "elite_wave": 2.0,
+    "boss_wave": 5.0,
+    "map": [
+        [
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [
+                    "small_fire"
+                ],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [
+                    "small_fire"
+                ],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [
+                    "small_fire"
+                ],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [
+                    "wooden_plate"
+                ],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "water",
+                "plant": [],
+                "object": []
+            }
+        ]
+    ],
+    "waves": [
+        {
+            "wave_index": 1.0,
+            "boss": "",
+            "subwaves": [
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "lambo_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        }
+                    ]
+                }
+            ],
+            "boss_wave": false
+        },
+        {
+            "wave_index": 2.0,
+            "boss": "",
+            "subwaves": [
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "normal_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "water_taro_toho_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "lambo_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "paper_boat_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        }
+                    ]
+                }
+            ],
+            "boss_wave": false
+        },
+        {
+            "wave_index": 3.0,
+            "boss": "",
+            "subwaves": [
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "landlady_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "water_taro_toho_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "landlady_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "lambo_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                }
+            ],
+            "boss_wave": false
+        },
+        {
+            "wave_index": 4.0,
+            "boss": "",
+            "subwaves": [
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "landlady_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "mole"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "water_taro_toho_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "ninja_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "kangaroo"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "water_taro_toho_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "diver_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "engineering_vehicle_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "lambo_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                }
+            ],
+            "boss_wave": false
+        },
+        {
+            "wave_index": 5.0,
+            "boss": "ice_residue",
+            "subwaves": [
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "football_fan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "giant_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0.0,
+                    "enemy_list": [
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "glider_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "duck_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "tropical_fish_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "frog_prince_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "roller_skating_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "butterfly_mouse"
+                        },
+                        {
+                            "row": -1.0,
+                            "prosperity": 0.0,
+                            "type": "iron_pan_mouse"
+                        }
+                    ]
+                }
+            ],
+            "boss_wave": true
+        }
+    ],
+    "rewards": [
+        {
+            "gold": 2000.0,
+            "items": [
+                {
+                    "id": "natural_spices",
+                    "amount": 40.0
+                },
+                {
+                    "id": "less_crystal",
+                    "amount": 10.0
+                }
+            ]
+        },
+        {
+            "gem_unlock": [
+                "health_gem"
+            ],
+            "player_level": 12.0,
+            "skill_level": 5.0,
+            "gold": 2000.0,
+            "items": [
+                {
+                    "id": "natural_spices",
+                    "amount": 40.0
+                },
+                {
+                    "id": "less_crystal",
+                    "amount": 10.0
+                }
+            ],
+            "card_unlock": [
+                "hamburger",
+                "fishbone"
+            ],
+            "weapon_unlock": []
+        }
+    ]
+} 

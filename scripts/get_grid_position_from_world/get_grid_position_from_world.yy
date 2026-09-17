@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_grid_position_from_world",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_grid_position_from_world",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

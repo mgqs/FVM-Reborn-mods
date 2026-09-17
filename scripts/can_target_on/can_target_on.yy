@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"can_target_on",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"can_target_on",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

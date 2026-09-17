@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"plus_card_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"plus_card_init",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"shop_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"shop_init",
+  "parent":{
+    "name":"Shop",
+    "path":"folders/脚本/Menu/Shop.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

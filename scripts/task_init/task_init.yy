@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"task_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"task_init",
+  "parent":{
+    "name":"Task",
+    "path":"folders/脚本/Menu/Task.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

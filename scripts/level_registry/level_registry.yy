@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"level_registry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"level_registry",
+  "parent":{
+    "name":"Maps",
+    "path":"folders/脚本/Maps.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

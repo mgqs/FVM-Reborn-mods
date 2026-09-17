@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"weapon_registry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"weapon_registry",
+  "parent":{
+    "name":"Weapons",
+    "path":"folders/脚本/Weapons.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

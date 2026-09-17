@@ -1,0 +1,31 @@
+hp = 600
+max_hp = hp
+grid_row = -1
+grid_col = -1
+is_placed = false
+timer = 0
+attack_anim = 6
+flash_speed = 6
+flash_value = 0
+state = CARD_STATE.IDLE
+depth_value = 0
+depth_offset = 0
+plant_type = "normal"
+feature_type = "normal"
+target_card = "none"
+plant_id = "player"
+can_shovel_remove = false
+invincible = false
+hurt_time = 0
+cycle = 78
+attack_timer = 0
+image_xscale = 1.6
+image_yscale = 1.6
+image_speed = 0
+depth = -5000
+
+if card_equipped_attire_id("player")!= -1{
+	sprite_index = get_attire_info(card_equipped_attire_id("player")).spr
+}
+
+awake_buff_timer = 0

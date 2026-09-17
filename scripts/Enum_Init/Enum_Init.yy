@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Enum_Init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Enum_Init",
+  "parent":{
+    "name":"Enum",
+    "path":"folders/脚本/Enum.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

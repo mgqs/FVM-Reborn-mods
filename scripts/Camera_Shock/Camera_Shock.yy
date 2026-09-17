@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Camera_Shock",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Camera_Shock",
+  "parent":{
+    "name":"Camera",
+    "path":"folders/脚本/Camera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

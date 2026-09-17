@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_depth",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_depth",
+  "parent":{
+    "name":"Card",
+    "path":"folders/脚本/Card.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

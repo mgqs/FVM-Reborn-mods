@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Music_Init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Music_Init",
+  "parent":{
+    "name":"Music",
+    "path":"folders/脚本/Music.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

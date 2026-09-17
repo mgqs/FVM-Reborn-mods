@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"keyboard_get_string",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"keyboard_get_string",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

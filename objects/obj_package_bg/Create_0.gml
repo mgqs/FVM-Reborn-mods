@@ -1,0 +1,42 @@
+image_xscale = 1.8
+image_yscale = 1.8
+instance_create_depth(x+380,y+403,depth-1,obj_closepackage_btn)
+package_cols = 9 //背包格子行列数
+package_rows = 16
+info_button_select = 1
+package_button_select = 1
+is_submenu_opened = false
+gem_start_line = 0
+y_offset = 0
+package_surface = -1
+//创建背包栏位选择按钮
+var btn1 = instance_create_depth(x-300,y-455,depth-1,obj_packageselect_btn)
+btn1.type = "Package"
+btn1.button_index = 1
+btn1.sprite_index = spr_packageselect_btn_1
+var btn2 = instance_create_depth(x-70,y-455,depth-1,obj_packageselect_btn)
+btn2.type = "Package"
+btn2.button_index = 2
+btn2.sprite_index = spr_packageselect_btn_2
+var btn5 = instance_create_depth(x+160,y-455,depth-1,obj_packageselect_btn)
+btn5.type = "Package"
+btn5.button_index = 3
+btn5.sprite_index = spr_packageselect_btn_5
+var btn3 = instance_create_depth(x-1170,y-454,depth-1,obj_packageselect_btn)
+btn3.type = "Player Info"
+btn3.button_index = 1
+btn3.sprite_index = spr_packageselect_btn_3
+var btn4 = instance_create_depth(x-1020,y-454,depth-1,obj_packageselect_btn)
+btn4.type = "Player Info"
+btn4.button_index = 2
+btn4.sprite_index = spr_packageselect_btn_4
+var btn6 = instance_create_depth(x-870,y-454,depth-1,obj_packageselect_btn)
+btn6.type = "Player Info"
+btn6.button_index = 3
+btn6.sprite_index = spr_packageselect_btn_6
+
+hover_card_index = -1; // 当前悬停的卡片索引
+hover_weapon_index = -1
+hover_gem_index = -1
+hover_material_index = -1
+view_max_shapes = 0

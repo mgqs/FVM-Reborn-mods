@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_nearest_grid_position",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_nearest_grid_position",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

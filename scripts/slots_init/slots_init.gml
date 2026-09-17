@@ -1,0 +1,364 @@
+function slots_init(){
+	register_card("xiao_long_bao", obj_xiao_long_bao, [
+	    {"shape":0, "sprite":spr_xiao_long_bao, "cost":100, "cooldown":7*60, "description":"小笼包：发射包子","plant_type":"normal","feature_type":"bun","target_card":"none"}
+	]);
+	
+	register_card("small_fire", obj_small_fire, [
+	    {"shape":0, "sprite":spr_small_fire, "cost":50, "cooldown":7*60, "description":"小火炉：生产火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_small_fire_1, "cost":25, "cooldown":7*60, "description":"日光炉：生产火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_small_fire_2, "cost":25, "cooldown":7*60, "description":"太阳能高效炉：一次生产两朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	
+	register_card("toast_bread",obj_toast_bread,[
+		{"shape":0,"sprite":spr_toast_bread,"cost":50,"cooldown":30*60,"description":"土司面包：阻挡敌人前进","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	
+	register_card("flour_sack",obj_flour_sack,[
+	    {"shape":0, "sprite":spr_flour_sack, "cost":50, "cooldown":30*60, "description":"面粉袋：压死老鼠","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_flour_sack_1, "cost":75, "cooldown":30*60, "description":"影分身袋：压死老鼠","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_flour_sack_2, "cost":100, "cooldown":30*60, "description":"乾坤分身袋：压死老鼠","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	
+	register_card("double_long_bao",obj_double_long_bao,[
+	    {"shape":0, "sprite":spr_double_long_bao, "cost":200, "cooldown":7*60, "description":"双层小笼包：发射两发包子","plant_type":"normal","feature_type":"bun","target_card":"none"}
+	])
+	
+	register_card("mouse_clip",obj_mouse_clip,[
+	    {"shape":0, "sprite":spr_mouse_clip, "cost":25, "cooldown":30*60, "description":"老鼠夹子：准备完成后，接触地面敌人爆炸","plant_type":"normal","feature_type":"dwarf","target_card":"none"},
+	    {"shape":1, "sprite":spr_mouse_clip_1, "cost":25, "cooldown":30*60, "description":"多用老鼠夹子：准备完成后，接触敌人爆炸","plant_type":"normal","feature_type":"dwarf","target_card":"none"},
+		{"shape":2, "sprite":spr_mouse_clip_2, "cost":25, "cooldown":30*60, "description":"黑猫鼠夹：准备完成后，接触敌人产生3*4爆炸","plant_type":"normal","feature_type":"dwarf","target_card":"none"}
+	])
+	register_card("coke_bomb",obj_coke_bomb,[
+	    {"shape":0, "sprite":spr_coke_bomb, "cost":150, "cooldown":50*60, "description":"可乐炸弹：3*4范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_coke_bomb_1, "cost":175, "cooldown":50*60, "description":"云爆可乐弹：3*4范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_coke_bomb_2, "cost":225, "cooldown":50*60, "description":"燃烧可乐弹：3*4范围爆炸，留下一片火焰","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("wooden_plate",obj_wooden_plate,[
+	    {"shape":0, "sprite":spr_wooden_plate, "cost":25, "cooldown":7*60, "description":"木盘子：在水上承载卡片","plant_type":"lilypad","feature_type":"water","target_card":"none"},
+	    {"shape":1, "sprite":spr_wooden_plate_1, "cost":0, "cooldown":7*60, "description":"友情木盘子：在水上承载卡片","plant_type":"lilypad","feature_type":"water","target_card":"none"},
+		{"shape":2, "sprite":spr_wooden_plate_2, "cost":0, "cooldown":7*60, "description":"坚韧木盘子：一次放置三个，在水上承载卡片","plant_type":"lilypad","feature_type":"water","target_card":"none"}
+	])
+	register_card("ice_long_bao", obj_ice_long_bao, [
+	    {"shape":0, "sprite":spr_ice_long_bao, "cost":175, "cooldown":7*60, "description":"冰冻小笼包：发射减速冰包子","plant_type":"normal","feature_type":"bun","target_card":"none"}
+	]);
+	register_card("goblet_lamp", obj_goblet_lamp, [
+	    {"shape":0, "sprite":spr_goblet_lamp, "cost":25, "cooldown":7*60, "description":"酒杯灯：先生产少量火苗，一段时间后正常","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_goblet_lamp_1, "cost":15, "cooldown":7*60, "description":"节能灯：先生产少量火苗，一段时间后正常","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_goblet_lamp_2, "cost":15, "cooldown":7*60, "description":"高效节能灯：先生产少量火苗，一段时间后正常","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("coffee_cup", obj_coffee_cup, [
+	    {"shape":0, "sprite":spr_coffee_cup, "cost":0, "cooldown":7*60, "description":"咖啡杯：攻击三格内敌人，白天睡觉","plant_type":"normal","feature_type":"low","target_card":"none"},
+	    {"shape":1, "sprite":spr_coffee_cup_1, "cost":0, "cooldown":7*60, "description":"花纹咖啡杯：攻击三格内敌人","plant_type":"normal","feature_type":"low","target_card":"none"},
+		{"shape":2, "sprite":spr_coffee_cup_2, "cost":0, "cooldown":7*60, "description":"骨瓷咖啡杯：攻击一行敌人","plant_type":"normal","feature_type":"low","target_card":"none"}
+	]);
+	register_card("salad_pult", obj_salad_pult, [
+	    {"shape":0, "sprite":spr_salad_pult, "cost":100, "cooldown":7*60, "description":"色拉投手：投掷可弹射的番茄","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_salad_pult_1, "cost":100, "cooldown":7*60, "description":"果蔬色拉投手：投掷可弹射的番茄","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_salad_pult_2, "cost":100, "cooldown":7*60, "description":"凯撒色拉投手：投掷两颗可弹射的番茄","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("coffee_pot", obj_coffee_pot, [
+	    {"shape":0, "sprite":spr_coffee_pot, "cost":75, "cooldown":7*60, "description":"咖啡喷壶：穿透攻击四格内敌人，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_coffee_pot_1, "cost":75, "cooldown":7*60, "description":"香醇咖啡喷壶：穿透攻击四格内敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_coffee_pot_icon_2, "cost":75, "cooldown":7*60, "description":"红温咖啡喷壶：穿透攻击一行敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_coffee_pot_2}
+	]);
+	register_card("chocolate_bread",obj_chocolate_bread,[
+		{"shape":0,"sprite":spr_chocolate_bread,"cost":125,"cooldown":30*60,"description":"巧克力面包：阻挡敌人翻越","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":1,"sprite":spr_chocolate_bread_icon_1,"cost":125,"cooldown":30*60,"description":"德芙面包：阻挡敌人翻越","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_chocolate_bread_1}
+	])
+	register_card("water_tea_cup",obj_water_tea_cup,[
+		{"shape":0,"sprite":spr_water_tea_cup,"cost":0,"cooldown":7*60,"description":"水上茶杯：在水上攻击三格内敌人，白天睡觉","plant_type":"normal","feature_type":"water","target_card":"none"}
+	])
+	register_card("ice_bucket_bomb",obj_ice_bucket_bomb,[
+	    {"shape":0, "sprite":spr_ice_bucket_bomb, "cost":75, "cooldown":50*60, "description":"冰桶炸弹：冰冻并伤害全屏敌人，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_ice_bucket_bomb_1, "cost":75, "cooldown":50*60, "description":"酸橙冰桶炸弹：冰冻并伤害全屏敌人，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_ice_bucket_bomb_2, "cost":75, "cooldown":50*60, "description":"杂果冰桶炸弹：冰冻并伤害全屏敌人，3*4范围冰爆","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("stinky_tofu_pult", obj_stinky_tofu_pult, [
+	    {"shape":0, "sprite":spr_stinky_tofu_pult, "cost":150, "cooldown":7*60, "description":"臭豆腐投手：投掷能产生毒雾的豆腐","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_stinky_tofu_pult_1, "cost":150, "cooldown":7*60, "description":"什锦臭豆腐投手：投掷能产生毒雾的豆腐","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_stinky_tofu_pult_2, "cost":150, "cooldown":7*60, "description":"铁板臭豆腐投手：投掷两块能产生毒雾的豆腐","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("cat_box",obj_cat_box,[
+	    {"shape":0, "sprite":spr_cat_box_1, "cost":100, "cooldown":7*60, "description":"猫猫盒：将老鼠惊吓至相邻行","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("kettle_bomb",obj_kettle_bomb,[
+	    {"shape":0, "sprite":spr_kettle_bomb, "cost":275, "cooldown":50*60, "description":"开水壶炸弹：5*5范围爆炸，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_kettle_bomb_1, "cost":300, "cooldown":50*60, "description":"汽油壶炸弹：5*5范围爆炸，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_kettle_bomb_2, "cost":350, "cooldown":50*60, "description":"汽油干冰弹：5*5范围爆炸和减速","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("triple_wine_rack",obj_triple_wine_rack,[
+	    {"shape":0, "sprite":spr_triple_wine_rack, "cost":325, "cooldown":7*60, "description":"三线酒架：向前方三行发射3发葡萄酒弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_triple_wine_rack_1, "cost":325, "cooldown":7*60, "description":"强力三线酒架：向前方三行发射4发葡萄酒弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_triple_wine_rack_2, "cost":325, "cooldown":7*60, "description":"终结者酒架：向前方三行发射6发葡萄酒弹","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("brazier",obj_brazier,[
+	    {"shape":0, "sprite":spr_brazier, "cost":175, "cooldown":7*60, "description":"火盆：点燃子弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_brazier_1, "cost":175, "cooldown":7*60, "description":"电子烤盘：点燃子弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_brazier_2, "cost":175, "cooldown":7*60, "description":"岩烧烤盘：点燃子弹","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("large_fire",obj_large_fire,[
+	    {"shape":0, "sprite":spr_large_fire, "cost":150, "cooldown":50*60, "description":"大火炉：一次生产两朵火苗","plant_type":"normal","feature_type":"upgrade","target_card":"small_fire"},
+	    {"shape":1, "sprite":spr_large_fire_1, "cost":150, "cooldown":50*60, "description":"高能火炉：一次生产三朵火苗","plant_type":"normal","feature_type":"upgrade","target_card":"small_fire"},
+		{"shape":2, "sprite":spr_large_fire_2, "cost":150, "cooldown":50*60, "description":"超能燃气炉：一次生产三朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("iron_fishbone",obj_iron_fishbone,[
+	    {"shape":0, "sprite":spr_iron_fishbone, "cost":125, "cooldown":50*60, "description":"钢鱼刺：攻击踩上它的老鼠，卡坏六次车辆","plant_type":"normal","feature_type":"upgrade","target_card":"fishbone"},
+	    {"shape":1, "sprite":spr_iron_fishbone_1, "cost":125, "cooldown":50*60, "description":"无座钢鱼刺：攻击踩上它的老鼠，卡坏六次车辆","plant_type":"normal","feature_type":"dwarf","target_card":"none"},
+		{"shape":2, "sprite":spr_iron_fishbone_2, "cost":125, "cooldown":50*60, "description":"海贼王鱼刺：攻击并减速踩上它的老鼠，卡坏六次车辆","plant_type":"normal","feature_type":"dwarf","target_card":"none"}
+	])
+	register_card("gatlin_long_bao",obj_gatlin_long_bao,[
+	    {"shape":0, "sprite":spr_gatlin_long_bao, "cost":250, "cooldown":50*60, "description":"机枪小笼包：发射四发包子","plant_type":"normal","feature_type":"upgrade","target_card":"double_long_bao"},
+	    {"shape":1, "sprite":spr_gatlin_long_bao_1, "cost":250, "cooldown":50*60, "description":"竹筒机枪小笼包：发射四发包子","plant_type":"normal","feature_type":"upgrade","target_card":"double_long_bao"},
+		{"shape":2, "sprite":spr_gatlin_long_bao_2, "cost":250, "cooldown":50*60, "description":"格林机枪笼包：发射六发包子","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("rotating_coffee_pot", obj_rotating_coffee_pot, [
+	    {"shape":0, "sprite":spr_rotating_coffee_pot, "cost":150, "cooldown":50*60, "description":"旋转咖啡喷壶：3*3范围穿透攻击，白天睡觉","plant_type":"normal","feature_type":"upgrade","target_card":"coffee_pot"},
+	    {"shape":1, "sprite":spr_rotating_coffee_pot_1, "cost":150, "cooldown":50*60, "description":"节能旋转咖啡壶：3*3范围穿透攻击，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_rotating_coffee_pot_2_icon, "cost":150, "cooldown":50*60, "description":"原子咖啡壶：5*5范围穿透攻击","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_rotating_coffee_pot_2}
+	]);
+	register_card("takoyaki", obj_takoyaki, [
+	    {"shape":0, "sprite":spr_takoyaki, "cost":225, "cooldown":50*60, "description":"章鱼烧：甩出两发追踪飞镖","plant_type":"normal","feature_type":"normal","target_card":"wooden_plate"},
+	    {"shape":1, "sprite":spr_takoyaki_icon_1, "cost":225, "cooldown":50*60, "description":"两栖章鱼烧：甩出两发追踪飞镖","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_takoyaki_1},
+		{"shape":2, "sprite":spr_takoyaki_icon_2, "cost":225, "cooldown":50*60, "description":"火影章鱼烧：甩出四发追踪飞镖","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_takoyaki_2}
+	]);
+	register_card("wooden_cork",obj_wooden_cork,[
+		{"shape":0,"sprite":spr_wooden_cork,"cost":75,"cooldown":7*60,"description":"木塞子：堵住老鼠洞","plant_type":"coffee","feature_type":"normal","target_card":"none"}
+	])
+	register_card("coffee_grounds",obj_coffee_grounds,[
+	    {"shape":0, "sprite":spr_coffee_grounds_icon, "cost":75, "cooldown":7*60, "description":"咖啡粉：唤醒卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_coffee_grounds_icon_1, "cost":25, "cooldown":7*60, "description":"名贵咖啡粉：唤醒3*3范围卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_coffee_grounds_icon_2, "cost":25, "cooldown":7*60, "description":"皇族咖啡粉：唤醒全屏卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"}
+	])
+	register_card("wine_bottle_bomb",obj_wine_bottle_bomb,[
+	    {"shape":0, "sprite":spr_wine_bottle_bomb, "cost":125, "cooldown":50*60, "description":"酒瓶炸弹：一行范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_wine_bottle_bomb_1, "cost":150, "cooldown":50*60, "description":"高爆酒瓶弹：一行范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_wine_bottle_bomb_2, "cost":200, "cooldown":50*60, "description":"子母酒瓶弹：一行和一列范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("double_water_pipe",obj_double_water_pipe,[
+	    {"shape":0, "sprite":spr_double_water_pipe, "cost":125, "cooldown":7*60, "description":"双向水管：向前后两个方向发射水弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_double_water_pipe_1, "cost":125, "cooldown":7*60, "description":"控温双向水管：向前后两个方向发射水弹","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_double_water_pipe_2, "cost":125, "cooldown":7*60, "description":"合金水管：向前后两个方向发射水弹","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("melon_shield",obj_melon_shield,[
+	    {"shape":0, "sprite":spr_melon_shield_icon, "cost":125, "cooldown":30*60, "description":"瓜皮护罩：保护被罩住的卡片","plant_type":"shield_outer","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_melon_shield_icon_1, "cost":125, "cooldown":30*60, "description":"尖刺瓜皮护罩：保护被罩住的卡片并反伤","plant_type":"shield_outer","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_melon_shield_icon_2, "cost":125, "cooldown":30*60, "description":"锋芒瓜皮护罩：保护被罩住的卡片并反伤","plant_type":"shield_outer","feature_type":"normal","target_card":"none"}
+	])
+	register_card("steel_wool",obj_steel_wool,[
+		{"shape":0,"sprite":spr_steel_wool,"cost":25,"cooldown":30*60,"description":"钢丝球：将老鼠拖入水中","plant_type":"normal","feature_type":"water","target_card":"none"}
+	])
+	register_card("sausage", obj_sausage, [
+	    {"shape":0, "sprite":spr_sausage_land, "cost":125, "cooldown":7*60, "description":"香肠：发射香肠攻击空中和地面敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("fishbone",obj_fishbone,[
+	    {"shape":0, "sprite":spr_fishbone, "cost":100, "cooldown":7*60, "description":"鱼刺：攻击踩上它的老鼠，卡坏车辆","plant_type":"normal","feature_type":"dwarf","target_card":"none"}
+	])
+	register_card("hamburger",obj_hamburger,[
+	    {"shape":0, "sprite":spr_hamburger, "cost":150, "cooldown":7*60, "description":"汉堡包：吃掉老鼠","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_hamburger_1_icon, "cost":150, "cooldown":7*60, "description":"天椒双层堡：吃掉前方三格老鼠","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_hamburger_1},
+		{"shape":2, "sprite":spr_hamburger_2_icon, "cost":150, "cooldown":7*60, "description":"牛肉双黑汉堡：吃掉前方三格老鼠并留下毒雾","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_hamburger_2}
+	])
+	register_card("oil_lamp",obj_oil_lamp,[
+		{"shape":0,"sprite":spr_oil_lamp_icon,"cost":25,"cooldown":30*60,"description":"油灯：照亮迷雾和隐形老鼠","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":1,"sprite":spr_oil_lamp_icon_1,"cost":25,"cooldown":30*60,"description":"高亮油灯：照亮全屏迷雾和隐形老鼠","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_oil_lamp_1}
+	])
+	register_card("ventilation_fan", obj_ventilation_fan, [
+	    {"shape":0, "sprite":spr_ventilation_fan, "cost":100, "cooldown":7*60, "description":"换气扇：吹走迷雾和空军","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_ventilation_fan_1_icon, "cost":99, "cooldown":7*60, "description":"超能草扇：吹走迷雾和空军，击退敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_ventilation_fan_1},
+		{"shape":2, "sprite":spr_ventilation_fan_2_icon, "cost":99, "cooldown":7*60, "description":"SSR草扇：吹走迷雾和空军，击退敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_ventilation_fan_2}
+	]);
+	register_card("egg_boiler_pult", obj_egg_boiler_pult, [
+	    {"shape":0, "sprite":spr_egg_boiler_pult_icon, "cost":250, "cooldown":7*60, "description":"煮蛋器投手：投掷溅射鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_egg_boiler_pult},
+	    {"shape":1, "sprite":spr_egg_boiler_pult_icon_1, "cost":250, "cooldown":7*60, "description":"威力煮蛋器：投掷溅射鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_egg_boiler_pult_1},
+		{"shape":2, "sprite":spr_egg_boiler_pult_icon_2, "cost":250, "cooldown":7*60, "description":"强袭煮蛋器：投掷两个溅射鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_egg_boiler_pult_2}
+	]);
+	register_card("ice_egg_boiler_pult", obj_ice_egg_boiler_pult, [
+	    {"shape":0, "sprite":spr_ice_egg_boiler_pult_icon, "cost":200, "cooldown":50*60, "description":"冰煮蛋器：投掷减速冰鸡蛋","plant_type":"normal","feature_type":"upgrade","target_card":"egg_boiler_pult","place_preview":spr_ice_egg_boiler_pult},
+	    {"shape":1, "sprite":spr_ice_egg_boiler_pult_icon_1, "cost":200, "cooldown":50*60, "description":"节能冰煮蛋器：投掷减速冰鸡蛋","plant_type":"normal","feature_type":"upgrade","target_card":"egg_boiler_pult","place_preview":spr_ice_egg_boiler_pult_1},
+		{"shape":2, "sprite":spr_ice_egg_boiler_pult_icon_2, "cost":200, "cooldown":50*60, "description":"冰河煮蛋器：投掷减速冰鸡蛋","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_ice_egg_boiler_pult_2}
+	]);
+	register_card("chocolate_pult", obj_chocolate_pult, [
+	    {"shape":0, "sprite":spr_chocolate_pult_icon, "cost":125, "cooldown":7*60, "description":"巧克力投手：投掷能定住敌人的巧克力","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_chocolate_pult},
+	    {"shape":1, "sprite":spr_chocolate_pult_icon_1, "cost":125, "cooldown":7*60, "description":"浓情巧克力投手：投掷能定住敌人的巧克力","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_chocolate_pult_1},
+		{"shape":2, "sprite":spr_chocolate_pult_icon_2, "cost":125, "cooldown":7*60, "description":"脆心巧克力投手：投掷两块能定住敌人的巧克力","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_chocolate_pult_2}
+	]);
+	register_card("chocolate_cannon", obj_chocolate_cannon, [
+	    {"shape":0, "sprite":spr_chocolate_cannon, "cost":300, "cooldown":50*60, "description":"巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult"},
+	    {"shape":1, "sprite":spr_chocolate_cannon_1, "cost":300, "cooldown":50*60, "description":"节能巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult"},
+		{"shape":2, "sprite":spr_chocolate_cannon_2, "cost":300, "cooldown":50*60, "description":"死神大炮：发射两个3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("firework_dragon", obj_firework_dragon, [
+	    {"shape":0, "sprite":spr_firework_dragon, "cost":50, "cooldown":75*60, "description":"花火龙：立即生产6朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_firework_dragon_1, "cost":0, "cooldown":75*60, "description":"灼灼花火龙：立即生产6朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_firework_dragon_icon_2, "cost":0, "cooldown":75*60, "description":"炽焰花火龙：立即生产12朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_firework_dragon_2}
+	]);
+	register_card("double_ice_long_bao",obj_double_ice_long_bao,[
+	    {"shape":0, "sprite":spr_double_ice_long_bao, "cost":225, "cooldown":7*60, "description":"双层冰冻小笼包：发射两发冰包子","plant_type":"normal","feature_type":"bun","target_card":"none"}
+	])
+	register_card("cat_chest",obj_cat_chest,[
+	    {"shape":0, "sprite":spr_cat_chest_1, "cost":200, "cooldown":30*60, "description":"猫猫箱：将老鼠惊吓至相邻行并使其丢弃防具","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("cherry_pudding",obj_cherry_pudding,[
+	    {"shape":0, "sprite":spr_cherry_pudding, "cost":100, "cooldown":7*60, "description":"樱桃反弹布丁：反弹子弹并附加伤害","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_cherry_pudding_1, "cost":75, "cooldown":7*60, "description":"节能反弹布丁：反弹子弹并附加伤害","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_cherry_pudding_2, "cost":75, "cooldown":7*60, "description":"热量反弹布丁：反弹子弹并附加伤害","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("skewer_bomb",obj_skewer_bomb,[
+	    {"shape":0, "sprite":spr_skewer_bomb_icon, "cost":50, "cooldown":30*60, "description":"麻辣串炸弹：炸死单格范围空军","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_skewer_bomb}
+	])
+	register_card("gatlin_ice_long_bao",obj_gatlin_ice_long_bao,[
+	    {"shape":0, "sprite":spr_gatlin_ice_long_bao, "cost":300, "cooldown":50*60, "description":"机枪冰冻小笼包：发射四发冰包子","plant_type":"normal","feature_type":"upgrade","target_card":"double_ice_long_bao"}
+	])
+	register_card("aquarius_elve",obj_aquarius_elve,[
+	    {"shape":0, "sprite":spr_aquarius_elve, "cost":150, "cooldown":30*60, "description":"水瓶座精灵：本行5格和本列5格范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_aquarius_elve_1, "cost":200, "cooldown":30*60, "description":"水瓶座战将：本行5格和本列5格范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_aquarius_elve_2, "cost":250, "cooldown":30*60, "description":"水瓶座星宿：本行5格和本列5格范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("tar_sprayer", obj_tar_sprayer, [
+	    {"shape":0, "sprite":spr_tar_sprayer, "cost":150, "cooldown":7*60, "description":"焦油喷壶：穿透攻击四格内敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_tar_sprayer_1, "cost":150, "cooldown":7*60, "description":"强力焦油喷壶：穿透攻击六格内敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_tar_sprayer_2, "cost":150, "cooldown":7*60, "description":"祝融喷壶：穿透攻击六格内敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("triple_long_bao", obj_triple_long_bao, [
+	    {"shape":0, "sprite":spr_triple_long_bao, "cost":125, "cooldown":7*60, "description":"三向小笼包：向三个方向发射包子","plant_type":"normal","feature_type":"tbun","target_card":"none"}
+	]);
+	register_card("triple_ice_long_bao", obj_triple_ice_long_bao, [
+	    {"shape":0, "sprite":spr_triple_ice_long_bao, "cost":225, "cooldown":7*60, "description":"三向冰冻小笼包：向三个方向发射冰包子","plant_type":"normal","feature_type":"tbun","target_card":"none"}
+	]);
+	register_card("hotdog_cannon", obj_hotdog_cannon, [
+	    {"shape":0, "sprite":spr_hotdog_cannon, "cost":225, "cooldown":7*60, "description":"热狗大炮：发射冰弹攻击空中和地面敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":1, "sprite":spr_hotdog_cannon_1_icon, "cost":225, "cooldown":7*60, "description":"热狗高射炮：发射冰弹攻击空中和地面敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_hotdog_cannon_1},
+		{"shape":2, "sprite":spr_hotdog_cannon_2_icon, "cost":225, "cooldown":7*60, "description":"热狗榴弹炮：发射冰弹攻击空中和地面敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_hotdog_cannon_2}
+	]);
+	register_card("oden_pot", obj_oden_pot, [
+	    {"shape":0, "sprite":spr_oden_pot, "cost":150, "cooldown":7*60, "description":"关东煮喷锅：穿透攻击前方和上下各四格敌人，白天睡觉","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_oden_pot_1, "cost":150, "cooldown":7*60, "description":"福袋关东煮喷锅：穿透攻击前方和上下各四格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_oden_pot_2, "cost":150, "cooldown":7*60, "description":"海鲜关东煮喷锅：穿透攻击一行和一列敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	]);
+	register_card("whisky_bomb",obj_whisky_bomb,[
+	    {"shape":0, "sprite":spr_whisky_bomb, "cost":150, "cooldown":50*60, "description":"威士忌炸弹：一列范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_whisky_bomb_1, "cost":175, "cooldown":50*60, "description":"水晶威士忌炸弹：一列范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_whisky_bomb_2, "cost":225, "cooldown":50*60, "description":"钻石威士忌炸弹：三列范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("cotton_candy",obj_cotton_candy,[
+	    {"shape":0, "sprite":spr_cotton_candy_0_0, "cost":25, "cooldown":10*60, "description":"棉花糖：在空中和岩浆上承载卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_cotton_candy_1_0, "cost":0, "cooldown":10*60, "description":"草莓棉花糖：在空中和岩浆上承载卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_cotton_candy_2_0, "cost":0, "cooldown":10*60, "description":"彩虹棉花糖：在空中和岩浆上承载卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"}
+	])
+	register_card("durian",obj_durian,[
+	    {"shape":0, "sprite":spr_durian, "cost":375, "cooldown":90*60, "description":"榴莲：伤害3*3范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_durian_1, "cost":375, "cooldown":90*60, "description":"雪山榴莲：伤害并减速3*3范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_durian_2, "cost":375, "cooldown":90*60, "description":"冰河世纪榴莲：伤害并减速5*5范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("dragon_fruit",obj_dragon_fruit,[
+	    {"shape":0, "sprite":spr_dragon_fruit, "cost":375, "cooldown":60*60, "description":"火龙果：灼烧3*3范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_dragon_fruit_1_icon, "cost":375, "cooldown":60*60, "description":"炎阳火龙果：灼烧3*3范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_dragon_fruit_1},
+		{"shape":2, "sprite":spr_dragon_fruit_2_icon, "cost":375, "cooldown":60*60, "description":"九天皓日火龙果：灼烧5*5范围敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_dragon_fruit_2}
+	])
+	register_card("pineapple_explosive_bread",obj_pineapple_explosive_bread,[
+	    {"shape":0, "sprite":spr_pineapple_explosive_bread_0_0, "cost":150, "cooldown":50*60, "description":"菠萝爆炸面包：死亡后产生3*3范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_pineapple_explosive_bread_1_icon, "cost":150, "cooldown":50*60, "description":"独角菠萝面包：死亡后产生3*3范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_pineapple_explosive_bread_1_0},
+		{"shape":2, "sprite":spr_pineapple_explosive_bread_2_icon, "cost":150, "cooldown":50*60, "description":"皇冠菠萝面包：死亡后产生5*5范围爆炸","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_pineapple_explosive_bread_2_0}
+	])
+	register_card("ice_cream",obj_ice_cream,[
+	    {"shape":0, "sprite":spr_ice_cream_icon, "cost":100, "cooldown":60*60, "description":"冰激凌：冷却本格卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_ice_cream_icon_1, "cost":150, "cooldown":60*60, "description":"果蔬冰激凌：冷却3*3范围卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_ice_cream_icon_2, "cost":350, "cooldown":60*60, "description":"极寒冰沙：冷却全体卡片","plant_type":"coffee","feature_type":"normal","target_card":"none"}
+	])
+	register_card("lightning_baguette",obj_lightning_baguette,[
+	    {"shape":0, "sprite":spr_lightning_baguette_icon, "cost":225, "cooldown":60*60, "description":"雷电长棍面包：同列的两根面包间会产生电流","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_lightning_baguette},
+	    {"shape":1, "sprite":spr_lightning_baguette_1_icon, "cost":175, "cooldown":60*60, "description":"节能面包：同列的两根面包间会产生电流","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_lightning_baguette_1},
+		{"shape":2, "sprite":spr_lightning_baguette_2_icon, "cost":175, "cooldown":60*60, "description":"负离子面包：同列的两根面包间会产生两次电流","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_lightning_baguette_2}
+	])
+	register_card("bull_firework",obj_bull_firework,[
+	    {"shape":0, "sprite":spr_bull_firework, "cost":325, "cooldown":50*60, "description":"金牛烟花：召唤1只烟花牛冲撞敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_bull_firework_1, "cost":275, "cooldown":50*60, "description":"迷幻金牛烟花：召唤1只烟花牛冲撞敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_bull_firework_2, "cost":275, "cooldown":50*60, "description":"璀璨金牛烟花：召唤2只烟花牛冲撞敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("magic_chicken", obj_magic_chicken, [
+	    {"shape":0, "sprite":spr_magic_chicken_icon, "cost":0, "cooldown":7*60, "description":"幻幻鸡：复制成上一张放置的卡片","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_magic_chicken}
+	]);
+	register_card("xinjiang_fried_noodles",obj_xinjiang_fried_noodles,[
+	    {"shape":0, "sprite":spr_xinjiang_fried_noodles, "cost":150, "cooldown":7*60, "description":"新疆炒面：攻击前方三格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_xinjiang_fried_noodles_1, "cost":175, "cooldown":7*60, "description":"刀削拉面：攻击前方三格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_xinjiang_fried_noodles_icon_2, "cost":225, "cooldown":7*60, "description":"真刀削拉面：攻击前方四格敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_xinjiang_fried_noodles_2}
+	])
+	register_card("king_long_bao",obj_king_long_bao,[
+	    {"shape":0, "sprite":spr_king_long_bao_0_0, "cost":125, "cooldown":5*60, "description":"国王小笼包：发射包子，可填充2张包子类卡片","plant_type":"normal","feature_type":"king_bun","target_card":"none"},
+	    {"shape":1, "sprite":spr_king_long_bao_1_0, "cost":125, "cooldown":5*60, "description":"红心国王小笼包：发射包子，可填充3张包子类卡片","plant_type":"normal","feature_type":"king_bun","target_card":"none"},
+		{"shape":2, "sprite":spr_king_long_bao_2_0, "cost":125, "cooldown":5*60, "description":"黑心国王小笼包：发射包子，可填充5张包子类卡片","plant_type":"normal","feature_type":"king_bun","target_card":"none"}
+	])
+	register_card("king_triple_long_bao",obj_king_triple_long_bao,[
+	    {"shape":0, "sprite":spr_king_triple_long_bao_0_0, "cost":175, "cooldown":5*60, "description":"三向国王小笼包：向三个方向发射包子，可填充2张三向包子类卡片","plant_type":"normal","feature_type":"king_tbun","target_card":"none"},
+	    {"shape":1, "sprite":spr_king_triple_long_bao_1_0, "cost":175, "cooldown":5*60, "description":"红心三向国王小笼包：向三个方向发射包子，可填充3张三向包子类卡片","plant_type":"normal","feature_type":"king_tbun","target_card":"none"},
+		{"shape":2, "sprite":spr_king_triple_long_bao_2_0, "cost":175, "cooldown":5*60, "description":"黑心三向国王小笼包：向三个方向发射包子，可填充5张三向包子类卡片","plant_type":"normal","feature_type":"king_tbun","target_card":"none"}
+	])
+	register_card("chili_powder",obj_chili_powder,[
+	    {"shape":0, "sprite":spr_chili_powder, "cost":10, "cooldown":30*60, "description":"辣椒粉：接触敌人后产生十字范围爆炸并产生2朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_chili_powder_1, "cost":10, "cooldown":30*60, "description":"火爆辣椒粉：接触敌人后产生十字范围爆炸并产生4朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_chili_powder_2, "cost":10, "cooldown":30*60, "description":"魔鬼辣椒粉：接触敌人后产生3*3范围爆炸并产生4朵火苗","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("tang_hu_lu", obj_tang_hu_lu, [
+	    {"shape":0, "sprite":spr_tang_hu_lu_icon, "cost":175, "cooldown":7*60, "description":"糖葫芦炮弹：发射追踪空中敌人的糖葫芦炮弹","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_tang_hu_lu},
+	    {"shape":1, "sprite":spr_tang_hu_lu_icon_1, "cost":200, "cooldown":7*60, "description":"水果糖葫芦弹：发射追踪空中敌人的糖葫芦炮弹","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_tang_hu_lu_1},
+		{"shape":2, "sprite":spr_tang_hu_lu_icon_2, "cost":250, "cooldown":7*60, "description":"七彩糖葫芦弹：发射两个追踪空中敌人的糖葫芦炮弹","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_tang_hu_lu_2}
+	]);
+	register_card("beef_hotpot",obj_beef_hotpot,[
+	    {"shape":0, "sprite":spr_beef_hotpot, "cost":175, "cooldown":7*60, "description":"肥牛火锅：穿透攻击4格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_beef_hotpot_1, "cost":200, "cooldown":7*60, "description":"酸汤肥牛锅：穿透攻击5格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_beef_hotpot_2, "cost":250, "cooldown":7*60, "description":"海鲜肥牛锅：穿透攻击5格敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("spicy_pot",obj_spicy_pot,[
+	    {"shape":0, "sprite":spr_spicy_pot, "cost":300, "cooldown":7*60, "description":"麻辣香锅：穿透攻击前方三行4格内的敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_spicy_pot_1, "cost":325, "cooldown":7*60, "description":"孜然羊肉锅：穿透攻击前方三行5格内的敌人","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_spicy_pot_2, "cost":375, "cooldown":7*60, "description":"酱香鱿鱼锅：穿透攻击前方三行5格内的敌人","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("pan_fried_bun",obj_pan_fried_bun,[
+	    {"shape":0, "sprite":spr_pan_fried_bun, "cost":150, "cooldown":7*60, "description":"生煎锅：投掷十字范围灼烧的生煎包","plant_type":"normal","feature_type":"normal","target_card":"none"},
+	    {"shape":1, "sprite":spr_pan_fried_bun_1, "cost":175, "cooldown":7*60, "description":"水煎包锅：投掷3*3范围灼烧的生煎包","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":2, "sprite":spr_pan_fried_bun_2, "cost":225, "cooldown":7*60, "description":"驴肉火烧锅：投掷3*3范围灼烧的生煎包","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("soda_bubble",obj_soda_bubble,[
+	    {"shape":0, "sprite":spr_soda_bubble_icon, "cost":25, "cooldown":10*60, "description":"苏打气泡：保护卡片免受窒息","plant_type":"coffee","feature_type":"normal","target_card":"none","place_preview":spr_soda_bubble_0_0},
+	    {"shape":1, "sprite":spr_soda_bubble_1_icon, "cost":0, "cooldown":10*60, "description":"五彩香皂泡泡：保护卡片免受窒息","plant_type":"coffee","feature_type":"normal","target_card":"none","place_preview":spr_soda_bubble_1_0},
+	])
+	register_card("coal_starfish", obj_coal_starfish, [
+	    {"shape":0, "sprite":spr_coal_starfish, "cost":175, "cooldown":7*60, "description":"炭烧海星：向五个方向发射星星，陆地窒息","plant_type":"normal","feature_type":"amphi","target_card":"none"},
+		{"shape":1, "sprite":spr_coal_starfish_1, "cost":175, "cooldown":7*60, "description":"芝士焗海星：向五个方向发射星星","plant_type":"normal","feature_type":"amphi","target_card":"none"},
+		{"shape":2, "sprite":spr_coal_starfish_2_icon, "cost":225, "cooldown":7*60, "description":"芥末海星刺身：向五个方向发射两颗星星","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_coal_starfish_2}
+	]);
+	register_card("horseshoe_crab_bread",obj_horseshoe_crab_bread,[
+		{"shape":0,"sprite":spr_horseshoe_crab_bread_0_0,"cost":150,"cooldown":30*60,"description":"老虎蟹面包：阻挡剑鱼鼠冲刺","plant_type":"normal","feature_type":"normal","target_card":"none"},
+		{"shape":1,"sprite":spr_horseshoe_crab_bread_1_0,"cost":150,"cooldown":30*60,"description":"帝王蟹面包：阻挡剑鱼鼠冲刺","plant_type":"normal","feature_type":"normal","target_card":"none"}
+	])
+	register_card("curry_lobster_cannon", obj_curry_lobster_cannon, [
+	    {"shape":0, "sprite":spr_curry_lobster_cannon_icon, "cost":275, "cooldown":20*60, "description":"咖喱龙虾炮：发射两个追踪咖喱炮弹，陆地窒息","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_curry_lobster_cannon},
+		{"shape":1, "sprite":spr_curry_lobster_cannon_1_icon, "cost":275, "cooldown":20*60, "description":"麻辣龙虾炮：发射两个追踪咖喱炮弹","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_curry_lobster_cannon_1},
+		{"shape":2, "sprite":spr_curry_lobster_cannon_2_icon, "cost":275, "cooldown":20*60, "description":"加农龙虾炮：发射三个追踪咖喱炮弹","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_curry_lobster_cannon_2}
+	]);
+	register_card("sugar_ball_pult", obj_sugar_ball_pult, [
+	    {"shape":0, "sprite":spr_sugar_ball_pult_icon, "cost":300, "cooldown":7*60, "description":"全能糖球投手：投掷可追踪3行内敌人的糖球","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_sugar_ball_pult},
+	    {"shape":1, "sprite":spr_sugar_ball_pult_1_icon, "cost":300, "cooldown":7*60, "description":"水果糖全能投手：投掷可追踪3行内敌人的糖球","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_sugar_ball_pult_1},
+		{"shape":2, "sprite":spr_sugar_ball_pult_2_icon, "cost":300, "cooldown":7*60, "description":"可可糖全能投手：投掷两个可追踪3行内敌人的糖球","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_sugar_ball_pult_2}
+	]);
+	register_card("pizza_oven", obj_pizza_oven, [
+	    {"shape":0, "sprite":spr_pizza_oven, "cost":250, "cooldown":7*60, "description":"迷你披萨炉：发射披萨攻击最后一个敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_pizza_oven},
+	    {"shape":1, "sprite":spr_pizza_oven_1, "cost":250, "cooldown":7*60, "description":"香脆披萨炉：发射披萨攻击最后一个敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_pizza_oven_1},
+		{"shape":2, "sprite":spr_pizza_oven_2, "cost":250, "cooldown":7*60, "description":"拉丝披萨炉：发射两个披萨攻击最后一个敌人","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_pizza_oven_2}
+	]);
+	register_card("rabbit_lantern", obj_rabbit_lantern, [
+	    {"shape":0, "sprite":spr_rabbit_lantern, "cost":225, "cooldown":50*60, "description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_rabbit_lantern},
+	    {"shape":1, "sprite":spr_rabbit_lantern_1, "cost":225, "cooldown":50*60, "description":"广寒玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_rabbit_lantern_1},
+		{"shape":2, "sprite":spr_rabbit_lantern_2, "cost":225, "cooldown":50*60, "description":"莲花玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_rabbit_lantern_2}
+	]);
+	register_card("delicacy_firework", obj_delicacy_firework, [
+	    {"shape":0, "sprite":spr_delicacy_firework, "cost":175, "cooldown":60*60, "description":"美食烟花：3*4范围爆炸，命中老鼠产生火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_delicacy_firework},
+	    {"shape":1, "sprite":spr_delicacy_firework_1, "cost":200, "cooldown":60*60, "description":"美食爆竹：3*4范围爆炸，命中老鼠产生火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_delicacy_firework_1},
+		{"shape":2, "sprite":spr_delicacy_firework_2, "cost":250, "cooldown":60*60, "description":"美食礼花：5*5范围爆炸，命中老鼠产生火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_delicacy_firework_2}
+	]);
+	//register_card("fruit_tart", obj_fruit_tart, [
+	//    {"shape":0, "sprite":spr_fruit_tart, "cost":150, "cooldown":14*60, "description":"美味水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart},
+	//    {"shape":1, "sprite":spr_fruit_tart_1, "cost":150, "cooldown":7*60, "description":"风车水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_1},
+	//	{"shape":2, "sprite":spr_fruit_tart_2, "cost":150, "cooldown":7*60, "description":"巧克力水果塔：为本行投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_2}
+	//]);
+}

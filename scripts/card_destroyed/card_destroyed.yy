@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_destroyed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_destroyed",
+  "parent":{
+    "name":"Card",
+    "path":"folders/脚本/Card.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"weighted_random",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"weighted_random",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
