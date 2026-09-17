@@ -152,7 +152,8 @@ if package_button_select == 1 {
             // 绘制卡片
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
-				draw_sprite_ext(spr_slot, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
+				var _slot_spr = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
 				draw_set_halign(fa_center);
@@ -187,8 +188,9 @@ if package_button_select == 1 {
                 }
             } else {
                 // 未解锁的卡片使用灰色滤镜
-				draw_sprite_ext(spr_slot, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
-				card_data = card_data_shapes[| card_shape]
+                card_data = card_data_shapes[| card_shape]
+				var _slot_spr2 = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_slot_spr2, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_gray, 1);
             }
             
@@ -478,7 +480,7 @@ else if package_button_select == 3{
 	draw_surface(package_surface,x-354-42,y-368-44)
 	// 绘制悬停提示
     if (hover_material_index != -1) {
-		var material_list = ds_map_keys_to_array(global.material_pool)
+		material_list = ds_map_keys_to_array(global.material_pool)
         var material_id = material_list[hover_material_index]
         var material_data = get_material_info(material_id)
         

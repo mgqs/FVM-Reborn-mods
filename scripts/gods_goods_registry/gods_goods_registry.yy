@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"gods_goods_registry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"gods_goods_registry",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

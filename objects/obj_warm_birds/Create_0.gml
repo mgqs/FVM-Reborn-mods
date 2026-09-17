@@ -1,0 +1,10 @@
+event_inherited();
+plant_id = "warm_birds";
+obj_type = object_index;
+sprite_index = spr_warm_birds;
+flame_produce = 25;
+event_user(0);
+attack_anim = 13;
+idle_anim = 11;
+first_produce_delay = 60;
+plant_type = "normal";

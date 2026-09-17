@@ -1,0 +1,31 @@
+function mod_buff_init()
+{
+    global.plant_buff_map = ds_map_create();
+    ds_map_set(global.plant_buff_map, "takoyaki", "tracker");
+    ds_map_set(global.plant_buff_map, "cold_drew", "tracker");
+    ds_map_set(global.plant_buff_map, "juxie", "tracker");
+    ds_map_set(global.plant_buff_map, "moon_god", "tracker");
+    ds_map_set(global.plant_buff_map, "athena", "tracker");
+    ds_map_set(global.plant_buff_map, "zeus", "tracker");
+    ds_map_set(global.plant_buff_map, "ice_god", "tracker");
+    ds_map_set(global.plant_buff_map, "joker", "tracker");
+    ds_map_set(global.plant_buff_map, "power_god", "tracker");
+    ds_map_set(global.plant_buff_map, "grilled_lizard_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "spoon_rabbit", "thrower");
+    ds_map_set(global.plant_buff_map, "zhurong", "thrower");
+    ds_map_set(global.plant_buff_map, "gaia", "thrower");
+    ds_map_set(global.plant_buff_map, "chocolate_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "egg_boiler_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "ice_egg_boiler_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "salad_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "stinky_tofu_pult", "thrower");
+    ds_map_set(global.plant_buff_map, "shuangyu", "thrower");
+    ds_map_set(global.plant_buff_map, "thor", "thrower");
+    ds_map_set(global.plant_buff_map, "ymir", "thrower");
+    ds_map_set(global.plant_buff_map, "rotating_coffee_pot", "sprayer");
+    ds_map_set(global.plant_buff_map, "coffee_pot", "sprayer");
+    ds_map_set(global.plant_buff_map, "oden_pot", "sprayer");
+    ds_map_set(global.plant_buff_map, "shizi", "sprayer");
+    ds_map_set(global.plant_buff_map, "poseidon", "sprayer");
+    ds_map_set(global.plant_buff_map, "oden_pot", "sprayer");
+}

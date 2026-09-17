@@ -1,0 +1,9 @@
+image_xscale = 1;
+image_yscale = 1;
+damage_type = "normal";
+damage = 0;
+target_enemy = -4;
+hitted_enemy = -4;
+move_speed = 0;
+row = 0;
+col = 0;

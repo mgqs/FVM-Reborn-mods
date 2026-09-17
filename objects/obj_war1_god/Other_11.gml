@@ -1,0 +1,9 @@
+var inst = instance_create_depth(x + 40, y - 50, depth - 500, obj_war_god_bullet);
+inst.damage = atk;
+inst.move_speed = 8;
+inst.row = grid_row;
+var inst2 = instance_create_depth(x - 40, y - 50, depth - 500, obj_war_god_bullet);
+inst2.damage = atk;
+inst2.move_speed = -8;
+inst2.row = grid_row;
+inst2.image_angle = 180;

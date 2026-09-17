@@ -1,0 +1,15 @@
+battle = -4;
+shield_replaced = false;
+event_created = false;
+buff_timer = 5;
+record_timer = 5;
+show_debug_message("obj_mod_battle_manager已创建");
+global.last_placed_card_id = "";
+global.last_placed_card_shape = 0;
+global.buff_sources = ds_list_create();
+global.buff_dirty = false;
+global.buff_apply_id = 0;
+build_shield_grid();
+build_buff_aurora();
+build_buff_grid();
+global.rig_count = 0;

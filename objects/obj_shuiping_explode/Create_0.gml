@@ -1,0 +1,10 @@
+image_xscale = 1.8;
+image_yscale = 1.8;
+image_speed = 0;
+row = 0;
+col = 0;
+timer = 0;
+type = 0;
+is_parent = false;
+dir = 0;
+generation = 0;

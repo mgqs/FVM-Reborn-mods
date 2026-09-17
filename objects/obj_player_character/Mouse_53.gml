@@ -59,6 +59,15 @@
 				hp += get_gem_info("health_gem").hp_increase * (get_gem_level("health_gem")+1)
 				max_hp += get_gem_info("health_gem").hp_increase * (get_gem_level("health_gem")+1)
 			}
+			var sec_gem_list = global.save_data.equipped_items.secondary_weapon.gems
+			for(var i = 0 ; i < array_length(sec_gem_list);i++){
+				var gem_id = sec_gem_list[i]
+				var gem_info = get_gem_info(gem_id)
+				if gem_info.obj != noone{
+					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					gem_index++
+				}
+			}
 		}
 		if global.save_data.equipped_items.super_weapon.id != ""{
 			var main_info = get_weapon_info(global.save_data.equipped_items.super_weapon.id)
@@ -66,6 +75,15 @@
 			main_weapon_inst.parent_player = id
 			main_weapon_inst.grid_row = grid_row
 			main_weapon_inst.grid_col = grid_col
+			var sup_gem_list = global.save_data.equipped_items.super_weapon.gems
+			for(var i = 0 ; i < array_length(sup_gem_list);i++){
+				var gem_id = sup_gem_list[i]
+				var gem_info = get_gem_info(gem_id)
+				if gem_info.obj != noone{
+					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					gem_index++
+				}
+			}
 		}
 	}
 	

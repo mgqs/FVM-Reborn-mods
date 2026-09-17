@@ -35,6 +35,13 @@ if (plant_data != undefined) {
 			}
 		}
 	}
-	
 }
+
+var _card_data = deck_get_card_data(card_id, cshape);
+if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_find_value(_card_data, "is_gold") == 1) {
+    sprite_index = spr_slot_1;
+} else {
+    sprite_index = spr_slot;
+}
+
 info_got = true
