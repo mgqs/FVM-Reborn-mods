@@ -29,13 +29,13 @@ function register_weapon(weapon_id,data){
 function equip_weapon(weapon_id,slot){
 	global.equipped_weapon[? slot].weapon_id = weapon_id
 	if slot == "main_weapon"{
-		global.save_data.equipped_items.main_weapon.id = weapon_id
+		global.save_data.equipped_items.main_weapon[$ "id"] = weapon_id
 	}
 	else if slot == "secondary_weapon"{
-		global.save_data.equipped_items.secondary_weapon.id = weapon_id
+		global.save_data.equipped_items.secondary_weapon[$ "id"] = weapon_id
 	}
 	else if slot == "super_weapon"{
-		global.save_data.equipped_items.super_weapon.id = weapon_id
+		global.save_data.equipped_items.super_weapon[$ "id"] = weapon_id
 	}
 	save_file(global.save_slot)
 }
@@ -46,13 +46,13 @@ function equip_weapon(weapon_id,slot){
 function remove_weapon(slot){
 	global.equipped_weapon[? slot].weapon_id = ""
 	if slot == "main_weapon"{
-		global.save_data.equipped_items.main_weapon.id = ""
+		global.save_data.equipped_items.main_weapon[$ "id"] = ""
 	}
 	else if slot == "secondary_weapon"{
-		global.save_data.equipped_items.secondary_weapon.id = ""
+		global.save_data.equipped_items.secondary_weapon[$ "id"] = ""
 	}
 	else if slot == "super_weapon"{
-		global.save_data.equipped_items.super_weapon.id = ""
+		global.save_data.equipped_items.super_weapon[$ "id"] = ""
 	}
 	save_file(global.save_slot)
 }
@@ -146,9 +146,9 @@ function remove_gem(gem_id){
 /// @param {string} weapon_id 武器ID
 /// @return {bool} 是否已装备
 function is_weapon_equipped(weapon_id) {
-    return (global.save_data.equipped_items.main_weapon.id == weapon_id ||
-            global.save_data.equipped_items.secondary_weapon.id == weapon_id ||
-            global.save_data.equipped_items.super_weapon.id == weapon_id);
+    return (global.save_data.equipped_items.main_weapon[$ "id"] == weapon_id ||
+            global.save_data.equipped_items.secondary_weapon[$ "id"] == weapon_id ||
+            global.save_data.equipped_items.super_weapon[$ "id"] == weapon_id);
 }
 
 /// @function get_weapon_slot(weapon_id)
@@ -156,11 +156,11 @@ function is_weapon_equipped(weapon_id) {
 /// @param {string} weapon_id 武器ID
 /// @return {string} 槽位名称，如果未装备则返回空字符串
 function get_weapon_slot(weapon_id) {
-    if (global.save_data.equipped_items.main_weapon.id == weapon_id) {
+    if (global.save_data.equipped_items.main_weapon[$ "id"] == weapon_id) {
         return "main_weapon";
-    } else if (global.save_data.equipped_items.secondary_weapon.id == weapon_id) {
+    } else if (global.save_data.equipped_items.secondary_weapon[$ "id"] == weapon_id) {
         return "secondary_weapon";
-    } else if (global.save_data.equipped_items.super_weapon.id == weapon_id) {
+    } else if (global.save_data.equipped_items.super_weapon[$ "id"] == weapon_id) {
         return "super_weapon";
     }
     return "";

@@ -1,0 +1,1 @@
+show_debug_message("当前损卡：" + string(obj_task_manager.card_loss));

@@ -1,14 +1,15 @@
-if global.is_paused{
+﻿if global.is_paused{
 	exit
 }
 
+var i;
 event_timer ++
 {//（旧代码）硬编码的事件和地图物件
 	if global.level_data.name == "布丁岛（日）" || global.level_data.name == "布丁岛（夜）"{
 		if event_timer mod 1800 == 5{
 			//(测试)生成老鼠洞
 			var can_summon = true
-			for(var i = 0 ; i < 100;i++){
+			for(i = 0 ; i < 100;i++){
 				can_summon = true
 				var pos_x = irandom_range(4,global.grid_cols-1)
 				var pos_y = irandom_range(0,global.grid_rows-1)
@@ -33,7 +34,7 @@ event_timer ++
 
 	if global.level_data.name == "咖喱岛（日）" || global.level_data.name == "咖喱岛（夜）"{
 		if event_timer == 1{
-			for(var i = 0 ; i < global.grid_rows ; i++){
+			for(i = 0 ; i < global.grid_rows ; i++){
 				for(var j = 6 ; j < global.grid_cols+3;j++){
 					var pos = get_world_position_from_grid(j,i)
 					var fog = instance_create_depth(pos.x+10,pos.y-50,-800,obj_fog)
@@ -165,7 +166,7 @@ event_timer ++
 		[0,0,0,1,0,1,0,0,0],
 		[0,0,0,1,1,1,0,0,0]
 		]
-		for(var i = 0 ; i < array_length(lava_pos_list) ; i++){
+		for(i = 0 ; i < array_length(lava_pos_list) ; i++){
 			for(var j = 0 ; j < array_length(lava_pos_list[i]) ; j++){
 			
 				if lava_pos_list[i][j] == 1{ 
@@ -188,7 +189,7 @@ event_timer ++
 		[0,0,0,0,0,1,0,0,0],
 		[0,0,0,0,1,1,0,0,0]
 		]
-		for(var i = 0 ; i < array_length(lava_pos_list) ; i++){
+		for(i = 0 ; i < array_length(lava_pos_list) ; i++){
 			for(var j = 0 ; j < array_length(lava_pos_list[i]) ; j++){
 			
 				if lava_pos_list[i][j] == 1{ 
@@ -211,7 +212,7 @@ event_timer ++
 		[0,0,0,1,0,1,0,0,1],
 		[0,0,0,0,0,0,0,0,1]
 		]
-		for(var i = 0 ; i < array_length(lava_pos_list) ; i++){
+		for(i = 0 ; i < array_length(lava_pos_list) ; i++){
 			for(var j = 0 ; j < array_length(lava_pos_list[i]) ; j++){
 			
 				if lava_pos_list[i][j] == 1{ 
@@ -267,7 +268,7 @@ event_timer ++
 	
 		if obj_battle.map_spr_index != 3{
 		
-			for(var i = 0 ; i < global.grid_rows ; i++){
+			for(i = 0 ; i < global.grid_rows ; i++){
 				for(var j = 0 ; j < global.grid_cols ; j++){
 					if global.grid_terrains[i][j].type == "water"{
 						global.grid_terrains[i][j].type = "normal"
@@ -284,7 +285,7 @@ event_timer ++
 
 	if (global.level_id == "cheese_castle" && obj_battle.current_wave == 5 && obj_battle.current_subwave == 9 && obj_battle.wave_timer == 1)
 	||((global.level_id == "tower_cake_10_1" || global.level_id == "tower_cake_10_2") && obj_battle.current_wave == 2 && obj_battle.current_subwave == 0 && obj_battle.wave_timer == 1){
-		for(var i = 0 ; i < 7 ; i ++){
+		for(i = 0 ; i < 7 ; i ++){
 			global.row_feature[i] = "land"
 		}
 	}
@@ -294,7 +295,7 @@ event_timer ++
 			can_cloud_hole_summon = true
 		}
 		if event_timer == 1{
-			for(var i = 2 ; i < global.grid_cols  ; i ++){
+			for(i = 2 ; i < global.grid_cols  ; i ++){
 				for(var j = 0 ; j < global.grid_rows  ; j ++){
 					var cloud_pos = get_world_position_from_grid(i,j)
 					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
@@ -310,7 +311,7 @@ event_timer ++
 			if can_cloud_hole_summon{
 				hole_row = irandom_range(0,global.grid_rows-1)
 			}
-			for(var i = 0 ; i < global.grid_rows  ; i ++){
+			for(i = 0 ; i < global.grid_rows  ; i ++){
 				var cloud_pos = get_world_position_from_grid(9,i)
 				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
 				cloud_inst.image_index = cloud_count mod 2
@@ -328,7 +329,7 @@ event_timer ++
 			can_cloud_hole_summon = true
 		}
 		if event_timer == 1{
-			for(var i = 2 ; i < global.grid_cols  ; i ++){
+			for(i = 2 ; i < global.grid_cols  ; i ++){
 				for(var j = 0 ; j < global.grid_rows  ; j ++){
 					var cloud_pos = get_world_position_from_grid(i,j)
 					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
@@ -345,7 +346,7 @@ event_timer ++
 			if can_cloud_hole_summon{
 				hole_row = irandom_range(0,global.grid_rows-1)
 			}
-			for(var i = 0 ; i < global.grid_rows  ; i ++){
+			for(i = 0 ; i < global.grid_rows  ; i ++){
 				var cloud_pos = get_world_position_from_grid(9,i)
 				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
 				cloud_inst.image_index = cloud_count mod 2
@@ -366,7 +367,7 @@ if is_real(global.level_file.version){
 	if global.level_file.version >= 1.5{
 		var event_list = struct_get(global.level_file,"events")
 		//遍历事件数组
-		for(var i = 0 ; i < array_length(event_list) ; i++){
+		for(i = 0 ; i < array_length(event_list) ; i++){
 			//处理蝙蝠鼠生成事件
 			if event_list[i].id == "bat_mouse_spawn"{
 				if event_timer mod (event_list[i].interval*60) == (event_list[i].interval*60-1){
@@ -1145,7 +1146,7 @@ if is_real(global.level_file.version){
 			//处理全屏海水事件
 			if event_list[i].id == "full_seawater"{
 				if event_timer == 1{
-					for(var i = 0 ; i < global.grid_rows ; i++){
+					for(i = 0 ; i < global.grid_rows ; i++){
 						for(var j = 0 ; j < global.grid_cols; j++){
 
 							var obs_pos = get_world_position_from_grid(j,i)

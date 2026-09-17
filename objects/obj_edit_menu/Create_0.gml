@@ -23,16 +23,16 @@ open_save_folder_btn.btn_type = "open_save_folder";
 open_save_folder_btn.parent = id; 
 
 // 创建导出按钮
-var open_save_folder_btn = instance_create_depth(x, y + 280, depth-1, obj_edit_menu_button);
-open_save_folder_btn.button_text = "导出存档备份";
-open_save_folder_btn.btn_type = "export_save_backup";
-open_save_folder_btn.parent = id; 
+var export_btn = instance_create_depth(x, y + 280, depth-1, obj_edit_menu_button);
+export_btn.button_text = "导出存档备份";
+export_btn.btn_type = "export_save_backup";
+export_btn.parent = id; 
 
 // 创建导入按钮
-var open_save_folder_btn = instance_create_depth(x + 175, y + 280, depth-1, obj_edit_menu_button);
-open_save_folder_btn.button_text = "导入存档备份";
-open_save_folder_btn.btn_type = "import_save_backup";
-open_save_folder_btn.parent = id; 
+var import_btn = instance_create_depth(x + 175, y + 280, depth-1, obj_edit_menu_button);
+import_btn.button_text = "导入存档备份";
+import_btn.btn_type = "import_save_backup";
+import_btn.parent = id; 
 
 // 创建取消按钮
 var cancel_btn = instance_create_depth(x + 350, y + 280, depth-1, obj_edit_menu_button);

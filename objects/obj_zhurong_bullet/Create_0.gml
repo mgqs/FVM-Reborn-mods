@@ -1,0 +1,14 @@
+damage = 0;
+move_speed = 0;
+cvspeed = 0;
+cgravity = 0;
+row = 0;
+has_target = false;
+target_col = 0;
+target_x = 0;
+target_y = 0;
+shape = 0;
+damage_type = "throw";
+target_type = "throw";
+image_xscale = 1.8;
+image_yscale = 1.8;

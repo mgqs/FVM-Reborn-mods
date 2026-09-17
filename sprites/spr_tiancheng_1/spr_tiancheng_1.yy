@@ -1,0 +1,787 @@
+{
+  "$GMSprite": "v2",
+  "%Name": "spr_tiancheng_1",
+  "bboxMode": 0,
+  "bbox_bottom": 77,
+  "bbox_left": 0,
+  "bbox_right": 82,
+  "bbox_top": 0,
+  "collisionKind": 1,
+  "collisionTolerance": 0,
+  "DynamicTexturePage": false,
+  "edgeFiltering": false,
+  "For3D": false,
+  "frames": [
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "cac4d132-7cb4-44e5-86d5-3c1f6b05f2ae",
+      "name": "cac4d132-7cb4-44e5-86d5-3c1f6b05f2ae",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f3501543-0d82-4cd3-a5db-b6d30da54261",
+      "name": "f3501543-0d82-4cd3-a5db-b6d30da54261",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "fa8ede04-34b6-4045-ad96-c0af7bf56c58",
+      "name": "fa8ede04-34b6-4045-ad96-c0af7bf56c58",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "8f3eaf0a-8afb-42fd-8886-5241f462d4c5",
+      "name": "8f3eaf0a-8afb-42fd-8886-5241f462d4c5",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f8f14090-a249-4f46-a0da-697734306423",
+      "name": "f8f14090-a249-4f46-a0da-697734306423",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "4769ad3e-b324-414f-b6fd-3329d3a6f492",
+      "name": "4769ad3e-b324-414f-b6fd-3329d3a6f492",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f00e6d09-a04e-4974-a710-09efab9c58e9",
+      "name": "f00e6d09-a04e-4974-a710-09efab9c58e9",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "e539b1f0-231e-4e59-a851-339c99c0fe97",
+      "name": "e539b1f0-231e-4e59-a851-339c99c0fe97",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "5e52e136-534d-4b53-928d-59581efabecd",
+      "name": "5e52e136-534d-4b53-928d-59581efabecd",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "a1f6b2e8-2885-4ec0-8c01-f6c75312f41b",
+      "name": "a1f6b2e8-2885-4ec0-8c01-f6c75312f41b",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ea97c5bf-8cfb-49bb-a94d-883ac3bedb46",
+      "name": "ea97c5bf-8cfb-49bb-a94d-883ac3bedb46",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "0c353d63-81dd-4117-b7ca-644ffeb31386",
+      "name": "0c353d63-81dd-4117-b7ca-644ffeb31386",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "c3f922e6-f9d7-4ae2-a380-65fea3e672ab",
+      "name": "c3f922e6-f9d7-4ae2-a380-65fea3e672ab",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "9b5f0ad2-c80b-4378-b81c-c887f913f92d",
+      "name": "9b5f0ad2-c80b-4378-b81c-c887f913f92d",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "29bf332d-e50d-45c1-8d34-984cb755d657",
+      "name": "29bf332d-e50d-45c1-8d34-984cb755d657",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "0960c13b-ea22-4224-9829-e5f9278a59dd",
+      "name": "0960c13b-ea22-4224-9829-e5f9278a59dd",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f940ee18-d628-49d1-ad41-e2e7c1cf44e1",
+      "name": "f940ee18-d628-49d1-ad41-e2e7c1cf44e1",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "3bb05c8e-e5e2-45f8-810e-92b8c33a5d50",
+      "name": "3bb05c8e-e5e2-45f8-810e-92b8c33a5d50",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "3d515ac6-c71b-4b3a-a6f7-7f2ab0df6428",
+      "name": "3d515ac6-c71b-4b3a-a6f7-7f2ab0df6428",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ecf8f48c-d80a-4678-8bb3-99b707f4b340",
+      "name": "ecf8f48c-d80a-4678-8bb3-99b707f4b340",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "9f31f5b0-40d2-4217-acf9-1db615640667",
+      "name": "9f31f5b0-40d2-4217-acf9-1db615640667",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "2ae8f913-f9e1-429e-9e70-b26637ba6769",
+      "name": "2ae8f913-f9e1-429e-9e70-b26637ba6769",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "e5d6226b-f17f-4610-98c8-fd7a0d1e12df",
+      "name": "e5d6226b-f17f-4610-98c8-fd7a0d1e12df",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    }
+  ],
+  "gridX": 0,
+  "gridY": 0,
+  "height": 78,
+  "HTile": false,
+  "layers": [
+    {
+      "$GMImageLayer": "",
+      "%Name": "b9515359-43e3-4be6-bfa7-ff9e6bafb046",
+      "blendMode": 0,
+      "displayName": "default",
+      "isLocked": false,
+      "name": "b9515359-43e3-4be6-bfa7-ff9e6bafb046",
+      "opacity": 100.0,
+      "resourceType": "GMImageLayer",
+      "resourceVersion": "2.0",
+      "visible": true
+    }
+  ],
+  "name": "spr_tiancheng_1",
+  "nineSlice": null,
+  "origin": 7,
+  "parent": {
+    "name": "Cards",
+    "path": "folders/精灵/mod/Cards.yy"
+  },
+  "preMultiplyAlpha": false,
+  "resourceType": "GMSprite",
+  "resourceVersion": "2.0",
+  "sequence": {
+    "$GMSequence": "v1",
+    "%Name": "spr_tiancheng_1",
+    "autoRecord": true,
+    "backdropHeight": 768,
+    "backdropImageOpacity": 0.5,
+    "backdropImagePath": "",
+    "backdropWidth": 1366,
+    "backdropXOffset": 0.0,
+    "backdropYOffset": 0.0,
+    "events": {
+      "$KeyframeStore<MessageEventKeyframe>": "",
+      "Keyframes": [],
+      "resourceType": "KeyframeStore<MessageEventKeyframe>",
+      "resourceVersion": "2.0"
+    },
+    "eventStubScript": null,
+    "eventToFunction": {},
+    "length": 23.0,
+    "lockOrigin": false,
+    "moments": {
+      "$KeyframeStore<MomentsEventKeyframe>": "",
+      "Keyframes": [],
+      "resourceType": "KeyframeStore<MomentsEventKeyframe>",
+      "resourceVersion": "2.0"
+    },
+    "name": "spr_tiancheng_1",
+    "playback": 1,
+    "playbackSpeed": 10.0,
+    "playbackSpeedType": 0,
+    "resourceType": "GMSequence",
+    "resourceVersion": "2.0",
+    "seqHeight": 78.0,
+    "seqWidth": 83.0,
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "timeUnits": 1,
+    "tracks": [
+      {
+        "$GMSpriteFramesTrack": "",
+        "builtinName": 0,
+        "events": [],
+        "inheritsTrackColour": true,
+        "interpolation": 1,
+        "isCreationTrack": false,
+        "keyframes": {
+          "$KeyframeStore<SpriteFrameKeyframe>": "",
+          "Keyframes": [
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "cac4d132-7cb4-44e5-86d5-3c1f6b05f2ae",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "9e02e693-ad41-44e5-9dd8-b14148f8f656",
+              "IsCreationKey": false,
+              "Key": 0.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f3501543-0d82-4cd3-a5db-b6d30da54261",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "e56c9cc2-13e0-4a89-8a18-203e3985b2ff",
+              "IsCreationKey": false,
+              "Key": 1.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "fa8ede04-34b6-4045-ad96-c0af7bf56c58",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "69ae9f3f-2b85-4365-8c79-69ae730739e3",
+              "IsCreationKey": false,
+              "Key": 2.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "8f3eaf0a-8afb-42fd-8886-5241f462d4c5",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "859383e6-142b-40ca-a5a3-db95f63b5bba",
+              "IsCreationKey": false,
+              "Key": 3.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f8f14090-a249-4f46-a0da-697734306423",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b9fe958e-dd95-4d88-aee0-61cfd506f256",
+              "IsCreationKey": false,
+              "Key": 4.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "4769ad3e-b324-414f-b6fd-3329d3a6f492",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "fe16ca96-bcfa-4fbf-9324-96984be20b41",
+              "IsCreationKey": false,
+              "Key": 5.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f00e6d09-a04e-4974-a710-09efab9c58e9",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "c7338074-e646-44fc-972e-889569c12dfc",
+              "IsCreationKey": false,
+              "Key": 6.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "e539b1f0-231e-4e59-a851-339c99c0fe97",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "8f26506b-bdbd-47be-86e7-db314ab85b43",
+              "IsCreationKey": false,
+              "Key": 7.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "5e52e136-534d-4b53-928d-59581efabecd",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "35bc04f0-cfe2-4fdf-b235-1d547b6ca718",
+              "IsCreationKey": false,
+              "Key": 8.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "a1f6b2e8-2885-4ec0-8c01-f6c75312f41b",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "2897e9a4-8be2-4654-af98-1b95c0ac1d90",
+              "IsCreationKey": false,
+              "Key": 9.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ea97c5bf-8cfb-49bb-a94d-883ac3bedb46",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "f6dff565-66ba-47f8-b823-5877f2435f84",
+              "IsCreationKey": false,
+              "Key": 10.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "0c353d63-81dd-4117-b7ca-644ffeb31386",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "dd52606f-741e-4a2b-8d06-e44a4ddac2ba",
+              "IsCreationKey": false,
+              "Key": 11.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "c3f922e6-f9d7-4ae2-a380-65fea3e672ab",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "40714bd8-a1c2-427b-9a1e-377290abfdf0",
+              "IsCreationKey": false,
+              "Key": 12.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "9b5f0ad2-c80b-4378-b81c-c887f913f92d",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "ffe978e0-a4d7-4191-a2da-42ba66f52fa5",
+              "IsCreationKey": false,
+              "Key": 13.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "29bf332d-e50d-45c1-8d34-984cb755d657",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "5f71f07d-7a32-48a9-a314-db76dc8c2fe3",
+              "IsCreationKey": false,
+              "Key": 14.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "0960c13b-ea22-4224-9829-e5f9278a59dd",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "1640ff4a-c352-437b-8ced-2673f5f7e938",
+              "IsCreationKey": false,
+              "Key": 15.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f940ee18-d628-49d1-ad41-e2e7c1cf44e1",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a8965d93-1711-4024-8f53-1dd7ef203193",
+              "IsCreationKey": false,
+              "Key": 16.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "3bb05c8e-e5e2-45f8-810e-92b8c33a5d50",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "f9d76464-358b-48d6-92d2-775abf74b51e",
+              "IsCreationKey": false,
+              "Key": 17.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "3d515ac6-c71b-4b3a-a6f7-7f2ab0df6428",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "7aabcb6e-10e0-4167-a1e9-9dd80f7d332e",
+              "IsCreationKey": false,
+              "Key": 18.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ecf8f48c-d80a-4678-8bb3-99b707f4b340",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b87a5791-fa76-4837-b918-0d6d42271368",
+              "IsCreationKey": false,
+              "Key": 19.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "9f31f5b0-40d2-4217-acf9-1db615640667",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "2a371599-1fc2-4703-8176-78c8100225b6",
+              "IsCreationKey": false,
+              "Key": 20.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "2ae8f913-f9e1-429e-9e70-b26637ba6769",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "d53d88b3-f2fc-4c57-8a79-88f30ace6802",
+              "IsCreationKey": false,
+              "Key": 21.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "e5d6226b-f17f-4610-98c8-fd7a0d1e12df",
+                    "path": "sprites/spr_tiancheng_1/spr_tiancheng_1.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "351328d9-f1cc-47e6-8197-b5d3cef164e7",
+              "IsCreationKey": false,
+              "Key": 22.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            }
+          ],
+          "resourceType": "KeyframeStore<SpriteFrameKeyframe>",
+          "resourceVersion": "2.0"
+        },
+        "modifiers": [],
+        "name": "frames",
+        "resourceType": "GMSpriteFramesTrack",
+        "resourceVersion": "2.0",
+        "spriteId": null,
+        "trackColour": 0,
+        "tracks": [],
+        "traits": 0
+      }
+    ],
+    "visibleRange": null,
+    "volume": 1.0,
+    "xorigin": 41,
+    "yorigin": 78
+  },
+  "swatchColours": null,
+  "swfPrecision": 0.5,
+  "textureGroupId": {
+    "name": "cards",
+    "path": "texturegroups/cards"
+  },
+  "type": 0,
+  "VTile": false,
+  "width": 83
+}

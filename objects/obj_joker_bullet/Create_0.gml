@@ -1,0 +1,9 @@
+damage = 0;
+move_speed = 0;
+row = 0;
+damage_type = "normal";
+target_type = "rotate";
+image_xscale = 1.6;
+image_yscale = 1.6;
+shape = 0;
+hitted_enemy = -4;

@@ -1,0 +1,9 @@
+image_xscale = 1.6;
+image_yscale = 1.6;
+image_speed = 0;
+image_alpha = 0;
+reward_id = 0;
+parent_gui = -4;
+anim_timer = 0;
+list_num = 0;
+hovered = false;

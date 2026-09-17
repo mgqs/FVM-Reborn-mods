@@ -65,4 +65,10 @@ function material_init(){
 										"icon":12,
 										"pos_x":2,
 										"pos_y":3})
+	register_material("oracle_stone",{"name": "神谕之石",
+										"description": "神谕之石：在诸神商店兑换神使和凭证所需材料",
+										"icon": 13,        // 取决于图集中下一个可用的图标索引
+										"pos_x": 3,       // 在背包网格中的显示位置
+										"pos_y": 0
+});
 }

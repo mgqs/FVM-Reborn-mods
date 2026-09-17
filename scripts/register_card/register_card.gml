@@ -19,6 +19,9 @@ function register_card(card_id, _obj, _shapes_array) {
 		shape_data[? "plant_type"] = shape_info.plant_type;
 		shape_data[? "feature_type"] = shape_info.feature_type;
 		shape_data[? "target_card"] = shape_info.target_card;
+		if struct_exists(shape_info, "is_gold") {
+			shape_data[? "is_gold"] = shape_info.is_gold;
+		}
 		if struct_exists(shape_info,"place_preview"){
 			shape_data[? "place_preview"] = shape_info.place_preview
 		}

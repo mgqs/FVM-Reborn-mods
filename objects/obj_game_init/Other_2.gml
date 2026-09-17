@@ -36,6 +36,9 @@ global.player_sprite = noone;
 load_file(global.save_slot)
 //reset_file(global.save_slot)
 
+if (!instance_exists(obj_mod_manager))
+    global.mod_manager = instance_create_layer(0, 0, "Instances", obj_mod_manager);
+
 
 //{//测试版设置初始存档
 //	unlock_card("toast_bread",13,0,8)

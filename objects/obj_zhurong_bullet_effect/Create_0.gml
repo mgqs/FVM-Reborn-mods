@@ -1,0 +1,11 @@
+image_xscale = 1.8;
+image_yscale = 1.8;
+image_index = 0;
+image_speed = 0;
+timer = 0;
+damage = 0;
+grid_row = 0;
+grid_col = 0;
+disabled = false;
+target_type = "throw";
+shape = 0;

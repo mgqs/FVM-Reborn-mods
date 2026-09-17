@@ -1,0 +1,12 @@
+damage = 0;
+move_speed = 0;
+damage_type = "normal";
+target_type = "track";
+timer = 0;
+target_enemy = -4;
+banding_card_obj = -4;
+row = 0;
+image_xscale = 1.4;
+image_yscale = 1.4;
+image_speed = 1.5;
+splash_ratio = 0;
