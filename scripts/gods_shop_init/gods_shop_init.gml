@@ -778,6 +778,16 @@ function gods_shop_init()
         display_name: "终转凭证（命运女神）",
         spr: spr_voucher_clotho_2
     });
+    register_gods_goods("brahma_3",
+    {
+        type: "shape",
+        cost: "48",
+        unlock_item_id: "brahma",
+        target_shape: 3,
+        description: "至尊创造神：再额外复制两张卡片，共5张",
+        display_name: "终转凭证（创造神）",
+        spr: spr_voucher_brahma_3
+    });
     register_gods_goods("time_god_3",
     {
         type: "shape",

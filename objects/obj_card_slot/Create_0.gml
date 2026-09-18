@@ -29,6 +29,11 @@ image_speed = 0
 
 cooldown_ignore_list = ["ice_cream","magic_chicken"]
 
+// 兜底初始化：确保 plus_card_map 存在（plus_card_init 自身幂等）
+	if !variable_global_exists("plus_card_map"){
+		plus_card_init()
+	}
+
 //选择卡槽逻辑
 function select_slot(){
 	// 选中当前卡槽

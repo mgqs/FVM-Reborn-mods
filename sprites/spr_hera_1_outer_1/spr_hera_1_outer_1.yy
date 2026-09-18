@@ -33,7 +33,7 @@
   ],
   "name":"spr_hera_1_outer_1",
   "nineSlice":null,
-  "origin":7,
+  "origin":9,
   "parent":{
     "name":"Cards",
     "path":"folders/精灵/mod/Cards.yy",
@@ -118,7 +118,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":53,
-    "yorigin":54,
+    "yorigin":46,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

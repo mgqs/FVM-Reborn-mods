@@ -256,8 +256,7 @@ function maps_init(){
 					"pre_level":"tower_cake_7_2",
 					"rewards":[
 							{"card_id":"salad_pult","target_shape":1},
-							{"card_id":"durian","target_shape":1},
-							{"card_id":"chaomian","target_shape":1}
+							{"card_id":"durian","target_shape":1}
 						]
 				},
 				{
@@ -400,7 +399,6 @@ function maps_init(){
 					"pre_level":"tower_cake_12_1",
 					"rewards":[
 							{"card_id":"cotton_candy","target_shape":1},
-							{"card_id":"chaomian","target_shape":2},
 							{"card_id":"spicy_pot","target_shape":2}
 						]
 				},

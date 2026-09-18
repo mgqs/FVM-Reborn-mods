@@ -1,5 +1,5 @@
 function init_native_log() {
-    var _local_log_file = global.native_util.get_path_in_local_appdata("\\FVM_Reborn\\native\\latest.log")
+    var _local_log_file = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\native\\latest.log")
 	var _error_code = native_set_native_log_file_path(_local_log_file)
 	if (_error_code != 0) {
         global.native_util.show_error(_error_code, "设置日志路径失败")
@@ -8,12 +8,13 @@ function init_native_log() {
 }
 
 function move_files () {
-    var _local_folder = global.native_util.get_path_in_local_appdata("\\FVM_Reborn")
-    var _saves_old = global.native_util.get_path_in_local_appdata("\\FVM_Reborn\\美食大战老鼠_重生\\saves")
-    var _saves_new = global.native_util.get_path_in_local_appdata("\\FVM_Reborn\\saves")
-    var _save_folder_new_exists = native_folder_exists(_saves_new)
-    var _save_folder_old_exists = native_folder_exists(_saves_old)
-    if ((_save_folder_new_exists == 0) && (_save_folder_old_exists == 1)) {
+    var _local_folder = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk")
+    var _old_root = global.native_util.get_path_in_local_appdata("\\FVM_Reborn")
+
+    // 迁移存档：原版 FVM_Reborn\saves -> FVM_Reborn_makk\saves（仅当新目录不存在且旧目录存在时）
+    var _saves_old = _old_root + "\\saves"
+    var _saves_new = _local_folder + "\\saves"
+    if (native_folder_exists(_saves_new) == 0 && native_folder_exists(_saves_old) == 1) {
         var _copy_result = native_copy_folder(_saves_old, _local_folder)
         if (_copy_result == 0) {
             show_message_async("存档已自动迁移到[" + _saves_new + "]")
@@ -22,17 +23,13 @@ function move_files () {
         }
     }
 
-    var _local_laboratory = global.native_util.transfer_path_to_windows(working_directory + "laboratory")
-    var _local_laboratory_exists = native_folder_exists(_local_laboratory)
-    if (_local_laboratory_exists == 1) {
-        var _lab_copy_result = native_copy_folder(_local_laboratory, _local_folder)
+    // 迁移实验室：原版 FVM_Reborn\laboratory -> FVM_Reborn_makk\laboratory
+    var _lab_old = _old_root + "\\laboratory"
+    var _lab_new = _local_folder + "\\laboratory"
+    if (native_folder_exists(_lab_new) == 0 && native_folder_exists(_lab_old) == 1) {
+        var _lab_copy_result = native_copy_folder(_lab_old, _local_folder)
         if (_lab_copy_result != 0) {
             global.native_util.show_error(_lab_copy_result, "实验室目录迁移失败")
-        } else {
-            var _lab_delete_result = native_delete_folder(_local_laboratory)
-            if (_lab_delete_result != 0) {
-                global.native_util.show_error(_lab_delete_result, "旧实验室目录删除失败")
-            }
         }
     }
 }
@@ -133,7 +130,7 @@ global.borderless_window = ini_read_bool("settings", "borderless_window", true);
 global.save_slot = ini_read_real("settings", "save_slot", 0)
 global.lose_focus_pause = ini_read_bool("settings", "lose_focus_pause", true);
 global.ime_block = ini_read_bool("settings", "ime_block", true); // 输入法屏蔽开关（个别输入法环境异常时可关）
-// 兼容旧配置：键缺失时补写，玩家可手改 %LOCALAPPDATA%\FVM_Reborn\config.ini 关闭
+// 兼容旧配置：键缺失时补写，玩家可手改 %LOCALAPPDATA%\FVM_Reborn_makk\config.ini 关闭
 if (ini_read_string("settings", "ime_block", "") == "") {
     ini_write_bool("settings", "ime_block", true);
 }

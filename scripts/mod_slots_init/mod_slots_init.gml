@@ -220,6 +220,18 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_brahma_2
+    }, 
+    {
+        shape: 3,
+        sprite: spr_brahma_icon_3,
+        cost: 325,
+        cooldown: 3300,
+        description: "至尊创造神：变身出多个上一次种下的卡片",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_brahma_3
     }]);
     register_card("clotho", obj_clotho, [
     {
@@ -1895,37 +1907,6 @@ function mod_slots_init()
         cost: 300,
         cooldown: 2100,
         description: "酱香鱿鱼锅：蓄力后向前方区域喷射火焰墙",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }]);
-    register_card("chaomian", obj_chaomian, [
-    {
-        shape: 0,
-        sprite: spr_chaomian,
-        cost: 150,
-        cooldown: 420,
-        description: "新疆炒面：快速猛击前方敌人",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }, 
-    {
-        shape: 1,
-        sprite: spr_chaomian_1,
-        cost: 175,
-        cooldown: 420,
-        description: "刀削拉面：快速猛击前方敌人",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }, 
-    {
-        shape: 2,
-        sprite: spr_chaomian_2,
-        cost: 225,
-        cooldown: 420,
-        description: "真刀削拉面：快速猛击前方敌人",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"

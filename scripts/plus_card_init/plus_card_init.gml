@@ -1,4 +1,7 @@
 function plus_card_init(){
+	if (variable_global_exists("plus_card_map")) {
+		return
+	}
 	global.plus_card_map = ds_map_create()
 	ds_map_add(global.plus_card_map,"large_fire",[obj_large_fire,2])
 	ds_map_add(global.plus_card_map,"rotating_coffee_pot",[obj_rotating_coffee_pot,1])

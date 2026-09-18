@@ -37,7 +37,7 @@ if card_id == "magic_chicken"{
 			//card_obj = card_slot_data[? "obj"]
 			
 			current_cost = cost
-			if ds_map_find_value(global.plus_card_map,global.prev_place_id) != undefined{
+			if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,global.prev_place_id) != undefined{
 				var plus_info = ds_map_find_value(global.plus_card_map,global.prev_place_id)
 				with plus_info[0]{
 					if card_save_data.shape < plus_info[1]{
