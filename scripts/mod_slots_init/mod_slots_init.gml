@@ -270,6 +270,55 @@ function mod_slots_init()
         is_gold: 1,
         place_preview: spr_clotho_3
     }]);
+    register_card("time_god", obj_time_god, [
+    {
+        shape: 0,
+        sprite: spr_time_god,
+        cost: 370,
+        cooldown: 3600,
+        description: "柯罗诺斯神使：持续给范围内卡片缩短冷却时间30%",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_time_god
+    },
+    {
+        shape: 1,
+        sprite: spr_time_god_1,
+        cost: 370,
+        cooldown: 3600,
+        description: "柯罗诺斯圣神：放卡产生爆炸，持续缩减冷却30%",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_time_god_1
+    },
+    {
+        shape: 2,
+        sprite: spr_time_god_2,
+        cost: 370,
+        cooldown: 3600,
+        description: "时间神·柯罗诺斯：范围扩大至5x5，冷却缩减50%",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_time_god_2
+    },
+    {
+        shape: 3,
+        sprite: spr_time_god_3,
+        cost: 370,
+        cooldown: 3600,
+        description: "至尊时间神：范围扩大至全屏，冷却缩减100%",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_time_god_3
+    }]);
     register_card("firework_dragon_real", obj_firework_dragon_real, [
     {
         shape: 0,

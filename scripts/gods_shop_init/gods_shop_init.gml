@@ -40,7 +40,7 @@ function gods_shop_init()
         description: "梵天神使：变身出多个上一次种下的卡片",
         display_name: "梵天神使"
     });
-    register_gods_goods("clotho", 
+    register_gods_goods("clotho",
     {
         type: "card",
         cost: "16",
@@ -48,7 +48,15 @@ function gods_shop_init()
         description: "克洛托神使：随机改变范围内卡片星级，一段时间后恢复",
         display_name: "克洛托神使"
     });
-    register_gods_goods("firework_dragon_real", 
+    register_gods_goods("time_god",
+    {
+        type: "card",
+        cost: "16",
+        unlock_item_id: "time_god",
+        description: "柯罗诺斯神使：持续给范围内卡片缩短冷却时间",
+        display_name: "柯罗诺斯神使"
+    });
+    register_gods_goods("firework_dragon_real",
     {
         type: "card",
         cost: "10",
@@ -250,7 +258,7 @@ function gods_shop_init()
         display_name: "三转凭证（创造神）",
         spr: spr_voucher_brahma
     });
-    register_gods_goods("clotho_1", 
+    register_gods_goods("clotho_1",
     {
         type: "shape",
         cost: "16",
@@ -260,7 +268,17 @@ function gods_shop_init()
         display_name: "三转凭证（命运女神）",
         spr: spr_voucher_clotho
     });
-    register_gods_goods("fire_god_1", 
+    register_gods_goods("time_god_1",
+    {
+        type: "shape",
+        cost: "16",
+        unlock_item_id: "time_god",
+        target_shape: 1,
+        description: "柯罗诺斯圣神：放卡产生爆炸",
+        display_name: "三转凭证（时间神）",
+		spr: spr_time_god_pin1
+    });
+    register_gods_goods("fire_god_1",
     {
         type: "shape",
         cost: "16",
@@ -500,7 +518,7 @@ function gods_shop_init()
         display_name: "四转凭证（创造神）",
         spr: spr_voucher_brahma_1
     });
-    register_gods_goods("clotho_2", 
+    register_gods_goods("clotho_2",
     {
         type: "shape",
         cost: "32",
@@ -510,7 +528,17 @@ function gods_shop_init()
         display_name: "四转凭证（命运女神）",
         spr: spr_voucher_clotho_1
     });
-    register_gods_goods("fire_god_2", 
+    register_gods_goods("time_god_2",
+    {
+        type: "shape",
+        cost: "32",
+        unlock_item_id: "time_god",
+        target_shape: 2,
+        description: "时间神·柯罗诺斯：范围扩大至5x5，冷却缩减50%",
+        display_name: "四转凭证（时间神）",
+		spr: spr_time_god_pin2
+    });
+    register_gods_goods("fire_god_2",
     {
         type: "shape",
         cost: "32",
@@ -740,7 +768,7 @@ function gods_shop_init()
         display_name: "终转凭证（守护神）",
         spr: spr_voucher_rig_2
     });
-    register_gods_goods("clotho_3", 
+    register_gods_goods("clotho_3",
     {
         type: "shape",
         cost: "48",
@@ -750,7 +778,17 @@ function gods_shop_init()
         display_name: "终转凭证（命运女神）",
         spr: spr_voucher_clotho_2
     });
-    register_gods_goods("fire_god_3", 
+    register_gods_goods("time_god_3",
+    {
+        type: "shape",
+        cost: "48",
+        unlock_item_id: "time_god",
+        target_shape: 3,
+        description: "至尊时间神：范围扩大至全屏，冷却缩减100%",
+        display_name: "终转凭证（时间神）",
+		spr: spr_time_god_pin3
+    });
+    register_gods_goods("fire_god_3",
     {
         type: "shape",
         cost: "48",
@@ -930,4 +968,5 @@ function gods_shop_init()
         display_name: "终转凭证（恶作剧神）",
         spr: spr_joker_3pin
     });
+	
 }

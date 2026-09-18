@@ -13,6 +13,7 @@ function mod_skill_init()
     register_card_skill("rig", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("donut", "cycle", [84, 81, 78, 75, 72, 69, 66, 60, 54]);
     register_card_skill("clotho", "cycle", [3600, 3900, 4200, 4500, 4800, 5100, 5700, 6300, 7200]);
+    register_card_skill("time_god", "cycle", [3600, 3900, 4200, 4500, 4800, 5100, 5700, 6300, 7200]);
     register_card_skill("spoon_rabbit", "cycle", [132, 129, 126, 122.99999999999999, 120, 117, 114, 111, 105]);
     register_card_skill("hspeed_juicer", "cooldown", [2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1080]);
     register_card_skill("joker", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
