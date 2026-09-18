@@ -9,3 +9,4 @@ grid_col = 0;
 disabled = false;
 target_type = "throw";
 shape = 0;
+damage_type = "throw";

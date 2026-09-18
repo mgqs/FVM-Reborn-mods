@@ -10,3 +10,4 @@ ignore_list = ["mario_mouse", "mario_pipeline", "arno", "pharaoh_coffin", "templ
 hit_array = [];
 grid_row = 0;
 le = true;
+damage_type = "normal";

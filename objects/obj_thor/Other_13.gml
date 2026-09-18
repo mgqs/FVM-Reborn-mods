@@ -1,10 +1,10 @@
 var inst = instance_create_depth(x - 40, y - 125, depth - 500, obj_thor_bullet);
 
 if (shape == 2)
-    inst.sprite_index = spr_thor_bullet_2_s;
+    inst.sprite_index = spr_thor_bullet_2;
 
 if (shape == 3)
-    inst.sprite_index = spr_thor_bullet_3_s;
+    inst.sprite_index = spr_thor_bullet_3;
 
 audio_play_sound(snd_throw, 0, 0);
 inst.damage = 3 * atk;

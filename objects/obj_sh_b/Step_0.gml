@@ -4,6 +4,5 @@ if (global.is_paused)
 timer++;
 image_index = floor(timer / 5);
 
-// 生命周期结束自毁
-if (timer >= 50)
-    instance_destroy();
+if (!instance_exists(banding_card_obj) || banding_card_obj.state != CARD_STATE.ATTACK)
+    event_user(7);

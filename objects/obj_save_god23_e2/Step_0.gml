@@ -16,7 +16,8 @@ with (obj_enemy_parent)
         {
             if (array_get_index(other.hit_array, id) == -1)
             {
-                hp -= other.atk;
+                damage_amount = other.atk;
+                damage_type = other.damage_type;
                 event_user(0);
                 array_push(other.hit_array, id);
             }

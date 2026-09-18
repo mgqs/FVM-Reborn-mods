@@ -16,3 +16,4 @@ inst.move_speed = 0;
 inst.shape = shape;
 inst.row = grid_row;
 inst.start_col = grid_col;
+inst.banding_card_obj = id;

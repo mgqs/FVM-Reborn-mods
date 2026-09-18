@@ -29,7 +29,7 @@ for(var i = 0 ; i < slot_rows ; i++){
         var row = card_index div slot_rows;
         var col = card_index mod slot_rows;
         
-        if (row < slot_rows) {
+        if (row < slot_cols) {
             var card_x = x + 42 + col * 84
             var card_y = y + 48 + row * 96 - y_offset;
             

@@ -4,6 +4,5 @@ if (global.is_paused)
 timer++;
 image_index = floor(timer / 5);
 
-// 生命周期结束自毁（spr_sh_b_3 有 11 帧，给稍长一点的时间）
-if (timer >= 60)
-    instance_destroy();
+if (!instance_exists(banding_card_obj) || banding_card_obj.state != CARD_STATE.ATTACK)
+    event_user(7);
