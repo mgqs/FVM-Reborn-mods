@@ -170,7 +170,8 @@ function get_completed_levels() {
 /// @param {string} weapon_id 武器ID
 function is_weapon_unlocked(weapon_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_weapons); i++) {
-        if (global.save_data.unlocked_weapons[i].id == weapon_id) {
+        var _w = global.save_data.unlocked_weapons[i];
+        if ((is_struct(_w) ? _w.id : _w) == weapon_id) {
             return true;
         }
     }
@@ -193,7 +194,8 @@ function unlock_weapon(weapon_id){
 /// @param {string} gem_id 宝石ID
 function is_gem_unlocked(gem_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_gems); i++) {
-        if (global.save_data.unlocked_gems[i].id == gem_id) {
+        var _g = global.save_data.unlocked_gems[i];
+        if ((is_struct(_g) ? _g.id : _g) == gem_id) {
             return true;
         }
     }

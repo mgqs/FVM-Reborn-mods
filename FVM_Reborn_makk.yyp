@@ -1819,6 +1819,7 @@
     {"id":{"name":"spr_aurora_3","path":"sprites/spr_aurora_3/spr_aurora_3.yy",},},
     {"id":{"name":"spr_aurora_dead_1","path":"sprites/spr_aurora_dead_1/spr_aurora_dead_1.yy",},},
     {"id":{"name":"spr_aurora_dead_2","path":"sprites/spr_aurora_dead_2/spr_aurora_dead_2.yy",},},
+    {"id":{"name":"spr_aurora_dead_3","path":"sprites/spr_aurora_dead_3/spr_aurora_dead_3.yy",},},
     {"id":{"name":"spr_aurora_dead","path":"sprites/spr_aurora_dead/spr_aurora_dead.yy",},},
     {"id":{"name":"spr_aurora_icon_1","path":"sprites/spr_aurora_icon_1/spr_aurora_icon_1.yy",},},
     {"id":{"name":"spr_aurora_icon_2","path":"sprites/spr_aurora_icon_2/spr_aurora_icon_2.yy",},},

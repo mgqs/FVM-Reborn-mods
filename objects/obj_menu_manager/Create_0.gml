@@ -43,7 +43,8 @@ self.texture_to_load = [
 	"bullet",
 	"effects",
 	"player",
-	"maps"
+	"maps",
+	"enemy_floating"
 ]
 
 self.texture_count = array_length(self.texture_to_load)

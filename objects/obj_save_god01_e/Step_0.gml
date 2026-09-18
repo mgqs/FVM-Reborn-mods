@@ -12,7 +12,7 @@ with (obj_enemy_parent)
 {
     if (hp > 0 && grid_row == other.grid_row && abs(x - other.x) <= 100)
     {
-        if (array_get_index(other.ignore_list, mouse_id) != -1)
+        if (is_boss || array_get_index(other.ignore_list, mouse_id) != -1)
         {
             if (array_get_index(other.hit_array, id) == -1)
             {

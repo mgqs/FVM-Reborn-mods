@@ -138,6 +138,8 @@ if (phase == 0)
                     image_alpha = 0;
                     if (instance_exists(time_god_effect_obj))
                         time_god_effect_obj.image_alpha = 0;
+                    if (instance_exists(banding_star_obj))
+                        banding_star_obj.image_alpha = 0;
                 }
             }
         }
@@ -161,6 +163,8 @@ else if (phase == 1)
             image_alpha = 1;
             if (instance_exists(time_god_effect_obj))
                 time_god_effect_obj.image_alpha = 1;
+            if (instance_exists(banding_star_obj))
+                banding_star_obj.image_alpha = 1;
         }
     }
 }

@@ -1,4 +1,4 @@
-sprite_index = spr_save_god_23_e2;
+sprite_index = spr_save_god_23_e1;
 image_xscale = 1.8;
 image_yscale = 1.8;
 image_speed = 0;
