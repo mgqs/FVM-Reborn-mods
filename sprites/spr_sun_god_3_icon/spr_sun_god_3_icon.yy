@@ -1,4 +1,4 @@
-﻿{
+{
   "$GMSprite":"v2",
   "%Name":"spr_sun_god_3_icon",
   "bboxMode":0,
@@ -53,8 +53,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"spr_sun_god",
-    "path": "folders/精灵/mod/Cards.yy",
+    "name":"Cards",
+    "path":"folders/精灵/mod/Cards.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

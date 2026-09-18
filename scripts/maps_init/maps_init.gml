@@ -241,8 +241,7 @@ function maps_init(){
 					"rewards":[
 							{"card_id":"triple_wine_rack","target_shape":1},
 							{"card_id":"soda_bubble","target_shape":1},
-							{"card_id":"spicy_pot","target_shape":1},
-							{"card_id":"baiyang","target_shape":2}
+							{"card_id":"spicy_pot","target_shape":1}
 						]
 				},
 				{
@@ -257,8 +256,7 @@ function maps_init(){
 					"pre_level":"tower_cake_7_2",
 					"rewards":[
 							{"card_id":"salad_pult","target_shape":1},
-							{"card_id":"durian","target_shape":1},
-							{"card_id":"chaomian","target_shape":1}
+							{"card_id":"durian","target_shape":1}
 						]
 				},
 				{
@@ -306,8 +304,7 @@ function maps_init(){
 					"rewards":[
 							{"card_id":"egg_boiler_pult","target_shape":1},
 							{"card_id":"sugar_ball_pult","target_shape":1},
-							{"card_id":"tiancheng","target_shape":2},
-							{"card_id":"shuangyu","target_shape":2}
+							{"card_id":"tiancheng","target_shape":2}
 						]
 				},
 				{
@@ -386,7 +383,8 @@ function maps_init(){
 					"pre_level":"tower_cake_11_2",
 					"rewards":[
 							{"card_id":"oden_pot","target_shape":1},
-							{"card_id":"beef_hot_pot","target_shape":2}
+							{"card_id":"beef_hot_pot","target_shape":2},
+							{"card_id":"baiyang","target_shape":2}
 						]
 				},
 				{
@@ -401,7 +399,6 @@ function maps_init(){
 					"pre_level":"tower_cake_12_1",
 					"rewards":[
 							{"card_id":"cotton_candy","target_shape":1},
-							{"card_id":"chaomian","target_shape":2},
 							{"card_id":"spicy_pot","target_shape":2}
 						]
 				},
@@ -418,8 +415,7 @@ function maps_init(){
 					"rewards":[
 							{"card_id":"flour_sack","target_shape":1},
 							{"card_id":"rabbit_lantern","target_shape":1},
-							{"card_id":"sheshou","target_shape":2},
-							{"card_id":"shizi","target_shape":2}
+							{"card_id":"sheshou","target_shape":2}
 						]
 				},
 				{
@@ -451,8 +447,7 @@ function maps_init(){
 					"rewards":[
 							{"card_id":"wine_bottle_bomb","target_shape":1},
 							{"card_id":"xinjiang_fried_noodles","target_shape":1},
-							{"card_id":"cold_drew","target_shape":2},
-							{"card_id":"spoon_rabbit","target_shape":1}
+							{"card_id":"cold_drew","target_shape":2}
 						]
 				},
 				{
@@ -500,9 +495,7 @@ function maps_init(){
 					"rewards":[
 							{"card_id":"kettle_bomb","target_shape":1},
 							{"card_id":"king_triple_long_bao","target_shape":1},
-							{"card_id":"coal_starfish","target_shape":1},
-							{"card_id":"spoon_rabbit","target_shape":2},
-							{"card_id":"donut","target_shape":1}
+							{"card_id":"coal_starfish","target_shape":1}
 						]
 				},
 				{
@@ -549,7 +542,8 @@ function maps_init(){
 					"pre_level":"tower_cake_16_2",
 					"rewards":[
 						{"card_id":"lightning_baguette","target_shape":1},
-						{"card_id":"delicacy_firework","target_shape":1}
+						{"card_id":"delicacy_firework","target_shape":1},
+							{"card_id":"shuangyu","target_shape":2}
 					]
 				},
 				{
@@ -580,7 +574,8 @@ function maps_init(){
 					"pre_level":"tower_cake_17_2",
 					"rewards":[
 						{"card_id":"wooden_plate","target_shape":2},
-						{"card_id":"coffee_cup","target_shape":2}
+						{"card_id":"coffee_cup","target_shape":2},
+							{"card_id":"spoon_rabbit","target_shape":1}
 					]
 				},
 				{
@@ -611,7 +606,8 @@ function maps_init(){
 					"pre_level":"tower_cake_18_2",
 					"rewards":[
 						{"card_id":"coffee_pot","target_shape":2},
-						{"card_id":"oden_pot","target_shape":2}
+						{"card_id":"oden_pot","target_shape":2},
+							{"card_id":"donut","target_shape":1}
 					]
 				},
 				{
@@ -626,7 +622,8 @@ function maps_init(){
 					"pre_level":"tower_cake_19_1",
 					"rewards":[
 						{"card_id":"melon_shield","target_shape":2},
-						{"card_id":"curry_lobster_cannon","target_shape":1}
+						{"card_id":"curry_lobster_cannon","target_shape":1},
+							{"card_id":"spoon_rabbit","target_shape":2}
 					]
 				},
 				{
@@ -641,7 +638,8 @@ function maps_init(){
 					"pre_level":"tower_cake_19_2",
 					"rewards":[
 						{"card_id":"large_fire","target_shape":2},
-						{"card_id":"horseshoe_crab_bread","target_shape":1}
+						{"card_id":"horseshoe_crab_bread","target_shape":1},
+							{"card_id":"shizi","target_shape":2}
 					]
 				},
 				{

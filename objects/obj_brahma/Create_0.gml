@@ -9,17 +9,19 @@ if (shape == 1)
     sprite_index = spr_brahma_1;
 else if (shape == 2)
     sprite_index = spr_brahma_2;
+else if (shape == 3)
+    sprite_index = spr_brahma_3;
 
 attack_anim = 0;
-idle_anim = 32;
+idle_anim = sprite_get_number(sprite_index);
+image_speed = 1;
 flash_speed = 5;
 plant_type = "coffee";
 is_slowdown = false;
 current_hp = hp;
 can_mouse_list = ["can_mouse"];
 exploded = false;
-henshin = false;
-target_card_id = global.last_placed_card_id;
+is_derivative = false;
+copied = false;
+target_card = global.last_placed_card_id;
 target_shape = global.last_placed_card_shape;
-var total_frames = sprite_get_number(sprite_index);
-transform_timer = total_frames * flash_speed;

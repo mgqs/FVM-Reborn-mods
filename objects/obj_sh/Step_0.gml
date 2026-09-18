@@ -30,7 +30,7 @@ if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
         {
             attack_timer++;
         }
-        else if (attack_timer == (cycle - ((attack_anim - 3) * current_flash_speed)) && state == CARD_STATE.ATTACK)
+        else if (attack_timer == (cycle - ((attack_anim - 3) * current_flash_speed)))
         {
             attack_timer++;
             event_user(1);

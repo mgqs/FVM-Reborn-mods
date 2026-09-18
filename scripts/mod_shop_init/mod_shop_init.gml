@@ -296,12 +296,4 @@ function mod_shop_init()
         description: "麻辣香锅：蓄力后向前方区域喷射火焰墙",
         display_name: "麻辣香锅"
     });
-    register_goods("chaomian", 
-    {
-        type: "card",
-        cost: "5000",
-        unlock_item_id: "chaomian",
-        description: "新疆炒面：快速猛击前方敌人",
-        display_name: "新疆炒面"
-    });
 }

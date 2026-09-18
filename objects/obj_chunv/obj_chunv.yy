@@ -15,7 +15,10 @@
     "name":"Cards",
     "path":"folders/物体/mod/Cards.yy",
   },
-  "parentObjectId":{"name":"obj_card_parent","path":"objects/obj_card_parent/obj_card_parent.yy",},
+  "parentObjectId":{
+    "name":"obj_card_parent",
+    "path":"objects/obj_card_parent/obj_card_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

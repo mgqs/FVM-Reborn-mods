@@ -11,10 +11,16 @@ if is_slowdown{
 attack_timer++
 
 if attack_timer == 15 * current_flash_speed - 1{
+	var _blacklist = ["brahma","magic_chicken","ice_cream"]
+	if target_card == "" || array_get_index(_blacklist,target_card) != -1{
+		exit
+	}
 	var card_save_data = get_card_info_simple(target_card)
 	if card_save_data != false{
-		var prev_card_info = get_plant_data_with_skill(target_card,card_save_data.shape,card_save_data.level,card_save_data.skill)
 		var card_slot_data = deck_get_card_data(target_card,card_save_data.shape)
+		if card_slot_data == noone{
+			exit
+		}
 		
 		var found_plat = noone;
 		var platform_shift_x = 0;

@@ -42,8 +42,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_sheshou_bullet_1",
-    "path":"sprites/spr_sheshou_bullet_1/spr_sheshou_bullet_1.yy",
+    "name":"spr_sheshou_bullet",
+    "path":"sprites/spr_sheshou_bullet/spr_sheshou_bullet.yy",
   },
   "spriteMaskId":null,
   "visible":true,

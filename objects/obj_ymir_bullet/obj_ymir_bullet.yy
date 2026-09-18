@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ymir_bullet_effect",
-    "path":"sprites/spr_ymir_bullet_effect/spr_ymir_bullet_effect.yy",
+    "name":"spr_ymir_bullet",
+    "path":"sprites/spr_ymir_bullet/spr_ymir_bullet.yy",
   },
   "spriteMaskId":null,
   "visible":true,

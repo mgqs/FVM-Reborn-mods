@@ -23,6 +23,7 @@ if (has_target)
         y = target_y;
         var inst = instance_create_depth(target_x, target_y - 30, 0, obj_zhurong_bullet_effect);
         inst.damage = damage;
+        inst.damage_type = damage_type;
         inst.grid_row = row;
         inst.grid_col = target_col;
         inst.shape = shape;

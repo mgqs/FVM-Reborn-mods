@@ -1,4 +1,4 @@
-sprite_index = spr_save_god_23_e2;
+sprite_index = spr_save_god_23_e1;
 image_xscale = 1.8;
 image_yscale = 1.8;
 image_speed = 0;
@@ -10,3 +10,4 @@ ignore_list = ["mario_mouse", "mario_pipeline", "arno", "pharaoh_coffin", "templ
 hit_array = [];
 grid_row = 0;
 le = true;
+damage_type = "normal";

@@ -23,29 +23,31 @@ var target_enemy = -4;
 
 if (!attacking)
 {
-    var min_distance = 10000;
-    var row_offset = (shape == 3) ? 2 : 1;
-    
-    with (obj_enemy_parent)
-    {
-        if (grid_row >= (other.grid_row - row_offset) && grid_row <= (other.grid_row + row_offset) && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
-        {
-            var distance = grid_col - other.grid_col;
-            
-            if (distance < min_distance)
-            {
-                min_distance = distance;
-                target_enemy = id;
-                has_enemy = true;
-            }
-        }
-    }
+ var min_distance = 10000;
+ var row_offset = (shape == 3) ? 2 : 1;
+
+ with (obj_enemy_parent)
+ {
+ if (grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
+ {
+ var distance = grid_col - other.grid_col;
+
+ if (distance < min_distance)
+ {
+ min_distance = distance;
+ target_enemy = id;
+ has_enemy = true;
+ }
+ }
+ }
 }
 
 if (has_enemy)
 {
-    target_x = target_enemy.x;
-    attacking = true;
+ target_x = target_enemy.x;
+ target_y = target_enemy.y;
+ target_row = target_enemy.grid_row;
+ attacking = true;
 }
 
 if (attacking)

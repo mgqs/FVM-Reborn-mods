@@ -5,7 +5,7 @@ if global.is_paused{
 
 if card_id != "magic_chicken"{
 	current_cost = cost
-	if ds_map_find_value(global.plus_card_map,card_id) != undefined{
+	if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,card_id) != undefined{
 		var plus_info = ds_map_find_value(global.plus_card_map,card_id)
 		with plus_info[0]{
 			if shape < plus_info[1]{

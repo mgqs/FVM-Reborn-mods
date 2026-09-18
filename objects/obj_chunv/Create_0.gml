@@ -6,6 +6,7 @@ event_user(0);
 inner_inst = instance_create_depth(x, y - 18, depth + 2, obj_chunv_inner);
 inner_inst.parent_plant = id;
 sprite_list = [spr_chunv_0_0, spr_chunv_0_0, spr_chunv_0_1];
+inner_inst.sprite_index = spr_chunv_0_3;
 
 if (shape == 1)
 {

@@ -1,8 +1,12 @@
 if card_id == "magic_chicken"{
-	if global.prev_place_id != ""{
+	var _blacklist = ["brahma","magic_chicken","ice_cream"]
+	if global.prev_place_id != "" && array_get_index(_blacklist,global.prev_place_id) == -1{
 		var card_save_data = get_card_info_simple(global.prev_place_id)
 		if card_save_data != false{
 			var prev_card_info = get_plant_data_with_skill(global.prev_place_id,card_save_data.shape,card_save_data.level,card_save_data.skill)
+			if prev_card_info == undefined{
+				exit
+			}
 			cost = prev_card_info[? "cost"]
 			if cooldown_timer >= cooldown{
 				cooldown = prev_card_info[? "cooldown"]
@@ -37,7 +41,7 @@ if card_id == "magic_chicken"{
 			//card_obj = card_slot_data[? "obj"]
 			
 			current_cost = cost
-			if ds_map_find_value(global.plus_card_map,global.prev_place_id) != undefined{
+			if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,global.prev_place_id) != undefined{
 				var plus_info = ds_map_find_value(global.plus_card_map,global.prev_place_id)
 				with plus_info[0]{
 					if card_save_data.shape < plus_info[1]{

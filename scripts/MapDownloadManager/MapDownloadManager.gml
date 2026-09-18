@@ -27,7 +27,7 @@ function MapDownloadManager() constructor {
 
     /// @returns {String}
     static laboratory_appdata = function() {
-        return global.native_util.get_path_in_local_appdata("\\FVM_Reborn\\laboratory")
+        return global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\laboratory")
     }
 
     /// @param {String} _title
