@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"undersea_vortex",
-    "path":"folders/精灵/Bullet/normal/undersea_vortex.yy",
+    "path":"folders/normal/undersea_vortex.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

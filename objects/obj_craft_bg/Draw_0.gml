@@ -66,7 +66,8 @@ if button_select == 0{
 		var card_y = 48+96 * card_row - y_offset
 
 		if (card_slot_data != noone) {
-			draw_sprite_ext(spr_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
+			var _craft_slot_spr = (ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+			draw_sprite_ext(_craft_slot_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 			draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 			draw_set_color(c_black);
 			draw_set_halign(fa_center);
@@ -133,7 +134,8 @@ if button_select == 0{
 		var card_x = x - 307
 		var card_y = y + 103
 		
-		draw_sprite_ext(spr_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
+		var _craft_upgrade_slot = (ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+		draw_sprite_ext(_craft_upgrade_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 		draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 		draw_set_color(c_black);
 		draw_set_halign(fa_center);

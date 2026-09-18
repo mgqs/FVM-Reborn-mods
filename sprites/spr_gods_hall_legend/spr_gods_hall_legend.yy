@@ -1,961 +1,204 @@
 {
-  "$GMSprite": "v2",
-  "%Name": "spr_gods_hall_legend",
-  "bboxMode": 0,
-  "bbox_bottom": 133,
-  "bbox_left": 0,
-  "bbox_right": 134,
-  "bbox_top": 0,
-  "collisionKind": 1,
-  "collisionTolerance": 0,
-  "DynamicTexturePage": false,
-  "edgeFiltering": false,
-  "For3D": false,
-  "frames": [
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "3747705d-c518-4752-87ec-9b0f427d6e39",
-      "name": "3747705d-c518-4752-87ec-9b0f427d6e39",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "4f26fc48-04d6-4404-8072-25fb00212a7b",
-      "name": "4f26fc48-04d6-4404-8072-25fb00212a7b",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "890dc731-fe88-4df8-acb9-977cdeea6cbf",
-      "name": "890dc731-fe88-4df8-acb9-977cdeea6cbf",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "f7115bcc-d728-435f-800f-d9da08398ce3",
-      "name": "f7115bcc-d728-435f-800f-d9da08398ce3",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "8ddaaddd-83d0-46d2-9020-bfe2b8da87fb",
-      "name": "8ddaaddd-83d0-46d2-9020-bfe2b8da87fb",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "0cbb3046-f55f-4edd-a441-10a36137bc0d",
-      "name": "0cbb3046-f55f-4edd-a441-10a36137bc0d",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "e7e19870-ee37-4f1d-920e-4f9aefc77b0a",
-      "name": "e7e19870-ee37-4f1d-920e-4f9aefc77b0a",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "4f9be1f1-9406-4a19-94eb-3fafc18ceff2",
-      "name": "4f9be1f1-9406-4a19-94eb-3fafc18ceff2",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "672cbd8c-431f-452b-ac0a-a35cfb762833",
-      "name": "672cbd8c-431f-452b-ac0a-a35cfb762833",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "b85c3dcd-2aaa-4c79-a008-a5d0bf212e99",
-      "name": "b85c3dcd-2aaa-4c79-a008-a5d0bf212e99",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd",
-      "name": "f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "dd1f6a95-b7db-4c7a-b7f6-552057b1ec69",
-      "name": "dd1f6a95-b7db-4c7a-b7f6-552057b1ec69",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "8c206924-957a-4030-9123-4edf72c5d2b1",
-      "name": "8c206924-957a-4030-9123-4edf72c5d2b1",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "30760928-4cb3-4067-a422-a74a3d0ec534",
-      "name": "30760928-4cb3-4067-a422-a74a3d0ec534",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "2a04c619-2d95-4c95-935f-a4d103144f22",
-      "name": "2a04c619-2d95-4c95-935f-a4d103144f22",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "9acb8f9b-3eca-4738-8bd3-9d542bc58d9a",
-      "name": "9acb8f9b-3eca-4738-8bd3-9d542bc58d9a",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "8a3027d9-f10f-4c59-a726-cefce26ac5c7",
-      "name": "8a3027d9-f10f-4c59-a726-cefce26ac5c7",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "2a2ccde7-75bd-4269-96d0-32e194c30679",
-      "name": "2a2ccde7-75bd-4269-96d0-32e194c30679",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "6643ca9f-bb18-4113-ae7a-902333cebd50",
-      "name": "6643ca9f-bb18-4113-ae7a-902333cebd50",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "f5540201-647e-49df-827d-471ae0023d49",
-      "name": "f5540201-647e-49df-827d-471ae0023d49",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5",
-      "name": "8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "51330c37-8d8c-4813-8c31-2d813fbe12d9",
-      "name": "51330c37-8d8c-4813-8c31-2d813fbe12d9",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "5b02d7c3-f421-4d59-925e-1b881f2f3808",
-      "name": "5b02d7c3-f421-4d59-925e-1b881f2f3808",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "d4291ef4-d2ca-4e6b-9a6e-06d5756d1958",
-      "name": "d4291ef4-d2ca-4e6b-9a6e-06d5756d1958",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "b3f4203e-f92f-4bca-96a3-4bf6c97714c7",
-      "name": "b3f4203e-f92f-4bca-96a3-4bf6c97714c7",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "6eb00a4c-8040-4520-b016-8e1aca98c9db",
-      "name": "6eb00a4c-8040-4520-b016-8e1aca98c9db",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "3ff72375-f9b5-4b13-a8b9-031a3daa10cd",
-      "name": "3ff72375-f9b5-4b13-a8b9-031a3daa10cd",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "918c0052-9786-4400-9d59-6138ec39adef",
-      "name": "918c0052-9786-4400-9d59-6138ec39adef",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    },
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "4875049d-10b6-4dd3-81fb-39f5ef0672e1",
-      "name": "4875049d-10b6-4dd3-81fb-39f5ef0672e1",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    }
+  "$GMSprite":"v2",
+  "%Name":"spr_gods_hall_legend",
+  "bboxMode":0,
+  "bbox_bottom":133,
+  "bbox_left":0,
+  "bbox_right":134,
+  "bbox_top":0,
+  "collisionKind":1,
+  "collisionTolerance":0,
+  "DynamicTexturePage":false,
+  "edgeFiltering":false,
+  "For3D":false,
+  "frames":[
+    {"$GMSpriteFrame":"v1","%Name":"3747705d-c518-4752-87ec-9b0f427d6e39","name":"3747705d-c518-4752-87ec-9b0f427d6e39","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4f26fc48-04d6-4404-8072-25fb00212a7b","name":"4f26fc48-04d6-4404-8072-25fb00212a7b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"890dc731-fe88-4df8-acb9-977cdeea6cbf","name":"890dc731-fe88-4df8-acb9-977cdeea6cbf","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f7115bcc-d728-435f-800f-d9da08398ce3","name":"f7115bcc-d728-435f-800f-d9da08398ce3","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"8ddaaddd-83d0-46d2-9020-bfe2b8da87fb","name":"8ddaaddd-83d0-46d2-9020-bfe2b8da87fb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0cbb3046-f55f-4edd-a441-10a36137bc0d","name":"0cbb3046-f55f-4edd-a441-10a36137bc0d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e7e19870-ee37-4f1d-920e-4f9aefc77b0a","name":"e7e19870-ee37-4f1d-920e-4f9aefc77b0a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4f9be1f1-9406-4a19-94eb-3fafc18ceff2","name":"4f9be1f1-9406-4a19-94eb-3fafc18ceff2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"672cbd8c-431f-452b-ac0a-a35cfb762833","name":"672cbd8c-431f-452b-ac0a-a35cfb762833","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"b85c3dcd-2aaa-4c79-a008-a5d0bf212e99","name":"b85c3dcd-2aaa-4c79-a008-a5d0bf212e99","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd","name":"f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"dd1f6a95-b7db-4c7a-b7f6-552057b1ec69","name":"dd1f6a95-b7db-4c7a-b7f6-552057b1ec69","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"8c206924-957a-4030-9123-4edf72c5d2b1","name":"8c206924-957a-4030-9123-4edf72c5d2b1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"30760928-4cb3-4067-a422-a74a3d0ec534","name":"30760928-4cb3-4067-a422-a74a3d0ec534","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"2a04c619-2d95-4c95-935f-a4d103144f22","name":"2a04c619-2d95-4c95-935f-a4d103144f22","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"9acb8f9b-3eca-4738-8bd3-9d542bc58d9a","name":"9acb8f9b-3eca-4738-8bd3-9d542bc58d9a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"8a3027d9-f10f-4c59-a726-cefce26ac5c7","name":"8a3027d9-f10f-4c59-a726-cefce26ac5c7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"2a2ccde7-75bd-4269-96d0-32e194c30679","name":"2a2ccde7-75bd-4269-96d0-32e194c30679","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"6643ca9f-bb18-4113-ae7a-902333cebd50","name":"6643ca9f-bb18-4113-ae7a-902333cebd50","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f5540201-647e-49df-827d-471ae0023d49","name":"f5540201-647e-49df-827d-471ae0023d49","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5","name":"8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"51330c37-8d8c-4813-8c31-2d813fbe12d9","name":"51330c37-8d8c-4813-8c31-2d813fbe12d9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"5b02d7c3-f421-4d59-925e-1b881f2f3808","name":"5b02d7c3-f421-4d59-925e-1b881f2f3808","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"d4291ef4-d2ca-4e6b-9a6e-06d5756d1958","name":"d4291ef4-d2ca-4e6b-9a6e-06d5756d1958","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"b3f4203e-f92f-4bca-96a3-4bf6c97714c7","name":"b3f4203e-f92f-4bca-96a3-4bf6c97714c7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"6eb00a4c-8040-4520-b016-8e1aca98c9db","name":"6eb00a4c-8040-4520-b016-8e1aca98c9db","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3ff72375-f9b5-4b13-a8b9-031a3daa10cd","name":"3ff72375-f9b5-4b13-a8b9-031a3daa10cd","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"918c0052-9786-4400-9d59-6138ec39adef","name":"918c0052-9786-4400-9d59-6138ec39adef","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4875049d-10b6-4dd3-81fb-39f5ef0672e1","name":"4875049d-10b6-4dd3-81fb-39f5ef0672e1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
-  "gridX": 0,
-  "gridY": 0,
-  "height": 134,
-  "HTile": false,
-  "layers": [
-    {
-      "$GMImageLayer": "",
-      "%Name": "be3cac74-12d8-4ecf-9ba6-c8e0c8e033b2",
-      "blendMode": 0,
-      "displayName": "default",
-      "isLocked": false,
-      "name": "be3cac74-12d8-4ecf-9ba6-c8e0c8e033b2",
-      "opacity": 100.0,
-      "resourceType": "GMImageLayer",
-      "resourceVersion": "2.0",
-      "visible": true
-    }
+  "gridX":0,
+  "gridY":0,
+  "height":134,
+  "HTile":false,
+  "layers":[
+    {"$GMImageLayer":"","%Name":"be3cac74-12d8-4ecf-9ba6-c8e0c8e033b2","blendMode":0,"displayName":"default","isLocked":false,"name":"be3cac74-12d8-4ecf-9ba6-c8e0c8e033b2","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name": "spr_gods_hall_legend",
-  "nineSlice": null,
-  "origin": 7,
-  "parent": {
-    "name": "Gods Shop",
-    "path": "folders/精灵/mod/Gods Shop.yy"
+  "name":"spr_gods_hall_legend",
+  "nineSlice":null,
+  "origin":7,
+  "parent":{
+    "name":"Gods Shop",
+    "path":"folders/精灵/mod/Gods Shop.yy",
   },
-  "preMultiplyAlpha": false,
-  "resourceType": "GMSprite",
-  "resourceVersion": "2.0",
-  "sequence": {
-    "$GMSequence": "v1",
-    "%Name": "spr_gods_hall_legend",
-    "autoRecord": true,
-    "backdropHeight": 768,
-    "backdropImageOpacity": 0.5,
-    "backdropImagePath": "",
-    "backdropWidth": 1366,
-    "backdropXOffset": 0.0,
-    "backdropYOffset": 0.0,
-    "events": {
-      "$KeyframeStore<MessageEventKeyframe>": "",
-      "Keyframes": [],
-      "resourceType": "KeyframeStore<MessageEventKeyframe>",
-      "resourceVersion": "2.0"
+  "preMultiplyAlpha":false,
+  "resourceType":"GMSprite",
+  "resourceVersion":"2.0",
+  "sequence":{
+    "$GMSequence":"v1",
+    "%Name":"spr_gods_hall_legend",
+    "autoRecord":true,
+    "backdropHeight":768,
+    "backdropImageOpacity":0.5,
+    "backdropImagePath":"",
+    "backdropWidth":1366,
+    "backdropXOffset":0.0,
+    "backdropYOffset":0.0,
+    "events":{
+      "$KeyframeStore<MessageEventKeyframe>":"",
+      "Keyframes":[],
+      "resourceType":"KeyframeStore<MessageEventKeyframe>",
+      "resourceVersion":"2.0",
     },
-    "eventStubScript": null,
-    "eventToFunction": {},
-    "length": 29.0,
-    "lockOrigin": false,
-    "moments": {
-      "$KeyframeStore<MomentsEventKeyframe>": "",
-      "Keyframes": [],
-      "resourceType": "KeyframeStore<MomentsEventKeyframe>",
-      "resourceVersion": "2.0"
+    "eventStubScript":null,
+    "eventToFunction":{},
+    "length":29.0,
+    "lockOrigin":false,
+    "moments":{
+      "$KeyframeStore<MomentsEventKeyframe>":"",
+      "Keyframes":[],
+      "resourceType":"KeyframeStore<MomentsEventKeyframe>",
+      "resourceVersion":"2.0",
     },
-    "name": "spr_gods_hall_legend",
-    "playback": 1,
-    "playbackSpeed": 10.0,
-    "playbackSpeedType": 0,
-    "resourceType": "GMSequence",
-    "resourceVersion": "2.0",
-    "seqHeight": 134.0,
-    "seqWidth": 135.0,
-    "showBackdrop": true,
-    "showBackdropImage": false,
-    "timeUnits": 1,
-    "tracks": [
-      {
-        "$GMSpriteFramesTrack": "",
-        "builtinName": 0,
-        "events": [],
-        "inheritsTrackColour": true,
-        "interpolation": 1,
-        "isCreationTrack": false,
-        "keyframes": {
-          "$KeyframeStore<SpriteFrameKeyframe>": "",
-          "Keyframes": [
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "3747705d-c518-4752-87ec-9b0f427d6e39",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "7861dfaf-6ab9-46aa-a4e4-b31a4957e0ff",
-              "IsCreationKey": false,
-              "Key": 0.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "4f26fc48-04d6-4404-8072-25fb00212a7b",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "1014765f-e9dd-466b-b4c9-59191fe36516",
-              "IsCreationKey": false,
-              "Key": 1.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "890dc731-fe88-4df8-acb9-977cdeea6cbf",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "a4e08119-d171-4707-8361-78e0485b3e59",
-              "IsCreationKey": false,
-              "Key": 2.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "f7115bcc-d728-435f-800f-d9da08398ce3",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "7567d8fd-fcfd-48d6-a416-95675bb568e9",
-              "IsCreationKey": false,
-              "Key": 3.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "8ddaaddd-83d0-46d2-9020-bfe2b8da87fb",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "687fe467-f89e-466f-a9e6-97431ad4bb39",
-              "IsCreationKey": false,
-              "Key": 4.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "0cbb3046-f55f-4edd-a441-10a36137bc0d",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "8a68a5c5-66cd-4ad0-9919-e01c2498fe44",
-              "IsCreationKey": false,
-              "Key": 5.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "e7e19870-ee37-4f1d-920e-4f9aefc77b0a",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "b2b02200-705f-457d-9e1f-5cdfa02b10be",
-              "IsCreationKey": false,
-              "Key": 6.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "4f9be1f1-9406-4a19-94eb-3fafc18ceff2",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "68dba1ec-1aa2-420b-b627-e23a205a9737",
-              "IsCreationKey": false,
-              "Key": 7.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "672cbd8c-431f-452b-ac0a-a35cfb762833",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "8e0cca53-5770-46a7-8eeb-6ec12781ac7d",
-              "IsCreationKey": false,
-              "Key": 8.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "b85c3dcd-2aaa-4c79-a008-a5d0bf212e99",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "b27498d1-8542-44d4-a25b-e4c7377b75b1",
-              "IsCreationKey": false,
-              "Key": 9.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "290eee53-33cf-464b-b412-7a0f2a38dc92",
-              "IsCreationKey": false,
-              "Key": 10.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "dd1f6a95-b7db-4c7a-b7f6-552057b1ec69",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "454b71ca-67b1-466a-a856-5820fea73f02",
-              "IsCreationKey": false,
-              "Key": 11.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "8c206924-957a-4030-9123-4edf72c5d2b1",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "6326ae3c-cdcf-4430-8dbb-48ea974e98da",
-              "IsCreationKey": false,
-              "Key": 12.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "30760928-4cb3-4067-a422-a74a3d0ec534",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "385dfe37-ea52-4582-9aca-654671b20b99",
-              "IsCreationKey": false,
-              "Key": 13.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "2a04c619-2d95-4c95-935f-a4d103144f22",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "9fd79416-1520-4277-baa3-fce48093baee",
-              "IsCreationKey": false,
-              "Key": 14.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "9acb8f9b-3eca-4738-8bd3-9d542bc58d9a",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "19112f0d-f9ee-434c-b4ac-255a7e78160a",
-              "IsCreationKey": false,
-              "Key": 15.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "8a3027d9-f10f-4c59-a726-cefce26ac5c7",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "9c5b1d92-ae0f-4943-8170-a0cbc2530b29",
-              "IsCreationKey": false,
-              "Key": 16.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "2a2ccde7-75bd-4269-96d0-32e194c30679",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "24d0a516-dd72-4fa1-91a8-52d2c1777a87",
-              "IsCreationKey": false,
-              "Key": 17.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "6643ca9f-bb18-4113-ae7a-902333cebd50",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "62592a6e-1f80-4c18-8749-b129cd6e02eb",
-              "IsCreationKey": false,
-              "Key": 18.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "f5540201-647e-49df-827d-471ae0023d49",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "22f6116b-cef9-470d-9ebc-f0c99aeb9bd3",
-              "IsCreationKey": false,
-              "Key": 19.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "cc8120de-3aa2-47b0-ae40-65d01347eb40",
-              "IsCreationKey": false,
-              "Key": 20.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "51330c37-8d8c-4813-8c31-2d813fbe12d9",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "6aa210de-f3ad-4c58-9e08-6172a1f80e72",
-              "IsCreationKey": false,
-              "Key": 21.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "5b02d7c3-f421-4d59-925e-1b881f2f3808",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "18257c97-155f-4cb7-9b58-106fe6be3b37",
-              "IsCreationKey": false,
-              "Key": 22.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "d4291ef4-d2ca-4e6b-9a6e-06d5756d1958",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "728efce5-2141-42a6-bc8b-b68bf01edde6",
-              "IsCreationKey": false,
-              "Key": 23.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "b3f4203e-f92f-4bca-96a3-4bf6c97714c7",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "63f0175e-5e2d-4937-be55-39b70a60e758",
-              "IsCreationKey": false,
-              "Key": 24.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "6eb00a4c-8040-4520-b016-8e1aca98c9db",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "6e1208ef-9188-417c-ad39-9227d2a9e087",
-              "IsCreationKey": false,
-              "Key": 25.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "3ff72375-f9b5-4b13-a8b9-031a3daa10cd",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "8445fde2-dd23-4b68-9c56-f436a807b3d3",
-              "IsCreationKey": false,
-              "Key": 26.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "918c0052-9786-4400-9d59-6138ec39adef",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "fbfb3b9d-4c01-48d5-acea-85944d3c83d9",
-              "IsCreationKey": false,
-              "Key": 27.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            },
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "4875049d-10b6-4dd3-81fb-39f5ef0672e1",
-                    "path": "sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "cbfcc27b-b288-4281-a219-745feddafe74",
-              "IsCreationKey": false,
-              "Key": 28.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            }
-          ],
-          "resourceType": "KeyframeStore<SpriteFrameKeyframe>",
-          "resourceVersion": "2.0"
-        },
-        "modifiers": [],
-        "name": "frames",
-        "resourceType": "GMSpriteFramesTrack",
-        "resourceVersion": "2.0",
-        "spriteId": null,
-        "trackColour": 0,
-        "tracks": [],
-        "traits": 0
-      }
+    "name":"spr_gods_hall_legend",
+    "playback":1,
+    "playbackSpeed":10.0,
+    "playbackSpeedType":0,
+    "resourceType":"GMSequence",
+    "resourceVersion":"2.0",
+    "seqHeight":134.0,
+    "seqWidth":135.0,
+    "showBackdrop":true,
+    "showBackdropImage":false,
+    "timeUnits":1,
+    "tracks":[
+      {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3747705d-c518-4752-87ec-9b0f427d6e39","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"7861dfaf-6ab9-46aa-a4e4-b31a4957e0ff","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4f26fc48-04d6-4404-8072-25fb00212a7b","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"1014765f-e9dd-466b-b4c9-59191fe36516","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"890dc731-fe88-4df8-acb9-977cdeea6cbf","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"a4e08119-d171-4707-8361-78e0485b3e59","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f7115bcc-d728-435f-800f-d9da08398ce3","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"7567d8fd-fcfd-48d6-a416-95675bb568e9","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8ddaaddd-83d0-46d2-9020-bfe2b8da87fb","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"687fe467-f89e-466f-a9e6-97431ad4bb39","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0cbb3046-f55f-4edd-a441-10a36137bc0d","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"8a68a5c5-66cd-4ad0-9919-e01c2498fe44","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e7e19870-ee37-4f1d-920e-4f9aefc77b0a","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"b2b02200-705f-457d-9e1f-5cdfa02b10be","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4f9be1f1-9406-4a19-94eb-3fafc18ceff2","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"68dba1ec-1aa2-420b-b627-e23a205a9737","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"672cbd8c-431f-452b-ac0a-a35cfb762833","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"8e0cca53-5770-46a7-8eeb-6ec12781ac7d","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b85c3dcd-2aaa-4c79-a008-a5d0bf212e99","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"b27498d1-8542-44d4-a25b-e4c7377b75b1","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f1b3b953-1b0f-4423-b03f-0ac2c84c4cbd","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"290eee53-33cf-464b-b412-7a0f2a38dc92","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"dd1f6a95-b7db-4c7a-b7f6-552057b1ec69","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"454b71ca-67b1-466a-a856-5820fea73f02","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8c206924-957a-4030-9123-4edf72c5d2b1","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"6326ae3c-cdcf-4430-8dbb-48ea974e98da","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"30760928-4cb3-4067-a422-a74a3d0ec534","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"385dfe37-ea52-4582-9aca-654671b20b99","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2a04c619-2d95-4c95-935f-a4d103144f22","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"9fd79416-1520-4277-baa3-fce48093baee","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9acb8f9b-3eca-4738-8bd3-9d542bc58d9a","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"19112f0d-f9ee-434c-b4ac-255a7e78160a","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8a3027d9-f10f-4c59-a726-cefce26ac5c7","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"9c5b1d92-ae0f-4943-8170-a0cbc2530b29","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2a2ccde7-75bd-4269-96d0-32e194c30679","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"24d0a516-dd72-4fa1-91a8-52d2c1777a87","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6643ca9f-bb18-4113-ae7a-902333cebd50","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"62592a6e-1f80-4c18-8749-b129cd6e02eb","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f5540201-647e-49df-827d-471ae0023d49","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"22f6116b-cef9-470d-9ebc-f0c99aeb9bd3","IsCreationKey":false,"Key":19.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8aa95fac-cf67-44f4-af08-0a6cd1ed4bb5","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"cc8120de-3aa2-47b0-ae40-65d01347eb40","IsCreationKey":false,"Key":20.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"51330c37-8d8c-4813-8c31-2d813fbe12d9","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"6aa210de-f3ad-4c58-9e08-6172a1f80e72","IsCreationKey":false,"Key":21.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5b02d7c3-f421-4d59-925e-1b881f2f3808","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"18257c97-155f-4cb7-9b58-106fe6be3b37","IsCreationKey":false,"Key":22.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d4291ef4-d2ca-4e6b-9a6e-06d5756d1958","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"728efce5-2141-42a6-bc8b-b68bf01edde6","IsCreationKey":false,"Key":23.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b3f4203e-f92f-4bca-96a3-4bf6c97714c7","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"63f0175e-5e2d-4937-be55-39b70a60e758","IsCreationKey":false,"Key":24.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6eb00a4c-8040-4520-b016-8e1aca98c9db","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"6e1208ef-9188-417c-ad39-9227d2a9e087","IsCreationKey":false,"Key":25.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3ff72375-f9b5-4b13-a8b9-031a3daa10cd","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"8445fde2-dd23-4b68-9c56-f436a807b3d3","IsCreationKey":false,"Key":26.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"918c0052-9786-4400-9d59-6138ec39adef","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"fbfb3b9d-4c01-48d5-acea-85944d3c83d9","IsCreationKey":false,"Key":27.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4875049d-10b6-4dd3-81fb-39f5ef0672e1","path":"sprites/spr_gods_hall_legend/spr_gods_hall_legend.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"cbfcc27b-b288-4281-a219-745feddafe74","IsCreationKey":false,"Key":28.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+          ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
-    "visibleRange": null,
-    "volume": 1.0,
-    "xorigin": 67,
-    "yorigin": 134
+    "visibleRange":null,
+    "volume":1.0,
+    "xorigin":67,
+    "yorigin":134,
   },
-  "swatchColours": null,
-  "swfPrecision": 0.5,
-  "textureGroupId": {
-    "name": "cards",
-    "path": "texturegroups/cards"
+  "swatchColours":null,
+  "swfPrecision":0.5,
+  "textureGroupId":{
+    "name":"cards",
+    "path":"texturegroups/cards",
   },
-  "type": 0,
-  "VTile": false,
-  "width": 135
+  "type":0,
+  "VTile":false,
+  "width":135,
 }

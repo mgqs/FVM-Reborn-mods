@@ -63,9 +63,9 @@
   "name":"spr_sun_god",
   "nineSlice":null,
   "origin":7,
-  "parent": {
-    "name": "Cards",
-    "path": "folders/精灵/mod/Cards.yy"
+  "parent":{
+    "name":"Cards",
+    "path":"folders/精灵/mod/Cards.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

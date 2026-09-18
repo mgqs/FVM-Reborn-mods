@@ -1,13 +1,13 @@
 {
-  "$GMScript": "v1",
-  "%Name": "mod_build_buff_cells_calculation",
-  "isCompatibility": false,
-  "isDnD": false,
-  "name": "mod_build_buff_cells_calculation",
-  "parent": {
-    "name": "mod",
-    "path": "folders/脚本/mod.yy"
+  "$GMScript":"v1",
+  "%Name":"mod_build_buff_cells_calculation",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"mod_build_buff_cells_calculation",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
   },
-  "resourceType": "GMScript",
-  "resourceVersion": "2.0"
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
