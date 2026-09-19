@@ -240,14 +240,6 @@ function mod_shop_init()
         description: "处女座精灵：保护卡牌，并反弹伤害",
         display_name: "处女座精灵"
     });
-    register_goods("tianxie", 
-    {
-        type: "card",
-        cost: "10000",
-        unlock_item_id: "tianxie",
-        description: "天蝎座精灵：发射一根穿透毒刺",
-        display_name: "天蝎座精灵"
-    });
     register_goods("baiyang", 
     {
         type: "card",

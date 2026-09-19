@@ -25,7 +25,6 @@ function mod_skill_init()
     register_card_skill("shizi", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
     register_card_skill("jinniu", "cooldown", [420, 402, 384, 360, 330, 300, 270, 240, 210]);
     register_card_skill("chunv", "cooldown", [1800, 1680, 1560, 1440, 1320, 1200, 1080, 900, 720]);
-    register_card_skill("tianxie", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 63]);
     register_card_skill("baiyang", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);
     register_card_skill("mojie", "cooldown", [3000, 2820, 2640, 2400, 2160, 1920, 1620, 1320, 1080]);
     register_card_skill("athena", "cycle", [360, 348, 336, 324, 312, 300, 288, 270, 240]);

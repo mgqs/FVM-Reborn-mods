@@ -131,8 +131,7 @@ function maps_init(){
 					"pre_level":"tower_cake_3_2",
 					"rewards":[
 							{"card_id":"takoyaki","target_shape":1},
-							{"card_id":"chocolate_bread","target_shape":1},
-							{"card_id":"tianxie","target_shape":1}
+							{"card_id":"chocolate_bread","target_shape":1}
 						]
 				},
 				{
@@ -334,8 +333,7 @@ function maps_init(){
 					"pre_level":"tower_cake_10_1",
 					"rewards":[
 							{"card_id":"hamburger","target_shape":1},
-							{"card_id":"chunv","target_shape":2},
-							{"card_id":"tianxie","target_shape":2}
+							{"card_id":"chunv","target_shape":2}
 						]
 				},
 				{

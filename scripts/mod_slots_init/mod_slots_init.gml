@@ -1482,37 +1482,6 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none"
     }]);
-    register_card("tianxie", obj_tianxie, [
-    {
-        shape: 0,
-        sprite: spr_tianxie,
-        cost: 200,
-        cooldown: 420,
-        description: "天蝎座精灵：发射一根穿透毒刺",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }, 
-    {
-        shape: 1,
-        sprite: spr_tianxie_1,
-        cost: 200,
-        cooldown: 420,
-        description: "天蝎座战将：发射一根穿透毒刺",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }, 
-    {
-        shape: 2,
-        sprite: spr_tianxie_2,
-        cost: 200,
-        cooldown: 420,
-        description: "天蝎座星宿：发射一根穿透毒刺",
-        plant_type: "normal",
-        feature_type: "normal",
-        target_card: "none"
-    }]);
     register_card("baiyang", obj_baiyang, [
     {
         shape: 0,
