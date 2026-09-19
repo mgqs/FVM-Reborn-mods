@@ -63,5 +63,25 @@ if (divine_protect_gem)
     buff_cells_refreshed = false;
 }
 
+var aura_defs = [[spr_master_shield_effect_4, -42]];
+
+if (divine_blessing_gem)
+    array_push(aura_defs, [spr_master_shield_effect_1, -42]);
+
+if (divine_protect_gem)
+    array_push(aura_defs, [spr_master_shield_effect_2, 0]);
+
+if (divine_holy_gem)
+    array_push(aura_defs, [spr_master_shield_effect_3, 0]);
+
+for (var i = 0; i < array_length(aura_defs); i++)
+{
+    var e = instance_create_depth(x, y + aura_defs[i][1], depth - 1, obj_master_shield_effect);
+    e.sprite_index = aura_defs[i][0];
+    e.image_index = 0;
+    e.shield_owner = id;
+    e.y_offset = aura_defs[i][1];
+}
+
 show_debug_message("主宰之盾初始化完毕");
 

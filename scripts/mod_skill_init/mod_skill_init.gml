@@ -47,6 +47,5 @@ function mod_skill_init()
     register_card_skill("sheng_huo", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("save_god", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);
     register_card_skill("ymir", "cycle", [126, 122.99999999999999, 120, 117, 111, 105, 99, 93, 84]);
-    register_card_skill("beef_hot_pot", "cycle", [420, 402, 384, 360, 342, 324, 300, 276, 252]);
-    register_card_skill("spicy_pot", "cycle", [420, 402, 384, 360, 342, 324, 300, 276, 252]);
+    
 }

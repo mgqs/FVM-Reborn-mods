@@ -1,4 +1,4 @@
-﻿if not is_placed{
+if not is_placed{
 	var logical_x = mouse_x;
 	var logical_y = mouse_y;
 	var platform_shift_x = 0;

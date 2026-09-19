@@ -14,7 +14,7 @@ else if (shape == 3)
 
 attack_anim = 0;
 idle_anim = sprite_get_number(sprite_index);
-image_speed = 1;
+image_speed = 0; // 由父类的计时器手动推进 image_index，若设非0会和引擎自动推进叠加导致动画循环播放两遍
 flash_speed = 5;
 plant_type = "coffee";
 is_slowdown = false;

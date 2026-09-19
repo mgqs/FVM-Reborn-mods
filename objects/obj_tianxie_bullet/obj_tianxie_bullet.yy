@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_tianxie_bullet",
-    "path":"sprites/spr_tianxie_bullet/spr_tianxie_bullet.yy",
+    "name":"spr_tianxie_bullet_1",
+    "path":"sprites/spr_tianxie_bullet_1/spr_tianxie_bullet_1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

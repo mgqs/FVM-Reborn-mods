@@ -29,3 +29,7 @@ else if (shape == 3)
     target_type = "all";
 else
     target_type = "pierce";
+
+if (!variable_global_exists("mod_obj_sh_count"))
+    global.mod_obj_sh_count = 0;
+global.mod_obj_sh_count++;

@@ -209,8 +209,7 @@ function maps_init(){
 					"pre_level":"tower_cake_6_1",
 					"rewards":[
 							{"card_id":"melon_shield","target_shape":1},
-							{"card_id":"double_water_pipe","target_shape":1},
-							{"card_id":"beef_hot_pot","target_shape":1}
+							{"card_id":"double_water_pipe","target_shape":1}
 						]
 				},
 				{
@@ -383,7 +382,6 @@ function maps_init(){
 					"pre_level":"tower_cake_11_2",
 					"rewards":[
 							{"card_id":"oden_pot","target_shape":1},
-							{"card_id":"beef_hot_pot","target_shape":2},
 							{"card_id":"baiyang","target_shape":2}
 						]
 				},

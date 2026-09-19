@@ -280,20 +280,5 @@ function mod_shop_init()
         description: "玉蜀黍：发射三颗玉米",
         display_name: "玉蜀黍"
     });
-    register_goods("beef_hot_pot", 
-    {
-        type: "card",
-        cost: "5000",
-        unlock_item_id: "beef_hot_pot",
-        description: "肥牛火锅：向前方4格持续喷出火焰",
-        display_name: "肥牛火锅"
-    });
-    register_goods("spicy_pot",
-    {
-        type: "card",
-        cost: "5000",
-        unlock_item_id: "spicy_pot",
-        description: "麻辣香锅：蓄力后向前方区域喷射火焰墙",
-        display_name: "麻辣香锅"
-    });
+    
 }

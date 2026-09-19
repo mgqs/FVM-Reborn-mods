@@ -32,7 +32,24 @@ if (!copied && !is_derivative && image_index >= 14)
         var prev_replace = global.replace_placement;
         global.replace_placement = false;
         var max_dist = max(global.grid_cols, global.grid_rows);
-        
+
+        var plat_shift_x = 0;
+        var plat_shift_y = 0;
+        var _plat = instance_position(x, y, obj_platform);
+        if (_plat != noone)
+        {
+            plat_shift_x = _plat.visual_x_shift;
+            plat_shift_y = _plat.visual_y_shift;
+        }
+
+        // 优先尝试自身所在的格子（终转后该格会空出，也应能复制）
+        var _self_world = get_world_position_from_grid(grid_col, grid_row);
+        if (found_count < _copy_count && can_place_at_position(_self_world.x, _self_world.y, _copy_plant_type, _copy_feature_type, _copy_target_card))
+        {
+            target_cells[found_count] = [grid_col, grid_row];
+            found_count++;
+        }
+
         for (var d = 1; d <= max_dist; d++)
         {
             var candidates = [];
@@ -101,10 +118,9 @@ if (!copied && !is_derivative && image_index >= 14)
             for (var i = 0; i < array_length(candidates); i++)
             {
                 var cand = candidates[i];
-                var xx = x + ((cand.col - grid_col) * global.grid_cell_size_x);
-                var yy = y + ((cand.row - grid_row) * global.grid_cell_size_y);
+                var _cand_world = get_world_position_from_grid(cand.col, cand.row);
                 
-                if (can_place_at_position(xx, yy, _copy_plant_type, _copy_feature_type, _copy_target_card))
+                if (can_place_at_position(_cand_world.x, _cand_world.y, _copy_plant_type, _copy_feature_type, _copy_target_card))
                 {
                     target_cells[found_count] = [cand.col, cand.row];
                     found_count++;
@@ -123,8 +139,9 @@ if (!copied && !is_derivative && image_index >= 14)
             var cell = target_cells[i];
             var col = cell[0];
             var row = cell[1];
-            var inst_x = x + ((col - grid_col) * global.grid_cell_size_x);
-            var inst_y = y + ((row - grid_row) * global.grid_cell_size_y);
+            var _cell_world = get_world_position_from_grid(col, row);
+            var inst_x = _cell_world.x + plat_shift_x;
+            var inst_y = _cell_world.y + plat_shift_y;
             var new_card = instance_create_depth_define(inst_x, inst_y, 0, _copy_obj);
             card_created(new_card, col, row);
         }
@@ -136,7 +153,6 @@ if (!copied && !is_derivative && image_index >= 14)
 if (shape >= 1 && !exploded && image_index >= 22)
 {
     exploded = true;
-    audio_play_sound(snd_coke_bomb_explode, 0, false);
     event_user(1);
 }
 

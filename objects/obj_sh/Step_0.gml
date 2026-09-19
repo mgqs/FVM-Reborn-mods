@@ -13,17 +13,17 @@ if (is_slowdown)
 
 var has_enemy = false;
 
-with (obj_enemy_parent)
-{
-    if ((grid_row == (other.grid_row - 1) || grid_row == other.grid_row || grid_row == (other.grid_row + 1)) && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
-    {
-        has_enemy = true;
-        break;
-    }
-}
-
 if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
 {
+    with (obj_enemy_parent)
+    {
+        if ((grid_row == (other.grid_row - 1) || grid_row == other.grid_row || grid_row == (other.grid_row + 1)) && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
+        {
+            has_enemy = true;
+            break;
+        }
+    }
+
     if (has_enemy)
     {
         if (attack_timer <= (cycle - (attack_anim * current_flash_speed)))
@@ -53,7 +53,7 @@ if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
     }
 }
 
-var count = instance_number(obj_sh) - 1;
+var count = (variable_global_exists("mod_obj_sh_count") ? global.mod_obj_sh_count : 0) - 1;
 var multiplier = 1 + (0.08 * count);
 multiplier = min(multiplier, 1.5);
 

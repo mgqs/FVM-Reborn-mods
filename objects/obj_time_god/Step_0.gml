@@ -3,6 +3,8 @@ if (global.is_paused)
 
 event_inherited();
 
+var _tg_blacklist = ["brahma", "ice_cream"];
+
 var current_flash_speed = flash_speed;
 
 if (is_slowdown)
@@ -35,7 +37,7 @@ if (exec_count == 0)
 
     with (obj_card_parent)
     {
-        if (plant_id != "time_god" && plant_id != "player")
+        if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
         {
             var dx = abs(grid_col - my_col);
             var dy = abs(grid_row - my_row);
@@ -96,7 +98,7 @@ if (phase == 0)
 
                 with (obj_card_parent)
                 {
-                    if (plant_id != "time_god" && plant_id != "player")
+                    if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
                     {
                         var dx = abs(grid_col - my_col);
                         var dy = abs(grid_row - my_row);
