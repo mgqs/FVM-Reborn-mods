@@ -8,7 +8,20 @@ if not obj_info_island_bg.is_submenu_opened{
 			var card_id = global.player_deck[| obj_info_island_bg.select_card_index*2];
 			var deck_entry = global.player_deck[| obj_info_island_bg.select_card_index*2+1];
 			var card_data_shapes = deck_entry[? "shapes"]
-			inst.view_max_shape = ds_list_size(card_data_shapes) - 1
+			var deck_max_shape = ds_list_size(card_data_shapes) - 1
+			// 同时检查植物注册表中实际有多少形态，取较小值
+			var plant_max_shape = 0
+			var plant_data = get_plant_data(card_id)
+			if plant_data != undefined{
+				var shapes_map = plant_data[? "shapes"]
+				// 遍历查找最大的shape索引
+				for(var si = 0; si <= 10; si++){
+					if ds_map_exists(shapes_map, string(si)){
+						plant_max_shape = si
+					}
+				}
+			}
+			inst.view_max_shape = min(deck_max_shape, plant_max_shape)
 			obj_info_island_bg.is_submenu_opened = true
 		
 	}

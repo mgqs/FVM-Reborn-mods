@@ -445,7 +445,9 @@ else if package_button_select == 3{
                 var material_y = 44 + row * 88 - y_offset;
                                
                 //draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_white,  1);
-                draw_sprite_ext(spr_craft_material, material_data.icon,  material_x,  material_y, 0.9, 0.9,  0,  c_white,  1);
+                var _mat_spr = (material_id == "oracle_stone") ? spr_oriacle_stone :spr_craft_material ;
+                var _mat_idx = (material_id == "oracle_stone") ? 0 : material_data.icon;
+                draw_sprite_ext(_mat_spr, _mat_idx,  material_x,  material_y, 0.9, 0.9,  0,  c_white,  1);
 				draw_set_halign(fa_right);
 				draw_set_valign(fa_bottom);
 				draw_set_colour(c_white)

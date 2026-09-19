@@ -123,6 +123,20 @@ if info_button_select == 1 {
 		var card_shape = view_card_shape
 	
 		var max_shape = ds_list_size(card_data_shapes)-1
+		// 同时检查植物注册表中的最大形态数，取较小值
+		var _plant_data = get_plant_data(card_id)
+		if _plant_data != undefined{
+			var _shapes_map = _plant_data[? "shapes"]
+			var _plant_max = 0
+			for(var _si = 0; _si <= 10; _si++){
+				if ds_map_exists(_shapes_map, string(_si)){
+					_plant_max = _si
+				}
+			}
+			if _plant_max < max_shape{
+				max_shape = _plant_max
+			}
+		}
 		var current_view_shape = 0
 		
 		if view_card_shape >= max_shape{
@@ -133,7 +147,11 @@ if info_button_select == 1 {
 		}
 		var card_data = card_data_shapes[| current_view_shape]
 		var info = get_plant_data_with_skill(card_id, current_view_shape,view_card_level,view_card_skill);
-		var name = get_plant_shape_data(card_id,current_view_shape)[? "name"]
+		var _shape_data = get_plant_shape_data(card_id,current_view_shape)
+		var name = ""
+		if _shape_data != undefined{
+			name = _shape_data[? "name"]
+		}
 		var info_text = global.info_island[? card_id]
 		
 		//绘制文本
@@ -148,12 +166,14 @@ if info_button_select == 1 {
 		draw_text(x-320,y-190,name)
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
-		var sun = string(info[? "flame_produce"])
-		if sun == "undefined"{
-			sun = "无"
+		if info != undefined{
+			var sun = string(info[? "flame_produce"])
+			if sun == "undefined"{
+				sun = "无"
+			}
+			draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
+			draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		}
-		draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
-		draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		draw_text_ext(x-390,y-100,info_text,30,300)
 		draw_set_font(font_yuan)
 	}
