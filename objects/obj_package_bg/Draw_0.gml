@@ -34,7 +34,7 @@ if info_button_select == 1{
 	//绘制武器栏位
 	for(var i = 0;i < 3; i++){
 		draw_sprite_ext(spr_package_weapon_bg, 0, x-1180, y-320+260*i, 1, 1, 0, c_white, 1)
-		for(var j = 0; j < 3 ; j++){
+		for(var j = 0; j < 4 ; j++){
 			draw_sprite_ext(spr_package_gem_bg, 0, x-1180+200*j, y-220+260*i, 0.9, 0.9, 0, c_white, 1)
 		}
 	}
@@ -305,12 +305,16 @@ else if package_button_select == 2 {
                 
                 // 检查宝石是否已装备
                 var is_equipped = (get_gem_index(weapon_id) != -1)
-                
+                // 检查宝石是否可以装备到当前武器
+                var _can_equip = can_equip_gem(weapon_id)
+
                 // 绘制宝石图标
                 if (is_equipped) {
-                    // 已装备的宝石，用高亮边框或颜色显示
                     draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_yellow,  1);
                     draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_white, 1);
+                } else if (!_can_equip) {
+                    draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_dkgray,  1);
+                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_gray, 1);
                 } else {
                     draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_white,  1);
                     draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_white, 1);
@@ -390,9 +394,11 @@ else if package_button_select == 2 {
             
             var tooltip_text = ""
             var is_equipped = (get_gem_index(weapon_id) != -1)
+            var _can_equip = can_equip_gem(weapon_id)
             if (is_equipped) {
-                //var slot = get_weapon_slot(weapon_id);
                 tooltip_text = weapon_data.description + "\n左键点击卸下\n右键点击编辑"
+            } else if (!_can_equip) {
+                tooltip_text = weapon_data.description + "\n需要装备专属武器才能携带"
             } else {
                 tooltip_text = weapon_data.description + "\n左键点击镶嵌\n右键点击编辑"
             }

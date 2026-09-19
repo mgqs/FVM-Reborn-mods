@@ -129,9 +129,9 @@ if (is_selected) {
 		var card_data = deck_get_card_data(card_id,card_shape)
 		
 		if card_id == "magic_chicken"{
-			if global.prev_place_id != ""{
-				card_shape = get_card_info_simple(global.prev_place_id).shape
-				card_data = deck_get_card_data(global.prev_place_id,card_shape)
+			if global.last_placed_card_id != ""{
+				card_shape = get_card_info_simple(global.last_placed_card_id).shape
+				card_data = deck_get_card_data(global.last_placed_card_id,card_shape)
 			}
 		}
         

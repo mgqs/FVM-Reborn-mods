@@ -18,4 +18,4 @@ plant_type = "coffee"
 is_slowdown = false
 current_hp = hp
 
-target_card = global.prev_place_id
+target_card = global.last_placed_card_id

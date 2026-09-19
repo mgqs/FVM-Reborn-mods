@@ -1,0 +1,11 @@
+damage = 0;
+move_speed = 8;
+bounced = false;
+row = 0;
+direction = 0;
+damage_type = "normal";
+can_ignite = false;
+hit_enemies = ds_list_create();
+image_xscale = 1.2;
+image_yscale = 1.2;
+image_speed = 1;

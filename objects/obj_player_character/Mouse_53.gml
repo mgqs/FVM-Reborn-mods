@@ -42,7 +42,9 @@ if not is_placed{
 				var gem_id = gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}
@@ -64,7 +66,9 @@ if not is_placed{
 				var gem_id = sec_gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}
@@ -80,7 +84,9 @@ if not is_placed{
 				var gem_id = sup_gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}

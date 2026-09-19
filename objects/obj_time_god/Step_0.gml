@@ -3,12 +3,16 @@ if (global.is_paused)
 
 event_inherited();
 
-var _tg_blacklist = ["brahma", "ice_cream"];
+lifetime_timer--;
+if (lifetime_timer <= 0)
+{
+    if (instance_exists(time_god_effect_obj))
+        instance_destroy(time_god_effect_obj);
+    instance_destroy();
+    exit;
+}
 
-var current_flash_speed = flash_speed;
-
-if (is_slowdown)
-    current_flash_speed *= 2;
+var _tg_blacklist = ["brahma", "ice_cream", "magic_chicken"];
 
 var col_offset = 1;
 var row_offset = 1;
@@ -27,54 +31,89 @@ else if (shape == 3)
     cd_ratio = 0;
 }
 
-// First placement: immediately reduce cooldown once
+var current_interval;
 if (exec_count == 0)
+    current_interval = first_delay;
+else
+    current_interval = cycle_interval;
+
+var current_flash = flash_speed;
+if (is_slowdown)
+    current_flash *= 2;
+
+var max_flash = floor(current_interval / idle_anim);
+if (max_flash < 1)
+    max_flash = 1;
+if (current_flash > max_flash)
+    current_flash = max_flash;
+
+var anim_play_frames = idle_anim * current_flash;
+
+if (exec_count < max_exec)
 {
-    var my_col = grid_col;
-    var my_row = grid_row;
+    reduction_timer--;
 
-    var nearby_ids = ds_list_create();
-
-    with (obj_card_parent)
+    if (reduction_timer <= 0)
     {
-        if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
-        {
-            var dx = abs(grid_col - my_col);
-            var dy = abs(grid_row - my_row);
+        var my_col = grid_col;
+        var my_row = grid_row;
 
-            if (dx <= col_offset && dy <= row_offset)
+        var nearby_ids = ds_list_create();
+
+        with (obj_card_parent)
+        {
+            if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
             {
-                if (ds_list_find_index(nearby_ids, plant_id) == -1)
-                    ds_list_add(nearby_ids, plant_id);
+                var dx = abs(grid_col - my_col);
+                var dy = abs(grid_row - my_row);
+
+                if (dx <= col_offset && dy <= row_offset)
+                {
+                    if (ds_list_find_index(nearby_ids, plant_id) == -1)
+                        ds_list_add(nearby_ids, plant_id);
+                }
             }
         }
-    }
 
-    with (obj_card_slot)
-    {
-        if (cooldown_timer < cooldown)
+        with (obj_card_slot)
         {
-            if (ds_list_find_index(nearby_ids, card_id) != -1)
+            if (cooldown_timer < cooldown)
             {
-                var boost = floor(cooldown * (1 - cd_ratio));
-                cooldown_timer = min(cooldown, cooldown_timer + boost);
+                if (ds_list_find_index(nearby_ids, card_id) != -1)
+                {
+                    var boost = floor(cooldown * (1 - cd_ratio));
+                    cooldown_timer = min(cooldown, cooldown_timer + boost);
+                }
             }
         }
-    }
 
-    ds_list_destroy(nearby_ids);
-    exec_count++;
-}
+        ds_list_destroy(nearby_ids);
+        exec_count++;
 
-if (phase == 0)
-{
-    if (wait_timer > 0)
-    {
-        wait_timer--;
+        if (exec_count < max_exec)
+            reduction_timer = cycle_interval;
+
+        anim_frame = 0;
+        image_index = 0;
+        tg_timer = 0;
+        image_alpha = 0;
+        if (instance_exists(time_god_effect_obj))
+            time_god_effect_obj.image_alpha = 0;
+        if (instance_exists(banding_star_obj))
+            banding_star_obj.image_alpha = 0;
     }
-    else
+    else if (reduction_timer <= anim_play_frames)
     {
-        if (tg_timer < current_flash_speed - 1)
+        if (image_alpha == 0)
+        {
+            image_alpha = 1;
+            if (instance_exists(time_god_effect_obj))
+                time_god_effect_obj.image_alpha = 1;
+            if (instance_exists(banding_star_obj))
+                banding_star_obj.image_alpha = 1;
+        }
+
+        if (tg_timer < current_flash - 1)
         {
             tg_timer++;
         }
@@ -86,87 +125,28 @@ if (phase == 0)
                 anim_frame++;
                 image_index = anim_frame;
             }
-            else
-            {
-                image_index = idle_anim;
-
-                // Execute cooldown reduction once per animation cycle
-                var my_col = grid_col;
-                var my_row = grid_row;
-
-                var nearby_ids = ds_list_create();
-
-                with (obj_card_parent)
-                {
-                    if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
-                    {
-                        var dx = abs(grid_col - my_col);
-                        var dy = abs(grid_row - my_row);
-
-                        if (dx <= col_offset && dy <= row_offset)
-                        {
-                            if (ds_list_find_index(nearby_ids, plant_id) == -1)
-                                ds_list_add(nearby_ids, plant_id);
-                        }
-                    }
-                }
-
-                with (obj_card_slot)
-                {
-                    if (cooldown_timer < cooldown)
-                    {
-                        if (ds_list_find_index(nearby_ids, card_id) != -1)
-                        {
-                            var boost = floor(cooldown * (1 - cd_ratio));
-                            cooldown_timer = min(cooldown, cooldown_timer + boost);
-                        }
-                    }
-                }
-
-                ds_list_destroy(nearby_ids);
-
-                exec_count++;
-
-                if (exec_count >= max_exec)
-                {
-                    if (instance_exists(time_god_effect_obj))
-                        instance_destroy(time_god_effect_obj);
-                    instance_destroy();
-                }
-                else
-                {
-                    phase = 1;
-                    hide_timer = 0;
-                    image_alpha = 0;
-                    if (instance_exists(time_god_effect_obj))
-                        time_god_effect_obj.image_alpha = 0;
-                    if (instance_exists(banding_star_obj))
-                        banding_star_obj.image_alpha = 0;
-                }
-            }
         }
-    }
-}
-else if (phase == 1)
-{
-    if (tg_timer < current_flash_speed - 1)
-    {
-        tg_timer++;
     }
     else
     {
-        tg_timer = 0;
-        hide_timer++;
-        if (hide_timer >= hide_duration)
+        if (image_alpha > 0)
         {
-            phase = 0;
-            anim_frame = 0;
-            image_index = 0;
-            image_alpha = 1;
+            image_alpha = 0;
             if (instance_exists(time_god_effect_obj))
-                time_god_effect_obj.image_alpha = 1;
+                time_god_effect_obj.image_alpha = 0;
             if (instance_exists(banding_star_obj))
-                banding_star_obj.image_alpha = 1;
+                banding_star_obj.image_alpha = 0;
         }
+    }
+}
+else
+{
+    if (image_alpha > 0)
+    {
+        image_alpha = 0;
+        if (instance_exists(time_god_effect_obj))
+            time_god_effect_obj.image_alpha = 0;
+        if (instance_exists(banding_star_obj))
+            banding_star_obj.image_alpha = 0;
     }
 }

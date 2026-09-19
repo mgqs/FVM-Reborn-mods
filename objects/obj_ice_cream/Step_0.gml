@@ -18,11 +18,9 @@ if attack_timer == 1{
 				||(other.shape == 1 && grid_row >= other.grid_row-1 && grid_row <= other.grid_row+1 && grid_col >= other.grid_col-1 && grid_col <= other.grid_col+1)
 				{
 					if array_get_index(other.ignore_list,plant_id) == -1{
-						if !(variable_instance_exists(id, "copied") && copied){
-							with obj_card_slot{
-								if card_id == other.plant_id{
-									cooldown_timer = cooldown
-								}
+						with obj_card_slot{
+							if card_id == other.plant_id{
+								cooldown_timer = cooldown
 							}
 						}
 					}

@@ -233,7 +233,7 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 	//绘制武器栏位
 	for(var i = 0;i < 3; i++){
 		draw_sprite_ext(spr_package_weapon_bg, 0, x+120, y+160+100*i, 1, 1, 0, c_white, 1)
-		for(var j = 0; j < 3 ; j++){
+		for(var j = 0; j < 4 ; j++){
 			draw_sprite_ext(spr_package_gem_bg, 0, x+240+120*j, y+160+100*i, 0.85, 0.85, 0, c_white, 1)
 		}
 	}

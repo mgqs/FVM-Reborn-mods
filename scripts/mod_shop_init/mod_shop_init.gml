@@ -264,7 +264,7 @@ function mod_shop_init()
         description: "雅典娜守护：全屏轰击，造成3×3范围伤害",
         display_name: "雅典娜守护"
     });
-    register_goods("corn_shooter", 
+    register_goods("corn_shooter",
     {
         type: "card",
         cost: "50000",
@@ -272,5 +272,125 @@ function mod_shop_init()
         description: "玉蜀黍：发射三颗玉米",
         display_name: "玉蜀黍"
     });
-    
+    register_goods("star_wand",
+    {
+        type: "weapon",
+        cost: "2000000",
+        unlock_item_id: "star_wand",
+        description: "星之神杖：召唤星之力全屏攻击，几率造成眩晕",
+        display_name: "星之神杖"
+    });
+    register_goods("star_wand_gem_1",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "star_wand_gem_1",
+        description: "星之焕：增幅星之力的溅射比率并改变星之力的形态",
+        display_name: "星之焕"
+    });
+    register_goods("star_wand_gem_2",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "star_wand_gem_2",
+        description: "星之吻：增幅星之力的伤害",
+        display_name: "星之吻"
+    });
+    register_goods("star_wand_gem_3",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "star_wand_gem_3",
+        description: "星之雨：增幅召唤星之力的数量",
+        display_name: "星之雨"
+    });
+    register_goods("star_wand_gem_4",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "star_wand_gem_4",
+        description: "星之闪：增幅召唤星之力的速度并增加眩晕几率",
+        display_name: "星之闪"
+    });
+    register_goods("rose_shield",
+    {
+        type: "weapon",
+        cost: "2000000",
+        unlock_item_id: "rose_shield",
+        description: "荆棘玫瑰：增加1000生命值，镶嵌宝石时提供超强增益效果",
+        display_name: "荆棘玫瑰"
+    });
+    register_goods("rose_shield_gem_1",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "rose_shield_gem_1",
+        description: "玫瑰之心：生产极限量的火苗",
+        display_name: "玫瑰之心"
+    });
+    register_goods("rose_shield_gem_2",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "rose_shield_gem_2",
+        description: "玫瑰之刺：周期性向8个方向发射荆棘子弹",
+        display_name: "玫瑰之刺"
+    });
+    register_goods("rose_shield_gem_3",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "rose_shield_gem_3",
+        description: "玫瑰之护：为5×7范围内的卡片巨幅提升攻击力",
+        display_name: "玫瑰之护"
+    });
+    register_goods("rose_shield_gem_4",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "rose_shield_gem_4",
+        description: "玫瑰之绞：为5×7范围内的敌人造成巨额伤害",
+        display_name: "玫瑰之绞"
+    });
+    register_goods("aladdin_lamp",
+    {
+        type: "weapon",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp",
+        description: "阿拉丁神灯：驱动灯神之力朝固定轨迹飞行",
+        display_name: "阿拉丁神灯"
+    });
+    register_goods("aladdin_lamp_gem_1",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp_gem_1",
+        description: "灯神原力：增加阿拉丁神灯的伤害",
+        display_name: "灯神原力"
+    });
+    register_goods("aladdin_lamp_gem_2",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp_gem_2",
+        description: "灯神疾速：增加阿拉丁神灯的攻击速度",
+        display_name: "灯神疾速"
+    });
+    register_goods("aladdin_lamp_gem_3",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp_gem_3",
+        description: "灯神召唤：增加阿拉丁神灯的子弹数量",
+        display_name: "灯神召唤"
+    });
+    register_goods("aladdin_lamp_gem_4",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp_gem_4",
+        description: "灯神迷雾：增加阿拉丁神灯的子弹溅射并改变子弹形态",
+        display_name: "灯神迷雾"
+    });
+
 }

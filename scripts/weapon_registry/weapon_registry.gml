@@ -27,16 +27,20 @@ function register_weapon(weapon_id,data){
 /// @param {string} weapon_id 武器ID
 /// @param {string} slot 武器槽位
 function equip_weapon(weapon_id,slot){
-	global.equipped_weapon[? slot].weapon_id = weapon_id
+	// 更换武器时，自动把旧武器的宝石归还背包
 	if slot == "main_weapon"{
+		global.save_data.equipped_items.main_weapon.gems = []
 		global.save_data.equipped_items.main_weapon[$ "id"] = weapon_id
 	}
 	else if slot == "secondary_weapon"{
+		global.save_data.equipped_items.secondary_weapon.gems = []
 		global.save_data.equipped_items.secondary_weapon[$ "id"] = weapon_id
 	}
 	else if slot == "super_weapon"{
+		global.save_data.equipped_items.super_weapon.gems = []
 		global.save_data.equipped_items.super_weapon[$ "id"] = weapon_id
 	}
+	global.equipped_weapon[? slot].weapon_id = weapon_id
 	save_file(global.save_slot)
 }
 
@@ -44,16 +48,20 @@ function equip_weapon(weapon_id,slot){
 /// @desc 卸下武器
 /// @param {string} slot 武器槽位
 function remove_weapon(slot){
-	global.equipped_weapon[? slot].weapon_id = ""
+	// 卸下武器时，自动把宝石归还背包
 	if slot == "main_weapon"{
+		global.save_data.equipped_items.main_weapon.gems = []
 		global.save_data.equipped_items.main_weapon[$ "id"] = ""
 	}
 	else if slot == "secondary_weapon"{
+		global.save_data.equipped_items.secondary_weapon.gems = []
 		global.save_data.equipped_items.secondary_weapon[$ "id"] = ""
 	}
 	else if slot == "super_weapon"{
+		global.save_data.equipped_items.super_weapon.gems = []
 		global.save_data.equipped_items.super_weapon[$ "id"] = ""
 	}
+	global.equipped_weapon[? slot].weapon_id = ""
 	save_file(global.save_slot)
 }
 
@@ -65,37 +73,84 @@ function equip_gem(gem_id){
 	var gem_level = get_gem_level(gem_id)
 	var slot = gem_data.slot
 	var slot_gem = []
+
+	// 专属宝石检查：如果宝石有 allowed_weapons，需要对应武器已装备
+	if (variable_struct_exists(gem_data, "allowed_weapons")) {
+		var equipped_weapon_id = ""
+		if slot == "main_weapon"{
+			equipped_weapon_id = global.save_data.equipped_items.main_weapon[$ "id"]
+		}
+		else if slot == "secondary_weapon"{
+			equipped_weapon_id = global.save_data.equipped_items.secondary_weapon[$ "id"]
+		}
+		else if slot == "super_weapon"{
+			equipped_weapon_id = global.save_data.equipped_items.super_weapon[$ "id"]
+		}
+		var is_allowed = false
+		for (var i = 0; i < array_length(gem_data.allowed_weapons); i++) {
+			if (gem_data.allowed_weapons[i] == equipped_weapon_id) {
+				is_allowed = true
+				break
+			}
+		}
+		if (!is_allowed) {
+			return
+		}
+	}
+
 	if slot == "main_weapon"{
 		if get_gem_index(gem_id) == -1{
 			slot_gem = global.save_data.equipped_items.main_weapon.gems
-			//show_debug_message(slot_gem)
-			if array_length(slot_gem) < 3{
+			if array_length(slot_gem) < 4{
 				slot_gem[array_length(slot_gem)] = gem_id
 			}
-			//show_debug_message(slot_gem)
 		}
 	}
 	else if slot == "secondary_weapon"{
 		if get_gem_index(gem_id) == -1{
 			slot_gem = global.save_data.equipped_items.secondary_weapon.gems
-			//show_debug_message(slot_gem)
-			if array_length(slot_gem) < 3{
+			if array_length(slot_gem) < 4{
 				slot_gem[array_length(slot_gem)] = gem_id
 			}
-			//show_debug_message(slot_gem)
 		}
 	}
 	else if slot == "super_weapon"{
 		if get_gem_index(gem_id) == -1{
 			slot_gem = global.save_data.equipped_items.super_weapon.gems
-			//show_debug_message(slot_gem)
-			if array_length(slot_gem) < 3{
+			if array_length(slot_gem) < 4{
 				slot_gem[array_length(slot_gem)] = gem_id
 			}
-			//show_debug_message(slot_gem)
 		}
 	}
 	save_file(global.save_slot)
+}
+
+/// @function can_equip_gem(gem_id)
+/// @desc 检查宝石是否可以装备到当前武器
+/// @param {string} gem_id 宝石ID
+/// @return {bool} 是否可以装备
+function can_equip_gem(gem_id) {
+	var gem_data = get_gem_info(gem_id)
+	if (!variable_struct_exists(gem_data, "allowed_weapons")) {
+		return true
+	}
+	var slot = gem_data.slot
+	var equipped_weapon_id = ""
+	if slot == "main_weapon"{
+		equipped_weapon_id = global.save_data.equipped_items.main_weapon[$ "id"]
+	}
+	else if slot == "secondary_weapon"{
+		equipped_weapon_id = global.save_data.equipped_items.secondary_weapon[$ "id"]
+	}
+	else if slot == "super_weapon"{
+		equipped_weapon_id = global.save_data.equipped_items.super_weapon[$ "id"]
+	}
+	for (var i = 0; i < array_length(gem_data.allowed_weapons); i++) {
+		if (gem_data.allowed_weapons[i] == equipped_weapon_id) {
+			return true
+		}
+	}
+	return false
 }
 
 function get_gem_index(gem_id){

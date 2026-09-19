@@ -19,7 +19,6 @@ is_slowdown = false;
 current_hp = hp;
 image_speed = 0;
 
-phase = 0;
 exec_count = 0;
 
 if (skill == 0)
@@ -31,20 +30,24 @@ else if (skill == 8)
 else
     max_exec = 3;
 
-var first_delay_frames = 72;
-if (shape >= 1)
-    first_delay_frames = 108;
-
+first_delay = 72;
 cycle_interval = 420;
-anim_play_frames = idle_anim * flash_speed;
-hide_duration = cycle_interval - anim_play_frames;
-if (hide_duration < 0)
-    hide_duration = 0;
 
-wait_timer = first_delay_frames;
+if (skill == 0)
+    lifetime = 1020;
+else if (skill == 6)
+    lifetime = 1440;
+else if (skill == 8)
+    lifetime = 1860;
+else
+    lifetime = 1020;
+lifetime_timer = lifetime;
+
+reduction_timer = first_delay;
+
 tg_timer = 0;
 anim_frame = 0;
-hide_timer = 0;
+image_alpha = 0;
 
 var eff_spr = spr_time_god_effect;
 if (shape == 1)
@@ -57,6 +60,8 @@ else if (shape == 3)
 time_god_effect_obj = instance_create_depth(x, y - 30, 0, obj_time_god_effect);
 time_god_effect_obj.sprite_index = eff_spr;
 time_god_effect_obj.is_one_shot = false;
+if (instance_exists(time_god_effect_obj))
+    time_god_effect_obj.image_alpha = 0;
 
 if (shape >= 1)
 {
