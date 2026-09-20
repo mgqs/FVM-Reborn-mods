@@ -6,7 +6,7 @@
   "bbox_left":0,
   "bbox_right":109,
   "bbox_top":4,
-  "collisionKind":1,
+  "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -40,7 +40,7 @@
   "origin":7,
   "parent":{
     "name":"star_wand",
-    "path":"folders/精灵/mod/star_wand.yy",
+    "path":"folders/精灵/mod/germ/star_wand.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

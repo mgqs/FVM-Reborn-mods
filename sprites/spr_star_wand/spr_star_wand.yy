@@ -39,7 +39,7 @@
   "origin":9,
   "parent":{
     "name":"star_wand",
-    "path":"folders/精灵/mod/star_wand.yy",
+    "path":"folders/精灵/mod/germ/star_wand.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

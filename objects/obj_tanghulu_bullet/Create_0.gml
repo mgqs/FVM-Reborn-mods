@@ -1,0 +1,13 @@
+damage = 0;
+move_speed = 0;
+bullet_shape = 0;
+damage_type = "normal";
+target_type = "air_only";
+timer = 0;
+target_enemy = -4;
+banding_card_obj = -4;
+row = 0;
+image_xscale = 1.8;
+image_yscale = 1.8;
+image_speed = 1;
+image_alpha = 0;

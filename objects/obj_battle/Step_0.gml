@@ -159,7 +159,7 @@ if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_ite
 	}
 	with obj_battle_music_controller{
 		new_battle_music = global.level_data.boss_music
-		event_user(0)
+		event_user(10)
 	}
 }
 if wave_timer <= 0 && level_stage == "pre"{

@@ -6,7 +6,7 @@
   "bbox_left":0,
   "bbox_right":89,
   "bbox_top":0,
-  "collisionKind":1,
+  "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -42,7 +42,7 @@
   "origin":4,
   "parent":{
     "name":"aladdin_lamp",
-    "path":"folders/精灵/mod/aladdin_lamp.yy",
+    "path":"folders/精灵/mod/germ/aladdin_lamp.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

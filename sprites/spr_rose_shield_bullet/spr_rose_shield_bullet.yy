@@ -6,7 +6,7 @@
   "bbox_left":2,
   "bbox_right":51,
   "bbox_top":1,
-  "collisionKind":1,
+  "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -31,7 +31,7 @@
   "origin":4,
   "parent":{
     "name":"rose_shield",
-    "path":"folders/精灵/mod/rose_shield.yy",
+    "path":"folders/精灵/mod/germ/rose_shield.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

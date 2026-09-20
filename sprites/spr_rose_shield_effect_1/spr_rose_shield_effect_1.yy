@@ -30,7 +30,7 @@
   "origin":4,
   "parent":{
     "name":"rose_shield",
-    "path":"folders/精灵/mod/rose_shield.yy",
+    "path":"folders/精灵/mod/germ/rose_shield.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"aladdin_lamp",
-    "path":"folders/精灵/mod/aladdin_lamp.yy",
+    "path":"folders/精灵/mod/germ/aladdin_lamp.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
