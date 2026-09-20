@@ -9,3 +9,5 @@ hit_enemies = ds_list_create();
 image_xscale = 1.2;
 image_yscale = 1.2;
 image_speed = 1;
+target_type = "all";
+hittable_types = get_hittable_enemy_types(target_type);

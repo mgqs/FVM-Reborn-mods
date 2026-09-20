@@ -10,3 +10,4 @@ image_xscale = 1.4;
 image_yscale = 1.4;
 image_speed = 1.5;
 splash_ratio = 0;
+hittable_types = get_hittable_enemy_types(target_type);

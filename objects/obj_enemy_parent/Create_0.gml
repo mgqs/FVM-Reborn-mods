@@ -64,3 +64,6 @@ water_effect_timer = 0
 hp_modified = false
 
 block_mouse_id_list = ["mouse_train_1"]
+
+enemy_registered = false
+enemy_registered_type = ""

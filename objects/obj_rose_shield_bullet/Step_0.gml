@@ -11,3 +11,35 @@ image_angle = direction;
 
 if (x > 2500 || x < -200 || y > 1500 || y < -200)
     instance_destroy();
+
+// 类型过滤碰撞检测
+if (variable_global_exists("enemy_by_type"))
+{
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
+    {
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
+        {
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            if (_e.hp > 0
+                && ds_exists(hit_enemies, ds_type_list)
+                && ds_list_find_index(hit_enemies, _e.id) == -1
+                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+            {
+                if (ds_exists(hit_enemies, ds_type_list))
+                    ds_list_add(hit_enemies, _e.id);
+                with (_e)
+                {
+                    audio_play_sound(hit_sound, 0, 0);
+                    damage_amount = other.damage;
+                    damage_type = other.damage_type;
+                    event_user(0);
+                }
+            }
+        }
+    }
+}

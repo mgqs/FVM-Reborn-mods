@@ -94,3 +94,51 @@ else
 
 x += lengthdir_x(move_speed, fly_dir);
 y += lengthdir_y(move_speed, fly_dir);
+
+// 追踪子弹碰撞检测
+if (target_enemy != -4 && instance_exists(target_enemy))
+{
+    var _e = target_enemy;
+    if (_e.hp > 0
+        && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+        && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    {
+        with (_e)
+        {
+            audio_play_sound(hit_sound, 0, 0);
+            damage_amount = other.damage;
+            damage_type = other.damage_type;
+            event_user(0);
+        }
+        instance_create_depth(x, y, depth, obj_takoyaki_bullet_effect);
+        var _x = x;
+        var _y = y;
+        var _range = 250;
+        var splash_ratio = 0.75;
+
+        if (variable_global_exists("enemy_by_type"))
+        {
+            for (var _t = 0; _t < array_length(hittable_types); _t++)
+            {
+                var _key = hittable_types[_t];
+                if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+                var _list = global.enemy_by_type[$ _key];
+                for (var _i = 0; _i < array_length(_list); _i++)
+                {
+                    var _se = _list[_i];
+                    if (!instance_exists(_se) || _se == _e) continue;
+                    if (_se.hp > 0 && point_distance(_se.x, _se.y, _x, _y) < _range)
+                    {
+                        with (_se)
+                        {
+                            damage_amount = other.damage * splash_ratio;
+                            damage_type = other.damage_type;
+                            event_user(0);
+                        }
+                    }
+                }
+            }
+        }
+        instance_destroy();
+    }
+}

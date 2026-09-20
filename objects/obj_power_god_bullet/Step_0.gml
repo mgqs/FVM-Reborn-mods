@@ -62,5 +62,38 @@ else
     }
 }
 
+// 追踪子弹碰撞检测
+if (target_enemy != -4 && instance_exists(target_enemy))
+{
+    var _e = target_enemy;
+    if (_e.hp > 0
+        && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+        && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    {
+        with (_e)
+        {
+            audio_play_sound(hit_sound, 0, 0);
+            damage_amount = other.damage;
+            damage_type = other.damage_type;
+            event_user(0);
+        }
+
+        var stun_chance = 0;
+        if (bullet_shape == 0)
+            stun_chance = 15;
+        else if (bullet_shape == 1 || bullet_shape == 2)
+            stun_chance = 30;
+
+        if (random(100) < stun_chance)
+        {
+            if (_e.stun_timer < 240)
+                _e.stun_timer = 240;
+        }
+
+        instance_create_depth(x, y, depth, obj_power_god_bullet_effect);
+        instance_destroy();
+    }
+}
+
 if (x > 2200 || y > 1200 || x < -200 || y < -200)
     instance_destroy();

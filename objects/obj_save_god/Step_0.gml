@@ -45,8 +45,8 @@ if timer < current_flash_speed - 1 {
 
             for (var i = 0; i < fish_count; i++) {
                 var target_row = i % global.grid_rows
-                var world_pos = get_world_position_from_grid(grid_col, target_row)
-                var inst = instance_create_depth(x, world_pos.y, depth, fish_type)
+                var world_pos = get_world_position_from_grid(0, target_row)
+                var inst = instance_create_depth(world_pos.x, world_pos.y, depth, fish_type)
                 inst.grid_row = target_row
                 inst.atk = atk
             }

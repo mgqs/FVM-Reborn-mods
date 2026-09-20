@@ -11,6 +11,25 @@ if skipped or hp <= 0{
 if global.is_paused{
 	exit
 }
+
+// Register to global enemy type registry
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
+}
 if ice_timer > 0{
 	ice_timer--
 	is_slowdown = true
@@ -114,26 +133,25 @@ switch(state) {
             if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
-                    var target_type = ds_list_find_value(global.eat_order, i);
-                    
-                    if (plant_type == target_type) {
+                    var _eat_type = ds_list_find_value(global.eat_order, i);
+
+                    if (plant_type == _eat_type) {
                         plant_order_list[i] = id;
                         break;
                     }
                 }
-				
-                
+
                 if (plant_in_range != noone) break;
             }
         }
-		
+
 		for(var i = 0 ; i < 4 ; i++){
 			if plant_order_list[i] != noone{
 				plant_in_range = plant_order_list[i]
 				break
 			}
 		}
-        
+
         // 如果找到目标植物，进入攻击状态
         if (plant_in_range != noone) {
             state = ENEMY_STATE.ATTACK;
@@ -188,16 +206,16 @@ switch(state) {
 				is_in_front = (dx < 0 && dx > -other.attack_range);
 				
 	            // 检查是否在攻击范围内
-	            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
-	                // 按铲除顺序优先选择
-	                for (var i = 0; i < ds_list_size(global.eat_order); i++) {
-	                    var target_type = ds_list_find_value(global.eat_order, i);
-                    
-	                    if (plant_type == target_type) {
-	                        plant_order_list[i] = id;
-	                        break;
-	                    }
-	                }
+		            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
+		                // 按铲除顺序优先选择
+		                for (var i = 0; i < ds_list_size(global.eat_order); i++) {
+		                    var _eat_type = ds_list_find_value(global.eat_order, i);
+
+		                    if (plant_type == _eat_type) {
+		                        plant_order_list[i] = id;
+		                        break;
+		                    }
+		                }
                 
 	                if (plant_in_range != noone) break;
 	            }

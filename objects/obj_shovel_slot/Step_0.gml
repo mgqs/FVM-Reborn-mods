@@ -87,13 +87,13 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
     
     // 按照铲除顺序查找最上层的可移除植物
     for (var i = 0; i < ds_list_size(global.shovel_order); i++) {
-        var target_type = ds_list_find_value(global.shovel_order, i);
+        var _shovel_type = ds_list_find_value(global.shovel_order, i);
         
         // 从上层开始查找（列表最后）
         for (var j = ds_list_size(plant_list) - 1; j >= 0; j--) {
             var plant = ds_list_find_value(plant_list, j);
 			if instance_exists(plant){
-	            if (plant.plant_type == target_type and plant.can_shovel_remove) {
+	            if (plant.plant_type == _shovel_type and plant.can_shovel_remove) {
 	                plant_to_remove = plant;
 	                break;
 	            }

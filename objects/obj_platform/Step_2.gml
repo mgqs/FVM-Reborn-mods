@@ -338,6 +338,12 @@ with (obj_melon_shield_inner) {
     }
 }
 
+with (obj_shield_aura) {
+    if (variable_instance_exists(id, "parent_player") && instance_exists(parent_player)) {
+        depth = parent_player.depth + depth_offset;
+    }
+}
+
 
 with (obj_stars) {
     if (instance_exists(parent_card)) {

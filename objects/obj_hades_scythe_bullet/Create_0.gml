@@ -20,3 +20,4 @@ speed = 4.5;
 dir = 1;
 start_x = x;
 start_y = y;
+hittable_types = get_hittable_enemy_types(target_type);

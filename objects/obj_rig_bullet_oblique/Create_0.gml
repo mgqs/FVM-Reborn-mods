@@ -10,3 +10,4 @@ anim_timer = 0;
 hit_anim_timer = 0;
 hitted_enemy = ds_list_create();
 bullet_hit = false;
+hittable_types = get_hittable_enemy_types(target_type);

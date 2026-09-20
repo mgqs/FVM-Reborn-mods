@@ -1,10 +1,10 @@
 {
   "$GMSprite":"v2",
   "%Name":"spr_engineer_bullet_effect",
-  "bboxMode":0,
-  "bbox_bottom":44,
+  "bboxMode":2,
+  "bbox_bottom":42,
   "bbox_left":0,
-  "bbox_right":71,
+  "bbox_right":70,
   "bbox_top":0,
   "collisionKind":0,
   "collisionTolerance":0,

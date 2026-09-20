@@ -35,3 +35,32 @@ if (dir == -1)
 
 x = start_x + px;
 y = start_y + py;
+
+// 类型过滤碰撞检测
+if (variable_global_exists("enemy_by_type"))
+{
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
+    {
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
+        {
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            if (ds_list_find_index(hitted_enemy, _e.id) == -1 && !disabled
+                && _e.hp > 0
+                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+            {
+                with (_e)
+                {
+                    damage_amount = other.damage;
+                    damage_type = other.damage_type;
+                    event_user(0);
+                }
+                ds_list_add(hitted_enemy, _e.id);
+            }
+        }
+    }
+}

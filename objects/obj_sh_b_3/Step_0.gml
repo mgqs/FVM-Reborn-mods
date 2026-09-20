@@ -4,49 +4,74 @@ if (global.is_paused)
 timer++;
 image_index = floor(timer / 5);
 
-// AABB 包围盒重叠检测：补充物理碰撞事件对地下敌人的漏检
-with (obj_enemy_parent)
+// 类型过滤碰撞检测
+if (variable_global_exists("enemy_by_type"))
 {
-    if (ds_list_find_index(other.hitted_enemy, id) == -1
-        && hp > 0
-        && (other.row == grid_row - 1 || other.row == grid_row || other.row == grid_row + 1)
-        && can_hit(other.target_type, target_type)
-        && bbox_right >= other.bbox_left && bbox_left <= other.bbox_right
-        && bbox_bottom >= other.bbox_top && bbox_top <= other.bbox_bottom)
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
     {
-        audio_play_sound(hit_sound, 0, 0);
-        if (random(100) < 20 && stun_timer < 120)
-            stun_timer = 120;
-
-        var is_crit = false;
-        if (random(100) < 20)
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
         {
-            is_crit = true;
-            instance_create_depth(x, y - 30, depth + 10, obj_sh_b_3_e);
-        }
-
-        var final_damage = other.damage;
-        if (is_crit) final_damage *= 2;
-
-        if (hp > final_damage)
-        {
-            hp -= final_damage;
-            event_user(0);
-        }
-        else
-        {
-            if (special_ash)
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            if (ds_list_find_index(hitted_enemy, _e.id) == -1
+                && _e.hp > 0
+                && abs(row - _e.grid_row) <= 1
+                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
             {
-                var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
-                inst.special_ash = true;
-                inst.sprite_index = sprite_index;
-                inst.image_index = image_index;
+                var _hit_id = _e.id;
+                with (_e)
+                {
+                    audio_play_sound(hit_sound, 0, 0);
+
+                    if (random(100) < 20)
+                    {
+                        if (stun_timer < 120)
+                            stun_timer = 120;
+                    }
+
+                    var is_crit = false;
+
+                    if (random(100) < 20)
+                    {
+                        is_crit = true;
+                        instance_create_depth(x, y - 30, depth + 10, obj_sh_b_3_e);
+                    }
+
+                    var final_damage = other.damage;
+
+                    if (is_crit)
+                        final_damage *= 2;
+
+                    if (hp > final_damage)
+                    {
+                        hp -= final_damage;
+                        event_user(0);
+                    }
+                    else
+                    {
+                        if (special_ash)
+                        {
+                            var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                            inst.special_ash = true;
+                            inst.sprite_index = sprite_index;
+                            inst.image_index = image_index;
+                        }
+                        else
+                        {
+                            instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                        }
+
+                        instance_destroy();
+                    }
+                }
+
+                ds_list_add(hitted_enemy, _hit_id);
             }
-            else
-                instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
-            instance_destroy();
         }
-        ds_list_add(other.hitted_enemy, id);
     }
 }
 

@@ -24,36 +24,44 @@ if (!aura_created)
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 30, 0, obj_shield_aura);
             _eff.sprite_index = spr_gods_shield_effect_1;
             _eff.depth = parent_player.depth - 3;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = -3;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (gods_damage_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_gods_shield_effect_2;
             _eff.depth = parent_player.depth + 149;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 149;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (gods_buff_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_gods_shield_effect_3;
             _eff.depth = parent_player.depth + 150;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 150;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (gods_hp_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_gods_shield_effect_4;
             _eff.depth = parent_player.depth + 148;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 148;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
@@ -66,36 +74,44 @@ if (!aura_created)
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 30, 0, obj_shield_aura);
             _eff.sprite_index = spr_master_shield_effect_1;
             _eff.depth = parent_player.depth - 3;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = -3;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (gods_damage_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_master_shield_effect_2;
             _eff.depth = parent_player.depth + 149;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 149;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (gods_buff_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_master_shield_effect_3;
             _eff.depth = parent_player.depth + 150;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 150;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (master_eye_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_master_shield_effect_4;
             _eff.depth = parent_player.depth + 148;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 148;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
@@ -108,26 +124,32 @@ if (!aura_created)
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_rose_shield_effect_5;
             _eff.depth = parent_player.depth + 148;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 148;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (rose_buff_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_rose_shield_effect_3;
             _eff.depth = parent_player.depth + 150;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 150;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;
         }
-        
+
         if (rose_dmg_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 17, spawn_y - 5, 0, obj_shield_aura);
             _eff.sprite_index = spr_rose_shield_effect_4;
             _eff.depth = parent_player.depth + 149;
+            _eff.parent_player = parent_player;
+            _eff.depth_offset = 149;
             array_push(shield_vfx_insts, _eff);
             _eff.rel_x = _eff.x - parent_player.x;
             _eff.rel_y = _eff.y - parent_player.y;

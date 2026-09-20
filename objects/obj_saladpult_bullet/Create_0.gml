@@ -15,3 +15,4 @@ image_xscale = 1.4
 image_yscale = 1.4
 
 atk_modified = false
+hittable_types = get_hittable_enemy_types(target_type);

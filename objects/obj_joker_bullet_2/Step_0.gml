@@ -9,3 +9,53 @@ x += move_speed;
 
 if (x > 2200 || y > 1200 || x < 0 || y < 0)
     instance_destroy();
+
+// 类型过滤碰撞检测
+if (variable_global_exists("enemy_by_type"))
+{
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
+    {
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
+        {
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            if (_e.hp > 0 && row == _e.grid_row
+                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+            {
+                hitted_enemy = _e.id;
+                if (_e.hp <= damage)
+                {
+                    if (_e.special_ash)
+                    {
+                        var inst = instance_create_depth(_e.x, _e.y - 20, _e.depth, obj_mouse_ash_death_2);
+                        inst.special_ash = true;
+                        inst.sprite_index = _e.sprite_index;
+                        inst.image_index = _e.image_index;
+                    }
+                    else
+                    {
+                        instance_create_depth(_e.x, _e.y - 20, _e.depth, obj_mouse_ash_death_2);
+                    }
+                    instance_destroy(_e);
+                }
+                else
+                {
+                    with (_e)
+                    {
+                        audio_play_sound(hit_sound, 0, false);
+                        damage_amount = other.damage;
+                        damage_type = other.damage_type;
+                        event_user(0);
+                    }
+                }
+                instance_create_depth(x, y, depth, obj_joker_bullet_effect_23);
+                instance_destroy();
+                exit;
+            }
+        }
+    }
+}

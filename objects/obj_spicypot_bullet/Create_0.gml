@@ -14,3 +14,4 @@ image_speed = 0
 timer = 0
 
 hitted_enemy = ds_list_create()
+hittable_types = get_hittable_enemy_types(target_type);

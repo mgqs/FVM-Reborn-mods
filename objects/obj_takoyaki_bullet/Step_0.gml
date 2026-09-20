@@ -119,6 +119,26 @@ if (instance_exists(target_enemy) && target_enemy.hp > 0  && can_hit(target_type
     }
 }
 
+// 追踪子弹碰撞检测
+if (target_enemy != noone && instance_exists(target_enemy))
+{
+    var _e = target_enemy;
+    if (_e.hp > 0
+        && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+        && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    {
+        with (_e)
+        {
+            audio_play_sound(hit_sound,0,0)
+            damage_amount = other.damage
+            damage_type = other.damage_type
+            event_user(0)
+        }
+        instance_create_depth(x,y,depth,obj_takoyaki_bullet_effect)
+        instance_destroy()
+    }
+}
+
 image_angle =- timer * 6
 if x > 2200 or y > 1200 or x < -200 or y < -200{
 	instance_destroy()
