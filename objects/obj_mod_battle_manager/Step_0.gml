@@ -109,6 +109,22 @@ else
                             self.atk = self.base_atk * grid_sprayer[self.grid_col][self.grid_row];
                             break;
                         
+                        case "five_dir":
+                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
+                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
+                            self.atk = self.base_atk * max(fd_normal, fd_stack);
+                            break;
+                        
+                        case "multi_dir":
+                            var grid_multi_dir = ds_map_find_value(global.buff_grid, "multi_dir");
+                            var stack_multi_dir = ds_map_find_value(global.buff_stack_grid, "multi_dir");
+                            var md_normal = grid_multi_dir[self.grid_col][self.grid_row];
+                            var md_stack = stack_multi_dir[self.grid_col][self.grid_row];
+                            self.atk = self.base_atk * max(md_normal, md_stack);
+                            break;
+                        
                         default:
                             self.atk = self.base_atk;
                             break;

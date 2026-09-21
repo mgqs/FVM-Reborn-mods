@@ -28,6 +28,14 @@ if not hp_modified{
 			shield_max_hp *= 1.2
 		}
 	}
+	if global.difficulty == 4{
+		maxhp *= 2
+		hp *= 2
+		helmet_hp *= 2
+		helmet_max_hp *= 2
+		shield_hp *= 2
+		shield_max_hp *= 2
+	}
 	if is_real(global.level_file.version) && !is_boss{
 		maxhp *= global.level_file.hp_modify
 		hp *= global.level_file.hp_modify

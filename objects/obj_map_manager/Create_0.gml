@@ -23,6 +23,10 @@ for(var i = 0 ; i <button_array_length ; i++){
 	inst.player_level_require = button_struct.player_level_require
 	inst.pre_level_require = button_struct.pre_level_require
 	inst.sprite_index = button_struct.button_spr
+	if button_struct.id == "test_level"{
+		inst.image_xscale = 0.18
+		inst.image_yscale = 0.18
+	}
 }
 
 instance_create_depth(room_width-210,room_height,-1,obj_player_menu_bg)

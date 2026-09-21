@@ -208,7 +208,15 @@ function gods_shop_init()
         description: "埃罗斯神使：连续发射3发带有溅射效果的子弹，先后攻击本行空、地、水陆老鼠",
         display_name: "埃罗斯神使"
     });
-    register_gods_goods("gaia_1", 
+    register_gods_goods("baibianshe",
+    {
+        type: "card",
+        cost: "10",
+        unlock_item_id: "baibianshe",
+        description: "百变蛇：变身成为范围内上一张种下的卡片",
+        display_name: "百变蛇"
+    });
+    register_gods_goods("gaia_1",
     {
         type: "shape",
         cost: "16",
@@ -968,7 +976,7 @@ function gods_shop_init()
         display_name: "终转凭证（救世神）",
         spr: spr_save_3pin
     });
-    register_gods_goods("joker_3", 
+    register_gods_goods("joker_3",
     {
         type: "shape",
         cost: "48",
@@ -978,5 +986,131 @@ function gods_shop_init()
         display_name: "终转凭证（恶作剧神）",
         spr: spr_joker_3pin
     });
-	
+
+register_gods_goods("xiangshui_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "xiangshui_god",
+    description: "宴飨女神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    display_name: "宴飨女神"
+});
+
+register_gods_goods("xiangshui_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 1,
+    description: "宴飨圣神：为周围绿地追踪卡片提升大幅攻击力",
+    display_name: "三转凭证（宴飨女神）",
+    spr: spr_xiangshui_god_pin1
+});
+
+register_gods_goods("xiangshui_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 2,
+    description: "宴飨神·馥郁：攻击力提升，范围扩大至5x5",
+    display_name: "四转凭证（宴飨女神）",
+    spr: spr_xiangshui_god_pin2
+});
+
+register_gods_goods("xiangshui_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 3,
+    description: "至尊宴飨女神：冰神类卡片共享增幅",
+    display_name: "终转凭证（宴飨女神）",
+    spr: spr_xiangshui_god_pin2
+});
+
+register_gods_goods("fengrao_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "fengrao_god",
+    description: "弗雷神使：为5*5范围内五向类卡片增加攻击力，同类卡片效果不叠加",
+    display_name: "弗雷神使"
+});
+
+register_gods_goods("fengrao_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "fengrao_god",
+    target_shape: 1,
+    description: "弗雷圣神：追加多向类卡片增幅",
+    display_name: "三转凭证（丰饶神）",
+    spr: spr_fengrao_pin1
+});
+
+register_gods_goods("fengrao_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "fengrao_god",
+    target_shape: 2,
+    description: "丰饶神·弗雷：攻击力大幅提升",
+    display_name: "四转凭证（丰饶神）",
+    spr: spr_fengrao_pin2
+});
+
+register_gods_goods("fengrao_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "fengrao_god",
+    target_shape: 3,
+    description: "至尊丰饶神：同类卡片加成可叠加2次",
+    display_name: "终转凭证（丰饶神）",
+    spr: spr_fengrao_pin3
+});
+
+register_gods_goods("houyi_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "houyi_god",
+    description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
+    display_name: "后羿神使"
+});
+
+register_gods_goods("houyi_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "houyi_god",
+    target_shape: 1,
+    description: "后羿圣神：灼烧效果提升，中路子弹+1",
+    display_name: "三转凭证（后羿）",
+    spr: spr_houyi_god_pin1
+});
+
+register_gods_goods("houyi_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "houyi_god",
+    target_shape: 2,
+    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
+    display_name: "四转凭证（后羿）",
+    spr: spr_houyi_god_pin2
+});
+
+register_gods_goods("houyi_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "houyi_god",
+    target_shape: 3,
+    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
+    display_name: "终转凭证（后羿）",
+    spr: spr_houyi_god_pin3
+});
+
 }

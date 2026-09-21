@@ -22,11 +22,13 @@ if disabled{
 	image_alpha -= 0.1
 	if image_alpha <= 0{
 		instance_destroy()
+		exit
 	}
 }
 
 if x > 2200 or y > 1200 or x < 0 or y < 0{
 	instance_destroy()
+	exit
 }
 
 // 类型过滤碰撞检测

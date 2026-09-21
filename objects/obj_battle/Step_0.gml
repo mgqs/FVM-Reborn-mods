@@ -139,7 +139,7 @@ else{
 	wave_data = global.level_file.waves[current_wave-1]
 }
 
-if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer == 1{
+if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer <= 1{
 	level_stage = "boss"
 	var enemy_row = irandom_range(0,global.grid_rows-1)
 	var enemy_pos = get_world_position_from_grid(10,enemy_row)
@@ -206,6 +206,22 @@ if global.debug{
 		else if current_wave < total_wave{
 			current_wave += 1
 			current_subwave = 0
+		}
+	}
+}
+
+// 测试关卡：5秒伤害统计
+if global.level_id == "test_level"{
+	var _test_mouse = instance_find(obj_test_mouse, 0)
+	if _test_mouse != noone{
+		if !variable_instance_exists(_test_mouse, "test_damage_total"){
+			_test_mouse.test_damage_total = 0
+		}
+		test_dps_timer++
+		if test_dps_timer >= test_dps_window{
+			test_dps_display = _test_mouse.test_damage_total - test_dps_last_total
+			test_dps_last_total = _test_mouse.test_damage_total
+			test_dps_timer = 0
 		}
 	}
 }

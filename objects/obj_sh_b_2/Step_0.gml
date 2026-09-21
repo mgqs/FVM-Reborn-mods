@@ -5,7 +5,10 @@ timer++;
 image_index = floor(timer / 5);
 
 if (!instance_exists(banding_card_obj) || banding_card_obj.state != CARD_STATE.ATTACK)
+{
     event_user(7);
+    exit;
+}
 
 // 类型过滤碰撞检测
 if (variable_global_exists("enemy_by_type"))

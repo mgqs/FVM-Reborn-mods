@@ -1,0 +1,74 @@
+if (global.is_paused)
+{
+    image_speed = 0;
+    exit;
+}
+
+image_speed = 1;
+
+x += move_speed;
+
+if (target_row != -1)
+{
+    var target_y = global.grid_offset_y + (global.grid_cell_size_y * target_row);
+    var transition_speed = 0.15;
+    y = lerp(y, target_y, transition_speed);
+
+    if (abs(y - target_y) < 30)
+        row = target_row;
+}
+
+if (x > 2200 || y > 1200 || x < 0 || y < 0)
+{
+    if (ds_exists(hitted_enemy, ds_type_list))
+        ds_list_destroy(hitted_enemy);
+    instance_destroy();
+    exit;
+}
+
+if (variable_global_exists("enemy_by_type"))
+{
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
+    {
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
+        {
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            if (ds_list_find_index(hitted_enemy, _e.id) == -1
+                && _e.hp > 0 && row == _e.grid_row
+                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
+                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+            {
+                with (_e)
+                {
+                    audio_play_sound(hit_sound, 0, 0);
+                    damage_amount = other.damage;
+                    damage_type = other.damage_type;
+                    event_user(0);
+                }
+
+                ds_list_add(hitted_enemy, _e.id);
+
+                if (random(1) < fire_chance)
+                {
+                    var fire_spr = spr_houyi_god_fire;
+                    if (shape == 1) fire_spr = spr_houyi_god_fire_1;
+                    else if (shape == 2) fire_spr = spr_houyi_god_fire_2;
+                    else if (shape == 3) fire_spr = spr_houyi_god_fire_3;
+
+                    var inst = instance_create_depth(_e.x, _e.y, depth, obj_houyi_god_fire);
+                    inst.sprite_index = fire_spr;
+                    inst.damage = damage;
+                    inst.damage_type = "pierce";
+                    inst.grid_row = _e.grid_row;
+                    inst.grid_col = _e.grid_col;
+                    inst.shape = shape;
+                    inst.target_type = target_type;
+                }
+            }
+        }
+    }
+}

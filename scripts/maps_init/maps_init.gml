@@ -17,7 +17,8 @@ function maps_init(){
 																										{"id":"tower_cake","name":"深渊岛","button_spr":spr_levelselect_button,"button_index":14,"button_x":1075,"button_y":510,"level_file":"abyss.json","hard_level_file":"abyss_hard.json","level_sprite":spr_abyss,"pre_music":mus_delicious_island_crown_pre,"elite_music":mus_delicious_island_crown_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":8,"pre_level_require":[]},
 																										{"id":"temple_warrior","name":"谷神殿","button_spr":spr_levelselect_button,"button_index":15,"button_x":690,"button_y":720,"level_file":"temple_warrior.json","hard_level_file":"temple_warrior_hard.json","level_sprite":spr_temple_warrior,"pre_music":mus_delicious_tower_pre,"elite_music":mus_delicious_tower_elite,"boss_music":mus_delicious_tower_boss,"player_level_require":40,"pre_level_require":[]},
 																										{"id":"abyss_warrior","name":"星渊岛","button_spr":spr_levelselect_button,"button_index":16,"button_x":810,"button_y":135,"level_file":"abyss_warrior.json","hard_level_file":"abyss_warrior_hard.json","level_sprite":spr_abyss_warrior,"pre_music":mus_delicious_tower_pre,"elite_music":mus_delicious_tower_elite,"boss_music":mus_delicious_tower_boss,"player_level_require":40,"pre_level_require":[]},
-	]})
+																											{"id":"test_level","name":"测试关卡","button_spr":spr_test_level_button,"button_index":0,"button_x":860,"button_y":56,"level_file":"test_level.json","hard_level_file":"test_level_hard.json","level_sprite":spr_cookie_island,"pre_music":mus_delicious_island_daytime_pre,"elite_music":mus_delicious_island_daytime_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":1,"pre_level_require":[]},
+		]})
 	
 	register_map(
 		"tower_cake",
@@ -131,7 +132,8 @@ function maps_init(){
 					"pre_level":"tower_cake_3_2",
 					"rewards":[
 							{"card_id":"takoyaki","target_shape":1},
-							{"card_id":"chocolate_bread","target_shape":1}
+							{"card_id":"chocolate_bread","target_shape":1},
+								{"card_id":"baibianshe","target_shape":1}
 						]
 				},
 				{
@@ -380,7 +382,8 @@ function maps_init(){
 					"pre_level":"tower_cake_11_2",
 					"rewards":[
 							{"card_id":"oden_pot","target_shape":1},
-							{"card_id":"baiyang","target_shape":2}
+							{"card_id":"baiyang","target_shape":2},
+								{"card_id":"baibianshe","target_shape":2}
 						]
 				},
 				{

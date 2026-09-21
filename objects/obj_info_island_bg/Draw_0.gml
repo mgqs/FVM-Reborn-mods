@@ -37,8 +37,26 @@ if info_button_select == 1 {
     // 绘制所有已注册的植物卡片
     var card_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
-    
-    for(var i = 0; i < ds_list_size(global.player_deck); i += 2) {
+
+    // 计算排序索引：普通卡在前，金卡集中放最后
+    deck_sort_order = []
+    var _gold_order = []
+    for(var si = 0; si < ds_list_size(global.player_deck); si += 2) {
+        var _entry = global.player_deck[| si+1]
+        var _shapes = _entry[? "shapes"]
+        var _data = _shapes[| 0]
+        if (ds_map_find_value(_data, "is_gold") == 1) {
+            array_push(_gold_order, si)
+        } else {
+            array_push(deck_sort_order, si)
+        }
+    }
+    for(var si = 0; si < array_length(_gold_order); si++) {
+        array_push(deck_sort_order, _gold_order[si])
+    }
+
+    for(var di = 0; di < array_length(deck_sort_order); di++) {
+        var i = deck_sort_order[di]
         var card_id = global.player_deck[| i];
         var deck_entry = global.player_deck[| i+1];
 		var card_data_shapes = deck_entry[? "shapes"]
@@ -115,8 +133,8 @@ if info_button_select == 1 {
     }
 	if select_card_index != -1{
 		//绘制右侧信息栏
-		var card_id = global.player_deck[| select_card_index*2];
-	    var deck_entry = global.player_deck[| select_card_index*2+1];
+		var card_id = global.player_deck[| deck_sort_order[select_card_index]];
+	    var deck_entry = global.player_deck[| deck_sort_order[select_card_index]+1];
 		var card_data_shapes = deck_entry[? "shapes"]
 		
 		

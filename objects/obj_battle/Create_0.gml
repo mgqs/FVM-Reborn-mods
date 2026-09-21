@@ -36,6 +36,12 @@ battle_time = 0
 boss_count = 0
 map_spr_index = 0
 
+// 测试关卡伤害统计
+test_dps_timer = 0
+test_dps_window = 5 * 60
+test_dps_display = 0
+test_dps_last_total = 0
+
 speed_up = false
 time_limit = -1
 timer_pause = false
@@ -186,25 +192,29 @@ global.prev_place_id = ""
 
 function enemy_subwave_summon(){
 	current_total_hp = 0
-	
+
     wave_timer = wave_max_time
-	
+
 	if level_stage == "boss"{
 		wave_timer = 10 * 60
 	}
-	
+
 	if is_real(global.level_file.version){
 		if global.level_file.version >= 1.3{
-			if current_wave < total_wave{
+			if current_wave < total_wave && current_subwave < array_length(global.level_file.waves[current_wave].subwaves){
 				if global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time >0{
 					wave_timer = global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time
 				}
 			}
 		}
 	}
-	
+
 	current_wave_max_time = wave_timer
-    
+
+	if current_wave >= total_wave || current_subwave >= array_length(global.level_file.waves[current_wave].subwaves){
+		return
+	}
+
     var subwave_enemy = global.level_file.waves[current_wave].subwaves
     enemy_list = subwave_enemy[current_subwave].enemy_list
     

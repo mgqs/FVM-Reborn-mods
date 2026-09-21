@@ -20,6 +20,10 @@ if config_key == "difficulty"{
 			//draw_text(x,y,"星际级")
 			tooltip_text = "在浮空级的基础上，所有敌人血量增加20%，出怪间隔减半。\n祝你好运！"
 			break
+		case 4:
+			//draw_text(x,y,"永恒级")
+			tooltip_text = "在星际级基础上，所有敌人血量再增加80%。\n而且你的空格被抠了！祝你好运？？？"
+			break
 	}
 	
 }

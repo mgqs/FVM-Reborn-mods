@@ -3,8 +3,8 @@ if package_button_select == 1{
 		if hover_card_index != -1{
 			audio_play_sound(snd_button,0,0)
 			var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_card_edit_menu)
-			inst.target_card_index = hover_card_index
-			var deck_entry = global.player_deck[| hover_card_index*2+1];
+			inst.target_card_index = deck_sort_order[hover_card_index] / 2
+			var deck_entry = global.player_deck[| deck_sort_order[hover_card_index]+1];
 			var card_data_shapes = deck_entry[? "shapes"]
 			view_max_shapes = ds_list_size(card_data_shapes)-1
 			//show_debug_message(view_max_shapes)

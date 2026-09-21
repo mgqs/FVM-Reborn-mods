@@ -8,6 +8,10 @@
   "managed":true,
   "name":"obj_shield_aura",
   "overriddenProperties":[],
+  "parent":{
+    "name":"FVM_Reborn_makk",
+    "path":"FVM_Reborn_makk.yyp",
+  },
   "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,

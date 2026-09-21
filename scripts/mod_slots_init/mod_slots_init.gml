@@ -233,6 +233,43 @@ function mod_slots_init()
         is_gold: 1,
         place_preview: spr_brahma_3
     }]);
+    register_card("baibianshe", obj_baibianshe, [
+    {
+        shape: 0,
+        sprite: spr_baibianshe,
+        cost: 375,
+        cooldown: 3300,
+        description: "百变蛇：变身成为范围内上一张种下的卡片",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_baibianshe
+    },
+    {
+        shape: 1,
+        sprite: spr_baibianshe_1,
+        cost: 375,
+        cooldown: 3300,
+        description: "孪生百变蛇：变身范围扩大到全屏",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_baibianshe_1
+    },
+    {
+        shape: 2,
+        sprite: spr_baibianshe_2,
+        cost: 375,
+        cooldown: 3300,
+        description: "双子百变蛇：变身数量+2，共3张",
+        plant_type: "coffee",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1,
+        place_preview: spr_baibianshe_2
+    }]);
     register_card("clotho", obj_clotho, [
     {
         shape: 0,
@@ -1817,4 +1854,154 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none"
     }]);
+
+register_card("xiangshui_god", obj_xiangshui_god, [
+{
+    shape: 0,
+    sprite: spr_xiangshui_god,
+    cost: 260,
+    cooldown: 2400,
+    description: "宴飨女神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_xiangshui_god
+},
+{
+    shape: 1,
+    sprite: spr_xiangshui_god_1,
+    cost: 260,
+    cooldown: 2400,
+    description: "宴飨圣神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_xiangshui_god_1
+},
+{
+    shape: 2,
+    sprite: spr_xiangshui_god_2,
+    cost: 260,
+    cooldown: 2400,
+    description: "宴飨神·馥郁：攻击力提升，为周围5x5范围追踪卡片提升大幅攻击力",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_xiangshui_god_2
+},
+{
+    shape: 3,
+    sprite: spr_xiangshui_god_2,
+    cost: 260,
+    cooldown: 2400,
+    description: "至尊宴飨女神：冰神类卡片共享增幅，为周围5x5范围追踪卡片提升大幅攻击力",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_xiangshui_god_2
+}]);
+
+register_card("fengrao_god", obj_fengrao_god, [
+{
+    shape: 0,
+    sprite: spr_fengrao_god,
+    cost: 300,
+    cooldown: 2100,
+    description: "弗雷神使：为5*5范围内五向类卡片增加攻击力，同类卡片效果不叠加",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_fengrao_god
+},
+{
+    shape: 1,
+    sprite: spr_fengrao_god_1,
+    cost: 300,
+    cooldown: 2100,
+    description: "弗雷圣神：追加多向类卡片增幅，为5*5范围内五向及多向类卡片增加攻击力",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_fengrao_god_1
+},
+{
+    shape: 2,
+    sprite: spr_fengrao_god_2,
+    cost: 300,
+    cooldown: 2100,
+    description: "丰饶神·弗雷：攻击力大幅提升，为5*5范围内五向及多向类卡片增加攻击力",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_fengrao_god_2
+},
+{
+    shape: 3,
+    sprite: spr_fengrao_god_3,
+    cost: 300,
+    cooldown: 2100,
+    description: "至尊丰饶神：同类卡片加成可叠加2次，为5*5范围内五向及多向类卡片增加攻击力",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_fengrao_god_3
+}]);
+
+register_card("houyi_god", obj_houyi_god, [
+{
+    shape: 0,
+    sprite: spr_houyi_god,
+    cost: 385,
+    cooldown: 420,
+    description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_houyi_god
+},
+{
+    shape: 1,
+    sprite: spr_houyi_god_1,
+    cost: 385,
+    cooldown: 420,
+    description: "后羿圣神：灼烧效果提升，中路子弹+1",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_houyi_god_1
+},
+{
+    shape: 2,
+    sprite: spr_houyi_god_2,
+    cost: 385,
+    cooldown: 420,
+    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_houyi_god_2
+},
+{
+    shape: 3,
+    sprite: spr_houyi_god_3,
+    cost: 385,
+    cooldown: 420,
+    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_houyi_god_3
+}]);
     }

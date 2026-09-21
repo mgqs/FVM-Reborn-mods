@@ -28,4 +28,11 @@ function mod_buff_init()
     ds_map_set(global.plant_buff_map, "shizi", "sprayer");
     ds_map_set(global.plant_buff_map, "poseidon", "sprayer");
     ds_map_set(global.plant_buff_map, "oden_pot", "sprayer");
+    ds_map_set(global.plant_buff_map, "ghost_god", "five_dir");
+    ds_map_set(global.plant_buff_map, "rig", "five_dir");
+    ds_map_set(global.plant_buff_map, "love_god", "multi_dir");
+    ds_map_set(global.plant_buff_map, "sheshou", "multi_dir");
+    ds_map_set(global.plant_buff_map, "tiancheng", "multi_dir");
+    ds_map_set(global.plant_buff_map, "war_god", "multi_dir");
+    ds_map_set(global.plant_buff_map, "houyi_god", "multi_dir");
 }

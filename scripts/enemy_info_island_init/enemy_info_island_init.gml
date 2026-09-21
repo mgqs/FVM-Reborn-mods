@@ -1,6 +1,7 @@
 function enemy_info_island_init(){
 	enemy_info_island_register_init()
 	register_enemy_info_island("normal_mouse","很普通的老鼠，没有特殊能力。遇到可攻击的卡片就会啃食。")
+	register_enemy_info_island("test_mouse","测试用老鼠，不会移动，血量极高，用于测试卡片伤害。")
 	register_enemy_info_island("football_fan_mouse","足球帽使它的脑门更硬了。")
 	register_enemy_info_island("iron_pan_mouse","头顶的铁锅使它能够承受大量伤害。")
 	register_enemy_info_island("skateboard_mouse","入场时以0.9的速度移动，遇到第一个卡片后，会使用滑板翻越该卡片，并\n落至该卡片的后面一格，落地后移动速度降低至0.3。无法越过重型防御。\nTip：可以将低耗火的卡放在它面前，使其提前使用滑板。")

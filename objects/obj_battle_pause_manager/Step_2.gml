@@ -2,9 +2,11 @@
 if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && global.game_over)) {	
     //if global.selected_slot == noone {
         if (!global.is_paused) {
-            // 空格暂停：只暂停不显示菜单
-            global.is_paused = true;
-            global.show_menu = false;
+            if (global.difficulty < 4) {
+                // 空格暂停：只暂停不显示菜单
+                global.is_paused = true;
+                global.show_menu = false;
+            }
         }
         else if (global.is_paused && !global.show_menu) {
             // 取消暂停
@@ -23,7 +25,11 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 				}
 				if global.level_file.version != "1.0.0"{
 					if obj_game_over.sprite_index == spr_win && !settlement{
-						if !global.laboretory_room{
+					var reward_multiplier = 1
+					if global.difficulty == 4{
+						reward_multiplier = 10
+					}
+					if !global.laboretory_room{
 							with obj_task_manager{
 								refresh_task_progress()
 							}
@@ -62,11 +68,11 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									}
 								
 								}
-								global.save_data.player.gold += global.level_file.rewards[1].gold
+								global.save_data.player.gold += global.level_file.rewards[1].gold * reward_multiplier
 								var item_list = global.level_file.rewards[1].items
 								for(var i = 0 ; i < array_length(item_list) ; i++){
 									var item_id = item_list[i].id
-									add_material_amount(item_id,real(item_list[i].amount))
+									add_material_amount(item_id,real(item_list[i].amount) * reward_multiplier)
 								}
 						
 								var card_unlock_id_list = global.level_file.rewards[1].card_unlock
@@ -89,11 +95,11 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 								save_file(global.save_slot)
 							}
 							else{
-								global.save_data.player.gold += global.level_file.rewards[0].gold
+								global.save_data.player.gold += global.level_file.rewards[0].gold * reward_multiplier
 								var item_list = global.level_file.rewards[0].items
 								for(var i = 0 ; i < array_length(item_list) ; i++){
 									var item_id = item_list[i].id
-									add_material_amount(item_id,item_list[i].amount)
+									add_material_amount(item_id,item_list[i].amount * reward_multiplier)
 								}
 								save_file(global.save_slot)
 							}
