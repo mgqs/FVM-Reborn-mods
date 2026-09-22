@@ -7,8 +7,7 @@ if (!buff_cells_refreshed)
 {
     buff_value = atk / 100;
 
-    if (shape < 3)
-        refresh_buff_cells();
+    refresh_buff_cells();
 
     global.buff_dirty = true;
     buff_cells_refreshed = true;

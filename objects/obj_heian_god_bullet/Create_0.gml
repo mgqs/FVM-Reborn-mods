@@ -1,0 +1,14 @@
+damage = 0;
+damage_type = "normal";
+target_type = "normal";
+shape = 0;
+freeze_chance = 0;
+freeze_duration = 0;
+hit_map = noone;
+range_x = 200;
+range_y = 200;
+image_speed = 0;
+frame_counter = 0;
+flash_speed = 5;
+has_damaged = false;
+hittable_types = get_hittable_enemy_types(target_type);

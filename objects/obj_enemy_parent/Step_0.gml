@@ -93,8 +93,8 @@ if is_frozen || is_scare || is_stun{
 timer++;
 
 // 状态处理前，先检查目标植物是否存在
-if (instance_exists(target_plant) && target_plant.hp <= 0) {
-    target_plant = noone;  // 目标已被消灭
+if (target_plant != noone && (!instance_exists(target_plant) || target_plant.hp <= 0)) {
+    target_plant = noone;  // 目标已被消灭或实例已销毁
 }
 
 // 状态机

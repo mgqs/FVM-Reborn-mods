@@ -111,9 +111,12 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
             var shovel_effect = instance_create_depth(x+10, y-55, depth, obj_shovel);
 			shovel_effect.sprite_index = other.shovel_spr
 			if other.flame_rate > 0{
-				var flame_cost = get_plant_data_with_skill(plant_id,shape,current_level,skill)[? "cost"]
-				var flame_inst = instance_create_depth(x,y-30,-2000,obj_flame)
-				flame_inst.value = round(flame_cost * other.flame_rate)
+				var _plant_data = get_plant_data_with_skill(plant_id,shape,current_level,skill)
+				if (_plant_data != undefined && ds_exists(_plant_data, ds_type_map) && ds_map_exists(_plant_data, "cost")){
+					var flame_cost = _plant_data[? "cost"]
+					var flame_inst = instance_create_depth(x,y-30,-2000,obj_flame)
+					flame_inst.value = round(flame_cost * other.flame_rate)
+				}
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x,logical_world.y + platform_shift_y,-2,obj_place_effect)

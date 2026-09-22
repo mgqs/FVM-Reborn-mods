@@ -14,7 +14,7 @@ if card_id != "magic_chicken"{
 		}
 	}
 }
-if global.debug{
+if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
 }
 if cooldown_timer < cooldown{

@@ -43,6 +43,7 @@ if (variable_global_exists("enemy_by_type"))
 		{
 			var _e = _list[_i];
 			if (!instance_exists(_e)) continue;
+			if (!ds_exists(hitted_enemy, ds_type_list)) exit;
 			if (ds_list_find_index(hitted_enemy, _e.id) == -1 && !disabled
 				&& _e.hp > 0 && row == _e.grid_row
 				&& bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
@@ -55,7 +56,10 @@ if (variable_global_exists("enemy_by_type"))
 					damage_type = other.damage_type
 					event_user(0)
 				}
-				ds_list_add(hitted_enemy, _e.id)
+				if (ds_exists(hitted_enemy, ds_type_list))
+				{
+					ds_list_add(hitted_enemy, _e.id)
+				}
 			}
 		}
 	}

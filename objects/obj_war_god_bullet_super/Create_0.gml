@@ -16,6 +16,4 @@ hit_enemy = false;
 splashed = false;
 shape = 0;
 brazier_list = ds_list_create();
-image_xscale = 1.6;
-image_yscale = 1.6;
 hittable_types = get_hittable_enemy_types(target_type);

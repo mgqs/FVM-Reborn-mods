@@ -8,6 +8,4 @@ hit_enemy = false;
 damage_type = "throw";
 target_type = "throw";
 image_angle = -45;
-image_xscale = 2;
-image_yscale = 2;
 hittable_types = get_hittable_enemy_types(target_type);

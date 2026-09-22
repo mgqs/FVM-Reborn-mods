@@ -1,7 +1,7 @@
 function build_buff_grid()
 {
     global.buff_grid = ds_map_create();
-    var types = ["tracker", "thrower", "sprayer", "five_dir", "multi_dir"];
+    var types = ["tracker", "thrower", "sprayer", "five_dir", "multi_dir", "xiangshui"];
     
     for (var t = 0; t < array_length(types); t++)
     {

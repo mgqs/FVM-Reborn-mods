@@ -33,7 +33,11 @@ if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 		    }
 		}
 		var map_button_array = struct_get(ds_map_find_value(global.maps_map,global.map_id),"levels_data")
-		global.level_data = map_button_array[level_index]
+		if target_level_id == "test_level"{
+			global.level_data = {id:"test_level",name:"测试关卡",button_spr:spr_test_level_button,button_index:0,button_x:860,button_y:56,level_file:"test_level.json",hard_level_file:"test_level_hard.json",level_sprite:spr_cookie_island,pre_music:mus_delicious_island_daytime_pre,elite_music:mus_delicious_island_daytime_elite,boss_music:mus_delicious_island_daytime_boss,player_level_require:1,pre_level_require:[]}
+		} else {
+			global.level_data = map_button_array[level_index]
+		}
 		show_debug_message(global.level_data)
 	}
 	else{

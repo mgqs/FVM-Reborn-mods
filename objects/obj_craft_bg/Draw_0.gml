@@ -54,48 +54,64 @@ if button_select == 0{
         }
     }
 	//绘制所有已解锁防御卡
-	var card_index = 0
-	hover_card_index = -1
-	for(var i = 0 ; i < array_length(global.save_data.unlocked_cards);i++){
-		var card_col = card_index mod 7
-		var card_row = card_index div 7
-		var card_data = global.save_data.unlocked_cards[i]
-		var card_id = card_data.id
-		var card_slot_data = deck_get_card_data(card_id,card_data.shape)
-		var card_x = 42 + card_col*84
-		var card_y = 48+96 * card_row - y_offset
-
-		if (card_slot_data != noone) {
-			var _craft_slot_spr = (ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
-			draw_sprite_ext(_craft_slot_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
-			draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
-			draw_set_color(c_black);
-			draw_set_halign(fa_center);
-			draw_set_valign(fa_bottom);
-			draw_set_font(font_pixel)
-			draw_text(card_x,card_y+37,card_slot_data[? "cost"])
-			if card_data.max_level > 0{
-				draw_sprite_ext(spr_star_slot,  card_data.max_level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, c_white, 1);
+		var card_index = 0
+		hover_card_index = -1
+		// 排序：普通卡在前，金卡在后（参考背包排序逻辑）
+		craft_sort_order = []
+		var _craft_gold_order = []
+		for(var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
+			var _card_data = global.save_data.unlocked_cards[i]
+			var _card_slot_data = deck_get_card_data(_card_data.id, _card_data.shape)
+			if (_card_slot_data != noone && ds_map_find_value(_card_slot_data, "is_gold") == 1) {
+				array_push(_craft_gold_order, i)
+			} else {
+				array_push(craft_sort_order, i)
 			}
 		}
-		
-		// 检查鼠标是否悬停在卡片上
-        var spr_width = 84;
-        var spr_height = 96;
-		
-		var hover_card_x = x + 196 + card_col*84
-		var hover_card_y = y - 321 + 96 * card_row - y_offset
-		
-		if mouse_y > y-321-48 && mouse_y < y + 450{
-                
-	        if (point_in_rectangle(mouse_x, mouse_y, 
+		for(var i = 0; i < array_length(_craft_gold_order); i++) {
+			array_push(craft_sort_order, _craft_gold_order[i])
+		}
+		for(var di = 0; di < array_length(craft_sort_order); di++) {
+			var i = craft_sort_order[di]
+			var card_col = card_index mod 7
+			var card_row = card_index div 7
+			var card_data = global.save_data.unlocked_cards[i]
+			var card_id = card_data.id
+			var card_slot_data = deck_get_card_data(card_id,card_data.shape)
+			var card_x = 42 + card_col*84
+			var card_y = 48+96 * card_row - y_offset
+
+			if (card_slot_data != noone) {
+				var _craft_slot_spr = (ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_craft_slot_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
+				draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
+				draw_set_color(c_black);
+				draw_set_halign(fa_center);
+				draw_set_valign(fa_bottom);
+				draw_set_font(font_pixel)
+				draw_text(card_x,card_y+37,card_slot_data[? "cost"])
+				if card_data.max_level > 0{
+					draw_sprite_ext(spr_star_slot,  card_data.max_level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, c_white, 1);
+				}
+			}
+
+			// 检查鼠标是否悬停在卡片上
+	        var spr_width = 84;
+	        var spr_height = 96;
+
+			var hover_card_x = x + 196 + card_col*84
+			var hover_card_y = y - 321 + 96 * card_row - y_offset
+
+			if mouse_y > y-321-48 && mouse_y < y + 450{
+
+		        if (point_in_rectangle(mouse_x, mouse_y,
 	                                hover_card_x - spr_width/2, hover_card_y - spr_height/2,
 	                                hover_card_x + spr_width/2, hover_card_y + spr_height/2)) {
-	            hover_card_index = card_index;
-	        }
+		            hover_card_index = card_index;
+		        }
+			}
+			card_index++
 		}
-		card_index++
-	}
 	surface_reset_target()
 	draw_surface(card_surface,x+196-42,y-321-48)
 	

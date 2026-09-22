@@ -5,5 +5,4 @@ shape = 0
 damage_type = "pierce"
 target_type = "pierce"
 attack_timer = 0
-image_xscale = 1.8
 image_yscale = 1.8

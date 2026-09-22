@@ -1,5 +1,3 @@
-image_xscale = 1
-image_yscale = 1
 timer = 0
 image_angle = 60
 row = 0

@@ -2,18 +2,18 @@ function mod_buff_init()
 {
     global.plant_buff_map = ds_map_create();
     ds_map_set(global.plant_buff_map, "takoyaki", "tracker");
-    ds_map_set(global.plant_buff_map, "cold_drew", "tracker");
     ds_map_set(global.plant_buff_map, "juxie", "tracker");
     ds_map_set(global.plant_buff_map, "moon_god", "tracker");
-    ds_map_set(global.plant_buff_map, "athena", "tracker");
-    ds_map_set(global.plant_buff_map, "zeus", "tracker");
-    ds_map_set(global.plant_buff_map, "ice_god", "tracker");
     ds_map_set(global.plant_buff_map, "joker", "tracker");
     ds_map_set(global.plant_buff_map, "power_god", "tracker");
     ds_map_set(global.plant_buff_map, "grilled_lizard_pult", "thrower");
     ds_map_set(global.plant_buff_map, "spoon_rabbit", "thrower");
     ds_map_set(global.plant_buff_map, "zhurong", "thrower");
-    ds_map_set(global.plant_buff_map, "gaia", "thrower");
+    ds_map_set(global.plant_buff_map, "gaia", "tracker");
+    ds_map_set(global.plant_buff_map, "athena", "xiangshui");
+    ds_map_set(global.plant_buff_map, "zeus", "xiangshui");
+    ds_map_set(global.plant_buff_map, "ice_god", "xiangshui");
+    ds_map_set(global.plant_buff_map, "cold_drew", "xiangshui");
     ds_map_set(global.plant_buff_map, "chocolate_pult", "thrower");
     ds_map_set(global.plant_buff_map, "egg_boiler_pult", "thrower");
     ds_map_set(global.plant_buff_map, "ice_egg_boiler_pult", "thrower");

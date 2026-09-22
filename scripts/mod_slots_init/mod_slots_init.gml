@@ -243,7 +243,7 @@ function mod_slots_init()
         plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1,
+        is_gold: 0,
         place_preview: spr_baibianshe
     },
     {
@@ -255,7 +255,7 @@ function mod_slots_init()
         plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1,
+        is_gold: 0,
         place_preview: spr_baibianshe_1
     },
     {
@@ -267,7 +267,7 @@ function mod_slots_init()
         plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1,
+        is_gold: 0,
         place_preview: spr_baibianshe_2
     }]);
     register_card("clotho", obj_clotho, [
@@ -1861,7 +1861,7 @@ register_card("xiangshui_god", obj_xiangshui_god, [
     sprite: spr_xiangshui_god,
     cost: 260,
     cooldown: 2400,
-    description: "宴飨女神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    description: "塔利亚神使：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -1873,7 +1873,7 @@ register_card("xiangshui_god", obj_xiangshui_god, [
     sprite: spr_xiangshui_god_1,
     cost: 260,
     cooldown: 2400,
-    description: "宴飨圣神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    description: "塔利亚圣神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -1885,7 +1885,7 @@ register_card("xiangshui_god", obj_xiangshui_god, [
     sprite: spr_xiangshui_god_2,
     cost: 260,
     cooldown: 2400,
-    description: "宴飨神·馥郁：攻击力提升，为周围5x5范围追踪卡片提升大幅攻击力",
+    description: "宴飨女神·塔利亚：攻击力提升，为周围5x5范围追踪卡片提升大幅攻击力",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2003,5 +2003,143 @@ register_card("houyi_god", obj_houyi_god, [
     target_card: "none",
     is_gold: 1,
     place_preview: spr_houyi_god_3
+}]);
+
+register_card("heian_god", obj_heian_god, [
+{
+    shape: 0,
+    sprite: spr_heian_god,
+    cost: 300,
+    cooldown: 1800,
+    description: "黑暗神使：对周围200x200范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_heian_god
+},
+{
+    shape: 1,
+    sprite: spr_heian_god_1,
+    cost: 300,
+    cooldown: 1800,
+    description: "黑暗圣神：攻击间隔缩短，对周围范围内的敌人造成伤害并冰冻",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_heian_god_1
+},
+{
+    shape: 2,
+    sprite: spr_heian_god_2,
+    cost: 300,
+    cooldown: 1800,
+    description: "黑暗神·霍德尔：攻击范围扩大，攻击力大幅提升",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_heian_god_2
+},
+{
+    shape: 3,
+    sprite: spr_heian_god_3,
+    cost: 300,
+    cooldown: 1800,
+    description: "至尊黑暗神：范围扩大至300x300，连续命中同一敌人伤害递增",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_heian_god_3
+}]);
+
+register_card("hundun_god", obj_hundun_god, [
+{
+    shape: 0,
+    sprite: spr_hundun_god,
+    cost: 350,
+    cooldown: 1800,
+    description: "混沌神使：吞噬5*5范围内的普通敌人，对精英敌人造成4500伤害，死亡时产生3*3灰烬爆炸",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_hundun_god
+},
+{
+    shape: 1,
+    sprite: spr_hundun_god_1,
+    cost: 350,
+    cooldown: 1800,
+    description: "混沌圣神：吞噬范围扩大，精英伤害提升至6000，死亡爆炸范围5*5",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_hundun_god_1
+},
+{
+    shape: 2,
+    sprite: spr_hundun_god_2,
+    cost: 350,
+    cooldown: 1800,
+    description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_hundun_god_2
+}]);
+
+register_card("guangming_god", obj_guangming_god, [
+{
+    shape: 0,
+    sprite: spr_guangming_god,
+    cost: 395,
+    cooldown: 1260,
+    description: "巴尔德神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_guangming_god
+},
+{
+    shape: 1,
+    sprite: spr_guangming_god_1,
+    cost: 395,
+    cooldown: 1260,
+    description: "巴尔德圣神：每放置1次黑暗神，最近的5个光明神产生3*3范围光影爆炸",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_guangming_god_1
+},
+{
+    shape: 2,
+    sprite: spr_guangming_god_2,
+    cost: 395,
+    cooldown: 1260,
+    description: "光明神·巴德尔：黑暗神存在时光圣伤害提升至4倍，放置黑暗神触发7个光明神5*5光影爆炸",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_guangming_god_2
+},
+{
+    shape: 3,
+    sprite: spr_guangming_god_2,
+    cost: 395,
+    cooldown: 1260,
+    description: "至尊光明神：范围扩大至7*7，黑暗神在场时伤害提升至5/8倍，放置黑暗神触发更大爆炸",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_guangming_god_2
 }]);
     }

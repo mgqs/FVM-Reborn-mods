@@ -41,6 +41,16 @@ if (random_begin)
             add_material_amount("middle_crystal", reward_id[1]);
             global.save_data.player.wish_count++;
             break;
+        
+        case "4级四叶草":
+            add_material_amount("clover_4", reward_id[1]);
+            global.save_data.player.wish_count++;
+            break;
+        
+        case "高级强化水晶":
+            add_material_amount("advanced_crystal", reward_id[1]);
+            global.save_data.player.wish_count++;
+            break;
     }
     
     array_push(reward_list, reward_id);
@@ -100,6 +110,16 @@ if (start_wishing5)
             
             case "中级强化水晶":
                 add_material_amount("middle_crystal", reward_id[1]);
+                global.save_data.player.wish_count++;
+                break;
+            
+            case "4级四叶草":
+                add_material_amount("clover_4", reward_id[1]);
+                global.save_data.player.wish_count++;
+                break;
+            
+            case "高级强化水晶":
+                add_material_amount("advanced_crystal", reward_id[1]);
                 global.save_data.player.wish_count++;
                 break;
         }

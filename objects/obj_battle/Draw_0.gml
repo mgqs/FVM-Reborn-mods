@@ -13,16 +13,14 @@ if global.level_id == "test_level"{
 	if _test_mouse != noone && variable_instance_exists(_test_mouse, "test_damage_total"){
 		_total = _test_mouse.test_damage_total
 	}
-	draw_set_halign(fa_right)
-	draw_set_valign(fa_bottom)
+	draw_set_halign(fa_left)
+	draw_set_valign(fa_top)
 	draw_set_font(font_yuan)
 	draw_set_color(c_yellow)
 	var _remain = test_dps_window - test_dps_timer
 	var _secs = ceil(_remain / 60)
-	draw_text(room_width - 20, room_height - 140, "5秒内总伤害: " + string(test_dps_display))
-		draw_text(room_width - 20, room_height - 110, "累计总伤害: " + string(_total))
-		draw_text(room_width - 20, room_height - 80, "下次结算: " + string(_secs) + "秒")
-	draw_set_halign(fa_left)
-	draw_set_valign(fa_top)
+	draw_text(0, 100, "5秒内总伤害: " + string(test_dps_display))
+	draw_text(0, 125, "累计总伤害: " + string(_total))
+	draw_text(0, 150, "下次结算: " + string(_secs) + "秒")
 	draw_set_color(c_white)
 }

@@ -16,4 +16,5 @@ function plus_card_init(){
 	ds_map_add(global.plus_card_map,"shuangyu",[obj_shuangyu,1])
 	ds_map_add(global.plus_card_map,"tiancheng",[obj_tiancheng,1])
 	ds_map_add(global.plus_card_map,"sheshou",[obj_sheshou,1])
+	ds_map_add(global.plus_card_map,"juxie",[obj_juxie,1])
 }

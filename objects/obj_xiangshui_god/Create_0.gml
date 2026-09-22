@@ -17,6 +17,12 @@ flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
 buffer_type = "tracker";
+
+if (shape >= 2)
+    buffer_type_2 = "xiangshui";
+else
+    buffer_type_2 = undefined;
+
 buff_value = atk / 100;
 
 if (shape < 2)

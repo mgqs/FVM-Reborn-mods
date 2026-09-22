@@ -6,6 +6,9 @@ if (global.is_paused)
 
 image_speed = 1;
 
+if (burnt == 1)
+    sprite_index = spr_fire_bullet;
+
 x += move_speed;
 
 if (target_row != -1)
@@ -44,7 +47,10 @@ if (variable_global_exists("enemy_by_type"))
             {
                 with (_e)
                 {
-                    audio_play_sound(hit_sound, 0, 0);
+                    if (other.burnt == 1)
+                        audio_play_sound(snd_fire_hit, 0, 0);
+                    else
+                        audio_play_sound(hit_sound, 0, 0);
                     damage_amount = other.damage;
                     damage_type = other.damage_type;
                     event_user(0);

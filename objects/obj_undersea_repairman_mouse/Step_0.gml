@@ -26,7 +26,7 @@ event_inherited();
 if global.is_paused or is_frozen{
 	exit
 }
-if state == ENEMY_STATE.ATTACK && (array_get_index(can_place_list,target_plant.plant_id) != -1) && !placed && shield_hp > 0{
+if state == ENEMY_STATE.ATTACK && instance_exists(target_plant) && (array_get_index(can_place_list,target_plant.plant_id) != -1) && !placed && shield_hp > 0{
 	sprite_index = spr_undersea_repairman_mouse_place
 	timer = 0
 	state = ENEMY_STATE.ACTING

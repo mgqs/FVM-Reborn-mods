@@ -208,14 +208,6 @@ function gods_shop_init()
         description: "埃罗斯神使：连续发射3发带有溅射效果的子弹，先后攻击本行空、地、水陆老鼠",
         display_name: "埃罗斯神使"
     });
-    register_gods_goods("baibianshe",
-    {
-        type: "card",
-        cost: "10",
-        unlock_item_id: "baibianshe",
-        description: "百变蛇：变身成为范围内上一张种下的卡片",
-        display_name: "百变蛇"
-    });
     register_gods_goods("gaia_1",
     {
         type: "shape",
@@ -992,8 +984,8 @@ register_gods_goods("xiangshui_god",
     type: "card",
     cost: "16",
     unlock_item_id: "xiangshui_god",
-    description: "宴飨女神：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
-    display_name: "宴飨女神"
+    description: "塔利亚神使：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    display_name: "塔利亚神使"
 });
 
 register_gods_goods("xiangshui_god_1",
@@ -1002,8 +994,8 @@ register_gods_goods("xiangshui_god_1",
     cost: "16",
     unlock_item_id: "xiangshui_god",
     target_shape: 1,
-    description: "宴飨圣神：为周围绿地追踪卡片提升大幅攻击力",
-    display_name: "三转凭证（宴飨女神）",
+    description: "塔利亚圣神：为周围绿地追踪卡片提升大幅攻击力",
+    display_name: "三转凭证（塔利亚）",
     spr: spr_xiangshui_god_pin1
 });
 
@@ -1013,8 +1005,8 @@ register_gods_goods("xiangshui_god_2",
     cost: "32",
     unlock_item_id: "xiangshui_god",
     target_shape: 2,
-    description: "宴飨神·馥郁：攻击力提升，范围扩大至5x5",
-    display_name: "四转凭证（宴飨女神）",
+    description: "宴飨女神·塔利亚：攻击力提升，冰神类卡片共享增幅，范围扩大至5x5",
+    display_name: "四转凭证（塔利亚）",
     spr: spr_xiangshui_god_pin2
 });
 
@@ -1024,8 +1016,8 @@ register_gods_goods("xiangshui_god_3",
     cost: "48",
     unlock_item_id: "xiangshui_god",
     target_shape: 3,
-    description: "至尊宴飨女神：冰神类卡片共享增幅",
-    display_name: "终转凭证（宴飨女神）",
+    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升",
+    display_name: "终转凭证（塔利亚）",
     spr: spr_xiangshui_god_pin2
 });
 
@@ -1111,6 +1103,110 @@ register_gods_goods("houyi_god_3",
     description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
     display_name: "终转凭证（后羿）",
     spr: spr_houyi_god_pin3
+});
+
+register_gods_goods("guangming_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "guangming_god",
+    description: "巴尔德神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
+    display_name: "巴尔德神使"
+});
+
+register_gods_goods("guangming_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "guangming_god",
+    target_shape: 1,
+    description: "巴尔德圣神：每放置1次黑暗神，部分光明神就产生1次光影爆炸",
+    display_name: "三转凭证（光明神）",
+    spr: spr_guangming_god_pin1
+});
+
+register_gods_goods("guangming_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "guangming_god",
+    target_shape: 2,
+    description: "光明神·巴德尔：黑暗神存在时，光影爆炸效果和圣光威力大幅提升",
+    display_name: "四转凭证（光明神）",
+    spr: spr_guangming_god_pin2
+});
+
+register_gods_goods("heian_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "heian_god",
+    description: "黑暗神使：对周围范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
+    display_name: "黑暗神使"
+});
+
+register_gods_goods("heian_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "heian_god",
+    target_shape: 1,
+    description: "黑暗圣神：攻击间隔缩短",
+    display_name: "三转凭证（黑暗神）",
+    spr: spr_heian_god_pin1
+});
+
+register_gods_goods("heian_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "heian_god",
+    target_shape: 2,
+    description: "黑暗神·霍德尔：攻击范围扩大，攻击力大幅提升",
+    display_name: "四转凭证（黑暗神）",
+    spr: spr_heian_god_pin2
+});
+
+register_gods_goods("heian_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "heian_god",
+    target_shape: 3,
+    description: "至尊黑暗神：范围扩大至300x300，连续命中伤害递增",
+    display_name: "终转凭证（黑暗神）",
+    spr: spr_heian_god_pin3
+});
+
+register_gods_goods("hundun_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "hundun_god",
+    description: "混沌神使：吞噬5*5范围内的普通敌人，对精英敌人造成4500伤害，死亡时产生3*3灰烬爆炸",
+    display_name: "混沌神使"
+});
+
+register_gods_goods("hundun_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "hundun_god",
+    target_shape: 1,
+    description: "混沌圣神：吞噬范围扩大，精英伤害提升至6000",
+    display_name: "三转凭证（混沌神）",
+    spr: spr_hundun_pin1
+});
+
+register_gods_goods("hundun_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "hundun_god",
+    target_shape: 2,
+    description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人",
+    display_name: "四转凭证（混沌神）",
+    spr: spr_hundun_pin2_
 });
 
 }

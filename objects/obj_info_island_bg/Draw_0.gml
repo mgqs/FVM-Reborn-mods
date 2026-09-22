@@ -63,6 +63,10 @@ if info_button_select == 1 {
 		var card_data = card_data_shapes[| 0]
 		var info = get_plant_shape_data(card_id,0)
 		var card_shape = 0
+		var card_name = ""
+		if info != undefined{
+			card_name = info[? "name"]
+		}
         
         // 计算卡片位置
         var row = card_index div info_cols;
@@ -80,7 +84,7 @@ if info_button_select == 1 {
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(font_yuan)
-				draw_text(card_x,card_y+87,info[? "name"])
+				draw_text(card_x,card_y+87,card_name)
 				draw_set_font(font_yuan)
                 // 检查鼠标是否悬停在卡片上
                 var spr_width = 128*1.5;

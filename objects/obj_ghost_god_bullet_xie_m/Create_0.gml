@@ -8,6 +8,4 @@ bounced = false;
 damage_type = "pierce";
 target_type = "normal";
 brazier_list = ds_list_create();
-image_xscale = 1.8;
-image_yscale = 1.8;
 hittable_types = get_hittable_enemy_types(target_type);

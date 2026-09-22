@@ -1,6 +1,7 @@
 var middle_y = y - 75;
 var row_height = 100;
 var spread = 20;
+var col0_x = get_world_position_from_grid(0, 0).x;
 var fire_flags = [fire_up, fire_mid, fire_down];
 var row_offsets = [-1, 0, 1];
 var y_offsets = [-spread, 0, spread];
@@ -42,7 +43,7 @@ for (var i = 0; i < 3; i++)
     if (fire_flags[i])
     {
         var target_row = grid_row + row_offsets[i];
-        var start_x = x + 40;
+        var start_x = col0_x;
         var start_y = middle_y + y_offsets[i];
         var is_mid = (i == 1);
         var is_side = !is_mid;
@@ -56,7 +57,6 @@ for (var i = 0; i < 3; i++)
         if (target_row < 0 || target_row >= global.grid_rows)
         {
             target_row = grid_row;
-            start_x -= 20;
         }
 
         var num_bullets = 1 + extra;

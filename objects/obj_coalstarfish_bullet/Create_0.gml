@@ -8,6 +8,4 @@ target_type = "normal"
 b_type = 0
 burnt = 0
 bounced = false
-image_xscale = 1.5
-image_yscale = 1.5
 hittable_types = get_hittable_enemy_types(target_type);

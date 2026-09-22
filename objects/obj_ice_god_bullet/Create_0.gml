@@ -1,5 +1,3 @@
-image_xscale = 1;
-image_yscale = 1;
 damage_type = "normal";
 damage = 0;
 target_enemy = -4;

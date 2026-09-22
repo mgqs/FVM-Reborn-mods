@@ -73,15 +73,21 @@ else
             {
                 if (!variable_instance_exists(self.id, "shield_buffed"))
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
                 else if (!self.shield_buffed)
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
@@ -103,7 +109,12 @@ else
                             var grid_tracker = ds_map_find_value(global.buff_grid, "tracker");
                             self.atk = self.base_atk * grid_tracker[self.grid_col][self.grid_row];
                             break;
-                        
+
+                        case "xiangshui":
+                            var grid_xiangshui = ds_map_find_value(global.buff_grid, "xiangshui");
+                            self.atk = self.base_atk * grid_xiangshui[self.grid_col][self.grid_row];
+                            break;
+
                         case "sprayer":
                             var grid_sprayer = ds_map_find_value(global.buff_grid, "sprayer");
                             self.atk = self.base_atk * grid_sprayer[self.grid_col][self.grid_row];

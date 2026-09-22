@@ -27,38 +27,42 @@ function gods_hall_get_random_reward()
 {
     var r = irandom(99);
     
-    if (r < 22)
+    if (r < 20)
         return ["金币", 1000];
-    else if (r < 31)
+    else if (r < 29)
         return ["金币", 5000];
-    else if (r < 35)
+    else if (r < 33)
         return ["金币", 10000];
-    else if (r < 38)
+    else if (r < 36)
         return ["神谕之石", 5];
-    else if (r < 39)
+    else if (r < 37)
         return ["神谕之石", 10];
-    else if (r < 40)
+    else if (r < 38)
         return ["神谕之石", 25];
-    else if (r < 53)
+    else if (r < 51)
         return ["天然香料", 25];
-    else if (r < 57)
+    else if (r < 55)
         return ["天然香料", 50];
-    else if (r < 58)
+    else if (r < 56)
         return ["天然香料", 200];
-    else if (r < 67)
+    else if (r < 65)
         return ["秘制香料", 25];
-    else if (r < 69)
+    else if (r < 67)
         return ["秘制香料", 50];
-    else if (r < 70)
+    else if (r < 68)
         return ["秘制香料", 200];
-    else if (r < 83)
+    else if (r < 78)
         return ["初级强化水晶", 25];
-    else if (r < 88)
+    else if (r < 82)
         return ["初级强化水晶", 50];
-    else if (r < 97)
+    else if (r < 89)
         return ["中级强化水晶", 25];
-    else
+    else if (r < 92)
         return ["中级强化水晶", 50];
+    else if (r < 95)
+        return ["4级四叶草", 20];
+    else
+        return ["高级强化水晶", 20];
 }
 
 function gods_hall_get_guarantee_reward()
