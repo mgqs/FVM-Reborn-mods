@@ -298,7 +298,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_2",
 					"rewards":[
-								{"card_id":"firework_dragon","target_shape":1}
+								{"card_id":"firework_dragon","target_shape":1},
+									{"card_id":"mozhang","target_shape":1}
 							]
 				},
 				{
@@ -685,6 +686,7 @@ function maps_init(){
 					"pre_level":"tower_cake_22_2",
 					"rewards":[
 						{"card_id":"hotdog_cannon","target_shape":2},
+						{"card_id":"mozhang","target_shape":2}
 					]
 				},
 				{

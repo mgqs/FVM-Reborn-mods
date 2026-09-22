@@ -188,6 +188,19 @@ if (is_selected) {
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
         var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"]));
+
+        if (can_plant && card_id == "lingrong_god" && !global.replace_placement) {
+            var _plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
+            var _blocked_ids = ["lingrong_god", "cotton_candy", "soda_bubble", "wooden_plate"];
+            for (var _i = 0; _i < ds_list_size(_plant_list); _i++) {
+                var _plant = ds_list_find_value(_plant_list, _i);
+                if (!instance_exists(_plant)) continue;
+                if (variable_instance_exists(_plant, "plant_id") && array_get_index(_blocked_ids, _plant.plant_id) != -1) {
+                    can_plant = false;
+                    break;
+                }
+            }
+        }
         
         if (can_plant && global.flame >= current_cost) {
             // 创建植物实例

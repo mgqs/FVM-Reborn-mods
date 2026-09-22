@@ -65,6 +65,16 @@ else
 	f_recover_end = 57;
 }
 
+// 消化时间 (digestion time) per star level, in frames (at 60fps)
+// 35,34,33,32,31,30,28,26,24,22,20,18,16,13,10,7,4,3,2 seconds
+var _digest_times = [2100, 2040, 1980, 1920, 1860, 1800, 1680, 1560, 1440, 1320, 1200, 1080, 960, 780, 600, 420, 240, 180, 120];
+var _level_idx = clamp(current_level, 0, 18);
+digest_time = _digest_times[_level_idx];
+origin_digest_time = digest_time;
+digest_timer = 0;
+digest_timer_max = 0;
+is_digesting = false;
+
 anim_frame = 0;
 attack_timer = 0;
 

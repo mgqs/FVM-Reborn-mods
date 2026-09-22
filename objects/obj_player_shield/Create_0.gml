@@ -236,7 +236,14 @@ rose_buff_gem = false;
 rose_buff_ratio = 0;
 rose_buff_card_list = [];
 
-if (get_gem_index("rose_shield_gem_3") != -1)
+if (get_gem_index("rose_shield_gem_5") != -1)
+{
+    rose_buff_gem = true;
+    var _gi = get_gem_info("rose_shield_gem_5");
+    var _gl = get_gem_level("rose_shield_gem_5");
+    rose_buff_ratio = _gi.ratio[_gl];
+}
+else if (get_gem_index("rose_shield_gem_3") != -1)
 {
     rose_buff_gem = true;
     var _gi = get_gem_info("rose_shield_gem_3");

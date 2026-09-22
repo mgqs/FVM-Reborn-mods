@@ -4,10 +4,12 @@ if global.is_paused{
 
 // Register to global enemy type registry
 if (!enemy_registered || enemy_registered_type != target_type) {
-	if (enemy_registered) {
+	if (enemy_registered && variable_struct_exists(global.enemy_by_type, enemy_registered_type)) {
 		var _old_list = global.enemy_by_type[$ enemy_registered_type];
-		var _old_idx = array_get_index(_old_list, id);
-		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+		if (is_array(_old_list)) {
+			var _old_idx = array_get_index(_old_list, id);
+			if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+		}
 	}
 	if (!variable_global_exists("enemy_by_type")) {
 		global.enemy_by_type = {};
@@ -22,6 +24,11 @@ if (!enemy_registered || enemy_registered_type != target_type) {
 }
 
 var grid_pos = get_grid_position_from_world(x,y)
+
+// 边界检查，防止数组越界
+if (grid_pos.col < 0 || grid_pos.col >= global.grid_cols || grid_pos.row < 0 || grid_pos.row >= global.grid_rows) {
+    exit;
+}
 
 var zombie_grid = get_grid_position_from_world(x, y);
 

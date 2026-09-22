@@ -14,6 +14,7 @@ function shop_init(){
 	register_goods("dragon_fruit",{"type":"card","cost":"50000","unlock_item_id":"dragon_fruit","description":"火龙果：伤害3*3范围敌人","display_name":"火龙果"})
 	register_goods("magic_chicken",{"type":"card","cost":"80000","unlock_item_id":"magic_chicken","description":"幻幻鸡：复制成上一张放置的卡片","display_name":"幻幻鸡"})
 	register_goods("baibianshe",{"type":"card","cost":"100000","unlock_item_id":"baibianshe","description":"百变蛇：变身成为范围内上一张种下的卡片","display_name":"百变蛇"})
+register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhang","description":"魔杖蛇：给周围3*3范围旋转攻击卡片和本行直线喷射类卡片提高攻击力","display_name":"魔杖蛇"})
 	register_goods("bull_firework",{"type":"card","cost":"50000","unlock_item_id":"bull_firework","description":"金牛烟花：召唤1只烟花牛冲撞敌人","display_name":"金牛烟花"})
 	register_goods("rabbit_lantern",{"type":"card","cost":"50000","unlock_item_id":"rabbit_lantern","description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","display_name":"玉兔灯笼"})
 	register_goods("delicacy_firework",{"type":"card","cost":"80000","unlock_item_id":"delicacy_firework","description":"美食烟花：3*4范围爆炸，命中老鼠产生火苗","display_name":"美食烟花"})

@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_chunv_0",
-    "path":"sprites/spr_chunv_0/spr_chunv_0.yy",
+    "name":"spr_chunv_0_3",
+    "path":"sprites/spr_chunv_0_3/spr_chunv_0_3.yy",
   },
   "spriteMaskId":null,
   "visible":true,

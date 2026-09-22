@@ -261,7 +261,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.main_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+160,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+160,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+134, 0.75, 0.75, 0, c_white, 1)
 			}
@@ -273,7 +274,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.secondary_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+260,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+260,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+234, 0.75, 0.75, 0, c_white, 1)
 			}
@@ -285,7 +287,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.super_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+360,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+360,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+334, 0.75, 0.75, 0, c_white, 1)
 			}

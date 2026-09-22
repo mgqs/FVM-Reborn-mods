@@ -273,7 +273,7 @@ function mod_weapons_init()
         icon: spr_star_wand_icon,
         obj: obj_star_wand,
         slot: "main_weapon",
-        allowed_gems: ["star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4"],
+        allowed_gems: ["star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5"],
         atk: 125,
         bullet_amount: 3,
         bullet_style: 0,
@@ -287,7 +287,8 @@ function mod_weapons_init()
         atk_impact: [150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 437, 475, 512, 562, 625],
         bullet_count: [3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9],
         diz_chance_impact: [0.15, 0.15, 0.18, 0.18, 0.2, 0.22, 0.22, 0.25, 0.28, 0.28, 0.3, 0.35, 0.35, 0.4, 0.5, 0.5],
-        cycle_impact: [176, 172, 168, 164, 160, 156, 152, 148, 144, 140, 135, 130, 125, 120, 110, 100]
+        cycle_impact: [176, 172, 168, 164, 160, 156, 152, 148, 144, 140, 135, 130, 125, 120, 110, 100],
+        splash_ratio_impact_enhanced: [0.23, 0.24, 0.26, 0.27, 0.3, 0.36, 0.42, 0.5, 0.57, 0.65, 0.72, 0.81, 0.93, 1.08, 1.28, 1.5]
     });
     register_weapon("rose_shield",
     {
@@ -295,7 +296,7 @@ function mod_weapons_init()
         icon: spr_rose_shield_icon,
         obj: obj_player_shield,
         slot: "secondary_weapon",
-        allowed_gems: ["rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4"],
+        allowed_gems: ["rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5"],
         hp_increase: 1000,
         description: "荆棘玫瑰：增加1000生命值，镶嵌宝石时提供超强增益效果",
         name: "荆棘玫瑰"
@@ -306,7 +307,7 @@ function mod_weapons_init()
         icon: spr_aladdin_lamp_icon,
         obj: obj_aladdin_lamp_enter,
         slot: "super_weapon",
-        allowed_gems: ["aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4"],
+        allowed_gems: ["aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5"],
         atk: 500,
         cycle: 900,
         ghost_shape: 0,
@@ -320,7 +321,8 @@ function mod_weapons_init()
         bullet_amount_impact: [2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4],
         bullet_trace_impact: [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3],
         bullet_shape_impact: [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4],
-        splash_ratio_impact: [0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.27, 0.29, 0.32, 0.37, 0.45]
+        splash_ratio_impact: [0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.27, 0.29, 0.32, 0.37, 0.45],
+        atk_impact_enhanced: [1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1950, 2100, 2300, 2500, 2800, 3100, 3500, 4000]
     });
     register_gem("star_wand_gem_1",
     {
@@ -450,6 +452,37 @@ function mod_weapons_init()
         icon: spr_aladdin_lamp_gem_4,
         slot: "super_weapon",
         obj: obj_aladdin_lamp_gem_4,
+        allowed_weapons: ["aladdin_lamp"],
+        max_level: 15
+    });
+    register_gem("star_wand_gem_5",
+    {
+        name: "星之耀",
+        description: "星之耀：大幅增幅星之力的溅射比率\n并改变星之力的形态\n[专属宝石]：星之神杖",
+        icon: spr_star_wand_gem_5,
+        slot: "main_weapon",
+        obj: obj_star_wand_gem_5,
+        allowed_weapons: ["star_wand"],
+        max_level: 15
+    });
+    register_gem("rose_shield_gem_5",
+    {
+        name: "玫瑰之心",
+        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力\n[专属宝石]：荆棘玫瑰",
+        icon: spr_rose_shield_gem_5,
+        slot: "secondary_weapon",
+        obj: obj_rose_shield_gem_5,
+        ratio: [0.46, 0.5, 0.53, 0.56, 0.59, 0.65, 0.71, 0.77, 0.84, 0.9, 0.96, 1.02, 1.08, 1.14, 1.21, 1.29],
+        allowed_weapons: ["rose_shield"],
+        max_level: 15
+    });
+    register_gem("aladdin_lamp_gem_5",
+    {
+        name: "灯神涅槃",
+        description: "灯神涅槃：大幅增加阿拉丁神灯的伤害\n[专属宝石]：阿拉丁神灯",
+        icon: spr_aladdin_lamp_gem_5,
+        slot: "super_weapon",
+        obj: obj_aladdin_lamp_gem_5,
         allowed_weapons: ["aladdin_lamp"],
         max_level: 15
     });

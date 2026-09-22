@@ -98,6 +98,22 @@ function equip_gem(gem_id){
 		}
 	}
 
+	// 互斥宝石：装备增强版宝石时自动卸下原版，反之亦然
+	var _gem_conflicts = {
+		aladdin_lamp_gem_1: "aladdin_lamp_gem_5",
+		aladdin_lamp_gem_5: "aladdin_lamp_gem_1",
+		star_wand_gem_1: "star_wand_gem_5",
+		star_wand_gem_5: "star_wand_gem_1",
+		rose_shield_gem_3: "rose_shield_gem_5",
+		rose_shield_gem_5: "rose_shield_gem_3"
+	};
+	if (variable_struct_exists(_gem_conflicts, gem_id)) {
+		var _conflict_id = _gem_conflicts[$ gem_id];
+		if (get_gem_index(_conflict_id) != -1) {
+			remove_gem(_conflict_id);
+		}
+	}
+
 	if slot == "main_weapon"{
 		if get_gem_index(gem_id) == -1{
 			slot_gem = global.save_data.equipped_items.main_weapon.gems

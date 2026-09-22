@@ -32,8 +32,6 @@ state = CARD_STATE.IDLE;
 range_x = 200;
 range_y = 200;
 if (shape >= 2)
-    range_x = 300;
-if (shape >= 3)
     range_y = 300;
 
 if (skill == 0)

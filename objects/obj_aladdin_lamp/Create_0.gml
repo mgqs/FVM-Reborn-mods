@@ -33,7 +33,12 @@ bullet_shape = weapon_info.bullet_shape;
 ghost_shape = weapon_info.ghost_shape;
 target_enemy = -4;
 
-if (get_gem_index("aladdin_lamp_gem_1") != -1)
+if (get_gem_index("aladdin_lamp_gem_5") != -1)
+{
+    atk = weapon_info.atk_impact_enhanced[get_gem_level("aladdin_lamp_gem_5")];
+    ghost_shape = weapon_info.ghost_shape_impact[get_gem_level("aladdin_lamp_gem_5")];
+}
+else if (get_gem_index("aladdin_lamp_gem_1") != -1)
 {
     atk = weapon_info.atk_impact[get_gem_level("aladdin_lamp_gem_1")];
     ghost_shape = weapon_info.ghost_shape_impact[get_gem_level("aladdin_lamp_gem_1")];

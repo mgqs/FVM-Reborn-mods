@@ -44,7 +44,8 @@ if info_button_select == 1{
 		var gem_list = global.save_data.equipped_items.main_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x-1180+200*i,y-220,0.85,0.85,0,c_white,1)
+			var _gs = 88 * 0.85 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x-1180+200*i,y-220,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x-1205+200*i, y-246, 0.8, 0.8, 0, c_white, 1)
 			}
@@ -56,7 +57,8 @@ if info_button_select == 1{
 		var gem_list = global.save_data.equipped_items.secondary_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x-1180+200*i,y+40,0.85,0.85,0,c_white,1)
+			var _gs = 88 * 0.85 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x-1180+200*i,y+40,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x-1205+200*i, y+14, 0.8, 0.8, 0, c_white, 1)
 			}
@@ -68,7 +70,8 @@ if info_button_select == 1{
 		var gem_list = global.save_data.equipped_items.super_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x-1180+200*i,y+300,0.85,0.85,0,c_white,1)
+			var _gs = 88 * 0.85 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x-1180+200*i,y+300,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x-1205+200*i, y+274, 0.8, 0.8, 0, c_white, 1)
 			}
@@ -327,15 +330,16 @@ else if package_button_select == 2 {
                 var _can_equip = can_equip_gem(weapon_id)
 
                 // 绘制宝石图标
+                var _gs = 88 * 0.7 / sprite_get_width(weapon_data.icon)
                 if (is_equipped) {
                     draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_yellow,  1);
-                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_white, 1);
+                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, _gs, _gs, 0, c_white, 1);
                 } else if (!_can_equip) {
                     draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_dkgray,  1);
-                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_gray, 1);
+                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, _gs, _gs, 0, c_gray, 1);
                 } else {
                     draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_white,  1);
-                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_white, 1);
+                    draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, _gs, _gs, 0, c_white, 1);
                 }
 				if get_gem_level(weapon_id) > 0{
 					draw_sprite_ext(spr_star_slot, get_gem_level(weapon_id)-1, weapon_x-28, weapon_y-30, 0.7, 0.7, 0, c_white, 1)

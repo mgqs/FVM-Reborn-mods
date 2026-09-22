@@ -20,7 +20,12 @@ bullet_style = weapon_info.bullet_style;
 splash_ratio = weapon_info.splash_ratio;
 diz_chance = weapon_info.diz_chance;
 
-if (get_gem_index("star_wand_gem_1") != -1)
+if (get_gem_index("star_wand_gem_5") != -1)
+{
+    bullet_style = weapon_info.bullet_style_impact[get_gem_level("star_wand_gem_5")];
+    splash_ratio = weapon_info.splash_ratio_impact_enhanced[get_gem_level("star_wand_gem_5")];
+}
+else if (get_gem_index("star_wand_gem_1") != -1)
 {
     bullet_style = weapon_info.bullet_style_impact[get_gem_level("star_wand_gem_1")];
     splash_ratio = weapon_info.splash_ratio_impact[get_gem_level("star_wand_gem_1")];

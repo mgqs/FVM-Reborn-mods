@@ -1173,7 +1173,7 @@ register_gods_goods("heian_god_3",
     cost: "48",
     unlock_item_id: "heian_god",
     target_shape: 3,
-    description: "至尊黑暗神：范围扩大至300x300，连续命中伤害递增",
+    description: "至尊黑暗神：5*7范围内连续命中伤害递增",
     display_name: "终转凭证（黑暗神）",
     spr: spr_heian_god_pin3
 });
@@ -1207,6 +1207,37 @@ register_gods_goods("hundun_god_2",
     description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人",
     display_name: "四转凭证（混沌神）",
     spr: spr_hundun_pin2_
+});
+
+register_gods_goods("lingrong_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "lingrong_god",
+    description: "灵容神使：三合一承载卡片，在水上、空中和岩浆上承载卡片并填补空洞",
+    display_name: "灵容神使"
+});
+
+register_gods_goods("lingrong_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "lingrong_god",
+    target_shape: 1,
+    description: "灵容圣神：竖向生成三张，三合一承载卡片",
+    display_name: "三转凭证（灵容神）",
+    spr: spr_lingrong_god_pin1
+});
+
+register_gods_goods("lingrong_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "lingrong_god",
+    target_shape: 2,
+    description: "灵容天神：直接生成九张，三合一承载卡片",
+    display_name: "四转凭证（灵容神）",
+    spr: spr_lingrong_god_pin2
 });
 
 }

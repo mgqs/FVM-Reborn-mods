@@ -270,6 +270,43 @@ function mod_slots_init()
         is_gold: 0,
         place_preview: spr_baibianshe_2
     }]);
+    register_card("mozhang", obj_mozhang, [
+    {
+        shape: 0,
+        sprite: spr_mozhang,
+        cost: 310,
+        cooldown: 2520,
+        description: "魔杖蛇：给周围3*3范围旋转攻击卡片和本行直线喷射类卡片提高攻击力",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_mozhang
+    },
+    {
+        shape: 1,
+        sprite: spr_mozhang_1,
+        cost: 310,
+        cooldown: 2520,
+        description: "青木魔杖蛇：旋转类卡片加成范围扩大到5*5",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_mozhang_1
+    },
+    {
+        shape: 2,
+        sprite: spr_mozhang_2,
+        cost: 310,
+        cooldown: 2520,
+        description: "凤羽魔杖蛇：攻击力大幅提升，旋转类加成范围5*5",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_mozhang_2
+    }]);
     register_card("clotho", obj_clotho, [
     {
         shape: 0,
@@ -2011,7 +2048,7 @@ register_card("heian_god", obj_heian_god, [
     sprite: spr_heian_god,
     cost: 300,
     cooldown: 1800,
-    description: "黑暗神使：对周围200x200范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
+    description: "黑暗神使：对周围5*5范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2035,7 +2072,7 @@ register_card("heian_god", obj_heian_god, [
     sprite: spr_heian_god_2,
     cost: 300,
     cooldown: 1800,
-    description: "黑暗神·霍德尔：攻击范围扩大，攻击力大幅提升",
+    description: "黑暗神·霍德尔：攻击范围扩大至5*7，攻击力大幅提升",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2047,7 +2084,7 @@ register_card("heian_god", obj_heian_god, [
     sprite: spr_heian_god_3,
     cost: 300,
     cooldown: 1800,
-    description: "至尊黑暗神：范围扩大至300x300，连续命中同一敌人伤害递增",
+    description: "至尊黑暗神：5*7范围内连续命中同一敌人伤害递增",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2141,5 +2178,43 @@ register_card("guangming_god", obj_guangming_god, [
     target_card: "none",
     is_gold: 1,
     place_preview: spr_guangming_god_2
+}]);
+
+register_card("lingrong_god", obj_lingrong_god, [
+{
+    shape: 0,
+    sprite: spr_lingrong_god,
+    cost: 25,
+    cooldown: 420,
+    description: "灵容神使：三合一承载卡片，可在海底、陆地、水面、岩浆上承载卡片并填补空洞",
+    plant_type: "coffee",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_lingrong_god
+},
+{
+    shape: 1,
+    sprite: spr_lingrong_god_1,
+    cost: 0,
+    cooldown: 420,
+    description: "灵容圣神：竖向生成三张，三合一承载卡片",
+    plant_type: "coffee",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_lingrong_god_1
+},
+{
+    shape: 2,
+    sprite: spr_lingrong_god_2,
+    cost: 0,
+    cooldown: 420,
+    description: "灵容天神：直接生成九张，三合一承载卡片",
+    plant_type: "coffee",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_lingrong_god_2
 }]);
     }

@@ -392,5 +392,29 @@ function mod_shop_init()
         description: "灯神迷雾：增加阿拉丁神灯的子弹溅射并改变子弹形态",
         display_name: "灯神迷雾"
     });
+    register_goods("star_wand_gem_5",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "star_wand_gem_5",
+        description: "星之耀：大幅增幅星之力的溅射比率并改变星之力的形态",
+        display_name: "星之耀"
+    });
+    register_goods("rose_shield_gem_5",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "rose_shield_gem_5",
+        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力",
+        display_name: "玫瑰之心"
+    });
+    register_goods("aladdin_lamp_gem_5",
+    {
+        type: "gem",
+        cost: "2000000",
+        unlock_item_id: "aladdin_lamp_gem_5",
+        description: "灯神涅槃：大幅增加阿拉丁神灯的伤害",
+        display_name: "灯神涅槃"
+    });
 
 }
