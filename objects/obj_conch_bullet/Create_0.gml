@@ -7,3 +7,5 @@ timer = 0
 move_speed = -8
 
 state = "appear"
+image_xscale = 1.8
+image_yscale = 1.8

@@ -4,4 +4,6 @@ if (ds_exists(brazier_list, ds_type_list) && ds_list_find_index(brazier_list, ot
     damage = round(damage * other.atk);
     ds_list_add(brazier_list, other.id);
     audio_play_sound(snd_bullet_burnt, 0, 0);
+    image_xscale = 1.8;
+    image_yscale = 1.8;
 }

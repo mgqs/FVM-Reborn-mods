@@ -1,4 +1,4 @@
-if target_type == "normal" && row == other.row{
+if target_type == "normal" && row == other.row && precise_bbox_collision(id, other){
 	if burnt == 0{
 		var inst = instance_create_depth(x,y,depth,obj_coffeecup_bullet_effect)
 		inst.sprite_index = spr_triplewinerack_bullet_effect

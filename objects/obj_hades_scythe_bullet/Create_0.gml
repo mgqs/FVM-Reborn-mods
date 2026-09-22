@@ -18,5 +18,7 @@ speed = 4.5;
 dir = 1;
 start_x = x;
 start_y = y;
+image_xscale = 1.2;
+image_yscale = 1.2;
 hittable_types = get_hittable_enemy_types(target_type);
 array_push(hittable_types, "invisible");

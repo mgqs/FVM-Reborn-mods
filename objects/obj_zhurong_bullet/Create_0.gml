@@ -10,3 +10,5 @@ target_y = 0;
 shape = 0;
 damage_type = "throw";
 target_type = "throw";
+image_xscale = 1.8;
+image_yscale = 1.8;

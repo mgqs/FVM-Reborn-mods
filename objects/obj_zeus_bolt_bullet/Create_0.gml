@@ -8,4 +8,6 @@ banding_card_obj = -4;
 row = 0;
 image_speed = 1.5;
 splash_ratio = 0;
+image_xscale = 1.4;
+image_yscale = 1.4;
 hittable_types = get_hittable_enemy_types(target_type);

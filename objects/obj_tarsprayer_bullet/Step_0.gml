@@ -46,8 +46,7 @@ if (variable_global_exists("enemy_by_type"))
 			if (!ds_exists(hitted_enemy, ds_type_list)) exit;
 			if (ds_list_find_index(hitted_enemy, _e.id) == -1 && !disabled
 				&& _e.hp > 0 && row == _e.grid_row
-				&& bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-				&& bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
 			{
 				with (_e)
 				{

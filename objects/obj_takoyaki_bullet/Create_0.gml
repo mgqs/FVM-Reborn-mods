@@ -7,4 +7,6 @@ target_enemy = noone
 banding_card_obj = noone
 row = 0
 image_speed = 0
+image_xscale = 1.8;
+image_yscale = 1.8;
 hittable_types = get_hittable_enemy_types(target_type);

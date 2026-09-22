@@ -1,6 +1,7 @@
 damage = 0;
 move_speed = 0;
 row = 0;
+start_col = 0;
 hitted_enemy = ds_list_create();
 shape = 0;
 damage_type = "pierce";

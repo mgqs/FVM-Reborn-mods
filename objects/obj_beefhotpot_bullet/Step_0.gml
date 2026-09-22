@@ -20,8 +20,7 @@ if (attack_timer mod 12 == 1 && variable_global_exists("enemy_by_type"))
             if (!instance_exists(_e)) continue;
             if (_e.hp > 0 && row == _e.grid_row
                 && ((shape <= 1 && _e.x - x <= 4.5*global.grid_cell_size_x) || (shape >= 1 && _e.x - x <= 5.5*global.grid_cell_size_x))
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
             {
                 with (_e)
                 {

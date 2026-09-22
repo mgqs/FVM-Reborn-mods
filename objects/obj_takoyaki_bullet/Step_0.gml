@@ -124,8 +124,7 @@ if (target_enemy != noone && instance_exists(target_enemy))
 {
     var _e = target_enemy;
     if (_e.hp > 0
-        && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-        && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
     {
         with (_e)
         {

@@ -1613,6 +1613,7 @@
     {"id":{"name":"NativeUtil","path":"scripts/NativeUtil/NativeUtil.yy",},},
     {"id":{"name":"plus_card_init","path":"scripts/plus_card_init/plus_card_init.yy",},},
     {"id":{"name":"position_in_plantable_area","path":"scripts/position_in_plantable_area/position_in_plantable_area.yy",},},
+    {"id":{"name":"precise_bbox_collision","path":"scripts/precise_bbox_collision/precise_bbox_collision.yy",},},
     {"id":{"name":"register_card","path":"scripts/register_card/register_card.yy",},},
     {"id":{"name":"save_file","path":"scripts/save_file/save_file.yy",},},
     {"id":{"name":"screen_flash","path":"scripts/screen_flash/screen_flash.yy",},},

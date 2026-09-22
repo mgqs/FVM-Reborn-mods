@@ -8,3 +8,5 @@ disabled = false;
 target_type = "throw";
 shape = 0;
 damage_type = "throw";
+image_xscale = 1.8;
+image_yscale = 1.8;

@@ -49,8 +49,7 @@ if (variable_global_exists("enemy_by_type"))
             if (!instance_exists(_e)) continue;
             if (!hit_enemy
                 && _e.hp > 0 && row == _e.grid_row
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
             {
                 var inst;
                 var _hit_id = _e.id;

@@ -28,3 +28,5 @@ function find_priority_enemy() {
     }
     return closest_left_enemy;
 }
+image_xscale = 1.8;
+image_yscale = 1.8;

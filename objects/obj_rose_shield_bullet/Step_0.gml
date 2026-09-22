@@ -27,8 +27,7 @@ if (variable_global_exists("enemy_by_type"))
             if (_e.hp > 0
                 && ds_exists(hit_enemies, ds_type_list)
                 && ds_list_find_index(hit_enemies, _e.id) == -1
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
             {
                 if (ds_exists(hit_enemies, ds_type_list))
                     ds_list_add(hit_enemies, _e.id);

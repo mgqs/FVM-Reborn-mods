@@ -5,3 +5,5 @@ hitted_enemy = -4;
 move_speed = 0;
 row = 0;
 col = 0;
+image_xscale = 1;
+image_yscale = 1;

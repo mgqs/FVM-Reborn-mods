@@ -16,11 +16,10 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
-            if (ds_list_find_index(hitted_enemy, _e.id) == -1
+            if (ds_exists(hitted_enemy, ds_type_list) && ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
                 && abs(row - _e.grid_row) <= 1
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+                && abs(start_col - _e.grid_col) <= 1)
             {
                 var _hit_id = _e.id;
                 with (_e)
@@ -69,7 +68,8 @@ if (variable_global_exists("enemy_by_type"))
                     }
                 }
 
-                ds_list_add(hitted_enemy, _hit_id);
+                if (ds_exists(hitted_enemy, ds_type_list))
+                    ds_list_add(hitted_enemy, _hit_id);
             }
         }
     }

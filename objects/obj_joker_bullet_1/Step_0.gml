@@ -23,8 +23,7 @@ if (variable_global_exists("enemy_by_type"))
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
             if (_e.hp > 0 && row == _e.grid_row
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
             {
                 hitted_enemy = _e.id;
                 if (_e.hp <= damage)

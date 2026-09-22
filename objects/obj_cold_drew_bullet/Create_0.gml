@@ -10,3 +10,5 @@ delay = 0;
 hit_frame = 3;
 hit_done = false;
 shape_bullet = 0;
+image_xscale = 1.8;
+image_yscale = 1.8;

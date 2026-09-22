@@ -8,3 +8,5 @@ move_speed = -12
 damage = 400
 
 placed = false
+image_xscale = 1.8
+image_yscale = 1.8

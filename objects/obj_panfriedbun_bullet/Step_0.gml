@@ -45,8 +45,7 @@ if (variable_global_exists("enemy_by_type"))
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
             if (_e.hp > 0 && row == _e.grid_row
-                && bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-                && bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+    && precise_bbox_collision(id, _e))
             {
                 var grid_pos = get_grid_position_from_world(_e.x,_e.y)
                 var inst = instance_create_depth(grid_pos.x,grid_pos.y,0,obj_panfriedbun_bullet_effect)

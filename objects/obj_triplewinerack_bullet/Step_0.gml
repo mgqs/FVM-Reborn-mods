@@ -41,26 +41,27 @@ if (variable_global_exists("enemy_by_type"))
 		for (var _i = 0; _i < array_length(_list); _i++)
 		{
 			var _e = _list[_i];
-			if (!instance_exists(_e)) continue;
-			if (_e.hp > 0 && row == _e.grid_row
-				&& bbox_right >= _e.bbox_left && bbox_left <= _e.bbox_right
-				&& bbox_bottom >= _e.bbox_top && bbox_top <= _e.bbox_bottom)
+		if (!instance_exists(_e)) continue;
+		if (!instance_exists(id)) break;
+		if (_e.hp > 0 && row == _e.grid_row
+    && precise_bbox_collision(id, _e))
+		{
+			with (_e)
 			{
-				with (_e)
+				if other.burnt == 1
 				{
-					if other.burnt == 1
-					{
-						audio_play_sound(snd_fire_hit, 0, 0)
-					}
-					else
-					{
-						audio_play_sound(hit_sound, 0, 0)
-					}
-					damage_amount = other.damage
-					damage_type = other.damage_type
-					event_user(0)
+					audio_play_sound(snd_fire_hit, 0, 0)
 				}
-				if burnt == 0
+				else
+				{
+					audio_play_sound(hit_sound, 0, 0)
+				}
+				damage_amount = other.damage
+				damage_type = other.damage_type
+				event_user(0)
+			}
+			if (!instance_exists(id)) break;
+			if burnt == 0
 				{
 					var inst = instance_create_depth(x, y, depth, obj_coffeecup_bullet_effect)
 					inst.sprite_index = spr_triplewinerack_bullet_effect
@@ -79,6 +80,7 @@ if (variable_global_exists("enemy_by_type"))
 					inst.sprite_index = spr_fire_bullet_effect
 				}
 				instance_destroy()
+				break;
 			}
 		}
 	}
