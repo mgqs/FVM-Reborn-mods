@@ -18,5 +18,3 @@ buff_value = atk / 100;
 buff_shape = (shape >= 1) ? "5x5" : "3x3";
 buff_cells = build_buff_cells(grid_col, grid_row, buff_shape, buff_value);
 buff_cells_refreshed = false;
-ds_list_add(global.buff_sources, id);
-global.buff_dirty = true;

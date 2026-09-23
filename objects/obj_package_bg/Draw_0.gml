@@ -524,6 +524,11 @@ else if package_button_select == 3{
             var tooltip_text = ""
             
 			tooltip_text = material_data.description + "\n数量："+string(get_material_amount(material_id))
+			var _sell_price = get_material_sell_price(material_id)
+			if _sell_price > 0 && get_material_amount(material_id) > 0{
+				tooltip_text += "\n出售价格：" + string(_sell_price) + "G/个"
+				tooltip_text += "\n左键点击出售"
+			}
             
 			
             // 绘制提示背景

@@ -38,7 +38,7 @@ if (has_enemy)
     {
         attack_timer++;
     }
-    else if (attack_timer <= cycle)
+    else if (attack_timer <= cycle - fire_advance)
     {
         attack_timer++;
         state = 1;

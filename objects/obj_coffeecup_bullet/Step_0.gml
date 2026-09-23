@@ -60,6 +60,7 @@ if (variable_global_exists("enemy_by_type"))
 
 if x > 2200 or y > 1200 or x < 0 or y < 0{
     instance_destroy()
+    exit
 }
 if disabled{
 	image_alpha -= 0.1

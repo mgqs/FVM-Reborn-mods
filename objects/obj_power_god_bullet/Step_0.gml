@@ -91,6 +91,7 @@ if (target_enemy != -4 && instance_exists(target_enemy))
 
         instance_create_depth(x, y, depth, obj_power_god_bullet_effect);
         instance_destroy();
+        exit;
     }
 }
 

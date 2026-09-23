@@ -10,7 +10,10 @@ y += lengthdir_y(move_speed, direction);
 image_angle = direction;
 
 if (x > 2500 || x < -200 || y > 1500 || y < -200)
+{
     instance_destroy();
+    exit;
+}
 
 // 类型过滤碰撞检测
 if (variable_global_exists("enemy_by_type"))

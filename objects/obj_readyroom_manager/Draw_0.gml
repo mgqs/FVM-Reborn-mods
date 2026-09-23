@@ -7,6 +7,7 @@ draw_set_color(c_black)
 draw_text(565,53,global.level_data.name)
 {//绘制可选择的防御卡
 	surface_set_target(slot_surface)
+	draw_clear_alpha(c_black, 0)
 for(var i = 0 ; i < slot_rows ; i++){
         for(var j = 0 ; j < slot_cols ; j++){
             draw_sprite_ext(spr_package_slot_bg, 0, x+42+i*84, y + 48 + 96 * j- y_offset, 0.9, 0.9, 0, c_white, 1)

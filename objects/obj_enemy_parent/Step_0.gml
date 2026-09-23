@@ -369,6 +369,15 @@ if (hp <= 0 && state != ENEMY_STATE.DEAD) {
 
 // 透明度处理
 if (image_alpha <= 0 && state == ENEMY_STATE.DEAD) {
+    // 从全局类型注册表中移除自己，避免子弹碰撞检测时报错
+    if (enemy_registered && variable_global_exists("enemy_by_type")) {
+        if (variable_struct_exists(global.enemy_by_type, enemy_registered_type)) {
+            var _list = global.enemy_by_type[$ enemy_registered_type];
+            var _idx = array_get_index(_list, id);
+            if (_idx != -1) array_delete(_list, _idx, 1);
+        }
+        enemy_registered = false;
+    }
     instance_destroy();
 }
 

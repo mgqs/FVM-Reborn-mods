@@ -10,6 +10,7 @@ if burnt == 1{
 x += move_speed
 if x > 2200 or y > 1200 or x < 0 or y < 0{
 	instance_destroy()
+	exit
 }
 
 // 类型过滤碰撞检测

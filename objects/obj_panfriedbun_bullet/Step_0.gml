@@ -7,6 +7,7 @@ cvspeed -= cgravity
 image_angle -= 2
 if x > 2200 or y > 1200 or x < -200 or y < -200{
 	instance_destroy()
+	exit
 }
 
 if y >= thrower_y {
@@ -20,6 +21,7 @@ if y >= thrower_y {
 		inst.sprite_index = spr_panfriedbun_bullet_effect_2
 	}
     instance_destroy()
+	exit
 }
 if !atk_modified{
 	with obj_card_parent{

@@ -12,7 +12,8 @@ with (obj_enemy_parent)
         if (ice_timer <= 600 && other.shape >= 1)
             ice_timer = 600;
         
-        hp -= other.atk;
+        damage_amount = other.atk;
+        damage_type = "true";
         event_user(0);
         audio_play_sound(snd_hit1, 0, 0);
     }

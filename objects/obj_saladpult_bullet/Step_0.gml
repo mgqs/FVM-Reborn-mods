@@ -7,6 +7,7 @@ cvspeed -= cgravity
 image_angle -= 2
 if x > 2200 or y > 1200 or x < -200 or y < -200{
 	instance_destroy()
+	exit
 }
 // 检查是否命中目标敌人
 if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0{
@@ -24,6 +25,7 @@ if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0
             // 到达溅射点，造成溅射伤害
             instance_create_depth(x,y,depth,obj_saladpult_bullet_effect)
             instance_destroy()
+            exit
         }
     }
 } else if target_enemy != noone && (!instance_exists(target_enemy) or target_enemy.hp <= 0){
@@ -32,6 +34,7 @@ if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0
         // 击中地面，造成溅射伤害
         instance_create_depth(x,y,depth,obj_saladpult_bullet_effect)
         instance_destroy()
+        exit
     }
 }
 if !atk_modified{

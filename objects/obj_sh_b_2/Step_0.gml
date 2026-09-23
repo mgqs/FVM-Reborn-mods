@@ -41,7 +41,8 @@ if (variable_global_exists("enemy_by_type"))
 
                     if (hp > other.damage)
                     {
-                        hp -= other.damage;
+                        damage_amount = other.damage;
+                        damage_type = other.damage_type;
                         event_user(0);
                     }
                     else

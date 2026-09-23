@@ -28,6 +28,7 @@ if variable_instance_exists(id, "target_row"){
 // 边界检查
 if x > 2200 or y > 1200 or x < 0 or y < 0 {
     instance_destroy();
+    exit;
 }
 
 // 类型过滤碰撞检测
@@ -80,7 +81,7 @@ if (variable_global_exists("enemy_by_type"))
 					inst.sprite_index = spr_fire_bullet_effect
 				}
 				instance_destroy()
-				break;
+				exit;
 			}
 		}
 	}

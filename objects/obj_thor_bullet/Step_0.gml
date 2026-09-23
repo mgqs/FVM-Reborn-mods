@@ -7,7 +7,10 @@ cvspeed -= cgravity;
 image_angle -= 5;
 
 if (x > 2200 || y > 1200 || x < -200 || y < -200)
+{
     instance_destroy();
+    exit;
+}
 
 if (target_enemy != -4 && (!instance_exists(target_enemy) || target_enemy.hp <= 0))
 {
@@ -15,6 +18,7 @@ if (target_enemy != -4 && (!instance_exists(target_enemy) || target_enemy.hp <= 
     {
         instance_create_depth(x, y, depth, obj_iceeggboilerpult_bullet_effect);
         instance_destroy();
+        exit;
     }
 }
 
@@ -48,6 +52,7 @@ if (!hit_enemy && variable_global_exists("enemy_by_type"))
 				hit_enemy = true;
 				hitted_enemy = _e.id;
 				instance_destroy();
+				exit;
 
 				var inst;
 				if (sprite_index == spr_thor_bullet_2_s)

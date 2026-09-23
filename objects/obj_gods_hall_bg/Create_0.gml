@@ -22,11 +22,13 @@ bag.list_num = 0;
 
 if (!variable_struct_exists(global.save_data.player, "wish_count"))
     global.save_data.player.wish_count = 0;
+if (!variable_struct_exists(global.save_data.player, "pity_count"))
+    global.save_data.player.pity_count = 0;
 
 function gods_hall_get_random_reward()
 {
     var r = irandom(99);
-    
+
     if (r < 20)
         return ["金币", 1000];
     else if (r < 29)
@@ -67,12 +69,32 @@ function gods_hall_get_random_reward()
 
 function gods_hall_get_guarantee_reward()
 {
-    var r = irandom(99);
-    
-    if (r < 60)
-        return ["神谕之石", 5];
-    else if (r < 80)
-        return ["神谕之石", 10];
+    if (global.save_data.player.pity_count % 2 == 0)
+    {
+        var r = irandom(99);
+        if (r < 60)
+            return ["4级四叶草", 25];
+        else if (r < 80)
+            return ["高级强化水晶", 25];
+        else
+        {
+            var r2 = irandom(99);
+            if (r2 < 60)
+                return ["神谕之石", 5];
+            else if (r2 < 80)
+                return ["神谕之石", 10];
+            else
+                return ["神谕之石", 25];
+        }
+    }
     else
-        return ["神谕之石", 25];
+    {
+        var r = irandom(99);
+        if (r < 60)
+            return ["神谕之石", 5];
+        else if (r < 80)
+            return ["神谕之石", 10];
+        else
+            return ["神谕之石", 25];
+    }
 }

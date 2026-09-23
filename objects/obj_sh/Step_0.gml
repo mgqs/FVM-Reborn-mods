@@ -11,6 +11,13 @@ var current_flash_speed = flash_speed;
 if (is_slowdown)
     current_flash_speed *= 2;
 
+var count = (variable_global_exists("mod_obj_sh_count") ? global.mod_obj_sh_count : 0) - 1;
+cluster_multiplier = 1 + (0.08 * count);
+cluster_multiplier = min(cluster_multiplier, 1.5);
+
+if (shape != 3)
+    cluster_multiplier = 1;
+
 var has_enemy = false;
 
 if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
@@ -52,12 +59,3 @@ if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
         state = CARD_STATE.IDLE;
     }
 }
-
-var count = (variable_global_exists("mod_obj_sh_count") ? global.mod_obj_sh_count : 0) - 1;
-var multiplier = 1 + (0.08 * count);
-multiplier = min(multiplier, 1.5);
-
-if (shape == 3)
-    atk = base_atk * multiplier;
-else
-    atk = base_atk;

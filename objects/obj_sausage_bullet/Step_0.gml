@@ -10,6 +10,7 @@ if y > target_y{
 }
 if x > 2200 or y > 1200 or x < 0 or y < 0{
 	instance_destroy()
+	exit
 }
 
 // 类型过滤碰撞检测
@@ -39,7 +40,7 @@ if (variable_global_exists("enemy_by_type"))
 				var inst = instance_create_depth(x, y, depth, obj_xiaolongbao_bullet_effect)
 				inst.sprite_index = spr_sausage_bullet_effect
 				instance_destroy()
-				break;
+				exit;
 			}
 		}
 	}

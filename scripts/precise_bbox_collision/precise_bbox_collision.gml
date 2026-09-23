@@ -5,6 +5,9 @@
 /// @description 检测 inst_a 的精确碰撞遮罩（1:1 原始尺寸，不受 image_xscale/image_yscale 影响）是否与 inst_b 的 bbox 重叠。
 ///              考虑 image_angle 旋转。适用于保持视觉缩放但碰撞使用精确遮罩的场景。
 function precise_bbox_collision(_inst_a, _inst_b) {
+    // 安全检查：确保实例存在
+    if (!instance_exists(_inst_a) || !instance_exists(_inst_b)) return false;
+
     var _spr = _inst_a.sprite_index;
     if (_spr < 0) return false;
 

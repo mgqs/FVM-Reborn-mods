@@ -32,6 +32,7 @@ if (variable_global_exists("enemy_by_type"))
                     event_user(0)
                 }
                 instance_destroy()
+                exit
                 if sprite_index == spr_chocolatepult_bullet_large{
                     if shape >= 1{
                         if _e.stun_timer <240{
@@ -68,6 +69,7 @@ if (variable_global_exists("enemy_by_type"))
 
 if x > 2200 or y > 1200 or x < -200 or y < -200{
     instance_destroy()
+    exit
 }
 // 检查是否命中目标敌人
 if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0{
@@ -85,6 +87,7 @@ if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0
             // 到达溅射点，造成溅射伤害
             instance_create_depth(x,y,depth,obj_saladpult_bullet_effect)
             instance_destroy()
+            exit
         }
     }
 } else if target_enemy != noone && (!instance_exists(target_enemy) or target_enemy.hp <= 0){
@@ -105,6 +108,7 @@ if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0
 			inst.image_yscale = 1.2
 		}
         instance_destroy()
+        exit
     }
 }
 

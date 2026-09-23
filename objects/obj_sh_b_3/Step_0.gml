@@ -19,7 +19,7 @@ if (variable_global_exists("enemy_by_type"))
             if (ds_exists(hitted_enemy, ds_type_list) && ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
                 && abs(row - _e.grid_row) <= 1
-                && abs(start_col - _e.grid_col) <= 1)
+                && _e.grid_col >= 0)
             {
                 var _hit_id = _e.id;
                 with (_e)
@@ -47,7 +47,8 @@ if (variable_global_exists("enemy_by_type"))
 
                     if (hp > final_damage)
                     {
-                        hp -= final_damage;
+                        damage_amount = final_damage;
+                        damage_type = other.damage_type;
                         event_user(0);
                     }
                     else

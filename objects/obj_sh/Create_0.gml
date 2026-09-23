@@ -2,6 +2,7 @@ event_inherited();
 plant_id = "sheng_huo";
 obj_type = object_index;
 current_level = 1;
+cluster_multiplier = 1;
 event_user(0);
 
 if (shape == 0)

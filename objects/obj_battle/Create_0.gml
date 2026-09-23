@@ -235,6 +235,11 @@ function enemy_subwave_summon(){
     var rows_used = array_create(global.grid_rows, false);
     
     // 第二阶段：创建敌人实例
+    var spawn_multiplier = 1
+    if global.difficulty == 5{
+        spawn_multiplier = 2
+    }
+    for (var m = 0; m < spawn_multiplier; m++) {
     for (var i = 0; i < array_length(enemy_list); i++) {
         if (enemy_list[i].type != "") {
             var target_row = enemy_list[i].row;
@@ -337,6 +342,7 @@ function enemy_subwave_summon(){
             var row_index = target_row - 1;
             row_enemy_count[row_index]++;
         }
+    }
     }
     
 }

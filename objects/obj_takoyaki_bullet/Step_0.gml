@@ -135,6 +135,7 @@ if (target_enemy != noone && instance_exists(target_enemy))
         }
         instance_create_depth(x,y,depth,obj_takoyaki_bullet_effect)
         instance_destroy()
+        exit
     }
 }
 

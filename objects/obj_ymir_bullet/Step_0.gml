@@ -10,7 +10,10 @@ y -= cvspeed;
 cvspeed -= cgravity;
 
 if (x > 2200 || y > 1200 || x < -200 || y < -200)
+{
     instance_destroy();
+    exit;
+}
 
 if (cvspeed < 0 && y >= thrower_y)
 {
@@ -32,6 +35,7 @@ if (cvspeed < 0 && y >= thrower_y)
         
         audio_play_sound(snd_egg_bullet, 0, 0);
         instance_destroy();
+        exit;
     }
 }
 
@@ -98,7 +102,7 @@ if (variable_global_exists("enemy_by_type"))
                 hit_enemy = true;
                 hitted_enemy = _hit_id;
                 instance_destroy();
-                break;
+                exit;
             }
         }
         if (hit_enemy) break;

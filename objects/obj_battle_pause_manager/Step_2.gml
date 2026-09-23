@@ -29,6 +29,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 					if global.difficulty == 4{
 						reward_multiplier = 10
 					}
+					else if global.difficulty == 5{
+						reward_multiplier = 15
+					}
 					if !global.laboretory_room{
 							with obj_task_manager{
 								refresh_task_progress()
