@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"chili_powder",
+  "folderPath":"folders/精灵/Effects/chili_powder.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"chili_powder",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cde6b644-da05-411b-a778-e34da637f4a9","path":"sprites/spr_chili_powder_explode/spr_chili_powder_explode.yy",}
+  ],
+}

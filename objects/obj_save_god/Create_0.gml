@@ -3,9 +3,9 @@ plant_id = "save_god";
 obj_type = object_index;
 event_user(0);
 spawned = false;
+image_speed = 0;
+anim_frame = 0;
 idle_anim = 17;
-cooldown_timer = 3600;
-attacking = false;
 
 if (shape == 3)
     idle_anim = 21;

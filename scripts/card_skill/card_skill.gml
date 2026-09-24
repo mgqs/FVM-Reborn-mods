@@ -83,8 +83,19 @@ function get_plant_data_with_skill(plant_id, shape, upgrade_level, skill_level) 
     if (upgrade_data == undefined) {
         return undefined;
     }
-    var info_id = global.skill_registry[? plant_id][0]
-	upgrade_data[? info_id] = global.skill_registry[? plant_id][1][skill_level]
+    // 安全检查：卡片是否在技能注册表中注册
+    if (!ds_map_exists(global.skill_registry, plant_id)) {
+        return upgrade_data;
+    }
+    var _skill_entry = global.skill_registry[? plant_id];
+    if (!is_array(_skill_entry) || array_length(_skill_entry) < 2) {
+        return upgrade_data;
+    }
+    if (skill_level < 0 || skill_level >= array_length(_skill_entry[1])) {
+        return upgrade_data;
+    }
+    var info_id = _skill_entry[0]
+	upgrade_data[? info_id] = _skill_entry[1][skill_level]
 	return(upgrade_data)
     //// 复制升级数据，避免修改原始数据
     //var result_data = ds_map_create()

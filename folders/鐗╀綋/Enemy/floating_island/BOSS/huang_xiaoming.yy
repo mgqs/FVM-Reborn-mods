@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"huang_xiaoming",
+  "folderPath":"folders/鐗╀綋/Enemy/floating_island/BOSS/huang_xiaoming.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"huang_xiaoming",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

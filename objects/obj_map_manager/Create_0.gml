@@ -23,7 +23,23 @@ for(var i = 0 ; i <button_array_length ; i++){
 	inst.player_level_require = button_struct.player_level_require
 	inst.pre_level_require = button_struct.pre_level_require
 	inst.sprite_index = button_struct.button_spr
+	if button_struct.id == "test_level"{
+		inst.image_xscale = 0.18
+		inst.image_yscale = 0.18
+	}
 }
+
+// 测试关卡入口（所有岛屿通用）
+var test_inst = instance_create_depth(860,56,-2,obj_levelselect_button)
+test_inst.image_xscale = 0.18
+test_inst.image_yscale = 0.18
+test_inst.target_level_id = "test_level"
+test_inst.target_level_file = "test_level.json"
+test_inst.target_level_file_hard = "test_level_hard.json"
+test_inst.level_index = -1
+test_inst.player_level_require = 1
+test_inst.pre_level_require = []
+test_inst.sprite_index = spr_test_level_button
 
 instance_create_depth(room_width-210,room_height,-1,obj_player_menu_bg)
 

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"iron_man_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/floating_island/BOSS/iron_man_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_man_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"baibianshe",
+  "folderPath":"folders/绮剧伒/mod/Cards/baibianshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"baibianshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

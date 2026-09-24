@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_panda_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_panda_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_panda_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2d6bedb5-1dcd-4171-b3b0-9355f6ba5583","path":"sprites/spr_little_undersea_panda_mouse/spr_little_undersea_panda_mouse.yy",},
+    {"name":"7e4a689e-7363-4636-b94a-4139e4e605d3","path":"sprites/spr_little_undersea_panda_mouse_throw/spr_little_undersea_panda_mouse_throw.yy",},
+    {"name":"821f6d06-129a-4c04-904b-a7c50f4dad9c","path":"sprites/spr_undersea_panda_mouse/spr_undersea_panda_mouse.yy",},
+    {"name":"198ea2d0-0b55-4c59-8f1b-9a262a30ecc8","path":"sprites/spr_undersea_panda_mouse_has_small/spr_undersea_panda_mouse_has_small.yy",},
+    {"name":"053acfae-558c-4328-aa3e-aad53a0ef498","path":"sprites/spr_undersea_panda_mouse_throw/spr_undersea_panda_mouse_throw.yy",}
+  ],
+}

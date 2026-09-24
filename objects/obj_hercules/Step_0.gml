@@ -2,6 +2,25 @@ if global.is_paused{
 	exit
 }
 
+// Register to global enemy type registry
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
+}
+
 if flash_value > 0 {
 	flash_value -= 10
 }

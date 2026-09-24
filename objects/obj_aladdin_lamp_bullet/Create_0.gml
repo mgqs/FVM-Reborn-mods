@@ -1,0 +1,17 @@
+damage = 0;
+direction = 270;
+move_speed = 8;
+damage_type = "pierce";
+target_type = "all";
+splash_ratio = 0;
+shape_b = 0;
+hitted_enemy = ds_list_create();
+hit_row = 0;
+hit_col = 0;
+start_x = x;
+start_y = y;
+image_speed = 1;
+image_angle = 0;
+image_xscale = 1.8;
+image_yscale = 1.8;
+hittable_types = get_hittable_enemy_types(target_type);

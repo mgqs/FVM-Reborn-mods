@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"throw",
+  "folderPath":"folders/精灵/Bullet/throw.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"throw",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f972d8f5-3a45-4914-be5e-18e13bc04bcc","path":"sprites/spr_chocolatecannon_bullet/spr_chocolatecannon_bullet.yy",},
+    {"name":"878634ad-f1ec-46a7-9140-d7cec07e82bb","path":"sprites/spr_chocolatepult_bullet_large/spr_chocolatepult_bullet_large.yy",},
+    {"name":"6f60e3e1-0d97-4a81-856f-11cb90d36a6e","path":"sprites/spr_chocolatepult_bullet_normal/spr_chocolatepult_bullet_normal.yy",},
+    {"name":"5d8ffb0b-03f8-4c9e-84ab-0a60b9415fd8","path":"sprites/spr_eggboilerpult_bullet/spr_eggboilerpult_bullet.yy",},
+    {"name":"077cf574-dc2c-4692-b482-954a4cd79396","path":"sprites/spr_eggboilerpult_bullet_2/spr_eggboilerpult_bullet_2.yy",},
+    {"name":"a07359d2-a741-4289-8a8e-40a0d3a3ba29","path":"sprites/spr_iceeggboilerpult_bullet/spr_iceeggboilerpult_bullet.yy",},
+    {"name":"eb23c879-1ce9-48fe-a708-664a2544d6c0","path":"sprites/spr_panfriedbun_bullet/spr_panfriedbun_bullet.yy",},
+    {"name":"8f65b58e-1ef4-4b32-9a38-8a3ff3ff2d39","path":"sprites/spr_panfriedbun_bullet_1/spr_panfriedbun_bullet_1.yy",},
+    {"name":"709c1dd0-c7f3-4927-bfe1-a217f2dee2e4","path":"sprites/spr_panfriedbun_bullet_2/spr_panfriedbun_bullet_2.yy",},
+    {"name":"02350307-09b5-41c2-bd18-9dfbea8eb90c","path":"sprites/spr_saladpult_bullet/spr_saladpult_bullet.yy",},
+    {"name":"af1d37d8-cd11-4dec-8e56-bac1fd96032f","path":"sprites/spr_stinkytofupult_bullet_normal/spr_stinkytofupult_bullet_normal.yy",},
+    {"name":"e7c2158e-804b-480e-89ac-b20b1dea599a","path":"sprites/spr_stinkytofupult_bullet_poison/spr_stinkytofupult_bullet_poison.yy",}
+  ],
+}

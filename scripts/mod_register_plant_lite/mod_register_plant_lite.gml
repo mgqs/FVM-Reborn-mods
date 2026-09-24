@@ -1,5 +1,7 @@
-function mod_register_plant_lite(arg0, arg1)
+function mod_register_plant_lite(arg0, arg1, arg2 = true)
 {
+    var is_god = arg2;
+
     if (ds_map_exists(global.plant_registry, arg0))
     {
         show_debug_message("mod植物已注册: " + arg0);
@@ -45,7 +47,8 @@ function mod_register_plant_lite(arg0, arg1)
     
     ds_map_add(global.plant_registry, arg0, plant_data);
     
-    for (var i = 1; i <= 18; i++)
+    var max_level = is_god ? 18 : 16;
+    for (var i = 1; i <= max_level; i++)
         add_plant_upgrade_lite(arg0, i, arg1);
     
     return true;

@@ -21,17 +21,19 @@ draw_set_valign(fa_bottom);
 draw_text(1144, 909, string(global.save_data.player.gold));
 draw_text(1367, 909, string(amt));
 
-if (global.save_data.player.wish_count >= 25)
+var _pity_tier_name = (global.save_data.player.pity_count % 2 == 0) ? "四叶草/水晶/神谕之石" : "神谕之石";
+
+if (global.save_data.player.wish_count >= 40)
 {
     draw_set_color(c_lime);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    draw_text(639, 285, "保底：" + string(global.save_data.player.wish_count) + " / 25");
+    draw_text(639, 285, "保底：" + string(global.save_data.player.wish_count) + " / 50（下次：" + _pity_tier_name + "）");
 }
 else
 {
     draw_set_color(c_white);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    draw_text(639, 285, "保底：" + string(global.save_data.player.wish_count) + " / 25");
+    draw_text(639, 285, "保底：" + string(global.save_data.player.wish_count) + " / 50（下次：" + _pity_tier_name + "）");
 }

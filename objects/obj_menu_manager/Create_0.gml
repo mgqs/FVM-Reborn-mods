@@ -44,9 +44,8 @@ self.texture_to_load = [
 	"effects",
 	"player",
 	"maps",
-	"enemy_tower",
 	"enemy_floating",
-	"pack_undersea_vortex"
+	"enemy_tower"
 ]
 
 self.texture_count = array_length(self.texture_to_load)
@@ -61,6 +60,30 @@ if !global.preloaded{
 function after_texture_load() {
     scribble_font_set_default("font_hei")
     scribble_font_bake_outline_4dir("font_hei", "font_hei_outline_4dir_black", c_dkgray, false)
+    
+    // 字体缺失字符适配：从 font_pixel 复制缺失的汉字到各主字体
+    var _missing_chars = "窒黏蝙蝠鲨鳗牡蛎";
+    var _target_fonts = ["font_yuan", "font_hei", "font_song", "font_song2"];
+    var _source_font = "font_pixel";
+    
+    if (scribble_font_exists(_source_font)) {
+        for (var _fi = 0; _fi < array_length(_target_fonts); _fi++) {
+            var _tfont = _target_fonts[_fi];
+            if (scribble_font_exists(_tfont)) {
+                var _chars_to_copy = "";
+                for (var _ci = 1; _ci <= string_length(_missing_chars); _ci++) {
+                    var _ch = string_char_at(_missing_chars, _ci);
+                    if (!scribble_font_has_character(_tfont, _ch)) {
+                        _chars_to_copy += _ch;
+                    }
+                }
+                if (string_length(_chars_to_copy) > 0) {
+                    scribble_super_glyph_copy(_tfont, _source_font, false, _chars_to_copy);
+                }
+            }
+        }
+    }
+    
 	if !global.preloaded{
 		with obj_update_checker_btn{
 			event_user(1)

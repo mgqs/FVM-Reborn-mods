@@ -5,7 +5,7 @@ if global.is_paused{
 
 if card_id != "magic_chicken"{
 	current_cost = cost
-	if ds_map_find_value(global.plus_card_map,card_id) != undefined{
+	if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,card_id) != undefined{
 		var plus_info = ds_map_find_value(global.plus_card_map,card_id)
 		with plus_info[0]{
 			if shape < plus_info[1]{
@@ -14,7 +14,7 @@ if card_id != "magic_chicken"{
 		}
 	}
 }
-if global.debug{
+if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
 }
 if cooldown_timer < cooldown{
@@ -129,9 +129,9 @@ if (is_selected) {
 		var card_data = deck_get_card_data(card_id,card_shape)
 		
 		if card_id == "magic_chicken"{
-			if global.prev_place_id != ""{
-				card_shape = get_card_info_simple(global.prev_place_id).shape
-				card_data = deck_get_card_data(global.prev_place_id,card_shape)
+			if global.last_placed_card_id != ""{
+				card_shape = get_card_info_simple(global.last_placed_card_id).shape
+				card_data = deck_get_card_data(global.last_placed_card_id,card_shape)
 			}
 		}
         
@@ -188,6 +188,19 @@ if (is_selected) {
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
         var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"]));
+
+        if (can_plant && card_id == "lingrong_god" && !global.replace_placement) {
+            var _plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
+            var _blocked_ids = ["lingrong_god", "cotton_candy", "soda_bubble", "wooden_plate"];
+            for (var _i = 0; _i < ds_list_size(_plant_list); _i++) {
+                var _plant = ds_list_find_value(_plant_list, _i);
+                if (!instance_exists(_plant)) continue;
+                if (variable_instance_exists(_plant, "plant_id") && array_get_index(_blocked_ids, _plant.plant_id) != -1) {
+                    can_plant = false;
+                    break;
+                }
+            }
+        }
         
         if (can_plant && global.flame >= current_cost) {
             // 创建植物实例

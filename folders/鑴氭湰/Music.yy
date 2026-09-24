@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Music",
+  "folderPath":"folders/鑴氭湰/Music.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Music",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

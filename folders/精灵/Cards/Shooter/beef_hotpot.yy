@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"beef_hotpot",
+  "folderPath":"folders/精灵/Cards/Shooter/beef_hotpot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"beef_hotpot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"39a1714d-0279-4854-bd27-e9c7aed0fe03","path":"sprites/spr_beef_hotpot/spr_beef_hotpot.yy",},
+    {"name":"b9598a25-44a3-4e61-98a4-0ccaef100538","path":"sprites/spr_beef_hotpot_1/spr_beef_hotpot_1.yy",},
+    {"name":"f04e1cea-356d-4a65-a399-d4f0f2451264","path":"sprites/spr_beef_hotpot_2/spr_beef_hotpot_2.yy",}
+  ],
+}

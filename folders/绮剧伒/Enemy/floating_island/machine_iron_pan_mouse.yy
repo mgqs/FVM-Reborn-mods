@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"machine_iron_pan_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/floating_island/machine_iron_pan_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_iron_pan_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

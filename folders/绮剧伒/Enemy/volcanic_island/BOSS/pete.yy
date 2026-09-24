@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"pete",
+  "folderPath":"folders/绮剧伒/Enemy/volcanic_island/BOSS/pete.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pete",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

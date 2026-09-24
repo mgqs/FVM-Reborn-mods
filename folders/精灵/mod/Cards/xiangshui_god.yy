@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"xiangshui_god",
+  "folderPath":"folders/精灵/mod/Cards/xiangshui_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xiangshui_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d0ef007c-7350-468b-af81-41c09db9dd8f","path":"sprites/spr_xiangshui_god/spr_xiangshui_god.yy",},
+    {"name":"d6ae5578-72bf-4ef5-bf7e-b67bb896085b","path":"sprites/spr_xiangshui_god_1/spr_xiangshui_god_1.yy",},
+    {"name":"994ebd45-81ba-498d-b41f-bddf529e111b","path":"sprites/spr_xiangshui_god_2/spr_xiangshui_god_2.yy",},
+    {"name":"8a959999-d221-4ee6-9ce9-bffdb1faf4fa","path":"sprites/spr_xiangshui_god_pin1/spr_xiangshui_god_pin1.yy",},
+    {"name":"25d2ce4d-a623-4276-bbec-cb48a96ec220","path":"sprites/spr_xiangshui_god_pin2/spr_xiangshui_god_pin2.yy",}
+  ],
+}

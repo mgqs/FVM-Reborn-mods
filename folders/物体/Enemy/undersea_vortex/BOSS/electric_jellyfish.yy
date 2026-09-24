@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"electric_jellyfish",
+  "folderPath":"folders/物体/Enemy/undersea_vortex/BOSS/electric_jellyfish.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"electric_jellyfish",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_electric_jellyfish","path":"objects/obj_electric_jellyfish/obj_electric_jellyfish.yy",},
+    {"name":"obj_electric_jellyfish_bullet","path":"objects/obj_electric_jellyfish_bullet/obj_electric_jellyfish_bullet.yy",}
+  ],
+}

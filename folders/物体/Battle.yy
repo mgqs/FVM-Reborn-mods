@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Battle",
+  "folderPath":"folders/物体/Battle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Battle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Menu","path":"folders/物体/Battle/Menu.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_battle","path":"objects/obj_battle/obj_battle.yy",},
+    {"name":"obj_battle_music_controller","path":"objects/obj_battle_music_controller/obj_battle_music_controller.yy",},
+    {"name":"obj_battle_pause_manager","path":"objects/obj_battle_pause_manager/obj_battle_pause_manager.yy",},
+    {"name":"obj_battle_timer_display","path":"objects/obj_battle_timer_display/obj_battle_timer_display.yy",},
+    {"name":"obj_boss_hpbar","path":"objects/obj_boss_hpbar/obj_boss_hpbar.yy",},
+    {"name":"obj_event_manager","path":"objects/obj_event_manager/obj_event_manager.yy",},
+    {"name":"obj_flame_manager","path":"objects/obj_flame_manager/obj_flame_manager.yy",},
+    {"name":"obj_game_over","path":"objects/obj_game_over/obj_game_over.yy",},
+    {"name":"obj_level_progress_bar","path":"objects/obj_level_progress_bar/obj_level_progress_bar.yy",},
+    {"name":"obj_map_change_effect","path":"objects/obj_map_change_effect/obj_map_change_effect.yy",}
+  ],
+}

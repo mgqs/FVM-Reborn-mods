@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"rotate_leo",
+  "folderPath":"folders/绮剧伒/UI/Attire/rotate_leo.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rotate_leo",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

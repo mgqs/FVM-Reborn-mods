@@ -18,9 +18,10 @@ deck_ensure_size();
 //add_to_deck("toast_bread",0);
 select_card_index = ds_list_create()
 hover_card_index = -1
+deck_sort_order = [] // 卡片排序映射（普通卡在前，金卡在后）
 hover_slot_index = -1
 slot_rows = 11
-slot_cols = 10
+slot_cols = 13
 slot_surface = -1
 map_surface = -1
 y_offset = 0

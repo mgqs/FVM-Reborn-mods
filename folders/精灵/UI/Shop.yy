@@ -1,0 +1,30 @@
+{
+  "$GMFolder":"",
+  "%Name":"Shop",
+  "folderPath":"folders/精灵/UI/Shop.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shop",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"products","path":"folders/精灵/UI/Shop/products.yy",}
+  ],
+  "listItems":[
+    {"name":"36a177cd-47fc-4063-92cc-8de14b60cf86","path":"sprites/spr_shop_bg/spr_shop_bg.yy",},
+    {"name":"d1961da3-ea60-4bf9-9fa4-b02e60a61565","path":"sprites/spr_shop_bg_2/spr_shop_bg_2.yy",},
+    {"name":"a5623486-29b3-4993-a002-8a68425551e4","path":"sprites/spr_shop_buy_btn/spr_shop_buy_btn.yy",},
+    {"name":"d079c368-be2a-4aae-84b0-9897c2390910","path":"sprites/spr_shop_change_btn_1/spr_shop_change_btn_1.yy",},
+    {"name":"edf93d5d-72e8-4e67-b72a-e47ae92b3e79","path":"sprites/spr_shop_change_btn_2/spr_shop_change_btn_2.yy",},
+    {"name":"f9533994-ce83-419f-9108-ecd787ce738e","path":"sprites/spr_shop_goods_bg/spr_shop_goods_bg.yy",},
+    {"name":"80a2a525-a568-4169-a62c-5a3a4df878e1","path":"sprites/spr_shop_page_btn/spr_shop_page_btn.yy",},
+    {"name":"66a04773-94d6-4f18-b5dc-9cbee83bd112","path":"sprites/spr_shop_select_btn_1/spr_shop_select_btn_1.yy",},
+    {"name":"2fc9a894-a7a0-4067-9b68-66bef770441d","path":"sprites/spr_shop_select_btn_2/spr_shop_select_btn_2.yy",},
+    {"name":"eb33a61e-a627-43dd-abc3-ee698dfbd365","path":"sprites/spr_shop_select_btn_3/spr_shop_select_btn_3.yy",},
+    {"name":"b62d238d-8ff4-44b9-a4fb-8068735b5e55","path":"sprites/spr_shop_select_btn_4/spr_shop_select_btn_4.yy",},
+    {"name":"f0370776-bc1c-4352-a520-9af77b102839","path":"sprites/spr_shop_select_btn_5/spr_shop_select_btn_5.yy",},
+    {"name":"04609a6a-4f2b-437b-b694-328e0c23ca32","path":"sprites/spr_sold_out/spr_sold_out.yy",}
+  ],
+}

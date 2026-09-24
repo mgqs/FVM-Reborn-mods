@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Cookbook",
+  "folderPath":"folders/脚本/Menu/Cookbook.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Cookbook",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cookbook_init","path":"scripts/cookbook_init/cookbook_init.yy",}
+  ],
+}

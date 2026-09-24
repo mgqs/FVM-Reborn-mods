@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"xiangshui_god",
+  "folderPath":"folders/物体/mod/Cards/xiangshui_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xiangshui_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_xiangshui_god","path":"objects/obj_xiangshui_god/obj_xiangshui_god.yy",}
+  ],
+}

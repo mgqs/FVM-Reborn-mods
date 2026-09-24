@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"needle_baron",
+  "folderPath":"folders/绮剧伒/Enemy/volcanic_island/BOSS/needle_baron.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"needle_baron",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

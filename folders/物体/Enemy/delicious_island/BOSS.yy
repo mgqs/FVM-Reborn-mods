@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"BOSS",
+  "folderPath":"folders/物体/Enemy/delicious_island/BOSS.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"BOSS",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_abyss_pharaoh","path":"objects/obj_abyss_pharaoh/obj_abyss_pharaoh.yy",},
+    {"name":"obj_arno","path":"objects/obj_arno/obj_arno.yy",},
+    {"name":"obj_ice_residue","path":"objects/obj_ice_residue/obj_ice_residue.yy",},
+    {"name":"obj_ice_residue_ball","path":"objects/obj_ice_residue_ball/obj_ice_residue_ball.yy",},
+    {"name":"obj_mario_mouse","path":"objects/obj_mario_mouse/obj_mario_mouse.yy",},
+    {"name":"obj_mario_pipeline","path":"objects/obj_mario_pipeline/obj_mario_pipeline.yy",},
+    {"name":"obj_pharaoh_coffin","path":"objects/obj_pharaoh_coffin/obj_pharaoh_coffin.yy",},
+    {"name":"obj_pharaoh_scarab","path":"objects/obj_pharaoh_scarab/obj_pharaoh_scarab.yy",},
+    {"name":"obj_rumble","path":"objects/obj_rumble/obj_rumble.yy",},
+    {"name":"obj_rumble_laser","path":"objects/obj_rumble_laser/obj_rumble_laser.yy",},
+    {"name":"obj_rumble_missile","path":"objects/obj_rumble_missile/obj_rumble_missile.yy",},
+    {"name":"obj_temple_pharaoh","path":"objects/obj_temple_pharaoh/obj_temple_pharaoh.yy",}
+  ],
+}

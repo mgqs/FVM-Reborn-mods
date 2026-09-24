@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"pink_paul",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/pink_paul.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pink_paul",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_paul_bullet","path":"objects/obj_paul_bullet/obj_paul_bullet.yy",},
+    {"name":"obj_paul_bullet_effect","path":"objects/obj_paul_bullet_effect/obj_paul_bullet_effect.yy",},
+    {"name":"obj_pink_paul","path":"objects/obj_pink_paul/obj_pink_paul.yy",},
+    {"name":"obj_pink_paul_tentacle","path":"objects/obj_pink_paul_tentacle/obj_pink_paul_tentacle.yy",},
+    {"name":"obj_pink_paul_tentacle_drop","path":"objects/obj_pink_paul_tentacle_drop/obj_pink_paul_tentacle_drop.yy",}
+  ],
+}

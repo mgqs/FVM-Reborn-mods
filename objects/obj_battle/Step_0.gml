@@ -139,27 +139,33 @@ else{
 	wave_data = global.level_file.waves[current_wave-1]
 }
 
-if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer == 1{
+if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer <= 1{
 	level_stage = "boss"
-	var enemy_row = irandom_range(0,global.grid_rows-1)
-	var enemy_pos = get_world_position_from_grid(10,enemy_row)
-	var boss_inst = instance_create_depth(enemy_pos.x-80,enemy_pos.y+30,-200,global.enemy_map[? wave_data.boss]._obj)
-	boss_count ++
-	if is_real(global.level_file.version){
-		boss_inst.hp *= wave_data.boss_1_hp_modify
-		boss_inst.maxhp *= wave_data.boss_1_hp_modify
-		if wave_data.boss2 != ""{
-			var enemy_row_2 = irandom_range(0,global.grid_rows-1)
-			var enemy_pos_2 = get_world_position_from_grid(10,enemy_row_2)
-			var boss_2_inst = instance_create_depth(enemy_pos_2.x-80,enemy_pos_2.y+30,-200,global.enemy_map[? wave_data.boss2]._obj)
-			boss_2_inst.hp *= wave_data.boss_2_hp_modify
-			boss_2_inst.maxhp *= wave_data.boss_2_hp_modify
-			boss_count ++
+	var boss_spawn_mult = 1
+	if global.difficulty == 5{
+		boss_spawn_mult = 2
+	}
+	for (var bm = 0; bm < boss_spawn_mult; bm++){
+		var enemy_row = irandom_range(0,global.grid_rows-1)
+		var enemy_pos = get_world_position_from_grid(10,enemy_row)
+		var boss_inst = instance_create_depth(enemy_pos.x-80,enemy_pos.y+30,-200,global.enemy_map[? wave_data.boss]._obj)
+		boss_count ++
+		if is_real(global.level_file.version){
+			boss_inst.hp *= wave_data.boss_1_hp_modify
+			boss_inst.maxhp *= wave_data.boss_1_hp_modify
+			if wave_data.boss2 != ""{
+				var enemy_row_2 = irandom_range(0,global.grid_rows-1)
+				var enemy_pos_2 = get_world_position_from_grid(10,enemy_row_2)
+				var boss_2_inst = instance_create_depth(enemy_pos_2.x-80,enemy_pos_2.y+30,-200,global.enemy_map[? wave_data.boss2]._obj)
+				boss_2_inst.hp *= wave_data.boss_2_hp_modify
+				boss_2_inst.maxhp *= wave_data.boss_2_hp_modify
+				boss_count ++
+			}
 		}
 	}
 	with obj_battle_music_controller{
 		new_battle_music = global.level_data.boss_music
-		event_user(0)
+		event_user(10)
 	}
 }
 if wave_timer <= 0 && level_stage == "pre"{
@@ -206,6 +212,22 @@ if global.debug{
 		else if current_wave < total_wave{
 			current_wave += 1
 			current_subwave = 0
+		}
+	}
+}
+
+// 测试关卡：5秒伤害统计
+if global.level_id == "test_level"{
+	var _test_mouse = instance_find(obj_test_mouse, 0)
+	if _test_mouse != noone{
+		if !variable_instance_exists(_test_mouse, "test_damage_total"){
+			_test_mouse.test_damage_total = 0
+		}
+		test_dps_timer++
+		if test_dps_timer >= test_dps_window{
+			test_dps_display = _test_mouse.test_damage_total - test_dps_last_total
+			test_dps_last_total = _test_mouse.test_damage_total
+			test_dps_timer = 0
 		}
 	}
 }

@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Assistant",
+  "folderPath":"folders/物体/Cards/Assistant.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Assistant",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_brazier","path":"objects/obj_brazier/obj_brazier.yy",},
+    {"name":"obj_cat_box","path":"objects/obj_cat_box/obj_cat_box.yy",},
+    {"name":"obj_cat_chest","path":"objects/obj_cat_chest/obj_cat_chest.yy",},
+    {"name":"obj_cherry_pudding","path":"objects/obj_cherry_pudding/obj_cherry_pudding.yy",},
+    {"name":"obj_coffee_grounds","path":"objects/obj_coffee_grounds/obj_coffee_grounds.yy",},
+    {"name":"obj_fruit_tart","path":"objects/obj_fruit_tart/obj_fruit_tart.yy",},
+    {"name":"obj_ice_cream","path":"objects/obj_ice_cream/obj_ice_cream.yy",},
+    {"name":"obj_magic_chicken","path":"objects/obj_magic_chicken/obj_magic_chicken.yy",},
+    {"name":"obj_oil_lamp","path":"objects/obj_oil_lamp/obj_oil_lamp.yy",},
+    {"name":"obj_ventilation_fan","path":"objects/obj_ventilation_fan/obj_ventilation_fan.yy",},
+    {"name":"obj_wooden_cork","path":"objects/obj_wooden_cork/obj_wooden_cork.yy",}
+  ],
+}

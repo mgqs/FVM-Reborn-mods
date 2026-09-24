@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"fog_julie",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/fog_julie.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fog_julie",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_fog_julie","path":"objects/obj_fog_julie/obj_fog_julie.yy",},
+    {"name":"obj_julie_missile","path":"objects/obj_julie_missile/obj_julie_missile.yy",}
+  ],
+}

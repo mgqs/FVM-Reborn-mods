@@ -1,4 +1,4 @@
-﻿{
+{
   "$GMSprite":"v2",
   "%Name":"spr_donut_5",
   "bboxMode":0,
@@ -23,7 +23,7 @@
   ],
   "name":"spr_donut_5",
   "nineSlice":null,
-  "origin":7,
+  "origin":9,
   "parent":{
     "name":"Cards",
     "path":"folders/精灵/mod/Cards.yy",
@@ -67,16 +67,17 @@
     "seqWidth":140.0,
     "showBackdrop":true,
     "showBackdropImage":false,
-    "spriteId":null,
     "timeUnits":1,
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{"0":{"$SpriteFrameKeyframe":"","Id":{"name":"c4557274-3875-429e-9e7b-5da4398fe527","path":"sprites/spr_donut_5/spr_donut_5.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},},"Disabled":false,"id":"08777f1d-8698-4112-9873-e0b7f217a425","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c4557274-3875-429e-9e7b-5da4398fe527","path":"sprites/spr_donut_5/spr_donut_5.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"08777f1d-8698-4112-9873-e0b7f217a425","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":70,
+    "xorigin":104,
     "yorigin":102,
   },
   "swatchColours":null,

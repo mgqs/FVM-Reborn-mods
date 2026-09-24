@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"mouse_clip",
+  "folderPath":"folders/绮剧伒/Cards/boomer/mouse_clip.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_clip",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

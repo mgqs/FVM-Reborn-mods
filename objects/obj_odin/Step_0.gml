@@ -35,25 +35,12 @@ if (has_enemy)
     }
     else
     {
-        event_user(1);
         attack_timer = 0;
         state = 0;
     }
     
     if (attack_timer == (cycle - (2 * flash_speed)))
         event_user(1);
-    
-    if (shape >= 2)
-    {
-        if (attack_timer == (cycle - (4 * flash_speed)))
-            event_user(1);
-    }
-    
-    if (shape >= 3)
-    {
-        if (attack_timer == (cycle - (6 * flash_speed)))
-            event_user(1);
-    }
 }
 else
 {

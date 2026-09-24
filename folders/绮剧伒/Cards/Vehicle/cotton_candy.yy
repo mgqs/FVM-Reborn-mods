@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"cotton_candy",
+  "folderPath":"folders/绮剧伒/Cards/Vehicle/cotton_candy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cotton_candy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

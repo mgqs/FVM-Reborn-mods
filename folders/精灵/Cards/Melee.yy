@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Melee",
+  "folderPath":"folders/精灵/Cards/Melee.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Melee",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"iron_fishbone","path":"folders/精灵/Cards/Melee/iron_fishbone.yy",},
+    {"name":"rotating_coffee_pot","path":"folders/精灵/Cards/Melee/rotating_coffee_pot.yy",},
+    {"name":"xinjiang_fried_noodles","path":"folders/精灵/Cards/Melee/xinjiang_fried_noodles.yy",},
+    {"name":"hamburger","path":"folders/精灵/Cards/Melee/hamburger.yy",}
+  ],
+  "listItems":[
+    {"name":"e5bc8fff-33ec-4936-8e07-57a8a47d7e4b","path":"sprites/spr_fishbone/spr_fishbone.yy",}
+  ],
+}

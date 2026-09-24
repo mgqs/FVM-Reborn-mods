@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"stinky_tofu_pult",
+  "folderPath":"folders/绮剧伒/Cards/Pult/stinky_tofu_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"stinky_tofu_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

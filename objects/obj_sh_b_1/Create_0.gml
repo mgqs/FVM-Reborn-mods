@@ -9,3 +9,5 @@ ignore_list = image_xscale == 1.8;
 image_yscale = 1.8;
 image_speed = 0;
 timer = 0;
+banding_card_obj = -4;
+hittable_types = get_hittable_enemy_types(target_type);

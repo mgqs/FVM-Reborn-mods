@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"精灵",
+  "folderPath":"folders/精灵.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"精灵",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Effects","path":"folders/精灵/Effects.yy",},
+    {"name":"Battle","path":"folders/精灵/Battle.yy",},
+    {"name":"Enemy","path":"folders/精灵/Enemy.yy",},
+    {"name":"Button","path":"folders/精灵/Button.yy",},
+    {"name":"mod","path":"folders/精灵/mod.yy",},
+    {"name":"Card Slot","path":"folders/精灵/Card Slot.yy",},
+    {"name":"Cards","path":"folders/精灵/Cards.yy",},
+    {"name":"Player","path":"folders/精灵/Player.yy",},
+    {"name":"Map Object","path":"folders/精灵/Map Object.yy",},
+    {"name":"UI","path":"folders/精灵/UI.yy",},
+    {"name":"Stars","path":"folders/精灵/Stars.yy",},
+    {"name":"Maps","path":"folders/精灵/Maps.yy",},
+    {"name":"Bullet","path":"folders/精灵/Bullet.yy",}
+  ],
+  "listItems":[],
+}

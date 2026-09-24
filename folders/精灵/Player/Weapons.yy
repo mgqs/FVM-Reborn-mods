@@ -1,0 +1,29 @@
+{
+  "$GMFolder":"",
+  "%Name":"Weapons",
+  "folderPath":"folders/精灵/Player/Weapons.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Weapons",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"icon","path":"folders/精灵/Player/Weapons/icon.yy",}
+  ],
+  "listItems":[
+    {"name":"c843049b-cc2a-48c7-89f8-7eec9aaf5c4c","path":"sprites/spr_bubble_gun/spr_bubble_gun.yy",},
+    {"name":"b6215407-b998-4082-b945-007d7f44e628","path":"sprites/spr_cat_gun/spr_cat_gun.yy",},
+    {"name":"ec201fc4-dd9f-47db-acd0-18c78e6f37cc","path":"sprites/spr_double_ice_crossbow/spr_double_ice_crossbow.yy",},
+    {"name":"5789c9a2-1a62-4205-bc10-c47f962526b0","path":"sprites/spr_double_water_gun/spr_double_water_gun.yy",},
+    {"name":"3959c61a-6e86-400f-94de-06e0a7b87893","path":"sprites/spr_ice_gun/spr_ice_gun.yy",},
+    {"name":"5e758ae0-90a2-4892-940c-4287554c052f","path":"sprites/spr_ice_mighty_gun/spr_ice_mighty_gun.yy",},
+    {"name":"bb531514-3ed3-4392-af60-e759e7ea562d","path":"sprites/spr_ice_spoon_crossbow/spr_ice_spoon_crossbow.yy",},
+    {"name":"19d1bea1-ff3f-4630-9708-e36934975202","path":"sprites/spr_long_bao_gun/spr_long_bao_gun.yy",},
+    {"name":"9a641229-7ecc-4c5b-aa61-febcf8eb8eeb","path":"sprites/spr_mighty_gun/spr_mighty_gun.yy",},
+    {"name":"bf4df8ae-e58e-4a63-b063-f1a4f56a078b","path":"sprites/spr_poseidon_dart_gun/spr_poseidon_dart_gun.yy",},
+    {"name":"5ae75e7c-bbec-4cf2-b042-c9b41828fced","path":"sprites/spr_star_gun/spr_star_gun.yy",},
+    {"name":"8442cdc6-4451-4ac1-ba77-56b56945a862","path":"sprites/spr_steel_claw_gun/spr_steel_claw_gun.yy",}
+  ],
+}

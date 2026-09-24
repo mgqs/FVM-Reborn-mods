@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"Menu",
+  "folderPath":"folders/脚本/Menu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Menu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Shop","path":"folders/脚本/Menu/Shop.yy",},
+    {"name":"Craft","path":"folders/脚本/Menu/Craft.yy",},
+    {"name":"Cookbook","path":"folders/脚本/Menu/Cookbook.yy",},
+    {"name":"Attire","path":"folders/脚本/Menu/Attire.yy",},
+    {"name":"Task","path":"folders/脚本/Menu/Task.yy",}
+  ],
+  "listItems":[],
+}

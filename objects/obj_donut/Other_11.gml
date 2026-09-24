@@ -3,6 +3,7 @@ inst.damage = atk;
 inst.move_speed = 6;
 inst.row = grid_row;
 inst.target_type = target_t;
+inst.hittable_types = get_hittable_enemy_types(inst.target_type);
 inst.shape = shape;
 var spr = spr_donut_bullet;
 

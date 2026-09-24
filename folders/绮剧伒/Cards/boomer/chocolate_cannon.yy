@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"chocolate_cannon",
+  "folderPath":"folders/绮剧伒/Cards/boomer/chocolate_cannon.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"chocolate_cannon",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

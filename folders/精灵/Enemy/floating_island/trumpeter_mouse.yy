@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"trumpeter_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/trumpeter_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"trumpeter_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e2b653cd-897c-42dd-ac54-491f6cc741b1","path":"sprites/spr_trumpeter_mouse/spr_trumpeter_mouse.yy",},
+    {"name":"f70d3e44-0ef6-4ea2-bd5d-61c4cb34dc37","path":"sprites/spr_trumpeter_mouse_perform/spr_trumpeter_mouse_perform.yy",}
+  ],
+}

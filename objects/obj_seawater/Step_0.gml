@@ -14,7 +14,7 @@ with obj_card_parent{
 	var is_in_front = false
 	is_in_front = grid_row == other.row && grid_col == other.col
 	if is_in_front{
-		if plant_id == "soda_bubble"{
+		if plant_id == "soda_bubble" || plant_id == "lingrong_god"{
 			on_lava = true
 			other.has_bubble = true
 		}

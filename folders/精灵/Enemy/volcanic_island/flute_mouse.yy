@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"flute_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/flute_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flute_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"0f12b025-fb01-4fa0-8a47-bae06336e889","path":"sprites/spr_flute_mouse/spr_flute_mouse.yy",},
+    {"name":"3307544c-5148-48bb-a7d1-42b9955a7cf5","path":"sprites/spr_flute_mouse_effect/spr_flute_mouse_effect.yy",},
+    {"name":"20812757-ebb5-4b6f-97f4-9cd8eedf7d24","path":"sprites/spr_flute_mouse_perform/spr_flute_mouse_perform.yy",}
+  ],
+}

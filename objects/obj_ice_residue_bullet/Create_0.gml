@@ -1,5 +1,3 @@
-image_xscale = 1.8
-image_yscale = 1.8
 timer = 0
 image_angle = -30
 row = 0
@@ -8,3 +6,5 @@ cvspeed = -7
 cgravity = 0.2
 move_speed = -12
 damage = 0
+image_xscale = 1.8
+image_yscale = 1.8

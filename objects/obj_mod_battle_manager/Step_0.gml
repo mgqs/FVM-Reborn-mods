@@ -73,15 +73,21 @@ else
             {
                 if (!variable_instance_exists(self.id, "shield_buffed"))
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
                 else if (!self.shield_buffed)
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
@@ -89,6 +95,15 @@ else
             
             if (just_initialized || self.buff_applied_id != global.buff_apply_id)
             {
+                if (self.grid_col < 0 || self.grid_col >= global.grid_cols || self.grid_row < 0 || self.grid_row >= global.grid_rows)
+                {
+                    self.atk = self.base_atk;
+                    self.buff_applied_id = global.buff_apply_id;
+                    continue;
+                }
+
+                var buff_multiplier = 1;
+
                 if (!is_undefined(self.buff_type))
                 {
                     switch (self.buff_type)
@@ -96,25 +111,99 @@ else
                         case "thrower":
                             var grid_thrower = ds_map_find_value(global.buff_grid, "thrower");
                             var buff_au = get_aurora_buff(self.grid_col, self.grid_row);
-                            self.atk = self.base_atk * max(grid_thrower[self.grid_col][self.grid_row], buff_au);
+                            buff_multiplier = max(grid_thrower[self.grid_col][self.grid_row], buff_au);
                             break;
-                        
+
                         case "tracker":
                             var grid_tracker = ds_map_find_value(global.buff_grid, "tracker");
-                            self.atk = self.base_atk * grid_tracker[self.grid_col][self.grid_row];
+                            buff_multiplier = grid_tracker[self.grid_col][self.grid_row];
                             break;
-                        
+
+                        case "xiangshui":
+                            var grid_xiangshui = ds_map_find_value(global.buff_grid, "xiangshui");
+                            buff_multiplier = grid_xiangshui[self.grid_col][self.grid_row];
+                            break;
+
                         case "sprayer":
                             var grid_sprayer = ds_map_find_value(global.buff_grid, "sprayer");
-                            self.atk = self.base_atk * grid_sprayer[self.grid_col][self.grid_row];
+                            buff_multiplier = grid_sprayer[self.grid_col][self.grid_row];
                             break;
-                        
+
+                        case "five_dir":
+                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
+                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
+                            buff_multiplier = max(fd_normal, fd_stack);
+                            break;
+
+                        case "multi_dir":
+                            var grid_multi_dir = ds_map_find_value(global.buff_grid, "multi_dir");
+                            var stack_multi_dir = ds_map_find_value(global.buff_stack_grid, "multi_dir");
+                            var md_normal = grid_multi_dir[self.grid_col][self.grid_row];
+                            var md_stack = stack_multi_dir[self.grid_col][self.grid_row];
+                            buff_multiplier = max(md_normal, md_stack);
+                            break;
+
                         default:
-                            self.atk = self.base_atk;
+                            buff_multiplier = 1;
                             break;
                     }
                 }
-                
+
+                // 第二buff类型：取与第一buff的较大值（避免同一增幅源重复计算）
+                var buff_type_2 = "";
+                if (variable_global_exists("plant_buff_map_2") && ds_exists(global.plant_buff_map_2, ds_type_map) && ds_map_exists(global.plant_buff_map_2, self.plant_id))
+                    buff_type_2 = ds_map_find_value(global.plant_buff_map_2, self.plant_id);
+
+                if (buff_type_2 != "" && buff_type_2 != self.buff_type)
+                {
+                    var buff2_multiplier = 1;
+                    switch (buff_type_2)
+                    {
+                        case "thrower":
+                            var grid_thrower2 = ds_map_find_value(global.buff_grid, "thrower");
+                            var buff_au2 = get_aurora_buff(self.grid_col, self.grid_row);
+                            buff2_multiplier = max(grid_thrower2[self.grid_col][self.grid_row], buff_au2);
+                            break;
+
+                        case "tracker":
+                            var grid_tracker2 = ds_map_find_value(global.buff_grid, "tracker");
+                            buff2_multiplier = grid_tracker2[self.grid_col][self.grid_row];
+                            break;
+
+                        case "xiangshui":
+                            var grid_xiangshui2 = ds_map_find_value(global.buff_grid, "xiangshui");
+                            buff2_multiplier = grid_xiangshui2[self.grid_col][self.grid_row];
+                            break;
+
+                        case "sprayer":
+                            var grid_sprayer2 = ds_map_find_value(global.buff_grid, "sprayer");
+                            buff2_multiplier = grid_sprayer2[self.grid_col][self.grid_row];
+                            break;
+
+                        case "five_dir":
+                            var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
+                            var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(fd2_normal, fd2_stack);
+                            break;
+
+                        case "multi_dir":
+                            var grid_multi_dir2 = ds_map_find_value(global.buff_grid, "multi_dir");
+                            var stack_multi_dir2 = ds_map_find_value(global.buff_stack_grid, "multi_dir");
+                            var md2_normal = grid_multi_dir2[self.grid_col][self.grid_row];
+                            var md2_stack = stack_multi_dir2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(md2_normal, md2_stack);
+                            break;
+                    }
+
+                    buff_multiplier = max(buff_multiplier, buff2_multiplier);
+                }
+
+                self.atk = self.base_atk * buff_multiplier;
+
                 self.buff_applied_id = global.buff_apply_id;
             }
         }

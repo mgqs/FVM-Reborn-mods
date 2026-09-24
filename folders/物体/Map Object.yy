@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Map Object",
+  "folderPath":"folders/物体/Map Object.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Map Object",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_cloud","path":"objects/obj_cloud/obj_cloud.yy",},
+    {"name":"obj_fog","path":"objects/obj_fog/obj_fog.yy",},
+    {"name":"obj_lava","path":"objects/obj_lava/obj_lava.yy",},
+    {"name":"obj_mouse_hole","path":"objects/obj_mouse_hole/obj_mouse_hole.yy",},
+    {"name":"obj_mucus","path":"objects/obj_mucus/obj_mucus.yy",},
+    {"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},
+    {"name":"obj_pharaoh_hole","path":"objects/obj_pharaoh_hole/obj_pharaoh_hole.yy",},
+    {"name":"obj_platform","path":"objects/obj_platform/obj_platform.yy",},
+    {"name":"obj_seawater","path":"objects/obj_seawater/obj_seawater.yy",},
+    {"name":"obj_static_cloud","path":"objects/obj_static_cloud/obj_static_cloud.yy",},
+    {"name":"obj_enemy_parent","path":"objects/obj_wind_tunnel/obj_wind_tunnel.yy",}
+  ],
+}

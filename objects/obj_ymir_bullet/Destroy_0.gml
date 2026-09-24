@@ -12,18 +12,21 @@ var splash_ratio = 0.45;
 if (shape >= 1)
     splash_ratio = 0.5;
 
+var _to_destroy = [];
+
 with (obj_enemy_parent)
 {
+    if (!instance_exists(id)) continue;
     if (hp > 0 && abs(_x - x) < 150 && abs(grid_row - other.row) <= 1)
     {
         var is_direct_hit = false;
-        
+
         if (variable_instance_exists(other, "hitted_enemy"))
         {
             if (id == other.hitted_enemy)
                 is_direct_hit = true;
         }
-        
+
         if (!is_direct_hit && can_hit(other.target_type, target_type))
         {
             if (other.shape <= 1 || hp > (other.damage * splash_ratio))
@@ -45,9 +48,15 @@ with (obj_enemy_parent)
                 {
                     instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
                 }
-                
-                instance_destroy();
+
+                array_push(_to_destroy, id);
             }
         }
     }
+}
+
+for (var _d = 0; _d < array_length(_to_destroy); _d++)
+{
+    if (instance_exists(_to_destroy[_d]))
+        with (_to_destroy[_d]) instance_destroy();
 }

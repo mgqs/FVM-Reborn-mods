@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"sugar_ball_pult",
+  "folderPath":"folders/精灵/Cards/Pult/sugar_ball_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sugar_ball_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"85da7b05-2590-496f-ac46-f58ef84e5158","path":"sprites/spr_sugar_ball_pult/spr_sugar_ball_pult.yy",},
+    {"name":"44ee3b2d-c712-40a2-9b2e-27482476cb1c","path":"sprites/spr_sugar_ball_pult_1/spr_sugar_ball_pult_1.yy",},
+    {"name":"caa87355-07dd-4c30-9067-0d64238e83c9","path":"sprites/spr_sugar_ball_pult_2/spr_sugar_ball_pult_2.yy",},
+    {"name":"d9eb2cf6-51bf-4eca-8ce2-0e0e33a99d00","path":"sprites/spr_sugar_ball_pult_bullet/spr_sugar_ball_pult_bullet.yy",},
+    {"name":"734f953a-7c6c-4599-b5a4-b3cb542a497d","path":"sprites/spr_sugar_ball_pult_bullet_1/spr_sugar_ball_pult_bullet_1.yy",},
+    {"name":"7eed710c-4ca6-4473-93ce-dfd484f6070e","path":"sprites/spr_sugar_ball_pult_bullet_2/spr_sugar_ball_pult_bullet_2.yy",},
+    {"name":"69b1744b-ecd0-457d-934e-a285d73b0e5d","path":"sprites/spr_sugar_ball_pult_bullet_effect/spr_sugar_ball_pult_bullet_effect.yy",}
+  ],
+}

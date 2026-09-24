@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"wine_rack_sagittarius",
+  "folderPath":"folders/精灵/UI/Attire/wine_rack_sagittarius.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wine_rack_sagittarius",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"09743fb8-a694-477a-b521-ed61160b9d4c","path":"sprites/spr_wine_rack_sagittarius/spr_wine_rack_sagittarius.yy",},
+    {"name":"4e5258c2-219a-45c8-86ea-4fb0a65a9826","path":"sprites/spr_wine_rack_sagittarius_1/spr_wine_rack_sagittarius_1.yy",},
+    {"name":"e406126e-569b-4667-aac3-ffb5883e7a22","path":"sprites/spr_wine_rack_sagittarius_2/spr_wine_rack_sagittarius_2.yy",},
+    {"name":"05032aa8-098d-4692-b619-671b9c7bb998","path":"sprites/spr_wine_rack_sagittarius_bullet/spr_wine_rack_sagittarius_bullet.yy",},
+    {"name":"b12b1c39-00a6-4ddd-9513-9f84254db5df","path":"sprites/spr_wine_rack_sagittarius_bullet_1/spr_wine_rack_sagittarius_bullet_1.yy",},
+    {"name":"8fde5722-1674-47c8-94e4-40b0752fa78b","path":"sprites/spr_wine_rack_sagittarius_bullet_effect/spr_wine_rack_sagittarius_bullet_effect.yy",},
+    {"name":"42e0d5e3-dd45-4c6c-81d7-fae163eb0ebf","path":"sprites/spr_wine_rack_sagittarius_bullet_effect_1/spr_wine_rack_sagittarius_bullet_effect_1.yy",},
+    {"name":"09743fb8-a694-477a-b521-ed61160b9d4c","path":"sprites/spr_wine_rack_sagittarius_icon/spr_wine_rack_sagittarius_icon.yy",},
+    {"name":"4e5258c2-219a-45c8-86ea-4fb0a65a9826","path":"sprites/spr_wine_rack_sagittarius_icon_1/spr_wine_rack_sagittarius_icon_1.yy",},
+    {"name":"e406126e-569b-4667-aac3-ffb5883e7a22","path":"sprites/spr_wine_rack_sagittarius_icon_2/spr_wine_rack_sagittarius_icon_2.yy",}
+  ],
+}

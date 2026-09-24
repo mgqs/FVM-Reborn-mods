@@ -37,9 +37,6 @@ if (attacking)
     if (attack_timer == ((attack_anim - 10) * current_flash_speed))
         event_user(1);
     
-    if (attack_timer == ((attack_anim - 7) * current_flash_speed) && shape == 3)
-        event_user(1);
-    
     if (attack_timer >= (attack_anim * current_flash_speed) || attack_timer >= cycle)
     {
         attacking = false;

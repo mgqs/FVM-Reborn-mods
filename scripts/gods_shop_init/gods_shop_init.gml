@@ -40,7 +40,7 @@ function gods_shop_init()
         description: "梵天神使：变身出多个上一次种下的卡片",
         display_name: "梵天神使"
     });
-    register_gods_goods("clotho", 
+    register_gods_goods("clotho",
     {
         type: "card",
         cost: "16",
@@ -48,7 +48,15 @@ function gods_shop_init()
         description: "克洛托神使：随机改变范围内卡片星级，一段时间后恢复",
         display_name: "克洛托神使"
     });
-    register_gods_goods("firework_dragon_real", 
+    register_gods_goods("time_god",
+    {
+        type: "card",
+        cost: "16",
+        unlock_item_id: "time_god",
+        description: "柯罗诺斯神使：持续给范围内卡片缩短冷却时间",
+        display_name: "柯罗诺斯神使"
+    });
+    register_gods_goods("firework_dragon_real",
     {
         type: "card",
         cost: "10",
@@ -200,7 +208,7 @@ function gods_shop_init()
         description: "埃罗斯神使：连续发射3发带有溅射效果的子弹，先后攻击本行空、地、水陆老鼠",
         display_name: "埃罗斯神使"
     });
-    register_gods_goods("gaia_1", 
+    register_gods_goods("gaia_1",
     {
         type: "shape",
         cost: "16",
@@ -250,7 +258,7 @@ function gods_shop_init()
         display_name: "三转凭证（创造神）",
         spr: spr_voucher_brahma
     });
-    register_gods_goods("clotho_1", 
+    register_gods_goods("clotho_1",
     {
         type: "shape",
         cost: "16",
@@ -260,7 +268,17 @@ function gods_shop_init()
         display_name: "三转凭证（命运女神）",
         spr: spr_voucher_clotho
     });
-    register_gods_goods("fire_god_1", 
+    register_gods_goods("time_god_1",
+    {
+        type: "shape",
+        cost: "16",
+        unlock_item_id: "time_god",
+        target_shape: 1,
+        description: "柯罗诺斯圣神：放卡产生爆炸",
+        display_name: "三转凭证（时间神）",
+		spr: spr_time_god_pin1
+    });
+    register_gods_goods("fire_god_1",
     {
         type: "shape",
         cost: "16",
@@ -500,7 +518,7 @@ function gods_shop_init()
         display_name: "四转凭证（创造神）",
         spr: spr_voucher_brahma_1
     });
-    register_gods_goods("clotho_2", 
+    register_gods_goods("clotho_2",
     {
         type: "shape",
         cost: "32",
@@ -510,7 +528,17 @@ function gods_shop_init()
         display_name: "四转凭证（命运女神）",
         spr: spr_voucher_clotho_1
     });
-    register_gods_goods("fire_god_2", 
+    register_gods_goods("time_god_2",
+    {
+        type: "shape",
+        cost: "32",
+        unlock_item_id: "time_god",
+        target_shape: 2,
+        description: "时间神·柯罗诺斯：范围扩大至5x5，冷却缩减50%",
+        display_name: "四转凭证（时间神）",
+		spr: spr_time_god_pin2
+    });
+    register_gods_goods("fire_god_2",
     {
         type: "shape",
         cost: "32",
@@ -740,7 +768,7 @@ function gods_shop_init()
         display_name: "终转凭证（守护神）",
         spr: spr_voucher_rig_2
     });
-    register_gods_goods("clotho_3", 
+    register_gods_goods("clotho_3",
     {
         type: "shape",
         cost: "48",
@@ -750,7 +778,27 @@ function gods_shop_init()
         display_name: "终转凭证（命运女神）",
         spr: spr_voucher_clotho_2
     });
-    register_gods_goods("fire_god_3", 
+    register_gods_goods("brahma_3",
+    {
+        type: "shape",
+        cost: "48",
+        unlock_item_id: "brahma",
+        target_shape: 3,
+        description: "至尊创造神：再额外复制两张卡片，共5张",
+        display_name: "终转凭证（创造神）",
+        spr: spr_voucher_brahma_3
+    });
+    register_gods_goods("time_god_3",
+    {
+        type: "shape",
+        cost: "48",
+        unlock_item_id: "time_god",
+        target_shape: 3,
+        description: "至尊时间神：范围扩大至全屏，冷却缩减100%",
+        display_name: "终转凭证（时间神）",
+		spr: spr_time_god_pin3
+    });
+    register_gods_goods("fire_god_3",
     {
         type: "shape",
         cost: "48",
@@ -920,7 +968,7 @@ function gods_shop_init()
         display_name: "终转凭证（救世神）",
         spr: spr_save_3pin
     });
-    register_gods_goods("joker_3", 
+    register_gods_goods("joker_3",
     {
         type: "shape",
         cost: "48",
@@ -930,4 +978,298 @@ function gods_shop_init()
         display_name: "终转凭证（恶作剧神）",
         spr: spr_joker_3pin
     });
+
+register_gods_goods("xiangshui_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "xiangshui_god",
+    description: "塔利亚神使：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
+    display_name: "塔利亚神使"
+});
+
+register_gods_goods("xiangshui_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 1,
+    description: "塔利亚圣神：为周围绿地追踪卡片提升大幅攻击力",
+    display_name: "三转凭证（塔利亚）",
+    spr: spr_xiangshui_god_pin1
+});
+
+register_gods_goods("xiangshui_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 2,
+    description: "宴飨女神·塔利亚：攻击力提升，冰神类卡片共享增幅，范围扩大至5x5",
+    display_name: "四转凭证（塔利亚）",
+    spr: spr_xiangshui_god_pin2
+});
+
+register_gods_goods("xiangshui_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "xiangshui_god",
+    target_shape: 3,
+    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升",
+    display_name: "终转凭证（塔利亚）",
+    spr: spr_xiangshui_god_pin2
+});
+
+register_gods_goods("fengrao_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "fengrao_god",
+    description: "弗雷神使：为5*5范围内五向类卡片增加攻击力，同类卡片效果不叠加",
+    display_name: "弗雷神使"
+});
+
+register_gods_goods("fengrao_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "fengrao_god",
+    target_shape: 1,
+    description: "弗雷圣神：追加多向类卡片增幅",
+    display_name: "三转凭证（丰饶神）",
+    spr: spr_fengrao_pin1
+});
+
+register_gods_goods("fengrao_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "fengrao_god",
+    target_shape: 2,
+    description: "丰饶神·弗雷：攻击力大幅提升",
+    display_name: "四转凭证（丰饶神）",
+    spr: spr_fengrao_pin2
+});
+
+register_gods_goods("fengrao_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "fengrao_god",
+    target_shape: 3,
+    description: "至尊丰饶神：同类卡片加成可叠加2次",
+    display_name: "终转凭证（丰饶神）",
+    spr: spr_fengrao_pin3
+});
+
+register_gods_goods("panduola_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "panduola_god",
+    description: "潘多拉：放下立即产生3x3灰烬爆炸，并在本行留下3次毒气伤害",
+    display_name: "潘多拉"
+});
+
+register_gods_goods("panduola_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "panduola_god",
+    target_shape: 1,
+    description: "潘多拉魔盒：毒气伤害+35%",
+    display_name: "三转凭证（潘多拉）",
+    spr: spr_panduola_pin1
+});
+
+register_gods_goods("panduola_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "panduola_god",
+    target_shape: 2,
+    description: "疫神·潘多拉：毒气范围+1列，全屏8000灰烬爆炸+鼠疫",
+    display_name: "四转凭证（潘多拉）",
+    spr: spr_panduola_pin2
+});
+
+register_gods_goods("houyi_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "houyi_god",
+    description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
+    display_name: "后羿神使"
+});
+
+register_gods_goods("houyi_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "houyi_god",
+    target_shape: 1,
+    description: "后羿圣神：灼烧效果提升，中路子弹+1",
+    display_name: "三转凭证（后羿）",
+    spr: spr_houyi_god_pin1
+});
+
+register_gods_goods("houyi_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "houyi_god",
+    target_shape: 2,
+    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
+    display_name: "四转凭证（后羿）",
+    spr: spr_houyi_god_pin2
+});
+
+register_gods_goods("houyi_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "houyi_god",
+    target_shape: 3,
+    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
+    display_name: "终转凭证（后羿）",
+    spr: spr_houyi_god_pin3
+});
+
+register_gods_goods("guangming_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "guangming_god",
+    description: "巴尔德神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
+    display_name: "巴尔德神使"
+});
+
+register_gods_goods("guangming_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "guangming_god",
+    target_shape: 1,
+    description: "巴尔德圣神：每放置1次黑暗神，部分光明神就产生1次光影爆炸",
+    display_name: "三转凭证（光明神）",
+    spr: spr_guangming_god_pin1
+});
+
+register_gods_goods("guangming_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "guangming_god",
+    target_shape: 2,
+    description: "光明神·巴德尔：黑暗神存在时，光影爆炸效果和圣光威力大幅提升",
+    display_name: "四转凭证（光明神）",
+    spr: spr_guangming_god_pin2
+});
+
+register_gods_goods("heian_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "heian_god",
+    description: "黑暗神使：对周围范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
+    display_name: "黑暗神使"
+});
+
+register_gods_goods("heian_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "heian_god",
+    target_shape: 1,
+    description: "黑暗圣神：攻击间隔缩短",
+    display_name: "三转凭证（黑暗神）",
+    spr: spr_heian_god_pin1
+});
+
+register_gods_goods("heian_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "heian_god",
+    target_shape: 2,
+    description: "黑暗神·霍德尔：攻击范围扩大，攻击力大幅提升",
+    display_name: "四转凭证（黑暗神）",
+    spr: spr_heian_god_pin2
+});
+
+register_gods_goods("heian_god_3",
+{
+    type: "shape",
+    cost: "48",
+    unlock_item_id: "heian_god",
+    target_shape: 3,
+    description: "至尊黑暗神：5*7范围内连续命中伤害递增",
+    display_name: "终转凭证（黑暗神）",
+    spr: spr_heian_god_pin3
+});
+
+register_gods_goods("hundun_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "hundun_god",
+    description: "混沌神使：吞噬5*5范围内的普通敌人，对精英敌人造成4500伤害，死亡时产生3*3灰烬爆炸",
+    display_name: "混沌神使"
+});
+
+register_gods_goods("hundun_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "hundun_god",
+    target_shape: 1,
+    description: "混沌圣神：吞噬范围扩大，精英伤害提升至6000",
+    display_name: "三转凭证（混沌神）",
+    spr: spr_hundun_pin1
+});
+
+register_gods_goods("hundun_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "hundun_god",
+    target_shape: 2,
+    description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人",
+    display_name: "四转凭证（混沌神）",
+    spr: spr_hundun_pin2_
+});
+
+register_gods_goods("lingrong_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "lingrong_god",
+    description: "灵容神使：三合一承载卡片，在水上、空中和岩浆上承载卡片并填补空洞",
+    display_name: "灵容神使"
+});
+
+register_gods_goods("lingrong_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "lingrong_god",
+    target_shape: 1,
+    description: "灵容圣神：竖向生成三张，三合一承载卡片",
+    display_name: "三转凭证（灵容神）",
+    spr: spr_lingrong_god_pin1
+});
+
+register_gods_goods("lingrong_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "lingrong_god",
+    target_shape: 2,
+    description: "灵容天神：直接生成九张，三合一承载卡片",
+    display_name: "四转凭证（灵容神）",
+    spr: spr_lingrong_god_pin2
+});
+
 }
+

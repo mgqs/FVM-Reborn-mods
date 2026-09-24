@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"can_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/can_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"can_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"12aee76c-6f7e-4470-8cbd-275f7aec2a00","path":"sprites/spr_can_mouse/spr_can_mouse.yy",},
+    {"name":"3c335804-37d5-4cf6-90a0-fa4c5e7f28a2","path":"sprites/spr_can_mouse_drop/spr_can_mouse_drop.yy",},
+    {"name":"1dbf0615-9f2b-4422-915a-d53a38fcb73a","path":"sprites/spr_can_mouse_with_can/spr_can_mouse_with_can.yy",}
+  ],
+}

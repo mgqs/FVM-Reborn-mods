@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"large_fire_gemini",
+  "folderPath":"folders/精灵/UI/Attire/large_fire_gemini.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"large_fire_gemini",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"6af049d7-e78e-468e-9165-c57d9c5e3619","path":"sprites/spr_large_fire_gemini/spr_large_fire_gemini.yy",},
+    {"name":"0b46ac4f-e457-48ad-8f5a-893bbfa3cf51","path":"sprites/spr_large_fire_gemini_1/spr_large_fire_gemini_1.yy",},
+    {"name":"6c2d89ed-df72-4489-92e5-640b37612051","path":"sprites/spr_large_fire_gemini_2/spr_large_fire_gemini_2.yy",},
+    {"name":"cd2f0a4c-02bd-410f-ab65-f100436fc0fd","path":"sprites/spr_large_fire_gemini_icon/spr_large_fire_gemini_icon.yy",},
+    {"name":"dc6703f0-19d2-4ee0-afcb-b007d53c17c8","path":"sprites/spr_large_fire_gemini_icon_1/spr_large_fire_gemini_icon_1.yy",},
+    {"name":"82bf31c8-76d9-4741-8170-4d641c93c9c6","path":"sprites/spr_large_fire_gemini_icon_2/spr_large_fire_gemini_icon_2.yy",}
+  ],
+}

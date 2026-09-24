@@ -218,7 +218,9 @@ else if (state == "moving") {
                         // depth从视觉位置计算，但不覆盖grid_col/grid_row（保持逻辑位置）
                         if (variable_instance_exists(plant, "plant_type")) {
                             var vis_grid_pos = get_grid_position_from_world(plant.x, plant.y);
-                            plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, plant.plant_type);
+                            var _ptype = plant.plant_type
+                            if (plant.object_index == obj_cotton_candy || plant.object_index == obj_lingrong_god) _ptype = "lilypad"
+                            plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, _ptype);
                         }
                         
                         if (variable_instance_exists(plant, "banding_star_obj") && instance_exists(plant.banding_star_obj)) {
@@ -314,7 +316,7 @@ with (obj_card_parent) {
         grid_row = grid_pos.row
 		
         var _type = plant_type
-        if (object_index == obj_cotton_candy) _type = "lilypad"
+        if (object_index == obj_cotton_candy || object_index == obj_lingrong_god) _type = "lilypad"
 		if (object_index == obj_soda_bubble){
 			if(card_equipped_attire_id(plant_id) != "bubble_maltose")_type = "coffee"
 			else _type = "lilypad"
@@ -335,6 +337,12 @@ with (weapons[i]) {
 with (obj_melon_shield_inner) {
     if (instance_exists(parent_plant)) {
         depth = parent_plant.depth + 2
+    }
+}
+
+with (obj_shield_aura) {
+    if (variable_instance_exists(id, "parent_player") && instance_exists(parent_player)) {
+        depth = parent_player.depth + depth_offset;
     }
 }
 

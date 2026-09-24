@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"conch_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/conch_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"conch_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"6d3f7383-5c0d-4a5a-9056-ec6211d658b0","path":"sprites/spr_conch_mouse/spr_conch_mouse.yy",},
+    {"name":"7ed961b6-bb0a-4fe1-b05d-d1008460780e","path":"sprites/spr_conch_mouse_act/spr_conch_mouse_act.yy",},
+    {"name":"9862ae26-4c65-4de2-b07d-b70208a0f26e","path":"sprites/spr_conch_mouse_bullet/spr_conch_mouse_bullet.yy",},
+    {"name":"dc4f12c6-aa7f-4290-8cb6-3230af433043","path":"sprites/spr_conch_mouse_bullet_effect/spr_conch_mouse_bullet_effect.yy",},
+    {"name":"31b21b4f-5026-455a-bad7-4fdf8114e0f8","path":"sprites/spr_conch_mouse_ready/spr_conch_mouse_ready.yy",}
+  ],
+}

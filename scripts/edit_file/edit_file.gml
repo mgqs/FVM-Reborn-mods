@@ -50,6 +50,31 @@ function remove_card(card_id) {
     return false;
 }
 
+/// @function cleanup_orphan_cards()
+/// @desc 移除已解锁但已不存在于卡池(player_deck)的孤儿卡，彻底消除强化界面中的空卡片
+function cleanup_orphan_cards() {
+    var removed = 0;
+    for (var i = array_length(global.save_data.unlocked_cards) - 1; i >= 0; i--) {
+        var entry = global.save_data.unlocked_cards[i];
+        var cid;
+        var cshape = 0;
+        if (is_struct(entry)) {
+            cid = entry.id;
+            cshape = entry.shape;
+        } else {
+            cid = entry;
+        }
+        if (deck_get_card_data(cid, cshape) == noone) {
+            show_debug_message("清理孤儿卡: " + string(cid));
+            array_delete(global.save_data.unlocked_cards, i, 1);
+            removed++;
+        }
+    }
+    if (removed > 0)
+        save_file(global.save_slot);
+    return removed;
+}
+
 /// @function upgrade_card(card_id, levels)
 /// @desc 升级卡片等级并保存存档
 /// @param {string} card_id 卡片ID
@@ -170,7 +195,8 @@ function get_completed_levels() {
 /// @param {string} weapon_id 武器ID
 function is_weapon_unlocked(weapon_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_weapons); i++) {
-        if (global.save_data.unlocked_weapons[i].id == weapon_id) {
+        var _w = global.save_data.unlocked_weapons[i];
+        if ((is_struct(_w) ? _w.id : _w) == weapon_id) {
             return true;
         }
     }
@@ -193,7 +219,8 @@ function unlock_weapon(weapon_id){
 /// @param {string} gem_id 宝石ID
 function is_gem_unlocked(gem_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_gems); i++) {
-        if (global.save_data.unlocked_gems[i].id == gem_id) {
+        var _g = global.save_data.unlocked_gems[i];
+        if ((is_struct(_g) ? _g.id : _g) == gem_id) {
             return true;
         }
     }

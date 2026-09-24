@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"spr_lizi_god",
+  "folderPath":"folders/绮剧伒/mod/shengxiaocard/spr_lizi_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_lizi_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

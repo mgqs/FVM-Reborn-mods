@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"hundun_god",
+  "folderPath":"folders/精灵/mod/Cards/hundun_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hundun_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"eb0b5f47-18b5-4daf-9e7c-0c3dd0dc0d16","path":"sprites/spr_hundun_god/spr_hundun_god.yy",},
+    {"name":"74979975-e206-47bf-a5ee-d696023aa8b2","path":"sprites/spr_hundun_god_1/spr_hundun_god_1.yy",},
+    {"name":"6d487381-8b26-467e-a81a-2ffac21a45a5","path":"sprites/spr_hundun_god_2/spr_hundun_god_2.yy",},
+    {"name":"52001d95-2276-4125-a72b-c33589a900d2","path":"sprites/spr_hundun_god_effect/spr_hundun_god_effect.yy",},
+    {"name":"b06c1a98-0e9e-484a-a1e0-36bfb26ecc05","path":"sprites/spr_hundun_god_effect_1/spr_hundun_god_effect_1.yy",},
+    {"name":"ed7e90a2-c06f-4981-bf4e-8c533097e994","path":"sprites/spr_hundun_god_effect_2/spr_hundun_god_effect_2.yy",},
+    {"name":"5d80f3f7-7b50-4176-8471-83d0aeec4765","path":"sprites/spr_hundun_pin1/spr_hundun_pin1.yy",},
+    {"name":"1d605e7a-49ea-4b31-9aac-d05a667f6009","path":"sprites/spr_hundun_pin2_/spr_hundun_pin2_.yy",}
+  ],
+}

@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_sanzhitu",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_sanzhitu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_sanzhitu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a4e23d9d-f90d-4e9e-b7a6-240c980d8d46","path":"sprites/spr_sanzhitu/spr_sanzhitu.yy",},
+    {"name":"d8b05c17-6967-482f-bfdf-be68185ff459","path":"sprites/spr_sanzhitu_1/spr_sanzhitu_1.yy",},
+    {"name":"6c5e51ce-eaa6-4a2a-a6cf-9522fb393aac","path":"sprites/spr_sanzhitu_2/spr_sanzhitu_2.yy",},
+    {"name":"091d02f2-2fd4-4c08-8663-48cd51067fcf","path":"sprites/spr_sanzhitu_effect/spr_sanzhitu_effect.yy",},
+    {"name":"8c72fe3a-f9e6-4d42-a6b5-dfdb64ff0a2a","path":"sprites/spr_sanzhitu_effect_1/spr_sanzhitu_effect_1.yy",},
+    {"name":"37f772f9-7f13-4380-bc1b-59d6df6ae7f4","path":"sprites/spr_sanzhitu_effect_2/spr_sanzhitu_effect_2.yy",}
+  ],
+}

@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_laipishe",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_laipishe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_laipishe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"7c859edf-6d09-4248-a62c-1c457621c4f3","path":"sprites/spr_laipishe/spr_laipishe.yy",},
+    {"name":"034f0baf-6ef2-4234-85ff-58c9bbf4ceda","path":"sprites/spr_laipishe_1/spr_laipishe_1.yy",},
+    {"name":"0614473b-7c3e-435b-af03-599bd1b77115","path":"sprites/spr_laipishe_2/spr_laipishe_2.yy",},
+    {"name":"66fe268e-8690-4310-bb7e-e94881e3ebc3","path":"sprites/spr_laipishe_bubble/spr_laipishe_bubble.yy",},
+    {"name":"66fe268e-8690-4310-bb7e-e94881e3ebc3","path":"sprites/spr_laipishe_bubble/spr_laipishe_effect.yy",},
+    {"name":"48e5b7cf-581d-4c2c-9c52-86629c6fd058","path":"sprites/spr_laipishe_bullet/spr_laipishe_bullet.yy",},
+    {"name":"cf42469c-9186-43e6-ab32-7c0af4566ef3","path":"sprites/spr_laipishe_bullet_1/spr_laipishe_bullet_1.yy",},
+    {"name":"ba6be784-65ec-4482-b709-7326c301e2af","path":"sprites/spr_laipishe_bullet_2/spr_laipishe_bullet_2.yy",},
+    {"name":"66fe268e-8690-4310-bb7e-e94881e3ebc3","path":"sprites/spr_laipishe_effect/spr_laipishe_effect.yy",},
+    {"name":"048d87dc-c3e3-47a5-90f3-07037e558bb4","path":"sprites/spr_laipishe_effect_1/spr_laipishe_effect_1.yy",},
+    {"name":"b657b413-f54f-4ba6-94f3-06b6b17cdfd8","path":"sprites/spr_laipishe_effect_2/spr_laipishe_effect_2.yy",}
+  ],
+}

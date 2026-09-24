@@ -6,7 +6,7 @@
   "bbox_left":7,
   "bbox_right":34,
   "bbox_top":8,
-  "collisionKind":5,
+  "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"undersea_vortex",
-    "path":"folders/精灵/Bullet/normal/undersea_vortex.yy",
+    "path":"folders/normal/undersea_vortex.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -20,7 +20,7 @@ function NativeUtil() constructor {
         if (string_pos(":", _rel) > 0) {
             return self.transfer_path_to_windows(_rel)
         }
-        return self.get_path_in_local_appdata("\\FVM_Reborn\\" + _rel)
+        return self.get_path_in_local_appdata("\\FVM_Reborn_makk\\" + _rel)
     }
 
     /// @param {String} _path 

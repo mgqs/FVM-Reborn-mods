@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"pineapple_explosive_bread",
+  "folderPath":"folders/精灵/Cards/defender/pineapple_explosive_bread.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pineapple_explosive_bread",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"026876eb-c405-4ff4-bae2-6950711a686f","path":"sprites/spr_pineapple_explosive_bread_0_0/spr_pineapple_explosive_bread_0_0.yy",},
+    {"name":"b2e97ca6-c171-4829-b327-da144c57605e","path":"sprites/spr_pineapple_explosive_bread_0_1/spr_pineapple_explosive_bread_0_1.yy",},
+    {"name":"06ed7352-ef78-45ae-a53b-33b2aef27d26","path":"sprites/spr_pineapple_explosive_bread_0_2/spr_pineapple_explosive_bread_0_2.yy",},
+    {"name":"d4af0081-3936-4ae0-8771-8a9fcb1de2dc","path":"sprites/spr_pineapple_explosive_bread_0_explosion/spr_pineapple_explosive_bread_0_explosion.yy",},
+    {"name":"3a4a22f8-39d5-4061-a56a-38cf0f65dbaf","path":"sprites/spr_pineapple_explosive_bread_1_0/spr_pineapple_explosive_bread_1_0.yy",},
+    {"name":"3fbc9b6e-77b6-47fc-b31e-2fa251b3406c","path":"sprites/spr_pineapple_explosive_bread_1_1/spr_pineapple_explosive_bread_1_1.yy",},
+    {"name":"fe47a45a-5136-4737-b8ff-da74329ec7cf","path":"sprites/spr_pineapple_explosive_bread_1_2/spr_pineapple_explosive_bread_1_2.yy",},
+    {"name":"8e5cc5b9-d855-4203-ab6e-184e6ab6259e","path":"sprites/spr_pineapple_explosive_bread_1_explosion/spr_pineapple_explosive_bread_1_explosion.yy",},
+    {"name":"f161935b-eabb-46a2-921b-a3eaf3936e85","path":"sprites/spr_pineapple_explosive_bread_2_0/spr_pineapple_explosive_bread_2_0.yy",},
+    {"name":"ee8e9f03-0425-467d-aa66-9deed64c975c","path":"sprites/spr_pineapple_explosive_bread_2_1/spr_pineapple_explosive_bread_2_1.yy",},
+    {"name":"3aa440bf-9ad5-461e-a3fc-0a8568f20be3","path":"sprites/spr_pineapple_explosive_bread_2_2/spr_pineapple_explosive_bread_2_2.yy",},
+    {"name":"cb1025ab-2bf1-44f5-9391-e2c9f8b4acca","path":"sprites/spr_pineapple_explosive_bread_2_explosion/spr_pineapple_explosive_bread_2_explosion.yy",}
+  ],
+}

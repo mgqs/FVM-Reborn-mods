@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"Enemy",
+  "folderPath":"folders/物体/Enemy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Enemy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"floating_island","path":"folders/物体/Enemy/floating_island.yy",},
+    {"name":"undersea_vortex","path":"folders/物体/Enemy/undersea_vortex.yy",},
+    {"name":"volcanic_island","path":"folders/物体/Enemy/volcanic_island.yy",},
+    {"name":"delicious_island","path":"folders/物体/Enemy/delicious_island.yy",},
+    {"name":"tower","path":"folders/物体/Enemy/tower.yy",},
+    {"name":"mouse_bullet","path":"folders/物体/Enemy/mouse_bullet.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",}
+  ],
+}

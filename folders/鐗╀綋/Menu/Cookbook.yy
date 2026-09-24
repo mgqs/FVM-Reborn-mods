@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Cookbook",
+  "folderPath":"folders/鐗╀綋/Menu/Cookbook.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Cookbook",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -38,7 +38,7 @@ if (has_enemy)
         attack_timer = 0;
         state = 0;
     }
-    
+
     if (attack_timer == (cycle - 10))
     {
         if (shape < 3)
@@ -46,7 +46,7 @@ if (has_enemy)
         else
             event_user(3);
     }
-    
+
     if (attack_timer == (cycle - 5))
     {
         if (shape < 3)
@@ -54,11 +54,11 @@ if (has_enemy)
         else
             event_user(3);
     }
-    
+
     if (attack_timer == (cycle - 15) && shape >= 1)
         event_user(3);
-    
-    if (attack_timer == (cycle - 20) && shape >= 2)
+
+    if (attack_timer == (cycle - 20) && shape >= 3)
         event_user(3);
 }
 else
@@ -66,4 +66,3 @@ else
     attack_timer = 0;
     state = 0;
 }
-

@@ -67,7 +67,7 @@ function reset_file(file_slot){
 	global.save_data = {
             "version": 1.8,
             "player": {
-                "gold": 0,
+                "gold": 50000,
                 "level": 1,
                 "experience": 0,
 				"name":"Player",

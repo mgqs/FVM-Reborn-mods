@@ -94,3 +94,22 @@ else
 
 x += lengthdir_x(move_speed, fly_dir);
 y += lengthdir_y(move_speed, fly_dir);
+
+// 追踪子弹碰撞检测
+if (target_enemy != -4 && instance_exists(target_enemy))
+{
+    var _e = target_enemy;
+    if (_e.hp > 0
+    && precise_bbox_collision(id, _e))
+    {
+        with (_e)
+        {
+            audio_play_sound(hit_sound, 0, 0);
+            damage_amount = other.damage;
+            damage_type = other.damage_type;
+            event_user(0);
+        }
+        instance_create_depth(x, y, depth, obj_takoyaki_bullet_effect);
+        instance_destroy();
+    }
+}

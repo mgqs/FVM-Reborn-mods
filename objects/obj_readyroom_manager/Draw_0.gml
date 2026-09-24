@@ -7,6 +7,7 @@ draw_set_color(c_black)
 draw_text(565,53,global.level_data.name)
 {//绘制可选择的防御卡
 	surface_set_target(slot_surface)
+	draw_clear_alpha(c_black, 0)
 for(var i = 0 ; i < slot_rows ; i++){
         for(var j = 0 ; j < slot_cols ; j++){
             draw_sprite_ext(spr_package_slot_bg, 0, x+42+i*84, y + 48 + 96 * j- y_offset, 0.9, 0.9, 0, c_white, 1)
@@ -16,8 +17,26 @@ for(var i = 0 ; i < slot_rows ; i++){
     // 绘制所有已注册的植物卡片
     var card_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
-    
-    for(var i = 0; i < ds_list_size(global.player_deck); i += 2) {
+
+    // 计算排序索引：普通卡在前，金卡集中放最后
+    deck_sort_order = []
+    var _gold_order = []
+    for(var si = 0; si < ds_list_size(global.player_deck); si += 2) {
+        var _entry = global.player_deck[| si+1]
+        var _shapes = _entry[? "shapes"]
+        var _data = _shapes[| 0]
+        if (ds_map_find_value(_data, "is_gold") == 1) {
+            array_push(_gold_order, si)
+        } else {
+            array_push(deck_sort_order, si)
+        }
+    }
+    for(var si = 0; si < array_length(_gold_order); si++) {
+        array_push(deck_sort_order, _gold_order[si])
+    }
+
+    for(var di = 0; di < array_length(deck_sort_order); di++) {
+        var i = deck_sort_order[di]
         var card_id = global.player_deck[| i];
         var deck_entry = global.player_deck[| i+1];
 		var card_data_shapes = deck_entry[? "shapes"]
@@ -29,7 +48,7 @@ for(var i = 0 ; i < slot_rows ; i++){
         var row = card_index div slot_rows;
         var col = card_index mod slot_rows;
         
-        if (row < slot_rows) {
+        if (row < slot_cols) {
             var card_x = x + 42 + col * 84
             var card_y = y + 48 + row * 96 - y_offset;
             
@@ -55,7 +74,8 @@ for(var i = 0 ; i < slot_rows ; i++){
             // 绘制卡片
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
-				draw_sprite_ext(spr_slot, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
+				var _slot_spr = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
 				draw_set_halign(fa_center);
@@ -94,7 +114,8 @@ for(var i = 0 ; i < slot_rows ; i++){
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_bottom);
 				draw_set_font(font_pixel)
-				draw_sprite_ext(spr_slot, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
+				var _slot_spr2 = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_slot_spr2, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
 				card_data = card_data_shapes[| card_shape]
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_gray, 1);
 				var info_index = 0
@@ -120,8 +141,8 @@ for(var i = 0 ; i < slot_rows ; i++){
 draw_surface(slot_surface,x-25+803-42,y+ 375-48)
 {// 绘制悬停提示
     if (hover_card_index != -1 && !is_submenu_open) {
-		var card_id = global.player_deck[| hover_card_index*2];
-        var deck_entry = global.player_deck[| hover_card_index*2+1];
+		var card_id = global.player_deck[| deck_sort_order[hover_card_index]];
+        var deck_entry = global.player_deck[| deck_sort_order[hover_card_index]+1];
 		var card_data_shapes = deck_entry[? "shapes"]
 		var card_data = {}
 		var card_shape = 0
@@ -183,7 +204,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
     var card_y = y + 132
 	
 	// 已解锁的卡片正常绘制
-				draw_sprite_ext(spr_slot, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
+				var _slot_spr3 = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_slot_spr3, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
 				draw_set_halign(fa_center);
@@ -230,7 +252,7 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 	//绘制武器栏位
 	for(var i = 0;i < 3; i++){
 		draw_sprite_ext(spr_package_weapon_bg, 0, x+120, y+160+100*i, 1, 1, 0, c_white, 1)
-		for(var j = 0; j < 3 ; j++){
+		for(var j = 0; j < 4 ; j++){
 			draw_sprite_ext(spr_package_gem_bg, 0, x+240+120*j, y+160+100*i, 0.85, 0.85, 0, c_white, 1)
 		}
 	}
@@ -240,7 +262,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.main_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+160,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+160,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+134, 0.75, 0.75, 0, c_white, 1)
 			}
@@ -252,7 +275,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.secondary_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+260,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+260,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+234, 0.75, 0.75, 0, c_white, 1)
 			}
@@ -264,7 +288,8 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 		var gem_list = global.save_data.equipped_items.super_weapon.gems
 		for(var i = 0 ; i < array_length(gem_list);i++){
 			var gem_icon = get_gem_info(gem_list[i]).icon
-			draw_sprite_ext(gem_icon,0,x+240+120*i,y+360,0.8,0.8,0,c_white,1)
+			var _gs = 88 * 0.8 / sprite_get_width(gem_icon)
+			draw_sprite_ext(gem_icon,0,x+240+120*i,y+360,_gs,_gs,0,c_white,1)
 			if get_gem_level(gem_list[i]) > 0{
 				draw_sprite_ext(spr_star_slot, get_gem_level(gem_list[i])-1, x+215+120*i, y+334, 0.75, 0.75, 0, c_white, 1)
 			}

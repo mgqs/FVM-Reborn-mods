@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Task",
+  "folderPath":"folders/鑴氭湰/Menu/Task.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Task",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

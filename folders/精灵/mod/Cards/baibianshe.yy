@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"baibianshe",
+  "folderPath":"folders/精灵/mod/Cards/baibianshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"baibianshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"9c04abca-8739-492c-9f56-207c5d8d8e76","path":"sprites/spr_baibianshe/spr_baibianshe.yy",},
+    {"name":"f5a49e81-bca3-442c-af24-fe94e58c656c","path":"sprites/spr_baibianshe_1/spr_baibianshe_1.yy",},
+    {"name":"5aa72fd4-7ba8-4af9-9335-ccbe83e8892b","path":"sprites/spr_baibianshe_2/spr_baibianshe_2.yy",}
+  ],
+}

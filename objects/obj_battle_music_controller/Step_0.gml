@@ -1,8 +1,13 @@
+if battle_music != new_battle_music{
+	audio_stop_sound(battle_music)
+	battle_music = new_battle_music
+}
+
 if audio_is_paused(battle_music) and not global.is_paused{
 	audio_resume_sound(battle_music)
 }
 if not audio_is_playing(battle_music) and not global.is_paused{
-	audio_play_sound(battle_music,0,0)
+	audio_play_sound(battle_music,0,true)
 }
 if audio_is_playing(battle_music) and global.is_paused{
 	audio_pause_sound(battle_music)

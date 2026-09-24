@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"Components",
+  "folderPath":"folders/Feature/Laboratory/Components.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Components",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"OnlineStageDetail","path":"objects/OnlineStageDetail/OnlineStageDetail.yy",},
+    {"name":"OnlineStageItem","path":"objects/OnlineStageItem/OnlineStageItem.yy",},
+    {"name":"StageDetail","path":"objects/StageDetail/StageDetail.yy",},
+    {"name":"StageItem","path":"objects/StageItem/StageItem.yy",}
+  ],
+}

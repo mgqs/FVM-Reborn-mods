@@ -38,25 +38,48 @@ function get_task_state(task_id){
 	}
 }
 
-function edit_task_progress(task_id,progress_index,new_progress){
+function ensure_task_progress_size(task_id){
 	if is_task_unlocked(task_id){
 		var task_index = get_task_index(task_id)
-		global.save_data.tasks[task_index].progress[progress_index] = new_progress
+		var task_data = get_task_data(task_id)
+		var required_size = array_length(task_data.requirements)
+		var current_size = array_length(global.save_data.tasks[task_index].progress)
+		while(current_size < required_size){
+			array_push(global.save_data.tasks[task_index].progress,0)
+			current_size++
+		}
+	}
+}
+
+function edit_task_progress(task_id,progress_index,new_progress){
+	if is_task_unlocked(task_id){
+		ensure_task_progress_size(task_id)
+		var task_index = get_task_index(task_id)
+		if progress_index >= 0 && progress_index < array_length(global.save_data.tasks[task_index].progress){
+			global.save_data.tasks[task_index].progress[progress_index] = new_progress
+		}
 	}
 }
 
 function add_task_progress(task_id,progress_index,new_progress){
 	if is_task_unlocked(task_id){
+		ensure_task_progress_size(task_id)
 		var task_index = get_task_index(task_id)
-		global.save_data.tasks[task_index].progress[progress_index] += new_progress
+		if progress_index >= 0 && progress_index < array_length(global.save_data.tasks[task_index].progress){
+			global.save_data.tasks[task_index].progress[progress_index] += new_progress
+		}
 	}
 }
 
 function get_task_progress(task_id,progress_index){
 	if is_task_unlocked(task_id){
+		ensure_task_progress_size(task_id)
 		var task_index = get_task_index(task_id)
-		return global.save_data.tasks[task_index].progress[progress_index]
+		if progress_index >= 0 && progress_index < array_length(global.save_data.tasks[task_index].progress){
+			return global.save_data.tasks[task_index].progress[progress_index]
+		}
 	}
+	return 0
 }
 
 function is_task_unlocked(task_id){

@@ -2,6 +2,7 @@ event_inherited();
 plant_id = "sheng_huo";
 obj_type = object_index;
 current_level = 1;
+cluster_multiplier = 1;
 event_user(0);
 
 if (shape == 0)
@@ -29,3 +30,7 @@ else if (shape == 3)
     target_type = "all";
 else
     target_type = "pierce";
+
+if (!variable_global_exists("mod_obj_sh_count"))
+    global.mod_obj_sh_count = 0;
+global.mod_obj_sh_count++;

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"pete",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/pete.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pete",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_pete","path":"objects/obj_pete/obj_pete.yy",},
+    {"name":"obj_pete_claw","path":"objects/obj_pete_claw/obj_pete_claw.yy",},
+    {"name":"obj_pete_claw_effect","path":"objects/obj_pete_claw_effect/obj_pete_claw_effect.yy",},
+    {"name":"obj_pete_missile","path":"objects/obj_pete_missile/obj_pete_missile.yy",},
+    {"name":"obj_pete_spike","path":"objects/obj_pete_spike/obj_pete_spike.yy",}
+  ],
+}

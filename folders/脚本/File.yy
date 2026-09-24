@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"File",
+  "folderPath":"folders/脚本/File.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"File",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"card_info","path":"scripts/card_info/card_info.yy",},
+    {"name":"edit_file","path":"scripts/edit_file/edit_file.yy",},
+    {"name":"inventory","path":"scripts/inventory/inventory.yy",},
+    {"name":"load_file","path":"scripts/load_file/load_file.yy",},
+    {"name":"save_file","path":"scripts/save_file/save_file.yy",}
+  ],
+}

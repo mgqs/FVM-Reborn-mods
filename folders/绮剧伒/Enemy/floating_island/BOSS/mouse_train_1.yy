@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"mouse_train_1",
+  "folderPath":"folders/绮剧伒/Enemy/floating_island/BOSS/mouse_train_1.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_train_1",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"kettle_bomb",
+  "folderPath":"folders/绮剧伒/Effects/kettle_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kettle_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

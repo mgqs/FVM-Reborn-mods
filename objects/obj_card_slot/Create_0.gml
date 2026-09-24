@@ -29,6 +29,11 @@ image_speed = 0
 
 cooldown_ignore_list = ["ice_cream","magic_chicken"]
 
+// 兜底初始化：确保 plus_card_map 存在（plus_card_init 自身幂等）
+	if !variable_global_exists("plus_card_map"){
+		plus_card_init()
+	}
+
 //选择卡槽逻辑
 function select_slot(){
 	// 选中当前卡槽
@@ -56,9 +61,9 @@ function try_place_once(){
 		var card_shape = get_card_info_simple(card_id).shape
 		var card_data = deck_get_card_data(card_id,card_shape)
 		if card_id == "magic_chicken"{
-			if global.prev_place_id != ""{
-				card_shape = get_card_info_simple(global.prev_place_id).shape
-				card_data = deck_get_card_data(global.prev_place_id,card_shape)
+			if global.last_placed_card_id != ""{
+				card_shape = get_card_info_simple(global.last_placed_card_id).shape
+				card_data = deck_get_card_data(global.last_placed_card_id,card_shape)
 			}
 		}
         

@@ -9,10 +9,12 @@ function mod_skill_init()
     register_card_skill("zhurong", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
     register_card_skill("firework_dragon_real", "first_produce_delay", [480, 450, 420, 390, 360, 300, 240, 180, 60]);
     register_card_skill("brahma", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
+    register_card_skill("baibianshe", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
     register_card_skill("blueberry_tower", "cooldown", [2100, 1980, 1860, 1740, 1620, 1500, 1380, 1200, 900]);
     register_card_skill("rig", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("donut", "cycle", [84, 81, 78, 75, 72, 69, 66, 60, 54]);
     register_card_skill("clotho", "cycle", [3600, 3900, 4200, 4500, 4800, 5100, 5700, 6300, 7200]);
+    register_card_skill("time_god", "cycle", [3600, 3900, 4200, 4500, 4800, 5100, 5700, 6300, 7200]);
     register_card_skill("spoon_rabbit", "cycle", [132, 129, 126, 122.99999999999999, 120, 117, 114, 111, 105]);
     register_card_skill("hspeed_juicer", "cooldown", [2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1080]);
     register_card_skill("joker", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
@@ -24,7 +26,6 @@ function mod_skill_init()
     register_card_skill("shizi", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
     register_card_skill("jinniu", "cooldown", [420, 402, 384, 360, 330, 300, 270, 240, 210]);
     register_card_skill("chunv", "cooldown", [1800, 1680, 1560, 1440, 1320, 1200, 1080, 900, 720]);
-    register_card_skill("tianxie", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 63]);
     register_card_skill("baiyang", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);
     register_card_skill("mojie", "cooldown", [3000, 2820, 2640, 2400, 2160, 1920, 1620, 1320, 1080]);
     register_card_skill("athena", "cycle", [360, 348, 336, 324, 312, 300, 288, 270, 240]);
@@ -46,7 +47,15 @@ function mod_skill_init()
     register_card_skill("sheng_huo", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("save_god", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);
     register_card_skill("ymir", "cycle", [126, 122.99999999999999, 120, 117, 111, 105, 99, 93, 84]);
-    register_card_skill("beef_hot_pot", "cycle", [420, 402, 384, 360, 342, 324, 300, 276, 252]);
-    register_card_skill("spicy_pot", "cycle", [420, 402, 384, 360, 342, 324, 300, 276, 252]);
-    register_card_skill("chaomian", "cycle", [60, 57, 54, 51, 48, 45, 42, 39, 36]);
+    register_card_skill("xiangshui_god", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
+    register_card_skill("fengrao_god", "cooldown", [2100, 1980, 1860, 1740, 1620, 1500, 1320, 1080, 720]);
+    register_card_skill("houyi_god", "cycle", [75, 72, 69, 66, 63, 60, 57, 54, 51]);
+    register_card_skill("heian_god", "cycle", [900, 960, 1020, 1080, 1200, 1320, 1440, 1620, 1860]);
+    register_card_skill("hundun_god", "cycle", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
+    register_card_skill("guangming_god", "cycle", [60, 58, 56, 54, 52, 50, 48, 46, 44]);
+    register_card_skill("lingrong_god", "hp", [100, 140, 180, 220, 300, 400, 520, 640, 760]);
+    register_card_skill("laipishe", "cycle", [210, 204, 198, 192, 186, 180, 168, 156, 120]);
+    register_card_skill("liehuohu", "cooldown", [3300, 3120, 2940, 2940, 2580, 2400, 2220, 2040, 1800]);
+    register_card_skill("double_blade_snake", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 51]);
+
 }

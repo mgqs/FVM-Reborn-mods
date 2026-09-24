@@ -49,7 +49,7 @@ if (target_instance != noone && instance_exists(target_instance)) {
 inst.hit_enemy = false
 inst.splashed = false
 inst.shape = shape
-if stinky_tofu_timer >= stinky_tofu_cooldown{
+// 概率触发毒雾子弹
+if irandom(99) < poison_chance{
 	inst.sprite_index = spr_stinkytofupult_bullet_poison
-	stinky_tofu_timer = 0
 }

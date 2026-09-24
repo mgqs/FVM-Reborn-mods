@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"Miscellaneous",
+  "folderPath":"folders/Scribble/Miscellaneous.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Miscellaneous",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"scribble_add_macro","path":"scripts/scribble_add_macro/scribble_add_macro.yy",},
+    {"name":"scribble_default_preprocessor_get","path":"scripts/scribble_default_preprocessor_get/scribble_default_preprocessor_get.yy",},
+    {"name":"scribble_default_preprocessor_set","path":"scripts/scribble_default_preprocessor_set/scribble_default_preprocessor_set.yy",},
+    {"name":"scribble_flush_everything","path":"scripts/scribble_flush_everything/scribble_flush_everything.yy",},
+    {"name":"scribble_flush_shader_uniforms","path":"scripts/scribble_flush_shader_uniforms/scribble_flush_shader_uniforms.yy",},
+    {"name":"scribble_initialize","path":"scripts/scribble_initialize/scribble_initialize.yy",},
+    {"name":"scribble_is_text_element","path":"scripts/scribble_is_text_element/scribble_is_text_element.yy",},
+    {"name":"scribble_markdown_format","path":"scripts/scribble_markdown_format/scribble_markdown_format.yy",},
+    {"name":"scribble_markdown_set_styles","path":"scripts/scribble_markdown_set_styles/scribble_markdown_set_styles.yy",},
+    {"name":"scribble_refresh_everything","path":"scripts/scribble_refresh_everything/scribble_refresh_everything.yy",},
+    {"name":"scribble_typists_add_event","path":"scripts/scribble_typists_add_event/scribble_typists_add_event.yy",},
+    {"name":"scribble_whitelist_sound","path":"scripts/scribble_whitelist_sound/scribble_whitelist_sound.yy",},
+    {"name":"scribble_whitelist_sprite","path":"scripts/scribble_whitelist_sprite/scribble_whitelist_sprite.yy",}
+  ],
+}

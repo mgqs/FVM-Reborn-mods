@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"lobster_athena",
+  "folderPath":"folders/绮剧伒/UI/Attire/lobster_athena.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lobster_athena",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

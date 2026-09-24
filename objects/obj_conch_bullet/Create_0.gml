@@ -1,5 +1,3 @@
-image_xscale = 1.8
-image_yscale = 1.8
 image_speed = 0
 
 grid_row = -1
@@ -9,3 +7,5 @@ timer = 0
 move_speed = -8
 
 state = "appear"
+image_xscale = 1.8
+image_yscale = 1.8

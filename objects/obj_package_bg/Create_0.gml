@@ -36,6 +36,7 @@ btn6.button_index = 3
 btn6.sprite_index = spr_packageselect_btn_6
 
 hover_card_index = -1; // 当前悬停的卡片索引
+deck_sort_order = [] // 卡片排序映射（普通卡在前，金卡在后）
 hover_weapon_index = -1
 hover_gem_index = -1
 hover_material_index = -1

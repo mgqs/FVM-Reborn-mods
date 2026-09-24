@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"defender",
+  "folderPath":"folders/精灵/Cards/defender.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"defender",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"chocolate_bread","path":"folders/精灵/Cards/defender/chocolate_bread.yy",},
+    {"name":"horseshoe_crab_bread","path":"folders/精灵/Cards/defender/horseshoe_crab_bread.yy",},
+    {"name":"pineapple_explosive_bread","path":"folders/精灵/Cards/defender/pineapple_explosive_bread.yy",},
+    {"name":"melon_shield","path":"folders/精灵/Cards/defender/melon_shield.yy",}
+  ],
+  "listItems":[
+    {"name":"62e5d989-de48-435a-b6bf-15cdf500fc17","path":"sprites/spr_toast_bread/spr_toast_bread.yy",}
+  ],
+}

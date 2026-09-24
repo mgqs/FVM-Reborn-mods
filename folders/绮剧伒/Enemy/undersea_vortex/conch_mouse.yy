@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"conch_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/undersea_vortex/conch_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"conch_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

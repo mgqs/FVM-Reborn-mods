@@ -36,6 +36,12 @@ battle_time = 0
 boss_count = 0
 map_spr_index = 0
 
+// 测试关卡伤害统计
+test_dps_timer = 0
+test_dps_window = 5 * 60
+test_dps_display = 0
+test_dps_last_total = 0
+
 speed_up = false
 time_limit = -1
 timer_pause = false
@@ -64,6 +70,17 @@ if (variable_global_exists("shovel_order") && ds_exists(global.shovel_order, ds_
 if (variable_global_exists("eat_order") && ds_exists(global.eat_order, ds_type_list)) {
 	ds_list_destroy(global.eat_order);
 }
+// 清理死亡卡片列表（复活机制用）
+if (variable_global_exists("dead_cards") && ds_exists(global.dead_cards, ds_type_list)) {
+	for (var _d = 0; _d < ds_list_size(global.dead_cards); _d++) {
+		var _dead_map = global.dead_cards[| _d];
+		if (ds_exists(_dead_map, ds_type_map)) {
+			ds_map_destroy(_dead_map);
+		}
+	}
+	ds_list_destroy(global.dead_cards);
+}
+global.dead_cards = ds_list_create();
 
 // 植物层级定义
 global.plant_layers = ds_map_create();
@@ -72,10 +89,11 @@ ds_map_add(global.plant_layers, "shield_inner", 1);      // 护罩植物内侧
 ds_map_add(global.plant_layers, "lilypad", 2);     // 莲叶花盆类
 ds_map_add(global.plant_layers, "shield_outer", 3);      // 护罩植物外侧
 ds_map_add(global.plant_layers, "coffee", 4);      // 咖啡豆类
+ds_map_add(global.plant_layers, "gridless", 5);    // 不占格卡片（最上层）
 
 // 铲除顺序
 global.shovel_order = ds_list_create();
-ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee");
+ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee","gridless");
 global.eat_order = ds_list_create();
 ds_list_add(global.eat_order,"shield","shield_outer","normal","lilypad");
 
@@ -186,25 +204,29 @@ global.prev_place_id = ""
 
 function enemy_subwave_summon(){
 	current_total_hp = 0
-	
+
     wave_timer = wave_max_time
-	
+
 	if level_stage == "boss"{
 		wave_timer = 10 * 60
 	}
-	
+
 	if is_real(global.level_file.version){
 		if global.level_file.version >= 1.3{
-			if current_wave < total_wave{
+			if current_wave < total_wave && current_subwave < array_length(global.level_file.waves[current_wave].subwaves){
 				if global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time >0{
 					wave_timer = global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time
 				}
 			}
 		}
 	}
-	
+
 	current_wave_max_time = wave_timer
-    
+
+	if current_wave >= total_wave || current_subwave >= array_length(global.level_file.waves[current_wave].subwaves){
+		return
+	}
+
     var subwave_enemy = global.level_file.waves[current_wave].subwaves
     enemy_list = subwave_enemy[current_subwave].enemy_list
     
@@ -225,6 +247,11 @@ function enemy_subwave_summon(){
     var rows_used = array_create(global.grid_rows, false);
     
     // 第二阶段：创建敌人实例
+    var spawn_multiplier = 1
+    if global.difficulty == 5{
+        spawn_multiplier = 2
+    }
+    for (var m = 0; m < spawn_multiplier; m++) {
     for (var i = 0; i < array_length(enemy_list); i++) {
         if (enemy_list[i].type != "") {
             var target_row = enemy_list[i].row;
@@ -327,6 +354,7 @@ function enemy_subwave_summon(){
             var row_index = target_row - 1;
             row_enemy_count[row_index]++;
         }
+    }
     }
     
 }

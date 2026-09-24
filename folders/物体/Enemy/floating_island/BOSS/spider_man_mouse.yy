@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"spider_man_mouse",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/spider_man_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spider_man_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_spider_man_mouse","path":"objects/obj_spider_man_mouse/obj_spider_man_mouse.yy",},
+    {"name":"obj_spider_man_mouse_web","path":"objects/obj_spider_man_mouse_web/obj_spider_man_mouse_web.yy",}
+  ],
+}

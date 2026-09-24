@@ -3,8 +3,8 @@ if package_button_select == 1{
 		if hover_card_index != -1{
 			audio_play_sound(snd_button,0,0)
 			var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_card_edit_menu)
-			inst.target_card_index = hover_card_index
-			var deck_entry = global.player_deck[| hover_card_index*2+1];
+			inst.target_card_index = deck_sort_order[hover_card_index] / 2
+			var deck_entry = global.player_deck[| deck_sort_order[hover_card_index]+1];
 			var card_data_shapes = deck_entry[? "shapes"]
 			view_max_shapes = ds_list_size(card_data_shapes)-1
 			//show_debug_message(view_max_shapes)
@@ -46,5 +46,27 @@ if (package_button_select == 2) {
 	            equip_gem(weapon_id);
 	        }
 	    }
+	}
+}
+else if package_button_select == 3{
+	if not is_submenu_opened{
+		if hover_material_index != -1{
+			var _mat_list = ds_map_keys_to_array(global.material_pool)
+			var _mat_id = _mat_list[hover_material_index]
+			var _price = get_material_sell_price(_mat_id)
+			var _amount = get_material_amount(_mat_id)
+			if _price > 0 && _amount > 0{
+				audio_play_sound(snd_button,0,0)
+				var _mat_data = get_material_info(_mat_id)
+				var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_material_sell_confirm)
+				inst.sell_material_id = _mat_id
+				inst.sell_material_name = _mat_data.name
+				inst.sell_material_icon = _mat_data.icon
+				inst.sell_material_spr = (_mat_id == "oracle_stone") ? spr_oriacle_stone : spr_craft_material
+				inst.max_amount = _amount
+				inst.unit_price = _price
+				is_submenu_opened = true
+			}
+		}
 	}
 }

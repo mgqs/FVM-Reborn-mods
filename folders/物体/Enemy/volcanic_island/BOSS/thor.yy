@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"thor",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/thor.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"thor",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_thor_body","path":"objects/obj_thor_body/obj_thor_body.yy",},
+    {"name":"obj_thor_head","path":"objects/obj_thor_head/obj_thor_head.yy",}
+  ],
+}

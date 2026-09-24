@@ -1,5 +1,3 @@
-image_xscale = 1.8;
-image_yscale = 1.8;
 image_speed = 0;
 state = "start";
 target_x = -1;
@@ -9,3 +7,5 @@ can_mouse_list = ["can_mouse"];
 damage = 900;
 timer = 0;
 shape_bullet = 0;
+image_xscale = 1.8;
+image_yscale = 1.8;

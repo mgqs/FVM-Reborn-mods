@@ -1,6 +1,7 @@
 if global.is_paused{
 	exit
 }
+
 timer ++
 if state == "idle"{
 	image_index = 0

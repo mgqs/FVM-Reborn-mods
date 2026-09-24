@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"triple_wine_rack",
+  "folderPath":"folders/绮剧伒/Cards/Shooter/triple_wine_rack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"triple_wine_rack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

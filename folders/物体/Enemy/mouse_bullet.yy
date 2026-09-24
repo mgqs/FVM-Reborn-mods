@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_bullet",
+  "folderPath":"folders/物体/Enemy/mouse_bullet.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_bullet",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_arson_bullet","path":"objects/obj_arson_bullet/obj_arson_bullet.yy",},
+    {"name":"obj_bat_mouse_target","path":"objects/obj_bat_mouse_target/obj_bat_mouse_target.yy",},
+    {"name":"obj_eel_bullet","path":"objects/obj_eel_bullet/obj_eel_bullet.yy",},
+    {"name":"obj_engineer_bullet","path":"objects/obj_engineer_bullet/obj_engineer_bullet.yy",},
+    {"name":"obj_engineer_bullet_effect","path":"objects/obj_engineer_bullet_effect/obj_engineer_bullet_effect.yy",},
+    {"name":"obj_ice_residue_bullet","path":"objects/obj_ice_residue_bullet/obj_ice_residue_bullet.yy",},
+    {"name":"obj_machine_bomb_mouse_bullet","path":"objects/obj_machine_bomb_mouse_bullet/obj_machine_bomb_mouse_bullet.yy",},
+    {"name":"obj_penguin_bullet","path":"objects/obj_penguin_bullet/obj_penguin_bullet.yy",},
+    {"name":"obj_snail_mouse_mucus","path":"objects/obj_snail_mouse_mucus/obj_snail_mouse_mucus.yy",}
+  ],
+}

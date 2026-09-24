@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"non_mainstream_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/non_mainstream_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"non_mainstream_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"81b571ee-c7f5-47a7-985c-811b87e66d3d","path":"sprites/spr_non_mainstream_mouse/spr_non_mainstream_mouse.yy",},
+    {"name":"9f35502d-47c5-4770-80b6-683aa1844aa7","path":"sprites/spr_non_mainstream_mouse_dance_1/spr_non_mainstream_mouse_dance_1.yy",},
+    {"name":"7841f3b3-a392-4d20-8832-d438922ea254","path":"sprites/spr_non_mainstream_mouse_dance_2/spr_non_mainstream_mouse_dance_2.yy",},
+    {"name":"7cdebf0f-e1a0-48af-be72-7b8b519a957b","path":"sprites/spr_non_mainstream_mouse_dance_3/spr_non_mainstream_mouse_dance_3.yy",}
+  ],
+}

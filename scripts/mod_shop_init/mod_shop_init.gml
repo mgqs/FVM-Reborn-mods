@@ -240,14 +240,6 @@ function mod_shop_init()
         description: "处女座精灵：保护卡牌，并反弹伤害",
         display_name: "处女座精灵"
     });
-    register_goods("tianxie", 
-    {
-        type: "card",
-        cost: "10000",
-        unlock_item_id: "tianxie",
-        description: "天蝎座精灵：发射一根穿透毒刺",
-        display_name: "天蝎座精灵"
-    });
     register_goods("baiyang", 
     {
         type: "card",
@@ -272,7 +264,7 @@ function mod_shop_init()
         description: "雅典娜守护：全屏轰击，造成3×3范围伤害",
         display_name: "雅典娜守护"
     });
-    register_goods("corn_shooter", 
+    register_goods("corn_shooter",
     {
         type: "card",
         cost: "50000",
@@ -280,28 +272,232 @@ function mod_shop_init()
         description: "玉蜀黍：发射三颗玉米",
         display_name: "玉蜀黍"
     });
-    register_goods("beef_hot_pot", 
+    register_goods("star_wand",
     {
-        type: "card",
-        cost: "5000",
-        unlock_item_id: "beef_hot_pot",
-        description: "肥牛火锅：向前方4格持续喷出火焰",
-        display_name: "肥牛火锅"
+        type: "weapon",
+        cost: "1000000",
+        unlock_item_id: "star_wand",
+        description: "星之神杖：召唤星之力全屏攻击，几率造成眩晕",
+        display_name: "星之神杖"
     });
-    register_goods("spicy_pot",
+    register_goods("star_wand_gem_1",
     {
-        type: "card",
-        cost: "5000",
-        unlock_item_id: "spicy_pot",
-        description: "麻辣香锅：蓄力后向前方区域喷射火焰墙",
-        display_name: "麻辣香锅"
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "star_wand_gem_1",
+        description: "星之焕：增幅星之力的溅射比率并改变星之力的形态",
+        display_name: "星之焕"
     });
-    register_goods("chaomian", 
+    register_goods("star_wand_gem_2",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "star_wand_gem_2",
+        description: "星之吻：增幅星之力的伤害",
+        display_name: "星之吻"
+    });
+    register_goods("star_wand_gem_3",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "star_wand_gem_3",
+        description: "星之雨：增幅召唤星之力的数量",
+        display_name: "星之雨"
+    });
+    register_goods("star_wand_gem_4",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "star_wand_gem_4",
+        description: "星之闪：增幅召唤星之力的速度并增加眩晕几率",
+        display_name: "星之闪"
+    });
+    register_goods("rose_shield",
+    {
+        type: "weapon",
+        cost: "1000000",
+        unlock_item_id: "rose_shield",
+        description: "荆棘玫瑰：增加1000生命值，镶嵌宝石时提供超强增益效果",
+        display_name: "荆棘玫瑰"
+    });
+    register_goods("rose_shield_gem_1",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "rose_shield_gem_1",
+        description: "玫瑰之心：生产极限量的火苗",
+        display_name: "玫瑰之心"
+    });
+    register_goods("rose_shield_gem_2",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "rose_shield_gem_2",
+        description: "玫瑰之刺：周期性向8个方向发射荆棘子弹",
+        display_name: "玫瑰之刺"
+    });
+    register_goods("rose_shield_gem_3",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "rose_shield_gem_3",
+        description: "玫瑰之护：为5×5范围内的卡片提升攻击力(5×5外圈衰减)",
+        display_name: "玫瑰之护"
+    });
+    register_goods("rose_shield_gem_4",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "rose_shield_gem_4",
+        description: "玫瑰之绞：为5×7范围内的敌人造成巨额伤害",
+        display_name: "玫瑰之绞"
+    });
+    register_goods("aladdin_lamp",
+    {
+        type: "weapon",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp",
+        description: "阿拉丁神灯：驱动灯神之力朝固定轨迹飞行",
+        display_name: "阿拉丁神灯"
+    });
+    register_goods("aladdin_lamp_gem_1",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp_gem_1",
+        description: "灯神原力：增加阿拉丁神灯的伤害",
+        display_name: "灯神原力"
+    });
+    register_goods("aladdin_lamp_gem_2",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp_gem_2",
+        description: "灯神疾速：增加阿拉丁神灯的攻击速度",
+        display_name: "灯神疾速"
+    });
+    register_goods("aladdin_lamp_gem_3",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp_gem_3",
+        description: "灯神召唤：增加阿拉丁神灯的子弹数量",
+        display_name: "灯神召唤"
+    });
+    register_goods("aladdin_lamp_gem_4",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp_gem_4",
+        description: "灯神迷雾：增加阿拉丁神灯的子弹溅射并改变子弹形态",
+        display_name: "灯神迷雾"
+    });
+    register_goods("star_wand_gem_5",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "star_wand_gem_5",
+        description: "星之耀：大幅增幅星之力的溅射比率并改变星之力的形态",
+        display_name: "星之耀"
+    });
+    register_goods("rose_shield_gem_5",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "rose_shield_gem_5",
+        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力(无衰减)",
+        display_name: "玫瑰之心"
+    });
+    register_goods("aladdin_lamp_gem_5",
+    {
+        type: "gem",
+        cost: "1000000",
+        unlock_item_id: "aladdin_lamp_gem_5",
+        description: "灯神涅槃：大幅增加阿拉丁神灯的伤害",
+        display_name: "灯神涅槃"
+    });
+
+    register_goods("anranxiaohunfan",
     {
         type: "card",
-        cost: "5000",
-        unlock_item_id: "chaomian",
-        description: "新疆炒面：快速猛击前方敌人",
-        display_name: "新疆炒面"
+        cost: "10000",
+        unlock_item_id: "anranxiaohunfan",
+        description: "黯然销魂饭：复活3*3范围内死亡的美食",
+        display_name: "黯然销魂饭"
+    });
+
+    register_goods("12yinliao",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "12yinliao",
+        description: "12饮料精灵：释放全屏美食，立即回满体力",
+        display_name: "12饮料精灵"
+    });
+
+
+    register_goods("dandantu",
+    {
+        type: "card",
+        cost: "10000",
+        unlock_item_id: "dandantu",
+        description: "蛋蛋兔：储存3x3范围内子弹伤害，死亡时释放穿透型子弹攻击整行老鼠",
+        display_name: "蛋蛋兔"
+    });
+    register_goods("laipishe",
+    {
+        type: "card",
+        cost: "80000",
+        unlock_item_id: "laipishe",
+        description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠",
+        display_name: "赖皮蛇"
+    });
+    register_goods("zhiyumiao",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "zhiyumiao",
+        description: "治愈喵：为范围内卡片瞬间恢复5点体力，一转增加3秒补血Buff，二转全屏补血",
+        display_name: "治愈喵"
+    });
+    register_goods("double_blade_snake",
+    {
+        type: "card",
+        cost: "80000",
+        unlock_item_id: "double_blade_snake",
+        description: "双刃蛇：向前发射2发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠",
+        display_name: "双刃蛇"
+    });
+    register_goods("nizhuanniu",
+    {
+        type: "card",
+        cost: "50000",
+        unlock_item_id: "nizhuanniu",
+        description: "逆转牛：将3*3范围内普通老鼠逆转到其所在行的出生位置",
+        display_name: "逆转牛"
+    });
+    register_goods("wanpilong",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "wanpilong",
+        description: "顽皮龙：选择一张己方卡片，将其移动到周围5x5范围内的空格",
+        display_name: "顽皮龙"
+    });
+    register_goods("baobaoji",
+    {
+        type: "card",
+        cost: "15000",
+        unlock_item_id: "baobaoji",
+        description: "爆爆鸡：部署时清除3×3范围内的路障、梯子和鼠洞",
+        display_name: "爆爆鸡"
+    });
+    register_goods("qingse_shishi",
+    {
+        type: "card",
+        cost: "60000",
+        unlock_item_id: "qingse_shishi",
+        description: "青涩柿柿：向前方一定范围内的老鼠发起重击",
+        display_name: "青涩柿柿"
     });
 }

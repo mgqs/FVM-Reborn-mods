@@ -8,9 +8,10 @@ burnt = 0
 damage_type = "pierce"
 target_type = "pierce"
 disabled = false
-image_xscale = 1.8
-image_yscale = 1.8
 image_speed = 0
 timer = 0
 
 hitted_enemy = ds_list_create()
+image_xscale = 1.8;
+image_yscale = 1.8;
+hittable_types = get_hittable_enemy_types(target_type);

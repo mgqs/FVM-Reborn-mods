@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"fruit_tart",
+  "folderPath":"folders/精灵/Cards/Assistant/fruit_tart.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fruit_tart",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"871de8da-7914-40db-89f3-d4c2b1b98023","path":"sprites/spr_fruit_tart/spr_fruit_tart.yy",},
+    {"name":"7405b0b1-a977-4779-9e66-b4146c56c989","path":"sprites/spr_fruit_tart_1/spr_fruit_tart_1.yy",},
+    {"name":"0f7a2b4f-94d2-4200-ba0b-d4d61a394027","path":"sprites/spr_fruit_tart_2/spr_fruit_tart_2.yy",}
+  ],
+}

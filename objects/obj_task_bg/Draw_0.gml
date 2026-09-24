@@ -16,7 +16,7 @@ if target_task_index != -1{
 	draw_set_valign(fa_top)
 	draw_text(x-50,y-310,current_task_info.desc)
 	for(var i = 0; i < array_length(current_task_info.requirements);i++){
-		draw_text(x-50,y-35+25*i,current_task_info.requirements[i].desc+"（"+string(current_task_save_data.progress[i])+"/"+string(current_task_info.requirements[i].require)+"）")
+		draw_text(x-50,y-35+25*i,current_task_info.requirements[i].desc+"（"+string(get_task_progress(current_task_save_data.id,i))+"/"+string(current_task_info.requirements[i].require)+"）")
 	}
 	for(var i = 0; i < array_length(current_task_info.rewards);i++){
 		if current_task_info.rewards[i].type == "item"{

@@ -13,10 +13,13 @@ function shop_init(){
 	register_goods("durian",{"type":"card","cost":"30000","unlock_item_id":"durian","description":"榴莲：伤害3*3范围敌人","display_name":"榴莲"})
 	register_goods("dragon_fruit",{"type":"card","cost":"50000","unlock_item_id":"dragon_fruit","description":"火龙果：伤害3*3范围敌人","display_name":"火龙果"})
 	register_goods("magic_chicken",{"type":"card","cost":"80000","unlock_item_id":"magic_chicken","description":"幻幻鸡：复制成上一张放置的卡片","display_name":"幻幻鸡"})
+	register_goods("baibianshe",{"type":"card","cost":"100000","unlock_item_id":"baibianshe","description":"百变蛇：变身成为范围内上一张种下的卡片","display_name":"百变蛇"})
+register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhang","description":"魔杖蛇：给周围3*3范围旋转攻击卡片和本行直线喷射类卡片提高攻击力","display_name":"魔杖蛇"})
 	register_goods("bull_firework",{"type":"card","cost":"50000","unlock_item_id":"bull_firework","description":"金牛烟花：召唤1只烟花牛冲撞敌人","display_name":"金牛烟花"})
 	register_goods("rabbit_lantern",{"type":"card","cost":"50000","unlock_item_id":"rabbit_lantern","description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","display_name":"玉兔灯笼"})
 	register_goods("delicacy_firework",{"type":"card","cost":"80000","unlock_item_id":"delicacy_firework","description":"美食烟花：3*4范围爆炸，命中老鼠产生火苗","display_name":"美食烟花"})
-	
+	register_goods("coal_starfish",{"type":"card","cost":"150000","unlock_item_id":"coal_starfish","description":"炭烧海星：向五个方向发射星星","display_name":"炭烧海星"})
+
 	register_goods("card_slot_plus",{"type":"item","cost":"20000","unlock_item_id":"card_slot","description":"增加一格卡槽，仅可在卡槽数小于18时使用","display_name":"卡槽+1","spr":spr_slot_plus})
 	register_goods("card_slot_19",{"type":"item","cost":"50000","unlock_item_id":"card_slot_19","description":"解锁第19格卡槽","display_name":"卡槽第19格","spr":spr_slot_19})
 	register_goods("card_slot_20",{"type":"item","cost":"80000","unlock_item_id":"card_slot_20","description":"解锁第20格卡槽","display_name":"卡槽第20格","spr":spr_slot_20})
@@ -41,18 +44,6 @@ function shop_init(){
 	register_goods("ice_mighty_gun",{"type":"weapon","cost":"20000","unlock_item_id":"ice_mighty_gun","description":"冰威武枪：发射四发冰弹","display_name":"冰威武枪"})
 	register_goods("rotating_water_gun",{"type":"weapon","cost":"50000","unlock_item_id":"rotating_water_gun","description":"旋转水枪：每隔一段时间伤害5*5范围敌人","display_name":"旋转水枪"})
 	
-	register_goods("ice_egg_pisces",{"type":"card_attire","cost":"50000","unlock_item_id":"ice_egg_pisces","description":"冰煮蛋器投手的双鱼座精灵时装","display_name":"冰蛋星座时装"})
-	register_goods("water_pipe_libra",{"type":"card_attire","cost":"50000","unlock_item_id":"water_pipe_libra","description":"双向水管的天秤座精灵时装","display_name":"水管星座时装"})
-	register_goods("wine_rack_sagittarius",{"type":"card_attire","cost":"50000","unlock_item_id":"wine_rack_sagittarius","description":"三线酒架的射手座精灵时装","display_name":"酒架星座时装"})
-	register_goods("brazier_taurus",{"type":"card_attire","cost":"50000","unlock_item_id":"brazier_taurus","description":"火盆的金牛座精灵时装","display_name":"火盆星座时装"})
-	register_goods("large_fire_gemini",{"type":"card_attire","cost":"50000","unlock_item_id":"large_fire_gemini","description":"大火炉的双子座精灵时装","display_name":"大火星座时装"})
-	register_goods("takoyaki_cancer",{"type":"card_attire","cost":"50000","unlock_item_id":"takoyaki_cancer","description":"章鱼烧的巨蟹座精灵时装","display_name":"章鱼星座时装"})
-	register_goods("gatling_popcorn",{"type":"card_attire","cost":"50000","unlock_item_id":"gatling_popcorn","description":"机枪小笼包的玉蜀黍时装","display_name":"机枪玉米时装"})
-	register_goods("rotate_leo",{"type":"card_attire","cost":"50000","unlock_item_id":"rotate_leo","description":"旋转咖啡喷壶的狮子座精灵时装","display_name":"旋转星座时装"})
-	register_goods("melon_virgo",{"type":"card_attire","cost":"50000","unlock_item_id":"melon_virgo","description":"瓜皮护罩的处女座精灵时装","display_name":"瓜皮星座时装"})
-	register_goods("bubble_maltose",{"type":"card_attire","cost":"50","unlock_item_id":"bubble_maltose","description":"保护视力的绝佳选择","display_name":"气泡麦芽糖时装"})
-	register_goods("lobster_athena",{"type":"card_attire","cost":"50000","unlock_item_id":"lobster_athena","description":"咖喱龙虾炮的雅典娜守护时装","display_name":"龙虾炮星座时装"})
-	
 	register_goods("player_attire_1",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_1","description":"角色的雪球兔兔时装","display_name":"雪球兔兔"})
 	register_goods("player_attire_2",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_2","description":"角色的提拉米苏时装","display_name":"提拉米苏"})
 	register_goods("player_attire_3",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_3","description":"角色的魔影圣衣时装","display_name":"魔影圣衣"})
@@ -67,4 +58,8 @@ function shop_init(){
 	register_goods("player_attire_12",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_12","description":"角色的丁香绮缘时装","display_name":"丁香绮缘"})
 	register_goods("player_attire_13",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_13","description":"角色的梦恋花语时装","display_name":"梦恋花语"})
 	register_goods("player_attire_14",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_14","description":"角色的探险家时装","display_name":"探险家"})
+
+	register_goods("liehuohu",{"type":"card","cost":"100000","unlock_item_id":"liehuohu","description":"烈火虎：生产火苗并储能，消失时返还剩余储能","display_name":"烈火虎"})
+	register_goods("shegengbao",{"type":"card","cost":"25000","unlock_item_id":"shegengbao","description":"蛇羹煲：无需格子，回收目标格全部卡片的火苗能量","display_name":"蛇羹煲"})
+	register_goods("xuanfengniu",{"type":"card","cost":"60000","unlock_item_id":"xuanfengniu","description":"旋风牛：吹走全屏特定空中老鼠，一转可清障，二转不需要格子","display_name":"旋风牛"})
 }

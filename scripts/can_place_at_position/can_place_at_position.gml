@@ -176,8 +176,22 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card) {
 			}
             return false;
             
+        case "shegengbao":
+            // 蛇羹煲：不占格的一次性回收卡，只能种在有可回收卡片的格子上
+            for (var i = 0; i < ds_list_size(plant_list); i++) {
+                var plant = ds_list_find_value(plant_list, i);
+                if (!instance_exists(plant)) continue;
+                if (variable_instance_exists(plant, "plant_id") && plant.plant_id == "player") continue;
+                if (variable_instance_exists(plant, "can_shovel_remove") && !plant.can_shovel_remove) continue;
+                return true;
+            }
+            return false;
+
+        case "gridless":
+            return true;
+
         case "normal":
-			for (var i = 0; i < ds_list_size(plant_list); i++) {
+				for (var i = 0; i < ds_list_size(plant_list); i++) {
 	            var plant = ds_list_find_value(plant_list, i);
                     if (!instance_exists(plant)) continue;
 	            if (instance_exists(plant) && variable_instance_exists(plant, "plant_id") && plant.plant_id == "player") {

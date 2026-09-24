@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"thug_submarine_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/thug_submarine_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"thug_submarine_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"b0a5bdbf-8108-4603-aa75-6d1260b4a60a","path":"sprites/spr_thug_submarine_mouse/spr_thug_submarine_mouse.yy",},
+    {"name":"aa4dc32f-5079-46ee-9334-ee4df2013fab","path":"sprites/spr_thug_submarine_mouse_enter/spr_thug_submarine_mouse_enter.yy",},
+    {"name":"a1639858-4e83-432b-a6ba-425680d45c18","path":"sprites/spr_thug_submarine_mouse_land/spr_thug_submarine_mouse_land.yy",}
+  ],
+}

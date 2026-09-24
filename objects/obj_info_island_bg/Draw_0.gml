@@ -37,14 +37,36 @@ if info_button_select == 1 {
     // 绘制所有已注册的植物卡片
     var card_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
-    
-    for(var i = 0; i < ds_list_size(global.player_deck); i += 2) {
+
+    // 计算排序索引：普通卡在前，金卡集中放最后
+    deck_sort_order = []
+    var _gold_order = []
+    for(var si = 0; si < ds_list_size(global.player_deck); si += 2) {
+        var _entry = global.player_deck[| si+1]
+        var _shapes = _entry[? "shapes"]
+        var _data = _shapes[| 0]
+        if (ds_map_find_value(_data, "is_gold") == 1) {
+            array_push(_gold_order, si)
+        } else {
+            array_push(deck_sort_order, si)
+        }
+    }
+    for(var si = 0; si < array_length(_gold_order); si++) {
+        array_push(deck_sort_order, _gold_order[si])
+    }
+
+    for(var di = 0; di < array_length(deck_sort_order); di++) {
+        var i = deck_sort_order[di]
         var card_id = global.player_deck[| i];
         var deck_entry = global.player_deck[| i+1];
 		var card_data_shapes = deck_entry[? "shapes"]
 		var card_data = card_data_shapes[| 0]
 		var info = get_plant_shape_data(card_id,0)
 		var card_shape = 0
+		var card_name = ""
+		if info != undefined{
+			card_name = info[? "name"]
+		}
         
         // 计算卡片位置
         var row = card_index div info_cols;
@@ -62,7 +84,7 @@ if info_button_select == 1 {
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(font_yuan)
-				draw_text(card_x,card_y+87,info[? "name"])
+				draw_text(card_x,card_y+87,card_name)
 				draw_set_font(font_yuan)
                 // 检查鼠标是否悬停在卡片上
                 var spr_width = 128*1.5;
@@ -115,14 +137,28 @@ if info_button_select == 1 {
     }
 	if select_card_index != -1{
 		//绘制右侧信息栏
-		var card_id = global.player_deck[| select_card_index*2];
-	    var deck_entry = global.player_deck[| select_card_index*2+1];
+		var card_id = global.player_deck[| deck_sort_order[select_card_index]];
+	    var deck_entry = global.player_deck[| deck_sort_order[select_card_index]+1];
 		var card_data_shapes = deck_entry[? "shapes"]
 		
 		
 		var card_shape = view_card_shape
 	
 		var max_shape = ds_list_size(card_data_shapes)-1
+		// 同时检查植物注册表中的最大形态数，取较小值
+		var _plant_data = get_plant_data(card_id)
+		if _plant_data != undefined{
+			var _shapes_map = _plant_data[? "shapes"]
+			var _plant_max = 0
+			for(var _si = 0; _si <= 10; _si++){
+				if ds_map_exists(_shapes_map, string(_si)){
+					_plant_max = _si
+				}
+			}
+			if _plant_max < max_shape{
+				max_shape = _plant_max
+			}
+		}
 		var current_view_shape = 0
 		
 		if view_card_shape >= max_shape{
@@ -133,7 +169,11 @@ if info_button_select == 1 {
 		}
 		var card_data = card_data_shapes[| current_view_shape]
 		var info = get_plant_data_with_skill(card_id, current_view_shape,view_card_level,view_card_skill);
-		var name = get_plant_shape_data(card_id,current_view_shape)[? "name"]
+		var _shape_data = get_plant_shape_data(card_id,current_view_shape)
+		var name = ""
+		if _shape_data != undefined{
+			name = _shape_data[? "name"]
+		}
 		var info_text = global.info_island[? card_id]
 		
 		//绘制文本
@@ -148,12 +188,14 @@ if info_button_select == 1 {
 		draw_text(x-320,y-190,name)
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
-		var sun = string(info[? "flame_produce"])
-		if sun == "undefined"{
-			sun = "无"
+		if info != undefined{
+			var sun = string(info[? "flame_produce"])
+			if sun == "undefined"{
+				sun = "无"
+			}
+			draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
+			draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		}
-		draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
-		draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		draw_text_ext(x-390,y-100,info_text,30,300)
 		draw_set_font(font_yuan)
 	}

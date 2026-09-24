@@ -5,6 +5,15 @@ if global.is_paused{
 	vspeed -= gravity
 	exit
 }
+
+// 烈火虎储能：场上所有火焰生成时按 value 比例充能（每火焰仅充一次）
+if (!storage_charged) {
+	storage_charged = true;
+	with (obj_liehuohu) {
+		liehuohu_storage_deposit(id, round(other.value * storage_ratio / 100));
+	}
+}
+
 if !is_capture{
 	// 只在落地后开始消失计时
 	if (is_landed && !is_collected) {

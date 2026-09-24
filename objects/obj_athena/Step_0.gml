@@ -45,4 +45,3 @@ if (has_enemy)
         state = 0;
     }
 }
-

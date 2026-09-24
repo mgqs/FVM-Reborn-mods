@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"thor",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/thor.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"thor",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e21b9dfd-0bd7-4bff-9f48-111edab54dcd","path":"sprites/spr_thor_body_death/spr_thor_body_death.yy",},
+    {"name":"34ca799a-7c0e-4edb-a681-8ea9973f718a","path":"sprites/spr_thor_body_idle/spr_thor_body_idle.yy",},
+    {"name":"4fdf55d2-4676-4b2c-aaae-6d110dc86351","path":"sprites/spr_thor_body_skill_1/spr_thor_body_skill_1.yy",},
+    {"name":"eaa045dc-afd7-40ca-8286-5e4b2daeb4d5","path":"sprites/spr_thor_body_skill_2/spr_thor_body_skill_2.yy",},
+    {"name":"f293a237-c53e-4f8d-b1c9-8915b67d19a4","path":"sprites/spr_thor_body_skill_3/spr_thor_body_skill_3.yy",},
+    {"name":"65fe1392-3fd1-4950-b92e-bfef208a8180","path":"sprites/spr_thor_head_death/spr_thor_head_death.yy",},
+    {"name":"e566e71a-ff45-47ea-8a00-973aaa7f42ca","path":"sprites/spr_thor_head_idle/spr_thor_head_idle.yy",},
+    {"name":"10980204-6fd2-4896-aa48-e23152a00efa","path":"sprites/spr_thor_head_skill_1/spr_thor_head_skill_1.yy",},
+    {"name":"1364367f-9531-4ffb-ba2b-1387007985b6","path":"sprites/spr_thor_head_skill_2/spr_thor_head_skill_2.yy",},
+    {"name":"b0c6c897-3dd5-4df9-80fd-f5316d465e55","path":"sprites/spr_thor_head_skill_3/spr_thor_head_skill_3.yy",},
+    {"name":"b39374d7-d8dd-4aca-8349-1390df3833eb","path":"sprites/spr_thor_laser_down/spr_thor_laser_down.yy",},
+    {"name":"f875460b-bc6e-404e-928d-1d25cfdc8e53","path":"sprites/spr_thor_laser_left/spr_thor_laser_left.yy",},
+    {"name":"c8157ec8-6614-4e67-97c4-22e0e85b5caa","path":"sprites/spr_thor_laser_up/spr_thor_laser_up.yy",}
+  ],
+}

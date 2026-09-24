@@ -19,4 +19,4 @@ idle_anim = 15;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-super_bullet = 4;
+super_bullet = 0;

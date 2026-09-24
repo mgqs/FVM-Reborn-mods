@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"bottom_line",
+  "folderPath":"folders/精灵/Effects/bottom_line.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"bottom_line",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e0cebae3-16ce-4fa0-8fb8-09036601d23b","path":"sprites/spr_cat/spr_cat.yy",},
+    {"name":"fa32c8a1-6a5d-43ae-9e5c-dcfaf9abd07e","path":"sprites/spr_crab/spr_crab.yy",},
+    {"name":"ca72af21-3040-4313-b358-6bdf857ddb67","path":"sprites/spr_special_cat/spr_special_cat.yy",}
+  ],
+}

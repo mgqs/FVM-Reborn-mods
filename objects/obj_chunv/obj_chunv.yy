@@ -15,7 +15,10 @@
     "name":"Cards",
     "path":"folders/物体/mod/Cards.yy",
   },
-  "parentObjectId":{"name":"obj_card_parent","path":"objects/obj_card_parent/obj_card_parent.yy",},
+  "parentObjectId":{
+    "name":"obj_card_parent",
+    "path":"objects/obj_card_parent/obj_card_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_chunv_0",
-    "path":"sprites/spr_chunv_0/spr_chunv_0.yy",
+    "name":"spr_chunv_0_3",
+    "path":"sprites/spr_chunv_0_3/spr_chunv_0_3.yy",
   },
   "spriteMaskId":null,
   "visible":true,

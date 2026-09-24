@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"arno",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/arno.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"arno",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"afaf17cb-7ca1-42a4-b63a-1ab08929acb5","path":"sprites/spr_arno_appear/spr_arno_appear.yy",},
+    {"name":"db2d8268-4224-4dd3-9fd8-99dede6ca185","path":"sprites/spr_arno_bullet/spr_arno_bullet.yy",},
+    {"name":"222735c9-0e9c-4c0e-ae6c-5b6b99dbdb2b","path":"sprites/spr_arno_bullet_effect/spr_arno_bullet_effect.yy",},
+    {"name":"5437fb90-792c-4437-b77d-70b3eac1941d","path":"sprites/spr_arno_death/spr_arno_death.yy",},
+    {"name":"ac4789b7-61bb-4b46-9ca2-4fbf8350df07","path":"sprites/spr_arno_disappear/spr_arno_disappear.yy",},
+    {"name":"19a39489-7eff-462c-aebf-fe4308856258","path":"sprites/spr_arno_idle/spr_arno_idle.yy",},
+    {"name":"cc41e203-b8a5-4816-9f7b-02a9f4040e13","path":"sprites/spr_arno_skill_1/spr_arno_skill_1.yy",},
+    {"name":"6728f302-481f-4a50-8b57-08c86ba3e8a3","path":"sprites/spr_arno_skill_2/spr_arno_skill_2.yy",},
+    {"name":"50f24fed-11fe-4e19-a5f6-053fdef2a90c","path":"sprites/spr_arno_skill_2_ready/spr_arno_skill_2_ready.yy",}
+  ],
+}

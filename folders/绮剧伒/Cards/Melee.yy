@@ -1,0 +1,19 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Melee",
+  "folderPath":"folders/绮剧伒/Cards/Melee.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Melee",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"iron_fishbone","path":"folders/绮剧伒/Cards/Melee/iron_fishbone.yy",},
+    {"name":"hamburger","path":"folders/绮剧伒/Cards/Melee/hamburger.yy",},
+    {"name":"xinjiang_fried_noodles","path":"folders/绮剧伒/Cards/Melee/xinjiang_fried_noodles.yy",},
+    {"name":"rotating_coffee_pot","path":"folders/绮剧伒/Cards/Melee/rotating_coffee_pot.yy",}
+  ],
+  "listItems":[],
+}

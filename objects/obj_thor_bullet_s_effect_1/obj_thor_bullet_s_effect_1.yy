@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_thor_bullet_2_s",
-    "path":"sprites/spr_thor_bullet_2_s/spr_thor_bullet_2_s.yy",
+    "name":"spr_thor_effect",
+    "path":"sprites/spr_thor_effect/spr_thor_effect.yy",
   },
   "spriteMaskId":null,
   "visible":true,

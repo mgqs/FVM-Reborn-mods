@@ -64,3 +64,10 @@ water_effect_timer = 0
 hp_modified = false
 
 block_mouse_id_list = ["mouse_train_1"]
+
+enemy_registered = false
+enemy_registered_type = ""
+
+// 记录真实出生坐标（供逆转牛等“传送回出生点”逻辑使用）
+birth_x = x;
+birth_y = y;

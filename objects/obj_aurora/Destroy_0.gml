@@ -20,9 +20,6 @@ else if (shape == 2)
 else
     effect_inst.sprite_index = spr_aurora_dead_3;
 
-with (effect_inst)
-    event_user(7);
-
 if (shape >= 2)
 {
     with (obj_enemy_parent)

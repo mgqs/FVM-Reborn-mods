@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"war_god",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/war_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"war_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"be127011-1df2-43ef-b20e-80d9ccce20d2","path":"sprites/spr_war_god_death/spr_war_god_death.yy",},
+    {"name":"486fafcd-6689-4789-bc64-98bd03875a4e","path":"sprites/spr_war_god_duck/spr_war_god_duck.yy",},
+    {"name":"4031bb7b-efe8-4dc8-a3f9-2fe2c645177d","path":"sprites/spr_war_god_gear/spr_war_god_gear.yy",},
+    {"name":"25819deb-8af9-465a-9b5c-f3c6e0b4b81c","path":"sprites/spr_war_god_idle/spr_war_god_idle.yy",},
+    {"name":"06a82682-e92c-42e9-87ac-9dbcb6d9507d","path":"sprites/spr_war_god_rope_down/spr_war_god_rope_down.yy",},
+    {"name":"b8894902-37cf-4ed4-89eb-705d591b088c","path":"sprites/spr_war_god_rope_up/spr_war_god_rope_up.yy",},
+    {"name":"e9d0e567-9d2b-41f9-b476-ee9f304a814c","path":"sprites/spr_war_god_skill_1/spr_war_god_skill_1.yy",},
+    {"name":"ea7dedd8-fd23-4b8b-a84c-44c2124c058b","path":"sprites/spr_war_god_soldier/spr_war_god_soldier.yy",},
+    {"name":"658720a6-248b-4c9c-9f20-bc1f010c6655","path":"sprites/spr_war_god_summon/spr_war_god_summon.yy",},
+    {"name":"ec90f715-f62c-468a-9e89-69de8a4bca63","path":"sprites/spr_war_god_wood/spr_war_god_wood.yy",}
+  ],
+}

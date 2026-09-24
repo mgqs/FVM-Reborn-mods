@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Camera",
+  "folderPath":"folders/脚本/Camera.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Camera",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"Camera_Shock","path":"scripts/Camera_Shock/Camera_Shock.yy",}
+  ],
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"鍔ㄧ敾鏇茬嚎",
+  "folderPath":"folders/鍔ㄧ敾鏇茬嚎.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"鍔ㄧ敾鏇茬嚎",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

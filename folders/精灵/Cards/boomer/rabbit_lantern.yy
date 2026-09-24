@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"rabbit_lantern",
+  "folderPath":"folders/精灵/Cards/boomer/rabbit_lantern.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rabbit_lantern",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"46dcde77-ef09-4225-bd07-45d9ff97a332","path":"sprites/spr_rabbit_lantern/spr_rabbit_lantern.yy",},
+    {"name":"2f6fdbef-0f43-4ce2-9cd4-c83a27f21e91","path":"sprites/spr_rabbit_lantern_1/spr_rabbit_lantern_1.yy",},
+    {"name":"f621e3c1-d4c8-48ae-b701-e59712256b21","path":"sprites/spr_rabbit_lantern_2/spr_rabbit_lantern_2.yy",},
+    {"name":"c2ffecc0-99e2-442d-b08a-7a2968ba1f9b","path":"sprites/spr_rabbit_lantern_effect/spr_rabbit_lantern_effect.yy",},
+    {"name":"3c933a4c-7503-4149-b9c0-c03bf8324bd2","path":"sprites/spr_rabbit_lantern_explode/spr_rabbit_lantern_explode.yy",},
+    {"name":"5270ea47-a3e7-4eb6-9094-b3d9f2e2cdf7","path":"sprites/spr_rabbit_lantern_explode_1/spr_rabbit_lantern_explode_1.yy",},
+    {"name":"80a9d3f5-5eba-4859-9b18-e3ea183b7bf2","path":"sprites/spr_rabbit_lantern_explode_2/spr_rabbit_lantern_explode_2.yy",}
+  ],
+}

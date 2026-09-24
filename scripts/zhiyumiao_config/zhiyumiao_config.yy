@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"zhiyumiao_config",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"zhiyumiao_config",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

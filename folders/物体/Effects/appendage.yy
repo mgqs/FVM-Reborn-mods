@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"appendage",
+  "folderPath":"folders/物体/Effects/appendage.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"appendage",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_arno_bullet","path":"objects/obj_arno_bullet/obj_arno_bullet.yy",},
+    {"name":"obj_arno_bullet_effect","path":"objects/obj_arno_bullet_effect/obj_arno_bullet_effect.yy",},
+    {"name":"obj_ladder","path":"objects/obj_ladder/obj_ladder.yy",},
+    {"name":"obj_enemy_parent","path":"objects/obj_mario_cave/obj_mario_cave.yy",},
+    {"name":"obj_pharaoh_bandage","path":"objects/obj_pharaoh_bandage/obj_pharaoh_bandage.yy",}
+  ],
+}
