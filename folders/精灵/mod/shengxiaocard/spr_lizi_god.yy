@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_lizi_god",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_lizi_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_lizi_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f29ee582-dd00-4511-be68-dadc399f2af5","path":"sprites/spr_lizi_god/spr_lizi_god.yy",},
+    {"name":"97666d78-a3d3-4d9d-9649-fe34903cd27f","path":"sprites/spr_lizi_god_1/spr_lizi_god_1.yy",},
+    {"name":"7a47d702-228a-4de0-9477-7b80cec0c731","path":"sprites/spr_lizi_god_2/spr_lizi_god_2.yy",},
+    {"name":"2681f982-a75e-4ca4-9e97-3eb7182e4d92","path":"sprites/spr_lizi_god_bullet/spr_lizi_god_bullet.yy",},
+    {"name":"e8c95e21-f403-4aca-9b25-426daac8a09e","path":"sprites/spr_lizi_god_bullet_1/spr_lizi_god_bullet_1.yy",},
+    {"name":"f3f85e12-8327-4c3f-81fa-d8cb08558f1b","path":"sprites/spr_lizi_god_bullet_2/spr_lizi_god_bullet_2.yy",}
+  ],
+}

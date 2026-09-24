@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"delicious_island",
+  "folderPath":"folders/绮剧伒/Maps/delicious_island.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"delicious_island",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

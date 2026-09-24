@@ -16,9 +16,16 @@ with (obj_enemy_parent)
         {
             if (array_get_index(other.hit_array, id) == -1)
             {
-                damage_amount = other.atk;
-                damage_type = other.damage_type;
-                event_user(0);
+                if (mouse_id == "barrier" && (other.shape == 3 || (other.shape == 2 && irandom(1) == 0)))
+                {
+                    hp = 0
+                }
+                else
+                {
+                    damage_amount = other.atk;
+                    damage_type = other.damage_type;
+                    event_user(0);
+                }
                 array_push(other.hit_array, id);
             }
         }

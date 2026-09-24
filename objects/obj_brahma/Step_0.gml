@@ -33,15 +33,6 @@ if (!copied && !is_derivative && image_index >= 14)
         global.replace_placement = false;
         var max_dist = max(global.grid_cols, global.grid_rows);
 
-        var plat_shift_x = 0;
-        var plat_shift_y = 0;
-        var _plat = instance_position(x, y, obj_platform);
-        if (_plat != noone)
-        {
-            plat_shift_x = _plat.visual_x_shift;
-            plat_shift_y = _plat.visual_y_shift;
-        }
-
         // 优先尝试自身所在的格子（终转后该格会空出，也应能复制）
         var _self_world = get_world_position_from_grid(grid_col, grid_row);
         if (found_count < _copy_count && can_place_at_position(_self_world.x, _self_world.y, _copy_plant_type, _copy_feature_type, _copy_target_card))
@@ -140,9 +131,7 @@ if (!copied && !is_derivative && image_index >= 14)
             var col = cell[0];
             var row = cell[1];
             var _cell_world = get_world_position_from_grid(col, row);
-            var inst_x = _cell_world.x + plat_shift_x;
-            var inst_y = _cell_world.y + plat_shift_y;
-            var new_card = instance_create_depth_define(inst_x, inst_y, 0, _copy_obj);
+            var new_card = instance_create_depth_define(_cell_world.x, _cell_world.y, 0, _copy_obj);
             card_created(new_card, col, row);
         }
         

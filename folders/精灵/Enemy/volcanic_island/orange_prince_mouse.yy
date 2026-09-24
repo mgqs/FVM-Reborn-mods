@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"orange_prince_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/orange_prince_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"orange_prince_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ae855154-27dc-48da-b3a4-c9fa7aad4589","path":"sprites/spr_orange_prince_mouse/spr_orange_prince_mouse.yy",},
+    {"name":"aac5faf6-cbcb-477d-a605-aea1875ea8f7","path":"sprites/spr_orange_prince_mouse_enter/spr_orange_prince_mouse_enter.yy",},
+    {"name":"fcbb3545-221b-4dc3-ac17-906bf8cb6dfe","path":"sprites/spr_orange_prince_mouse_frog/spr_orange_prince_mouse_frog.yy",},
+    {"name":"9de17fa9-b3b4-4a10-b9f6-e08524b3e4e6","path":"sprites/spr_orange_prince_mouse_land/spr_orange_prince_mouse_land.yy",}
+  ],
+}

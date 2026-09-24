@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"kettle_bomb",
+  "folderPath":"folders/精灵/Cards/boomer/kettle_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kettle_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"784a5f6a-d2f7-4afa-ab53-78633cd4f7b9","path":"sprites/spr_kettle_bomb/spr_kettle_bomb.yy",},
+    {"name":"233fb684-1c3f-4c8a-836c-4aed5350685b","path":"sprites/spr_kettle_bomb_1/spr_kettle_bomb_1.yy",},
+    {"name":"954afa0f-5cda-41bf-bfb5-ae313a693e42","path":"sprites/spr_kettle_bomb_2/spr_kettle_bomb_2.yy",},
+    {"name":"9948a079-9a47-43bc-8693-7001d4c39331","path":"sprites/spr_kettle_bomb_sleep/spr_kettle_bomb_sleep.yy",},
+    {"name":"996a64e5-5a5d-4dbf-998b-8d02cd8d46bf","path":"sprites/spr_kettle_bomb_sleep_1/spr_kettle_bomb_sleep_1.yy",},
+    {"name":"caccc8ae-cc5d-4aad-963f-8287baadea0b","path":"sprites/spr_kettle_bomb_sleep_2/spr_kettle_bomb_sleep_2.yy",}
+  ],
+}

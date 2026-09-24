@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"machine_flag_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/floating_island/machine_flag_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_flag_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

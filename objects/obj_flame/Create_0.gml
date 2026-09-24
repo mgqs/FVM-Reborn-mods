@@ -22,6 +22,7 @@ collision_radius = 50;
 // 自动收集相关
 auto_collect_timer = 0;
 will_auto_collect = false;
+storage_charged = false;
 
 // 物理属性（新增）
 mode = 1;                // 0=自然生成(天上), 1=植物生产

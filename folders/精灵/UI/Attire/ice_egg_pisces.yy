@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"ice_egg_pisces",
+  "folderPath":"folders/精灵/UI/Attire/ice_egg_pisces.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ice_egg_pisces",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"260eb604-d086-4667-9d2b-cd2efffdeeb9","path":"sprites/spr_ice_egg_pisces/spr_ice_egg_pisces.yy",},
+    {"name":"20636f50-29d1-4fbe-b9ad-6fce68af7327","path":"sprites/spr_ice_egg_pisces_1/spr_ice_egg_pisces_1.yy",},
+    {"name":"394bd641-ffc5-4214-8c50-ac7e4b0f956e","path":"sprites/spr_ice_egg_pisces_2/spr_ice_egg_pisces_2.yy",},
+    {"name":"4f5d05be-8332-4205-bcdd-be2cf8b4c004","path":"sprites/spr_ice_egg_pisces_bullet/spr_ice_egg_pisces_bullet.yy",},
+    {"name":"6746be5a-b4e6-4a40-90aa-0d760b8e5f66","path":"sprites/spr_ice_egg_pisces_bullet_effect/spr_ice_egg_pisces_bullet_effect.yy",},
+    {"name":"260eb604-d086-4667-9d2b-cd2efffdeeb9","path":"sprites/spr_ice_egg_pisces_icon/spr_ice_egg_pisces_icon.yy",},
+    {"name":"76549cbf-168c-44ae-b51c-ccb3df4fe424","path":"sprites/spr_ice_egg_pisces_icon_1/spr_ice_egg_pisces_icon_1.yy",},
+    {"name":"fc97a9ce-d63d-4a13-b25a-041886622750","path":"sprites/spr_ice_egg_pisces_icon_2/spr_ice_egg_pisces_icon_2.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"Superfonts",
+  "folderPath":"folders/Scribble/Superfonts.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Superfonts",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"scribble_super_clear","path":"scripts/scribble_super_clear/scribble_super_clear.yy",},
+    {"name":"scribble_super_create","path":"scripts/scribble_super_create/scribble_super_create.yy",},
+    {"name":"scribble_super_glyph_copy","path":"scripts/scribble_super_glyph_copy/scribble_super_glyph_copy.yy",},
+    {"name":"scribble_super_glyph_copy_all","path":"scripts/scribble_super_glyph_copy_all/scribble_super_glyph_copy_all.yy",},
+    {"name":"scribble_super_glyph_delete","path":"scripts/scribble_super_glyph_delete/scribble_super_glyph_delete.yy",}
+  ],
+}

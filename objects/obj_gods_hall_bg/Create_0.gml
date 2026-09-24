@@ -7,6 +7,7 @@ is_wishing = false;
 wish_completed = true;
 start_wishing = false;
 start_wishing5 = false;
+skip_animation = false;
 reward_id = [];
 reward_list = [];
 random_begin = false;
@@ -27,41 +28,41 @@ if (!variable_struct_exists(global.save_data.player, "pity_count"))
 
 function gods_hall_get_random_reward()
 {
-    var r = irandom(99);
+    var r = irandom(999);
 
-    if (r < 20)
+    if (r < 244)
         return ["金币", 1000];
-    else if (r < 29)
+    else if (r < 334)
         return ["金币", 5000];
-    else if (r < 33)
+    else if (r < 374)
         return ["金币", 10000];
-    else if (r < 36)
+    else if (r < 377)
         return ["神谕之石", 5];
-    else if (r < 37)
+    else if (r < 379)
         return ["神谕之石", 10];
-    else if (r < 38)
+    else if (r < 380)
         return ["神谕之石", 25];
-    else if (r < 51)
+    else if (r < 510)
         return ["天然香料", 25];
-    else if (r < 55)
+    else if (r < 550)
         return ["天然香料", 50];
-    else if (r < 56)
+    else if (r < 560)
         return ["天然香料", 200];
-    else if (r < 65)
+    else if (r < 650)
         return ["秘制香料", 25];
-    else if (r < 67)
+    else if (r < 670)
         return ["秘制香料", 50];
-    else if (r < 68)
+    else if (r < 680)
         return ["秘制香料", 200];
-    else if (r < 78)
+    else if (r < 780)
         return ["初级强化水晶", 25];
-    else if (r < 82)
+    else if (r < 820)
         return ["初级强化水晶", 50];
-    else if (r < 89)
+    else if (r < 890)
         return ["中级强化水晶", 25];
-    else if (r < 92)
+    else if (r < 920)
         return ["中级强化水晶", 50];
-    else if (r < 95)
+    else if (r < 950)
         return ["4级四叶草", 20];
     else
         return ["高级强化水晶", 20];

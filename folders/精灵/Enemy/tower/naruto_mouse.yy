@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"naruto_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/naruto_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"naruto_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d0b43128-2a85-43bf-94fb-414f7bfe6b6e","path":"sprites/spr_naruto_minion_mouse/spr_naruto_minion_mouse.yy",},
+    {"name":"8f65c5a8-d021-4993-94a4-f0160762d9f6","path":"sprites/spr_naruto_minion_mouse_summon/spr_naruto_minion_mouse_summon.yy",},
+    {"name":"3f23c640-f1ef-4012-ba44-83edbbefadd3","path":"sprites/spr_naruto_mouse/spr_naruto_mouse.yy",},
+    {"name":"68edc7b3-ec3b-4609-9646-97dc7bb1f2f7","path":"sprites/spr_naruto_mouse_summon/spr_naruto_mouse_summon.yy",}
+  ],
+}

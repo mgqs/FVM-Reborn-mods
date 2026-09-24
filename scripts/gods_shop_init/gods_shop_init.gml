@@ -1063,6 +1063,37 @@ register_gods_goods("fengrao_god_3",
     spr: spr_fengrao_pin3
 });
 
+register_gods_goods("panduola_god",
+{
+    type: "card",
+    cost: "16",
+    unlock_item_id: "panduola_god",
+    description: "潘多拉：放下立即产生3x3灰烬爆炸，并在本行留下3次毒气伤害",
+    display_name: "潘多拉"
+});
+
+register_gods_goods("panduola_god_1",
+{
+    type: "shape",
+    cost: "16",
+    unlock_item_id: "panduola_god",
+    target_shape: 1,
+    description: "潘多拉魔盒：毒气伤害+35%",
+    display_name: "三转凭证（潘多拉）",
+    spr: spr_panduola_pin1
+});
+
+register_gods_goods("panduola_god_2",
+{
+    type: "shape",
+    cost: "32",
+    unlock_item_id: "panduola_god",
+    target_shape: 2,
+    description: "疫神·潘多拉：毒气范围+1列，全屏8000灰烬爆炸+鼠疫",
+    display_name: "四转凭证（潘多拉）",
+    spr: spr_panduola_pin2
+});
+
 register_gods_goods("houyi_god",
 {
     type: "card",
@@ -1241,3 +1272,4 @@ register_gods_goods("lingrong_god_2",
 });
 
 }
+

@@ -29,6 +29,11 @@ function can_target_on(card_target_type,enemy_target_type){
 			return true
 		}
 	}
+	if enemy_target_type == "invisible"{
+		if card_target_type == "pierce" || card_target_type == "all" || card_target_type == "rotate" || card_target_type == "d_fruit"{
+			return true
+		}
+	}
 	if card_target_type == "all"{
 		return true
 	}
@@ -41,7 +46,7 @@ function can_hit(bullet_target_type,enemy_target_type){
 
 function get_hittable_enemy_types(bullet_target_type){
 	var _types = [];
-	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground"];
+	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground", "invisible"];
 
 	if (bullet_target_type != "air_only") array_push(_types, "normal");
 	if (bullet_target_type == "throw" || bullet_target_type == "track" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "diver");
@@ -49,6 +54,7 @@ function get_hittable_enemy_types(bullet_target_type){
 	if (bullet_target_type == "pierce" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "dance");
 	if (bullet_target_type == "pierce" || bullet_target_type == "normal" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "obstacle");
 	if (bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "underground");
+	if (bullet_target_type == "pierce" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "invisible");
 
 	return _types;
 }

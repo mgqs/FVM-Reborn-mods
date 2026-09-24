@@ -234,11 +234,15 @@ if (get_gem_index("rose_shield_gem_2") != -1)
 
 rose_buff_gem = false;
 rose_buff_ratio = 0;
+rose_buff_inner = 0;
+rose_buff_outer = 0;
+rose_buff_type = "";
 rose_buff_card_list = [];
 
 if (get_gem_index("rose_shield_gem_5") != -1)
 {
     rose_buff_gem = true;
+    rose_buff_type = "5x7";
     var _gi = get_gem_info("rose_shield_gem_5");
     var _gl = get_gem_level("rose_shield_gem_5");
     rose_buff_ratio = _gi.ratio[_gl];
@@ -246,9 +250,11 @@ if (get_gem_index("rose_shield_gem_5") != -1)
 else if (get_gem_index("rose_shield_gem_3") != -1)
 {
     rose_buff_gem = true;
+    rose_buff_type = "5x5";
     var _gi = get_gem_info("rose_shield_gem_3");
     var _gl = get_gem_level("rose_shield_gem_3");
-    rose_buff_ratio = _gi.ratio[_gl];
+    rose_buff_inner = _gi.ratio_inner[_gl];
+    rose_buff_outer = _gi.ratio_outer[_gl];
 }
 
 rose_dmg_gem = false;

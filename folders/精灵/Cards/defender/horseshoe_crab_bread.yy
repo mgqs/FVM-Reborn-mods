@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"horseshoe_crab_bread",
+  "folderPath":"folders/精灵/Cards/defender/horseshoe_crab_bread.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"horseshoe_crab_bread",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"21024efe-5467-4dc3-be7a-a6bb21ffb068","path":"sprites/spr_horseshoe_crab_bread_0_0/spr_horseshoe_crab_bread_0_0.yy",},
+    {"name":"b648e62e-c58d-4ca9-810d-38449e6dd41f","path":"sprites/spr_horseshoe_crab_bread_0_1/spr_horseshoe_crab_bread_0_1.yy",},
+    {"name":"ab085023-a03b-4b06-bb0c-376eb4f3e5c7","path":"sprites/spr_horseshoe_crab_bread_0_2/spr_horseshoe_crab_bread_0_2.yy",},
+    {"name":"f2715230-4dd2-4ba1-8cb3-2db2b8cf69c2","path":"sprites/spr_horseshoe_crab_bread_1_0/spr_horseshoe_crab_bread_1_0.yy",},
+    {"name":"437ca631-b2cf-49e7-909d-c96b1cde7589","path":"sprites/spr_horseshoe_crab_bread_1_1/spr_horseshoe_crab_bread_1_1.yy",},
+    {"name":"cd73073c-8145-4d25-a1d5-63c41a2b13b6","path":"sprites/spr_horseshoe_crab_bread_1_2/spr_horseshoe_crab_bread_1_2.yy",}
+  ],
+}

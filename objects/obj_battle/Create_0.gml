@@ -70,6 +70,17 @@ if (variable_global_exists("shovel_order") && ds_exists(global.shovel_order, ds_
 if (variable_global_exists("eat_order") && ds_exists(global.eat_order, ds_type_list)) {
 	ds_list_destroy(global.eat_order);
 }
+// 清理死亡卡片列表（复活机制用）
+if (variable_global_exists("dead_cards") && ds_exists(global.dead_cards, ds_type_list)) {
+	for (var _d = 0; _d < ds_list_size(global.dead_cards); _d++) {
+		var _dead_map = global.dead_cards[| _d];
+		if (ds_exists(_dead_map, ds_type_map)) {
+			ds_map_destroy(_dead_map);
+		}
+	}
+	ds_list_destroy(global.dead_cards);
+}
+global.dead_cards = ds_list_create();
 
 // 植物层级定义
 global.plant_layers = ds_map_create();
@@ -78,10 +89,11 @@ ds_map_add(global.plant_layers, "shield_inner", 1);      // 护罩植物内侧
 ds_map_add(global.plant_layers, "lilypad", 2);     // 莲叶花盆类
 ds_map_add(global.plant_layers, "shield_outer", 3);      // 护罩植物外侧
 ds_map_add(global.plant_layers, "coffee", 4);      // 咖啡豆类
+ds_map_add(global.plant_layers, "gridless", 5);    // 不占格卡片（最上层）
 
 // 铲除顺序
 global.shovel_order = ds_list_create();
-ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee");
+ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee","gridless");
 global.eat_order = ds_list_create();
 ds_list_add(global.eat_order,"shield","shield_outer","normal","lilypad");
 

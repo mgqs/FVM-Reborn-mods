@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"sardine_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/undersea_vortex/sardine_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sardine_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

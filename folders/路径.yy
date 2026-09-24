@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"路径",
+  "folderPath":"folders/路径.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"路径",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

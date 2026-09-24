@@ -341,7 +341,7 @@ function mod_shop_init()
         type: "gem",
         cost: "1000000",
         unlock_item_id: "rose_shield_gem_3",
-        description: "玫瑰之护：为5×7范围内的卡片巨幅提升攻击力",
+        description: "玫瑰之护：为5×5范围内的卡片提升攻击力(5×5外圈衰减)",
         display_name: "玫瑰之护"
     });
     register_goods("rose_shield_gem_4",
@@ -405,7 +405,7 @@ function mod_shop_init()
         type: "gem",
         cost: "1000000",
         unlock_item_id: "rose_shield_gem_5",
-        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力",
+        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力(无衰减)",
         display_name: "玫瑰之心"
     });
     register_goods("aladdin_lamp_gem_5",
@@ -417,4 +417,87 @@ function mod_shop_init()
         display_name: "灯神涅槃"
     });
 
+    register_goods("anranxiaohunfan",
+    {
+        type: "card",
+        cost: "10000",
+        unlock_item_id: "anranxiaohunfan",
+        description: "黯然销魂饭：复活3*3范围内死亡的美食",
+        display_name: "黯然销魂饭"
+    });
+
+    register_goods("12yinliao",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "12yinliao",
+        description: "12饮料精灵：释放全屏美食，立即回满体力",
+        display_name: "12饮料精灵"
+    });
+
+
+    register_goods("dandantu",
+    {
+        type: "card",
+        cost: "10000",
+        unlock_item_id: "dandantu",
+        description: "蛋蛋兔：储存3x3范围内子弹伤害，死亡时释放穿透型子弹攻击整行老鼠",
+        display_name: "蛋蛋兔"
+    });
+    register_goods("laipishe",
+    {
+        type: "card",
+        cost: "80000",
+        unlock_item_id: "laipishe",
+        description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠",
+        display_name: "赖皮蛇"
+    });
+    register_goods("zhiyumiao",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "zhiyumiao",
+        description: "治愈喵：为范围内卡片瞬间恢复5点体力，一转增加3秒补血Buff，二转全屏补血",
+        display_name: "治愈喵"
+    });
+    register_goods("double_blade_snake",
+    {
+        type: "card",
+        cost: "80000",
+        unlock_item_id: "double_blade_snake",
+        description: "双刃蛇：向前发射2发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠",
+        display_name: "双刃蛇"
+    });
+    register_goods("nizhuanniu",
+    {
+        type: "card",
+        cost: "50000",
+        unlock_item_id: "nizhuanniu",
+        description: "逆转牛：将3*3范围内普通老鼠逆转到其所在行的出生位置",
+        display_name: "逆转牛"
+    });
+    register_goods("wanpilong",
+    {
+        type: "card",
+        cost: "12500",
+        unlock_item_id: "wanpilong",
+        description: "顽皮龙：选择一张己方卡片，将其移动到周围5x5范围内的空格",
+        display_name: "顽皮龙"
+    });
+    register_goods("baobaoji",
+    {
+        type: "card",
+        cost: "15000",
+        unlock_item_id: "baobaoji",
+        description: "爆爆鸡：部署时清除3×3范围内的路障、梯子和鼠洞",
+        display_name: "爆爆鸡"
+    });
+    register_goods("qingse_shishi",
+    {
+        type: "card",
+        cost: "60000",
+        unlock_item_id: "qingse_shishi",
+        description: "青涩柿柿：向前方一定范围内的老鼠发起重击",
+        display_name: "青涩柿柿"
+    });
 }

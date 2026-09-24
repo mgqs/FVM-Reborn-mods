@@ -14,7 +14,9 @@ function plus_card_init(){
 	ds_map_add(global.plus_card_map,"gatlin_ice_long_bao",[obj_gatlin_ice_long_bao,1])
 	ds_map_add(global.plus_card_map,"pineapple_explosive_bread",[obj_pineapple_explosive_bread,1])
 	ds_map_add(global.plus_card_map,"shuangyu",[obj_shuangyu,1])
+	ds_map_add(global.plus_card_map,"shizi",[obj_shizi,1])
 	ds_map_add(global.plus_card_map,"tiancheng",[obj_tiancheng,1])
 	ds_map_add(global.plus_card_map,"sheshou",[obj_sheshou,1])
 	ds_map_add(global.plus_card_map,"juxie",[obj_juxie,1])
+	ds_map_add(global.plus_card_map,"laipishe",[obj_laipishe,2])
 }

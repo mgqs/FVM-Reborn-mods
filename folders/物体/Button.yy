@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"Button",
+  "folderPath":"folders/物体/Button.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Button",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_battlestart_button","path":"objects/obj_battlestart_button/obj_battlestart_button.yy",},
+    {"name":"obj_levelselect_button","path":"objects/obj_levelselect_button/obj_levelselect_button.yy",},
+    {"name":"obj_page_button","path":"objects/obj_page_button/obj_page_button.yy",},
+    {"name":"obj_setting_toggle","path":"objects/obj_setting_toggle/obj_setting_toggle.yy",},
+    {"name":"obj_startgame_button","path":"objects/obj_startgame_button/obj_startgame_button.yy",}
+  ],
+}

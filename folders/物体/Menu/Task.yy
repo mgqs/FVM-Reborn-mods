@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Task",
+  "folderPath":"folders/物体/Menu/Task.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Task",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_closetask_btn","path":"objects/obj_closetask_btn/obj_closetask_btn.yy",},
+    {"name":"obj_task_bg","path":"objects/obj_task_bg/obj_task_bg.yy",},
+    {"name":"obj_task_claim_btn","path":"objects/obj_task_claim_btn/obj_task_claim_btn.yy",},
+    {"name":"obj_task_line_bg","path":"objects/obj_task_line_bg/obj_task_line_bg.yy",},
+    {"name":"obj_task_manager","path":"objects/obj_task_manager/obj_task_manager.yy",},
+    {"name":"obj_task_select_btn","path":"objects/obj_task_select_btn/obj_task_select_btn.yy",}
+  ],
+}

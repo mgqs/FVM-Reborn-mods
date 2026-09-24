@@ -1,0 +1,34 @@
+{
+  "$GMFolder":"",
+  "%Name":"Battle",
+  "folderPath":"folders/精灵/Battle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Battle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"boss_icon","path":"folders/精灵/Battle/boss_icon.yy",},
+    {"name":"timer_text","path":"folders/精灵/Battle/timer_text.yy",}
+  ],
+  "listItems":[
+    {"name":"ed770b99-4025-4aed-9b4c-9312df7c6fe1","path":"sprites/spr_boss_hpbar_bar/spr_boss_hpbar_bar.yy",},
+    {"name":"2a3ee288-ae01-4a2d-85a6-89d523d84019","path":"sprites/spr_boss_hpbar_icon_bg/spr_boss_hpbar_icon_bg.yy",},
+    {"name":"e3c5a03e-0b04-41c3-b1aa-f3ae534ddc83","path":"sprites/spr_boss_hpbar_left/spr_boss_hpbar_left.yy",},
+    {"name":"be3d0392-17ae-40e6-a035-eee45b55f633","path":"sprites/spr_boss_hpbar_middle/spr_boss_hpbar_middle.yy",},
+    {"name":"cab0562b-371a-4818-9dfc-1d78dd96af4a","path":"sprites/spr_boss_hpbar_name/spr_boss_hpbar_name.yy",},
+    {"name":"7ef4a2a1-48a5-4f03-81d2-39cc62fab1de","path":"sprites/spr_boss_hpbar_right/spr_boss_hpbar_right.yy",},
+    {"name":"cf158499-e4b3-46f7-a793-40b3a84bd6e5","path":"sprites/spr_level_progress_bar/spr_level_progress_bar.yy",},
+    {"name":"828e6b7c-8bad-40b5-a73f-e4965daf20d7","path":"sprites/spr_level_progress_bg_left/spr_level_progress_bg_left.yy",},
+    {"name":"1c99ab20-ea80-46a7-83ca-75f40cf7d50e","path":"sprites/spr_level_progress_bg_middle/spr_level_progress_bg_middle.yy",},
+    {"name":"c705738c-ebab-4b74-a3d2-b08e3edb184e","path":"sprites/spr_level_progress_bg_right/spr_level_progress_bg_right.yy",},
+    {"name":"1baba391-5ae7-4d15-af88-9540c607296e","path":"sprites/spr_level_progress_flag/spr_level_progress_flag.yy",},
+    {"name":"71d78f93-afa3-45de-9b7c-36ae49cecdd4","path":"sprites/spr_level_progress_icon/spr_level_progress_icon.yy",},
+    {"name":"a1635a6c-a246-4dbd-9343-51b237aff1d8","path":"sprites/spr_level_wave_number/spr_level_wave_number.yy",},
+    {"name":"337765fb-874c-4a36-96a3-89701abb7421","path":"sprites/spr_level_wave_text/spr_level_wave_text.yy",},
+    {"name":"1024dbd9-e2b5-4104-a237-34c2fddf38af","path":"sprites/spr_lose/spr_lose.yy",},
+    {"name":"70f6ae4a-ea31-4649-9cdf-900e63079196","path":"sprites/spr_win/spr_win.yy",}
+  ],
+}

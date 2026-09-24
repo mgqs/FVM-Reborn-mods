@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"durian",
+  "folderPath":"folders/精灵/Cards/boomer/durian.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"durian",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ca72c28a-e596-4005-b11a-1dc6bba99b9f","path":"sprites/spr_durian/spr_durian.yy",},
+    {"name":"1f33dae3-f897-457c-b0da-d634d90a92a1","path":"sprites/spr_durian_1/spr_durian_1.yy",},
+    {"name":"57002a6e-922d-4370-90c7-26e4af54c171","path":"sprites/spr_durian_2/spr_durian_2.yy",},
+    {"name":"8feb2a92-2cf7-41a3-b15b-8cd9c632d6fa","path":"sprites/spr_durian_effect/spr_durian_effect.yy",}
+  ],
+}

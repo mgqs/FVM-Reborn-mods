@@ -31,8 +31,6 @@ if (variable_global_exists("enemy_by_type"))
                     damage_type = other.damage_type
                     event_user(0)
                 }
-                instance_destroy()
-                exit
                 if sprite_index == spr_chocolatepult_bullet_large{
                     if shape >= 1{
                         if _e.stun_timer <240{

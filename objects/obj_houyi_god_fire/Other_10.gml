@@ -11,7 +11,7 @@ with (obj_enemy_parent)
     if (grid_col >= (other.grid_col - col_offset) && grid_col <= (other.grid_col + col_offset) && abs(grid_row - other.grid_row) <= row_offset && can_hit(other.target_type, target_type) && hp > 0)
     {
         var _prev_hp = hp;
-        damage_amount = other.damage;
+        damage_amount = other.damage * other.stack_count;
         damage_type = other.damage_type;
         event_user(0);
 

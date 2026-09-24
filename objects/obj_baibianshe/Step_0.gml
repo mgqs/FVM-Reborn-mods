@@ -52,6 +52,9 @@ if (!copied && !is_derivative && image_index >= idle_anim - 1)
 
         for (var d = 1; d <= max_dist; d++)
         {
+            if (found_count >= _copy_count)
+                break;
+
             var candidates = [];
             var dr = -d;
 
@@ -142,6 +145,20 @@ if (!copied && !is_derivative && image_index >= idle_anim - 1)
             var _cell_world = get_world_position_from_grid(col, row);
             var inst_x = _cell_world.x + plat_shift_x;
             var inst_y = _cell_world.y + plat_shift_y;
+            if (_copy_feature_type == "upgrade" && _copy_target_card != undefined && _copy_target_card != "none")
+            {
+                var _base_plant_list = ds_grid_get(global.grid_plants, col, row);
+                for (var j = 0; j < ds_list_size(_base_plant_list); j++)
+                {
+                    var _base_plant = ds_list_find_value(_base_plant_list, j);
+                    if (instance_exists(_base_plant) && variable_instance_exists(_base_plant, "plant_id") && _base_plant.plant_id == _copy_target_card)
+                    {
+                        card_destroyed(_base_plant);
+                        instance_destroy(_base_plant);
+                        break;
+                    }
+                }
+            }
             var new_card = instance_create_depth_define(inst_x, inst_y, 0, _copy_obj);
             card_created(new_card, col, row);
         }

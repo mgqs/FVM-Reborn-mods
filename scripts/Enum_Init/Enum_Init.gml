@@ -6,7 +6,8 @@ function Enum_Init(){
 		READY,
 		SLEEP,
 		AWAKE,
-		RELAX
+		RELAX,
+		DEAD
 	}
 	enum CARD_DATA {
 	    obj,        // 卡牌对象

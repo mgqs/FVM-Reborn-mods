@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Menu",
+  "folderPath":"folders/精灵/UI/Menu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Menu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fd27538b-9e31-499d-b0be-4f58039fefe1","path":"sprites/spr_battle_escape_menu/spr_battle_escape_menu.yy",},
+    {"name":"284bb0fc-fa4a-473e-9fcb-12d71d40c4a4","path":"sprites/spr_closemenu_btn/spr_closemenu_btn.yy",},
+    {"name":"b2e693c5-c013-4f92-a968-bb3d90a6dbe3","path":"sprites/spr_edit_menu_bg_1/spr_edit_menu_bg_1.yy",},
+    {"name":"5e215dd9-e319-42a1-9cd0-1ad48038e5f7","path":"sprites/spr_edit_menu_bg_2/spr_edit_menu_bg_2.yy",},
+    {"name":"5282b6b9-32a5-4dc1-aba7-b4a3e847f99d","path":"sprites/spr_menu_select_btn/spr_menu_select_btn.yy",},
+    {"name":"73d5a2e7-d2ec-46b2-aa3f-5da70d219278","path":"sprites/spr_menu_ui/spr_menu_ui.yy",},
+    {"name":"6b4484a4-0d7f-430e-93dc-2ac500848e81","path":"sprites/spr_mute_button/spr_mute_button.yy",},
+    {"name":"93439dc1-c67e-4c6c-81e6-1c4f4342ff73","path":"sprites/spr_page_button/spr_page_button.yy",},
+    {"name":"428d1ecd-0acd-47f2-9fe5-5322fa91348e","path":"sprites/spr_pause_menu/spr_pause_menu.yy",},
+    {"name":"2ea8fc27-238d-445a-8b38-3079715069e1","path":"sprites/spr_save_slot_btn/spr_save_slot_btn.yy",},
+    {"name":"a04d0db7-f708-4936-a934-6de29122b525","path":"sprites/spr_setting_toggle/spr_setting_toggle.yy",},
+    {"name":"100883b1-a9a7-4abc-89cc-bc924678a1f1","path":"sprites/spr_volume_slider/spr_volume_slider.yy",}
+  ],
+}

@@ -49,6 +49,7 @@ if timer < current_flash_speed - 1 {
                 var inst = instance_create_depth(world_pos.x, world_pos.y, depth, fish_type)
                 inst.grid_row = target_row
                 inst.atk = atk
+                inst.shape = shape
             }
         }
         instance_destroy()

@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"baibianshe",
+  "folderPath":"folders/物体/mod/Cards/baibianshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"baibianshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_baibianshe","path":"objects/obj_baibianshe/obj_baibianshe.yy",}
+  ],
+}

@@ -127,7 +127,14 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
 				inst.sprite_index = spr_enter_water_effect
 				audio_play_sound(snd_enter_water,0,0)
 			}
-            instance_destroy();
+			is_shoveled = true;
+            if (plant_id == "dandantu" && !has_exploded) {
+                is_exploding = true;
+                anim_frame = explode_start;
+                anim_timer = 0;
+            } else {
+                instance_destroy();
+            }
         }
 		
 		deselect_shovel()

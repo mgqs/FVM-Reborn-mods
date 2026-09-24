@@ -3,6 +3,7 @@ if (start_wishing)
     is_wishing = true;
     random_begin = true;
     wish_completed = false;
+    skip_animation = false;
     start_wishing = false;
 }
 
@@ -75,6 +76,7 @@ if (random_begin)
 if (start_wishing5)
 {
     is_wishing = true;
+    skip_animation = false;
     var bag2 = instance_create_depth(x + 2 + 150, (room_height / 2) - 50, depth - 1, obj_gods_hall_bag);
     bag2.parent_gui = id;
     bag2.list_num = 1;

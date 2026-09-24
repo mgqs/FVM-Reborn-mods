@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"curry_lobster_cannon",
+  "folderPath":"folders/精灵/Cards/Track/curry_lobster_cannon.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"curry_lobster_cannon",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"bed955c5-e3d9-451b-8639-18439ccb1d58","path":"sprites/spr_curry_lobster_cannon/spr_curry_lobster_cannon.yy",},
+    {"name":"b5b0a01e-5adb-4ea7-9cbd-82541d917025","path":"sprites/spr_curry_lobster_cannon_1/spr_curry_lobster_cannon_1.yy",},
+    {"name":"f3d0516b-5735-4a56-8826-47bd9d432b88","path":"sprites/spr_curry_lobster_cannon_2/spr_curry_lobster_cannon_2.yy",},
+    {"name":"176d50c3-e1e8-4809-93f8-2118e54e87d8","path":"sprites/spr_curry_lobster_cannon_bullet/spr_curry_lobster_cannon_bullet.yy",},
+    {"name":"8a6012ec-e3ea-44cf-b71b-540cec6ee46e","path":"sprites/spr_curry_lobster_cannon_bullet_1/spr_curry_lobster_cannon_bullet_1.yy",},
+    {"name":"5334821b-adc7-48e2-a973-d6626037efc3","path":"sprites/spr_curry_lobster_cannon_bullet_2/spr_curry_lobster_cannon_bullet_2.yy",},
+    {"name":"a873ffcb-8001-4f96-80a9-3e7aa9d73dc3","path":"sprites/spr_curry_lobster_cannon_bullet_effect/spr_curry_lobster_cannon_bullet_effect.yy",},
+    {"name":"25e3bf88-ce7d-4ef7-a8de-bc17184c127d","path":"sprites/spr_curry_lobster_cannon_bullet_effect_1/spr_curry_lobster_cannon_bullet_effect_1.yy",},
+    {"name":"a611394d-dd14-4b39-88e6-fe176942c176","path":"sprites/spr_curry_lobster_cannon_bullet_effect_2/spr_curry_lobster_cannon_bullet_effect_2.yy",}
+  ],
+}

@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"baobaoji",
+  "folderPath":"folders/物体/mod/Cards/baobaoji.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"baobaoji",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_baobaoji","path":"objects/obj_baobaoji/obj_baobaoji.yy",}
+  ],
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"guangming_god",
+  "folderPath":"folders/绮剧伒/mod/Cards/guangming_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"guangming_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

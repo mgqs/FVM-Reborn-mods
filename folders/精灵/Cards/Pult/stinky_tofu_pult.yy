@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"stinky_tofu_pult",
+  "folderPath":"folders/精灵/Cards/Pult/stinky_tofu_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"stinky_tofu_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"5143a96d-7fc2-467c-87dd-abc5187ccd7a","path":"sprites/spr_stinky_tofu_pult/spr_stinky_tofu_pult.yy",},
+    {"name":"5c7c2791-66d4-4158-8ad3-e6fa06690875","path":"sprites/spr_stinky_tofu_pult_1/spr_stinky_tofu_pult_1.yy",},
+    {"name":"1687b3db-18af-490d-8f82-328ae8f257a8","path":"sprites/spr_stinky_tofu_pult_2/spr_stinky_tofu_pult_2.yy",}
+  ],
+}

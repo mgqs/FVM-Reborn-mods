@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"oil_lamp",
+  "folderPath":"folders/精灵/Cards/Assistant/oil_lamp.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"oil_lamp",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ca7a3aaf-ea4c-4eac-8bb6-4ca49a5ad7dd","path":"sprites/spr_oil_lamp/spr_oil_lamp.yy",},
+    {"name":"94c8ab86-8049-4dde-b55a-c5388043561e","path":"sprites/spr_oil_lamp_1/spr_oil_lamp_1.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"panduola_god",
+  "folderPath":"folders/精灵/mod/Cards/panduola_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"panduola_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"5e4cba2a-5751-497d-9946-f04a4f5ce03f","path":"sprites/spr_panduola_god/spr_panduola_god.yy",},
+    {"name":"48722ae9-312d-4af5-aca4-537cbcf06e64","path":"sprites/spr_panduola_god_1/spr_panduola_god_1.yy",},
+    {"name":"6c5d74f2-507c-4bd5-b844-89faf85d32a7","path":"sprites/spr_panduola_god_2/spr_panduola_god_2.yy",},
+    {"name":"spr_panduola_pin1","path":"sprites/spr_panduola_pin1/spr_panduola_pin1.yy",},
+    {"name":"spr_panduola_pin2","path":"sprites/spr_panduola_pin2/spr_panduola_pin2.yy",}
+  ],
+}

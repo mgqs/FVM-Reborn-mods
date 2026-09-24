@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"lobster_knight",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/BOSS/lobster_knight.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lobster_knight",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"329ea6ed-3b72-4807-bcd0-9b14a3a85ade","path":"sprites/spr_lobster_knight_bubble_destroy/spr_lobster_knight_bubble_destroy.yy",},
+    {"name":"1537877e-7241-4ec9-a6c6-5e0fe23a73d6","path":"sprites/spr_lobster_knight_bullet/spr_lobster_knight_bullet.yy",},
+    {"name":"58d20030-2e5a-415a-99a1-a01d0e0a586b","path":"sprites/spr_lobster_knight_bullet_effect/spr_lobster_knight_bullet_effect.yy",},
+    {"name":"9b7a8591-9be2-4981-a28e-abaefdc73431","path":"sprites/spr_lobster_knight_bullet_extend/spr_lobster_knight_bullet_extend.yy",},
+    {"name":"1e96de27-d7d5-45f1-b89d-a2850dc01242","path":"sprites/spr_lobster_knight_death/spr_lobster_knight_death.yy",},
+    {"name":"26b3f235-92b5-4210-9aa5-060692e79040","path":"sprites/spr_lobster_knight_destroy_effect/spr_lobster_knight_destroy_effect.yy",},
+    {"name":"a6e30054-ab3a-4dd2-87e4-deaf8a9d0fa0","path":"sprites/spr_lobster_knight_idle/spr_lobster_knight_idle.yy",},
+    {"name":"5856b30e-d3a1-4498-a89f-b454ccf623c6","path":"sprites/spr_lobster_knight_move/spr_lobster_knight_move.yy",},
+    {"name":"9adafd28-2be7-4f2c-a47c-1440c8dfe199","path":"sprites/spr_lobster_knight_move_fast/spr_lobster_knight_move_fast.yy",},
+    {"name":"f2e86557-b45d-4d54-8f67-1325094d6c69","path":"sprites/spr_lobster_knight_skill_1/spr_lobster_knight_skill_1.yy",},
+    {"name":"1416fedd-e9e5-4366-a3c5-7c9c0618ef23","path":"sprites/spr_lobster_knight_skill_2/spr_lobster_knight_skill_2.yy",},
+    {"name":"e0ff2c77-05e2-4ee5-9af1-6699c2883576","path":"sprites/spr_lobster_knight_skill_3/spr_lobster_knight_skill_3.yy",}
+  ],
+}

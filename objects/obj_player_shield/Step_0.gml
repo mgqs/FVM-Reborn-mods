@@ -450,10 +450,33 @@ if (rose_buff_gem)
 {
     with (obj_card_parent)
     {
-        if (array_get_index(other.blacklist, plant_id) == -1 && array_get_index(other.rose_buff_card_list, id) == -1 && grid_row >= (other.grid_row - 3) && grid_row <= (other.grid_row + 3) && grid_col >= (other.grid_col - 2) && grid_col <= (other.grid_col + 2))
+        if (array_get_index(other.blacklist, plant_id) == -1 && array_get_index(other.rose_buff_card_list, id) == -1)
         {
-            atk *= (other.rose_buff_ratio + 1);
-            array_push(other.rose_buff_card_list, id);
+            if (other.rose_buff_type == "5x5")
+            {
+                var _in3x3 = grid_row >= (other.grid_row - 1) && grid_row <= (other.grid_row + 1) && grid_col >= (other.grid_col - 1) && grid_col <= (other.grid_col + 1);
+                var _in5x5 = grid_row >= (other.grid_row - 2) && grid_row <= (other.grid_row + 2) && grid_col >= (other.grid_col - 2) && grid_col <= (other.grid_col + 2);
+                var _ratio = 0;
+
+                if (_in3x3)
+                    _ratio = other.rose_buff_inner;
+                else if (_in5x5)
+                    _ratio = other.rose_buff_outer;
+
+                if (_ratio > 0)
+                {
+                    atk *= (_ratio + 1);
+                    array_push(other.rose_buff_card_list, id);
+                }
+            }
+            else if (other.rose_buff_type == "5x7")
+            {
+                if (grid_row >= (other.grid_row - 3) && grid_row <= (other.grid_row + 3) && grid_col >= (other.grid_col - 2) && grid_col <= (other.grid_col + 2))
+                {
+                    atk *= (other.rose_buff_ratio + 1);
+                    array_push(other.rose_buff_card_list, id);
+                }
+            }
         }
     }
 }

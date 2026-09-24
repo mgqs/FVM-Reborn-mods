@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"coke_bomb",
+  "folderPath":"folders/精灵/Cards/boomer/coke_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"coke_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"dc0ecc2e-d020-4602-b0e9-aba1a2d220b8","path":"sprites/spr_coke_bomb/spr_coke_bomb.yy",},
+    {"name":"46871745-fe15-49ca-8efc-23ad414bc9dc","path":"sprites/spr_coke_bomb_1/spr_coke_bomb_1.yy",},
+    {"name":"11617b05-9280-4dc6-ab96-db496de8aeec","path":"sprites/spr_coke_bomb_2/spr_coke_bomb_2.yy",}
+  ],
+}

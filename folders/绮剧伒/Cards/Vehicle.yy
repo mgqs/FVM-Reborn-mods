@@ -1,0 +1,18 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Vehicle",
+  "folderPath":"folders/绮剧伒/Cards/Vehicle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Vehicle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"cotton_candy","path":"folders/绮剧伒/Cards/Vehicle/cotton_candy.yy",},
+    {"name":"wooden_plate","path":"folders/绮剧伒/Cards/Vehicle/wooden_plate.yy",},
+    {"name":"soda_bubble","path":"folders/绮剧伒/Cards/Vehicle/soda_bubble.yy",}
+  ],
+  "listItems":[],
+}

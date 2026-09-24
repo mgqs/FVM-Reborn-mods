@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"cat_chest",
+  "folderPath":"folders/精灵/Cards/Assistant/cat_chest.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cat_chest",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fefa59f2-f8e1-4da8-8456-20db19cfc850","path":"sprites/spr_cat_chest_1/spr_cat_chest_1.yy",},
+    {"name":"3910425d-8745-435a-b084-6ccee5fae96d","path":"sprites/spr_cat_chest_2/spr_cat_chest_2.yy",},
+    {"name":"530a5f0e-2f46-4000-83b1-f669d3cd71c3","path":"sprites/spr_cat_chest_3/spr_cat_chest_3.yy",}
+  ],
+}

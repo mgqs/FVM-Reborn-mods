@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"pizza_oven",
+  "folderPath":"folders/精灵/Cards/Shooter/pizza_oven.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pizza_oven",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"0dc3c7b2-f1e9-4297-8996-6df13418e226","path":"sprites/spr_pizza_oven/spr_pizza_oven.yy",},
+    {"name":"1c508a5a-3af3-4fb9-ba3b-fb6657e5a12d","path":"sprites/spr_pizza_oven_1/spr_pizza_oven_1.yy",},
+    {"name":"c2ebef52-dc96-4f2b-8210-be989c9e1caa","path":"sprites/spr_pizza_oven_2/spr_pizza_oven_2.yy",},
+    {"name":"8368a1a6-bc4c-4a06-8125-00fc1935fa3c","path":"sprites/spr_pizza_oven_bullet/spr_pizza_oven_bullet.yy",},
+    {"name":"139df4cd-75c7-49b8-8192-eb3c3d357939","path":"sprites/spr_pizza_oven_bullet_1/spr_pizza_oven_bullet_1.yy",},
+    {"name":"ca379e3f-28b3-475e-82d5-3e81c7c3baa4","path":"sprites/spr_pizza_oven_bullet_2/spr_pizza_oven_bullet_2.yy",}
+  ],
+}

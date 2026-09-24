@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"waste_flying_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/waste_flying_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"waste_flying_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"21dc62b1-483a-48a6-adb4-0fb648fe4fc1","path":"sprites/spr_waste_flying_mouse_air/spr_waste_flying_mouse_air.yy",},
+    {"name":"2f6d85ba-98c4-4f14-813d-b8ffb7199239","path":"sprites/spr_waste_flying_mouse_drop/spr_waste_flying_mouse_drop.yy",},
+    {"name":"eddb2f5f-fd47-4ab0-b220-70b70e4c3365","path":"sprites/spr_waste_flying_mouse_land/spr_waste_flying_mouse_land.yy",}
+  ],
+}

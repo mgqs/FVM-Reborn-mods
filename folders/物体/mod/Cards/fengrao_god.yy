@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"fengrao_god",
+  "folderPath":"folders/物体/mod/Cards/fengrao_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fengrao_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_fengrao_god","path":"objects/obj_fengrao_god/obj_fengrao_god.yy",},
+    {"name":"6e690649-0e98-42b1-b4c9-cd99d5a87a95","path":"sprites/spr_fengrao_god/spr_fengrao_god.yy",},
+    {"name":"378be8bc-82ea-4348-8465-9db96e10ed1e","path":"sprites/spr_fengrao_god_1/spr_fengrao_god_1.yy",},
+    {"name":"03abcde6-94da-4ab3-a7ee-a5ea8f901601","path":"sprites/spr_fengrao_god_2/spr_fengrao_god_2.yy",},
+    {"name":"7e9ce571-d82e-46a1-9093-cbfa81d172d5","path":"sprites/spr_fengrao_god_3/spr_fengrao_god_3.yy",},
+    {"name":"9f931327-33d2-4355-aada-05b2120c3750","path":"sprites/spr_fengrao_god_effect/spr_fengrao_god_effect.yy",},
+    {"name":"cab86616-f1d9-45b4-b89e-d19e780bc61f","path":"sprites/spr_fengrao_god_effect_1/spr_fengrao_god_effect_1.yy",},
+    {"name":"87efef77-22ac-45df-adc6-940a01f3041f","path":"sprites/spr_fengrao_god_effect_2/spr_fengrao_god_effect_2.yy",},
+    {"name":"19de9ab8-ced4-4dd0-bb64-ee8b6c6e55a5","path":"sprites/spr_fengrao_god_effect_3/spr_fengrao_god_effect_3.yy",},
+    {"name":"539cd3cb-d108-45dc-9b7b-43464ac952b5","path":"sprites/spr_fengrao_pin1/spr_fengrao_pin1.yy",},
+    {"name":"e52b2671-fb38-4324-b0fd-494a868df1c7","path":"sprites/spr_fengrao_pin2/spr_fengrao_pin2.yy",},
+    {"name":"9ad85f83-8a03-4aef-8035-238432d90e8c","path":"sprites/spr_fengrao_pin3/spr_fengrao_pin3.yy",}
+  ],
+}

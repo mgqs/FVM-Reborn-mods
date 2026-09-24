@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_dandantu",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_dandantu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_dandantu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"6dbb7a36-b13b-41ed-ab91-b247121516cb","path":"sprites/spr_dandantu/spr_dandantu.yy",},
+    {"name":"3015c63e-e913-47bc-aa43-d85b0d503658","path":"sprites/spr_dandantu_1/spr_dandantu_1.yy",},
+    {"name":"213dd8e7-f432-4a7f-8478-d91872622eb1","path":"sprites/spr_dandantu_2/spr_dandantu_2.yy",},
+    {"name":"09cffc8a-60b7-472f-a3e5-292b01c0bd65","path":"sprites/spr_dandantu_bullet/spr_dandantu_bullet.yy",},
+    {"name":"8af49dd2-67be-45f9-a500-6120b6911aed","path":"sprites/spr_dandantu_bullet_1/spr_dandantu_bullet_1.yy",},
+    {"name":"56606f2d-6a67-4ead-af41-35e8e96984e8","path":"sprites/spr_dandantu_bullet_2/spr_dandantu_bullet_2.yy",}
+  ],
+}

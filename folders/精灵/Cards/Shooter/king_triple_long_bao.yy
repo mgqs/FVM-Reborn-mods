@@ -1,0 +1,30 @@
+{
+  "$GMFolder":"",
+  "%Name":"king_triple_long_bao",
+  "folderPath":"folders/精灵/Cards/Shooter/king_triple_long_bao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"king_triple_long_bao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"upgrade","path":"folders/精灵/Cards/Shooter/king_triple_long_bao/upgrade.yy",}
+  ],
+  "listItems":[
+    {"name":"a5c094ac-b0c2-48c3-87d0-fe16761b19f1","path":"sprites/spr_king_triple_long_bao_0_0/spr_king_triple_long_bao_0_0.yy",},
+    {"name":"e775956c-4b4e-4f7d-ab4c-f9b957ad6e75","path":"sprites/spr_king_triple_long_bao_0_1/spr_king_triple_long_bao_0_1.yy",},
+    {"name":"2afcf8be-60a7-4872-a956-5d67e4ed99cc","path":"sprites/spr_king_triple_long_bao_0_2/spr_king_triple_long_bao_0_2.yy",},
+    {"name":"68b6f75d-e7da-495c-887a-284217420a5d","path":"sprites/spr_king_triple_long_bao_1_0/spr_king_triple_long_bao_1_0.yy",},
+    {"name":"6b10e536-8ee8-477b-81b6-d86aed16f3e9","path":"sprites/spr_king_triple_long_bao_1_1/spr_king_triple_long_bao_1_1.yy",},
+    {"name":"2437aa89-41dc-4566-9bb4-f56bd46a3517","path":"sprites/spr_king_triple_long_bao_1_2/spr_king_triple_long_bao_1_2.yy",},
+    {"name":"1458040e-e322-4aa4-bf0a-b05345877687","path":"sprites/spr_king_triple_long_bao_1_3/spr_king_triple_long_bao_1_3.yy",},
+    {"name":"8762703f-d958-4810-a133-717e42eeb28d","path":"sprites/spr_king_triple_long_bao_2_0/spr_king_triple_long_bao_2_0.yy",},
+    {"name":"e6d2c19e-3ac1-4697-adec-fd6a02006c3a","path":"sprites/spr_king_triple_long_bao_2_1/spr_king_triple_long_bao_2_1.yy",},
+    {"name":"f8112aa7-a114-4c23-b6ab-45c2cbdc1d59","path":"sprites/spr_king_triple_long_bao_2_2/spr_king_triple_long_bao_2_2.yy",},
+    {"name":"98c33a67-e0b2-4d4d-81d3-80e8a0bc0ed6","path":"sprites/spr_king_triple_long_bao_2_3/spr_king_triple_long_bao_2_3.yy",},
+    {"name":"cdf47aa6-6724-433b-b623-54f283a28e45","path":"sprites/spr_king_triple_long_bao_2_4/spr_king_triple_long_bao_2_4.yy",},
+    {"name":"ac4b164a-d55d-42e5-8f85-5496b0c1ac4a","path":"sprites/spr_king_triple_long_bao_2_5/spr_king_triple_long_bao_2_5.yy",}
+  ],
+}

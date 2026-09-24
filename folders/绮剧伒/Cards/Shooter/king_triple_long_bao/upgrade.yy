@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"upgrade",
+  "folderPath":"folders/绮剧伒/Cards/Shooter/king_triple_long_bao/upgrade.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"upgrade",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

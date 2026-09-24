@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Pult",
+  "folderPath":"folders/精灵/Cards/Pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"stinky_tofu_pult","path":"folders/精灵/Cards/Pult/stinky_tofu_pult.yy",},
+    {"name":"ice_egg_boiler_pult","path":"folders/精灵/Cards/Pult/ice_egg_boiler_pult.yy",},
+    {"name":"chocolate_pult","path":"folders/精灵/Cards/Pult/chocolate_pult.yy",},
+    {"name":"sugar_ball_pult","path":"folders/精灵/Cards/Pult/sugar_ball_pult.yy",},
+    {"name":"salad_pult","path":"folders/精灵/Cards/Pult/salad_pult.yy",},
+    {"name":"pan_fried_bun","path":"folders/精灵/Cards/Pult/pan_fried_bun.yy",},
+    {"name":"egg_boiler_pult","path":"folders/精灵/Cards/Pult/egg_boiler_pult.yy",}
+  ],
+  "listItems":[],
+}

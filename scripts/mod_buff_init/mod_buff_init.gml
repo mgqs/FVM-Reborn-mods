@@ -33,10 +33,10 @@ function mod_buff_init()
     ds_map_set(global.plant_buff_map, "spicy_pot", "sprayer");
     ds_map_set(global.plant_buff_map, "ghost_god", "five_dir");
     ds_map_set(global.plant_buff_map, "rig", "five_dir");
+    ds_map_set(global.plant_buff_map, "coal_starfish", "five_dir");
     ds_map_set(global.plant_buff_map, "love_god", "multi_dir");
     ds_map_set(global.plant_buff_map, "tiancheng", "multi_dir");
     ds_map_set(global.plant_buff_map, "war_god", "multi_dir");
-    ds_map_set(global.plant_buff_map, "houyi_god", "multi_dir");
 
     // 第二buff类型映射（植物可同时受益于两种buff类型，倍率相乘）
     global.plant_buff_map_2 = ds_map_create();

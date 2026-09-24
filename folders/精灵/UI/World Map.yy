@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"World Map",
+  "folderPath":"folders/精灵/UI/World Map.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"World Map",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"51093997-c9c3-4b03-b457-c10c8b137616","path":"sprites/spr_map_name_display/spr_map_name_display.yy",},
+    {"name":"5b04482b-2cb5-4da8-b34c-d0ca84388298","path":"sprites/spr_world_map_btn/spr_world_map_btn.yy",},
+    {"name":"1f0509a2-08c1-49d9-9745-73cca04180e5","path":"sprites/spr_world_map_button/spr_world_map_button.yy",},
+    {"name":"497cedde-f6ff-425d-a831-0016279014ea","path":"sprites/spr_world_map_close_btn/spr_world_map_close_btn.yy",},
+    {"name":"1f4ab4f1-ebdd-41c6-8d73-916f55604044","path":"sprites/spr_world_map_delicious_land/spr_world_map_delicious_land.yy",},
+    {"name":"52c7b47e-70bc-4427-b1d7-ed4617105e07","path":"sprites/spr_world_map_floating_island/spr_world_map_floating_island.yy",},
+    {"name":"6d1b1b36-051e-4dab-b59a-ca2dd69e3238","path":"sprites/spr_world_map_menu/spr_world_map_menu.yy",},
+    {"name":"c7a4a13b-1ee7-4947-98d8-1f5d4d0ca17d","path":"sprites/spr_world_map_name/spr_world_map_name.yy",},
+    {"name":"ba105ed1-304e-4640-a8e0-00e3eb15534c","path":"sprites/spr_world_map_tower_cake/spr_world_map_tower_cake.yy",},
+    {"name":"f57d500e-79f3-4e26-8148-5e5f4f6324bb","path":"sprites/spr_world_map_undersea_vortex/spr_world_map_undersea_vortex.yy",},
+    {"name":"89bc88cf-4e68-4692-b8c0-eebbecf4b052","path":"sprites/spr_world_map_unlock_levels/spr_world_map_unlock_levels.yy",},
+    {"name":"5d1aba26-44af-4602-84c4-b73d28fd5495","path":"sprites/spr_world_map_volcanic_island/spr_world_map_volcanic_island.yy",},
+    {"name":"08818a5a-e92d-4c9d-932d-5e8e4910c2a6","path":"sprites/spr_world_map_volcanic_ruins/spr_world_map_volcanic_ruins.yy",}
+  ],
+}

@@ -131,7 +131,7 @@ function refresh_task_progress(){
 			}
 			//如果是单局完成的任务，未完成则重置进度
 			else if task_data.single_game{
-				for(var j = 0 ; j < array_length(global.save_data.tasks[i].progress) ; j++){ 
+				for(var j = 0 ; j < array_length(task_data.requirements) ; j++){ 
 					edit_task_progress(task_id,j,0)
 				}
 			}

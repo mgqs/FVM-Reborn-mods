@@ -178,7 +178,7 @@ function mod_slots_init()
         sprite: spr_rig_3,
         cost: 260,
         cooldown: 420,
-        description: "至尊守护神：前方5方向发射穿透子弹",
+        description: "至尊守护神：前方5方向发射穿透子弹，攻击力翻倍",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
@@ -743,7 +743,7 @@ function mod_slots_init()
         sprite: spr_odin_2,
         cost: 230,
         cooldown: 420,
-        description: "主神·奥丁：发射冈格尼尔穿透攻击敌人，发射两发",
+        description: "主神·奥丁：发射1发强化穿透短矛（3.75倍伤害）",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
@@ -754,7 +754,7 @@ function mod_slots_init()
         sprite: spr_odin_3,
         cost: 230,
         cooldown: 420,
-        description: "至尊主神：发射冈格尼尔穿透攻击敌人，发射三发",
+        description: "至尊主神：发射1发强化穿透短矛（5倍伤害）",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
@@ -878,7 +878,7 @@ function mod_slots_init()
         sprite: spr_ghost_god_2,
         cost: 225,
         cooldown: 3000,
-        description: "冥神·哈迪斯：发射五向子弹",
+        description: "冥神·哈迪斯：次级子弹攻击力翻倍",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
@@ -1029,7 +1029,7 @@ function mod_slots_init()
         sprite: spr_water_god_3_icon,
         cost: 75,
         cooldown: 420,
-        description: "至尊水神：反弹子弹并附加伤害",
+        description: "至尊水神：反弹子弹并附加双倍伤害",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
@@ -1998,7 +1998,7 @@ register_card("houyi_god", obj_houyi_god, [
     sprite: spr_houyi_god,
     cost: 385,
     cooldown: 420,
-    description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
+    description: "后羿神使：向前方3路发射3发穿透箭矢（3倍伤害），几率产生三昧真火灼烧鼠军",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2010,7 +2010,7 @@ register_card("houyi_god", obj_houyi_god, [
     sprite: spr_houyi_god_1,
     cost: 385,
     cooldown: 420,
-    description: "后羿圣神：灼烧效果提升，中路子弹+1",
+    description: "后羿圣神：灼烧效果提升，中路子弹4倍伤害，边路3倍",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2022,7 +2022,7 @@ register_card("houyi_god", obj_houyi_god, [
     sprite: spr_houyi_god_2,
     cost: 385,
     cooldown: 420,
-    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
+    description: "宗布神·后羿：全弹4倍伤害，子弹击杀化为灰烬",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2034,7 +2034,7 @@ register_card("houyi_god", obj_houyi_god, [
     sprite: spr_houyi_god_3,
     cost: 385,
     cooldown: 420,
-    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
+    description: "至尊宗布神：全弹5倍伤害，三昧真火叠加伤害翻倍",
     plant_type: "normal",
     feature_type: "normal",
     target_card: "none",
@@ -2217,4 +2217,498 @@ register_card("lingrong_god", obj_lingrong_god, [
     is_gold: 1,
     place_preview: spr_lingrong_god_2
 }]);
-    }
+
+    register_card("panduola_god", obj_panduola_god, [
+{
+    shape: 0,
+    sprite: spr_panduola_god,
+    cost: 255,
+    cooldown: 2400,
+    description: "潘多拉：放下立即产生3×3灰烬爆炸，本行留下3次毒气伤害",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_panduola_god
+},
+{
+    shape: 1,
+    sprite: spr_panduola_god_1,
+    cost: 255,
+    cooldown: 2400,
+    description: "潘多拉魔盒：毒气伤害+35%",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_panduola_god_1
+},
+{
+    shape: 2,
+    sprite: spr_panduola_god_2,
+    cost: 255,
+    cooldown: 2400,
+    description: "疫神·潘多拉：毒气范围+1列，全屏8000灰烬爆炸+鼠疫",
+    plant_type: "normal",
+    feature_type: "normal",
+    target_card: "none",
+    is_gold: 1,
+    place_preview: spr_panduola_god_2
+}]);
+
+    register_card("12yinliao", obj_12yinliao, [
+    {
+        shape: 0,
+        sprite: spr_12yinliao,
+        cost: 200,
+        cooldown: 4800,
+        description: "12饮料精灵：释放全屏美食，立即回满体力",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_12yinliao
+    }]);
+
+    register_card("anranxiaohunfan", obj_anranxiaohunfan, [
+    {
+        shape: 0,
+        sprite: spr_anranxiaohunfan,
+        cost: 325,
+        cooldown: 3600,
+        description: "黯然销魂饭：复活3*3范围内1个死亡的美食",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_anranxiaohunfan
+    },
+    {
+        shape: 1,
+        sprite: spr_anranxiaohunfan_1,
+        cost: 275,
+        cooldown: 3600,
+        description: "培根香肠饭：耗能降低，复活3*3范围内1个死亡的美食",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_anranxiaohunfan_1
+    },
+    {
+        shape: 2,
+        sprite: spr_anranxiaohunfan_2,
+        cost: 275,
+        cooldown: 3600,
+        description: "天妇罗盖饭：复活3*3范围内2个死亡的美食",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_anranxiaohunfan_2
+    }]);
+    
+    register_card("dandantu", obj_dandantu, [
+    {
+        shape: 0,
+        sprite: spr_dandantu,
+        cost: 325,
+        cooldown: 90 * 60,
+        description: "蛋蛋兔：储存3x3范围内子弹伤害，死亡时在本行爆炸释放",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_dandantu
+    },
+    {
+        shape: 1,
+        sprite: spr_dandantu_1,
+        cost: 325,
+        cooldown: 90 * 60,
+        description: "智能蛋蛋兔：储存3x3范围内子弹伤害，死亡时在本行爆炸释放",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_dandantu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_dandantu_2,
+        cost: 325,
+        cooldown: 90 * 60,
+        description: "外星蛋蛋兔：储存3x3范围内子弹伤害，死亡时在3行爆炸释放",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_dandantu_2
+    }]);
+    register_card("laipishe", obj_laipishe, [
+    {
+        shape: 0,
+        sprite: spr_laipishe,
+        cost: 365,
+        cooldown: 2100,
+        description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_laipishe
+    },
+    {
+        shape: 1,
+        sprite: spr_laipishe_1,
+        cost: 365,
+        cooldown: 2100,
+        description: "宝石赖皮蛇：同时生成两发海胆子弹，沿固定轨迹飞行并伤害海陆空老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_laipishe_1
+    },
+    {
+        shape: 2,
+        sprite: spr_laipishe_2,
+        cost: 365,
+        cooldown: 2100,
+        description: "大王赖皮蛇：同时生成三发海胆子弹，击杀目标后附加泡沫减速效果",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_laipishe_2
+    }]);
+
+register_card("nizhuanniu", obj_nizhuanniu, [
+    {
+        shape: 0,
+        sprite: spr_nizhuanniu,
+        cost: 150,
+        cooldown: 3000,
+        description: "逆转牛：将范围内普通老鼠逆转到出生位置",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_nizhuanniu
+    },
+    {
+        shape: 1,
+        sprite: spr_nizhuanniu_1,
+        cost: 150,
+        cooldown: 3000,
+        description: "匀速逆转牛：逆转老鼠并附加伤害",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_nizhuanniu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_nizhuanniu_2,
+        cost: 150,
+        cooldown: 3000,
+        description: "光速逆转牛：逆转范围扩大到5*5",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_nizhuanniu_2
+    }]);
+
+register_card("liehuohu", obj_liehuohu, [
+    {
+        shape: 0,
+        sprite: spr_liehuohu,
+        cost: 85,
+        cooldown: 3300,
+        description: "烈火虎：每25~9秒生产1朵火苗（单朵价值35），储能上限1500。火苗先进入储能，收集后返还玩家；卡片消失时一次性返还剩余储能",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_liehuohu
+    },
+    {
+        shape: 1,
+        sprite: spr_liehuohu_1,
+        cost: 85,
+        cooldown: 3300,
+        description: "煤气烈火虎：每次同时生产2朵火苗（单朵价值35），储能上限1500",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_liehuohu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_liehuohu_2,
+        cost: 85,
+        cooldown: 3300,
+        description: "燃油烈火虎：每次同时生产2朵火苗（单朵价值35），储能上限提升至3000",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_liehuohu_2
+    }]);
+    register_card("shegengbao", obj_shegengbao, [
+    {
+        shape: 0,
+        sprite: spr_shegengbao,
+        cost: 25,
+        cooldown: 2880,
+        description: "蛇羹煲：无需格子，回收目标格全部卡片的火苗能量",
+        plant_type: "shegengbao",
+        feature_type: "shegengbao",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shegengbao
+    },
+    {
+        shape: 1,
+        sprite: spr_shegengbao_1,
+        cost: 0,
+        cooldown: 2880,
+        description: "厨圣蛇羹煲：无需格子，回收目标格全部卡片的火苗能量",
+        plant_type: "shegengbao",
+        feature_type: "shegengbao",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shegengbao_1
+    },
+    {
+        shape: 2,
+        sprite: spr_shegengbao_2,
+        cost: 0,
+        cooldown: 2880,
+        description: "帝王蛇羹煲：无需格子，回收目标格全部卡片的火苗能量，返还翻倍",
+        plant_type: "shegengbao",
+        feature_type: "shegengbao",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shegengbao_2
+    }]);
+
+    // ============================================
+    // 顽皮龙 - 生肖卡·龙年卡
+    // 辅助型防御卡，二段选点移动卡片/角色
+    // 技能强化：不支持
+    // ============================================
+    register_card("wanpilong", obj_wanpilong, [
+    {
+        shape: 0,
+        sprite: spr_wanpilong,
+        cost: 100,
+        cooldown: 3300,
+        description: "顽皮龙：选择一张己方卡片，将其移动到周围5x5范围内的空格。前摇3.1秒。该卡仅支持冷却强化，不支持技能强化。",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_wanpilong
+    },
+    {
+        shape: 1,
+        sprite: spr_wanpilong_1,
+        cost: 100,
+        cooldown: 3300,
+        description: "捣蛋顽皮龙：选择一张己方卡片，将其移动到棋盘任意空格。前摇3.1秒。",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_wanpilong_1
+    },
+    {
+        shape: 2,
+        sprite: spr_wanpilong_2,
+        cost: 100,
+        cooldown: 3300,
+        description: "神奇顽皮龙：选择一张己方卡片或角色，将其移动到棋盘任意空格。前摇3.1秒。",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_wanpilong_2
+    }]);
+
+    register_card("double_blade_snake", obj_double_blade_snake, [
+    {
+        shape: 0,
+        sprite: spr_shuangrenshe,
+        cost: 260,
+        cooldown: 420,
+        description: "双刃蛇：向前发射2发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shuangrenshe
+    },
+    {
+        shape: 1,
+        sprite: spr_shuangrenshe_1,
+        cost: 260,
+        cooldown: 420,
+        description: "武士双刃蛇：向前发射3发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shuangrenshe_1
+    },
+    {
+        shape: 2,
+        sprite: spr_shuangrenshe_2,
+        cost: 260,
+        cooldown: 420,
+        description: "游侠双刃蛇：向前发射4发穿透剑气子弹，可斩杀生命值≤25%的普通老鼠，精英鼠斩杀伤害提升至10倍",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_shuangrenshe_2
+    }]);
+
+    register_card("zhiyumiao", obj_zhiyumiao, [
+    {
+        shape: 0,
+        sprite: spr_zhiyumiao,
+        cost: 75,
+        cooldown: 47000,
+        description: "治愈喵：为5*5范围内卡片瞬间恢复5点体力",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0
+    },
+    {
+        shape: 1,
+        sprite: spr_zhiyumiao_1,
+        cost: 75,
+        cooldown: 47000,
+        description: "武装治愈喵：为5*5范围内卡片恢复5点体力，额外增加3秒补血Buff",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0
+    },
+    {
+        shape: 2,
+        sprite: spr_zhiyumiao_2,
+        cost: 75,
+        cooldown: 47000,
+        description: "全能治愈喵：为全屏卡片恢复5点体力，保留3秒补血Buff",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0
+    }]);
+    register_card("baobaoji", obj_baobaoji, [
+    {
+        shape: 0,
+        sprite: spr_baobaoji,
+        cost: 275,
+        cooldown: 2400,
+        description: "爆爆鸡：部署时清除3×3范围内的路障、梯子和鼠洞",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    },
+    {
+        shape: 1,
+        sprite: spr_baobaoji_1,
+        cost: 225,
+        cooldown: 2400,
+        description: "疯狂爆爆鸡：耗能降低，清除3×3范围内的路障、梯子和鼠洞",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    },
+    {
+        shape: 2,
+        sprite: spr_baobaoji_2,
+        cost: 225,
+        cooldown: 2400,
+        description: "酷炫爆爆鸡：清除范围扩大到5×5，清除范围内的路障、梯子和鼠洞",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    }]);
+
+register_card("xuanfengniu", obj_xuanfengniu, [
+    {
+        shape: 0,
+        sprite: spr_xuanfengniu,
+        cost: 300,
+        cooldown: 2400,
+        description: "旋风牛：吹走全屏特定空中老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_xuanfengniu
+    },
+    {
+        shape: 1,
+        sprite: spr_xuanfengniu_1,
+        cost: 300,
+        cooldown: 2400,
+        description: "强压旋风牛：额外吹走全屏老鼠产生的障碍物，并兼容C清障",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_xuanfengniu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_xuanfengniu_2,
+        cost: 300,
+        cooldown: 2400,
+        description: "极速旋风牛：不需要格子，保留全部能力",
+        plant_type: "gridless",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 0,
+        place_preview: spr_xuanfengniu_2
+    }]);
+
+    register_card("qingse_shishi", obj_qingse_shishi, [
+    {
+        shape: 0,
+        sprite: spr_shishi,
+        cost: 140,
+        cooldown: 1800,
+        description: "青涩柿柿：向前方一定范围内的老鼠发起重击",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    },
+    {
+        shape: 1,
+        sprite: spr_shishi_1,
+        cost: 140,
+        cooldown: 1800,
+        description: "成熟柿柿：召唤三个柿子向前方一定范围内的老鼠发起重击",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    },
+    {
+        shape: 2,
+        sprite: spr_shishi_2,
+        cost: 140,
+        cooldown: 1800,
+        description: "柿柿如意：召唤五个柿子向前方一定范围内的老鼠发起重击",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        is_gold: 1
+    }]);
+}

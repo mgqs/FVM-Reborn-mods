@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"machine_shark_1",
+  "folderPath":"folders/绮剧伒/Enemy/undersea_vortex/BOSS/machine_shark_1.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_shark_1",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

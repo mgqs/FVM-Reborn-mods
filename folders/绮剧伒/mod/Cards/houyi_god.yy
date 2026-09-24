@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"houyi_god",
+  "folderPath":"folders/绮剧伒/mod/Cards/houyi_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"houyi_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

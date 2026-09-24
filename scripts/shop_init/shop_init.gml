@@ -18,7 +18,8 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("bull_firework",{"type":"card","cost":"50000","unlock_item_id":"bull_firework","description":"金牛烟花：召唤1只烟花牛冲撞敌人","display_name":"金牛烟花"})
 	register_goods("rabbit_lantern",{"type":"card","cost":"50000","unlock_item_id":"rabbit_lantern","description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","display_name":"玉兔灯笼"})
 	register_goods("delicacy_firework",{"type":"card","cost":"80000","unlock_item_id":"delicacy_firework","description":"美食烟花：3*4范围爆炸，命中老鼠产生火苗","display_name":"美食烟花"})
-	
+	register_goods("coal_starfish",{"type":"card","cost":"150000","unlock_item_id":"coal_starfish","description":"炭烧海星：向五个方向发射星星","display_name":"炭烧海星"})
+
 	register_goods("card_slot_plus",{"type":"item","cost":"20000","unlock_item_id":"card_slot","description":"增加一格卡槽，仅可在卡槽数小于18时使用","display_name":"卡槽+1","spr":spr_slot_plus})
 	register_goods("card_slot_19",{"type":"item","cost":"50000","unlock_item_id":"card_slot_19","description":"解锁第19格卡槽","display_name":"卡槽第19格","spr":spr_slot_19})
 	register_goods("card_slot_20",{"type":"item","cost":"80000","unlock_item_id":"card_slot_20","description":"解锁第20格卡槽","display_name":"卡槽第20格","spr":spr_slot_20})
@@ -57,4 +58,8 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("player_attire_12",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_12","description":"角色的丁香绮缘时装","display_name":"丁香绮缘"})
 	register_goods("player_attire_13",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_13","description":"角色的梦恋花语时装","display_name":"梦恋花语"})
 	register_goods("player_attire_14",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_14","description":"角色的探险家时装","display_name":"探险家"})
+
+	register_goods("liehuohu",{"type":"card","cost":"100000","unlock_item_id":"liehuohu","description":"烈火虎：生产火苗并储能，消失时返还剩余储能","display_name":"烈火虎"})
+	register_goods("shegengbao",{"type":"card","cost":"25000","unlock_item_id":"shegengbao","description":"蛇羹煲：无需格子，回收目标格全部卡片的火苗能量","display_name":"蛇羹煲"})
+	register_goods("xuanfengniu",{"type":"card","cost":"60000","unlock_item_id":"xuanfengniu","description":"旋风牛：吹走全屏特定空中老鼠，一转可清障，二转不需要格子","display_name":"旋风牛"})
 }

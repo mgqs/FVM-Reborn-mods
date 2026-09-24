@@ -1,0 +1,16 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"delicious_island",
+  "folderPath":"folders/鐗╀綋/Enemy/delicious_island.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"delicious_island",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"BOSS","path":"folders/鐗╀綋/Enemy/delicious_island/BOSS.yy",}
+  ],
+  "listItems":[],
+}

@@ -48,11 +48,8 @@ if (!hit_enemy && variable_global_exists("enemy_by_type"))
 						ice_timer = 600;
 				}
 
-				instance_create_depth(x, y, depth, obj_thor_bullet_effect_1);
 				hit_enemy = true;
 				hitted_enemy = _e.id;
-				instance_destroy();
-				exit;
 
 				var inst;
 				if (sprite_index == spr_thor_bullet_2_s)

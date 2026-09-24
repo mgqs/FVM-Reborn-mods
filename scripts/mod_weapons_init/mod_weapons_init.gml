@@ -19,17 +19,6 @@ function mod_weapons_init()
         bullet_style_impact: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4],
         splash_ratio_impact: [15, 16, 18, 20, 23, 26, 29, 32, 35, 40, 45, 50, 55, 65, 75, 90]
     });
-    register_weapon("master_shield", 
-    {
-        sprite: spr_master_shield,
-        icon: spr_master_shield_icon,
-        obj: obj_player_shield,
-        slot: "secondary_weapon",
-        allowed_gems: ["divine_blessing_gem", "divine_forbidden_gem", "divine_holy_gem", "divine_protect_gem"],
-        hp_increase: 800,
-        description: "主宰之盾：增加800生命值",
-        name: "主宰之盾"
-    });
     register_weapon("hades_scythe", 
     {
         sprite: spr_hades_scythe_icon,
@@ -393,11 +382,12 @@ function mod_weapons_init()
     register_gem("rose_shield_gem_3",
     {
         name: "玫瑰之护",
-        description: "玫瑰之护：为5×7范围内的卡片巨幅提升攻击力\n[专属宝石]：荆棘玫瑰",
+        description: "玫瑰之护：为5×5范围内的卡片提升攻击力(5×5外圈衰减)\n[专属宝石]：荆棘玫瑰",
         icon: spr_rose_shield_gem_3,
         slot: "secondary_weapon",
         obj: obj_rose_shield_gem_3,
-        ratio: [0.3, 0.33, 0.35, 0.37, 0.39, 0.43, 0.47, 0.51, 0.55, 0.59, 0.63, 0.67, 0.71, 0.75, 0.8, 0.85],
+        ratio_inner: [0.2, 0.23, 0.26, 0.29, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52, 0.56, 0.6, 0.65, 0.69, 0.72, 0.75],
+        ratio_outer: [0.15, 0.17, 0.19, 0.22, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.49, 0.52, 0.54, 0.56],
         allowed_weapons: ["rose_shield"],
         max_level: 15
     });
@@ -468,11 +458,11 @@ function mod_weapons_init()
     register_gem("rose_shield_gem_5",
     {
         name: "玫瑰之心",
-        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力\n[专属宝石]：荆棘玫瑰",
+        description: "玫瑰之心：为5×7范围内的卡片巨幅提升攻击力(无衰减)\n[专属宝石]：荆棘玫瑰",
         icon: spr_rose_shield_gem_5,
         slot: "secondary_weapon",
         obj: obj_rose_shield_gem_5,
-        ratio: [0.46, 0.5, 0.53, 0.56, 0.59, 0.65, 0.71, 0.77, 0.84, 0.9, 0.96, 1.02, 1.08, 1.14, 1.21, 1.29],
+        ratio: [0.3, 0.33, 0.35, 0.37, 0.39, 0.43, 0.47, 0.51, 0.55, 0.59, 0.63, 0.67, 0.71, 0.75, 0.8, 0.85],
         allowed_weapons: ["rose_shield"],
         max_level: 15
     });

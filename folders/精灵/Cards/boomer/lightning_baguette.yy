@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"lightning_baguette",
+  "folderPath":"folders/精灵/Cards/boomer/lightning_baguette.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lightning_baguette",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"4f158e3c-6efc-435b-aa03-88a26e24e7b1","path":"sprites/spr_lightning_baguette/spr_lightning_baguette.yy",},
+    {"name":"cdd400f0-4115-4be0-8573-40d8a1bae5dc","path":"sprites/spr_lightning_baguette_1/spr_lightning_baguette_1.yy",},
+    {"name":"9bee3929-d030-44fa-959e-d97545b3f578","path":"sprites/spr_lightning_baguette_2/spr_lightning_baguette_2.yy",},
+    {"name":"fb4dec10-779d-458c-aa72-d58dc7904cfd","path":"sprites/spr_lightning_baguette_thunder/spr_lightning_baguette_thunder.yy",}
+  ],
+}

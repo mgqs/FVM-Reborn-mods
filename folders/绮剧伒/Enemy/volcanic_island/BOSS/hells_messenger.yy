@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"hells_messenger",
+  "folderPath":"folders/绮剧伒/Enemy/volcanic_island/BOSS/hells_messenger.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hells_messenger",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"bubble_maltose",
+  "folderPath":"folders/精灵/UI/Attire/bubble_maltose.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"bubble_maltose",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"abbdfcf0-84d7-423b-87c6-a5e7450fdbe7","path":"sprites/spr_bubble_maltose_0_0/spr_bubble_maltose_0_0.yy",},
+    {"name":"bf8dfffd-1c58-4a7d-bf1a-8010d8c929bd","path":"sprites/spr_bubble_maltose_0_1/spr_bubble_maltose_0_1.yy",},
+    {"name":"7c60bf11-c7fa-4c0c-a45a-636146a84223","path":"sprites/spr_bubble_maltose_1_0/spr_bubble_maltose_1_0.yy",},
+    {"name":"7dd07d77-7f35-4373-8f1a-78a5809f9769","path":"sprites/spr_bubble_maltose_1_1/spr_bubble_maltose_1_1.yy",},
+    {"name":"bdb01de8-a811-4c0f-a0dd-af9c0b5f4673","path":"sprites/spr_bubble_maltose_icon/spr_bubble_maltose_icon.yy",},
+    {"name":"443de265-52a3-4cc8-aa41-b92a7f19b0a9","path":"sprites/spr_bubble_maltose_icon_1/spr_bubble_maltose_icon_1.yy",}
+  ],
+}

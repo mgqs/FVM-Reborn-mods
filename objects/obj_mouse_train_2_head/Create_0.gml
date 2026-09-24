@@ -35,7 +35,7 @@ hpbar_inst.target_boss = id
 hpbar_inst.boss_id = mouse_id
 
 train_body_list = []
-skill_1_damage = [0,0,0,0,0,0,0,0]
+skill_1_damage = []
 is_reversed = false
 
 skill_group_list = [[0,1,1,2]]
@@ -60,6 +60,7 @@ function create_train_body(amount,dir){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 		else{
 			var inst = instance_create_depth(x-210*(i+1),y,depth,obj_mouse_train_2_body)
@@ -73,6 +74,7 @@ function create_train_body(amount,dir){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 	}
 }
@@ -92,6 +94,7 @@ function create_train_body_order(amount,dir,body_move_time){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 		else{
 			var inst = instance_create_depth(x-210*(array_length(train_body_list)+1),y,depth,obj_mouse_train_2_body)
@@ -105,6 +108,7 @@ function create_train_body_order(amount,dir,body_move_time){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 	}
 }
@@ -124,6 +128,7 @@ function create_train_body_pos(amount,dir,body_x,body_y,body_move_time){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 		else{
 			var inst = instance_create_depth(body_x,body_y,depth,obj_mouse_train_2_body)
@@ -137,6 +142,7 @@ function create_train_body_pos(amount,dir,body_x,body_y,body_move_time){
 			inst.hp_modified = true
 			inst.train_dir = dir
 			array_push(train_body_list,inst)
+			array_push(skill_1_damage,0)
 		}
 	}
 }
@@ -146,6 +152,7 @@ function remove_train_body(index){
 	if instance_exists(train_body_list[index]){
 		instance_destroy(train_body_list[index])
 		array_delete(train_body_list,index,1)
+		array_delete(skill_1_damage,index,1)
 	}
 }
 
@@ -157,4 +164,5 @@ function clear_train_body(){
 		}
 	}
 	train_body_list = []
+	skill_1_damage = []
 }

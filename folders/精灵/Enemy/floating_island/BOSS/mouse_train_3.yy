@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_train_3",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/mouse_train_3.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_train_3",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"198f65bf-eaaf-424a-aaaa-af60d3c254d0","path":"sprites/spr_mouse_train_3_body_skill_2_1/spr_mouse_train_3_body_skill_2_1.yy",},
+    {"name":"0b2db39b-25bd-46f5-9dbf-4751a07df8fa","path":"sprites/spr_mouse_train_3_body_skill_2_2/spr_mouse_train_3_body_skill_2_2.yy",},
+    {"name":"251c95f8-def4-432a-a16d-1eda9d90a1ae","path":"sprites/spr_mouse_train_3_body_skill_2_3/spr_mouse_train_3_body_skill_2_3.yy",},
+    {"name":"32b29e38-c9ce-4981-9274-006470b71215","path":"sprites/spr_mouse_train_3_body_skill_3/spr_mouse_train_3_body_skill_3.yy",},
+    {"name":"37a84e5a-9aa3-4d12-a5c1-bc77b91a6046","path":"sprites/spr_mouse_train_3_body_skill_3_death/spr_mouse_train_3_body_skill_3_death.yy",},
+    {"name":"5636a4d7-3952-46ca-a913-c29b6e0575b6","path":"sprites/spr_mouse_train_3_body_skill_3_effect/spr_mouse_train_3_body_skill_3_effect.yy",},
+    {"name":"01a0c93f-3e9d-49fc-b0db-56a28efe697a","path":"sprites/spr_mouse_train_3_butter/spr_mouse_train_3_butter.yy",},
+    {"name":"77006e65-0a6a-4a7e-a3a5-bcdea6888543","path":"sprites/spr_mouse_train_3_head_skill_1/spr_mouse_train_3_head_skill_1.yy",}
+  ],
+}

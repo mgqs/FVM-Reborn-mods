@@ -1,0 +1,32 @@
+{
+  "$GMFolder":"",
+  "%Name":"物体",
+  "folderPath":"folders/物体.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"物体",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Menu","path":"folders/物体/Menu.yy",},
+    {"name":"Button","path":"folders/物体/Button.yy",},
+    {"name":"Cards","path":"folders/物体/Cards.yy",},
+    {"name":"Player","path":"folders/物体/Player.yy",},
+    {"name":"Map Object","path":"folders/物体/Map Object.yy",},
+    {"name":"Battle","path":"folders/物体/Battle.yy",},
+    {"name":"Camera","path":"folders/物体/Camera.yy",},
+    {"name":"Stars","path":"folders/物体/Stars.yy",},
+    {"name":"Bullet","path":"folders/物体/Bullet.yy",},
+    {"name":"mod","path":"folders/物体/mod.yy",},
+    {"name":"Enemy","path":"folders/物体/Enemy.yy",},
+    {"name":"Card Slot","path":"folders/物体/Card Slot.yy",},
+    {"name":"Effects","path":"folders/物体/Effects.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_file_manager","path":"objects/obj_file_manager/obj_file_manager.yy",},
+    {"name":"obj_game_init","path":"objects/obj_game_init/obj_game_init.yy",},
+    {"name":"obj_notice_controller","path":"objects/obj_notice_controller/obj_notice_controller.yy",}
+  ],
+}

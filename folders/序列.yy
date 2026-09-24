@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"序列",
+  "folderPath":"folders/序列.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"序列",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

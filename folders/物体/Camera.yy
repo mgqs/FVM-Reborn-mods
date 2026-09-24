@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Camera",
+  "folderPath":"folders/物体/Camera.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Camera",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",}
+  ],
+}

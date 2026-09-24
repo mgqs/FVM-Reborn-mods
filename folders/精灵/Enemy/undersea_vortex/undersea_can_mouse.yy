@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_can_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_can_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_can_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"761a5805-ee5d-473b-af35-4f861d3aabec","path":"sprites/spr_undersea_can/spr_undersea_can.yy",},
+    {"name":"7d605b5a-b3a8-43c9-aac8-71f0e05ab359","path":"sprites/spr_undersea_can_mouse/spr_undersea_can_mouse.yy",},
+    {"name":"1741e2ee-e3d7-46b7-9bea-f67ca50b6ade","path":"sprites/spr_undersea_can_mouse_drop/spr_undersea_can_mouse_drop.yy",},
+    {"name":"80fa6f7e-1f25-4f48-bfce-25024a824e15","path":"sprites/spr_undersea_can_mouse_with_can/spr_undersea_can_mouse_with_can.yy",}
+  ],
+}

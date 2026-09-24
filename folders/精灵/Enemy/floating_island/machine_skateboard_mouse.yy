@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_skateboard_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_skateboard_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_skateboard_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8430970a-b9b9-4172-9927-2a24c95f7f47","path":"sprites/spr_machine_skateboard_mouse/spr_machine_skateboard_mouse.yy",},
+    {"name":"1fa1ff27-2188-4c1d-9466-3612d8f1a20e","path":"sprites/spr_machine_skateboard_mouse_skate/spr_machine_skateboard_mouse_skate.yy",}
+  ],
+}

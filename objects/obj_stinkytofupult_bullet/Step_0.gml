@@ -26,7 +26,15 @@ if target_enemy != noone && instance_exists(target_enemy) && target_enemy.hp > 0
         
         if dist <= 10 or y >= thrower_y {
             // 到达溅射点，造成溅射伤害
-            instance_create_depth(x,y,depth,obj_saladpult_bullet_effect)
+            if sprite_index == spr_stinkytofupult_bullet_poison{
+                var grid_pos = get_grid_position_from_world(x,y)
+                var inst = instance_create_depth(grid_pos.x,grid_pos.y,depth,obj_stinkytofupult_bullet_effect)
+                inst.damage = round(damage*splash_ratio)
+                inst.grid_row = grid_pos.row
+            }
+            else{
+                instance_create_depth(x,y,depth,obj_saladpult_bullet_effect)
+            }
             instance_destroy()
             exit
         }
@@ -72,6 +80,7 @@ if (!hit_enemy && variable_global_exists("enemy_by_type"))
 		{
 			var _e = _list[_i];
 			if (!instance_exists(_e)) continue;
+			if (!instance_exists(id)) break;
 			if (!hit_enemy && _e.hp > 0 && row == _e.grid_row
     && precise_bbox_collision(id, _e))
 			{
@@ -81,19 +90,6 @@ if (!hit_enemy && variable_global_exists("enemy_by_type"))
 					damage_amount = other.damage
 					damage_type = other.damage_type
 					event_user(0)
-				}
-				instance_destroy()
-				exit
-				if sprite_index == spr_stinkytofupult_bullet_poison
-				{
-					var grid_pos = get_grid_position_from_world(_e.x, _e.y)
-					var inst = instance_create_depth(grid_pos.x, grid_pos.y, depth, obj_stinkytofupult_bullet_effect)
-					inst.damage = round(damage * splash_ratio)
-					inst.grid_row = grid_pos.row
-				}
-				else
-				{
-					var inst = instance_create_depth(x, y, depth, obj_saladpult_bullet_effect)
 				}
 				hit_enemy = true
 				hitted_enemy = _e.id

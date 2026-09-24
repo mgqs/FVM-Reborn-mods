@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Enemy",
+  "folderPath":"folders/精灵/Enemy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Enemy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"mouse_bullet","path":"folders/精灵/Enemy/mouse_bullet.yy",},
+    {"name":"floating_island","path":"folders/精灵/Enemy/floating_island.yy",},
+    {"name":"tower","path":"folders/精灵/Enemy/tower.yy",},
+    {"name":"volcanic_island","path":"folders/精灵/Enemy/volcanic_island.yy",},
+    {"name":"undersea_vortex","path":"folders/精灵/Enemy/undersea_vortex.yy",},
+    {"name":"delicious_island","path":"folders/精灵/Enemy/delicious_island.yy",}
+  ],
+  "listItems":[],
+}

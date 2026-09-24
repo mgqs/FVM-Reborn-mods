@@ -28,6 +28,7 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
+            if (!instance_exists(id)) break;
             if (_e.hp > 0 && row == _e.grid_row
     && precise_bbox_collision(id, _e))
             {

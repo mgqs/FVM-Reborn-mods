@@ -95,6 +95,13 @@ else
             
             if (just_initialized || self.buff_applied_id != global.buff_apply_id)
             {
+                if (self.grid_col < 0 || self.grid_col >= global.grid_cols || self.grid_row < 0 || self.grid_row >= global.grid_rows)
+                {
+                    self.atk = self.base_atk;
+                    self.buff_applied_id = global.buff_apply_id;
+                    continue;
+                }
+
                 var buff_multiplier = 1;
 
                 if (!is_undefined(self.buff_type))
@@ -144,7 +151,7 @@ else
                     }
                 }
 
-                // 第二buff类型：倍率与第一buff相乘
+                // 第二buff类型：取与第一buff的较大值（避免同一增幅源重复计算）
                 var buff_type_2 = "";
                 if (variable_global_exists("plant_buff_map_2") && ds_exists(global.plant_buff_map_2, ds_type_map) && ds_map_exists(global.plant_buff_map_2, self.plant_id))
                     buff_type_2 = ds_map_find_value(global.plant_buff_map_2, self.plant_id);
@@ -192,7 +199,7 @@ else
                             break;
                     }
 
-                    buff_multiplier *= buff2_multiplier;
+                    buff_multiplier = max(buff_multiplier, buff2_multiplier);
                 }
 
                 self.atk = self.base_atk * buff_multiplier;

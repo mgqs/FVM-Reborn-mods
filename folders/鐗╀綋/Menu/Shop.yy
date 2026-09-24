@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Shop",
+  "folderPath":"folders/鐗╀綋/Menu/Shop.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shop",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

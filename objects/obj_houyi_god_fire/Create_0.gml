@@ -10,3 +10,4 @@ disabled = false;
 target_type = "normal";
 shape = 0;
 damage_type = "pierce";
+stack_count = 1;

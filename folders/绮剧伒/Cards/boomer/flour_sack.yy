@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"flour_sack",
+  "folderPath":"folders/绮剧伒/Cards/boomer/flour_sack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flour_sack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

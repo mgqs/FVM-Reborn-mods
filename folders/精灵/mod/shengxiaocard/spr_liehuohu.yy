@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_liehuohu",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_liehuohu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_liehuohu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8c1a6833-5690-4d55-a00d-4d767138516d","path":"sprites/spr_liehuohu/spr_liehuohu.yy",},
+    {"name":"78663484-6da1-42ac-8ef4-9825bd9fb840","path":"sprites/spr_liehuohu_1/spr_liehuohu_1.yy",},
+    {"name":"8601f9b4-7aef-4e97-be88-3fe146b582ad","path":"sprites/spr_liehuohu_2/spr_liehuohu_2.yy",}
+  ],
+}

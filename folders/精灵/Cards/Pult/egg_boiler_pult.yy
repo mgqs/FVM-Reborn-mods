@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"egg_boiler_pult",
+  "folderPath":"folders/精灵/Cards/Pult/egg_boiler_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"egg_boiler_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"c412b4a9-d49e-4c84-ace6-05c2f2283323","path":"sprites/spr_egg_boiler_pult/spr_egg_boiler_pult.yy",},
+    {"name":"bd71f40d-00a5-4eb6-b1c4-739dcba6c60a","path":"sprites/spr_egg_boiler_pult_1/spr_egg_boiler_pult_1.yy",},
+    {"name":"fbb01382-7b71-4070-ae42-b5bf869d793f","path":"sprites/spr_egg_boiler_pult_2/spr_egg_boiler_pult_2.yy",}
+  ],
+}

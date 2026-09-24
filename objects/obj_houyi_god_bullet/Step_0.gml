@@ -44,6 +44,8 @@ if (variable_global_exists("enemy_by_type"))
                 && _e.hp > 0 && row == _e.grid_row
     && precise_bbox_collision(id, _e))
             {
+                var _prev_hp = _e.hp;
+
                 with (_e)
                 {
                     if (other.burnt == 1)
@@ -57,6 +59,22 @@ if (variable_global_exists("enemy_by_type"))
 
                 ds_list_add(hitted_enemy, _e.id);
 
+                // 子弹击杀灰烬
+                if (ash_kill && _prev_hp > 0 && _e.hp <= 0)
+                {
+                    if (shape >= 2)
+                    {
+                        var _ash = instance_create_depth(_e.x, _e.y - 20, depth, obj_mouse_ash_death);
+                        _ash.special_ash = true;
+                        _ash.sprite_index = _e.sprite_index;
+                        _ash.image_index = _e.image_index;
+                    }
+                    else
+                    {
+                        instance_create_depth(_e.x, _e.y - 20, depth, obj_mouse_ash_death);
+                    }
+                }
+
                 if (random(1) < fire_chance)
                 {
                     var fire_spr = spr_houyi_god_fire;
@@ -66,12 +84,13 @@ if (variable_global_exists("enemy_by_type"))
 
                     var inst = instance_create_depth(_e.x, _e.y, depth, obj_houyi_god_fire);
                     inst.sprite_index = fire_spr;
-                    inst.damage = damage;
+                    inst.damage = damage * (burn_bonus ? 1.5 : 1);
                     inst.damage_type = "pierce";
                     inst.grid_row = _e.grid_row;
                     inst.grid_col = _e.grid_col;
                     inst.shape = shape;
                     inst.target_type = target_type;
+                    inst.stack_count = sanwei_stack;
                 }
             }
         }

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"iron_fishbone",
+  "folderPath":"folders/精灵/Cards/Melee/iron_fishbone.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_fishbone",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"aa945e3e-39dd-4f66-8a41-b487e74bc004","path":"sprites/spr_iron_fishbone/spr_iron_fishbone.yy",},
+    {"name":"b34f68b1-ac40-47b0-88f4-d8530ae03d01","path":"sprites/spr_iron_fishbone_1/spr_iron_fishbone_1.yy",},
+    {"name":"6160e964-4bdf-47ab-85b2-1cff9a6b553d","path":"sprites/spr_iron_fishbone_2/spr_iron_fishbone_2.yy",}
+  ],
+}

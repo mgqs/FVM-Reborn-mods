@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"spr_anranxiaohunfan",
+  "folderPath":"folders/绮剧伒/mod/shengxiaocard/spr_anranxiaohunfan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_anranxiaohunfan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

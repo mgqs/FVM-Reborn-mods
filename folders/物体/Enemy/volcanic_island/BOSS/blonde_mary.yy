@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"blonde_mary",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/blonde_mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"blonde_mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_blonde_mary","path":"objects/obj_blonde_mary/obj_blonde_mary.yy",},
+    {"name":"obj_blonde_mary_bullet","path":"objects/obj_blonde_mary_bullet/obj_blonde_mary_bullet.yy",}
+  ],
+}

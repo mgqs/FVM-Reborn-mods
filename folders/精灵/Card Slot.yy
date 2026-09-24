@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Card Slot",
+  "folderPath":"folders/精灵/Card Slot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Card Slot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d686ebdc-5d2d-4023-8cd1-238191b1d637","path":"sprites/spr_copper_shovel/spr_copper_shovel.yy",},
+    {"name":"8e55db93-68a5-4a3e-b2b7-bf7fc47c53cf","path":"sprites/spr_flame_indicator/spr_flame_indicator.yy",},
+    {"name":"4f91f35f-7854-4d7e-8670-3a4af2c5af70","path":"sprites/spr_gold_shovel/spr_gold_shovel.yy",},
+    {"name":"3e2d227a-ad7b-4ae4-900c-528c27831e62","path":"sprites/spr_hotkey_prompt/spr_hotkey_prompt.yy",},
+    {"name":"0f2e7335-56ba-4499-b4ae-e91f5f40e366","path":"sprites/spr_shovel/spr_shovel.yy",},
+    {"name":"a5316fdc-801d-4cff-b0bd-d614aa5ba67b","path":"sprites/spr_shovel_slot/spr_shovel_slot.yy",},
+    {"name":"a52f6aed-e193-4f8a-87ab-d14ec65afb5c","path":"sprites/spr_silver_shovel/spr_silver_shovel.yy",},
+    {"name":"f012f8a2-3d4d-4def-a7e6-377d104af124","path":"sprites/spr_slot/spr_slot.yy",},
+    {"name":"2c3bdc0e-4c18-45fb-907b-dc481a9cf897","path":"sprites/spr_slot_corner/spr_slot_corner.yy",},
+    {"name":"43e76009-1082-4d6e-ac9d-7ecbf6d023eb","path":"sprites/spr_slot_right/spr_slot_right.yy",},
+    {"name":"7703a18d-0eab-451b-ad64-41ff0cf6da71","path":"sprites/spr_slot_top/spr_slot_top.yy",}
+  ],
+}

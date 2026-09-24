@@ -26,32 +26,13 @@ if (has_enemy)
 {
     attack_timer++;
 
-    if (attack_timer == (cycle - (5 * flash_speed)))
-    {
-        fire_mid = true;
-        fire_up = true;
-        fire_down = true;
-        current_wave = 1;
-        event_user(1);
-        state = 1;
-    }
-
     if (attack_timer == (cycle - (3 * flash_speed)))
     {
         fire_mid = true;
         fire_up = true;
         fire_down = true;
-        current_wave = 2;
         event_user(1);
-    }
-
-    if (attack_timer == (cycle - (1 * flash_speed)))
-    {
-        fire_mid = true;
-        fire_up = true;
-        fire_down = true;
-        current_wave = 3;
-        event_user(1);
+        state = 1;
     }
 
     if (attack_timer > cycle)

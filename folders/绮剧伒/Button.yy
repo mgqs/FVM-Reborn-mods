@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Button",
+  "folderPath":"folders/绮剧伒/Button.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Button",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

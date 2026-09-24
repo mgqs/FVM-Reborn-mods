@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"landmine_vehicle_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/landmine_vehicle_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"landmine_vehicle_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"99c9cea6-306c-474a-aad6-0c9115fdf5f3","path":"sprites/spr_landmine_vehicle_mouse/spr_landmine_vehicle_mouse.yy",},
+    {"name":"92551c05-3680-4e81-ba17-ed9e8add135a","path":"sprites/spr_landmine_vehicle_mouse_move/spr_landmine_vehicle_mouse_move.yy",}
+  ],
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"dragon_fruit",
+  "folderPath":"folders/绮剧伒/Cards/boomer/dragon_fruit.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dragon_fruit",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

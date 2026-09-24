@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"rotating_coffee_pot",
+  "folderPath":"folders/精灵/Cards/Melee/rotating_coffee_pot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rotating_coffee_pot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"37e30c47-57d4-491c-b462-7037c2e41aac","path":"sprites/spr_rotating_coffee_pot/spr_rotating_coffee_pot.yy",},
+    {"name":"b11f0a38-cb23-4756-82a2-6e93a96a7183","path":"sprites/spr_rotating_coffee_pot_1/spr_rotating_coffee_pot_1.yy",},
+    {"name":"f99962c8-a75f-49ea-b3ac-ed879c2cc6c2","path":"sprites/spr_rotating_coffee_pot_2/spr_rotating_coffee_pot_2.yy",},
+    {"name":"b106edf0-6c5b-43c4-b448-8114461dc4d7","path":"sprites/spr_rotating_coffee_pot_sleep/spr_rotating_coffee_pot_sleep.yy",},
+    {"name":"12ef2a31-f588-4329-bf9c-071298f3c739","path":"sprites/spr_rotating_coffee_pot_sleep_1/spr_rotating_coffee_pot_sleep_1.yy",},
+    {"name":"a17a6cf5-6c4b-41af-ab9b-2cddac6684b8","path":"sprites/spr_rotating_coffee_pot_sleep_2/spr_rotating_coffee_pot_sleep_2.yy",}
+  ],
+}

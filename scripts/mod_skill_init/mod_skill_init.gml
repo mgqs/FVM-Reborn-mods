@@ -54,5 +54,8 @@ function mod_skill_init()
     register_card_skill("hundun_god", "cycle", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
     register_card_skill("guangming_god", "cycle", [60, 58, 56, 54, 52, 50, 48, 46, 44]);
     register_card_skill("lingrong_god", "hp", [100, 140, 180, 220, 300, 400, 520, 640, 760]);
+    register_card_skill("laipishe", "cycle", [210, 204, 198, 192, 186, 180, 168, 156, 120]);
+    register_card_skill("liehuohu", "cooldown", [3300, 3120, 2940, 2940, 2580, 2400, 2220, 2040, 1800]);
+    register_card_skill("double_blade_snake", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 51]);
 
 }

@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"clownfish_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/undersea_vortex/clownfish_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"clownfish_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Maps",
+  "folderPath":"folders/精灵/Maps.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Maps",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"floating_island","path":"folders/精灵/Maps/floating_island.yy",},
+    {"name":"delicious_island","path":"folders/精灵/Maps/delicious_island.yy",},
+    {"name":"undersea_vortex","path":"folders/精灵/Maps/undersea_vortex.yy",},
+    {"name":"volcanic_island","path":"folders/精灵/Maps/volcanic_island.yy",}
+  ],
+  "listItems":[
+    {"name":"0479487e-1bc9-4792-9c03-7cf6dd327a84","path":"sprites/spr_reday_room/spr_reday_room.yy",},
+    {"name":"ddc117ab-3119-4fcc-b5ac-15b295cbcc6f","path":"sprites/spr_town/spr_town.yy",}
+  ],
+}

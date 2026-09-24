@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"captain_america_mouse",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/captain_america_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"captain_america_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_captain_america_mouse","path":"objects/obj_captain_america_mouse/obj_captain_america_mouse.yy",},
+    {"name":"obj_captain_rainbow","path":"objects/obj_captain_rainbow/obj_captain_rainbow.yy",},
+    {"name":"obj_captain_shield","path":"objects/obj_captain_shield/obj_captain_shield.yy",}
+  ],
+}

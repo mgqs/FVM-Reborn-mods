@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_clip",
+  "folderPath":"folders/精灵/Cards/boomer/mouse_clip.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_clip",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"9c82e320-dc1a-4a94-8c28-9d06d08a27ea","path":"sprites/spr_mouse_clip/spr_mouse_clip.yy",},
+    {"name":"a7fd288d-f674-443f-a8ed-4eca6369aa35","path":"sprites/spr_mouse_clip_1/spr_mouse_clip_1.yy",},
+    {"name":"5dbc1d2c-8c2a-4054-b8aa-f54ecb71101b","path":"sprites/spr_mouse_clip_2/spr_mouse_clip_2.yy",}
+  ],
+}

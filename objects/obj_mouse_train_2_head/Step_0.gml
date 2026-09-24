@@ -270,7 +270,9 @@ switch state{
 		}
 		
 		if timer >= 80*5 -1{
-			skill_1_damage = [0,0,0,0,0,0,0,0]
+			for(var i = 0 ; i < array_length(skill_1_damage) ; i++){
+				skill_1_damage[i] = 0
+			}
 			move_time = 50
 			jump_times = 0
 			timer = 0

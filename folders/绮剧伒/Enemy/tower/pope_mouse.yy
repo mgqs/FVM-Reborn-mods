@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"pope_mouse",
+  "folderPath":"folders/绮剧伒/Enemy/tower/pope_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pope_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

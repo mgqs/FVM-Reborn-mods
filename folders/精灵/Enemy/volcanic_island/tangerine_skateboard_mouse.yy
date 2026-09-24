@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"tangerine_skateboard_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/tangerine_skateboard_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tangerine_skateboard_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"9d9c2ceb-5ddb-44d8-bfa2-ca743114f560","path":"sprites/spr_tangerine_skateboard_mouse/spr_tangerine_skateboard_mouse.yy",},
+    {"name":"057b20b4-8faa-4140-9f18-c3c9c617f354","path":"sprites/spr_tangerine_skateboard_mouse_skate/spr_tangerine_skateboard_mouse_skate.yy",}
+  ],
+}

@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"melon_shield",
+  "folderPath":"folders/精灵/Cards/defender/melon_shield.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"melon_shield",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"7985396c-ae85-4117-aee9-982fe0130861","path":"sprites/spr_melon_shield_1_outer_1/spr_melon_shield_1_outer_1.yy",},
+    {"name":"c7aa3af0-ebd5-4e38-8937-4ea489322892","path":"sprites/spr_melon_shield_1_outer_2/spr_melon_shield_1_outer_2.yy",},
+    {"name":"fd8e066a-6083-430c-a84b-4c6509dcc8ce","path":"sprites/spr_melon_shield_1_outer_3/spr_melon_shield_1_outer_3.yy",},
+    {"name":"d85727be-7380-45c1-ac8f-74288dd59ec5","path":"sprites/spr_melon_shield_2_outer_1/spr_melon_shield_2_outer_1.yy",},
+    {"name":"7cd8dd79-bc55-4c1c-ae56-5fb3d62695a3","path":"sprites/spr_melon_shield_2_outer_2/spr_melon_shield_2_outer_2.yy",},
+    {"name":"2555cc10-92a9-4890-82d3-b9b23a34257b","path":"sprites/spr_melon_shield_2_outer_3/spr_melon_shield_2_outer_3.yy",},
+    {"name":"bf505ca9-d401-4f3c-9420-023832c7cc0a","path":"sprites/spr_melon_shield_inner_1/spr_melon_shield_inner_1.yy",},
+    {"name":"a96aa108-8d00-4650-a72b-2b64f6bb5a99","path":"sprites/spr_melon_shield_inner_2/spr_melon_shield_inner_2.yy",},
+    {"name":"8402194f-4240-46c3-b7a7-84b433b99eef","path":"sprites/spr_melon_shield_inner_3/spr_melon_shield_inner_3.yy",},
+    {"name":"e32a4f24-5a3e-41ac-9e78-d06316585bcf","path":"sprites/spr_melon_shield_outer_1/spr_melon_shield_outer_1.yy",},
+    {"name":"99f1367d-c18d-49f5-a8b9-a3539a5a1b8f","path":"sprites/spr_melon_shield_outer_2/spr_melon_shield_outer_2.yy",},
+    {"name":"65a2a800-572c-4672-97bd-1396b9b2cc78","path":"sprites/spr_melon_shield_outer_3/spr_melon_shield_outer_3.yy",}
+  ],
+}
