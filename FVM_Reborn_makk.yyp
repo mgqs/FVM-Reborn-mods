@@ -986,6 +986,7 @@
     {"id":{"name":"obj_fruit_tart","path":"objects/obj_fruit_tart/obj_fruit_tart.yy",},},
     {"id":{"name":"obj_fullscreen_btn","path":"objects/obj_fullscreen_btn/obj_fullscreen_btn.yy",},},
     {"id":{"name":"obj_gacha_drop","path":"objects/obj_gacha_drop/obj_gacha_drop.yy",},},
+    {"id":{"name":"obj_gacha_reward_popup","path":"objects/obj_gacha_reward_popup/obj_gacha_reward_popup.yy",},},
     {"id":{"name":"obj_gaia_bullet_effect","path":"objects/obj_gaia_bullet_effect/obj_gaia_bullet_effect.yy",},},
     {"id":{"name":"obj_gaia_bullet","path":"objects/obj_gaia_bullet/obj_gaia_bullet.yy",},},
     {"id":{"name":"obj_gaia","path":"objects/obj_gaia/obj_gaia.yy",},},

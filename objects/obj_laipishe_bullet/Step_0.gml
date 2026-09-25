@@ -1,5 +1,6 @@
 // 赖皮蛇海胆子弹 - 步事件
-// 向右飞到最右列，再返回卡片位置销毁
+// 三段式弹道：卡片→右下角→沿最右列从下往上→右上角→返回卡片销毁
+// 全程沿路造成伤害
 if (global.is_paused)
     exit;
 
@@ -17,29 +18,47 @@ if (!instance_exists(owner_card))
     exit;
 }
 
-// 计算当前段目标位置
-var _target_pos;
-if (flying_out)
-    _target_pos = get_world_position_from_grid(right_col, start_row);
+// 确定当前段目标
+var _tx, _ty;
+if (phase == 1)
+{
+    _tx = wp1_x;
+    _ty = wp1_y;
+}
+else if (phase == 2)
+{
+    _tx = wp2_x;
+    _ty = wp2_y;
+}
 else
-    _target_pos = get_world_position_from_grid(start_col, start_row);
+{
+    _tx = start_x;
+    _ty = start_y;
+}
 
-var _dx = _target_pos.x - x;
-var _dy = _target_pos.y - y;
+// 向当前段目标移动
+var _dx = _tx - x;
+var _dy = _ty - y;
 var _dist = sqrt(_dx * _dx + _dy * _dy);
 
 if (_dist <= move_speed)
 {
-    x = _target_pos.x;
-    y = _target_pos.y;
-    if (flying_out)
+    x = _tx;
+    y = _ty;
+
+    if (phase == 1)
     {
-        // 到达最右列，掉头返回
-        flying_out = false;
+        // 到达右下角，切换到向上阶段
+        phase = 2;
+    }
+    else if (phase == 2)
+    {
+        // 到达右上角，切换到返回阶段
+        phase = 3;
     }
     else
     {
-        // 回到卡片位置，销毁
+        // 返回卡片位置，销毁
         instance_destroy();
         exit;
     }
@@ -50,7 +69,7 @@ else
     y += (_dy / _dist) * move_speed;
 }
 
-// 命中检测 - 遍历可攻击的敌人类型
+// 命中检测 - 全程沿路造成伤害
 if (!ds_exists(hitted_enemy, ds_type_list))
     exit;
 
@@ -72,7 +91,6 @@ if (variable_global_exists("enemy_by_type"))
             {
                 if (ds_list_find_index(hitted_enemy, _e.id) == -1)
                 {
-                    // 记录命中前的生命值，用于判断是否击杀
                     var _hp_before = _e.hp;
 
                     with (_e)
@@ -87,14 +105,13 @@ if (variable_global_exists("enemy_by_type"))
 
                     ds_list_add(hitted_enemy, _e.id);
 
-                    // 判断是否由本发子弹击杀目标
+                    // 判断是否击杀
                     var _is_kill = false;
                     if (!instance_exists(_e) || _e.hp <= 0 || _hp_before <= damage)
                         _is_kill = true;
 
                     if (_is_kill)
                     {
-                        // 生成击杀特效，根据形态选择对应精灵
                         var _kill_fx = instance_create_depth(_e.x, _e.y, _e.depth - 10, obj_laipishe_effect);
                         if (bullet_shape == 0)
                             _kill_fx.sprite_index = spr_laipishe_effect;

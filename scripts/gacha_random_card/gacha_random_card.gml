@@ -142,10 +142,33 @@ function gacha_is_mod_gem(gem_id) {
 /// @param {string} weapon_id
 /// @return {sprite}
 function gacha_get_weapon_icon(weapon_id) {
-    if (!ds_map_exists(global.weapon_pool, weapon_id)) return spr_null;
+    if (!ds_map_exists(global.weapon_pool, weapon_id)) return -1;
     var weapon_data = global.weapon_pool[? weapon_id];
     if (variable_struct_exists(weapon_data, "icon")) return weapon_data[$ "icon"];
-    return spr_null;
+    return -1;
+}
+
+/// @function gacha_get_card_display_name(card_id)
+/// @desc 获取卡片显示名称，优先从商店数据获取
+/// @param {string} card_id
+/// @return {string}
+function gacha_get_card_display_name(card_id) {
+    // 先从普通商店获取
+    if (ds_map_exists(global.goods_map, card_id)) {
+        var goods_data = global.goods_map[? card_id];
+        if (variable_struct_exists(goods_data, "display_name")) {
+            return goods_data.display_name;
+        }
+    }
+    // 再从诸神商店获取
+    if (ds_map_exists(global.gods_goods_map, card_id)) {
+        var gods_data = global.gods_goods_map[? card_id];
+        if (variable_struct_exists(gods_data, "display_name")) {
+            return gods_data.display_name;
+        }
+    }
+    // 兜底：返回卡片ID
+    return card_id;
 }
 
 /// @function gacha_get_weapon_name(weapon_id)
@@ -164,10 +187,10 @@ function gacha_get_weapon_name(weapon_id) {
 /// @param {string} gem_id
 /// @return {sprite}
 function gacha_get_gem_icon(gem_id) {
-    if (!ds_map_exists(global.gems_pool, gem_id)) return spr_null;
+    if (!ds_map_exists(global.gems_pool, gem_id)) return -1;
     var gem_data = global.gems_pool[? gem_id];
     if (variable_struct_exists(gem_data, "icon")) return gem_data[$ "icon"];
-    return spr_null;
+    return -1;
 }
 
 /// @function gacha_get_gem_name(gem_id)

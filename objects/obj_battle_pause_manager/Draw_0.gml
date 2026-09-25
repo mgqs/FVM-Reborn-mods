@@ -47,13 +47,31 @@ if (global.is_paused)
 				
 				var cx = room_width / 2;
 				var cy = room_height / 2;
-				var is_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
+				
+				// 判断是否精英首次通关
+				var is_elite = false;
+				if (instance_exists(obj_battle)) {
+				    if (global.save_data.unlocked_items.elite_unlocked && obj_battle.current_wave >= global.level_file.elite_wave) {
+				        is_elite = true;
+				    }
+				}
+				
+				var is_first_normal = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
+				var is_first_elite = false;
+				if (variable_struct_exists(global.save_data, "completed_elite_levels")) {
+				    is_first_elite = is_elite && array_get_index(global.save_data.completed_elite_levels, global.level_data.id) == -1;
+				} else {
+				    is_first_elite = is_elite;
+				}
+				
+				var is_warrior_level = (string_pos("_warrior", global.level_data.id) > 0);
+				var is_first = is_first_normal || is_first_elite;
 				
 				// 标题
 				draw_set_color(c_yellow);
 				draw_text(cx, cy - 180, "通关成功！");
 				
-				if (is_first) {
+				if (is_first || is_warrior_level) {
 					draw_set_color(c_white);
 					
 					// 获取抽卡奖励数据
@@ -114,7 +132,7 @@ if (global.is_paused)
 						var weapon_name = gacha_get_weapon_name(reward_id);
 						
 						// 武器图标
-						if (weapon_icon != spr_null) {
+						if (weapon_icon != -1) {
 							draw_sprite_ext(weapon_icon, 0, cx, cy - 20, 1.2, 1.2, 0, c_white, 1);
 						}
 						
@@ -131,7 +149,7 @@ if (global.is_paused)
 						var gem_name = gacha_get_gem_name(reward_id);
 						
 						// 宝石图标
-						if (gem_icon != spr_null) {
+						if (gem_icon != -1) {
 							draw_sprite_ext(gem_icon, 0, cx, cy - 20, 1.5, 1.5, 0, c_white, 1);
 						}
 						
@@ -182,7 +200,9 @@ if (global.is_paused)
 				draw_text(630,260, "通关时间："+string(minute)+":"+string(second));
 				draw_text(630,285,"卡片损失："+string(obj_task_manager.card_loss))
 				draw_text(630,310,"猫损失："+string(obj_task_manager.cat_loss))
-				draw_text(630,335,"难度："+string(global.difficulty))
+				var _diff_text = string(global.difficulty)
+				if (global.difficulty == 6) _diff_text = "抽卡"
+				draw_text(630,335,"难度："+_diff_text)
 				if global.level_file.version != "1.0.0" && !global.laboretory_room{
 					if first_complete{
 						var item_string = ""

@@ -103,11 +103,17 @@ for(var i = 0 ; i< 4; i++){
 		//绘制道具类型商品
 		else if shop_button_select == 3{
 			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
-				//根据商品id获取卡片信息
+				//根据商品id获取商品信息
 				var goods_info = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)]
 				var goods_spr = goods_info.spr
 				
-				draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+25,1.8,1.8,0,c_white,1)
+				// 神秘礼盒单独调整位置（居中显示）
+				if (goods_info.unlock_item_id == "gacha_box"){
+					draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+60,1.5,1.5,0,c_white,1)
+				}
+				else{
+					draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+25,1.8,1.8,0,c_white,1)
+				}
 				
 				//判断卡槽物品是否已售完
 				if ((goods_info.unlock_item_id == "card_slot" && global.save_data.unlocked_items.max_slot >= 18)

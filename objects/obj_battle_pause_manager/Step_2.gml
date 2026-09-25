@@ -8,9 +8,27 @@ if (is_eternal_gacha_mode() && instance_exists(obj_gacha_drop)) {
         if (obj_gacha_drop.anim_frame >= obj_gacha_drop.anim_total_frames - 1) {
             obj_gacha_drop.state = 2;
 
-            // 动画结束，首次通关生成随机奖励；重复通关不生成
-            var is_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
-            if (is_first) {
+            // 动画结束，首次通关生成随机奖励；勇士关卡每次通关都生成
+            // 精英模式的首次通关单独计数，也给奖励
+            var is_elite = false;
+            if (instance_exists(obj_battle)) {
+                // 用 current_wave >= elite_wave 判断是否进入了精英阶段（比 level_stage=="boss" 更可靠）
+                if (global.save_data.unlocked_items.elite_unlocked && obj_battle.current_wave >= global.level_file.elite_wave) {
+                    is_elite = true;
+                }
+            }
+            var is_warrior_level = (string_pos("_warrior", global.level_data.id) > 0);
+            var is_first = false;
+            // 旧存档兼容：确保 completed_elite_levels 存在
+            if (!variable_struct_exists(global.save_data, "completed_elite_levels")) {
+                global.save_data.completed_elite_levels = [];
+            }
+            if (is_elite) {
+                is_first = array_get_index(global.save_data.completed_elite_levels, global.level_data.id) == -1;
+            } else {
+                is_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
+            }
+            if (is_first || is_warrior_level) {
                 global.gacha_reward = gacha_pick_random_reward();
                 global.gacha_reward.received = false;
             } else {
@@ -86,133 +104,156 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                 point_in_rectangle(mouse_x, mouse_y, btn_x - btn_w/2, btn_y - btn_h/2, btn_x + btn_w/2, btn_y + btn_h/2)) {
                 
                 // 执行抽卡模式结算
-                var reward_multiplier = 1; // 星际级倍率
+                var reward_multiplier = 3; // 抽卡难度：3倍金币/材料奖励
+                
+                // 旧存档兼容：确保 completed_elite_levels 存在
+                if (!variable_struct_exists(global.save_data, "completed_elite_levels")) {
+                    global.save_data.completed_elite_levels = [];
+                }
+                
+                // 判断是否精英模式（打到了精英波次）
+                var is_elite = false;
+                if (instance_exists(obj_battle)) {
+                    if (global.save_data.unlocked_items.elite_unlocked && obj_battle.current_wave >= global.level_file.elite_wave) {
+                        is_elite = true;
+                    }
+                }
+                var is_first_normal = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
+                var is_first_elite = is_elite && array_get_index(global.save_data.completed_elite_levels, global.level_data.id) == -1;
                 
                 if (!global.laboretory_room) {
                     with obj_task_manager {
                         refresh_task_progress();
                     }
                     
-                    if (array_get_index(global.save_data.completed_levels, global.level_data.id) == -1) {
+                    if (is_first_normal) {
+                        // 普通首次通关：完整首次奖励
                         complete_level(global.level_data.id);
                         first_complete = true;
                         
                         if (array_get_index(slot_unlock_level_id_list, global.level_data.id) != -1) {
                             if (global.save_data.unlocked_items.max_slot < 21) {
-                                global.save_data.unlocked_items.max_slot += 1;
-                                show_notice("你解锁了一个新的卡槽", 60);
+                                global.save_data.unlocked_items.max_slot += 1
+                                show_notice("你解锁了一个新的卡槽", 60)
                             }
                         }
                         
                         if (global.level_data.id == "champagne_island_water") {
-                            global.save_data.unlocked_items.elite_unlocked = true;
+                            global.save_data.unlocked_items.elite_unlocked = true
                         }
                         if (global.level_data.id == "abyss") {
-                            global.save_data.unlocked_items.shovel = "copper";
+                            global.save_data.unlocked_items.shovel = "copper"
                         }
                         if (global.level_data.id == "macchiato_port") {
-                            global.save_data.unlocked_items.shovel = "silver";
+                            global.save_data.unlocked_items.shovel = "silver"
                         }
                         if (global.level_data.id == "snowcap_volcano") {
-                            global.save_data.unlocked_items.shovel = "gold";
+                            global.save_data.unlocked_items.shovel = "gold"
                         }
                         if (global.level_data.id == "tower_cake_35_3") {
-                            global.save_data.player.crown_version = global.game_version;
+                            global.save_data.player.crown_version = global.game_version
                         }
                         
                         if (global.level_file.rewards[1].player_level >= global.save_data.player.level) {
-                            global.save_data.player.level = global.level_file.rewards[1].player_level;
+                            global.save_data.player.level = global.level_file.rewards[1].player_level
                         }
                         if (global.level_file.rewards[1].skill_level >= global.save_data.unlocked_items.max_skill_level) {
-                            global.save_data.unlocked_items.max_skill_level = global.level_file.rewards[1].skill_level;
-                            var len = array_length(global.save_data.unlocked_cards);
+                            global.save_data.unlocked_items.max_skill_level = global.level_file.rewards[1].skill_level
+                            var len = array_length(global.save_data.unlocked_cards)
                             for (var i = 0; i < len; i++) {
-                                global.save_data.unlocked_cards[i].skill = global.save_data.unlocked_items.max_skill_level;
+                                global.save_data.unlocked_cards[i].skill = global.save_data.unlocked_items.max_skill_level
                             }
                         }
                         
-                        global.save_data.player.gold += global.level_file.rewards[1].gold * reward_multiplier;
-                        var item_list = global.level_file.rewards[1].items;
+                        global.save_data.player.gold += global.level_file.rewards[1].gold * reward_multiplier
+                        var item_list = global.level_file.rewards[1].items
                         for (var i = 0; i < array_length(item_list); i++) {
-                            var item_id = item_list[i].id;
-                            add_material_amount(item_id, real(item_list[i].amount) * reward_multiplier);
+                            var item_id = item_list[i].id
+                            add_material_amount(item_id, real(item_list[i].amount) * reward_multiplier)
                         }
                         
                         // 难度6：排除卡正常通过关卡奖励发放，其他卡通过抽卡获得
-                        var card_unlock_id_list = global.level_file.rewards[1].card_unlock;
+                        var card_unlock_id_list = global.level_file.rewards[1].card_unlock
                         for (var i = 0; i < array_length(card_unlock_id_list); i++) {
-                            var card_id = card_unlock_id_list[i];
+                            var card_id = card_unlock_id_list[i]
                             if (gacha_is_excluded_card(card_id)) {
-                                unlock_card(card_id, 0, 0, global.save_data.unlocked_items.max_skill_level);
+                                unlock_card(card_id, 0, 0, global.save_data.unlocked_items.max_skill_level)
                             }
                         }
                         
-                        var weapon_unlock_id_list = global.level_file.rewards[1].weapon_unlock;
+                        var weapon_unlock_id_list = global.level_file.rewards[1].weapon_unlock
                         for (var i = 0; i < array_length(weapon_unlock_id_list); i++) {
-                            var weapon_id = weapon_unlock_id_list[i];
-                            unlock_weapon(weapon_id);
+                            var weapon_id = weapon_unlock_id_list[i]
+                            unlock_weapon(weapon_id)
                         }
                         
-                        var gem_unlock_id_list = global.level_file.rewards[1].gem_unlock;
+                        var gem_unlock_id_list = global.level_file.rewards[1].gem_unlock
                         for (var i = 0; i < array_length(gem_unlock_id_list); i++) {
-                            var gem_id = gem_unlock_id_list[i];
-                            unlock_gem(gem_id);
-                        }
-                        
-                        // 首次通关发放抽卡奖励
-                        if (global.gacha_reward.received == false) {
-                            var reward_type = "card";
-                            if (variable_struct_exists(global.gacha_reward, "reward_type")) {
-                                reward_type = global.gacha_reward.reward_type;
-                            }
-                            var reward_id = global.gacha_reward.id;
-                            var target_shape = global.gacha_reward.shape;
-                            
-                            if (reward_type == "card") {
-                                if (!is_card_unlocked(reward_id)) {
-                                    unlock_card(reward_id, 0, target_shape, global.save_data.unlocked_items.max_skill_level);
-                                } else {
-                                    var info = get_card_info_simple(reward_id);
-                                    var new_level = info.level;
-                                    var new_shape = max(info.shape, target_shape);
-                                    var new_max_shape = max(info.max_shape, target_shape);
-                                    
-                                    var is_fallback = false;
-                                    if (variable_struct_exists(global.gacha_reward, "fallback")) {
-                                        is_fallback = global.gacha_reward.fallback;
-                                    }
-                                    if (is_fallback) {
-                                        new_level = min(info.level + 1, info.max_level);
-                                    }
-                                    
-                                    for (var ci = 0; ci < array_length(global.save_data.unlocked_cards); ci++) {
-                                        if (global.save_data.unlocked_cards[ci].id == reward_id) {
-                                            global.save_data.unlocked_cards[ci].level = max(global.save_data.unlocked_cards[ci].level, new_level);
-                                            global.save_data.unlocked_cards[ci].shape = new_shape;
-                                            global.save_data.unlocked_cards[ci].max_shape = new_max_shape;
-                                            global.save_data.unlocked_cards[ci].max_level = max(global.save_data.unlocked_cards[ci].max_level, new_level);
-                                            break;
-                                        }
-                                    }
-                                    save_file(global.save_slot);
-                                }
-                            } else if (reward_type == "weapon") {
-                                unlock_weapon(reward_id);
-                                show_notice("获得新武器：" + gacha_get_weapon_name(reward_id), 120);
-                            } else if (reward_type == "gem") {
-                                unlock_gem(reward_id);
-                                show_notice("获得新宝石：" + gacha_get_gem_name(reward_id), 120);
-                            }
-                            
-                            global.gacha_reward.received = true;
+                            var gem_id = gem_unlock_id_list[i]
+                            unlock_gem(gem_id)
                         }
                     } else {
-                        global.save_data.player.gold += global.level_file.rewards[0].gold * reward_multiplier;
-                        var item_list = global.level_file.rewards[0].items;
+                        // 非首次普通通关：重复通关奖励
+                        global.save_data.player.gold += global.level_file.rewards[0].gold * reward_multiplier
+                        var item_list = global.level_file.rewards[0].items
                         for (var i = 0; i < array_length(item_list); i++) {
-                            var item_id = item_list[i].id;
-                            add_material_amount(item_id, item_list[i].amount * reward_multiplier);
+                            var item_id = item_list[i].id
+                            add_material_amount(item_id, item_list[i].amount * reward_multiplier)
                         }
+                    }
+                    
+                    // 精英模式首次通关：记录到精英通关列表
+                    if (is_first_elite) {
+                        array_push(global.save_data.completed_elite_levels, global.level_data.id)
+                    }
+                    
+                    // 抽卡奖励：普通首次 或 精英首次 或 勇士关卡（每次都给）
+                    var is_warrior_level2 = (string_pos("_warrior", global.level_data.id) > 0);
+                    if ((is_first_normal || is_first_elite || is_warrior_level2) && global.gacha_reward.received == false) {
+                        var reward_type = "card";
+                        if (variable_struct_exists(global.gacha_reward, "reward_type")) {
+                            reward_type = global.gacha_reward.reward_type;
+                        }
+                        var reward_id = global.gacha_reward.id;
+                        var target_shape = global.gacha_reward.shape;
+                        
+                        if (reward_type == "card") {
+                            if (!is_card_unlocked(reward_id)) {
+                                unlock_card(reward_id, 0, target_shape, global.save_data.unlocked_items.max_skill_level);
+                            } else {
+                                var info = get_card_info_simple(reward_id);
+                                var new_level = info.level;
+                                var new_shape = max(info.shape, target_shape);
+                                var new_max_shape = max(info.max_shape, target_shape);
+                                
+                                var is_fallback = false;
+                                if (variable_struct_exists(global.gacha_reward, "fallback")) {
+                                    is_fallback = global.gacha_reward.fallback;
+                                }
+                                if (is_fallback) {
+                                    new_level = min(info.level + 1, info.max_level);
+                                }
+                                
+                                for (var ci = 0; ci < array_length(global.save_data.unlocked_cards); ci++) {
+                                    if (global.save_data.unlocked_cards[ci].id == reward_id) {
+                                        global.save_data.unlocked_cards[ci].level = max(global.save_data.unlocked_cards[ci].level, new_level);
+                                        global.save_data.unlocked_cards[ci].shape = new_shape;
+                                        global.save_data.unlocked_cards[ci].max_shape = new_max_shape;
+                                        global.save_data.unlocked_cards[ci].max_level = max(global.save_data.unlocked_cards[ci].max_level, new_level);
+                                        break;
+                                    }
+                                }
+                                save_file(global.save_slot);
+                            }
+                        } else if (reward_type == "weapon") {
+                            unlock_weapon(reward_id);
+                            show_notice("获得新武器：" + gacha_get_weapon_name(reward_id), 120);
+                        } else if (reward_type == "gem") {
+                            unlock_gem(reward_id);
+                            show_notice("获得新宝石：" + gacha_get_gem_name(reward_id), 120);
+                        }
+                        
+                        global.gacha_reward.received = true;
                     }
                     
                     save_file(global.save_slot);

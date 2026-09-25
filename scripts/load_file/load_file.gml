@@ -81,6 +81,8 @@ function reset_file(file_slot){
 				{"id": "flour_sack", "level": 0, "shape": 0,"skill":0,"max_level":0,"max_shape":0}
             ],
             "completed_levels": [],
+            "completed_elite_levels": [],
+            "gacha_box_buy_count": 0,
             "inventory": [],
             "unlocked_items": {
                 "max_card_level": 0,

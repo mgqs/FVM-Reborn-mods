@@ -18,38 +18,6 @@ if is_frozen {
     exit
 }
 
-if (!cleared) {
-    cleared = true
-
-    var grid_pos = get_grid_position_from_world(x, y)
-    var center_col = grid_pos.col
-    var center_row = grid_pos.row
-
-    var half_range = 1
-    if (shape == 2) half_range = 2
-
-    var start_row = max(0, center_row - half_range)
-    var end_row = min(global.grid_rows - 1, center_row + half_range)
-    var start_col = max(0, center_col - half_range)
-    var end_col = min(global.grid_cols - 1, center_col + half_range)
-
-    var clear_list = []
-    with (obj_enemy_parent) {
-        if (target_type == "obstacle" && instance_exists(id)) {
-            if (grid_row >= start_row && grid_row <= end_row &&
-                grid_col >= start_col && grid_col <= end_col) {
-                array_push(clear_list, id)
-            }
-        }
-    }
-
-    for (var i = 0; i < array_length(clear_list); i++) {
-        if (instance_exists(clear_list[i])) {
-            instance_destroy(clear_list[i])
-        }
-    }
-}
-
 var current_flash_speed = flash_speed
 if is_slowdown {
     current_flash_speed *= 2
@@ -66,6 +34,68 @@ if timer < current_flash_speed - 1 {
         image_index = 0
     }
     timer = 0
+}
+
+// 部署后延迟一会儿再释放（给玩家看到放下的动画）
+if (!cleared) {
+    baobaoji_timer++
+    if (baobaoji_timer >= current_flash_speed * 10) {
+        cleared = true
+
+        var grid_pos = get_grid_position_from_world(x, y)
+        var center_col = grid_pos.col
+        var center_row = grid_pos.row
+
+        var half_range = 1
+        if (shape == 2) half_range = 2
+
+        var start_row = max(0, center_row - half_range)
+        var end_row = min(global.grid_rows - 1, center_row + half_range)
+        var start_col = max(0, center_col - half_range)
+        var end_col = min(global.grid_cols - 1, center_col + half_range)
+
+        var clear_list = []
+        
+        // 清除继承自 obj_enemy_parent 的障碍物（路障等）
+        with (obj_enemy_parent) {
+            if (target_type == "obstacle" && instance_exists(id)) {
+                if (grid_row >= start_row && grid_row <= end_row &&
+                    grid_col >= start_col && grid_col <= end_col) {
+                    array_push(clear_list, id)
+                }
+            }
+        }
+        
+        // 清除老鼠洞（独立对象）
+        with (obj_mouse_hole) {
+            if (instance_exists(id)) {
+                if (grid_row >= start_row && grid_row <= end_row &&
+                    grid_col >= start_col && grid_col <= end_col) {
+                    array_push(clear_list, id)
+                }
+            }
+        }
+
+        for (var i = 0; i < array_length(clear_list); i++) {
+            if (instance_exists(clear_list[i])) {
+                instance_destroy(clear_list[i])
+            }
+        }
+        
+        // 释放完成，开始淡出
+        baobaoji_done = true
+        baobaoji_timer = 0
+    }
+}
+
+// 释放完成后淡出销毁
+if (baobaoji_done) {
+    baobaoji_timer++
+    image_alpha -= 0.03
+    if (image_alpha <= 0 || baobaoji_timer > 60) {
+        instance_destroy()
+    }
+    exit
 }
 
 if hp <= 0 {

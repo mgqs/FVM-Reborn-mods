@@ -21,6 +21,8 @@
     {"name":"obj_event_manager","path":"objects/obj_event_manager/obj_event_manager.yy",},
     {"name":"obj_flame_manager","path":"objects/obj_flame_manager/obj_flame_manager.yy",},
     {"name":"obj_game_over","path":"objects/obj_game_over/obj_game_over.yy",},
+    {"name":"obj_gacha_drop","path":"objects/obj_gacha_drop/obj_gacha_drop.yy",},
+    {"name":"obj_gacha_reward_popup","path":"objects/obj_gacha_reward_popup/obj_gacha_reward_popup.yy",},
     {"name":"obj_level_progress_bar","path":"objects/obj_level_progress_bar/obj_level_progress_bar.yy",},
     {"name":"obj_map_change_effect","path":"objects/obj_map_change_effect/obj_map_change_effect.yy",}
   ],

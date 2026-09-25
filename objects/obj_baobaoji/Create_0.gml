@@ -3,6 +3,8 @@ plant_id = "baobaoji";
 obj_type = object_index;
 event_user(0);
 cleared = false;
+baobaoji_done = false;
+baobaoji_timer = 0;
 image_speed = 0;
 anim_frame = 0;
 idle_anim = 18;

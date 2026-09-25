@@ -24,6 +24,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("card_slot_19",{"type":"item","cost":"50000","unlock_item_id":"card_slot_19","description":"解锁第19格卡槽","display_name":"卡槽第19格","spr":spr_slot_19})
 	register_goods("card_slot_20",{"type":"item","cost":"80000","unlock_item_id":"card_slot_20","description":"解锁第20格卡槽","display_name":"卡槽第20格","spr":spr_slot_20})
 	register_goods("card_slot_21",{"type":"item","cost":"100000","unlock_item_id":"card_slot_21","description":"解锁第21格卡槽","display_name":"卡槽第21格","spr":spr_slot_21})
+	register_goods("gacha_box",{"type":"item","cost":"50000","unlock_item_id":"gacha_box","description":"打开后随机获得一张卡片、武器或宝石奖励","display_name":"神秘礼盒","spr":spr_lihe})
 	
 	register_goods("howitzer",{"type":"weapon","cost":"20000","unlock_item_id":"howitzer","description":"榴弹炮：自动发射高伤害榴弹","display_name":"榴弹炮"})
 	register_goods("enhanced_howitzer",{"type":"weapon","cost":"50000","unlock_item_id":"enhanced_howitzer","description":"加强榴弹炮：自动发射两个高伤害榴弹","display_name":"加强榴弹炮"})

@@ -4,6 +4,8 @@ plant_id = "qingse_shishi";
 obj_type = object_index;
 current_level = 1
 event_user(0)
+
+// 根据形态设置精灵贴图（必须在 event_user(0) 之后，因为 shape 在那里赋值）
 sprite_index = spr_shishi;
 if shape == 1{
 	sprite_index = spr_shishi_1
@@ -13,10 +15,14 @@ else if shape == 2{
 }
 
 // ========== 特定属性默认值 ==========
-// 动画参数：spr_shishi 系列总帧数 64（0~63），待机24帧 + 过渡1帧 + 攻击39帧
-attack_anim = 39
-idle_anim = 24
+// 动画参数：总帧 64（0~63）
+// 闲置：第 1-13 帧（image_index 0-12，共 13 帧）
+// 攻击：第 14-64 帧（image_index 13-63，共 50 帧）
+// 攻击点：第 34 帧（image_index=33）、第 49 帧（image_index=48）
+attack_anim = 50
+idle_anim = 13
 flash_speed = 6
+attack_hit_count = 0  // 本次攻击已触发的次数（0/1/2）
 plant_type = "normal"
 invincible = false
 

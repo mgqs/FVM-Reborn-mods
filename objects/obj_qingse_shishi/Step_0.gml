@@ -53,28 +53,29 @@ with(obj_enemy_parent){
 // 有敌人 + 冷却完毕 + IDLE → 进入攻击
 if (has_enemy) && state == CARD_STATE.IDLE && cooldown_timer <= 0{
 	state = CARD_STATE.ATTACK
-	attack_timer = 0
+	attack_hit_count = 0
 }
 
-// ========== 攻击状态 ==========
+// ========== 攻击状态（帧驱动：第 34 帧、第 49 帧各攻击一次） ==========
 if state == CARD_STATE.ATTACK{
 	flash_speed = 4
-	attack_timer++
 
-	if attack_timer < attack_windup{
-		// 前摇中
-		if instance_exists(banding_star_obj){
-			banding_star_obj.x = self.x
-			banding_star_obj.y = self.y - 5
-		}
+	// 第 1 次攻击：第 34 帧（image_index = 33）
+	if attack_hit_count < 1 && image_index >= 33{
+		event_user(1)
+		attack_hit_count = 1
 	}
-	else{
-		// 前摇结束，释放柿子
-		event_perform(ev_user, 1)
-		// 进入冷却
-		state = CARD_STATE.IDLE
-		cooldown_timer = cooldown
-		attack_timer = 0
+	// 第 2 次攻击：第 49 帧（image_index = 48）
+	else if attack_hit_count < 2 && image_index >= 48{
+		event_user(1)
+		attack_hit_count = 2
+	}
+
+	// 两次攻击都放完后，卡片自毁
+	if attack_hit_count >= 2{
+		card_destroyed(id);
+		instance_destroy()
+		exit
 	}
 }
 else if state == CARD_STATE.IDLE{
