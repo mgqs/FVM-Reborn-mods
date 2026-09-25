@@ -35,7 +35,9 @@ switch (button_select) {
 		//draw_set_halign(fa_left);
 		//draw_set_valign(fa_top);
 		draw_sprite(spr_option_menu_text,2,x-120,y+60)
-		draw_sprite_ext(spr_option_menu_difficulty,global.difficulty,x+15,y+102,0.2,0.2,0,c_white,1)
+		var diff_img = global.difficulty;
+		if (diff_img == 6) diff_img = 3;
+		draw_sprite_ext(spr_option_menu_difficulty,diff_img,x+15,y+102,0.2,0.2,0,c_white,1)
 		break
     
     // 可以添加其他设置页面

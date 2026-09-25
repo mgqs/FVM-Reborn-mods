@@ -24,6 +24,14 @@ if config_key == "difficulty"{
 			//draw_text(x,y,"永恒级")
 			tooltip_text = "在星际级基础上，所有敌人血量再增加80%。\n而且你的空格被抠了！祝你好运？？？"
 			break
+		case 5:
+			//draw_text(x,y,"不朽级")
+			tooltip_text = "敌人生成倍率×2，胜利奖励15倍"
+			break
+		case 6:
+			//draw_text(x,y,"星际·抽卡")
+			tooltip_text = "星际级敌人强度。\n禁用商店、诸神商店和关卡卡片奖励。\n通关后通过礼盒随机获得卡片或卡片形态。\n金卡5% / 生肖卡25% / 普通卡70%"
+			break
 	}
 	
 }

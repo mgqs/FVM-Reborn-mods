@@ -3,11 +3,22 @@ draw_self()
 var card_data = deck_get_card_data(target_card_id,target_shape)
 var card_name = "点击领取"//get_plant_shape_data(target_card_id,target_shape)[? "name"]
 
+// 抽卡模式：形态奖励禁用
+var gacha_disabled = is_eternal_gacha_mode();
+if (gacha_disabled) {
+	card_name = "随机奖励";
+}
+
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 draw_set_colour(c_white)
 draw_set_font(font_yuan)
-draw_sprite_ext(card_data[? "sprite"],0,x,y+25,1,1,0,c_white,1)
+
+if (gacha_disabled) {
+	draw_sprite_ext(spr_lihe, 0, x, y+25, 0.5, 0.5, 0, c_gray, 1);
+} else {
+	draw_sprite_ext(card_data[? "sprite"],0,x,y+25,1,1,0,c_white,1);
+}
 draw_text(x,y+83,card_name)
 
 // 绘制价格

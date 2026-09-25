@@ -53,11 +53,7 @@ if not global.is_paused{
 	wave_timer --
 }
 if (!global.save_data.unlocked_items.elite_unlocked && current_wave >= global.level_file.elite_wave)||current_wave >= global.level_file.total_waves{
-	if current_wave_hp <= 0 && !instance_exists(obj_game_over){
-		global.is_paused = true
-		global.game_over = true
-		var inst = instance_create_depth(room_width/2,room_height/2,-3001,obj_game_over)
-		inst.sprite_index = spr_win
-		audio_play_sound(snd_win,0,0)
+	if current_wave_hp <= 0 && !instance_exists(obj_game_over) && !instance_exists(obj_gacha_drop){
+		battle_finish_win();
 	}
 }

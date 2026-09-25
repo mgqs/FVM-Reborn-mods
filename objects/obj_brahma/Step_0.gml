@@ -31,6 +31,16 @@ if (!copied && !is_derivative && image_index >= 14)
         var found_count = 0;
         var prev_replace = global.replace_placement;
         global.replace_placement = false;
+
+        var plat_shift_x = 0;
+        var plat_shift_y = 0;
+        var _plat = instance_position(x, y, obj_platform);
+        if (_plat != noone)
+        {
+            plat_shift_x = _plat.visual_x_shift;
+            plat_shift_y = _plat.visual_y_shift;
+        }
+
         var max_dist = max(global.grid_cols, global.grid_rows);
 
         // 优先尝试自身所在的格子（终转后该格会空出，也应能复制）
@@ -131,7 +141,23 @@ if (!copied && !is_derivative && image_index >= 14)
             var col = cell[0];
             var row = cell[1];
             var _cell_world = get_world_position_from_grid(col, row);
-            var new_card = instance_create_depth_define(_cell_world.x, _cell_world.y, 0, _copy_obj);
+            var inst_x = _cell_world.x + plat_shift_x;
+            var inst_y = _cell_world.y + plat_shift_y;
+            if (_copy_feature_type == "upgrade" && _copy_target_card != undefined && _copy_target_card != "none")
+            {
+                var _base_plant_list = ds_grid_get(global.grid_plants, col, row);
+                for (var j = 0; j < ds_list_size(_base_plant_list); j++)
+                {
+                    var _base_plant = ds_list_find_value(_base_plant_list, j);
+                    if (instance_exists(_base_plant) && variable_instance_exists(_base_plant, "plant_id") && _base_plant.plant_id == _copy_target_card)
+                    {
+                        card_destroyed(_base_plant);
+                        instance_destroy(_base_plant);
+                        break;
+                    }
+                }
+            }
+            var new_card = instance_create_depth_define(inst_x, inst_y, 0, _copy_obj);
             card_created(new_card, col, row);
         }
         

@@ -127,6 +127,10 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
     if (!instance_exists(_entity))
         return false;
 
+    // 记录原始位置（用于计算装备偏移）
+    var _orig_x = _entity.x;
+    var _orig_y = _entity.y;
+
     // 1. 从原格子移除
     card_destroyed(_entity);
 
@@ -172,6 +176,36 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
         // 重新寻敌
         if (variable_instance_exists(_entity, "attack_timer"))
             _entity.attack_timer = 0;
+
+        // 移动所有绑定的装备（武器、盾牌等）
+        var _dx = _dest_pos.x - _orig_x;
+        var _dy = _dest_pos.y - _orig_y;
+        with (all)
+        {
+            if (variable_instance_exists(id, "parent_player") && parent_player == _entity)
+            {
+                x += _dx;
+                y += _dy;
+                // 更新网格坐标
+                if (variable_instance_exists(id, "grid_col"))
+                    grid_col = _to_col;
+                if (variable_instance_exists(id, "grid_row"))
+                    grid_row = _to_row;
+
+                // 如果是盾牌，还需要移动其特效数组中的特效
+                if (variable_instance_exists(id, "shield_vfx_insts") && is_array(shield_vfx_insts))
+                {
+                    for (var _ei = 0; _ei < array_length(shield_vfx_insts); _ei++)
+                    {
+                        if (instance_exists(shield_vfx_insts[_ei]))
+                        {
+                            shield_vfx_insts[_ei].x += _dx;
+                            shield_vfx_insts[_ei].y += _dy;
+                        }
+                    }
+                }
+            }
+        }
     }
     else
     {
@@ -249,15 +283,21 @@ function step_targeting_source()
 
     // 查找鼠标位置的实体
     var _hovered_entity = noone;
-    var _plant_list = ds_grid_get(global.grid_plants, _mouse_grid.col, _mouse_grid.row);
 
-    for (var i = 0; i < ds_list_size(_plant_list); i++)
+    // 边界检查：鼠标在地图范围内才访问网格
+    if (_mouse_grid.col >= 0 && _mouse_grid.col < global.grid_cols &&
+        _mouse_grid.row >= 0 && _mouse_grid.row < global.grid_rows)
     {
-        var _plant = ds_list_find_value(_plant_list, i);
-        if (instance_exists(_plant) && wanpilong_is_valid_source(_plant))
+        var _plant_list = ds_grid_get(global.grid_plants, _mouse_grid.col, _mouse_grid.row);
+
+        for (var i = 0; i < ds_list_size(_plant_list); i++)
         {
-            _hovered_entity = _plant;
-            break;
+            var _plant = ds_list_find_value(_plant_list, i);
+            if (instance_exists(_plant) && wanpilong_is_valid_source(_plant))
+            {
+                _hovered_entity = _plant;
+                break;
+            }
         }
     }
 
@@ -455,10 +495,13 @@ function step_resolving()
         // 扣除耗能（已经在释放时预留，这里确认扣除）
         // 实际耗能在 card_slot 点击时已扣，成功则不返还
 
-        // 启动冷却
-        cooldown_total = wanpilong_get_cooldown();
-        cooldown_timer = 0;
-        wanpilong_state = WANPILONG_STATE.COOLDOWN;
+        // 一次性卡片：移动成功后淡出销毁
+        state = CARD_STATE.DEAD;
+        fade_out_timer = 0;
+        wanpilong_state = WANPILONG_STATE.FADING_OUT;
+
+        // 从网格移除
+        card_destroyed(id);
 
         // 清除高亮
         ds_list_clear(highlight_cells);

@@ -1066,7 +1066,7 @@ register_gods_goods("fengrao_god_3",
 register_gods_goods("panduola_god",
 {
     type: "card",
-    cost: "16",
+    cost: "4",
     unlock_item_id: "panduola_god",
     description: "潘多拉：放下立即产生3x3灰烬爆炸，并在本行留下3次毒气伤害",
     display_name: "潘多拉"

@@ -115,11 +115,6 @@ if package_button_select == 1 {
 		surface_set_target(package_surface)
 		draw_clear_alpha(c_black,0)
 	}
-    for(var i = 0 ; i < package_cols ; i++){
-        for(var j = 0 ; j < package_rows ; j++){
-            draw_sprite_ext(spr_package_slot_bg, 0, 42+i*84,  48+96 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
-        }
-    }
     
     // 绘制所有已注册的植物卡片
     var card_index = 0;
@@ -142,6 +137,22 @@ if package_button_select == 1 {
         array_push(deck_sort_order, _gold_order[si])
     }
 
+    // 计算实际总行数
+    var _total_card_rows = ceil(array_length(deck_sort_order) / package_cols)
+    if (_total_card_rows < package_rows) _total_card_rows = package_rows
+    // 计算最大滚动偏移
+    max_y_offset_1 = max(0, (_total_card_rows - 8) * 96)
+    // 限制 y_offset 在有效范围内
+    if (y_offset > max_y_offset_1) y_offset = max_y_offset_1
+    if (y_offset < 0) y_offset = 0
+
+    // 绘制背景格子
+    for(var i = 0 ; i < package_cols ; i++){
+        for(var j = 0 ; j < _total_card_rows ; j++){
+            draw_sprite_ext(spr_package_slot_bg, 0, 42+i*84,  48+96 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
+        }
+    }
+
     for(var di = 0; di < array_length(deck_sort_order); di++) {
         var i = deck_sort_order[di]
         var card_id = global.player_deck[| i];
@@ -155,9 +166,11 @@ if package_button_select == 1 {
         var row = card_index div package_cols;
         var col = card_index mod package_cols;
         
-        if (row < package_rows) {
+        // 只绘制可视区域附近的卡片（优化性能，但允许滚动显示所有卡片）
+        var _card_draw_y = 48 + 2 + row * 96 - y_offset;
+        if (_card_draw_y > -100 && _card_draw_y < 875) {
             var card_x = 42 + col * 84;
-            var card_y = 48 + 2+row * 96 - y_offset;
+            var card_y = _card_draw_y;
             
             // 检查卡片是否已解锁
             var is_unlocked = false;
@@ -214,9 +227,9 @@ if package_button_select == 1 {
 				draw_sprite_ext(_slot_spr2, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_gray, 1);
             }
-            
-            card_index++;
         }
+        
+        card_index++;
     }
 	
 	surface_reset_target()
@@ -249,12 +262,6 @@ else if package_button_select == 2 {
 		surface_set_target(package_surface)
 		draw_clear_alpha(c_black,0)
 	}
-	// 绘制武器背包格子背景
-	for(var i = 0 ; i < package_cols ; i++){
-		for(var j = 0 ; j < package_rows ; j++){
-			draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 44 + 88 * j - y_offset, 0.9, 0.9, 0, c_white, 1)
-		}
-	}
 
 	hover_weapon_index = -1
 	hover_gem_index = -1
@@ -264,6 +271,79 @@ else if package_button_select == 2 {
 	var _group_col = 0
 	var _group_end_row = 0
 	var _drawn_gem_indices = []
+
+	// === 先计算总行数 ===
+	var _calc_group_end_row = 0
+	var _calc_flat_weapon_count = 0
+	var _calc_flat_gem_count = 0
+
+	// 计算分组区最大行数
+	for (var cwi = 0; cwi < array_length(_mod_weapon_ids); cwi++) {
+		var _cw_id = _mod_weapon_ids[cwi]
+		var _cuw_idx = -1
+		for (var ck = 0; ck < array_length(global.save_data.unlocked_weapons); ck++) {
+			if (global.save_data.unlocked_weapons[ck].id == _cw_id) { _cuw_idx = ck; break; }
+		}
+		if (_cuw_idx == -1) continue
+		var _cgem_count = 0
+		for (var cgi = 0; cgi < array_length(global.save_data.unlocked_gems); cgi++) {
+			var _cgem_id = global.save_data.unlocked_gems[cgi].id
+			var _cgem_data = get_gem_info(_cgem_id)
+			if (is_undefined(_cgem_data)) continue
+			if (!variable_struct_exists(_cgem_data, "allowed_weapons")) continue
+			var _cbelongs = false
+			for (var caw = 0; caw < array_length(_cgem_data.allowed_weapons); caw++) {
+				if (_cgem_data.allowed_weapons[caw] == _cw_id) { _cbelongs = true; break; }
+			}
+			if (_cbelongs) _cgem_count++
+		}
+		var _ccol_height = 1 + _cgem_count
+		if (_ccol_height > _calc_group_end_row) _calc_group_end_row = _ccol_height
+	}
+	// 计算平铺区武器数量
+	for (var ci = 0; ci < array_length(global.save_data.unlocked_weapons); ci++) {
+		var _cw_id = global.save_data.unlocked_weapons[ci].id
+		var _cis_mod = false
+		for (var cmi = 0; cmi < array_length(_mod_weapon_ids); cmi++) {
+			if (_mod_weapon_ids[cmi] == _cw_id) { _cis_mod = true; break; }
+		}
+		if (!_cis_mod) _calc_flat_weapon_count++
+	}
+	// 计算平铺区宝石数量
+	for (var cgi2 = 0; cgi2 < array_length(global.save_data.unlocked_gems); cgi2++) {
+		var _cgem_id2 = global.save_data.unlocked_gems[cgi2].id
+		var _cgem_data2 = get_gem_info(_cgem_id2)
+		if (is_undefined(_cgem_data2)) continue
+		if (!variable_struct_exists(_cgem_data2, "allowed_weapons")) {
+			_calc_flat_gem_count++
+			continue
+		}
+		var _cis_mod_gem = false
+		for (var caw2 = 0; caw2 < array_length(_cgem_data2.allowed_weapons); caw2++) {
+			for (var cmi2 = 0; cmi2 < array_length(_mod_weapon_ids); cmi2++) {
+				if (_cgem_data2.allowed_weapons[caw2] == _mod_weapon_ids[cmi2]) {
+					_cis_mod_gem = true
+					break
+				}
+			}
+			if (_cis_mod_gem) break
+		}
+		if (!_cis_mod_gem) _calc_flat_gem_count++
+	}
+	var _calc_total_flat = _calc_flat_weapon_count + _calc_flat_gem_count
+	var _calc_total_rows_2 = _calc_group_end_row + ceil(_calc_total_flat / package_cols)
+	if (_calc_total_rows_2 < package_rows) _calc_total_rows_2 = package_rows
+	// 计算最大滚动偏移并限制 y_offset
+	max_y_offset_2 = max(0, (_calc_total_rows_2 - 9) * 88)
+	if (y_offset > max_y_offset_2) y_offset = max_y_offset_2
+	if (y_offset < 0) y_offset = 0
+
+	// 绘制武器背包格子背景
+	for(var i = 0 ; i < package_cols ; i++){
+		for(var j = 0 ; j < _calc_total_rows_2 ; j++){
+			draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 44 + 88 * j - y_offset, 0.9, 0.9, 0, c_white, 1)
+		}
+	}
 
 	// 分组区：mod武器 + 其专属宝石（按列分组）
 	for (var wi = 0; wi < array_length(_mod_weapon_ids); wi++) {
@@ -360,10 +440,11 @@ else if package_button_select == 2 {
 
 		var _row = _group_end_row + (_flat_index div package_cols)
 		var _col = _flat_index mod package_cols
-		if (_row >= package_rows) break
-
-		var _wx = 42 + _col * 84
 		var _wy = 44 + _row * 88 - y_offset
+
+		// 只绘制可视区域附近的武器
+		if (_wy > -100 && _wy < 875) {
+		var _wx = 42 + _col * 84
 		var _is_equipped = is_weapon_equipped(_w_id)
 		if (_is_equipped) {
 			draw_sprite_ext(spr_package_slot_bg, 1, _wx, _wy, 0.9, 0.9, 0, c_yellow, 1)
@@ -378,6 +459,7 @@ else if package_button_select == 2 {
 		&& mouse_y > y-405 && mouse_y < y + 385 {
 			hover_weapon_index = i
 		}
+		} // 可视区域判断结束
 		_flat_index++
 	}
 
@@ -395,10 +477,11 @@ else if package_button_select == 2 {
 
 		var _row = _group_end_row + (_flat_index div package_cols)
 		var _col = _flat_index mod package_cols
-		if (_row >= package_rows) break
-
-		var _gx = 42 + _col * 84
 		var _gy = 44 + _row * 88 - y_offset
+
+		// 只绘制可视区域附近的宝石
+		if (_gy > -100 && _gy < 875) {
+		var _gx = 42 + _col * 84
 		var _gs = 88 * 0.7 / sprite_get_width(_gem_data.icon)
 		var _g_equipped = (get_gem_index(_gem_id) != -1)
 		var _can_equip = can_equip_gem(_gem_id)
@@ -421,6 +504,7 @@ else if package_button_select == 2 {
 		&& mouse_y > y-405 && mouse_y < y + 385 {
 			hover_gem_index = i
 		}
+		} // 可视区域判断结束
 		_flat_index++
 	}
 
@@ -508,16 +592,33 @@ else if package_button_select == 3{
 		surface_set_target(package_surface)
 		draw_clear_alpha(c_black,0)
 	}
-	// 绘制道具背包
-    for(var i = 0 ; i < package_cols ; i++){
-        for(var j = 0 ; j < package_rows ; j++){
-            draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 44 + 88 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
-        }
-    }
 	// 绘制所有道具
     var material_index = 0;
     hover_material_index = -1; // 重置悬停道具索引
 	var material_list = ds_map_keys_to_array(global.material_pool)
+
+	// 计算道具的最大行号
+	var _max_mat_row = package_rows - 1
+	for (var mi = 0; mi < array_length(material_list); mi++) {
+		var _mat_id_tmp = material_list[mi]
+		var _mat_data_tmp = get_material_info(_mat_id_tmp)
+		if (!is_undefined(_mat_data_tmp)) {
+			if (_mat_data_tmp.pos_y > _max_mat_row) _max_mat_row = _mat_data_tmp.pos_y
+		}
+	}
+	var _total_rows_3 = _max_mat_row + 1
+	if (_total_rows_3 < package_rows) _total_rows_3 = package_rows
+	// 计算最大滚动偏移并限制 y_offset
+	max_y_offset_3 = max(0, (_total_rows_3 - 9) * 88)
+	if (y_offset > max_y_offset_3) y_offset = max_y_offset_3
+	if (y_offset < 0) y_offset = 0
+
+	// 绘制道具背包格子背景
+    for(var i = 0 ; i < package_cols ; i++){
+        for(var j = 0 ; j < _total_rows_3 ; j++){
+            draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 44 + 88 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
+        }
+    }
 
     for(var i = 0; i < array_length(material_list); i++) {
         var material_id = material_list[i]
@@ -527,10 +628,11 @@ else if package_button_select == 3{
             // 计算道具位置
             var row = material_data.pos_y;
             var col = material_data.pos_x;
+            var material_y = 44 + row * 88 - y_offset;
 
-            if (row < package_rows) {
+            // 只绘制可视区域附近的道具
+            if (material_y > -100 && material_y < 875) {
                 var material_x = 42 + col * 84;
-                var material_y = 44 + row * 88 - y_offset;
 
                 //draw_sprite_ext(spr_package_slot_bg,  1,  weapon_x,  weapon_y, 0.9, 0.9,  0,  c_white,  1);
                 var _mat_spr = (material_id == "oracle_stone") ? spr_oriacle_stone :spr_craft_material ;

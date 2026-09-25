@@ -1,4 +1,7 @@
-if is_disabled{
+var gacha_card_disabled = (btn_type == "card" && is_eternal_gacha_mode());
+var gacha_weapon_disabled = (btn_type == "weapon" && is_eternal_gacha_mode() && gacha_is_mod_weapon(target_item));
+var gacha_gem_disabled = (btn_type == "gem" && is_eternal_gacha_mode() && gacha_is_mod_gem(target_item));
+if is_disabled || gacha_card_disabled || gacha_weapon_disabled || gacha_gem_disabled{
 	image_blend = c_gray
 }
 draw_self()

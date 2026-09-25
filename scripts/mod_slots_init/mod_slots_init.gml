@@ -1867,7 +1867,7 @@ function mod_slots_init()
         cost: 260,
         cooldown: 2700,
         description: "加速榨汁机：为3x3范围内喷壶类卡片提供增伤",
-        plant_type: "shield_outer",
+        plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
     }, 
@@ -1877,7 +1877,7 @@ function mod_slots_init()
         cost: 260,
         cooldown: 2700,
         description: "苹果榨汁机：为3x3范围内喷壶类卡片提供增伤",
-        plant_type: "shield_outer",
+        plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
     }, 
@@ -1887,7 +1887,7 @@ function mod_slots_init()
         cost: 260,
         cooldown: 2700,
         description: "大菠萝榨汁机：为5x5范围内喷壶类卡片提供增伤",
-        plant_type: "shield_outer",
+        plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
     }]);
@@ -2614,7 +2614,7 @@ register_card("liehuohu", obj_liehuohu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     },
     {
         shape: 1,
@@ -2625,7 +2625,7 @@ register_card("liehuohu", obj_liehuohu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     },
     {
         shape: 2,
@@ -2636,7 +2636,7 @@ register_card("liehuohu", obj_liehuohu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     }]);
 
 register_card("xuanfengniu", obj_xuanfengniu, [
@@ -2687,7 +2687,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     },
     {
         shape: 1,
@@ -2698,7 +2698,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     },
     {
         shape: 2,
@@ -2709,6 +2709,6 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none",
-        is_gold: 1
+        is_gold: 0
     }]);
 }

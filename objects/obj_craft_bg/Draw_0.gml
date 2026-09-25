@@ -47,12 +47,6 @@ if button_select == 0{
 		
 	}
 	surface_set_target(card_surface)
-	//绘制右侧栏位
-	for(var i = 0 ; i < 7 ; i++){
-        for(var j = 0 ; j < 20 ; j++){
-            draw_sprite_ext(spr_package_slot_bg, 0, 42+i*84, 48+96 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
-        }
-    }
 	//绘制所有已解锁防御卡
 		var card_index = 0
 		hover_card_index = -1
@@ -71,6 +65,22 @@ if button_select == 0{
 		for(var i = 0; i < array_length(_craft_gold_order); i++) {
 			array_push(craft_sort_order, _craft_gold_order[i])
 		}
+
+		// 计算实际总行数和最大滚动偏移
+		var _craft_total_rows = ceil(array_length(craft_sort_order) / 7)
+		if (_craft_total_rows < 20) _craft_total_rows = 20
+		// surface 高度 815，约 815/96 ≈ 8.5 行可视
+		craft_max_y_offset = max(0, _craft_total_rows * 96 - 815)
+		if (y_offset > craft_max_y_offset) y_offset = craft_max_y_offset
+		if (y_offset < 0) y_offset = 0
+
+		//绘制右侧栏位背景
+		for(var i = 0 ; i < 7 ; i++){
+			for(var j = 0 ; j < _craft_total_rows ; j++){
+				draw_sprite_ext(spr_package_slot_bg, 0, 42+i*84, 48+96 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
+			}
+		}
+
 		for(var di = 0; di < array_length(craft_sort_order); di++) {
 			var i = craft_sort_order[di]
 			var card_col = card_index mod 7
@@ -253,50 +263,75 @@ else if button_select == 1{
 			draw_text(x-752+i*84+40,y + 454+42,string(floor(get_material_amount(material_id)/10000))+"w")
 		}
 	}
-	//绘制右侧栏位
+	//绘制右侧宝石栏位（使用card_surface实现滚动裁剪）
+	surface_set_target(card_surface)
+	draw_clear_alpha(c_black, 0)
+
+	// 计算宝石总行数和最大滚动偏移
+	var _gem_total_count = 0
+	for (var _gi = 0; _gi < array_length(global.save_data.unlocked_gems); _gi++) {
+		var _gd = get_gem_info(global.save_data.unlocked_gems[_gi].id)
+		if (!is_undefined(_gd)) _gem_total_count++
+	}
+	var _gem_total_rows = ceil(_gem_total_count / 7)
+	if (_gem_total_rows < 9) _gem_total_rows = 9
+	// surface 高度 815，宝石行高 88，约 815/88 ≈ 9.26 行可视
+	craft_gem_max_y_offset = max(0, _gem_total_rows * 88 + 48 - 815)
+	if (y_offset > craft_gem_max_y_offset) y_offset = craft_gem_max_y_offset
+	if (y_offset < 0) y_offset = 0
+
+	//绘制宝石背景格子
 	for(var i = 0 ; i < 7 ; i++){
-        for(var j = 0 ; j < 9 ; j++){
-            draw_sprite_ext(spr_package_slot_bg, 1, x+196+i*84, y - 324 + 88 * j, 0.9, 0.9, 0, c_white, 1)
-        }
-    }
+		for(var j = 0 ; j < _gem_total_rows ; j++){
+			draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 48 + 88 * j - y_offset, 0.9, 0.9, 0, c_white, 1)
+		}
+	}
 	//绘制所有宝石
 	var gem_index = 0
 	hover_gem_index = -1
-	
+
 	for(var i = 0; i < array_length(global.save_data.unlocked_gems); i++) {
         var weapon_id = global.save_data.unlocked_gems[i].id;
         var weapon_data = get_gem_info(weapon_id)
-        
+
         if (!is_undefined(weapon_data)) {
             // 计算宝石位置
             var row = gem_index div 7
             var col = gem_index mod 7
-            
-            if (row < 10) {
-                var weapon_x = x + 196 + col * 84;
-                var weapon_y = y - 324 + row * 88;
-                
+			var gem_draw_y = 48 + row * 88 - y_offset;
+
+			// 只绘制可视区域附近的宝石
+			if (gem_draw_y > -100 && gem_draw_y < 915) {
+				var gem_draw_x = 42 + col * 84;
+
                 // 绘制宝石图标
-                draw_sprite_ext(weapon_data.icon, 0, weapon_x, weapon_y, 0.7, 0.7, 0, c_white, 1);
-                
+                draw_sprite_ext(weapon_data.icon, 0, gem_draw_x, gem_draw_y, 0.7, 0.7, 0, c_white, 1);
+
 				if get_gem_max_level(weapon_id) > 0{
-					draw_sprite_ext(spr_star_slot, get_gem_max_level(weapon_id)-1, weapon_x-28, weapon_y-30, 0.7, 0.7, 0, c_white, 1)
+					draw_sprite_ext(spr_star_slot, get_gem_max_level(weapon_id)-1, gem_draw_x-28, gem_draw_y-30, 0.7, 0.7, 0, c_white, 1)
 				}
-                
-                // 检查鼠标是否悬停在宝石上
+
+                // 检查鼠标是否悬停在宝石上（转换到屏幕坐标）
                 var spr_width = 84;
                 var spr_height = 88;
-                
-                if (point_in_rectangle(mouse_x, mouse_y, 
-                                      weapon_x - spr_width/2, weapon_y - spr_height/2,
-                                      weapon_x + spr_width/2, weapon_y + spr_height/2)) {
+
+                // surface 绘制在 (x+196-42, y-321-48)，宝石在 surface 内的位置是 (42+col*84, 48+row*88-y_offset)
+                var hover_gem_x = x + 196 + col * 84;
+                var hover_gem_y = y - 321 + row * 88 - y_offset;
+
+                if (point_in_rectangle(mouse_x, mouse_y,
+                                      hover_gem_x - spr_width/2, hover_gem_y - spr_height/2,
+                                      hover_gem_x + spr_width/2, hover_gem_y + spr_height/2))
+				&& mouse_y > y-369 && mouse_y < y + 446 {
                     hover_gem_index = i;
                 }
-                
-                gem_index++;
-            }
+			}
+            gem_index++;
         }
     }
+
+	surface_reset_target()
+	draw_surface(card_surface, x+196-42, y-321-48)
     
     // 绘制悬停提示
     if (hover_gem_index != -1) {

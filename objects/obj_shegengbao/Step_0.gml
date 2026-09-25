@@ -52,9 +52,6 @@ for (var i = 0; i < ds_list_size(targets); i++)
         var flame_inst = instance_create_depth(plant.x, plant.y - 30, -2000, obj_flame);
         flame_inst.value = round(_cost * refund_multiplier);
     }
-
-    card_destroyed(plant);
-    instance_destroy(plant);
 }
 
 ds_list_destroy(targets);

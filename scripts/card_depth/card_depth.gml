@@ -71,14 +71,18 @@ function sort_plants_in_grid(col, row) {
     
     // 按深度值排序（从大到小，即从前面到后面）
     ds_list_sort(plant_list, function(a, b) {
-        var depth_a = a.depth_value;
-        var depth_b = b.depth_value;
+        var depth_a = 0;
+        var depth_b = 0;
+        if (variable_instance_exists(a, "depth_value")) depth_a = a.depth_value;
+        if (variable_instance_exists(b, "depth_value")) depth_b = b.depth_value;
         return depth_b - depth_a; // 降序排序
     });
     
     // 更新实例深度（确保绘制顺序正确）
     for (var i = 0; i < ds_list_size(plant_list); i++) {
         var plant = ds_list_find_value(plant_list, i);
-        plant.depth = plant.depth_value + (i * 0.001); // 微小偏移确保正确绘制顺序
+        var _dv = 0;
+        if (variable_instance_exists(plant, "depth_value")) _dv = plant.depth_value;
+        plant.depth = _dv + (i * 0.001); // 微小偏移确保正确绘制顺序
     }
 }

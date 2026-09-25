@@ -39,7 +39,136 @@ if (global.is_paused)
 			draw_text(room_width / 2, room_height / 2, "暂停中");
 		}
 		else{
-			if !settlement{
+			// 抽卡模式结算页面
+			if (is_eternal_gacha_mode() && instance_exists(obj_gacha_drop) && obj_gacha_drop.state == 2) {
+				draw_set_font(font_yuan);
+				draw_set_halign(fa_center);
+				draw_set_valign(fa_middle);
+				
+				var cx = room_width / 2;
+				var cy = room_height / 2;
+				var is_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
+				
+				// 标题
+				draw_set_color(c_yellow);
+				draw_text(cx, cy - 180, "通关成功！");
+				
+				if (is_first) {
+					draw_set_color(c_white);
+					
+					// 获取抽卡奖励数据
+					var reward_id = global.gacha_reward.id;
+					var reward_shape = global.gacha_reward.shape;
+					var reward_type = "card";
+					if (variable_struct_exists(global.gacha_reward, "reward_type")) {
+						reward_type = global.gacha_reward.reward_type;
+					}
+					
+					// 标题文字
+					var title_text = "随机获得卡片";
+					if (reward_type == "weapon") {
+						title_text = "随机获得武器";
+					} else if (reward_type == "gem") {
+						title_text = "随机获得宝石";
+					}
+					draw_text(cx, cy - 140, title_text);
+					
+					// 卡槽外框
+					var slot_spr = spr_slot;
+					var slot_scale = 1.2;
+					draw_sprite_ext(slot_spr, 0, cx, cy - 20, slot_scale, slot_scale, 0, c_white, 1);
+					
+					if (reward_type == "card") {
+						// === 卡片奖励 ===
+						var card_shape_data = get_plant_shape_data(reward_id, reward_shape);
+						var card_deck_data = deck_get_card_data(reward_id, reward_shape);
+						
+						// 卡片贴图
+						if (card_deck_data != noone) {
+							var card_spr = card_deck_data[? "sprite"];
+							if (card_spr != undefined) {
+								draw_sprite_ext(card_spr, 0, cx, cy - 20, 0.9, 0.9, 0, c_white, 1);
+							}
+						}
+						
+						// 卡片名称
+						var name_color = c_blue;
+						if (gacha_is_gold_card(reward_id)) {
+							name_color = c_yellow;
+						} else if (gacha_is_zodiac_card(reward_id)) {
+							name_color = c_purple;
+						}
+						draw_set_color(name_color);
+						var card_name = "未知卡片";
+						if (card_shape_data != undefined) {
+							card_name = card_shape_data[? "name"];
+						}
+						draw_text(cx, cy + 120, card_name);
+						
+						// 形态
+						draw_set_color(c_lime);
+						draw_text(cx, cy + 150, "形态：" + string(reward_shape));
+					} else if (reward_type == "weapon") {
+						// === 武器奖励 ===
+						var weapon_icon = gacha_get_weapon_icon(reward_id);
+						var weapon_name = gacha_get_weapon_name(reward_id);
+						
+						// 武器图标
+						if (weapon_icon != spr_null) {
+							draw_sprite_ext(weapon_icon, 0, cx, cy - 20, 1.2, 1.2, 0, c_white, 1);
+						}
+						
+						// 武器名称（金色）
+						draw_set_color(c_yellow);
+						draw_text(cx, cy + 120, weapon_name);
+						
+						// 类型标签
+						draw_set_color(c_lime);
+						draw_text(cx, cy + 150, "MOD武器");
+					} else if (reward_type == "gem") {
+						// === 宝石奖励 ===
+						var gem_icon = gacha_get_gem_icon(reward_id);
+						var gem_name = gacha_get_gem_name(reward_id);
+						
+						// 宝石图标
+						if (gem_icon != spr_null) {
+							draw_sprite_ext(gem_icon, 0, cx, cy - 20, 1.5, 1.5, 0, c_white, 1);
+						}
+						
+						// 宝石名称（紫色）
+						draw_set_color(c_purple);
+						draw_text(cx, cy + 120, gem_name);
+						
+						// 类型标签
+						draw_set_color(c_lime);
+						draw_text(cx, cy + 150, "MOD宝石");
+					}
+				} else {
+					draw_set_color(c_gray);
+					draw_text(cx, cy - 80, "重复通关");
+					draw_text(cx, cy - 40, "无抽卡奖励");
+				}
+				
+				// 确定按钮
+				var btn_x = cx;
+				var btn_y = cy + 220;
+				var btn_w = 160;
+				var btn_h = 50;
+				
+				// 按钮背景
+				draw_set_color(c_gray);
+				draw_rectangle(btn_x - btn_w/2, btn_y - btn_h/2, btn_x + btn_w/2, btn_y + btn_h/2, false);
+				draw_set_color(c_white);
+				draw_rectangle(btn_x - btn_w/2, btn_y - btn_h/2, btn_x + btn_w/2, btn_y + btn_h/2, true);
+				
+				// 按钮文字
+				draw_set_color(c_black);
+				draw_text(btn_x, btn_y, "确 定");
+				
+				draw_set_halign(fa_left);
+				draw_set_valign(fa_top);
+			}
+			else if !settlement{
 				draw_text(room_width / 2, room_height / 2 + 150, "左键点击或按空格键继续……");
 			}
 			else{
@@ -133,7 +262,7 @@ if (global.is_paused)
 					}
 				}
 			}
-			if obj_game_over.sprite_index == spr_lose{
+			if instance_exists(obj_game_over) && obj_game_over.sprite_index == spr_lose{
 				draw_text(room_width / 2, room_height / 2 + 175, "按R重新开始")
 			}
 		}

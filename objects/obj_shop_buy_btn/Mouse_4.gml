@@ -2,6 +2,21 @@ if not obj_shop_bg.is_submenu_opened and not is_disabled{
 	
 	audio_play_sound(snd_button,0,0)
 	if btn_type == "card" || btn_type == "weapon" || btn_type == "gem" || btn_type == "attire"{
+		// 抽卡模式：禁用卡片购买
+		if (btn_type == "card" && is_eternal_gacha_mode()) {
+			show_notice("抽卡模式无法购买卡片", 60);
+			exit;
+		}
+		// 抽卡模式：禁用MOD武器购买
+		if (btn_type == "weapon" && is_eternal_gacha_mode() && gacha_is_mod_weapon(target_item)) {
+			show_notice("抽卡模式通过随机奖励获取MOD武器", 60);
+			exit;
+		}
+		// 抽卡模式：禁用MOD宝石购买
+		if (btn_type == "gem" && is_eternal_gacha_mode() && gacha_is_mod_gem(target_item)) {
+			show_notice("抽卡模式通过随机奖励获取MOD宝石", 60);
+			exit;
+		}
 		if global.save_data.player.gold >= cost || global.debug{
 			var inst = instance_create_depth(room_width/2,room_height/2,depth-3,obj_shop_buy_confirm)
 			inst.banding_buy_btn = id

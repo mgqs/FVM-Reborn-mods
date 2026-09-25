@@ -8,11 +8,6 @@ draw_text(565,53,global.level_data.name)
 {//绘制可选择的防御卡
 	surface_set_target(slot_surface)
 	draw_clear_alpha(c_black, 0)
-for(var i = 0 ; i < slot_rows ; i++){
-        for(var j = 0 ; j < slot_cols ; j++){
-            draw_sprite_ext(spr_package_slot_bg, 0, x+42+i*84, y + 48 + 96 * j- y_offset, 0.9, 0.9, 0, c_white, 1)
-        }
-    }
     
     // 绘制所有已注册的植物卡片
     var card_index = 0;
@@ -35,6 +30,21 @@ for(var i = 0 ; i < slot_rows ; i++){
         array_push(deck_sort_order, _gold_order[si])
     }
 
+    // 计算实际总行数和最大滚动偏移
+    var _ready_total_rows = ceil(array_length(deck_sort_order) / slot_rows)
+    if (_ready_total_rows < slot_cols) _ready_total_rows = slot_cols
+    // surface 高度 420，起始 y=48，可视高度约 420-48=372
+    ready_max_y_offset = max(0, _ready_total_rows * 96 - 372)
+    if (y_offset > ready_max_y_offset) y_offset = ready_max_y_offset
+    if (y_offset < 0) y_offset = 0
+
+    // 绘制背景格子
+for(var i = 0 ; i < slot_rows ; i++){
+        for(var j = 0 ; j < _ready_total_rows ; j++){
+            draw_sprite_ext(spr_package_slot_bg, 0, x+42+i*84, y + 48 + 96 * j- y_offset, 0.9, 0.9, 0, c_white, 1)
+        }
+    }
+
     for(var di = 0; di < array_length(deck_sort_order); di++) {
         var i = deck_sort_order[di]
         var card_id = global.player_deck[| i];
@@ -48,9 +58,11 @@ for(var i = 0 ; i < slot_rows ; i++){
         var row = card_index div slot_rows;
         var col = card_index mod slot_rows;
         
-        if (row < slot_cols) {
+        var _card_draw_y = y + 48 + row * 96 - y_offset;
+        // 只绘制可视区域附近的卡片
+        if (_card_draw_y > y - 100 && _card_draw_y < y + 520) {
             var card_x = x + 42 + col * 84
-            var card_y = y + 48 + row * 96 - y_offset;
+            var card_y = _card_draw_y;
             
             // 检查卡片是否已解锁
             var is_unlocked = false;
@@ -132,9 +144,9 @@ for(var i = 0 ; i < slot_rows ; i++){
 				}
 				draw_text(card_x,card_y+37,card_data[? "cost"])
             }
-            
-            card_index++;
         }
+        
+        card_index++;
     }
 	surface_reset_target()
 }

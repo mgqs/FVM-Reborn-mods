@@ -44,7 +44,7 @@ global.level_name = "曲奇岛"
 global.level_data = {}
 global.debug = 0
 global.laboretory_room = false
-global.game_version = "2.4.1.16"
+global.game_version = "2.4.1.17"
 global.tower_level_click = false
 global.tower_cake_page = 1
 Music_Init()
@@ -126,6 +126,9 @@ global.card_hpbar = ini_read_bool("settings", "card_hpbar", false);
 global.enemy_hpbar = ini_read_bool("settings", "enemy_hpbar", false);
 global.tex_fliter = ini_read_bool("settings", "tex_fliter", true);
 global.difficulty = ini_read_real("settings", "difficulty", 1)
+// 确保难度值在有效范围内
+if (global.difficulty < 0) global.difficulty = 0;
+if (global.difficulty > 6) global.difficulty = 6;
 global.borderless_window = ini_read_bool("settings", "borderless_window", true);
 global.save_slot = ini_read_real("settings", "save_slot", 0)
 global.lose_focus_pause = ini_read_bool("settings", "lose_focus_pause", true);

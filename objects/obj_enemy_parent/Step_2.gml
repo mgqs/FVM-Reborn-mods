@@ -28,7 +28,7 @@ if not hp_modified{
 			shield_max_hp *= 1.2
 		}
 	}
-	if global.difficulty >= 4{
+	if global.difficulty >= 4 && global.difficulty != 6{
 		maxhp *= 2
 		hp *= 2
 		helmet_hp *= 2

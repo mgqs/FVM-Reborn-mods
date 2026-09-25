@@ -2,7 +2,7 @@
 if room != room_battle{
 	if config_key == "difficulty"{
 		if b_type == "next"{
-			if state < 5{
+			if state < 6{
 				state ++
 			}
 			else{
@@ -14,7 +14,7 @@ if room != room_battle{
 				state --
 			}
 			else{
-				state = 5
+				state = 6
 			}
 		}
 	}
