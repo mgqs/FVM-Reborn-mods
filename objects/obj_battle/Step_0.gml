@@ -142,7 +142,7 @@ else{
 if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer <= 1{
 	level_stage = "boss"
 	var boss_spawn_mult = 1
-	if global.difficulty == 5{
+	if global.difficulty == 5 || global.difficulty == 7{
 		boss_spawn_mult = 2
 	}
 	for (var bm = 0; bm < boss_spawn_mult; bm++){

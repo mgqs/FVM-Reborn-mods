@@ -26,8 +26,12 @@ function zhiyumiao_config_init() {
             duration: "permanent"
         },
 
-        // 即刻治疗量（所有形态统一）
-        instantHeal: 5,
+        // 即刻治疗量（按阶段）
+        instantHeal: {
+            stage0: 50,
+            stage1: 80,
+            stage2: 80
+        },
 
         // 范围配置
         range: {
@@ -43,12 +47,20 @@ function zhiyumiao_config_init() {
             stage2: 80
         },
 
-        // 一转/二转补血Buff参数
+        // 一转/二转补血Buff参数（按阶段）
         regen: {
-            durationMs: 3000,
-            totalHeal: 15,
-            tickIntervalMs: 1000,
-            tickAmount: 5,
+            stage1: {
+                durationMs: 3000,
+                totalHeal: 240,
+                tickIntervalMs: 1000,
+                tickAmount: 80
+            },
+            stage2: {
+                durationMs: 3000,
+                totalHeal: 240,
+                tickIntervalMs: 1000,
+                tickAmount: 80
+            },
             stacking: "refresh_same_source"
         },
 
@@ -79,6 +91,14 @@ function zhiyumiao_get_range_radius(_stage) {
     return -1; // 全屏
 }
 
+/// @desc 获取指定阶段的即刻治疗量
+function zhiyumiao_get_heal_amount(_stage) {
+    var _cfg = global.zhiyumiao_config;
+    if (_stage == 0) return _cfg.instantHeal.stage0;
+    if (_stage == 1) return _cfg.instantHeal.stage1;
+    return _cfg.instantHeal.stage2;
+}
+
 /// @desc 判断指定阶段是否为全屏范围
 function zhiyumiao_is_full_board(_stage) {
     return _stage >= 2;
@@ -90,7 +110,7 @@ function zhiyumiao_has_regen(_stage) {
 }
 
 /// @desc 对目标施加或刷新回血Buff（同源刷新，不叠层）
-function zhiyumiao_apply_regen_buff(_source_id, _target_id) {
+function zhiyumiao_apply_regen_buff(_source_id, _target_id, _stage) {
     if (!instance_exists(_target_id) || _target_id.hp <= 0)
         return noone;
 
@@ -98,6 +118,7 @@ function zhiyumiao_apply_regen_buff(_source_id, _target_id) {
         return noone;
 
     var _cfg = global.zhiyumiao_config;
+    var _regen_cfg = (_stage >= 2) ? _cfg.regen.stage2 : _cfg.regen.stage1;
     var _found = false;
     var _buff_id = noone;
 
@@ -105,6 +126,9 @@ function zhiyumiao_apply_regen_buff(_source_id, _target_id) {
         if (source_id == _source_id && target_id == _target_id) {
             elapsed_frames = 0;
             tick_timer_frames = 0;
+            tick_amount = _regen_cfg.tickAmount;
+            duration_frames = round(_regen_cfg.durationMs * 60 / 1000);
+            tick_interval_frames = round(_regen_cfg.tickIntervalMs * 60 / 1000);
             _found = true;
             _buff_id = id;
         }
@@ -114,9 +138,9 @@ function zhiyumiao_apply_regen_buff(_source_id, _target_id) {
         _buff_id = instance_create_depth(_target_id.x, _target_id.y, _target_id.depth - 10, obj_zhiyumiao_regen_buff);
         _buff_id.target_id = _target_id;
         _buff_id.source_id = _source_id;
-        _buff_id.duration_frames = round(_cfg.regen.durationMs * 60 / 1000);
-        _buff_id.tick_interval_frames = round(_cfg.regen.tickIntervalMs * 60 / 1000);
-        _buff_id.tick_amount = _cfg.regen.tickAmount;
+        _buff_id.duration_frames = round(_regen_cfg.durationMs * 60 / 1000);
+        _buff_id.tick_interval_frames = round(_regen_cfg.tickIntervalMs * 60 / 1000);
+        _buff_id.tick_amount = _regen_cfg.tickAmount;
     }
 
     return _buff_id;
@@ -134,6 +158,24 @@ function zhiyumiao_instant_heal(_target, _heal_amount) {
     if (_applied > 0) {
         _target.hp += _applied;
         instance_create_depth(_target.x, _target.y + 30, _target.depth - 4, obj_card_heal_effect);
+    }
+
+    return _applied;
+}
+
+/// @desc 对玩家角色执行即刻治疗，返回实际治疗量
+function zhiyumiao_heal_player(_heal_amount) {
+    if (!instance_exists(obj_player_character))
+        return 0;
+
+    var _player = obj_player_character;
+    if (_player.hp <= 0 || !variable_instance_exists(_player, "max_hp"))
+        return 0;
+
+    var _applied = min(_heal_amount, _player.max_hp - _player.hp);
+    if (_applied > 0) {
+        _player.hp += _applied;
+        instance_create_depth(_player.x, _player.y + 30, _player.depth - 4, obj_card_heal_effect);
     }
 
     return _applied;

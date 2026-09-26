@@ -1,6 +1,7 @@
 damage = 0;
 move_speed_x = 0;
 move_speed_y = 0;
+bounced = false;
 damage_type = "pierce";
 target_type = "pierce";
 image_speed = 0;

@@ -25,6 +25,36 @@ else
 
 x += move_speed_x;
 
+// 跨行反弹检测：检测水神和樱桃布丁（不限制行号）
+if (!bounced)
+{
+    with (obj_water_god)
+    {
+        if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
+        {
+            other.move_speed_x *= -1;
+            other.damage += atk;
+            other.image_angle += 180;
+            other.bounced = true;
+            break;
+        }
+    }
+    if (!bounced)
+    {
+        with (obj_cherry_pudding)
+        {
+            if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
+            {
+                other.move_speed_x *= -1;
+                other.damage += atk;
+                other.image_angle += 180;
+                other.bounced = true;
+                break;
+            }
+        }
+    }
+}
+
 // 类型过滤碰撞检测：仅遍历可命中的敌人类型
 if (!bullet_hit && variable_global_exists("enemy_by_type"))
 {

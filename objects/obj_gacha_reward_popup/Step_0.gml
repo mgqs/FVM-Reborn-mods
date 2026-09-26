@@ -12,7 +12,7 @@ var cy = gh / 2;
 
 // 确定按钮位置
 var btn_x = cx;
-var btn_y = cy + 260;
+var btn_y = cy + 220;
 var btn_w = 160;
 var btn_h = 50;
 

@@ -36,6 +36,10 @@ if obj_battle.level_stage == "boss"{
 		diff_text = "抽卡"
 		draw_set_colour(c_yellow)
 	}
+	else if global.difficulty == 7{
+		diff_text = "欧皇"
+		draw_set_colour(c_orange)
+	}
 	draw_text(x-230+string_width(level_text),y-42,diff_text)
 	exit
 }
@@ -143,6 +147,10 @@ else if global.difficulty == 5{
 else if global.difficulty == 6{
 	diff_text = "抽卡"
 	draw_set_colour(c_yellow)
+}
+else if global.difficulty == 7{
+	diff_text = "欧皇"
+	draw_set_colour(c_orange)
 }
 
 draw_text(x-230+string_width(level_text),y-42,diff_text)

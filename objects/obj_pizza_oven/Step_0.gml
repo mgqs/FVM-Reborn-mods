@@ -10,7 +10,7 @@ if is_slowdown{
 	current_flash_speed *= 2
 }
 
-//攻击逻辑
+//攻击逻辑 - 固定三角形范围穿透攻击，按周期发射
 
 if (attack_timer <= cycle - attack_anim * current_flash_speed) {
     attack_timer++;
@@ -25,9 +25,3 @@ if (attack_timer <= cycle - attack_anim * current_flash_speed) {
 if (attack_timer == cycle - 4*flash_speed){
 	event_user(1)
 }
-if (attack_timer == cycle - 1*flash_speed) && shape >= 2{
-	event_user(1); // 发射子弹
-}
-
-
-

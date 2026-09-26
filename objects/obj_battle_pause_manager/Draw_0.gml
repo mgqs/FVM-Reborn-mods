@@ -101,11 +101,11 @@ if (global.is_paused)
 						var card_shape_data = get_plant_shape_data(reward_id, reward_shape);
 						var card_deck_data = deck_get_card_data(reward_id, reward_shape);
 						
-						// 卡片贴图
+						// 卡片贴图（放大约一倍）
 						if (card_deck_data != noone) {
 							var card_spr = card_deck_data[? "sprite"];
 							if (card_spr != undefined) {
-								draw_sprite_ext(card_spr, 0, cx, cy - 20, 0.9, 0.9, 0, c_white, 1);
+								draw_sprite_ext(card_spr, 0, cx, cy - 20, 1.8, 1.8, 0, c_white, 1);
 							}
 						}
 						
@@ -131,9 +131,9 @@ if (global.is_paused)
 						var weapon_icon = gacha_get_weapon_icon(reward_id);
 						var weapon_name = gacha_get_weapon_name(reward_id);
 						
-						// 武器图标
+						// 武器图标（放大约一倍）
 						if (weapon_icon != -1) {
-							draw_sprite_ext(weapon_icon, 0, cx, cy - 20, 1.2, 1.2, 0, c_white, 1);
+							draw_sprite_ext(weapon_icon, 0, cx, cy - 20, 2.0, 2.0, 0, c_white, 1);
 						}
 						
 						// 武器名称（金色）
@@ -148,9 +148,9 @@ if (global.is_paused)
 						var gem_icon = gacha_get_gem_icon(reward_id);
 						var gem_name = gacha_get_gem_name(reward_id);
 						
-						// 宝石图标
+						// 宝石图标（放大约一倍）
 						if (gem_icon != -1) {
-							draw_sprite_ext(gem_icon, 0, cx, cy - 20, 1.5, 1.5, 0, c_white, 1);
+							draw_sprite_ext(gem_icon, 0, cx, cy - 20, 2.5, 2.5, 0, c_white, 1);
 						}
 						
 						// 宝石名称（紫色）
@@ -202,6 +202,7 @@ if (global.is_paused)
 				draw_text(630,310,"猫损失："+string(obj_task_manager.cat_loss))
 				var _diff_text = string(global.difficulty)
 				if (global.difficulty == 6) _diff_text = "抽卡"
+				else if (global.difficulty == 7) _diff_text = "欧皇"
 				draw_text(630,335,"难度："+_diff_text)
 				if global.level_file.version != "1.0.0" && !global.laboretory_room{
 					if first_complete{

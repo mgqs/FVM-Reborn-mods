@@ -3,7 +3,7 @@
 for (var i = 0; i < bullet_count; i++)
 {
     var inst = instance_create_depth(x, y, depth - 500, obj_laipishe_bullet);
-    inst.damage = atk;
+    inst.damage = atk * damage_multiplier;
     inst.owner_card = id;
     inst.bullet_shape = shape;
     inst.move_speed = 6;

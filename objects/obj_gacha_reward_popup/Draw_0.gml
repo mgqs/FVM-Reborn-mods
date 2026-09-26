@@ -30,10 +30,10 @@ if (reward != noone) {
         title_text = "随机获得宝石";
     }
     draw_set_color(c_black);
-    draw_text(cx, cy - 220, title_text);
+    draw_text(cx, cy - 180, title_text);
 
-    // 卡槽外框（放大约一倍）
-    draw_sprite_ext(spr_slot, 0, cx, cy - 30, 2.2, 2.2, 0, c_white, 1);
+    // 卡槽外框（保持原大小）
+    draw_sprite_ext(spr_slot, 0, cx, cy - 20, 1.2, 1.2, 0, c_white, 1);
 
     if (reward_type == "card") {
         // === 卡片奖励 ===
@@ -44,7 +44,7 @@ if (reward != noone) {
         if (card_deck_data != noone) {
             var card_spr = card_deck_data[? "sprite"];
             if (card_spr != undefined) {
-                draw_sprite_ext(card_spr, 0, cx, cy - 30, 1.8, 1.8, 0, c_white, 1);
+                draw_sprite_ext(card_spr, 0, cx, cy - 20, 1.8, 1.8, 0, c_white, 1);
             }
         }
 
@@ -60,11 +60,11 @@ if (reward != noone) {
         if (card_shape_data != undefined) {
             card_name = card_shape_data[? "name"];
         }
-        draw_text(cx, cy + 150, card_name);
+        draw_text(cx, cy + 120, card_name);
 
         // 形态
         draw_set_color(c_lime);
-        draw_text(cx, cy + 185, "形态：" + string(reward_shape));
+        draw_text(cx, cy + 150, "形态：" + string(reward_shape));
     } else if (reward_type == "weapon") {
         // === 武器奖励 ===
         var weapon_icon = gacha_get_weapon_icon(reward_id);
@@ -72,16 +72,16 @@ if (reward != noone) {
 
         // 武器图标（放大约一倍）
         if (weapon_icon != -1) {
-            draw_sprite_ext(weapon_icon, 0, cx, cy - 30, 2.2, 2.2, 0, c_white, 1);
+            draw_sprite_ext(weapon_icon, 0, cx, cy - 20, 2.0, 2.0, 0, c_white, 1);
         }
 
         // 武器名称（金色）
         draw_set_color(c_yellow);
-        draw_text(cx, cy + 150, weapon_name);
+        draw_text(cx, cy + 120, weapon_name);
 
         // 类型标签
         draw_set_color(c_lime);
-        draw_text(cx, cy + 185, "MOD武器");
+        draw_text(cx, cy + 150, "MOD武器");
     } else if (reward_type == "gem") {
         // === 宝石奖励 ===
         var gem_icon = gacha_get_gem_icon(reward_id);
@@ -89,21 +89,21 @@ if (reward != noone) {
 
         // 宝石图标（放大约一倍）
         if (gem_icon != -1) {
-            draw_sprite_ext(gem_icon, 0, cx, cy - 30, 2.8, 2.8, 0, c_white, 1);
+            draw_sprite_ext(gem_icon, 0, cx, cy - 20, 2.5, 2.5, 0, c_white, 1);
         }
 
         // 宝石名称（紫色）
         draw_set_color(c_purple);
-        draw_text(cx, cy + 150, gem_name);
+        draw_text(cx, cy + 120, gem_name);
 
         // 类型标签
         draw_set_color(c_lime);
-        draw_text(cx, cy + 185, "MOD宝石");
+        draw_text(cx, cy + 150, "MOD宝石");
     }
 
     // 确定按钮
     var btn_x = cx;
-    var btn_y = cy + 260;
+    var btn_y = cy + 220;
     var btn_w = 160;
     var btn_h = 50;
 

@@ -16,22 +16,15 @@ attack_timer++;
 if (zhiyumiao_cast_flash > 0)
     zhiyumiao_cast_flash--;
 
-// 周期治疗：将cycle(ms)转换为帧数(60fps)
-var _heal_interval = max(60, round(cycle * 60 / 1000));
-
+// 一次性技能：放下后经过初始延迟，播放施法动画，释放技能后销毁
 if (attack_timer < first_produce_delay) {
     // 初始延迟阶段
     state = CARD_STATE.IDLE;
     image_index = (attack_timer div current_flash_speed) mod (idle_anim + 1);
-} else if (attack_timer < first_produce_delay + _heal_interval) {
-    // 等待周期阶段
-    state = CARD_STATE.IDLE;
-    var _pos = attack_timer - first_produce_delay;
-    image_index = (_pos div current_flash_speed) mod (idle_anim + 1);
-} else {
+} else if (!zhiyumiao_skill_triggered) {
     // 施法动画阶段
     state = CARD_STATE.ATTACK;
-    var _attack_pos = attack_timer - first_produce_delay - _heal_interval;
+    var _attack_pos = attack_timer - first_produce_delay;
     var _attack_frame = _attack_pos div current_flash_speed;
 
     if (_attack_frame >= attack_anim) {
@@ -42,9 +35,14 @@ if (attack_timer < first_produce_delay) {
             event_user(11);
 
         zhiyumiao_cast_flash = 20;
-        attack_timer = first_produce_delay;
+        zhiyumiao_skill_triggered = true;
         state = CARD_STATE.IDLE;
     } else {
         image_index = idle_anim + 1 + _attack_frame;
+    }
+} else {
+    // 技能已释放，短暂闪光后销毁卡片
+    if (zhiyumiao_cast_flash <= 0) {
+        instance_destroy();
     }
 }

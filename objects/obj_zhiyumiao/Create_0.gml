@@ -18,3 +18,4 @@ plant_type = "normal";
 is_slowdown = false;
 
 zhiyumiao_cast_flash = 0;
+zhiyumiao_skill_triggered = false;

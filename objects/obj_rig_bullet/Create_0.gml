@@ -1,5 +1,6 @@
 damage = 0;
 row = 0;
+bounced = false;
 move_speed_x = 0;
 move_speed_y = 0;
 damage_type = "pierce";

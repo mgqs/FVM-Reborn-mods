@@ -1,8 +1,15 @@
 /// @function is_eternal_gacha_mode()
-/// @desc 判断是否为星际·抽卡难度
+/// @desc 判断是否为抽卡模式难度（星际抽卡 或 欧皇抽卡）
 /// @return {bool}
 function is_eternal_gacha_mode() {
-    return global.difficulty == 6;
+    return global.difficulty == 6 || global.difficulty == 7;
+}
+
+/// @function is_lucky_gacha_mode()
+/// @desc 判断是否为欧皇抽卡难度
+/// @return {bool}
+function is_lucky_gacha_mode() {
+    return global.difficulty == 7;
 }
 
 /// @function gacha_get_excluded_cards()
@@ -13,7 +20,7 @@ function gacha_get_excluded_cards() {
         "wooden_plate",       // 木盘子
         "wooden_cork",        // 木塞子
         "cotton_candy",       // 棉花糖
-        "sausage_land",       // 香肠
+        "sausage",            // 香肠
         "oil_lamp",           // 油灯
         "soda_bubble",        // 苏打气泡
         "tang_hu_lu",         // 糖葫芦炮弹
@@ -308,11 +315,21 @@ function gacha_pick_random_reward() {
     }
 
     // === 按权重选择类别 ===
+    // 星际抽卡（难度6）：金卡5%、生肖20%、普通74%、武器0.5%、宝石0.5%
+    // 欧皇抽卡（难度7）：金卡50%、生肖25%、普通20%、武器2.5%、宝石2.5%
     var gold_weight = 5;
     var zodiac_weight = 20;
     var normal_weight = 74;
     var weapon_weight = 0.5;
     var gem_weight = 0.5;
+
+    if (is_lucky_gacha_mode()) {
+        gold_weight = 50;
+        zodiac_weight = 25;
+        normal_weight = 20;
+        weapon_weight = 2.5;
+        gem_weight = 2.5;
+    }
 
     // 如果某个类别候选为空，将其权重分配给其他类别（按比例）
     var total_weight = 0;
