@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"pharaoh",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/pharaoh.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pharaoh",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

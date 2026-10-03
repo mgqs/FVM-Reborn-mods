@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"battle_event",
+  "folderPath":"folders/脚本/Battle/battle_event.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"battle_event",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"battle_event_init","path":"scripts/battle_event_init/battle_event_init.yy",}
+  ],
+}

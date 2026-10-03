@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Attire",
+  "folderPath":"folders/脚本/Menu/Attire.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Attire",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"attire_info","path":"scripts/attire_info/attire_info.yy",},
+    {"name":"attire_init","path":"scripts/attire_init/attire_init.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"charge_spring_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/charge_spring_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"charge_spring_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"af0386af-85b5-46bf-9a6f-31e6678124ca","path":"sprites/spr_charge_spring_mouse/spr_charge_spring_mouse.yy",},
+    {"name":"046d90e1-29f7-4863-a56e-b0c9a6daffbe","path":"sprites/spr_charge_spring_mouse_place/spr_charge_spring_mouse_place.yy",},
+    {"name":"8be89b05-0546-4715-8f3e-f98cf3d2e923","path":"sprites/spr_charge_spring_mouse_shield/spr_charge_spring_mouse_shield.yy",},
+    {"name":"37bed188-f12f-415b-a837-63ed239751bb","path":"sprites/spr_mouse_spring_1/spr_mouse_spring_1.yy",},
+    {"name":"af3d8c83-8d55-4903-9310-c38deff3a28d","path":"sprites/spr_mouse_spring_2/spr_mouse_spring_2.yy",}
+  ],
+}

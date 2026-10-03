@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"rowboat_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/rowboat_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rowboat_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"bf65df28-b327-4b09-ac77-801b774a6225","path":"sprites/spr_rowboat_mouse/spr_rowboat_mouse.yy",},
+    {"name":"d94a7769-06e1-405e-bcba-39712bfdcf6c","path":"sprites/spr_rowboat_mouse_appear/spr_rowboat_mouse_appear.yy",}
+  ],
+}

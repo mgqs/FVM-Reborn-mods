@@ -10,26 +10,14 @@ if (global.buff_dirty)
     show_debug_message("buff地图更新");
 }
 
-if (!shield_replaced)
+// 海洋女神增幅系统
+if (variable_global_exists("ocean_buff_dirty") && global.ocean_buff_dirty)
 {
-    if (global.save_data.equipped_items.secondary_weapon.id == "master_shield")
-    {
-        if (instance_exists(obj_player_shield))
-        {
-            var target_item = obj_player_shield;
-            var new_shield = instance_create_depth(target_item.x, target_item.y, target_item.depth, obj_master_shield);
-            new_shield.parent_player = target_item.parent_player;
-            new_shield.grid_row = target_item.grid_row;
-            new_shield.grid_col = target_item.grid_col;
-            instance_destroy(obj_player_shield);
-            shield_replaced = true;
-        }
-    }
-    else
-    {
-        shield_replaced = true;
-    }
+    rebuild_ocean_buff();
+    show_debug_message("海洋女神增幅更新");
 }
+
+shield_replaced = true;
 
 if (buff_timer > 0)
 {
@@ -68,27 +56,56 @@ else
                 self.buff_applied_id = -1;
                 just_initialized = true;
             }
+
+            if (!variable_instance_exists(self.id, "ocean_buff_multiplier"))
+            {
+                self.ocean_buff_multiplier = 1;
+                just_initialized = true;
+            }
             
             if (!variable_instance_exists(self.id, "buffer_type"))
             {
                 if (!variable_instance_exists(self.id, "shield_buffed"))
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
                 else if (!self.shield_buffed)
                 {
-                    var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
-                    self.base_atk *= shield_buff;
+                    if (self.grid_col >= 0 && self.grid_col < global.grid_cols && self.grid_row >= 0 && self.grid_row < global.grid_rows)
+                    {
+                        var shield_buff = global.shield_grid[self.grid_col][self.grid_row] + 1;
+                        self.base_atk *= shield_buff;
+                    }
                     self.shield_buffed = true;
                     just_initialized = true;
                 }
             }
             
+            // 放置、复活或移动后的目标都按当前坐标重新判定。
+            var current_ocean_mult = get_ocean_buff_multiplier(self.id);
+            if (current_ocean_mult != self.ocean_buff_multiplier)
+            {
+                self.ocean_buff_multiplier = current_ocean_mult;
+                just_initialized = true;
+            }
+
             if (just_initialized || self.buff_applied_id != global.buff_apply_id)
             {
+                if (self.grid_col < 0 || self.grid_col >= global.grid_cols || self.grid_row < 0 || self.grid_row >= global.grid_rows)
+                {
+                    self.atk = self.base_atk;
+                    self.buff_applied_id = global.buff_apply_id;
+                    continue;
+                }
+
+                var buff_multiplier = 1;
+
                 if (!is_undefined(self.buff_type))
                 {
                     switch (self.buff_type)
@@ -96,25 +113,126 @@ else
                         case "thrower":
                             var grid_thrower = ds_map_find_value(global.buff_grid, "thrower");
                             var buff_au = get_aurora_buff(self.grid_col, self.grid_row);
-                            self.atk = self.base_atk * max(grid_thrower[self.grid_col][self.grid_row], buff_au);
+                            buff_multiplier = max(grid_thrower[self.grid_col][self.grid_row], buff_au);
                             break;
-                        
+
                         case "tracker":
                             var grid_tracker = ds_map_find_value(global.buff_grid, "tracker");
-                            self.atk = self.base_atk * grid_tracker[self.grid_col][self.grid_row];
+                            var stack_tracker = ds_map_find_value(global.buff_stack_grid, "tracker");
+                            var tr_normal = grid_tracker[self.grid_col][self.grid_row];
+                            var tr_stack = stack_tracker[self.grid_col][self.grid_row];
+                            buff_multiplier = max(tr_normal, tr_stack);
                             break;
-                        
+
+                        case "xiangshui":
+                            var grid_xiangshui = ds_map_find_value(global.buff_grid, "xiangshui");
+                            var stack_xiangshui = ds_map_find_value(global.buff_stack_grid, "xiangshui");
+                            var xs_normal = grid_xiangshui[self.grid_col][self.grid_row];
+                            var xs_stack = stack_xiangshui[self.grid_col][self.grid_row];
+                            buff_multiplier = max(xs_normal, xs_stack);
+                            break;
+
                         case "sprayer":
-                            var grid_sprayer = ds_map_find_value(global.buff_grid, "sprayer");
-                            self.atk = self.base_atk * grid_sprayer[self.grid_col][self.grid_row];
+                            var grid_sprayer = ds_map_find_value(global.buff_grid,
+                                is_row_sprayer_card(self.plant_id) ? "sprayer_row" : "sprayer");
+                            buff_multiplier = grid_sprayer[self.grid_col][self.grid_row];
                             break;
-                        
+
+                        case "five_dir":
+                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
+                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
+                            buff_multiplier = max(fd_normal, fd_stack);
+                            break;
+
+                        case "multi_dir":
+                            var grid_multi_dir = ds_map_find_value(global.buff_grid, "multi_dir");
+                            var stack_multi_dir = ds_map_find_value(global.buff_stack_grid, "multi_dir");
+                            var md_normal = grid_multi_dir[self.grid_col][self.grid_row];
+                            var md_stack = stack_multi_dir[self.grid_col][self.grid_row];
+                            buff_multiplier = max(md_normal, md_stack);
+                            break;
+
                         default:
-                            self.atk = self.base_atk;
+                            buff_multiplier = 1;
                             break;
                     }
                 }
-                
+
+                // 第二buff类型：取与第一buff的较大值（避免同一增幅源重复计算）
+                var buff_type_2 = "";
+                if (variable_global_exists("plant_buff_map_2") && ds_exists(global.plant_buff_map_2, ds_type_map) && ds_map_exists(global.plant_buff_map_2, self.plant_id))
+                    buff_type_2 = ds_map_find_value(global.plant_buff_map_2, self.plant_id);
+
+                if (buff_type_2 != "" && buff_type_2 != self.buff_type)
+                {
+                    var buff2_multiplier = 1;
+                    switch (buff_type_2)
+                    {
+                        case "thrower":
+                            var grid_thrower2 = ds_map_find_value(global.buff_grid, "thrower");
+                            var buff_au2 = get_aurora_buff(self.grid_col, self.grid_row);
+                            buff2_multiplier = max(grid_thrower2[self.grid_col][self.grid_row], buff_au2);
+                            break;
+
+                        case "tracker":
+                            var grid_tracker2 = ds_map_find_value(global.buff_grid, "tracker");
+                            var stack_tracker2 = ds_map_find_value(global.buff_stack_grid, "tracker");
+                            var tr2_normal = grid_tracker2[self.grid_col][self.grid_row];
+                            var tr2_stack = stack_tracker2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(tr2_normal, tr2_stack);
+                            break;
+
+                        case "xiangshui":
+                            var grid_xiangshui2 = ds_map_find_value(global.buff_grid, "xiangshui");
+                            var stack_xiangshui2 = ds_map_find_value(global.buff_stack_grid, "xiangshui");
+                            var xs2_normal = grid_xiangshui2[self.grid_col][self.grid_row];
+                            var xs2_stack = stack_xiangshui2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(xs2_normal, xs2_stack);
+                            break;
+
+                        case "sprayer":
+                            var grid_sprayer2 = ds_map_find_value(global.buff_grid,
+                                is_row_sprayer_card(self.plant_id) ? "sprayer_row" : "sprayer");
+                            buff2_multiplier = grid_sprayer2[self.grid_col][self.grid_row];
+                            break;
+
+                        case "five_dir":
+                            var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
+                            var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(fd2_normal, fd2_stack);
+                            break;
+
+                        case "multi_dir":
+                            var grid_multi_dir2 = ds_map_find_value(global.buff_grid, "multi_dir");
+                            var stack_multi_dir2 = ds_map_find_value(global.buff_stack_grid, "multi_dir");
+                            var md2_normal = grid_multi_dir2[self.grid_col][self.grid_row];
+                            var md2_stack = stack_multi_dir2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(md2_normal, md2_stack);
+                            break;
+                    }
+
+                    buff_multiplier = max(buff_multiplier, buff2_multiplier);
+                }
+
+                // 海洋女神与榨汁机、魔杖蛇的喷壶增幅不叠加，取较高倍率。
+                var ocean_mult = 1;
+                if (variable_instance_exists(self.id, "ocean_buff_multiplier"))
+                    ocean_mult = self.ocean_buff_multiplier;
+
+                var zhanqima_mult = get_zhanqima_buff_multiplier(self.id);
+
+                var has_sprayer_buff = (self.buff_type == "sprayer" || buff_type_2 == "sprayer");
+                var combined_buff_multiplier = has_sprayer_buff
+                    ? max(buff_multiplier, ocean_mult)
+                    : buff_multiplier * ocean_mult;
+
+                var _shield_gem_mult = get_shield_gem_atk_mult(self.grid_col, self.grid_row, self.plant_id);
+                self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult;
+
                 self.buff_applied_id = global.buff_apply_id;
             }
         }

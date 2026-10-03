@@ -30,5 +30,16 @@ else
     buff_cells_refreshed = true;
 }
 
+// Keep the final-form ground effect alive with the card.
+// The effect sprite is scaled to cover 3 rows centered on the card and all columns.
+aurora_effect_obj = noone;
+if (shape >= 3)
+{
+    var _ex = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x / 2;
+    var _ey = y;
+    aurora_effect_obj = instance_create_depth(_ex, _ey, 0, obj_aurora_effect);
+    aurora_effect_obj.parent_plant = id;
+}
+
 ds_list_add(global.buff_sources, id);
 global.buff_dirty = true;

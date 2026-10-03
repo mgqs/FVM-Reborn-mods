@@ -14,6 +14,7 @@ else if (shape == 2)
 attack_anim = 13;
 idle_anim = 13;
 flash_speed = 5;
+fire_advance = 35;
 plant_type = "normal";
 is_slowdown = false;
 target_instance = -4;

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"soar_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/soar_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"soar_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"c3e9b1ef-9265-4383-b122-a9c37875d881","path":"sprites/spr_soar_mouse/spr_soar_mouse.yy",},
+    {"name":"7900244f-ae5f-454c-ab92-d5dea98db304","path":"sprites/spr_soar_mouse_drop/spr_soar_mouse_drop.yy",},
+    {"name":"32cc1657-4f62-4b8d-ba8e-a1ac95f3d373","path":"sprites/spr_soar_mouse_dropped/spr_soar_mouse_dropped.yy",}
+  ],
+}

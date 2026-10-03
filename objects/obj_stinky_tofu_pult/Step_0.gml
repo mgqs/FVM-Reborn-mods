@@ -1,21 +1,18 @@
 if global.is_paused{
 	exit
 }
-if stinky_tofu_timer < stinky_tofu_cooldown{
-	stinky_tofu_timer++
-}
 var current_flash_speed = flash_speed
 if is_slowdown{
 	current_flash_speed *= 2
 }
 if timer == current_flash_speed - 1{
-	if state == CARD_STATE.ATTACK && stinky_tofu_timer >= stinky_tofu_cooldown{
+	if state == CARD_STATE.ATTACK{
 		image_index -= attack_anim
 	}
 }
 event_inherited(); 
 if timer == 0{
-	if state == CARD_STATE.ATTACK && stinky_tofu_timer >= stinky_tofu_cooldown{
+	if state == CARD_STATE.ATTACK{
 		image_index += attack_anim
 	}
 }

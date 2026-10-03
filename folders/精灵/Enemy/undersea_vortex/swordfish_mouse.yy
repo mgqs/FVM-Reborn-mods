@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"swordfish_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/swordfish_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"swordfish_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f5b1e2c5-af78-489b-82b4-aee7ddf6815e","path":"sprites/spr_swordfish_mouse/spr_swordfish_mouse.yy",},
+    {"name":"78db8370-580a-47d4-abee-ba6f93aa1266","path":"sprites/spr_swordfish_mouse_dash/spr_swordfish_mouse_dash.yy",},
+    {"name":"c8d28362-b343-4e67-b83a-8202ac6566df","path":"sprites/spr_swordfish_mouse_ready/spr_swordfish_mouse_ready.yy",},
+    {"name":"616fc29c-6300-4e1d-b8c7-d0f64b4c79f2","path":"sprites/spr_swordfish_mouse_stun/spr_swordfish_mouse_stun.yy",}
+  ],
+}

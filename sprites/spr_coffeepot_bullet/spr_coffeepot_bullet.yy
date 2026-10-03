@@ -6,7 +6,7 @@
   "bbox_left":2,
   "bbox_right":268,
   "bbox_top":1,
-  "collisionKind":5,
+  "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -35,7 +35,7 @@
   "origin":3,
   "parent":{
     "name":"normal",
-    "path":"folders/精灵/Bullet/normal.yy",
+    "path":"folders/normal.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

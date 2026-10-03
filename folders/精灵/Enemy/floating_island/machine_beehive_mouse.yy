@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_beehive_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_beehive_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_beehive_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"238847ea-2f8c-4de5-a31c-960917141c88","path":"sprites/spr_machine_beehive_mouse/spr_machine_beehive_mouse.yy",},
+    {"name":"67c9e35c-2f69-442d-88cb-1815b79f1c69","path":"sprites/spr_machine_beehive_release_1/spr_machine_beehive_release_1.yy",},
+    {"name":"00528d44-824a-48be-9805-1eca8461cc2d","path":"sprites/spr_machine_beehive_release_2/spr_machine_beehive_release_2.yy",},
+    {"name":"6fa2efef-d25f-4c46-9d9e-cbe70db69fb1","path":"sprites/spr_machine_beehive_release_3/spr_machine_beehive_release_3.yy",}
+  ],
+}

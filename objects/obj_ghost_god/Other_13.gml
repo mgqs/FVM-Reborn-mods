@@ -1,5 +1,8 @@
 var _m = 0.2;
 
+if (shape == 2)
+    _m = 0.4;
+
 if (shape == 3)
     _m = 1;
 

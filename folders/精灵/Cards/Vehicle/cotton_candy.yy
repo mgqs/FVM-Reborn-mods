@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"cotton_candy",
+  "folderPath":"folders/精灵/Cards/Vehicle/cotton_candy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cotton_candy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"0bc3945c-b021-4e33-8895-87899cc9f409","path":"sprites/spr_cotton_candy_0_0/spr_cotton_candy_0_0.yy",},
+    {"name":"46dead2c-c3eb-407d-99da-5e9c6b8982f8","path":"sprites/spr_cotton_candy_0_1/spr_cotton_candy_0_1.yy",},
+    {"name":"bef79151-6b0a-42d5-bb87-82e075dde432","path":"sprites/spr_cotton_candy_0_2/spr_cotton_candy_0_2.yy",},
+    {"name":"6daa03e5-b717-4fac-9ce8-ee0f6b2c5475","path":"sprites/spr_cotton_candy_1_0/spr_cotton_candy_1_0.yy",},
+    {"name":"0d9629a3-89b4-41c6-83d1-5bd21f92cc1d","path":"sprites/spr_cotton_candy_1_1/spr_cotton_candy_1_1.yy",},
+    {"name":"0ad4e306-58fd-4701-bdd9-6346e81b2b9d","path":"sprites/spr_cotton_candy_1_2/spr_cotton_candy_1_2.yy",},
+    {"name":"35723090-2241-46b4-90c8-332889d23d2d","path":"sprites/spr_cotton_candy_2_0/spr_cotton_candy_2_0.yy",},
+    {"name":"716b9e3d-25e6-4b40-adf3-a854a003ffcf","path":"sprites/spr_cotton_candy_2_1/spr_cotton_candy_2_1.yy",},
+    {"name":"4ad0b7a8-c25e-4a2d-b345-2ab82469a8a6","path":"sprites/spr_cotton_candy_2_2/spr_cotton_candy_2_2.yy",}
+  ],
+}

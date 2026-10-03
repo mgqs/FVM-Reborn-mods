@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Cards",
+  "folderPath":"folders/物体/Cards.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Cards",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Vehicle","path":"folders/物体/Cards/Vehicle.yy",},
+    {"name":"Defender","path":"folders/物体/Cards/Defender.yy",},
+    {"name":"Melee","path":"folders/物体/Cards/Melee.yy",},
+    {"name":"Assistant","path":"folders/物体/Cards/Assistant.yy",},
+    {"name":"Pult","path":"folders/物体/Cards/Pult.yy",},
+    {"name":"Shooter","path":"folders/物体/Cards/Shooter.yy",},
+    {"name":"Boomer","path":"folders/物体/Cards/Boomer.yy",},
+    {"name":"Flame Producer","path":"folders/物体/Cards/Flame Producer.yy",},
+    {"name":"Track","path":"folders/物体/Cards/Track.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_card_parent","path":"objects/obj_card_parent/obj_card_parent.yy",},
+    {"name":"obj_card_preview","path":"objects/obj_card_preview/obj_card_preview.yy",}
+  ],
+}

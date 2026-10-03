@@ -19,6 +19,8 @@ plant_type = "normal";
 is_slowdown = false;
 target_type = "split";
 target_x = -4;
+target_y = 0;
+target_row = 0;
 
 if (shape == 0)
     cooldown_timer = cycle;

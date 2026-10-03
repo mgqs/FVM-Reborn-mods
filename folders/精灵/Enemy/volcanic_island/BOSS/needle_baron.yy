@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"needle_baron",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/needle_baron.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"needle_baron",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d6f61bbc-3c5f-4dc9-aaab-1317e51f25d1","path":"sprites/spr_baron_bats/spr_baron_bats.yy",},
+    {"name":"0600439f-0faf-47bc-b3a3-58b7ae8bc7cf","path":"sprites/spr_baron_blade/spr_baron_blade.yy",},
+    {"name":"f4f4478c-14b0-47f9-bda7-c53d4ecf25c7","path":"sprites/spr_baron_needle/spr_baron_needle.yy",},
+    {"name":"d135ea06-7366-4e57-9ab0-4f64cae39b3b","path":"sprites/spr_needle_baron_appear/spr_needle_baron_appear.yy",},
+    {"name":"7c64a78c-e33d-45a7-a22c-6b4c215ff02a","path":"sprites/spr_needle_baron_death/spr_needle_baron_death.yy",},
+    {"name":"5536559a-9011-4d1d-aa38-57d10ca32c5f","path":"sprites/spr_needle_baron_idle/spr_needle_baron_idle.yy",},
+    {"name":"12984303-7d86-4cd5-9c1e-1aecb07a13ad","path":"sprites/spr_needle_baron_skill_1/spr_needle_baron_skill_1.yy",},
+    {"name":"48bd4eb9-9b1f-4386-931e-1350d5b48ab4","path":"sprites/spr_needle_baron_skill_2/spr_needle_baron_skill_2.yy",},
+    {"name":"cc3ae4b3-bd48-4d5f-8a9a-ca2c27b26db1","path":"sprites/spr_needle_baron_skill_3/spr_needle_baron_skill_3.yy",},
+    {"name":"dd720d27-8e20-4a7e-a2f0-ae1bf5067c68","path":"sprites/spr_needle_baron_skill_3_ready/spr_needle_baron_skill_3_ready.yy",}
+  ],
+}

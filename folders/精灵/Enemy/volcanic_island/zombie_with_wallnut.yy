@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"zombie_with_wallnut",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/zombie_with_wallnut.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zombie_with_wallnut",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e139fde0-9cf0-4ff8-89d3-03f5c11ff97b","path":"sprites/spr_zombie_with_wallnut/spr_zombie_with_wallnut.yy",},
+    {"name":"d0234ef9-064e-49fb-b189-c1e1cd61c521","path":"sprites/spr_zombie_with_wallnut_drop/spr_zombie_with_wallnut_drop.yy",},
+    {"name":"398f9ada-6404-4b71-a759-e2107304b589","path":"sprites/spr_zombie_with_wallnut_shield/spr_zombie_with_wallnut_shield.yy",}
+  ],
+}

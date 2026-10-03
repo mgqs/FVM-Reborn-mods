@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"UnitTest",
+  "folderPath":"folders/UnitTest.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"UnitTest",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"lobster_athena",
+  "folderPath":"folders/精灵/UI/Attire/lobster_athena.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lobster_athena",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"134244bd-b2bc-4a4a-921d-ea4f88853d2d","path":"sprites/spr_lobster_athena/spr_lobster_athena.yy",},
+    {"name":"3a7d7bfe-69d3-430f-928b-aa03e270ea8c","path":"sprites/spr_lobster_athena_1/spr_lobster_athena_1.yy",},
+    {"name":"64218488-8a25-47d1-aa86-e104f1c77e49","path":"sprites/spr_lobster_athena_2/spr_lobster_athena_2.yy",},
+    {"name":"7623b76a-389a-461d-b78d-886bbe1603bc","path":"sprites/spr_lobster_athena_bullet/spr_lobster_athena_bullet.yy",}
+  ],
+}

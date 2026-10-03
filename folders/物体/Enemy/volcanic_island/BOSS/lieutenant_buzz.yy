@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"lieutenant_buzz",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/lieutenant_buzz.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lieutenant_buzz",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_buzz_wind","path":"objects/obj_buzz_wind/obj_buzz_wind.yy",},
+    {"name":"obj_lieutenant_buzz","path":"objects/obj_lieutenant_buzz/obj_lieutenant_buzz.yy",}
+  ],
+}

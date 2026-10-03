@@ -1,0 +1,36 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_vortex",
+  "folderPath":"folders/物体/Enemy/undersea_vortex.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_vortex",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"BOSS","path":"folders/物体/Enemy/undersea_vortex/BOSS.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_clownfish_mouse","path":"objects/obj_clownfish_mouse/obj_clownfish_mouse.yy",},
+    {"name":"obj_conch_bullet","path":"objects/obj_conch_bullet/obj_conch_bullet.yy",},
+    {"name":"obj_conch_mouse","path":"objects/obj_conch_mouse/obj_conch_mouse.yy",},
+    {"name":"obj_eel_mouse","path":"objects/obj_eel_mouse/obj_eel_mouse.yy",},
+    {"name":"obj_iron_diver_mouse","path":"objects/obj_iron_diver_mouse/obj_iron_diver_mouse.yy",},
+    {"name":"obj_little_undersea_panda_mouse","path":"objects/obj_little_undersea_panda_mouse/obj_little_undersea_panda_mouse.yy",},
+    {"name":"obj_oyster_mouse","path":"objects/obj_oyster_mouse/obj_oyster_mouse.yy",},
+    {"name":"obj_sardine_mouse","path":"objects/obj_sardine_mouse/obj_sardine_mouse.yy",},
+    {"name":"obj_seahorse_mouse","path":"objects/obj_seahorse_mouse/obj_seahorse_mouse.yy",},
+    {"name":"obj_swordfish_mouse","path":"objects/obj_swordfish_mouse/obj_swordfish_mouse.yy",},
+    {"name":"obj_undersea_can_mouse","path":"objects/obj_undersea_can_mouse/obj_undersea_can_mouse.yy",},
+    {"name":"obj_undersea_captain_mouse","path":"objects/obj_undersea_captain_mouse/obj_undersea_captain_mouse.yy",},
+    {"name":"obj_undersea_diver_mouse","path":"objects/obj_undersea_diver_mouse/obj_undersea_diver_mouse.yy",},
+    {"name":"obj_undersea_panda_mouse","path":"objects/obj_undersea_panda_mouse/obj_undersea_panda_mouse.yy",},
+    {"name":"obj_undersea_penguin_mouse","path":"objects/obj_undersea_penguin_mouse/obj_undersea_penguin_mouse.yy",},
+    {"name":"obj_undersea_repairman_mouse","path":"objects/obj_undersea_repairman_mouse/obj_undersea_repairman_mouse.yy",},
+    {"name":"obj_undersea_submarine_1","path":"objects/obj_undersea_submarine_1/obj_undersea_submarine_1.yy",},
+    {"name":"obj_undersea_submarine_2","path":"objects/obj_undersea_submarine_2/obj_undersea_submarine_2.yy",},
+    {"name":"obj_windmill_fish_mouse","path":"objects/obj_windmill_fish_mouse/obj_windmill_fish_mouse.yy",}
+  ],
+}

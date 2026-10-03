@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"sausage",
+  "folderPath":"folders/精灵/Cards/Shooter/sausage.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sausage",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"89393b97-24cf-40e6-85cf-b493090f7879","path":"sprites/spr_sausage_land/spr_sausage_land.yy",}
+  ],
+}

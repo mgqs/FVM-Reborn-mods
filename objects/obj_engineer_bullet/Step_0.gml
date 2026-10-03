@@ -32,9 +32,9 @@ if x >= target_x - 10 && x <= target_x + 10{
         if(grid_col == erase_col && grid_row == erase_row) {
             // 按铲除顺序优先选择
             for (var i = 0; i < ds_list_size(global.shovel_order); i++) {
-                var target_type = ds_list_find_value(global.shovel_order, i);
+                var _shovel_type = ds_list_find_value(global.shovel_order, i);
                     
-                if (plant_type == target_type) {
+                if (plant_type == _shovel_type) {
                     plant_order_list[i] = id;
                     break;
                 }

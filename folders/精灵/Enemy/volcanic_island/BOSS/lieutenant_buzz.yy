@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"lieutenant_buzz",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/lieutenant_buzz.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lieutenant_buzz",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e72235b0-b535-4349-b503-3a2c28a5b206","path":"sprites/spr_buzz_bullet_effect/spr_buzz_bullet_effect.yy",},
+    {"name":"be79575d-c2ea-4efc-9458-41269fe2f75f","path":"sprites/spr_buzz_wind/spr_buzz_wind.yy",},
+    {"name":"430726bf-e87e-43b3-939a-e9b67d1e7e7a","path":"sprites/spr_lieutenant_buzz_death/spr_lieutenant_buzz_death.yy",},
+    {"name":"4030c24b-3db0-49ae-9de1-0ea8805ef339","path":"sprites/spr_lieutenant_buzz_idle/spr_lieutenant_buzz_idle.yy",},
+    {"name":"2069c351-7a51-462c-9b82-6dd686cc56c2","path":"sprites/spr_lieutenant_buzz_skill_1/spr_lieutenant_buzz_skill_1.yy",},
+    {"name":"624bbab6-254b-49f6-9e39-fc30828404e3","path":"sprites/spr_lieutenant_buzz_skill_2/spr_lieutenant_buzz_skill_2.yy",},
+    {"name":"c3df8926-5832-4cf8-b44e-6785d52a8892","path":"sprites/spr_lieutenant_buzz_skill_2_catch/spr_lieutenant_buzz_skill_2_catch.yy",},
+    {"name":"70e43d2c-d1b2-4910-ba3c-ca7578a0ee3b","path":"sprites/spr_lieutenant_buzz_skill_2_ready/spr_lieutenant_buzz_skill_2_ready.yy",},
+    {"name":"c94d2ce4-3073-4259-be3b-be9484e701a3","path":"sprites/spr_lieutenant_buzz_skill_2_return/spr_lieutenant_buzz_skill_2_return.yy",},
+    {"name":"2fba3940-e3b7-4194-98cf-7ba5e4fef4ed","path":"sprites/spr_lieutenant_buzz_skill_3/spr_lieutenant_buzz_skill_3.yy",}
+  ],
+}

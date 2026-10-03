@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"coal_starfish",
+  "folderPath":"folders/精灵/Cards/Shooter/coal_starfish.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"coal_starfish",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2723a4eb-e698-43ad-8a99-f99f5527fd6c","path":"sprites/spr_coal_starfish/spr_coal_starfish.yy",},
+    {"name":"a53684a1-4ac1-4516-97e2-421d4b8ae857","path":"sprites/spr_coal_starfish_1/spr_coal_starfish_1.yy",},
+    {"name":"341ac440-d86e-430d-88e7-6a3ad8b6420b","path":"sprites/spr_coal_starfish_2/spr_coal_starfish_2.yy",}
+  ],
+}

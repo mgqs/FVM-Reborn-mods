@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_bullet",
+  "folderPath":"folders/精灵/Enemy/mouse_bullet.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_bullet",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"086ef885-f22b-43f1-afb8-f409315276d7","path":"sprites/spr_arson_mouse_bullet/spr_arson_mouse_bullet.yy",},
+    {"name":"a0f242cb-51a6-488f-936b-a95d79252fc0","path":"sprites/spr_arson_mouse_bullet_effect/spr_arson_mouse_bullet_effect.yy",},
+    {"name":"bae2b3d7-21e2-467d-abdd-9bda46fee366","path":"sprites/spr_penguin_mouse_bullet/spr_penguin_mouse_bullet.yy",}
+  ],
+}

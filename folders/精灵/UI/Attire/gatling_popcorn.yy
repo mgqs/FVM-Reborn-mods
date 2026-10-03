@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"gatling_popcorn",
+  "folderPath":"folders/精灵/UI/Attire/gatling_popcorn.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"gatling_popcorn",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fc5415eb-093d-4e92-b5f0-4029075785f6","path":"sprites/spr_gatling_popcorn/spr_gatling_popcorn.yy",},
+    {"name":"dd43b6a7-1840-4eb0-ab4b-419cf2175e35","path":"sprites/spr_gatling_popcorn_1/spr_gatling_popcorn_1.yy",},
+    {"name":"7d54fe26-4fad-47d0-8ba0-631154e0758f","path":"sprites/spr_gatling_popcorn_2/spr_gatling_popcorn_2.yy",},
+    {"name":"5592be3c-3bcb-4630-a9ab-c624d04485fe","path":"sprites/spr_gatling_popcorn_bullet/spr_gatling_popcorn_bullet.yy",},
+    {"name":"0d7cae19-201b-4e42-b42a-89582ceca98d","path":"sprites/spr_gatling_popcorn_bullet_1/spr_gatling_popcorn_bullet_1.yy",},
+    {"name":"3c94047f-41d3-463c-9141-60b9bab0b9a5","path":"sprites/spr_gatling_popcorn_bullet_2/spr_gatling_popcorn_bullet_2.yy",},
+    {"name":"37043472-f72a-4c5b-a242-f1f095435e26","path":"sprites/spr_gatling_popcorn_bullet_effect/spr_gatling_popcorn_bullet_effect.yy",},
+    {"name":"04ff5499-5ba2-4f99-beac-f63c5d267581","path":"sprites/spr_gatling_popcorn_bullet_effect_1/spr_gatling_popcorn_bullet_effect_1.yy",},
+    {"name":"0ae555c7-4a59-4ba0-a76a-7e4dc4105db9","path":"sprites/spr_gatling_popcorn_bullet_effect_2/spr_gatling_popcorn_bullet_effect_2.yy",},
+    {"name":"fc5415eb-093d-4e92-b5f0-4029075785f6","path":"sprites/spr_gatling_popcorn_icon/spr_gatling_popcorn_icon.yy",},
+    {"name":"dd43b6a7-1840-4eb0-ab4b-419cf2175e35","path":"sprites/spr_gatling_popcorn_icon_1/spr_gatling_popcorn_icon_1.yy",},
+    {"name":"7d54fe26-4fad-47d0-8ba0-631154e0758f","path":"sprites/spr_gatling_popcorn_icon_2/spr_gatling_popcorn_icon_2.yy",}
+  ],
+}

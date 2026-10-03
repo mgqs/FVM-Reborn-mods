@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"lobster_knight",
+  "folderPath":"folders/物体/Enemy/undersea_vortex/BOSS/lobster_knight.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lobster_knight",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_lobster_knight","path":"objects/obj_lobster_knight/obj_lobster_knight.yy",},
+    {"name":"obj_lobster_knight_bullet","path":"objects/obj_lobster_knight_bullet/obj_lobster_knight_bullet.yy",},
+    {"name":"obj_lobster_knight_bullet_extend","path":"objects/obj_lobster_knight_bullet_extend/obj_lobster_knight_bullet_extend.yy",}
+  ],
+}

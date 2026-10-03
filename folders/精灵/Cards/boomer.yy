@@ -1,0 +1,34 @@
+{
+  "$GMFolder":"",
+  "%Name":"boomer",
+  "folderPath":"folders/精灵/Cards/boomer.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"boomer",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"whisky_bomb","path":"folders/精灵/Cards/boomer/whisky_bomb.yy",},
+    {"name":"coke_bomb","path":"folders/精灵/Cards/boomer/coke_bomb.yy",},
+    {"name":"lightning_baguette","path":"folders/精灵/Cards/boomer/lightning_baguette.yy",},
+    {"name":"delicacy_firework","path":"folders/精灵/Cards/boomer/delicacy_firework.yy",},
+    {"name":"wine_bottle_bomb","path":"folders/精灵/Cards/boomer/wine_bottle_bomb.yy",},
+    {"name":"bull_firework","path":"folders/精灵/Cards/boomer/bull_firework.yy",},
+    {"name":"chocolate_cannon","path":"folders/精灵/Cards/boomer/chocolate_cannon.yy",},
+    {"name":"flour_sack","path":"folders/精灵/Cards/boomer/flour_sack.yy",},
+    {"name":"durian","path":"folders/精灵/Cards/boomer/durian.yy",},
+    {"name":"rabbit_lantern","path":"folders/精灵/Cards/boomer/rabbit_lantern.yy",},
+    {"name":"mouse_clip","path":"folders/精灵/Cards/boomer/mouse_clip.yy",},
+    {"name":"kettle_bomb","path":"folders/精灵/Cards/boomer/kettle_bomb.yy",},
+    {"name":"chili_powder","path":"folders/精灵/Cards/boomer/chili_powder.yy",},
+    {"name":"ice_bucket","path":"folders/精灵/Cards/boomer/ice_bucket.yy",},
+    {"name":"dragon_fruit","path":"folders/精灵/Cards/boomer/dragon_fruit.yy",},
+    {"name":"aquarius_elve","path":"folders/精灵/Cards/boomer/aquarius_elve.yy",}
+  ],
+  "listItems":[
+    {"name":"84e17ff9-4a3c-407b-96bf-9a90dc7c1d98","path":"sprites/spr_skewer_bomb/spr_skewer_bomb.yy",},
+    {"name":"8b9f5f59-4857-41dc-a566-1072999d9e24","path":"sprites/spr_steel_wool/spr_steel_wool.yy",}
+  ],
+}

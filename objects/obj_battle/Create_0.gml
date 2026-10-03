@@ -13,6 +13,17 @@ mus_inst.battle_music = global.level_data.pre_music
 
 global.game_over = false
 
+// 清空上一局残留的对象池（含未正常结束/中途退出的场景），保证新局从零开始。
+pool_clear_round();
+
+// 有界预热：各预建 1 个闲置实例，把“首次创建 + Create 事件”的开销
+// 从首次发射/首次生成时提前到战斗加载阶段（保持延迟池“首用即建”语义）。
+obj_pool_prealloc(obj_coffeecup_bullet, 1);
+obj_pool_prealloc(obj_normal_mouse, 1);
+
+// 每场战斗重新建立敌人索引，避免上一局销毁实例后的残留 ID 被新局扫描。
+global.enemy_by_type = {};
+
 instance_create_depth(0,0,0,obj_battle_pause_manager)
 instance_create_depth(0,0,-2900,obj_battle_timer_display)
 instance_create_depth(mouse_x,mouse_y,0,obj_player_character)
@@ -29,12 +40,27 @@ global.grid_offset_y = 228
 global.grid_cols = global.level_file.map_cols
 global.grid_rows = global.level_file.map_rows
 
+// 测试关卡老鼠选择器
+global.test_mouse_picker_open = false;
+global.test_mouse_picker_id = "";
+global.test_mouse_picker_block_place = false;
+global.test_info_island_mode = (global.level_id == "test_level");
+
 
 //啃食音效
 chomp_sound_list = ds_list_create()
 battle_time = 0
+// Cross-server and tower stages use frame-rate-aware time progression.
+frame_time_accumulator = 0;
+time_ticks_this_step = 1;
 boss_count = 0
 map_spr_index = 0
+
+// 测试关卡伤害统计
+test_dps_timer = 0
+test_dps_window = 5 * 60
+test_dps_display = 0
+test_dps_last_total = 0
 
 speed_up = false
 time_limit = -1
@@ -64,6 +90,17 @@ if (variable_global_exists("shovel_order") && ds_exists(global.shovel_order, ds_
 if (variable_global_exists("eat_order") && ds_exists(global.eat_order, ds_type_list)) {
 	ds_list_destroy(global.eat_order);
 }
+// 清理死亡卡片列表（复活机制用）
+if (variable_global_exists("dead_cards") && ds_exists(global.dead_cards, ds_type_list)) {
+	for (var _d = 0; _d < ds_list_size(global.dead_cards); _d++) {
+		var _dead_map = global.dead_cards[| _d];
+		if (ds_exists(_dead_map, ds_type_map)) {
+			ds_map_destroy(_dead_map);
+		}
+	}
+	ds_list_destroy(global.dead_cards);
+}
+global.dead_cards = ds_list_create();
 
 // 植物层级定义
 global.plant_layers = ds_map_create();
@@ -72,10 +109,11 @@ ds_map_add(global.plant_layers, "shield_inner", 1);      // 护罩植物内侧
 ds_map_add(global.plant_layers, "lilypad", 2);     // 莲叶花盆类
 ds_map_add(global.plant_layers, "shield_outer", 3);      // 护罩植物外侧
 ds_map_add(global.plant_layers, "coffee", 4);      // 咖啡豆类
+ds_map_add(global.plant_layers, "gridless", 5);    // 不占格卡片（最上层）
 
 // 铲除顺序
 global.shovel_order = ds_list_create();
-ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee");
+ds_list_add(global.shovel_order,"normal", "shield","shield_outer", "lilypad","coffee","gridless");
 global.eat_order = ds_list_create();
 ds_list_add(global.eat_order,"shield","shield_outer","normal","lilypad");
 
@@ -100,7 +138,7 @@ var plant_list = global.level_file.map
 global.grid_terrains = global.level_file.map
 global.row_feature = []
 for(var i = 0 ; i < global.grid_rows;i++){
-	if global.grid_terrains[i][0].type == "water"{
+	if global.grid_terrains[i][1].type == "water"{
 		global.row_feature[i] = "water"
 	}
 	else{
@@ -183,28 +221,33 @@ if is_real(global.level_file.version){
 
 current_wave_max_time = wave_max_time
 global.prev_place_id = ""
+boss_waiting_clear = false  // BOSS波：等待小怪全部清完再出BOSS
 
 function enemy_subwave_summon(){
 	current_total_hp = 0
-	
+
     wave_timer = wave_max_time
-	
+
 	if level_stage == "boss"{
 		wave_timer = 10 * 60
 	}
-	
+
 	if is_real(global.level_file.version){
 		if global.level_file.version >= 1.3{
-			if current_wave < total_wave{
+			if current_wave < total_wave && current_subwave < array_length(global.level_file.waves[current_wave].subwaves){
 				if global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time >0{
 					wave_timer = global.level_file.waves[current_wave].subwaves[current_subwave].local_max_wave_time
 				}
 			}
 		}
 	}
-	
+
 	current_wave_max_time = wave_timer
-    
+
+	if current_wave >= total_wave || current_subwave >= array_length(global.level_file.waves[current_wave].subwaves){
+		return
+	}
+
     var subwave_enemy = global.level_file.waves[current_wave].subwaves
     enemy_list = subwave_enemy[current_subwave].enemy_list
     
@@ -225,13 +268,23 @@ function enemy_subwave_summon(){
     var rows_used = array_create(global.grid_rows, false);
     
     // 第二阶段：创建敌人实例
+    var spawn_multiplier = 1
+    if global.difficulty == 5{
+        spawn_multiplier = 2
+    }
+    for (var m = 0; m < spawn_multiplier; m++) {
     for (var i = 0; i < array_length(enemy_list); i++) {
         if (enemy_list[i].type != "") {
+            var _enemy_type = enemy_list[i].type
+            if (!ds_map_exists(global.enemy_map, _enemy_type)){
+                show_debug_message("警告：敌人类型未注册，跳过生成: " + _enemy_type)
+                continue
+            }
             var target_row = enemy_list[i].row;
             var x_offset = 0;
             
             // 获取敌人的特性（陆地或水上）
-            var enemy_feature = global.enemy_map[? enemy_list[i].type].feature;
+            var enemy_feature = global.enemy_map[? _enemy_type].feature;
             
             // 情况1：已有行数的敌人
             if (target_row > 0 && target_row <= global.grid_rows) {
@@ -311,22 +364,35 @@ function enemy_subwave_summon(){
             }
             
             // 创建敌人实例
-            var enemy_obj = global.enemy_map[? enemy_list[i].type]._obj;
+            var enemy_obj = global.enemy_map[? _enemy_type]._obj;
             
             // 计算位置（考虑偏移）
             var new_x = global.grid_offset_x + (9 + x_offset) * global.grid_cell_size_x;
             var new_y = global.grid_offset_y + (target_row - 1) * global.grid_cell_size_y;
             
             var grid_pos = get_grid_position_from_world(new_x, new_y);
-            var new_enemy = instance_create_depth(grid_pos.x+30, grid_pos.y + 38, 0, enemy_obj);
+            var new_enemy;
+            // 普通鼠（平民鼠）接入延迟对象池；其余敌人保持普通生命周期
+            if (_enemy_type == "normal_mouse") {
+                var _et = get_timer()
+                new_enemy = pool_acquire_enemy(enemy_obj, grid_pos.x+30, grid_pos.y + 38, 0);
+                if (!variable_global_exists("_pool_first_enemy_measured")) {
+                    global._pool_first_enemy_measured = true
+                    show_debug_message("[对象池] 首只普通鼠创建耗时 " + string(get_timer() - _et) + " us")
+                }
+                pool_reset_enemy(new_enemy, global.enemy_map[? _enemy_type]);
+            } else {
+                new_enemy = instance_create_depth(grid_pos.x+30, grid_pos.y + 38, 0, enemy_obj);
+            }
             
             // 更新统计信息
-            current_total_hp += global.enemy_map[? enemy_list[i].type].hp;
+            current_total_hp += global.enemy_map[? _enemy_type].hp;
             
             // 更新该行的敌人数
             var row_index = target_row - 1;
             row_enemy_count[row_index]++;
         }
+    }
     }
     
 }

@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Generator",
+  "folderPath":"folders/Scribble/(System - don't call these functions)/Generator.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Generator",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"__scribble_gen_10_write_vbuffs","path":"scripts/__scribble_gen_10_write_vbuffs/__scribble_gen_10_write_vbuffs.yy",},
+    {"name":"__scribble_gen_11_set_padding_flags","path":"scripts/__scribble_gen_11_set_padding_flags/__scribble_gen_11_set_padding_flags.yy",},
+    {"name":"__scribble_gen_1_model_limits_and_bezier_curves","path":"scripts/__scribble_gen_1_model_limits_and_bezier_curves/__scribble_gen_1_model_limits_and_bezier_curves.yy",},
+    {"name":"__scribble_gen_2_parser","path":"scripts/__scribble_gen_2_parser/__scribble_gen_2_parser.yy",},
+    {"name":"__scribble_gen_3_devanagari","path":"scripts/__scribble_gen_3_devanagari/__scribble_gen_3_devanagari.yy",},
+    {"name":"__scribble_gen_4_build_words","path":"scripts/__scribble_gen_4_build_words/__scribble_gen_4_build_words.yy",},
+    {"name":"__scribble_gen_5_finalize_bidi","path":"scripts/__scribble_gen_5_finalize_bidi/__scribble_gen_5_finalize_bidi.yy",},
+    {"name":"__scribble_gen_6_build_lines","path":"scripts/__scribble_gen_6_build_lines/__scribble_gen_6_build_lines.yy",},
+    {"name":"__scribble_gen_7_build_pages","path":"scripts/__scribble_gen_7_build_pages/__scribble_gen_7_build_pages.yy",},
+    {"name":"__scribble_gen_8_position_glyphs","path":"scripts/__scribble_gen_8_position_glyphs/__scribble_gen_8_position_glyphs.yy",},
+    {"name":"__scribble_gen_9_build_vbuff_grids","path":"scripts/__scribble_gen_9_build_vbuff_grids/__scribble_gen_9_build_vbuff_grids.yy",}
+  ],
+}

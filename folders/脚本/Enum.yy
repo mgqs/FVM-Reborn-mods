@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Enum",
+  "folderPath":"folders/脚本/Enum.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Enum",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"Enum_Init","path":"scripts/Enum_Init/Enum_Init.yy",}
+  ],
+}

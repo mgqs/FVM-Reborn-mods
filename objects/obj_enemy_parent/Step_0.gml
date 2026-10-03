@@ -1,6 +1,28 @@
 // 修改后的僵尸Step事件
+if (variable_instance_exists(id, "pooled") && pooled){
+	exit
+}
 if global.is_paused{
 	exit
+}
+
+// 延迟注册到全局类型注册表：确保子对象的 target_type 已最终设置
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
 }
 
 // 保持网格位置更新
@@ -74,8 +96,8 @@ if is_frozen || is_scare || is_stun{
 timer++;
 
 // 状态处理前，先检查目标植物是否存在
-if (instance_exists(target_plant) && target_plant.hp <= 0) {
-    target_plant = noone;  // 目标已被消灭
+if (target_plant != noone && (!instance_exists(target_plant) || target_plant.hp <= 0)) {
+    target_plant = noone;  // 目标已被消灭或实例已销毁
 }
 
 // 状态机
@@ -322,6 +344,10 @@ switch(state) {
     case ENEMY_STATE.DEAD: {
 		ice_timer = 0
 		frozen_timer = 0
+        if (ash_death) {
+            image_alpha = 0;
+            break;
+        }
         // 死亡动画
 		if shield_max_hp > 0 && shield_hp > 0{
 			if image_index >= death_anim + move_anim * 4 + attack_anim * 4 - 1 {
@@ -346,11 +372,34 @@ if (hp <= 0 && state != ENEMY_STATE.DEAD) {
     timer = 0;
     state = ENEMY_STATE.DEAD;
     target_plant = noone;  // 清除攻击目标
+    if (ash_death) {
+        image_alpha = 0;
+    }
 }
 
 // 透明度处理
 if (image_alpha <= 0 && state == ENEMY_STATE.DEAD) {
-    instance_destroy();
+    // 从全局类型注册表中移除自己，避免子弹碰撞检测时报错
+    if (enemy_registered && variable_global_exists("enemy_by_type")) {
+        if (variable_struct_exists(global.enemy_by_type, enemy_registered_type)) {
+            var _list = global.enemy_by_type[$ enemy_registered_type];
+            var _idx = array_get_index(_list, id);
+            if (_idx != -1) array_delete(_list, _idx, 1);
+        }
+        enemy_registered = false;
+    }
+
+    if (variable_instance_exists(id, "pooled_managed") && pooled_managed) {
+        // 池化敌人：只结算一次死亡掉落，然后回收（不销毁）
+        if (!death_reward_processed) {
+            death_reward_processed = true;
+            enemy_drop_reward(id);
+        }
+        pool_release_enemy(id, "death");
+    } else {
+        // 非池化敌人：保持原有生命周期
+        instance_destroy();
+    }
 }
 
 

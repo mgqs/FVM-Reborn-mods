@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"precise_bbox_collision",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"precise_bbox_collision",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

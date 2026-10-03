@@ -17,6 +17,7 @@ plus_card_init()
 boss_init()
 level_info_island_init()
 material_init()
+material_sell_init()
 craft_rule_init()
 task_init()
 map_object_init()
@@ -35,6 +36,15 @@ global.player_sprite = noone;
 
 load_file(global.save_slot)
 //reset_file(global.save_slot)
+
+// 不朽难度开局5w金币（仅新存档，一次性奖励）
+if global.difficulty == 5 && !variable_struct_exists(global.save_data, "immortal_bonus_given"){
+	if array_length(global.save_data.completed_levels) == 0{
+		global.save_data.player.gold += 50000
+	}
+	global.save_data.immortal_bonus_given = true
+	save_file(global.save_slot)
+}
 
 if (!instance_exists(obj_mod_manager))
     global.mod_manager = instance_create_layer(0, 0, "Instances", obj_mod_manager);
@@ -118,7 +128,8 @@ if (!instance_exists(obj_mod_manager))
 //	unlock_card("pizza_oven",13,2,8)
 //	unlock_card("rabbit_lantern",13,2,8)
 //	unlock_card("delicacy_firework",13,2,8)
-	
+//	unlock_card("shegengbao",13,2,0)
+		
 //	global.save_data.player.gold = 99000000
 //	global.save_data.player.level = 60
 //	global.save_data.unlocked_items.max_card_level = 13

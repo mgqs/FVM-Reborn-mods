@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"irritable_jack",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/irritable_jack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"irritable_jack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

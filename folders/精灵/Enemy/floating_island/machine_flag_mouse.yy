@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_flag_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_flag_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_flag_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e7e682b8-b794-4763-8996-209c5f9cd800","path":"sprites/spr_machine_flag_mouse_air/spr_machine_flag_mouse_air.yy",},
+    {"name":"a7537bfa-4ee0-47c5-9d4f-0b7c560d3002","path":"sprites/spr_machine_flag_mouse_drop/spr_machine_flag_mouse_drop.yy",},
+    {"name":"55aafa91-6ce4-4395-b900-38532e075f41","path":"sprites/spr_machine_flag_mouse_land/spr_machine_flag_mouse_land.yy",}
+  ],
+}

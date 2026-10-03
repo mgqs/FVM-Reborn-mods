@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"mermaid_mary",
+  "folderPath":"folders/物体/Enemy/undersea_vortex/BOSS/mermaid_mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mermaid_mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_mermaid_mary","path":"objects/obj_mermaid_mary/obj_mermaid_mary.yy",},
+    {"name":"obj_mermaid_mary_bullet","path":"objects/obj_mermaid_mary_bullet/obj_mermaid_mary_bullet.yy",},
+    {"name":"obj_mermaid_mary_music","path":"objects/obj_mermaid_mary_music/obj_mermaid_mary_music.yy",},
+    {"name":"obj_mermaid_mary_wave","path":"objects/obj_mermaid_mary_wave/obj_mermaid_mary_wave.yy",}
+  ],
+}

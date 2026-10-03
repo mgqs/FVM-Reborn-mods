@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Music",
+  "folderPath":"folders/脚本/Music.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Music",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"Music_Init","path":"scripts/Music_Init/Music_Init.yy",}
+  ],
+}

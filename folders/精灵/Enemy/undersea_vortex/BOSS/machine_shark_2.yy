@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_shark_2",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/BOSS/machine_shark_2.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_shark_2",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"0f846c43-fb88-41ae-ac71-7a5942c24bcc","path":"sprites/spr_machine_shark_2_skill_1/spr_machine_shark_2_skill_1.yy",},
+    {"name":"628939ec-dd69-499a-9f5a-3b6ce3a5e7f5","path":"sprites/spr_machine_shark_2_skill_2/spr_machine_shark_2_skill_2.yy",},
+    {"name":"ff7d8543-02d0-431f-8581-f968bafa04d9","path":"sprites/spr_machine_shark_2_wind/spr_machine_shark_2_wind.yy",}
+  ],
+}

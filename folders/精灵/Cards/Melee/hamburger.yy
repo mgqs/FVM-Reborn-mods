@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"hamburger",
+  "folderPath":"folders/精灵/Cards/Melee/hamburger.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hamburger",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a116bdcc-f3e8-4435-bae0-7b7867c51181","path":"sprites/spr_hamburger/spr_hamburger.yy",},
+    {"name":"2c77ccdc-d1b4-4e82-b362-9242ac263bd4","path":"sprites/spr_hamburger_1/spr_hamburger_1.yy",},
+    {"name":"b0cd9c6a-48da-4489-95a9-9f988ce92a1c","path":"sprites/spr_hamburger_2/spr_hamburger_2.yy",},
+    {"name":"10ff13c7-f426-43cc-9dda-76a41a5adf7c","path":"sprites/spr_hamburger_eat/spr_hamburger_eat.yy",},
+    {"name":"f472e550-b5bf-4a5d-afc0-e0b0028c896d","path":"sprites/spr_hamburger_eat_1/spr_hamburger_eat_1.yy",},
+    {"name":"67f9b4ef-a964-464f-9398-dbeb9122db10","path":"sprites/spr_hamburger_eat_2/spr_hamburger_eat_2.yy",}
+  ],
+}

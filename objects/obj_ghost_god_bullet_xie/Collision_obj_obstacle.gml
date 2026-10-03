@@ -1,4 +1,4 @@
-if (target_type == "normal")
+if (target_type == "normal" && precise_bbox_collision(id, other))
 {
     if (burnt == 0)
     {
@@ -9,6 +9,6 @@ if (target_type == "normal")
         var inst = instance_create_depth(x + 25, y, depth, obj_fire_bullet_effect);
         inst.sprite_index = spr_fire_bullet_effect;
     }
-    
+
     instance_destroy();
 }

@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_donut_1",
-    "path":"sprites/spr_donut_1/spr_donut_1.yy",
+    "name":"spr_donut",
+    "path":"sprites/spr_donut/spr_donut.yy",
   },
   "spriteMaskId":null,
   "visible":true,

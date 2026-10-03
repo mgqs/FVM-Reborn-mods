@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Attire",
+  "folderPath":"folders/精灵/UI/Attire.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Attire",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"water_pipe_libra","path":"folders/精灵/UI/Attire/water_pipe_libra.yy",},
+    {"name":"brazier_taurus","path":"folders/精灵/UI/Attire/brazier_taurus.yy",},
+    {"name":"large_fire_gemini","path":"folders/精灵/UI/Attire/large_fire_gemini.yy",},
+    {"name":"wine_rack_sagittarius","path":"folders/精灵/UI/Attire/wine_rack_sagittarius.yy",},
+    {"name":"bubble_maltose","path":"folders/精灵/UI/Attire/bubble_maltose.yy",},
+    {"name":"takoyaki_cancer","path":"folders/精灵/UI/Attire/takoyaki_cancer.yy",},
+    {"name":"rotate_leo","path":"folders/精灵/UI/Attire/rotate_leo.yy",},
+    {"name":"gatling_popcorn","path":"folders/精灵/UI/Attire/gatling_popcorn.yy",},
+    {"name":"ice_egg_pisces","path":"folders/精灵/UI/Attire/ice_egg_pisces.yy",},
+    {"name":"melon_virgo","path":"folders/精灵/UI/Attire/melon_virgo.yy",},
+    {"name":"lobster_athena","path":"folders/精灵/UI/Attire/lobster_athena.yy",}
+  ],
+  "listItems":[],
+}

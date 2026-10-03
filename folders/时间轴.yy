@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"时间轴",
+  "folderPath":"folders/时间轴.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"时间轴",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

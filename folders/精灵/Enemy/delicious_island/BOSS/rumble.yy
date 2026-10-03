@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"rumble",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/rumble.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rumble",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"dc98c727-eecd-4077-a83e-7c075722c6de","path":"sprites/spr_rumble_appear/spr_rumble_appear.yy",},
+    {"name":"f785d13c-1362-4288-8994-628a19c21d57","path":"sprites/spr_rumble_death/spr_rumble_death.yy",},
+    {"name":"403cf44d-0b2d-46e3-a1a5-799369a47983","path":"sprites/spr_rumble_drop/spr_rumble_drop.yy",},
+    {"name":"2bfe74af-6745-4a1b-88a8-400494a837bf","path":"sprites/spr_rumble_idle/spr_rumble_idle.yy",},
+    {"name":"8c21cc74-3ec0-4f30-831c-26bf79fa4c70","path":"sprites/spr_rumble_laser/spr_rumble_laser.yy",},
+    {"name":"52997661-0153-49c6-9c9f-ba3fbf33e2ca","path":"sprites/spr_rumble_launch/spr_rumble_launch.yy",},
+    {"name":"8bc9a65f-1b37-4c74-a6ee-f62559964ea2","path":"sprites/spr_rumble_missile/spr_rumble_missile.yy",},
+    {"name":"4bf9be8d-85e9-45dc-bc12-dc538288b6cd","path":"sprites/spr_rumble_missile_effect/spr_rumble_missile_effect.yy",},
+    {"name":"20413cc2-cba8-42bb-bf9b-5bcc137a8547","path":"sprites/spr_rumble_move_backword/spr_rumble_move_backword.yy",},
+    {"name":"832fe517-6625-4413-be48-3f1d70e11d0a","path":"sprites/spr_rumble_move_forward/spr_rumble_move_forward.yy",},
+    {"name":"4135905a-5d6f-4d04-9fc3-9aac8a11e4e5","path":"sprites/spr_rumble_skill_1/spr_rumble_skill_1.yy",},
+    {"name":"1c2768e7-11dc-4cb0-a110-d63a0fbca567","path":"sprites/spr_rumble_skill_2/spr_rumble_skill_2.yy",},
+    {"name":"b1be4dd4-4a7e-4665-a695-2982c4fbcf46","path":"sprites/spr_rumble_skill_3/spr_rumble_skill_3.yy",}
+  ],
+}

@@ -1,3 +1,11 @@
+// 对象池标记（复用不执行 Create，默认走普通生命周期；启用池化后由池接管）
+active = true
+pooled = false
+pool_generation = 0
+pooled_managed = false
+pool_cleanup = false
+death_reward_processed = false
+
 image_xscale = 1.8
 image_yscale = 1.8
 image_speed = 0
@@ -19,6 +27,7 @@ attack_timer = 0
 target_plant = noone
 attack_range = 90
 immune_to_ash = false
+ash_death = false
 ice_timer = 0
 is_slowdown = false
 frozen_timer = 0
@@ -64,3 +73,10 @@ water_effect_timer = 0
 hp_modified = false
 
 block_mouse_id_list = ["mouse_train_1"]
+
+enemy_registered = false
+enemy_registered_type = ""
+
+// 记录真实出生坐标（供逆转牛等“传送回出生点”逻辑使用）
+birth_x = x;
+birth_y = y;

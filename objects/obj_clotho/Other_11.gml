@@ -7,12 +7,7 @@ if (shape == 2)
 else if (shape == 3)
     row_offset = 3;
 
-var max_level_offset = 0;
-
-if (shape == 2)
-    max_level_offset = 1;
-else if (shape == 3)
-    max_level_offset = 2;
+var max_level_offset = 2;
 
 with (obj_card_parent)
 {

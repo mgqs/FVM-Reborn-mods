@@ -1,0 +1,33 @@
+{
+  "$GMFolder":"",
+  "%Name":"floating_island",
+  "folderPath":"folders/物体/Enemy/floating_island.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"floating_island",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"BOSS","path":"folders/物体/Enemy/floating_island/BOSS.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_aircraft_carrier","path":"objects/obj_aircraft_carrier/obj_aircraft_carrier.yy",},
+    {"name":"obj_charge_spring_mouse","path":"objects/obj_charge_spring_mouse/obj_charge_spring_mouse.yy",},
+    {"name":"obj_kamikaze_glider_mouse","path":"objects/obj_kamikaze_glider_mouse/obj_kamikaze_glider_mouse.yy",},
+    {"name":"obj_machine_bee","path":"objects/obj_machine_bee/obj_machine_bee.yy",},
+    {"name":"obj_machine_beehive_mouse","path":"objects/obj_machine_beehive_mouse/obj_machine_beehive_mouse.yy",},
+    {"name":"obj_machine_bomb_mouse","path":"objects/obj_machine_bomb_mouse/obj_machine_bomb_mouse.yy",},
+    {"name":"obj_machine_flag_mouse","path":"objects/obj_machine_flag_mouse/obj_machine_flag_mouse.yy",},
+    {"name":"obj_machine_football_fan_mouse","path":"objects/obj_machine_football_fan_mouse/obj_machine_football_fan_mouse.yy",},
+    {"name":"obj_machine_iron_pan_mouse","path":"objects/obj_machine_iron_pan_mouse/obj_machine_iron_pan_mouse.yy",},
+    {"name":"obj_machine_normal_mouse","path":"objects/obj_machine_normal_mouse/obj_machine_normal_mouse.yy",},
+    {"name":"obj_machine_skateboard_mouse","path":"objects/obj_machine_skateboard_mouse/obj_machine_skateboard_mouse.yy",},
+    {"name":"obj_mirror_mouse","path":"objects/obj_mirror_mouse/obj_mirror_mouse.yy",},
+    {"name":"obj_enemy_parent","path":"objects/obj_mouse_spring/obj_mouse_spring.yy",},
+    {"name":"obj_snail_mouse","path":"objects/obj_snail_mouse/obj_snail_mouse.yy",},
+    {"name":"obj_soldier_mouse","path":"objects/obj_soldier_mouse/obj_soldier_mouse.yy",},
+    {"name":"obj_trumpeter_mouse","path":"objects/obj_trumpeter_mouse/obj_trumpeter_mouse.yy",}
+  ],
+}

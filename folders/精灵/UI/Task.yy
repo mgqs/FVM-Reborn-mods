@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"Task",
+  "folderPath":"folders/精灵/UI/Task.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Task",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"da978b16-34be-40bf-b27d-4f943afded72","path":"sprites/spr_task_bg/spr_task_bg.yy",},
+    {"name":"3ac16ae1-e57d-443f-9fe5-ea28d2f998a7","path":"sprites/spr_task_claim_btn/spr_task_claim_btn.yy",},
+    {"name":"5351b404-596f-461f-af3b-07d911a3947d","path":"sprites/spr_task_claim_btn_disabled/spr_task_claim_btn_disabled.yy",},
+    {"name":"dc5c0e58-ae1b-40e3-9709-e7efb93e94b2","path":"sprites/spr_task_complete/spr_task_complete.yy",},
+    {"name":"e64731e2-3728-4bac-9bc7-7c1c3cd9e4c4","path":"sprites/spr_task_line_bg/spr_task_line_bg.yy",},
+    {"name":"4b029bab-09bd-4fd9-a718-828ab7dfb647","path":"sprites/spr_task_select_btn/spr_task_select_btn.yy",},
+    {"name":"13565383-ec00-4d32-81bb-1d58c6a29ec4","path":"sprites/spr_task_split/spr_task_split.yy",},
+    {"name":"1d09289a-ad28-4348-815f-f41a90c83966","path":"sprites/spr_task_state/spr_task_state.yy",}
+  ],
+}

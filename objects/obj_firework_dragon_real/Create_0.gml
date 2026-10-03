@@ -2,7 +2,7 @@ event_inherited();
 plant_id = "firework_dragon_real";
 obj_type = object_index;
 flame_produce = 75;
-first_produce_delay = 60;
+first_produce_delay = 420;
 event_user(0);
 
 if (shape == 1)

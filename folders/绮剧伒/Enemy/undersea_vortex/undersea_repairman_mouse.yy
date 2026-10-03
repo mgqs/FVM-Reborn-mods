@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"undersea_repairman_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_repairman_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_repairman_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

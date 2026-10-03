@@ -10,3 +10,4 @@ target_type = "throw";
 image_angle = -45;
 image_xscale = 1.8;
 image_yscale = 1.8;
+hittable_types = get_hittable_enemy_types(target_type);

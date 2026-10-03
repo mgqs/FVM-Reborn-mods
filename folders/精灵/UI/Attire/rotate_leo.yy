@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"rotate_leo",
+  "folderPath":"folders/精灵/UI/Attire/rotate_leo.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rotate_leo",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"908bce14-b192-45cd-a1c3-7b2634d009fe","path":"sprites/spr_rotate_leo/spr_rotate_leo.yy",},
+    {"name":"0b9bf64b-0821-42bc-b59c-3c09b59a7400","path":"sprites/spr_rotate_leo_1/spr_rotate_leo_1.yy",},
+    {"name":"828081cc-e797-4596-a95b-d9e2af7acac1","path":"sprites/spr_rotate_leo_2/spr_rotate_leo_2.yy",},
+    {"name":"908bce14-b192-45cd-a1c3-7b2634d009fe","path":"sprites/spr_rotate_leo_icon/spr_rotate_leo_icon.yy",},
+    {"name":"0b9bf64b-0821-42bc-b59c-3c09b59a7400","path":"sprites/spr_rotate_leo_icon_1/spr_rotate_leo_icon_1.yy",},
+    {"name":"828081cc-e797-4596-a95b-d9e2af7acac1","path":"sprites/spr_rotate_leo_icon_2/spr_rotate_leo_icon_2.yy",}
+  ],
+}

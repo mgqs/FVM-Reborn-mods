@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"electric_jellyfish",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/BOSS/electric_jellyfish.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"electric_jellyfish",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"6ea4940d-c138-4683-b7c2-5e8d82a6dae2","path":"sprites/spr_electric_jellyfish_bullet/spr_electric_jellyfish_bullet.yy",},
+    {"name":"fd4cd8a4-9f19-4e42-ba3b-a6db92e51de3","path":"sprites/spr_electric_jellyfish_death/spr_electric_jellyfish_death.yy",},
+    {"name":"0bdae523-3e33-44cf-953d-fa5f8e242262","path":"sprites/spr_electric_jellyfish_idle/spr_electric_jellyfish_idle.yy",},
+    {"name":"1e75deb4-8a78-4cf0-8794-c941b0951617","path":"sprites/spr_electric_jellyfish_move/spr_electric_jellyfish_move.yy",},
+    {"name":"4df8fbb6-a37b-4395-acde-72c366941b40","path":"sprites/spr_electric_jellyfish_move_fast/spr_electric_jellyfish_move_fast.yy",},
+    {"name":"bb6cf210-fc26-4505-8804-1cc643baab71","path":"sprites/spr_electric_jellyfish_skill_1/spr_electric_jellyfish_skill_1.yy",},
+    {"name":"e3a5880d-0079-4a06-b47b-515fb138efae","path":"sprites/spr_electric_jellyfish_skill_2/spr_electric_jellyfish_skill_2.yy",},
+    {"name":"9a3d672f-e430-473b-b053-7967f257be8d","path":"sprites/spr_electric_jellyfish_skill_3/spr_electric_jellyfish_skill_3.yy",}
+  ],
+}

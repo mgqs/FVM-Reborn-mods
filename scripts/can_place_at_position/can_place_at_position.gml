@@ -5,7 +5,8 @@
 /// @param {string} plant_type 植物类型
 /// @param {string} feature_type 植物特性
 /// @param {string} target_card 底座卡片
-function can_place_at_position(x, y, plant_type,feature_type,target_card) {
+/// @param {string} card_id 正在放置的卡牌 ID（可选）
+function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id = "") {
     // 获取网格位置
     var grid_pos = get_grid_position_from_world(x, y);
     var col = grid_pos.col;
@@ -20,12 +21,45 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card) {
 		return true
 	}
 	// 检查是否有障碍
-	if global.grid_terrains[row][col].type == "obstacle" && plant_type != "coffee"{
+	// 海洋女神所有形态可放置在障碍地形上，仍继续检查占格和底座规则。
+	if global.grid_terrains[row][col].type == "obstacle" && plant_type != "coffee" && feature_type != "haiyang_obstacle"{
 		return false
 	}
     
     // 获取该网格的植物列表
     var plant_list = ds_grid_get(global.grid_plants, col, row);
+
+    // 同一格最多放一张海洋女神和一张战旗马，二者可以互相叠放。
+    if ((card_id == "haiyang_god" || card_id == "zhanqima") && !global.replace_placement)
+    {
+        for (var i = 0; i < ds_list_size(plant_list); i++)
+        {
+            var plant = ds_list_find_value(plant_list, i);
+            if (!instance_exists(plant) || !variable_instance_exists(plant, "plant_id")) continue;
+            if (plant.plant_id == card_id) return false;
+        }
+
+        // 对方已存在且自身尚不存在时，允许叠放；上面的完整扫描确保不会超过各一张。
+        for (var i = 0; i < ds_list_size(plant_list); i++)
+        {
+            var plant = ds_list_find_value(plant_list, i);
+            if (instance_exists(plant) && variable_instance_exists(plant, "plant_id")
+                && (plant.plant_id == "haiyang_god" || plant.plant_id == "zhanqima"))
+                return true;
+        }
+    }
+
+    // 海洋女神的悬浮形态不占用普通植物槽，但同一格仍只能存在一张海洋女神。
+    if (feature_type == "haiyang_obstacle" && !global.replace_placement)
+    {
+        for (var i = 0; i < ds_list_size(plant_list); i++)
+        {
+            var plant = ds_list_find_value(plant_list, i);
+            if (instance_exists(plant) && variable_instance_exists(plant, "plant_id")
+                && plant.plant_id == "haiyang_god")
+                return false;
+        }
+    }
     
     // 根据植物类型检查是否可以种植
 	if target_card != "none"{
@@ -176,8 +210,23 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card) {
 			}
             return false;
             
+        case "shegengbao":
+            // 蛇羹煲：不占格的一次性回收卡，只能种在有可回收卡片的格子上
+            for (var i = 0; i < ds_list_size(plant_list); i++) {
+                var plant = ds_list_find_value(plant_list, i);
+                if (!instance_exists(plant)) continue;
+                if (variable_instance_exists(plant, "plant_id") && plant.plant_id == "player") continue;
+                if (variable_instance_exists(plant, "can_shovel_remove") && !plant.can_shovel_remove) continue;
+                return true;
+            }
+            return false;
+
+        case "gridless":
+            // 悬浮卡不占用普通植物槽；海洋女神和战旗马数量由前置规则统一限制。
+            return true;
+
         case "normal":
-			for (var i = 0; i < ds_list_size(plant_list); i++) {
+				for (var i = 0; i < ds_list_size(plant_list); i++) {
 	            var plant = ds_list_find_value(plant_list, i);
                     if (!instance_exists(plant)) continue;
 	            if (instance_exists(plant) && variable_instance_exists(plant, "plant_id") && plant.plant_id == "player") {

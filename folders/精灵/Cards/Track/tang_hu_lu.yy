@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"tang_hu_lu",
+  "folderPath":"folders/精灵/Cards/Track/tang_hu_lu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tang_hu_lu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e14c46fe-e863-45b3-a98a-2a89da7207e1","path":"sprites/spr_tang_hu_lu/spr_tang_hu_lu.yy",},
+    {"name":"a0e233d9-f590-4f87-ba0c-c2990b0684bd","path":"sprites/spr_tang_hu_lu_1/spr_tang_hu_lu_1.yy",},
+    {"name":"d4da75ae-2cdc-4d23-87f5-e5dc91009ced","path":"sprites/spr_tang_hu_lu_2/spr_tang_hu_lu_2.yy",}
+  ],
+}

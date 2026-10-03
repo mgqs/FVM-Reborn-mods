@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"BOSS",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"BOSS",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"war_god","path":"folders/物体/Enemy/volcanic_island/BOSS/war_god.yy",},
+    {"name":"thor","path":"folders/物体/Enemy/volcanic_island/BOSS/thor.yy",},
+    {"name":"needle_baron","path":"folders/物体/Enemy/volcanic_island/BOSS/needle_baron.yy",},
+    {"name":"blonde_mary","path":"folders/物体/Enemy/volcanic_island/BOSS/blonde_mary.yy",},
+    {"name":"hells_messenger","path":"folders/物体/Enemy/volcanic_island/BOSS/hells_messenger.yy",},
+    {"name":"lieutenant_buzz","path":"folders/物体/Enemy/volcanic_island/BOSS/lieutenant_buzz.yy",},
+    {"name":"hercules","path":"folders/物体/Enemy/volcanic_island/BOSS/hercules.yy",},
+    {"name":"pink_paul","path":"folders/物体/Enemy/volcanic_island/BOSS/pink_paul.yy",},
+    {"name":"fog_julie","path":"folders/物体/Enemy/volcanic_island/BOSS/fog_julie.yy",},
+    {"name":"hot_vajra","path":"folders/物体/Enemy/volcanic_island/BOSS/hot_vajra.yy",},
+    {"name":"irritable_jack","path":"folders/物体/Enemy/volcanic_island/BOSS/irritable_jack.yy",},
+    {"name":"pete","path":"folders/物体/Enemy/volcanic_island/BOSS/pete.yy",}
+  ],
+  "listItems":[],
+}

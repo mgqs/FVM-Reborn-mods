@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"hotdog_cannon",
+  "folderPath":"folders/精灵/Cards/Shooter/hotdog_cannon.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hotdog_cannon",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1fc57c48-cba0-40e6-92bd-45d53b233e1f","path":"sprites/spr_hotdog_cannon/spr_hotdog_cannon.yy",},
+    {"name":"5919044b-46b3-4de5-8574-86d377c2d0b9","path":"sprites/spr_hotdog_cannon_1/spr_hotdog_cannon_1.yy",},
+    {"name":"ebbe75ee-d0de-404d-b42a-f4efb174f1d4","path":"sprites/spr_hotdog_cannon_2/spr_hotdog_cannon_2.yy",}
+  ],
+}

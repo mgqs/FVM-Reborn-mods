@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"shy_landlady_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/shy_landlady_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"shy_landlady_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fe4b4a79-6f43-49d9-947b-d2f5c5fcfc2b","path":"sprites/spr_shy_landlady_mouse/spr_shy_landlady_mouse.yy",},
+    {"name":"034d2692-bdd2-4b9e-9989-7c1a35404b58","path":"sprites/spr_shy_landlady_mouse_shield/spr_shy_landlady_mouse_shield.yy",}
+  ],
+}

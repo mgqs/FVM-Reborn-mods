@@ -1,4 +1,4 @@
-﻿if global.is_paused{
+if global.is_paused{
 	exit
 }
 

@@ -47,6 +47,25 @@ if keyboard_check_pressed(vk_escape){
 		obj_world_map_button.world_map = 0
 		global.gui_stack.pop()
 	}
+	else if instance_exists(obj_gods_store_bg){
+		if (!obj_gods_store_bg.is_submenu_opened){
+			instance_destroy(obj_gods_store_bg)
+		}
+	}
+	else if instance_exists(obj_gods_hall_bg){
+		if (!obj_gods_hall_bg.is_submenu_opened){
+			instance_destroy(obj_gods_hall_bg)
+			obj_player_info_ui.menu_type = 0
+			obj_world_map_button.world_map = 0
+		}
+	}
+	else if instance_exists(obj_cross_server_bg){
+		if (!obj_cross_server_bg.is_submenu_opened){
+			instance_destroy(obj_cross_server_bg)
+			obj_player_info_ui.menu_type = 0
+			obj_world_map_button.world_map = 0
+		}
+	}
 	else{
 		global.gui_stack.to(room_menu)
 	}
@@ -69,4 +88,15 @@ if current_map_id != global.map_id{
 		inst.pre_level_require = button_struct.pre_level_require
 		inst.sprite_index = button_struct.button_spr
 	}
+	// 测试关卡入口（所有岛屿通用）
+	var test_inst = instance_create_depth(950,56,-2,obj_levelselect_button)
+	test_inst.image_xscale = 0.18
+	test_inst.image_yscale = 0.18
+	test_inst.target_level_id = "test_level"
+	test_inst.target_level_file = "test_level.json"
+	test_inst.target_level_file_hard = "test_level_hard.json"
+	test_inst.level_index = -1
+	test_inst.player_level_require = 1
+	test_inst.pre_level_require = []
+	test_inst.sprite_index = spr_test_level_button
 }

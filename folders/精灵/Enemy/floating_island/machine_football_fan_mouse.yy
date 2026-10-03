@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_football_fan_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_football_fan_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_football_fan_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a054be60-bf8c-4ee8-ba3e-a315c4ba0a74","path":"sprites/spr_machine_football_fan_mouse/spr_machine_football_fan_mouse.yy",},
+    {"name":"0cb7c1a0-d5ff-40b5-8236-2d58d6b02986","path":"sprites/spr_machine_football_fan_mouse_helmet/spr_machine_football_fan_mouse_helmet.yy",}
+  ],
+}

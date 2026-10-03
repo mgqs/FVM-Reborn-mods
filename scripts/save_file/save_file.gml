@@ -3,6 +3,10 @@
 /// @param {real} file_slot 存档槽位
 function save_file(file_slot) {
 	var file_path = "saves/"+"save" + string(file_slot) + ".json"
+	// 确保 mod 存档目录存在
+	if (!directory_exists("saves")) {
+		directory_create("saves");
+	}
     // 将数据转换为JSON字符串
     var json_string = json_stringify(global.save_data);
     

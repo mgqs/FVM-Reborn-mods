@@ -1,3 +1,9 @@
+// 对象池标记（首个实例创建后由池接管，复用不再执行 Create）
+active = true
+pooled = false
+pool_generation = 0
+pool_created_this_round = false
+
 damage = 0
 move_speed = 0
 state = 1
@@ -10,6 +16,7 @@ start_col = 0
 disabled = false
 damage_type = "normal"
 target_type = "normal"
-image_xscale = 1.5
-image_yscale = 1.5
 image_speed = 0
+image_xscale = 1.5;
+image_yscale = 1.5;
+hittable_types = get_hittable_enemy_types(target_type);

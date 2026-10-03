@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"flagship_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/flagship_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flagship_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fc53ff18-a28b-4816-8937-46f36d4d7536","path":"sprites/spr_flagship_mouse/spr_flagship_mouse.yy",},
+    {"name":"15bbe1c0-0abb-4c85-bf05-c2798f81f05e","path":"sprites/spr_flagship_mouse_appear/spr_flagship_mouse_appear.yy",}
+  ],
+}

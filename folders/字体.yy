@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"字体",
+  "folderPath":"folders/字体.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"字体",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"font_hei","path":"fonts/font_hei/font_hei.old.yy",},
+    {"name":"font_hei","path":"fonts/font_hei/font_hei.yy",},
+    {"name":"font_number","path":"fonts/font_number/font_number.old.yy",},
+    {"name":"font_number","path":"fonts/font_number/font_number.yy",},
+    {"name":"font_pixel","path":"fonts/font_pixel/font_pixel.old.yy",},
+    {"name":"font_pixel","path":"fonts/font_pixel/font_pixel.yy",},
+    {"name":"font_song","path":"fonts/font_song/font_song.old.yy",},
+    {"name":"font_song","path":"fonts/font_song/font_song.yy",},
+    {"name":"font_song2","path":"fonts/font_song2/font_song2.old.yy",},
+    {"name":"font_song2","path":"fonts/font_song2/font_song2.yy",},
+    {"name":"font_yuan","path":"fonts/font_yuan/font_yuan.old.yy",},
+    {"name":"font_yuan","path":"fonts/font_yuan/font_yuan.yy",}
+  ],
+}

@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"ice_bucket_bomb",
+  "folderPath":"folders/精灵/Effects/ice_bucket_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ice_bucket_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"09fb26c2-4316-4837-aaa5-11b5c984c431","path":"sprites/spr_ice_bucket_bomb_explode/spr_ice_bucket_bomb_explode.yy",},
+    {"name":"59fb4bea-b060-4e2c-8400-b05cae83a09e","path":"sprites/spr_ice_bucket_bomb_explode_1/spr_ice_bucket_bomb_explode_1.yy",},
+    {"name":"0f376ac3-8a88-41af-b82f-d8d7d3fdc1fe","path":"sprites/spr_ice_bucket_bomb_explode_2/spr_ice_bucket_bomb_explode_2.yy",},
+    {"name":"576712da-18c3-4b7d-b0d3-3b16f1d57ba5","path":"sprites/spr_mouse_frozen/spr_mouse_frozen.yy",},
+    {"name":"2dd45a47-6515-477b-b1da-339efda44819","path":"sprites/spr_mouse_frozen_1/spr_mouse_frozen_1.yy",},
+    {"name":"d1a5ff2e-3d4b-4cf0-9cf1-74ab3d308187","path":"sprites/spr_mouse_frozen_2/spr_mouse_frozen_2.yy",}
+  ],
+}

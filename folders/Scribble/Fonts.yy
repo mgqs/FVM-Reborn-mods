@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Fonts",
+  "folderPath":"folders/Scribble/Fonts.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Fonts",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

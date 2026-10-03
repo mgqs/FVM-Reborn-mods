@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_vortex",
+  "folderPath":"folders/精灵/Maps/undersea_vortex.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_vortex",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"4c9baa7c-5a7b-404b-b032-8ceb6b56fca8","path":"sprites/spr_arctic_bay_turbulence/spr_arctic_bay_turbulence.yy",},
+    {"name":"752a2ce6-0ba8-4fb1-8ef9-e1eb0872ec13","path":"sprites/spr_coral_current_daytime/spr_coral_current_daytime.yy",},
+    {"name":"ded8bba5-7ba3-43f0-8c3e-1c7888674345","path":"sprites/spr_coral_current_night/spr_coral_current_night.yy",},
+    {"name":"221f7d95-119a-4c95-90bf-2a15ecdac82e","path":"sprites/spr_sea_anemone_current_daytime/spr_sea_anemone_current_daytime.yy",},
+    {"name":"bbfc3b4f-ec68-4b4c-bcba-706fde70e2cb","path":"sprites/spr_sea_anemone_current_night/spr_sea_anemone_current_night.yy",},
+    {"name":"deec84aa-f555-4d7a-8498-b4767c487ba0","path":"sprites/spr_tempura_vortex/spr_tempura_vortex.yy",},
+    {"name":"c8881ae6-f5d1-4b0b-a100-75b0fc309823","path":"sprites/spr_tuna_current/spr_tuna_current.yy",},
+    {"name":"eaadac12-500d-4325-a7be-1fc96ddf15b0","path":"sprites/spr_undersea_vortex/spr_undersea_vortex.yy",}
+  ],
+}

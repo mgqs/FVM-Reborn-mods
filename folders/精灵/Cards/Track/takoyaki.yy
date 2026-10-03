@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"takoyaki",
+  "folderPath":"folders/精灵/Cards/Track/takoyaki.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"takoyaki",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"7b6575df-92fc-44e1-9831-ff401f29b4cd","path":"sprites/spr_takoyaki/spr_takoyaki.yy",},
+    {"name":"a3944512-fd68-4e74-832f-db2ebf2adb5b","path":"sprites/spr_takoyaki_1/spr_takoyaki_1.yy",},
+    {"name":"ab9251db-1b14-44c4-9382-c89da2f5bdab","path":"sprites/spr_takoyaki_2/spr_takoyaki_2.yy",}
+  ],
+}

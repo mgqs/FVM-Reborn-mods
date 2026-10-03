@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_bomb_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_bomb_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_bomb_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ec29813e-a24e-4aa5-9d86-5b86c5de8691","path":"sprites/spr_machine_bomb_mouse_air/spr_machine_bomb_mouse_air.yy",},
+    {"name":"829baf3b-39af-46f4-90ef-a134e2fec9b8","path":"sprites/spr_machine_bomb_mouse_air_nobomb/spr_machine_bomb_mouse_air_nobomb.yy",},
+    {"name":"beaf83ed-803c-4543-b41d-4b4ccb725e77","path":"sprites/spr_machine_bomb_mouse_bomb/spr_machine_bomb_mouse_bomb.yy",},
+    {"name":"cca2876d-68f0-4b01-82c7-5c30526efa74","path":"sprites/spr_machine_bomb_mouse_bomb_effect/spr_machine_bomb_mouse_bomb_effect.yy",},
+    {"name":"1b047e42-0d44-4d38-bbac-71630101d9c3","path":"sprites/spr_machine_bomb_mouse_drop/spr_machine_bomb_mouse_drop.yy",},
+    {"name":"65cb4032-6a1e-4460-b68f-30493ee3fd3d","path":"sprites/spr_machine_bomb_mouse_land/spr_machine_bomb_mouse_land.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"panda_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/panda_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"panda_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"80e9ce4b-f7cf-47fd-8667-8c32d6afe675","path":"sprites/spr_little_panda/spr_little_panda.yy",},
+    {"name":"5b8b085c-a85e-492a-ab60-636eb4cd6386","path":"sprites/spr_little_panda_throw/spr_little_panda_throw.yy",},
+    {"name":"a70536c1-0ec8-44c4-bf43-7fb63aad7c33","path":"sprites/spr_panda_mouse/spr_panda_mouse.yy",},
+    {"name":"a1574192-90d8-40bd-a118-dd9497f43680","path":"sprites/spr_panda_mouse_has_small/spr_panda_mouse_has_small.yy",},
+    {"name":"59ce5541-6eae-4117-a754-fd04ab737bc8","path":"sprites/spr_panda_mouse_throw/spr_panda_mouse_throw.yy",}
+  ],
+}

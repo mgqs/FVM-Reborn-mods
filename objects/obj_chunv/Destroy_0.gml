@@ -1,4 +1,3 @@
-instance_destroy(inner_inst);
 var _x = x;
 var _y = y;
 var _row = 1;

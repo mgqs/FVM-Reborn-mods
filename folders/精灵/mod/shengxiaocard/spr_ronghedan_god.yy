@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_ronghedan_god",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_ronghedan_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_ronghedan_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"bbe0e419-3449-475f-8372-cf59a6539552","path":"sprites/spr_ronghedan_god/spr_ronghedan_god.yy",},
+    {"name":"291c1b32-5156-4d01-b370-18c9e44c3367","path":"sprites/spr_ronghedan_god_1/spr_ronghedan_god_1.yy",},
+    {"name":"89f12d64-4e2b-4067-8aa5-987b57da63f2","path":"sprites/spr_ronghedan_god_2/spr_ronghedan_god_2.yy",},
+    {"name":"ce8b3666-ff46-45fe-a872-d7c590618776","path":"sprites/spr_ronghedan_god_bullet/spr_ronghedan_god_bullet.yy",},
+    {"name":"75014a96-cf42-432e-a61e-c7094c80aeb0","path":"sprites/spr_ronghedan_god_bullet_1/spr_ronghedan_god_bullet_1.yy",},
+    {"name":"98ba57d8-ed1d-40b6-85df-3bd543187b8e","path":"sprites/spr_ronghedan_god_bullet_2/spr_ronghedan_god_bullet_2.yy",},
+    {"name":"071fae5a-d431-42ad-baa9-3b256e11c6cf","path":"sprites/spr_ronghedan_god_effect_1/spr_ronghedan_god_effect_1.yy",},
+    {"name":"7278e4de-3c01-4073-9c92-64732382ff01","path":"sprites/spr_ronghedan_god_effect_2/spr_ronghedan_god_effect_2.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"windmill_fish_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/windmill_fish_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"windmill_fish_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"51471a7f-cae1-437f-be61-1d18e02dbeb5","path":"sprites/spr_windmill_fish_mouse_air/spr_windmill_fish_mouse_air.yy",},
+    {"name":"955abed4-f289-42e3-8e88-8f3479eabd4c","path":"sprites/spr_windmill_fish_mouse_drop/spr_windmill_fish_mouse_drop.yy",},
+    {"name":"23b35c09-2ed6-46b2-baa7-38cffde1d4da","path":"sprites/spr_windmill_fish_mouse_land/spr_windmill_fish_mouse_land.yy",},
+    {"name":"4eeb0c5e-db94-488f-a30a-9ee2f29ce4f0","path":"sprites/spr_windmill_fish_mouse_urchin/spr_windmill_fish_mouse_urchin.yy",}
+  ],
+}

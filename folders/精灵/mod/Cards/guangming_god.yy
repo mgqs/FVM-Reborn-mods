@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"guangming_god",
+  "folderPath":"folders/精灵/mod/Cards/guangming_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"guangming_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"502c4ef7-4eb9-493f-bcdf-a7df9c32dea8","path":"sprites/spr_guangming_god/spr_guangming_god.yy",},
+    {"name":"4c30ad0c-306a-47fc-af35-7010c5308589","path":"sprites/spr_guangming_god_1/spr_guangming_god_1.yy",},
+    {"name":"1427ac90-b70a-4733-928c-31b7e2042111","path":"sprites/spr_guangming_god_2/spr_guangming_god_2.yy",},
+    {"name":"3d07cee3-b3c5-4bc7-8228-04330e9ea9df","path":"sprites/spr_guangming_god_bullet/spr_guangming_god_bullet.yy",},
+    {"name":"1a9ec403-ba07-4230-a0c0-eaf46cf15d41","path":"sprites/spr_guangming_god_bullet_1/spr_guangming_god_bullet_1.yy",},
+    {"name":"e145f9c1-8f71-45b7-915a-2ee7e8ec5523","path":"sprites/spr_guangming_god_bullet_2/spr_guangming_god_bullet_2.yy",},
+    {"name":"c8b265af-efb2-4404-96d3-b614199a219f","path":"sprites/spr_guangming_god_effect/spr_guangming_god_effect.yy",},
+    {"name":"645847d2-6d81-4bea-bebc-c6842e5b2609","path":"sprites/spr_guangming_god_pin1/spr_guangming_god_pin1.yy",},
+    {"name":"a16776c0-725d-4886-a751-c7a845d3481a","path":"sprites/spr_guangming_god_pin2/spr_guangming_god_pin2.yy",},
+    {"name":"9ddd359b-8ba7-4088-a3a9-1a1ca4fa820b","path":"sprites/spr_guangming_god_start_1/spr_guangming_god_start_1.yy",},
+    {"name":"3fbffa6a-aef1-4ea0-a08b-75cfc3af9321","path":"sprites/spr_guangming_god_start_2/spr_guangming_god_start_2.yy",}
+  ],
+}

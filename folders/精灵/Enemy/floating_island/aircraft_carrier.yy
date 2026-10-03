@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"aircraft_carrier",
+  "folderPath":"folders/精灵/Enemy/floating_island/aircraft_carrier.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"aircraft_carrier",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"3651029c-f8a0-4a0d-9f0f-365177ebcf64","path":"sprites/spr_aircraft_carrier/spr_aircraft_carrier.yy",},
+    {"name":"6a7ed369-fee2-4c8c-85fe-392916795323","path":"sprites/spr_aircraft_carrier_release_1/spr_aircraft_carrier_release_1.yy",},
+    {"name":"a43cd7b9-a462-4371-8287-5d09f1614450","path":"sprites/spr_aircraft_carrier_release_2/spr_aircraft_carrier_release_2.yy",},
+    {"name":"2e111a11-32e6-44b1-adcd-a886ccbbfaee","path":"sprites/spr_aircraft_carrier_release_3/spr_aircraft_carrier_release_3.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"sardine_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/sardine_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sardine_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"01f810a0-c7fc-469f-b78a-7ee28ed0c535","path":"sprites/spr_sardine_mouse/spr_sardine_mouse.yy",},
+    {"name":"d382f6b3-bc44-44af-a061-6c21f954512b","path":"sprites/spr_sardine_mouse_appear/spr_sardine_mouse_appear.yy",},
+    {"name":"b1922495-b1d0-4a14-9ff9-a405d7bf985a","path":"sprites/spr_sardine_mouse_dig/spr_sardine_mouse_dig.yy",},
+    {"name":"f49d7ea9-c9d3-499d-bc18-5f433880b6ea","path":"sprites/spr_sardine_mouse_stun/spr_sardine_mouse_stun.yy",}
+  ],
+}

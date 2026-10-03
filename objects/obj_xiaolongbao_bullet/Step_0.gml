@@ -10,4 +10,64 @@ if burnt == 1{
 x += move_speed
 if x > 2200 or y > 1200 or x < 0 or y < 0{
 	instance_destroy()
+	exit
+}
+
+// 类型过滤碰撞检测
+if (variable_global_exists("enemy_by_type"))
+{
+	for (var _t = 0; _t < array_length(hittable_types); _t++)
+	{
+		var _key = hittable_types[_t];
+		if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+		var _list = global.enemy_by_type[$ _key];
+		for (var _i = 0; _i < array_length(_list); _i++)
+		{
+			var _e = _list[_i];
+			if (!instance_exists(_e)) continue;
+			if (!instance_exists(id)) break;
+			if (_e.hp > 0 && row == _e.grid_row
+    && precise_bbox_collision(id, _e))
+			{
+				with (_e)
+				{
+					if other.burnt == 1
+					{
+						audio_play_sound(snd_fire_hit, 0, 0)
+					}
+					else
+					{
+						audio_play_sound(hit_sound, 0, 0)
+					}
+					damage_amount = other.damage
+					damage_type = other.damage_type
+					event_user(0)
+				}
+				if (!instance_exists(id)) break;
+				if burnt == 0
+				{
+					var effect_inst = instance_create_depth(x, y, depth, obj_xiaolongbao_bullet_effect)
+					if sprite_index == spr_gatling_popcorn_bullet
+					{
+						effect_inst.sprite_index = spr_gatling_popcorn_bullet_effect
+					}
+					if sprite_index == spr_gatling_popcorn_bullet_1
+					{
+						effect_inst.sprite_index = spr_gatling_popcorn_bullet_effect_1
+					}
+					if sprite_index == spr_gatling_popcorn_bullet_2
+					{
+						effect_inst.sprite_index = spr_gatling_popcorn_bullet_effect_2
+					}
+				}
+				else
+				{
+					var inst = instance_create_depth(x + 25, y, depth, obj_fire_bullet_effect)
+					inst.sprite_index = spr_fire_bullet_effect
+				}
+				instance_destroy()
+				exit;
+			}
+		}
+	}
 }

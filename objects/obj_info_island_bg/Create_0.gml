@@ -2,7 +2,7 @@ image_xscale = 1.8
 image_yscale = 1.8
 instance_create_depth(x+380,y-400,depth-1,obj_closeinfo_btn)
 info_cols = 4 //防御卡信息行列数
-info_rows = 30
+info_rows = 40
 info_button_select = 1
 //package_button_select = 1
 is_submenu_opened = false
@@ -22,6 +22,7 @@ instance_create_depth(x+320,y-320,depth-1,obj_info_island_edit_btn)
 hover_card_index = -1; // 当前悬停的卡片索引
 hover_weapon_index = -1
 select_card_index = -1
+deck_sort_order = [] // 卡片排序映射（普通卡在前，金卡在后）
 
 view_card_level = 0
 view_card_shape = 0
