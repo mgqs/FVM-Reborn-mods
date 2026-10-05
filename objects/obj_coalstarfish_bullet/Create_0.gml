@@ -11,5 +11,3 @@ bounced = false
 image_xscale = 1.5;
 image_yscale = 1.5;
 hittable_types = get_hittable_enemy_types(target_type);
-hit_interval = 3;
-hit_tick = 0;

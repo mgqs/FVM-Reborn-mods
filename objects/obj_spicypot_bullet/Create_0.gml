@@ -15,4 +15,3 @@ hitted_enemy = ds_list_create()
 image_xscale = 1.8;
 image_yscale = 1.8;
 hittable_types = get_hittable_enemy_types(target_type);
-hit_tick = 0;

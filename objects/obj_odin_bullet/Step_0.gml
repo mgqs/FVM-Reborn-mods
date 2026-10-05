@@ -16,6 +16,7 @@ if (x > 2200 || y > 1200 || x < 0 || y < 0)
     exit;
 }
 
+// Use the unscaled sprite bbox for reflection and obstacle blocking.
 if (!bounced)
 {
     with (obj_water_god)
@@ -53,18 +54,14 @@ with (obj_obstacle)
 if (!instance_exists(id))
     exit;
 
-hit_tick++;
-if (hit_tick >= global.bullet_hit_interval)
-{
-	hit_tick = 0;
-	if (bullet_enemy_reachable(id)) {
+// 类型过滤碰撞检测
 if (variable_global_exists("enemy_by_type"))
 {
     for (var _t = 0; _t < array_length(hittable_types); _t++)
     {
         var _key = hittable_types[_t];
         if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
-        var _list = bullet_sap_type_list(id, _key);
+        var _list = global.enemy_by_type[$ _key];
         for (var _i = 0; _i < array_length(_list); _i++)
         {
             var _e = _list[_i];
@@ -84,6 +81,4 @@ if (variable_global_exists("enemy_by_type"))
             }
         }
     }
-}
-	}
 }

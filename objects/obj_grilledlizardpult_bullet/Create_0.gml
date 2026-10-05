@@ -11,4 +11,3 @@ image_angle = -45;
 image_xscale = 2;
 image_yscale = 2;
 hittable_types = get_hittable_enemy_types(target_type);
-hit_tick = 0;
