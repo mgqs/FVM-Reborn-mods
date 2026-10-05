@@ -18,6 +18,31 @@ if (global.level_id == "test_level")
         global.is_paused = true;
     }
 
+    // F4：在鼠标光标所在格子生成一只原版修理鼠（obj_repairman_mouse），用于测试梯子。
+    if (keyboard_check_pressed(vk_f4))
+    {
+        var _f4_pos = get_grid_position_from_world(mouse_x, mouse_y);
+        if (_f4_pos.col >= 0 && _f4_pos.col < global.grid_cols
+            && _f4_pos.row >= 0 && _f4_pos.row < global.grid_rows)
+        {
+            var _f4_world = get_world_position_from_grid(_f4_pos.col, _f4_pos.row);
+            var _f4_inst = instance_create_depth(_f4_world.x, _f4_world.y + 38, 0, obj_repairman_mouse);
+            _f4_inst.grid_col = _f4_pos.col;
+            _f4_inst.grid_row = _f4_pos.row;
+            global.test_f4_msg = "F4：已在第 " + string(_f4_pos.col + 1) + " 列 / 第 " + string(_f4_pos.row + 1) + " 行生成修理鼠";
+            global.test_f4_msg_timer = 120;
+        }
+        else
+        {
+            global.test_f4_msg = "F4：鼠标不在网格内，未生成";
+            global.test_f4_msg_timer = 120;
+        }
+    }
+    if (variable_global_exists("test_f4_msg_timer") && global.test_f4_msg_timer > 0)
+    {
+        global.test_f4_msg_timer--;
+    }
+
     // 选择敌人的鼠标按键释放前，不允许点击背后的地图或卡槽。
     if (global.test_mouse_picker_block_place)
     {

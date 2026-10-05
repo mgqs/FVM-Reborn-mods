@@ -26,6 +26,7 @@ if global.level_id == "test_level"{
 	draw_text(0, 150, "下次结算: " + string(_secs) + "秒")
 	draw_set_color(c_white)
 	draw_text(0, 175, "F2：打开测试老鼠选择");
+	draw_text(0, 200, "F4：在鼠标位置生成修理鼠");
 }
 
 
@@ -33,6 +34,6 @@ if (global.level_id == "test_level" && global.test_mouse_picker_id != "")
 {
     draw_set_color(c_yellow);
     draw_set_font(font_yuan);
-    draw_text(0, 200, "已选择测试老鼠：点击场上格子创建");
+    draw_text(0, 225, "已选择测试老鼠：点击场上格子创建");
     draw_set_color(c_white);
 }
