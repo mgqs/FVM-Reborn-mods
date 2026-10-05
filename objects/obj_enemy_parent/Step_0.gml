@@ -92,6 +92,96 @@ if is_frozen || is_scare || is_stun{
 
 timer++;
 
+// ================= 上梯越过植物（梯子功能）=================
+// 说明：
+//   - climb_stage 0 = 未爬梯
+//   - 爬梯期间把 state 设为 IDLE（IDLE 不做普通移动），由本块接管位移
+//   - 爬完恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
+if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && !giant_type) {
+	// 检测前方是否有「挂着梯子的植物」
+	// 先把自身坐标/行号/实例 id 存到局部变量，避免多层 with 的 other 歧义
+	var _self_x = x;
+	var _self_row = grid_row;
+	var _self_id = id;
+	var _climb_ladder_plant = noone;
+
+	// 第一层：找出前方范围内的植物
+	var _front_plant = noone;
+	with (obj_card_parent) {
+		var _p_x = x;
+		if (grid_row == _self_row) {
+			var _dx = _p_x - _self_x;
+			if (_dx < 0 && _dx > -global.grid_cell_size_x * 1.2) {
+				if (_front_plant == noone || _p_x > _front_plant.x) {
+					// 取最靠右（离老鼠最近）的那株
+					_front_plant = id;
+				}
+			}
+		}
+	}
+
+	// 第二层：判断这株植物身上有没有梯子
+	if (_front_plant != noone) {
+		var _fp_id = _front_plant;
+		with (obj_ladder) {
+			if (host_plant == _fp_id) _climb_ladder_plant = _fp_id;
+		}
+	}
+
+	if (_climb_ladder_plant != noone) {
+		// 计算爬梯三点：
+		//   起点 = 当前脚下
+		//   梯顶 = 植物上方（斜左上）
+		//   落点 = 下一格（植物左侧相邻格）右边界（斜左下）
+		var _host_center_x = _climb_ladder_plant.x;
+		var _host_center_y = _climb_ladder_plant.y;
+		climb_ground_y = y;
+		climb_mid_x    = _host_center_x;                             // 梯顶在植物正上方
+		climb_mid_y    = _host_center_y - global.grid_cell_size_y * 0.9;
+		climb_end_x    = _host_center_x - global.grid_cell_size_x;  // 退到植物左侧相邻格
+		climb_end_x    = climb_end_x + global.grid_cell_size_x * 0.5; // 该格的右边界
+
+		target_plant = noone;
+		state = ENEMY_STATE.IDLE;
+		climb_stage = 1;
+	}
+}
+
+if (climb_stage == 1) {
+	// 斜上：朝梯顶移动
+	var _dx = climb_mid_x - x;
+	var _dy = climb_mid_y - y;
+	var _dist = point_distance(x, y, climb_mid_x, climb_mid_y);
+	if (_dist <= climb_speed) {
+		x = climb_mid_x;
+		y = climb_mid_y;
+		climb_stage = 2;
+	}
+	else {
+		x += (_dx / _dist) * climb_speed;
+		y += (_dy / _dist) * climb_speed;
+	}
+}
+
+if (climb_stage == 2) {
+	// 斜下：朝下一格右边界落点移动
+	var _dx = climb_end_x - x;
+	var _dy = climb_ground_y - y;
+	var _dist = point_distance(x, y, climb_end_x, climb_ground_y);
+	if (_dist <= climb_speed) {
+		x = climb_end_x;
+		y = climb_ground_y;
+		climb_stage = 0;
+		state = ENEMY_STATE.NORMAL;   // 恢复前进
+		timer = 0;
+	}
+	else {
+		x += (_dx / _dist) * climb_speed;
+		y += (_dy / _dist) * climb_speed;
+	}
+}
+// ==========================================================
+
 // 状态处理前，先检查目标植物是否存在
 if (target_plant != noone && (!instance_exists(target_plant) || target_plant.hp <= 0)) {
     target_plant = noone;  // 目标已被消灭或实例已销毁
@@ -177,7 +267,15 @@ switch(state) {
 			}
 				
             // 检查是否在攻击范围内
-            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
+            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
+            var _skip_by_ladder = false;
+            if (instance_number(obj_ladder) > 0) {
+                var _this_plant_id = id;
+                with (obj_ladder) {
+                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
+                }
+            }
+            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
                     var tar_type = ds_list_find_value(global.eat_order, i);
@@ -284,7 +382,15 @@ switch(state) {
 			}
 				
             // 检查是否在攻击范围内
-            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
+            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
+            var _skip_by_ladder = false;
+            if (instance_number(obj_ladder) > 0) {
+                var _this_plant_id = id;
+                with (obj_ladder) {
+                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
+                }
+            }
+            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
                     var tar_type = ds_list_find_value(global.eat_order, i);
