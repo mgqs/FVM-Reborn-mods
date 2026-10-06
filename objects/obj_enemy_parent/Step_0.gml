@@ -94,20 +94,24 @@ timer++;
 
 // ===== 梯子适用判定 =====
 // 名单里的老鼠「无视梯子」：不爬上梯子，也不会被梯子跳过啃咬（照常啃咬/碾压植物）
+// 注意：有的对象没设 mouse_id（如跳跳鼠），必须额外按 object_index 判断，否则会漏
 //   - engineering_vehicle_mouse：工程车鼠，应直接碾压卡牌
 //   - garbage_track_mouse：垃圾车鼠，碾压碰到的卡片
 //   - landmine_vehicle_mouse：地雷车鼠，碾压型车辆
 //   - snail_mouse：蜗牛鼠，碾压碰到的卡片
 //   - mole：鼹鼠，从卡左侧攻击，不受右侧梯子影响，应正常啃咬
-//   - kangaroo：跳跳鼠，自己会跳过卡片
-var _no_ladder_ids = ["engineering_vehicle_mouse", "garbage_track_mouse", "landmine_vehicle_mouse", "snail_mouse", "mole", "kangaroo"];
-var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1);
+//   - obj_kangaroo / obj_infected_kangaroo：跳跳鼠系列（未设 mouse_id，自己会跳过卡片）
+var _no_ladder_ids = ["engineering_vehicle_mouse", "garbage_track_mouse", "landmine_vehicle_mouse", "snail_mouse", "mole"];
+var _no_ladder_objs = [obj_kangaroo, obj_infected_kangaroo];
+var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1
+                       && array_get_index(_no_ladder_objs, object_index) == -1);
 
 // ================= 上梯越过植物（梯子功能）=================
 // 说明：
 //   - climb_stage 0 = 未越障
 //   - 越障期间把 state 设为 IDLE（IDLE 不做普通移动），由本块接管位移
-//   - 越障 = 沿本行水平向左移动到落点（y 不变，不升到上一行，避免被上面那行的卡片打到）
+//   - 越障 = 沿本行水平向左移动到落点，同时叠一条小弧线（climb_arc_h = 40px）
+//     弧线高度远小于一格(116px)，grid_row 不会变 → 不会被上面那行的卡片打到
 //   - 越过恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
 if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_use_ladder) {
 	// 检测前方是否有「挂着梯子的植物」
@@ -141,9 +145,12 @@ if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_us
 	}
 
 	if (_climb_ladder_plant != noone) {
-		// 落点 = 植物左侧相邻格的右边界（沿本行直接过去，见下方水平位移）
+		// 落点 = 植物左侧相邻格的右边界
 		var _host_center_x = _climb_ladder_plant.x;
 		climb_end_x = _host_center_x - global.grid_cell_size_x * 0.5;
+		// 记录本行基准 y 与总水平距离（供下面的弧线用）
+		climb_base_y = y;
+		climb_total_dist = max(1, abs(climb_end_x - x));
 
 		target_plant = noone;
 		state = ENEMY_STATE.IDLE;
@@ -152,18 +159,26 @@ if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_us
 }
 
 if (climb_stage == 1) {
-	// 直接越过：沿本行水平向左移动到落点
-	//   参照跳跳鼠（obj_kangaroo）的越障写法 —— 只改 x，y 保持不变。
-	//   这样不会升到上一行，避免被上面那行的卡片攻击打到。
+	// 越过：沿本行水平向左推进到落点，并叠一条小弧线（爬升感）
+	//   弧线最高 climb_arc_h(40px)，远小于一格(116px)，grid_row 不会变
+	//   → 不会被上面那行的卡片攻击打到。
 	var _dx = climb_end_x - x;
 	if (abs(_dx) <= climb_speed) {
 		x = climb_end_x;
+		y = climb_base_y;             // 弧线收尾，落回本行
 		climb_stage = 0;
 		state = ENEMY_STATE.NORMAL;   // 恢复前进
 		timer = 0;
 	}
 	else {
 		x += sign(_dx) * climb_speed;
+		// 进度 t：0=起点 1=落点；弧高 = sin(t*pi)，两端为 0、中间最高
+		var _t = 1 - (abs(climb_end_x - x) / climb_total_dist);
+		_t = clamp(_t, 0, 1);
+		// 安全上限：上抬不得越过本行上边缘（越过了 grid_row 会变，就被上面那行卡片打到）
+		var _row_top = global.grid_offset_y + grid_row * global.grid_cell_size_y;
+		var _max_up = max(0, (climb_base_y - _row_top) - 4);
+		y = climb_base_y - sin(_t * pi) * min(climb_arc_h, _max_up);
 	}
 }
 // ==========================================================
