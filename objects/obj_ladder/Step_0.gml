@@ -1,8 +1,8 @@
 /// obj_ladder Step
 /// 每帧逻辑：
-///   1) 反查自己脚下的宿主植物（只在还没绑定时查一次）
-///   2) 宿主没了（被铲/被吃/被炸）→ 自己消失
-///   3) 贴合宿主，跟着植物走 
+///   1) 反查自己下面的宿主植物（只在还没绑定时查一次）
+///   2) 绑定的宿主被铲/被吃/被炸 → 梯子自己消失
+/// 注意：位置完全沿用放梯瞬间的坐标（原版表现），不做任何贴合移动。
 if (global.is_paused) exit;
 
 // ---- 1) 首次反查宿主 ----
@@ -27,12 +27,10 @@ if (!instance_exists(host_plant)) {
 	host_plant = _best;
 }
 
-// ---- 2) 宿主没了就自毁 ----
-if (host_plant == noone || !instance_exists(host_plant) || host_plant.hp <= 0) {
-	instance_destroy();
-	exit;
+// ---- 2) 已绑定的宿主没了就自毁（从未绑定成功的梯子不会自毁）----
+if (host_plant != noone) {
+	if (!instance_exists(host_plant) || host_plant.hp <= 0) {
+		instance_destroy();
+		exit;
+	}
 }
-
-// ---- 3) 贴合宿主 ----
-x = host_plant.x + offset_x;
-y = host_plant.y + offset_y;
