@@ -3089,6 +3089,46 @@ mod_register_plant_lite("xuanfengniu", [
         {name:"深度融合·煮蛋器", shape:2, description:"附加毒伤", hp:array_create(19,250), cost:array_create(19,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990,990,990], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)},
         {name:"灵魂融合·煮蛋器", shape:3, description:"三行各发射两枚煮蛋", hp:array_create(19,250), cost:array_create(19,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440,1440,1440], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)}
     ]);
+
+    // ===== 爆辣河豚 =====
+    // 机制：每次放置计数 +1；次数为 3/3/2 的倍数（0/1/2转）时对全屏老鼠造成 900 灰烬伤害，
+    //       否则随机清除场上 10/5/5 个「有卡格子」上的卡（每格计 1 点损卡）。
+    // 数值：耗能 325 / 体力 200 / 攻击 900 / 冷却按星级递减（来源：爆辣河豚数据图，单位=秒*60）
+    mod_register_plant_lite("pufferfish", [
+        {
+            name: "爆辣河豚",
+            shape: 0,
+            description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        },
+        {
+            name: "朝天椒河豚",
+            shape: 1,
+            description: "朝天椒河豚：毒素效果降低",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        },
+        {
+            name: "青芥末河豚",
+            shape: 2,
+            description: "青芥末河豚：中毒几率降低",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        }
+    ], false);
 }
 
 
