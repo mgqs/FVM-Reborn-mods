@@ -254,6 +254,9 @@ function enemy_subwave_summon(){
     }
 
     var rows_used = array_create(global.grid_rows, false);
+    // Tower wave data specifies the exact lane.  Its crab/cat markers are
+    // lane decorations and must not reject a configured enemy row.
+    var enforce_enemy_row_feature = global.map_id != "tower_cake";
 
     var spawn_multiplier = 1
     if global.difficulty == 5{
@@ -277,8 +280,8 @@ function enemy_subwave_summon(){
                 var row_index = target_row - 1;
                 var row_type = global.row_feature[row_index];
 
-                if ((enemy_feature == "land" && row_type != "land") ||
-                    (enemy_feature == "water" && row_type != "water")) {
+                if (enforce_enemy_row_feature && ((enemy_feature == "land" && row_type != "land") ||
+                    (enemy_feature == "water" && row_type != "water"))) {
 
                     target_row = 0;
                 } else {
@@ -295,9 +298,9 @@ function enemy_subwave_summon(){
                     var row_type = global.row_feature[r];
 
                     var row_matches = false;
-                    if (enemy_feature == "land" && row_type == "land") {
+                    if (!enforce_enemy_row_feature || (enemy_feature == "land" && row_type == "land")) {
                         row_matches = true;
-                    } else if (enemy_feature == "water" && row_type == "water") {
+                    } else if (enforce_enemy_row_feature && enemy_feature == "water" && row_type == "water") {
                         row_matches = true;
                     }
 
@@ -316,9 +319,9 @@ function enemy_subwave_summon(){
                         var row_type = global.row_feature[r];
 
                         var row_matches = false;
-                        if (enemy_feature == "land" && row_type == "land") {
+                        if (!enforce_enemy_row_feature || (enemy_feature == "land" && row_type == "land")) {
                             row_matches = true;
-                        } else if (enemy_feature == "water" && row_type == "water") {
+                        } else if (enforce_enemy_row_feature && enemy_feature == "water" && row_type == "water") {
                             row_matches = true;
                         }
 

@@ -220,7 +220,9 @@ else if (state == "moving") {
                             var vis_grid_pos = get_grid_position_from_world(plant.x, plant.y);
                             var _ptype = plant.plant_type
                             if (plant.object_index == obj_cotton_candy || plant.object_index == obj_lingrong_god) _ptype = "lilypad"
-                        plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, _ptype) + (plant.object_index == obj_lingrong_god ? 2 : 0);
+                        // 海洋女神三转及以上是悬浮卡，始终保持在同格卡片前景。
+                        var _floating_depth = (plant.object_index == obj_haiyang_god && plant.shape >= 1) ? -400 : 0;
+                        plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, _ptype) + _floating_depth + (plant.object_index == obj_lingrong_god ? 2 : 0);
                         }
                         
                         if (variable_instance_exists(plant, "banding_star_obj") && instance_exists(plant.banding_star_obj)) {
@@ -321,7 +323,9 @@ with (obj_card_parent) {
 			if(card_equipped_attire_id(plant_id) != "bubble_maltose")_type = "coffee"
 			else _type = "lilypad"
 		}
-        depth = calculate_plant_depth(grid_col, grid_row, _type)
+        // 平台统一刷新会覆盖卡片自身 Step 中的深度；悬浮形态需要保留前景层。
+        var _floating_depth = (object_index == obj_haiyang_god && shape >= 1) ? -400 : 0;
+        depth = calculate_plant_depth(grid_col, grid_row, _type) + _floating_depth
     }
 }
 

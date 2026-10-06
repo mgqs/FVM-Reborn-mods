@@ -251,9 +251,9 @@ switch state{
 			image_index = floor(timer/5) mod 24 + 24
 		}
 		if timer == 14 * 5{
-				// 变异版坐压：4x4范围摧毁（以目标位置为中心）
-				var _center_row = target_pos.row
-				var _center_col = target_pos.col
+				// 变异版坐压：4x4范围摧毁（以自己为中心）
+				var _center_row = grid_row
+				var _center_col = grid_col
 				var _cards_to_destroy = []
 				with obj_card_parent{
 					if grid_row >= _center_row - 1 && grid_row <= _center_row + 2

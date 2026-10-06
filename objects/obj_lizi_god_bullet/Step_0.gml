@@ -8,6 +8,10 @@ else
     image_speed = 1;
 }
 
+// 飞行中仅循环播放 0-7 帧
+if (image_index >= 8)
+    image_index = image_index - 8;
+
 x += move_speed;
 y -= cvspeed;
 cvspeed -= cgravity;

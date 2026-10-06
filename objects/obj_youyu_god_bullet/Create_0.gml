@@ -1,3 +1,4 @@
+event_inherited();
 damage = 0;
 move_speed = 8;
 move_x = move_speed;
@@ -14,7 +15,6 @@ hitted_enemy = ds_list_create();
 hittable_types = ["normal", "air", "invisible"];
 row = 0;
 burnt = 0;
-can_fire_buff = false;
 brazier_list = ds_list_create();
 image_xscale = 1.6;
 image_yscale = 1.6;

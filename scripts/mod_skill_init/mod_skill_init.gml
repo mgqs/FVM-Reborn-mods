@@ -7,6 +7,7 @@ function mod_skill_init()
     register_card_skill("berry_dessert", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
     register_card_skill("grilled_lizard_pult", "cycle", [132, 129, 126, 122.99999999999999, 120, 117, 114, 111, 105]);
     register_card_skill("zhurong", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
+    register_card_skill("lizi_god", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 66]);
     register_card_skill("firework_dragon_real", "first_produce_delay", [480, 450, 420, 390, 360, 300, 240, 180, 60]);
     register_card_skill("brahma", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
     register_card_skill("baibianshe", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);

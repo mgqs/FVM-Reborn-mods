@@ -6,6 +6,14 @@ if (global.is_paused)
 
 image_speed = 1;
 
+// 燃烧后切换为火焰子弹精灵（与玉米射手一致，视觉反馈清晰）
+if (burnt >= 1 && sprite_index != spr_fire_bullet)
+{
+    sprite_index = spr_fire_bullet;
+    image_xscale = 1.8;
+    image_yscale = 1.8;
+}
+
 timer++;
 
 if (timer > max_life || x > 2200 || y > 1200 || x < -200 || y < -200)
@@ -37,10 +45,11 @@ if (variable_global_exists("enemy_by_type"))
                 has_hit = true;
 
                 var _dmg = damage;
+                var _is_burnt = burnt;
 
                 with (_e)
                 {
-                    if (other.burnt >= 1)
+                    if (_is_burnt >= 1)
                         audio_play_sound(snd_fire_hit, 0, 0);
                     else
                         audio_play_sound(hit_sound, 0, 0);

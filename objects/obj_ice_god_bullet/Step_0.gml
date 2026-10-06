@@ -11,6 +11,7 @@ if (y >= target_y)
 {
     if (instance_exists(target_instance))
     {
+        hitted_enemy = target_instance;
         with (target_instance)
         {
             audio_play_sound(snd_ice_god, 0, 0);
@@ -22,7 +23,6 @@ if (y >= target_y)
                 ice_timer = 600;
 
             hit_enemy = true;
-            hitted_enemy = other.id;
         }
     }
 

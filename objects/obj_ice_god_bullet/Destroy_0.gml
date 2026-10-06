@@ -4,7 +4,7 @@ if (shape >= 1)
     var _y = y;
     var _row_range = 1;
     var _range = 200;
-    var splash_ratio = 0.45;
+    var splash_ratio = 0.40;
     
     with (obj_enemy_parent)
     {
