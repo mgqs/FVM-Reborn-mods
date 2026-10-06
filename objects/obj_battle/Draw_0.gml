@@ -26,7 +26,7 @@ if global.level_id == "test_level"{
 	draw_text(0, 150, "下次结算: " + string(_secs) + "秒")
 	draw_set_color(c_white)
 	draw_text(0, 175, "F2：打开测试老鼠选择");
-	draw_text(0, 200, "F4：在鼠标位置生成修理鼠");
+	draw_text(0, 200, "F4：打开原本老鼠选择");
 }
 
 
