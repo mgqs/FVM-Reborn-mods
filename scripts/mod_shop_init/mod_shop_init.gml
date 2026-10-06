@@ -534,4 +534,13 @@ function mod_shop_init()
         display_name: "星火红柳烤串机"
     });
 
+    // 爆辣河豚（基础形态上架；一转/二转后续另行上架）
+    register_goods("pufferfish",
+    {
+        type: "card",
+        cost: "6666",
+        unlock_item_id: "pufferfish",
+        description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片",
+        display_name: "爆辣河豚"
+    });
 }
