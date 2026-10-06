@@ -44,6 +44,7 @@ global.enemy_col_n = array_create(global.grid_cols, 0);
 global.test_mouse_picker_open = false;
 global.test_mouse_picker_id = "";
 global.test_mouse_picker_block_place = false;
+global.test_place_original = false;   // true=F4模式放原版敌人本体 / false=F2模式放测试鼠
 global.test_info_island_mode = (global.level_id == "test_level");
 
 chomp_sound_list = ds_list_create()
