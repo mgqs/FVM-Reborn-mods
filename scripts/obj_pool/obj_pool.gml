@@ -109,6 +109,7 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         if (instance_exists(_inst)) break;
         _inst = noone;
     }
+
     if (_inst == noone) {
         _st.create++;
         return instance_create_depth_origfunc(_x, _y, _depth, _obj);
