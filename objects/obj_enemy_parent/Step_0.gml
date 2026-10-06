@@ -92,12 +92,24 @@ if is_frozen || is_scare || is_stun{
 
 timer++;
 
+// ===== 梯子适用判定 =====
+// 名单里的老鼠「无视梯子」：不爬上梯子，也不会被梯子跳过啃咬（照常啃咬/碾压植物）
+//   - engineering_vehicle_mouse：工程车鼠，应直接碾压卡牌
+//   - garbage_track_mouse：垃圾车鼠，碾压碰到的卡片
+//   - landmine_vehicle_mouse：地雷车鼠，碾压型车辆
+//   - snail_mouse：蜗牛鼠，碾压碰到的卡片
+//   - mole：鼹鼠，从卡左侧攻击，不受右侧梯子影响，应正常啃咬
+//   - kangaroo：跳跳鼠，自己会跳过卡片
+var _no_ladder_ids = ["engineering_vehicle_mouse", "garbage_track_mouse", "landmine_vehicle_mouse", "snail_mouse", "mole", "kangaroo"];
+var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1);
+
 // ================= 上梯越过植物（梯子功能）=================
 // 说明：
-//   - climb_stage 0 = 未爬梯
-//   - 爬梯期间把 state 设为 IDLE（IDLE 不做普通移动），由本块接管位移
-//   - 爬完恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
-if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && !giant_type) {
+//   - climb_stage 0 = 未越障
+//   - 越障期间把 state 设为 IDLE（IDLE 不做普通移动），由本块接管位移
+//   - 越障 = 沿本行水平向左移动到落点（y 不变，不升到上一行，避免被上面那行的卡片打到）
+//   - 越过恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
+if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_use_ladder) {
 	// 检测前方是否有「挂着梯子的植物」
 	// 先把自身坐标/行号/实例 id 存到局部变量，避免多层 with 的 other 歧义
 	var _self_x = x;
@@ -129,17 +141,9 @@ if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && !giant_
 	}
 
 	if (_climb_ladder_plant != noone) {
-		// 计算爬梯三点：
-		//   起点 = 当前脚下
-		//   梯顶 = 植物上方（斜左上）
-		//   落点 = 下一格（植物左侧相邻格）右边界（斜左下）
+		// 落点 = 植物左侧相邻格的右边界（沿本行直接过去，见下方水平位移）
 		var _host_center_x = _climb_ladder_plant.x;
-		var _host_center_y = _climb_ladder_plant.y;
-		climb_ground_y = y;
-		climb_mid_x    = _host_center_x;                             // 梯顶在植物正上方
-		climb_mid_y    = _host_center_y - global.grid_cell_size_y * 0.9;
-		climb_end_x    = _host_center_x - global.grid_cell_size_x;  // 退到植物左侧相邻格
-		climb_end_x    = climb_end_x + global.grid_cell_size_x * 0.5; // 该格的右边界
+		climb_end_x = _host_center_x - global.grid_cell_size_x * 0.5;
 
 		target_plant = noone;
 		state = ENEMY_STATE.IDLE;
@@ -148,36 +152,18 @@ if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && !giant_
 }
 
 if (climb_stage == 1) {
-	// 斜上：朝梯顶移动
-	var _dx = climb_mid_x - x;
-	var _dy = climb_mid_y - y;
-	var _dist = point_distance(x, y, climb_mid_x, climb_mid_y);
-	if (_dist <= climb_speed) {
-		x = climb_mid_x;
-		y = climb_mid_y;
-		climb_stage = 2;
-	}
-	else {
-		x += (_dx / _dist) * climb_speed;
-		y += (_dy / _dist) * climb_speed;
-	}
-}
-
-if (climb_stage == 2) {
-	// 斜下：朝下一格右边界落点移动
+	// 直接越过：沿本行水平向左移动到落点
+	//   参照跳跳鼠（obj_kangaroo）的越障写法 —— 只改 x，y 保持不变。
+	//   这样不会升到上一行，避免被上面那行的卡片攻击打到。
 	var _dx = climb_end_x - x;
-	var _dy = climb_ground_y - y;
-	var _dist = point_distance(x, y, climb_end_x, climb_ground_y);
-	if (_dist <= climb_speed) {
+	if (abs(_dx) <= climb_speed) {
 		x = climb_end_x;
-		y = climb_ground_y;
 		climb_stage = 0;
 		state = ENEMY_STATE.NORMAL;   // 恢复前进
 		timer = 0;
 	}
 	else {
-		x += (_dx / _dist) * climb_speed;
-		y += (_dy / _dist) * climb_speed;
+		x += sign(_dx) * climb_speed;
 	}
 }
 // ==========================================================
@@ -269,7 +255,7 @@ switch(state) {
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;
-            if (instance_number(obj_ladder) > 0) {
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
                 var _this_plant_id = id;
                 with (obj_ladder) {
                     if (host_plant == _this_plant_id) _skip_by_ladder = true;
@@ -384,7 +370,7 @@ switch(state) {
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;
-            if (instance_number(obj_ladder) > 0) {
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
                 var _this_plant_id = id;
                 with (obj_ladder) {
                     if (host_plant == _this_plant_id) _skip_by_ladder = true;

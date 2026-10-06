@@ -1,13 +1,25 @@
 /// obj_ladder Step
 /// 每帧逻辑：
-///   1) 反查自己下面的宿主植物（只在还没绑定时查一次）
-///   2) 绑定的宿主被铲/被吃/被炸 → 梯子自己消失
+///   1) 已绑定的宿主被铲/被吃/被炸 → 梯子立刻自毁（必须先判，避免下面反查把引用冲掉）
+///   2) 还没绑定时才反查宿主；若长时间找不到宿主（无效梯子）也自毁
 /// 注意：位置完全沿用放梯瞬间的坐标（原版表现），不做任何贴合移动。
 if (global.is_paused) exit;
 
-// ---- 1) 首次反查宿主 ----
-if (!instance_exists(host_plant)) {
-	host_plant = noone;
+// ---- 1) 已绑定的宿主没了就立刻自毁 ----
+if (host_plant != noone) {
+	if (!instance_exists(host_plant) || host_plant.hp <= 0) {
+		instance_destroy();
+		exit;
+	}
+}
+
+// ---- 2) 还没绑定时才反查宿主（只查一次；太久找不到说明是无效梯子）----
+if (host_plant == noone) {
+	host_search_timer++;
+	if (host_search_timer >= 120) {
+		instance_destroy();
+		exit;
+	}
 	var _gp = get_grid_position_from_world(x, y);
 	var _best = noone;
 	var _best_dist = 999999;
@@ -25,12 +37,4 @@ if (!instance_exists(host_plant)) {
 		}
 	}
 	host_plant = _best;
-}
-
-// ---- 2) 已绑定的宿主没了就自毁（从未绑定成功的梯子不会自毁）----
-if (host_plant != noone) {
-	if (!instance_exists(host_plant) || host_plant.hp <= 0) {
-		instance_destroy();
-		exit;
-	}
 }

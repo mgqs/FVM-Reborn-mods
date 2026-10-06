@@ -74,9 +74,6 @@ birth_x = x;
 birth_y = y;
 
 // ===== 上梯越过植物（梯子功能）=====
-climb_stage = 0        // 0=未爬梯 1=斜上爬升 2=斜下落地
-climb_ground_y = 0     // 原地面 y
-climb_mid_x = 0        // 梯顶 x（转折点）
-climb_mid_y = 0        // 梯顶 y
-climb_end_x = 0        // 落点 x（下一格右边界）
+climb_stage = 0        // 0=未越障 1=沿本行水平越障中
+climb_end_x = 0        // 落点 x（植物左侧相邻格右边界）
 climb_speed = 4        // 每帧移动像素
