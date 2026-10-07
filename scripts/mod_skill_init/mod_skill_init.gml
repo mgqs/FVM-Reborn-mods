@@ -62,5 +62,6 @@ function mod_skill_init()
     register_card_skill("hufa_god", "cycle", [108, 105, 102, 99, 96, 93, 90, 84, 78]);
     register_card_skill("zhanqima", "cycle", [1200, 1260, 1380, 1500, 1620, 1740, 1920, 2100, 2700]);
     register_card_skill("hongliukaochuan", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 60]);
+    register_card_skill("yeziguo", "atk", [1000, 1125, 1250, 1375, 1500, 1625, 1750, 1875, 2000]);
 
 }

@@ -534,7 +534,6 @@ function mod_shop_init()
         display_name: "星火红柳烤串机"
     });
 
-    // 爆辣河豚（基础形态上架；一转/二转后续另行上架）
     register_goods("pufferfish",
     {
         type: "card",
@@ -543,4 +542,8 @@ function mod_shop_init()
         description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片",
         display_name: "爆辣河豚"
     });
+
+    register_goods("yeziguo", { type: "card", cost: "1130", unlock_item_id: "yeziguo", description: "椰子果：跳起碾压前方鼠军", display_name: "椰子果" });
+    register_goods("yeziguo_1", { type: "card", card_id: "yeziguo", card_shape: 1, cost: "260", unlock_item_id: "yeziguo", required_card_shape: 0, description: "浓香椰子果：解锁一转", display_name: "浓香椰子果" });
+    register_goods("yeziguo_2", { type: "card", card_id: "yeziguo", card_shape: 2, cost: "530", unlock_item_id: "yeziguo", required_card_shape: 1, description: "金丝椰子果：解锁二转", display_name: "金丝椰子果" });
 }

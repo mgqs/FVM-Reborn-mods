@@ -2,7 +2,7 @@ function cross_server_shop_init()
 {
     var _cross_server_goods = [
         "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
-        "zhanqima", "zhanqima_1", "zhanqima_2", "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
+        "zhanqima", "zhanqima_1", "zhanqima_2", "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2", "yeziguo", "yeziguo_1", "yeziguo_2", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
         "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem",
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
@@ -15,6 +15,8 @@ function cross_server_shop_init()
         zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "450", shop: "gold"}, zhanqima_2: {cost: "910", shop: "gold"},
         hongliukaochuan: {cost: "1650", shop: "silver"},
         hongliukaochuan_1: {cost: "390", shop: "gold"}, hongliukaochuan_2: {cost: "730", shop: "gold"},
+        yeziguo: {cost: "1130", shop: "silver"},
+        yeziguo_1: {cost: "260", shop: "gold"}, yeziguo_2: {cost: "530", shop: "gold"},
         master_shield: {cost: "900", shop: "silver"}, hades_scythe: {cost: "900", shop: "silver"}, zeus_bolt: {cost: "900", shop: "silver"},
         divine_blessing_gem: {cost: "900", shop: "silver"}, divine_protect_gem: {cost: "900", shop: "silver"}, divine_holy_gem: {cost: "900", shop: "silver"},
         ghost_strike_gem: {cost: "900", shop: "silver"}, ghost_spark_gem: {cost: "900", shop: "silver"}, ghost_pact_gem: {cost: "900", shop: "silver"},

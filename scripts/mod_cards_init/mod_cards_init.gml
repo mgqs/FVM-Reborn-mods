@@ -3090,10 +3090,6 @@ mod_register_plant_lite("xuanfengniu", [
         {name:"灵魂融合·煮蛋器", shape:3, description:"三行各发射两枚煮蛋", hp:array_create(19,250), cost:array_create(19,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440,1440,1440], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)}
     ]);
 
-    // ===== 爆辣河豚 =====
-    // 机制：每次放置计数 +1；次数为 3/3/2 的倍数（0/1/2转）时对全屏老鼠造成 900 灰烬伤害，
-    //       否则随机清除场上 10/5/5 个「有卡格子」上的卡（每格计 1 点损卡）。
-    // 数值：耗能 325 / 体力 200 / 攻击 900 / 冷却按星级递减（来源：爆辣河豚数据图，单位=秒*60）
     mod_register_plant_lite("pufferfish", [
         {
             name: "爆辣河豚",
@@ -3129,6 +3125,40 @@ mod_register_plant_lite("xuanfengniu", [
             cycle: array_create(17, 11)
         }
     ], false);
+
+    mod_register_plant_lite("yeziguo", [
+        {
+            name: "椰子果",
+            shape: 0,
+            description: "椰子果：跳起碾压前方鼠军",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        },
+        {
+            name: "浓香椰子果",
+            shape: 1,
+            description: "浓香椰子果：碾压范围扩大到3*3",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        },
+        {
+            name: "金丝椰子果",
+            shape: 2,
+            description: "金丝椰子果：可连砸3次",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        }
+    ], false);
 }
-
-

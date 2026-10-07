@@ -3023,10 +3023,15 @@ register_card("ronghedan_god", obj_ronghedan_god, [
 {shape:3,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description:"灵魂融合：三行各发射两枚煮蛋",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghedan_god_2}
 ]);
 
-    // ===== 爆辣河豚 =====
     register_card("pufferfish", obj_pufferfish, [
     {shape: 0, sprite: spr_pufferfish, cost: 325, cooldown: 3300, description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish},
     {shape: 1, sprite: spr_pufferfish_1, cost: 325, cooldown: 3300, description: "朝天椒河豚：毒素效果降低", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_1},
     {shape: 2, sprite: spr_pufferfish_2, cost: 325, cooldown: 3300, description: "青芥末河豚：中毒几率降低", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_2}
+    ]);
+
+    register_card("yeziguo", obj_yeziguo, [
+    {shape: 0, sprite: spr_yeziguo, cost: 75, cooldown: 1800, description: "椰子果：跳起碾压前方鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo},
+    {shape: 1, sprite: spr_yeziguo_1, cost: 75, cooldown: 1800, description: "浓香椰子果：碾压范围扩大到3*3", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_1},
+    {shape: 2, sprite: spr_yeziguo_2, cost: 75, cooldown: 1800, description: "金丝椰子果：可连砸3次", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_2}
     ]);
 }

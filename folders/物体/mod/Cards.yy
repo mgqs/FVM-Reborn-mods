@@ -17,7 +17,8 @@
     {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",}
   ],
   "listItems":[
-    {"name":"obj_pufferfish","path":"objects/obj_pufferfish/obj_pufferfish.yy",}
+    {"name":"obj_pufferfish","path":"objects/obj_pufferfish/obj_pufferfish.yy",},
+    {"name":"obj_yeziguo","path":"objects/obj_yeziguo/obj_yeziguo.yy",},
     {"name":"obj_zhanqima","path":"objects/obj_zhanqima/obj_zhanqima.yy",},{"name":"obj_12yinliao","path":"objects/obj_12yinliao/obj_12yinliao.yy",},
     {"name":"obj_aladdin_lamp","path":"objects/obj_aladdin_lamp/obj_aladdin_lamp.yy",},
     {"name":"obj_anranxiaohunfan","path":"objects/obj_anranxiaohunfan/obj_anranxiaohunfan.yy",},

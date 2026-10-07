@@ -24,7 +24,9 @@ cross_server_exchange_ids = [
     "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
     // 红柳烤串机转职卡片（仅跨服黄金商店）
     "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2",
-    "zhanqima", "zhanqima_1", "zhanqima_2"
+    "zhanqima", "zhanqima_1", "zhanqima_2",
+    // 椰子果（0转银牌商店 / 1、2转金牌商店）
+    "yeziguo", "yeziguo_1", "yeziguo_2"
 ]
 
 instance_create_depth(x+800,y-430,depth-1,obj_closeshop_btn)
