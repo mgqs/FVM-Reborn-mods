@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"apple_duck_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/apple_duck_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"apple_duck_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"efe9bb69-d429-4641-8d83-2492adc83023","path":"sprites/spr_apple_duck_mouse/spr_apple_duck_mouse.yy",},
+    {"name":"55fcf07a-8ce6-4abe-9dda-da42aac7b935","path":"sprites/spr_apple_duck_mouse_enter/spr_apple_duck_mouse_enter.yy",},
+    {"name":"81cb4ff3-c800-4def-abe2-29a15c6a742c","path":"sprites/spr_apple_duck_mouse_enter_helmet/spr_apple_duck_mouse_enter_helmet.yy",},
+    {"name":"2d256726-0b36-40d8-9166-320005bc2fe6","path":"sprites/spr_apple_duck_mouse_helmet/spr_apple_duck_mouse_helmet.yy",},
+    {"name":"88f602ac-00bc-45f5-a81c-65a94a0eeda3","path":"sprites/spr_apple_duck_mouse_land/spr_apple_duck_mouse_land.yy",},
+    {"name":"ffd29e64-00c8-42c8-a48a-e5254c7e85d0","path":"sprites/spr_apple_duck_mouse_land_helmet/spr_apple_duck_mouse_land_helmet.yy",}
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"chocolate_pult",
+  "folderPath":"folders/精灵/Cards/Pult/chocolate_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"chocolate_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"19651486-202c-4388-a192-88f9cb9f1943","path":"sprites/spr_chocolate_pult/spr_chocolate_pult.yy",},
+    {"name":"ec53465f-d50d-4208-a939-a69b6b3ca11c","path":"sprites/spr_chocolate_pult_1/spr_chocolate_pult_1.yy",},
+    {"name":"3d6d3724-440a-4db8-b8ea-309771f130ed","path":"sprites/spr_chocolate_pult_2/spr_chocolate_pult_2.yy",}
+  ],
+}

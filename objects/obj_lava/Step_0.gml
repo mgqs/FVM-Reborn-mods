@@ -8,7 +8,7 @@ var grid_pos = get_world_position_from_grid(col,row)
 timer++
 
 with obj_card_parent{
-	if plant_id == "cotton_candy" && grid_row == other.row && grid_col == other.col{
+	if (plant_id == "cotton_candy" || plant_id == "lingrong_god") && grid_row == other.row && grid_col == other.col{
 		on_lava = true
 	}
 }
@@ -42,7 +42,7 @@ if timer mod 60 == 0{
 	for(var i = 0 ; i < 5 ; i++){
 		if plant_order_list[i] != noone{
 			with plant_order_list[i]{
-				if (plant_type != "coffee" && !invincible && plant_id != "cotton_candy" && !(plant_id == "player" && hp <= 10)){
+				if (plant_type != "coffee" && !invincible && plant_id != "cotton_candy" && plant_id != "lingrong_god" && !(plant_id == "player" && hp <= 10)){
 					hp -= 10
 					event_user(2)
 				}

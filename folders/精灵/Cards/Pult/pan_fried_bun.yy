@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"pan_fried_bun",
+  "folderPath":"folders/精灵/Cards/Pult/pan_fried_bun.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pan_fried_bun",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d0c6f7f8-5606-4f1d-96ae-0c26d5ef1882","path":"sprites/spr_pan_fried_bun/spr_pan_fried_bun.yy",},
+    {"name":"9dc279b1-021c-4e69-9741-65c04b8dfe67","path":"sprites/spr_pan_fried_bun_1/spr_pan_fried_bun_1.yy",},
+    {"name":"5a3e9d79-69c6-4e50-8beb-34e7f1ede03e","path":"sprites/spr_pan_fried_bun_2/spr_pan_fried_bun_2.yy",}
+  ],
+}

@@ -1,9 +1,11 @@
 damage = 0;
 move_speed = 0;
 row = 0;
-damage_type = "normal";
+damage_type = "pierce";
 target_type = "normal";
-image_xscale = 1.6;
-image_yscale = 1.6;
 shape = 0;
 hitted_enemy = -4;
+image_xscale = 1.6;
+image_yscale = 1.6;
+hittable_types = get_hittable_enemy_types(target_type);
+hit_tick = 0;

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"Maps",
+  "folderPath":"folders/脚本/Maps.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Maps",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"levels_init","path":"scripts/levels_init/levels_init.yy",},
+    {"name":"level_registry","path":"scripts/level_registry/level_registry.yy",},
+    {"name":"maps_init","path":"scripts/maps_init/maps_init.yy",},
+    {"name":"map_registry","path":"scripts/map_registry/map_registry.yy",}
+  ],
+}

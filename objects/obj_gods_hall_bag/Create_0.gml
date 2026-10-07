@@ -6,3 +6,4 @@ parent_gui = -4;
 anim_timer = 0;
 is_hovered = false;
 list_num = 0;
+skipped = false;

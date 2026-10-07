@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"timer_text",
+  "folderPath":"folders/精灵/Battle/timer_text.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"timer_text",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"b15044ed-7990-499c-88f9-1a35494f757d","path":"sprites/spr_timer_number/spr_timer_number.yy",},
+    {"name":"c15a19ba-2485-40cb-8a85-9f3d6f573226","path":"sprites/spr_timer_number_urgent/spr_timer_number_urgent.yy",},
+    {"name":"899d97b1-cfd1-461b-b58f-9108aee94254","path":"sprites/spr_timer_split/spr_timer_split.yy",}
+  ],
+}

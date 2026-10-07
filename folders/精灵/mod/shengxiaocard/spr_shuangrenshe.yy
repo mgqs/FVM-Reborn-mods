@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_shuangrenshe",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_shuangrenshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_shuangrenshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"4191621c-3e59-47b5-bad2-f1f60c0487fa","path":"sprites/spr_shuangrenshe/spr_shuangrenshe.yy",},
+    {"name":"e89546ca-5e69-49b9-8c6e-4f5e4342bd28","path":"sprites/spr_shuangrenshe_1/spr_shuangrenshe_1.yy",},
+    {"name":"c75e1b6b-9bc9-4c5e-86db-94276a92af72","path":"sprites/spr_shuangrenshe_2/spr_shuangrenshe_2.yy",},
+    {"name":"94a2ebdb-126b-4fef-8553-f3ac18f73111","path":"sprites/spr_shuangrenshe_bullet/spr_shuangrenshe_bullet.yy",},
+    {"name":"ab41f802-ae50-4cb8-a85e-62e3ed223b9f","path":"sprites/spr_shuangrenshe_bullet_1/spr_shuangrenshe_bullet_1.yy",},
+    {"name":"87b508b1-0904-4e22-81a4-3c53a3f04b5e","path":"sprites/spr_shuangrenshe_bullet_2/spr_shuangrenshe_bullet_2.yy",},
+    {"name":"cc21e82e-1b3e-46c6-9ed7-4b39710ee9b2","path":"sprites/spr_shuangrenshe_zhansha/spr_shuangrenshe_zhansha.yy",}
+  ],
+}

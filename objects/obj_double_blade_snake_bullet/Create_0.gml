@@ -1,0 +1,13 @@
+damage = 0;
+row = 0;
+move_speed = 8;
+damage_type = "pierce";
+target_type = "pierce";
+image_speed = 0;
+anim_timer = 0;
+hitted_enemy = ds_list_create();
+hittable_types = get_hittable_enemy_types(target_type);
+execute_threshold = 0.15;
+elite_multiplier = 5;
+image_xscale = 1.2;
+image_yscale = 1.2;

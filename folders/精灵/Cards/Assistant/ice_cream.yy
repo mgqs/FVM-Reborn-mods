@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"ice_cream",
+  "folderPath":"folders/精灵/Cards/Assistant/ice_cream.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ice_cream",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ed84342d-3b33-4208-bed4-ff8888b15fe4","path":"sprites/spr_ice_cream/spr_ice_cream.yy",},
+    {"name":"cc1879ca-294d-4d02-88b5-1487bb890c45","path":"sprites/spr_ice_cream_1/spr_ice_cream_1.yy",},
+    {"name":"c252e2cb-3d24-4da7-9109-a882898ffcf6","path":"sprites/spr_ice_cream_2/spr_ice_cream_2.yy",}
+  ],
+}

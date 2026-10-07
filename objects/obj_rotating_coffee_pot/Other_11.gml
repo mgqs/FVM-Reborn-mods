@@ -9,8 +9,9 @@ var _x = x;
 		
 			if (hp > 0 && point_distance(x, y, _x, _y) < _range && grid_row >= other.grid_row-other.range&&grid_row <= other.grid_row+other.range&&can_hit(other.target_type,target_type)) {
 		        
-		            hp -= other.atk;
-					event_user(0)
+		            damage_amount = other.atk;
+				damage_type = "true";
+				event_user(0)
 		            audio_play_sound(snd_hit1,0,0)
 		    }
 		

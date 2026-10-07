@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Colours",
+  "folderPath":"folders/Scribble/Colours.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Colours",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"scribble_color_get","path":"scripts/scribble_color_get/scribble_color_get.yy",},
+    {"name":"scribble_color_set","path":"scripts/scribble_color_set/scribble_color_set.yy",}
+  ],
+}

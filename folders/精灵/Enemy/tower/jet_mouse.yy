@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"jet_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/jet_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"jet_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a268339e-2f74-4e66-bc2b-2e22c80b2853","path":"sprites/spr_jet_mouse/spr_jet_mouse.yy",},
+    {"name":"5abc6ca4-4505-4760-b8cf-d7cb009dcba1","path":"sprites/spr_jet_mouse_drop/spr_jet_mouse_drop.yy",},
+    {"name":"2b01c992-8b9a-4855-b8cb-1e092ca1af2e","path":"sprites/spr_jet_mouse_dropped/spr_jet_mouse_dropped.yy",}
+  ],
+}

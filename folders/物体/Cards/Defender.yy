@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Defender",
+  "folderPath":"folders/物体/Cards/Defender.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Defender",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_chocolate_bread","path":"objects/obj_chocolate_bread/obj_chocolate_bread.yy",},
+    {"name":"obj_horseshoe_crab_bread","path":"objects/obj_horseshoe_crab_bread/obj_horseshoe_crab_bread.yy",},
+    {"name":"obj_melon_shield","path":"objects/obj_melon_shield/obj_melon_shield.yy",},
+    {"name":"obj_melon_shield_inner","path":"objects/obj_melon_shield_inner/obj_melon_shield_inner.yy",},
+    {"name":"obj_pineapple_explosive_bread","path":"objects/obj_pineapple_explosive_bread/obj_pineapple_explosive_bread.yy",},
+    {"name":"obj_pineapple_explosive_bread_explosion","path":"objects/obj_pineapple_explosive_bread_explosion/obj_pineapple_explosive_bread_explosion.yy",},
+    {"name":"obj_toast_bread","path":"objects/obj_toast_bread/obj_toast_bread.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"spices_central_isle_platform",
+  "folderPath":"folders/精灵/Map Object/platform/spices_central_isle_platform.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spices_central_isle_platform",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ddc4e8c6-a634-4835-80d6-7a818fea00a3","path":"sprites/spr_spices_central_isle_platform_1/spr_spices_central_isle_platform_1.yy",},
+    {"name":"7c575f95-d28d-464f-9f08-f0e5aa6ccd8c","path":"sprites/spr_spices_central_isle_platform_2/spr_spices_central_isle_platform_2.yy",},
+    {"name":"0a13751f-7f3e-4168-8ebd-478491c4a0b8","path":"sprites/spr_spices_central_isle_platform_3/spr_spices_central_isle_platform_3.yy",},
+    {"name":"32e23c97-c36f-42ff-8f7c-75ce73545006","path":"sprites/spr_spices_central_isle_platform_4/spr_spices_central_isle_platform_4.yy",}
+  ],
+}

@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Button",
+  "folderPath":"folders/精灵/Button.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Button",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"26385a93-2ad3-434b-89e9-16cc7bc3c6e8","path":"sprites/spr_battlestart_button/spr_battlestart_button.yy",},
+    {"name":"3ef83154-02f4-4f7c-b794-fe0c6c2a5ce0","path":"sprites/spr_battlestart_text/spr_battlestart_text.yy",},
+    {"name":"74c184bc-085d-47d1-ba7f-a97c1cc8a18e","path":"sprites/spr_button_shader/spr_button_shader.yy",},
+    {"name":"7be6e454-7753-4ad3-accb-3b32b754eac1","path":"sprites/spr_button_shader_2/spr_button_shader_2.yy",},
+    {"name":"62e7ad59-0355-4b40-aac8-beef59f534ff","path":"sprites/spr_common_button/spr_common_button.yy",},
+    {"name":"f3d1e4cc-649e-4ad4-874e-fd840b67155f","path":"sprites/spr_levelselect_button/spr_levelselect_button.yy",},
+    {"name":"dc79afe9-2598-4154-86a0-afbb0a75e30e","path":"sprites/spr_levelselect_button_floating/spr_levelselect_button_floating.yy",},
+    {"name":"99700088-7aba-42cc-a15c-5d7db1477187","path":"sprites/spr_levelselect_button_ruins/spr_levelselect_button_ruins.yy",},
+    {"name":"f63ba556-0ff1-4d27-b272-77a447d51f4b","path":"sprites/spr_levelselect_button_undersea/spr_levelselect_button_undersea.yy",},
+    {"name":"493fd18d-0b86-400b-8b79-cd382f716f80","path":"sprites/spr_levelselect_button_volcanic/spr_levelselect_button_volcanic.yy",},
+    {"name":"b5c1b9b7-d7ee-477a-bfaa-ffe4e10050e8","path":"sprites/spr_startgame_button/spr_startgame_button.yy",},
+    {"name":"a1b2c3d4-5678-4901-abcd-ef0123456789","path":"sprites/spr_test_level_button/spr_test_level_button.yy",}
+  ],
+}

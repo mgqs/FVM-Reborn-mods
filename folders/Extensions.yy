@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Extensions",
+  "folderPath":"folders/Extensions.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Extensions",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"TextureEncode","path":"extensions/TextureEncode/TextureEncode.yy",}
+  ],
+}

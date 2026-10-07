@@ -1,4 +1,4 @@
-if target_type == "normal" && row == other.row{
+if target_type == "normal" && row == other.row && precise_bbox_collision(id, other){
 	if burnt == 0{
 		instance_create_depth(x,y,depth,obj_icelongbao_bullet_effect)
 	}

@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"mario_mouse",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/mario_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mario_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1bea2cbd-f3dd-44cf-b319-54160163c629","path":"sprites/spr_mario_cave_land/spr_mario_cave_land.yy",},
+    {"name":"7eb3e990-deac-4caf-997c-151b1b552b16","path":"sprites/spr_mario_cave_water/spr_mario_cave_water.yy",},
+    {"name":"b7b9d3c7-f07a-4482-93dc-fa7ca73f34be","path":"sprites/spr_mario_mouse_appear/spr_mario_mouse_appear.yy",},
+    {"name":"1d6175f6-8501-46f8-b073-ed4151fdae37","path":"sprites/spr_mario_mouse_death/spr_mario_mouse_death.yy",},
+    {"name":"71416431-3726-485e-b8f3-bfbf1b3ecf10","path":"sprites/spr_mario_mouse_dig_down/spr_mario_mouse_dig_down.yy",},
+    {"name":"d55fffee-901a-49af-b042-7b2bfc717375","path":"sprites/spr_mario_mouse_idle/spr_mario_mouse_idle.yy",},
+    {"name":"da207125-3b3f-414f-9e5c-da77bade70d3","path":"sprites/spr_mario_mouse_skill_1/spr_mario_mouse_skill_1.yy",},
+    {"name":"4ed66b44-02df-47d4-992f-ddffc193854a","path":"sprites/spr_mario_mouse_skill_2/spr_mario_mouse_skill_2.yy",},
+    {"name":"2960f17c-f594-4a68-8f42-935eaf04ff8a","path":"sprites/spr_mario_pipeline_land/spr_mario_pipeline_land.yy",},
+    {"name":"39f7cbf0-87ae-45c5-9993-f301c02b684f","path":"sprites/spr_mario_pipeline_water/spr_mario_pipeline_water.yy",}
+  ],
+}

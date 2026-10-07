@@ -1,0 +1,16 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Battle",
+  "folderPath":"folders/物体/Battle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Battle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Menu","path":"folders/物体/Battle/Menu.yy",}
+  ],
+  "listItems":[],
+}

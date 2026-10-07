@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_bullet",
+  "folderPath":"folders/精灵/Enemy/delicious_island/mouse_bullet.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_bullet",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a620adf7-539a-44b0-83a4-eef5290dfeea","path":"sprites/spr_engineer_bullet/spr_engineer_bullet.yy",},
+    {"name":"f7f86be8-a7b2-458a-af92-65bd373345d5","path":"sprites/spr_engineer_bullet_effect/spr_engineer_bullet_effect.yy",},
+    {"name":"0c248e61-a676-4971-a47a-a3765081a929","path":"sprites/spr_hazelnut_bullet/spr_hazelnut_bullet.yy",},
+    {"name":"3df02be1-5f5f-4c8e-bcd3-b08107d7a3a2","path":"sprites/spr_landmine_bullet/spr_landmine_bullet.yy",},
+    {"name":"53d36585-c996-4376-b61b-334f13a252d5","path":"sprites/spr_landmine_bullet_effect/spr_landmine_bullet_effect.yy",}
+  ],
+}

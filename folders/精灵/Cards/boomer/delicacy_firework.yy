@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"delicacy_firework",
+  "folderPath":"folders/精灵/Cards/boomer/delicacy_firework.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"delicacy_firework",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"003fc80b-d03c-4990-81aa-a17dc6241324","path":"sprites/spr_delicacy_firework/spr_delicacy_firework.yy",},
+    {"name":"eb658c1d-c0d4-47f8-b6b4-4bfba0ba0875","path":"sprites/spr_delicacy_firework_1/spr_delicacy_firework_1.yy",},
+    {"name":"51b78683-ba41-4434-81ca-aaca80950408","path":"sprites/spr_delicacy_firework_2/spr_delicacy_firework_2.yy",},
+    {"name":"36c80ebe-0b8f-4d19-91b3-35d2edeceb7d","path":"sprites/spr_delicacy_firework_explode/spr_delicacy_firework_explode.yy",},
+    {"name":"38997f66-5341-4424-a637-860488bde491","path":"sprites/spr_delicacy_firework_explode_1/spr_delicacy_firework_explode_1.yy",},
+    {"name":"084e474f-1b18-4b4a-bc5d-98f77bf9974e","path":"sprites/spr_delicacy_firework_explode_2/spr_delicacy_firework_explode_2.yy",}
+  ],
+}

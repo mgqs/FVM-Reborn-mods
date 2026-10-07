@@ -20,7 +20,7 @@
 		            //effect_create_above(effect_smoke, x, y, 1, c_gray);
 		        } else {
 		            // 直接摧毁非免疫敌人
-					if special_ash{
+					if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash){
 						var inst = instance_create_depth(x,y-20,depth,obj_mouse_ash_death)
 						inst.special_ash = true
 						inst.sprite_index = sprite_index
@@ -39,6 +39,15 @@
 
 	// 播放倭瓜攻击效果
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
+
+	// ===== 炸弹同时清除范围内（同一行）的梯子 =====
+	with (obj_ladder) {
+		if (host_plant != noone && instance_exists(host_plant)) {
+			if (host_plant.grid_row == other.grid_row && (abs(host_plant.x - other.x) <= 100 || (abs(host_plant.x - other.x) <= 200 && other.shape >= 2))) {
+				instance_destroy();
+			}
+		}
+	}
 
 	// 播放攻击声音
 	 audio_play_sound(snd_bottle_explode, 0, false);

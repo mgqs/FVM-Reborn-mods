@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"angelababy",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/angelababy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"angelababy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_angelababy","path":"objects/obj_angelababy/obj_angelababy.yy",},
+    {"name":"obj_angelababy_diamond","path":"objects/obj_angelababy_diamond/obj_angelababy_diamond.yy",},
+    {"name":"obj_angelababy_star","path":"objects/obj_angelababy_star/obj_angelababy_star.yy",},
+    {"name":"obj_angelababy_summon","path":"objects/obj_angelababy_summon/obj_angelababy_summon.yy",},
+    {"name":"obj_angelababy_target","path":"objects/obj_angelababy_target/obj_angelababy_target.yy",}
+  ],
+}

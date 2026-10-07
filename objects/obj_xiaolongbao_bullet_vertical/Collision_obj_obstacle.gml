@@ -1,4 +1,4 @@
-if target_type == "normal"{
+if target_type == "normal" && precise_bbox_collision(id, other){
 	if burnt == 0{
 		instance_create_depth(x,y,depth,obj_xiaolongbao_bullet_effect)
 	}

@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_12yinliao",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_12yinliao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_12yinliao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d6c227b6-c20b-4f3d-9016-ff1b4395b647","path":"sprites/spr_12yinliao/spr_12yinliao.yy",},
+    {"name":"64686609-babf-4660-9c53-663f6a54bb42","path":"sprites/spr_12yinliao_effect/spr_12yinliao_effect.yy",}
+  ],
+}

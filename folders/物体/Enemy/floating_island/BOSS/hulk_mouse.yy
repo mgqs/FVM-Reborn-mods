@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"hulk_mouse",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/hulk_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hulk_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_hulk_destroy_effect","path":"objects/obj_hulk_destroy_effect/obj_hulk_destroy_effect.yy",},
+    {"name":"obj_hulk_mouse","path":"objects/obj_hulk_mouse/obj_hulk_mouse.yy",}
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"salad_pult",
+  "folderPath":"folders/精灵/Cards/Pult/salad_pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"salad_pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"5de83f6c-aeb6-4338-9626-0cc99342c936","path":"sprites/spr_salad_pult/spr_salad_pult.yy",},
+    {"name":"04fa0a65-274b-4ca5-b727-9d6451e5bd8f","path":"sprites/spr_salad_pult_1/spr_salad_pult_1.yy",},
+    {"name":"1a38c656-fc3b-4532-ae5f-083f1e65bebb","path":"sprites/spr_salad_pult_2/spr_salad_pult_2.yy",}
+  ],
+}

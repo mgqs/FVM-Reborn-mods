@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"hercules",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/hercules.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hercules",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"af475195-9a70-4055-a6f6-4317cb660c7d","path":"sprites/spr_hercules_death/spr_hercules_death.yy",},
+    {"name":"bfb4c4bb-55f9-46e1-9946-515a8dab1ea4","path":"sprites/spr_hercules_idle/spr_hercules_idle.yy",},
+    {"name":"0a3e59d0-81cb-42b3-a4bc-56bd63b05e5c","path":"sprites/spr_hercules_laser_down/spr_hercules_laser_down.yy",},
+    {"name":"b7cc10fe-b2fb-402d-89d6-ca1209f670f7","path":"sprites/spr_hercules_laser_left/spr_hercules_laser_left.yy",},
+    {"name":"3ca322fc-e756-437d-b322-a43dc825ab24","path":"sprites/spr_hercules_laser_right/spr_hercules_laser_right.yy",},
+    {"name":"be563d3d-96e5-4bf5-be19-d3d8529c2a4b","path":"sprites/spr_hercules_laser_up/spr_hercules_laser_up.yy",},
+    {"name":"c49f1fcd-a0d7-493d-9611-d352fcca19e5","path":"sprites/spr_hercules_missle/spr_hercules_missle.yy",},
+    {"name":"c2da34e7-e214-47af-839f-73341d62b10a","path":"sprites/spr_hercules_skill_1/spr_hercules_skill_1.yy",},
+    {"name":"6a080b8b-9721-4bf5-a133-44363981dcfe","path":"sprites/spr_hercules_skill_2/spr_hercules_skill_2.yy",},
+    {"name":"d22f3703-ddae-4e50-a192-f9bd35e9a1ca","path":"sprites/spr_hercules_skill_3/spr_hercules_skill_3.yy",}
+  ],
+}

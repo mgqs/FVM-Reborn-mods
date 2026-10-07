@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_save_god_23_e2",
-    "path":"sprites/spr_save_god_23_e2/spr_save_god_23_e2.yy",
+    "name":"spr_save_god_23_e1",
+    "path":"sprites/spr_save_god_23_e1/spr_save_god_23_e1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

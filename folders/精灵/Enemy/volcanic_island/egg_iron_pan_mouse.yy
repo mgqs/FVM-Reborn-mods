@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"egg_iron_pan_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/egg_iron_pan_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"egg_iron_pan_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"138f3a9d-7b5c-43c9-af39-1bf2476e0ff9","path":"sprites/spr_egg_iron_pan_mouse/spr_egg_iron_pan_mouse.yy",},
+    {"name":"0a095e44-5894-4fc0-add3-0326cd036f5f","path":"sprites/spr_egg_iron_pan_mouse_helmet/spr_egg_iron_pan_mouse_helmet.yy",}
+  ],
+}

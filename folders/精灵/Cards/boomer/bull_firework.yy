@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"bull_firework",
+  "folderPath":"folders/精灵/Cards/boomer/bull_firework.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"bull_firework",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f9341935-76f8-4d72-bf85-b919b34246d0","path":"sprites/spr_bull_firework/spr_bull_firework.yy",},
+    {"name":"09548f26-4df6-465a-83ed-df4e307af1ee","path":"sprites/spr_bull_firework_1/spr_bull_firework_1.yy",},
+    {"name":"86b9836b-094d-4bcb-bf48-dd0851c78b2f","path":"sprites/spr_bull_firework_2/spr_bull_firework_2.yy",},
+    {"name":"fe83086e-a178-4776-9925-1dcadce87e84","path":"sprites/spr_bull_firework_bullet/spr_bull_firework_bullet.yy",},
+    {"name":"f3929b57-52c2-45c1-9b3c-35e67702f936","path":"sprites/spr_bull_firework_bullet_1/spr_bull_firework_bullet_1.yy",},
+    {"name":"eefd2bfa-7609-4f06-8380-a89827a5ca01","path":"sprites/spr_bull_firework_bullet_2/spr_bull_firework_bullet_2.yy",},
+    {"name":"505261d5-20c3-4791-b1ba-5274be441e80","path":"sprites/spr_bull_firework_effect/spr_bull_firework_effect.yy",},
+    {"name":"c1255f22-eafd-432b-b1ce-59e1c85c810e","path":"sprites/spr_bull_firework_effect_1/spr_bull_firework_effect_1.yy",},
+    {"name":"bf4c8733-3a43-4cf9-abcb-79c642e5ad56","path":"sprites/spr_bull_firework_effect_2/spr_bull_firework_effect_2.yy",}
+  ],
+}

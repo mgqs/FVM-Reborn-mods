@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"ice_bucket",
+  "folderPath":"folders/精灵/Cards/boomer/ice_bucket.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ice_bucket",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"59666e87-14c5-4564-939d-ab9b097307cd","path":"sprites/spr_ice_bucket_bomb/spr_ice_bucket_bomb.yy",},
+    {"name":"e764e300-c822-488f-adc6-933b84bb81fd","path":"sprites/spr_ice_bucket_bomb_1/spr_ice_bucket_bomb_1.yy",},
+    {"name":"3dfdb6c1-5644-4d08-b2bc-71d17ec9e9e0","path":"sprites/spr_ice_bucket_bomb_2/spr_ice_bucket_bomb_2.yy",},
+    {"name":"961a8472-07c5-41dc-bc87-507028e0f046","path":"sprites/spr_ice_bucket_bomb_sleep/spr_ice_bucket_bomb_sleep.yy",},
+    {"name":"5f2b5b09-c178-4198-8a83-59a9fabfd041","path":"sprites/spr_ice_bucket_bomb_sleep_1/spr_ice_bucket_bomb_sleep_1.yy",},
+    {"name":"838aaa3b-49ff-4c7c-b68d-a43c03e8c567","path":"sprites/spr_ice_bucket_bomb_sleep_2/spr_ice_bucket_bomb_sleep_2.yy",}
+  ],
+}

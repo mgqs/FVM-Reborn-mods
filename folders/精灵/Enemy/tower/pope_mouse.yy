@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"pope_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/pope_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pope_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cac98805-c9a5-4b6a-8353-0b9222e9c19e","path":"sprites/spr_pope_mouse/spr_pope_mouse.yy",},
+    {"name":"2884fe15-acdf-4f80-b7c8-d65eb2c6a465","path":"sprites/spr_pope_mouse_perform/spr_pope_mouse_perform.yy",}
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"wine_bottle_bomb",
+  "folderPath":"folders/精灵/Cards/boomer/wine_bottle_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wine_bottle_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ff55ef6d-afe1-41be-9986-791f40469513","path":"sprites/spr_wine_bottle_bomb/spr_wine_bottle_bomb.yy",},
+    {"name":"339aeffb-ceff-4607-8023-dea5e0df5861","path":"sprites/spr_wine_bottle_bomb_1/spr_wine_bottle_bomb_1.yy",},
+    {"name":"eb1e59e1-3d2a-4a3a-849a-c3448cbe6c3e","path":"sprites/spr_wine_bottle_bomb_2/spr_wine_bottle_bomb_2.yy",}
+  ],
+}

@@ -1,0 +1,127 @@
+{
+    "version": 1.5,
+    "level_name": "test_level",
+    "level_time_feature": "daytime",
+    "map_sprite": "spr_cookie_island",
+    "display_name": "",
+    "author": "",
+    "pre_music": "",
+    "elite_music": "",
+    "boss_music": "",
+    "time_limit": 0.0,
+    "map_cols": 9.0,
+    "map_rows": 6.0,
+    "starting_flame": 9999.0,
+    "first_wave_delay": 0.0,
+    "total_waves": 1.0,
+    "elite_wave": -1.0,
+    "boss_wave": -1.0,
+    "hp_modify": 1.0,
+    "min_wave_time": 99999.0,
+    "max_wave_time": 99999.0,
+    "map": [
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ],
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ],
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ],
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ],
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ],
+        [
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []},
+            {"type": "normal", "plant": [], "object": []}
+        ]
+    ],
+    "waves": [
+        {
+            "wave_index": 0.0,
+            "boss": "",
+            "boss_1_hp_modify": 1.0,
+            "subwaves": [
+                {
+                    "local_min_wave_time": 99999.0,
+                    "local_max_wave_time": 99999.0,
+                    "enemy_list": [
+                        {"row": 3.0, "prosperity": 0.0, "type": "test_mouse"}
+                    ],
+                    "subwave_index": 0.0
+                }
+            ],
+            "boss2": "",
+            "boss_2_hp_modify": 1.0,
+            "boss_wave": false
+        }
+    ],
+    "rewards": [
+        {
+            "gold": 0.0,
+            "items": []
+        },
+        {
+            "gold": 0.0,
+            "skill_level": 0.0,
+            "player_level": 0.0,
+            "items": [],
+            "card_unlock": [],
+            "weapon_unlock": [],
+            "gem_unlock": []
+        }
+    ],
+    "events": [],
+    "desc": "测试关卡：一只不会动的平民老鼠，血量拉满"
+}

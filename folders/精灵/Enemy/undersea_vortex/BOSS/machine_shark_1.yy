@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_shark_1",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/BOSS/machine_shark_1.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_shark_1",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"bd4d8642-3671-457c-9386-85096f3f978e","path":"sprites/spr_machine_shark_1_appear/spr_machine_shark_1_appear.yy",},
+    {"name":"127aeda1-ca33-4d61-b3a0-c70489cf7427","path":"sprites/spr_machine_shark_1_bullet/spr_machine_shark_1_bullet.yy",},
+    {"name":"7c7c6bb8-e3f7-48ac-93a6-47fd31ed643a","path":"sprites/spr_machine_shark_1_bullet_effect/spr_machine_shark_1_bullet_effect.yy",},
+    {"name":"25519244-d0af-4b9a-bd96-752923936c0b","path":"sprites/spr_machine_shark_1_death/spr_machine_shark_1_death.yy",},
+    {"name":"3bf3ac4e-4ffc-480d-b06d-56c02121394d","path":"sprites/spr_machine_shark_1_disappear/spr_machine_shark_1_disappear.yy",},
+    {"name":"48e76ac3-2c29-4b52-8ae1-f5b749247640","path":"sprites/spr_machine_shark_1_idle/spr_machine_shark_1_idle.yy",},
+    {"name":"456daeb2-205d-4165-931d-62d2923c35ec","path":"sprites/spr_machine_shark_1_idle_fast/spr_machine_shark_1_idle_fast.yy",},
+    {"name":"ad38bb0f-3543-446f-8e59-dd91dfe20693","path":"sprites/spr_machine_shark_1_skill_1/spr_machine_shark_1_skill_1.yy",},
+    {"name":"86fe0139-38c3-49de-9dd9-822a206b7cfb","path":"sprites/spr_machine_shark_1_skill_2/spr_machine_shark_1_skill_2.yy",},
+    {"name":"246d62b9-35a7-4e9c-81bd-dead894b9bc2","path":"sprites/spr_machine_shark_1_skill_3/spr_machine_shark_1_skill_3.yy",},
+    {"name":"15c3e99b-729a-4648-9e43-2abf1ef78927","path":"sprites/spr_machine_shark_1_skill_3_ready/spr_machine_shark_1_skill_3_ready.yy",},
+    {"name":"7e95030f-ded4-4787-9920-dc8ad95a805f","path":"sprites/spr_machine_shark_1_skill_3_return/spr_machine_shark_1_skill_3_return.yy",}
+  ],
+}

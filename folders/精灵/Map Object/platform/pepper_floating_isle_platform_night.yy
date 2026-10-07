@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"pepper_floating_isle_platform_night",
+  "folderPath":"folders/精灵/Map Object/platform/pepper_floating_isle_platform_night.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pepper_floating_isle_platform_night",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"6f2aa777-1852-4231-84f1-6f948a75d1df","path":"sprites/spr_pepper_floating_isle_platform_night_1/spr_pepper_floating_isle_platform_night_1.yy",},
+    {"name":"96e57bfb-515a-4f1e-85e8-e3381760e1eb","path":"sprites/spr_pepper_floating_isle_platform_night_2/spr_pepper_floating_isle_platform_night_2.yy",},
+    {"name":"93d6ac78-4e2b-4703-87c5-c40fb5b339aa","path":"sprites/spr_pepper_floating_isle_platform_night_3/spr_pepper_floating_isle_platform_night_3.yy",},
+    {"name":"5cb51849-c76d-4671-811c-8cec1dedd90c","path":"sprites/spr_pepper_floating_isle_platform_night_4/spr_pepper_floating_isle_platform_night_4.yy",}
+  ],
+}

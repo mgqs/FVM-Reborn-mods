@@ -3,6 +3,25 @@ if global.is_paused{
 	exit
 }
 
+// 延迟注册到全局类型注册表：确保子对象的 target_type 已最终设置
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
+}
+
 // 保持网格位置更新
 var zombie_grid = get_grid_position_from_world(x, y);
 grid_col = zombie_grid.col;
@@ -73,9 +92,100 @@ if is_frozen || is_scare || is_stun{
 
 timer++;
 
+// ===== 梯子适用判定 =====
+// 名单里的老鼠「无视梯子」：不爬上梯子，也不会被梯子跳过啃咬（照常啃咬/碾压植物）
+// 注意：有的对象没设 mouse_id（如跳跳鼠），必须额外按 object_index 判断，否则会漏
+//   - engineering_vehicle_mouse：工程车鼠，应直接碾压卡牌
+//   - garbage_track_mouse：垃圾车鼠，碾压碰到的卡片
+//   - landmine_vehicle_mouse：地雷车鼠，碾压型车辆
+//   - snail_mouse：蜗牛鼠，碾压碰到的卡片
+//   - mole：鼹鼠，从卡左侧攻击，不受右侧梯子影响，应正常啃咬
+//   - obj_kangaroo / obj_infected_kangaroo：跳跳鼠系列（未设 mouse_id，自己会跳过卡片）
+var _no_ladder_ids = ["engineering_vehicle_mouse", "garbage_track_mouse", "landmine_vehicle_mouse", "snail_mouse", "mole"];
+var _no_ladder_objs = [obj_kangaroo, obj_infected_kangaroo];
+var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1
+                       && array_get_index(_no_ladder_objs, object_index) == -1);
+
+// ================= 上梯越过植物（梯子功能）=================
+// 说明：
+//   - climb_stage 0 = 未越障
+//   - 越障期间把 state 设为 IDLE（IDLE 不做普通移动），由本块接管位移
+//   - 越障 = 沿本行水平向左移动到落点，同时叠一条小弧线（climb_arc_h = 40px）
+//     弧线高度远小于一格(116px)，grid_row 不会变 → 不会被上面那行的卡片打到
+//   - 越过恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
+if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_use_ladder) {
+	// 检测前方是否有「挂着梯子的植物」
+	// 先把自身坐标/行号/实例 id 存到局部变量，避免多层 with 的 other 歧义
+	var _self_x = x;
+	var _self_row = grid_row;
+	var _self_id = id;
+	var _climb_ladder_plant = noone;
+
+	// 第一层：找出前方范围内的植物
+	var _front_plant = noone;
+	with (obj_card_parent) {
+		var _p_x = x;
+		if (grid_row == _self_row) {
+			var _dx = _p_x - _self_x;
+			if (_dx < 0 && _dx > -global.grid_cell_size_x * 1.2) {
+				if (_front_plant == noone || _p_x > _front_plant.x) {
+					// 取最靠右（离老鼠最近）的那株
+					_front_plant = id;
+				}
+			}
+		}
+	}
+
+	// 第二层：判断这株植物身上有没有梯子
+	if (_front_plant != noone) {
+		var _fp_id = _front_plant;
+		with (obj_ladder) {
+			if (host_plant == _fp_id) _climb_ladder_plant = _fp_id;
+		}
+	}
+
+	if (_climb_ladder_plant != noone) {
+		// 落点 = 植物左侧相邻格的右边界
+		var _host_center_x = _climb_ladder_plant.x;
+		climb_end_x = _host_center_x - global.grid_cell_size_x * 0.5;
+		// 记录本行基准 y 与总水平距离（供下面的弧线用）
+		climb_base_y = y;
+		climb_total_dist = max(1, abs(climb_end_x - x));
+
+		target_plant = noone;
+		state = ENEMY_STATE.IDLE;
+		climb_stage = 1;
+	}
+}
+
+if (climb_stage == 1) {
+	// 越过：沿本行水平向左推进到落点，并叠一条小弧线（爬升感）
+	//   弧线最高 climb_arc_h(40px)，远小于一格(116px)，grid_row 不会变
+	//   → 不会被上面那行的卡片攻击打到。
+	var _dx = climb_end_x - x;
+	if (abs(_dx) <= climb_speed) {
+		x = climb_end_x;
+		y = climb_base_y;             // 弧线收尾，落回本行
+		climb_stage = 0;
+		state = ENEMY_STATE.NORMAL;   // 恢复前进
+		timer = 0;
+	}
+	else {
+		x += sign(_dx) * climb_speed;
+		// 进度 t：0=起点 1=落点；弧高 = sin(t*pi)，两端为 0、中间最高
+		var _t = 1 - (abs(climb_end_x - x) / climb_total_dist);
+		_t = clamp(_t, 0, 1);
+		// 安全上限：上抬不得越过本行上边缘（越过了 grid_row 会变，就被上面那行卡片打到）
+		var _row_top = global.grid_offset_y + grid_row * global.grid_cell_size_y;
+		var _max_up = max(0, (climb_base_y - _row_top) - 4);
+		y = climb_base_y - sin(_t * pi) * min(climb_arc_h, _max_up);
+	}
+}
+// ==========================================================
+
 // 状态处理前，先检查目标植物是否存在
-if (instance_exists(target_plant) && target_plant.hp <= 0) {
-    target_plant = noone;  // 目标已被消灭
+if (target_plant != noone && (!instance_exists(target_plant) || target_plant.hp <= 0)) {
+    target_plant = noone;  // 目标已被消灭或实例已销毁
 }
 
 // 状态机
@@ -158,7 +268,15 @@ switch(state) {
 			}
 				
             // 检查是否在攻击范围内
-            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
+            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
+            var _skip_by_ladder = false;
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
+                var _this_plant_id = id;
+                with (obj_ladder) {
+                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
+                }
+            }
+            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
                     var tar_type = ds_list_find_value(global.eat_order, i);
@@ -265,7 +383,15 @@ switch(state) {
 			}
 				
             // 检查是否在攻击范围内
-            if (is_in_front && zombie_grid.row == grid_row && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
+            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
+            var _skip_by_ladder = false;
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
+                var _this_plant_id = id;
+                with (obj_ladder) {
+                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
+                }
+            }
+            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
                     var tar_type = ds_list_find_value(global.eat_order, i);
@@ -322,6 +448,10 @@ switch(state) {
     case ENEMY_STATE.DEAD: {
 		ice_timer = 0
 		frozen_timer = 0
+        if (ash_death) {
+            image_alpha = 0;
+            break;
+        }
         // 死亡动画
 		if shield_max_hp > 0 && shield_hp > 0{
 			if image_index >= death_anim + move_anim * 4 + attack_anim * 4 - 1 {
@@ -346,10 +476,22 @@ if (hp <= 0 && state != ENEMY_STATE.DEAD) {
     timer = 0;
     state = ENEMY_STATE.DEAD;
     target_plant = noone;  // 清除攻击目标
+    if (ash_death) {
+        image_alpha = 0;
+    }
 }
 
 // 透明度处理
 if (image_alpha <= 0 && state == ENEMY_STATE.DEAD) {
+    // 从全局类型注册表中移除自己，避免子弹碰撞检测时报错
+    if (enemy_registered && variable_global_exists("enemy_by_type")) {
+        if (variable_struct_exists(global.enemy_by_type, enemy_registered_type)) {
+            var _list = global.enemy_by_type[$ enemy_registered_type];
+            var _idx = array_get_index(_list, id);
+            if (_idx != -1) array_delete(_list, _idx, 1);
+        }
+        enemy_registered = false;
+    }
     instance_destroy();
 }
 

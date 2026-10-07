@@ -1,5 +1,14 @@
 if (parent_gui.is_wishing)
 {
+    if (parent_gui.skip_animation && !skipped)
+    {
+        skipped = true;
+        image_alpha = 1;
+        if (anim_timer < 105)
+            event_user(0);
+        anim_timer = 248;
+    }
+
     anim_timer++;
     image_index = floor(anim_timer / 5);
     
@@ -34,4 +43,5 @@ else
 {
     anim_timer = 0;
     image_index = 16;
+    skipped = false;
 }

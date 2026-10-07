@@ -1,3 +1,95 @@
+if (global.level_id == "test_level")
+{
+    // F2 打开情报岛敌人页。
+    if (!instance_exists(obj_info_island_bg) && keyboard_check_pressed(vk_f2))
+    {
+        var test_info = instance_create_depth(1380, room_height / 2, -4000, obj_info_island_bg);
+        test_info.depth = -10000;
+        test_info.info_button_select = 2;
+        with (obj_card_slot)
+        {
+            is_selected = false;
+            if (selected_preview != noone && instance_exists(selected_preview))
+                instance_destroy(selected_preview);
+            selected_preview = noone;
+        }
+        global.selected_slot = noone;
+        global.test_mouse_picker_open = true;
+        global.test_place_original = false;   // F2 = 放测试鼠
+        global.is_paused = true;
+    }
+
+    // F4 打开情报岛敌人页（放置"原版敌人本体"：真实血量/技能/会自己行动，用于测梯子等）。
+    if (!instance_exists(obj_info_island_bg) && keyboard_check_pressed(vk_f4))
+    {
+        var f4_info = instance_create_depth(1380, room_height / 2, -4000, obj_info_island_bg);
+        f4_info.depth = -10000;
+        f4_info.info_button_select = 2;
+        with (obj_card_slot)
+        {
+            is_selected = false;
+            if (selected_preview != noone && instance_exists(selected_preview))
+                instance_destroy(selected_preview);
+            selected_preview = noone;
+        }
+        global.selected_slot = noone;
+        global.test_mouse_picker_open = true;
+        global.test_place_original = true;    // F4 = 放原版敌人本体
+        global.is_paused = true;
+    }
+
+    // 选择敌人的鼠标按键释放前，不允许点击背后的地图或卡槽。
+    if (global.test_mouse_picker_block_place)
+    {
+        if (!mouse_check_button(mb_left))
+            global.test_mouse_picker_block_place = false;
+    }
+
+    // 选中情报岛敌人后，点击场上格子生成。
+    var test_player = instance_find(obj_player_character, 0);
+    if (test_player != noone && test_player.is_placed
+        && !instance_exists(obj_info_island_bg) && global.test_mouse_picker_id != ""
+        && !global.test_mouse_picker_block_place
+        && mouse_check_button_pressed(mb_left))
+    {
+        var place_pos = get_grid_position_from_world(mouse_x, mouse_y);
+        if (place_pos.col >= 0 && place_pos.col < global.grid_cols
+            && place_pos.row >= 0 && place_pos.row < global.grid_rows)
+        {
+            var enemy_data = global.enemy_map[? global.test_mouse_picker_id];
+            var place_world = get_world_position_from_grid(place_pos.col, place_pos.row);
+
+            if (variable_global_exists("test_place_original") && global.test_place_original)
+            {
+                // F4 模式：直接创建原版敌人本体（会正常移动、正常血量/技能）
+                var orig_inst = instance_create_depth(place_world.x, place_world.y + 38, 0, enemy_data._obj);
+                orig_inst.grid_row = place_pos.row;
+                orig_inst.grid_col = place_pos.col;
+            }
+            else
+            {
+                // F2 模式：放测试鼠（不动、血拉满）
+                var test_inst = instance_create_depth(place_world.x, place_world.y + 38, 0, obj_test_mouse);
+                test_inst.sprite_index = enemy_data.spr;
+                test_inst.mouse_id = global.test_mouse_picker_id;
+                test_inst.grid_row = place_pos.row;
+                test_inst.grid_col = place_pos.col;
+                test_inst.hp = 2147483647;
+                test_inst.maxhp = 2147483647;
+                // 从真实敌人对象获取正确的target_type，使空中/潜水/隐身等攻击卡片能正确命中测试老鼠
+                var _temp_enemy = instance_create_depth(-99999, -99999, 99999, enemy_data._obj);
+                test_inst.target_type = _temp_enemy.target_type;
+                // 保存并临时设置boss_count，防止销毁BOSS类临时实例时触发胜利/波次推进
+                var _old_boss_count = boss_count;
+                boss_count = 999;
+                instance_destroy(_temp_enemy);
+                boss_count = _old_boss_count;
+            }
+            global.test_mouse_picker_id = "";
+        }
+    }
+}
+
 if global.is_paused{
 	exit
 }
@@ -8,7 +100,21 @@ if global.lose_focus_pause{
 	}
 }
 
-battle_time ++
+// Keep expedition/tower timers tied to rendered frame rate.  At 60 FPS this
+// is unchanged; lower FPS advances fewer game-time frames per real frame.
+var _frame_rate_scaled = (string_pos("ancient_castle_", global.level_data.id) == 1)
+    || (string_pos("tower_cake_", global.level_data.id) == 1);
+if (_frame_rate_scaled) {
+    var _target_fps = max(1, game_get_speed(gamespeed_fps));
+    var _current_fps = max(0, fps);
+    frame_time_accumulator += min(1, _current_fps / _target_fps);
+    time_ticks_this_step = floor(frame_time_accumulator);
+    frame_time_accumulator -= time_ticks_this_step;
+} else {
+    time_ticks_this_step = 1;
+}
+
+battle_time += time_ticks_this_step
 // obj_controller STEP 事件
 if global.debug{
 	if keyboard_check_pressed(ord("M")){
@@ -98,7 +204,7 @@ if global.level_file.time_limit != 0 && time_limit == -1{
 }
 if time_limit > 0{
 	if !timer_pause{
-		time_limit --
+		time_limit -= time_ticks_this_step
 	}
 	if time_limit <= 0{
 		global.is_paused = true
@@ -139,42 +245,27 @@ else{
 	wave_data = global.level_file.waves[current_wave-1]
 }
 
-if wave_data.boss_wave && level_stage != "boss" && global.save_data.unlocked_items.elite_unlocked && wave_timer == 1{
-	level_stage = "boss"
-	var enemy_row = irandom_range(0,global.grid_rows-1)
-	var enemy_pos = get_world_position_from_grid(10,enemy_row)
-	var boss_inst = instance_create_depth(enemy_pos.x-80,enemy_pos.y+30,-200,global.enemy_map[? wave_data.boss]._obj)
-	boss_count ++
-	if is_real(global.level_file.version){
-		boss_inst.hp *= wave_data.boss_1_hp_modify
-		boss_inst.maxhp *= wave_data.boss_1_hp_modify
-		if wave_data.boss2 != ""{
-			var enemy_row_2 = irandom_range(0,global.grid_rows-1)
-			var enemy_pos_2 = get_world_position_from_grid(10,enemy_row_2)
-			var boss_2_inst = instance_create_depth(enemy_pos_2.x-80,enemy_pos_2.y+30,-200,global.enemy_map[? wave_data.boss2]._obj)
-			boss_2_inst.hp *= wave_data.boss_2_hp_modify
-			boss_2_inst.maxhp *= wave_data.boss_2_hp_modify
-			boss_count ++
-		}
-	}
-	with obj_battle_music_controller{
-		new_battle_music = global.level_data.boss_music
-		event_user(0)
-	}
-}
 if wave_timer <= 0 && level_stage == "pre"{
-	if(global.save_data.unlocked_items.elite_unlocked) || !global.save_data.unlocked_items.elite_unlocked && current_wave < global.level_file.elite_wave{
-		if current_wave < total_wave{
-			enemy_subwave_summon()
-		}
-		if current_subwave < current_total_subwaves-1{
-			current_subwave+=1
-		}
-		else if current_wave < total_wave{
-			current_wave += 1
-			current_subwave = 0
-			audio_play_sound(snd_mouse_wave_attack,0,0)
-			instance_create_depth(room_width/2,room_height/2,-300,obj_huge_wave_text)
+	if !boss_waiting_clear {
+		if(global.save_data.unlocked_items.elite_unlocked) || !global.save_data.unlocked_items.elite_unlocked && current_wave < global.level_file.elite_wave{
+			if current_wave < total_wave{
+				enemy_subwave_summon()
+			}
+			if current_subwave < current_total_subwaves-1{
+				current_subwave+=1
+			}
+			else if current_wave < total_wave{
+				if wave_data.boss_wave && global.save_data.unlocked_items.elite_unlocked{
+					// BOSS波：所有小怪生成完毕，等待玩家清光后再出BOSS
+					boss_waiting_clear = true
+				}
+				else{
+					current_wave += 1
+					current_subwave = 0
+					audio_play_sound(snd_mouse_wave_attack,0,0)
+					instance_create_depth(room_width/2,room_height/2,-300,obj_huge_wave_text)
+				}
+			}
 		}
 	}
 }
@@ -207,5 +298,23 @@ if global.debug{
 			current_wave += 1
 			current_subwave = 0
 		}
+	}
+}
+
+// 测试关卡：5秒伤害统计
+if global.level_id == "test_level"{
+	var _test_damage_total = 0
+	for (var _mouse_index = 0; _mouse_index < instance_number(obj_test_mouse); _mouse_index++) {
+		var _test_mouse = instance_find(obj_test_mouse, _mouse_index)
+		if !variable_instance_exists(_test_mouse, "test_damage_total"){
+			_test_mouse.test_damage_total = 0
+		}
+		_test_damage_total += _test_mouse.test_damage_total
+	}
+	test_dps_timer++
+	if test_dps_timer >= test_dps_window{
+		test_dps_display = _test_damage_total - test_dps_last_total
+		test_dps_last_total = _test_damage_total
+		test_dps_timer = 0
 	}
 }

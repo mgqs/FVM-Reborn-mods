@@ -111,6 +111,10 @@ for(var __index__ = 0 ; __index__ < array_length(level_list) ; __index__++){
 		if !is_card_unlocked(inst.target_card_id){
 			inst.unlocked = false
 		}
+		// 抽卡模式：跳过自动领取形态奖励
+		if (is_eternal_gacha_mode()) {
+			inst.unlocked = false;
+		}
 		if inst.unlocked{
 			upgrade_card_shape(inst.target_card_id,inst.target_shape)
 			has_card = true

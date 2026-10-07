@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"Laboratory",
+  "folderPath":"folders/Feature/Laboratory.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Laboratory",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Sprites","path":"folders/Feature/Laboratory/Sprites.yy",},
+    {"name":"Scripts","path":"folders/Feature/Laboratory/Scripts.yy",},
+    {"name":"Components","path":"folders/Feature/Laboratory/Components.yy",}
+  ],
+  "listItems":[
+    {"name":"LaboratoryGUI","path":"objects/LaboratoryGUI/LaboratoryGUI.yy",},
+    {"name":"obj_laboratory_music_manager","path":"objects/obj_laboratory_music_manager/obj_laboratory_music_manager.yy",},
+    {"name":"OnlineMapGUI","path":"objects/OnlineMapGUI/OnlineMapGUI.yy",},
+    {"name":"inst_541007E8","path":"rooms/room_laboratory/room_laboratory.yy",}
+  ],
+}

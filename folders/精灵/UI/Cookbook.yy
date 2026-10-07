@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Cookbook",
+  "folderPath":"folders/精灵/UI/Cookbook.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Cookbook",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"3f6daf24-aa25-4d7a-9cd2-3aad126b3d10","path":"sprites/spr_cookbook_bg/spr_cookbook_bg.yy",},
+    {"name":"7fb4227a-3f8d-4817-9b53-5c6c8eee392c","path":"sprites/spr_cookbook_cancel_btn/spr_cookbook_cancel_btn.yy",},
+    {"name":"f33a1ee8-09b7-4f4d-95d2-26496dd4f5a6","path":"sprites/spr_cookbook_equip_btn/spr_cookbook_equip_btn.yy",},
+    {"name":"ad6d6c3e-9379-4c18-bb77-c01c84dacb90","path":"sprites/spr_cookbook_icon/spr_cookbook_icon.yy",},
+    {"name":"1282814b-4b59-4be6-819f-e00a21dd8217","path":"sprites/spr_cookbook_list_btn/spr_cookbook_list_btn.yy",},
+    {"name":"06a1edad-756b-480a-a4bd-0159f992f624","path":"sprites/spr_cookbook_select_btn/spr_cookbook_select_btn.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"dentist_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/dentist_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dentist_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"53360ddf-f829-4651-9509-85aa6a98e84b","path":"sprites/spr_dentist_mouse/spr_dentist_mouse.yy",},
+    {"name":"5e834f07-61cd-466b-b555-8b80a0eabe8f","path":"sprites/spr_dentist_mouse_appear/spr_dentist_mouse_appear.yy",},
+    {"name":"ee9e2a03-9a70-4ffc-8cb8-eefdc68da73b","path":"sprites/spr_dentist_mouse_dig/spr_dentist_mouse_dig.yy",},
+    {"name":"68163f35-d741-41b8-8068-06adcf59b8ab","path":"sprites/spr_dentist_mouse_stun/spr_dentist_mouse_stun.yy",}
+  ],
+}

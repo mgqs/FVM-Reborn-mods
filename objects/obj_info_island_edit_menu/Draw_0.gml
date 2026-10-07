@@ -20,7 +20,11 @@ for(var i = 0 ; i< 3 ; i++){
 }
 if not info_got{
 	ds_map_add(target_current_info,"level",obj_info_island_bg.view_card_level)
-	ds_map_add(target_current_info,"shape",obj_info_island_bg.view_card_shape)
+	var _init_shape = obj_info_island_bg.view_card_shape
+	if _init_shape > view_max_shape{
+		_init_shape = view_max_shape
+	}
+	ds_map_add(target_current_info,"shape",_init_shape)
 	ds_map_add(target_current_info,"skill",obj_info_island_bg.view_card_skill)
 	info_got = 1
 }

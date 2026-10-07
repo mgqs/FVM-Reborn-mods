@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"submarine_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/submarine_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"submarine_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"065a4b05-a331-40f1-8ace-8c61d77ad64f","path":"sprites/spr_submarine_mouse/spr_submarine_mouse.yy",},
+    {"name":"9a80b8f7-1937-4806-9dd8-893ba9599b91","path":"sprites/spr_submarine_mouse_enter/spr_submarine_mouse_enter.yy",},
+    {"name":"4daaa97f-6cf6-4763-a5cf-3934fa7436aa","path":"sprites/spr_submarine_mouse_land/spr_submarine_mouse_land.yy",}
+  ],
+}

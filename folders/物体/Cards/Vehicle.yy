@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Vehicle",
+  "folderPath":"folders/物体/Cards/Vehicle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Vehicle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_cotton_candy","path":"objects/obj_cotton_candy/obj_cotton_candy.yy",},
+    {"name":"obj_soda_bubble","path":"objects/obj_soda_bubble/obj_soda_bubble.yy",},
+    {"name":"obj_wooden_plate","path":"objects/obj_wooden_plate/obj_wooden_plate.yy",}
+  ],
+}

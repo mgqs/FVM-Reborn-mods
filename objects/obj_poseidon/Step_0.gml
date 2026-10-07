@@ -1,10 +1,7 @@
 if (global.is_paused)
     exit;
 
-if (state == 0)
-    flash_speed = 5;
-else if (state == 1)
-    flash_speed = 4;
+flash_speed = 5;
 
 event_inherited();
 
@@ -36,7 +33,7 @@ if (has_enemy)
     {
         attack_timer++;
     }
-    else if (attack_timer < cycle)
+    else if (attack_timer <= cycle)
     {
         attack_timer++;
         state = 1;

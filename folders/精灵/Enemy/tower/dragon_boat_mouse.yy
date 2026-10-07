@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"dragon_boat_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/dragon_boat_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dragon_boat_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"3b4b5551-3716-4645-98cc-2256c16e5544","path":"sprites/spr_dragon_boat_mouse/spr_dragon_boat_mouse.yy",},
+    {"name":"9d06465c-5907-4f01-98b3-e77181ae8380","path":"sprites/spr_dragon_boat_mouse_appear/spr_dragon_boat_mouse_appear.yy",}
+  ],
+}

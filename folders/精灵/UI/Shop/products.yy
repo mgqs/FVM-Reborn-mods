@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"products",
+  "folderPath":"folders/精灵/UI/Shop/products.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"products",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f318b3f9-72cc-4953-8d37-d14566a1fa02","path":"sprites/spr_slot_19/spr_slot_19.yy",},
+    {"name":"b7757843-672a-4311-8949-bdf981f0eacd","path":"sprites/spr_slot_20/spr_slot_20.yy",},
+    {"name":"1f9cabf5-9f2b-4afd-b2b6-faf560482195","path":"sprites/spr_slot_21/spr_slot_21.yy",},
+    {"name":"bb993133-e4dc-48c4-86fe-08908d69bef9","path":"sprites/spr_slot_plus/spr_slot_plus.yy",}
+  ],
+}

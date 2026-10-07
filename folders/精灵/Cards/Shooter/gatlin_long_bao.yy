@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"gatlin_long_bao",
+  "folderPath":"folders/精灵/Cards/Shooter/gatlin_long_bao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"gatlin_long_bao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"033cacc6-1bdd-44f5-bd25-f555a719e2b7","path":"sprites/spr_gatlin_long_bao/spr_gatlin_long_bao.yy",},
+    {"name":"038223f6-716f-4c37-a7c1-8250279187a2","path":"sprites/spr_gatlin_long_bao_1/spr_gatlin_long_bao_1.yy",},
+    {"name":"5959dda8-c3a1-4d1b-98b0-b325a4273426","path":"sprites/spr_gatlin_long_bao_2/spr_gatlin_long_bao_2.yy",}
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_anranxiaohunfan",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_anranxiaohunfan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_anranxiaohunfan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2e2e7418-25c7-4760-a0a6-b36660611b7f","path":"sprites/spr_anranxiaohunfan/spr_anranxiaohunfan.yy",},
+    {"name":"ded94799-6b57-4896-a9f3-0ae25a4207db","path":"sprites/spr_anranxiaohunfan_1/spr_anranxiaohunfan_1.yy",},
+    {"name":"f29d3e92-d951-491e-86d7-52f70602a610","path":"sprites/spr_anranxiaohunfan_2/spr_anranxiaohunfan_2.yy",}
+  ],
+}

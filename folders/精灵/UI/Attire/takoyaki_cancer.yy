@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"takoyaki_cancer",
+  "folderPath":"folders/精灵/UI/Attire/takoyaki_cancer.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"takoyaki_cancer",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"66c2d7d3-4f03-46a5-9965-126f0c7a6950","path":"sprites/spr_takoyaki_cancer/spr_takoyaki_cancer.yy",},
+    {"name":"990eec6f-13ed-4645-9644-d024bb6ab78a","path":"sprites/spr_takoyaki_cancer_1/spr_takoyaki_cancer_1.yy",},
+    {"name":"c4fbe967-c39c-41fb-a3c8-c966425fbefa","path":"sprites/spr_takoyaki_cancer_2/spr_takoyaki_cancer_2.yy",},
+    {"name":"6acb3b61-8bb9-40ee-8980-e9e0df511573","path":"sprites/spr_takoyaki_cancer_bullet/spr_takoyaki_cancer_bullet.yy",},
+    {"name":"7ed3799f-ea86-4a14-9599-8632f46f2796","path":"sprites/spr_takoyaki_cancer_bullet_1/spr_takoyaki_cancer_bullet_1.yy",},
+    {"name":"66c2d7d3-4f03-46a5-9965-126f0c7a6950","path":"sprites/spr_takoyaki_cancer_icon/spr_takoyaki_cancer_icon.yy",},
+    {"name":"990eec6f-13ed-4645-9644-d024bb6ab78a","path":"sprites/spr_takoyaki_cancer_icon_1/spr_takoyaki_cancer_icon_1.yy",},
+    {"name":"c4fbe967-c39c-41fb-a3c8-c966425fbefa","path":"sprites/spr_takoyaki_cancer_icon_2/spr_takoyaki_cancer_icon_2.yy",}
+  ],
+}

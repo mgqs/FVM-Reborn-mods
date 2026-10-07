@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"Craft",
+  "folderPath":"folders/脚本/Menu/Craft.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Craft",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"craft_rule_init","path":"scripts/craft_rule_init/craft_rule_init.yy",},
+    {"name":"material_init","path":"scripts/material_init/material_init.yy",},
+    {"name":"material_registry","path":"scripts/material_registry/material_registry.yy",},
+    {"name":"material_sell_init","path":"scripts/material_sell_init/material_sell_init.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"Melee",
+  "folderPath":"folders/物体/Cards/Melee.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Melee",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_fishbone","path":"objects/obj_fishbone/obj_fishbone.yy",},
+    {"name":"obj_hamburger","path":"objects/obj_hamburger/obj_hamburger.yy",},
+    {"name":"obj_iron_fishbone","path":"objects/obj_iron_fishbone/obj_iron_fishbone.yy",},
+    {"name":"obj_rotating_coffee_pot","path":"objects/obj_rotating_coffee_pot/obj_rotating_coffee_pot.yy",},
+    {"name":"obj_xinjiang_fried_noodles","path":"objects/obj_xinjiang_fried_noodles/obj_xinjiang_fried_noodles.yy",}
+  ],
+}

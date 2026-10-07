@@ -4,6 +4,8 @@ if (global.is_paused)
 grid_row = parent_player.grid_row;
 grid_col = parent_player.grid_col;
 depth = parent_player.depth - 1;
+origin_x = parent_player.x;
+origin_y = parent_player.y;
 timer++;
 
 if (parent_player.state == 0)

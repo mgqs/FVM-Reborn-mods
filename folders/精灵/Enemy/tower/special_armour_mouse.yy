@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"special_armour_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/special_armour_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"special_armour_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e17f7269-3391-47ee-827f-ef61e6534d69","path":"sprites/spr_little_armour_mouse/spr_little_armour_mouse.yy",},
+    {"name":"e1ece4ef-7733-4fa8-8ef8-46bcf5601b97","path":"sprites/spr_little_armour_mouse_throw/spr_little_armour_mouse_throw.yy",},
+    {"name":"5828e8b1-1ed2-44a2-93e1-9c66e026d17e","path":"sprites/spr_special_armour_mouse/spr_special_armour_mouse.yy",},
+    {"name":"104408cf-f9d9-4766-baba-6923084c1cf6","path":"sprites/spr_special_armour_mouse_has_small/spr_special_armour_mouse_has_small.yy",},
+    {"name":"de033f42-92cf-471f-93e2-41c3befd8cc4","path":"sprites/spr_special_armour_mouse_throw/spr_special_armour_mouse_throw.yy",}
+  ],
+}

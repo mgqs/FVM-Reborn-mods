@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Bullet",
+  "folderPath":"folders/物体/Bullet.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Bullet",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"normal","path":"folders/物体/Bullet/normal.yy",},
+    {"name":"throw","path":"folders/物体/Bullet/throw.yy",},
+    {"name":"bullet effect","path":"folders/物体/Bullet/bullet effect.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_bullet_parent","path":"objects/obj_bullet_parent/obj_bullet_parent.yy",},
+    {"name":"obj_burn_effect","path":"objects/obj_burn_effect/obj_burn_effect.yy",},
+    {"name":"obj_durian_effect","path":"objects/obj_durian_effect/obj_durian_effect.yy",},
+    {"name":"obj_kettle_slowdown_effect","path":"objects/obj_kettle_slowdown_effect/obj_kettle_slowdown_effect.yy",},
+    {"name":"obj_laipishe_bullet","path":"objects/obj_laipishe_bullet/obj_laipishe_bullet.yy",},
+    {"name":"obj_lantern_burn_effect","path":"objects/obj_lantern_burn_effect/obj_lantern_burn_effect.yy",},
+    {"name":"obj_lightning_baguette_thunder","path":"objects/obj_lightning_baguette_thunder/obj_lightning_baguette_thunder.yy",},
+    {"name":"obj_panduola_effect","path":"objects/obj_panduola_effect/obj_panduola_effect.yy",}
+  ],
+}

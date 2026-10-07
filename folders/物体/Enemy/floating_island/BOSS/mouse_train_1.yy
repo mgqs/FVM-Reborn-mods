@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_train_1",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/mouse_train_1.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_train_1",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_mouse_train_1_body","path":"objects/obj_mouse_train_1_body/obj_mouse_train_1_body.yy",},
+    {"name":"obj_mouse_train_1_bullet","path":"objects/obj_mouse_train_1_bullet/obj_mouse_train_1_bullet.yy",},
+    {"name":"obj_mouse_train_1_head","path":"objects/obj_mouse_train_1_head/obj_mouse_train_1_head.yy",}
+  ],
+}

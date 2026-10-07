@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"flour_sack",
+  "folderPath":"folders/精灵/Cards/boomer/flour_sack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flour_sack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"45724524-2f25-4080-bd67-45bc9afebcd4","path":"sprites/spr_flour_sack/spr_flour_sack.yy",},
+    {"name":"99821412-30a0-4fbc-adbd-8186d614a4eb","path":"sprites/spr_flour_sack_1/spr_flour_sack_1.yy",},
+    {"name":"1bbad277-49bd-4e88-aa03-1060d22d6343","path":"sprites/spr_flour_sack_2/spr_flour_sack_2.yy",}
+  ],
+}

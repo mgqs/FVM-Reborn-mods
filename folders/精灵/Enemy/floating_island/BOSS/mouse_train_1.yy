@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_train_1",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/mouse_train_1.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_train_1",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ddc173ad-b253-4db9-9da9-ae29a9d064a5","path":"sprites/spr_mouse_train_1_body_death/spr_mouse_train_1_body_death.yy",},
+    {"name":"ea29a2d8-2548-4aa9-83b3-4bf8159ee9a1","path":"sprites/spr_mouse_train_1_body_idle/spr_mouse_train_1_body_idle.yy",},
+    {"name":"d8d05117-c6e7-4f32-9ed4-3fba29238147","path":"sprites/spr_mouse_train_1_body_skill_1/spr_mouse_train_1_body_skill_1.yy",},
+    {"name":"3457ceeb-00df-4955-b3eb-20b9cd35802f","path":"sprites/spr_mouse_train_1_body_skill_2/spr_mouse_train_1_body_skill_2.yy",},
+    {"name":"10ac8669-e789-4011-9be1-abcc9b013130","path":"sprites/spr_mouse_train_1_body_skill_3/spr_mouse_train_1_body_skill_3.yy",},
+    {"name":"6b7dd5c2-59ca-4cd8-ad3b-ac1224ba4328","path":"sprites/spr_mouse_train_1_body_skill_4/spr_mouse_train_1_body_skill_4.yy",},
+    {"name":"49ffdcc5-3c72-460a-9fed-5c3f589a88d5","path":"sprites/spr_mouse_train_1_bullet/spr_mouse_train_1_bullet.yy",},
+    {"name":"cfd71473-b5e1-459d-ab25-d1b74d1ead26","path":"sprites/spr_mouse_train_1_bullet_effect/spr_mouse_train_1_bullet_effect.yy",},
+    {"name":"5beb3bec-4174-4875-81ea-94a0522001c7","path":"sprites/spr_mouse_train_1_head_death/spr_mouse_train_1_head_death.yy",},
+    {"name":"9f3c1d47-b6fe-4ceb-bc78-bbf13dbb84e6","path":"sprites/spr_mouse_train_1_head_idle/spr_mouse_train_1_head_idle.yy",},
+    {"name":"0207a3a2-b134-4cb8-8073-1d1efed23e98","path":"sprites/spr_mouse_train_1_head_launch/spr_mouse_train_1_head_launch.yy",},
+    {"name":"513726df-0d88-4398-ba42-b17b4c662d5b","path":"sprites/spr_mouse_train_1_head_ready/spr_mouse_train_1_head_ready.yy",}
+  ],
+}

@@ -24,12 +24,11 @@ flash_speed = 5
 plant_type = "normal"
 is_slowdown = false
 target_instance = noone
+target_type = "throw"
+// 毒雾触发概率（百分比）
 if shape < 2{
-	stinky_tofu_cooldown = 480
-	stinky_tofu_timer = 480
+	poison_chance = 50
 }
 else{
-	stinky_tofu_cooldown = 300
-	stinky_tofu_timer = 300
+	poison_chance = 50
 }
-target_type = "throw"

@@ -1,0 +1,36 @@
+{
+  "$GMFolder":"",
+  "%Name":"Gems",
+  "folderPath":"folders/精灵/Player/Gems.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Gems",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"icon","path":"folders/精灵/Player/Gems/icon.yy",}
+  ],
+  "listItems":[
+    {"name":"598808eb-622a-4a20-9f94-3af1ca145785","path":"sprites/spr_bomb_gem/spr_bomb_gem.yy",},
+    {"name":"7fa50af0-7a6a-41ea-aba9-37e74546b7b0","path":"sprites/spr_bomb_gem_effect/spr_bomb_gem_effect.yy",},
+    {"name":"a0ec23f3-c193-4553-b2b2-f3297a39d980","path":"sprites/spr_bomb_gem_explode/spr_bomb_gem_explode.yy",},
+    {"name":"bcadad49-1c10-42c3-ac71-38abfd40077d","path":"sprites/spr_bomb_gem_text/spr_bomb_gem_text.yy",},
+    {"name":"5a29dfcf-ebc5-490a-a762-5275a23e7d23","path":"sprites/spr_cateye_gem/spr_cateye_gem.yy",},
+    {"name":"9e6a1a39-1212-4f3d-95ad-94f64ab3775c","path":"sprites/spr_cateye_gem_text/spr_cateye_gem_text.yy",},
+    {"name":"a31acf62-0bd3-4fdd-bb95-b8859f384e5f","path":"sprites/spr_flamerecover_gem/spr_flamerecover_gem.yy",},
+    {"name":"22e2813a-9fda-44ee-ae9c-d888fce6f337","path":"sprites/spr_freeze_gem/spr_freeze_gem.yy",},
+    {"name":"66b1afea-a8ee-4fcb-833e-3a30ac785d03","path":"sprites/spr_freeze_gem_effect/spr_freeze_gem_effect.yy",},
+    {"name":"cb71dc82-86f8-44c5-b1b0-b9dd7e3ee25f","path":"sprites/spr_freeze_gem_spawn/spr_freeze_gem_spawn.yy",},
+    {"name":"8241d7ab-2f50-4785-ad78-ed24314873a5","path":"sprites/spr_freeze_gem_text/spr_freeze_gem_text.yy",},
+    {"name":"3c78bc4c-0c23-4dcd-99d9-605bf4b9049b","path":"sprites/spr_laser_gem/spr_laser_gem.yy",},
+    {"name":"c49dca7f-06c8-4525-b275-27f621606e0b","path":"sprites/spr_laser_gem_effect/spr_laser_gem_effect.yy",},
+    {"name":"5af9601b-4ce5-490d-b2da-27937605861d","path":"sprites/spr_laser_gem_spawn/spr_laser_gem_spawn.yy",},
+    {"name":"353ff4a5-853a-4475-be7f-2867c52cb270","path":"sprites/spr_laser_gem_text/spr_laser_gem_text.yy",},
+    {"name":"72044565-8a4e-4ec6-886d-d5b95a457049","path":"sprites/spr_slowdown_gem_effect/spr_slowdown_gem_effect.yy",},
+    {"name":"e053b50a-c478-4dbf-9a2d-b381eb471d9b","path":"sprites/spr_starlight_gem/spr_starlight_gem.yy",},
+    {"name":"79f608bf-5b7e-4e8c-84a5-a6a3db74a014","path":"sprites/spr_starlight_gem_effect/spr_starlight_gem_effect.yy",},
+    {"name":"57903a58-3755-4a51-8b08-9fc5832c1c05","path":"sprites/spr_starlight_gem_text/spr_starlight_gem_text.yy",}
+  ],
+}

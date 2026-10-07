@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Player",
+  "folderPath":"folders/精灵/Player.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Player",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Gems","path":"folders/精灵/Player/Gems.yy",},
+    {"name":"attire","path":"folders/精灵/Player/attire.yy",},
+    {"name":"Weapons","path":"folders/精灵/Player/Weapons.yy",}
+  ],
+  "listItems":[
+    {"name":"72c7a302-e21b-4431-ac6f-8f7879410c6f","path":"sprites/spr_place_player_tip/spr_place_player_tip.yy",},
+    {"name":"58d95c6a-3134-4808-aa98-ae8ec3ae07ef","path":"sprites/spr_player_character/spr_player_character.yy",},
+    {"name":"ca2b72b8-bd89-4bf2-bdd8-7a6bbdaedc72","path":"sprites/spr_player_character_icon/spr_player_character_icon.yy",}
+  ],
+}

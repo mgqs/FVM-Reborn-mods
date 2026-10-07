@@ -12,11 +12,15 @@ function load_custom_deck(deck_index) {
     for(var i = 0; i < len; i++) {
         var cid = card_ids[i];
         if (cid == "" || is_undefined(cid) || cid == noone) continue; // 跳过空槽
+        if (cid == "lihe" && !is_random_gift_mode()) continue;
         var info = get_card_info(cid);
         if (info != false) {
             add_to_deck(cid, info.shape, i);
         }
     }
+
+    // 随机礼盒模式下整理卡组：移除不允许的卡，确保礼盒和顽皮龙存在
+    random_gift_prepare_selected_deck();
 
     // 重新创建卡槽（需在战斗房间调用）
     if (instance_exists(obj_battle)) {
