@@ -21,7 +21,7 @@ if (variable_instance_exists(id, "plant_id") && !_was_shoveled && !_no_revive_re
 
             "coke_bomb", "ice_bucket_bomb", "kettle_bomb", "wine_bottle_bomb", "whisky_bomb", "skewer_bomb",
             "chili_powder", "rabbit_lantern", "delicacy_firework", "bull_firework", "aquarius_elve", "mouse_clip",
-            "flour_sack", "steel_wool", "baiyang", "save_god", "hundun_god", "qingse_shishi", "panduola_god",
+            "flour_sack", "pufferfish", "steel_wool", "baiyang", "save_god", "hundun_god", "qingse_shishi", "panduola_god",
             "dandantu", "shuiping",
 
             "12yinliao", "coffee_grounds", "ice_cream", "magic_chicken", "clotho", "time_god", "heian_god",
