@@ -76,7 +76,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_2_1",
-					"rewards":[{"card_id":"gatlin_long_bao","target_shape":1}
+					"rewards":[{"card_id":"gatlin_long_bao","target_shape":1},
+								{"card_id":"pufferfish","target_shape":1}
 							]
 				},
 				{
@@ -667,7 +668,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_22_1",
 					"rewards":[{"card_id":"salad_pult","target_shape":2},
-								{"card_id":"flour_sack","target_shape":2}
+								{"card_id":"flour_sack","target_shape":2},
+								{"card_id":"pufferfish","target_shape":2}
 							]
 				},
 				{

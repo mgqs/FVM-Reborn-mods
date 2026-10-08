@@ -47,6 +47,9 @@ global.test_mouse_picker_block_place = false;
 global.test_place_original = false;   // true=F4模式放原版敌人本体 / false=F2模式放测试鼠
 global.test_info_island_mode = (global.level_id == "test_level");
 
+// 爆辣河豚：每局战斗重置放置次数计数
+global.pufferfish_place_count = 0;
+
 chomp_sound_list = ds_list_create()
 battle_time = 0
 

@@ -157,6 +157,9 @@
     {"name":"6613f2ca-328d-4366-afab-3c108f60234b","path":"sprites/spr_power_god_1/spr_power_god_1.yy",},
     {"name":"46964469-a661-49df-a79a-1461464803ae","path":"sprites/spr_power_god_2/spr_power_god_2.yy",},
     {"name":"58f0e26c-dd16-4415-94f9-427db06f53fc","path":"sprites/spr_power_god_3/spr_power_god_3.yy",},
+    {"name":"35cd2d35-ee67-4132-b12a-be4a5396e58e","path":"sprites/spr_pufferfish/spr_pufferfish.yy",},
+    {"name":"f0579491-65ab-40fd-bd94-250802bb4711","path":"sprites/spr_pufferfish_1/spr_pufferfish_1.yy",},
+    {"name":"6a65e74c-2512-48fb-a96f-8c416ab88986","path":"sprites/spr_pufferfish_2/spr_pufferfish_2.yy",},
     {"name":"f21010fd-06c9-4702-ba66-ead62ad439e5","path":"sprites/spr_rig/spr_rig.yy",},
     {"name":"261d1689-0af5-4010-ae92-281e0cb5c8f2","path":"sprites/spr_rig_1/spr_rig_1.yy",},
     {"name":"9e54d8d7-fed5-4906-8976-6a4cc9b9e2ee","path":"sprites/spr_rig_2/spr_rig_2.yy",},
@@ -229,6 +232,9 @@
     {"name":"ed1cfb81-90d3-4ce8-bc7e-a23e729f361e","path":"sprites/spr_water_god_1/spr_water_god_1.yy",},
     {"name":"26f95962-0082-462b-8e6e-f72b2e26eebb","path":"sprites/spr_water_god_2/spr_water_god_2.yy",},
     {"name":"c89c66f4-bee6-4303-9dee-45d667dc7933","path":"sprites/spr_water_god_3/spr_water_god_3.yy",},
+    {"name":"92e47a12-9cd3-4884-ace1-b44e36aef429","path":"sprites/spr_yeziguo/spr_yeziguo.yy",},
+    {"name":"5543d43c-7db5-4bf4-9e2e-2607f4f22f6e","path":"sprites/spr_yeziguo_1/spr_yeziguo_1.yy",},
+    {"name":"8f0498c0-8b7f-4b61-9eb0-48de6d490930","path":"sprites/spr_yeziguo_2/spr_yeziguo_2.yy",},
     {"name":"78d71ab2-314d-4486-bc77-c5df4b4794e3","path":"sprites/spr_ymir/spr_ymir.yy",},
     {"name":"0c70f28b-d63a-4907-9c16-d10a7dadbf97","path":"sprites/spr_ymir_1/spr_ymir_1.yy",},
     {"name":"ea9e3112-979d-41b2-82e6-a52f1cebf551","path":"sprites/spr_ymir_2/spr_ymir_2.yy",},

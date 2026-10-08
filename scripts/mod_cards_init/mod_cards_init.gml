@@ -3089,6 +3089,76 @@ mod_register_plant_lite("xuanfengniu", [
         {name:"深度融合·煮蛋器", shape:2, description:"附加毒伤", hp:array_create(19,250), cost:array_create(19,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990,990,990], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)},
         {name:"灵魂融合·煮蛋器", shape:3, description:"三行各发射两枚煮蛋", hp:array_create(19,250), cost:array_create(19,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440,1440,1440], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)}
     ]);
+
+    mod_register_plant_lite("pufferfish", [
+        {
+            name: "爆辣河豚",
+            shape: 0,
+            description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        },
+        {
+            name: "朝天椒河豚",
+            shape: 1,
+            description: "朝天椒河豚：毒素效果降低",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        },
+        {
+            name: "青芥末河豚",
+            shape: 2,
+            description: "青芥末河豚：中毒几率降低",
+            hp: array_create(17, 200),
+            cost: array_create(17, 325),
+            atk: array_create(17, 900),
+            range: array_create(17, 1),
+            cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900],
+            cycle: array_create(17, 11)
+        }
+    ], false);
+
+    mod_register_plant_lite("yeziguo", [
+        {
+            name: "椰子果",
+            shape: 0,
+            description: "椰子果：跳起碾压前方鼠军",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        },
+        {
+            name: "浓香椰子果",
+            shape: 1,
+            description: "浓香椰子果：碾压范围扩大到3*3",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        },
+        {
+            name: "金丝椰子果",
+            shape: 2,
+            description: "金丝椰子果：可连砸3次",
+            hp: array_create(17, 20000),
+            cost: array_create(17, 75),
+            atk: array_create(17, 1000),
+            range: array_create(17, 3),
+            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cycle: array_create(17, 0)
+        }
+    ], false);
 }
-
-
