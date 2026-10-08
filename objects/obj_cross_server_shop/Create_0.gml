@@ -16,9 +16,9 @@ exchange_cards = [
 silver_cards = [
     "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
     "zhanqima", "hongliukaochuan", "yeziguo", "master_shield", "hades_scythe", "zeus_bolt",
-    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem",
-    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem",
-    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem"
+    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem",
+    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
+    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem"
 ];
 
 // 动态计算总页数（每页16个商品）

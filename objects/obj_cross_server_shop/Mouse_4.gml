@@ -51,6 +51,7 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _goods_type = _goods.type;
     var _owned = false;
     var _prerequisite_met = true;
+    var _required_gem_id = "";
 
     // 抽卡模式/欧皇模式/随机礼盒模式：禁止购买跨服商店商品
     if (is_eternal_gacha_mode() || is_random_gift_mode()) {
@@ -81,14 +82,23 @@ for (var _slot = 0; _slot < 16; _slot++) {
         _owned = is_weapon_unlocked(_id);
     } else if (_goods_type == "gem") {
         _owned = is_gem_unlocked(_id);
+        if (variable_struct_exists(_goods, "required_gem_id")) {
+            _required_gem_id = _goods.required_gem_id;
+            _prerequisite_met = is_gem_unlocked(_required_gem_id);
+        }
     }
 
     var _medal_id = shop_type == 0 ? "cross_server_gold_medal" : "cross_server_silver_medal";
     var _balance = get_material_amount(_medal_id);
     if (_owned) show_notice("该商品已兑换", 60);
     else if (!_prerequisite_met) {
-        var _required_shape = _goods.required_card_shape;
-        show_notice(_required_shape == 0 ? "请先兑换本体卡牌" : "请先兑换一转转职凭证", 60);
+        if (_required_gem_id != "") {
+            var _required_goods = global.goods_map[? _required_gem_id];
+            show_notice("请先兑换" + _required_goods.display_name, 60);
+        } else {
+            var _required_shape = _goods.required_card_shape;
+            show_notice(_required_shape == 0 ? "请先兑换本体卡牌" : "请先兑换一转转职凭证", 60);
+        }
     }
     else if (_balance < _medals && !global.debug) show_notice(shop_type == 0 ? "金色勋章不足" : "白银勋章不足", 60);
     else {

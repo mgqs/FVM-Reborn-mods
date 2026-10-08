@@ -6,7 +6,7 @@ function mod_weapons_init()
         icon: spr_zeus_bolt_icon,
         obj: obj_zeus_bolt,
         slot: "main_weapon",
-        allowed_gems: ["zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem"],
+        allowed_gems: ["zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem"],
         atk: 65,
         bullet_amount: 2,
         bullet_style: 0,
@@ -25,7 +25,7 @@ function mod_weapons_init()
         icon: spr_hades_scythe_icon,
         obj: obj_hades_scythe_enter,
         slot: "super_weapon",
-        allowed_gems: ["ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem"],
+        allowed_gems: ["ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem"],
         atk: 230,
         cycle: 900,
         ghost_shape: 0,
@@ -69,6 +69,17 @@ function mod_weapons_init()
         allowed_weapons: ["zeus_bolt"],
         max_level: 15
     });
+    register_gem("zeus_ren_gem",
+    {
+        name: "天神之刃",
+        description: "天神之刃：增加宙斯神弩攻击附加\n[专属宝石]：宙斯神弩",
+        icon: spr_zeus_ren_gem_icon,
+        slot: "main_weapon",
+        obj: noone,
+        allowed_weapons: ["zeus_bolt"],
+        atk_add: [5, 5, 5, 5, 8, 8, 8, 11, 11, 11, 14, 14, 17, 17, 20, 30],
+        max_level: 15
+    });
     register_gem("ghost_strike_gem", 
     {
         name: "亡灵强袭",
@@ -99,6 +110,17 @@ function mod_weapons_init()
         allowed_weapons: ["hades_scythe"],
         max_level: 15
     });
+    register_gem("ghost_caijue_gem",
+    {
+        name: "亡灵裁决",
+        description: "亡灵裁决：冥王战镰所有子弹命中后减速4秒\n[专属宝石]：冥王战镰",
+        icon: spr_ghost_caijue_gem_icon,
+        slot: "super_weapon",
+        obj: noone,
+        allowed_weapons: ["hades_scythe"],
+        slow_timer: 240,
+        max_level: 15
+    });
     register_weapon("gods_shield",
     {
         sprite: spr_master_shield_icon,
@@ -116,7 +138,7 @@ function mod_weapons_init()
         icon: spr_master_shield_icon,
         obj: obj_player_shield,
         slot: "secondary_weapon",
-        allowed_gems: ["master_shield_gem_1", "master_shield_gem_2", "master_shield_gem_3", "master_shield_gem_4"],
+        allowed_gems: ["master_shield_gem_1", "master_shield_gem_2", "master_shield_gem_3", "master_shield_gem_4", "divine_shenji_gem"],
         hp_increase: 700,
         description: "主宰之盾：增加700生命值，镶嵌宝石时提供强力增益效果",
         name: "主宰之盾"
@@ -254,6 +276,19 @@ function mod_weapons_init()
         atk: [150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 1000],
         ice_timer: [180, 180, 180, 210, 210, 210, 240, 240, 240, 270, 270, 270, 300, 300, 300, 360],
         obj: obj_divine_holy_gem,
+        allowed_weapons: ["master_shield"]
+    });
+    register_gem("divine_shenji_gem",
+    {
+        name: "神忌之眼",
+        description: "神忌之眼：每2.5秒对5×5范围敌人造成反伤与流血伤害\n[专属宝石]：主宰之盾",
+        icon: spr_divine_shenji_gem_icon,
+        slot: "secondary_weapon",
+        max_level: 15,
+        reflect_ratio: [0.02, 0.03, 0.03, 0.04, 0.05, 0.06, 0.08, 0.10, 0.12, 0.15, 0.18, 0.19, 0.20, 0.23, 0.24, 0.26],
+        bleed_damage: [12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 120, 140, 160],
+        max_damage: 3000,
+        obj: noone,
         allowed_weapons: ["master_shield"]
     });
     register_weapon("star_wand",

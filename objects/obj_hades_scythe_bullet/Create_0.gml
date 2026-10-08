@@ -3,6 +3,7 @@ move_speed = 0;
 target_col = 8;
 row = 0;
 damage_type = "pierce";
+slow_timer = 0;
 target_type = "all";
 disabled = false;
 burnt = 0;

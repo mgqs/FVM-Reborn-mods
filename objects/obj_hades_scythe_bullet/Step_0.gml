@@ -60,6 +60,8 @@ if (variable_global_exists("enemy_by_type"))
                 {
                     damage_amount = other.damage;
                     damage_type = other.damage_type;
+                    if (other.slow_timer > 0)
+                        ice_timer = max(ice_timer, other.slow_timer);
                     event_user(0);
                 }
                 ds_list_add(hitted_enemy, _e.id);

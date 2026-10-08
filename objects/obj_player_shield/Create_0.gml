@@ -206,6 +206,10 @@ if (get_gem_index("divine_protect_gem") != -1)
 divine_holy_gem = false;
 divine_holy_atk = 0;
 divine_holy_ice_timer = 0;
+divine_shenji_gem = false;
+divine_shenji_rate = 0;
+divine_shenji_bleed = 0;
+divine_shenji_max = 3000;
 
 if (get_gem_index("divine_holy_gem") != -1)
 {
@@ -218,6 +222,16 @@ if (get_gem_index("divine_holy_gem") != -1)
 
     divine_holy_atk = _gi.atk[_gl];
     divine_holy_ice_timer = _gi.ice_timer[_gl];
+}
+
+if (get_gem_index("divine_shenji_gem") != -1)
+{
+    divine_shenji_gem = true;
+    var _gi = get_gem_info("divine_shenji_gem");
+    var _gl = clamp(get_gem_level("divine_shenji_gem"), 0, 15);
+    divine_shenji_rate = _gi.reflect_ratio[_gl];
+    divine_shenji_bleed = _gi.bleed_damage[_gl];
+    divine_shenji_max = _gi.max_damage;
 }
 
 gods_hp_gem = false;

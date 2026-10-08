@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"tianshen",
+    "path":"folders/精灵/mod/germ/tianshen.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

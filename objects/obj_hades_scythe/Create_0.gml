@@ -6,6 +6,7 @@ cycle = 0;
 bullet_amount = 0;
 bullet_shape = 0;
 ghost_shape = 0;
+slow_timer = 0;
 grid_col = 2;
 grid_row = -2;
 var pos = get_world_position_from_grid(grid_row, grid_col);
@@ -41,6 +42,9 @@ if (get_gem_index("ghost_pact_gem") != -1)
 if (get_gem_index("ghost_spark_gem") != -1)
     cycle = weapon_info.cycle_impact[get_gem_level("ghost_spark_gem")];
 
+if (get_gem_index("ghost_caijue_gem") != -1)
+    slow_timer = get_gem_info("ghost_caijue_gem").slow_timer;
+
 switch (ghost_shape)
 {
     case 0:
@@ -55,4 +59,3 @@ switch (ghost_shape)
         sprite_index = spr_hades_scythe_2;
         break;
 }
-

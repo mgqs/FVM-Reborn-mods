@@ -118,3 +118,16 @@ if (divine_holy_gem)
     }
 }
 
+if (divine_shenji_gem && (timer % 150) == 0)
+{
+    with (obj_enemy_parent)
+    {
+        var row_diff = grid_row - other.grid_row;
+        var col_diff = grid_col - other.grid_col;
+        if (hp > 0 && row_diff >= -2 && row_diff <= 2 && col_diff >= -2 && col_diff <= 2)
+        {
+            var shenji_damage = round((hp * other.shenji_reflect_ratio) + other.shenji_bleed_damage);
+            hp -= min(shenji_damage, other.shenji_max_damage);
+        }
+    }
+}

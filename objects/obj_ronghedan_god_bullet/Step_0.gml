@@ -88,6 +88,9 @@ if (hit_tick >= global.bullet_hit_interval)
         {
             var _hit = false;
             var _hit_enemy_id = noone;
+            // This bullet moves continuously; invalidate the spatial query
+            // cache so candidates are rebuilt at its current position.
+            _sap_gen = -1;
             for (var _t = 0; _t < array_length(hittable_types); _t++)
             {
                 var _key = hittable_types[_t];

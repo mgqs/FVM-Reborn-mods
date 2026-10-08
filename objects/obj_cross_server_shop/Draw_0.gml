@@ -24,6 +24,7 @@ draw_text(x + 605, y - 438, string(get_material_amount("cross_server_silver_meda
 
 var _cards = shop_type == 0 ? exchange_cards : silver_cards;
 var _medal_sprite = shop_type == 0 ? spr_mod_cs_xunzhang : spr_mod_cs_silver_medal;
+var _hover_desc = "";
 // Match the gods shop exactly: four columns, four rows, sixteen products per page.
 for (var _slot = 0; _slot < 16; _slot++) {
     var _index = (current_page - 1) * 16 + _slot;
@@ -41,6 +42,7 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _medals = real(_goods.cost);
     var _owned = false;
     var _goods_type = _goods.type;
+    var _prerequisite_met = true;
 
     // 判断是否已拥有
     if (_goods_type == "card") {
@@ -51,6 +53,9 @@ for (var _slot = 0; _slot < 16; _slot++) {
         _owned = is_weapon_unlocked(_id);
     } else if (_goods_type == "gem") {
         _owned = is_gem_unlocked(_id);
+        if (variable_struct_exists(_goods, "required_gem_id")) {
+            _prerequisite_met = is_gem_unlocked(_goods.required_gem_id);
+        }
     }
 
     // 绘制商品图标
@@ -70,6 +75,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
         if (_gem_info != noone) {
             draw_sprite_ext(_gem_info.icon, 0, _gx - 122, _gy - 20 + 25, 0.9, 0.9, 0, c_white, 1);
         }
+    }
+
+    if (point_in_rectangle(mouse_x, mouse_y, _gx - 205, _gy - 82, _gx + 205, _gy + 82)) {
+        _hover_desc = variable_struct_exists(_goods, "description") ? _goods.description : "";
     }
 
     // 抽卡模式/欧皇模式/随机礼盒模式：购买按钮变灰
@@ -97,6 +106,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
         draw_set_font(font_yuan);
         draw_set_color(c_white);
         draw_text(_gx + 77, _gy + 60, "不可购买");
+    } else if (!_prerequisite_met) {
+        draw_set_font(font_yuan);
+        draw_set_color(c_white);
+        draw_text(_gx + 77, _gy + 60, "需先兑换前置宝石");
     }
 }
 
@@ -111,3 +124,27 @@ draw_text(x, y + 435, string(current_page) + "/" + string(total_pages));
 
 // Close button at bottom-right.
 draw_sprite_ext(spr_closemenu_btn, 0, x + 740, y + 490, 1.8, 1.8, 0, c_white, 1);
+
+// 悬停提示：显示商品简要介绍（与金币商店一致）
+if (_hover_desc != "") {
+    draw_set_font(font_yuan);
+    var _tw = string_width(_hover_desc);
+    var _th = string_height(_hover_desc);
+    var _tx = mouse_x + 15;
+    var _ty = mouse_y + 15;
+    if (_tx + _tw > room_width) {
+        _tx = mouse_x - 15 - _tw;
+    }
+    if (_ty + _th > room_height) {
+        _ty = mouse_y - 15 - _th;
+    }
+    draw_set_color(c_black);
+    draw_set_alpha(0.7);
+    draw_rectangle(_tx - 6, _ty - 6, _tx + _tw + 6, _ty + _th + 6, false);
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_text(_tx, _ty, _hover_desc);
+    draw_set_valign(fa_top);
+}

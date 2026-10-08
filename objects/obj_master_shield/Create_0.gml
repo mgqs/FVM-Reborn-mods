@@ -10,6 +10,7 @@ weapon_id = "master_shield";
 divine_blessing_gem = false;
 divine_protect_gem = false;
 divine_holy_gem = false;
+divine_shenji_gem = false;
 hp_modified_card_list = [];
 atk_modified_card_list = [];
 origin_x = x;
@@ -55,6 +56,16 @@ if (get_gem_index("divine_holy_gem") != -1)
     ice_timer = gem_info.ice_timer[gem_level];
 }
 
+if (get_gem_index("divine_shenji_gem") != -1)
+{
+    divine_shenji_gem = true;
+    var gem_info = get_gem_info("divine_shenji_gem");
+    var gem_level = clamp(get_gem_level("divine_shenji_gem"), 0, 15);
+    shenji_reflect_ratio = gem_info.reflect_ratio[gem_level];
+    shenji_bleed_damage = gem_info.bleed_damage[gem_level];
+    shenji_max_damage = gem_info.max_damage;
+}
+
 rebuild_shield_grid();
 
 if (divine_protect_gem)
@@ -86,4 +97,3 @@ for (var i = 0; i < array_length(aura_defs); i++)
 }
 
 show_debug_message("主宰之盾初始化完毕");
-

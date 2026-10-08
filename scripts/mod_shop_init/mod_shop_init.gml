@@ -96,6 +96,14 @@ function mod_shop_init()
         description: "神圣之眼：伤害并减速5x5范围内的敌人",
         display_name: "神圣之眼"
     });
+    register_goods("divine_shenji_gem",
+    {
+        type: "gem",
+        cost: "150000",
+        unlock_item_id: "divine_shenji_gem",
+        description: "神忌之眼：每2.5秒对5×5范围敌人造成反伤与流血伤害",
+        display_name: "神忌之眼"
+    });
     register_goods("hades_scythe", 
     {
         type: "weapon",
@@ -127,6 +135,14 @@ function mod_shop_init()
         unlock_item_id: "ghost_pact_gem",
         description: "亡灵契约：增加冥王战镰子弹",
         display_name: "亡灵契约"
+    });
+    register_goods("ghost_caijue_gem",
+    {
+        type: "gem",
+        cost: "250000",
+        unlock_item_id: "ghost_caijue_gem",
+        description: "亡灵裁决：冥王战镰所有子弹命中后减速4秒",
+        display_name: "亡灵裁决"
     });
     register_goods("poseidon_dart_gun", 
     {
@@ -167,6 +183,14 @@ function mod_shop_init()
         unlock_item_id: "zeus_anger_gem",
         description: "天神之怒：增加宙斯神弩子弹数量",
         display_name: "天神之怒"
+    });
+    register_goods("zeus_ren_gem",
+    {
+        type: "gem",
+        cost: "200000",
+        unlock_item_id: "zeus_ren_gem",
+        description: "天神之刃：增加宙斯神弩攻击附加",
+        display_name: "天神之刃"
     });
     register_goods("shuangzi", 
     {

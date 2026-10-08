@@ -42,7 +42,8 @@ for (var i = 0; i < 4; i++)
                 var card_data = deck_get_card_data(ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id, 0);
             if (card_data != noone && ds_exists(card_data, ds_type_map))
             {
-            var slot_sprite = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+            var _god_card_id = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id;
+            var slot_sprite = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], _god_card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
                 draw_sprite_ext(slot_sprite, 0, ((x - 618) + (411 * j)) - 122, (y - 248) + (165 * i), 0.33, 0.33, 0, c_white, 1);
                 draw_sprite_ext(ds_map_find_value(card_data, "sprite"), 0, ((x - 618) + (411 * j)) - 122, (y - 248) + (165 * i) + 25, 1, 1, 0, c_white, 1);
                 draw_set_halign(fa_left);

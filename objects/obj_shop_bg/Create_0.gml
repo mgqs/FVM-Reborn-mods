@@ -16,9 +16,9 @@ cross_server_exchange_ids = [
     // 黄金商店武器
     "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
     // 黄金商店宝石
-    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem",
-    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem",
-    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem",
+    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem",
+    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
+    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem",
     "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
     "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
     "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",

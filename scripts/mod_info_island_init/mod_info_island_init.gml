@@ -99,7 +99,7 @@ function mod_info_island_init()
     register_enemy_info_island("infected_diver_mouse", "潜水僵尸鼠：被感染的潜水鼠，不攻击时潜在水面下。");
     register_enemy_info_island("infected_frog_prince_mouse", "青蛙王子僵尸鼠：被感染的青蛙王子鼠，可越过障碍。");
     register_enemy_info_island("infected_submarine_mouse", "水潜艇僵尸鼠：被僵尸鼠操控的水潜艇，装甲完整且不攻击时潜水。");
-    register_enemy_info_island("infected_mario_mouse", "变异洞君：被感染后变得更加强大的洞君。\n洞君会在地图右侧出场，并使用下列技能的随机一个，随后消失。\n技能1：洞君会在地图第9列挖掘一个坑洞，并在4-7列的范围内随机生成三个生命值为600的管道，进入坑洞的老鼠会被传送到管道处。\n技能2：洞君会进行3次跳跃，依次摧毁本行第8、6、4列的三张卡片。");
+    register_enemy_info_island("infected_mario_mouse", "变异洞君：被感染后变得更加强大的洞君。\n洞君会在地图右侧出场，并使用下列技能的随机一个，随后消失。\n技能1：洞君会在地图第9列挖掘一个坑洞\n并在4-7列的范围内随机生成三个生命值为600的管道，进入坑洞的老鼠会被传送到管道处。\n技能2：洞君会进行3次跳跃，依次摧毁本行第8、6、4列的三张卡片。");
     register_enemy_info_island("infected_arno", "变异阿诺：被感染后变得更加强大的阿诺。\n阿诺会在地图右侧出场，并使用下列技能的随机一个，随后消失。\n技能1：阿诺发射两颗子弹，摧毁本行最左侧的两张卡片。\n技能2：阿诺在较长前摇后冲刺，摧毁本行右侧7列的卡片。");
     register_enemy_info_island("infected_fire_residue", "感染火渣：被感染的火渣，掌控火焰之力。");
     register_enemy_info_island("infected_zhanshen", "变异战神：被感染后变得更加强大的战神。\n战神会在第4行出场，出场时会同时在第2行和第6行分别生成一个生命值为150000的木鸭，木鸭每隔30秒会发射一个木轮，摧毁本行卡片。\n战神会持续向左侧移动，每隔18秒会停止，并使用一次技能。\n技能1：战神在本行左侧一格和本列上下两行中分别召唤一个生命值为1000的战士鼠。\n技能2：战神在召唤战士鼠的基础上，还会释放一个生命值为1800的滚木，滚木会摧毁三行内的卡片。\n战神会使用1-2的技能循环。");

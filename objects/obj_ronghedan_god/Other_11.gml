@@ -27,6 +27,9 @@ for (var _r = 0; _r < array_length(_rows); _r++) {
         } else {
             inst.sprite_index = spr_ronghedan_god_bullet_2;
         }
+        // The flight/shatter frames are controlled by the bullet Step event.
+        inst.image_speed = 0;
+        inst.image_index = 1;
 
         // 基本属性
         inst.damage = atk

@@ -89,7 +89,7 @@ for(var i = 0 ; i < slot_rows ; i++){
             // 绘制卡片
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
-				var _slot_spr = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				var _slot_spr = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
@@ -129,7 +129,7 @@ for(var i = 0 ; i < slot_rows ; i++){
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_bottom);
 				draw_set_font(font_pixel)
-				var _slot_spr2 = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				var _slot_spr2 = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_slot_spr2, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
 				card_data = card_data_shapes[| card_shape]
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_gray, 1);
@@ -219,7 +219,7 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
     var card_y = y + 132
 	
 	// 已解锁的卡片正常绘制
-				var _slot_spr3 = (ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot;
+				var _slot_spr3 = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_slot_spr3, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
