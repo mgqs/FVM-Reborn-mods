@@ -1,6 +1,8 @@
 image_xscale = 1.8
 image_yscale = 1.8
 image_speed = 0
+image_alpha = 1
+image_blend = c_white
 atk = 10 //每次攻击伤害
 atk_cycle = 0.6 * 60 //攻击间隔
 move_speed = 0.32 //移动速度（像素/秒）

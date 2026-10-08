@@ -123,6 +123,16 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         visible = true;
         instance_change(_obj, true);
         event_user(14);
+
+        if (obj_pool_is_enemy_whitelisted(_obj)) {
+            image_alpha = 1;
+            image_blend = c_white;
+            image_index = 0;
+            image_speed = 0;
+            image_angle = 0;
+            flash_value = 0;
+            visible = true;
+        }
     }
     return _inst;
 }
