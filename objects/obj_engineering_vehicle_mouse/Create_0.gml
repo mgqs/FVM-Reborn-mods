@@ -21,3 +21,4 @@ atk_cycle = 1
 atk = 2000
 
 sprite_index = spr_engineering_vehicle_mouse_move
+can_use_ladder = false
