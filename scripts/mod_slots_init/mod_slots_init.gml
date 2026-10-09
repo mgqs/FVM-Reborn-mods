@@ -2997,30 +2997,26 @@ register_card("hongliukaochuan", obj_hongliukaochuan, [
 { shape: 2, sprite: spr_hongliukaochuan_2, cost: 230, cooldown: 420, description: "星火红柳烤串机：攻击力翻倍", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan_2 }
 ]);
 
-// 融合卡：四形态均为金卡，形态贴图直接使用对应 shape 素材。
+// 融合卡：普卡两转（形态 0/1/2），不写 is_gold（缺键读作 undefined，在 == 1 判断下等同 0）；卡底由 is_fusion 类别标记决定（spr_slot_2），不再逐界面硬编码名单。
 register_card("lizi_god", obj_lizi_god, [
-{shape:0,sprite:spr_lizi_god,cost:160,cooldown:420,description:"如意香烤栗子：滚动栗子并造成灼烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_lizi_god},
-{shape:1,sprite:spr_lizi_god_1,cost:160,cooldown:420,description:"初级融合：3×3范围灼烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_lizi_god_1},
-{shape:2,sprite:spr_lizi_god_2,cost:160,cooldown:420,description:"深度融合：周期性追加3×3爆炸",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_lizi_god_2},
-{shape:3,sprite:spr_lizi_god_2,cost:160,cooldown:420,description:"灵魂融合：向三行投掷栗子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_lizi_god_2}
+{shape:0,sprite:spr_lizi_god,cost:160,cooldown:420,description:"酱香锅烤栗子：向前方喷出可以持续灼烧的滚烫栗子",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_lizi_god},
+{shape:1,sprite:spr_lizi_god_1,cost:160,cooldown:420,description:"可乐香烤栗子：向前方喷出可以周期性爆炸的滚烫栗子",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_lizi_god_1},
+{shape:2,sprite:spr_lizi_god_2,cost:160,cooldown:420,description:"如意香烤栗子：向三行喷出可以周期性爆炸的滚烫栗子",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_lizi_god_2}
 ]);
 register_card("youyu_god", obj_youyu_god, [
-{shape:0,sprite:spr_youyu_god,cost:155,cooldown:420,description:"松香怪味鱿鱼：八方向各一发鱿鱼弹，需放置在章鱼烧上",plant_type:"normal",feature_type:"upgrade",target_card:"takoyaki",is_gold:1,place_preview:spr_youyu_god},
-{shape:1,sprite:spr_youyu_god_1,cost:155,cooldown:420,description:"初级融合·鱿鱼：八方向射击，无需底座",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_youyu_god_1},
-{shape:2,sprite:spr_youyu_god_2,cost:155,cooldown:420,description:"深度融合·鱿鱼：前后路追加弹道，中路子弹穿火增幅",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_youyu_god_2},
-{shape:3,sprite:spr_youyu_god_2,cost:155,cooldown:420,description:"灵魂融合·鱿鱼：二十二发鱿鱼弹齐射",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_youyu_god_2}
+{shape:0,sprite:spr_youyu_god,cost:155,cooldown:420,description:"火影怪味鱿鱼：八方向各两发鱿鱼弹，无需底座",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_youyu_god},
+{shape:1,sprite:spr_youyu_god_1,cost:155,cooldown:420,description:"合金怪味鱿鱼：前后两路各增一发子弹，中路子弹可过火",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_youyu_god_1},
+{shape:2,sprite:spr_youyu_god_2,cost:155,cooldown:420,description:"松香怪味鱿鱼：向前再增两路子弹，共计二十二发",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_youyu_god_2}
 ]);
 register_card("ronghehaixing", obj_ronghehaixing, [
-{shape:0,sprite:spr_ronghehaixing,cost:175,cooldown:420,description:"仙人球海星刺身：双发多方向刺身弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghehaixing},
-{shape:1,sprite:spr_ronghehaixing_1,cost:175,cooldown:420,description:"初级融合：命中后按比例扩散",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghehaixing_1},
-{shape:2,sprite:spr_ronghehaixing_2,cost:175,cooldown:420,description:"深度融合：扩散伤害提升",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghehaixing_2},
-{shape:3,sprite:spr_ronghehaixing_2,cost:175,cooldown:420,description:"灵魂融合：追踪弹增加额外伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghehaixing_2}
+{shape:0,sprite:spr_ronghehaixing,cost:175,cooldown:420,description:"仙人球海星刺身：五方向刺身弹，向后的子弹增加一发",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing},
+{shape:1,sprite:spr_ronghehaixing_1,cost:175,cooldown:420,description:"奶油海星刺身：攻击附加单格溅射",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_1},
+{shape:2,sprite:spr_ronghehaixing_2,cost:175,cooldown:420,description:"王冠海星刺身：斜向子弹碰上下边框后转为追踪弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_2}
 ]);
 register_card("ronghedan_god", obj_ronghedan_god, [
-{shape:0,sprite:spr_ronghedan_god,cost:250,cooldown:420,description:"臭豆腐煮蛋器：双蛋攻击并有概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghedan_god},
-{shape:1,sprite:spr_ronghedan_god_1,cost:250,cooldown:420,description:"初级融合：定身概率和持续时间提升",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghedan_god_1},
-{shape:2,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description:"深度融合：附加毒伤",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghedan_god_2},
-{shape:3,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description:"灵魂融合：三行各发射两枚煮蛋",plant_type:"normal",feature_type:"normal",target_card:"none",is_gold:1,place_preview:spr_ronghedan_god_2}
+{shape:0,sprite:spr_ronghedan_god,cost:250,cooldown:420,description:"雪芭煮蛋器：双蛋攻击，命中后有一定几率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god},
+{shape:1,sprite:spr_ronghedan_god_1,cost:250,cooldown:420,description:"臭豆腐煮蛋器：溅射范围额外附加毒气伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_1},
+{shape:2,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description:"终结者煮蛋器：可向前方三行投掷子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_2}
 ]);
 
     register_card("pufferfish", obj_pufferfish, [

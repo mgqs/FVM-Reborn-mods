@@ -15,3 +15,5 @@ image_xscale = 1.6;
 image_yscale = 1.6;
 hit_enemy = false;
 thrower_y = 0;
+deep_boom = false;
+deep_boom_damage = 0;
