@@ -175,13 +175,12 @@ for(var i = 0 ; i< 4; i++){
 		            if is_attire_unlocked(card_data.unlock_item_id){
 						is_unlocked = true
 					}
-				if is_unlocked{
+				if is_unlocked && get_attire_state(card_data.unlock_item_id) == "equipped"{
 					
 					draw_set_color(c_black)
 					draw_set_alpha(0.5)
 					draw_rectangle(x-618+411*j-205,y-190+165*i-82,x-618+411*j+205,y-190+165*i+82,false)
 					draw_set_alpha(1)
-					draw_sprite_ext(spr_sold_out, 0, x-618+411*j,y-190+165*i, 1.8, 1.8, 0, c_white, 1);
 				}
 			}
 		}

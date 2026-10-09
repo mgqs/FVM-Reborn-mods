@@ -1,0 +1,1073 @@
+[
+  {
+    "folder": "123U侦察小组",
+    "sprite": "spr_player_attire_123uzhenchaxiaozu",
+    "icon": "spr_player_attire_123uzhenchaxiaozu_icon",
+    "attire_id": "player_attire_123uzhenchaxiaozu",
+    "frames": 14
+  },
+  {
+    "folder": "baby鼠公主",
+    "sprite": "spr_player_attire_babyshugongzhu",
+    "icon": "spr_player_attire_babyshugongzhu_icon",
+    "attire_id": "player_attire_babyshugongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "cici",
+    "sprite": "spr_player_attire_cici",
+    "icon": "spr_player_attire_cici_icon",
+    "attire_id": "player_attire_cici",
+    "frames": 14
+  },
+  {
+    "folder": "万圣节前夜",
+    "sprite": "spr_player_attire_wanshengjieqianye",
+    "icon": "spr_player_attire_wanshengjieqianye_icon",
+    "attire_id": "player_attire_wanshengjieqianye",
+    "frames": 14
+  },
+  {
+    "folder": "三年二班",
+    "sprite": "spr_player_attire_sannianerban",
+    "icon": "spr_player_attire_sannianerban_icon",
+    "attire_id": "player_attire_sannianerban",
+    "frames": 14
+  },
+  {
+    "folder": "中式祥龙服",
+    "sprite": "spr_player_attire_zhongshixianglongfu",
+    "icon": "spr_player_attire_zhongshixianglongfu_icon",
+    "attire_id": "player_attire_zhongshixianglongfu",
+    "frames": 14
+  },
+  {
+    "folder": "中秋套装",
+    "sprite": "spr_player_attire_zhongqiutaozhuang",
+    "icon": "spr_player_attire_zhongqiutaozhuang_icon",
+    "attire_id": "player_attire_zhongqiutaozhuang",
+    "frames": 14
+  },
+  {
+    "folder": "丸子头",
+    "sprite": "spr_player_attire_wanzitou",
+    "icon": "spr_player_attire_wanzitou_icon",
+    "attire_id": "player_attire_wanzitou",
+    "frames": 14
+  },
+  {
+    "folder": "乖乖小公主",
+    "sprite": "spr_player_attire_guaiguaixiaogongzhu",
+    "icon": "spr_player_attire_guaiguaixiaogongzhu_icon",
+    "attire_id": "player_attire_guaiguaixiaogongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "仙侣奇缘",
+    "sprite": "spr_player_attire_xianlvqiyuan",
+    "icon": "spr_player_attire_xianlvqiyuan_icon",
+    "attire_id": "player_attire_xianlvqiyuan",
+    "frames": 14
+  },
+  {
+    "folder": "佩奇姐姐",
+    "sprite": "spr_player_attire_peiqijiejie",
+    "icon": "spr_player_attire_peiqijiejie_icon",
+    "attire_id": "player_attire_peiqijiejie",
+    "frames": 14
+  },
+  {
+    "folder": "佳期如梦",
+    "sprite": "spr_player_attire_jiaqirumeng",
+    "icon": "spr_player_attire_jiaqirumeng_icon",
+    "attire_id": "player_attire_jiaqirumeng",
+    "frames": 14
+  },
+  {
+    "folder": "侍应生兔兔",
+    "sprite": "spr_player_attire_shiyingshengtutu",
+    "icon": "spr_player_attire_shiyingshengtutu_icon",
+    "attire_id": "player_attire_shiyingshengtutu",
+    "frames": 14
+  },
+  {
+    "folder": "俏新娘",
+    "sprite": "spr_player_attire_qiaoxinniang",
+    "icon": "spr_player_attire_qiaoxinniang_icon",
+    "attire_id": "player_attire_qiaoxinniang",
+    "frames": 14
+  },
+  {
+    "folder": "修仙小侠女",
+    "sprite": "spr_player_attire_xiuxianxiaoxianv",
+    "icon": "spr_player_attire_xiuxianxiaoxianv_icon",
+    "attire_id": "player_attire_xiuxianxiaoxianv",
+    "frames": 14
+  },
+  {
+    "folder": "元气少女",
+    "sprite": "spr_player_attire_yuanqishaonv",
+    "icon": "spr_player_attire_yuanqishaonv_icon",
+    "attire_id": "player_attire_yuanqishaonv",
+    "frames": 14
+  },
+  {
+    "folder": "兔儿娘",
+    "sprite": "spr_player_attire_tuerniang",
+    "icon": "spr_player_attire_tuerniang_icon",
+    "attire_id": "player_attire_tuerniang",
+    "frames": 14
+  },
+  {
+    "folder": "兔年吉祥",
+    "sprite": "spr_player_attire_tunianjixiang",
+    "icon": "spr_player_attire_tunianjixiang_icon",
+    "attire_id": "player_attire_tunianjixiang",
+    "frames": 14
+  },
+  {
+    "folder": "兔警官朱迪",
+    "sprite": "spr_player_attire_tujingguanzhudi",
+    "icon": "spr_player_attire_tujingguanzhudi_icon",
+    "attire_id": "player_attire_tujingguanzhudi",
+    "frames": 14
+  },
+  {
+    "folder": "公主与骑士",
+    "sprite": "spr_player_attire_gongzhuyuqishi",
+    "icon": "spr_player_attire_gongzhuyuqishi_icon",
+    "attire_id": "player_attire_gongzhuyuqishi",
+    "frames": 14
+  },
+  {
+    "folder": "出水姣龙",
+    "sprite": "spr_player_attire_chushuijiaolong",
+    "icon": "spr_player_attire_chushuijiaolong_icon",
+    "attire_id": "player_attire_chushuijiaolong",
+    "frames": 14
+  },
+  {
+    "folder": "包淘淘",
+    "sprite": "spr_player_attire_baotaotao",
+    "icon": "spr_player_attire_baotaotao_icon",
+    "attire_id": "player_attire_baotaotao",
+    "frames": 14
+  },
+  {
+    "folder": "南瓜骑士",
+    "sprite": "spr_player_attire_nanguaqishi",
+    "icon": "spr_player_attire_nanguaqishi_icon",
+    "attire_id": "player_attire_nanguaqishi",
+    "frames": 14
+  },
+  {
+    "folder": "危险の 恋人",
+    "sprite": "spr_player_attire_weixiandelianren",
+    "icon": "spr_player_attire_weixiandelianren_icon",
+    "attire_id": "player_attire_weixiandelianren",
+    "frames": 14
+  },
+  {
+    "folder": "双面少女",
+    "sprite": "spr_player_attire_shuangmianshaonv",
+    "icon": "spr_player_attire_shuangmianshaonv_icon",
+    "attire_id": "player_attire_shuangmianshaonv",
+    "frames": 14
+  },
+  {
+    "folder": "可爱娃娃",
+    "sprite": "spr_player_attire_keaiwawa",
+    "icon": "spr_player_attire_keaiwawa_icon",
+    "attire_id": "player_attire_keaiwawa",
+    "frames": 14
+  },
+  {
+    "folder": "呼朋唤友",
+    "sprite": "spr_player_attire_hupenghuanyou",
+    "icon": "spr_player_attire_hupenghuanyou_icon",
+    "attire_id": "player_attire_hupenghuanyou",
+    "frames": 14
+  },
+  {
+    "folder": "和服戈薇",
+    "sprite": "spr_player_attire_hefugewei",
+    "icon": "spr_player_attire_hefugewei_icon",
+    "attire_id": "player_attire_hefugewei",
+    "frames": 14
+  },
+  {
+    "folder": "圣诞COSER",
+    "sprite": "spr_player_attire_shengdancoser",
+    "icon": "spr_player_attire_shengdancoser_icon",
+    "attire_id": "player_attire_shengdancoser",
+    "frames": 14
+  },
+  {
+    "folder": "圣诞小麋鹿",
+    "sprite": "spr_player_attire_shengdanxiaomilu",
+    "icon": "spr_player_attire_shengdanxiaomilu_icon",
+    "attire_id": "player_attire_shengdanxiaomilu",
+    "frames": 14
+  },
+  {
+    "folder": "地狱少女",
+    "sprite": "spr_player_attire_diyushaonv",
+    "icon": "spr_player_attire_diyushaonv_icon",
+    "attire_id": "player_attire_diyushaonv",
+    "frames": 14
+  },
+  {
+    "folder": "坠入爱河",
+    "sprite": "spr_player_attire_zhuiruaihe",
+    "icon": "spr_player_attire_zhuiruaihe_icon",
+    "attire_id": "player_attire_zhuiruaihe",
+    "frames": 14
+  },
+  {
+    "folder": "埃及艳后",
+    "sprite": "spr_player_attire_aijiyanhou",
+    "icon": "spr_player_attire_aijiyanhou_icon",
+    "attire_id": "player_attire_aijiyanhou",
+    "frames": 14
+  },
+  {
+    "folder": "复古洛丽塔",
+    "sprite": "spr_player_attire_fuguluolita",
+    "icon": "spr_player_attire_fuguluolita_icon",
+    "attire_id": "player_attire_fuguluolita",
+    "frames": 14
+  },
+  {
+    "folder": "夏日萤火",
+    "sprite": "spr_player_attire_xiariyinghuo",
+    "icon": "spr_player_attire_xiariyinghuo_icon",
+    "attire_id": "player_attire_xiariyinghuo",
+    "frames": 14
+  },
+  {
+    "folder": "多玩小妞",
+    "sprite": "spr_player_attire_duowanxiaoniu",
+    "icon": "spr_player_attire_duowanxiaoniu_icon",
+    "attire_id": "player_attire_duowanxiaoniu",
+    "frames": 14
+  },
+  {
+    "folder": "天神之影（版本一）",
+    "sprite": "spr_player_attire_tianshenzhiyingbanbenyi",
+    "icon": "spr_player_attire_tianshenzhiyingbanbenyi_icon",
+    "attire_id": "player_attire_tianshenzhiyingbanbenyi",
+    "frames": 14
+  },
+  {
+    "folder": "天神之影（版本三）",
+    "sprite": "spr_player_attire_tianshenzhiyingbanbensan",
+    "icon": "spr_player_attire_tianshenzhiyingbanbensan_icon",
+    "attire_id": "player_attire_tianshenzhiyingbanbensan",
+    "frames": 14
+  },
+  {
+    "folder": "天神之影（版本二）",
+    "sprite": "spr_player_attire_tianshenzhiyingbanbener",
+    "icon": "spr_player_attire_tianshenzhiyingbanbener_icon",
+    "attire_id": "player_attire_tianshenzhiyingbanbener",
+    "frames": 14
+  },
+  {
+    "folder": "女仆娃娃",
+    "sprite": "spr_player_attire_nvpuwawa",
+    "icon": "spr_player_attire_nvpuwawa_icon",
+    "attire_id": "player_attire_nvpuwawa",
+    "frames": 14
+  },
+  {
+    "folder": "女王喵",
+    "sprite": "spr_player_attire_nvwangmiao",
+    "icon": "spr_player_attire_nvwangmiao_icon",
+    "attire_id": "player_attire_nvwangmiao",
+    "frames": 14
+  },
+  {
+    "folder": "守护之神",
+    "sprite": "spr_player_attire_shouhuzhishen",
+    "icon": "spr_player_attire_shouhuzhishen_icon",
+    "attire_id": "player_attire_shouhuzhishen",
+    "frames": 14
+  },
+  {
+    "folder": "守护者",
+    "sprite": "spr_player_attire_shouhuzhe",
+    "icon": "spr_player_attire_shouhuzhe_icon",
+    "attire_id": "player_attire_shouhuzhe",
+    "frames": 14
+  },
+  {
+    "folder": "定制礼服",
+    "sprite": "spr_player_attire_dingzhilifu",
+    "icon": "spr_player_attire_dingzhilifu_icon",
+    "attire_id": "player_attire_dingzhilifu",
+    "frames": 14
+  },
+  {
+    "folder": "宫廷复古",
+    "sprite": "spr_player_attire_gongtingfugu",
+    "icon": "spr_player_attire_gongtingfugu_icon",
+    "attire_id": "player_attire_gongtingfugu",
+    "frames": 14
+  },
+  {
+    "folder": "小丑女",
+    "sprite": "spr_player_attire_xiaochounv",
+    "icon": "spr_player_attire_xiaochounv_icon",
+    "attire_id": "player_attire_xiaochounv",
+    "frames": 14
+  },
+  {
+    "folder": "小伊",
+    "sprite": "spr_player_attire_xiaoyi",
+    "icon": "spr_player_attire_xiaoyi_icon",
+    "attire_id": "player_attire_xiaoyi",
+    "frames": 14
+  },
+  {
+    "folder": "小妮露",
+    "sprite": "spr_player_attire_xiaonilu",
+    "icon": "spr_player_attire_xiaonilu_icon",
+    "attire_id": "player_attire_xiaonilu",
+    "frames": 14
+  },
+  {
+    "folder": "小熊妹~",
+    "sprite": "spr_player_attire_xiaoxiongmei",
+    "icon": "spr_player_attire_xiaoxiongmei_icon",
+    "attire_id": "player_attire_xiaoxiongmei",
+    "frames": 14
+  },
+  {
+    "folder": "小红帽",
+    "sprite": "spr_player_attire_xiaohongmao",
+    "icon": "spr_player_attire_xiaohongmao_icon",
+    "attire_id": "player_attire_xiaohongmao",
+    "frames": 14
+  },
+  {
+    "folder": "小蝴蝶",
+    "sprite": "spr_player_attire_xiaohudie",
+    "icon": "spr_player_attire_xiaohudie_icon",
+    "attire_id": "player_attire_xiaohudie",
+    "frames": 14
+  },
+  {
+    "folder": "小野女",
+    "sprite": "spr_player_attire_xiaoyenv",
+    "icon": "spr_player_attire_xiaoyenv_icon",
+    "attire_id": "player_attire_xiaoyenv",
+    "frames": 14
+  },
+  {
+    "folder": "小马尾",
+    "sprite": "spr_player_attire_xiaomawei",
+    "icon": "spr_player_attire_xiaomawei_icon",
+    "attire_id": "player_attire_xiaomawei",
+    "frames": 14
+  },
+  {
+    "folder": "小龙女",
+    "sprite": "spr_player_attire_xiaolongnv",
+    "icon": "spr_player_attire_xiaolongnv_icon",
+    "attire_id": "player_attire_xiaolongnv",
+    "frames": 14
+  },
+  {
+    "folder": "弥豆豆",
+    "sprite": "spr_player_attire_midoudou",
+    "icon": "spr_player_attire_midoudou_icon",
+    "attire_id": "player_attire_midoudou",
+    "frames": 14
+  },
+  {
+    "folder": "彩虹少女",
+    "sprite": "spr_player_attire_caihongshaonv",
+    "icon": "spr_player_attire_caihongshaonv_icon",
+    "attire_id": "player_attire_caihongshaonv",
+    "frames": 14
+  },
+  {
+    "folder": "彩蝶郡主",
+    "sprite": "spr_player_attire_caidiejunzhu",
+    "icon": "spr_player_attire_caidiejunzhu_icon",
+    "attire_id": "player_attire_caidiejunzhu",
+    "frames": 14
+  },
+  {
+    "folder": "忍者喵（版本一）",
+    "sprite": "spr_player_attire_renzhemiaobanbenyi",
+    "icon": "spr_player_attire_renzhemiaobanbenyi_icon",
+    "attire_id": "player_attire_renzhemiaobanbenyi",
+    "frames": 14
+  },
+  {
+    "folder": "快乐米妮",
+    "sprite": "spr_player_attire_kuailemini",
+    "icon": "spr_player_attire_kuailemini_icon",
+    "attire_id": "player_attire_kuailemini",
+    "frames": 14
+  },
+  {
+    "folder": "打工兔妹",
+    "sprite": "spr_player_attire_dagongtumei",
+    "icon": "spr_player_attire_dagongtumei_icon",
+    "attire_id": "player_attire_dagongtumei",
+    "frames": 14
+  },
+  {
+    "folder": "挚爱永恒",
+    "sprite": "spr_player_attire_zhiaiyongheng",
+    "icon": "spr_player_attire_zhiaiyongheng_icon",
+    "attire_id": "player_attire_zhiaiyongheng",
+    "frames": 14
+  },
+  {
+    "folder": "新娘婚纱",
+    "sprite": "spr_player_attire_xinnianghunsha",
+    "icon": "spr_player_attire_xinnianghunsha_icon",
+    "attire_id": "player_attire_xinnianghunsha",
+    "frames": 14
+  },
+  {
+    "folder": "新年乐乐兔",
+    "sprite": "spr_player_attire_xinnianleletu",
+    "icon": "spr_player_attire_xinnianleletu_icon",
+    "attire_id": "player_attire_xinnianleletu",
+    "frames": 14
+  },
+  {
+    "folder": "方块公主",
+    "sprite": "spr_player_attire_fangkuaigongzhu",
+    "icon": "spr_player_attire_fangkuaigongzhu_icon",
+    "attire_id": "player_attire_fangkuaigongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "时间神",
+    "sprite": "spr_player_attire_shijianshen",
+    "icon": "spr_player_attire_shijianshen_icon",
+    "attire_id": "player_attire_shijianshen",
+    "frames": 14
+  },
+  {
+    "folder": "星之焕变身1",
+    "sprite": "spr_player_attire_xingzhihuanbianshen1",
+    "icon": "spr_player_attire_xingzhihuanbianshen1_icon",
+    "attire_id": "player_attire_xingzhihuanbianshen1",
+    "frames": 14
+  },
+  {
+    "folder": "星之焕变身2",
+    "sprite": "spr_player_attire_xingzhihuanbianshen2",
+    "icon": "spr_player_attire_xingzhihuanbianshen2_icon",
+    "attire_id": "player_attire_xingzhihuanbianshen2",
+    "frames": 14
+  },
+  {
+    "folder": "星之焕变身3",
+    "sprite": "spr_player_attire_xingzhihuanbianshen3",
+    "icon": "spr_player_attire_xingzhihuanbianshen3_icon",
+    "attire_id": "player_attire_xingzhihuanbianshen3",
+    "frames": 14
+  },
+  {
+    "folder": "星轨织梦",
+    "sprite": "spr_player_attire_xingguizhimeng",
+    "icon": "spr_player_attire_xingguizhimeng_icon",
+    "attire_id": "player_attire_xingguizhimeng",
+    "frames": 14
+  },
+  {
+    "folder": "星际穿越",
+    "sprite": "spr_player_attire_xingjichuanyue",
+    "icon": "spr_player_attire_xingjichuanyue_icon",
+    "attire_id": "player_attire_xingjichuanyue",
+    "frames": 14
+  },
+  {
+    "folder": "春日心语",
+    "sprite": "spr_player_attire_chunrixinyu",
+    "icon": "spr_player_attire_chunrixinyu_icon",
+    "attire_id": "player_attire_chunrixinyu",
+    "frames": 14
+  },
+  {
+    "folder": "晴天美眉",
+    "sprite": "spr_player_attire_qingtianmeimei",
+    "icon": "spr_player_attire_qingtianmeimei_icon",
+    "attire_id": "player_attire_qingtianmeimei",
+    "frames": 14
+  },
+  {
+    "folder": "朋克护士",
+    "sprite": "spr_player_attire_pengkehushi",
+    "icon": "spr_player_attire_pengkehushi_icon",
+    "attire_id": "player_attire_pengkehushi",
+    "frames": 14
+  },
+  {
+    "folder": "朱丽叶",
+    "sprite": "spr_player_attire_zhuliye",
+    "icon": "spr_player_attire_zhuliye_icon",
+    "attire_id": "player_attire_zhuliye",
+    "frames": 14
+  },
+  {
+    "folder": "格桑花",
+    "sprite": "spr_player_attire_gesanghua",
+    "icon": "spr_player_attire_gesanghua_icon",
+    "attire_id": "player_attire_gesanghua",
+    "frames": 14
+  },
+  {
+    "folder": "梁珊泊",
+    "sprite": "spr_player_attire_liangshanpo",
+    "icon": "spr_player_attire_liangshanpo_icon",
+    "attire_id": "player_attire_liangshanpo",
+    "frames": 14
+  },
+  {
+    "folder": "梦之花嫁",
+    "sprite": "spr_player_attire_mengzhihuajia",
+    "icon": "spr_player_attire_mengzhihuajia_icon",
+    "attire_id": "player_attire_mengzhihuajia",
+    "frames": 14
+  },
+  {
+    "folder": "梦幻露娜",
+    "sprite": "spr_player_attire_menghuanluna",
+    "icon": "spr_player_attire_menghuanluna_icon",
+    "attire_id": "player_attire_menghuanluna",
+    "frames": 14
+  },
+  {
+    "folder": "森之精灵",
+    "sprite": "spr_player_attire_senzhijingling",
+    "icon": "spr_player_attire_senzhijingling_icon",
+    "attire_id": "player_attire_senzhijingling",
+    "frames": 14
+  },
+  {
+    "folder": "樱之恋曲",
+    "sprite": "spr_player_attire_yingzhilianqu",
+    "icon": "spr_player_attire_yingzhilianqu_icon",
+    "attire_id": "player_attire_yingzhilianqu",
+    "frames": 14
+  },
+  {
+    "folder": "樱桃小布丁",
+    "sprite": "spr_player_attire_yingtaoxiaobuding",
+    "icon": "spr_player_attire_yingtaoxiaobuding_icon",
+    "attire_id": "player_attire_yingtaoxiaobuding",
+    "frames": 14
+  },
+  {
+    "folder": "欢天喜地",
+    "sprite": "spr_player_attire_huantianxidi",
+    "icon": "spr_player_attire_huantianxidi_icon",
+    "attire_id": "player_attire_huantianxidi",
+    "frames": 14
+  },
+  {
+    "folder": "毛绒萌兔",
+    "sprite": "spr_player_attire_maorongmengtu",
+    "icon": "spr_player_attire_maorongmengtu_icon",
+    "attire_id": "player_attire_maorongmengtu",
+    "frames": 14
+  },
+  {
+    "folder": "浅浅",
+    "sprite": "spr_player_attire_qianqian",
+    "icon": "spr_player_attire_qianqian_icon",
+    "attire_id": "player_attire_qianqian",
+    "frames": 14
+  },
+  {
+    "folder": "浣熊小妞",
+    "sprite": "spr_player_attire_huanxiongxiaoniu",
+    "icon": "spr_player_attire_huanxiongxiaoniu_icon",
+    "attire_id": "player_attire_huanxiongxiaoniu",
+    "frames": 14
+  },
+  {
+    "folder": "淑女甜心",
+    "sprite": "spr_player_attire_shunvtianxin",
+    "icon": "spr_player_attire_shunvtianxin_icon",
+    "attire_id": "player_attire_shunvtianxin",
+    "frames": 14
+  },
+  {
+    "folder": "爱の萝莉",
+    "sprite": "spr_player_attire_aideluoli",
+    "icon": "spr_player_attire_aideluoli_icon",
+    "attire_id": "player_attire_aideluoli",
+    "frames": 14
+  },
+  {
+    "folder": "爱莎",
+    "sprite": "spr_player_attire_aisha",
+    "icon": "spr_player_attire_aisha_icon",
+    "attire_id": "player_attire_aisha",
+    "frames": 14
+  },
+  {
+    "folder": "猫娘",
+    "sprite": "spr_player_attire_maoniang",
+    "icon": "spr_player_attire_maoniang_icon",
+    "attire_id": "player_attire_maoniang",
+    "frames": 14
+  },
+  {
+    "folder": "猫眼公主",
+    "sprite": "spr_player_attire_maoyangongzhu",
+    "icon": "spr_player_attire_maoyangongzhu_icon",
+    "attire_id": "player_attire_maoyangongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "甜心公主",
+    "sprite": "spr_player_attire_tianxingongzhu",
+    "icon": "spr_player_attire_tianxingongzhu_icon",
+    "attire_id": "player_attire_tianxingongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "神秘猫女",
+    "sprite": "spr_player_attire_shenmimaonv",
+    "icon": "spr_player_attire_shenmimaonv_icon",
+    "attire_id": "player_attire_shenmimaonv",
+    "frames": 14
+  },
+  {
+    "folder": "章鱼小丸子",
+    "sprite": "spr_player_attire_zhangyuxiaowanzi",
+    "icon": "spr_player_attire_zhangyuxiaowanzi_icon",
+    "attire_id": "player_attire_zhangyuxiaowanzi",
+    "frames": 14
+  },
+  {
+    "folder": "童年玲子",
+    "sprite": "spr_player_attire_tongnianlingzi",
+    "icon": "spr_player_attire_tongnianlingzi_icon",
+    "attire_id": "player_attire_tongnianlingzi",
+    "frames": 14
+  },
+  {
+    "folder": "箭羽霜翎",
+    "sprite": "spr_player_attire_jianyushuangling",
+    "icon": "spr_player_attire_jianyushuangling_icon",
+    "attire_id": "player_attire_jianyushuangling",
+    "frames": 14
+  },
+  {
+    "folder": "米亚公主",
+    "sprite": "spr_player_attire_miyagongzhu",
+    "icon": "spr_player_attire_miyagongzhu_icon",
+    "attire_id": "player_attire_miyagongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "粽子小妮",
+    "sprite": "spr_player_attire_zongzixiaoni",
+    "icon": "spr_player_attire_zongzixiaoni_icon",
+    "attire_id": "player_attire_zongzixiaoni",
+    "frames": 14
+  },
+  {
+    "folder": "精灵公主",
+    "sprite": "spr_player_attire_jinglinggongzhu",
+    "icon": "spr_player_attire_jinglinggongzhu_icon",
+    "attire_id": "player_attire_jinglinggongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "紫霞",
+    "sprite": "spr_player_attire_zixia",
+    "icon": "spr_player_attire_zixia_icon",
+    "attire_id": "player_attire_zixia",
+    "frames": 14
+  },
+  {
+    "folder": "红桃爱丽丝",
+    "sprite": "spr_player_attire_hongtaoailisi",
+    "icon": "spr_player_attire_hongtaoailisi_icon",
+    "attire_id": "player_attire_hongtaoailisi",
+    "frames": 14
+  },
+  {
+    "folder": "红莓公主",
+    "sprite": "spr_player_attire_hongmeigongzhu",
+    "icon": "spr_player_attire_hongmeigongzhu_icon",
+    "attire_id": "player_attire_hongmeigongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "红魔馆女仆",
+    "sprite": "spr_player_attire_hongmoguannvpu",
+    "icon": "spr_player_attire_hongmoguannvpu_icon",
+    "attire_id": "player_attire_hongmoguannvpu",
+    "frames": 14
+  },
+  {
+    "folder": "红鼠套装",
+    "sprite": "spr_player_attire_hongshutaozhuang",
+    "icon": "spr_player_attire_hongshutaozhuang_icon",
+    "attire_id": "player_attire_hongshutaozhuang",
+    "frames": 14
+  },
+  {
+    "folder": "织女",
+    "sprite": "spr_player_attire_zhinv",
+    "icon": "spr_player_attire_zhinv_icon",
+    "attire_id": "player_attire_zhinv",
+    "frames": 14
+  },
+  {
+    "folder": "艾米莉莉",
+    "sprite": "spr_player_attire_aimilili",
+    "icon": "spr_player_attire_aimilili_icon",
+    "attire_id": "player_attire_aimilili",
+    "frames": 14
+  },
+  {
+    "folder": "芭芭拉",
+    "sprite": "spr_player_attire_babala",
+    "icon": "spr_player_attire_babala_icon",
+    "attire_id": "player_attire_babala",
+    "frames": 14
+  },
+  {
+    "folder": "芽衣",
+    "sprite": "spr_player_attire_yayi",
+    "icon": "spr_player_attire_yayi_icon",
+    "attire_id": "player_attire_yayi",
+    "frames": 14
+  },
+  {
+    "folder": "萌兔公主",
+    "sprite": "spr_player_attire_mengtugongzhu",
+    "icon": "spr_player_attire_mengtugongzhu_icon",
+    "attire_id": "player_attire_mengtugongzhu",
+    "frames": 14
+  },
+  {
+    "folder": "萌娘套装",
+    "sprite": "spr_player_attire_mengniangtaozhuang",
+    "icon": "spr_player_attire_mengniangtaozhuang_icon",
+    "attire_id": "player_attire_mengniangtaozhuang",
+    "frames": 14
+  },
+  {
+    "folder": "萝莉喵",
+    "sprite": "spr_player_attire_luolimiao",
+    "icon": "spr_player_attire_luolimiao_icon",
+    "attire_id": "player_attire_luolimiao",
+    "frames": 14
+  },
+  {
+    "folder": "蓝色妖姬",
+    "sprite": "spr_player_attire_lanseyaoji",
+    "icon": "spr_player_attire_lanseyaoji_icon",
+    "attire_id": "player_attire_lanseyaoji",
+    "frames": 14
+  },
+  {
+    "folder": "蔷薇之恋",
+    "sprite": "spr_player_attire_qiangweizhilian",
+    "icon": "spr_player_attire_qiangweizhilian_icon",
+    "attire_id": "player_attire_qiangweizhilian",
+    "frames": 14
+  },
+  {
+    "folder": "蕾蕾姆",
+    "sprite": "spr_player_attire_leileimu",
+    "icon": "spr_player_attire_leileimu_icon",
+    "attire_id": "player_attire_leileimu",
+    "frames": 14
+  },
+  {
+    "folder": "蜜梨",
+    "sprite": "spr_player_attire_mili",
+    "icon": "spr_player_attire_mili_icon",
+    "attire_id": "player_attire_mili",
+    "frames": 14
+  },
+  {
+    "folder": "蜜蜂小姐姐",
+    "sprite": "spr_player_attire_mifengxiaojiejie",
+    "icon": "spr_player_attire_mifengxiaojiejie_icon",
+    "attire_id": "player_attire_mifengxiaojiejie",
+    "frames": 14
+  },
+  {
+    "folder": "蝴蝶姐姐",
+    "sprite": "spr_player_attire_hudiejiejie",
+    "icon": "spr_player_attire_hudiejiejie_icon",
+    "attire_id": "player_attire_hudiejiejie",
+    "frames": 14
+  },
+  {
+    "folder": "蝶恋花",
+    "sprite": "spr_player_attire_dielianhua",
+    "icon": "spr_player_attire_dielianhua_icon",
+    "attire_id": "player_attire_dielianhua",
+    "frames": 14
+  },
+  {
+    "folder": "蟾宫仙子",
+    "sprite": "spr_player_attire_changongxianzi",
+    "icon": "spr_player_attire_changongxianzi_icon",
+    "attire_id": "player_attire_changongxianzi",
+    "frames": 14
+  },
+  {
+    "folder": "蟾宫折桂",
+    "sprite": "spr_player_attire_changongzhegui",
+    "icon": "spr_player_attire_changongzhegui_icon",
+    "attire_id": "player_attire_changongzhegui",
+    "frames": 14
+  },
+  {
+    "folder": "血色赞歌",
+    "sprite": "spr_player_attire_xuesezange",
+    "icon": "spr_player_attire_xuesezange_icon",
+    "attire_id": "player_attire_xuesezange",
+    "frames": 14
+  },
+  {
+    "folder": "貂婵",
+    "sprite": "spr_player_attire_diaochan",
+    "icon": "spr_player_attire_diaochan_icon",
+    "attire_id": "player_attire_diaochan",
+    "frames": 14
+  },
+  {
+    "folder": "贺岁童女",
+    "sprite": "spr_player_attire_hesuitongnv",
+    "icon": "spr_player_attire_hesuitongnv_icon",
+    "attire_id": "player_attire_hesuitongnv",
+    "frames": 14
+  },
+  {
+    "folder": "贺茂沙罗",
+    "sprite": "spr_player_attire_hemaoshaluo",
+    "icon": "spr_player_attire_hemaoshaluo_icon",
+    "attire_id": "player_attire_hemaoshaluo",
+    "frames": 14
+  },
+  {
+    "folder": "赫斯提亚",
+    "sprite": "spr_player_attire_hesitiya",
+    "icon": "spr_player_attire_hesitiya_icon",
+    "attire_id": "player_attire_hesitiya",
+    "frames": 14
+  },
+  {
+    "folder": "超能少女",
+    "sprite": "spr_player_attire_chaonengshaonv",
+    "icon": "spr_player_attire_chaonengshaonv_icon",
+    "attire_id": "player_attire_chaonengshaonv",
+    "frames": 14
+  },
+  {
+    "folder": "超萌萝莉",
+    "sprite": "spr_player_attire_chaomengluoli",
+    "icon": "spr_player_attire_chaomengluoli_icon",
+    "attire_id": "player_attire_chaomengluoli",
+    "frames": 14
+  },
+  {
+    "folder": "迷雾鼠同人",
+    "sprite": "spr_player_attire_miwushutongren",
+    "icon": "spr_player_attire_miwushutongren_icon",
+    "attire_id": "player_attire_miwushutongren",
+    "frames": 14
+  },
+  {
+    "folder": "金粉佳人",
+    "sprite": "spr_player_attire_jinfenjiaren",
+    "icon": "spr_player_attire_jinfenjiaren_icon",
+    "attire_id": "player_attire_jinfenjiaren",
+    "frames": 14
+  },
+  {
+    "folder": "金色誓言",
+    "sprite": "spr_player_attire_jinseshiyan",
+    "icon": "spr_player_attire_jinseshiyan_icon",
+    "attire_id": "player_attire_jinseshiyan",
+    "frames": 14
+  },
+  {
+    "folder": "铃音暖新年",
+    "sprite": "spr_player_attire_lingyinnuanxinnian",
+    "icon": "spr_player_attire_lingyinnuanxinnian_icon",
+    "attire_id": "player_attire_lingyinnuanxinnian",
+    "frames": 14
+  },
+  {
+    "folder": "锦绣福星",
+    "sprite": "spr_player_attire_jinxiufuxing",
+    "icon": "spr_player_attire_jinxiufuxing_icon",
+    "attire_id": "player_attire_jinxiufuxing",
+    "frames": 14
+  },
+  {
+    "folder": "锦鲤小姐姐",
+    "sprite": "spr_player_attire_jinlixiaojiejie",
+    "icon": "spr_player_attire_jinlixiaojiejie_icon",
+    "attire_id": "player_attire_jinlixiaojiejie",
+    "frames": 14
+  },
+  {
+    "folder": "闪亮女主播",
+    "sprite": "spr_player_attire_shanliangnvzhubo",
+    "icon": "spr_player_attire_shanliangnvzhubo_icon",
+    "attire_id": "player_attire_shanliangnvzhubo",
+    "frames": 14
+  },
+  {
+    "folder": "闪亮女明星",
+    "sprite": "spr_player_attire_shanliangnvmingxing",
+    "icon": "spr_player_attire_shanliangnvmingxing_icon",
+    "attire_id": "player_attire_shanliangnvmingxing",
+    "frames": 14
+  },
+  {
+    "folder": "阿狸",
+    "sprite": "spr_player_attire_ali",
+    "icon": "spr_player_attire_ali_icon",
+    "attire_id": "player_attire_ali",
+    "frames": 14
+  },
+  {
+    "folder": "阿里嘎多",
+    "sprite": "spr_player_attire_aligaduo",
+    "icon": "spr_player_attire_aligaduo_icon",
+    "attire_id": "player_attire_aligaduo",
+    "frames": 14
+  },
+  {
+    "folder": "雪域霜花",
+    "sprite": "spr_player_attire_xueyushuanghua",
+    "icon": "spr_player_attire_xueyushuanghua_icon",
+    "attire_id": "player_attire_xueyushuanghua",
+    "frames": 14
+  },
+  {
+    "folder": "青青子衿",
+    "sprite": "spr_player_attire_qingqingzijin",
+    "icon": "spr_player_attire_qingqingzijin_icon",
+    "attire_id": "player_attire_qingqingzijin",
+    "frames": 14
+  },
+  {
+    "folder": "青鸾之灵",
+    "sprite": "spr_player_attire_qingluanzhiling",
+    "icon": "spr_player_attire_qingluanzhiling_icon",
+    "attire_id": "player_attire_qingluanzhiling",
+    "frames": 14
+  },
+  {
+    "folder": "面具少女",
+    "sprite": "spr_player_attire_mianjushaonv",
+    "icon": "spr_player_attire_mianjushaonv_icon",
+    "attire_id": "player_attire_mianjushaonv",
+    "frames": 14
+  },
+  {
+    "folder": "面粉袋袋子",
+    "sprite": "spr_player_attire_mianfendaidaizi",
+    "icon": "spr_player_attire_mianfendaidaizi_icon",
+    "attire_id": "player_attire_mianfendaidaizi",
+    "frames": 14
+  },
+  {
+    "folder": "飞鸟与鱼",
+    "sprite": "spr_player_attire_feiniaoyuyu",
+    "icon": "spr_player_attire_feiniaoyuyu_icon",
+    "attire_id": "player_attire_feiniaoyuyu",
+    "frames": 14
+  },
+  {
+    "folder": "香水百合",
+    "sprite": "spr_player_attire_xiangshuibaihe",
+    "icon": "spr_player_attire_xiangshuibaihe_icon",
+    "attire_id": "player_attire_xiangshuibaihe",
+    "frames": 14
+  },
+  {
+    "folder": "鬼姬式神",
+    "sprite": "spr_player_attire_guijishishen",
+    "icon": "spr_player_attire_guijishishen_icon",
+    "attire_id": "player_attire_guijishishen",
+    "frames": 14
+  },
+  {
+    "folder": "魔力少女",
+    "sprite": "spr_player_attire_molishaonv",
+    "icon": "spr_player_attire_molishaonv_icon",
+    "attire_id": "player_attire_molishaonv",
+    "frames": 14
+  },
+  {
+    "folder": "魔女「零」",
+    "sprite": "spr_player_attire_monvling",
+    "icon": "spr_player_attire_monvling_icon",
+    "attire_id": "player_attire_monvling",
+    "frames": 14
+  },
+  {
+    "folder": "魔影圣衣一级",
+    "sprite": "spr_player_attire_moyingshengyiyiji",
+    "icon": "spr_player_attire_moyingshengyiyiji_icon",
+    "attire_id": "player_attire_moyingshengyiyiji",
+    "frames": 14
+  },
+  {
+    "folder": "魔影圣衣二级",
+    "sprite": "spr_player_attire_moyingshengyierji",
+    "icon": "spr_player_attire_moyingshengyierji_icon",
+    "attire_id": "player_attire_moyingshengyierji",
+    "frames": 14
+  },
+  {
+    "folder": "魔法学院",
+    "sprite": "spr_player_attire_mofaxueyuan",
+    "icon": "spr_player_attire_mofaxueyuan_icon",
+    "attire_id": "player_attire_mofaxueyuan",
+    "frames": 14
+  },
+  {
+    "folder": "魔法少女",
+    "sprite": "spr_player_attire_mofashaonv",
+    "icon": "spr_player_attire_mofashaonv_icon",
+    "attire_id": "player_attire_mofashaonv",
+    "frames": 14
+  },
+  {
+    "folder": "鹊桥喵喵",
+    "sprite": "spr_player_attire_queqiaomiaomiao",
+    "icon": "spr_player_attire_queqiaomiaomiao_icon",
+    "attire_id": "player_attire_queqiaomiaomiao",
+    "frames": 14
+  },
+  {
+    "folder": "龙女",
+    "sprite": "spr_player_attire_longnv",
+    "icon": "spr_player_attire_longnv_icon",
+    "attire_id": "player_attire_longnv",
+    "frames": 14
+  },
+  {
+    "folder": "龙舟阿妹",
+    "sprite": "spr_player_attire_longzhouamei",
+    "icon": "spr_player_attire_longzhouamei_icon",
+    "attire_id": "player_attire_longzhouamei",
+    "frames": 14
+  }
+]

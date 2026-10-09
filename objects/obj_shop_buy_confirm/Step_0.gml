@@ -80,6 +80,7 @@ for (var i = 0; i < array_length(buttons); i++) {
 							else if btn_type == "attire"{
 								global.save_data.player.gold -= cost
 								unlock_attire(target_item)
+								save_file(global.save_slot)
 							}
 							else if btn_type == "item"{
 								global.save_data.player.gold -= cost

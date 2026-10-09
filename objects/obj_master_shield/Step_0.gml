@@ -127,7 +127,9 @@ if (divine_shenji_gem && (timer % 150) == 0)
         if (hp > 0 && row_diff >= -2 && row_diff <= 2 && col_diff >= -2 && col_diff <= 2)
         {
             var shenji_damage = round((hp * other.shenji_reflect_ratio) + other.shenji_bleed_damage);
-            hp -= min(shenji_damage, other.shenji_max_damage);
+            damage_amount = min(shenji_damage, other.shenji_max_damage);
+            damage_type = "normal";
+            event_user(0);
         }
     }
 }
