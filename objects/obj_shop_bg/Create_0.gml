@@ -5,7 +5,7 @@ is_submenu_opened = false
 shop_button_select = 1
 shop_screen_select = 1
 current_page = 1
-current_max_page = 10
+current_max_page = 1
 
 goods_list = ds_list_create()
 
@@ -166,6 +166,9 @@ function shop_list_recharge(){
 			}
 		}
 	}
+	//每页显示 16 个商品，页数随当前分类动态计算
+	current_max_page = max(1, ceil(ds_list_size(goods_list) / 16))
+	current_page = clamp(current_page, 1, current_max_page)
 	//按类型创建购买按钮
 	instance_destroy(obj_shop_buy_btn)
 	for(var i = 0 ; i< 4; i++){
@@ -250,9 +253,10 @@ function shop_list_recharge(){
 					inst.goods_name = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].display_name
 					inst.tooltip_text = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].description
 					inst.btn_type = "attire"
-					if is_attire_unlocked(global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id){
-						inst.is_disabled = true
-					}
+					var _attire_id = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id
+					inst.is_attire_owned = shop_button_select == 5 && is_attire_unlocked(_attire_id)
+					inst.is_attire_equipped = inst.is_attire_owned && get_attire_state(_attire_id) == "equipped"
+					inst.is_disabled = inst.is_attire_equipped || (shop_button_select == 4 && is_attire_unlocked(_attire_id))
 					
 				}
 			}

@@ -75,7 +75,7 @@ function mod_weapons_init()
         description: "天神之刃：增加宙斯神弩攻击附加\n[专属宝石]：宙斯神弩",
         icon: spr_zeus_ren_gem_icon,
         slot: "main_weapon",
-        obj: noone,
+        obj: obj_zeus_ren_gem,
         allowed_weapons: ["zeus_bolt"],
         atk_add: [5, 5, 5, 5, 8, 8, 8, 11, 11, 11, 14, 14, 17, 17, 20, 30],
         max_level: 15
@@ -116,7 +116,7 @@ function mod_weapons_init()
         description: "亡灵裁决：冥王战镰所有子弹命中后减速4秒\n[专属宝石]：冥王战镰",
         icon: spr_ghost_caijue_gem_icon,
         slot: "super_weapon",
-        obj: noone,
+        obj: obj_ghost_caijue_gem,
         allowed_weapons: ["hades_scythe"],
         slow_timer: 240,
         max_level: 15
@@ -288,7 +288,7 @@ function mod_weapons_init()
         reflect_ratio: [0.02, 0.03, 0.03, 0.04, 0.05, 0.06, 0.08, 0.10, 0.12, 0.15, 0.18, 0.19, 0.20, 0.23, 0.24, 0.26],
         bleed_damage: [12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 120, 140, 160],
         max_damage: 3000,
-        obj: noone,
+        obj: obj_divine_shenji_gem,
         allowed_weapons: ["master_shield"]
     });
     register_weapon("star_wand",

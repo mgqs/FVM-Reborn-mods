@@ -1,6 +1,25 @@
 if not obj_shop_bg.is_submenu_opened and not is_disabled{
 	
 	audio_play_sound(snd_button,0,0)
+	if btn_type == "attire" && is_attire_owned{
+		equip_attire(target_item)
+		save_file(global.save_slot)
+		if instance_exists(obj_player_character){
+			with obj_player_character{
+				sprite_index = get_attire_info(other.target_item).spr
+				image_index = 0
+			}
+		}
+		if instance_exists(obj_player_info_ui){
+			with obj_player_info_ui{
+				update_attire()
+			}
+		}
+		with obj_shop_bg{
+			shop_list_recharge()
+		}
+		exit
+	}
 	if btn_type == "card" || btn_type == "weapon" || btn_type == "gem" || btn_type == "attire"{
 		// 抽卡模式：禁用卡片购买
 		if (btn_type == "card" && (is_eternal_gacha_mode() || is_random_gift_mode())) {

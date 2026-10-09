@@ -7,5 +7,7 @@ btn_type = ""
 goods_name = ""
 tooltip_text = ""
 is_disabled = false
+is_attire_owned = false
+is_attire_equipped = false
 tooltip = false
 cost = 0
