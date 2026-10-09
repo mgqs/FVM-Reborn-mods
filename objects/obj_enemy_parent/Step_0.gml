@@ -92,6 +92,9 @@ if is_frozen || is_scare || is_stun{
 
 timer++;
 
+// 本实例的「能上梯 / 能翻障碍」标记；with 块内读不到 self 的实例变量，先取到局部变量备用
+var _can_use_ladder = can_use_ladder;
+
 // ================= 上梯越过植物（梯子功能）=================
 // 说明：
 //   - climb_stage 0 = 未越障
@@ -276,7 +279,7 @@ switch(state) {
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;
-            if (can_use_ladder && instance_number(obj_ladder) > 0) {
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
                 var _this_plant_id = id;
                 with (obj_ladder) {
                     if (host_plant == _this_plant_id) _skip_by_ladder = true;
@@ -391,7 +394,7 @@ switch(state) {
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;
-            if (can_use_ladder && instance_number(obj_ladder) > 0) {
+            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
                 var _this_plant_id = id;
                 with (obj_ladder) {
                     if (host_plant == _this_plant_id) _skip_by_ladder = true;
