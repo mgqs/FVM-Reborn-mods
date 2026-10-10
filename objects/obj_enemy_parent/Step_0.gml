@@ -92,19 +92,8 @@ if is_frozen || is_scare || is_stun{
 
 timer++;
 
-// ===== 梯子适用判定 =====
-// 名单里的老鼠「无视梯子」：不爬上梯子，也不会被梯子跳过啃咬（照常啃咬/碾压植物）
-// 注意：有的对象没设 mouse_id（如跳跳鼠），必须额外按 object_index 判断，否则会漏
-//   - engineering_vehicle_mouse：工程车鼠，应直接碾压卡牌
-//   - garbage_track_mouse：垃圾车鼠，碾压碰到的卡片
-//   - landmine_vehicle_mouse：地雷车鼠，碾压型车辆
-//   - snail_mouse：蜗牛鼠，碾压碰到的卡片
-//   - mole：鼹鼠，从卡左侧攻击，不受右侧梯子影响，应正常啃咬
-//   - obj_kangaroo / obj_infected_kangaroo：跳跳鼠系列（未设 mouse_id，自己会跳过卡片）
-var _no_ladder_ids = ["engineering_vehicle_mouse", "garbage_track_mouse", "landmine_vehicle_mouse", "snail_mouse", "mole"];
-var _no_ladder_objs = [obj_kangaroo, obj_infected_kangaroo];
-var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1
-                       && array_get_index(_no_ladder_objs, object_index) == -1);
+// 本实例的「能上梯 / 能翻障碍」标记；with 块内读不到 self 的实例变量，先取到局部变量备用
+var _can_use_ladder = can_use_ladder;
 
 // ================= 上梯越过植物（梯子功能）=================
 // 说明：
@@ -113,48 +102,67 @@ var _can_use_ladder = (array_get_index(_no_ladder_ids, mouse_id) == -1
 //   - 越障 = 沿本行水平向左移动到落点，同时叠一条小弧线（climb_arc_h = 40px）
 //     弧线高度远小于一格(116px)，grid_row 不会变 → 不会被上面那行的卡片打到
 //   - 越过恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
-if (climb_stage == 0 && state == ENEMY_STATE.NORMAL && move_speed > 0 && _can_use_ladder) {
-	// 检测前方是否有「挂着梯子的植物」
-	// 先把自身坐标/行号/实例 id 存到局部变量，避免多层 with 的 other 歧义
-	var _self_x = x;
-	var _self_row = grid_row;
-	var _self_id = id;
-	var _climb_ladder_plant = noone;
+if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTACK) && move_speed > 0 && can_use_ladder
+	&& target_type == "normal") {   // 只让普通行走型上梯：air / underground / diver / invisible / obstacle 一律不爬
+	if(grid_row>=0&&grid_row<global.grid_rows&&grid_col>=0&&grid_col<global.grid_cols){
+		var _list = ds_grid_get(global.grid_plants, grid_col, grid_row);
+		for(var _item = 0; _item < ds_list_size(_list); _item++)
+		{
+			var plant_inst = ds_list_find_value(_list, _item);
+			if (!instance_exists(plant_inst)) continue;
+			if(plant_inst.have_loder&& x-plant_inst.x<=attack_range){
 
-	// 第一层：找出前方范围内的植物
-	var _front_plant = noone;
-	with (obj_card_parent) {
-		var _p_x = x;
-		if (grid_row == _self_row) {
-			var _dx = _p_x - _self_x;
-			if (_dx < 0 && _dx > -global.grid_cell_size_x * 1.2) {
-				if (_front_plant == noone || _p_x > _front_plant.x) {
-					// 取最靠右（离老鼠最近）的那株
-					_front_plant = id;
-				}
+				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
+				climb_base_y = y;
+				climb_y = y;
+				climb_total_dist = max(1, abs(climb_end_x - x));
+				target_plant = noone;
+				state = ENEMY_STATE.IDLE;
+				climb_stage = 1;
+
+				break;
 			}
 		}
 	}
+	if(climb_stage == 0 && grid_row>=0&&grid_row<global.grid_rows&&grid_col>0&&grid_col<global.grid_cols){
+		var _list = ds_grid_get(global.grid_plants, grid_col-1, grid_row);
+		for(var _item = 0; _item < ds_list_size(_list); _item++)
+		{
+			var plant_inst = ds_list_find_value(_list, _item);
+			if (!instance_exists(plant_inst)) continue;
+			if(plant_inst.have_loder&& x-plant_inst.x<=attack_range){
 
-	// 第二层：判断这株植物身上有没有梯子
-	if (_front_plant != noone) {
-		var _fp_id = _front_plant;
-		with (obj_ladder) {
-			if (host_plant == _fp_id) _climb_ladder_plant = _fp_id;
+				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
+				climb_base_y = y;
+				climb_y = y;
+				climb_total_dist = max(1, abs(climb_end_x - x));
+				target_plant = noone;
+				state = ENEMY_STATE.IDLE;
+				climb_stage = 1;
+
+				break;
+			}
 		}
 	}
+}
 
-	if (_climb_ladder_plant != noone) {
-		// 落点 = 植物左侧相邻格的右边界
-		var _host_center_x = _climb_ladder_plant.x;
-		climb_end_x = _host_center_x - global.grid_cell_size_x * 0.5;
-		// 记录本行基准 y 与总水平距离（供下面的弧线用）
-		climb_base_y = y;
-		climb_total_dist = max(1, abs(climb_end_x - x));
-
-		target_plant = noone;
-		state = ENEMY_STATE.IDLE;
-		climb_stage = 1;
+// 障碍物：**不用有梯子**，同行前方够近就翻过去
+//   ⚠ 门槛和上面那批一样（state / move_speed / can_use_ladder / target_type），否则车辆、飞行、
+//     鼹鼠之类也会来翻障碍物
+if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL || state == ENEMY_STATE.ATTACK) && move_speed > 0 && can_use_ladder
+	&& target_type == "normal") {
+	with (obj_obstacle) {
+		var _odx = other.x - x;                       // >0 = 障碍物在老鼠左边（前方）
+		if (row == other.grid_row && _odx > 0 && _odx <= 60) {
+			other.climb_end_x = x - global.grid_cell_size_x * 0.5 - 2;
+			other.climb_base_y = other.y;
+			other.climb_y = other.y;
+			other.climb_total_dist = max(1, abs(other.climb_end_x - other.x));
+			other.target_plant = noone;
+			other.state = ENEMY_STATE.IDLE;
+			other.climb_stage = 1;
+			break;
+		}
 	}
 }
 
@@ -165,7 +173,7 @@ if (climb_stage == 1) {
 	var _dx = climb_end_x - x;
 	if (abs(_dx) <= climb_speed) {
 		x = climb_end_x;
-		y = climb_base_y;             // 弧线收尾，落回本行
+		//y = climb_base_y;             // 弧线收尾，落回本行
 		climb_stage = 0;
 		state = ENEMY_STATE.NORMAL;   // 恢复前进
 		timer = 0;
@@ -176,9 +184,10 @@ if (climb_stage == 1) {
 		var _t = 1 - (abs(climb_end_x - x) / climb_total_dist);
 		_t = clamp(_t, 0, 1);
 		// 安全上限：上抬不得越过本行上边缘（越过了 grid_row 会变，就被上面那行卡片打到）
-		var _row_top = global.grid_offset_y + grid_row * global.grid_cell_size_y;
-		var _max_up = max(0, (climb_base_y - _row_top) - 4);
-		y = climb_base_y - sin(_t * pi) * min(climb_arc_h, _max_up);
+		//var _row_top = global.grid_offset_y + grid_row * global.grid_cell_size_y;
+		//var _max_up = max(0, (climb_base_y - _row_top) - 4);
+		//y = climb_base_y - sin(_t * pi) * min(climb_arc_h, _max_up);
+		climb_y = climb_base_y - sin(_t * pi) * global.grid_cell_size_y * 0.5;
 	}
 }
 // ==========================================================

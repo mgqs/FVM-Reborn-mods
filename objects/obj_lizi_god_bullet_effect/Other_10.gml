@@ -1,10 +1,6 @@
+// 三档（初级/深度/灵魂）的落地灼烧范围统一为 3×3（col ±1、row ±1）
 var row_offset = 1;
-var col_offset = (shape >= 2) ? 2 : 1;
-
-if (shape == 2)
-    row_offset = 2;
-else if (shape == 3)
-    row_offset = 3;
+var col_offset = 1;
 
 with (obj_enemy_parent)
 {

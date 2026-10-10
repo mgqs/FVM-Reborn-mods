@@ -12,3 +12,4 @@ anim_played = false;
 anim_timer = 0;
 arm_dropped = false;
 immune_to_ash = true;
+can_use_ladder = false

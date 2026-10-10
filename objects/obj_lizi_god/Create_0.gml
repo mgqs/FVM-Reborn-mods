@@ -20,3 +20,14 @@ target_type = "throw";
 target_instance = -4;
 cooldown_timer = cycle;
 attacking = false;
+
+// 深度融合（shape>=1）：爆炸伤害 / 周期，按星级 0~16
+// 数值直接写在本对象里（来源：这组卡的推荐数值和情报岛.xlsx），不走植物注册表
+var _deep_boom_damage = [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 920, 930, 950, 970, 1000, 1100, 1200];
+var _deep_boom_period = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 3];
+var _db_level = clamp(current_level, 0, array_length(_deep_boom_damage) - 1);
+deep_boom_damage = _deep_boom_damage[_db_level];
+deep_boom_period = _deep_boom_period[_db_level];
+
+// 深度爆炸计数，0 = 本次攻击即爆炸（首次攻击即爆炸）
+deep_boom_counter = 0;

@@ -1,5 +1,5 @@
 // 火神增幅
-if (shape >= 2 && ds_list_find_index(brazier_list, other.id) == -1 && burnt == 0 && row == other.grid_row)
+if (can_burn && ds_list_find_index(brazier_list, other.id) == -1 && burnt == 0 && row == other.grid_row)
 {
     burnt += 1;
     damage = round(damage * other.atk);

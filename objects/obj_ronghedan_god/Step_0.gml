@@ -14,8 +14,13 @@ var has_enemy = false
 var target_enemy = noone
 var min_distance = 10000
 
+// 索敌：与本体「煮蛋器投手」(obj_egg_boiler_pult) 同款 —— 本行 + 前方（列不设上限）
+//   灵魂融合（shape 2）才增强为索敌三行（上一行 / 本行 / 下一行）
+var _row_span = (shape >= 2) ? 1 : 0;
 with(obj_enemy_parent){
-    if (grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type,target_type)){
+    if (grid_row >= (other.grid_row - _row_span) && grid_row <= (other.grid_row + _row_span)
+        && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1)
+        && can_target_on(other.target_type, target_type)){
         var distance = grid_col - other.grid_col
         if (distance < min_distance) {
             min_distance = distance

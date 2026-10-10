@@ -4,6 +4,7 @@ damage = 0
 grid_row = 0
 grid_col = 0
 disabled = false
+has_damaged = false
 target_type = "throw"
 damage_type = "throw"
 image_xscale = 1.8

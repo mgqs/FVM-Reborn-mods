@@ -39,6 +39,10 @@ if (has_target)
         else
             inst.sprite_index = spr_lizi_god_bullet;
 
+        // 深度融合：把「深度爆炸伤害」交给同一条序列帧里的爆炸特效去结算
+        inst.deep_boom = deep_boom;
+        inst.deep_boom_damage = deep_boom_damage;
+
         instance_destroy();
     }
 }

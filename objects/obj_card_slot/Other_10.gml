@@ -42,7 +42,7 @@ if (plant_data != undefined) {
 }
 
 var _card_data = deck_get_card_data(card_id, cshape);
-if (array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id)) {
+if (is_fusion_card(card_id)) {
     sprite_index = spr_slot_2;
 } else if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_find_value(_card_data, "is_gold") == 1) {
     sprite_index = spr_slot_1;

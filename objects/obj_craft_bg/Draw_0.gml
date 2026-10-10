@@ -50,17 +50,23 @@ if button_select == 0{
 	//绘制所有已解锁防御卡
 		var card_index = 0
 		hover_card_index = -1
-		// 排序：普通卡在前，金卡在后（参考背包排序逻辑）
+		// 排序：普通卡在前 → 融合卡居中 → 金卡在后（参考背包排序逻辑）
 		craft_sort_order = []
+		var _craft_fusion_order = []
 		var _craft_gold_order = []
 		for(var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
 			var _card_data = global.save_data.unlocked_cards[i]
 			var _card_slot_data = deck_get_card_data(_card_data.id, _card_data.shape)
-			if (_card_slot_data != noone && ds_map_find_value(_card_slot_data, "is_gold") == 1) {
+			if (is_fusion_card(_card_data.id)) {
+				array_push(_craft_fusion_order, i)
+			} else if (_card_slot_data != noone && ds_map_find_value(_card_slot_data, "is_gold") == 1) {
 				array_push(_craft_gold_order, i)
 			} else {
 				array_push(craft_sort_order, i)
 			}
+		}
+		for(var i = 0; i < array_length(_craft_fusion_order); i++) {
+			array_push(craft_sort_order, _craft_fusion_order[i])
 		}
 		for(var i = 0; i < array_length(_craft_gold_order); i++) {
 			array_push(craft_sort_order, _craft_gold_order[i])
@@ -92,7 +98,7 @@ if button_select == 0{
 			var card_y = 48+96 * card_row - y_offset
 
 			if (card_slot_data != noone) {
-				var _craft_slot_spr = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
+				var _craft_slot_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_craft_slot_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 				draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 				draw_set_color(c_black);
@@ -162,7 +168,7 @@ if button_select == 0{
 			var card_y = y + 103
 			
 			if (card_slot_data != noone) {
-				var _craft_upgrade_slot = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
+				var _craft_upgrade_slot = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_craft_upgrade_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 				draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 				draw_set_color(c_black);

@@ -20,6 +20,24 @@ zhiyumiao_config_init();
 // 所有卡牌（原版 slots_init + mod mod_slots_init）均已注册进 player_deck 后，清理存档中已不存在的孤儿卡
 cleanup_orphan_cards();
 
+// 融合卡已回退为普卡两转（形态 0/1/2）：老存档若还停在已删掉的三转上，默认夹回二转
+var _fusion_ids = ["lizi_god", "youyu_god", "ronghehaixing", "ronghedan_god"];
+var _fusion_shape_fixed = 0;
+for (var _fi = 0; _fi < array_length(global.save_data.unlocked_cards); _fi++) {
+    var _fentry = global.save_data.unlocked_cards[_fi];
+    if (!is_struct(_fentry)) continue;
+    if (array_get_index(_fusion_ids, _fentry.id) == -1) continue;
+    if (variable_struct_exists(_fentry, "max_shape") && _fentry.max_shape > 2) {
+        _fentry.max_shape = 2;
+        _fusion_shape_fixed++;
+    }
+    if (variable_struct_exists(_fentry, "shape") && _fentry.shape > 2) {
+        _fentry.shape = 2;
+        _fusion_shape_fixed++;
+    }
+}
+if (_fusion_shape_fixed > 0) save_file(global.save_slot);
+
 // 护法神情报岛注册（双保险）
 if (variable_global_exists("info_island") && ds_exists(global.info_island, ds_type_map))
 {
