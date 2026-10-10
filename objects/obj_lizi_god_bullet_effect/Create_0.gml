@@ -10,3 +10,6 @@ shape = 0;
 damage_type = "throw";
 image_xscale = 2.0;
 image_yscale = 2.0;
+deep_boom = false;
+deep_boom_damage = 0;
+deep_boom_done = false;

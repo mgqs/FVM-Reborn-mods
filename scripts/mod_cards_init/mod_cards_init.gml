@@ -3064,31 +3064,27 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: [90, 90, 87, 87, 84, 84, 81, 81, 78, 78, 75, 75, 72, 72, 69, 69, 60]
     }], false);
 
-    // 最新融合卡：数值按“这组卡的推荐数值和情报岛.xlsx”登记，金卡开放至18级。
+    // 融合卡：按普卡 16 星登记（形态 0/1/2，两次转职），数值取 xlsx 前 17 档（0~16 星）。
     mod_register_plant_lite("lizi_god", [
-        {name:"如意香烤栗子", shape:0, description:"滚动栗子并造成灼烧", hp:array_create(19,160), cost:array_create(19,160), atk:[7,10,12,16,19,24,28,33,40,46,54,62,72,83,94,105,116,116,116], range:array_create(19,3), cooldown:array_create(19,420), cycle:[228,222,210,198,186,174,162,150,132,120,108,96,84,72,60,48,36,36,36]},
-        {name:"初级融合·烤栗子", shape:1, description:"3×3范围灼烧", hp:array_create(19,160), cost:array_create(19,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146,146,146], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,90)},
-        {name:"深度融合·烤栗子", shape:2, description:"周期性追加3×3爆炸", hp:array_create(19,160), cost:array_create(19,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146,146,146], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,90)},
-        {name:"灵魂融合·烤栗子", shape:3, description:"向三行投掷栗子弹", hp:array_create(19,160), cost:array_create(19,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146,146,146], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,90)}
-    ]);
+        {name:"酱香锅烤栗子", shape:0, description:"滚动栗子并造成灼烧", hp:array_create(17,160), cost:array_create(17,160), atk:[7,10,12,16,19,24,28,33,40,46,54,62,72,83,94,105,116], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)},
+        {name:"可乐香烤栗子", shape:1, description:"周期性追加3×3爆炸", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)},
+        {name:"如意香烤栗子", shape:2, description:"向前方3行投掷栗子子弹", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)}
+    ], false);
     mod_register_plant_lite("youyu_god", [
-        {name:"松香怪味鱿鱼", shape:0, description:"八方向各一发鱿鱼弹，需放置在章鱼烧上", hp:array_create(19,155), cost:array_create(19,155), atk:[32,77,91,106,127,154,181,220,260,299,362,474,599,730,888,1073,1290,1290,1290], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,90)},
-        {name:"初级融合·鱿鱼", shape:1, description:"八方向射击，无需底座", hp:array_create(19,155), cost:array_create(19,155), atk:[32,77,91,106,127,154,181,220,260,299,362,474,599,730,888,1073,1290,1290,1290], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,90)},
-        {name:"深度融合·鱿鱼", shape:2, description:"前后路追加弹道，中路子弹穿火增幅", hp:array_create(19,155), cost:array_create(19,155), atk:[32,96,114,133,158,192,226,275,325,374,452,594,749,910,1108,1343,1620,1620,1620], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,90)},
-        {name:"灵魂融合·鱿鱼", shape:3, description:"二十二发鱿鱼弹齐射", hp:array_create(19,155), cost:array_create(19,155), atk:[32,96,114,133,158,192,226,275,325,374,452,594,749,910,1108,1343,1620,1620,1620], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,90)}
-    ]);
+        {name:"火影怪味鱿鱼", shape:0, description:"八方向各两发鱿鱼弹，无需底座", hp:array_create(17,155), cost:array_create(17,155), atk:[32,77,91,106,127,154,181,220,260,299,362,474,599,730,888,1073,1290], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,90)},
+        {name:"合金怪味鱿鱼", shape:1, description:"前后两路各增一发子弹，中路子弹可过火", hp:array_create(17,155), cost:array_create(17,155), atk:[32,77,91,106,127,154,181,220,260,299,362,474,599,730,888,1073,1290], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,90)},
+        {name:"松香怪味鱿鱼", shape:2, description:"向前增加2路子弹，共计22发", hp:array_create(17,155), cost:array_create(17,155), atk:[32,96,114,133,158,192,226,275,325,374,452,594,749,910,1108,1343,1620], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,90)}
+    ], false);
     mod_register_plant_lite("ronghehaixing", [
-        {name:"仙人球海星刺身", shape:0, description:"双发多方向刺身弹，可反弹并携带上岸", hp:array_create(19,175), cost:array_create(19,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270,1270,1270], range:array_create(19,10), cooldown:array_create(19,420), cycle:[78,75,72,69,66,63,60,54,48,48,48,48,48,48,48,48,48,48,48]},
-        {name:"初级融合·海星刺身", shape:1, description:"命中后按比例扩散", hp:array_create(19,175), cost:array_create(19,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270,1270,1270], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,60)},
-        {name:"深度融合·海星刺身", shape:2, description:"扩散伤害提升", hp:array_create(19,175), cost:array_create(19,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270,1270,1270], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,60)},
-        {name:"灵魂融合·海星刺身", shape:3, description:"追踪弹命中后增加额外伤害", hp:array_create(19,175), cost:array_create(19,175), atk:[50,98,116,134,165,195,235,290,345,400,480,590,740,910,1140,1360,1670,1670,1670], range:array_create(19,10), cooldown:array_create(19,420), cycle:array_create(19,60)}
-    ]);
+        {name:"仙人球海星刺身", shape:0, description:"双发多方向刺身弹，可反弹并携带上岸", hp:array_create(17,175), cost:array_create(17,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270], range:array_create(17,10), cooldown:array_create(17,420), cycle:[78,75,72,69,66,63,60,54,48,48,48,48,48,48,48,48,48]},
+        {name:"奶油海星刺身", shape:1, description:"攻击附加单格溅射", hp:array_create(17,175), cost:array_create(17,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,60)},
+        {name:"王冠海星刺身", shape:2, description:"斜向子弹碰上下边框后转为追踪弹", hp:array_create(17,175), cost:array_create(17,175), atk:[50,78,91,104,130,155,180,220,260,300,365,460,590,730,890,1060,1270], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,60)}
+    ], false);
     mod_register_plant_lite("ronghedan_god", [
-        {name:"臭豆腐煮蛋器", shape:0, description:"双蛋攻击，35%范围溅射并有概率定身", hp:array_create(19,250), cost:array_create(19,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990,990,990], range:array_create(19,3), cooldown:array_create(19,420), cycle:[180,174,168,162,156,144,132,120,108,96,84,72,60,60,60,60,60,60,60]},
-        {name:"初级融合·煮蛋器", shape:1, description:"定身概率和持续时间提升", hp:array_create(19,250), cost:array_create(19,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990,990,990], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)},
-        {name:"深度融合·煮蛋器", shape:2, description:"附加毒伤", hp:array_create(19,250), cost:array_create(19,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990,990,990], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)},
-        {name:"灵魂融合·煮蛋器", shape:3, description:"三行各发射两枚煮蛋", hp:array_create(19,250), cost:array_create(19,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440,1440,1440], range:array_create(19,3), cooldown:array_create(19,420), cycle:array_create(19,120)}
-    ]);
+        {name:"雪芭煮蛋器", shape:0, description:"双蛋攻击，35%范围溅射并有概率定身", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)},
+        {name:"臭豆腐煮蛋器", shape:1, description:"溅射范围额外附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)},
+        {name:"终结者煮蛋器", shape:2, description:"子弹伤害提升，可向前方三行投掷子弹", hp:array_create(17,250), cost:array_create(17,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)}
+    ], false);
 
     mod_register_plant_lite("pufferfish", [
         {

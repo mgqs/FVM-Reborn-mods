@@ -120,19 +120,25 @@ if package_button_select == 1 {
     var card_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
 
-    // 计算排序索引：普通卡在前，金卡集中放最后
+    // 计算排序索引：普通卡在前 → 融合卡居中 → 金卡集中放最后
     deck_sort_order = []
+    var _fusion_order = []
     var _gold_order = []
     for(var si = 0; si < ds_list_size(global.player_deck); si += 2) {
         if (global.player_deck[| si] == "lihe" && !is_random_gift_mode()) continue;
         var _entry = global.player_deck[| si+1]
         var _shapes = _entry[? "shapes"]
         var _data = _shapes[| 0]
-        if (ds_map_find_value(_data, "is_gold") == 1) {
+        if (is_fusion_card(global.player_deck[| si])) {
+            array_push(_fusion_order, si)
+        } else if (ds_map_find_value(_data, "is_gold") == 1) {
             array_push(_gold_order, si)
         } else {
             array_push(deck_sort_order, si)
         }
+    }
+    for(var si = 0; si < array_length(_fusion_order); si++) {
+        array_push(deck_sort_order, _fusion_order[si])
     }
     for(var si = 0; si < array_length(_gold_order); si++) {
         array_push(deck_sort_order, _gold_order[si])
@@ -179,6 +185,7 @@ if package_button_select == 1 {
                 if (global.save_data.unlocked_cards[k].id == card_id) {
                     is_unlocked = true;
 					card_shape = global.save_data.unlocked_cards[k].shape
+					if (card_shape >= ds_list_size(card_data_shapes)) card_shape = ds_list_size(card_data_shapes) - 1;
 					card_data = card_data_shapes[| card_shape]
                     break;
                 }
@@ -187,7 +194,7 @@ if package_button_select == 1 {
             // 绘制卡片
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
-				var _slot_spr = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
+				var _slot_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
@@ -224,7 +231,7 @@ if package_button_select == 1 {
             } else {
                 // 未解锁的卡片使用灰色滤镜
                 card_data = card_data_shapes[| card_shape]
-				var _slot_spr2 = array_contains(["ronghehaixing", "youyu_god", "ronghedan_god", "lizi_god"], card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
+				var _slot_spr2 = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
 				draw_sprite_ext(_slot_spr2, 0, card_x, card_y-3, 0.25, 0.25, 0, c_gray, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_gray, 1);
             }

@@ -7,7 +7,8 @@ function mod_skill_init()
     register_card_skill("berry_dessert", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
     register_card_skill("grilled_lizard_pult", "cycle", [132, 129, 126, 122.99999999999999, 120, 117, 114, 111, 105]);
     register_card_skill("zhurong", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
-    register_card_skill("lizi_god", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 66]);
+    register_card_skill("lizi_god", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
+    register_card_skill("youyu_god", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 63]);
     register_card_skill("firework_dragon_real", "first_produce_delay", [480, 450, 420, 390, 360, 300, 240, 180, 60]);
     register_card_skill("brahma", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
     register_card_skill("baibianshe", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
@@ -63,5 +64,7 @@ function mod_skill_init()
     register_card_skill("zhanqima", "cycle", [1200, 1260, 1380, 1500, 1620, 1740, 1920, 2100, 2700]);
     register_card_skill("hongliukaochuan", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 60]);
     register_card_skill("yeziguo", "atk", [1000, 1125, 1250, 1375, 1500, 1625, 1750, 1875, 2000]);
+    register_card_skill("ronghehaixing", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
+    register_card_skill("ronghedan_god", "cycle", [180, 174, 168, 162, 156, 144, 132, 120, 108]);
 
 }
