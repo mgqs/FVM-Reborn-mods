@@ -1,4 +1,4 @@
-// 工匠神使 - 用户事件2（备用开火，与用户事件1一致）
+// 鲁班神使 - 用户事件2（备用开火，与用户事件1一致）
 var _right_col = global.grid_cols - 1;
 var _top_row = 0;
 var _mid_row = clamp(3, 0, global.grid_rows - 1);

@@ -1100,7 +1100,7 @@ register_gods_goods("panduola_god_3",
     cost: "48",
     unlock_item_id: "panduola_god",
     target_shape: 3,
-    description: "终转疫神·潘多拉：全屏8000灰烬爆炸并造成三次鼠疫",
+    description: "至尊疫神：全屏8000灰烬爆炸并造成三次鼠疫",
     display_name: "终转凭证（潘多拉）",
     spr: spr_panduola_pin3
 });
@@ -1152,8 +1152,8 @@ register_gods_goods("gongjiang_god",
     type: "card",
     cost: "16",
     unlock_item_id: "gongjiang_god",
-    description: "工匠神使：发射1发河豚子弹（4倍伤害）沿固定轨迹往返，可攻击地下/陆地/飞行老鼠",
-    display_name: "工匠神使"
+    description: "鲁班神使：发射1发河豚子弹（4倍伤害）沿固定轨迹往返，可攻击地下/陆地/飞行老鼠",
+    display_name: "鲁班神使"
 });
 
 register_gods_goods("gongjiang_god_1",
@@ -1162,7 +1162,7 @@ register_gods_goods("gongjiang_god_1",
     cost: "16",
     unlock_item_id: "gongjiang_god",
     target_shape: 1,
-    description: "工匠圣神：子弹威力提升，概率附加河豚毒素",
+    description: "鲁班圣神：子弹威力提升，概率附加河豚毒素",
     display_name: "三转凭证（工匠）",
     spr: spr_gongjiang_god_pin1
 });
@@ -1173,7 +1173,7 @@ register_gods_goods("gongjiang_god_2",
     cost: "32",
     unlock_item_id: "gongjiang_god",
     target_shape: 2,
-    description: "神工天匠：子弹威力提升至5倍，概率释放河豚毒素",
+    description: "工匠神·鲁班：子弹威力提升至5倍，概率释放河豚毒素",
     display_name: "四转凭证（工匠）",
     spr: spr_gongjiang_god_pin2
 });
@@ -1194,8 +1194,8 @@ register_gods_goods("guangming_god",
     type: "card",
     cost: "16",
     unlock_item_id: "guangming_god",
-    description: "巴尔德神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
-    display_name: "巴尔德神使"
+    description: "巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
+    display_name: "巴德尔神使"
 });
 
 register_gods_goods("guangming_god_1",
@@ -1204,7 +1204,7 @@ register_gods_goods("guangming_god_1",
     cost: "16",
     unlock_item_id: "guangming_god",
     target_shape: 1,
-    description: "巴尔德圣神：每放置1次黑暗神，部分光明神就产生1次光影爆炸",
+    description: "巴德尔圣神：每放置1次黑暗神，部分光明神就产生1次光影爆炸",
     display_name: "三转凭证（光明神）",
     spr: spr_guangming_god_pin1
 });
@@ -1351,8 +1351,8 @@ register_gods_goods("shennong_god",
     type: "card",
     cost: "16",
     unlock_item_id: "shennong_god",
-    description: "炎帝神使：召唤固定轨迹穿透神焰攻击敌人，可攻击空中单位，击杀产生灰烬",
-    display_name: "炎帝神使"
+    description: "神农氏神使：召唤固定轨迹穿透神焰攻击敌人，可攻击空中单位，击杀产生灰烬",
+    display_name: "神农氏神使"
 });
 
 register_gods_goods("shennong_god_1",
@@ -1361,7 +1361,7 @@ register_gods_goods("shennong_god_1",
     cost: "16",
     unlock_item_id: "shennong_god",
     target_shape: 1,
-    description: "炎帝圣神：攻击力提升，召唤固定轨迹穿透神焰攻击敌人",
+    description: "神农氏圣神：攻击力提升，召唤固定轨迹穿透神焰攻击敌人",
     display_name: "三转凭证（炎帝）",
     spr: spr_shennong_god_pin1
 });
@@ -1372,7 +1372,7 @@ register_gods_goods("shennong_god_2",
     cost: "32",
     unlock_item_id: "shennong_god",
     target_shape: 2,
-    description: "赤帝·炎帝：攻击力大幅提升，神焰威力增强",
+    description: "炎帝·神农氏：攻击力大幅提升，神焰威力增强",
     display_name: "四转凭证（炎帝）",
     spr: spr_shennong_god_pin2
 });
@@ -1382,8 +1382,8 @@ register_gods_goods("chongsheng_god",
     type: "card",
     cost: "16",
     unlock_item_id: "chongsheng_god",
-    description: "重生神使：5*5范围内监听卡片死亡并复活，首次触发时施加减伤BUFF",
-    display_name: "重生神使"
+    description: "奥西里斯神使：5*5范围内监听卡片死亡并复活，首次触发时施加减伤BUFF",
+    display_name: "奥西里斯神使"
 });
 
 register_gods_goods("chongsheng_god_1",
@@ -1392,7 +1392,7 @@ register_gods_goods("chongsheng_god_1",
     cost: "16",
     unlock_item_id: "chongsheng_god",
     target_shape: 1,
-    description: "重生圣神：复活上限提升至6张，减伤效果增强",
+    description: "奥西里斯圣神：复活上限提升至6张，减伤效果增强",
     display_name: "三转凭证（重生神）",
     spr: spr_chongsheng_god_pin1
 });
@@ -1403,7 +1403,7 @@ register_gods_goods("chongsheng_god_2",
     cost: "32",
     unlock_item_id: "chongsheng_god",
     target_shape: 2,
-    description: "重生天神：复活上限6张，减伤BUFF持续时间延长",
+    description: "重生神·奥西里斯：复活上限6张，减伤BUFF持续时间延长",
     display_name: "四转凭证（重生神）",
     spr: spr_chongsheng_god_pin2
 });
@@ -1424,8 +1424,8 @@ register_gods_goods("hufa_god",
     type: "card",
     cost: "16",
     unlock_item_id: "hufa_god",
-    description: "护法神使：全屏索敌追踪穿透弹，秒杀不防爆鼠，15%概率定身1.5秒",
-    display_name: "护法神使"
+    description: "俱吠罗神使：全屏索敌追踪穿透弹，秒杀不防爆鼠，15%概率定身1.5秒",
+    display_name: "俱吠罗神使"
 });
 
 register_gods_goods("hufa_god_1",
@@ -1434,7 +1434,7 @@ register_gods_goods("hufa_god_1",
     cost: "16",
     unlock_item_id: "hufa_god",
     target_shape: 1,
-    description: "护法圣神：攻击力提升，魂系老鼠1.8倍伤害",
+    description: "俱吠罗圣神：攻击力提升，魂系老鼠1.8倍伤害",
     display_name: "三转凭证（护法）",
     spr: spr_hufa_god_pin1
 });
@@ -1445,7 +1445,7 @@ register_gods_goods("hufa_god_2",
     cost: "32",
     unlock_item_id: "hufa_god",
     target_shape: 2,
-    description: "护法天尊：追加地鼠目标，攻击力大幅提升",
+    description: "护法神·俱吠罗：追加地鼠目标，攻击力大幅提升",
     display_name: "四转凭证（护法）",
     spr: spr_hufa_god_pin2
 });

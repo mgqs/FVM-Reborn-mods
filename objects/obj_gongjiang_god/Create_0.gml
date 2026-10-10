@@ -1,4 +1,4 @@
-// 工匠神使 - 创建事件
+// 鲁班神使 - 创建事件
 // 继承卡片父对象默认值，注册 plant_id，按形态切换精灵
 event_inherited();
 plant_id = "gongjiang_god";

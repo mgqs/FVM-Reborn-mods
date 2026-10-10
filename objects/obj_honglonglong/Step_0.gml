@@ -91,37 +91,11 @@ switch state{
 		if timer == 480{
 			instance_create_depth(x-150,y-120,-800,obj_honglonglong_laser)
 			
-			// 变异版激光：0°、+45°、-45°三条激光
-			var _boss_row = grid_row
-			var _boss_col = grid_col
+			// 变异版激光：仅沿角色所在行发射水平激光
+			var _boss_row = get_grid_position_from_world(x, y).row
 			
 			with obj_card_parent{
-				var _hit = false
-				
-				// 0° 水平激光：本行全部卡片
 				if grid_row == _boss_row && plant_id != "player" && plant_type != "lilypad"{
-					_hit = true
-				}
-				
-				// +45° 斜向上激光：从BOSS位置向左上方（列-1，行-1）
-				if !_hit{
-					var _dc = _boss_col - grid_col
-					var _dr = _boss_row - grid_row
-					if _dc > 0 && _dr > 0 && _dc == _dr && plant_id != "player" && plant_type != "lilypad"{
-						_hit = true
-					}
-				}
-				
-				// -45° 斜向下激光：从BOSS位置向左下方（列-1，行+1）
-				if !_hit{
-					var _dc2 = _boss_col - grid_col
-					var _dr2 = grid_row - _boss_row
-					if _dc2 > 0 && _dr2 > 0 && _dc2 == _dr2 && plant_id != "player" && plant_type != "lilypad"{
-						_hit = true
-					}
-				}
-				
-				if _hit{
 					if hp >= max_hp{
 						obj_task_manager.card_loss++
 					}
@@ -251,9 +225,10 @@ switch state{
 			image_index = floor(timer/5) mod 24 + 24
 		}
 		if timer == 14 * 5{
-				// 变异版坐压：4x4范围摧毁（以自己为中心）
-				var _center_row = grid_row
-				var _center_col = grid_col
+				// 变异版坐压：以角色模型当前位置为中心摧毁 4x4 范围
+				var _model_grid = get_grid_position_from_world(x, y)
+				var _center_row = _model_grid.row
+				var _center_col = _model_grid.col
 				var _cards_to_destroy = []
 				with obj_card_parent{
 					if grid_row >= _center_row - 1 && grid_row <= _center_row + 2
@@ -391,4 +366,3 @@ depth = base_depth - 4.5; // 僵尸比植物稍微靠后一点（在护罩外侧
 
 grid_col = zombie_grid.col;
 grid_row = zombie_grid.row;
-
