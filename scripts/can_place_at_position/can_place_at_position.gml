@@ -7,6 +7,12 @@
 /// @param {string} target_card 底座卡片
 /// @param {string} card_id 正在放置的卡牌 ID（可选）
 function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id = "") {
+    if (card_id == "kuileima" && !global.replace_placement) {
+        for (var p = 0; p < instance_number(obj_kuileima); p++) {
+            var existing = instance_find(obj_kuileima,p);
+            if (instance_exists(existing) && existing.hp > 0) return false;
+        }
+    }
     // 获取网格位置
     var grid_pos = get_grid_position_from_world(x, y);
     var col = grid_pos.col;

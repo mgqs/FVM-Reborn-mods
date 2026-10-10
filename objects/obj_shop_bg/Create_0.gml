@@ -62,6 +62,14 @@ function shop_list_recharge(){
 	var map_array = []
 
 	ds_map_keys_to_array(global.goods_map,map_array)
+	// 跨服商品不进入普通金币商店的任何分类。
+	var _normal_goods = []
+	for (var _g = 0; _g < array_length(map_array); _g++) {
+		if (!variable_struct_exists(global.goods_map[? map_array[_g]], "cross_server_shop")) {
+			array_push(_normal_goods, map_array[_g])
+		}
+	}
+	map_array = _normal_goods
 
 	var goods_array_size = array_length(map_array)
 

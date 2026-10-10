@@ -26,6 +26,15 @@ if chongsheng_buff_timer > 0 {
 	}
 }
 _prev_hp = hp
+if (variable_instance_exists(id,"zodiac_guard_time") && zodiac_guard_time > 0) {
+    zodiac_guard_time--;
+    if (hp < zodiac_guard_hp) {
+        hp = zodiac_guard_hp;
+        zodiac_guard_hits--;
+        if (zodiac_guard_hits <= 0) zodiac_guard_time = 0;
+    }
+    zodiac_guard_hp = hp;
+}
 if hp <= 0{
 	instance_destroy()
 }
@@ -121,4 +130,3 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
-

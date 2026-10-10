@@ -1,6 +1,8 @@
 function mod_buff_init()
 {
     global.plant_buff_map = ds_map_create();
+    ds_map_set(global.plant_buff_map,"yufengma","xiangshui");
+    ds_map_set(global.plant_buff_map,"guiyuanma","tracker");
     ds_map_set(global.plant_buff_map, "takoyaki", "tracker");
     ds_map_set(global.plant_buff_map, "juxie", "tracker");
     ds_map_set(global.plant_buff_map, "moon_god", "tracker");
@@ -55,6 +57,7 @@ function mod_buff_init()
 
     // 第二buff类型映射（植物可同时受益于两种buff类型，倍率相乘）
     global.plant_buff_map_2 = ds_map_create();
+    ds_map_set(global.plant_buff_map_2,"guiyuanma","xiangshui");
     ds_map_set(global.plant_buff_map_2, "cold_drew", "xiangshui");
     ds_map_set(global.plant_buff_map_2, "hufa_god", "sprayer");
     ds_map_set(global.plant_buff_map_2, "hongliukaochuan", "sprayer");

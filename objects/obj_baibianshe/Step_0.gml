@@ -6,7 +6,7 @@ event_inherited();
 if (!copied && !is_derivative && image_index >= idle_anim - 1)
 {
     copied = true;
-    var _blacklist = ["brahma", "magic_chicken", "ice_cream", "baibianshe", "shegengbao"];
+    var _blacklist = ["brahma", "magic_chicken", "ice_cream", "baibianshe", "shegengbao", "kuileima", "xingqiongma"];
     var _copy_count = 1;
 
     if (shape == 2)

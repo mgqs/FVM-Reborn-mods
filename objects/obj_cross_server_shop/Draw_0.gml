@@ -49,6 +49,16 @@ for (var _slot = 0; _slot < 16; _slot++) {
         for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
             if (global.save_data.unlocked_cards[_k].id == _card_id && global.save_data.unlocked_cards[_k].shape >= _card_shape) { _owned = true; break; }
         }
+        if (variable_struct_exists(_goods, "required_card_shape")) {
+            _prerequisite_met = false;
+            for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
+                if (global.save_data.unlocked_cards[_k].id == _card_id
+                    && global.save_data.unlocked_cards[_k].shape >= _goods.required_card_shape) {
+                    _prerequisite_met = true;
+                    break;
+                }
+            }
+        }
     } else if (_goods_type == "weapon") {
         _owned = is_weapon_unlocked(_id);
     } else if (_goods_type == "gem") {
@@ -84,7 +94,7 @@ for (var _slot = 0; _slot < 16; _slot++) {
     // 抽卡模式/欧皇模式/随机礼盒模式：购买按钮变灰
     var _gacha_disabled = is_eternal_gacha_mode() || is_random_gift_mode();
 
-    draw_sprite_ext(spr_shop_buy_btn, 0, _gx + 77, _gy + 60, 1.8, 1.8, 0, _gacha_disabled ? c_gray : c_white, 1);
+    draw_sprite_ext(spr_shop_buy_btn, 0, _gx + 77, _gy + 60, 1.8, 1.8, 0, (_gacha_disabled || !_prerequisite_met) ? c_gray : c_white, 1);
     draw_set_font(font_yuan);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
@@ -109,7 +119,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
     } else if (!_prerequisite_met) {
         draw_set_font(font_yuan);
         draw_set_color(c_white);
-        draw_text(_gx + 77, _gy + 60, "需先兑换前置宝石");
+        var _required_text = _goods_type == "card"
+            ? (_goods.required_card_shape == 0 ? "需先兑换本体" : "需先兑换一转")
+            : "需先兑换前置宝石";
+        draw_text(_gx + 77, _gy + 60, _required_text);
     }
 }
 

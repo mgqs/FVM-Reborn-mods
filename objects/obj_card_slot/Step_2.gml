@@ -1,5 +1,5 @@
 if card_id == "magic_chicken"{
-	var _blacklist = ["brahma","magic_chicken","ice_cream"]
+	var _blacklist = ["brahma","magic_chicken","ice_cream","kuileima","xingqiongma"]
 	if global.last_placed_card_id != "" && array_get_index(_blacklist,global.last_placed_card_id) == -1{
 		var card_save_data = get_card_info_simple(global.last_placed_card_id)
 		if card_save_data != false{

@@ -27,7 +27,7 @@ if (variable_instance_exists(id, "plant_id") && !_was_shoveled && !_no_revive_re
             "12yinliao", "coffee_grounds", "ice_cream", "magic_chicken", "clotho", "time_god", "heian_god",
             "zhiyumiao", "shegengbao", "wooden_cork", "baobaoji", "ventilation_fan", "xuanfengniu", "nizhuanniu",
             "wanpilong", "brahma", "mojie", "cotton_candy", "zhanqima", "dragon_fruit", "durian",
-            "firework_dragon", "firework_dragon_real"
+            "firework_dragon", "firework_dragon_real", "kuileima", "xingqiongma"
         ];
 
         if (array_get_index(_no_record_ids, plant_id) != -1)

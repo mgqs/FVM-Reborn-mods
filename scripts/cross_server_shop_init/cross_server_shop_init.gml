@@ -6,7 +6,8 @@ function cross_server_shop_init()
         "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem", "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
-        "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5"
+        "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
+        "yanyantu", "yanyantu_1", "yanyantu_2", "wugushe", "wugushe_1", "wugushe_2", "kuileima", "kuileima_1", "kuileima_2", "yufengma", "yufengma_1", "yufengma_2", "fenjima", "fenjima_1", "fenjima_2", "guiyuanma", "guiyuanma_1", "guiyuanma_2", "yanhuangma", "yanhuangma_1", "yanhuangma_2", "yinhema", "yinhema_1", "yinhema_2", "xiandima", "xiandima_1", "xiandima_2", "xingqiongma", "xingqiongma_1", "xingqiongma_2", "starrabbit", "starrabbit_1", "starrabbit_2", "yinghuoshe", "yinghuoshe_1", "yinghuoshe_2"
     ];
 
     var _cross_server_prices = {
@@ -23,8 +24,27 @@ function cross_server_shop_init()
         zeus_shadow_gem: {cost: "900", shop: "silver"}, zeus_power_gem: {cost: "900", shop: "silver"}, zeus_anger_gem: {cost: "900", shop: "silver"}, zeus_ren_gem: {cost: "900", shop: "silver"},
         star_wand: {cost: "500", shop: "gold"}, star_wand_gem_1: {cost: "500", shop: "gold"}, star_wand_gem_2: {cost: "750", shop: "gold"}, star_wand_gem_3: {cost: "500", shop: "gold"}, star_wand_gem_4: {cost: "500", shop: "gold"}, star_wand_gem_5: {cost: "500", shop: "gold"},
         rose_shield: {cost: "500", shop: "gold"}, rose_shield_gem_1: {cost: "500", shop: "gold"}, rose_shield_gem_2: {cost: "500", shop: "gold"}, rose_shield_gem_3: {cost: "500", shop: "gold"}, rose_shield_gem_4: {cost: "500", shop: "gold"}, rose_shield_gem_5: {cost: "750", shop: "gold"},
-        aladdin_lamp: {cost: "500", shop: "gold"}, aladdin_lamp_gem_1: {cost: "500", shop: "gold"}, aladdin_lamp_gem_2: {cost: "750", shop: "gold"}, aladdin_lamp_gem_3: {cost: "500", shop: "gold"}, aladdin_lamp_gem_4: {cost: "500", shop: "gold"}, aladdin_lamp_gem_5: {cost: "500", shop: "gold"}
+        aladdin_lamp: {cost: "500", shop: "gold"}, aladdin_lamp_gem_1: {cost: "500", shop: "gold"}, aladdin_lamp_gem_2: {cost: "750", shop: "gold"}, aladdin_lamp_gem_3: {cost: "500", shop: "gold"}, aladdin_lamp_gem_4: {cost: "500", shop: "gold"}, aladdin_lamp_gem_5: {cost: "500", shop: "gold"},
+        yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, guiyuanma: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, xingqiongma: {cost: "1900", shop: "silver"}, yanyantu_1: {cost: "450", shop: "gold"}, yanyantu_2: {cost: "910", shop: "gold"}, wugushe_1: {cost: "450", shop: "gold"}, wugushe_2: {cost: "910", shop: "gold"}, kuileima_1: {cost: "450", shop: "gold"}, kuileima_2: {cost: "910", shop: "gold"}, yufengma_1: {cost: "450", shop: "gold"}, yufengma_2: {cost: "910", shop: "gold"}, fenjima_1: {cost: "450", shop: "gold"}, fenjima_2: {cost: "910", shop: "gold"}, guiyuanma_1: {cost: "450", shop: "gold"}, guiyuanma_2: {cost: "910", shop: "gold"}, yanhuangma_1: {cost: "450", shop: "gold"}, yanhuangma_2: {cost: "910", shop: "gold"}, yinhema_1: {cost: "450", shop: "gold"}, yinhema_2: {cost: "910", shop: "gold"}, xiandima_1: {cost: "450", shop: "gold"}, xiandima_2: {cost: "910", shop: "gold"}, xingqiongma_1: {cost: "450", shop: "gold"}, xingqiongma_2: {cost: "910", shop: "gold"}
     };
+
+    // 新生肖仅在跨服商店兑换，三个形态的价格和分类均参考战旗马。
+    var _zodiac_defs = zodiac_definitions();
+    for (var _z = 0; _z < array_length(_zodiac_defs); _z++) {
+        var _def = _zodiac_defs[_z];
+        for (var _shape = 0; _shape < 3; _shape++) {
+            var _suffix = _shape == 0 ? "" : "_" + string(_shape);
+            var _template = _cross_server_prices[$ "zhanqima" + _suffix];
+            var _entry = {
+                type: "card", card_id: _def.id, card_shape: _shape,
+                cost: _template.cost, cross_server_shop: _template.shop,
+                unlock_item_id: _def.id,
+                description: _def.descriptions[_shape], display_name: _def.names[_shape]
+            };
+            if (_shape > 0) _entry.required_card_shape = _shape - 1;
+            register_goods(_def.id + _suffix, _entry);
+        }
+    }
 
     for (var _i = 0; _i < array_length(_cross_server_goods); _i++) {
         var _id = _cross_server_goods[_i];

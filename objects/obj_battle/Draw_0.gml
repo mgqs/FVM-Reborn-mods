@@ -8,13 +8,7 @@ draw_text(0,25,"加速:"+(speed_up ? "开" : "关") + "（shift）")
 draw_text(0,50,"暂停（空格）\n菜单（ESC）")
 
 if global.level_id == "test_level"{
-	var _total = 0
-	for (var _mouse_index = 0; _mouse_index < instance_number(obj_test_mouse); _mouse_index++) {
-		var _test_mouse = instance_find(obj_test_mouse, _mouse_index)
-		if variable_instance_exists(_test_mouse, "test_damage_total"){
-			_total += _test_mouse.test_damage_total
-		}
-	}
+	var _total = variable_global_exists("test_damage_total_all") ? global.test_damage_total_all : 0
 	draw_set_halign(fa_left)
 	draw_set_valign(fa_top)
 	draw_set_font(font_yuan)

@@ -8,11 +8,16 @@ if (lifetime_timer <= 0)
 {
     if (instance_exists(time_god_effect_obj))
         instance_destroy(time_god_effect_obj);
+    for (var _ci = 0; _ci < array_length(tg_corner_effects); _ci++)
+    {
+        if (instance_exists(tg_corner_effects[_ci]))
+            instance_destroy(tg_corner_effects[_ci]);
+    }
     instance_destroy();
     exit;
 }
 
-var _tg_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho"];
+var _tg_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho", "kuileima"];
 
 var col_offset = 1;
 var row_offset = 1;
@@ -99,6 +104,9 @@ if (exec_count < max_exec)
         image_alpha = 0;
         if (instance_exists(time_god_effect_obj))
             time_god_effect_obj.image_alpha = 0;
+        for (var _ci = 0; _ci < array_length(tg_corner_effects); _ci++)
+            if (instance_exists(tg_corner_effects[_ci]))
+                tg_corner_effects[_ci].image_alpha = 0;
         if (instance_exists(banding_star_obj))
             banding_star_obj.image_alpha = 0;
     }
@@ -109,6 +117,9 @@ if (exec_count < max_exec)
             image_alpha = 1;
             if (instance_exists(time_god_effect_obj))
                 time_god_effect_obj.image_alpha = 1;
+            for (var _ci = 0; _ci < array_length(tg_corner_effects); _ci++)
+                if (instance_exists(tg_corner_effects[_ci]))
+                    tg_corner_effects[_ci].image_alpha = 1;
             if (instance_exists(banding_star_obj))
                 banding_star_obj.image_alpha = 1;
         }
@@ -134,6 +145,9 @@ if (exec_count < max_exec)
             image_alpha = 0;
             if (instance_exists(time_god_effect_obj))
                 time_god_effect_obj.image_alpha = 0;
+            for (var _ci = 0; _ci < array_length(tg_corner_effects); _ci++)
+                if (instance_exists(tg_corner_effects[_ci]))
+                    tg_corner_effects[_ci].image_alpha = 0;
             if (instance_exists(banding_star_obj))
                 banding_star_obj.image_alpha = 0;
         }
@@ -146,6 +160,9 @@ else
         image_alpha = 0;
         if (instance_exists(time_god_effect_obj))
             time_god_effect_obj.image_alpha = 0;
+        for (var _ci = 0; _ci < array_length(tg_corner_effects); _ci++)
+            if (instance_exists(tg_corner_effects[_ci]))
+                tg_corner_effects[_ci].image_alpha = 0;
         if (instance_exists(banding_star_obj))
             banding_star_obj.image_alpha = 0;
     }

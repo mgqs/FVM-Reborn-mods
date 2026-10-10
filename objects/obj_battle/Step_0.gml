@@ -301,16 +301,9 @@ if global.debug{
 	}
 }
 
-// 测试关卡：5秒伤害统计
+// 测试关卡：5秒伤害统计（全场所有老鼠，在 obj_enemy_parent/Other_10.gml 等处累计）
 if global.level_id == "test_level"{
-	var _test_damage_total = 0
-	for (var _mouse_index = 0; _mouse_index < instance_number(obj_test_mouse); _mouse_index++) {
-		var _test_mouse = instance_find(obj_test_mouse, _mouse_index)
-		if !variable_instance_exists(_test_mouse, "test_damage_total"){
-			_test_mouse.test_damage_total = 0
-		}
-		_test_damage_total += _test_mouse.test_damage_total
-	}
+	var _test_damage_total = variable_global_exists("test_damage_total_all") ? global.test_damage_total_all : 0
 	test_dps_timer++
 	if test_dps_timer >= test_dps_window{
 		test_dps_display = _test_damage_total - test_dps_last_total

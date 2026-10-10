@@ -85,3 +85,5 @@ climb_base_y = 0       // 越障起始 y（本行基准，弧线结束时回落�
 climb_total_dist = 1   // 起点到落点的水平总距离（算弧线进度用，防除零）
 climb_arc_h = 40       // 弧线最高上抬像素（远小于一格 116，不会跨行）
 climb_speed = 2        // 每帧移动像素（越障速度，越小越慢）
+
+attack_multiplier = 1;

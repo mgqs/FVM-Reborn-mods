@@ -1,5 +1,6 @@
 function mod_slots_init()
 {
+    zodiac_slots_init();
     // 随机礼盒：固定50火苗、10秒冷却，只能放置在陆地。
     register_card("lihe", obj_lihe, [
     {
@@ -24,7 +25,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_gaia_1,
@@ -35,7 +36,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_gaia_2,
@@ -46,7 +47,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_gaia_3,
@@ -70,7 +71,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_aurora
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_aurora_icon_1,
@@ -82,7 +83,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_aurora_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_aurora_icon_2,
@@ -94,7 +95,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_aurora_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_aurora_icon_3,
@@ -118,7 +119,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_zhurong_1,
@@ -129,7 +130,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_zhurong_2,
@@ -140,7 +141,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_zhurong_3,
@@ -163,7 +164,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_rig_1,
@@ -174,7 +175,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_rig_2,
@@ -185,7 +186,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_rig_3,
@@ -209,7 +210,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_brahma
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_brahma_icon_1,
@@ -221,7 +222,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_brahma_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_brahma_icon_2,
@@ -233,7 +234,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_brahma_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_brahma_icon_3,
@@ -332,7 +333,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_clotho
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_clotho_icon_1,
@@ -344,7 +345,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_clotho_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_clotho_icon_2,
@@ -356,7 +357,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_clotho_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_clotho_icon_3,
@@ -429,7 +430,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_firework_dragon_1,
@@ -440,7 +441,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_firework_dragon_icon_2,
@@ -464,7 +465,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_sun_god_1,
@@ -475,7 +476,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_sun_god_2,
@@ -486,7 +487,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_sun_god_3_icon,
@@ -510,7 +511,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_war_god_1,
@@ -521,7 +522,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_war_god_2,
@@ -532,7 +533,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_war_god_3,
@@ -555,7 +556,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_love_god_1,
@@ -566,7 +567,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_love_god_2,
@@ -577,7 +578,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_love_god_3,
@@ -601,7 +602,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_thor,
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_thor_icon_1,
@@ -613,7 +614,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_thor_1,
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_thor_icon_2,
@@ -625,7 +626,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_thor_2,
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_thor_icon_3,
@@ -649,7 +650,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_moon_god_1,
@@ -660,7 +661,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_moon_god_2,
@@ -671,7 +672,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_moon_god_3,
@@ -694,7 +695,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_poseidon_1,
@@ -705,7 +706,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_poseidon_2,
@@ -716,7 +717,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_poseidon_3,
@@ -739,7 +740,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_odin_1,
@@ -750,7 +751,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_odin_2,
@@ -761,7 +762,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_odin_3,
@@ -784,7 +785,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_zeus_1,
@@ -795,7 +796,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_zeus_2,
@@ -806,7 +807,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_zeus_3,
@@ -829,7 +830,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_ice_god_1,
@@ -840,7 +841,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_ice_god_2,
@@ -851,7 +852,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_ice_god_3,
@@ -874,7 +875,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_ghost_god_1,
@@ -885,7 +886,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_ghost_god_2,
@@ -896,7 +897,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_ghost_god_3,
@@ -920,7 +921,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_hera_outer_1,
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_hera_icon_2,
@@ -932,7 +933,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_hera_1_outer_1,
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_hera_icon_3,
@@ -944,7 +945,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_hera_2_outer_1,
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_hera_icon_4,
@@ -968,7 +969,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_fire_god_1,
@@ -979,7 +980,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_fire_god_2,
@@ -990,7 +991,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_fire_god_3,
@@ -1013,7 +1014,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
     sprite: spr_water_god_1,
@@ -1024,7 +1025,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
     sprite: spr_water_god_2_icon,
@@ -1036,7 +1037,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_water_god_2
-    }, 
+    },
     {
         shape: 3,
     sprite: spr_water_god_3_icon,
@@ -1060,7 +1061,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_power_god_1,
@@ -1071,7 +1072,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_power_god_2,
@@ -1082,7 +1083,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_power_god_3,
@@ -1105,7 +1106,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_sh_icon_1,
@@ -1117,7 +1118,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_sh_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_sh_icon_2,
@@ -1129,7 +1130,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_sh_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_sh_icon_3,
@@ -1153,7 +1154,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_save_god_1,
@@ -1164,7 +1165,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_save_god_2_icon,
@@ -1176,7 +1177,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_save_god_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_save_god_3_icon,
@@ -1201,7 +1202,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_ymir,
         is_gold: 1
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_ymir_icon_1,
@@ -1213,7 +1214,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_ymir_1,
         is_gold: 1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_ymir_icon_2,
@@ -1225,7 +1226,7 @@ function mod_slots_init()
         target_card: "none",
         place_preview: spr_ymir_2,
         is_gold: 1
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_ymir_icon_3,
@@ -1250,7 +1251,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_joker_0
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_joker_icon_1,
@@ -1262,7 +1263,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_joker_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_joker_icon_2,
@@ -1274,7 +1275,7 @@ function mod_slots_init()
         target_card: "none",
         is_gold: 1,
         place_preview: spr_joker_2
-    }, 
+    },
     {
         shape: 3,
         sprite: spr_joker_icon_3,
@@ -1297,7 +1298,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_athena_1,
@@ -1307,7 +1308,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_athena_2,
@@ -1328,7 +1329,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_shuangzi_1,
@@ -1338,7 +1339,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_shuangzi_2,
@@ -1359,7 +1360,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_sheshou_1,
@@ -1369,7 +1370,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_sheshou_2,
@@ -1390,7 +1391,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_tiancheng_1,
@@ -1400,7 +1401,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_tiancheng_2,
@@ -1422,7 +1423,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_shuangyu
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_shuangyu_1_icon,
@@ -1433,7 +1434,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_shuangyu_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_shuangyu_2_icon,
@@ -1455,7 +1456,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "amphi",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_juxie_1,
@@ -1465,7 +1466,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "amphi",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_juxie_2,
@@ -1486,7 +1487,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_shizi_1,
@@ -1496,7 +1497,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_shizi_2,
@@ -1517,7 +1518,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_jinniu_1,
@@ -1527,7 +1528,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_jinniu_2,
@@ -1548,7 +1549,7 @@ function mod_slots_init()
         plant_type: "shield_outer",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_chunv_1_4,
@@ -1558,7 +1559,7 @@ function mod_slots_init()
         plant_type: "shield_outer",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_chunv_2_4,
@@ -1580,7 +1581,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_baiyang
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_baiyang_icon,
@@ -1591,7 +1592,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_baiyang
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_baiyang_icon,
@@ -1613,7 +1614,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_mojie_1,
@@ -1623,7 +1624,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_mojie_2,
@@ -1644,7 +1645,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_corn_shooter_1,
@@ -1654,7 +1655,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_corn_shooter_2,
@@ -1675,7 +1676,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_warm_birds_1,
@@ -1685,7 +1686,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_warm_birds_2,
@@ -1709,7 +1710,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_cold_drew_machine
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_cold_drew_machine_icon_1,
@@ -1720,7 +1721,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_cold_drew_machine_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_cold_drew_machine_icon_2,
@@ -1742,7 +1743,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_berry_dessert_icon_1,
@@ -1752,7 +1753,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_berry_dessert_icon_2,
@@ -1773,7 +1774,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_grilled_lizard_pult_1,
@@ -1783,7 +1784,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_grilled_lizard_pult_2,
@@ -1816,7 +1817,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_donut
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_donut_4,
@@ -1827,7 +1828,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_donut_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_donut_5,
@@ -1850,7 +1851,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_spoon_rabbit
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_spoon_rabbit_icon_1,
@@ -1861,7 +1862,7 @@ function mod_slots_init()
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_spoon_rabbit_1
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_spoon_rabbit_icon_2,
@@ -1883,7 +1884,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 1,
         sprite: spr_hspeed_juicer_1,
@@ -1893,7 +1894,7 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
-    }, 
+    },
     {
         shape: 2,
         sprite: spr_hspeed_juicer_2,
@@ -2105,55 +2106,12 @@ register_card("gongjiang_god", obj_gongjiang_god, [
     place_preview: spr_gongjiang_god_3
 }]);
 
-register_card("heian_god", obj_heian_god, [
-{
-    shape: 0,
-    sprite: spr_heian_god,
-    cost: 300,
-    cooldown: 1800,
-    description: "黑暗神使：对周围5*5范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_heian_god
-},
-{
-    shape: 1,
-    sprite: spr_heian_god_1,
-    cost: 300,
-    cooldown: 1800,
-    description: "黑暗圣神：攻击间隔缩短，对周围范围内的敌人造成伤害并冰冻",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_heian_god_1
-},
-{
-    shape: 2,
-    sprite: spr_heian_god_2,
-    cost: 300,
-    cooldown: 1800,
-    description: "黑暗神·霍德尔：攻击范围扩大至5*7，攻击力大幅提升",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_heian_god_2
-},
-{
-    shape: 3,
-    sprite: spr_heian_god_3,
-    cost: 300,
-    cooldown: 1800,
-    description: "至尊黑暗神：5*7范围内连续命中同一敌人伤害递增",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_heian_god_3
-}]);
+register_card("heian_god",obj_heian_god,[
+	    {"shape":0, "sprite":spr_dark_god, "cost":330, "cooldown":60*60, "description":"霍德尔神使：对进入法罩内的鼠军产生大量伤害，持续一段时间后消失","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+	    {"shape":1, "sprite":spr_dark_god_1, "cost":330, "cooldown":60*60, "description":"霍德尔圣神：对进入法罩内的鼠军产生大量伤害，持续一段时间后消失","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":2, "sprite":spr_dark_god_2, "cost":330, "cooldown":60*60, "description":"黑暗神·霍德尔：对进入法罩内的鼠军产生大量伤害，持续一段时间后消失","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":3, "sprite":spr_dark_god_4, "cost":330, "cooldown":60*60, "description":"至尊黑暗神：对进入法罩内的鼠军产生大量伤害，持续一段时间后消失","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1,"place_preview":spr_dark_god_3}
+	]);
 
 register_card("hundun_god", obj_hundun_god, [
 {
@@ -2205,55 +2163,12 @@ register_card("hundun_god", obj_hundun_god, [
     place_preview: spr_hundun_god_3
 }]);
 
-register_card("guangming_god", obj_guangming_god, [
-{
-    shape: 0,
-    sprite: spr_guangming_god,
-    cost: 395,
-    cooldown: 1260,
-    description: "巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_guangming_god
-},
-{
-    shape: 1,
-    sprite: spr_guangming_god_1,
-    cost: 395,
-    cooldown: 1260,
-    description: "巴德尔圣神：每放置1次黑暗神，最近的5个光明神产生3*3范围光影爆炸",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_guangming_god_1
-},
-{
-    shape: 2,
-    sprite: spr_guangming_god_2,
-    cost: 395,
-    cooldown: 1260,
-    description: "光明神·巴德尔：黑暗神存在时光圣伤害提升至4倍，放置黑暗神触发7个光明神5*5光影爆炸",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_guangming_god_2
-},
-{
-    shape: 3,
-    sprite: spr_guangming_god_3,
-    cost: 395,
-    cooldown: 1260,
-    description: "至尊光明神：范围扩大至7*7，黑暗神在场时伤害提升至5/8倍，放置黑暗神触发更大爆炸",
-    plant_type: "normal",
-    feature_type: "normal",
-    target_card: "none",
-    is_gold: 1,
-    place_preview: spr_guangming_god_3
-}]);
+register_card("guangming_god",obj_guangming_god,[
+	    {"shape":0, "sprite":spr_light_god, "cost":395, "cooldown":60*60, "description":"巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+	    {"shape":1, "sprite":spr_light_god_1, "cost":395, "cooldown":60*60, "description":"巴德尔圣神：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":2, "sprite":spr_light_god_2, "cost":395, "cooldown":60*60, "description":"光明神·巴德尔：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":3, "sprite":spr_light_god_3, "cost":395, "cooldown":60*60, "description":"至尊光明神：每隔一段时间在自身周围召唤5*7格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1}
+	]);
 
 register_card("lingrong_god", obj_lingrong_god, [
 {
@@ -2390,7 +2305,7 @@ register_card("lingrong_god", obj_lingrong_god, [
         target_card: "none",
         place_preview: spr_anranxiaohunfan_2
     }]);
-    
+
     register_card("dandantu", obj_dandantu, [
     {
         shape: 0,
@@ -2853,7 +2768,6 @@ register_card("xuanfengniu", obj_xuanfengniu, [
     { shape: 0, sprite: spr_zhanqima, cost: 380, cooldown: 2700, description: "战旗马：5*5范围内攻击型卡片提高基础攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhanqima },
     { shape: 1, sprite: spr_zhanqima_1, cost: 380, cooldown: 2700, description: "飞天战旗马：5*5范围内攻击型卡片提高基础攻击力，无需格子", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhanqima_1 },
     { shape: 2, sprite: spr_zhanqima_2, cost: 380, cooldown: 2700, description: "燎原战旗马：全屏增幅所有主动攻击型卡片，增幅提升，无需格子", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhanqima_2 }]);
-
     register_card("haiyang_god", obj_haiyang_god, [
     {
         shape: 0,

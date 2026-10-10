@@ -73,7 +73,7 @@ function revive_collect_targets(origin_col, origin_row, range_col, range_row, sk
     return _idxs;
 }
 
-function revive_apply_targets(origin_col, origin_row, range_col, range_row, max_count, skip_shoveled, effect_sprite = -1) {
+function revive_apply_targets(origin_col, origin_row, range_col, range_row, max_count, skip_shoveled, effect_sprite = -1, mouse_only = false) {
     if (max_count <= 0) return 0;
 
     var _idxs = revive_collect_targets(origin_col, origin_row, range_col, range_row, skip_shoveled);
@@ -93,6 +93,8 @@ function revive_apply_targets(origin_col, origin_row, range_col, range_row, max_
 
             var dead_info = global.dead_cards[| _idxs[t]];
             if (is_undefined(dead_info) || !ds_exists(dead_info, ds_type_map)) { _done[$ _key] = true; continue; }
+            // 仅复活被老鼠咬死的卡（星穹马0转用）；原因不明的记录按不匹配跳过
+            if (mouse_only && ds_map_find_value(dead_info, "death_cause") != "mouse") { _done[$ _key] = true; continue; }
 
             var dead_col = dead_info[? "grid_col"];
             var dead_row = dead_info[? "grid_row"];

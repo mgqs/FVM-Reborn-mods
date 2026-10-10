@@ -62,6 +62,8 @@ test_dps_timer = 0
 test_dps_window = 5 * 60
 test_dps_display = 0
 test_dps_last_total = 0
+// 测试关卡全场老鼠累计伤害（在 obj_enemy_parent/Other_10.gml 等处累计）
+global.test_damage_total_all = 0
 
 speed_up = false
 time_limit = -1

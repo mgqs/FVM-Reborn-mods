@@ -1,101 +1,106 @@
-if (global.is_paused)
-    exit;
+// ========== 子对象 Step 事件 ==========
 
-event_inherited();
-
-if (is_frozen)
-    exit;
-
-lifetime_timer--;
-if (lifetime_timer <= 0)
-{
-    if (instance_exists(heian_effect_obj))
-        instance_destroy(heian_effect_obj);
-    if (ds_exists(hit_map, ds_type_map))
-        ds_map_destroy(hit_map);
-    instance_destroy();
+if global.is_paused {
+    image_speed = 0;
     exit;
 }
 
-if (instance_exists(heian_effect_obj))
-{
-    heian_effect_obj.x = x;
-    heian_effect_obj.y = y - 30;
-    heian_effect_obj.image_alpha = image_alpha;
+if !awakened && sprite_index == awake_sprite {
+    image_speed = 0.8;
 }
 
-image_alpha = 1;
+// ========== 觉醒动画处理 ==========
+if !awakened {
+    // 开始播放觉醒动画
+    if !awakening_started {
+        awakening_started = true;
 
-// 检测范围内是否有敌人
-var _has_enemy = false;
-var _cx = x;
-var _cy = y;
-var _rx = range_x;
-var _ry = range_y;
+        // 只在第一次时调用父对象，获取初始化数据
+        event_inherited();
 
-with (obj_enemy_parent)
-{
-    if (hp > 0)
-    {
-        if (abs(x - _cx) <= _rx && abs(y - _cy) <= _ry)
-        {
-            _has_enemy = true;
-            break;
+        // 然后覆盖为自己的动画
+        sprite_index = awake_sprite;
+        image_speed = 0.8;
+        image_index = 0;
+    }
+
+    // 检查动画是否播放完毕
+    if sprite_index == awake_sprite {
+        if image_index >= image_number - 1 {
+            awakened = true;
+            sprite_index = idle_sprite;
+            image_speed = 0.8;
+            image_index = 0;
+
+            state = CARD_STATE.IDLE;
         }
     }
 }
 
-if (state != CARD_STATE.SLEEP)
-{
-    if (state == CARD_STATE.IDLE)
-    {
-        if (_has_enemy)
-        {
-            state = CARD_STATE.ATTACK;
-            has_fired = false;
-            timer = 0;
-            image_index = idle_anim + 1;
+// ========== 觉醒完成后 ==========
+else {
+    // 确保待机动画
+    if sprite_index != idle_sprite {
+        sprite_index = idle_sprite;
+    }
+    image_speed = 0.8;
+
+    // 计时器消失效果（觉醒后才开始计时）
+    destroy_timer++;
+    if destroy_timer > max_time {
+        image_alpha -= 0.1;
+        if image_alpha <= 0 {
+            instance_destroy();
+            exit;
         }
     }
-    else if (state == CARD_STATE.ATTACK)
-    {
-        // 在第18帧（0-indexed: 17）释放子弹
-        if (!has_fired && image_index >= 17)
-        {
-            has_fired = true;
 
-            var _bullet_spr = spr_heian_god_bullet;
-            if (shape == 1) _bullet_spr = spr_heian_god_bullet_1;
-            else if (shape == 2) _bullet_spr = spr_heian_god_bullet_2;
-            else if (shape == 3) _bullet_spr = spr_heian_god_bullet_3;
+    // 攻击间隔计时器
+    attack_interval_timer++;
+    if (attack_interval_timer >= 30) {
+        attack_interval_timer = 0;
 
-            var _pulse = instance_create_depth(x, y - 30, depth - 100, obj_heian_god_bullet);
-            _pulse.sprite_index = _bullet_spr;
-            _pulse.damage = atk;
-            _pulse.shape = shape;
-            _pulse.freeze_chance = freeze_chance;
-            _pulse.freeze_duration = freeze_duration;
-            _pulse.hit_map = hit_map;
-            _pulse.range_x = range_x;
-            _pulse.range_y = range_y;
-            _pulse.target_type = target_type;
-            _pulse.damage_type = "normal";
+        // 计算范围
+        var range_cols, range_rows;
+        if (shape == 0 || shape == 1) {
+            range_cols = 2;  // 5列
+            range_rows = 2;  // 5行
+        } else {
+            range_cols = 2;  // 5列
+            range_rows = 3;  // 7行
         }
 
-        // 检测攻击动画是否完成（image_index回到攻击起点）
-        if (has_fired && image_index <= idle_anim + 1)
-        {
-            if (_has_enemy)
-            {
-                has_fired = false;
+        // 造成伤害
+        with (obj_enemy_parent) {
+            var col_diff = abs(grid_col - other.grid_col);
+            var row_diff = abs(grid_row - other.grid_row);
+
+            if (hp > 0 && col_diff <= range_cols && row_diff <= range_rows) {
+                // 计算伤害（卡片 shape = 3 时给敌人独立计数）
+                var final_damage = other.atk;
+      if (other.shape == 3) {
+            final_damage = other.atk * attack_multiplier;
+            attack_multiplier++;
             }
-            else
-            {
-                state = CARD_STATE.IDLE;
-                has_fired = false;
-                image_index = 0;
-                timer = 0;
+
+                damage_amount = final_damage;
+                damage_type = "throw";
+                event_user(0);
+
+                // 检查死亡
+                if hp <= 0 {
+                    // shape >= 3 时只播放灰烬特效
+                    if other.shape >= 3 {
+                        var inst = instance_create_depth(x, y-20, depth, obj_mouse_ash_death_4);
+                        inst.special_ash = true;
+                        instance_destroy();
+                    }
+                }
             }
         }
     }
+}
+
+if is_frozen {
+    exit;
 }

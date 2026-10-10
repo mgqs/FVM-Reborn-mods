@@ -1,6 +1,6 @@
 function gods_shop_init()
 {
-    register_gods_goods("gaia", 
+    register_gods_goods("gaia",
     {
         type: "card",
         cost: "16",
@@ -8,7 +8,7 @@ function gods_shop_init()
         description: "盖亚神使：双连发射3*3范围爆炸的毁灭巨石",
         display_name: "盖亚神使"
     });
-    register_gods_goods("aurora", 
+    register_gods_goods("aurora",
     {
         type: "card",
         cost: "16",
@@ -16,7 +16,7 @@ function gods_shop_init()
         description: "欧若拉神使：为本行投掷类卡片增伤",
         display_name: "欧若拉神使"
     });
-    register_gods_goods("zhurong", 
+    register_gods_goods("zhurong",
     {
         type: "card",
         cost: "16",
@@ -24,7 +24,7 @@ function gods_shop_init()
         description: "祝融神使：点燃前方3x3区域，持续灼烧敌人",
         display_name: "祝融神使"
     });
-    register_gods_goods("rig", 
+    register_gods_goods("rig",
     {
         type: "card",
         cost: "16",
@@ -32,7 +32,7 @@ function gods_shop_init()
         description: "里格神使：前方5方向发射穿透子弹",
         display_name: "里格神使"
     });
-    register_gods_goods("brahma", 
+    register_gods_goods("brahma",
     {
         type: "card",
         cost: "16",
@@ -64,7 +64,7 @@ function gods_shop_init()
         description: "真·花火龙：释放产生大量火苗的烟花",
         display_name: "真·花火龙"
     });
-    register_gods_goods("fire_god", 
+    register_gods_goods("fire_god",
     {
         type: "card",
         cost: "16",
@@ -72,7 +72,7 @@ function gods_shop_init()
         description: "洛基神使：子弹穿过后威力加强",
         display_name: "洛基神使"
     });
-    register_gods_goods("thor", 
+    register_gods_goods("thor",
     {
         type: "card",
         cost: "8",
@@ -80,7 +80,7 @@ function gods_shop_init()
         description: "索尔神使：连续发出2发冰锤",
         display_name: "索尔神使"
     });
-    register_gods_goods("war_god", 
+    register_gods_goods("war_god",
     {
         type: "card",
         cost: "8",
@@ -88,7 +88,7 @@ function gods_shop_init()
         description: "阿瑞斯神使：向前后两个方向发射子弹",
         display_name: "阿瑞斯神使"
     });
-    register_gods_goods("odin", 
+    register_gods_goods("odin",
     {
         type: "card",
         cost: "8",
@@ -96,7 +96,7 @@ function gods_shop_init()
         description: "奥丁神使：连续发出2发穿透短矛子弹",
         display_name: "奥丁神使"
     });
-    register_gods_goods("moon_god", 
+    register_gods_goods("moon_god",
     {
         type: "card",
         cost: "8",
@@ -104,7 +104,7 @@ function gods_shop_init()
         description: "狄安娜神使：甩出六发追踪子弹",
         display_name: "狄安娜神使"
     });
-    register_gods_goods("ymir", 
+    register_gods_goods("ymir",
     {
         type: "card",
         cost: "16",
@@ -112,7 +112,7 @@ function gods_shop_init()
         description: "尤弥尔神使：向前方三行投出共6发巨锤",
         display_name: "尤弥尔神使"
     });
-    register_gods_goods("hera", 
+    register_gods_goods("hera",
     {
         type: "card",
         cost: "16",
@@ -120,7 +120,7 @@ function gods_shop_init()
         description: "赫拉神使：保护被罩住的卡片",
         display_name: "赫拉神使"
     });
-    register_gods_goods("sun_god", 
+    register_gods_goods("sun_god",
     {
         type: "card",
         cost: "16",
@@ -128,7 +128,7 @@ function gods_shop_init()
         description: "阿波罗神使：一次生产六朵火苗",
         display_name: "阿波罗神使"
     });
-    register_gods_goods("poseidon", 
+    register_gods_goods("poseidon",
     {
         type: "card",
         cost: "8",
@@ -136,7 +136,7 @@ function gods_shop_init()
         description: "波塞冬神使：5*5范围攻击",
         display_name: "波塞冬神使"
     });
-    register_gods_goods("ice_god", 
+    register_gods_goods("ice_god",
     {
         type: "card",
         cost: "16",
@@ -144,7 +144,7 @@ function gods_shop_init()
         description: "典伊神使：召唤8颗冰晶轰击敌人",
         display_name: "典伊神使"
     });
-    register_gods_goods("ghost_god", 
+    register_gods_goods("ghost_god",
     {
         type: "card",
         cost: "16",
@@ -152,7 +152,7 @@ function gods_shop_init()
         description: "哈迪斯神使：发射五向子弹",
         display_name: "哈迪斯神使"
     });
-    register_gods_goods("zeus", 
+    register_gods_goods("zeus",
     {
         type: "card",
         cost: "16",
@@ -160,7 +160,7 @@ function gods_shop_init()
         description: "宙斯神使：全屏轰击，造成3×3范围伤害",
         display_name: "宙斯神使"
     });
-    register_gods_goods("love_god", 
+    register_gods_goods("love_god",
     {
         type: "card",
         cost: "8",
@@ -168,7 +168,7 @@ function gods_shop_init()
         description: "丘比特神使：向前方三行射出6发强力子弹",
         display_name: "丘比特神使"
     });
-    register_gods_goods("water_god", 
+    register_gods_goods("water_god",
     {
         type: "card",
         cost: "16",
@@ -176,7 +176,7 @@ function gods_shop_init()
         description: "忒提丝神使：反弹子弹并附加伤害",
         display_name: "忒提丝神使"
     });
-    register_gods_goods("power_god", 
+    register_gods_goods("power_god",
     {
         type: "card",
         cost: "16",
@@ -184,7 +184,7 @@ function gods_shop_init()
         description: "赫丘利神使：发射两发强力子弹追踪攻击空中鼠军",
         display_name: "赫丘利神使"
     });
-    register_gods_goods("sheng_huo", 
+    register_gods_goods("sheng_huo",
     {
         type: "card",
         cost: "16",
@@ -192,7 +192,7 @@ function gods_shop_init()
         description: "赫斯提亚神使：施展火焰术，向前方3行释放神圣穿透型火焰，灼烧沿途鼠军",
         display_name: "赫斯提亚神使"
     });
-    register_gods_goods("save_god", 
+    register_gods_goods("save_god",
     {
         type: "card",
         cost: "16",
@@ -200,7 +200,7 @@ function gods_shop_init()
         description: "灵鱼摩羯神使：化身为4条灵鱼，冲撞沿途遇到的老鼠",
         display_name: "灵鱼摩羯神使"
     });
-    register_gods_goods("joker", 
+    register_gods_goods("joker",
     {
         type: "card",
         cost: "16",
@@ -218,7 +218,7 @@ function gods_shop_init()
         display_name: "三转凭证（大地女神）",
         spr: spr_voucher_gaia
     });
-    register_gods_goods("aurora_1", 
+    register_gods_goods("aurora_1",
     {
         type: "shape",
         cost: "16",
@@ -228,7 +228,7 @@ function gods_shop_init()
         display_name: "三转凭证（曙光女神）",
         spr: spr_voucher_aurora
     });
-    register_gods_goods("zhurong_1", 
+    register_gods_goods("zhurong_1",
     {
         type: "shape",
         cost: "16",
@@ -238,7 +238,7 @@ function gods_shop_init()
         display_name: "三转凭证（赤帝）",
         spr: spr_voucher_zhurong
     });
-    register_gods_goods("rig_1", 
+    register_gods_goods("rig_1",
     {
         type: "shape",
         cost: "16",
@@ -248,7 +248,7 @@ function gods_shop_init()
         display_name: "三转凭证（守护神）",
         spr: spr_voucher_rig
     });
-    register_gods_goods("brahma_1", 
+    register_gods_goods("brahma_1",
     {
         type: "shape",
         cost: "16",
@@ -288,7 +288,7 @@ function gods_shop_init()
         display_name: "三转凭证（火神）",
         spr: spr_voucher_loki
     });
-    register_gods_goods("firework_dragon_real_1", 
+    register_gods_goods("firework_dragon_real_1",
     {
         type: "shape",
         cost: "10",
@@ -298,7 +298,7 @@ function gods_shop_init()
         display_name: "一转凭证（真·花火龙）",
         spr: spr_voucher_firework_dragon
     });
-    register_gods_goods("thor_1", 
+    register_gods_goods("thor_1",
     {
         type: "shape",
         cost: "8",
@@ -308,7 +308,7 @@ function gods_shop_init()
         display_name: "三转凭证（雷神）",
         spr: spr_thor_1pin
     });
-    register_gods_goods("war_god_1", 
+    register_gods_goods("war_god_1",
     {
         type: "shape",
         cost: "8",
@@ -318,7 +318,7 @@ function gods_shop_init()
         display_name: "三转凭证（战神）",
         spr: spr_war_1pin
     });
-    register_gods_goods("odin_1", 
+    register_gods_goods("odin_1",
     {
         type: "shape",
         cost: "8",
@@ -328,7 +328,7 @@ function gods_shop_init()
         display_name: "三转凭证（主神）",
         spr: spr_odin_1pin
     });
-    register_gods_goods("moon_god_1", 
+    register_gods_goods("moon_god_1",
     {
         type: "shape",
         cost: "8",
@@ -338,7 +338,7 @@ function gods_shop_init()
         display_name: "三转凭证（月神）",
         spr: spr_moon_1pin
     });
-    register_gods_goods("ymir_1", 
+    register_gods_goods("ymir_1",
     {
         type: "shape",
         cost: "16",
@@ -348,7 +348,7 @@ function gods_shop_init()
         display_name: "三转凭证（巨神）",
         spr: spr_big_1pin
     });
-    register_gods_goods("hera_1", 
+    register_gods_goods("hera_1",
     {
         type: "shape",
         cost: "16",
@@ -358,7 +358,7 @@ function gods_shop_init()
         display_name: "三转凭证（赫拉）",
         spr: spr_hera_1pin
     });
-    register_gods_goods("sun_god_1", 
+    register_gods_goods("sun_god_1",
     {
         type: "shape",
         cost: "16",
@@ -368,7 +368,7 @@ function gods_shop_init()
         display_name: "三转凭证（太阳神）",
         spr: spr_sun_1pin
     });
-    register_gods_goods("poseidon_1", 
+    register_gods_goods("poseidon_1",
     {
         type: "shape",
         cost: "8",
@@ -378,7 +378,7 @@ function gods_shop_init()
         display_name: "三转凭证（海神）",
         spr: spr_sea_1pin
     });
-    register_gods_goods("ice_god_1", 
+    register_gods_goods("ice_god_1",
     {
         type: "shape",
         cost: "16",
@@ -388,7 +388,7 @@ function gods_shop_init()
         display_name: "三转凭证（冰神）",
         spr: spr_ice_1pin
     });
-    register_gods_goods("ghost_god_1", 
+    register_gods_goods("ghost_god_1",
     {
         type: "shape",
         cost: "16",
@@ -398,7 +398,7 @@ function gods_shop_init()
         display_name: "三转凭证（冥神）",
         spr: spr_ghost_1pin
     });
-    register_gods_goods("zeus_1", 
+    register_gods_goods("zeus_1",
     {
         type: "shape",
         cost: "16",
@@ -408,7 +408,7 @@ function gods_shop_init()
         display_name: "三转凭证（宙斯）",
         spr: spr_zeus_1pin
     });
-    register_gods_goods("love_god_1", 
+    register_gods_goods("love_god_1",
     {
         type: "shape",
         cost: "8",
@@ -418,7 +418,7 @@ function gods_shop_init()
         display_name: "三转凭证（爱神）",
         spr: spr_love_1pin
     });
-    register_gods_goods("water_god_1", 
+    register_gods_goods("water_god_1",
     {
         type: "shape",
         cost: "16",
@@ -428,7 +428,7 @@ function gods_shop_init()
         display_name: "三转凭证（水神）",
         spr: spr_water_1pin
     });
-    register_gods_goods("power_god_1", 
+    register_gods_goods("power_god_1",
     {
         type: "shape",
         cost: "16",
@@ -438,7 +438,7 @@ function gods_shop_init()
         display_name: "三转凭证（大力神）",
         spr: spr_power_1pin
     });
-    register_gods_goods("sheng_huo_1", 
+    register_gods_goods("sheng_huo_1",
     {
         type: "shape",
         cost: "16",
@@ -448,7 +448,7 @@ function gods_shop_init()
         display_name: "三转凭证（圣火女神）",
         spr: spr_sh_1pin
     });
-    register_gods_goods("save_god_1", 
+    register_gods_goods("save_god_1",
     {
         type: "shape",
         cost: "16",
@@ -458,7 +458,7 @@ function gods_shop_init()
         display_name: "三转凭证（救世神）",
         spr: spr_save_1pin
     });
-    register_gods_goods("joker_1", 
+    register_gods_goods("joker_1",
     {
         type: "shape",
         cost: "16",
@@ -468,7 +468,7 @@ function gods_shop_init()
         display_name: "三转凭证（恶作剧神）",
         spr: spr_joker_1pin
     });
-    register_gods_goods("gaia_2", 
+    register_gods_goods("gaia_2",
     {
         type: "shape",
         cost: "32",
@@ -478,7 +478,7 @@ function gods_shop_init()
         display_name: "四转凭证（大地女神）",
         spr: spr_voucher_gaia_1
     });
-    register_gods_goods("aurora_2", 
+    register_gods_goods("aurora_2",
     {
         type: "shape",
         cost: "32",
@@ -488,7 +488,7 @@ function gods_shop_init()
         display_name: "四转凭证（曙光女神）",
         spr: spr_voucher_aurora_1
     });
-    register_gods_goods("zhurong_2", 
+    register_gods_goods("zhurong_2",
     {
         type: "shape",
         cost: "32",
@@ -498,7 +498,7 @@ function gods_shop_init()
         display_name: "四转凭证（赤帝）",
         spr: spr_voucher_zhurong_1
     });
-    register_gods_goods("rig_2", 
+    register_gods_goods("rig_2",
     {
         type: "shape",
         cost: "32",
@@ -508,7 +508,7 @@ function gods_shop_init()
         display_name: "四转凭证（守护神）",
         spr: spr_voucher_rig_1
     });
-    register_gods_goods("brahma_2", 
+    register_gods_goods("brahma_2",
     {
         type: "shape",
         cost: "32",
@@ -548,7 +548,7 @@ function gods_shop_init()
         display_name: "四转凭证（火神）",
         spr: spr_voucher_loki_1
     });
-    register_gods_goods("firework_dragon_real_2", 
+    register_gods_goods("firework_dragon_real_2",
     {
         type: "shape",
         cost: "20",
@@ -558,7 +558,7 @@ function gods_shop_init()
         display_name: "二转凭证（真·花火龙）",
         spr: spr_voucher_firework_dragon_1
     });
-    register_gods_goods("thor_2", 
+    register_gods_goods("thor_2",
     {
         type: "shape",
         cost: "16",
@@ -568,7 +568,7 @@ function gods_shop_init()
         display_name: "四转凭证（雷神）",
         spr: spr_thor_2pin
     });
-    register_gods_goods("war_god_2", 
+    register_gods_goods("war_god_2",
     {
         type: "shape",
         cost: "16",
@@ -578,7 +578,7 @@ function gods_shop_init()
         display_name: "四转凭证（战神）",
         spr: spr_war_2pin
     });
-    register_gods_goods("odin_2", 
+    register_gods_goods("odin_2",
     {
         type: "shape",
         cost: "16",
@@ -588,7 +588,7 @@ function gods_shop_init()
         display_name: "四转凭证（主神）",
         spr: spr_odin_2pin
     });
-    register_gods_goods("moon_god_2", 
+    register_gods_goods("moon_god_2",
     {
         type: "shape",
         cost: "16",
@@ -598,7 +598,7 @@ function gods_shop_init()
         display_name: "四转凭证（月神）",
         spr: spr_moon_2pin
     });
-    register_gods_goods("ymir_2", 
+    register_gods_goods("ymir_2",
     {
         type: "shape",
         cost: "32",
@@ -608,7 +608,7 @@ function gods_shop_init()
         display_name: "四转凭证（巨神）",
         spr: spr_big_2pin
     });
-    register_gods_goods("hera_2", 
+    register_gods_goods("hera_2",
     {
         type: "shape",
         cost: "32",
@@ -618,7 +618,7 @@ function gods_shop_init()
         display_name: "四转凭证（赫拉）",
         spr: spr_hera_2pin
     });
-    register_gods_goods("sun_god_2", 
+    register_gods_goods("sun_god_2",
     {
         type: "shape",
         cost: "32",
@@ -628,7 +628,7 @@ function gods_shop_init()
         display_name: "四转凭证（太阳神）",
         spr: spr_sun_2pin
     });
-    register_gods_goods("poseidon_2", 
+    register_gods_goods("poseidon_2",
     {
         type: "shape",
         cost: "16",
@@ -638,7 +638,7 @@ function gods_shop_init()
         display_name: "四转凭证（海神）",
         spr: spr_sea_2pin
     });
-    register_gods_goods("ice_god_2", 
+    register_gods_goods("ice_god_2",
     {
         type: "shape",
         cost: "32",
@@ -648,7 +648,7 @@ function gods_shop_init()
         display_name: "四转凭证（冰神）",
         spr: spr_ice_2pin
     });
-    register_gods_goods("ghost_god_2", 
+    register_gods_goods("ghost_god_2",
     {
         type: "shape",
         cost: "32",
@@ -658,7 +658,7 @@ function gods_shop_init()
         display_name: "四转凭证（冥神）",
         spr: spr_ghost_2pin
     });
-    register_gods_goods("zeus_2", 
+    register_gods_goods("zeus_2",
     {
         type: "shape",
         cost: "32",
@@ -668,7 +668,7 @@ function gods_shop_init()
         display_name: "四转凭证（宙斯）",
         spr: spr_zeus_2pin
     });
-    register_gods_goods("love_god_2", 
+    register_gods_goods("love_god_2",
     {
         type: "shape",
         cost: "16",
@@ -678,7 +678,7 @@ function gods_shop_init()
         display_name: "四转凭证（爱神）",
         spr: spr_love_2pin
     });
-    register_gods_goods("water_god_2", 
+    register_gods_goods("water_god_2",
     {
         type: "shape",
         cost: "32",
@@ -688,7 +688,7 @@ function gods_shop_init()
         display_name: "四转凭证（水神）",
         spr: spr_water_2pin
     });
-    register_gods_goods("power_god_2", 
+    register_gods_goods("power_god_2",
     {
         type: "shape",
         cost: "32",
@@ -698,7 +698,7 @@ function gods_shop_init()
         display_name: "四转凭证（大力神）",
         spr: spr_power_2pin
     });
-    register_gods_goods("sheng_huo_2", 
+    register_gods_goods("sheng_huo_2",
     {
         type: "shape",
         cost: "32",
@@ -708,7 +708,7 @@ function gods_shop_init()
         display_name: "四转凭证（圣火女神）",
         spr: spr_sh_2pin
     });
-    register_gods_goods("save_god_2", 
+    register_gods_goods("save_god_2",
     {
         type: "shape",
         cost: "32",
@@ -718,7 +718,7 @@ function gods_shop_init()
         display_name: "四转凭证（救世神）",
         spr: spr_save_2pin
     });
-    register_gods_goods("joker_2", 
+    register_gods_goods("joker_2",
     {
         type: "shape",
         cost: "32",
@@ -728,7 +728,7 @@ function gods_shop_init()
         display_name: "四转凭证（恶作剧神）",
         spr: spr_joker_2pin
     });
-    register_gods_goods("gaia_3", 
+    register_gods_goods("gaia_3",
     {
         type: "shape",
         cost: "48",
@@ -738,7 +738,7 @@ function gods_shop_init()
         display_name: "终转凭证（大地女神）",
         spr: spr_voucher_gaia_2
     });
-    register_gods_goods("aurora_3", 
+    register_gods_goods("aurora_3",
     {
         type: "shape",
         cost: "48",
@@ -748,7 +748,7 @@ function gods_shop_init()
         display_name: "终转凭证（曙光女神）",
         spr: spr_voucher_aurora_2
     });
-    register_gods_goods("zhurong_3", 
+    register_gods_goods("zhurong_3",
     {
         type: "shape",
         cost: "48",
@@ -758,7 +758,7 @@ function gods_shop_init()
         display_name: "终转凭证（赤帝）",
         spr: spr_voucher_zhurong_2
     });
-    register_gods_goods("rig_3", 
+    register_gods_goods("rig_3",
     {
         type: "shape",
         cost: "48",
@@ -808,7 +808,7 @@ function gods_shop_init()
         display_name: "终转凭证（火神）",
         spr: spr_voucher_loki_2
     });
-    register_gods_goods("thor_3", 
+    register_gods_goods("thor_3",
     {
         type: "shape",
         cost: "24",
@@ -818,7 +818,7 @@ function gods_shop_init()
         display_name: "终转凭证（雷神）",
         spr: spr_thor_3pin
     });
-    register_gods_goods("war_god_3", 
+    register_gods_goods("war_god_3",
     {
         type: "shape",
         cost: "24",
@@ -828,7 +828,7 @@ function gods_shop_init()
         display_name: "终转凭证（战神）",
         spr: spr_war_3pin
     });
-    register_gods_goods("odin_3", 
+    register_gods_goods("odin_3",
     {
         type: "shape",
         cost: "24",
@@ -838,7 +838,7 @@ function gods_shop_init()
         display_name: "终转凭证（主神）",
         spr: spr_odin_3pin
     });
-    register_gods_goods("moon_god_3", 
+    register_gods_goods("moon_god_3",
     {
         type: "shape",
         cost: "24",
@@ -848,7 +848,7 @@ function gods_shop_init()
         display_name: "终转凭证（月神）",
         spr: spr_moon_3pin
     });
-    register_gods_goods("ymir_3", 
+    register_gods_goods("ymir_3",
     {
         type: "shape",
         cost: "48",
@@ -858,7 +858,7 @@ function gods_shop_init()
         display_name: "终转凭证（巨神）",
         spr: spr_big_3pin
     });
-    register_gods_goods("hera_3", 
+    register_gods_goods("hera_3",
     {
         type: "shape",
         cost: "48",
@@ -868,7 +868,7 @@ function gods_shop_init()
         display_name: "终转凭证（赫拉）",
         spr: spr_hera_3pin
     });
-    register_gods_goods("sun_god_3", 
+    register_gods_goods("sun_god_3",
     {
         type: "shape",
         cost: "48",
@@ -878,7 +878,7 @@ function gods_shop_init()
         display_name: "终转凭证（太阳神）",
         spr: spr_sun_3pin
     });
-    register_gods_goods("poseidon_3", 
+    register_gods_goods("poseidon_3",
     {
         type: "shape",
         cost: "24",
@@ -888,7 +888,7 @@ function gods_shop_init()
         display_name: "终转凭证（海神）",
         spr: spr_sea_3pin
     });
-    register_gods_goods("ice_god_3", 
+    register_gods_goods("ice_god_3",
     {
         type: "shape",
         cost: "48",
@@ -898,7 +898,7 @@ function gods_shop_init()
         display_name: "终转凭证（冰神）",
         spr: spr_ice_3pin
     });
-    register_gods_goods("ghost_god_3", 
+    register_gods_goods("ghost_god_3",
     {
         type: "shape",
         cost: "48",
@@ -908,7 +908,7 @@ function gods_shop_init()
         display_name: "终转凭证（冥神）",
         spr: spr_ghost_3pin
     });
-    register_gods_goods("zeus_3", 
+    register_gods_goods("zeus_3",
     {
         type: "shape",
         cost: "48",
@@ -918,7 +918,7 @@ function gods_shop_init()
         display_name: "终转凭证（宙斯）",
         spr: spr_zeus_3pin
     });
-    register_gods_goods("love_god_3", 
+    register_gods_goods("love_god_3",
     {
         type: "shape",
         cost: "24",
@@ -928,7 +928,7 @@ function gods_shop_init()
         display_name: "终转凭证（爱神）",
         spr: spr_love_3pin
     });
-    register_gods_goods("water_god_3", 
+    register_gods_goods("water_god_3",
     {
         type: "shape",
         cost: "48",
@@ -938,7 +938,7 @@ function gods_shop_init()
         display_name: "终转凭证（水神）",
         spr: spr_water_3pin
     });
-    register_gods_goods("power_god_3", 
+    register_gods_goods("power_god_3",
     {
         type: "shape",
         cost: "48",
@@ -948,7 +948,7 @@ function gods_shop_init()
         display_name: "终转凭证（大力神）",
         spr: spr_power_3pin
     });
-    register_gods_goods("sheng_huo_3", 
+    register_gods_goods("sheng_huo_3",
     {
         type: "shape",
         cost: "48",
@@ -958,7 +958,7 @@ function gods_shop_init()
         display_name: "终转凭证（圣火女神）",
         spr: spr_sh_3pin
     });
-    register_gods_goods("save_god_3", 
+    register_gods_goods("save_god_3",
     {
         type: "shape",
         cost: "48",
@@ -1189,89 +1189,21 @@ register_gods_goods("gongjiang_god_3",
     spr: spr_gongjiang_god_pin3
 });
 
-register_gods_goods("guangming_god",
-{
-    type: "card",
-    cost: "16",
-    unlock_item_id: "guangming_god",
-    description: "巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军",
-    display_name: "巴德尔神使"
-});
+register_gods_goods("guangming_god",{"type":"card","cost":"16","unlock_item_id":"guangming_god","description":"巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","display_name":"巴德尔神使"});
 
-register_gods_goods("guangming_god_1",
-{
-    type: "shape",
-    cost: "16",
-    unlock_item_id: "guangming_god",
-    target_shape: 1,
-    description: "巴德尔圣神：每放置1次黑暗神，部分光明神就产生1次光影爆炸",
-    display_name: "三转凭证（光明神）",
-    spr: spr_guangming_god_pin1
-});
+register_gods_goods("guangming_god_1",{"type":"shape","cost":"16","unlock_item_id":"guangming_god","target_shape":1,"description":"巴德尔圣神：和铲子碰撞发生爆炸","display_name":"三转凭证（光明神）","spr":spr_light_pin});
 
-register_gods_goods("guangming_god_2",
-{
-    type: "shape",
-    cost: "32",
-    unlock_item_id: "guangming_god",
-    target_shape: 2,
-    description: "光明神·巴德尔：黑暗神存在时，光影爆炸效果和圣光威力大幅提升",
-    display_name: "四转凭证（光明神）",
-    spr: spr_guangming_god_pin2
-});
+register_gods_goods("guangming_god_2",{"type":"shape","cost":"32","unlock_item_id":"guangming_god","target_shape":2,"description":"光明神·巴德尔：场上卡片数量增加1，伤害增加1倍","display_name":"四转凭证（光明神）","spr":spr_light_pin_1});
 
-register_gods_goods("guangming_god_3",
-{
-    type: "shape",
-    cost: "48",
-    unlock_item_id: "guangming_god",
-    target_shape: 3,
-    description: "至尊光明神：范围扩大至7×7，黑暗神联动爆炸强化",
-    display_name: "终转凭证（光明神）",
-    spr: spr_guangming_god_pin3
-});
+register_gods_goods("guangming_god_3",{"type":"shape","cost":"48","unlock_item_id":"guangming_god","target_shape":3,"description":"至尊光明神：范围扩大至5*7","display_name":"终转凭证（光明神）","spr":spr_light_pin_2});
 
-register_gods_goods("heian_god",
-{
-    type: "card",
-    cost: "16",
-    unlock_item_id: "heian_god",
-    description: "黑暗神使：对周围范围内的敌人造成[攻击力]伤害，15%几率冰冻3秒",
-    display_name: "黑暗神使"
-});
+register_gods_goods("heian_god",{"type":"card","cost":"16","unlock_item_id":"heian_god","description":"霍德尔神使：对进入法罩内的鼠军产生大量伤害，持续一段时间后消失","display_name":"霍德尔神使"});
 
-register_gods_goods("heian_god_1",
-{
-    type: "shape",
-    cost: "16",
-    unlock_item_id: "heian_god",
-    target_shape: 1,
-    description: "黑暗圣神：攻击间隔缩短",
-    display_name: "三转凭证（黑暗神）",
-    spr: spr_heian_god_pin1
-});
+register_gods_goods("heian_god_1",{"type":"shape","cost":"16","unlock_item_id":"heian_god","target_shape":1,"description":"霍德尔圣神：伤害大幅提升","display_name":"三转凭证（黑暗神）","spr":spr_dark_pin});
 
-register_gods_goods("heian_god_2",
-{
-    type: "shape",
-    cost: "32",
-    unlock_item_id: "heian_god",
-    target_shape: 2,
-    description: "黑暗神·霍德尔：攻击范围扩大，攻击力大幅提升",
-    display_name: "四转凭证（黑暗神）",
-    spr: spr_heian_god_pin2
-});
+register_gods_goods("heian_god_2",{"type":"shape","cost":"32","unlock_item_id":"heian_god","target_shape":2,"description":"黑暗神·霍德尔：范围扩大至5*7","display_name":"四转凭证（黑暗神）","spr":spr_dark_pin_1});
 
-register_gods_goods("heian_god_3",
-{
-    type: "shape",
-    cost: "48",
-    unlock_item_id: "heian_god",
-    target_shape: 3,
-    description: "至尊黑暗神：5*7范围内连续命中伤害递增",
-    display_name: "终转凭证（黑暗神）",
-    spr: spr_heian_god_pin3
-});
+register_gods_goods("heian_god_3",{"type":"shape","cost":"48","unlock_item_id":"heian_god","target_shape":3,"description":"至尊黑暗神：每攻击一次敌人伤害翻倍,击杀增加灰烬效果","display_name":"终转凭证（黑暗神）","spr":spr_dark_pin_2});
 
 register_gods_goods("hundun_god",
 {

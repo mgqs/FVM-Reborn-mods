@@ -72,12 +72,9 @@ function obj_pool_build_deck_map() {
     _m[$ "obj_gongjiang_god"] = [obj_gongjiang_god_bullet_horizontal, obj_gongjiang_god_bullet_vertical];
     _m[$ "obj_grilled_lizard_pult"] = [obj_grilledlizardpult_bullet];
     _m[$ "obj_grilledlizardpult_bullet"] = [obj_grilledlizardpult_bullet_effect];
-    _m[$ "obj_guangming_god"] = [obj_guangming_god_bullet, obj_mouse_ash_death];
     _m[$ "obj_hades_scythe"] = [obj_hades_scythe_bullet];
     _m[$ "obj_hamburger"] = [obj_stinkytofupult_bullet_effect];
     _m[$ "obj_hazelnut_cannon_mouse"] = [obj_engineer_bullet];
-    _m[$ "obj_heian_god"] = [obj_heian_god_bullet];
-    _m[$ "obj_heian_god_bullet"] = [obj_mouse_ash_death];
     _m[$ "obj_hera"] = [obj_coke_bomb_explode, obj_mouse_ash_death];
     _m[$ "obj_honglonglong_missile"] = [obj_arno_bullet_effect];
     _m[$ "obj_hotdog_cannon"] = [obj_hotdogcannon_bullet];
@@ -256,6 +253,10 @@ function obj_pool_build_deck_map() {
     _m[$ "obj_zhurong"] = [obj_zhurong_bullet];
     _m[$ "obj_zhurong_bullet"] = [obj_zhurong_bullet_effect];
     _m[$ "obj_zhurong_bullet_effect"] = [obj_mouse_ash_death];
+    var zodiac_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma"];
+    for (var z = 0; z < array_length(zodiac_ids); z++) {
+        _m[$ "obj_"+zodiac_ids[z]] = [obj_zodiac_projectile,obj_zodiac_effect,obj_mouse_blow_effect];
+    }
     return _m;
 }
 
