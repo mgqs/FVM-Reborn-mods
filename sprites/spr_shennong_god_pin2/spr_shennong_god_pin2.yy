@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"shennong_god",
-    "path":"folders/精灵/mod/Cards/shennong_god.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/shennong_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

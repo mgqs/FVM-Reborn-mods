@@ -51,7 +51,7 @@
   "origin":9,
   "parent":{
     "name":"baibianshe",
-    "path":"folders/精灵/mod/Cards/baibianshe.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/baibianshe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

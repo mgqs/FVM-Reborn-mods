@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"guangming_god",
-    "path":"folders/精灵/mod/Cards/guangming_god.yy",
+    "path":"folders/精灵/mod/Cards/Melee/guangming_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

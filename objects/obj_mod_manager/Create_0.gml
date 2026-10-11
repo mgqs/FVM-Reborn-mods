@@ -5,7 +5,6 @@ mod_skill_init();
 mod_weapons_init();
 mod_info_island_init();
 mod_shop_init();
-cross_server_shop_init();
 mod_maps_init();
 mod_enemy_init();
 gods_goods_registry_init();
@@ -14,6 +13,8 @@ gods_shop_init();
 
 mod_boss_init();
 mod_cards_init();
+// 跨服商店的生肖卡名称/描述直接读取 mod_cards_init 注册的卡片形态数据，必须在其后执行
+cross_server_shop_init();
 mod_buff_init();
 zhiyumiao_config_init();
 

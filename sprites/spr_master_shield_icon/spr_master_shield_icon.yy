@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"master_shield",
+    "path":"folders/精灵/mod/germ/master_shield.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

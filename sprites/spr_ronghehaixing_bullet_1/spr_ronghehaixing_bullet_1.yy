@@ -29,7 +29,7 @@
   "origin":9,
   "parent":{
     "name":"ronghehaixing",
-    "path":"folders/精灵/mod/shengxiaocard/ronghehaixing.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/ronghehaixing.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -143,9 +143,11 @@ function bullet_enemy_reachable(_inst) {
     return true;
 }
 
-function bullet_sap_type_list(_inst, _key) {
-    if (!variable_instance_exists(_inst, "_sap_all")) _inst._sap_all = [];
-    if (!variable_instance_exists(_inst, "_sap_out")) _inst._sap_out = [];
+function bullet_sap_type_list(_inst, _key, _y_margin = 0, _key2 = "") {
+    if (_inst.object_index != obj_zodiac_projectile) {
+        if (!variable_instance_exists(_inst, "_sap_all")) _inst._sap_all = [];
+        if (!variable_instance_exists(_inst, "_sap_out")) _inst._sap_out = [];
+    }
 
     if (!variable_instance_exists(_inst, "_sap_gen") || _inst._sap_gen != global.enemy_sx_gen) {
         if (!precise_bbox_prepare(_inst)) return [];
@@ -158,8 +160,8 @@ function bullet_sap_type_list(_inst, _key) {
         var _m = global.bullet_range_margin;
         var _ql = global._pbc_l - _m;
         var _qr = global._pbc_r + _m;
-        var _qt = global._pbc_t;
-        var _qb = global._pbc_b;
+        var _qt = global._pbc_t - _y_margin;
+        var _qb = global._pbc_b + _y_margin;
 
         var _sx = global.enemy_sx;
         var _sl = global.enemy_sx_l;
@@ -190,6 +192,8 @@ function bullet_sap_type_list(_inst, _key) {
     }
 
     var _cand = _inst._sap_all;
+    // 调用方已经会检查 target_type 时直接复用父集，避免每枚星弹重复构建过滤数组。
+    if (_key == "__all__" && _key2 == "") return _cand;
     var _out = _inst._sap_out;
     array_resize(_out, 0);
     var _cn = array_length(_cand);
@@ -197,7 +201,7 @@ function bullet_sap_type_list(_inst, _key) {
         var _e = _cand[i];
         if (!instance_exists(_e)) continue;
         if (!variable_instance_exists(_e, "target_type")) continue;
-        if (_e.target_type != _key) continue;
+        if (is_array(_key) ? !array_contains(_key,_e.target_type) : (_e.target_type != _key && (_key2 == "" || _e.target_type != _key2))) continue;
         array_push(_out, _e);
     }
     return _out;

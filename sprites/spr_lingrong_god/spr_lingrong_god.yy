@@ -41,7 +41,7 @@
   "origin":9,
   "parent":{
     "name":"lingrong_god",
-    "path":"folders/精灵/mod/Cards/lingrong_god.yy",
+    "path":"folders/精灵/mod/Cards/Vehicle/lingrong_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

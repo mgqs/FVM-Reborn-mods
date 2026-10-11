@@ -47,8 +47,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"tiancheng",
+    "path":"folders/精灵/mod/Cards/Shooter/tiancheng.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

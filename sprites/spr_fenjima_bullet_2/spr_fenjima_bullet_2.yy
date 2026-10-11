@@ -2,10 +2,10 @@
   "$GMSprite":"v2",
   "%Name":"spr_fenjima_bullet_2",
   "bboxMode":0,
-  "bbox_bottom":71,
-  "bbox_left":0,
-  "bbox_right":83,
-  "bbox_top":0,
+  "bbox_bottom":44,
+  "bbox_left":1,
+  "bbox_right":52,
+  "bbox_top":21,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -14,13 +14,6 @@
   "frames":[
     {"$GMSpriteFrame":"v1","%Name":"bc9ccdfb-4fe6-2c62-2e14-7bab67786212","name":"bc9ccdfb-4fe6-2c62-2e14-7bab67786212","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"015c2981-3c21-c873-03eb-11bbf58fe9ac","name":"015c2981-3c21-c873-03eb-11bbf58fe9ac","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"bf508e64-e423-afb1-8bb4-89443f9835a1","name":"bf508e64-e423-afb1-8bb4-89443f9835a1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"25eb800b-e3be-2c4f-6fdd-74abc91cfcea","name":"25eb800b-e3be-2c4f-6fdd-74abc91cfcea","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"269ff5a4-67a5-34d1-1852-3246b7ad25a1","name":"269ff5a4-67a5-34d1-1852-3246b7ad25a1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"0ed9c7ed-92b1-b304-3a2a-5d3bb577266e","name":"0ed9c7ed-92b1-b304-3a2a-5d3bb577266e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"5bc5baf4-fe06-e1d7-9e62-292d8d745332","name":"5bc5baf4-fe06-e1d7-9e62-292d8d745332","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"0c86e3a2-ace5-5c1f-cc8c-dc4ffd73d3ca","name":"0c86e3a2-ace5-5c1f-cc8c-dc4ffd73d3ca","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"d992c5ac-81e5-5077-a123-d4be0d570e67","name":"d992c5ac-81e5-5077-a123-d4be0d570e67","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -33,8 +26,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"New zodiac",
-    "path":"folders/精灵/mod/New zodiac.yy",
+    "name":"fenjima",
+    "path":"folders/精灵/mod/Cards/Shooter/fenjima.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -57,7 +50,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":9.0,
+    "length":2.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -82,27 +75,6 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"015c2981-3c21-c873-03eb-11bbf58fe9ac","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"94cf7a74-86fb-cbcb-2ca4-3dec5583a04a","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"bf508e64-e423-afb1-8bb4-89443f9835a1","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"649d0aea-42f8-d3ca-6cfa-1ae1c30b20cf","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"25eb800b-e3be-2c4f-6fdd-74abc91cfcea","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"e41572e4-ec65-f779-872a-63fa2b2810ea","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"269ff5a4-67a5-34d1-1852-3246b7ad25a1","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"cc861eb9-3f0e-6c0e-369d-102c53863463","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ed9c7ed-92b1-b304-3a2a-5d3bb577266e","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"21210bcd-277b-7ea9-6f78-fdb1b4c50743","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5bc5baf4-fe06-e1d7-9e62-292d8d745332","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"cb7b88a2-0a3f-d729-be85-bf67602c8566","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0c86e3a2-ace5-5c1f-cc8c-dc4ffd73d3ca","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"d71fb954-d0c0-e3e0-d470-ddfbfb6e56d9","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d992c5ac-81e5-5077-a123-d4be0d570e67","path":"sprites/spr_fenjima_bullet_2/spr_fenjima_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"27a3f518-10f7-1f77-2c3f-1c4346d15c15","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

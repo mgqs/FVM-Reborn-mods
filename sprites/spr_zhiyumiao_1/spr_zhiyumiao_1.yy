@@ -45,7 +45,7 @@
   "origin":9,
   "parent":{
     "name":"spr-zhiyumiao",
-    "path":"folders/精灵/mod/shengxiaocard/spr-zhiyumiao.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr-zhiyumiao.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

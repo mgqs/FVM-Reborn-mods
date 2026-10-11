@@ -41,7 +41,7 @@
   "origin":9,
   "parent":{
     "name":"spr_12yinliao",
-    "path":"folders/精灵/mod/shengxiaocard/spr_12yinliao.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_12yinliao.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

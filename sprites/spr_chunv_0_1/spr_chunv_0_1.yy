@@ -37,7 +37,7 @@
   "origin":7,
   "parent":{
     "name":"chunv",
-    "path":"folders/精灵/mod/Cards/chunv.yy",
+    "path":"folders/精灵/mod/Cards/defender/chunv.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

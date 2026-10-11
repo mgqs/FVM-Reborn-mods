@@ -29,9 +29,8 @@ can_clear_obstacles = (shape >= 1);
 // 对特殊飞行老鼠造成的伤害（不再秒杀）
 damage = 500;
 
-// 起手延迟后触发一次全屏吹走
-activate_delay = 4 * flash_speed;
-state_timer = 0;
+// 起手动画播放完一整轮后触发一次全屏吹走，随后卡片退场
+prev_image_index = 0;
 has_activated = false;
 is_activating = false;
 

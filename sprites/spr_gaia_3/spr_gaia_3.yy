@@ -57,7 +57,7 @@
   "origin":7,
   "parent":{
     "name":"gaia",
-    "path":"folders/精灵/mod/Cards/gaia.yy",
+    "path":"folders/精灵/mod/Cards/Track/gaia.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

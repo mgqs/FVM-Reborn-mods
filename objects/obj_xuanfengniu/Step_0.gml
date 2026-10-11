@@ -3,10 +3,12 @@ event_inherited();
 
 if (is_frozen) { exit; }
 
-state_timer++;
+// 起手动画播放完一整轮（image_index 环绕归零）后触发一次全屏吹走，随后卡片退场
+// 通过环绕检测而非固定帧数计时，减速/冻结等状态下也能与实际动画进度对齐
+var _anim_loop_done = (image_index < prev_image_index);
+prev_image_index = image_index;
 
-// 起手动画结束后触发一次全屏吹走，随后卡片退场
-if (!has_activated && state_timer >= activate_delay) {
+if (!has_activated && _anim_loop_done) {
     has_activated = true;
     is_activating = true;
     state = CARD_STATE.RELAX;

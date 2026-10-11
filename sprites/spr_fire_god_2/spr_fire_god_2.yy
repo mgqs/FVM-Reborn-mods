@@ -36,7 +36,7 @@
   "origin":7,
   "parent":{
     "name":"fire_god",
-    "path":"folders/精灵/mod/Cards/fire_god.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/fire_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

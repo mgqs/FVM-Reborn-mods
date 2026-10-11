@@ -67,7 +67,7 @@
   "origin":9,
   "parent":{
     "name":"athena",
-    "path":"folders/精灵/mod/Cards/athena.yy",
+    "path":"folders/精灵/mod/Cards/Track/athena.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -81,7 +81,7 @@
   "origin":9,
   "parent":{
     "name":"spr_wanpilong",
-    "path":"folders/精灵/mod/shengxiaocard/spr_wanpilong.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_wanpilong.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

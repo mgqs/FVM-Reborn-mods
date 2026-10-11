@@ -52,7 +52,7 @@
   "origin":9,
   "parent":{
     "name":"spr_xuanfengniu",
-    "path":"folders/精灵/mod/shengxiaocard/spr_xuanfengniu.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_xuanfengniu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -40,8 +40,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"hades_scythe",
+    "path":"folders/精灵/mod/germ/hades_scythe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

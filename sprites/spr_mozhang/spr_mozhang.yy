@@ -56,7 +56,7 @@
   "origin":9,
   "parent":{
     "name":"mozhang",
-    "path":"folders/精灵/mod/Cards/mozhang.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/mozhang.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -37,7 +37,7 @@
   "origin":9,
   "parent":{
     "name":"spr_nizhuanniu",
-    "path":"folders/精灵/mod/shengxiaocard/spr_nizhuanniu.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_nizhuanniu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

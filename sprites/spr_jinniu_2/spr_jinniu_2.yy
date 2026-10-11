@@ -35,8 +35,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"jinniu",
+    "path":"folders/精灵/mod/Cards/Assistant/jinniu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

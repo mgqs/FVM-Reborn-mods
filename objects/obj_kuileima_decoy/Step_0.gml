@@ -9,11 +9,8 @@ if (!instance_exists(decoy_card) || decoy_card.plant_id != "kuileima"
     exit;
 }
 
-// 镜像绑定老鼠的血量/体型，保证比例伤害与斩杀伤害结算一致
-hp = decoy_target.hp;
-maxhp = max(1, decoy_target.maxhp);
-is_boss = decoy_target.is_boss;
-target_type = decoy_target.target_type;
+// 镜像绑定老鼠的身份/血量/体型，保证比例伤害与斩杀伤害结算一致
+decoy_sync_identity(decoy_target);
 sprite_index = decoy_target.sprite_index;
 image_index = decoy_target.image_index;
 image_xscale = decoy_target.image_xscale;

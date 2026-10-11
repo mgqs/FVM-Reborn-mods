@@ -44,7 +44,7 @@
   "origin":9,
   "parent":{
     "name":"spr-baobaoji",
-    "path":"folders/精灵/mod/shengxiaocard/spr-baobaoji.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr-baobaoji.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

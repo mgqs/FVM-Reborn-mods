@@ -29,7 +29,7 @@
   "origin":9,
   "parent":{
     "name":"baiyang",
-    "path":"folders/精灵/mod/Cards/baiyang.yy",
+    "path":"folders/精灵/mod/Cards/boomer/baiyang.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

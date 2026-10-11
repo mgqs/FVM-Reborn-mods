@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"heian_god",
-    "path":"folders/精灵/mod/Cards/heian_god.yy",
+    "path":"folders/精灵/mod/Cards/Melee/heian_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

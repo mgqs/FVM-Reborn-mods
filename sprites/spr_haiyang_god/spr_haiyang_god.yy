@@ -39,7 +39,7 @@
   "origin":9,
   "parent":{
     "name":"haiyang_god",
-    "path":"folders/精灵/mod/Cards/haiyang_god.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/haiyang_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

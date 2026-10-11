@@ -47,13 +47,17 @@ for (var _slot = 0; _slot < 16; _slot++) {
     // 判断是否已拥有
     if (_goods_type == "card") {
         for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
-            if (global.save_data.unlocked_cards[_k].id == _card_id && global.save_data.unlocked_cards[_k].shape >= _card_shape) { _owned = true; break; }
+            var _owned_card = global.save_data.unlocked_cards[_k];
+            var _owned_shape = variable_struct_exists(_owned_card, "max_shape") ? _owned_card.max_shape : _owned_card.shape;
+            if (_owned_card.id == _card_id && _owned_shape >= _card_shape) { _owned = true; break; }
         }
         if (variable_struct_exists(_goods, "required_card_shape")) {
             _prerequisite_met = false;
             for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
-                if (global.save_data.unlocked_cards[_k].id == _card_id
-                    && global.save_data.unlocked_cards[_k].shape >= _goods.required_card_shape) {
+                var _required_card = global.save_data.unlocked_cards[_k];
+                var _required_shape = variable_struct_exists(_required_card, "max_shape") ? _required_card.max_shape : _required_card.shape;
+                if (_required_card.id == _card_id
+                    && _required_shape >= _goods.required_card_shape) {
                     _prerequisite_met = true;
                     break;
                 }

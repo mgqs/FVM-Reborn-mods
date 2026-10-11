@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"UI",
+    "path":"folders/精灵/mod/UI.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

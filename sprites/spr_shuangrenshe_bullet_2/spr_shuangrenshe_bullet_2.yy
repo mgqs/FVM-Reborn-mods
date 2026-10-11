@@ -34,7 +34,7 @@
   "origin":9,
   "parent":{
     "name":"spr_shuangrenshe",
-    "path":"folders/精灵/mod/shengxiaocard/spr_shuangrenshe.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/spr_shuangrenshe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -19,6 +19,22 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_bottom);
 draw_set_font(font_yuan)
 
+// 根据当前页签的实际条目数量计算行数，避免固定 40 行导致后续卡片不绘制。
+var _info_item_count = 0
+if (info_button_select == 1) {
+    if (ds_exists(global.player_deck, ds_type_list)) {
+        for (var _si = 0; _si < ds_list_size(global.player_deck); _si += 2) {
+            if (global.player_deck[| _si] == "lihe" && !is_random_gift_mode()) continue
+            _info_item_count++
+        }
+    }
+} else if (info_button_select == 2) {
+    _info_item_count = array_length(global.enemy_id_list)
+} else if (info_button_select == 3) {
+    _info_item_count = array_length(global.level_id_list)
+}
+info_rows = max(1, ceil(_info_item_count / info_cols))
+
 if info_button_select == 1 {
 	if surface_exists(info_surface){
 		surface_set_target(info_surface)

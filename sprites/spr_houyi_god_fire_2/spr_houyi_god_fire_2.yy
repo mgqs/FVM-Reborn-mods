@@ -49,7 +49,7 @@
   "origin":9,
   "parent":{
     "name":"houyi_god",
-    "path":"folders/精灵/mod/Cards/houyi_god.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/houyi_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

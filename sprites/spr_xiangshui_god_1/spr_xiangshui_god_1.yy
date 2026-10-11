@@ -37,7 +37,7 @@
   "origin":9,
   "parent":{
     "name":"xiangshui_god",
-    "path":"folders/精灵/mod/Cards/xiangshui_god.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/xiangshui_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

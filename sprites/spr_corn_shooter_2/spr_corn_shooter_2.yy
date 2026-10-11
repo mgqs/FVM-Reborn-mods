@@ -49,7 +49,7 @@
   "origin":7,
   "parent":{
     "name":"corn_shooter",
-    "path":"folders/精灵/mod/Cards/corn_shooter.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/corn_shooter.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

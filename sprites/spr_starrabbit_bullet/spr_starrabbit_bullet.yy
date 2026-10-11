@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"starrabbit",
-    "path":"folders/精灵/mod/New zodiac/starrabbit.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/starrabbit.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

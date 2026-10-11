@@ -6,10 +6,24 @@ if (decoy_pending > 0
     && instance_exists(decoy_card) && !decoy_card.zodiac_dying
     && instance_exists(decoy_target) && decoy_target.hp > 0) {
     // 傀儡马的攻击倍率作用于代理收集到的实际伤害，再转发给绑定老鼠。
-    var _dmg = decoy_pending * zodiac_base_multiplier(decoy_card);
-    zodiac_hit(decoy_target, _dmg, decoy_type);
+    var _kdata = get_plant_data_with_skill(decoy_card.plant_id,decoy_card.shape,decoy_card.current_level,decoy_card.skill);
+    var _kmult = _kdata == undefined ? 1 : _kdata[? "atk"];
+    var _dmg = decoy_pending * _kmult;
+    var _dtype = decoy_type;
+    with (decoy_target) {
+        damage_amount = _dmg;
+        damage_type = _dtype;
+        event_user(0);
+    }
     // 傀儡马播放受击动画作为命中反馈
-    with (decoy_card) zodiac_card_play_hurt();
+    with (decoy_card) {
+        if (!zodiac_dying) {
+            // 受击动画 17-21
+            state = CARD_STATE.ATTACK;
+            image_index = idle_anim+1;
+            zodiac_hurt_timer = attack_anim*flash_speed;
+        }
+    }
 }
 decoy_pending = 0;
 decoy_type = "normal";

@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"New zodiac",
-    "path":"folders/精灵/mod/New zodiac.yy",
+    "name":"yanyantu",
+    "path":"folders/精灵/mod/Cards/Flame Producer/yanyantu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

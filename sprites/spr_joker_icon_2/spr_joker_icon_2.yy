@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"joker",
+    "path":"folders/精灵/mod/Cards/Shooter/joker.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

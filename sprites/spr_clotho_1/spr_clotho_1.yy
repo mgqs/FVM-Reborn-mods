@@ -60,7 +60,7 @@
   "origin":9,
   "parent":{
     "name":"clotho",
-    "path":"folders/精灵/mod/Cards/clotho.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/clotho.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,7 +26,7 @@
   "origin":9,
   "parent":{
     "name":"donut",
-    "path":"folders/精灵/mod/Cards/donut.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/donut.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

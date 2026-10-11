@@ -72,8 +72,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"pufferfish",
+    "path":"folders/精灵/mod/Cards/defender/pufferfish.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -38,7 +38,7 @@
   "origin":9,
   "parent":{
     "name":"spr_shegengbao",
-    "path":"folders/精灵/mod/shengxiaocard/spr_shegengbao.yy",
+    "path":"folders/精灵/mod/Cards/Flame Producer/spr_shegengbao.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

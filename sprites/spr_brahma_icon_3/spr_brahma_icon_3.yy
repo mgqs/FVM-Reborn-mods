@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"brahma",
+    "path":"folders/精灵/mod/Cards/Assistant/brahma.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

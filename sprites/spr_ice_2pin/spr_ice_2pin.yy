@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"ice_god",
+    "path":"folders/精灵/mod/Cards/Track/ice_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

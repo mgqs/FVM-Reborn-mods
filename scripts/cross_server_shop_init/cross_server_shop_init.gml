@@ -29,20 +29,22 @@ function cross_server_shop_init()
     };
 
     // 新生肖仅在跨服商店兑换，三个形态的价格和分类均参考战旗马。
-    var _zodiac_defs = zodiac_definitions();
-    for (var _z = 0; _z < array_length(_zodiac_defs); _z++) {
-        var _def = _zodiac_defs[_z];
+    // 名称与描述直接读取 mod_cards_init 已注册的形态数据（本初始化在 mod_cards_init 之后执行）。
+    var _zodiac_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe"];
+    for (var _z = 0; _z < array_length(_zodiac_ids); _z++) {
+        var _zid = _zodiac_ids[_z];
         for (var _shape = 0; _shape < 3; _shape++) {
             var _suffix = _shape == 0 ? "" : "_" + string(_shape);
             var _template = _cross_server_prices[$ "zhanqima" + _suffix];
+            var _shape_data = get_plant_shape_data(_zid,_shape);
             var _entry = {
-                type: "card", card_id: _def.id, card_shape: _shape,
+                type: "card", card_id: _zid, card_shape: _shape,
                 cost: _template.cost, cross_server_shop: _template.shop,
-                unlock_item_id: _def.id,
-                description: _def.descriptions[_shape], display_name: _def.names[_shape]
+                unlock_item_id: _zid,
+                description: _shape_data[? "description"], display_name: _shape_data[? "name"]
             };
             if (_shape > 0) _entry.required_card_shape = _shape - 1;
-            register_goods(_def.id + _suffix, _entry);
+            register_goods(_zid + _suffix, _entry);
         }
     }
 

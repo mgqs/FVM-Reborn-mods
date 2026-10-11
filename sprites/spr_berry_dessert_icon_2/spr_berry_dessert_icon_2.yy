@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"berry_dessert",
+    "path":"folders/精灵/mod/Cards/Assistant/berry_dessert.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

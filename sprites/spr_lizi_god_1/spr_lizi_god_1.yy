@@ -52,7 +52,7 @@
   "origin":9,
   "parent":{
     "name":"spr_lizi_god",
-    "path":"folders/精灵/mod/shengxiaocard/spr_lizi_god.yy",
+    "path":"folders/精灵/mod/Cards/Pult/spr_lizi_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

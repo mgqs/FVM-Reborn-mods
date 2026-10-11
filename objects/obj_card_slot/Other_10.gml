@@ -42,6 +42,13 @@ if (plant_data != undefined) {
 }
 
 var _card_data = deck_get_card_data(card_id, cshape);
+// 卡槽简介优先使用形态注册表，避免 mod_cards_init 与 mod_slots_init 的描述脱节。
+var _shape_info = get_plant_shape_data(card_id, cshape);
+if (_shape_info != undefined && ds_exists(_shape_info, ds_type_map) && ds_map_exists(_shape_info, "description")) {
+    description = _shape_info[? "description"];
+} else if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_exists(_card_data, "description")) {
+    description = _card_data[? "description"];
+}
 if (is_fusion_card(card_id)) {
     sprite_index = spr_slot_2;
 } else if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_find_value(_card_data, "is_gold") == 1) {

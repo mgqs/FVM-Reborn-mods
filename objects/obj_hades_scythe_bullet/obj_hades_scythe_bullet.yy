@@ -10,8 +10,8 @@
   "name":"obj_hades_scythe_bullet",
   "overriddenProperties":[],
   "parent":{
-    "name":"Bullet",
-    "path":"folders/物体/mod/Bullet.yy",
+    "name":"germ",
+    "path":"folders/物体/mod/germ.yy",
   },
   "parentObjectId":{
     "name":"obj_bullet_parent",

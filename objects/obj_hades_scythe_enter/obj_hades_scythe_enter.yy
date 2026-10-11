@@ -9,8 +9,8 @@
   "name":"obj_hades_scythe_enter",
   "overriddenProperties":[],
   "parent":{
-    "name":"UI",
-    "path":"folders/物体/mod/UI.yy",
+    "name":"germ",
+    "path":"folders/物体/mod/germ.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Bullet",
-    "path":"folders/精灵/mod/Bullet.yy",
+    "name":"tianshen",
+    "path":"folders/精灵/mod/germ/tianshen.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

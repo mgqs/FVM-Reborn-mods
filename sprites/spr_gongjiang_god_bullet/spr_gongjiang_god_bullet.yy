@@ -37,7 +37,7 @@
   "origin":4,
   "parent":{
     "name":"gongjiang_god",
-    "path":"folders/精灵/mod/Cards/gongjiang_god.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/gongjiang_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

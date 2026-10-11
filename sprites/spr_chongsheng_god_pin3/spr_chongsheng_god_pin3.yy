@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"chongsheng_god",
-    "path":"folders/精灵/mod/Cards/chongsheng_god.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/chongsheng_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -26,8 +26,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"virgo",
+    "path":"folders/精灵/mod/Cards/defender/virgo.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -47,8 +47,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"war_god",
+    "path":"folders/精灵/mod/Cards/Shooter/war_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

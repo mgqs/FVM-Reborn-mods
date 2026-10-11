@@ -30,7 +30,7 @@
   "origin":4,
   "parent":{
     "name":"hufa_god",
-    "path":"folders/精灵/mod/Cards/hufa_god.yy",
+    "path":"folders/精灵/mod/Cards/Track/hufa_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

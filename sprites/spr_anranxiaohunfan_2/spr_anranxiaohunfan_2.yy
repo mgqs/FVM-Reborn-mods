@@ -50,7 +50,7 @@
   "origin":9,
   "parent":{
     "name":"spr_anranxiaohunfan",
-    "path":"folders/精灵/mod/shengxiaocard/spr_anranxiaohunfan.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_anranxiaohunfan.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

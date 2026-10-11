@@ -48,7 +48,7 @@
   "origin":9,
   "parent":{
     "name":"spr_liehuohu",
-    "path":"folders/精灵/mod/shengxiaocard/spr_liehuohu.yy",
+    "path":"folders/精灵/mod/Cards/Flame Producer/spr_liehuohu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

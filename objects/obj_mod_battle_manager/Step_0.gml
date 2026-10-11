@@ -231,8 +231,10 @@ else
                     : buff_multiplier * ocean_mult;
 
                 var _shield_gem_mult = get_shield_gem_atk_mult(self.grid_col, self.grid_row, self.plant_id);
-                var zodiac_mult = 1;
-                zodiac_mult = zodiac_music_multiplier(self);
+                global.zodiac_music_mult = 1;
+                global.zodiac_query_card = self.id;
+                with (obj_yinhema) event_user(0);
+                var zodiac_mult = global.zodiac_music_mult;
                 self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * zodiac_mult;
 
                 self.buff_applied_id = global.buff_apply_id;

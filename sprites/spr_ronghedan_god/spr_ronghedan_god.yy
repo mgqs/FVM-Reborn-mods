@@ -51,7 +51,7 @@
   "origin":9,
   "parent":{
     "name":"spr_ronghedan_god",
-    "path":"folders/精灵/mod/shengxiaocard/spr_ronghedan_god.yy",
+    "path":"folders/精灵/mod/Cards/Pult/spr_ronghedan_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

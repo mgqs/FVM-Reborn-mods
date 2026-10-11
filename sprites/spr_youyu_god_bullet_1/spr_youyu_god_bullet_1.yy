@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"spr_youyu_god",
-    "path":"folders/精灵/mod/shengxiaocard/spr_youyu_god.yy",
+    "path":"folders/精灵/mod/Cards/Track/spr_youyu_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

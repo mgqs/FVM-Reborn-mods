@@ -33,8 +33,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"sh",
+    "path":"folders/精灵/mod/Cards/Shooter/sh.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

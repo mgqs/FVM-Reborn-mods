@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"hspeed_juicer",
+    "path":"folders/精灵/mod/Cards/Assistant/hspeed_juicer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

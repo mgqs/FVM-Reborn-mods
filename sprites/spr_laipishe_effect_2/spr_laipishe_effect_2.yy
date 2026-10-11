@@ -41,7 +41,7 @@
   "origin":9,
   "parent":{
     "name":"spr_laipishe",
-    "path":"folders/精灵/mod/shengxiaocard/spr_laipishe.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/spr_laipishe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

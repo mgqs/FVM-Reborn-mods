@@ -46,8 +46,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"New zodiac",
-    "path":"folders/精灵/mod/New zodiac.yy",
+    "name":"fenjima",
+    "path":"folders/精灵/mod/Cards/Shooter/fenjima.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -91,7 +91,7 @@
   "origin":9,
   "parent":{
     "name":"spr_dandantu",
-    "path":"folders/精灵/mod/shengxiaocard/spr_dandantu.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/spr_dandantu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

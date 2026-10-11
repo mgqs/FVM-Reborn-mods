@@ -33,8 +33,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"New zodiac",
-    "path":"folders/精灵/mod/New zodiac.yy",
+    "name":"wugushe",
+    "path":"folders/精灵/mod/Cards/Melee/wugushe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"cold_drew_machine",
+    "path":"folders/精灵/mod/Cards/Track/cold_drew_machine.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

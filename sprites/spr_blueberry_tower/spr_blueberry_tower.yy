@@ -39,7 +39,7 @@
   "origin":9,
   "parent":{
     "name":"blueberry_tower",
-    "path":"folders/精灵/mod/Cards/blueberry_tower.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/blueberry_tower.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

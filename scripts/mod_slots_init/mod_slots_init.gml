@@ -1,6 +1,54 @@
 function mod_slots_init()
 {
-    zodiac_slots_init();
+    // 生肖卡注册（共12张，每张3个形态）
+    register_card("yanyantu", obj_yanyantu, [
+    { shape: 0, sprite: spr_yanyantu, cost: 200, cooldown: 2400, description: "炎焱兔：3×3范围指定产火卡片的火苗单值乘以倍率，向下取整，同类增幅取最高值。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yanyantu },
+    { shape: 1, sprite: spr_yanyantu_1, cost: 200, cooldown: 2400, description: "火火炎焱兔：提升火苗增幅倍率。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yanyantu_1 },
+    { shape: 2, sprite: spr_yanyantu_2, cost: 200, cooldown: 2400, description: "焱焱炎焱兔：增幅范围扩大至5×5。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yanyantu_2 }]);
+    register_card("wugushe", obj_wugushe, [
+    { shape: 0, sprite: spr_wugushe, cost: 275, cooldown: 900, description: "巫蛊蛇：3×3范围每轮造成表列总伤害。蛊毒10%概率追加最大生命5%伤害\n上限1000，并秒杀非精英。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wugushe },
+    { shape: 1, sprite: spr_wugushe_1, cost: 275, cooldown: 900, description: "暗黑巫蛊蛇：蛊毒概率15%，追加最大生命8%伤害，上限1500。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wugushe_1 },
+    { shape: 2, sprite: spr_wugushe_2, cost: 275, cooldown: 900, description: "秘术巫蛊蛇：攻击范围扩大至5×5。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wugushe_2 }]);
+    register_card("kuileima", obj_kuileima, [
+    { shape: 0, sprite: spr_kuileima, cost: 390, cooldown: 2700, description: "傀儡马：生命1亿，最多存在1张。锁定最高血量老鼠，优先BOSS\n按比例转移受伤。持续时间结束或目标死亡时自毁。不能复制、改变星级或被普通冷却刷新，仅极寒冰沙可刷新。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_kuileima },
+    { shape: 1, sprite: spr_kuileima_1, cost: 390, cooldown: 2700, description: "机关傀儡马：死亡时造成5×5范围900灰烬爆炸。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_kuileima_1 },
+    { shape: 2, sprite: spr_kuileima_2, cost: 390, cooldown: 2700, description: "灵枢傀儡马：伤害转移比例翻倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_kuileima_2 }]);
+    register_card("yufengma", obj_yufengma, [
+    { shape: 0, sprite: spr_yufengma, cost: 280, cooldown: 900, description: "御风马：每次发射1枚风弹，击退陆空军0.5格。\n场上存在排风扇、9周年幸运草扇或旋风牛时改为3行大风，可受宴会女神增幅。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma },
+    { shape: 1, sprite: spr_yufengma_1, cost: 280, cooldown: 900, description: "净化御风马：死亡时产生吹飞效果，基础伤害提升。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_1 },
+    { shape: 2, sprite: spr_yufengma_2, cost: 280, cooldown: 900, description: "菩提御风马：基础伤害翻倍，秒杀表列指定飞行老鼠。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_2 }]);
+    register_card("fenjima", obj_fenjima, [
+    { shape: 0, sprite: spr_fenjima, cost: 320, cooldown: 900, description: "焚寂马：发射1枚直线弹，可被水神、樱桃反弹布丁反弹，\n穿过火盆、金牛座、火神时被强化；命中老鼠后沿子弹方向分裂0°、±90°穿透波，目标格承受全部冲击波。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima },
+    { shape: 1, sprite: spr_fenjima_1, cost: 320, cooldown: 900, description: "星火焚寂马：冲击波伤害提升50%。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_1 },
+    { shape: 2, sprite: spr_fenjima_2, cost: 320, cooldown: 900, description: "烈日焚寂马：增加±45°冲击波，共5道。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_2 }]);
+    register_card("guiyuanma", obj_guiyuanma, [
+    { shape: 0, sprite: spr_guiyuanma, cost: 375, cooldown: 900, description: "归元马：前方3行索敌最近目标，1枚追踪弹。秒杀血量低于30%的非BOSS\n其余非BOSS送回第9列变为原最大生命50%的呆呆鼠，能力同平民鼠。\n受莓果甜点、香料虎、宴会女神增幅。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma },
+    { shape: 1, sprite: spr_guiyuanma_1, cost: 375, cooldown: 900, description: "时空归元马：秒杀阈值提升至50%。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_1 },
+    { shape: 2, sprite: spr_guiyuanma_2, cost: 375, cooldown: 900, description: "幻境归元马：前方5行索敌，发射2枚弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_2 }]);
+    register_card("yanhuangma", obj_yanhuangma, [
+    { shape: 0, sprite: spr_yanhuangma, cost: 320, cooldown: 900, description: "炎凰马：持续从场地左右两侧发射对向固定轨迹炎凰\n攻击3行陆军，中路2次、上下各1次\n无法攻击未显形鬼鼠、非主流，可放岩浆。受音盒马、浮生茶增幅。", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma },
+    { shape: 1, sprite: spr_yanhuangma_1, cost: 320, cooldown: 900, description: "白炽炎凰马：场上至少7张时，最高攻击力的1张每5秒召唤竖向炎凰，攻击第7至9列，第8列2次。", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_1 },
+    { shape: 2, sprite: spr_yanhuangma_2, cost: 320, cooldown: 900, description: "焚天炎凰马：攻击提升，击杀化为灰烬。", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_2 }]);
+    register_card("yinhema", obj_yinhema, [
+    { shape: 0, sprite: spr_yinhema, cost: 320, cooldown: 2700, description: "音盒马：3×3范围增幅迷你披萨炉、赖皮蛇、工匠神、炎凰马、炎帝。同类取最高倍率。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema },
+    { shape: 1, sprite: spr_yinhema_1, cost: 320, cooldown: 2700, description: "叮咚音盒马：增幅范围扩大至5×5。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_1 },
+    { shape: 2, sprite: spr_yinhema_2, cost: 320, cooldown: 2700, description: "玲珑音盒马：增幅倍率提升。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_2 }]);
+    register_card("xiandima", obj_xiandima, [
+    { shape: 0, sprite: spr_xiandima, cost: 335, cooldown: 900, description: "仙笛马：不占格。每攻击间隔的1/3召唤1只，积满3只后飞出\n发射3枚，全屏优先BOSS、其次最高血量目标。", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
+    { shape: 1, sprite: spr_xiandima_1, cost: 335, cooldown: 900, description: "悠扬仙笛马：对BOSS造成2.1倍伤害。", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
+    { shape: 2, sprite: spr_xiandima_2, cost: 335, cooldown: 900, description: "天籁仙笛马：子弹伤害翻倍，仍为3枚。", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_2 }]);
+    register_card("xingqiongma", obj_xingqiongma, [
+    { shape: 0, sprite: spr_xingqiongma, cost: 350, cooldown: 3600, description: "星穹马：前摇1.2秒后复活5×5范围内最近被老鼠咬死的1张卡，排除复制卡。使用后消失。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma },
+    { shape: 1, sprite: spr_xingqiongma_1, cost: 350, cooldown: 3600, description: "璀璨星穹马：范围内卡片获得技能对应时长的免伤\n可抵挡1次老鼠攻击，包括致命攻击\n8级技能抵挡2次。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_1 },
+    { shape: 2, sprite: spr_xingqiongma_2, cost: 350, cooldown: 3600, description: "浩瀚星穹马：一次复活3张。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_2 }]);
+    register_card("starrabbit", obj_starrabbit, [
+    { shape: 0, sprite: spr_starrabbit, cost: 225, cooldown: 1800, description: "星星兔：前方有老鼠时向五个方向各发射1发穿透星弹，命中老鼠造成伤害\n星弹可穿过火盆等障碍并可被水神、樱桃布丁反弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit },
+    { shape: 1, sprite: spr_starrabbit_1, cost: 225, cooldown: 1800, description: "科技星星兔：五个方向各发射1发星弹，伤害提升至2倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_1 },
+    { shape: 2, sprite: spr_starrabbit_2, cost: 225, cooldown: 1800, description: "宇宙星星兔：五个方向各发射1发星弹，伤害提升至3倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_2 }]);
+    register_card("yinghuoshe", obj_yinghuoshe, [
+    { shape: 0, sprite: sp_yinghuoshe, cost: 75, cooldown: 1800, description: "萤火蛇：全屏照亮迷雾；每15秒产生1朵火；老鼠首次进入自身3×3范围时造成一次伤害。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: sp_yinghuoshe },
+    { shape: 1, sprite: sp_yinghuoshe_1, cost: 75, cooldown: 1800, description: "星辉萤火蛇：每15秒产生2朵火。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: sp_yinghuoshe_1 },
+    { shape: 2, sprite: sp_yinghuoshe_2, cost: 75, cooldown: 1800, description: "皓月萤火蛇：伤害翻倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: sp_yinghuoshe_2 }]);
     // 随机礼盒：固定50火苗、10秒冷却，只能放置在陆地。
     register_card("lihe", obj_lihe, [
     {

@@ -50,7 +50,7 @@
   "origin":9,
   "parent":{
     "name":"yinghuoshe",
-    "path":"folders/精灵/mod/New zodiac/yinghuoshe.yy",
+    "path":"folders/精灵/mod/Cards/Flame Producer/yinghuoshe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"clotho",
+    "path":"folders/精灵/mod/Cards/Assistant/clotho.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

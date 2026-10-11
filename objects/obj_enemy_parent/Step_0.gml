@@ -110,7 +110,7 @@ if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTAC
 		{
 			var plant_inst = ds_list_find_value(_list, _item);
 			if (!instance_exists(plant_inst)) continue;
-			if(plant_inst.have_loder&& x-plant_inst.x<=attack_range){
+			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && x-plant_inst.x<=attack_range){
 
 				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
 				climb_base_y = y;
@@ -130,7 +130,7 @@ if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTAC
 		{
 			var plant_inst = ds_list_find_value(_list, _item);
 			if (!instance_exists(plant_inst)) continue;
-			if(plant_inst.have_loder&& x-plant_inst.x<=attack_range){
+			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && x-plant_inst.x<=attack_range){
 
 				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
 				climb_base_y = y;

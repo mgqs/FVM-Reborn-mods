@@ -45,7 +45,7 @@
   "origin":7,
   "parent":{
     "name":"hongliukaochuan",
-    "path":"folders/精灵/mod/Cards/hongliukaochuan.yy",
+    "path":"folders/精灵/mod/Cards/Shooter/hongliukaochuan.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

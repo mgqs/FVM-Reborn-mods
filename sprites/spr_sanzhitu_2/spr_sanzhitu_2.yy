@@ -41,7 +41,7 @@
   "origin":9,
   "parent":{
     "name":"spr_sanzhitu",
-    "path":"folders/精灵/mod/shengxiaocard/spr_sanzhitu.yy",
+    "path":"folders/精灵/mod/Cards/defender/spr_sanzhitu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

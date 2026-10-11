@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"New zodiac",
-    "path":"folders/精灵/mod/New zodiac.yy",
+    "name":"yufengma",
+    "path":"folders/精灵/mod/Cards/Shooter/yufengma.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

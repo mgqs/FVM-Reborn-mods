@@ -25,11 +25,7 @@ else
 
 buff_value = atk / 100;
 
-if (shape < 2)
-{
-    buff_shape = "3x3";
-}
-else if (shape < 3)
+if (shape < 3)
 {
     buff_shape = "5x5";
 }
@@ -53,7 +49,7 @@ xiangshui_effect_obj.sprite_index = spr_xiangshui_god_effect_3;
 
 // The shared range effect sprite is authored for the final 5x7 form.
 // Match its display bounds to the actual buff shape for each upgrade.
-var effect_width = (shape >= 2) ? 5 : 3;
-var effect_height = (shape == 3) ? 7 : effect_width;
+var effect_width = 5;
+var effect_height = (shape == 3) ? 7 : 5;
 xiangshui_effect_obj.image_xscale = 1.8 * (effect_width / 5.0);
 xiangshui_effect_obj.image_yscale = 1.8 * (effect_height / 7.0);

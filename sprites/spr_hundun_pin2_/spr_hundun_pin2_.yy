@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"hundun_god",
-    "path":"folders/精灵/mod/Cards/hundun_god.yy",
+    "path":"folders/精灵/mod/Cards/Melee/hundun_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

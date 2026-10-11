@@ -35,7 +35,7 @@
   "origin":9,
   "parent":{
     "name":"zhanqima",
-    "path":"folders/精灵/mod/Cards/zhanqima.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/zhanqima.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -89,7 +89,7 @@
   "origin":9,
   "parent":{
     "name":"spr_shishi",
-    "path":"folders/精灵/mod/shengxiaocard/spr_shishi.yy",
+    "path":"folders/精灵/mod/Cards/boomer/spr_shishi.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

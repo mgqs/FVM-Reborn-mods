@@ -29,3 +29,18 @@ decoy_pending = 0;
 decoy_type = "normal";
 decoy_card = noone;
 decoy_target = noone;
+
+// 同步绑定目标的完整身份：创建者绑定后立即调用一次（杜绝创建当帧被当杂兵的窗口），
+// 之后每帧Step调用保持同步。BOSS/精英、目标类型、老鼠ID必须与绑定目标完全一致，
+// 否则"秒杀非精英""白名单斩杀"等攻击会错误命中代理并经伤害转发秒掉绑定目标。
+decoy_sync_identity = function(_t) {
+    if (instance_exists(_t)) {
+        decoy_target = _t;
+        is_boss = _t.is_boss;
+        target_type = _t.target_type;
+        mouse_id = _t.mouse_id;
+        giant_type = _t.giant_type;
+        hp = _t.hp;
+        maxhp = max(1, _t.maxhp);
+    }
+}

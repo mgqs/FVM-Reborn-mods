@@ -1,18 +1,21 @@
+global.zodiac_flame_mult = 1;
+global.zodiac_query_card = id;
+with (obj_yanyantu) event_user(0);
 var inst = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-inst.value = floor((flame_produce) * zodiac_flame_multiplier(id));
+inst.value = floor((flame_produce) * global.zodiac_flame_mult);
 var inst2 = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-inst2.value = floor((flame_produce) * zodiac_flame_multiplier(id));
+inst2.value = floor((flame_produce) * global.zodiac_flame_mult);
 var inst3 = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-inst3.value = floor((flame_produce) * zodiac_flame_multiplier(id));
+inst3.value = floor((flame_produce) * global.zodiac_flame_mult);
 
 if (shape >= 1)
 {
     var inst4 = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-    inst4.value = floor((flame_produce) * zodiac_flame_multiplier(id));
+    inst4.value = floor((flame_produce) * global.zodiac_flame_mult);
 }
 
 if (shape == 2)
 {
     var inst5 = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-    inst5.value = floor((flame_produce) * zodiac_flame_multiplier(id));
+    inst5.value = floor((flame_produce) * global.zodiac_flame_mult);
 }

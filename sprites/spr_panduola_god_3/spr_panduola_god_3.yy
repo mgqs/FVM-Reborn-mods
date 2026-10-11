@@ -45,7 +45,7 @@
   "origin":9,
   "parent":{
     "name":"panduola_god",
-    "path":"folders/精灵/mod/Cards/panduola_god.yy",
+    "path":"folders/精灵/mod/Cards/boomer/panduola_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

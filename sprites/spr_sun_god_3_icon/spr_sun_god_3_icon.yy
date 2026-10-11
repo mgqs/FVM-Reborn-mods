@@ -53,8 +53,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"sun_god",
+    "path":"folders/精灵/mod/Cards/Flame Producer/sun_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

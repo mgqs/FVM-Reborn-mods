@@ -61,6 +61,8 @@ function obj_pool_is_poolable(_obj) {
     var _name = object_get_name(_obj);
     var _ok = false;
     if (string_pos("bullet", _name) > 0)            _ok = true;
+    // 新星座卡共用的弹道对象名称不含 bullet，但仍应走同一套延迟对象池。
+    else if (_name == "obj_zodiac_projectile")       _ok = true;
     else if (string_pos("explode", _name) > 0)      _ok = true;
     else if (string_pos("ash_death", _name) > 0)    _ok = true;
     else if (string_pos("death_effect", _name) > 0) _ok = true;

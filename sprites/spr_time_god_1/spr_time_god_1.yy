@@ -57,7 +57,7 @@
   "origin":9,
   "parent":{
     "name":"time_god",
-    "path":"folders/精灵/mod/Cards/time_god.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/time_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

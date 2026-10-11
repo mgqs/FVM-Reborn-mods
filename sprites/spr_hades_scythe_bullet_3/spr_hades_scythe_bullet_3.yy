@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Bullet",
-    "path":"folders/精灵/mod/Bullet.yy",
+    "name":"hades_scythe",
+    "path":"folders/精灵/mod/germ/hades_scythe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

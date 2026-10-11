@@ -35,8 +35,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"hera",
+    "path":"folders/精灵/mod/Cards/defender/hera.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

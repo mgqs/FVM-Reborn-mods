@@ -37,7 +37,7 @@
   "origin":7,
   "parent":{
     "name":"berry_dessert",
-    "path":"folders/精灵/mod/Cards/berry_dessert.yy",
+    "path":"folders/精灵/mod/Cards/Assistant/berry_dessert.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

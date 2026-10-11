@@ -1,6 +1,22 @@
 function mod_skill_init()
 {
-    zodiac_skill_init();
+    // 生肖卡技能注册
+    register_card_skill("yanyantu", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
+    register_card_skill("wugushe", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
+    register_card_skill("kuileima", "cycle", [900, 960, 1020, 1080, 1200, 1320, 1440, 1680, 2100]);
+    register_card_skill("yufengma", "cycle", [120, 117, 114, 111, 108, 102, 96, 90, 78]);
+    register_card_skill("fenjima", "cycle", [108, 105, 102, 99, 96, 90, 84, 78, 60]);
+    register_card_skill("guiyuanma", "cycle", [156, 153, 150, 147, 144, 141, 138, 132, 120]);
+    register_card_skill("yanhuangma", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 150]);
+    register_card_skill("yinhema", "cooldown", [2700, 2580, 2460, 2340, 2220, 2040, 1800, 1500, 900]);
+    register_card_skill("xiandima", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
+    register_card_skill("xingqiongma", "zodiac_guard_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);
+    register_card_skill("starrabbit", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
+    register_card_skill("yinghuoshe", "atk", [
+        [300, 350, 400, 450, 500, 550, 600, 700, 900],
+        [300, 350, 400, 450, 500, 550, 600, 700, 900],
+        [600, 700, 800, 900, 1000, 1100, 1200, 1400, 1800]
+    ]);
     register_card_skill("gaia", "cooldown", [2100, 1920, 1740, 1560, 1380, 1200, 1020, 840, 540]);
     register_card_skill("warm_birds", "flame_produce", [25, 27, 29, 31, 34, 37, 40, 44, 48]);
     register_card_skill("aurora", "cooldown", [1800, 1680, 1560, 1380, 1200, 1020, 840, 660, 420]);
@@ -64,7 +80,6 @@ function mod_skill_init()
     register_card_skill("hufa_god", "cycle", [108, 105, 102, 99, 96, 93, 90, 84, 78]);
     register_card_skill("zhanqima", "cycle", [1200, 1260, 1380, 1500, 1620, 1740, 1920, 2100, 2700]);
     register_card_skill("starrabbit", "cycle", [78,75,72,69,66,63,60,54,48]);
-    register_card_skill("yinghuoshe", "cycle", [900,870,840,810,780,750,690,660,630,600,570,540,510,450,390,300,210]);
     register_card_skill("hongliukaochuan", "cycle", [90, 87, 84, 81, 78, 75, 72, 69, 60]);
     register_card_skill("yeziguo", "atk", [1000, 1125, 1250, 1375, 1500, 1625, 1750, 1875, 2000]);
     register_card_skill("ronghehaixing", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);

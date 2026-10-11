@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"hera",
+    "path":"folders/精灵/mod/Cards/defender/hera.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

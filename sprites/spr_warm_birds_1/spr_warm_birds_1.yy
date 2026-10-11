@@ -48,8 +48,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"warm_birds",
+    "path":"folders/精灵/mod/Cards/Flame Producer/warm_birds.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
