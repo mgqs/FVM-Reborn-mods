@@ -74,4 +74,6 @@ x64/
 *.user
 
 # GameMaker build output
-$out/
+$out/.codex-tmp/
+.codex-tmp/
+.codex-tmp/
