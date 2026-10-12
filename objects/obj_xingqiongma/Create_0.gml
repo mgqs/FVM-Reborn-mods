@@ -18,7 +18,8 @@ zodiac_age = 0;
 
 var guard = get_plant_data_with_skill(plant_id,shape,current_level,skill);
 zodiac_guard_duration = 900;
-if (guard != undefined) zodiac_guard_duration = guard[? "zodiac_guard_duration"];
+if (guard != undefined && is_real(guard[? "zodiac_guard_duration"]))
+    zodiac_guard_duration = guard[? "zodiac_guard_duration"];
 // 种下时释放对应形态的5×5范围特效：effect2 / effect2_1 / effect2_2
 var xq_spr = spr_xingqiongma_effect2;
 if (shape == 1) xq_spr = spr_xingqiongma_effect2_1;

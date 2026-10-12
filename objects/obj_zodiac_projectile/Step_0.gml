@@ -55,7 +55,9 @@ var _do_hit = hit_tick >= _hit_interval;
 if (_do_hit) hit_tick = 0;
 // 星星兔弹数量最多，优先建立一次宽松的 SAP 候选父集；后续普通/空中类型直接复用。
 var enemies = _zodiac_candidates;
-var _can_reach = _do_hit && bullet_enemy_reachable(id);
+// 星星兔星弹为全场穿透弹：不做水平距离裁剪，只要场上有敌人就持续飞行索敌，
+// 无敌人时由上方 enemy_sx_n<=0 分支销毁，飞出场地由边界判定销毁。
+var _can_reach = _do_hit && (kind == "star" || bullet_enemy_reachable(id));
 if (kind == "star" && _do_hit && variable_global_exists("enemy_sx_gen") && global.enemy_sx_gen > 0 && !_can_reach) {
     instance_destroy();
     exit;
@@ -191,7 +193,8 @@ for (var i = 0; i < array_length(enemies); i++) {
                 instance_destroy();exit;
             }
         case "return":
-            if (!e.is_boss && e.hp/e.maxhp < (shape == 0 ? 0.30 : 0.50)) {
+            var gy_returned = e.object_index == obj_guiyuanma_mouse; // 呆呆鼠：归元马子弹只会扣血，不再触发秒杀或送回变身
+            if (!gy_returned && !e.is_boss && e.hp/e.maxhp < (shape == 0 ? 0.30 : 0.50)) {
                 var rk_dmg = 0;
                 if (instance_exists(e)) rk_dmg = e.hp+e.shield_hp+e.helmet_hp;
                 with (e) {
@@ -207,7 +210,7 @@ for (var i = 0; i < array_length(enemies); i++) {
                     damage_type = "pierce";
                     event_user(0);
                 }
-                if (instance_exists(e) && e.hp > 0 && !e.is_boss) {
+                if (!gy_returned && instance_exists(e) && e.hp > 0 && !e.is_boss) {
                     // 送回第9列变为归元马呆呆鼠：仅非BOSS敌人才会变身，能力同平民鼠，继承原老鼠50%最大生命，动画由专属对象接管
                     var rm_row = e.grid_row;
                     var rm_col = global.grid_cols-1;
@@ -248,7 +251,10 @@ for (var i = 0; i < array_length(enemies); i++) {
             instance_destroy();exit;
         case "flute":
             {
-                var fl_dmg = damage*(shape >= 1 && e.is_boss ? 2.1 : 1);
+                // BOSS判定：is_boss标记优先；未打标记的BOSS类敌人（如测试鼠）回退到BOSS注册表比对mouse_id
+                var fl_boss = e.is_boss || (variable_global_exists("boss_list") && ds_exists(global.boss_list, ds_type_map)
+                    && variable_instance_exists(e, "mouse_id") && ds_map_exists(global.boss_list, e.mouse_id));
+                var fl_dmg = damage*(shape >= 1 && fl_boss ? 2.1 : 1);
                 with (e) {
                     damage_amount = fl_dmg;
                     damage_type = "pierce";

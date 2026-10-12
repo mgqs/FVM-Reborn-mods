@@ -5,6 +5,8 @@ if (hp <= 0) exit;
 // 种下72帧（1.2秒）后复活并消失（前摇固定，不受冻结影响）
 zodiac_age++;
 if (zodiac_age >= 72) {
+    // 先把自己从网格移除：死卡原格与星穹马同格时，复活占格判定才能通过
+    card_destroyed(id);
     // 单体复活特效 effect1（原尺寸，不做5×5拉伸）
     var xq1_spr = spr_xingqiongma_effect1;
     if (shape == 1) xq1_spr = spr_xingqiongma_effect1_1;
@@ -14,19 +16,15 @@ if (zodiac_age >= 72) {
     xq_e1.life = max(1,sprite_get_number(xq1_spr)*5);
     xq_e1.image_index = 0;
     xq_e1.image_speed = 0.5;
-    // 0转：复活5×5范围内最近1张被老鼠咬死的卡；1转：不复活，只给范围内卡片加减伤；2转：复活3张（死因不限，铲除除外，同重生神）
-    var limit = 0;
-    if (shape == 0) limit = 1;
-    else if (shape >= 2) limit = 3;
-    var mouse_only = shape == 0;
+    // 0/1转：复活5×5范围内最近1张死亡的卡；2转：复活至多3张（铲除的除外，一次性/特殊卡不记录死亡无法复活）
+    var limit = 1;
+    if (shape >= 2) limit = 3;
     var done = 0;
     var death_count = variable_global_exists("dead_cards") && ds_exists(global.dead_cards,ds_type_list) ? ds_list_size(global.dead_cards) : 0;
     for (var i = death_count-1; i >= 0 && done < limit; i--) {
         var d = global.dead_cards[| i];
         if (!ds_exists(d,ds_type_map)) continue;
-        if (mouse_only) {
-            if (d[? "death_cause"] != "mouse") continue;
-        } else if (d[? "death_cause"] == "shovel") continue;
+        if (d[? "death_cause"] == "shovel") continue;
         var card_id = d[? "plant_id"];
         if (array_contains(["brahma","baibianshe","magic_chicken","kuileima","xingqiongma"],card_id)) continue;
         var col = d[? "grid_col"], row = d[? "grid_row"];
@@ -50,8 +48,8 @@ if (zodiac_age >= 72) {
         ds_map_destroy(d);
         done++;
     }
-    if (shape == 1) {
-        // 1转：5×5范围内卡片获得减伤，减伤时间内抵挡指定次数老鼠攻击（含致命伤）
+    if (shape >= 1) {
+        // 1/2转：5×5范围内卡片（含刚复活的）获得减伤，减伤时间内抵挡指定次数老鼠攻击（含致命伤）
         for (var gi = 0; gi < instance_number(obj_card_parent); gi++) {
             var gp = instance_find(obj_card_parent,gi);
             if (!instance_exists(gp) || gp.hp <= 0 || gp.id == id

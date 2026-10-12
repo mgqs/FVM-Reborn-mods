@@ -79,6 +79,8 @@ if (global.level_id == "test_level")
                 // 从真实敌人对象获取正确的target_type，使空中/潜水/隐身等攻击卡片能正确命中测试老鼠
                 var _temp_enemy = instance_create_depth(-99999, -99999, 99999, enemy_data._obj);
                 test_inst.target_type = _temp_enemy.target_type;
+                // 继承is_boss标记：BOSS测试鼠需触发BOSS特化效果（如仙笛马对BOSS的2.1倍伤害）
+                test_inst.is_boss = variable_instance_exists(_temp_enemy, "is_boss") && _temp_enemy.is_boss;
                 // 保存并临时设置boss_count，防止销毁BOSS类临时实例时触发胜利/波次推进
                 var _old_boss_count = boss_count;
                 boss_count = 999;

@@ -2,9 +2,14 @@
 // 产火卡片先置 global.zodiac_flame_mult = 1、global.zodiac_query_card = id，
 // 再 with(obj_yanyantu) event_user(0)；
 // 每个存活且处于调用方光环范围内的炎焱兔，把自身攻击力倍率并入该全局值（同类取最高）。
+// 注意：event_user(0) 也在 Create 事件中被调用用于初始化；
+// 当 global.zodiac_query_card 未设置时，委托父类完成属性初始化。
+if (!variable_global_exists("zodiac_query_card") || !instance_exists(global.zodiac_query_card)) {
+    event_inherited();
+    return;
+}
 if (hp <= 0) exit;
 var _c = global.zodiac_query_card;
-if (!instance_exists(_c)) exit;
 if (get_plant_upgrade(_c.plant_id,0,0) == undefined) exit;
 // 仅对指定产火卡片生效：太阳神/双子座按 plant_id 直判，其余按名称匹配
 if (_c.plant_id != "sun_god" && _c.plant_id != "shuangzi") {
