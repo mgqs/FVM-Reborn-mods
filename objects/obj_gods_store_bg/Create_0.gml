@@ -70,6 +70,12 @@ function gods_shop_list_recharge()
                     
                     if (is_unlocked)
                         inst.is_disabled = true;
+                    else if (!fusion_prereq_met(inst.target_item))
+                    {
+                        // 融合卡：需先拥有前置卡的二转（与抽卡同一份前置表）
+                        inst.meet_requirements = false;
+                        inst.requirement_notice = "需先拥有「" + fusion_prereq_name(inst.target_item) + "」才能兑换！";
+                    }
                 }
             }
             else if (shop_button_select == 2)

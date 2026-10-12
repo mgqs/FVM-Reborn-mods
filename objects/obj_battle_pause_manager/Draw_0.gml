@@ -110,9 +110,11 @@ if (global.is_paused)
 							}
 						}
 						
-						// 卡片名称
+						// 卡片名称（融合卡绿色 / 金卡黄色 / 生肖紫色 / 其余蓝色）
 						var name_color = c_blue;
-						if (gacha_is_gold_card(reward_id)) {
+						if (is_fusion_card(reward_id)) {
+							name_color = c_green;
+						} else if (gacha_is_gold_card(reward_id)) {
 							name_color = c_yellow;
 						} else if (gacha_is_zodiac_card(reward_id)) {
 							name_color = c_purple;

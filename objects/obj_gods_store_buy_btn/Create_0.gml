@@ -10,3 +10,4 @@ tooltip = false;
 cost = 0;
 target_shape = 0;
 meet_requirements = true;
+requirement_notice = "";
