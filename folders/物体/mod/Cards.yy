@@ -94,6 +94,9 @@
     {"name":"obj_zhurong","path":"objects/obj_zhurong/obj_zhurong.yy",},
     {"name":"obj_zhiyumiao","path":"objects/obj_zhiyumiao/obj_zhiyumiao.yy",},
     {"name":"obj_zhiyumiao_regen_buff","path":"objects/obj_zhiyumiao_regen_buff/obj_zhiyumiao_regen_buff.yy",},
-    {"name":"obj_hongliukaochuan","path":"objects/obj_hongliukaochuan/obj_hongliukaochuan.yy",}
+    {"name":"obj_hongliukaochuan","path":"objects/obj_hongliukaochuan/obj_hongliukaochuan.yy",},
+    {"name":"obj_chunsun","path":"objects/obj_chunsun/obj_chunsun.yy",},
+    {"name":"obj_chunsun_spike","path":"objects/obj_chunsun_spike/obj_chunsun_spike.yy",},
+    {"name":"obj_chunsun_launch_fx","path":"objects/obj_chunsun_launch_fx/obj_chunsun_launch_fx.yy",},
   ],
 }

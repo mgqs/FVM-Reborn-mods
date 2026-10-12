@@ -1,5 +1,40 @@
 function mod_cards_init()
 {
+    mod_register_plant_lite("chunsun", [
+    {
+        name: "泡椒春笋",
+        shape: 0,
+        description: "泡椒春笋:准备一段时间后长出穿刺老鼠的春笋，攻击范围内陆、地鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 210),
+        atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120)
+    },
+    {
+        name: "火辣泡椒笋",
+        shape: 1,
+        description: "火辣泡椒笋:准备一段时间后长出穿刺老鼠的春笋，笋子存在时间延长",
+        hp: array_create(17, 50),
+        cost: array_create(17, 210),
+        atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120)
+    },
+    {
+        name: "望乡泡椒笋",
+        shape: 2,
+        description: "望乡泡椒笋:准备一段时间后长出穿刺老鼠的春笋，生长范围扩大到3*5",
+        hp: array_create(17, 50),
+        cost: array_create(17, 210),
+        atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120)
+    }], false);
+
     // 生肖卡注册（共12张，17级数据表）
     mod_register_plant_lite("yanyantu", [
     {

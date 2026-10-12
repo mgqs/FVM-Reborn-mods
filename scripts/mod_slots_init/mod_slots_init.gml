@@ -1,5 +1,10 @@
 function mod_slots_init()
 {
+    register_card("chunsun", obj_chunsun, [
+    { shape: 0, sprite: spr_chunsun, cost: 210, cooldown: 420, description: "泡椒春笋:准备一段时间后长出穿刺老鼠的春笋，攻击范围内陆、地鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", place_preview: spr_chunsun },
+    { shape: 1, sprite: spr_chunsun_1, cost: 210, cooldown: 420, description: "火辣泡椒笋:准备一段时间后长出穿刺老鼠的春笋，笋子存在时间延长", plant_type: "gridless", feature_type: "normal", target_card: "none", place_preview: spr_chunsun_1 },
+    { shape: 2, sprite: spr_chunsun_2, cost: 210, cooldown: 420, description: "望乡泡椒笋:准备一段时间后长出穿刺老鼠的春笋，生长范围扩大到3*5", plant_type: "gridless", feature_type: "normal", target_card: "none", place_preview: spr_chunsun_2 }]);
+
     // 生肖卡注册（共12张，每张3个形态）
     register_card("yanyantu", obj_yanyantu, [
     { shape: 0, sprite: spr_yanyantu, cost: 200, cooldown: 2400, description: "炎焱兔:3*3范围内火炉类卡片提升产能数量", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yanyantu },
