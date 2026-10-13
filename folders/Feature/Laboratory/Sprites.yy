@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"Sprites",
+  "folderPath":"folders/Feature/Laboratory/Sprites.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Sprites",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"11d0b69e-e3a4-429a-aead-1f36e7ad8b7f","path":"sprites/spr_clearance_icon/spr_clearance_icon.yy",},
+    {"name":"02736cfc-d426-4729-8db9-8c41e557113a","path":"sprites/spr_clearance_icon_old/spr_clearance_icon_old.yy",},
+    {"name":"1c4a86e1-1707-4da3-bd52-a9a8b5de62c0","path":"sprites/spr_clock/spr_clock.yy",},
+    {"name":"4e121a88-9861-4400-af02-417d647bbbd2","path":"sprites/spr_create_room/spr_create_room.yy",},
+    {"name":"3c7eee24-80f8-4478-8e8b-2d2f47a3076b","path":"sprites/spr_doctor_shop/spr_doctor_shop.yy",},
+    {"name":"b1e8b941-ba13-4c90-8e1b-0c79a9eb9aa3","path":"sprites/spr_first_wave_time/spr_first_wave_time.yy",},
+    {"name":"b0d4c614-99b6-4e6d-9b10-2a5b34521d12","path":"sprites/spr_laboratory_bg/spr_laboratory_bg.yy",},
+    {"name":"f9606009-1427-4282-9987-b3e2ff57eadc","path":"sprites/spr_laboratory_icon/spr_laboratory_icon.yy",},
+    {"name":"268d8004-2b86-4fda-8546-156db07cafb4","path":"sprites/spr_my_stages/spr_my_stages.yy",},
+    {"name":"71a885a3-a055-4c23-8b1e-8beaa3feaa97","path":"sprites/spr_refresh_button/spr_refresh_button.yy",},
+    {"name":"1e6592e5-7b74-455e-8fa2-fb46887e8789","path":"sprites/spr_search_team/spr_search_team.yy",},
+    {"name":"28ff6940-eb2b-4a04-8209-16ff06c0d066","path":"sprites/spr_stage_detail/spr_stage_detail.yy",},
+    {"name":"f55bab3f-f85a-4287-a7d2-6eaa1f365901","path":"sprites/spr_stage_item/spr_stage_item.yy",}
+  ],
+}

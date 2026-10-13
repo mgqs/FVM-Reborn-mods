@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"brazier",
+  "folderPath":"folders/精灵/Cards/Assistant/brazier.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"brazier",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ff353c0e-2822-4914-a6d7-e49bf69c1066","path":"sprites/spr_brazier/spr_brazier.yy",},
+    {"name":"9d708b03-9637-467e-8a3b-fd4acd2b2680","path":"sprites/spr_brazier_1/spr_brazier_1.yy",},
+    {"name":"a4b621a1-b95f-492b-a38d-14493ba56c07","path":"sprites/spr_brazier_2/spr_brazier_2.yy",}
+  ],
+}

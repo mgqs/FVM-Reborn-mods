@@ -1,0 +1,20 @@
+damage = 0;
+move_speed = 0;
+damage_type = "pierce";
+target_type = "all";
+timer = 0;
+shape = 0;
+hitted_enemy = ds_list_create();
+hittable_types = get_hittable_enemy_types(target_type);
+hit_tick = 0;
+ash_kill = false;
+image_xscale = 1.5;
+image_yscale = 1.5;
+
+start_col = 8;
+middle_col = 7;
+end_col = 6;
+current_col = 8;
+col_hit_count = ds_map_create();
+phase = 0;
+horizontal_speed = 2;

@@ -9,7 +9,8 @@ switch (shape_dead)
         break;
     
     case 3:
-        timer = 14;
+        // The final Aurora form has no post-animation hold frame.
+        timer = 0;
         break;
     
     default:

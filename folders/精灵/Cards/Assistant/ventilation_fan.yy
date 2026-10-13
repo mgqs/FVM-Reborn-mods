@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"ventilation_fan",
+  "folderPath":"folders/精灵/Cards/Assistant/ventilation_fan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ventilation_fan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2ecc17e5-c1f2-445b-b615-8ca628980a9f","path":"sprites/spr_ventilation_fan/spr_ventilation_fan.yy",},
+    {"name":"96a43895-af2d-4cd2-9715-0572a60d9921","path":"sprites/spr_ventilation_fan_1/spr_ventilation_fan_1.yy",},
+    {"name":"a37d8c8e-5b4a-4aef-a771-9054d94bfd3f","path":"sprites/spr_ventilation_fan_2/spr_ventilation_fan_2.yy",}
+  ],
+}

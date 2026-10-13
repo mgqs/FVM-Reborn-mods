@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"arson_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/arson_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"arson_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"0d74df72-dae1-40ad-a846-31a114db30bb","path":"sprites/spr_arson_mouse/spr_arson_mouse.yy",},
+    {"name":"410b917e-1f9a-46b0-953a-6be0936a7cfb","path":"sprites/spr_arson_mouse_bomb/spr_arson_mouse_bomb.yy",},
+    {"name":"b1eecf57-9ffa-46dc-aef4-599c01816401","path":"sprites/spr_arson_mouse_ready/spr_arson_mouse_ready.yy",},
+    {"name":"07fe82e3-f577-4d9d-b048-aec79ec25833","path":"sprites/spr_arson_mouse_throw/spr_arson_mouse_throw.yy",}
+  ],
+}

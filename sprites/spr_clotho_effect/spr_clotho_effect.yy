@@ -51,8 +51,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"clotho",
+    "path":"folders/精灵/mod/Cards/Assistant/clotho.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

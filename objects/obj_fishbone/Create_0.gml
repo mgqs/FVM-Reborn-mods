@@ -21,3 +21,5 @@ feature_type = "dwarf"
 target_type = "pierce"
 
 kill_list = ["engineering_vehicle_mouse","garbage_track_mouse","landmine_vehicle_mouse","hazelnut_cannon_mouse","snail_mouse"]
+
+array_push(kill_list, "longyuan_zhibuji");

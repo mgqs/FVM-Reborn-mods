@@ -5,7 +5,7 @@ if btn_type == "plus"{
 		max_value = 16
 	}
 	else if target_info == "shape"{
-		max_value = 2
+		max_value = obj_info_island_edit_menu.view_max_shape
 	}
 	else if target_info == "skill"{
 		max_value = 8
@@ -24,7 +24,7 @@ else if btn_type == "max"{
 		obj_info_island_edit_menu.target_current_info[? target_info] = 16
 	}
 	else if target_info == "shape"{
-		obj_info_island_edit_menu.target_current_info[? target_info] = 2
+		obj_info_island_edit_menu.target_current_info[? target_info] = obj_info_island_edit_menu.view_max_shape
 	}
 	else if target_info == "skill"{
 		obj_info_island_edit_menu.target_current_info[? target_info] = 8

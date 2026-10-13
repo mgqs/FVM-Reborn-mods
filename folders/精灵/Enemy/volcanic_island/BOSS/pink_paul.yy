@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"pink_paul",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/pink_paul.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pink_paul",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a7fe3243-4e77-420d-b6e3-7af359c8bca3","path":"sprites/spr_pink_paul_appear/spr_pink_paul_appear.yy",},
+    {"name":"5ddb7783-a400-4dc5-b9cf-6cf3b9a7e970","path":"sprites/spr_pink_paul_bullet/spr_pink_paul_bullet.yy",},
+    {"name":"fafe313b-1775-4f11-97e6-1f0af8391dbc","path":"sprites/spr_pink_paul_bullet_effect/spr_pink_paul_bullet_effect.yy",},
+    {"name":"d32ff98d-481c-4e43-8286-95b1fed957ad","path":"sprites/spr_pink_paul_death/spr_pink_paul_death.yy",},
+    {"name":"b8581658-b249-48b4-9b27-5818a21371b8","path":"sprites/spr_pink_paul_disappear/spr_pink_paul_disappear.yy",},
+    {"name":"dd324eff-c9a7-4f00-ab77-dbbc7a7f6169","path":"sprites/spr_pink_paul_idle/spr_pink_paul_idle.yy",},
+    {"name":"76d7f288-8d78-4a87-bcab-4ba5161476a7","path":"sprites/spr_pink_paul_skill_1/spr_pink_paul_skill_1.yy",},
+    {"name":"ecfdebe6-fd88-4168-8268-e004d0e952f7","path":"sprites/spr_pink_paul_skill_2/spr_pink_paul_skill_2.yy",},
+    {"name":"36b4616b-c69e-463c-878e-70bf7c12ba04","path":"sprites/spr_pink_paul_tentacle/spr_pink_paul_tentacle.yy",},
+    {"name":"73ec8daa-38d5-4cb7-9269-f72f1a486655","path":"sprites/spr_pink_paul_tentacle_drop/spr_pink_paul_tentacle_drop.yy",}
+  ],
+}

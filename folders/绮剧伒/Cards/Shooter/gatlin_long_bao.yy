@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"gatlin_long_bao",
+  "folderPath":"folders/精灵/Cards/Shooter/gatlin_long_bao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"gatlin_long_bao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

@@ -10,8 +10,8 @@
   "name":"obj_hades_scythe",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cards",
-    "path":"folders/物体/mod/Cards.yy",
+    "name":"germ",
+    "path":"folders/物体/mod/germ.yy",
   },
   "parentObjectId":null,
   "persistent":false,

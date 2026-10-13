@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"abyss_pharaoh",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/abyss_pharaoh.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"abyss_pharaoh",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"63109cb9-a322-4201-ae98-4a29a6a0bd41","path":"sprites/spr_abyss_pharaoh_appear/spr_abyss_pharaoh_appear.yy",},
+    {"name":"1d40f6bf-0c4b-439d-a416-b988e6229a92","path":"sprites/spr_abyss_pharaoh_death/spr_abyss_pharaoh_death.yy",},
+    {"name":"05528218-8385-4748-a52a-3fc56efdc191","path":"sprites/spr_abyss_pharaoh_idle/spr_abyss_pharaoh_idle.yy",},
+    {"name":"e3e46d2d-f0a8-42a0-8422-a2bbae800721","path":"sprites/spr_abyss_pharaoh_skill_1/spr_abyss_pharaoh_skill_1.yy",},
+    {"name":"9f44e3a7-aa79-4ce3-a434-eff0ab6af91e","path":"sprites/spr_abyss_pharaoh_skill_2/spr_abyss_pharaoh_skill_2.yy",},
+    {"name":"6c0d86bf-e77d-414e-81f8-d2a0b78e3e08","path":"sprites/spr_abyss_pharaoh_skill_3/spr_abyss_pharaoh_skill_3.yy",}
+  ],
+}

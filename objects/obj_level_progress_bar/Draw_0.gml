@@ -24,6 +24,16 @@ if obj_battle.level_stage == "boss"{
 		diff_text = "星际"
 		draw_set_colour(c_purple)
 	}
+	else if global.difficulty == 4{
+		diff_text = "永恒"
+		draw_set_colour(c_fuchsia)
+	}
+	else if global.difficulty == 5{
+		diff_text = "不朽"
+		draw_set_colour(c_orange)
+	}
+	if (is_gacha_mode()) diff_text += (global.play_mode == 1 ? "·抽卡" : "·欧皇");
+	else if (is_random_gift_mode()) diff_text += "·随机礼盒";
 	draw_text(x-230+string_width(level_text),y-42,diff_text)
 	exit
 }
@@ -120,5 +130,15 @@ else if global.difficulty == 3{
 	diff_text = "星际"
 	draw_set_colour(c_purple)
 }
+else if global.difficulty == 4{
+	diff_text = "永恒"
+	draw_set_colour(c_fuchsia)
+}
+else if global.difficulty == 5{
+	diff_text = "不朽"
+	draw_set_colour(c_orange)
+}
+if (is_gacha_mode()) diff_text += (global.play_mode == 1 ? "·抽卡" : "·欧皇");
+else if (is_random_gift_mode()) diff_text += "·随机礼盒";
 
 draw_text(x-230+string_width(level_text),y-42,diff_text)

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"flight_barrier_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/flight_barrier_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flight_barrier_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2eddcf16-e659-4416-8cbb-3e04ddf718bb","path":"sprites/spr_flight_barrier_mouse_air/spr_flight_barrier_mouse_air.yy",},
+    {"name":"fe98f230-57ea-428e-96fe-077bd438fff4","path":"sprites/spr_flight_barrier_mouse_air_without_pig/spr_flight_barrier_mouse_air_without_pig.yy",},
+    {"name":"afea0228-b355-4c9e-a365-d8d8cb4e48e1","path":"sprites/spr_flight_barrier_mouse_drop/spr_flight_barrier_mouse_drop.yy",},
+    {"name":"6779a71f-7f17-4d9d-ae3a-89410099f9d8","path":"sprites/spr_flight_barrier_mouse_land/spr_flight_barrier_mouse_land.yy",},
+    {"name":"e386c616-25fc-45ab-8003-33ca4c11984b","path":"sprites/spr_flight_barrier_mouse_pig/spr_flight_barrier_mouse_pig.yy",}
+  ],
+}

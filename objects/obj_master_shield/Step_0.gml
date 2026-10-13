@@ -4,6 +4,8 @@ if (global.is_paused)
 grid_row = parent_player.grid_row;
 grid_col = parent_player.grid_col;
 depth = parent_player.depth - 1;
+origin_x = parent_player.x;
+origin_y = parent_player.y;
 timer++;
 
 if (parent_player.state == 0)
@@ -116,3 +118,18 @@ if (divine_holy_gem)
     }
 }
 
+if (divine_shenji_gem && (timer % 150) == 0)
+{
+    with (obj_enemy_parent)
+    {
+        var row_diff = grid_row - other.grid_row;
+        var col_diff = grid_col - other.grid_col;
+        if (hp > 0 && row_diff >= -2 && row_diff <= 2 && col_diff >= -2 && col_diff <= 2)
+        {
+            var shenji_damage = round((hp * other.shenji_reflect_ratio) + other.shenji_bleed_damage);
+            damage_amount = min(shenji_damage, other.shenji_max_damage);
+            damage_type = "normal";
+            event_user(0);
+        }
+    }
+}

@@ -46,8 +46,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"spoon_rabbit",
+    "path":"folders/精灵/mod/Cards/Pult/spoon_rabbit.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Menu",
+  "folderPath":"folders/物体/Battle/Menu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Menu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_pause_menu","path":"objects/obj_pause_menu/obj_pause_menu.yy",},
+    {"name":"obj_quit_confirm","path":"objects/obj_quit_confirm/obj_quit_confirm.yy",},
+    {"name":"obj_restart_confirm","path":"objects/obj_restart_confirm/obj_restart_confirm.yy",}
+  ],
+}

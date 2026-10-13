@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"water_pipe_libra",
+  "folderPath":"folders/精灵/UI/Attire/water_pipe_libra.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"water_pipe_libra",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"323ca3ca-da7c-4472-b741-f22659159b59","path":"sprites/spr_water_pipe_libra/spr_water_pipe_libra.yy",},
+    {"name":"f38c430e-3597-46c2-9d96-47a4a2ab18b4","path":"sprites/spr_water_pipe_libra_1/spr_water_pipe_libra_1.yy",},
+    {"name":"f87e3f3e-54be-444e-931b-faef675e210b","path":"sprites/spr_water_pipe_libra_2/spr_water_pipe_libra_2.yy",},
+    {"name":"a3ab444c-d6d4-4e18-b3e4-9d8cdd1d8c71","path":"sprites/spr_water_pipe_libra_bullet/spr_water_pipe_libra_bullet.yy",}
+  ],
+}

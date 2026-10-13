@@ -47,5 +47,6 @@ if (enemy_count > 0)
         inst.target_y = enemy_y;
         inst.move_speed = 40;
         inst.shape = shape;
+        inst.row = target_enemy.grid_row;
     }
 }

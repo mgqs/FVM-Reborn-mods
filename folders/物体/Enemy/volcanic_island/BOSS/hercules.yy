@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"hercules",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/hercules.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hercules",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_hercules","path":"objects/obj_hercules/obj_hercules.yy",},
+    {"name":"obj_hercules_laser","path":"objects/obj_hercules_laser/obj_hercules_laser.yy",}
+  ],
+}

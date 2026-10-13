@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_wanpilong",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_wanpilong.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_wanpilong",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"74f69157-6af7-448f-903d-92ff12726a48","path":"sprites/spr_wanpilong/spr_wanpilong.yy",},
+    {"name":"4a8c5857-4b83-492e-800f-f83508523708","path":"sprites/spr_wanpilong_1/spr_wanpilong_1.yy",},
+    {"name":"f60a3a58-91c3-4377-a05e-334135e1269b","path":"sprites/spr_wanpilong_2/spr_wanpilong_2.yy",}
+  ],
+}

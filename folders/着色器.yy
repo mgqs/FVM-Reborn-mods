@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"着色器",
+  "folderPath":"folders/着色器.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"着色器",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"hit_effect","path":"shaders/hit_effect/hit_effect.yy",},
+    {"name":"hit_effect_2","path":"shaders/hit_effect_2/hit_effect_2.yy",}
+  ],
+}

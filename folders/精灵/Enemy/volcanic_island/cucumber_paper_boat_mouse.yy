@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"cucumber_paper_boat_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/cucumber_paper_boat_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cucumber_paper_boat_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"9f410a27-16bb-42b3-9990-2a7d0b6f3bc0","path":"sprites/spr_cucumber_paper_boat_mouse/spr_cucumber_paper_boat_mouse.yy",},
+    {"name":"1d14da4b-1041-41c1-8dbd-701707351baf","path":"sprites/spr_cucumber_paper_boat_mouse_enter/spr_cucumber_paper_boat_mouse_enter.yy",},
+    {"name":"bd647c82-ea52-4c66-9df1-84627982479b","path":"sprites/spr_cucumber_paper_boat_mouse_land/spr_cucumber_paper_boat_mouse_land.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"warrior_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/warrior_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"warrior_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2efadeb8-0d68-437a-bbb2-dd47a36cae1b","path":"sprites/spr_warrior_minion_mouse/spr_warrior_minion_mouse.yy",},
+    {"name":"7f739d51-6dcd-4753-ac54-5dd2d96ef88b","path":"sprites/spr_warrior_minion_mouse_summon/spr_warrior_minion_mouse_summon.yy",},
+    {"name":"d2fe8752-7c12-4665-a60c-1f4b108b4ad5","path":"sprites/spr_warrior_mouse/spr_warrior_mouse.yy",},
+    {"name":"b42c323c-fe1d-461b-8e59-f4001de52e7b","path":"sprites/spr_warrior_mouse_summon/spr_warrior_mouse_summon.yy",}
+  ],
+}

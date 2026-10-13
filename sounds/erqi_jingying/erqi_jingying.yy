@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"erqi_jingying",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":65.45449,
+  "exportDir":"",
+  "name":"erqi_jingying",
+  "parent":{
+    "name":"longyuan",
+    "path":"folders/声音/Battle BGM/longyuan.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"erqi_jingying.mp3",
+  "volume":1.0,
+}

@@ -6,10 +6,10 @@ damage_type = "normal"
 target_type = "all"
 burnt = 0
 brazier_list = ds_list_create()
-image_xscale = 1.8
-image_yscale = 1.8
 image_alpha = 0
 image_angle = 270
 y_offset = 0
 
 pos_set = 0
+image_xscale = 1.8
+image_yscale = 1.8

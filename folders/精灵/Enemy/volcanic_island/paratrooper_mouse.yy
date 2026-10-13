@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"paratrooper_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/paratrooper_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"paratrooper_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f171c1a8-c351-4c26-8edb-4d60fe089435","path":"sprites/spr_paratrooper_mouse/spr_paratrooper_mouse.yy",},
+    {"name":"feb8dc27-3300-4e79-844e-3cd433153234","path":"sprites/spr_paratrooper_mouse_air/spr_paratrooper_mouse_air.yy",},
+    {"name":"7cbfe033-8d02-4fa1-ada0-54f8043b574f","path":"sprites/spr_paratrooper_mouse_shield/spr_paratrooper_mouse_shield.yy",}
+  ],
+}

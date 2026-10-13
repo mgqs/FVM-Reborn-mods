@@ -325,7 +325,7 @@ function slots_init(){
 	register_card("coal_starfish", obj_coal_starfish, [
 	    {"shape":0, "sprite":spr_coal_starfish, "cost":175, "cooldown":7*60, "description":"炭烧海星：向五个方向发射星星，陆地窒息","plant_type":"normal","feature_type":"amphi","target_card":"none"},
 		{"shape":1, "sprite":spr_coal_starfish_1, "cost":175, "cooldown":7*60, "description":"芝士焗海星：向五个方向发射星星","plant_type":"normal","feature_type":"amphi","target_card":"none"},
-		{"shape":2, "sprite":spr_coal_starfish_2_icon, "cost":225, "cooldown":7*60, "description":"芥末海星刺身：向五个方向发射两颗星星","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_coal_starfish_2}
+		{"shape":2, "sprite":spr_coal_starfish_2_icon, "cost":175, "cooldown":7*60, "description":"芥末海星刺身：向五个方向发射两颗星星","plant_type":"normal","feature_type":"amphi","target_card":"none","place_preview":spr_coal_starfish_2}
 	]);
 	register_card("horseshoe_crab_bread",obj_horseshoe_crab_bread,[
 		{"shape":0,"sprite":spr_horseshoe_crab_bread_0_0,"cost":150,"cooldown":30*60,"description":"老虎蟹面包：阻挡剑鱼鼠冲刺","plant_type":"normal","feature_type":"normal","target_card":"none"},

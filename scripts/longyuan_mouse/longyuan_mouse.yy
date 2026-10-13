@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"longyuan_mouse",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"longyuan_mouse",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -8,5 +8,12 @@ if button_pushed{
 		global.gui_stack.to(room_battle)
 		texture_prefetch("bullet")
 		texture_prefetch("effects")
+		if global.map_id == "tower_cake"{
+			texture_prefetch("enemy_tower")
+		}
+		else if global.map_id == "undersea_vortex"{
+			texture_prefetch("pack_undersea_vortex")
+		}
+		texture_prefetch("time_god")
 	}
 }

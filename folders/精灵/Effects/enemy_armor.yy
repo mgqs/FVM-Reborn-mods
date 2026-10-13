@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"enemy_armor",
+  "folderPath":"folders/精灵/Effects/enemy_armor.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"enemy_armor",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fef52239-7497-4654-bb22-df5d32844789","path":"sprites/spr_can/spr_can.yy",},
+    {"name":"257f6d98-a441-434c-9fa8-040c279eea29","path":"sprites/spr_football_helmet/spr_football_helmet.yy",},
+    {"name":"0123cc5a-6479-41eb-bb2a-6d6f5c110ab0","path":"sprites/spr_ladder_shield/spr_ladder_shield.yy",},
+    {"name":"fe35c9bb-c8e1-485b-84d3-4cf98bc4a9c7","path":"sprites/spr_landlady_shield/spr_landlady_shield.yy",},
+    {"name":"ff75ad3d-440d-4095-8fc1-a4ab6f92b998","path":"sprites/spr_pan_helmet/spr_pan_helmet.yy",},
+    {"name":"993e6053-e036-468a-86b2-239aafbda9be","path":"sprites/spr_roller_helmet/spr_roller_helmet.yy",},
+    {"name":"1b6b19d5-654b-476d-9ab4-5016ae5ac111","path":"sprites/spr_weed_helmet/spr_weed_helmet.yy",}
+  ],
+}

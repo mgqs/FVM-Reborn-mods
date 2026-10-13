@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"hulk_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/hulk_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hulk_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1caee501-0640-44be-b319-178c862e2a57","path":"sprites/spr_hulk_mouse_appear/spr_hulk_mouse_appear.yy",},
+    {"name":"fb48f178-5ffe-4a25-8cd4-84ebb167b4da","path":"sprites/spr_hulk_mouse_death/spr_hulk_mouse_death.yy",},
+    {"name":"6eb896c9-e875-4249-b66a-9137961860ee","path":"sprites/spr_hulk_mouse_idle/spr_hulk_mouse_idle.yy",},
+    {"name":"76fdb33e-0060-4b7e-9a79-121152fd9214","path":"sprites/spr_hulk_mouse_move_fast/spr_hulk_mouse_move_fast.yy",},
+    {"name":"4b5b7ec1-44ff-4652-8b38-fc82a4edaf43","path":"sprites/spr_hulk_mouse_move_slow/spr_hulk_mouse_move_slow.yy",},
+    {"name":"748bd65d-94e6-43b2-beb7-7045597a680e","path":"sprites/spr_hulk_mouse_skill_1/spr_hulk_mouse_skill_1.yy",},
+    {"name":"bea2d6ed-7c2f-4da8-83d6-98ae18906a66","path":"sprites/spr_hulk_mouse_skill_1_ready/spr_hulk_mouse_skill_1_ready.yy",},
+    {"name":"1c14761a-c409-4de5-bdc0-37e8f99698f4","path":"sprites/spr_hulk_mouse_skill_2/spr_hulk_mouse_skill_2.yy",},
+    {"name":"828c60d8-a0f8-4d15-87da-f1f04d8d6c1a","path":"sprites/spr_hulk_mouse_skill_3/spr_hulk_mouse_skill_3.yy",},
+    {"name":"d87e0ec9-9e2b-4e60-b996-1bef19033e2b","path":"sprites/spr_hulk_mouse_skill_effect_1/spr_hulk_mouse_skill_effect_1.yy",},
+    {"name":"97266ebd-2a8d-433e-8a46-2d313ac41fea","path":"sprites/spr_hulk_mouse_skill_effect_2/spr_hulk_mouse_skill_effect_2.yy",},
+    {"name":"7c7da735-3076-4e34-bcdd-a2ed89fb98ce","path":"sprites/spr_hulk_mouse_skill_effect_3/spr_hulk_mouse_skill_effect_3.yy",}
+  ],
+}

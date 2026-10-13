@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"sawblade_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/sawblade_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sawblade_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"3eecaa09-bf7f-4ce2-aaf0-f21d89a1f9c4","path":"sprites/spr_sawblade_mouse/spr_sawblade_mouse.yy",},
+    {"name":"599576b2-a622-4e62-99c4-d056bae7223e","path":"sprites/spr_sawblade_mouse_appear/spr_sawblade_mouse_appear.yy",},
+    {"name":"9a9c6580-2744-4872-bb28-fe88d9ecc506","path":"sprites/spr_sawblade_mouse_dig/spr_sawblade_mouse_dig.yy",},
+    {"name":"8194ed16-ddb3-4ced-b1d0-8de272bd723e","path":"sprites/spr_sawblade_mouse_stun/spr_sawblade_mouse_stun.yy",}
+  ],
+}

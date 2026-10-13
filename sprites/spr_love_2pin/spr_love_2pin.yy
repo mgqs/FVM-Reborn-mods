@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"love_god",
+    "path":"folders/精灵/mod/Cards/Shooter/love_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

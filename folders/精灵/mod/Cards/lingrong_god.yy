@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"lingrong_god",
+  "folderPath":"folders/精灵/mod/Cards/lingrong_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lingrong_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"76ecdd13-812e-455a-9dc6-4e0f66948b2c","path":"sprites/spr_lingrong_god/spr_lingrong_god.yy",},
+    {"name":"76a7d1fa-cb1f-4cdf-9fa0-0df1dc2c8110","path":"sprites/spr_lingrong_god_1/spr_lingrong_god_1.yy",},
+    {"name":"450be4c7-8e20-4ab4-ae41-c5fd2945abee","path":"sprites/spr_lingrong_god_2/spr_lingrong_god_2.yy",},
+    {"name":"ee27196d-77be-48be-b22b-385ab700228b","path":"sprites/spr_lingrong_god_pin1/spr_lingrong_god_pin1.yy",},
+    {"name":"5504f665-ca49-41ca-bde9-b6b98afedd1d","path":"sprites/spr_lingrong_god_pin2/spr_lingrong_god_pin2.yy",}
+  ],
+}

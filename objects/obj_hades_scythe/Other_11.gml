@@ -1,5 +1,6 @@
 var inst = instance_create_depth(x + 120, y + 50, depth - 500, obj_hades_scythe_bullet);
 inst.damage = atk;
+inst.slow_timer = slow_timer;
 inst.shape_b = bullet_shape;
 
 switch (inst.shape_b)

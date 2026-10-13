@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Shop",
+  "folderPath":"folders/物体/Menu/Shop.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shop",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_closeshop_btn","path":"objects/obj_closeshop_btn/obj_closeshop_btn.yy",},
+    {"name":"obj_shop_bg","path":"objects/obj_shop_bg/obj_shop_bg.yy",},
+    {"name":"obj_shop_buy_btn","path":"objects/obj_shop_buy_btn/obj_shop_buy_btn.yy",},
+    {"name":"obj_shop_buy_confirm","path":"objects/obj_shop_buy_confirm/obj_shop_buy_confirm.yy",},
+    {"name":"obj_shop_change_btn","path":"objects/obj_shop_change_btn/obj_shop_change_btn.yy",},
+    {"name":"obj_shop_page_btn","path":"objects/obj_shop_page_btn/obj_shop_page_btn.yy",},
+    {"name":"obj_shop_select_btn","path":"objects/obj_shop_select_btn/obj_shop_select_btn.yy",}
+  ],
+}

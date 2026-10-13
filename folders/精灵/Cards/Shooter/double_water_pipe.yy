@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"double_water_pipe",
+  "folderPath":"folders/精灵/Cards/Shooter/double_water_pipe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"double_water_pipe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"17e1d51a-d5bf-4bb1-a12e-7b354d291d24","path":"sprites/spr_double_water_pipe/spr_double_water_pipe.yy",},
+    {"name":"24bf7f5e-a5e3-4b04-b92c-05548f78fee4","path":"sprites/spr_double_water_pipe_1/spr_double_water_pipe_1.yy",},
+    {"name":"a515d0ad-a2ee-4300-a443-25174279be78","path":"sprites/spr_double_water_pipe_2/spr_double_water_pipe_2.yy",}
+  ],
+}

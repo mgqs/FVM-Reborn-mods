@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"Bullet",
+    "path":"folders/精灵/mod/Bullet.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

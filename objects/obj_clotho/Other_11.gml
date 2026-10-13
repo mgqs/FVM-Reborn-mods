@@ -7,19 +7,14 @@ if (shape == 2)
 else if (shape == 3)
     row_offset = 3;
 
-var max_level_offset = 0;
-
-if (shape == 2)
-    max_level_offset = 1;
-else if (shape == 3)
-    max_level_offset = 2;
+var max_level_offset = 2;
 
 with (obj_card_parent)
 {
     var dx = abs(grid_col - other.grid_col);
     var dy = abs(grid_row - other.grid_row);
     
-    if (plant_id != "clotho" && plant_id != "player" && dx <= col_offset && dy <= row_offset)
+    if (plant_id != "clotho" && plant_id != "player" && plant_id != "kuileima" && dx <= col_offset && dy <= row_offset)
     {
         var new_level = clamp(current_level + level_offset, 0, 16 + max_level_offset);
         

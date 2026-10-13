@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"egg_tropical_fish_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/egg_tropical_fish_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"egg_tropical_fish_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e779a3f3-6e7b-49fd-8e95-96722d31c6bd","path":"sprites/spr_egg_tropical_fish_mouse/spr_egg_tropical_fish_mouse.yy",},
+    {"name":"a07d70aa-4f48-46e6-a428-9f1e93f77126","path":"sprites/spr_egg_tropical_fish_mouse_enter/spr_egg_tropical_fish_mouse_enter.yy",},
+    {"name":"0bd4fe30-3dfd-4c39-bac5-a225c011622c","path":"sprites/spr_egg_tropical_fish_mouse_enter_helmet/spr_egg_tropical_fish_mouse_enter_helmet.yy",},
+    {"name":"783f88db-4b26-43ec-8b1c-bdc92173caf9","path":"sprites/spr_egg_tropical_fish_mouse_helmet/spr_egg_tropical_fish_mouse_helmet.yy",},
+    {"name":"d0367935-c5b3-488b-8857-198f9771dbf1","path":"sprites/spr_egg_tropical_fish_mouse_land/spr_egg_tropical_fish_mouse_land.yy",},
+    {"name":"0fe2d3c7-ea8d-4282-a824-0032c83d5467","path":"sprites/spr_egg_tropical_fish_mouse_land_helmet/spr_egg_tropical_fish_mouse_land_helmet.yy",}
+  ],
+}

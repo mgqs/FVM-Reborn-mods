@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"soda_bubble",
+  "folderPath":"folders/精灵/Cards/Vehicle/soda_bubble.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"soda_bubble",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"189014ac-ce01-45e9-a67f-305f41b5aae7","path":"sprites/spr_soda_bubble_0_0/spr_soda_bubble_0_0.yy",},
+    {"name":"e65391b0-ffef-4973-a2b6-d47a35a1e82a","path":"sprites/spr_soda_bubble_0_1/spr_soda_bubble_0_1.yy",},
+    {"name":"87720062-99d8-4c47-9c72-8f1072280449","path":"sprites/spr_soda_bubble_0_2/spr_soda_bubble_0_2.yy",},
+    {"name":"2c17455e-6c17-4773-912f-be99d7879c97","path":"sprites/spr_soda_bubble_1_0/spr_soda_bubble_1_0.yy",},
+    {"name":"5ea3b8b7-c48b-4445-b6e0-c89c6d10519e","path":"sprites/spr_soda_bubble_1_1/spr_soda_bubble_1_1.yy",},
+    {"name":"357d1d74-6343-4f12-af0b-5b853852f2f6","path":"sprites/spr_soda_bubble_1_2/spr_soda_bubble_1_2.yy",}
+  ],
+}

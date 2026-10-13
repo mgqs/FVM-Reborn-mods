@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Stars",
+  "folderPath":"folders/物体/Stars.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Stars",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_stars","path":"objects/obj_stars/obj_stars.yy",}
+  ],
+}

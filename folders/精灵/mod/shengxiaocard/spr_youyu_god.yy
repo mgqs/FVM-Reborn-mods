@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_youyu_god",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_youyu_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_youyu_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8a8490f0-ad04-4819-aa20-0cdae268fa39","path":"sprites/spr_youyu_god/spr_youyu_god.yy",},
+    {"name":"907ce1c1-1df8-4f40-8565-94a21decf64a","path":"sprites/spr_youyu_god_1/spr_youyu_god_1.yy",},
+    {"name":"0ef23926-ecee-4701-8786-643366da40ec","path":"sprites/spr_youyu_god_2/spr_youyu_god_2.yy",},
+    {"name":"22b76336-c63f-4787-9efd-dd0e39ebfc89","path":"sprites/spr_youyu_god_bullet/spr_youyu_god_bullet.yy",},
+    {"name":"ad81f8aa-5369-4864-8417-7e2de2878bc5","path":"sprites/spr_youyu_god_bullet_1/spr_youyu_god_bullet_1.yy",},
+    {"name":"9f72d04d-d09a-4807-9650-8c7e1c6ea4d3","path":"sprites/spr_youyu_god_bullet_2/spr_youyu_god_bullet_2.yy",}
+  ],
+}

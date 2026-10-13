@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"pharaoh",
+  "folderPath":"folders/精灵/Enemy/delicious_island/BOSS/pharaoh.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pharaoh",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"96d9ecf6-bce0-4dd9-bd75-34802b8f9ff0","path":"sprites/spr_pharaoh_bandage/spr_pharaoh_bandage.yy",},
+    {"name":"fad36b7c-58f1-4a55-8b57-e1d452d12276","path":"sprites/spr_pharaoh_coffin/spr_pharaoh_coffin.yy",},
+    {"name":"5cfdb8f3-bd08-4129-a0d4-ee6e93395326","path":"sprites/spr_temple_pharaoh_appear/spr_temple_pharaoh_appear.yy",},
+    {"name":"3c6ef431-349d-42c8-8eb6-f0974bd05d52","path":"sprites/spr_temple_pharaoh_death/spr_temple_pharaoh_death.yy",},
+    {"name":"05ac0936-d16c-42e6-833b-bcc9c7894a7f","path":"sprites/spr_temple_pharaoh_disappear/spr_temple_pharaoh_disappear.yy",},
+    {"name":"2d318809-acd4-4838-9f42-cc85c3b933c8","path":"sprites/spr_temple_pharaoh_idle/spr_temple_pharaoh_idle.yy",},
+    {"name":"349963b2-98d2-42e2-9e61-64d86e883eb9","path":"sprites/spr_temple_pharaoh_skill_1/spr_temple_pharaoh_skill_1.yy",},
+    {"name":"8577c040-fdc2-47f0-ab40-0256fe552f2f","path":"sprites/spr_temple_pharaoh_skill_1_ready/spr_temple_pharaoh_skill_1_ready.yy",},
+    {"name":"9d41b958-de24-4f91-9b3e-0f9f8cebe3ac","path":"sprites/spr_temple_pharaoh_skill_2/spr_temple_pharaoh_skill_2.yy",}
+  ],
+}

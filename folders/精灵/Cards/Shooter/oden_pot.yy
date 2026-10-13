@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"oden_pot",
+  "folderPath":"folders/精灵/Cards/Shooter/oden_pot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"oden_pot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"84fd6df7-5225-43ab-ada9-8b1937659ac2","path":"sprites/spr_oden_pot/spr_oden_pot.yy",},
+    {"name":"eee0de47-65d4-49f1-b148-0e1c00ca185e","path":"sprites/spr_oden_pot_1/spr_oden_pot_1.yy",},
+    {"name":"f3974571-235f-45af-a486-0e03b95c64fc","path":"sprites/spr_oden_pot_2/spr_oden_pot_2.yy",},
+    {"name":"01ec1a21-7a5d-4707-bd1b-0d591a90fea1","path":"sprites/spr_oden_pot_sleep/spr_oden_pot_sleep.yy",}
+  ],
+}

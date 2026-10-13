@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"kamikaze_glider_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/kamikaze_glider_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kamikaze_glider_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"f8f2fe4a-b823-490b-b94f-c1d901231746","path":"sprites/spr_kamikaze_glider_mouse_air/spr_kamikaze_glider_mouse_air.yy",},
+    {"name":"75ce7acb-5002-4bf8-9662-f9a2ae5feeb0","path":"sprites/spr_kamikaze_glider_mouse_drop/spr_kamikaze_glider_mouse_drop.yy",},
+    {"name":"c6392150-0131-4685-b74b-762b6457aa5a","path":"sprites/spr_kamikaze_glider_mouse_effect/spr_kamikaze_glider_mouse_effect.yy",},
+    {"name":"5f995ce0-ff7f-467e-93f8-bc19633723a6","path":"sprites/spr_kamikaze_glider_mouse_land/spr_kamikaze_glider_mouse_land.yy",}
+  ],
+}

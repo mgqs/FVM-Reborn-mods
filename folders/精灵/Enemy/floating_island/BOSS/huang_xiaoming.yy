@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"huang_xiaoming",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/huang_xiaoming.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"huang_xiaoming",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e2cdcebb-e5d7-4f99-aaf2-127f92caa6f1","path":"sprites/spr_huang_xiaoming_appear/spr_huang_xiaoming_appear.yy",},
+    {"name":"3aae6934-e2a1-42b4-98dd-b85e0da7568f","path":"sprites/spr_huang_xiaoming_death/spr_huang_xiaoming_death.yy",},
+    {"name":"7133c2c9-2685-43ca-b94b-28bef199d648","path":"sprites/spr_huang_xiaoming_disappear/spr_huang_xiaoming_disappear.yy",},
+    {"name":"60cbeef8-e9af-4c1e-a087-8d1ffe5a0e90","path":"sprites/spr_huang_xiaoming_idle/spr_huang_xiaoming_idle.yy",},
+    {"name":"c0ecde15-add5-49ca-a683-5fe6c18b561b","path":"sprites/spr_huang_xiaoming_skill_1/spr_huang_xiaoming_skill_1.yy",},
+    {"name":"29044f92-4aea-4c39-a504-df44daab6a32","path":"sprites/spr_huang_xiaoming_skill_2/spr_huang_xiaoming_skill_2.yy",},
+    {"name":"5b07b199-e347-4509-a909-3db658c3564b","path":"sprites/spr_huang_xiaoming_skill_2_ready/spr_huang_xiaoming_skill_2_ready.yy",},
+    {"name":"aa2a6280-fed1-46ea-8ccd-13edbcceea2a","path":"sprites/spr_huang_xiaoming_skill_3/spr_huang_xiaoming_skill_3.yy",},
+    {"name":"5b1c8e51-7aff-4072-80de-ae7663d74553","path":"sprites/spr_xiaoming_ice/spr_xiaoming_ice.yy",},
+    {"name":"659313f3-f2bb-4f85-8aad-7efea901115c","path":"sprites/spr_xiaoming_text_1/spr_xiaoming_text_1.yy",},
+    {"name":"4505e01d-6498-4789-9fe6-ef50b9b62bd7","path":"sprites/spr_xiaoming_text_2/spr_xiaoming_text_2.yy",},
+    {"name":"255dce18-cbd8-4191-90a0-5527137a4e90","path":"sprites/spr_xiaoming_text_3/spr_xiaoming_text_3.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"irritable_jack",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/irritable_jack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"irritable_jack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_irritable_jack","path":"objects/obj_irritable_jack/obj_irritable_jack.yy",},
+    {"name":"obj_irritable_jack_fire","path":"objects/obj_irritable_jack_fire/obj_irritable_jack_fire.yy",},
+    {"name":"obj_irritable_jack_fire_mouse","path":"objects/obj_irritable_jack_fire_mouse/obj_irritable_jack_fire_mouse.yy",},
+    {"name":"obj_irritable_jack_rock_skill_3","path":"objects/obj_irritable_jack_rock_skill_3/obj_irritable_jack_rock_skill_3.yy",},
+    {"name":"obj_irritable_jack_rock_skill_4","path":"objects/obj_irritable_jack_rock_skill_4/obj_irritable_jack_rock_skill_4.yy",}
+  ],
+}

@@ -38,8 +38,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"tianshen",
+    "path":"folders/精灵/mod/germ/tianshen.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

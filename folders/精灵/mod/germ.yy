@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"germ",
+  "folderPath":"folders/精灵/mod/germ.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"germ",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"star_wand","path":"folders/精灵/mod/germ/star_wand.yy",},
+    {"name":"aladdin_lamp","path":"folders/精灵/mod/germ/aladdin_lamp.yy",},
+    {"name":"rose_shield","path":"folders/精灵/mod/germ/rose_shield.yy",}
+  ],
+  "listItems":[],
+}

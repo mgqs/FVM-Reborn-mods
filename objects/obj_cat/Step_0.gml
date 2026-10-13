@@ -1,6 +1,7 @@
 if global.is_paused{
 	exit
 }
+
 timer ++
 switch (state) {
     case "idle":

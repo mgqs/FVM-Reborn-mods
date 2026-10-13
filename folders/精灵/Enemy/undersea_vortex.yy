@@ -1,0 +1,33 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_vortex",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_vortex",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"swordfish_mouse","path":"folders/精灵/Enemy/undersea_vortex/swordfish_mouse.yy",},
+    {"name":"BOSS","path":"folders/精灵/Enemy/undersea_vortex/BOSS.yy",},
+    {"name":"undersea_repairman_mouse","path":"folders/精灵/Enemy/undersea_vortex/undersea_repairman_mouse.yy",},
+    {"name":"undersea_penguin_mouse","path":"folders/精灵/Enemy/undersea_vortex/undersea_penguin_mouse.yy",},
+    {"name":"iron_diver_mouse","path":"folders/精灵/Enemy/undersea_vortex/iron_diver_mouse.yy",},
+    {"name":"eel_mouse","path":"folders/精灵/Enemy/undersea_vortex/eel_mouse.yy",},
+    {"name":"undersea_submarine","path":"folders/精灵/Enemy/undersea_vortex/undersea_submarine.yy",},
+    {"name":"clownfish_mouse","path":"folders/精灵/Enemy/undersea_vortex/clownfish_mouse.yy",},
+    {"name":"conch_mouse","path":"folders/精灵/Enemy/undersea_vortex/conch_mouse.yy",},
+    {"name":"seahorse_mouse","path":"folders/精灵/Enemy/undersea_vortex/seahorse_mouse.yy",},
+    {"name":"undersea_panda_mouse","path":"folders/精灵/Enemy/undersea_vortex/undersea_panda_mouse.yy",},
+    {"name":"undersea_can_mouse","path":"folders/精灵/Enemy/undersea_vortex/undersea_can_mouse.yy",},
+    {"name":"sardine_mouse","path":"folders/精灵/Enemy/undersea_vortex/sardine_mouse.yy",},
+    {"name":"windmill_fish_mouse","path":"folders/精灵/Enemy/undersea_vortex/windmill_fish_mouse.yy",}
+  ],
+  "listItems":[
+    {"name":"edd3fe91-ca27-46dc-ba6d-4089ac2c5160","path":"sprites/spr_oyster_mouse/spr_oyster_mouse.yy",},
+    {"name":"2e7c2934-bb76-4ba3-a0a7-06dd081ddc4c","path":"sprites/spr_undersea_captain_mouse/spr_undersea_captain_mouse.yy",},
+    {"name":"beb408fd-2558-48a4-bfa2-9c7a2834154a","path":"sprites/spr_undersea_diver_mouse/spr_undersea_diver_mouse.yy",}
+  ],
+}

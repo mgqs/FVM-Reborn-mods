@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"tar_sprayer",
+  "folderPath":"folders/精灵/Cards/Shooter/tar_sprayer.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tar_sprayer",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"4efc30ff-64bc-411f-8594-6b6105f2798a","path":"sprites/spr_tar_sprayer/spr_tar_sprayer.yy",},
+    {"name":"c93796c5-7ea3-4ba1-996b-36d2b77df64e","path":"sprites/spr_tar_sprayer_1/spr_tar_sprayer_1.yy",},
+    {"name":"1abcab4c-feaf-4612-98ea-e1fac23e26d6","path":"sprites/spr_tar_sprayer_2/spr_tar_sprayer_2.yy",}
+  ],
+}

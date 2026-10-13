@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"battle_finish_win",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"battle_finish_win",
+  "parent":{
+    "name":"Battle",
+    "path":"folders/脚本/Battle.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

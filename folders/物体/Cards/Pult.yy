@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"Pult",
+  "folderPath":"folders/物体/Cards/Pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_chocolate_pult","path":"objects/obj_chocolate_pult/obj_chocolate_pult.yy",},
+    {"name":"obj_egg_boiler_pult","path":"objects/obj_egg_boiler_pult/obj_egg_boiler_pult.yy",},
+    {"name":"obj_ice_egg_boiler_pult","path":"objects/obj_ice_egg_boiler_pult/obj_ice_egg_boiler_pult.yy",},
+    {"name":"obj_pan_fried_bun","path":"objects/obj_pan_fried_bun/obj_pan_fried_bun.yy",},
+    {"name":"obj_salad_pult","path":"objects/obj_salad_pult/obj_salad_pult.yy",},
+    {"name":"obj_stinky_tofu_pult","path":"objects/obj_stinky_tofu_pult/obj_stinky_tofu_pult.yy",},
+    {"name":"obj_sugar_ball_pult","path":"objects/obj_sugar_ball_pult/obj_sugar_ball_pult.yy",}
+  ],
+}

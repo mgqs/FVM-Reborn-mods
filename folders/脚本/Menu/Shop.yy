@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Shop",
+  "folderPath":"folders/脚本/Menu/Shop.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shop",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"goods_registry","path":"scripts/goods_registry/goods_registry.yy",},
+    {"name":"shop_init","path":"scripts/shop_init/shop_init.yy",}
+  ],
+}

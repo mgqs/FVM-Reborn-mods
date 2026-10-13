@@ -3,9 +3,24 @@ if global.is_paused{
 	exit
 }
 
+if (global.level_id == "test_level"
+    && ((variable_global_exists("test_mouse_picker_block_place") && global.test_mouse_picker_block_place)
+        || instance_exists(obj_info_island_bg)))
+{
+	exit
+}
+
 if card_id != "magic_chicken"{
 	current_cost = cost
-	if ds_map_find_value(global.plus_card_map,card_id) != undefined{
+	if (is_random_gift_mode() && card_id == "lihe") {
+		current_cost = 50;
+		cooldown = 600;
+	}
+	if (is_random_gift_mode() && card_id == "wanpilong") {
+		current_cost = 500;
+		cooldown = 1800;
+	}
+	if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,card_id) != undefined{
 		var plus_info = ds_map_find_value(global.plus_card_map,card_id)
 		with plus_info[0]{
 			if shape < plus_info[1]{
@@ -13,8 +28,13 @@ if card_id != "magic_chicken"{
 			}
 		}
 	}
+	if (is_random_gift_mode() && card_id == "lihe") current_cost = 50;
+	if (is_random_gift_mode() && card_id == "wanpilong") {
+		current_cost = 500;
+		cooldown = 1800;
+	}
 }
-if global.debug{
+if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
 }
 if cooldown_timer < cooldown{
@@ -125,14 +145,23 @@ if (is_selected) {
     if (mouse_check_button_pressed(mb_left)) {
         // 检查是否在可种植区域
 		
-        var card_shape = get_card_info_simple(card_id).shape
-		var card_data = deck_get_card_data(card_id,card_shape)
+        var card_data = noone
+		var _info = get_card_info_simple(card_id)
+		if _info != false{
+			var card_shape = _info.shape
+			card_data = deck_get_card_data(card_id,card_shape)
+		}
 		
 		if card_id == "magic_chicken"{
-			if global.prev_place_id != ""{
-				card_shape = get_card_info_simple(global.prev_place_id).shape
-				card_data = deck_get_card_data(global.prev_place_id,card_shape)
+			if global.last_placed_card_id != ""{
+				var _info2 = get_card_info_simple(global.last_placed_card_id)
+				if _info2 != false{
+					card_data = deck_get_card_data(global.last_placed_card_id,_info2.shape)
+				}
 			}
+		}
+		if card_data == noone{
+			exit
 		}
         
         var found_plat = noone;
@@ -187,7 +216,33 @@ if (is_selected) {
         
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
-        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"]));
+        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"],card_id));
+        if (is_random_gift_mode() && card_id == "lihe") {
+            // The pending effect is not in grid_plants yet, so check it explicitly.
+            var _gift_pending = false;
+            var _gift_count = instance_number(obj_random_gift_effect);
+            for (var _gift_i = 0; _gift_i < _gift_count; _gift_i++) {
+                var _gift_fx = instance_find(obj_random_gift_effect, _gift_i);
+                if (_gift_fx.spawn_col == logical_col && _gift_fx.spawn_row == logical_row) {
+                    _gift_pending = true;
+                    break;
+                }
+            }
+            can_plant = can_plant && !_gift_pending;
+        }
+
+        if (can_plant && card_id == "lingrong_god" && !global.replace_placement) {
+            var _plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
+            var _blocked_ids = ["lingrong_god", "cotton_candy", "soda_bubble", "wooden_plate"];
+            for (var _i = 0; _i < ds_list_size(_plant_list); _i++) {
+                var _plant = ds_list_find_value(_plant_list, _i);
+                if (!instance_exists(_plant)) continue;
+                if (variable_instance_exists(_plant, "plant_id") && array_get_index(_blocked_ids, _plant.plant_id) != -1) {
+                    can_plant = false;
+                    break;
+                }
+            }
+        }
         
         if (can_plant && global.flame >= current_cost) {
             // 创建植物实例
@@ -220,14 +275,29 @@ if (is_selected) {
 					}
 				}
 			}
-            var new_plant = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0,card_obj);
-			// 计算深度值
-			var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
-			card_created(new_plant, logical_col, logical_row);
-			new_plant.depth = depth_value
-			// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
-			if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
-				new_plant.platform_grid_lock = true;
+			var gift_queued = false;
+			var new_plant = noone;
+			if (is_random_gift_mode() && card_id == "lihe") {
+				var gift_fx = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, -2600, obj_random_gift_effect);
+				gift_fx.spawn_x = logical_world.x + platform_shift_x;
+				gift_fx.spawn_y = logical_world.y + platform_shift_y;
+				gift_fx.spawn_col = logical_col;
+				gift_fx.spawn_row = logical_row;
+				gift_fx.spawn_level = clevel;
+				gift_fx.spawn_platform = found_plat;
+				gift_queued = true;
+			} else {
+				new_plant = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0,card_obj);
+			}
+			if (!gift_queued) {
+				// 计算深度值
+				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
+				card_created(new_plant, logical_col, logical_row);
+				new_plant.depth = depth_value
+				// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
+				if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
+					new_plant.platform_grid_lock = true;
+				}
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y,-2,obj_place_effect)

@@ -28,7 +28,7 @@ if (has_enemy)
     
     if (attack_timer == (cycle - (7 * flash_speed)) && shape == 3 && super_bullet >= 4)
     {
-        event_user(3);
+        event_user(13);
         super_bullet = 0;
         state = 1;
     }

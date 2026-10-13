@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Enemy",
+  "folderPath":"folders/脚本/Enemy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Enemy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"boss_init","path":"scripts/boss_init/boss_init.yy",},
+    {"name":"boss_registry","path":"scripts/boss_registry/boss_registry.yy",},
+    {"name":"enemy_info_island_init","path":"scripts/enemy_info_island_init/enemy_info_island_init.yy",},
+    {"name":"enemy_info_island_registry","path":"scripts/enemy_info_island_registry/enemy_info_island_registry.yy",},
+    {"name":"enemy_init","path":"scripts/enemy_init/enemy_init.yy",},
+    {"name":"enemy_registry","path":"scripts/enemy_registry/enemy_registry.yy",}
+  ],
+}

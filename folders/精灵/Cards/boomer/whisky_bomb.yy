@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"whisky_bomb",
+  "folderPath":"folders/精灵/Cards/boomer/whisky_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"whisky_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"feca1baa-066b-4cbc-b176-ee155f38d8c2","path":"sprites/spr_whisky_bomb/spr_whisky_bomb.yy",},
+    {"name":"df96a1ff-419e-4712-9d8e-b0406e8624fa","path":"sprites/spr_whisky_bomb_1/spr_whisky_bomb_1.yy",},
+    {"name":"3fa5ac8b-52e0-4451-a7cd-51f1f29a6bd9","path":"sprites/spr_whisky_bomb_2/spr_whisky_bomb_2.yy",}
+  ],
+}

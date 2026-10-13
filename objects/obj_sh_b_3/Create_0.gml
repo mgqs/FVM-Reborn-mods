@@ -1,6 +1,7 @@
 damage = 0;
 move_speed = 0;
 row = 0;
+start_col = 0;
 hitted_enemy = ds_list_create();
 shape = 0;
 damage_type = "pierce";
@@ -9,3 +10,5 @@ image_xscale = 1.8;
 image_yscale = 1.8;
 image_speed = 0;
 timer = 0;
+banding_card_obj = -4;
+hittable_types = get_hittable_enemy_types(target_type);

@@ -10,14 +10,15 @@ with (obj_enemy_parent)
         {
             into_act();
         }
-        else if (immune_to_ash && hp > other.damage)
+        else if (immune_to_ash)
         {
-            hp -= other.damage;
+            damage_amount = other.damage;
+            damage_type = "ash";
             event_user(0);
         }
         else
         {
-            if (special_ash)
+            if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash)
             {
                 var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
                 inst.special_ash = true;

@@ -66,8 +66,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"zeus",
+    "path":"folders/精灵/mod/Cards/Track/zeus.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

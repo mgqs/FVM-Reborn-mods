@@ -5,9 +5,29 @@ is_submenu_opened = false
 shop_button_select = 1
 shop_screen_select = 1
 current_page = 1
-current_max_page = 10
+current_max_page = 1
 
 goods_list = ds_list_create()
+
+// These items are exclusive to the cross-server medal shop.
+cross_server_exchange_ids = [
+    // 白银商店卡片
+    "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
+    // 黄金商店武器
+    "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
+    // 黄金商店宝石
+    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem",
+    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
+    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem",
+    "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
+    "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
+    "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
+    // 红柳烤串机转职卡片（仅跨服黄金商店）
+    "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2",
+    "zhanqima", "zhanqima_1", "zhanqima_2",
+    // 椰子果（0转银牌商店 / 1、2转金牌商店）
+    "yeziguo", "yeziguo_1", "yeziguo_2"
+]
 
 instance_create_depth(x+800,y-430,depth-1,obj_closeshop_btn)
 
@@ -42,49 +62,121 @@ function shop_list_recharge(){
 	var map_array = []
 
 	ds_map_keys_to_array(global.goods_map,map_array)
+	// 跨服商品不进入普通金币商店的任何分类。
+	var _normal_goods = []
+	for (var _g = 0; _g < array_length(map_array); _g++) {
+		if (!variable_struct_exists(global.goods_map[? map_array[_g]], "cross_server_shop")) {
+			array_push(_normal_goods, map_array[_g])
+		}
+	}
+	map_array = _normal_goods
 
 	var goods_array_size = array_length(map_array)
 
-	for(var i = 0; i < goods_array_size;i++){
-		//获取卡片类型商品
-		if shop_button_select == 1{
-			if global.goods_map[? map_array[i]].type == "card"{
-				//将商品id添加到商品列表中
-				//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
+	//武器和宝石分类：先显示武器，再显示宝石，同一个武器的宝石排在一起
+	if shop_button_select == 2{
+		//先添加所有武器，并记录武器顺序
+		var weapon_id_list = ds_list_create()
+		for(var i = 0; i < goods_array_size;i++){
+			if global.goods_map[? map_array[i]].type == "weapon" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
 				ds_list_add(goods_list,map_array[i])
+				ds_list_add(weapon_id_list, global.goods_map[? map_array[i]].unlock_item_id)
 			}
 		}
-		//获取道具类型商品
-		else if shop_button_select == 3{
-			if global.goods_map[? map_array[i]].type == "item"{
-				//将商品id添加到商品列表中
-				//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
-				ds_list_add(goods_list,map_array[i])
+		//按武器分组添加宝石：同一个武器的宝石排在一起
+		var added_gems = ds_list_create()
+		//遍历武器列表，按顺序添加每个武器的专属宝石
+		for(var w = 0; w < ds_list_size(weapon_id_list); w++){
+			var weapon_id = ds_list_find_value(weapon_id_list, w)
+			for(var i = 0; i < goods_array_size;i++){
+				if global.goods_map[? map_array[i]].type == "gem" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+					var gem_id = global.goods_map[? map_array[i]].unlock_item_id
+					//检查是否已添加
+					var already_added = false
+					for(var a = 0; a < ds_list_size(added_gems); a++){
+						if ds_list_find_value(added_gems, a) == map_array[i]{
+							already_added = true
+							break
+						}
+					}
+					if !already_added{
+						var gem_info = get_gem_info(gem_id)
+						if (gem_info != noone) && variable_struct_exists(gem_info, "allowed_weapons"){
+							//检查宝石是否属于当前武器
+							for(var aw = 0; aw < array_length(gem_info.allowed_weapons); aw++){
+								if gem_info.allowed_weapons[aw] == weapon_id{
+									ds_list_add(goods_list,map_array[i])
+									ds_list_add(added_gems,map_array[i])
+									break
+								}
+							}
+						}
+					}
+				}
 			}
 		}
-		//获取武器和宝石商品
-		else if shop_button_select == 2{
-			if global.goods_map[? map_array[i]].type == "weapon" || global.goods_map[? map_array[i]].type == "gem"{
-				//将商品id添加到商品列表中
-				//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
-				ds_list_add(goods_list,map_array[i])
+		//最后添加通用宝石（没有专属武器的宝石）
+		for(var i = 0; i < goods_array_size;i++){
+			if global.goods_map[? map_array[i]].type == "gem" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+				var already_added = false
+				for(var a = 0; a < ds_list_size(added_gems); a++){
+					if ds_list_find_value(added_gems, a) == map_array[i]{
+						already_added = true
+						break
+					}
+				}
+				if !already_added{
+					ds_list_add(goods_list,map_array[i])
+				}
 			}
 		}
-		//获取卡片皮肤
-		else if shop_button_select == 4{
-			if global.goods_map[? map_array[i]].type == "card_attire"{
-				//将商品id添加到商品列表中
-				ds_list_add(goods_list,map_array[i])
+		ds_list_destroy(weapon_id_list)
+		ds_list_destroy(added_gems)
+	}
+	else{
+		for(var i = 0; i < goods_array_size;i++){
+			//获取卡片类型商品
+			if shop_button_select == 1{
+                if global.goods_map[? map_array[i]].type == "card" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+					//将商品id添加到商品列表中
+					//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
+					ds_list_add(goods_list,map_array[i])
+				}
 			}
-		}
-		//获取角色皮肤
-		else if shop_button_select == 5{
-			if global.goods_map[? map_array[i]].type == "player_attire"{
-				//将商品id添加到商品列表中
-				ds_list_add(goods_list,map_array[i])
+			//获取道具类型商品
+			else if shop_button_select == 3{
+				if global.goods_map[? map_array[i]].type == "item"{
+					// 神秘礼盒仅在抽卡模式下显示
+					var _item_id = global.goods_map[? map_array[i]].unlock_item_id
+					if (_item_id == "gacha_box" && !is_eternal_gacha_mode()){
+						// 跳过，不添加到列表
+					}
+					else{
+						//将商品id添加到商品列表中
+						//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
+						ds_list_add(goods_list,map_array[i])
+					}
+				}
+			}
+			//获取卡片皮肤
+			else if shop_button_select == 4{
+				if global.goods_map[? map_array[i]].type == "card_attire"{
+					//将商品id添加到商品列表中
+					ds_list_add(goods_list,map_array[i])
+				}
+			}
+			//获取角色皮肤
+			else if shop_button_select == 5{
+				if global.goods_map[? map_array[i]].type == "player_attire"{
+					//将商品id添加到商品列表中
+					ds_list_add(goods_list,map_array[i])
+				}
 			}
 		}
 	}
+	//每页显示 16 个商品，页数随当前分类动态计算
+	current_max_page = max(1, ceil(ds_list_size(goods_list) / 16))
+	current_page = clamp(current_page, 1, current_max_page)
 	//按类型创建购买按钮
 	instance_destroy(obj_shop_buy_btn)
 	for(var i = 0 ; i< 4; i++){
@@ -140,8 +232,19 @@ function shop_list_recharge(){
 					
 					//根据商品id获取商品信息
 					var inst = instance_create_depth(x-618+411*j+77, y-190+165*i+60,depth-1,obj_shop_buy_btn)
-					inst.target_item = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id
-					inst.cost = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].cost
+					var _item_id = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id
+					inst.target_item = _item_id
+					// 神秘礼盒价格动态计算：50000 + 购买次数 * 50000
+					if (_item_id == "gacha_box"){
+						var _buy_count = 0;
+						if (variable_struct_exists(global.save_data, "gacha_box_buy_count")) {
+							_buy_count = global.save_data.gacha_box_buy_count;
+						}
+						inst.cost = 50000 + _buy_count * 50000
+					}
+					else{
+						inst.cost = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].cost
+					}
 					inst.goods_name = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].display_name
 					inst.tooltip_text = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].description
 					inst.btn_type = "item"
@@ -158,9 +261,10 @@ function shop_list_recharge(){
 					inst.goods_name = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].display_name
 					inst.tooltip_text = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].description
 					inst.btn_type = "attire"
-					if is_attire_unlocked(global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id){
-						inst.is_disabled = true
-					}
+					var _attire_id = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)].unlock_item_id
+					inst.is_attire_owned = shop_button_select == 5 && is_attire_unlocked(_attire_id)
+					inst.is_attire_equipped = inst.is_attire_owned && get_attire_state(_attire_id) == "equipped"
+					inst.is_disabled = inst.is_attire_equipped || (shop_button_select == 4 && is_attire_unlocked(_attire_id))
 					
 				}
 			}

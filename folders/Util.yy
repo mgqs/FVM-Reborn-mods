@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Util",
+  "folderPath":"folders/Util.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Util",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"FileUtil","path":"scripts/FileUtil/FileUtil.yy",},
+    {"name":"GuiStack","path":"scripts/GuiStack/GuiStack.yy",},
+    {"name":"NativeUtil","path":"scripts/NativeUtil/NativeUtil.yy",}
+  ],
+}

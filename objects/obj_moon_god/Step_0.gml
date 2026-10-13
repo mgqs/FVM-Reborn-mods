@@ -8,6 +8,17 @@ if (is_slowdown)
     current_flash_speed *= 2;
 
 final_atk = atk;
+
+if (shape == 3)
+{
+    var num = 0;
+    with (obj_moon_god)
+    {
+        if (shape == 3) num++;
+    }
+    final_atk = atk * min(0.95 + (num * 0.05), 1.45);
+}
+
 var has_enemy = false;
 
 if (instance_exists(obj_enemy_parent))
@@ -35,36 +46,31 @@ if (has_enemy)
         attack_timer = 0;
         state = 0;
     }
-    
+
     if (attack_timer == (cycle - (8 * flash_speed)))
     {
-        if (shape == 3)
-        {
-            var num = instance_number(obj_moon_god);
-            final_atk = atk * min(0.95 + (num * 0.05), 1.45);
-        }
-        
-        event_user(3);
+        if (shape >= 2)
+            event_user(3);
     }
-    
+
     if (attack_timer == (cycle - (7 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (6 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (5 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (4 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (3 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (2 * flash_speed)))
         event_user(1);
-    
+
     if (attack_timer == (cycle - (1 * flash_speed)) && (shape == 1 || shape == 3))
         event_user(1);
 }

@@ -2,6 +2,9 @@ if (hp < max_hp && !invincible)
     obj_task_manager.card_loss++;
 
 card_destroyed(id);
+if (instance_exists(aurora_effect_obj))
+    instance_destroy(aurora_effect_obj);
+
 var idx = ds_list_find_index(global.buff_sources, id);
 
 if (idx != -1)
@@ -20,9 +23,6 @@ else if (shape == 2)
 else
     effect_inst.sprite_index = spr_aurora_dead_3;
 
-with (effect_inst)
-    event_user(7);
-
 if (shape >= 2)
 {
     with (obj_enemy_parent)
@@ -38,9 +38,9 @@ if (shape >= 2)
             {
                 if (_prev_hp > 0 && hp <= 0)
                 {
-                    if (special_ash)
+                    if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash)
                     {
-                        var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                        var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_dead);
                         inst.special_ash = true;
                         inst.sprite_index = sprite_index;
                         inst.image_index = image_index;

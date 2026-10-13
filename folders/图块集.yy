@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"图块集",
+  "folderPath":"folders/图块集.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"图块集",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

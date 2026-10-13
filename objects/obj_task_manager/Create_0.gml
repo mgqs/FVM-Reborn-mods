@@ -5,7 +5,7 @@ not_equip_weapon = false
 not_use_designated_card = false
 
 card_group = {
-	"bomb":["coke_bomb","kettle_bomb","flour_sack","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"]
+	"bomb":["coke_bomb","kettle_bomb","flour_sack","pufferfish","yeziguo","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"]
 }
 
 function reset_task_state(){
@@ -131,7 +131,7 @@ function refresh_task_progress(){
 			}
 			//如果是单局完成的任务，未完成则重置进度
 			else if task_data.single_game{
-				for(var j = 0 ; j < array_length(global.save_data.tasks[i].progress) ; j++){ 
+				for(var j = 0 ; j < array_length(task_data.requirements) ; j++){ 
 					edit_task_progress(task_id,j,0)
 				}
 			}
