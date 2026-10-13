@@ -1437,16 +1437,16 @@ register_gods_goods("haiyang_god_3",
 
 // 融合卡：本体 + 一转 / 二转凭证进入诸神商店。
 register_gods_goods("lizi_god", {type:"card", cost:"16", unlock_item_id:"lizi_god", description:"酱香锅烤栗子：滚动栗子并造成灼烧", display_name:"酱香锅烤栗子"});
-register_gods_goods("lizi_god_1", {type:"shape", cost:"16", unlock_item_id:"lizi_god", target_shape:1, description:"可乐香烤栗子：周期性追加3×3爆炸", display_name:"深度融合凭证（可乐香烤栗子）", spr:spr_lizi_god_1});
-register_gods_goods("lizi_god_2", {type:"shape", cost:"32", unlock_item_id:"lizi_god", target_shape:2, description:"如意香烤栗子：向前方3行投掷栗子子弹", display_name:"灵魂融合凭证（如意香烤栗子）", spr:spr_lizi_god_2});
+register_gods_goods("lizi_god_1", {type:"shape", cost:"16", unlock_item_id:"lizi_god", target_shape:1, description:"可乐香烤栗子：周期性追加3×3爆炸", display_name:"深度融合食谱（可乐香烤栗子）", spr:spr_voucher_lizi_god_1});
+register_gods_goods("lizi_god_2", {type:"shape", cost:"32", unlock_item_id:"lizi_god", target_shape:2, description:"如意香烤栗子：向前方3行投掷栗子子弹", display_name:"灵魂融合食谱（如意香烤栗子）", spr:spr_voucher_lizi_god_2});
 register_gods_goods("youyu_god", {type:"card", cost:"16", unlock_item_id:"youyu_god", description:"火影怪味鱿鱼：八方向各两发鱿鱼弹，无需底座", display_name:"火影怪味鱿鱼"});
-register_gods_goods("youyu_god_1", {type:"shape", cost:"16", unlock_item_id:"youyu_god", target_shape:1, description:"合金怪味鱿鱼：前后两路各增一发子弹，中路子弹可过火", display_name:"深度融合凭证（合金怪味鱿鱼）", spr:spr_youyu_god_1});
-register_gods_goods("youyu_god_2", {type:"shape", cost:"32", unlock_item_id:"youyu_god", target_shape:2, description:"松香怪味鱿鱼：向前增加2路子弹，共计22发", display_name:"灵魂融合凭证（松香怪味鱿鱼）", spr:spr_youyu_god_2});
+register_gods_goods("youyu_god_1", {type:"shape", cost:"16", unlock_item_id:"youyu_god", target_shape:1, description:"合金怪味鱿鱼：前后两路各增一发子弹，中路子弹可过火", display_name:"深度融合食谱（合金怪味鱿鱼）", spr:spr_voucher_youyu_god_1});
+register_gods_goods("youyu_god_2", {type:"shape", cost:"32", unlock_item_id:"youyu_god", target_shape:2, description:"松香怪味鱿鱼：向前增加2路子弹，共计22发", display_name:"灵魂融合食谱（松香怪味鱿鱼）", spr:spr_voucher_youyu_god_2});
 register_gods_goods("ronghehaixing", {type:"card", cost:"16", unlock_item_id:"ronghehaixing", description:"仙人球海星刺身：双发多方向刺身弹", display_name:"仙人球海星刺身"});
-register_gods_goods("ronghehaixing_1", {type:"shape", cost:"16", unlock_item_id:"ronghehaixing", target_shape:1, description:"奶油海星刺身：攻击附加单格溅射", display_name:"深度融合凭证（奶油海星刺身）", spr:spr_ronghehaixing_1});
-register_gods_goods("ronghehaixing_2", {type:"shape", cost:"32", unlock_item_id:"ronghehaixing", target_shape:2, description:"王冠海星刺身：斜向子弹碰上下边框后转为追踪弹", display_name:"灵魂融合凭证（王冠海星刺身）", spr:spr_ronghehaixing_2});
+register_gods_goods("ronghehaixing_1", {type:"shape", cost:"16", unlock_item_id:"ronghehaixing", target_shape:1, description:"奶油海星刺身：攻击附加单格溅射", display_name:"深度融合食谱（奶油海星刺身）", spr:spr_voucher_ronghehaixing_1});
+register_gods_goods("ronghehaixing_2", {type:"shape", cost:"32", unlock_item_id:"ronghehaixing", target_shape:2, description:"王冠海星刺身：斜向子弹碰上下边框后转为追踪弹", display_name:"灵魂融合食谱（王冠海星刺身）", spr:spr_voucher_ronghehaixing_2});
 register_gods_goods("ronghedan_god", {type:"card", cost:"16", unlock_item_id:"ronghedan_god", description:"雪芭煮蛋器：双蛋攻击，35%范围溅射并有概率定身", display_name:"雪芭煮蛋器"});
-register_gods_goods("ronghedan_god_1", {type:"shape", cost:"16", unlock_item_id:"ronghedan_god", target_shape:1, description:"臭豆腐煮蛋器：溅射范围额外附加毒气伤害", display_name:"深度融合凭证（臭豆腐煮蛋器）", spr:spr_ronghedan_god_1});
-register_gods_goods("ronghedan_god_2", {type:"shape", cost:"32", unlock_item_id:"ronghedan_god", target_shape:2, description:"终结者煮蛋器：子弹伤害提升，可向前方三行投掷子弹", display_name:"灵魂融合凭证（终结者煮蛋器）", spr:spr_ronghedan_god_2});
+register_gods_goods("ronghedan_god_1", {type:"shape", cost:"16", unlock_item_id:"ronghedan_god", target_shape:1, description:"臭豆腐煮蛋器：溅射范围额外附加毒气伤害", display_name:"深度融合食谱（臭豆腐煮蛋器）", spr:spr_voucher_ronghedan_god_1});
+register_gods_goods("ronghedan_god_2", {type:"shape", cost:"32", unlock_item_id:"ronghedan_god", target_shape:2, description:"终结者煮蛋器：子弹伤害提升，可向前方三行投掷子弹", display_name:"灵魂融合食谱（终结者煮蛋器）", spr:spr_voucher_ronghedan_god_2});
 
 }

@@ -15,7 +15,11 @@ if (!obj_gods_store_bg.is_submenu_opened && !is_disabled)
     
     if (btn_type == "card")
     {
-        if (amt >= cost || global.debug)
+        if (!meet_requirements)
+        {
+            show_notice(requirement_notice, 60);
+        }
+        else if (amt >= cost || global.debug)
         {
             var inst = instance_create_depth(room_width / 2, room_height / 2, depth - 3, obj_gods_store_buy_confirm);
             inst.banding_buy_btn = id;

@@ -84,5 +84,6 @@ function mod_skill_init()
     register_card_skill("yeziguo", "atk", [1000, 1125, 1250, 1375, 1500, 1625, 1750, 1875, 2000]);
     register_card_skill("ronghehaixing", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("ronghedan_god", "cycle", [180, 174, 168, 162, 156, 144, 132, 120, 108]);
+    register_card_skill("chunsun", "prepare_time", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
 
 }

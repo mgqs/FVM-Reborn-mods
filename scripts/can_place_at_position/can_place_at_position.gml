@@ -67,6 +67,18 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
         }
     }
     
+    // 泡椒春笋不占格：可与其他卡叠放，但同一格只能有一张春笋（自己不与自己叠放）
+    if (card_id == "chunsun" && !global.replace_placement)
+    {
+        for (var i = 0; i < ds_list_size(plant_list); i++)
+        {
+            var plant = ds_list_find_value(plant_list, i);
+            if (!instance_exists(plant) || !variable_instance_exists(plant, "plant_id")) continue;
+            if (plant.plant_id == card_id) return false;
+        }
+        return true;
+    }
+
     // 根据植物类型检查是否可以种植
 	if target_card != "none"{
 		var same = false

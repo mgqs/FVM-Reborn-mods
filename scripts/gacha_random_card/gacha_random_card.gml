@@ -359,15 +359,60 @@ function gacha_get_gem_weapons(gem_id) {
     return [];
 }
 
+/// @function fusion_get_prerequisites()
+/// @desc 融合卡前置表：融合卡 id → 需先练到二转的前置卡 id
+///       抽卡（gacha_pick_random_reward）与诸神商店（obj_gods_store_bg）共用同一份口径
+/// @return {struct}
+function fusion_get_prerequisites() {
+    return {
+        lizi_god:      "pan_fried_bun",   // 融合栗子   ← 生煎锅（二转：驴肉火烧锅）
+        youyu_god:     "takoyaki",        // 融合鱿鱼   ← 章鱼烧（二转：火影章鱼烧）
+        ronghehaixing: "coal_starfish",   // 融合海星   ← 炭烧海星（二转：芥末海星刺身）
+        ronghedan_god: "egg_boiler_pult"  // 融合煮蛋器 ← 煮蛋器投手（二转：强袭煮蛋器）
+    };
+}
+
+/// @function fusion_prereq_met(card_id)
+/// @desc 融合卡前置是否达成：对应前置卡已拥有且 max_shape >= 2
+///       「拥有过二转」即可，当前调回低形态不影响（与抽卡其它判定口径一致）
+/// @param {string} card_id 融合卡 id
+/// @return {bool} 表里没有的卡恒为 true（非融合卡不受影响）
+function fusion_prereq_met(card_id) {
+    var _prereqs = fusion_get_prerequisites();
+    if (!variable_struct_exists(_prereqs, card_id)) return true;
+
+    var _pre_id = _prereqs[$ card_id];
+    if (!is_card_unlocked(_pre_id)) return false;
+
+    var _info = get_card_info_simple(_pre_id);
+    return max(_info.max_shape, _info.shape) >= 2;
+}
+
+/// @function fusion_prereq_name(card_id)
+/// @desc 前置卡的二转形态名（用于提示文案）；未配置前置 / 查不到名字时返回空串
+/// @param {string} card_id 融合卡 id
+/// @return {string}
+function fusion_prereq_name(card_id) {
+    var _prereqs = fusion_get_prerequisites();
+    if (!variable_struct_exists(_prereqs, card_id)) return "";
+
+    var _shape_data = get_plant_shape_data(_prereqs[$ card_id], 2);
+    if (_shape_data == undefined) return "";
+    return _shape_data[? "name"];
+}
+
 /// @function gacha_pick_random_reward()
 /// @desc 按类别权重随机抽取一个奖励（卡片/武器/宝石）
-/// 类别权重：金卡 5%、生肖卡 25%、普通卡 69%、MOD武器 0.5%、宝石 0.5%
+/// 类别权重（见下方权重段）：融合卡 / 金卡 / 生肖卡 / 普通卡 / MOD武器 / 宝石
+///   融合卡单列一档（星际 15 / 欧皇 55）
 /// 抽取规则：
 /// 1. 卡片：未拥有时抽0形态，已拥有时抽下一形态，满形态不进候选池
+///    融合卡抽 0 形态（本体）前，需先拥有其前置卡的二转形态（见 fusion_get_prerequisites）
 /// 2. 武器：仅MOD武器，未拥有时可抽，已拥有不进候选池
 /// 3. 宝石：仅MOD宝石，拥有对应武器时可抽，已拥有不进候选池
 /// @return {struct} 包含 reward_type、id、shape 的结构体
 function gacha_pick_random_reward() {
+    var fusion_candidates = [];
     var gold_candidates = [];
     var zodiac_candidates = [];
     var normal_candidates = [];
@@ -411,7 +456,14 @@ function gacha_pick_random_reward() {
             shape: target_shape
         };
 
-        if (gacha_is_gold_card(card_id)) {
+        // 融合卡单列一档（优先级高于金卡，否则会落到金卡池里重复计算概率）
+        // 抽本体（0 转）前需先拥有对应前置卡的二转；已拥有融合卡时其转职不再受限
+        if (is_fusion_card(card_id)) {
+            if (target_shape > 0 || fusion_prereq_met(card_id)) {
+                array_push(fusion_candidates, candidate);
+            }
+            // 前置未达成 → 本体不进池（也不落到其它池）
+        } else if (gacha_is_gold_card(card_id)) {
             array_push(gold_candidates, candidate);
         } else if (gacha_is_zodiac_card(card_id)) {
             array_push(zodiac_candidates, candidate);
@@ -461,8 +513,10 @@ function gacha_pick_random_reward() {
     }
 
     // === 按权重选择类别 ===
-    // 星际抽卡（难度6）：金卡5%、生肖20%、普通74%、武器0.5%、宝石0.5%
-    // 欧皇抽卡（难度7）：金卡50%、生肖25%、普通20%、武器2.5%、宝石2.5%
+    // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
+    //   星际抽卡（难度6）：融合卡15 / 金卡5 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5
+    //   欧皇抽卡（难度7）：融合卡55 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5
+    var fusion_weight = 15;
     var gold_weight = 5;
     var zodiac_weight = 20;
     var normal_weight = 74;
@@ -470,6 +524,7 @@ function gacha_pick_random_reward() {
     var gem_weight = 0.5;
 
     if (is_lucky_gacha_mode()) {
+        fusion_weight = 55;
         gold_weight = 50;
         zodiac_weight = 25;
         normal_weight = 20;
@@ -479,12 +534,14 @@ function gacha_pick_random_reward() {
 
     // 如果某个类别候选为空，将其权重分配给其他类别（按比例）
     var total_weight = 0;
+    var has_fusion = array_length(fusion_candidates) > 0;
     var has_gold = array_length(gold_candidates) > 0;
     var has_zodiac = array_length(zodiac_candidates) > 0;
     var has_normal = array_length(normal_candidates) > 0;
     var has_weapon = array_length(weapon_candidates) > 0;
     var has_gem = array_length(gem_candidates) > 0;
 
+    if (has_fusion) total_weight += fusion_weight;
     if (has_gold) total_weight += gold_weight;
     if (has_zodiac) total_weight += zodiac_weight;
     if (has_normal) total_weight += normal_weight;
@@ -500,7 +557,13 @@ function gacha_pick_random_reward() {
     var acc = 0;
     var selected_type = "normal";
 
-    if (has_gold) {
+    if (has_fusion) {
+        acc += fusion_weight;
+        if (roll < acc) {
+            selected_type = "fusion";
+        }
+    }
+    if (selected_type == "normal" && has_gold) {
         acc += gold_weight;
         if (roll < acc) {
             selected_type = "gold";
@@ -527,7 +590,8 @@ function gacha_pick_random_reward() {
 
     // 根据选中的类型获取候选池
     var selected_pool = normal_candidates;
-    if (selected_type == "gold") selected_pool = gold_candidates;
+    if (selected_type == "fusion") selected_pool = fusion_candidates;
+    else if (selected_type == "gold") selected_pool = gold_candidates;
     else if (selected_type == "zodiac") selected_pool = zodiac_candidates;
     else if (selected_type == "weapon") selected_pool = weapon_candidates;
     else if (selected_type == "gem") selected_pool = gem_candidates;
