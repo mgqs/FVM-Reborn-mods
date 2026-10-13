@@ -1,5 +1,6 @@
 function mod_enemy_init()
 {
+    longyuan_enemy_init();
     register_enemy("infected_normal_mouse", 
     {
         name: "平民僵尸鼠",

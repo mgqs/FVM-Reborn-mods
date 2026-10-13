@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"night_jingying",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":59.59202,
+  "exportDir":"",
+  "name":"night_jingying",
+  "parent":{
+    "name":"longyuan",
+    "path":"folders/声音/Battle BGM/longyuan.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"night_jingying.mp3",
+  "volume":1.0,
+}

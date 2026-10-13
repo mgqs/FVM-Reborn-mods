@@ -1,0 +1,15 @@
+function longyuan_enemy_init() {
+ register_enemy("longyuan_pingmin", {name: "龙渊平民鼠", _obj: obj_ly_pingmin, hp: 100, shield: 0, description: "龙渊平民鼠：普通行走啃咬", speed: 0.32, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_pingmin, feature: "land"});
+ register_enemy("longyuan_dijing", {name: "地精鼠", _obj: obj_ly_dijing, hp: 100, shield: 0, description: "地精鼠：潜地至后排，出土眩晕后反向啃咬", speed: 0.9, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_dijing, feature: "land"});
+ register_enemy("longyuan_dongfeng", {name: "东风鼠", _obj: obj_ly_dongfeng, hp: 660, shield: 0, description: "东风鼠：持扇时加速全场空中鼠，怕风扇", speed: 0.6, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_dongfeng, feature: "land"});
+ register_enemy("longyuan_gaoqiao", {name: "高跷鼠", _obj: obj_ly_gaoqiao, hp: 170, shield: 0, description: "高跷鼠：移动时闪避攻击，遇重型防御才停止", speed: 0.9, atk: 10, cycle: 42, range: 90, ash_proof: false, spr: spr_gaoqiao, feature: "land"});
+ register_enemy("longyuan_kailu", {name: "开路鼠", _obj: obj_ly_kailu, hp: 660, shield: 0, description: "开路鼠：冲刺撞击卡片，夜间死亡化魂", speed: 0.6, atk: 20, cycle: 42, range: 90, ash_proof: false, spr: spr_kailu, feature: "land"});
+ register_enemy("longyuan_langyabang", {name: "狼牙棒鼠", _obj: obj_ly_langyabang, hp: 1800, shield: 0, description: "狼牙棒鼠：巨型鼠式重击", speed: 0.27, atk: 900, cycle: 108, range: 120, ash_proof: true, spr: spr_langyabang, feature: "land"});
+ register_enemy("longyuan_longmu", {name: "龙母鼠", _obj: obj_ly_longmu, hp: 100, shield: 80, description: "龙母鼠：蛋破后发怒加速", speed: 0.36, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_longmu, feature: "land"});
+ register_enemy("longyuan_yaoguan", {name: "药罐鼠", _obj: obj_ly_yaoguan, hp: 660, shield: 0, description: "药罐鼠：三团魂火减伤，濒死消耗魂火治疗全场魂鼠", speed: 0.6, atk: 10, cycle: 48, range: 90, ash_proof: false, spr: spr_yaoguan, feature: "land"});
+ register_enemy("longyuan_zhibuji", {name: "织布机鼠", _obj: obj_ly_zhibuji, hp: 1200, shield: 0, description: "织布机鼠：损失体力时发射10点穿透梭弹，怕鱼刺、火盆", speed: 0.3, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_zhibuji, feature: "land"});
+ register_enemy("longyuan_zhinian", {name: "执念鼠", _obj: obj_ly_zhinian, hp: 660, shield: 0, description: "执念鼠：夜间死亡化魂并强化剑术", speed: 0.3, atk: 20, cycle: 36, range: 90, ash_proof: false, spr: spr_zhinian, feature: "land"});
+ register_enemy("longyuan_fuzhou", {name: "符咒鼠", _obj: obj_ly_fuzhou, hp: 1200, shield: 0, description: "符咒鼠：施法放出符咒，符咒存在时无敌并转化最左卡片", speed: 0.3, atk: 10, cycle: 48, range: 90, ash_proof: false, spr: spr_fuzhou, feature: "land"});
+ register_enemy("longyuan_zhizhujing", {name: "蜘蛛精鼠", _obj: obj_ly_zhizhujing, hp: 660, shield: 0, description: "蜘蛛精鼠：待机和缠绕动作已接入，完整技能待补充", speed: 0, atk: 10, cycle: 90, range: 90, ash_proof: false, spr: spr_zhizhujing, feature: "land"});
+ register_enemy("longyuan_fuzhou_minion", {name: "符咒随从鼠", _obj: obj_ly_fuzhou_minion, hp: 100, shield: 0, description: "符咒随从鼠：符咒转化的魂系随从", speed: 0.32, atk: 10, cycle: 42, range: 90, ash_proof: false, spr: spr_fuzhou_zhaohuan_2, feature: "land"});
+}
