@@ -19,14 +19,16 @@ else if (shape >= 2) spike_sprite = spr_chunsun_spike_2;
 image_speed = 0;
 flash_speed = 5;
 
-// 帧段（资源第 N 帧 = image_index N-1）：准备 1-14 / 冒芽 15-19 / 待机 20-35 / 攻击 36-39
+// 帧段（资源第 N 帧 = image_index N-1）：准备 1-14 / 冒芽 15-19 / 待机 20-30
+// 资源 31 起下面的云（本体）已消失、只剩笋芽：本体不播这段（攻击时云底座要保留），
+// 这段只用来做「刺」精灵 spr_chunsun_spike；攻击表现由范围内每格的刺对象负责
 PREPARE_LAST = 13;
 GROW_FIRST   = 14;
 GROW_LAST    = 18;
 IDLE_FIRST   = 19;
-IDLE_LAST    = 34;
-ATK_FIRST    = 35;
-ATK_LAST     = 38;
+IDLE_LAST    = 29;
+ATK_BODY_FRAME = 29;    // 攻击相位本体固定显示这一帧（29 = 资源第 30 帧「云底座 + 笋」）
+ATK_HOLD_TICKS = 4;     // 攻击相位持续几个动画帧（4 帧 ≈ 0.33 秒）
 
 // 攻击范围：横向左右各 1 格；纵向 3*3 上下各 1 行，二转 3*5 上下各 2 行
 range_col = 1;
