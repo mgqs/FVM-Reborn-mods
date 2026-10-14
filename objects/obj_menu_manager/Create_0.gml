@@ -79,7 +79,7 @@ function after_texture_load() {
             }
         }
     }
-    
+
 	if !global.preloaded{
 		with obj_update_checker_btn{
 			event_user(1)

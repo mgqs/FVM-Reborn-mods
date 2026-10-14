@@ -154,6 +154,21 @@ global.ime_block = ini_read_bool("settings", "ime_block", true); // 输入法屏
 if (ini_read_string("settings", "ime_block", "") == "") {
     ini_write_bool("settings", "ime_block", true);
 }
+// 合成屋概率强化开关（config.ini 可手改；键缺失时补写）
+global.craft_rate_enabled = ini_read_bool("settings", "craft_rate_enabled", true);
+if (ini_read_string("settings", "craft_rate_enabled", "") == "") {
+    ini_write_bool("settings", "craft_rate_enabled", true);
+}
+// 合成屋「失败掉星」开关（只影响卡片强化；键缺失时补写）
+global.craft_dropstar_enabled = ini_read_bool("settings", "craft_dropstar_enabled", true);
+if (ini_read_string("settings", "craft_dropstar_enabled", "") == "") {
+    ini_write_bool("settings", "craft_dropstar_enabled", true);
+}
+// 合成屋「保险金」开关（默认关；键缺失时补写）
+global.craft_assure_enabled = ini_read_bool("settings", "craft_assure_enabled", false);
+if (ini_read_string("settings", "craft_assure_enabled", "") == "") {
+    ini_write_bool("settings", "craft_assure_enabled", false);
+}
 for (var i = 0; i < array_length(global.keybind_config); i++) {
 	    var kb = global.keybind_config[i];
 	    var key_val = ini_read_real("keybinds", kb.name, kb.default1);

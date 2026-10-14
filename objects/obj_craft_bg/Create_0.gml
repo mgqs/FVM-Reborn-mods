@@ -31,3 +31,18 @@ current_uprade_target_id = ""
 spices_use_order = ["natural_spices","secret_spices","royal_spices"]
 clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
 crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
+
+// 概率强化 / 失败掉星 / 保险金 三个开关：同一排放在纸卷顶部空白带（再往下会被香料槽挡住）
+rate_toggle_x = x - 600
+rate_toggle_y = y - 105
+rate_toggle_hover = false
+
+dropstar_toggle_x = x - 420
+dropstar_toggle_y = y - 105
+dropstar_toggle_hover = false
+
+assure_badge_cx = x - 90
+assure_badge_cy = y + 140
+assure_toggle_x = x - 90
+assure_toggle_y = y + 202
+assure_toggle_hover = false
