@@ -1,0 +1,601 @@
+package a_4752
+{
+   import flash.events.EventDispatcher;
+   import flash.events.IEventDispatcher;
+   import flash.utils.Dictionary;
+   
+   public class GameStringManager extends EventDispatcher implements IGameStringManager
+   {
+      
+      private static var _instance:IGameStringManager;
+      
+      private static var sign:Boolean;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 5
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 9
+               debug 1, "sign", 1, 10
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var holder:String = "&variable&";
+      
+      private var stringContent:Dictionary;
+      
+      public function GameStringManager(target:IEventDispatcher = null)
+      {
+         method
+            name "com.aurora.game.maogoutd.common:GameStringManager/GameStringManager"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("flash.events"),"IEventDispatcher")
+            paramname null
+            optional Null()
+            returns null
+            
+            body
+               maxstack 2
+               localcount 2
+               initscopedepth 5
+               maxscopedepth 6
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                  debugline 15
+                  getlocal0
+                  pushscope
+                  debug 1, "target", 0, 15
+                  debugline 17
+                  getlocal0
+                  getlocal1
+                  constructsuper 1
+                  debugline 18
+                  getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"sign")
+                  iftrue ofs0029
+                  debugline 19
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "GameStringManager不允许实例化，请通过getInstance()获取！"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs0029:
+                  debugline 21
+                  getlocal0
+                  callpropvoid QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"init"), 0
+                  debugline 22
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : IGameStringManager
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.game.maogoutd.common:GameStringManager/getInstance"
+               returns QName(PackageNamespace("a_4752"),"IGameStringManager")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                     debugline 23
+                     getlocal0
+                     pushscope
+                     debugline 25
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"_instance")
+                     pushnull
+                     ifne ofs002e
+                     debugline 26
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"sign")
+                     pushtrue
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"sign")
+                     debugline 27
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"_instance")
+                     debugline 28
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"sign")
+                     pushfalse
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"sign")
+            ofs002e:
+                     debugline 31
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function getString(id:int, repString:Array = null) : String
+         {
+            trait method QName(PackageNamespace(""),"getString")
+               dispid 0
+               method
+                  name "com.aurora.game.maogoutd.common:GameStringManager/getString"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"Array")
+                  paramname "Error"
+                  paramname "Error"
+                  optional Null()
+                  returns QName(PackageNamespace(""),"String")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 5
+                     maxscopedepth 6
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                        debugline 42
+                        getlocal0
+                        pushscope
+                        debug 1, "id", 0, 42
+                        debug 1, "repString", 1, 42
+                        debug 1, "str", 2, 49
+                        debugline 44
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                        pushnull
+                        ifne ofs002a
+                        pushstring "配置文件没有加载，请检查！"
+                        debugline 46
+                        returnvalue
+               ofs002a:
+                        debugline 49
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        coerce_s
+                        setlocal3
+                        debugline 51
+                        getlocal3
+                        pushnull
+                        ifne ofs0051
+                        debugline 53
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                        pushshort 24579
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        coerce_s
+                        setlocal3
+                        jump ofs005c
+               ofs0051:
+                        debugline 56
+                        getlocal0
+                        getlocal3
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"replaceString"), 2
+                        coerce_s
+                        setlocal3
+               ofs005c:
+                        debugline 59
+                        getlocal3
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function GetServerCodeMessage(id:int) : String
+            {
+               trait method QName(PackageNamespace(""),"GetServerCodeMessage")
+                  dispid 0
+                  method
+                     name "com.aurora.game.maogoutd.common:GameStringManager/GetServerCodeMessage"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "Error"
+                     returns QName(PackageNamespace(""),"String")
+                     
+                     body
+                        maxstack 2
+                        localcount 3
+                        initscopedepth 5
+                        maxscopedepth 6
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                           debugline 62
+                           getlocal0
+                           pushscope
+                           debug 1, "id", 0, 62
+                           debug 1, "str", 1, 64
+                           debugline 64
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           coerce_s
+                           setlocal2
+                           debugline 65
+                           getlocal2
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function getHolder() : String
+               {
+                  trait method QName(PackageNamespace(""),"getHolder")
+                     dispid 0
+                     method
+                        name "com.aurora.game.maogoutd.common:GameStringManager/getHolder"
+                        returns QName(PackageNamespace(""),"String")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 5
+                           maxscopedepth 6
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                              debugline 73
+                              getlocal0
+                              pushscope
+                              debugline 75
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"holder")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function replaceString(str:String, repString:Array = null, holder:String = null) : String
+                  {
+                     trait method QName(PackageNamespace(""),"replaceString")
+                        dispid 0
+                        method
+                           name "com.aurora.game.maogoutd.common:GameStringManager/replaceString"
+                           flag HAS_OPTIONAL
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"String")
+                           param QName(PackageNamespace(""),"Array")
+                           param QName(PackageNamespace(""),"String")
+                           paramname "Error"
+                           paramname "Error"
+                           paramname "Error"
+                           optional Null()
+                           optional Null()
+                           returns QName(PackageNamespace(""),"String")
+                           
+                           body
+                              maxstack 4
+                              localcount 6
+                              initscopedepth 5
+                              maxscopedepth 6
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                 debugline 85
+                                 getlocal0
+                                 pushscope
+                                 pushbyte 0
+                                 setlocal 4
+                                 pushbyte 0
+                                 setlocal 5
+                                 debug 1, "str", 0, 85
+                                 debug 1, "repString", 1, 85
+                                 debug 1, "holder", 2, 85
+                                 debugline 87
+                                 getlocal3
+                                 pushnull
+                                 ifne ofs0031
+                                 debugline 89
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"holder")
+                                 coerce_s
+                                 setlocal3
+                        ofs0031:
+                                 debugline 91
+                                 getlocal2
+                                 pushnull
+                                 equals
+                                 not
+                                 dup
+                                 iffalse ofs0044
+                                 pop
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 pushbyte 0
+                                 greaterthan
+                        ofs0044:
+                                 iffalse ofs0082
+                                 debug 1, "i", 3, 93
+                                 debug 1, "n", 4, 93
+                                 debugline 93
+                                 pushbyte 0
+                                 setlocal 4
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 convert_i
+                                 setlocal 5
+                                 jump ofs007a
+                        ofs0065:
+                                 label
+                                 debugline 95
+                                 getlocal1
+                                 getlocal3
+                                 getlocal2
+                                 getlocal 4
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                                 coerce_s
+                                 setlocal1
+                                 debugline 93
+                                 inclocal_i 4
+                        ofs007a:
+                                 getlocal 4
+                                 getlocal 5
+                                 iflt ofs0065
+                        ofs0082:
+                                 debugline 99
+                                 getlocal1
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function setString(xml:XML) : void
+                     {
+                        trait method QName(PackageNamespace(""),"setString")
+                           dispid 0
+                           method
+                              name "com.aurora.game.maogoutd.common:GameStringManager/setString"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"XML")
+                              paramname "repString"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 5
+                                 maxscopedepth 6
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                    debugline 106
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "xml", 0, 106
+                                    debugline 109
+                                    getlocal0
+                                    getlocal1
+                                    callpropvoid QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"parseXML"), 1
+                                    debugline 110
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function loadString(url:String) : void
+                        {
+                           trait method QName(PackageNamespace(""),"loadString")
+                              dispid 0
+                              method
+                                 name "com.aurora.game.maogoutd.common:GameStringManager/loadString"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"String")
+                                 paramname "repString"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 2
+                                    initscopedepth 5
+                                    maxscopedepth 6
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                       debugline 117
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "url", 0, 117
+                                       debugline 119
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function init() : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"init")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.game.maogoutd.common:GameStringManager/private:init"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 5
+                                       maxscopedepth 6
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                          debugline 121
+                                          getlocal0
+                                          pushscope
+                                          debugline 123
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "GameStringManager::init"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 124
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              private function parseXML(xml:XML) : void
+                              {
+                                 trait method QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"parseXML")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.game.maogoutd.common:GameStringManager/private:parseXML"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"XML")
+                                       paramname "repString"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 4
+                                          localcount 6
+                                          initscopedepth 5
+                                          maxscopedepth 6
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                             debugline 125
+                                             getlocal0
+                                             pushscope
+                                             pushbyte 0
+                                             setlocal3
+                                             pushbyte 0
+                                             setlocal 4
+                                             pushbyte 0
+                                             setlocal 5
+                                             debug 1, "xml", 0, 125
+                                             debug 1, "contentList", 1, 135
+                                             debugline 127
+                                             getlocal1
+                                             pushnull
+                                             ifne ofs002b
+                                             debugline 129
+                                             returnvoid
+                                    ofs002b:
+                                             debugline 131
+                                             getlocal1
+                                             getproperty MultinameA("holder",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             getlex QName(PackageNamespace(""),"undefined")
+                                             ifeq ofs0048
+                                             debugline 133
+                                             getlocal0
+                                             getlocal1
+                                             getproperty MultinameA("holder",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")]), 0
+                                             initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"holder")
+                                    ofs0048:
+                                             debugline 135
+                                             getlocal1
+                                             getdescendants Multiname("content",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             coerce QName(PackageNamespace(""),"XMLList")
+                                             setlocal2
+                                             debugline 136
+                                             getlocal2
+                                             iffalse ofs00c5
+                                             debug 1, "i", 2, 139
+                                             debug 1, "n", 3, 139
+                                             debugline 138
+                                             getlocal0
+                                             findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                                             constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                                             initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                                             debugline 139
+                                             pushbyte 0
+                                             setlocal3
+                                             getlocal2
+                                             callproperty Multiname("length",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")]), 0
+                                             convert_i
+                                             setlocal 4
+                                             jump ofs00be
+                                    ofs0087:
+                                             label
+                                             debug 1, "id", 4, 141
+                                             debugline 141
+                                             findpropstrict QName(PackageNamespace(""),"parseInt")
+                                             getlocal2
+                                             getlocal3
+                                             getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             getproperty MultinameA("id",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             callproperty QName(PackageNamespace(""),"parseInt"), 1
+                                             convert_i
+                                             setlocal 5
+                                             debugline 142
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),"stringContent")
+                                             getlocal 5
+                                             getlocal2
+                                             getlocal3
+                                             getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")]), 0
+                                             setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:GameStringManager"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("GameStringManager.as$390"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("com.aurora.game.maogoutd.common:GameStringManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             debugline 139
+                                             inclocal_i 3
+                                    ofs00be:
+                                             getlocal3
+                                             getlocal 4
+                                             iflt ofs0087
+                                    ofs00c5:
+                                             debugline 146
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                              }
+                           }
+                           
+                           method
+                              name ""
+                              returns null
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 1
+                                 maxscopedepth 4
+                                 
+                                 code
+                                    getlocal0
+                                    pushscope
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                    debugline 7
+                                    findpropstrict Multiname("GameStringManager",[PackageNamespace("a_4752")])
+                                    getlex QName(PackageNamespace(""),"Object")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                    newclass 177
+                                    popscope
+                                    popscope
+                                    initproperty QName(PackageNamespace("a_4752"),"GameStringManager")
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GameStringManager.as"
+                                    debugline 1
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                           

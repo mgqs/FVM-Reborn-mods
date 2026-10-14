@@ -1,0 +1,312 @@
+package com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun
+{
+   import flash.display.DisplayObjectContainer;
+   import flash.filters.GlowFilter;
+   import flash.text.TextField;
+   import flash.text.TextFormat;
+   import flash.utils.Dictionary;
+   
+   public class CanAddBuffInfoManager
+   {
+      
+      private static var _instance:CanAddBuffInfoManager;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 16
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _buffTextDic:Dictionary;
+      
+      private var _parentLayer:DisplayObjectContainer;
+      
+      public function CanAddBuffInfoManager()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager/CanAddBuffInfoManager"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                  debugline 26
+                  getlocal0
+                  pushscope
+                  debugline 23
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager"),"_buffTextDic")
+                  debugline 26
+                  getlocal0
+                  constructsuper 0
+                  debugline 27
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : CanAddBuffInfoManager
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"CanAddBuffInfoManager")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debugline 19
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager"),"_instance")
+                     iftrue ofs0019
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager"),"_instance")
+            ofs0019:
+                     debugline 20
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function createBuffText() : TextField
+         {
+            trait method QName(PackageNamespace(""),"createBuffText")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager/createBuffText"
+                  returns QName(PackageNamespace("flash.text"),"TextField")
+                  
+                  body
+                     maxstack 7
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                        debugline 29
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace("flash.text"),"TextField")
+                        setlocal1
+                        debug 1, "txt", 0, 31
+                        debug 1, "fmt", 1, 34
+                        debugline 32
+                        findpropstrict QName(PackageNamespace("flash.text"),"TextField")
+                        constructprop QName(PackageNamespace("flash.text"),"TextField"), 0
+                        coerce QName(PackageNamespace("flash.text"),"TextField")
+                        setlocal1
+                        debugline 34
+                        findpropstrict QName(PackageNamespace("flash.text"),"TextFormat")
+                        pushstring "Arial"
+                        pushbyte 14
+                        pushint 16777113
+                        pushtrue
+                        constructprop QName(PackageNamespace("flash.text"),"TextFormat"), 4
+                        coerce QName(PackageNamespace("flash.text"),"TextFormat")
+                        setlocal2
+                        debugline 35
+                        getlocal1
+                        getlocal2
+                        setproperty QName(PackageNamespace(""),"defaultTextFormat")
+                        debugline 37
+                        getlocal1
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"mouseEnabled")
+                        debugline 38
+                        getlocal1
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"selectable")
+                        debugline 40
+                        getlocal1
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"multiline")
+                        debugline 41
+                        getlocal1
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"wordWrap")
+                        debugline 42
+                        getlocal1
+                        pushstring "left"
+                        setproperty QName(PackageNamespace(""),"autoSize")
+                        debugline 43
+                        getlocal1
+                        findpropstrict QName(PackageNamespace("flash.filters"),"GlowFilter")
+                        pushbyte 0
+                        pushbyte 1
+                        pushbyte 2
+                        dup
+                        pushbyte 10
+                        constructprop QName(PackageNamespace("flash.filters"),"GlowFilter"), 5
+                        newarray 1
+                        setproperty QName(PackageNamespace(""),"filters")
+                        debugline 44
+                        getlocal1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function updateBuffText(txt:TextField, addtimes:int, secondsLeft:Number) : void
+            {
+               trait method QName(PackageNamespace(""),"updateBuffText")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager/updateBuffText"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.text"),"TextField")
+                     param QName(PackageNamespace(""),"int")
+                     param QName(PackageNamespace(""),"Number")
+                     paramname "TextFormat"
+                     paramname "TextFormat"
+                     paramname "TextFormat"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 4
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                           debugline 47
+                           getlocal0
+                           pushscope
+                           debug 1, "txt", 0, 47
+                           debug 1, "addtimes", 1, 47
+                           debug 1, "secondsLeft", 2, 47
+                           debugline 49
+                           getlocal1
+                           pushstring "叠"
+                           getlocal2
+                           add
+                           pushstring "\n剩"
+                           add
+                           getlocal3
+                           add
+                           pushstring "s"
+                           add
+                           setproperty QName(PackageNamespace(""),"text")
+                           debugline 50
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function HideBuffText(txt:TextField) : void
+               {
+                  trait method QName(PackageNamespace(""),"HideBuffText")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:CanAddBuffInfoManager/HideBuffText"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.text"),"TextField")
+                        paramname "TextFormat"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                              debugline 52
+                              getlocal0
+                              pushscope
+                              debug 1, "txt", 0, 52
+                              debugline 54
+                              getlocal1
+                              iftrue ofs0015
+                              returnvoid
+                     ofs0015:
+                              debugline 56
+                              getlocal1
+                              pushfalse
+                              setproperty QName(PackageNamespace(""),"visible")
+                              debugline 57
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"parent")
+                              iffalse ofs002f
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"parent")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                     ofs002f:
+                              debugline 58
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                     debugline 14
+                     findpropstrict Multiname("CanAddBuffInfoManager",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 103
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"CanAddBuffInfoManager")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;CanAddBuffInfoManager.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

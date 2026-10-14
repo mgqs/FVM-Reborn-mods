@@ -1,0 +1,256 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2702 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_bySeatID:int;
+      
+      public var m_uiTickCount:uint;
+      
+      public var m_byTeamNo:int;
+      
+      public var m_byDefenderCount:int;
+      
+      public var m_arrVanishDefender:Array;
+      
+      private var a_857:CVanishDefender;
+      
+      public function a_2702()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/CNotifyPlayerDefenderVanish"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/CNotifyPlayerDefenderVanish"
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/CNotifyPlayerDefenderVanish"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 8
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                     debugline 23
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 23
+                     debug 1, "encode_length", 1, 23
+                     debug 1, "propertyArray", 2, 25
+                     pushstring "m_bySeatID"
+                     pushstring "int8"
+                     debugline 26
+                     newarray 2
+                     pushstring "m_uiTickCount"
+                     pushstring "uint32"
+                     debugline 27
+                     newarray 2
+                     pushstring "m_byTeamNo"
+                     pushstring "int8"
+                     debugline 28
+                     newarray 2
+                     pushstring "m_byDefenderCount"
+                     pushstring "int8"
+                     debugline 29
+                     newarray 2
+                     pushstring "m_arrVanishDefender"
+                     pushstring "object"
+                     pushstring "com.aurora.protocol.game.maogoutd.CVanishDefender"
+                     pushstring "nosize"
+                     debugline 30
+                     newarray 3
+                     newarray 2
+                     newarray 5
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 33
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/CNotifyPlayerDefenderVanish"
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/CNotifyPlayerDefenderVanish"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 8
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                        debugline 36
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 36
+                        debug 1, "decode_length", 1, 36
+                        debug 1, "propertyArray", 2, 38
+                        pushstring "m_bySeatID"
+                        pushstring "int8"
+                        debugline 39
+                        newarray 2
+                        pushstring "m_uiTickCount"
+                        pushstring "uint32"
+                        debugline 40
+                        newarray 2
+                        pushstring "m_byTeamNo"
+                        pushstring "int8"
+                        debugline 41
+                        newarray 2
+                        pushstring "m_byDefenderCount"
+                        pushstring "int8"
+                        debugline 42
+                        newarray 2
+                        pushstring "m_arrVanishDefender"
+                        pushstring "object"
+                        pushstring "com.aurora.protocol.game.maogoutd.CVanishDefender"
+                        pushstring "nosize"
+                        debugline 43
+                        newarray 3
+                        newarray 2
+                        newarray 5
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 46
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyPlayerDefenderVanish/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                           debugline 49
+                           getlocal0
+                           pushscope
+                           debugline 51
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2702",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 29
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"a_2702")
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerDefenderVanish.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

@@ -1,0 +1,596 @@
+package a_4739
+{
+   import flash.utils.Dictionary;
+   
+   public class a_1828
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var dictNotifys:Dictionary;
+      
+      private var dictIsNotifys:Dictionary;
+      
+      public function a_1828()
+      {
+         method
+            name "com.aurora.game.hlddz.notify:SdkNotify/SdkNotify"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                  debugline 22
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function register(_register:Object) : void
+      {
+         trait method QName(PackageNamespace(""),"register")
+            dispid 0
+            method
+               name "com.aurora.game.hlddz.notify:SdkNotify/register"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"Object")
+               paramname "dictNotifys"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 3
+                  localcount 2
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     debug 1, "_register", 0, 25
+                     debugline 27
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                     getlocal1
+                     callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                     getlocal1
+                     setproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                     debugline 28
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                     getlocal1
+                     callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                     pushtrue
+                     setproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                     debugline 29
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function remove(_remover:Object) : void
+         {
+            trait method QName(PackageNamespace(""),"remove")
+               dispid 0
+               method
+                  name "com.aurora.game.hlddz.notify:SdkNotify/remove"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Object")
+                  paramname "dictNotifys"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                        debugline 31
+                        getlocal0
+                        pushscope
+                        debug 1, "_remover", 0, 31
+                        debugline 33
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                        getlocal1
+                        callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                        deleteproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                        pop
+                        debugline 34
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                        getlocal1
+                        callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                        deleteproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                        pop
+                        debugline 35
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function removeAll() : void
+            {
+               trait method QName(PackageNamespace(""),"removeAll")
+                  dispid 0
+                  method
+                     name "com.aurora.game.hlddz.notify:SdkNotify/removeAll"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 4
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                           debugline 37
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace(""),"Object")
+                           setlocal1
+                           debug 1, "notifier", 0, 39
+                           debugline 39
+                           pushbyte 0
+                           setlocal2
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                           coerce_a
+                           setlocal3
+                           jump ofs0045
+                  ofs0020:
+                           label
+                           getlocal3
+                           getlocal2
+                           nextvalue
+                           coerce QName(PackageNamespace(""),"Object")
+                           setlocal1
+                           debugline 41
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                           getlocal1
+                           callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                           deleteproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                           pop
+                           debugline 42
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                           getlocal1
+                           callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                           deleteproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                           pop
+                  ofs0045:
+                           debugline 39
+                           hasnext2 3, 2
+                           iftrue ofs0020
+                           kill 3
+                           kill 2
+                           debugline 44
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function onlyRegister(_register:Object, onlyNotify:Boolean) : void
+               {
+                  trait method QName(PackageNamespace(""),"onlyRegister")
+                     dispid 0
+                     method
+                        name "com.aurora.game.hlddz.notify:SdkNotify/onlyRegister"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"Object")
+                        param QName(PackageNamespace(""),"Boolean")
+                        paramname "dictNotifys"
+                        paramname "dictNotifys"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 3
+                           localcount 6
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                              debugline 50
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debug 1, "_register", 0, 50
+                              debug 1, "onlyNotify", 1, 50
+                              debug 1, "notifier", 2, 52
+                              debugline 52
+                              pushbyte 0
+                              setlocal 4
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                              coerce_a
+                              setlocal 5
+                              jump ofs0047
+                     ofs002e:
+                              label
+                              getlocal 5
+                              getlocal 4
+                              nextvalue
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debugline 54
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                              getlocal3
+                              callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                              getlocal2
+                              not
+                              setproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                     ofs0047:
+                              debugline 52
+                              hasnext2 5, 4
+                              iftrue ofs002e
+                              kill 5
+                              kill 4
+                              debugline 57
+                              getlocal2
+                              iffalse ofs0067
+                              debugline 59
+                              getlocal0
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"register"), 1
+                              jump ofs006f
+                     ofs0067:
+                              debugline 63
+                              getlocal0
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"remove"), 1
+                     ofs006f:
+                              debugline 65
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function notify(notify:String, ... args) : void
+                  {
+                     trait method QName(PackageNamespace(""),"notify")
+                        dispid 0
+                        method
+                           name "com.aurora.game.hlddz.notify:SdkNotify/notify"
+                           flag HAS_PARAM_NAMES
+                           flag NEED_REST
+                           param QName(PackageNamespace(""),"String")
+                           paramname "dictNotifys"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 3
+                              localcount 7
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                                 debugline 67
+                                 getlocal0
+                                 pushscope
+                                 pushnull
+                                 coerce QName(PackageNamespace(""),"Object")
+                                 setlocal3
+                                 pushfalse
+                                 setlocal 4
+                                 debug 1, "notify", 0, 67
+                                 debug 1, "args", 1, 67
+                                 debug 1, "notifier", 2, 69
+                                 debugline 71
+                                 pushbyte 0
+                                 setlocal 5
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                                 coerce_a
+                                 setlocal 6
+                                 jump ofs0074
+                        ofs0031:
+                                 label
+                                 getlocal 6
+                                 getlocal 5
+                                 nextvalue
+                                 coerce QName(PackageNamespace(""),"Object")
+                                 setlocal3
+                                 debug 1, "isNotify", 3, 73
+                                 debugline 73
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                                 getlocal3
+                                 callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                                 convert_b
+                                 setlocal 4
+                                 debugline 75
+                                 getlocal 4
+                                 convert_b
+                                 dup
+                                 iffalse ofs0063
+                                 pop
+                                 getlocal3
+                                 getlocal1
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"hasOwnProperty"), 1
+                                 convert_b
+                        ofs0063:
+                                 iffalse ofs0074
+                                 debugline 77
+                                 getlocal3
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                                 getlocal3
+                                 getlocal2
+                                 callpropvoid Multiname("apply",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 2
+                        ofs0074:
+                                 debugline 71
+                                 hasnext2 6, 5
+                                 iftrue ofs0031
+                                 kill 6
+                                 kill 5
+                                 debugline 80
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function notifyData(notify:String, ... args) : Object
+                     {
+                        trait method QName(PackageNamespace(""),"notifyData")
+                           dispid 0
+                           method
+                              name "com.aurora.game.hlddz.notify:SdkNotify/notifyData"
+                              flag HAS_PARAM_NAMES
+                              flag NEED_REST
+                              param QName(PackageNamespace(""),"String")
+                              paramname "dictIsNotifys"
+                              returns QName(PackageNamespace(""),"Object")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 9
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                                    debugline 82
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal3
+                                    pushnull
+                                    coerce QName(PackageNamespace(""),"Function")
+                                    setlocal 4
+                                    pushnull
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal 5
+                                    pushfalse
+                                    setlocal 6
+                                    debug 1, "notify", 0, 82
+                                    debug 1, "args", 1, 82
+                                    debug 1, "notifier", 2, 84
+                                    debug 1, "fun", 3, 85
+                                    debug 1, "value", 4, 86
+                                    debugline 88
+                                    pushbyte 0
+                                    setlocal 7
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                                    coerce_a
+                                    setlocal 8
+                                    jump ofs008e
+                           ofs0047:
+                                    label
+                                    getlocal 8
+                                    getlocal 7
+                                    nextvalue
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal3
+                                    debug 1, "isNotify", 5, 90
+                                    debugline 90
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                                    getlocal3
+                                    callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                                    convert_b
+                                    setlocal 6
+                                    debugline 92
+                                    getlocal 6
+                                    convert_b
+                                    dup
+                                    iffalse ofs0079
+                                    pop
+                                    getlocal3
+                                    getlocal1
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"hasOwnProperty"), 1
+                                    convert_b
+                           ofs0079:
+                                    iffalse ofs008e
+                                    debugline 94
+                                    getlocal3
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                                    coerce QName(PackageNamespace(""),"Function")
+                                    setlocal 4
+                                    debugline 95
+                                    jump ofs0097
+                           ofs008e:
+                                    debugline 88
+                                    hasnext2 8, 7
+                                    iftrue ofs0047
+                           ofs0097:
+                                    kill 8
+                                    kill 7
+                                    debugline 99
+                                    getlocal 4
+                                    pushnull
+                                    ifeq ofs00b2
+                                    debugline 101
+                                    getlocal 4
+                                    pushnull
+                                    getlocal2
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"apply"), 2
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal 5
+                           ofs00b2:
+                                    debugline 103
+                                    getlocal 5
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function notifyer() : Object
+                        {
+                           trait method QName(PackageNamespace(""),"notifyer")
+                              dispid 0
+                              method
+                                 name "com.aurora.game.hlddz.notify:SdkNotify/notifyer"
+                                 returns QName(PackageNamespace(""),"Object")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 5
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                                       debugline 106
+                                       getlocal0
+                                       pushscope
+                                       pushnull
+                                       coerce QName(PackageNamespace(""),"Object")
+                                       setlocal1
+                                       pushfalse
+                                       setlocal2
+                                       debug 1, "notifier", 0, 108
+                                       debugline 110
+                                       pushbyte 0
+                                       setlocal3
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictNotifys")
+                                       coerce_a
+                                       setlocal 4
+                                       jump ofs004e
+                              ofs0023:
+                                       label
+                                       getlocal 4
+                                       getlocal3
+                                       nextvalue
+                                       coerce QName(PackageNamespace(""),"Object")
+                                       setlocal1
+                                       debug 1, "isNotify", 1, 112
+                                       debugline 112
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),"dictIsNotifys")
+                                       getlocal1
+                                       callproperty Multiname("toString",[PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")]), 0
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.game.hlddz.notify:SdkNotify"),PrivateNamespace("SdkNotify.as$309"),PackageNamespace(""),PackageNamespace("a_4739"),PackageInternalNs("a_4739"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.hlddz.notify:SdkNotify"),StaticProtectedNs("com.aurora.game.hlddz.notify:SdkNotify")])
+                                       convert_b
+                                       setlocal2
+                                       debugline 114
+                                       getlocal2
+                                       iffalse ofs004e
+                                       debugline 116
+                                       jump ofs0057
+                              ofs004e:
+                                       debugline 110
+                                       hasnext2 4, 3
+                                       iftrue ofs0023
+                              ofs0057:
+                                       kill 4
+                                       kill 3
+                                       debugline 119
+                                       getlocal1
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                              debugline 14
+                              findpropstrict Multiname("a_1828",[PackageNamespace("a_4739")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 49
+                              popscope
+                              initproperty QName(PackageNamespace("a_4739"),"a_1828")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\hlddz\\notify;SdkNotify.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

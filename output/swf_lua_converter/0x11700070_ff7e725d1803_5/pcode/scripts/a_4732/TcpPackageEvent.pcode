@@ -1,0 +1,196 @@
+package a_4732
+{
+   import a_4722.a_1765;
+   import flash.events.Event;
+   import flash.utils.ByteArray;
+   
+   public class TcpPackageEvent extends Event
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 5
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var a_787:a_1765;
+      
+      public var m_stKeyInfo:ByteArray;
+      
+      public var packageBytes:ByteArray;
+      
+      public function TcpPackageEvent(type:String, stServerInfo:a_1765, stKeyInfo:ByteArray, bubbles:Boolean = false, cancelable:Boolean = false)
+      {
+         method
+            name "com.aurora.event.network:TcpPackageEvent/TcpPackageEvent"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace("a_4722"),"a_1765")
+            param QName(PackageNamespace("flash.utils"),"ByteArray")
+            param QName(PackageNamespace(""),"Boolean")
+            param QName(PackageNamespace(""),"Boolean")
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            optional False()
+            optional False()
+            returns null
+            
+            body
+               maxstack 4
+               localcount 6
+               initscopedepth 5
+               maxscopedepth 6
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\network;TcpPackageEvent.as"
+                  debugline 14
+                  getlocal0
+                  pushscope
+                  debug 1, "type", 0, 14
+                  debug 1, "stServerInfo", 1, 14
+                  debug 1, "stKeyInfo", 2, 14
+                  debug 1, "bubbles", 3, 14
+                  debug 1, "cancelable", 4, 14
+                  debugline 16
+                  getlocal0
+                  getlocal1
+                  getlocal 4
+                  getlocal 5
+                  constructsuper 3
+                  debugline 17
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                  constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                  initproperty QName(PackageNamespace(""),"packageBytes")
+                  debugline 18
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4722"),"a_1765")
+                  constructprop QName(PackageNamespace("a_4722"),"a_1765"), 0
+                  initproperty QName(PackageNamespace(""),"a_787")
+                  debugline 19
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"a_787")
+                  getlocal2
+                  getproperty QName(PackageNamespace(""),"m_iServerType")
+                  setproperty QName(PackageNamespace(""),"m_iServerType")
+                  debugline 20
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"a_787")
+                  getlocal2
+                  getproperty QName(PackageNamespace(""),"m_iServerID")
+                  setproperty QName(PackageNamespace(""),"m_iServerID")
+                  debugline 21
+                  getlocal0
+                  getlocal3
+                  initproperty QName(PackageNamespace(""),"m_stKeyInfo")
+                  debugline 22
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override public function clone() : Event
+      {
+         trait method QName(PackageNamespace(""),"clone")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.event.network:TcpPackageEvent/clone"
+               returns QName(PackageNamespace("flash.events"),"Event")
+               
+               body
+                  maxstack 6
+                  localcount 2
+                  initscopedepth 5
+                  maxscopedepth 6
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\network;TcpPackageEvent.as"
+                     debugline 24
+                     getlocal0
+                     pushscope
+                     debug 1, "newPackageEvent", 0, 26
+                     debugline 26
+                     findpropstrict QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"type")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_787")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stKeyInfo")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"bubbles")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"cancelable")
+                     constructprop QName(PackageNamespace("a_4732"),"TcpPackageEvent"), 5
+                     coerce QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                     setlocal1
+                     debugline 27
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"packageBytes")
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"packageBytes")
+                     pushbyte 0
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"packageBytes")
+                     getproperty QName(PackageNamespace(""),"bytesAvailable")
+                     callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                     debugline 29
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 4
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\network;TcpPackageEvent.as"
+            debugline 8
+            findpropstrict Multiname("TcpPackageEvent",[PackageNamespace("a_4732")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace("flash.events"),"Event")
+            pushscope
+            getlex QName(PackageNamespace("flash.events"),"Event")
+            newclass 129
+            popscope
+            popscope
+            initproperty QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\network;TcpPackageEvent.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

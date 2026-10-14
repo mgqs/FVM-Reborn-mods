@@ -1,0 +1,332 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   
+   public class a_3976 extends a_3962
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_isMyPlacedTool:Boolean = false;
+      
+      protected var m_iToolType:int = 0;
+      
+      public var m_iMoveByMap:Boolean = false;
+      
+      public function a_3976()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/BaseToolDefense"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                  debugline 11
+                  getlocal0
+                  pushscope
+                  debugline 13
+                  getlocal0
+                  constructsuper 0
+                  debugline 15
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function get iToolType() : int
+      {
+         trait getter QName(PackageNamespace(""),"iToolType")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/iToolType/get"
+               returns QName(PackageNamespace(""),"int")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debugline 19
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),"m_iToolType")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_3969(iRduceLifeValue:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_3969")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/ReduceLife"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/iToolType/get"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                        debugline 22
+                        getlocal0
+                        pushscope
+                        debug 1, "iRduceLifeValue", 0, 22
+                        debugline 24
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_3969"), 1
+                        debugline 26
+                        getlex QName(PackageNamespace(""),"a_1339")
+                        pushbyte 0
+                        ifnle ofs0027
+                        debugline 28
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+               ofs0027:
+                        debugline 31
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_3957(iCurrentTime:int) : void
+            {
+               trait method QName(PackageNamespace(""),"a_3957")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/ShowPlay"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                           debugline 34
+                           getlocal0
+                           pushscope
+                           debug 1, "iCurrentTime", 0, 34
+                           debugline 36
+                           findpropstrict QName(PackageNamespace(""),"nextFrame")
+                           callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                           debugline 38
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                           ifne ofs002d
+                           debugline 40
+                           findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                           pushbyte 1
+                           callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                  ofs002d:
+                           debugline 43
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1336")
+                           iffalse ofs0040
+                           debugline 45
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1336")
+                           getlocal1
+                           callpropvoid QName(PackageNamespace(""),"a_3957"), 1
+                  ofs0040:
+                           debugline 47
+                           getlex QName(PackageNamespace(""),"m_stFrozenCardEffect")
+                           iffalse ofs0053
+                           debugline 49
+                           getlex QName(PackageNamespace(""),"m_stFrozenCardEffect")
+                           getlocal1
+                           callpropvoid QName(PackageNamespace(""),"a_3957"), 1
+                  ofs0053:
+                           debugline 51
+                           getlex QName(PackageNamespace(""),"m_stShiHuaEffect")
+                           iffalse ofs0066
+                           debugline 53
+                           getlex QName(PackageNamespace(""),"m_stShiHuaEffect")
+                           getlocal1
+                           callpropvoid QName(PackageNamespace(""),"a_3957"), 1
+                  ofs0066:
+                           debugline 55
+                           getlex QName(PackageNamespace(""),"buffCom")
+                           pushbyte 2
+                           callpropvoid QName(PackageNamespace(""),"UpdateBuff"), 1
+                           debugline 56
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override public function a_3940() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3940")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender:BaseToolDefense/Realease"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                              debugline 58
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                              setlocal1
+                              debug 1, "stBattleFieldView", 0, 60
+                              debugline 61
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              iffalse ofs0051
+                              debugline 63
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getlocal0
+                              callpropvoid QName(PackageNamespace(""),"RemoveToolDefense"), 1
+                              debugline 64
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                              getproperty QName(PackageNamespace(""),"stCheckFieldGridsVector")
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),PackageNamespace(""),PrivateNamespace("BaseToolDefense.as$158"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),PackageNamespace(""),PrivateNamespace("BaseToolDefense.as$158"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                              getlocal0
+                              callpropvoid Multiname("RemoveToolDefense",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),PackageNamespace(""),PrivateNamespace("BaseToolDefense.as$158"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")]), 1
+                              debugline 65
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                              setlocal1
+                     ofs0051:
+                              debugline 68
+                              getlocal0
+                              pushfalse
+                              initproperty QName(PackageNamespace(""),"m_isMyPlacedTool")
+                              debugline 70
+                              getlocal0
+                              callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                              debugline 71
+                              getlocal1
+                              iffalse ofs0084
+                              debugline 73
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"SortDisplayObject"), 0
+                              debugline 74
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                              iffalse ofs0084
+                              debugline 76
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                              getlocal0
+                              callpropvoid QName(PackageNamespace(""),"RemoveMoveDisplayObject"), 1
+                     ofs0084:
+                              debugline 79
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 10
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                     debugline 5
+                     findpropstrict Multiname("a_3976",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     newclass 315
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseToolDefense.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

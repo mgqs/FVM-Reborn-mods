@@ -1,0 +1,795 @@
+package a_4752
+{
+   import flash.utils.ByteArray;
+   
+   public class Base64
+   {
+      
+      private static const encodeChars:Array;
+      
+      private static const decodeChars:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 129
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "encodeChars", 0, 49
+               findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+               pushstring "A"
+               pushstring "B"
+               pushstring "C"
+               pushstring "D"
+               pushstring "E"
+               pushstring "F"
+               pushstring "G"
+               pushstring "H"
+               pushstring "I"
+               pushstring "J"
+               pushstring "K"
+               pushstring "L"
+               pushstring "M"
+               pushstring "N"
+               pushstring "O"
+               pushstring "P"
+               pushstring "Q"
+               pushstring "R"
+               pushstring "S"
+               pushstring "T"
+               pushstring "U"
+               pushstring "V"
+               pushstring "W"
+               pushstring "X"
+               pushstring "Y"
+               pushstring "Z"
+               pushstring "a"
+               pushstring "b"
+               pushstring "c"
+               pushstring "d"
+               pushstring "e"
+               pushstring "f"
+               pushstring "g"
+               pushstring "h"
+               pushstring "i"
+               pushstring "j"
+               pushstring "k"
+               pushstring "l"
+               pushstring "m"
+               pushstring "n"
+               pushstring "o"
+               pushstring "p"
+               pushstring "q"
+               pushstring "r"
+               pushstring "s"
+               pushstring "t"
+               pushstring "u"
+               pushstring "v"
+               pushstring "w"
+               pushstring "x"
+               pushstring "y"
+               pushstring "z"
+               pushstring "0"
+               pushstring "1"
+               pushstring "2"
+               pushstring "3"
+               pushstring "4"
+               pushstring "5"
+               pushstring "6"
+               pushstring "7"
+               pushstring "8"
+               pushstring "9"
+               pushstring "+"
+               pushstring "/"
+               newarray 64
+               initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+               debug 1, "decodeChars", 1, 50
+               findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte 62
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte 63
+               pushbyte 52
+               pushbyte 53
+               pushbyte 54
+               pushbyte 55
+               pushbyte 56
+               pushbyte 57
+               pushbyte 58
+               pushbyte 59
+               pushbyte 60
+               pushbyte 61
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte 0
+               pushbyte 1
+               pushbyte 2
+               pushbyte 3
+               pushbyte 4
+               pushbyte 5
+               pushbyte 6
+               pushbyte 7
+               pushbyte 8
+               pushbyte 9
+               pushbyte 10
+               pushbyte 11
+               pushbyte 12
+               pushbyte 13
+               pushbyte 14
+               pushbyte 15
+               pushbyte 16
+               pushbyte 17
+               pushbyte 18
+               pushbyte 19
+               pushbyte 20
+               pushbyte 21
+               pushbyte 22
+               pushbyte 23
+               pushbyte 24
+               pushbyte 25
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte 26
+               pushbyte 27
+               pushbyte 28
+               pushbyte 29
+               pushbyte 30
+               pushbyte 31
+               pushbyte 32
+               pushbyte 33
+               pushbyte 34
+               pushbyte 35
+               pushbyte 36
+               pushbyte 37
+               pushbyte 38
+               pushbyte 39
+               pushbyte 40
+               pushbyte 41
+               pushbyte 42
+               pushbyte 43
+               pushbyte 44
+               pushbyte 45
+               pushbyte 46
+               pushbyte 47
+               pushbyte 48
+               pushbyte 49
+               pushbyte 50
+               pushbyte 51
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               pushbyte -1
+               newarray 128
+               initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function Base64()
+      {
+         method
+            name "com.aurora.game.maogoutd.common:Base64/Base64"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;Base64.as"
+                  debugline 158
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function encode(data:ByteArray) : String
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.game.maogoutd.common:Base64/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               paramname "E"
+               returns QName(PackageNamespace(""),"String")
+               
+               body
+                  maxstack 6
+                  localcount 9
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;Base64.as"
+                     debugline 52
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     setlocal 7
+                     debug 1, "data", 0, 52
+                     debug 1, "out", 1, 54
+                     debug 1, "i", 2, 55
+                     debug 1, "j", 3, 56
+                     debug 1, "r", 4, 57
+                     debug 1, "len", 5, 58
+                     debug 1, "c", 6, 59
+                     debugline 54
+                     newarray 0
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal2
+                     debugline 55
+                     pushbyte 0
+                     setlocal3
+                     debugline 56
+                     pushbyte 0
+                     setlocal 4
+                     debugline 57
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"length")
+                     pushbyte 3
+                     modulo
+                     convert_i
+                     setlocal 5
+                     debugline 58
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"length")
+                     getlocal 5
+                     subtract
+                     convert_i
+                     setlocal 6
+                     jump ofs00ce
+            ofs0063:
+                     label
+                     debugline 63
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     pushbyte 16
+                     lshift
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     pushbyte 8
+                     lshift
+                     bitor
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     bitor
+                     setlocal 7
+                     debugline 64
+                     getlocal2
+                     getlocal 4
+                     dup
+                     increment_i
+                     setlocal 4
+                     dup
+                     setlocal 8
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 18
+                     rshift
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 12
+                     rshift
+                     pushbyte 63
+                     bitand
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 6
+                     rshift
+                     pushbyte 63
+                     bitand
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 63
+                     bitand
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     kill 8
+            ofs00ce:
+                     debugline 61
+                     getlocal3
+                     getlocal 6
+                     iflt ofs0063
+                     debugline 67
+                     getlocal 5
+                     pushbyte 1
+                     ifne ofs0121
+                     debugline 69
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     convert_i
+                     setlocal 7
+                     debugline 70
+                     getlocal2
+                     getlocal 4
+                     dup
+                     increment_i
+                     setlocal 4
+                     dup
+                     setlocal 8
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 2
+                     rshift
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 3
+                     bitand
+                     pushbyte 4
+                     lshift
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     pushstring "=="
+                     add
+                     setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     kill 8
+                     jump ofs0181
+            ofs0121:
+                     debugline 72
+                     getlocal 5
+                     pushbyte 2
+                     ifne ofs0181
+                     debugline 74
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     pushbyte 8
+                     lshift
+                     getlocal1
+                     getlocal3
+                     dup
+                     increment_i
+                     setlocal3
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     bitor
+                     setlocal 7
+                     debugline 75
+                     getlocal2
+                     getlocal 4
+                     dup
+                     increment_i
+                     setlocal 4
+                     dup
+                     setlocal 8
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 10
+                     rshift
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 4
+                     rshift
+                     pushbyte 63
+                     bitand
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"encodeChars")
+                     getlocal 7
+                     pushbyte 15
+                     bitand
+                     pushbyte 2
+                     lshift
+                     getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     add
+                     pushstring "="
+                     add
+                     setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                     kill 8
+            ofs0181:
+                     debugline 77
+                     getlocal2
+                     pushstring ""
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"join"), 1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function decode(str:String) : ByteArray
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.game.maogoutd.common:Base64/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"String")
+                  paramname "F"
+                  returns QName(PackageNamespace("flash.utils"),"ByteArray")
+                  
+                  body
+                     maxstack 4
+                     localcount 9
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;Base64.as"
+                        debugline 80
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal2
+                        pushbyte 0
+                        setlocal3
+                        pushbyte 0
+                        setlocal 4
+                        pushbyte 0
+                        setlocal 5
+                        pushbyte 0
+                        setlocal 6
+                        pushbyte 0
+                        setlocal 7
+                        pushnull
+                        coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                        setlocal 8
+                        debug 1, "str", 0, 80
+                        debug 1, "c1", 1, 82
+                        debug 1, "c2", 2, 83
+                        debug 1, "c3", 3, 84
+                        debug 1, "c4", 4, 85
+                        debug 1, "i", 5, 86
+                        debug 1, "len", 6, 87
+                        debug 1, "out", 7, 88
+                        debugline 89
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"length")
+                        convert_i
+                        setlocal 7
+                        debugline 90
+                        pushbyte 0
+                        setlocal 6
+                        debugline 91
+                        findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                        constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                        coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                        setlocal 8
+                        jump ofs01f4
+               ofs0070:
+                        label
+                        jump ofs0076
+               ofs0075:
+                        label
+               ofs0076:
+                        debugline 98
+                        getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+                        getlocal1
+                        getlocal 6
+                        dup
+                        increment_i
+                        setlocal 6
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charCodeAt"), 1
+                        pushshort 255
+                        bitand
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                        convert_i
+                        setlocal2
+                        debugline 99
+                        getlocal 6
+                        getlocal 7
+                        lessthan
+                        dup
+                        iffalse ofs00a0
+                        pop
+                        getlocal2
+                        pushbyte -1
+                        equals
+               ofs00a0:
+                        iftrue ofs0075
+                        debugline 101
+                        getlocal2
+                        pushbyte -1
+                        ifne ofs00b3
+                        debugline 103
+                        jump ofs01fe
+               ofs00b3:
+                        jump ofs00b8
+               ofs00b7:
+                        label
+               ofs00b8:
+                        debugline 109
+                        getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+                        getlocal1
+                        getlocal 6
+                        dup
+                        increment_i
+                        setlocal 6
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charCodeAt"), 1
+                        pushshort 255
+                        bitand
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                        convert_i
+                        setlocal3
+                        debugline 110
+                        getlocal 6
+                        getlocal 7
+                        lessthan
+                        dup
+                        iffalse ofs00e2
+                        pop
+                        getlocal3
+                        pushbyte -1
+                        equals
+               ofs00e2:
+                        iftrue ofs00b7
+                        debugline 112
+                        getlocal3
+                        pushbyte -1
+                        ifne ofs00f5
+                        debugline 114
+                        jump ofs01fe
+               ofs00f5:
+                        debugline 116
+                        getlocal 8
+                        getlocal2
+                        pushbyte 2
+                        lshift
+                        getlocal3
+                        pushbyte 48
+                        bitand
+                        pushbyte 4
+                        rshift
+                        bitor
+                        callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                        jump ofs010e
+               ofs010d:
+                        label
+               ofs010e:
+                        debugline 121
+                        getlocal1
+                        getlocal 6
+                        dup
+                        increment_i
+                        setlocal 6
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charCodeAt"), 1
+                        pushshort 255
+                        bitand
+                        setlocal 4
+                        debugline 123
+                        getlocal 4
+                        pushbyte 61
+                        ifne ofs0130
+                        debugline 125
+                        getlocal 8
+                        returnvalue
+               ofs0130:
+                        debugline 127
+                        getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+                        getlocal 4
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                        convert_i
+                        setlocal 4
+                        debugline 128
+                        getlocal 6
+                        getlocal 7
+                        lessthan
+                        dup
+                        iffalse ofs0150
+                        pop
+                        getlocal 4
+                        pushbyte -1
+                        equals
+               ofs0150:
+                        iftrue ofs010d
+                        debugline 130
+                        getlocal 4
+                        pushbyte -1
+                        ifne ofs0166
+                        debugline 132
+                        jump ofs01fe
+               ofs0166:
+                        debugline 134
+                        getlocal 8
+                        getlocal3
+                        pushbyte 15
+                        bitand
+                        pushbyte 4
+                        lshift
+                        getlocal 4
+                        pushbyte 60
+                        bitand
+                        pushbyte 2
+                        rshift
+                        bitor
+                        callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                        jump ofs0184
+               ofs0183:
+                        label
+               ofs0184:
+                        debugline 139
+                        getlocal1
+                        getlocal 6
+                        dup
+                        increment_i
+                        setlocal 6
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charCodeAt"), 1
+                        pushshort 255
+                        bitand
+                        setlocal 5
+                        debugline 141
+                        getlocal 5
+                        pushbyte 61
+                        ifne ofs01a9
+                        debugline 143
+                        getlocal 8
+                        returnvalue
+               ofs01a9:
+                        debugline 145
+                        getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),"decodeChars")
+                        getlocal 5
+                        getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:Base64"),PackageNamespace(""),PrivateNamespace("Base64.as$226"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:Base64"),StaticProtectedNs("com.aurora.game.maogoutd.common:Base64")])
+                        convert_i
+                        setlocal 5
+                        debugline 146
+                        getlocal 6
+                        getlocal 7
+                        lessthan
+                        dup
+                        iffalse ofs01ca
+                        pop
+                        getlocal 5
+                        pushbyte -1
+                        equals
+               ofs01ca:
+                        iftrue ofs0183
+                        debugline 148
+                        getlocal 5
+                        pushbyte -1
+                        ifne ofs01e0
+                        debugline 150
+                        jump ofs01fe
+               ofs01e0:
+                        debugline 152
+                        getlocal 8
+                        getlocal 4
+                        pushbyte 3
+                        bitand
+                        pushbyte 6
+                        lshift
+                        getlocal 5
+                        bitor
+                        callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+               ofs01f4:
+                        debugline 93
+                        getlocal 6
+                        getlocal 7
+                        iflt ofs0070
+               ofs01fe:
+                        debugline 154
+                        getlocal 8
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;Base64.as"
+               debugline 47
+               findpropstrict Multiname("Base64",[PackageNamespace("a_4752")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 30
+               popscope
+               initproperty QName(PackageNamespace("a_4752"),"Base64")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;Base64.as"
+               debugline 38
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

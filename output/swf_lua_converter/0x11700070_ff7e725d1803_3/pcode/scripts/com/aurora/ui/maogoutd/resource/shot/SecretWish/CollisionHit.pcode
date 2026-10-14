@@ -1,0 +1,591 @@
+package com.aurora.ui.maogoutd.resource.shot.SecretWish
+{
+   import flash.display.BitmapData;
+   import flash.display.BlendMode;
+   import flash.display.DisplayObject;
+   import flash.geom.ColorTransform;
+   import flash.geom.Matrix;
+   import flash.geom.Point;
+   import flash.geom.Rectangle;
+   
+   public class CollisionHit
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function CollisionHit()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/CollisionHit"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                  debugline 13
+                  getlocal0
+                  pushscope
+                  debugline 14
+                  getlocal0
+                  constructsuper 0
+                  debugline 15
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function complexCollisionHitObject(target1:DisplayObject, target2:DisplayObject, accuracy:Number = 1) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"complexCollisionHitObject")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/complexCollisionHitObject"
+               flag HAS_OPTIONAL
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.display"),"DisplayObject")
+               param QName(PackageNamespace("flash.display"),"DisplayObject")
+               param QName(PackageNamespace(""),"Number")
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\SecretWish;CollisionHit.as"
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\SecretWish;CollisionHit.as"
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\SecretWish;CollisionHit.as"
+               optional Integer(1)
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 4
+                  localcount 4
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debug 1, "target1", 0, 17
+                     debug 1, "target2", 1, 17
+                     debug 1, "accuracy", 2, 17
+                     debugline 19
+                     findpropstrict QName(PackageNamespace(""),"complexIntersectionRectangle")
+                     getlocal1
+                     getlocal2
+                     getlocal3
+                     callproperty QName(PackageNamespace(""),"complexIntersectionRectangle"), 3
+                     getproperty QName(PackageNamespace(""),"width")
+                     pushbyte 0
+                     equals
+                     not
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function intersectionRectangle(target1:DisplayObject, target2:DisplayObject) : Rectangle
+         {
+            trait method QName(PackageNamespace(""),"intersectionRectangle")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/intersectionRectangle"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.display"),"DisplayObject")
+                  param QName(PackageNamespace("flash.display"),"DisplayObject")
+                  paramname "width"
+                  paramname "width"
+                  returns QName(PackageNamespace("flash.geom"),"Rectangle")
+                  
+                  body
+                     maxstack 5
+                     localcount 6
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                        debugline 23
+                        getlocal0
+                        pushscope
+                        debug 1, "target1", 0, 23
+                        debug 1, "target2", 1, 23
+                        debug 1, "bounds1", 2, 29
+                        debug 1, "bounds2", 3, 30
+                        debug 1, "intersection", 4, 33
+                        debugline 26
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"root")
+                        not
+                        dup
+                        iftrue ofs0037
+                        pop
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"root")
+                        not
+               ofs0037:
+                        dup
+                        iftrue ofs0044
+                        pop
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"hitTestObject"), 1
+                        not
+               ofs0044:
+                        iffalse ofs004e
+                        findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                        constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                        returnvalue
+               ofs004e:
+                        debugline 29
+                        getlocal1
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"root")
+                        callproperty QName(PackageNamespace(""),"getBounds"), 1
+                        coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                        setlocal3
+                        debugline 30
+                        getlocal2
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"root")
+                        callproperty QName(PackageNamespace(""),"getBounds"), 1
+                        coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                        setlocal 4
+                        debugline 33
+                        findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                        constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                        coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                        setlocal 5
+                        debugline 34
+                        getlocal 5
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"x")
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"x")
+                        callproperty QName(PackageNamespace(""),"max"), 2
+                        setproperty QName(PackageNamespace(""),"x")
+                        debugline 35
+                        getlocal 5
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"y")
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"y")
+                        callproperty QName(PackageNamespace(""),"max"), 2
+                        setproperty QName(PackageNamespace(""),"y")
+                        debugline 36
+                        getlocal 5
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"x")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"width")
+                        add
+                        getlocal 5
+                        getproperty QName(PackageNamespace(""),"x")
+                        subtract
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"x")
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"width")
+                        add
+                        getlocal 5
+                        getproperty QName(PackageNamespace(""),"x")
+                        subtract
+                        callproperty QName(PackageNamespace(""),"min"), 2
+                        setproperty QName(PackageNamespace(""),"width")
+                        debugline 37
+                        getlocal 5
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"y")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"height")
+                        add
+                        getlocal 5
+                        getproperty QName(PackageNamespace(""),"y")
+                        subtract
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"y")
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"height")
+                        add
+                        getlocal 5
+                        getproperty QName(PackageNamespace(""),"y")
+                        subtract
+                        callproperty QName(PackageNamespace(""),"min"), 2
+                        setproperty QName(PackageNamespace(""),"height")
+                        debugline 39
+                        getlocal 5
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public static function complexIntersectionRectangle(target1:DisplayObject, target2:DisplayObject, accuracy:Number = 1) : Rectangle
+            {
+               trait method QName(PackageNamespace(""),"complexIntersectionRectangle")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/complexIntersectionRectangle"
+                     flag HAS_OPTIONAL
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.display"),"DisplayObject")
+                     param QName(PackageNamespace("flash.display"),"DisplayObject")
+                     param QName(PackageNamespace(""),"Number")
+                     paramname "width"
+                     paramname "width"
+                     paramname "width"
+                     optional Integer(1)
+                     returns QName(PackageNamespace("flash.geom"),"Rectangle")
+                     
+                     body
+                        maxstack 12
+                        localcount 7
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                           debugline 43
+                           getlocal0
+                           pushscope
+                           debug 1, "target1", 0, 43
+                           debug 1, "target2", 1, 43
+                           debug 1, "accuracy", 2, 43
+                           debug 1, "hitRectangle", 3, 51
+                           debug 1, "bitmapData", 4, 58
+                           debug 1, "intersection", 5, 66
+                           debugline 46
+                           getlocal3
+                           pushbyte 0
+                           ifnle ofs0042
+                           findpropstrict QName(PackageNamespace(""),"Error")
+                           pushstring "ArgumentError: Error #5001: Invalid value for accurracy"
+                           pushshort 5001
+                           constructprop QName(PackageNamespace(""),"Error"), 2
+                           throw
+                  ofs0042:
+                           debugline 49
+                           getlocal1
+                           getlocal2
+                           callproperty QName(PackageNamespace(""),"hitTestObject"), 1
+                           iftrue ofs0054
+                           findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                           constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                           returnvalue
+                  ofs0054:
+                           debugline 51
+                           findpropstrict QName(PackageNamespace(""),"intersectionRectangle")
+                           getlocal1
+                           getlocal2
+                           callproperty QName(PackageNamespace(""),"intersectionRectangle"), 2
+                           coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                           setlocal 4
+                           debugline 53
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"width")
+                           getlocal3
+                           multiply
+                           pushbyte 1
+                           lessthan
+                           dup
+                           iftrue ofs007f
+                           pop
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"height")
+                           getlocal3
+                           multiply
+                           pushbyte 1
+                           lessthan
+                  ofs007f:
+                           iffalse ofs0089
+                           findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                           constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                           returnvalue
+                  ofs0089:
+                           debugline 58
+                           findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"width")
+                           getlocal3
+                           multiply
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"height")
+                           getlocal3
+                           multiply
+                           pushfalse
+                           pushbyte 0
+                           constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                           coerce QName(PackageNamespace("flash.display"),"BitmapData")
+                           setlocal 5
+                           debugline 61
+                           getlocal 5
+                           getlocal1
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.SecretWish"),"CollisionHit")
+                           getlocal1
+                           getlocal 4
+                           getlocal3
+                           callproperty QName(StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit"),"getDrawMatrix"), 3
+                           findpropstrict QName(PackageNamespace("flash.geom"),"ColorTransform")
+                           pushbyte 1
+                           dup
+                           dup
+                           pushbyte 1
+                           pushshort 255
+                           pushshort -255
+                           pushshort -255
+                           pushshort 255
+                           constructprop QName(PackageNamespace("flash.geom"),"ColorTransform"), 8
+                           callpropvoid QName(PackageNamespace(""),"draw"), 3
+                           debugline 63
+                           getlocal 5
+                           getlocal2
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.SecretWish"),"CollisionHit")
+                           getlocal2
+                           getlocal 4
+                           getlocal3
+                           callproperty QName(StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit"),"getDrawMatrix"), 3
+                           findpropstrict QName(PackageNamespace("flash.geom"),"ColorTransform")
+                           pushbyte 1
+                           dup
+                           dup
+                           pushbyte 1
+                           pushshort 255
+                           pushshort 255
+                           pushshort 255
+                           pushshort 255
+                           constructprop QName(PackageNamespace("flash.geom"),"ColorTransform"), 8
+                           getlex QName(PackageNamespace("flash.display"),"BlendMode")
+                           getproperty QName(PackageNamespace(""),"DIFFERENCE")
+                           callpropvoid QName(PackageNamespace(""),"draw"), 4
+                           debugline 66
+                           getlocal 5
+                           pushdouble 4294967295
+                           pushdouble 4278255615
+                           callproperty QName(PackageNamespace(""),"getColorBoundsRect"), 2
+                           coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                           setlocal 6
+                           debugline 68
+                           getlocal 5
+                           callpropvoid QName(PackageNamespace(""),"dispose"), 0
+                           debugline 73
+                           getlocal3
+                           pushbyte 1
+                           ifeq ofs0167
+                           debugline 75
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"x")
+                           getlocal3
+                           divide
+                           setproperty QName(PackageNamespace(""),"x")
+                           debugline 76
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"y")
+                           getlocal3
+                           divide
+                           setproperty QName(PackageNamespace(""),"y")
+                           debugline 77
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"width")
+                           getlocal3
+                           divide
+                           setproperty QName(PackageNamespace(""),"width")
+                           debugline 78
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"height")
+                           getlocal3
+                           divide
+                           setproperty QName(PackageNamespace(""),"height")
+                  ofs0167:
+                           debugline 81
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"x")
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"x")
+                           add
+                           setproperty QName(PackageNamespace(""),"x")
+                           debugline 82
+                           getlocal 6
+                           getlocal 6
+                           getproperty QName(PackageNamespace(""),"y")
+                           getlocal 4
+                           getproperty QName(PackageNamespace(""),"y")
+                           add
+                           setproperty QName(PackageNamespace(""),"y")
+                           debugline 84
+                           getlocal 6
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               protected static function getDrawMatrix(target:DisplayObject, hitRectangle:Rectangle, accurracy:Number) : Matrix
+               {
+                  trait method QName(StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit"),"getDrawMatrix")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/protected:getDrawMatrix"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.display"),"DisplayObject")
+                        param QName(PackageNamespace("flash.geom"),"Rectangle")
+                        param QName(PackageNamespace(""),"Number")
+                        paramname "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/intersectionRectangle"
+                        paramname "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/intersectionRectangle"
+                        paramname "com.aurora.ui.maogoutd.resource.shot.SecretWish:CollisionHit/intersectionRectangle"
+                        returns QName(PackageNamespace("flash.geom"),"Matrix")
+                        
+                        body
+                           maxstack 3
+                           localcount 7
+                           initscopedepth 3
+                           maxscopedepth 4
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                              debugline 88
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace("flash.geom"),"Point")
+                              setlocal 4
+                              pushnull
+                              coerce QName(PackageNamespace("flash.geom"),"Matrix")
+                              setlocal 5
+                              debug 1, "target", 0, 88
+                              debug 1, "hitRectangle", 1, 88
+                              debug 1, "accurracy", 2, 88
+                              debug 1, "localToGlobal", 3, 90
+                              debug 1, "matrix", 4, 91
+                              debug 1, "rootConcatenatedMatrix", 5, 93
+                              debugline 93
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"root")
+                              getproperty QName(PackageNamespace(""),"transform")
+                              getproperty QName(PackageNamespace(""),"concatenatedMatrix")
+                              coerce QName(PackageNamespace("flash.geom"),"Matrix")
+                              setlocal 6
+                              debugline 95
+                              getlocal1
+                              findpropstrict QName(PackageNamespace("flash.geom"),"Point")
+                              constructprop QName(PackageNamespace("flash.geom"),"Point"), 0
+                              callproperty QName(PackageNamespace(""),"localToGlobal"), 1
+                              coerce QName(PackageNamespace("flash.geom"),"Point")
+                              setlocal 4
+                              debugline 96
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"transform")
+                              getproperty QName(PackageNamespace(""),"concatenatedMatrix")
+                              coerce QName(PackageNamespace("flash.geom"),"Matrix")
+                              setlocal 5
+                              debugline 97
+                              getlocal 5
+                              getlocal 4
+                              getproperty QName(PackageNamespace(""),"x")
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"x")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"tx")
+                              debugline 98
+                              getlocal 5
+                              getlocal 4
+                              getproperty QName(PackageNamespace(""),"y")
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"y")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"ty")
+                              debugline 100
+                              getlocal 5
+                              getlocal 5
+                              getproperty QName(PackageNamespace(""),"a")
+                              getlocal 6
+                              getproperty QName(PackageNamespace(""),"a")
+                              divide
+                              setproperty QName(PackageNamespace(""),"a")
+                              debugline 101
+                              getlocal 5
+                              getlocal 5
+                              getproperty QName(PackageNamespace(""),"d")
+                              getlocal 6
+                              getproperty QName(PackageNamespace(""),"d")
+                              divide
+                              setproperty QName(PackageNamespace(""),"d")
+                              debugline 102
+                              getlocal3
+                              pushbyte 1
+                              ifeq ofs00bd
+                              getlocal 5
+                              getlocal3
+                              getlocal3
+                              callpropvoid QName(PackageNamespace(""),"scale"), 2
+                     ofs00bd:
+                              debugline 104
+                              getlocal 5
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                     debugline 11
+                     findpropstrict Multiname("CollisionHit",[PackageNamespace("com.aurora.ui.maogoutd.resource.shot.SecretWish")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 79
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.SecretWish"),"CollisionHit")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish;CollisionHit.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

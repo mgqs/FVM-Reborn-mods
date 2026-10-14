@@ -1,0 +1,535 @@
+package com.aurora.ui.maogoutd.diy.myEditor.data
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.logicserver.diy.enmDIYWaveCodeVersion;
+   import flash.utils.ByteArray;
+   
+   public class MouseLinesData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iChatBubblesID:int;
+      
+      public var m_iTalkingMouseID:int;
+      
+      public var m_strLinesContent:String;
+      
+      public var m_iShowTime:int;
+      
+      public function MouseLinesData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/MouseLinesData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  getlocal0
+                  callpropvoid QName(PackageNamespace(""),"ResetData"), 0
+                  debugline 22
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function Encode(byte_array:ByteArray) : void
+      {
+         trait method QName(PackageNamespace(""),"Encode")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/Encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               paramname "m_iTalkingMouseID"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 4
+                  localcount 2
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                     debugline 24
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 24
+                     debugline 26
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 27
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 28
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                     pushnull
+                     ifne ofs003c
+                     debugline 29
+                     getlocal0
+                     pushstring ""
+                     initproperty QName(PackageNamespace(""),"m_strLinesContent")
+            ofs003c:
+                     debugline 30
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                     pushbyte 64
+                     callpropvoid QName(PackageNamespace(""),"encode_string"), 3
+                     debugline 31
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iShowTime")
+                     callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                     debugline 32
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function Decode(byte_array:ByteArray, iCodeVersion:int = -1) : void
+         {
+            trait method QName(PackageNamespace(""),"Decode")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/Decode"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "m_iTalkingMouseID"
+                  paramname "m_iTalkingMouseID"
+                  optional Integer(-1)
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 4
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                        debugline 34
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 34
+                        debug 1, "iCodeVersion", 1, 34
+                        debugline 36
+                        getlocal2
+                        pushbyte -1
+                        ifne ofs0026
+                        debugline 37
+                        getlex QName(PackageNamespace("com.aurora.protocol.logicserver.diy"),"enmDIYWaveCodeVersion")
+                        getproperty QName(PackageNamespace(""),"enmDIYWaveLatestVersion")
+                        convert_i
+                        setlocal2
+               ofs0026:
+                        jump ofs00d0
+               ofs002a:
+                        label
+                        debugline 42
+                        jump ofs0142
+               ofs0031:
+                        label
+                        debugline 44
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                        debugline 45
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                        debugline 46
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 64
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_strLinesContent")
+                        debugline 47
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                        pushnull
+                        ifne ofs0071
+                        debugline 48
+                        getlocal0
+                        pushstring ""
+                        initproperty QName(PackageNamespace(""),"m_strLinesContent")
+               ofs0071:
+                        debugline 49
+                        jump ofs0142
+               ofs0077:
+                        label
+                        debugline 52
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                        debugline 53
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                        debugline 54
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 64
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_strLinesContent")
+                        debugline 55
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                        pushnull
+                        ifne ofs00b7
+                        debugline 56
+                        getlocal0
+                        pushstring ""
+                        initproperty QName(PackageNamespace(""),"m_strLinesContent")
+               ofs00b7:
+                        debugline 57
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_iShowTime")
+                        debugline 58
+                        jump ofs0142
+               ofs00cb:
+                        label
+                        jump ofs0142
+               ofs00d0:
+                        debugline 39
+                        getlocal2
+                        setlocal3
+                        debugline 41
+                        getlex QName(PackageNamespace("com.aurora.protocol.logicserver.diy"),"enmDIYWaveCodeVersion")
+                        getproperty QName(PackageNamespace(""),"enmDIYWaveOrignal")
+                        getlocal3
+                        ifstrictne ofs00e7
+                        pushbyte 0
+                        jump ofs012c
+               ofs00e7:
+                        debugline 43
+                        getlex QName(PackageNamespace("com.aurora.protocol.logicserver.diy"),"enmDIYWaveCodeVersion")
+                        getproperty QName(PackageNamespace(""),"enmDIYWaveMouseTalk")
+                        getlocal3
+                        ifstrictne ofs00fa
+                        pushbyte 1
+                        jump ofs012c
+               ofs00fa:
+                        debugline 50
+                        getlex QName(PackageNamespace("com.aurora.protocol.logicserver.diy"),"enmDIYWaveCodeVersion")
+                        getproperty QName(PackageNamespace(""),"enmDIYWaveMouseTalkOptimize")
+                        getlocal3
+                        ifstrictne ofs010d
+                        pushbyte 2
+                        jump ofs012c
+               ofs010d:
+                        debugline 51
+                        getlex QName(PackageNamespace("com.aurora.protocol.logicserver.diy"),"enmDIYWaveCodeVersion")
+                        getproperty QName(PackageNamespace(""),"enmDIYWaveLatestVersion")
+                        getlocal3
+                        ifstrictne ofs0120
+                        pushbyte 3
+                        jump ofs012c
+               ofs0120:
+                        jump ofs012a
+                        pushbyte 4
+                        jump ofs012a
+               ofs012a:
+                        pushbyte 4
+               ofs012c:
+                        kill 3
+                        lookupswitch ofs00cb, [ofs002a, ofs0031, ofs0077, ofs0077, ofs00cb]
+               ofs0142:
+                        debugline 60
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function CopyFromAnotherData(stMouseLinesData:MouseLinesData) : void
+            {
+               trait method QName(PackageNamespace(""),"CopyFromAnotherData")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/CopyFromAnotherData"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"MouseLinesData")
+                     paramname "m_iTalkingMouseID"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                           debugline 62
+                           getlocal0
+                           pushscope
+                           debug 1, "stMouseLinesData", 0, 62
+                           debugline 64
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                           initproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                           debugline 65
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                           initproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                           debugline 66
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                           initproperty QName(PackageNamespace(""),"m_strLinesContent")
+                           debugline 67
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_iShowTime")
+                           initproperty QName(PackageNamespace(""),"m_iShowTime")
+                           debugline 68
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function IsSame(stMouseLinesData:MouseLinesData) : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"IsSame")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/IsSame"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"MouseLinesData")
+                        paramname "enmDIYWaveLatestVersion"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                              debugline 70
+                              getlocal0
+                              pushscope
+                              debug 1, "stMouseLinesData", 0, 70
+                              debugline 72
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                              equals
+                              dup
+                              iffalse ofs0029
+                              pop
+                              debugline 73
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                              equals
+                     ofs0029:
+                              dup
+                              iffalse ofs003a
+                              pop
+                              debugline 74
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                              equals
+                     ofs003a:
+                              dup
+                              iffalse ofs004b
+                              pop
+                              debugline 75
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_iShowTime")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"m_iShowTime")
+                              equals
+                     ofs004b:
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function ResetData() : void
+                  {
+                     trait method QName(PackageNamespace(""),"ResetData")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/ResetData"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                                 debugline 78
+                                 getlocal0
+                                 pushscope
+                                 debugline 80
+                                 getlocal0
+                                 pushbyte 0
+                                 initproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                                 debugline 81
+                                 getlocal0
+                                 pushbyte 0
+                                 initproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                                 debugline 82
+                                 getlocal0
+                                 pushstring ""
+                                 initproperty QName(PackageNamespace(""),"m_strLinesContent")
+                                 debugline 83
+                                 getlocal0
+                                 pushbyte 0
+                                 initproperty QName(PackageNamespace(""),"m_iShowTime")
+                                 debugline 84
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function IsHaveLines() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"IsHaveLines")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesData/IsHaveLines"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                                    debugline 90
+                                    getlocal0
+                                    pushscope
+                                    debugline 92
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_iChatBubblesID")
+                                    pushbyte 0
+                                    greaterthan
+                                    dup
+                                    iffalse ofs001d
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_iTalkingMouseID")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs001d:
+                                    dup
+                                    iffalse ofs002b
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_strLinesContent")
+                                    pushstring ""
+                                    equals
+                                    not
+                           ofs002b:
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                     }
+                  }
+                  
+                  method
+                     name ""
+                     returns null
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 1
+                        maxscopedepth 3
+                        
+                        code
+                           getlocal0
+                           pushscope
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                           debugline 8
+                           findpropstrict Multiname("MouseLinesData",[PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data")])
+                           getlex QName(PackageNamespace(""),"Object")
+                           pushscope
+                           getlex QName(PackageNamespace(""),"Object")
+                           newclass 51
+                           popscope
+                           initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"MouseLinesData")
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesData.as"
+                           debugline 1
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+                  

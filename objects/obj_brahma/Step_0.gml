@@ -157,7 +157,7 @@ if (!copied && !is_derivative && image_index >= 14)
                     }
                 }
             }
-            var new_card = instance_create_depth_define(inst_x, inst_y, 0, _copy_obj);
+            var new_card = external_mod_spawn(inst_x, inst_y, 0, target_card, card_save_data.shape);
             card_created(new_card, col, row);
         }
         

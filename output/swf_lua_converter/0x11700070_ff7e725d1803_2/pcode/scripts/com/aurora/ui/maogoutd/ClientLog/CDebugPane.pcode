@@ -1,0 +1,384 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   import flash.display.Sprite;
+   import flash.events.Event;
+   import flash.filters.GlowFilter;
+   import flash.text.TextField;
+   import flash.text.TextFormat;
+   
+   public class CDebugPane extends Sprite
+   {
+      
+      private static var a_921:CDebugPane;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_921", 0, 13
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _tf:TextField;
+      
+      private var _textFormat:TextFormat;
+      
+      public function CDebugPane()
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:CDebugPane/CDebugPane"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                  debugline 24
+                  getlocal0
+                  pushscope
+                  debugline 26
+                  getlocal0
+                  constructsuper 0
+                  debugline 27
+                  getlocal0
+                  getlex QName(PackageNamespace("flash.events"),"Event")
+                  getproperty QName(PackageNamespace(""),"ADDED_TO_STAGE")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"onAdded")
+                  callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                  debugline 28
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"visible")
+                  debugline 29
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"mouseChildren")
+                  debugline 30
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"mouseEnabled")
+                  debugline 31
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : CDebugPane
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:CDebugPane/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 8
+                  maxscopedepth 9
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debugline 17
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_921")
+                     iftrue ofs001b
+                     debugline 19
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_921")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_921")
+            ofs001b:
+                     debugline 21
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_921")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private function onAdded(e:Event) : void
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"onAdded")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:CDebugPane/private:onAdded"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.events"),"Event")
+                  paramname "addEventListener"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 2
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                        debugline 33
+                        getlocal0
+                        pushscope
+                        debug 1, "e", 0, 33
+                        debugline 35
+                        getlocal0
+                        getlex QName(PackageNamespace("flash.events"),"Event")
+                        getproperty QName(PackageNamespace(""),"ADDED_TO_STAGE")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"onAdded")
+                        callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                        debugline 36
+                        getlocal0
+                        callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_3014"), 0
+                        debugline 37
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private function a_3014() : void
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"a_3014")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.ClientLog:CDebugPane/private:Init"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 7
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                           debugline 39
+                           getlocal0
+                           pushscope
+                           debugline 41
+                           getlocal0
+                           findpropstrict QName(PackageNamespace("flash.text"),"TextFormat")
+                           pushstring "Arial"
+                           pushbyte 14
+                           pushint 16777113
+                           constructprop QName(PackageNamespace("flash.text"),"TextFormat"), 3
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_textFormat")
+                           debugline 42
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_textFormat")
+                           pushtrue
+                           setproperty QName(PackageNamespace(""),"bold")
+                           debugline 43
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_textFormat")
+                           pushbyte 48
+                           setproperty QName(PackageNamespace(""),"leading")
+                           debugline 45
+                           getlocal0
+                           findpropstrict QName(PackageNamespace("flash.text"),"TextField")
+                           constructprop QName(PackageNamespace("flash.text"),"TextField"), 0
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           debugline 46
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_textFormat")
+                           setproperty QName(PackageNamespace(""),"defaultTextFormat")
+                           debugline 47
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushshort 183
+                           setproperty QName(PackageNamespace(""),"width")
+                           debugline 48
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushshort 454
+                           setproperty QName(PackageNamespace(""),"height")
+                           debugline 49
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushtrue
+                           setproperty QName(PackageNamespace(""),"multiline")
+                           debugline 50
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushtrue
+                           setproperty QName(PackageNamespace(""),"wordWrap")
+                           debugline 51
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushtrue
+                           setproperty QName(PackageNamespace(""),"selectable")
+                           debugline 52
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushstring ""
+                           setproperty QName(PackageNamespace(""),"text")
+                           debugline 53
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushbyte 0
+                           setproperty QName(PackageNamespace(""),"x")
+                           debugline 54
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           pushbyte 30
+                           setproperty QName(PackageNamespace(""),"y")
+                           debugline 55
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           findpropstrict QName(PackageNamespace("flash.filters"),"GlowFilter")
+                           pushbyte 0
+                           pushbyte 1
+                           pushbyte 2
+                           dup
+                           pushbyte 10
+                           constructprop QName(PackageNamespace("flash.filters"),"GlowFilter"), 5
+                           newarray 1
+                           setproperty QName(PackageNamespace(""),"filters")
+                           debugline 56
+                           findpropstrict QName(PackageNamespace(""),"addChild")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                           callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                           debugline 57
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function OnLog(msg:String, type:int = 0) : void
+               {
+                  trait method QName(PackageNamespace(""),"OnLog")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.ClientLog:CDebugPane/OnLog"
+                        flag HAS_OPTIONAL
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"String")
+                        param QName(PackageNamespace(""),"int")
+                        paramname "addEventListener"
+                        paramname "addEventListener"
+                        optional Integer(0)
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 3
+                           localcount 4
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                              debugline 62
+                              getlocal0
+                              pushscope
+                              debug 1, "msg", 0, 62
+                              debug 1, "type", 1, 62
+                              debug 1, "lineBreak", 2, 65
+                              debugline 64
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                              iftrue ofs0024
+                              returnvoid
+                     ofs0024:
+                              pushstring "\n"
+                              debugline 65
+                              coerce_s
+                              setlocal3
+                              debugline 66
+                              getlocal2
+                              pushbyte 0
+                              ifne ofs0045
+                              debugline 68
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                              pushstring ""
+                              setproperty QName(PackageNamespace(""),"text")
+                              pushstring ""
+                              debugline 69
+                              coerce_s
+                              setlocal3
+                     ofs0045:
+                              debugline 71
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CDebugPane"),"_tf")
+                              getlocal3
+                              getlocal1
+                              add
+                              callpropvoid QName(PackageNamespace(""),"appendText"), 1
+                              debugline 72
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 8
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                     debugline 9
+                     findpropstrict Multiname("CDebugPane",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     newclass 192
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CDebugPane.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

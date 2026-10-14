@@ -1,0 +1,412 @@
+package com.aurora.ui.maogoutd.resource.gamemap
+{
+   import com.aurora.ui.maogoutd.resource.wave.a_4450;
+   import flash.display.BitmapData;
+   import flash.display.Sprite;
+   
+   public class BaseGameMap extends Sprite
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function BaseGameMap()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/BaseGameMap"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                  debugline 66
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_4172() : BitmapData
+      {
+         trait method QName(PackageNamespace(""),"a_4172")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetBackGroundBitmapdata"
+               returns QName(PackageNamespace("flash.display"),"BitmapData")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                     debugline 10
+                     getlocal0
+                     pushscope
+                     debugline 12
+                     pushnull
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4173() : BitmapData
+         {
+            trait method QName(PackageNamespace(""),"a_4173")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetSevenRightBitmapdata"
+                  returns QName(PackageNamespace("flash.display"),"BitmapData")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                        debugline 15
+                        getlocal0
+                        pushscope
+                        debugline 17
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4174() : BitmapData
+            {
+               trait method QName(PackageNamespace(""),"a_4174")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetSevenLeftBitmapdata"
+                     returns QName(PackageNamespace("flash.display"),"BitmapData")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                           debugline 20
+                           getlocal0
+                           pushscope
+                           debugline 22
+                           pushnull
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_4175() : a_4450
+               {
+                  trait method QName(PackageNamespace(""),"a_4175")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetMapWaterWave"
+                        returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.wave"),"a_4450")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                              debugline 25
+                              getlocal0
+                              pushscope
+                              debugline 27
+                              pushnull
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_4176() : a_4187
+                  {
+                     trait method QName(PackageNamespace(""),"a_4176")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetMapInfoData"
+                           returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap"),"a_4187")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                 debugline 30
+                                 getlocal0
+                                 pushscope
+                                 debugline 32
+                                 pushnull
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_4177() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_4177")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/ReleaseMap"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                    debugline 35
+                                    getlocal0
+                                    pushscope
+                                    debugline 37
+                                    pushfalse
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function SetBattleFieldTerrain(stBattleFieldObject:Object) : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"SetBattleFieldTerrain")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/SetBattleFieldTerrain"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"Object")
+                                 paramname "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetBackGroundBitmapdata"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 2
+                                    initscopedepth 9
+                                    maxscopedepth 10
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                       debugline 40
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "stBattleFieldObject", 0, 40
+                                       debugline 42
+                                       pushfalse
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function ChangeGameMap(stData:Object) : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"ChangeGameMap")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/ChangeGameMap"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"Object")
+                                    paramname "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/GetBackGroundBitmapdata"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 2
+                                       initscopedepth 9
+                                       maxscopedepth 10
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                          debugline 45
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "stData", 0, 45
+                                          debugline 47
+                                          pushfalse
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function OnTimeInterval(iTimeNum:uint) : void
+                              {
+                                 trait method QName(PackageNamespace(""),"OnTimeInterval")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/OnTimeInterval"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"uint")
+                                       paramname "BitmapData"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 2
+                                          initscopedepth 9
+                                          maxscopedepth 10
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                             debugline 50
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "iTimeNum", 0, 50
+                                             debugline 53
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function OnWaveStatusData(iWaveStatus:int) : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"OnWaveStatusData")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/OnWaveStatusData"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"int")
+                                          paramname "BitmapData"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 2
+                                             initscopedepth 9
+                                             maxscopedepth 10
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                                debugline 55
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "iWaveStatus", 0, 55
+                                                debugline 58
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function OnWaveStatusDataByServer(iWaveStatus:int) : void
+                                    {
+                                       trait method QName(PackageNamespace(""),"OnWaveStatusDataByServer")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.gamemap:BaseGameMap/OnWaveStatusDataByServer"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace(""),"int")
+                                             paramname "BitmapData"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 1
+                                                localcount 2
+                                                initscopedepth 9
+                                                maxscopedepth 10
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                                   debugline 60
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "iWaveStatus", 0, 60
+                                                   debugline 63
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 8
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                          debugline 8
+                                          findpropstrict Multiname("BaseGameMap",[PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          newclass 193
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap"),"BaseGameMap")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\gamemap;BaseGameMap.as"
+                                          debugline 1
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

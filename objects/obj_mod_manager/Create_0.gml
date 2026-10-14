@@ -19,6 +19,7 @@ mod_buff_init();
 zhiyumiao_config_init();
 
 // 所有卡牌（原版 slots_init + mod mod_slots_init）均已注册进 player_deck 后，清理存档中已不存在的孤儿卡
+external_mod_load_all();
 cleanup_orphan_cards();
 
 // 融合卡已回退为普卡两转（形态 0/1/2）：老存档若还停在已删掉的三转上，默认夹回二转

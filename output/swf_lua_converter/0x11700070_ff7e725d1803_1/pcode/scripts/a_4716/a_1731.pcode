@@ -1,0 +1,165 @@
+package a_4716
+{
+   public class a_1731
+   {
+      
+      public static var a_338:int = 1;
+      
+      public static var a_339:int = 2;
+      
+      public static var FLAG_VIP:int = 4;
+      
+      public static var FLAG_GAME:int = 16;
+      
+      public static var a_340:int = 32;
+      
+      public static var a_341:int = 64;
+      
+      public static var a_342:int = 128;
+      
+      public static var a_343:int = 256;
+      
+      public static var a_344:int = 512;
+      
+      public static var a_345:int = 1024;
+      
+      public static var a_346:int = 2048;
+      
+      public static var a_347:int = 4096;
+      
+      public static var a_348:int = 8192;
+      
+      public static var a_349:int = 113;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_338", 0, 6
+               findproperty QName(PackageNamespace(""),"a_338")
+               pushbyte 1
+               setproperty QName(PackageNamespace(""),"a_338")
+               debug 1, "a_339", 1, 7
+               findproperty QName(PackageNamespace(""),"a_339")
+               pushbyte 2
+               setproperty QName(PackageNamespace(""),"a_339")
+               debug 1, "FLAG_VIP", 2, 8
+               findproperty QName(PackageNamespace(""),"FLAG_VIP")
+               pushbyte 4
+               setproperty QName(PackageNamespace(""),"FLAG_VIP")
+               debug 1, "FLAG_GAME", 3, 9
+               findproperty QName(PackageNamespace(""),"FLAG_GAME")
+               pushbyte 16
+               setproperty QName(PackageNamespace(""),"FLAG_GAME")
+               debug 1, "a_340", 4, 10
+               findproperty QName(PackageNamespace(""),"a_340")
+               pushbyte 32
+               setproperty QName(PackageNamespace(""),"a_340")
+               debug 1, "a_341", 5, 11
+               findproperty QName(PackageNamespace(""),"a_341")
+               pushbyte 64
+               setproperty QName(PackageNamespace(""),"a_341")
+               debug 1, "a_342", 6, 12
+               findproperty QName(PackageNamespace(""),"a_342")
+               pushshort 128
+               setproperty QName(PackageNamespace(""),"a_342")
+               debug 1, "a_343", 7, 13
+               findproperty QName(PackageNamespace(""),"a_343")
+               pushshort 256
+               setproperty QName(PackageNamespace(""),"a_343")
+               debug 1, "a_344", 8, 14
+               findproperty QName(PackageNamespace(""),"a_344")
+               pushshort 512
+               setproperty QName(PackageNamespace(""),"a_344")
+               debug 1, "a_345", 9, 15
+               findproperty QName(PackageNamespace(""),"a_345")
+               pushshort 1024
+               setproperty QName(PackageNamespace(""),"a_345")
+               debug 1, "a_346", 10, 16
+               findproperty QName(PackageNamespace(""),"a_346")
+               pushshort 2048
+               setproperty QName(PackageNamespace(""),"a_346")
+               debug 1, "a_347", 11, 17
+               findproperty QName(PackageNamespace(""),"a_347")
+               pushshort 4096
+               setproperty QName(PackageNamespace(""),"a_347")
+               debug 1, "a_348", 12, 18
+               findproperty QName(PackageNamespace(""),"a_348")
+               pushshort 8192
+               setproperty QName(PackageNamespace(""),"a_348")
+               debug 1, "a_349", 13, 19
+               findproperty QName(PackageNamespace(""),"a_349")
+               pushbyte 113
+               setproperty QName(PackageNamespace(""),"a_349")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_1731()
+      {
+         method
+            name "com.aurora.constant:EnmCommonInfoFlag/EnmCommonInfoFlag"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCommonInfoFlag.as"
+                  debugline 21
+                  getlocal0
+                  pushscope
+                  debugline 22
+                  getlocal0
+                  constructsuper 0
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCommonInfoFlag.as"
+         debugline 4
+         findpropstrict Multiname("a_1731",[PackageNamespace("a_4716")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 125
+         popscope
+         initproperty QName(PackageNamespace("a_4716"),"a_1731")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCommonInfoFlag.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

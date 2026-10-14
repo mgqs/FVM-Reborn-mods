@@ -1,0 +1,813 @@
+package com.aurora.ui.maogoutd.game.Buff
+{
+   import a_4752.TagComponent;
+   import com.aurora.ui.maogoutd.resource.EffectManager;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import com.aurora.ui.maogoutd.resource.effect.BaseGameEffect;
+   import flash.utils.Dictionary;
+   
+   public class BuffComponent
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _tagCom:TagComponent;
+      
+      private var _display:a_3909;
+      
+      private var _dictBuff:Dictionary;
+      
+      public function BuffComponent()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/BuffComponent"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                  debugline 14
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                  getlocal0
+                  constructsuper 0
+                  debugline 134
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_3014(tagCom:TagComponent, display:a_3909) : void
+      {
+         trait method QName(PackageNamespace(""),"a_3014")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/Init"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("a_4752"),"TagComponent")
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 2
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                     debugline 16
+                     getlocal0
+                     pushscope
+                     debug 1, "tagCom", 0, 16
+                     debug 1, "display", 1, 16
+                     debugline 17
+                     getlocal0
+                     getlocal1
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_tagCom")
+                     debugline 18
+                     getlocal0
+                     getlocal2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                     debugline 19
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function AddBuff(tag:int, duration:int, params:BattleBuffParams = null) : BattleBuffData
+         {
+            trait method QName(PackageNamespace(""),"AddBuff")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/AddBuff"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffParams")
+                  paramname "void"
+                  paramname "void"
+                  paramname "void"
+                  optional Null()
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                  
+                  body
+                     maxstack 3
+                     localcount 8
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                        debugline 21
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                        setlocal 5
+                        debug 1, "tag", 0, 21
+                        debug 1, "duration", 1, 21
+                        debug 1, "params", 2, 21
+                        debug 1, "buffData", 3, 24
+                        debugline 22
+                        getlocal1
+                        pushint 10000000
+                        add
+                        convert_i
+                        setlocal1
+                        debugline 24
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                        setlocal 4
+                        debugline 25
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_tagCom")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"HasTag"), 1
+                        convert_b
+                        dup
+                        iffalse ofs0052
+                        pop
+                        getlocal 4
+                        pushnull
+                        equals
+                        not
+               ofs0052:
+                        iffalse ofs0084
+                        debugline 26
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"duration")
+                        getlocal2
+                        ifnlt ofs0068
+                        getlocal 4
+                        getlocal2
+                        setproperty QName(PackageNamespace(""),"duration")
+               ofs0068:
+                        debugline 27
+                        getlocal 4
+                        dup
+                        setlocal 6
+                        getproperty QName(PackageNamespace(""),"value")
+                        increment_i
+                        setlocal 7
+                        getlocal 6
+                        getlocal 7
+                        setproperty QName(PackageNamespace(""),"value")
+                        kill 7
+                        kill 6
+                        debugline 28
+                        pushnull
+                        returnvalue
+               ofs0084:
+                        debugline 31
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_tagCom")
+                        getlocal1
+                        callpropvoid QName(PackageNamespace(""),"AddTag"), 1
+                        debugline 32
+                        findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                        constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData"), 0
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                        setlocal 4
+                        debugline 34
+                        getlocal3
+                        pushnull
+                        ifeq ofs00f4
+                        debugline 35
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"gameMoveClipClass")
+                        pushnull
+                        ifeq ofs00ec
+                        debug 1, "stEffect", 4, 36
+                        debugline 36
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                        callproperty QName(PackageNamespace(""),"getInstance"), 0
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"effectClass")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"gameMoveClipClass")
+                        callproperty QName(PackageNamespace(""),"CheckOutOne"), 2
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                        setlocal 5
+                        debugline 37
+                        getlocal 5
+                        pushbyte 0
+                        callpropvoid QName(PackageNamespace(""),"SetAnimation"), 1
+                        debugline 38
+                        getlocal 4
+                        getlocal 5
+                        setproperty QName(PackageNamespace(""),"stEffect")
+                        debugline 41
+                        getlocal0
+                        getlocal 5
+                        getlocal3
+                        callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"UpdateBuffPos"), 2
+                        jump ofs00f4
+               ofs00ec:
+                        debugline 43
+                        getlocal 4
+                        pushnull
+                        setproperty QName(PackageNamespace(""),"stEffect")
+               ofs00f4:
+                        debugline 47
+                        getlocal 4
+                        getlocal2
+                        setproperty QName(PackageNamespace(""),"duration")
+                        debugline 48
+                        getlocal 4
+                        getlocal3
+                        setproperty QName(PackageNamespace(""),"params")
+                        debugline 49
+                        getlocal 4
+                        getlocal1
+                        setproperty QName(PackageNamespace(""),"tag")
+                        debugline 50
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                        getlocal1
+                        getlocal 4
+                        setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                        debugline 51
+                        getlocal 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function UpdateBuff(removeTick:int = 1) : void
+            {
+               trait method QName(PackageNamespace(""),"UpdateBuff")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/UpdateBuff"
+                     flag HAS_OPTIONAL
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+                     optional Integer(1)
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 7
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                           debugline 54
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                           setlocal2
+                           pushbyte 0
+                           setlocal 4
+                           debug 1, "removeTick", 0, 54
+                           debug 1, "buffData", 1, 55
+                           debug 1, "arrDelete", 2, 56
+                           debugline 56
+                           newarray 0
+                           coerce QName(PackageNamespace(""),"Array")
+                           setlocal3
+                           debugline 57
+                           pushbyte 0
+                           setlocal 5
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                           coerce_a
+                           setlocal 6
+                           jump ofs008c
+                  ofs0039:
+                           label
+                           getlocal 6
+                           getlocal 5
+                           nextvalue
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                           setlocal2
+                           debugline 59
+                           getlocal2
+                           pushnull
+                           ifne ofs004e
+                           jump ofs008c
+                  ofs004e:
+                           debugline 60
+                           getlocal2
+                           getlocal2
+                           getproperty QName(PackageNamespace(""),"duration")
+                           getlocal1
+                           subtract
+                           setproperty QName(PackageNamespace(""),"duration")
+                           debugline 61
+                           getlocal2
+                           getproperty QName(PackageNamespace(""),"duration")
+                           pushbyte 0
+                           ifnle ofs007d
+                           debugline 62
+                           getlocal3
+                           getlocal2
+                           getproperty QName(PackageNamespace(""),"tag")
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           debugline 63
+                           getlocal0
+                           getlocal2
+                           callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_RemoveBuff"), 1
+                           jump ofs008c
+                  ofs007d:
+                           debugline 65
+                           getlocal0
+                           getlocal2
+                           getproperty QName(PackageNamespace(""),"stEffect")
+                           getlocal2
+                           getproperty QName(PackageNamespace(""),"params")
+                           callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"UpdateBuffPos"), 2
+                  ofs008c:
+                           debugline 57
+                           hasnext2 6, 5
+                           iftrue ofs0039
+                           kill 6
+                           kill 5
+                           debugline 68
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"length")
+                           pushbyte 0
+                           ifngt ofs00d4
+                           debug 1, "i", 3, 69
+                           debugline 69
+                           pushbyte 0
+                           setlocal 4
+                           jump ofs00ca
+                  ofs00b5:
+                           label
+                           debugline 70
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                           getlocal3
+                           getlocal 4
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                           pushnull
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                           debugline 69
+                           inclocal_i 4
+                  ofs00ca:
+                           getlocal 4
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"length")
+                           iflt ofs00b5
+                  ofs00d4:
+                           debugline 73
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private function UpdateBuffPos(stEffect:BaseGameEffect, params:BattleBuffParams) : void
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"UpdateBuffPos")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/private:UpdateBuffPos"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffParams")
+                        paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+                        paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 5
+                           localcount 3
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                              debugline 75
+                              getlocal0
+                              pushscope
+                              debug 1, "stEffect", 0, 75
+                              debug 1, "params", 1, 75
+                              debugline 76
+                              getlocal1
+                              pushnull
+                              ifne ofs001c
+                              returnvoid
+                     ofs001c:
+                              debugline 77
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              pushnull
+                              ifne ofs0028
+                              returnvoid
+                     ofs0028:
+                              debugline 78
+                              getlocal2
+                              pushnull
+                              ifne ofs004e
+                              debugline 79
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"x")
+                              setproperty QName(PackageNamespace(""),"x")
+                              debugline 80
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"y")
+                              setproperty QName(PackageNamespace(""),"y")
+                              jump ofs012c
+                     ofs004e:
+                              debugline 82
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"offsetType")
+                              pushbyte -1
+                              ifne ofs005e
+                              jump ofs012c
+                     ofs005e:
+                              debugline 85
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"offsetType")
+                              pushbyte 0
+                              ifne ofs0092
+                              debugline 86
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"x")
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"x")
+                              add
+                              setproperty QName(PackageNamespace(""),"x")
+                              debugline 87
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"y")
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"y")
+                              add
+                              setproperty QName(PackageNamespace(""),"y")
+                              jump ofs012c
+                     ofs0092:
+                              debugline 89
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"offsetType")
+                              pushbyte 1
+                              ifne ofs00f1
+                              debugline 90
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"x")
+                              pushdouble 0.5
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"width")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"width")
+                              subtract
+                              multiply
+                              add
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"stDisplayBitmap")
+                              getproperty QName(PackageNamespace(""),"x")
+                              add
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"x")
+                              add
+                              setproperty QName(PackageNamespace(""),"x")
+                              debugline 91
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"y")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"height")
+                              add
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"stDisplayBitmap")
+                              getproperty QName(PackageNamespace(""),"y")
+                              add
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"y")
+                              add
+                              setproperty QName(PackageNamespace(""),"y")
+                              jump ofs012c
+                     ofs00f1:
+                              debugline 93
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"offsetType")
+                              pushbyte 2
+                              ifne ofs012c
+                              debugline 94
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"x")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"width")
+                              pushdouble 0.5
+                              multiply
+                              add
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"x")
+                              add
+                              setproperty QName(PackageNamespace(""),"x")
+                              debugline 95
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_display")
+                              getproperty QName(PackageNamespace(""),"y")
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"y")
+                              add
+                              setproperty QName(PackageNamespace(""),"y")
+                     ofs012c:
+                              debugline 97
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private function _RemoveBuff(buffData:BattleBuffData) : void
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_RemoveBuff")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/private:_RemoveBuff"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                           paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\game\Buff;BuffComponent.as"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                                 debugline 99
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "buffData", 0, 99
+                                 debugline 100
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_tagCom")
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"tag")
+                                 callpropvoid QName(PackageNamespace(""),"RemoveTag"), 1
+                                 debugline 101
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"stEffect")
+                                 pushnull
+                                 ifeq ofs0037
+                                 debugline 102
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"stEffect")
+                                 callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                 debugline 103
+                                 getlocal1
+                                 pushnull
+                                 setproperty QName(PackageNamespace(""),"stEffect")
+                        ofs0037:
+                                 debugline 105
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"params")
+                                 pushnull
+                                 ifne ofs0043
+                                 returnvoid
+                        ofs0043:
+                                 debugline 106
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"params")
+                                 getproperty QName(PackageNamespace(""),"endCallBack")
+                                 pushnull
+                                 ifeq ofs005b
+                                 debugline 107
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"params")
+                                 callpropvoid QName(PackageNamespace(""),"endCallBack"), 0
+                        ofs005b:
+                                 debugline 109
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function RemoveBuff(tag:int) : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"RemoveBuff")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/RemoveBuff"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              paramname "arrDelete"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 3
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                                    debugline 111
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "tag", 0, 111
+                                    debug 1, "buffObj", 1, 114
+                                    debugline 112
+                                    getlocal1
+                                    pushint 10000000
+                                    add
+                                    convert_i
+                                    setlocal1
+                                    debugline 113
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                                    pushnull
+                                    ifne ofs002d
+                                    pushfalse
+                                    returnvalue
+                           ofs002d:
+                                    debugline 114
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal2
+                                    debugline 115
+                                    getlocal0
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                                    callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_RemoveBuff"), 1
+                                    debugline 116
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                    getlocal1
+                                    pushnull
+                                    setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),PackageNamespace(""),PrivateNamespace("BuffComponent.as$84"),PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),PackageInternalNs("com.aurora.ui.maogoutd.game.Buff"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Buff:BuffComponent")])
+                                    debugline 117
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function ClearAll() : void
+                        {
+                           trait method QName(PackageNamespace(""),"ClearAll")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.game.Buff:BuffComponent/ClearAll"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 4
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                                       debugline 120
+                                       getlocal0
+                                       pushscope
+                                       pushnull
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                                       setlocal1
+                                       debug 1, "buffData", 0, 122
+                                       debugline 123
+                                       pushbyte 0
+                                       setlocal2
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                       coerce_a
+                                       setlocal3
+                                       jump ofs0048
+                              ofs0020:
+                                       label
+                                       getlocal3
+                                       getlocal2
+                                       nextvalue
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+                                       setlocal1
+                                       debugline 125
+                                       getlocal1
+                                       pushnull
+                                       equals
+                                       not
+                                       dup
+                                       iffalse ofs003a
+                                       pop
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"stEffect")
+                                       pushnull
+                                       equals
+                                       not
+                              ofs003a:
+                                       iffalse ofs0048
+                                       debugline 126
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"stEffect")
+                                       callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                              ofs0048:
+                                       debugline 123
+                                       hasnext2 3, 2
+                                       iftrue ofs0020
+                                       kill 3
+                                       kill 2
+                                       debugline 130
+                                       getlocal0
+                                       findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                                       constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                                       initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Buff:BuffComponent"),"_dictBuff")
+                                       debugline 131
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                              debugline 11
+                              findpropstrict Multiname("BuffComponent",[PackageNamespace("com.aurora.ui.maogoutd.game.Buff")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 5
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BuffComponent")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BuffComponent.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

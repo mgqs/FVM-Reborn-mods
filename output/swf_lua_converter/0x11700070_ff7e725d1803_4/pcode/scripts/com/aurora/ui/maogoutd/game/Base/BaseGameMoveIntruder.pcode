@@ -1,0 +1,683 @@
+package com.aurora.ui.maogoutd.game.Base
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.EffectManager;
+   import com.aurora.ui.maogoutd.resource.GameMovieClip;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import flash.display.BitmapData;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   import flash.geom.Point;
+   
+   public class BaseGameMoveIntruder extends a_4206
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_stMoveClip:GameMovieClip;
+      
+      public var anotherKey:String = null;
+      
+      protected var MAX_LIFE:int = 0;
+      
+      protected var INJURED_LIFE:int = 0;
+      
+      protected var ONE_GRID_SPEED:Number = 0;
+      
+      public function BaseGameMoveIntruder()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/BaseGameMoveIntruder"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                  debugline 136
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override public function a_1797(iGlobalMoveFighterID:int, iIntruderMoveDirection:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_1797")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/Initialize"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               param QName(PackageNamespace(""),"int")
+               paramname "a_1339"
+               paramname "a_1339"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                     debugline 28
+                     getlocal0
+                     pushscope
+                     debug 1, "iGlobalMoveFighterID", 0, 28
+                     debug 1, "iIntruderMoveDirection", 1, 28
+                     debugline 30
+                     getlocal0
+                     getlocal1
+                     getlocal2
+                     callsupervoid QName(PackageNamespace(""),"a_1797"), 2
+                     debugline 32
+                     findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                     getproperty QName(PackageNamespace(""),"a_1279")
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                     debugline 33
+                     findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                     getproperty QName(PackageNamespace(""),"m_iYDisplayCenterPos")
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                     debugline 34
+                     findproperty QName(PackageNamespace(""),"scaleX")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                     getproperty QName(PackageNamespace(""),"m_iScaleX")
+                     initproperty QName(PackageNamespace(""),"scaleX")
+                     debugline 35
+                     findproperty QName(PackageNamespace(""),"scaleY")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                     getproperty QName(PackageNamespace(""),"m_iScaleY")
+                     initproperty QName(PackageNamespace(""),"scaleY")
+                     debugline 36
+                     getlocal0
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"ONE_GRID_SPEED")
+                     callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"SetSpeed"), 1
+                     debugline 37
+                     findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1339")
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"MAX_LIFE")
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1339")
+                     debugline 38
+                     findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                     pushbyte -1
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                     debugline 39
+                     getlocal0
+                     pushbyte 0
+                     dup
+                     callpropvoid QName(PackageNamespace(""),"SetAnimation"), 2
+                     debugline 41
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override protected function a_3911() : Vector.<BitmapData>
+         {
+            trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"a_3911")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/protected:GetFrameCacheVector"
+                  returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                        debugline 44
+                        getlocal0
+                        pushscope
+                        debugline 46
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                        pushnull
+                        ifne ofs0021
+                        debugline 47
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                        callproperty QName(PackageNamespace(""),"getInstance"), 0
+                        getproperty QName(PackageNamespace(""),"lastMoveClip")
+                        initproperty QName(PackageNamespace(""),"m_stMoveClip")
+               ofs0021:
+                        debugline 49
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                        callproperty QName(PackageNamespace(""),"getInstance"), 0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                        callproperty QName(PackageNamespace(""),"GetMoveClip2"), 1
+                        getproperty Multiname("a_1300",[PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PrivateNamespace("BaseGameMoveIntruder.as$322"),PackageNamespace("com.aurora.ui.maogoutd.game.Base"),PackageInternalNs("com.aurora.ui.maogoutd.game.Base"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3912() : Vector.<Point>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"a_3912")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/protected:GetFrameCacheSkewingVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                           debugline 52
+                           getlocal0
+                           pushscope
+                           debugline 54
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                           pushnull
+                           ifne ofs0021
+                           debugline 55
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getproperty QName(PackageNamespace(""),"lastMoveClip")
+                           initproperty QName(PackageNamespace(""),"m_stMoveClip")
+                  ofs0021:
+                           debugline 57
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                           callproperty QName(PackageNamespace(""),"GetMoveClip2"), 1
+                           getproperty Multiname("a_1301",[PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PrivateNamespace("BaseGameMoveIntruder.as$322"),PackageNamespace("com.aurora.ui.maogoutd.game.Base"),PackageInternalNs("com.aurora.ui.maogoutd.game.Base"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3913() : MovieClip
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"a_3913")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/protected:GetOriginalMovieClip"
+                        returns QName(PackageNamespace("flash.display"),"MovieClip")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                              debugline 60
+                              getlocal0
+                              pushscope
+                              debugline 62
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                              pushnull
+                              ifne ofs0021
+                              debugline 63
+                              getlocal0
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                              getproperty QName(PackageNamespace(""),"lastMoveClip")
+                              initproperty QName(PackageNamespace(""),"m_stMoveClip")
+                     ofs0021:
+                              debugline 65
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3940() : Boolean
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"a_3940")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/protected:Realease"
+                           returns QName(PackageNamespace(""),"Boolean")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                 debugline 69
+                                 getlocal0
+                                 pushscope
+                                 debugline 71
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 getlocal0
+                                 callpropvoid QName(PackageNamespace(""),"CheckInOneMouse"), 1
+                                 debugline 72
+                                 getlocal0
+                                 callsupervoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_3940"), 0
+                                 debugline 73
+                                 pushtrue
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     protected function SetDeadAnim(deadAnim:int) : void
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"SetDeadAnim")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/protected:SetDeadAnim"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              paramname "flash.display:DisplayObject"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                    debugline 77
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "deadAnim", 0, 77
+                                    debugline 78
+                                    getlocal0
+                                    getlocal1
+                                    callpropvoid QName(PackageNamespace(""),"SetAnimation"), 1
+                                    debugline 79
+                                    getlex QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                    iffalse ofs0035
+                                    debugline 81
+                                    getlex QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                    getlocal0
+                                    callpropvoid QName(PackageNamespace(""),"a_3457"), 1
+                                    debugline 82
+                                    getlex QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                    getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                    getlocal0
+                                    callpropvoid QName(PackageNamespace(""),"a_3457"), 1
+                           ofs0035:
+                                    debugline 85
+                                    findpropstrict QName(PackageNamespace(""),"play")
+                                    callpropvoid QName(PackageNamespace(""),"play"), 0
+                                    debugline 86
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function a_4216(iCurrentTime:int) : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"a_4216")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/GoAhead"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "a_1339"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 3
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                       debugline 88
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "iCurrentTime", 0, 88
+                                       debug 1, "numOrigXPos", 1, 90
+                                       debugline 90
+                                       getlex QName(PackageNamespace(""),"x")
+                                       convert_d
+                                       setlocal2
+                                       debugline 92
+                                       getlocal0
+                                       getlocal1
+                                       callsupervoid QName(PackageNamespace(""),"a_4216"), 1
+                                       debugline 94
+                                       findpropstrict QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"SetGameMapModePicnicPosition")
+                                       getlocal2
+                                       callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"SetGameMapModePicnicPosition"), 1
+                                       debugline 95
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function SetSpeed(moveSpeed:Number) : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"SetSpeed")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/private:SetSpeed"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"Number")
+                                    paramname "flash.display:DisplayObject"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 2
+                                       initscopedepth 11
+                                       maxscopedepth 12
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                          debugline 99
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "moveSpeed", 0, 99
+                                          debugline 100
+                                          findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1350")
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1080")
+                                          pushbyte 20
+                                          getlocal1
+                                          multiply
+                                          divide
+                                          initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1350")
+                                          debugline 101
+                                          getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                                          iftrue ofs0036
+                                          debugline 103
+                                          findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1350")
+                                          getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1350")
+                                          pushbyte -1
+                                          multiply
+                                          initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1350")
+                                 ofs0036:
+                                          debugline 105
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function InDamage() : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"InDamage")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/InDamage"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 1
+                                          initscopedepth 11
+                                          maxscopedepth 12
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                             debugline 107
+                                             getlocal0
+                                             pushscope
+                                             debugline 108
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1339")
+                                             pushbyte 0
+                                             greaterthan
+                                             dup
+                                             iffalse ofs001d
+                                             pop
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),"a_1339")
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),"INJURED_LIFE")
+                                             lessthan
+                                    ofs001d:
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function SetAnimation(animIdx1:int, animIdx2:int = 0) : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"SetAnimation")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/SetAnimation"
+                                          flag HAS_OPTIONAL
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"int")
+                                          param QName(PackageNamespace(""),"int")
+                                          paramname "flash.display:DisplayObject"
+                                          paramname "flash.display:DisplayObject"
+                                          optional Integer(0)
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 3
+                                             initscopedepth 11
+                                             maxscopedepth 12
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                                debugline 111
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "animIdx1", 0, 111
+                                                debug 1, "animIdx2", 1, 111
+                                                debugline 113
+                                                getlocal0
+                                                callproperty QName(PackageNamespace(""),"InDamage"), 0
+                                                iffalse ofs0023
+                                                debugline 114
+                                                getlocal2
+                                                convert_i
+                                                setlocal1
+                                       ofs0023:
+                                                debugline 116
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                getlocal1
+                                                ifeq ofs0056
+                                                debugline 117
+                                                findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                getlocal1
+                                                initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                debugline 118
+                                                findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                                getlocal1
+                                                getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PrivateNamespace("BaseGameMoveIntruder.as$322"),PackageNamespace("com.aurora.ui.maogoutd.game.Base"),PackageInternalNs("com.aurora.ui.maogoutd.game.Base"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                                astypelate
+                                                getproperty QName(PackageNamespace(""),"frame")
+                                                callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                                debugline 119
+                                                findpropstrict QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_3419")
+                                                callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_3419"), 0
+                                       ofs0056:
+                                                debugline 121
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function SetAnimationOnce2Loop(onceAnim1:int, loopAnim1:int, onceAnim2:int, loopAnim2:int) : void
+                                    {
+                                       trait method QName(PackageNamespace(""),"SetAnimationOnce2Loop")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder/SetAnimationOnce2Loop"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace(""),"int")
+                                             param QName(PackageNamespace(""),"int")
+                                             param QName(PackageNamespace(""),"int")
+                                             param QName(PackageNamespace(""),"int")
+                                             paramname "flash.display:DisplayObject"
+                                             paramname "flash.display:DisplayObject"
+                                             paramname "flash.display:DisplayObject"
+                                             paramname "flash.display:DisplayObject"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 3
+                                                localcount 5
+                                                initscopedepth 11
+                                                maxscopedepth 12
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                                   debugline 123
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "onceAnim1", 0, 123
+                                                   debug 1, "loopAnim1", 1, 123
+                                                   debug 1, "onceAnim2", 2, 123
+                                                   debug 1, "loopAnim2", 3, 123
+                                                   debugline 125
+                                                   getlocal0
+                                                   callproperty QName(PackageNamespace(""),"InDamage"), 0
+                                                   iffalse ofs0035
+                                                   debugline 126
+                                                   getlocal3
+                                                   convert_i
+                                                   setlocal1
+                                                   debugline 127
+                                                   getlocal 4
+                                                   convert_i
+                                                   setlocal2
+                                          ofs0035:
+                                                   debugline 129
+                                                   findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                   getlocal2
+                                                   initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                   debugline 130
+                                                   findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                                   getlocal1
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),PrivateNamespace("BaseGameMoveIntruder.as$322"),PackageNamespace("com.aurora.ui.maogoutd.game.Base"),PackageInternalNs("com.aurora.ui.maogoutd.game.Base"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.game.Base:BaseGameMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:BaseMoveIntruder"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                   getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                                   astypelate
+                                                   getproperty QName(PackageNamespace(""),"frame")
+                                                   callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                                   debugline 131
+                                                   findpropstrict QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_3419")
+                                                   callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_3419"), 0
+                                                   debugline 132
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 10
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                          debugline 14
+                                          findpropstrict Multiname("BaseGameMoveIntruder",[PackageNamespace("com.aurora.ui.maogoutd.game.Base")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                          newclass 369
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game.Base"),"BaseGameMoveIntruder")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;BaseGameMoveIntruder.as"
+                                          debugline 2
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

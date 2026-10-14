@@ -1,0 +1,485 @@
+package a_4724
+{
+   public class AvatarDetailInfo
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iCoverallType:int = 0;
+      
+      public var m_iGunType:int = 0;
+      
+      public var m_iShieldType:int = 0;
+      
+      public var m_iHatType:int = 0;
+      
+      public var m_iEyeGlassesType:int = 0;
+      
+      public var m_iFaceType:int = 0;
+      
+      public var m_iFaceDecorationType:int = 0;
+      
+      public var m_iEyeType:int = 0;
+      
+      public var m_iHairType:int = 0;
+      
+      public var m_iBodyType:int = 0;
+      
+      public var m_iAureolaType:int = 0;
+      
+      public var m_iWingType:int = 0;
+      
+      public var m_iLandInsuranceType:int = 0;
+      
+      public var m_iWaterInsuranceType:int = 0;
+      
+      public var m_numAttackForce:Number = 1;
+      
+      public var m_numDefenseForce:Number = 0;
+      
+      public function AvatarDetailInfo()
+      {
+         method
+            name "com.aurora.data.game:AvatarDetailInfo/AvatarDetailInfo"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\data\\game;AvatarDetailInfo.as"
+                  debugline 115
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function setAvaterDeatil(arrAvatarID:Array, iGender:int) : void
+      {
+         trait method QName(PackageNamespace(""),"setAvaterDeatil")
+            dispid 0
+            method
+               name "com.aurora.data.game:AvatarDetailInfo/setAvaterDeatil"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"Array")
+               param QName(PackageNamespace(""),"int")
+               paramname "a_4724"
+               paramname "a_4724"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 3
+                  localcount 9
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\data\\game;AvatarDetailInfo.as"
+                     debugline 43
+                     getlocal0
+                     pushscope
+                     pushnull
+                     coerce QName(PackageNamespace(""),"Object")
+                     setlocal3
+                     pushbyte 0
+                     setlocal 4
+                     pushbyte 0
+                     setlocal 5
+                     debug 1, "arrAvatarID", 0, 43
+                     debug 1, "iGender", 1, 43
+                     debugline 45
+                     getlocal0
+                     getlocal2
+                     pushbyte 1
+                     equals
+                     iffalse ofs0030
+                     pushint 342884624
+                     jump ofs0032
+            ofs0030:
+                     pushint 342884640
+            ofs0032:
+                     initproperty QName(PackageNamespace(""),"m_iEyeType")
+                     debugline 46
+                     getlocal0
+                     getlocal2
+                     pushbyte 1
+                     equals
+                     iffalse ofs0046
+                     pushint 341836048
+                     jump ofs0048
+            ofs0046:
+                     pushint 341836064
+            ofs0048:
+                     initproperty QName(PackageNamespace(""),"m_iBodyType")
+                     debugline 47
+                     getlocal0
+                     getlocal2
+                     pushbyte 1
+                     equals
+                     iffalse ofs005c
+                     pushint 339738896
+                     jump ofs005e
+            ofs005c:
+                     pushint 339738912
+            ofs005e:
+                     initproperty QName(PackageNamespace(""),"m_iHairType")
+                     debugline 48
+                     getlocal0
+                     getlocal2
+                     pushbyte 1
+                     equals
+                     iffalse ofs0072
+                     pushint 340787216
+                     jump ofs0074
+            ofs0072:
+                     pushint 340787232
+            ofs0074:
+                     initproperty QName(PackageNamespace(""),"m_iFaceType")
+                     debugline 49
+                     getlocal0
+                     pushint 336658688
+                     initproperty QName(PackageNamespace(""),"m_iGunType")
+                     debugline 51
+                     getlocal1
+                     pushnull
+                     ifeq ofs02f6
+                     debug 1, "heroItem", 2, 53
+                     debugline 53
+                     pushbyte 0
+                     setlocal 6
+                     getlocal1
+                     coerce_a
+                     setlocal 7
+                     jump ofs02e9
+            ofs009b:
+                     label
+                     getlocal 7
+                     getlocal 6
+                     nextvalue
+                     coerce QName(PackageNamespace(""),"Object")
+                     setlocal3
+                     debug 1, "itemID", 3, 55
+                     debug 1, "type", 4, 56
+                     debugline 55
+                     getlocal3
+                     getproperty Multiname("m_iItemID",[PrivateNamespace("com.aurora.data.game:AvatarDetailInfo"),PackageNamespace(""),PrivateNamespace("AvatarDetailInfo.as$174"),PackageNamespace("a_4724"),PackageInternalNs("a_4724"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.data.game:AvatarDetailInfo"),StaticProtectedNs("com.aurora.data.game:AvatarDetailInfo"),StaticProtectedNs("Object")])
+                     convert_i
+                     setlocal 4
+                     debugline 56
+                     getlocal 4
+                     pushint 15728640
+                     bitand
+                     pushbyte 20
+                     rshift
+                     setlocal 5
+                     jump ofs01b0
+            ofs00c9:
+                     label
+                     debugline 61
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iAureolaType")
+                     debugline 62
+                     jump ofs02e9
+            ofs00d8:
+                     label
+                     debugline 64
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iGunType")
+                     debugline 65
+                     jump ofs02e9
+            ofs00e7:
+                     label
+                     debugline 67
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iHatType")
+                     debugline 68
+                     jump ofs02e9
+            ofs00f6:
+                     label
+                     debugline 70
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iEyeGlassesType")
+                     debugline 71
+                     jump ofs02e9
+            ofs0105:
+                     label
+                     debugline 73
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iHairType")
+                     debugline 74
+                     jump ofs02e9
+            ofs0114:
+                     label
+                     debugline 76
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iFaceDecorationType")
+                     debugline 77
+                     jump ofs02e9
+            ofs0123:
+                     label
+                     debugline 79
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iBodyType")
+                     debugline 80
+                     jump ofs02e9
+            ofs0132:
+                     label
+                     debugline 82
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iEyeType")
+                     debugline 83
+                     jump ofs02e9
+            ofs0141:
+                     label
+                     debugline 85
+                     jump ofs02e9
+            ofs0148:
+                     label
+                     debugline 87
+                     jump ofs02e9
+            ofs014f:
+                     label
+                     debugline 89
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iShieldType")
+                     debugline 90
+                     jump ofs02e9
+            ofs015e:
+                     label
+                     debugline 92
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iWingType")
+                     debugline 93
+                     jump ofs02e9
+            ofs016d:
+                     label
+                     debugline 95
+                     jump ofs02e9
+            ofs0174:
+                     label
+                     debugline 97
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iCoverallType")
+                     debugline 98
+                     jump ofs02e9
+            ofs0183:
+                     label
+                     debugline 100
+                     getlocal 4
+                     pushint 983040
+                     bitand
+                     pushint 65536
+                     ifne ofs019d
+                     debugline 102
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iLandInsuranceType")
+                     jump ofs01a5
+            ofs019d:
+                     debugline 106
+                     getlocal0
+                     getlocal 4
+                     initproperty QName(PackageNamespace(""),"m_iWaterInsuranceType")
+            ofs01a5:
+                     debugline 108
+                     jump ofs02e9
+            ofs01ab:
+                     label
+                     jump ofs02e9
+            ofs01b0:
+                     debugline 58
+                     getlocal 5
+                     setlocal 8
+                     debugline 60
+                     pushbyte 0
+                     getlocal 8
+                     ifstrictne ofs01c6
+                     pushbyte 0
+                     jump ofs02b2
+            ofs01c6:
+                     debugline 63
+                     pushbyte 1
+                     getlocal 8
+                     ifstrictne ofs01d6
+                     pushbyte 1
+                     jump ofs02b2
+            ofs01d6:
+                     debugline 66
+                     pushbyte 2
+                     getlocal 8
+                     ifstrictne ofs01e6
+                     pushbyte 2
+                     jump ofs02b2
+            ofs01e6:
+                     debugline 69
+                     pushbyte 3
+                     getlocal 8
+                     ifstrictne ofs01f6
+                     pushbyte 3
+                     jump ofs02b2
+            ofs01f6:
+                     debugline 72
+                     pushbyte 4
+                     getlocal 8
+                     ifstrictne ofs0206
+                     pushbyte 4
+                     jump ofs02b2
+            ofs0206:
+                     debugline 75
+                     pushbyte 5
+                     getlocal 8
+                     ifstrictne ofs0216
+                     pushbyte 5
+                     jump ofs02b2
+            ofs0216:
+                     debugline 78
+                     pushbyte 6
+                     getlocal 8
+                     ifstrictne ofs0226
+                     pushbyte 6
+                     jump ofs02b2
+            ofs0226:
+                     debugline 81
+                     pushbyte 7
+                     getlocal 8
+                     ifstrictne ofs0236
+                     pushbyte 7
+                     jump ofs02b2
+            ofs0236:
+                     debugline 84
+                     pushbyte 8
+                     getlocal 8
+                     ifstrictne ofs0246
+                     pushbyte 8
+                     jump ofs02b2
+            ofs0246:
+                     debugline 86
+                     pushbyte 9
+                     getlocal 8
+                     ifstrictne ofs0256
+                     pushbyte 9
+                     jump ofs02b2
+            ofs0256:
+                     debugline 88
+                     pushbyte 10
+                     getlocal 8
+                     ifstrictne ofs0266
+                     pushbyte 10
+                     jump ofs02b2
+            ofs0266:
+                     debugline 91
+                     pushbyte 11
+                     getlocal 8
+                     ifstrictne ofs0276
+                     pushbyte 11
+                     jump ofs02b2
+            ofs0276:
+                     debugline 94
+                     pushbyte 12
+                     getlocal 8
+                     ifstrictne ofs0286
+                     pushbyte 12
+                     jump ofs02b2
+            ofs0286:
+                     debugline 96
+                     pushbyte 13
+                     getlocal 8
+                     ifstrictne ofs0296
+                     pushbyte 13
+                     jump ofs02b2
+            ofs0296:
+                     debugline 99
+                     pushbyte 14
+                     getlocal 8
+                     ifstrictne ofs02a6
+                     pushbyte 14
+                     jump ofs02b2
+            ofs02a6:
+                     jump ofs02b0
+                     pushbyte 15
+                     jump ofs02b0
+            ofs02b0:
+                     pushbyte 15
+            ofs02b2:
+                     kill 8
+                     lookupswitch ofs01ab, [ofs00c9, ofs00d8, ofs00e7, ofs00f6, ofs0105, ofs0114, ofs0123, ofs0132, ofs0141, ofs0148, ofs014f, ofs015e, ofs016d, ofs0174, ofs0183, ofs01ab]
+            ofs02e9:
+                     debugline 53
+                     hasnext2 7, 6
+                     iftrue ofs009b
+                     kill 7
+                     kill 6
+            ofs02f6:
+                     debugline 112
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 3
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\data\\game;AvatarDetailInfo.as"
+            debugline 4
+            findpropstrict Multiname("AvatarDetailInfo",[PackageNamespace("a_4724")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace(""),"Object")
+            newclass 22
+            popscope
+            initproperty QName(PackageNamespace("a_4724"),"AvatarDetailInfo")
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\data\\game;AvatarDetailInfo.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

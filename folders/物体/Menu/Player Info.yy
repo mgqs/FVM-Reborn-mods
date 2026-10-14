@@ -13,6 +13,7 @@
   "listItems":[
     {"name":"obj_closemenu_btn","path":"objects/obj_closemenu_btn/obj_closemenu_btn.yy",},
     {"name":"obj_config_btn","path":"objects/obj_config_btn/obj_config_btn.yy",},
+    {"name":"obj_mod_open_button","path":"objects/obj_mod_open_button/obj_mod_open_button.yy",},
     {"name":"obj_config_menu","path":"objects/obj_config_menu/obj_config_menu.yy",},
     {"name":"obj_difficulty_select_btn","path":"objects/obj_difficulty_select_btn/obj_difficulty_select_btn.yy",},
     {"name":"obj_edit_btn","path":"objects/obj_edit_btn/obj_edit_btn.yy",},

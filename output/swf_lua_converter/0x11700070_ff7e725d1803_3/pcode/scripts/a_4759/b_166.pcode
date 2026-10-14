@@ -1,0 +1,189 @@
+package a_4759
+{
+   import com.aurora.protocol.common.a_2667;
+   import flash.events.IEventDispatcher;
+   import flash.utils.ByteArray;
+   
+   public class b_166 extends b_167
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 6
+            maxscopedepth 7
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_166(target:IEventDispatcher = null)
+      {
+         method
+            name "com.aurora.handler.common:AuthenProtocalBase/AuthenProtocalBase"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("flash.events"),"IEventDispatcher")
+            paramname null
+            optional Null()
+            returns null
+            
+            body
+               maxstack 2
+               localcount 2
+               initscopedepth 7
+               maxscopedepth 8
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\common;AuthenProtocalBase.as"
+                  debugline 10
+                  getlocal0
+                  pushscope
+                  debug 1, "target", 0, 10
+                  debugline 12
+                  getlocal0
+                  getlocal1
+                  constructsuper 1
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_2224(authenPackageHeader:a_2667, protocalBuffer:ByteArray) : void
+      {
+         trait method QName(PackageNamespace(""),"a_2224")
+            dispid 0
+            method
+               name "com.aurora.handler.common:AuthenProtocalBase/OnReceiveAuthenPackage"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               paramname "authenPackageHeader"
+               paramname "authenPackageHeader"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 4
+                  localcount 4
+                  initscopedepth 7
+                  maxscopedepth 8
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\common;AuthenProtocalBase.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debug 1, "authenPackageHeader", 0, 15
+                     debug 1, "protocalBuffer", 1, 15
+                     debugline 17
+                     getlocal1
+                     pushnull
+                     equals
+                     dup
+                     iftrue ofs0021
+                     pop
+                     getlocal1
+                     pushnull
+                     equals
+            ofs0021:
+                     iffalse ofs0031
+                     debugline 19
+                     findpropstrict QName(PackageNamespace(""),"trace")
+                     pushstring "authenPackageHeader is null or protocalBuffer is null, OnReceiveAuthenPackage  failed"
+                     callpropvoid QName(PackageNamespace(""),"trace"), 1
+            ofs0031:
+                     debugline 22
+                     pushnull
+                     getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"mapDecodeRoutines")
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"shMessageID")
+                     getproperty MultinameL([PrivateNamespace("com.aurora.handler.common:AuthenProtocalBase"),PackageNamespace(""),PrivateNamespace("AuthenProtocalBase.as$518"),PackageNamespace("a_4759"),PackageInternalNs("a_4759"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.common:AuthenProtocalBase"),StaticProtectedNs("com.aurora.handler.common:AuthenProtocalBase"),StaticProtectedNs("com.aurora.handler.common:ProtocolBase"),StaticProtectedNs("com.aurora.handler.common:HandlerBase"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     ifeq ofs005c
+                     debugline 24
+                     getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"mapDecodeRoutines")
+                     dup
+                     setlocal3
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"shMessageID")
+                     getproperty MultinameL([PrivateNamespace("com.aurora.handler.common:AuthenProtocalBase"),PackageNamespace(""),PrivateNamespace("AuthenProtocalBase.as$518"),PackageNamespace("a_4759"),PackageInternalNs("a_4759"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.common:AuthenProtocalBase"),StaticProtectedNs("com.aurora.handler.common:AuthenProtocalBase"),StaticProtectedNs("com.aurora.handler.common:ProtocolBase"),StaticProtectedNs("com.aurora.handler.common:HandlerBase"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     call 2
+                     pop
+                     kill 3
+                     jump ofs006d
+            ofs005c:
+                     debugline 28
+                     findpropstrict QName(PackageNamespace(""),"trace")
+                     pushstring "Can\'t find the decodeRoutine for MessageID:"
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"shMessageID")
+                     add
+                     callpropvoid QName(PackageNamespace(""),"trace"), 1
+            ofs006d:
+                     debugline 31
+                     pushnull
+                     coerce QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                     setlocal1
+                     debugline 32
+                     pushnull
+                     coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                     setlocal2
+                     debugline 33
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 6
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\common;AuthenProtocalBase.as"
+            debugline 8
+            findpropstrict Multiname("b_166",[PackageNamespace("a_4759")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+            pushscope
+            getlex QName(PackageNamespace("a_4759"),"b_168")
+            pushscope
+            getlex QName(PackageNamespace("a_4759"),"b_167")
+            pushscope
+            getlex QName(PackageNamespace("a_4759"),"b_167")
+            newclass 182
+            popscope
+            popscope
+            popscope
+            popscope
+            initproperty QName(PackageNamespace("a_4759"),"b_166")
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\common;AuthenProtocalBase.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

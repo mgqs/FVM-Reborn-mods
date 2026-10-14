@@ -1,0 +1,284 @@
+package a_4728
+{
+   import flash.events.Event;
+   import flash.utils.ByteArray;
+   
+   public class a_1778 extends Event
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 5
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _dataObject:Object;
+      
+      public function a_1778(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
+      {
+         method
+            name "com.aurora.event.data:AurDataEvent/AurDataEvent"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace(""),"Boolean")
+            param QName(PackageNamespace(""),"Boolean")
+            paramname null
+            paramname null
+            paramname null
+            optional False()
+            optional False()
+            returns null
+            
+            body
+               maxstack 4
+               localcount 4
+               initscopedepth 5
+               maxscopedepth 6
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                  debugline 10
+                  getlocal0
+                  pushscope
+                  debug 1, "type", 0, 10
+                  debug 1, "bubbles", 1, 10
+                  debug 1, "cancelable", 2, 10
+                  debugline 12
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  getlocal3
+                  constructsuper 3
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override public function clone() : Event
+      {
+         trait method QName(PackageNamespace(""),"clone")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.event.data:AurDataEvent/clone"
+               returns QName(PackageNamespace("flash.events"),"Event")
+               
+               body
+                  maxstack 4
+                  localcount 3
+                  initscopedepth 5
+                  maxscopedepth 6
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debug 1, "newDataEvent", 0, 17
+                     debug 1, "objByteArray", 1, 19
+                     debugline 17
+                     findpropstrict QName(PackageNamespace("a_4728"),"a_1778")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"type")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"bubbles")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"cancelable")
+                     constructprop QName(PackageNamespace("a_4728"),"a_1778"), 3
+                     coerce QName(PackageNamespace("a_4728"),"a_1778")
+                     setlocal1
+                     debugline 19
+                     findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                     constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                     coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                     setlocal2
+                     debugline 20
+                     getlocal2
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.event.data:AurDataEvent"),"_dataObject")
+                     callpropvoid QName(PackageNamespace(""),"writeObject"), 1
+                     debugline 21
+                     getlocal2
+                     pushbyte 0
+                     setproperty QName(PackageNamespace(""),"position")
+                     debugline 23
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"readObject"), 0
+                     setproperty QName(PrivateNamespace("com.aurora.event.data:AurDataEvent"),"_dataObject")
+                     debugline 24
+                     pushnull
+                     coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                     setlocal2
+                     debugline 26
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function set dataObject(tempObject:Object) : void
+         {
+            trait setter QName(PackageNamespace(""),"dataObject")
+               dispid 0
+               method
+                  name "com.aurora.event.data:AurDataEvent/dataObject/set"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Object")
+                  paramname "a_4728"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 3
+                     initscopedepth 5
+                     maxscopedepth 6
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                        debugline 29
+                        getlocal0
+                        pushscope
+                        debug 1, "tempObject", 0, 29
+                        debug 1, "objByteArray", 1, 31
+                        debugline 31
+                        findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                        constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                        coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                        setlocal2
+                        debugline 32
+                        getlocal2
+                        getlocal1
+                        callpropvoid QName(PackageNamespace(""),"writeObject"), 1
+                        debugline 33
+                        getlocal2
+                        pushbyte 0
+                        setproperty QName(PackageNamespace(""),"position")
+                        debugline 35
+                        getlocal0
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"readObject"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.event.data:AurDataEvent"),"_dataObject")
+                        debugline 36
+                        pushnull
+                        coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                        setlocal2
+                        debugline 37
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function set dataObjectNew(tempObject:Object) : void
+            {
+               trait setter QName(PackageNamespace(""),"dataObjectNew")
+                  dispid 0
+                  method
+                     name "com.aurora.event.data:AurDataEvent/dataObjectNew/set"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"Object")
+                     paramname "a_4728"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 5
+                        maxscopedepth 6
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                           debugline 38
+                           getlocal0
+                           pushscope
+                           debug 1, "tempObject", 0, 38
+                           debugline 40
+                           getlocal0
+                           getlocal1
+                           initproperty QName(PrivateNamespace("com.aurora.event.data:AurDataEvent"),"_dataObject")
+                           debugline 41
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function get dataObject() : Object
+               {
+                  trait getter QName(PackageNamespace(""),"dataObject")
+                     dispid 0
+                     method
+                        name "com.aurora.event.data:AurDataEvent/dataObject/get"
+                        returns QName(PackageNamespace(""),"Object")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 5
+                           maxscopedepth 6
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                              debugline 43
+                              getlocal0
+                              pushscope
+                              debugline 45
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.event.data:AurDataEvent"),"_dataObject")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 4
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                     debugline 6
+                     findpropstrict Multiname("a_1778",[PackageNamespace("a_4728")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"Event")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"Event")
+                     newclass 128
+                     popscope
+                     popscope
+                     initproperty QName(PackageNamespace("a_4728"),"a_1778")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event\\data;AurDataEvent.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

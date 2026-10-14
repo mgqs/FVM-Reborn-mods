@@ -1,0 +1,650 @@
+package a_4789
+{
+   import flash.utils.Dictionary;
+   
+   public class a_4657 implements IModulesBridge
+   {
+      
+      private static var _instance:IModulesBridge;
+      
+      private static var sign:Boolean;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 16
+               debug 1, "sign", 1, 17
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var dictListener:Dictionary;
+      
+      private var dictOnlyListener:Dictionary;
+      
+      public function a_4657()
+      {
+         method
+            name "com.aurora.utils.ui.bridge:ModulesBridge/ModulesBridge"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                  debugline 22
+                  getlocal0
+                  pushscope
+                  debugline 24
+                  getlocal0
+                  constructsuper 0
+                  debugline 25
+                  getlex QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"sign")
+                  iftrue ofs0022
+                  debugline 26
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "ModulesBridge不允许实例化，请通过getInstance()获取！"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs0022:
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : IModulesBridge
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.utils.ui.bridge:ModulesBridge/getInstance"
+               returns QName(PackageNamespace("a_4789"),"IModulesBridge")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                     debugline 29
+                     getlocal0
+                     pushscope
+                     debugline 31
+                     getlex QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"_instance")
+                     pushnull
+                     ifne ofs002e
+                     debugline 33
+                     findproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"sign")
+                     pushtrue
+                     setproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"sign")
+                     debugline 34
+                     findproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"_instance")
+                     debugline 35
+                     findproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"sign")
+                     pushfalse
+                     setproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"sign")
+            ofs002e:
+                     debugline 38
+                     getlex QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function addListener(listener:Object, isOnly:Boolean = false) : void
+         {
+            trait method QName(PackageNamespace(""),"addListener")
+               dispid 0
+               method
+                  name "com.aurora.utils.ui.bridge:ModulesBridge/addListener"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Object")
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "ModulesBridge不允许实例化，请通过getInstance()获取！"
+                  paramname "ModulesBridge不允许实例化，请通过getInstance()获取！"
+                  optional False()
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                        debugline 51
+                        getlocal0
+                        pushscope
+                        debug 1, "listener", 0, 51
+                        debug 1, "isOnly", 1, 51
+                        debugline 53
+                        getlocal2
+                        iffalse ofs0042
+                        debugline 55
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                        pushnull
+                        ifne ofs0030
+                        debugline 57
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                        constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+               ofs0030:
+                        debugline 59
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                        getlocal1
+                        callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")]), 0
+                        getlocal1
+                        setproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                        debugline 60
+                        returnvoid
+               ofs0042:
+                        debugline 62
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                        pushnull
+                        ifne ofs0058
+                        debugline 64
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                        constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+               ofs0058:
+                        debugline 66
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                        getlocal1
+                        callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")]), 0
+                        getlocal1
+                        setproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                        debugline 67
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function removeListener(listener:Object) : void
+            {
+               trait method QName(PackageNamespace(""),"removeListener")
+                  dispid 0
+                  method
+                     name "com.aurora.utils.ui.bridge:ModulesBridge/removeListener"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"Object")
+                     paramname "ModulesBridge不允许实例化，请通过getInstance()获取！"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                           debugline 74
+                           getlocal0
+                           pushscope
+                           debug 1, "listener", 0, 74
+                           debugline 76
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                           pushnull
+                           ifeq ofs0027
+                           debugline 78
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                           getlocal1
+                           callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")]), 0
+                           deleteproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                           pop
+                  ofs0027:
+                           debugline 80
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                           pushnull
+                           ifeq ofs0041
+                           debugline 82
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                           getlocal1
+                           callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")]), 0
+                           deleteproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                           pop
+                  ofs0041:
+                           debugline 84
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function removeAll() : void
+               {
+                  trait method QName(PackageNamespace(""),"removeAll")
+                     dispid 0
+                     method
+                        name "com.aurora.utils.ui.bridge:ModulesBridge/removeAll"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                              debugline 89
+                              getlocal0
+                              pushscope
+                              debugline 91
+                              getlocal0
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                              callpropvoid QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"removeHandle"), 1
+                              debugline 92
+                              getlocal0
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                              callpropvoid QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"removeHandle"), 1
+                              debugline 93
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function destroy() : void
+                  {
+                     trait method QName(PackageNamespace(""),"destroy")
+                        dispid 0
+                        method
+                           name "com.aurora.utils.ui.bridge:ModulesBridge/destroy"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                 debugline 98
+                                 getlocal0
+                                 pushscope
+                                 debugline 100
+                                 getlocal0
+                                 callpropvoid QName(PackageNamespace(""),"removeAll"), 0
+                                 debugline 101
+                                 getlocal0
+                                 pushnull
+                                 initproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                                 debugline 102
+                                 getlocal0
+                                 pushnull
+                                 initproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                                 debugline 103
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function execute(funName:String, caller:Object, ... args) : *
+                     {
+                        trait method QName(PackageNamespace(""),"execute")
+                           dispid 0
+                           method
+                              name "com.aurora.utils.ui.bridge:ModulesBridge/execute"
+                              flag HAS_PARAM_NAMES
+                              flag NEED_REST
+                              param QName(PackageNamespace(""),"String")
+                              param QName(PackageNamespace(""),"Object")
+                              paramname null
+                              paramname null
+                              returns null
+                              
+                              body
+                                 maxstack 3
+                                 localcount 6
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                    debugline 114
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "funName", 0, 114
+                                    debug 1, "caller", 1, 114
+                                    debug 1, "args", 2, 114
+                                    debug 1, "params", 3, 116
+                                    debug 1, "values", 4, 122
+                                    debugline 116
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictOnlyListener")
+                                    getlocal1
+                                    getlocal2
+                                    newarray 3
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 4
+                                    debugline 117
+                                    getlocal3
+                                    pushnull
+                                    equals
+                                    not
+                                    dup
+                                    iffalse ofs0046
+                                    pop
+                                    getlocal3
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs0046:
+                                    iffalse ofs0057
+                                    debugline 119
+                                    getlocal 4
+                                    getlocal3
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"concat"), 1
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 4
+                           ofs0057:
+                                    debugline 122
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"executeHandle")
+                                    getlocal0
+                                    getlocal 4
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"apply"), 2
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 5
+                                    debugline 123
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    pushbyte 0
+                                    ifngt ofs007f
+                                    debugline 125
+                                    getlocal 5
+                                    pushbyte 0
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                                    returnvalue
+                           ofs007f:
+                                    debugline 129
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"dictListener")
+                                    getlocal1
+                                    getlocal2
+                                    newarray 3
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 4
+                                    debugline 130
+                                    getlocal3
+                                    pushnull
+                                    equals
+                                    not
+                                    dup
+                                    iffalse ofs00a2
+                                    pop
+                                    getlocal3
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs00a2:
+                                    iffalse ofs00b4
+                                    debugline 132
+                                    getlocal 4
+                                    getlocal3
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"concat"), 1
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 4
+                           ofs00b4:
+                                    debugline 134
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"executeHandle")
+                                    getlocal0
+                                    getlocal 4
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"apply"), 2
+                                    coerce QName(PackageNamespace(""),"Array")
+                                    setlocal 5
+                                    debugline 136
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    pushbyte 0
+                                    ifngt ofs00df
+                                    debugline 138
+                                    getlocal 5
+                                    pushbyte 0
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                                    returnvalue
+                           ofs00df:
+                                    debugline 141
+                                    pushnull
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function removeHandle(dict:Dictionary) : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"removeHandle")
+                              dispid 0
+                              method
+                                 name "com.aurora.utils.ui.bridge:ModulesBridge/private:removeHandle"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("flash.utils"),"Dictionary")
+                                 paramname "ModulesBridge不允许实例化，请通过getInstance()获取！"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 5
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                       debugline 144
+                                       getlocal0
+                                       pushscope
+                                       pushundefined
+                                       coerce_a
+                                       setlocal2
+                                       debug 1, "dict", 0, 144
+                                       debugline 146
+                                       getlocal1
+                                       pushnull
+                                       ifeq ofs004e
+                                       debug 1, "listener", 1, 148
+                                       debugline 148
+                                       pushbyte 0
+                                       setlocal3
+                                       getlocal1
+                                       coerce_a
+                                       setlocal 4
+                                       jump ofs0040
+                              ofs0030:
+                                       label
+                                       getlocal 4
+                                       getlocal3
+                                       nextname
+                                       coerce_a
+                                       setlocal2
+                                       debugline 150
+                                       getlocal1
+                                       getlocal2
+                                       deleteproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                                       pop
+                              ofs0040:
+                                       debugline 148
+                                       hasnext2 4, 3
+                                       iftrue ofs0030
+                                       kill 4
+                                       kill 3
+                              ofs004e:
+                                       debugline 153
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function executeHandle(dict:Dictionary, funName:String, caller:Object, ... args) : Array
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),"executeHandle")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.utils.ui.bridge:ModulesBridge/private:executeHandle"
+                                    flag HAS_PARAM_NAMES
+                                    flag NEED_REST
+                                    param QName(PackageNamespace("flash.utils"),"Dictionary")
+                                    param QName(PackageNamespace(""),"String")
+                                    param QName(PackageNamespace(""),"Object")
+                                    paramname "Dictionary"
+                                    paramname "Dictionary"
+                                    paramname "Dictionary"
+                                    returns QName(PackageNamespace(""),"Array")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 9
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                          debugline 155
+                                          getlocal0
+                                          pushscope
+                                          pushnull
+                                          coerce QName(PackageNamespace(""),"Object")
+                                          setlocal 6
+                                          debug 1, "dict", 0, 155
+                                          debug 1, "funName", 1, 155
+                                          debug 1, "caller", 2, 155
+                                          debug 1, "args", 3, 155
+                                          debug 1, "values", 4, 157
+                                          debugline 157
+                                          newarray 0
+                                          coerce QName(PackageNamespace(""),"Array")
+                                          setlocal 5
+                                          debugline 158
+                                          getlocal1
+                                          pushnull
+                                          ifeq ofs00a7
+                                          debug 1, "listener", 5, 160
+                                          debugline 160
+                                          pushbyte 0
+                                          setlocal 7
+                                          getlocal1
+                                          coerce_a
+                                          setlocal 8
+                                          jump ofs0099
+                                 ofs0058:
+                                          label
+                                          getlocal 8
+                                          getlocal 7
+                                          nextvalue
+                                          coerce QName(PackageNamespace(""),"Object")
+                                          setlocal 6
+                                          debugline 162
+                                          getlocal 6
+                                          getlocal3
+                                          equals
+                                          dup
+                                          iftrue ofs0077
+                                          pop
+                                          getlocal 6
+                                          getlocal2
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"hasOwnProperty"), 1
+                                          not
+                                 ofs0077:
+                                          iffalse ofs0082
+                                          debugline 164
+                                          jump ofs0099
+                                 ofs0082:
+                                          debugline 166
+                                          getlocal 5
+                                          getlocal 6
+                                          getlocal2
+                                          getproperty MultinameL([PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")])
+                                          getlocal 6
+                                          getlocal 4
+                                          callproperty Multiname("apply",[PrivateNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),PackageNamespace("a_4789"),PackageNamespace(""),PrivateNamespace("ModulesBridge.as$255"),PackageInternalNs("a_4789"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.ui.bridge:ModulesBridge"),StaticProtectedNs("com.aurora.utils.ui.bridge:ModulesBridge")]), 2
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0099:
+                                          debugline 160
+                                          hasnext2 8, 7
+                                          iftrue ofs0058
+                                          kill 8
+                                          kill 7
+                                 ofs00a7:
+                                          debugline 169
+                                          getlocal 5
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                           }
+                        }
+                        
+                        method
+                           name ""
+                           returns null
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 1
+                              maxscopedepth 3
+                              
+                              code
+                                 getlocal0
+                                 pushscope
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                 debugline 14
+                                 findpropstrict Multiname("a_4657",[PackageNamespace("a_4789")])
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 pushscope
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 newclass 165
+                                 popscope
+                                 initproperty QName(PackageNamespace("a_4789"),"a_4657")
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;ModulesBridge.as"
+                                 debugline 1
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                        

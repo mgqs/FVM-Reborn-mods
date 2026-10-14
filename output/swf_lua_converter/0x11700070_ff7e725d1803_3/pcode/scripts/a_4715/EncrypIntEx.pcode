@@ -1,0 +1,223 @@
+package a_4715
+{
+   public class EncrypIntEx
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iEncryptInt:int;
+      
+      private var m_nIndex:int;
+      
+      public function EncrypIntEx(value:int = 0)
+      {
+         method
+            name "com.aurora.commons:EncrypIntEx/EncrypIntEx"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            optional Integer(0)
+            returns null
+            
+            body
+               maxstack 4
+               localcount 2
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypIntEx.as"
+                  debugline 25
+                  getlocal0
+                  pushscope
+                  debug 1, "value", 0, 25
+                  debugline 26
+                  getlocal0
+                  constructsuper 0
+                  debugline 28
+                  getlocal0
+                  pushbyte 5
+                  getlex QName(PackageNamespace(""),"Math")
+                  callproperty QName(PackageNamespace(""),"random"), 0
+                  pushint 1000000
+                  multiply
+                  pushbyte 11
+                  modulo
+                  add
+                  initproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_nIndex")
+                  debugline 29
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PackageNamespace(""),"Value")
+                  debugline 30
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function set Value(value:int) : void
+      {
+         trait setter QName(PackageNamespace(""),"Value")
+            dispid 0
+            method
+               name "com.aurora.commons:EncrypIntEx/Value/set"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               paramname "m_nIndex"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 5
+                  localcount 2
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypIntEx.as"
+                     debugline 32
+                     getlocal0
+                     pushscope
+                     debug 1, "value", 0, 32
+                     debugline 42
+                     getlocal1
+                     pushbyte 1
+                     pushbyte 16
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_nIndex")
+                     pushbyte 9
+                     modulo
+                     add
+                     lshift
+                     bitxor
+                     setlocal1
+                     debugline 47
+                     getlocal1
+                     pushint 52942
+                     bitxor
+                     setlocal1
+                     debugline 48
+                     getlocal1
+                     pushbyte 1
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_nIndex")
+                     lshift
+                     bitxor
+                     setlocal1
+                     debugline 49
+                     getlocal0
+                     getlocal1
+                     initproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_iEncryptInt")
+                     debugline 53
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function get Value() : int
+         {
+            trait getter QName(PackageNamespace(""),"Value")
+               dispid 0
+               method
+                  name "com.aurora.commons:EncrypIntEx/Value/get"
+                  returns QName(PackageNamespace(""),"int")
+                  
+                  body
+                     maxstack 5
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypIntEx.as"
+                        debugline 55
+                        getlocal0
+                        pushscope
+                        debug 1, "value", 0, 57
+                        debugline 57
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_iEncryptInt")
+                        convert_i
+                        setlocal1
+                        debugline 58
+                        getlocal1
+                        pushbyte 1
+                        pushbyte 16
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_nIndex")
+                        pushbyte 9
+                        modulo
+                        add
+                        lshift
+                        bitxor
+                        setlocal1
+                        debugline 63
+                        getlocal1
+                        pushint 52942
+                        bitxor
+                        setlocal1
+                        debugline 64
+                        getlocal1
+                        pushbyte 1
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypIntEx"),"m_nIndex")
+                        lshift
+                        bitxor
+                        setlocal1
+                        debugline 69
+                        getlocal1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypIntEx.as"
+               debugline 12
+               findpropstrict Multiname("EncrypIntEx",[PackageNamespace("a_4715")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 1
+               popscope
+               initproperty QName(PackageNamespace("a_4715"),"EncrypIntEx")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypIntEx.as"
+               debugline 10
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

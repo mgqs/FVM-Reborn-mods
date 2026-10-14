@@ -1,0 +1,1305 @@
+package com.aurora.ui.maogoutd.game
+{
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import flash.display.DisplayObject;
+   import flash.display.Sprite;
+   
+   public class BattleLayerManager extends Sprite
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stEffectBottom2LayerSp:Sprite;
+      
+      private var m_stEffectBottomLayerSp:Sprite;
+      
+      private var m_stDefenseBattleLayer:BattleLayer;
+      
+      private var m_stIntruderBattleLayer:BattleLayer;
+      
+      private var m_stShotBattleLayer:Sprite;
+      
+      private var m_stEffectCenterLayer:BattleLayer;
+      
+      private var m_stObstacleLayer:BattleLayer;
+      
+      private var m_stBossBottomEffectLayer:Sprite;
+      
+      private var m_stIntruderSkyBattleLayer:BattleLayer;
+      
+      private var m_stSkyBossBattleLayer:BattleLayer;
+      
+      private var m_stEffectTopSp:Sprite;
+      
+      private var m_vBattleLayerInfo:Vector.<BattleLayerInfo>;
+      
+      public function BattleLayerManager()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BattleLayerManager/BattleLayerManager"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                  debugline 39
+                  getlocal0
+                  pushscope
+                  debugline 41
+                  getlocal0
+                  constructsuper 0
+                  debugline 42
+                  getlocal0
+                  callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"a_3014"), 0
+                  debugline 43
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      private function a_3014() : void
+      {
+         trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"a_3014")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game:BattleLayerManager/private:Init"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 4
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                     debugline 45
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     setlocal1
+                     debug 1, "i", 0, 65
+                     debugline 47
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottomLayerSp")
+                     iffalse ofs001d
+                     debugline 49
+                     returnvoid
+            ofs001d:
+                     debugline 51
+                     getlocal0
+                     getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                     applytype 1
+                     construct 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                     debugline 52
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"Sprite")
+                     constructprop QName(PackageNamespace("flash.display"),"Sprite"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottomLayerSp")
+                     debugline 53
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"Sprite")
+                     constructprop QName(PackageNamespace("flash.display"),"Sprite"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottom2LayerSp")
+                     debugline 54
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushfalse
+                     pushbyte 7
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stObstacleLayer")
+                     debugline 55
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushtrue
+                     pushbyte 10
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                     debugline 56
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushfalse
+                     pushbyte 7
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderBattleLayer")
+                     debugline 57
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushfalse
+                     pushbyte 7
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectCenterLayer")
+                     debugline 58
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"Sprite")
+                     constructprop QName(PackageNamespace("flash.display"),"Sprite"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stShotBattleLayer")
+                     debugline 59
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"Sprite")
+                     constructprop QName(PackageNamespace("flash.display"),"Sprite"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stBossBottomEffectLayer")
+                     debugline 60
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushfalse
+                     pushbyte 7
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderSkyBattleLayer")
+                     debugline 61
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer")
+                     pushfalse
+                     pushbyte 7
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayer"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stSkyBossBattleLayer")
+                     debugline 62
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"Sprite")
+                     constructprop QName(PackageNamespace("flash.display"),"Sprite"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectTopSp")
+                     debugline 63
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottom2LayerSp")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 64
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottomLayerSp")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 66
+                     pushbyte 0
+                     setlocal1
+                     jump ofs013b
+            ofs00e6:
+                     label
+                     debugline 68
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 69
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stObstacleLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 70
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderBattleLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 71
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectCenterLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 66
+                     inclocal_i 1
+            ofs013b:
+                     getlocal1
+                     pushbyte 7
+                     iflt ofs00e6
+                     debugline 73
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stBossBottomEffectLayer")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 74
+                     pushbyte 0
+                     setlocal1
+                     jump ofs0185
+            ofs0158:
+                     label
+                     debugline 76
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stSkyBossBattleLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 77
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderSkyBattleLayer")
+                     getproperty QName(PackageNamespace(""),"m_vLayer")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 74
+                     inclocal_i 1
+            ofs0185:
+                     getlocal1
+                     pushbyte 7
+                     iflt ofs0158
+                     debugline 79
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stShotBattleLayer")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 81
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectTopSp")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 82
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function AddToBattleView(stDisplayObject:DisplayObject, iType:int, stTargetFieldGrid:a_3491 = null) : void
+         {
+            trait method QName(PackageNamespace(""),"AddToBattleView")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:BattleLayerManager/AddToBattleView"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.display"),"DisplayObject")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  paramname "flash.display"
+                  paramname "flash.display"
+                  paramname "flash.display"
+                  optional Null()
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 4
+                     localcount 8
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                        debugline 84
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal 4
+                        pushbyte 0
+                        setlocal 5
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                        setlocal 6
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        setlocal 7
+                        debug 1, "stDisplayObject", 0, 84
+                        debug 1, "iType", 1, 84
+                        debug 1, "stTargetFieldGrid", 2, 84
+                        debugline 87
+                        getlocal0
+                        callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"IsWorldBossMap"), 0
+                        not
+                        coerce_a
+                        dup
+                        iffalse ofs003d
+                        pop
+                        getlocal3
+                        coerce_a
+               ofs003d:
+                        coerce_a
+                        convert_b
+                        dup
+                        iffalse ofs004b
+                        pop
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        coerce_a
+                        convert_b
+               ofs004b:
+                        dup
+                        iffalse ofs005c
+                        pop
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                        pushnull
+                        equals
+                        not
+               ofs005c:
+                        iffalse ofs01c0
+                        debugline 90
+                        getlocal1
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                        istypelate
+                        dup
+                        iffalse ofs0074
+                        pop
+                        getlocal1
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                        astypelate
+                        getproperty QName(PackageNamespace(""),"m_bServerIssued")
+                        convert_b
+               ofs0074:
+                        iffalse ofs007c
+                        jump ofs01c0
+               ofs007c:
+                        debug 1, "compList", 3, 94
+                        debug 1, "i", 4, 95
+                        debug 1, "stBattleLayerInfo", 5, 109
+                        debug 1, "grid", 6, 113
+                        debugline 94
+                        findpropstrict QName(PackageNamespace(""),"Array")
+                        constructprop QName(PackageNamespace(""),"Array"), 0
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal 4
+                        debugline 95
+                        pushbyte 0
+                        setlocal 5
+                        debugline 96
+                        pushbyte 0
+                        setlocal 5
+                        jump ofs00e5
+               ofs00af:
+                        label
+                        debugline 97
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getlocal 5
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                        convert_b
+                        dup
+                        iffalse ofs00d3
+                        pop
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getlocal 5
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                        getlocal1
+                        equals
+               ofs00d3:
+                        iffalse ofs00e1
+                        debugline 99
+                        getlocal 4
+                        getlocal 5
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs00e1:
+                        debugline 96
+                        inclocal_i 5
+               ofs00e5:
+                        getlocal 5
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getproperty QName(PackageNamespace(""),"length")
+                        iflt ofs00af
+                        debugline 103
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"length")
+                        pushbyte 0
+                        ifngt ofs0145
+                        debugline 104
+                        getlocal 4
+                        getproperty QName(PackageNamespace(""),"length")
+                        decrement
+                        convert_i
+                        setlocal 5
+                        jump ofs013d
+               ofs010e:
+                        label
+                        debugline 105
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getlocal 4
+                        getlocal 5
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        callpropvoid QName(PackageNamespace(""),"a_4330"), 0
+                        debugline 106
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getlocal 4
+                        getlocal 5
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                        pushbyte 1
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                        debugline 104
+                        getlocal 5
+                        decrement_i
+                        setlocal 5
+               ofs013d:
+                        getlocal 5
+                        pushbyte 0
+                        ifge ofs010e
+               ofs0145:
+                        debugline 109
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                        callproperty QName(PackageNamespace(""),"a_3926"), 0
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                        setlocal 6
+                        debugline 110
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                        getlocal 6
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 111
+                        getlocal 6
+                        getlocal2
+                        setproperty QName(PackageNamespace(""),"m_iType")
+                        debugline 112
+                        getlocal 6
+                        getlocal1
+                        setproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                        debugline 113
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"parent")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        astypelate
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        callproperty QName(PackageNamespace(""),"a_3438"), 2
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        setlocal 7
+                        debugline 114
+                        getlocal 6
+                        getproperty QName(PackageNamespace(""),"a_1598")
+                        getlocal 7
+                        getproperty QName(PackageNamespace(""),"m_iInitialXGridNo")
+                        setproperty QName(PackageNamespace(""),"m_iInitialXGridNo")
+                        debugline 115
+                        getlocal 6
+                        getproperty QName(PackageNamespace(""),"a_1598")
+                        getlocal 7
+                        getproperty QName(PackageNamespace(""),"m_iInitialYGridNo")
+                        setproperty QName(PackageNamespace(""),"m_iInitialYGridNo")
+                        debugline 116
+                        getlocal 6
+                        getproperty QName(PackageNamespace(""),"a_1598")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        debugline 117
+                        getlocal 6
+                        getproperty QName(PackageNamespace(""),"a_1598")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        setproperty QName(PackageNamespace(""),"m_iYGridNo")
+               ofs01c0:
+                        debugline 120
+                        getlocal0
+                        getlocal1
+                        getlocal2
+                        getlocal3
+                        callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"AddToLayer"), 3
+                        debugline 121
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private function IsWorldBossMap() : Boolean
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"IsWorldBossMap")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game:BattleLayerManager/private:IsWorldBossMap"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                           debugline 123
+                           getlocal0
+                           pushscope
+                           pushbyte 0
+                           setlocal1
+                           debugline 124
+                           getlex QName(PackageNamespace(""),"root")
+                           coerce_a
+                           convert_b
+                           dup
+                           iffalse ofs0023
+                           pop
+                           getlex QName(PackageNamespace(""),"root")
+                           pushstring "m_stGameData"
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"hasOwnProperty"), 1
+                           coerce_a
+                           convert_b
+                  ofs0023:
+                           dup
+                           iffalse ofs0033
+                           pop
+                           getlex QName(PackageNamespace(""),"root")
+                           getlex QName(PackageNamespace(""),"Object")
+                           astypelate
+                           getproperty Multiname("m_stGameData",[PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           convert_b
+                  ofs0033:
+                           iffalse ofs0062
+                           debug 1, "iMapID", 0, 126
+                           debugline 126
+                           getlex QName(PackageNamespace(""),"root")
+                           getlex QName(PackageNamespace(""),"Object")
+                           astypelate
+                           getproperty Multiname("m_stGameData",[PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           pushstring "iMapID"
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),PrivateNamespace("BattleLayerManager.as$183"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerManager"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           convert_i
+                           setlocal1
+                           debugline 127
+                           getlocal1
+                           pushdouble 4026531840
+                           bitand
+                           pushint 1879048192
+                           ifne ofs0062
+                           debugline 129
+                           pushtrue
+                           returnvalue
+                  ofs0062:
+                           debugline 133
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private function AddToLayer(stDisplayObject:DisplayObject, iType:int, stBindFieldGrid:a_3491 = null) : void
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"AddToLayer")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game:BattleLayerManager/private:AddToLayer"
+                        flag HAS_OPTIONAL
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.display"),"DisplayObject")
+                        param QName(PackageNamespace(""),"int")
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        paramname "flash.display"
+                        paramname "flash.display"
+                        paramname "flash.display"
+                        optional Null()
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 4
+                           localcount 5
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                              debugline 137
+                              getlocal0
+                              pushscope
+                              debug 1, "stDisplayObject", 0, 137
+                              debug 1, "iType", 1, 137
+                              debug 1, "stBindFieldGrid", 2, 137
+                              jump ofs01e4
+                     ofs0021:
+                              label
+                              debugline 142
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottom2LayerSp")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 143
+                              jump ofs0428
+                     ofs0035:
+                              label
+                              debugline 147
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectBottomLayerSp")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 148
+                              jump ofs0428
+                     ofs0049:
+                              label
+                              debugline 150
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 0
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 151
+                              jump ofs0428
+                     ofs0060:
+                              label
+                              debugline 153
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 1
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 154
+                              jump ofs0428
+                     ofs0077:
+                              label
+                              debugline 156
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 2
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 157
+                              jump ofs0428
+                     ofs008e:
+                              label
+                              debugline 159
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 3
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 160
+                              jump ofs0428
+                     ofs00a5:
+                              label
+                              debugline 162
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 4
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 163
+                              jump ofs0428
+                     ofs00bc:
+                              label
+                              debugline 165
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 5
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 166
+                              jump ofs0428
+                     ofs00d3:
+                              label
+                              debugline 168
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 6
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 169
+                              jump ofs0428
+                     ofs00ea:
+                              label
+                              debugline 171
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 7
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 172
+                              jump ofs0428
+                     ofs0101:
+                              label
+                              debugline 174
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stDefenseBattleLayer")
+                              getlocal1
+                              getlocal3
+                              pushbyte 8
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 175
+                              jump ofs0428
+                     ofs0118:
+                              label
+                              debugline 178
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderBattleLayer")
+                              getlocal1
+                              getlocal3
+                              getlocal3
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 179
+                              jump ofs0428
+                     ofs0131:
+                              label
+                              debugline 181
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stBossBottomEffectLayer")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 182
+                              jump ofs0428
+                     ofs0145:
+                              label
+                              debugline 184
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stIntruderSkyBattleLayer")
+                              getlocal1
+                              getlocal3
+                              getlocal3
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 185
+                              jump ofs0428
+                     ofs015e:
+                              label
+                              debugline 187
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stSkyBossBattleLayer")
+                              getlocal1
+                              getlocal3
+                              getlocal3
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 188
+                              jump ofs0428
+                     ofs0177:
+                              label
+                              debugline 190
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stShotBattleLayer")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 191
+                              jump ofs0428
+                     ofs018b:
+                              label
+                              debugline 194
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectCenterLayer")
+                              getlocal1
+                              getlocal3
+                              getlocal3
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 195
+                              jump ofs0428
+                     ofs01a4:
+                              label
+                              debugline 197
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stEffectTopSp")
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 198
+                              jump ofs0428
+                     ofs01b8:
+                              label
+                              debugline 200
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_stObstacleLayer")
+                              getlocal1
+                              getlocal3
+                              getlocal3
+                              getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                              callpropvoid QName(PackageNamespace(""),"AddToLayer"), 3
+                              debugline 201
+                              jump ofs0428
+                     ofs01d1:
+                              label
+                              debugline 203
+                              findpropstrict QName(PackageNamespace(""),"Error")
+                              pushstring "报错了，未知型号"
+                              constructprop QName(PackageNamespace(""),"Error"), 1
+                              throw
+                              jump ofs01e4
+                     ofs01e4:
+                              debugline 139
+                              getlocal2
+                              setlocal 4
+                              debugline 141
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"EFFECTS_BASE2_TYPE")
+                              getlocal 4
+                              ifstrictne ofs01ff
+                              pushbyte 0
+                              jump ofs03d9
+                     ofs01ff:
+                              debugline 144
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"EFFECTS_BASE_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0214
+                              pushbyte 1
+                              jump ofs03d9
+                     ofs0214:
+                              debugline 145
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_BOTTOM_TOOL_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0229
+                              pushbyte 2
+                              jump ofs03d9
+                     ofs0229:
+                              debugline 146
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"INTRUDER_BOTTOM_TYPE")
+                              getlocal 4
+                              ifstrictne ofs023e
+                              pushbyte 3
+                              jump ofs03d9
+                     ofs023e:
+                              debugline 149
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_TRAY_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0253
+                              pushbyte 4
+                              jump ofs03d9
+                     ofs0253:
+                              debugline 152
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_SHADOW_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0268
+                              pushbyte 5
+                              jump ofs03d9
+                     ofs0268:
+                              debugline 155
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"EFFECT_LAYER_TRAY_BOTTOM_TYPE")
+                              getlocal 4
+                              ifstrictne ofs027d
+                              pushbyte 6
+                              jump ofs03d9
+                     ofs027d:
+                              debugline 158
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_BEFORE_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0292
+                              pushbyte 7
+                              jump ofs03d9
+                     ofs0292:
+                              debugline 161
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_ATTACK_FIGHTER_TYPE")
+                              getlocal 4
+                              ifstrictne ofs02a7
+                              pushbyte 8
+                              jump ofs03d9
+                     ofs02a7:
+                              debugline 164
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_BOOM_TYPE")
+                              getlocal 4
+                              ifstrictne ofs02bc
+                              pushbyte 9
+                              jump ofs03d9
+                     ofs02bc:
+                              debugline 167
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_FLOWER_TYPE")
+                              getlocal 4
+                              ifstrictne ofs02d1
+                              pushbyte 10
+                              jump ofs03d9
+                     ofs02d1:
+                              debugline 170
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_AFTER_TYPE")
+                              getlocal 4
+                              ifstrictne ofs02e6
+                              pushbyte 11
+                              jump ofs03d9
+                     ofs02e6:
+                              debugline 173
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_AUXILIARY_FIGHTER_TYPE")
+                              getlocal 4
+                              ifstrictne ofs02fb
+                              pushbyte 12
+                              jump ofs03d9
+                     ofs02fb:
+                              debugline 176
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"INTRUDER_WATER_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0310
+                              pushbyte 13
+                              jump ofs03d9
+                     ofs0310:
+                              debugline 177
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"INTRUDER_LAND_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0325
+                              pushbyte 14
+                              jump ofs03d9
+                     ofs0325:
+                              debugline 180
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"BOSS_BOTTOM_EFFECT_TYPE")
+                              getlocal 4
+                              ifstrictne ofs033a
+                              pushbyte 15
+                              jump ofs03d9
+                     ofs033a:
+                              debugline 183
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"INTRUDER_SKY_TYPE")
+                              getlocal 4
+                              ifstrictne ofs034f
+                              pushbyte 16
+                              jump ofs03d9
+                     ofs034f:
+                              debugline 186
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"INTRUDER_SKY_BOSS_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0364
+                              pushbyte 17
+                              jump ofs03d9
+                     ofs0364:
+                              debugline 189
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"SHOT_TYPE")
+                              getlocal 4
+                              ifstrictne ofs0379
+                              pushbyte 18
+                              jump ofs03d9
+                     ofs0379:
+                              debugline 192
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"EFFECT_LAYER_TOP_TYPE")
+                              getlocal 4
+                              ifstrictne ofs038e
+                              pushbyte 19
+                              jump ofs03d9
+                     ofs038e:
+                              debugline 193
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"DEFENSE_TOP_TOOL_TYPE")
+                              getlocal 4
+                              ifstrictne ofs03a3
+                              pushbyte 20
+                              jump ofs03d9
+                     ofs03a3:
+                              debugline 196
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"EFFECTS_TOP_TYPE")
+                              getlocal 4
+                              ifstrictne ofs03b8
+                              pushbyte 21
+                              jump ofs03d9
+                     ofs03b8:
+                              debugline 199
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                              getproperty QName(PackageNamespace(""),"OBSTACL_TYPE")
+                              getlocal 4
+                              ifstrictne ofs03cd
+                              pushbyte 22
+                              jump ofs03d9
+                     ofs03cd:
+                              jump ofs03d7
+                              pushbyte 23
+                              jump ofs03d7
+                     ofs03d7:
+                              pushbyte 23
+                     ofs03d9:
+                              kill 4
+                              lookupswitch ofs01d1, [ofs0021, ofs0035, ofs0035, ofs0035, ofs0049, ofs0060, ofs0077, ofs008e, ofs00a5, ofs00bc, ofs00d3, ofs00ea, ofs0101, ofs0118, ofs0118, ofs0131, ofs0145, ofs015e, ofs0177, ofs018b, ofs018b, ofs01a4, ofs01b8, ofs01d1]
+                     ofs0428:
+                              debugline 205
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function Sort() : void
+                  {
+                     trait method QName(PackageNamespace(""),"Sort")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game:BattleLayerManager/Sort"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 4
+                              localcount 6
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                                 debugline 208
+                                 getlocal0
+                                 pushscope
+                                 pushnull
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                                 setlocal1
+                                 pushnull
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal2
+                                 pushnull
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal3
+                                 debug 1, "stBattleLayerInfo", 0, 211
+                                 debug 1, "stFieldGird", 1, 212
+                                 debugline 210
+                                 getlocal0
+                                 callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"IsWorldBossMap"), 0
+                                 iffalse ofs002f
+                                 returnvoid
+                        ofs002f:
+                                 debugline 213
+                                 pushbyte 0
+                                 setlocal 4
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                                 coerce_a
+                                 setlocal 5
+                                 jump ofs0104
+                        ofs0041:
+                                 label
+                                 getlocal 5
+                                 getlocal 4
+                                 nextvalue
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                                 setlocal1
+                                 debug 1, "targetGrid", 2, 217
+                                 debugline 217
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"a_1598")
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal3
+                                 debugline 218
+                                 getlocal3
+                                 coerce_a
+                                 dup
+                                 iffalse ofs006b
+                                 pop
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                                 coerce_a
+                        ofs006b:
+                                 coerce_a
+                                 convert_b
+                                 dup
+                                 iffalse ofs007c
+                                 pop
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                                 getproperty QName(PackageNamespace(""),"parent")
+                                 coerce_a
+                                 convert_b
+                        ofs007c:
+                                 dup
+                                 iffalse ofs0093
+                                 pop
+                                 debugline 220
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                                 getproperty QName(PackageNamespace(""),"parent")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"GameCardView")
+                                 getproperty QName(PackageNamespace(""),"a_1089")
+                                 equals
+                                 not
+                        ofs0093:
+                                 iffalse ofs00e6
+                                 debugline 222
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"parent")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                 astypelate
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"m_iInitialXGridNo")
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"m_iInitialYGridNo")
+                                 callproperty QName(PackageNamespace(""),"GetInitialFieldGrid"), 2
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal2
+                                 debugline 223
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                 ifne ofs00c6
+                                 debugline 225
+                                 jump ofs0104
+                        ofs00c6:
+                                 debugline 227
+                                 getlocal3
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                 setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                 debugline 228
+                                 getlocal0
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_iType")
+                                 getlocal3
+                                 callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"AddToLayer"), 3
+                                 jump ofs0104
+                        ofs00e6:
+                                 debugline 232
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                                 getlocal1
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                 pushbyte 1
+                                 callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                 debugline 233
+                                 getlocal1
+                                 callpropvoid QName(PackageNamespace(""),"a_4330"), 0
+                        ofs0104:
+                                 debugline 213
+                                 hasnext2 5, 4
+                                 iftrue ofs0041
+                                 kill 5
+                                 kill 4
+                                 debugline 237
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function CleanUp() : void
+                     {
+                        trait method QName(PackageNamespace(""),"CleanUp")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game:BattleLayerManager/CleanUp"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 3
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                                    debugline 239
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                                    setlocal1
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    setlocal2
+                                    debug 1, "stBattleLayerInfo", 0, 241
+                                    debug 1, "stFieldGird", 1, 242
+                                    jump ofs0039
+                           ofs0022:
+                                    label
+                                    debugline 245
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                                    setlocal1
+                                    debugline 246
+                                    getlocal1
+                                    callpropvoid QName(PackageNamespace(""),"a_4330"), 0
+                           ofs0039:
+                                    debugline 243
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerManager"),"m_vBattleLayerInfo")
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    iftrue ofs0022
+                                    debugline 248
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                     }
+                  }
+                  
+                  method
+                     name ""
+                     returns null
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 1
+                        maxscopedepth 8
+                        
+                        code
+                           getlocal0
+                           pushscope
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                           debugline 17
+                           findpropstrict Multiname("BattleLayerManager",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                           getlex QName(PackageNamespace(""),"Object")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"Sprite")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"Sprite")
+                           newclass 188
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerManager")
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerManager.as"
+                           debugline 10
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+                  

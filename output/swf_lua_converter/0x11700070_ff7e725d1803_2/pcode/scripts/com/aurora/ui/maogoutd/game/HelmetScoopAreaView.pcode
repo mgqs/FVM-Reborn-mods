@@ -1,0 +1,1390 @@
+package com.aurora.ui.maogoutd.game
+{
+   import a_4753.b_150;
+   import com.aurora.ui.maogoutd.resource.defender.a_3953;
+   import com.aurora.ui.maogoutd.resource.defender.a_3960;
+   import com.aurora.ui.maogoutd.resource.defender.a_3962;
+   import com.aurora.ui.maogoutd.resource.defender.a_3971;
+   import com.aurora.ui.maogoutd.resource.defender.a_3975;
+   import com.aurora.ui.maogoutd.resource.defender.a_3976;
+   import com.aurora.ui.maogoutd.resource.tools.HelmetCopperScoop;
+   import com.aurora.ui.maogoutd.resource.tools.HelmetGoldenScoop;
+   import com.aurora.ui.maogoutd.resource.tools.HelmetSilverScoop;
+   import com.aurora.ui.maogoutd.resource.tools.a_4421;
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.display.Sprite;
+   import flash.events.Event;
+   import flash.events.MouseEvent;
+   import flash.ui.Mouse;
+   import flash.ui.MouseCursor;
+   
+   public class HelmetScoopAreaView extends Sprite
+   {
+      
+      public static var a_1088:b_150;
+      
+      public static var a_1089:a_3411;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1088", 0, 27
+               debug 1, "a_1089", 1, 28
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_stHelmetScoopDisplay:MovieClip;
+      
+      public var m_stLessCardsScoopBackGround:Sprite;
+      
+      public var m_stMoreCardsScoopBackGround:Sprite;
+      
+      public var m_stLastCardsScoopBackGround:Sprite;
+      
+      private var m_byScoopType:int = 1;
+      
+      private var a_1098:uint;
+      
+      private var a_1099:BitmapData;
+      
+      private var a_1100:Bitmap;
+      
+      private var a_1105:a_3962;
+      
+      public function HelmetScoopAreaView()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/HelmetScoopAreaView"
+            returns null
+            
+            body
+               maxstack 6
+               localcount 2
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                  debugline 42
+                  getlocal0
+                  pushscope
+                  debug 1, "stBaseDefense", 0, 48
+                  debugline 44
+                  getlocal0
+                  constructsuper 0
+                  debugline 46
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stHelmetScoopDisplay")
+                  pushbyte 1
+                  callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                  debugline 48
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4421")
+                  callproperty QName(PackageNamespace(""),"a_3926"), 0
+                  coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                  setlocal1
+                  debugline 49
+                  getlocal0
+                  getlocal1
+                  callproperty QName(PackageNamespace(""),"a_3512"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                  debugline 50
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                  getlocal1
+                  getproperty QName(PackageNamespace(""),"width")
+                  getlocal1
+                  getproperty QName(PackageNamespace(""),"height")
+                  pushtrue
+                  pushbyte 0
+                  constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                  debugline 51
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                  getlocal1
+                  callpropvoid QName(PackageNamespace(""),"draw"), 1
+                  debugline 52
+                  getlocal1
+                  callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                  debugline 54
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                  constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                  debugline 55
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                  pushdouble 0.6
+                  setproperty QName(PackageNamespace(""),"alpha")
+                  debugline 57
+                  findpropstrict QName(PackageNamespace(""),"addEventListener")
+                  getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                  getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                  callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                  debugline 58
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function SetScoopType(byScoopType:int) : void
+      {
+         trait method QName(PackageNamespace(""),"SetScoopType")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/SetScoopType"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               paramname "addEventListener"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 6
+                  localcount 3
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                     debugline 60
+                     getlocal0
+                     pushscope
+                     pushnull
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal2
+                     debug 1, "byScoopType", 0, 60
+                     debug 1, "stBaseDefense", 1, 69
+                     debugline 62
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     getlocal1
+                     ifne ofs0025
+                     debugline 64
+                     returnvoid
+            ofs0025:
+                     debugline 67
+                     getlocal0
+                     getlocal1
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     debugline 71
+                     pushbyte 1
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     ifne ofs007d
+                     debugline 73
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4421")
+                     callproperty QName(PackageNamespace(""),"a_3926"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal2
+                     debugline 74
+                     getlocal0
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_3512"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                     debugline 75
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"width")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"height")
+                     pushtrue
+                     pushbyte 0
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     debugline 76
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"draw"), 1
+                     debugline 77
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                     jump ofs016c
+            ofs007d:
+                     debugline 79
+                     pushbyte 2
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     ifne ofs00ce
+                     debugline 81
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetCopperScoop")
+                     callproperty QName(PackageNamespace(""),"a_3926"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal2
+                     debugline 82
+                     getlocal0
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_3512"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                     debugline 83
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"width")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"height")
+                     pushtrue
+                     pushbyte 0
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     debugline 84
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"draw"), 1
+                     debugline 85
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                     jump ofs016c
+            ofs00ce:
+                     debugline 87
+                     pushbyte 3
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     ifne ofs011f
+                     debugline 89
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetSilverScoop")
+                     callproperty QName(PackageNamespace(""),"a_3926"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal2
+                     debugline 90
+                     getlocal0
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_3512"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                     debugline 91
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"width")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"height")
+                     pushtrue
+                     pushbyte 0
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     debugline 92
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"draw"), 1
+                     debugline 93
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                     jump ofs016c
+            ofs011f:
+                     debugline 95
+                     pushbyte 4
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     ifne ofs016c
+                     debugline 97
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetGoldenScoop")
+                     callproperty QName(PackageNamespace(""),"a_3926"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal2
+                     debugline 98
+                     getlocal0
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_3512"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                     debugline 99
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"width")
+                     getlocal2
+                     getproperty QName(PackageNamespace(""),"height")
+                     pushtrue
+                     pushbyte 0
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     debugline 100
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"draw"), 1
+                     debugline 101
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+            ofs016c:
+                     debugline 104
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stHelmetScoopDisplay")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                     callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                     debugline 105
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1099")
+                     setproperty QName(PackageNamespace(""),"bitmapData")
+                     debugline 106
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_3555(isEnable:Boolean) : void
+         {
+            trait method QName(PackageNamespace(""),"a_3555")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/SetHelmetScoopEnable"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "addEventListener"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 2
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                        debugline 108
+                        getlocal0
+                        pushscope
+                        debug 1, "isEnable", 0, 108
+                        debugline 110
+                        getlocal1
+                        iffalse ofs0035
+                        debugline 112
+                        findpropstrict QName(PackageNamespace(""),"addEventListener")
+                        getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                        getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                        debugline 113
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stHelmetScoopDisplay")
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        jump ofs0052
+               ofs0035:
+                        debugline 117
+                        findpropstrict QName(PackageNamespace(""),"removeEventListener")
+                        getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                        getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                        callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                        debugline 118
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stHelmetScoopDisplay")
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"visible")
+               ofs0052:
+                        debugline 120
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_3517() : void
+            {
+               trait method QName(PackageNamespace(""),"a_3517")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/ClearGameCardOnHand"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 4
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                           debugline 122
+                           getlocal0
+                           pushscope
+                           debugline 124
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                           iffalse ofs009b
+                           debugline 126
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           coerce_a
+                           convert_b
+                           dup
+                           iffalse ofs0028
+                           pop
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           getproperty QName(PackageNamespace(""),"parent")
+                           coerce_a
+                           convert_b
+                  ofs0028:
+                           dup
+                           iffalse ofs003e
+                           pop
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           getproperty QName(PackageNamespace(""),"parent")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           callproperty QName(PackageNamespace(""),"contains"), 1
+                           convert_b
+                  ofs003e:
+                           iffalse ofs0054
+                           debugline 128
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           getproperty QName(PackageNamespace(""),"parent")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                           callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                  ofs0054:
+                           debugline 131
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                           getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                           getproperty QName(PackageNamespace(""),"CLICK")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseClick")
+                           callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                           debugline 132
+                           getlex QName(PackageNamespace(""),"a_1089")
+                           getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                           getproperty QName(PackageNamespace(""),"MOUSE_MOVE")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseMove")
+                           pushtrue
+                           callpropvoid QName(PackageNamespace(""),"removeEventListener"), 3
+                           debugline 133
+                           getlex QName(PackageNamespace(""),"a_1089")
+                           pushfalse
+                           setproperty QName(PackageNamespace(""),"IsExistDefensePlaceOnHand")
+                           debugline 134
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                           callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                           debugline 135
+                           getlocal0
+                           pushnull
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                  ofs009b:
+                           debugline 137
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private function a_3076(a_4730:Event) : void
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/private:OnMouseClickEvent"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.events"),"Event")
+                        paramname "addEventListener"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 5
+                           localcount 3
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                              debugline 139
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                              setlocal2
+                              debug 1, "a_4730", 0, 139
+                              debug 1, "stHelmetScoop", 1, 141
+                              debugline 143
+                              pushbyte 1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                              ifne ofs0038
+                              debugline 145
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4421")
+                              callproperty QName(PackageNamespace(""),"a_3926"), 0
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                              setlocal2
+                              jump ofs008e
+                     ofs0038:
+                              debugline 147
+                              pushbyte 2
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                              ifne ofs0056
+                              debugline 149
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetCopperScoop")
+                              callproperty QName(PackageNamespace(""),"a_3926"), 0
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                              setlocal2
+                              jump ofs008e
+                     ofs0056:
+                              debugline 151
+                              pushbyte 3
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                              ifne ofs0074
+                              debugline 153
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetSilverScoop")
+                              callproperty QName(PackageNamespace(""),"a_3926"), 0
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                              setlocal2
+                              jump ofs008e
+                     ofs0074:
+                              debugline 155
+                              pushbyte 4
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"m_byScoopType")
+                              ifne ofs008e
+                              debugline 157
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetGoldenScoop")
+                              callproperty QName(PackageNamespace(""),"a_3926"), 0
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                              setlocal2
+                     ofs008e:
+                              debugline 160
+                              getlocal2
+                              pushtrue
+                              setproperty QName(PackageNamespace(""),"m_isMyPlacedTool")
+                              debugline 161
+                              getlocal0
+                              getlocal2
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              debugline 163
+                              pushnull
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              ifeq ofs017f
+                              debugline 166
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              pushtrue
+                              setproperty QName(PackageNamespace(""),"visible")
+                              debugline 168
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getproperty QName(PackageNamespace(""),"parent")
+                              iffalse ofs00d5
+                              debugline 170
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getproperty QName(PackageNamespace(""),"parent")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                     ofs00d5:
+                              debugline 172
+                              getlex QName(PackageNamespace(""),"a_1089")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                              debugline 173
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getlex QName(PackageNamespace(""),"a_1089")
+                              getproperty QName(PackageNamespace(""),"mouseX")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getproperty QName(PackageNamespace(""),"width")
+                              pushdouble 0.1
+                              multiply
+                              subtract
+                              setproperty QName(PackageNamespace(""),"x")
+                              debugline 174
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getlex QName(PackageNamespace(""),"a_1089")
+                              getproperty QName(PackageNamespace(""),"mouseY")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getproperty QName(PackageNamespace(""),"height")
+                              pushdouble 0.75
+                              multiply
+                              subtract
+                              setproperty QName(PackageNamespace(""),"y")
+                              debugline 176
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                              getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                              getproperty QName(PackageNamespace(""),"CLICK")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseClick")
+                              callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                              debugline 178
+                              getlex QName(PackageNamespace(""),"a_1089")
+                              getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                              getproperty QName(PackageNamespace(""),"MOUSE_MOVE")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseMove")
+                              pushtrue
+                              pushshort 1000
+                              callpropvoid QName(PackageNamespace(""),"addEventListener"), 4
+                              debugline 180
+                              getlex QName(PackageNamespace(""),"a_1089")
+                              pushtrue
+                              setproperty QName(PackageNamespace(""),"IsExistDefensePlaceOnHand")
+                              debugline 182
+                              getlex QName(PackageNamespace("flash.ui"),"Mouse")
+                              getlex QName(PackageNamespace("flash.ui"),"MouseCursor")
+                              getproperty QName(PackageNamespace(""),"ARROW")
+                              setproperty QName(PackageNamespace(""),"cursor")
+                              debugline 184
+                              findpropstrict QName(PackageNamespace(""),"removeEventListener")
+                              getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                              getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                              callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                              debugline 186
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                              getproperty QName(PackageNamespace(""),"a_1026")
+                              callpropvoid QName(PackageNamespace(""),"play"), 0
+                     ofs017f:
+                              debugline 188
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private function OnBaseDefenseMouseMove(a_4730:MouseEvent) : void
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseMove")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/private:OnBaseDefenseMouseMove"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("flash.events"),"MouseEvent")
+                           paramname "addEventListener"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 4
+                              localcount 6
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                                 debugline 190
+                                 getlocal0
+                                 pushscope
+                                 pushnull
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                 setlocal2
+                                 pushbyte 0
+                                 setlocal3
+                                 pushbyte 0
+                                 setlocal 4
+                                 pushnull
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal 5
+                                 debug 1, "a_4730", 0, 190
+                                 debug 1, "stMyBattleFieldView", 1, 198
+                                 debugline 194
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace(""),"a_1089")
+                                 getproperty QName(PackageNamespace(""),"mouseX")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getproperty QName(PackageNamespace(""),"width")
+                                 pushdouble 0.1
+                                 multiply
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"x")
+                                 debugline 195
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace(""),"a_1089")
+                                 getproperty QName(PackageNamespace(""),"mouseY")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getproperty QName(PackageNamespace(""),"height")
+                                 pushdouble 0.75
+                                 multiply
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"y")
+                                 debugline 198
+                                 getlex QName(PackageNamespace(""),"a_1089")
+                                 callproperty QName(PackageNamespace(""),"a_3413"), 0
+                                 getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                 setlocal2
+                                 debugline 200
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseX")
+                                 pushbyte 0
+                                 greaterthan
+                                 dup
+                                 iffalse ofs0086
+                                 pop
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseX")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                 getproperty QName(PackageNamespace(""),"a_1013")
+                                 lessthan
+                        ofs0086:
+                                 dup
+                                 iffalse ofs0096
+                                 pop
+                                 debugline 201
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseY")
+                                 pushbyte 0
+                                 greaterthan
+                        ofs0096:
+                                 dup
+                                 iffalse ofs00a6
+                                 pop
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseY")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                 getproperty QName(PackageNamespace(""),"a_1014")
+                                 lessthan
+                        ofs00a6:
+                                 iffalse ofs0205
+                                 debug 1, "iXGridNo", 2, 203
+                                 debug 1, "iYGridNo", 3, 204
+                                 debug 1, "stFieldGrid", 4, 206
+                                 debugline 203
+                                 findpropstrict QName(PackageNamespace(""),"int")
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseX")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1080")
+                                 divide
+                                 callproperty QName(PackageNamespace(""),"int"), 1
+                                 convert_i
+                                 setlocal3
+                                 debugline 204
+                                 findpropstrict QName(PackageNamespace(""),"int")
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"mouseY")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1081")
+                                 divide
+                                 callproperty QName(PackageNamespace(""),"int"), 1
+                                 convert_i
+                                 setlocal 4
+                                 debugline 206
+                                 getlocal2
+                                 getlocal3
+                                 getlocal 4
+                                 callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                 coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 setlocal 5
+                                 debugline 208
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3975")
+                                 istypelate
+                                 dup
+                                 iffalse ofs010f
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stProtector")
+                                 equals
+                                 not
+                        ofs010f:
+                                 dup
+                                 iftrue ofs012d
+                                 pop
+                                 debugline 209
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                                 istypelate
+                                 dup
+                                 iffalse ofs012d
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                 equals
+                                 not
+                        ofs012d:
+                                 dup
+                                 iftrue ofs0159
+                                 pop
+                                 debugline 210
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3960")
+                                 istypelate
+                                 dup
+                                 iffalse ofs0159
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                 equals
+                                 not
+                                 dup
+                                 iftrue ofs0159
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                 equals
+                                 not
+                        ofs0159:
+                                 dup
+                                 iftrue ofs0185
+                                 pop
+                                 debugline 211
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3971")
+                                 istypelate
+                                 dup
+                                 iffalse ofs0185
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                 equals
+                                 not
+                                 dup
+                                 iftrue ofs0185
+                                 pop
+                                 pushnull
+                                 getlocal 5
+                                 getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                 equals
+                                 not
+                        ofs0185:
+                                 iffalse ofs01a5
+                                 debugline 213
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "OnBaseDefenseMouseMove stFieldGrid 己被占用, 移动阴影不显示"
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 214
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 pushfalse
+                                 setproperty QName(PackageNamespace(""),"visible")
+                                 debugline 216
+                                 returnvoid
+                        ofs01a5:
+                                 debugline 219
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 pushtrue
+                                 setproperty QName(PackageNamespace(""),"visible")
+                                 debugline 220
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 getlocal3
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1080")
+                                 multiply
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1080")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 getproperty QName(PackageNamespace(""),"width")
+                                 subtract
+                                 pushdouble 0.5
+                                 multiply
+                                 add
+                                 setproperty QName(PackageNamespace(""),"x")
+                                 debugline 221
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 getlocal 4
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1081")
+                                 multiply
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                 getproperty QName(PackageNamespace(""),"a_1081")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 getproperty QName(PackageNamespace(""),"height")
+                                 subtract
+                                 pushdouble 0.5
+                                 multiply
+                                 add
+                                 setproperty QName(PackageNamespace(""),"y")
+                                 debugline 222
+                                 getlocal2
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                                 jump ofs0210
+                        ofs0205:
+                                 debugline 226
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                 pushfalse
+                                 setproperty QName(PackageNamespace(""),"visible")
+                        ofs0210:
+                                 debugline 228
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     private function OnBaseDefenseMouseClick(a_4730:Event) : void
+                     {
+                        trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseClick")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game:HelmetScoopAreaView/private:OnBaseDefenseMouseClick"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("flash.events"),"Event")
+                              paramname "addEventListener"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 6
+                                 localcount 8
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                                    debugline 230
+                                    getlocal0
+                                    pushscope
+                                    pushbyte 0
+                                    setlocal3
+                                    pushbyte 0
+                                    setlocal 4
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    setlocal 5
+                                    pushbyte 0
+                                    setlocal 6
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    setlocal 7
+                                    debug 1, "a_4730", 0, 230
+                                    debug 1, "stMyBattleFieldView", 1, 235
+                                    debugline 232
+                                    findpropstrict QName(PackageNamespace(""),"trace")
+                                    pushstring "OnBaseDefenseMouseClick"
+                                    callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                    debugline 235
+                                    getlex QName(PackageNamespace(""),"a_1089")
+                                    callproperty QName(PackageNamespace(""),"a_3413"), 0
+                                    getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                    setlocal2
+                                    debugline 236
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseX")
+                                    pushbyte 0
+                                    greaterthan
+                                    dup
+                                    iffalse ofs0062
+                                    pop
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseX")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                    getproperty QName(PackageNamespace(""),"a_1013")
+                                    lessthan
+                           ofs0062:
+                                    dup
+                                    iffalse ofs0072
+                                    pop
+                                    debugline 237
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseY")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs0072:
+                                    dup
+                                    iffalse ofs0082
+                                    pop
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseY")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                    getproperty QName(PackageNamespace(""),"a_1014")
+                                    lessthan
+                           ofs0082:
+                                    iffalse ofs028d
+                                    debug 1, "iXGridNo", 2, 239
+                                    debug 1, "iYGridNo", 3, 240
+                                    debug 1, "stFieldGrid", 4, 242
+                                    debugline 239
+                                    findpropstrict QName(PackageNamespace(""),"int")
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseX")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1080")
+                                    divide
+                                    callproperty QName(PackageNamespace(""),"int"), 1
+                                    convert_i
+                                    setlocal3
+                                    debugline 240
+                                    findpropstrict QName(PackageNamespace(""),"int")
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"mouseY")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1081")
+                                    divide
+                                    callproperty QName(PackageNamespace(""),"int"), 1
+                                    convert_i
+                                    setlocal 4
+                                    debugline 242
+                                    getlocal2
+                                    getlocal3
+                                    getlocal 4
+                                    callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    setlocal 5
+                                    debugline 244
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3975")
+                                    istypelate
+                                    dup
+                                    iffalse ofs00eb
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stProtector")
+                                    equals
+                                    not
+                           ofs00eb:
+                                    dup
+                                    iftrue ofs0109
+                                    pop
+                                    debugline 245
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                                    istypelate
+                                    dup
+                                    iffalse ofs0109
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                    equals
+                                    not
+                           ofs0109:
+                                    dup
+                                    iftrue ofs0135
+                                    pop
+                                    debugline 246
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3960")
+                                    istypelate
+                                    dup
+                                    iffalse ofs0135
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                    equals
+                                    not
+                                    dup
+                                    iftrue ofs0135
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                    equals
+                                    not
+                           ofs0135:
+                                    dup
+                                    iftrue ofs0161
+                                    pop
+                                    debugline 247
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3971")
+                                    istypelate
+                                    dup
+                                    iffalse ofs0161
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                    equals
+                                    not
+                                    dup
+                                    iftrue ofs0161
+                                    pop
+                                    pushnull
+                                    getlocal 5
+                                    getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                    equals
+                                    not
+                           ofs0161:
+                                    iffalse ofs0176
+                                    debugline 249
+                                    findpropstrict QName(PackageNamespace(""),"trace")
+                                    pushstring "OnBaseDefenseMouseClick stFieldGrid 己被占用, 放置不成功"
+                                    callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                    debugline 253
+                                    returnvoid
+                           ofs0176:
+                                    debugline 256
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlocal3
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1080")
+                                    multiply
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1080")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getproperty QName(PackageNamespace(""),"width")
+                                    subtract
+                                    pushdouble 0.5
+                                    multiply
+                                    add
+                                    setproperty QName(PackageNamespace(""),"x")
+                                    debugline 257
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlocal 4
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1081")
+                                    multiply
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    getproperty QName(PackageNamespace(""),"a_1081")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getproperty QName(PackageNamespace(""),"height")
+                                    subtract
+                                    pushdouble 0.5
+                                    multiply
+                                    add
+                                    setproperty QName(PackageNamespace(""),"y")
+                                    debugline 259
+                                    getlocal2
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlocal3
+                                    getlocal 4
+                                    callproperty QName(PackageNamespace(""),"a_3441"), 3
+                                    iffalse ofs0269
+                                    debug 1, "byIsTool", 5, 261
+                                    debug 1, "stInitialFieldGrid", 6, 270
+                                    debugline 261
+                                    pushbyte 0
+                                    setlocal 6
+                                    debugline 263
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4421")
+                                    istypelate
+                                    dup
+                                    iftrue ofs01fc
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetCopperScoop")
+                                    istypelate
+                           ofs01fc:
+                                    dup
+                                    iftrue ofs020d
+                                    pop
+                                    debugline 264
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetSilverScoop")
+                                    istypelate
+                           ofs020d:
+                                    dup
+                                    iftrue ofs021b
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"HelmetGoldenScoop")
+                                    istypelate
+                           ofs021b:
+                                    iffalse ofs0226
+                                    debugline 266
+                                    pushbyte 1
+                                    setlocal 6
+                           ofs0226:
+                                    debugline 269
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlocal2
+                                    callproperty QName(PackageNamespace(""),"a_2180"), 0
+                                    setproperty QName(PackageNamespace(""),"m_iDefenseGlobalID")
+                                    debugline 270
+                                    getlocal2
+                                    getlocal3
+                                    getlocal 4
+                                    callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    setlocal 7
+                                    debugline 271
+                                    getlex QName(PackageNamespace(""),"a_1088")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getproperty QName(PackageNamespace(""),"m_iDefenseGlobalID")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1098")
+                                    getlocal 7
+                                    getproperty QName(PackageNamespace(""),"m_iInitialXGridNo")
+                                    getlocal 7
+                                    getproperty QName(PackageNamespace(""),"m_iInitialYGridNo")
+                                    getlocal 6
+                                    callpropvoid QName(Namespace("com.aurora.game.maogoutd:ITDGameLogic"),"a_2059"), 5
+                                    jump ofs027a
+                           ofs0269:
+                                    debugline 276
+                                    findpropstrict QName(PackageNamespace(""),"trace")
+                                    pushstring "stMyBattleFieldView.AddBaseDefense failed , 放置不成功"
+                                    callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                    debugline 280
+                                    returnvoid
+                           ofs027a:
+                                    debugline 283
+                                    getlex QName(PackageNamespace("flash.ui"),"Mouse")
+                                    getlex QName(PackageNamespace("flash.ui"),"MouseCursor")
+                                    getproperty QName(PackageNamespace(""),"ARROW")
+                                    setproperty QName(PackageNamespace(""),"cursor")
+                                    jump ofs02a7
+                           ofs028d:
+                                    debugline 288
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                    debugline 290
+                                    getlex QName(PackageNamespace("flash.ui"),"Mouse")
+                                    getlex QName(PackageNamespace("flash.ui"),"MouseCursor")
+                                    getproperty QName(PackageNamespace(""),"BUTTON")
+                                    setproperty QName(PackageNamespace(""),"cursor")
+                           ofs02a7:
+                                    debugline 293
+                                    findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                    getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                    getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_3076")
+                                    callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                    debugline 295
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                    getproperty QName(PackageNamespace(""),"parent")
+                                    iffalse ofs02db
+                                    debugline 297
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                    getproperty QName(PackageNamespace(""),"parent")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1100")
+                                    callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                           ofs02db:
+                                    debugline 299
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                    getproperty QName(PackageNamespace(""),"CLICK")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseClick")
+                                    callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                    debugline 301
+                                    getlex QName(PackageNamespace(""),"a_1089")
+                                    getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                    getproperty QName(PackageNamespace(""),"MOUSE_MOVE")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"OnBaseDefenseMouseMove")
+                                    pushtrue
+                                    callpropvoid QName(PackageNamespace(""),"removeEventListener"), 3
+                                    debugline 303
+                                    getlex QName(PackageNamespace(""),"a_1089")
+                                    pushfalse
+                                    setproperty QName(PackageNamespace(""),"IsExistDefensePlaceOnHand")
+                                    debugline 305
+                                    getlocal0
+                                    pushnull
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:HelmetScoopAreaView"),"a_1105")
+                                    debugline 306
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                     }
+                  }
+                  
+                  method
+                     name ""
+                     returns null
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 1
+                        maxscopedepth 8
+                        
+                        code
+                           getlocal0
+                           pushscope
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                           debugline 25
+                           findpropstrict Multiname("HelmetScoopAreaView",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                           getlex QName(PackageNamespace(""),"Object")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"Sprite")
+                           pushscope
+                           getlex QName(PackageNamespace("flash.display"),"Sprite")
+                           newclass 203
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           popscope
+                           initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"HelmetScoopAreaView")
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;HelmetScoopAreaView.as"
+                           debugline 1
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+                  

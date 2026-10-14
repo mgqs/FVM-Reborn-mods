@@ -1,0 +1,169 @@
+package a_4716
+{
+   public class EnmAppTypeID
+   {
+      
+      public static const enm_apptype_game_normal:uint = 0;
+      
+      public static const enm_apptype_game_xiaonei:uint = 1;
+      
+      public static const enm_apptype_game_baidu:uint = 2;
+      
+      public static const enm_apptype_game_sohu:uint = 3;
+      
+      public static const enm_apptype_game_kaixin001:uint = 4;
+      
+      public static const enm_apptype_game_shengda:uint = 5;
+      
+      public static const enm_apptype_game_4399:uint = 6;
+      
+      public static const enm_apptype_game_weibo:uint = 7;
+      
+      public static const enm_apptype_game_2144:uint = 8;
+      
+      public static const enm_apptype_game_qq:uint = 9;
+      
+      public static const enm_apptype_game_duowan:uint = 16;
+      
+      public static const enm_apptype_game_7k7k:uint = 18;
+      
+      public static const enm_apptype_website_normal:uint = 48;
+      
+      public static const enm_apptype_game_renew_signature:uint = 128;
+      
+      public static const enm_apptype_game_change_signature:uint = 129;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "enm_apptype_game_normal", 0, 5
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_normal")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_normal")
+               debug 1, "enm_apptype_game_xiaonei", 1, 8
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_xiaonei")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_xiaonei")
+               debug 1, "enm_apptype_game_baidu", 2, 9
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_baidu")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_baidu")
+               debug 1, "enm_apptype_game_sohu", 3, 10
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_sohu")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_sohu")
+               debug 1, "enm_apptype_game_kaixin001", 4, 11
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_kaixin001")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_kaixin001")
+               debug 1, "enm_apptype_game_shengda", 5, 12
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_shengda")
+               pushbyte 5
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_shengda")
+               debug 1, "enm_apptype_game_4399", 6, 13
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_4399")
+               pushbyte 6
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_4399")
+               debug 1, "enm_apptype_game_weibo", 7, 14
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_weibo")
+               pushbyte 7
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_weibo")
+               debug 1, "enm_apptype_game_2144", 8, 15
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_2144")
+               pushbyte 8
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_2144")
+               debug 1, "enm_apptype_game_qq", 9, 16
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_qq")
+               pushbyte 9
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_qq")
+               debug 1, "enm_apptype_game_duowan", 10, 17
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_duowan")
+               pushbyte 16
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_duowan")
+               debug 1, "enm_apptype_game_7k7k", 11, 18
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_7k7k")
+               pushbyte 18
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_7k7k")
+               debug 1, "enm_apptype_website_normal", 12, 21
+               findproperty QName(PackageNamespace(""),"enm_apptype_website_normal")
+               pushbyte 48
+               initproperty QName(PackageNamespace(""),"enm_apptype_website_normal")
+               debug 1, "enm_apptype_game_renew_signature", 13, 24
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_renew_signature")
+               pushshort 128
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_renew_signature")
+               debug 1, "enm_apptype_game_change_signature", 14, 25
+               findproperty QName(PackageNamespace(""),"enm_apptype_game_change_signature")
+               pushshort 129
+               initproperty QName(PackageNamespace(""),"enm_apptype_game_change_signature")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function EnmAppTypeID()
+      {
+         method
+            name "com.aurora.constant:EnmAppTypeID/EnmAppTypeID"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmAppTypeID.as"
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmAppTypeID.as"
+         debugline 3
+         findpropstrict Multiname("EnmAppTypeID",[PackageNamespace("a_4716")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 122
+         popscope
+         initproperty QName(PackageNamespace("a_4716"),"EnmAppTypeID")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmAppTypeID.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

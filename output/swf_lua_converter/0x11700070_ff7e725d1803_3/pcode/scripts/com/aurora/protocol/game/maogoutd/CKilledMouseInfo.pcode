@@ -1,0 +1,218 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CKilledMouseInfo implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iMouseTypeID:int;
+      
+      public var m_nMouseCount:int;
+      
+      public function CKilledMouseInfo()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/CKilledMouseInfo"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                  debugline 13
+                  getlocal0
+                  pushscope
+                  debugline 14
+                  getlocal0
+                  constructsuper 0
+                  debugline 15
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/CKilledMouseInfo"
+               paramname "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/CKilledMouseInfo"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 5
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 17
+                     debug 1, "encode_length", 1, 17
+                     debug 1, "propertyArray", 2, 19
+                     pushstring "m_iMouseTypeID"
+                     pushstring "int32"
+                     debugline 20
+                     newarray 2
+                     pushstring "m_nMouseCount"
+                     pushstring "int16"
+                     debugline 21
+                     newarray 2
+                     newarray 2
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 24
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/CKilledMouseInfo"
+                  paramname "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/CKilledMouseInfo"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 5
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                        debugline 27
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 27
+                        debug 1, "decode_length", 1, 27
+                        debug 1, "propertyArray", 2, 29
+                        pushstring "m_iMouseTypeID"
+                        pushstring "int32"
+                        debugline 30
+                        newarray 2
+                        pushstring "m_nMouseCount"
+                        pushstring "int16"
+                        debugline 31
+                        newarray 2
+                        newarray 2
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 34
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CKilledMouseInfo/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                           debugline 37
+                           getlocal0
+                           pushscope
+                           debugline 39
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                  debugline 8
+                  findpropstrict Multiname("CKilledMouseInfo",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 144
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CKilledMouseInfo")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CKilledMouseInfo.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

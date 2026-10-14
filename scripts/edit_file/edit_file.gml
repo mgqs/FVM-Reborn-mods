@@ -65,6 +65,8 @@ function cleanup_orphan_cards() {
             cid = entry;
         }
         if (deck_get_card_data(cid, cshape) == noone) {
+            // Disabled/uninstalled external packages retain the player's progress.
+            if (external_mod_known(cid)) continue;
             show_debug_message("清理孤儿卡: " + string(cid));
             array_delete(global.save_data.unlocked_cards, i, 1);
             removed++;

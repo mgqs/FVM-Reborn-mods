@@ -1,0 +1,409 @@
+package a_4718
+{
+   public class b_183
+   {
+      
+      public static const b_184:uint = 65537;
+      
+      public static const b_185:uint = 65538;
+      
+      public static const b_186:uint = 65539;
+      
+      public static const b_187:uint = 65540;
+      
+      public static const b_188:uint = 65541;
+      
+      public static const b_189:uint = 65542;
+      
+      public static const b_190:uint = 65543;
+      
+      public static const b_191:uint = 65544;
+      
+      public static const b_192:uint = 65545;
+      
+      public static const b_193:uint = 65546;
+      
+      public static const b_194:uint = 65547;
+      
+      public static const b_195:uint = 65548;
+      
+      public static const b_196:uint = 65549;
+      
+      public static const b_197:uint = 65550;
+      
+      public static const b_198:uint = 65551;
+      
+      public static const b_199:uint = 65552;
+      
+      public static const b_200:uint = 65553;
+      
+      public static const b_202:uint = 65554;
+      
+      public static const enm_MouseIceBoomShot:uint = 65555;
+      
+      public static const enm_MouseAsanBoomShot:uint = 65556;
+      
+      public static const enm_MandarinFishShot:uint = 65557;
+      
+      public static const enm_CatHeadShot:uint = 65558;
+      
+      public static const enm_IceEggShot:uint = 65559;
+      
+      public static const enm_SmellyBeanCurdShot:uint = 65560;
+      
+      public static const enm_BattleBoomShot:uint = 65561;
+      
+      public static const enm_AvatarIcePowerGunShot:uint = 65562;
+      
+      public static const enm_LibraBothWayShot:uint = 65563;
+      
+      public static const enm_ScorpioShot:uint = 65564;
+      
+      public static const enm_SagittariusShot:uint = 65565;
+      
+      public static const enm_AthenaShot:uint = 65566;
+      
+      public static const enm_FriedPotShot:uint = 65567;
+      
+      public static const enm_HotPotBeefShot:uint = 65568;
+      
+      public static const enm_SpicyHotPot:uint = 65569;
+      
+      public static const enm_CancerFollow:uint = 65570;
+      
+      public static const enm_EggBoilerPisces:uint = 65571;
+      
+      public static const enm_TomatoesSticks:uint = 65572;
+      
+      public static const enm_Magma:uint = 65573;
+      
+      public static const enm_FireArrow:uint = 65574;
+      
+      public static const enm_HighFireShot:uint = 65575;
+      
+      public static const enm_GoldGodShot:uint = 65576;
+      
+      public static const enm_JumpChecken:uint = 65577;
+      
+      public static const enm_GoldTakoyakiFollowShot:uint = 65584;
+      
+      public static const enm_Poison:uint = 65585;
+      
+      public static const enm_RoastChickenDogShot:uint = 65586;
+      
+      public static const enm_MandarinFishDogShot:uint = 65587;
+      
+      public static const enm_DogHeadShot:uint = 65588;
+      
+      public static const enm_NewFrostLiannuShot:uint = 65589;
+      
+      public static const enm_PlutoWarScytheShot:uint = 65590;
+      
+      public static const enm_ZeusCrossbowShot:uint = 65591;
+      
+      public static const enm_ElectricEelMouseBombShot:uint = 65592;
+      
+      public static const enm_CrucibleSnakeFireTowerShot:uint = 65593;
+      
+      public static const enm_SquidFireTowerShot:uint = 65600;
+      
+      public static const enm_FireGrailShot:uint = 65601;
+      
+      public static const enm_RockFireTowerIceColdShot:uint = 65602;
+      
+      public static const enm_AnnihilationHorseBaseSamllShot:uint = 65603;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "b_184", 0, 6
+               findproperty QName(PackageNamespace(""),"b_184")
+               pushint 65537
+               initproperty QName(PackageNamespace(""),"b_184")
+               debug 1, "b_185", 1, 7
+               findproperty QName(PackageNamespace(""),"b_185")
+               pushint 65538
+               initproperty QName(PackageNamespace(""),"b_185")
+               debug 1, "b_186", 2, 8
+               findproperty QName(PackageNamespace(""),"b_186")
+               pushint 65539
+               initproperty QName(PackageNamespace(""),"b_186")
+               debug 1, "b_187", 3, 9
+               findproperty QName(PackageNamespace(""),"b_187")
+               pushint 65540
+               initproperty QName(PackageNamespace(""),"b_187")
+               debug 1, "b_188", 4, 10
+               findproperty QName(PackageNamespace(""),"b_188")
+               pushint 65541
+               initproperty QName(PackageNamespace(""),"b_188")
+               debug 1, "b_189", 5, 11
+               findproperty QName(PackageNamespace(""),"b_189")
+               pushint 65542
+               initproperty QName(PackageNamespace(""),"b_189")
+               debug 1, "b_190", 6, 12
+               findproperty QName(PackageNamespace(""),"b_190")
+               pushint 65543
+               initproperty QName(PackageNamespace(""),"b_190")
+               debug 1, "b_191", 7, 13
+               findproperty QName(PackageNamespace(""),"b_191")
+               pushint 65544
+               initproperty QName(PackageNamespace(""),"b_191")
+               debug 1, "b_192", 8, 14
+               findproperty QName(PackageNamespace(""),"b_192")
+               pushint 65545
+               initproperty QName(PackageNamespace(""),"b_192")
+               debug 1, "b_193", 9, 15
+               findproperty QName(PackageNamespace(""),"b_193")
+               pushint 65546
+               initproperty QName(PackageNamespace(""),"b_193")
+               debug 1, "b_194", 10, 16
+               findproperty QName(PackageNamespace(""),"b_194")
+               pushint 65547
+               initproperty QName(PackageNamespace(""),"b_194")
+               debug 1, "b_195", 11, 17
+               findproperty QName(PackageNamespace(""),"b_195")
+               pushint 65548
+               initproperty QName(PackageNamespace(""),"b_195")
+               debug 1, "b_196", 12, 18
+               findproperty QName(PackageNamespace(""),"b_196")
+               pushint 65549
+               initproperty QName(PackageNamespace(""),"b_196")
+               debug 1, "b_197", 13, 19
+               findproperty QName(PackageNamespace(""),"b_197")
+               pushint 65550
+               initproperty QName(PackageNamespace(""),"b_197")
+               debug 1, "b_198", 14, 20
+               findproperty QName(PackageNamespace(""),"b_198")
+               pushint 65551
+               initproperty QName(PackageNamespace(""),"b_198")
+               debug 1, "b_199", 15, 21
+               findproperty QName(PackageNamespace(""),"b_199")
+               pushint 65552
+               initproperty QName(PackageNamespace(""),"b_199")
+               debug 1, "b_200", 16, 22
+               findproperty QName(PackageNamespace(""),"b_200")
+               pushint 65553
+               initproperty QName(PackageNamespace(""),"b_200")
+               debug 1, "b_202", 17, 23
+               findproperty QName(PackageNamespace(""),"b_202")
+               pushint 65554
+               initproperty QName(PackageNamespace(""),"b_202")
+               debug 1, "enm_MouseIceBoomShot", 18, 24
+               findproperty QName(PackageNamespace(""),"enm_MouseIceBoomShot")
+               pushint 65555
+               initproperty QName(PackageNamespace(""),"enm_MouseIceBoomShot")
+               debug 1, "enm_MouseAsanBoomShot", 19, 25
+               findproperty QName(PackageNamespace(""),"enm_MouseAsanBoomShot")
+               pushint 65556
+               initproperty QName(PackageNamespace(""),"enm_MouseAsanBoomShot")
+               debug 1, "enm_MandarinFishShot", 20, 26
+               findproperty QName(PackageNamespace(""),"enm_MandarinFishShot")
+               pushint 65557
+               initproperty QName(PackageNamespace(""),"enm_MandarinFishShot")
+               debug 1, "enm_CatHeadShot", 21, 27
+               findproperty QName(PackageNamespace(""),"enm_CatHeadShot")
+               pushint 65558
+               initproperty QName(PackageNamespace(""),"enm_CatHeadShot")
+               debug 1, "enm_IceEggShot", 22, 28
+               findproperty QName(PackageNamespace(""),"enm_IceEggShot")
+               pushint 65559
+               initproperty QName(PackageNamespace(""),"enm_IceEggShot")
+               debug 1, "enm_SmellyBeanCurdShot", 23, 29
+               findproperty QName(PackageNamespace(""),"enm_SmellyBeanCurdShot")
+               pushint 65560
+               initproperty QName(PackageNamespace(""),"enm_SmellyBeanCurdShot")
+               debug 1, "enm_BattleBoomShot", 24, 30
+               findproperty QName(PackageNamespace(""),"enm_BattleBoomShot")
+               pushint 65561
+               initproperty QName(PackageNamespace(""),"enm_BattleBoomShot")
+               debug 1, "enm_AvatarIcePowerGunShot", 25, 31
+               findproperty QName(PackageNamespace(""),"enm_AvatarIcePowerGunShot")
+               pushint 65562
+               initproperty QName(PackageNamespace(""),"enm_AvatarIcePowerGunShot")
+               debug 1, "enm_LibraBothWayShot", 26, 32
+               findproperty QName(PackageNamespace(""),"enm_LibraBothWayShot")
+               pushint 65563
+               initproperty QName(PackageNamespace(""),"enm_LibraBothWayShot")
+               debug 1, "enm_ScorpioShot", 27, 33
+               findproperty QName(PackageNamespace(""),"enm_ScorpioShot")
+               pushint 65564
+               initproperty QName(PackageNamespace(""),"enm_ScorpioShot")
+               debug 1, "enm_SagittariusShot", 28, 34
+               findproperty QName(PackageNamespace(""),"enm_SagittariusShot")
+               pushint 65565
+               initproperty QName(PackageNamespace(""),"enm_SagittariusShot")
+               debug 1, "enm_AthenaShot", 29, 35
+               findproperty QName(PackageNamespace(""),"enm_AthenaShot")
+               pushint 65566
+               initproperty QName(PackageNamespace(""),"enm_AthenaShot")
+               debug 1, "enm_FriedPotShot", 30, 36
+               findproperty QName(PackageNamespace(""),"enm_FriedPotShot")
+               pushint 65567
+               initproperty QName(PackageNamespace(""),"enm_FriedPotShot")
+               debug 1, "enm_HotPotBeefShot", 31, 37
+               findproperty QName(PackageNamespace(""),"enm_HotPotBeefShot")
+               pushint 65568
+               initproperty QName(PackageNamespace(""),"enm_HotPotBeefShot")
+               debug 1, "enm_SpicyHotPot", 32, 38
+               findproperty QName(PackageNamespace(""),"enm_SpicyHotPot")
+               pushint 65569
+               initproperty QName(PackageNamespace(""),"enm_SpicyHotPot")
+               debug 1, "enm_CancerFollow", 33, 39
+               findproperty QName(PackageNamespace(""),"enm_CancerFollow")
+               pushint 65570
+               initproperty QName(PackageNamespace(""),"enm_CancerFollow")
+               debug 1, "enm_EggBoilerPisces", 34, 40
+               findproperty QName(PackageNamespace(""),"enm_EggBoilerPisces")
+               pushint 65571
+               initproperty QName(PackageNamespace(""),"enm_EggBoilerPisces")
+               debug 1, "enm_TomatoesSticks", 35, 41
+               findproperty QName(PackageNamespace(""),"enm_TomatoesSticks")
+               pushint 65572
+               initproperty QName(PackageNamespace(""),"enm_TomatoesSticks")
+               debug 1, "enm_Magma", 36, 42
+               findproperty QName(PackageNamespace(""),"enm_Magma")
+               pushint 65573
+               initproperty QName(PackageNamespace(""),"enm_Magma")
+               debug 1, "enm_FireArrow", 37, 43
+               findproperty QName(PackageNamespace(""),"enm_FireArrow")
+               pushint 65574
+               initproperty QName(PackageNamespace(""),"enm_FireArrow")
+               debug 1, "enm_HighFireShot", 38, 44
+               findproperty QName(PackageNamespace(""),"enm_HighFireShot")
+               pushint 65575
+               initproperty QName(PackageNamespace(""),"enm_HighFireShot")
+               debug 1, "enm_GoldGodShot", 39, 45
+               findproperty QName(PackageNamespace(""),"enm_GoldGodShot")
+               pushint 65576
+               initproperty QName(PackageNamespace(""),"enm_GoldGodShot")
+               debug 1, "enm_JumpChecken", 40, 46
+               findproperty QName(PackageNamespace(""),"enm_JumpChecken")
+               pushint 65577
+               initproperty QName(PackageNamespace(""),"enm_JumpChecken")
+               debug 1, "enm_GoldTakoyakiFollowShot", 41, 47
+               findproperty QName(PackageNamespace(""),"enm_GoldTakoyakiFollowShot")
+               pushint 65584
+               initproperty QName(PackageNamespace(""),"enm_GoldTakoyakiFollowShot")
+               debug 1, "enm_Poison", 42, 48
+               findproperty QName(PackageNamespace(""),"enm_Poison")
+               pushint 65585
+               initproperty QName(PackageNamespace(""),"enm_Poison")
+               debug 1, "enm_RoastChickenDogShot", 43, 49
+               findproperty QName(PackageNamespace(""),"enm_RoastChickenDogShot")
+               pushint 65586
+               initproperty QName(PackageNamespace(""),"enm_RoastChickenDogShot")
+               debug 1, "enm_MandarinFishDogShot", 44, 50
+               findproperty QName(PackageNamespace(""),"enm_MandarinFishDogShot")
+               pushint 65587
+               initproperty QName(PackageNamespace(""),"enm_MandarinFishDogShot")
+               debug 1, "enm_DogHeadShot", 45, 51
+               findproperty QName(PackageNamespace(""),"enm_DogHeadShot")
+               pushint 65588
+               initproperty QName(PackageNamespace(""),"enm_DogHeadShot")
+               debug 1, "enm_NewFrostLiannuShot", 46, 52
+               findproperty QName(PackageNamespace(""),"enm_NewFrostLiannuShot")
+               pushint 65589
+               initproperty QName(PackageNamespace(""),"enm_NewFrostLiannuShot")
+               debug 1, "enm_PlutoWarScytheShot", 47, 53
+               findproperty QName(PackageNamespace(""),"enm_PlutoWarScytheShot")
+               pushint 65590
+               initproperty QName(PackageNamespace(""),"enm_PlutoWarScytheShot")
+               debug 1, "enm_ZeusCrossbowShot", 48, 54
+               findproperty QName(PackageNamespace(""),"enm_ZeusCrossbowShot")
+               pushint 65591
+               initproperty QName(PackageNamespace(""),"enm_ZeusCrossbowShot")
+               debug 1, "enm_ElectricEelMouseBombShot", 49, 55
+               findproperty QName(PackageNamespace(""),"enm_ElectricEelMouseBombShot")
+               pushint 65592
+               initproperty QName(PackageNamespace(""),"enm_ElectricEelMouseBombShot")
+               debug 1, "enm_CrucibleSnakeFireTowerShot", 50, 56
+               findproperty QName(PackageNamespace(""),"enm_CrucibleSnakeFireTowerShot")
+               pushint 65593
+               initproperty QName(PackageNamespace(""),"enm_CrucibleSnakeFireTowerShot")
+               debug 1, "enm_SquidFireTowerShot", 51, 59
+               findproperty QName(PackageNamespace(""),"enm_SquidFireTowerShot")
+               pushint 65600
+               initproperty QName(PackageNamespace(""),"enm_SquidFireTowerShot")
+               debug 1, "enm_FireGrailShot", 52, 60
+               findproperty QName(PackageNamespace(""),"enm_FireGrailShot")
+               pushint 65601
+               initproperty QName(PackageNamespace(""),"enm_FireGrailShot")
+               debug 1, "enm_RockFireTowerIceColdShot", 53, 61
+               findproperty QName(PackageNamespace(""),"enm_RockFireTowerIceColdShot")
+               pushint 65602
+               initproperty QName(PackageNamespace(""),"enm_RockFireTowerIceColdShot")
+               debug 1, "enm_AnnihilationHorseBaseSamllShot", 54, 62
+               findproperty QName(PackageNamespace(""),"enm_AnnihilationHorseBaseSamllShot")
+               pushint 65603
+               initproperty QName(PackageNamespace(""),"enm_AnnihilationHorseBaseSamllShot")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_183()
+      {
+         method
+            name "com.aurora.constant.game.maogoutd:EnmShotTypeID/EnmShotTypeID"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+                  debugline 65
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+         debugline 4
+         findpropstrict Multiname("b_183",[PackageNamespace("a_4718")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 43
+         popscope
+         initproperty QName(PackageNamespace("a_4718"),"b_183")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

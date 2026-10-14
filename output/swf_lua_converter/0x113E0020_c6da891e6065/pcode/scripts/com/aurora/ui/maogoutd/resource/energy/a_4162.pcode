@@ -1,0 +1,269 @@
+package com.aurora.ui.maogoutd.resource.energy
+{
+   public class a_4162
+   {
+      
+      private static var a_1286:a_4162;
+      
+      private static var a_1439:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1286", 0, 5
+               debug 1, "a_1439", 1, 6
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+               newarray 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4162()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.energy:EnergyFactory/EnergyFactory"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                  debugline 18
+                  getlocal0
+                  pushscope
+                  debugline 19
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_4162
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.energy:EnergyFactory/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4162")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                     debugline 8
+                     getlocal0
+                     pushscope
+                     debugline 10
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1286")
+                     ifne ofs001c
+                     debugline 12
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1286")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1286")
+            ofs001c:
+                     debugline 15
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1286")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4163(iEnergyTypeId:uint) : a_4157
+         {
+            trait method QName(PackageNamespace(""),"a_4163")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.energy:EnergyFactory/GetEnergy"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "F:\FlashKenai\src;com\aurora\ui\maogoutd\resource\energy;EnergyFactory.as"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4157")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                        debugline 23
+                        getlocal0
+                        pushscope
+                        debug 1, "iEnergyTypeId", 0, 23
+                        debugline 25
+                        pushnull
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),PrivateNamespace("EnergyFactory.as$139"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.energy"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("Object")])
+                        ifeq ofs002c
+                        debugline 27
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                        dup
+                        setlocal2
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),PrivateNamespace("EnergyFactory.as$139"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.energy"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("Object")])
+                        getlocal2
+                        call 0
+                        kill 2
+                        returnvalue
+               ofs002c:
+                        debugline 30
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4164(iEnergyTypeId:uint, fEnergyCreator:Function) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_4164")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.energy:EnergyFactory/RegisterEnergyCreator"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "a_4162"
+                     paramname "a_4162"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                           debugline 33
+                           getlocal0
+                           pushscope
+                           debug 1, "iEnergyTypeId", 0, 33
+                           debug 1, "fEnergyCreator", 1, 33
+                           debugline 35
+                           pushnull
+                           getlocal2
+                           equals
+                           dup
+                           iftrue ofs0028
+                           pop
+                           pushnull
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),PrivateNamespace("EnergyFactory.as$139"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.energy"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("Object")])
+                           equals
+                           not
+                  ofs0028:
+                           iffalse ofs003c
+                           debugline 37
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterEnergyCreator failed"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 39
+                           pushfalse
+                           returnvalue
+                  ofs003c:
+                           debugline 42
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),PrivateNamespace("EnergyFactory.as$139"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.energy"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),StaticProtectedNs("Object")])
+                           debugline 44
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3923() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3923")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.energy:EnergyFactory/ClearAllCreator"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                              debugline 47
+                              getlocal0
+                              pushscope
+                              debugline 49
+                              findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                              newarray 0
+                              setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.energy:EnergyFactory"),"a_1439")
+                              debugline 51
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                     debugline 3
+                     findpropstrict Multiname("a_4162",[PackageNamespace("com.aurora.ui.maogoutd.resource.energy")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 14
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4162")
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\energy;EnergyFactory.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

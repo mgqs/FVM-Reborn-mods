@@ -1,0 +1,91 @@
+package com.aurora.ui.maogoutd.game.Buff
+{
+   import com.aurora.ui.maogoutd.resource.effect.BaseGameEffect;
+   
+   public class BattleBuffData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var tag:int = 0;
+      
+      public var value:int = 1;
+      
+      public var duration:int = 0;
+      
+      public var params:BattleBuffParams = null;
+      
+      public var stEffect:BaseGameEffect;
+      
+      public function BattleBuffData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game.Buff:BattleBuffData/BattleBuffData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BattleBuffData.as"
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BattleBuffData.as"
+         debugline 5
+         findpropstrict Multiname("BattleBuffData",[PackageNamespace("com.aurora.ui.maogoutd.game.Buff")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 11
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game.Buff"),"BattleBuffData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Buff;BattleBuffData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

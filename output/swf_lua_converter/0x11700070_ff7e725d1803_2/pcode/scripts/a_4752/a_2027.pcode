@@ -1,0 +1,469 @@
+package a_4752
+{
+   import com.aurora.ui.maogoutd.ClientLog.CheckIDHandler;
+   import com.aurora.ui.maogoutd.component.a_3306;
+   import flash.utils.Dictionary;
+   
+   public class a_2027
+   {
+      
+      private static var instance:a_2027;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "instance", 0, 14
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_dictDesc:Dictionary;
+      
+      public var m_dictMouseDesc:Dictionary;
+      
+      public var m_xmlComposeConfig:XML;
+      
+      public var m_xmlTinyMarketGoodsConfig:XML;
+      
+      public var m_marketItemXML:XML;
+      
+      public var m_PackageImageDict:Dictionary;
+      
+      public function a_2027()
+      {
+         method
+            name "com.aurora.game.maogoutd.common:DocProFile/DocProFile"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                  debugline 34
+                  getlocal0
+                  pushscope
+                  debugline 35
+                  getlocal0
+                  constructsuper 0
+                  debugline 36
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2027
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.game.maogoutd.common:DocProFile/getInstance"
+               returns QName(PackageNamespace("a_4752"),"a_2027")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     debugline 27
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),"instance")
+                     pushnull
+                     ifne ofs001c
+                     debugline 29
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),"instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),"instance")
+            ofs001c:
+                     debugline 31
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),"instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_2028(descXML:XML) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_2028")
+               dispid 0
+               method
+                  name "com.aurora.game.maogoutd.common:DocProFile/ParseDescXML"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"XML")
+                  paramname "m_dictDesc"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                        debugline 38
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace(""),"XML")
+                        setlocal2
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                        setlocal3
+                        debug 1, "descXML", 0, 38
+                        debugline 40
+                        getlocal1
+                        pushnull
+                        ifeq ofs009a
+                        debug 1, "item", 1, 47
+                        debugline 42
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_dictDesc")
+                        pushnull
+                        ifne ofs003a
+                        debugline 44
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                        constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                        initproperty QName(PackageNamespace(""),"m_dictDesc")
+               ofs003a:
+                        debugline 47
+                        pushbyte 0
+                        setlocal 4
+                        getlocal1
+                        getproperty Multiname("item",[PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("DocProFile.as$394"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:DocProFile"),StaticProtectedNs("com.aurora.game.maogoutd.common:DocProFile")])
+                        coerce_a
+                        setlocal 5
+                        jump ofs008d
+               ofs004b:
+                        label
+                        getlocal 5
+                        getlocal 4
+                        nextvalue
+                        coerce QName(PackageNamespace(""),"XML")
+                        setlocal2
+                        debug 1, "dDesc", 2, 49
+                        debugline 49
+                        findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                        constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306"), 0
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                        setlocal3
+                        debugline 50
+                        getlocal3
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"setCardDesc"), 1
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_dictDesc")
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"CardID")
+                        getlocal3
+                        setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("DocProFile.as$394"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:DocProFile"),StaticProtectedNs("com.aurora.game.maogoutd.common:DocProFile")])
+                        debugline 52
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CheckIDHandler")
+                        callproperty QName(PackageNamespace(""),"Get"), 0
+                        getlocal3
+                        getproperty QName(PackageNamespace(""),"CardID")
+                        callpropvoid QName(PackageNamespace(""),"Push"), 1
+               ofs008d:
+                        debugline 47
+                        hasnext2 5, 4
+                        iftrue ofs004b
+                        kill 5
+                        kill 4
+               ofs009a:
+                        debugline 55
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_2029(mouseDescXML:XML) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_2029")
+                  dispid 0
+                  method
+                     name "com.aurora.game.maogoutd.common:DocProFile/ParseMouseDescXML"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"XML")
+                     paramname "m_dictDesc"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 6
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                           debugline 58
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                           setlocal3
+                           debug 1, "mouseDescXML", 0, 58
+                           debugline 60
+                           getlocal1
+                           pushnull
+                           ifeq ofs008a
+                           debug 1, "item", 1, 67
+                           debugline 62
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_dictMouseDesc")
+                           pushnull
+                           ifne ofs003a
+                           debugline 64
+                           getlocal0
+                           findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                           constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                           initproperty QName(PackageNamespace(""),"m_dictMouseDesc")
+                  ofs003a:
+                           debugline 67
+                           pushbyte 0
+                           setlocal 4
+                           getlocal1
+                           getproperty Multiname("item",[PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("DocProFile.as$394"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:DocProFile"),StaticProtectedNs("com.aurora.game.maogoutd.common:DocProFile")])
+                           coerce_a
+                           setlocal 5
+                           jump ofs007d
+                  ofs004b:
+                           label
+                           getlocal 5
+                           getlocal 4
+                           nextvalue
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           debug 1, "dDesc", 2, 69
+                           debugline 69
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306"), 0
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                           setlocal3
+                           debugline 70
+                           getlocal3
+                           getlocal2
+                           callpropvoid QName(PackageNamespace(""),"setMouseDesc"), 1
+                           debugline 71
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_dictMouseDesc")
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"ID")
+                           getlocal3
+                           setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:DocProFile"),PackageNamespace("a_4752"),PackageNamespace(""),PrivateNamespace("DocProFile.as$394"),PackageInternalNs("a_4752"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.game.maogoutd.common:DocProFile"),StaticProtectedNs("com.aurora.game.maogoutd.common:DocProFile")])
+                  ofs007d:
+                           debugline 67
+                           hasnext2 5, 4
+                           iftrue ofs004b
+                           kill 5
+                           kill 4
+                  ofs008a:
+                           debugline 74
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_2030(xmlData:XML) : void
+               {
+                  trait method QName(PackageNamespace(""),"a_2030")
+                     dispid 0
+                     method
+                        name "com.aurora.game.maogoutd.common:DocProFile/ParseComposeConfig"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"XML")
+                        paramname "dDesc"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                              debugline 77
+                              getlocal0
+                              pushscope
+                              debug 1, "xmlData", 0, 77
+                              debugline 79
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PackageNamespace(""),"m_xmlComposeConfig")
+                              debugline 80
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_2031(xmlData:XML) : void
+                  {
+                     trait method QName(PackageNamespace(""),"a_2031")
+                        dispid 0
+                        method
+                           name "com.aurora.game.maogoutd.common:DocProFile/ParesTinyMarketGoodsConfig"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"XML")
+                           paramname "dDesc"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                                 debugline 82
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "xmlData", 0, 82
+                                 debugline 84
+                                 getlocal0
+                                 getlocal1
+                                 initproperty QName(PackageNamespace(""),"m_xmlTinyMarketGoodsConfig")
+                                 debugline 85
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_2032(marketItemXML:XML) : void
+                     {
+                        trait method QName(PackageNamespace(""),"a_2032")
+                           dispid 0
+                           method
+                              name "com.aurora.game.maogoutd.common:DocProFile/ParseMarketItemConfigXML"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"XML")
+                              paramname "dDesc"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                                    debugline 92
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "marketItemXML", 0, 92
+                                    debugline 94
+                                    getlocal0
+                                    getlocal1
+                                    initproperty QName(PackageNamespace(""),"m_marketItemXML")
+                                    debugline 95
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function get dictImage() : Dictionary
+                        {
+                           trait getter QName(PackageNamespace(""),"dictImage")
+                              dispid 0
+                              method
+                                 name "com.aurora.game.maogoutd.common:DocProFile/dictImage/get"
+                                 returns QName(PackageNamespace("flash.utils"),"Dictionary")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                                       debugline 97
+                                       getlocal0
+                                       pushscope
+                                       debugline 99
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"m_PackageImageDict")
+                                       pushnull
+                                       ifne ofs001d
+                                       debugline 101
+                                       getlocal0
+                                       findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                                       constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                                       initproperty QName(PackageNamespace(""),"m_PackageImageDict")
+                              ofs001d:
+                                       debugline 103
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"m_PackageImageDict")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                              debugline 12
+                              findpropstrict Multiname("a_2027",[PackageNamespace("a_4752")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 80
+                              popscope
+                              initproperty QName(PackageNamespace("a_4752"),"a_2027")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;DocProFile.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

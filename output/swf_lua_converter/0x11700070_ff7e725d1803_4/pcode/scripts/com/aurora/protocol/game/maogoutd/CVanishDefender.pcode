@@ -1,0 +1,282 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CVanishDefender implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iDefenderID:int;
+      
+      public var m_iDefenderTypeID:int;
+      
+      public var m_byYGridNo:int;
+      
+      public var m_byXGridNo:int;
+      
+      public var m_byIsTool:int;
+      
+      public var m_IsCaclueCoolDown:int;
+      
+      public var m_iOrigSeatID:int;
+      
+      public var m_iCurrentMoney:int;
+      
+      public var m_iDefenseAttackHurt:int;
+      
+      public function CVanishDefender()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CVanishDefender/CVanishDefender"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                  debugline 21
+                  getlocal0
+                  pushscope
+                  debugline 22
+                  getlocal0
+                  constructsuper 0
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CVanishDefender/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "m_iDefenderTypeID"
+               paramname "m_iDefenderTypeID"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 25
+                     debug 1, "encode_length", 1, 25
+                     debugline 37
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iDefenderID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 38
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iDefenderTypeID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 39
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byYGridNo")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 40
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byXGridNo")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 41
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byIsTool")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 42
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_IsCaclueCoolDown")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 43
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iOrigSeatID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 45
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CVanishDefender/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "m_iDefenderTypeID"
+                  paramname "m_iDefenderTypeID"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                        debugline 48
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 48
+                        debug 1, "decode_length", 1, 48
+                        debugline 60
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iDefenderID")
+                        debugline 61
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iDefenderTypeID")
+                        debugline 62
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byYGridNo")
+                        debugline 63
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byXGridNo")
+                        debugline 64
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byIsTool")
+                        debugline 65
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_IsCaclueCoolDown")
+                        debugline 66
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_iOrigSeatID")
+                        debugline 68
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CVanishDefender/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                           debugline 71
+                           getlocal0
+                           pushscope
+                           debugline 73
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                  debugline 8
+                  findpropstrict Multiname("CVanishDefender",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 130
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishDefender")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishDefender.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

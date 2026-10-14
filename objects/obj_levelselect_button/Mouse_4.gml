@@ -1,7 +1,21 @@
 if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 	pressed = true
     audio_play_sound(snd_button, 0, 0);
+	if target_level_id == "longyuan_entry"{
+		global.map_id = "longyuan"
+		global.map_name = "龙渊"
+		if room != room_map global.gui_stack.to(room_map)
+		exit
+	}
 	texture_prefetch("cards")
+	if global.map_id == "longyuan" && target_level_id != "test_level" {
+		var _longyuan_file = "level_data/" + (global.difficulty >= 2 ? target_level_file_hard : target_level_file)
+		if !file_exists(_longyuan_file) {
+			pressed = false
+			show_notice("该关卡尚未配置", 90)
+			exit
+		}
+	}
 	if target_level_id != "tower_cake"{
 	    global.gui_stack.to(room_ready)
 	

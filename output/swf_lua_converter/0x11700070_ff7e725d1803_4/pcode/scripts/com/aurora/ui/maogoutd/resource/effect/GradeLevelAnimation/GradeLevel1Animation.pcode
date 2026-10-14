@@ -1,0 +1,435 @@
+package com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation
+{
+   import com.aurora.ui.maogoutd.resource.effect.a_4108;
+   import flash.display.BitmapData;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class GradeLevel1Animation extends a_4108
+   {
+      
+      private static var ms_stGradeLevel1AnimationVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stGradeLevel1AnimationVector", 0, 13
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"ms_stGradeLevel1AnimationVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"ms_stGradeLevel1AnimationVector")
+               debug 1, "a_1300", 1, 14
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),PackageNamespace(""),PrivateNamespace("GradeLevel1Animation.as$111"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1300")
+               debug 1, "a_1301", 2, 15
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),PackageNamespace(""),PrivateNamespace("GradeLevel1Animation.as$111"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1301")
+               debug 1, "a_1302", 3, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1AnimationMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1AnimationMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function GradeLevel1Animation()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/GradeLevel1Animation"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                  debugline 30
+                  getlocal0
+                  pushscope
+                  debugline 32
+                  getlocal0
+                  constructsuper 0
+                  debugline 33
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  pushbyte 0
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  debugline 34
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  pushbyte 0
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  debugline 35
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                  pushbyte 1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                  debugline 36
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : GradeLevel1Animation
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1Animation")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 10
+                  maxscopedepth 11
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                     debugline 18
+                     getlocal0
+                     pushscope
+                     debug 1, "stGradeLevel1Animation", 0, 20
+                     debugline 20
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"ms_stGradeLevel1AnimationVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1Animation")
+                     setlocal1
+                     debugline 22
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 24
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1Animation")
+                     setlocal1
+            ofs002b:
+                     debugline 27
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(isReversed:Boolean) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "flash.events:EventDispatcher"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                        debugline 38
+                        getlocal0
+                        pushscope
+                        debug 1, "isReversed", 0, 38
+                        debugline 40
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                        debugline 41
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                           debugline 44
+                           getlocal0
+                           pushscope
+                           debugline 46
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                              debugline 49
+                              getlocal0
+                              pushscope
+                              debugline 51
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                                 debugline 54
+                                 getlocal0
+                                 pushscope
+                                 debugline 56
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_4109(a_4730:Event) : void
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"a_4109")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/protected:OnPlayNextFrameTimeEvent"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("flash.events"),"Event")
+                              paramname "a_1279"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 2
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                                    debugline 59
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "a_4730", 0, 59
+                                    debugline 61
+                                    findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                    callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                    debugline 63
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                    equals
+                                    dup
+                                    iftrue ofs002b
+                                    pop
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1278")
+                                    pushnull
+                                    equals
+                                    not
+                           ofs002b:
+                                    iffalse ofs0048
+                                    debugline 65
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),PackageNamespace(""),PrivateNamespace("GradeLevel1Animation.as$111"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                    getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                    astypelate
+                                    getproperty QName(PackageNamespace(""),"frame")
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                           ofs0048:
+                                    debugline 67
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function a_3940() : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"a_3940")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation/Realease"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 3
+                                    localcount 1
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                                       debugline 70
+                                       getlocal0
+                                       pushscope
+                                       debugline 72
+                                       getlocal0
+                                       callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                       debugline 74
+                                       pushbyte -1
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"ms_stGradeLevel1AnimationVector")
+                                       getlocal0
+                                       callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                       ifne ofs0028
+                                       debugline 76
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation:GradeLevel1Animation"),"ms_stGradeLevel1AnimationVector")
+                                       getlocal0
+                                       callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                              ofs0028:
+                                       debugline 79
+                                       getlex QName(PackageNamespace(""),"parent")
+                                       convert_b
+                                       dup
+                                       iffalse ofs003d
+                                       pop
+                                       getlex QName(PackageNamespace(""),"parent")
+                                       getlocal0
+                                       callproperty QName(PackageNamespace(""),"contains"), 1
+                                       convert_b
+                              ofs003d:
+                                       iffalse ofs004b
+                                       debugline 81
+                                       getlex QName(PackageNamespace(""),"parent")
+                                       getlocal0
+                                       callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                              ofs004b:
+                                       debugline 83
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 10
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                              debugline 11
+                              findpropstrict Multiname("GradeLevel1Animation",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"Sprite")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                              newclass 324
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.GradeLevelAnimation"),"GradeLevel1Animation")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation;GradeLevel1Animation.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

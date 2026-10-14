@@ -111,11 +111,11 @@ function revive_apply_targets(origin_col, origin_row, range_col, range_row, max_
             var card_obj = card_data[? "obj"];
             var grid_pos = get_world_position_from_grid(dead_col, dead_row);
 
-            var new_plant = instance_create_depth(grid_pos.x, grid_pos.y, 0, card_obj);
+            var new_plant = external_mod_spawn(grid_pos.x, grid_pos.y, 0, _plant_id, _shape, _level, _skill);
             new_plant.current_level = _level;
             new_plant.skill = _skill;
             new_plant.shape = _shape;
-            with (new_plant) event_user(0);
+            if (card_obj != obj_external_mod_card) with (new_plant) event_user(0);
 
             var depth_value = calculate_plant_depth(dead_col, dead_row, new_plant.plant_type);
             card_created(new_plant, dead_col, dead_row);

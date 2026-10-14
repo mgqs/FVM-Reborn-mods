@@ -181,7 +181,7 @@ if button_select == 0{
 				}
 			}
 			//绘制强化需要的材料
-			if card_data.max_level <= 15{
+			if card_data.max_level < 16{
 				var spices_list = [0,0,0]
 				var clover_list = [0,0,0]
 				var craft_rule = get_card_craft_rule(string(card_data.max_level+1))

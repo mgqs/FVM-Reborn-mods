@@ -1,0 +1,130 @@
+package com.aurora.ui.maogoutd.doctor
+{
+   public class ConnectionRandomNumber
+   {
+      
+      private static var _instance:ConnectionRandomNumber;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 13
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var randomID:Number = 0;
+      
+      public function ConnectionRandomNumber()
+      {
+         method
+            name "com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber/ConnectionRandomNumber"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;ConnectionRandomNumber.as"
+                  debugline 17
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  constructsuper 0
+                  debugline 19
+                  getlocal0
+                  getlex QName(PackageNamespace(""),"Math")
+                  callproperty QName(PackageNamespace(""),"random"), 0
+                  pushint 999999
+                  multiply
+                  initproperty QName(PackageNamespace(""),"randomID")
+                  debugline 20
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function get instance() : ConnectionRandomNumber
+      {
+         trait getter QName(PackageNamespace(""),"instance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber/instance/get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"ConnectionRandomNumber")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;ConnectionRandomNumber.as"
+                     debugline 22
+                     getlocal0
+                     pushscope
+                     debugline 24
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber"),"_instance")
+                     pushnull
+                     ifne ofs001a
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber"),"_instance")
+            ofs001a:
+                     debugline 26
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:ConnectionRandomNumber"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 3
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;ConnectionRandomNumber.as"
+            debugline 10
+            findpropstrict Multiname("ConnectionRandomNumber",[PackageNamespace("com.aurora.ui.maogoutd.doctor")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace(""),"Object")
+            newclass 118
+            popscope
+            initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"ConnectionRandomNumber")
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;ConnectionRandomNumber.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

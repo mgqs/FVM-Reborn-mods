@@ -1,0 +1,159 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   public class CardMD5Info
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iID:int;
+      
+      private var a_4816:String;
+      
+      private var m_strID:String;
+      
+      public function CardMD5Info(iID:int)
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:CardMD5Info/CardMD5Info"
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            returns null
+            
+            body
+               maxstack 2
+               localcount 2
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CardMD5Info.as"
+                  debugline 10
+                  getlocal0
+                  pushscope
+                  debug 1, "iID", 0, 10
+                  debugline 11
+                  getlocal0
+                  constructsuper 0
+                  debugline 12
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CardMD5Info"),"m_iID")
+                  debugline 13
+                  getlocal0
+                  getlocal1
+                  callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CardMD5Info"),"m_strID")
+                  debugline 15
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function CheckMD5() : Boolean
+      {
+         trait method QName(PackageNamespace(""),"CheckMD5")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:CardMD5Info/CheckMD5"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CardMD5Info.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debugline 19
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function SimpleCheckID() : Boolean
+         {
+            trait method QName(PackageNamespace(""),"SimpleCheckID")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:CardMD5Info/SimpleCheckID"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CardMD5Info.as"
+                        debugline 22
+                        getlocal0
+                        pushscope
+                        debugline 24
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CardMD5Info"),"m_iID")
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CardMD5Info"),"m_strID")
+                        equals
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CardMD5Info.as"
+               debugline 5
+               findpropstrict Multiname("CardMD5Info",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 97
+               popscope
+               initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CardMD5Info.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

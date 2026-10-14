@@ -1,0 +1,463 @@
+package com.aurora.protocol.hallserver
+{
+   import a_4716.a_1731;
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2751 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_nResultID:int;
+      
+      public var m_iUin:int;
+      
+      public var m_iFlag:int;
+      
+      public var m_iMoney:int;
+      
+      public var m_lHappyBean:Number;
+      
+      public var m_iCharming:int;
+      
+      public var m_iLottery:int;
+      
+      public var m_iLastOfflineCharming:int;
+      
+      public var m_iTotalCharm:int;
+      
+      public var m_iCharmCoin:int;
+      
+      public var m_nServerDataCount:int;
+      
+      public var m_arrServiceData:Array;
+      
+      public var m_stVIP:a_2872;
+      
+      public var m_nGameDataCount:int;
+      
+      public var m_arrGameData:Array;
+      
+      public var m_szReasonMsg:String;
+      
+      public var m_iWarriorProgress:int;
+      
+      public var m_iTotalMoneyConsume:int;
+      
+      public var m_iWishingTalisman:int;
+      
+      public var m_iDataReversed:int;
+      
+      public var m_iDuanweiLevel:int;
+      
+      public var m_iDuanweiQualityLevel:int;
+      
+      public function a_2751()
+      {
+         method
+            name "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo/CNotifyPlayerCommonInfo"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                  debugline 37
+                  getlocal0
+                  pushscope
+                  debugline 38
+                  getlocal0
+                  constructsuper 0
+                  debugline 39
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo"
+               paramname "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                     debugline 41
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 41
+                     debug 1, "encode_length", 1, 41
+                     debugline 43
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo"
+                  paramname "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                        debugline 52
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal3
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2854")
+                        setlocal 4
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2745")
+                        setlocal 5
+                        debug 1, "byte_array", 0, 52
+                        debug 1, "decode_length", 1, 52
+                        debugline 54
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nResultID")
+                        debugline 55
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iUin")
+                        debugline 56
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iFlag")
+                        debugline 58
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_nResultID")
+                        pushbyte 0
+                        ifne ofs021b
+                        debug 1, "index", 2, 60
+                        debugline 60
+                        pushbyte 0
+                        setlocal3
+                        debugline 62
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_iFlag")
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_338")
+                        bitand
+                        iffalse ofs00d6
+                        debugline 64
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iMoney")
+                        debugline 65
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int64"), 1
+                        initproperty QName(PackageNamespace(""),"m_lHappyBean")
+                        debugline 66
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iCharming")
+                        debugline 67
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iLottery")
+                        debugline 68
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iLastOfflineCharming")
+                        debugline 69
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iTotalCharm")
+                        debugline 70
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iCharmCoin")
+               ofs00d6:
+                        debugline 73
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_iFlag")
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_339")
+                        bitand
+                        iffalse ofs013e
+                        debugline 75
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nServerDataCount")
+                        debugline 76
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PackageNamespace(""),"m_arrServiceData")
+                        debugline 78
+                        pushbyte 0
+                        setlocal3
+                        jump ofs0135
+               ofs0106:
+                        label
+                        debug 1, "serviceData", 3, 80
+                        debugline 80
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2854")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2854"), 0
+                        coerce QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2854")
+                        setlocal 4
+                        debugline 81
+                        getlocal 4
+                        getlocal1
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+                        debugline 82
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_arrServiceData")
+                        getlocal 4
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 78
+                        inclocal_i 3
+               ofs0135:
+                        getlocal3
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_nServerDataCount")
+                        iflt ofs0106
+               ofs013e:
+                        debugline 88
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2872")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2872"), 0
+                        initproperty QName(PackageNamespace(""),"m_stVIP")
+                        debugline 89
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stVIP")
+                        getlocal1
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+                        debugline 90
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iWarriorProgress")
+                        debugline 91
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iTotalMoneyConsume")
+                        debugline 92
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iWishingTalisman")
+                        debugline 93
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iDataReversed")
+                        debugline 95
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_iFlag")
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"FLAG_GAME")
+                        bitand
+                        iffalse ofs01fb
+                        debugline 97
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nGameDataCount")
+                        debugline 98
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PackageNamespace(""),"m_arrGameData")
+                        debugline 99
+                        pushbyte 0
+                        setlocal3
+                        jump ofs01f2
+               ofs01bf:
+                        label
+                        debug 1, "dbGameData", 4, 101
+                        debugline 101
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2745")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2745"), 0
+                        coerce QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2745")
+                        setlocal 5
+                        debugline 102
+                        getlocal 5
+                        getlocal1
+                        getlocal2
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_iFlag")
+                        callpropvoid QName(PackageNamespace(""),"decode"), 3
+                        debugline 103
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_arrGameData")
+                        getlocal 5
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 99
+                        inclocal_i 3
+               ofs01f2:
+                        getlocal3
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_nGameDataCount")
+                        iflt ofs01bf
+               ofs01fb:
+                        debugline 106
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        setproperty QName(PackageNamespace(""),"m_iDuanweiLevel")
+                        debugline 107
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        setproperty QName(PackageNamespace(""),"m_iDuanweiQualityLevel")
+                        jump ofs022c
+               ofs021b:
+                        debugline 112
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushshort 2048
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szReasonMsg")
+               ofs022c:
+                        debugline 114
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.hallserver:CNotifyPlayerCommonInfo/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                           debugline 117
+                           getlocal0
+                           pushscope
+                           debugline 119
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                  debugline 9
+                  findpropstrict Multiname("a_2751",[PackageNamespace("com.aurora.protocol.hallserver")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 150
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2751")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CNotifyPlayerCommonInfo.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

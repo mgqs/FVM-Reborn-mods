@@ -1,3 +1,4 @@
+external_mod_burn_step();
 if (!instance_exists(obj_mod_battle_manager))
 {
     var battle = instance_find(obj_battle, 0);

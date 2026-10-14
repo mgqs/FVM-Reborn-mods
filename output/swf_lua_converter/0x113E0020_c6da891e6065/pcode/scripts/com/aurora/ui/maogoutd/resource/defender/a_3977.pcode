@@ -1,0 +1,265 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   
+   public class a_3977 extends a_3962
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_3977()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender:BaseTrayDefense/BaseTrayDefense"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                  debugline 10
+                  getlocal0
+                  pushscope
+                  debugline 12
+                  getlocal0
+                  constructsuper 0
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override public function a_1797(stFieldGrid:a_3491) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_1797")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.defender:BaseTrayDefense/Initialize"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+               paramname ""
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debug 1, "stFieldGrid", 0, 15
+                     debugline 17
+                     getlocal0
+                     getlocal1
+                     callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                     debugline 19
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_3969(iRduceLifeValue:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_3969")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender:BaseTrayDefense/ReduceLife"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  paramname ""
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                        debugline 23
+                        getlocal0
+                        pushscope
+                        debug 1, "iRduceLifeValue", 0, 23
+                        debugline 25
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_3969"), 1
+                        debugline 27
+                        getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1339")
+                        pushbyte 0
+                        ifnle ofs0027
+                        debugline 29
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+               ofs0027:
+                        debugline 32
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_3957(iCurrentTime:int) : void
+            {
+               trait method QName(PackageNamespace(""),"a_3957")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender:BaseTrayDefense/ShowPlay"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "a_3969"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                           debugline 35
+                           getlocal0
+                           pushscope
+                           debug 1, "iCurrentTime", 0, 35
+                           debugline 38
+                           findpropstrict QName(PackageNamespace(""),"nextFrame")
+                           callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                           debugline 45
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                           ifne ofs002d
+                           debugline 47
+                           findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                           pushbyte 1
+                           callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                  ofs002d:
+                           debugline 50
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override public function a_3940() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3940")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender:BaseTrayDefense/Realease"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                              debugline 52
+                              getlocal0
+                              pushscope
+                              debugline 54
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              iffalse ofs0019
+                              debugline 56
+                              getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                              getlocal0
+                              callpropvoid QName(PackageNamespace(""),"a_3498"), 1
+                     ofs0019:
+                              debugline 59
+                              getlocal0
+                              callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                              debugline 61
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 10
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                     debugline 7
+                     findpropstrict Multiname("a_3977",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     pushscope
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     newclass 67
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3977")
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseTrayDefense.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

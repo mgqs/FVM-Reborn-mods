@@ -1,0 +1,15 @@
+{
+  "status": "blocked",
+  "source": "C:\\Users\\18203\\Desktop\\0x11700070.swf",
+  "errors": [
+    "原始 ABC 类数 380 与导出类数 381 不一致。"
+  ],
+  "lua_emitted": false,
+  "as3_catalog_entries": 380,
+  "exported_sources": 380,
+  "total_methods": 3132,
+  "unsupported_sources": 380,
+  "abc_method_bodies": 3797,
+  "pcode_files": 380,
+  "tag_count": 302
+}

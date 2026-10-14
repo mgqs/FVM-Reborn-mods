@@ -1,0 +1,89 @@
+package com.aurora.ui.maogoutd.diy.myEditor.data
+{
+   public class BossData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var iBossID:int;
+      
+      public var sBossName:String;
+      
+      public var iBossBlood:int;
+      
+      public var sBossHeadUrl:String;
+      
+      public var sBossUrl:String;
+      
+      public function BossData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.diy.myEditor.data:BossData/BossData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;BossData.as"
+                  debugline 12
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;BossData.as"
+         debugline 3
+         findpropstrict Multiname("BossData",[PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 57
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"BossData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;BossData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

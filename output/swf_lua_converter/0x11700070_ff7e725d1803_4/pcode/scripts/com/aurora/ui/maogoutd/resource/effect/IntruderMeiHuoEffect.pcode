@@ -1,0 +1,404 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class IntruderMeiHuoEffect extends a_3909
+   {
+      
+      private static var ms_stIntruderMeiHuoEffectVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stIntruderMeiHuoEffectVector", 0, 12
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"ms_stIntruderMeiHuoEffectVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"ms_stIntruderMeiHuoEffectVector")
+               debug 1, "a_1300", 1, 13
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),PackageNamespace(""),PrivateNamespace("IntruderMeiHuoEffect.as$208"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1300")
+               debug 1, "a_1301", 2, 14
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),PackageNamespace(""),PrivateNamespace("IntruderMeiHuoEffect.as$208"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1301")
+               debug 1, "a_1302", 3, 15
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffectMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffectMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function IntruderMeiHuoEffect()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/IntruderMeiHuoEffect"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                  debugline 29
+                  getlocal0
+                  pushscope
+                  debugline 31
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1271")
+                  pushtrue
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1271")
+                  debugline 33
+                  getlocal0
+                  constructsuper 0
+                  debugline 35
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : IntruderMeiHuoEffect
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffect")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debug 1, "stIntruderMeiHuoEffect", 0, 19
+                     debugline 19
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"ms_stIntruderMeiHuoEffectVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffect")
+                     setlocal1
+                     debugline 21
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 23
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffect")
+                     setlocal1
+            ofs002b:
+                     debugline 26
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean = false) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "__AS3__.vec"
+                  optional False()
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                        debugline 37
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 37
+                        debugline 39
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 41
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 42
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 44
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                           debugline 47
+                           getlocal0
+                           pushscope
+                           debugline 49
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                              debugline 52
+                              getlocal0
+                              pushscope
+                              debugline 54
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                                 debugline 57
+                                 getlocal0
+                                 pushscope
+                                 debugline 59
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_3940() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_3940")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/Realease"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                                    debugline 63
+                                    getlocal0
+                                    pushscope
+                                    debugline 65
+                                    getlocal0
+                                    pushfalse
+                                    setproperty QName(PackageNamespace(""),"visible")
+                                    debugline 66
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    pushbyte 1
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                    debugline 68
+                                    pushbyte -1
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"ms_stIntruderMeiHuoEffectVector")
+                                    getlocal0
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                    ifne ofs0033
+                                    debugline 70
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect"),"ms_stIntruderMeiHuoEffectVector")
+                                    getlocal0
+                                    callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           ofs0033:
+                                    debugline 73
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function a_4003(a_4730:Event) : void
+                        {
+                           trait method QName(PackageNamespace(""),"a_4003")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:IntruderMeiHuoEffect/OnFrameTimerEvent"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("flash.events"),"Event")
+                                 paramname "pop"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                                       debugline 76
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "a_4730", 0, 76
+                                       debugline 78
+                                       findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                       callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                       debugline 80
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                       ifne ofs002d
+                                       debugline 82
+                                       findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                       pushbyte 1
+                                       callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                              ofs002d:
+                                       debugline 84
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 9
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                              debugline 10
+                              findpropstrict Multiname("IntruderMeiHuoEffect",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"Sprite")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                              newclass 297
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderMeiHuoEffect")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderMeiHuoEffect.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

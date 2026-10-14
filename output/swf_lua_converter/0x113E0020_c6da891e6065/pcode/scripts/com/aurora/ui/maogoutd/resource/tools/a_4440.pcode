@@ -1,0 +1,217 @@
+package com.aurora.ui.maogoutd.resource.tools
+{
+   import com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData;
+   import flash.display.BitmapData;
+   
+   public class a_4440 extends a_4408
+   {
+      
+      private static var a_1630:Array;
+      
+      private static var a_1631:BitmapData;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 4
+            localcount 1
+            initscopedepth 7
+            maxscopedepth 8
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1630", 0, 10
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1630")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1630")
+               debug 1, "a_1631", 1, 11
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1631")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"RedDangerFieldAlarmBitmapData")
+               pushbyte 59
+               dup
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"RedDangerFieldAlarmBitmapData"), 2
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1631")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4440(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm/RedDangerFieldAlarm"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("flash.display"),"BitmapData")
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace(""),"Boolean")
+            paramname null
+            paramname null
+            paramname null
+            optional Null()
+            optional Utf8("auto")
+            optional False()
+            returns null
+            
+            body
+               maxstack 4
+               localcount 4
+               initscopedepth 8
+               maxscopedepth 9
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;RedDangerFieldAlarm.as"
+                  debugline 13
+                  getlocal0
+                  pushscope
+                  debug 1, "bitmapData", 0, 13
+                  debug 1, "pixelSnapping", 1, 13
+                  debug 1, "smoothing", 2, 13
+                  debugline 15
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  getlocal3
+                  constructsuper 3
+                  debugline 17
+                  findproperty QName(PackageNamespace(""),"alpha")
+                  pushdouble 0.7
+                  initproperty QName(PackageNamespace(""),"alpha")
+                  debugline 18
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : a_4408
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4408")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 7
+                  maxscopedepth 8
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;RedDangerFieldAlarm.as"
+                     debugline 20
+                     getlocal0
+                     pushscope
+                     pushnull
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4440")
+                     setlocal1
+                     debug 1, "stRedDangerFieldAlarm", 0, 22
+                     debugline 22
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1630")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4440")
+                     setlocal1
+                     debugline 24
+                     pushnull
+                     getlocal1
+                     ifne ofs0033
+                     debugline 26
+                     getlocal0
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1631")
+                     construct 1
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4440")
+                     setlocal1
+            ofs0033:
+                     debugline 29
+                     getlocal1
+                     pushtrue
+                     setproperty QName(PackageNamespace(""),"visible")
+                     debugline 31
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_3940() : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_3940")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm/Realease"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 8
+                     maxscopedepth 9
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;RedDangerFieldAlarm.as"
+                        debugline 34
+                        getlocal0
+                        pushscope
+                        debugline 37
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.tools:RedDangerFieldAlarm"),"a_1630")
+                        getlocal0
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 39
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 7
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;RedDangerFieldAlarm.as"
+               debugline 7
+               findpropstrict Multiname("a_4440",[PackageNamespace("com.aurora.ui.maogoutd.resource.tools")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+               pushscope
+               getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+               pushscope
+               getlex QName(PackageNamespace("flash.display"),"Bitmap")
+               pushscope
+               getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4408")
+               pushscope
+               getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4408")
+               newclass 43
+               popscope
+               popscope
+               popscope
+               popscope
+               popscope
+               initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4440")
+               debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;RedDangerFieldAlarm.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

@@ -1,0 +1,464 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CGameResult implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_bySeatID:int;
+      
+      public var m_byTeamID:int;
+      
+      public var m_byRolePosition:int;
+      
+      public var m_byIsConstraBattle:int;
+      
+      public var m_iCurrentWave:int;
+      
+      public var m_nGradeScore:int;
+      
+      public var m_nGrade:int;
+      
+      public var m_nDestroyOppBuildingCount:int;
+      
+      public var m_nDestroyByEnemyBuildingCount:int;
+      
+      public var m_iPickUpCoinCount:int;
+      
+      public var m_iExpericeCount:int;
+      
+      public var m_iAwardCoinCount:int;
+      
+      public var m_iHonourCount:int;
+      
+      public var m_iVSExpericeCount:int;
+      
+      public var m_iConstraScore:int;
+      
+      public var m_iPrestigeCount:int;
+      
+      public var m_nUseCardCount:int;
+      
+      public var m_arrUseCardInfos:Array;
+      
+      public var m_nKilledMiceInfoCount:int;
+      
+      public var m_arrKilledMiceInfos:Array;
+      
+      public var m_nServiceCount:int;
+      
+      public var m_arriServerID:Array;
+      
+      public var m_nPickUpItemCount:int;
+      
+      public var m_arrPickUpItemInfos:Array;
+      
+      private var m_stUseCard:CUseCard;
+      
+      private var a_852:CKilledMouseInfo;
+      
+      private var a_853:CPickUpItem;
+      
+      public var m_szPlayeRoleName:String;
+      
+      public var m_iLevelNum:int;
+      
+      public function CGameResult()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CGameResult/CGameResult"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                  debugline 46
+                  getlocal0
+                  pushscope
+                  debugline 47
+                  getlocal0
+                  constructsuper 0
+                  debugline 48
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CGameResult/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CGameResult/CGameResult"
+               paramname "com.aurora.protocol.game.maogoutd:CGameResult/CGameResult"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 27
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                     debugline 50
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 50
+                     debug 1, "encode_length", 1, 50
+                     debug 1, "propertyArray", 2, 52
+                     pushstring "m_bySeatID"
+                     pushstring "int8"
+                     debugline 53
+                     newarray 2
+                     pushstring "m_byTeamID"
+                     pushstring "int8"
+                     debugline 54
+                     newarray 2
+                     pushstring "m_byRolePosition"
+                     pushstring "int8"
+                     debugline 55
+                     newarray 2
+                     pushstring "m_byIsConstraBattle"
+                     pushstring "int8"
+                     debugline 56
+                     newarray 2
+                     pushstring "m_iCurrentWave"
+                     pushstring "int32"
+                     debugline 57
+                     newarray 2
+                     pushstring "m_nGradeScore"
+                     pushstring "int16"
+                     debugline 58
+                     newarray 2
+                     pushstring "m_nGrade"
+                     pushstring "int16"
+                     debugline 59
+                     newarray 2
+                     pushstring "m_nDestroyOppBuildingCount"
+                     pushstring "int16"
+                     debugline 60
+                     newarray 2
+                     pushstring "m_nDestroyByEnemyBuildingCount"
+                     pushstring "int16"
+                     debugline 61
+                     newarray 2
+                     pushstring "m_iPickUpCoinCount"
+                     pushstring "int32"
+                     debugline 62
+                     newarray 2
+                     pushstring "m_iExpericeCount"
+                     pushstring "int32"
+                     debugline 63
+                     newarray 2
+                     pushstring "m_iAwardCoinCount"
+                     pushstring "int32"
+                     debugline 64
+                     newarray 2
+                     pushstring "m_iHonourCount"
+                     pushstring "int32"
+                     debugline 65
+                     newarray 2
+                     pushstring "m_iVSExpericeCount"
+                     pushstring "int32"
+                     debugline 66
+                     newarray 2
+                     pushstring "m_iConstraScore"
+                     pushstring "int32"
+                     debugline 67
+                     newarray 2
+                     pushstring "m_iPrestigeCount"
+                     pushstring "int32"
+                     debugline 68
+                     newarray 2
+                     pushstring "m_nUseCardCount"
+                     pushstring "int16"
+                     debugline 69
+                     newarray 2
+                     pushstring "m_arrUseCardInfos"
+                     pushstring "object"
+                     pushstring "com.aurora.protocol.game.maogoutd.CUseCard"
+                     debugline 70
+                     newarray 2
+                     newarray 2
+                     pushstring "m_nKilledMiceInfoCount"
+                     pushstring "int16"
+                     debugline 71
+                     newarray 2
+                     pushstring "m_arrKilledMiceInfos"
+                     pushstring "object"
+                     pushstring "com.aurora.protocol.game.maogoutd.CKilledMouseInfo"
+                     debugline 72
+                     newarray 2
+                     newarray 2
+                     pushstring "m_nServiceCount"
+                     pushstring "int16"
+                     debugline 73
+                     newarray 2
+                     pushstring "m_arriServerID"
+                     pushstring "int32"
+                     debugline 74
+                     newarray 1
+                     newarray 2
+                     pushstring "m_nPickUpItemCount"
+                     pushstring "int16"
+                     debugline 75
+                     newarray 2
+                     pushstring "m_arrPickUpItemInfos"
+                     pushstring "object"
+                     pushstring "com.aurora.protocol.game.maogoutd.CPickUpItem"
+                     pushstring "nosize"
+                     debugline 76
+                     newarray 3
+                     newarray 2
+                     newarray 24
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 79
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CGameResult/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CGameResult/CGameResult"
+                  paramname "com.aurora.protocol.game.maogoutd:CGameResult/CGameResult"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 27
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                        debugline 82
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 82
+                        debug 1, "decode_length", 1, 82
+                        debug 1, "propertyArray", 2, 84
+                        pushstring "m_bySeatID"
+                        pushstring "int8"
+                        debugline 85
+                        newarray 2
+                        pushstring "m_byTeamID"
+                        pushstring "int8"
+                        debugline 86
+                        newarray 2
+                        pushstring "m_byRolePosition"
+                        pushstring "int8"
+                        debugline 87
+                        newarray 2
+                        pushstring "m_byIsConstraBattle"
+                        pushstring "int8"
+                        debugline 88
+                        newarray 2
+                        pushstring "m_iCurrentWave"
+                        pushstring "int32"
+                        debugline 89
+                        newarray 2
+                        pushstring "m_nGradeScore"
+                        pushstring "int16"
+                        debugline 90
+                        newarray 2
+                        pushstring "m_nGrade"
+                        pushstring "int16"
+                        debugline 91
+                        newarray 2
+                        pushstring "m_nDestroyOppBuildingCount"
+                        pushstring "int16"
+                        debugline 92
+                        newarray 2
+                        pushstring "m_nDestroyByEnemyBuildingCount"
+                        pushstring "int16"
+                        debugline 93
+                        newarray 2
+                        pushstring "m_iPickUpCoinCount"
+                        pushstring "int32"
+                        debugline 94
+                        newarray 2
+                        pushstring "m_iExpericeCount"
+                        pushstring "int32"
+                        debugline 95
+                        newarray 2
+                        pushstring "m_iAwardCoinCount"
+                        pushstring "int32"
+                        debugline 96
+                        newarray 2
+                        pushstring "m_iHonourCount"
+                        pushstring "int32"
+                        debugline 97
+                        newarray 2
+                        pushstring "m_iVSExpericeCount"
+                        pushstring "int32"
+                        debugline 98
+                        newarray 2
+                        pushstring "m_iConstraScore"
+                        pushstring "int32"
+                        debugline 99
+                        newarray 2
+                        pushstring "m_iPrestigeCount"
+                        pushstring "int32"
+                        debugline 100
+                        newarray 2
+                        pushstring "m_nUseCardCount"
+                        pushstring "int16"
+                        debugline 101
+                        newarray 2
+                        pushstring "m_arrUseCardInfos"
+                        pushstring "object"
+                        pushstring "com.aurora.protocol.game.maogoutd.CUseCard"
+                        debugline 102
+                        newarray 2
+                        newarray 2
+                        pushstring "m_nKilledMiceInfoCount"
+                        pushstring "int16"
+                        debugline 103
+                        newarray 2
+                        pushstring "m_arrKilledMiceInfos"
+                        pushstring "object"
+                        pushstring "com.aurora.protocol.game.maogoutd.CKilledMouseInfo"
+                        debugline 104
+                        newarray 2
+                        newarray 2
+                        pushstring "m_nServiceCount"
+                        pushstring "int16"
+                        debugline 105
+                        newarray 2
+                        pushstring "m_arriServerID"
+                        pushstring "int32"
+                        debugline 106
+                        newarray 1
+                        newarray 2
+                        pushstring "m_nPickUpItemCount"
+                        pushstring "int16"
+                        debugline 107
+                        newarray 2
+                        pushstring "m_arrPickUpItemInfos"
+                        pushstring "object"
+                        pushstring "com.aurora.protocol.game.maogoutd.CPickUpItem"
+                        pushstring "nosize"
+                        debugline 108
+                        newarray 3
+                        newarray 2
+                        newarray 24
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 111
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CGameResult/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                           debugline 114
+                           getlocal0
+                           pushscope
+                           debugline 116
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                  debugline 8
+                  findpropstrict Multiname("CGameResult",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 143
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CGameResult")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CGameResult.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

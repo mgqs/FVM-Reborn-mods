@@ -1,0 +1,365 @@
+package com.aurora.protocol.common
+{
+   import com.aurora.protocol.a_2664;
+   import flash.utils.ByteArray;
+   
+   public class a_2670 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var httpHead:int = 0;
+      
+      public var nPackageLength:int;
+      
+      public var nUIN:int;
+      
+      public var shFlag:int;
+      
+      public var shOptionalLen:int;
+      
+      public var lpbyOptional:ByteArray;
+      
+      public var shHeaderLen:int;
+      
+      public var shMessageID:int;
+      
+      public var shMessageType:int;
+      
+      public var shVersion:int;
+      
+      public var nPlayerID:int;
+      
+      public var nSequence:int;
+      
+      public function a_2670()
+      {
+         method
+            name "com.aurora.protocol.common:CSPackageHeader/CSPackageHeader"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                  debugline 21
+                  getlocal0
+                  pushscope
+                  debugline 22
+                  getlocal0
+                  constructsuper 0
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function size() : uint
+      {
+         trait method QName(PackageNamespace(""),"size")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.protocol.common:CSPackageHeader/size"
+               returns QName(PackageNamespace(""),"uint")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                     debugline 86
+                     getlocal0
+                     pushscope
+                     debugline 88
+                     pushbyte 28
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"encode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.common:CSPackageHeader/encode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "shOptionalLen"
+                  paramname "shOptionalLen"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                        debugline 25
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 25
+                        debug 1, "encode_length", 1, 25
+                        debugline 27
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"httpHead")
+                        callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                        debugline 28
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"nPackageLength")
+                        callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                        debugline 29
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"nUIN")
+                        callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                        debugline 30
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shFlag")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 31
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shOptionalLen")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 32
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"lpbyOptional")
+                        pushshort 128
+                        callpropvoid QName(PackageNamespace(""),"encode_memory"), 3
+                        debugline 33
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shHeaderLen")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 34
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shMessageID")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 35
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shMessageType")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 36
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"shVersion")
+                        callpropvoid QName(PackageNamespace(""),"encode_int16"), 2
+                        debugline 37
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"nPlayerID")
+                        callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                        debugline 54
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"decode")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.common:CSPackageHeader/decode"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.utils"),"ByteArray")
+                     param QName(PackageNamespace(""),"int")
+                     paramname "shOptionalLen"
+                     paramname "shOptionalLen"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 4
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                           debugline 57
+                           getlocal0
+                           pushscope
+                           debug 1, "byte_array", 0, 57
+                           debug 1, "decode_length", 1, 57
+                           debugline 59
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                           initproperty QName(PackageNamespace(""),"nPackageLength")
+                           debugline 60
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                           initproperty QName(PackageNamespace(""),"nUIN")
+                           debugline 61
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shFlag")
+                           debugline 62
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shOptionalLen")
+                           debugline 63
+                           getlocal0
+                           findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                           constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                           initproperty QName(PackageNamespace(""),"lpbyOptional")
+                           debugline 64
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"lpbyOptional")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"shOptionalLen")
+                           callpropvoid QName(PackageNamespace(""),"decode_memory"), 3
+                           debugline 65
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shHeaderLen")
+                           debugline 66
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shMessageID")
+                           debugline 67
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shMessageType")
+                           debugline 68
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                           initproperty QName(PackageNamespace(""),"shVersion")
+                           debugline 69
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                           initproperty QName(PackageNamespace(""),"nPlayerID")
+                           debugline 83
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function dump() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"dump")
+                     dispid 0
+                     method
+                        name "com.aurora.protocol.common:CSPackageHeader/dump"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                              debugline 91
+                              getlocal0
+                              pushscope
+                              debugline 93
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                     debugline 6
+                     findpropstrict Multiname("a_2670",[PackageNamespace("com.aurora.protocol.common")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 147
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.protocol.common"),"a_2670")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;CSPackageHeader.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

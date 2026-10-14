@@ -1,6 +1,9 @@
 timer++
 if keyboard_check_pressed(vk_escape){
-	if instance_exists(obj_config_menu){
+	if instance_exists(obj_mod_menu){
+		obj_mod_menu.close_panel()
+	}
+	else if instance_exists(obj_config_menu){
 		instance_destroy(obj_config_menu)
 		obj_player_info_ui.menu_type = 0
 	}

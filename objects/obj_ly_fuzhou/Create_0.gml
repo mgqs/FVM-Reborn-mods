@@ -1,2 +1,31 @@
 event_inherited();
-longyuan_mouse_setup("fuzhou", 1200, 0.3, 10, 48);
+ly_kind = "fuzhou";
+ly_anims = {};
+ly_action = "";
+ly_frame = 0;
+ly_done = false;
+ly_once = false;
+ly_hit = false;
+ly_mode = "walk";
+ly_cooldown = 0;
+is_soul = false;
+invincible = false;
+is_vehicle = false;
+ly_fire = 0;
+ly_fire_hits = 0;
+ly_amulet = noone;
+ly_summon_cooldown = 300;
+ly_dodge_cooldown = 0;
+ly_original_hp = 100;
+can_use_ladder = false;
+state = ENEMY_STATE.ACTING;
+
+// 本对象的属性、动作和专属状态。
+mouse_id = "longyuan_fuzhou";
+ly_anims = longyuan_animation_table("fuzhou");
+hp = 1200; maxhp = 1200; ly_original_hp = 1200;
+move_speed = 0.3; atk = 10; atk_cycle = 48;
+is_soul = true; ly_fire = 3; ly_cooldown = 180;
+longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };
+longyuan_attack_action = function() { return longyuan_variant("正常攻击", "破损攻击"); };
+longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };

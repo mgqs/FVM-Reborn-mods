@@ -1,0 +1,87 @@
+package com.aurora.ui.maogoutd.diy.myEditor.data
+{
+   public class MouseLinesChatBubblesData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iID:int;
+      
+      public var m_strResUrl:String;
+      
+      public var m_strThumbnailResUrl:String;
+      
+      public function MouseLinesChatBubblesData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.diy.myEditor.data:MouseLinesChatBubblesData/MouseLinesChatBubblesData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesChatBubblesData.as"
+                  debugline 9
+                  getlocal0
+                  pushscope
+                  debugline 10
+                  getlocal0
+                  constructsuper 0
+                  debugline 11
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesChatBubblesData.as"
+         debugline 3
+         findpropstrict Multiname("MouseLinesChatBubblesData",[PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 56
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"MouseLinesChatBubblesData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MouseLinesChatBubblesData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

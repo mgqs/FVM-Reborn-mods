@@ -1,0 +1,70 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   
+   public class a_3959 extends a_3962
+   {
+      
+      protected var a_1325:Number = 1;
+      
+      protected var a_1326:Number = 1;
+      
+      protected var a_1327:Number = 1;
+      
+      public function a_3959()
+      {
+         super();
+      }
+      
+      public function get numPoisonMultiplier() : Number
+      {
+         return this.a_1327;
+      }
+      
+      public function get numColdSlowMultiplier() : Number
+      {
+         return this.a_1326;
+      }
+      
+      public function get numHotMultiplier() : Number
+      {
+         return this.a_1325;
+      }
+      
+      override public function a_1797(stFieldGrid:a_3491) : Boolean
+      {
+         super.a_1797(stFieldGrid);
+         return true;
+      }
+      
+      override public function a_3969(iRduceLifeValue:int) : Boolean
+      {
+         super.a_3969(iRduceLifeValue);
+         if(a_1339 <= 0)
+         {
+            this.a_3940();
+         }
+         return true;
+      }
+      
+      public function a_3957(iCurrentTime:int) : void
+      {
+         nextFrame();
+         if(a_1273 == a_1274)
+         {
+            gotoAndStop(1);
+         }
+      }
+      
+      override public function a_3940() : Boolean
+      {
+         if(a_1334)
+         {
+            a_1334.a_3501(this);
+         }
+         super.a_3940();
+         return true;
+      }
+   }
+}
+

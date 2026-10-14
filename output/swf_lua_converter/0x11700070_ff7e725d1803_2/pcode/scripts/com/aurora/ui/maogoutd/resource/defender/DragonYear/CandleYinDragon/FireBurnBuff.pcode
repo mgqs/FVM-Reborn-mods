@@ -1,0 +1,821 @@
+package com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon
+{
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Timer;
+   
+   public class FireBurnBuff extends a_3909
+   {
+      
+      private static var ms_stFireBurnBuffVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stFireBurnBuffVector", 0, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"ms_stFireBurnBuffVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"ms_stFireBurnBuffVector")
+               debug 1, "a_1300", 1, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),PackageNamespace(""),PrivateNamespace("FireBurnBuff.as$205"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1300")
+               debug 1, "a_1301", 2, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),PackageNamespace(""),PrivateNamespace("FireBurnBuff.as$205"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1301")
+               debug 1, "a_1302", 3, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuffMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuffMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stTiemr:Timer;
+      
+      private var m_iStartTime:int;
+      
+      private var appearedTimes:int = 0;
+      
+      public var stTargetMouveIntruder:a_4206;
+      
+      private var m_iHurtCD:int;
+      
+      private var a_1579:Number;
+      
+      public var m_BuffAddTimes:int;
+      
+      private var m_TatalPower:Number;
+      
+      public var m_BuffDurations:Array;
+      
+      public var m_BuffPowers:Array;
+      
+      private var m_iWaitTime:int;
+      
+      public function FireBurnBuff()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/FireBurnBuff"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                  debugline 43
+                  getlocal0
+                  pushscope
+                  debugline 30
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PackageNamespace(""),"m_BuffDurations")
+                  debugline 31
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PackageNamespace(""),"m_BuffPowers")
+                  debugline 45
+                  getlocal0
+                  constructsuper 0
+                  debugline 46
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  pushbyte -24
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  debugline 47
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  pushbyte -16
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  debugline 48
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  pushbyte 50
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                  debugline 49
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : FireBurnBuff
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuff")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                     debugline 33
+                     getlocal0
+                     pushscope
+                     debug 1, "stFireBurnBuff", 0, 35
+                     debugline 35
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"ms_stFireBurnBuffVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuff")
+                     setlocal1
+                     debugline 36
+                     getlocal1
+                     pushnull
+                     ifne ofs002b
+                     debugline 38
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuff")
+                     setlocal1
+            ofs002b:
+                     debugline 40
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean, iHurtCD:int = 1, iHurtPower:Number = 1) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"Number")
+                  paramname "m_iYDisplayCenterPos"
+                  paramname "m_iYDisplayCenterPos"
+                  paramname "m_iYDisplayCenterPos"
+                  optional Integer(1)
+                  optional Integer(1)
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                        debugline 57
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 57
+                        debug 1, "iHurtCD", 1, 57
+                        debug 1, "iHurtPower", 2, 57
+                        debugline 59
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 60
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iHurtCD")
+                        debugline 61
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                        getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                        getproperty QName(PackageNamespace(""),"TIMER")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_4003")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                        debugline 63
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 64
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 65
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"play"), 0
+                        debugline 67
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iStartTime")
+                        debugline 68
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"appearedTimes")
+                        debugline 69
+                        getlocal0
+                        pushbyte 1
+                        initproperty QName(PackageNamespace(""),"m_BuffAddTimes")
+                        debugline 70
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_BuffAddTimes")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1579")
+                        multiply
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_TatalPower")
+                        debugline 72
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get WaitTime() : int
+            {
+               trait getter QName(PackageNamespace(""),"WaitTime")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/WaitTime/get"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                           debugline 80
+                           getlocal0
+                           pushscope
+                           debugline 82
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iWaitTime")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function set WaitTime(iWaitTime:int) : void
+               {
+                  trait setter QName(PackageNamespace(""),"WaitTime")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/WaitTime/set"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/FireBurnBuff"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                              debugline 85
+                              getlocal0
+                              pushscope
+                              debug 1, "iWaitTime", 0, 85
+                              debugline 87
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iWaitTime")
+                              debugline 88
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3911() : Vector.<BitmapData>
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_3911")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/protected:GetFrameCacheVector"
+                           returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                 debugline 90
+                                 getlocal0
+                                 pushscope
+                                 debugline 92
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1300")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_3912() : Vector.<Point>
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_3912")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/protected:GetFrameCacheSkewingVector"
+                              returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                    debugline 95
+                                    getlocal0
+                                    pushscope
+                                    debugline 97
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1301")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override protected function a_3913() : MovieClip
+                        {
+                           trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_3913")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/protected:GetOriginalMovieClip"
+                                 returns QName(PackageNamespace("flash.display"),"MovieClip")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                       debugline 100
+                                       getlocal0
+                                       pushscope
+                                       debugline 102
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_1302")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_3940() : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_3940")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/Realease"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 3
+                                       localcount 1
+                                       initscopedepth 10
+                                       maxscopedepth 11
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                          debugline 106
+                                          getlocal0
+                                          pushscope
+                                          debugline 108
+                                          findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                          pushbyte 1
+                                          callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          debugline 109
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                                          getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                                          getproperty QName(PackageNamespace(""),"TIMER")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_4003")
+                                          callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                          debugline 110
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                                          callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                          debugline 112
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                          pushnull
+                                          ifeq ofs004b
+                                          debugline 114
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                          pushnull
+                                          setproperty QName(PackageNamespace(""),"m_stFireBurnBuff")
+                                          debugline 115
+                                          getlocal0
+                                          pushnull
+                                          initproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                 ofs004b:
+                                          debugline 118
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"ms_stFireBurnBuffVector")
+                                          getlocal0
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          pushbyte -1
+                                          ifne ofs0065
+                                          debugline 120
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"ms_stFireBurnBuffVector")
+                                          getlocal0
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0065:
+                                          debugline 123
+                                          getlocal0
+                                          newarray 0
+                                          initproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                          debugline 124
+                                          getlocal0
+                                          newarray 0
+                                          initproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                          debugline 126
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          pushnull
+                                          ifeq ofs008c
+                                          debugline 128
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                 ofs008c:
+                                          debugline 130
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function play() : void
+                              {
+                                 trait method QName(PackageNamespace(""),"play")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/play"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 1
+                                          initscopedepth 10
+                                          maxscopedepth 11
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                             debugline 133
+                                             getlocal0
+                                             pushscope
+                                             debugline 135
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                                             callpropvoid QName(PackageNamespace(""),"start"), 0
+                                             debugline 136
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function stop() : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"stop")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/stop"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 1
+                                             initscopedepth 10
+                                             maxscopedepth 11
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                                debugline 138
+                                                getlocal0
+                                                pushscope
+                                                debugline 140
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_stTiemr")
+                                                callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                                debugline 141
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function a_4003(a_4730:TimerEvent) : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"a_4003")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/private:OnFrameTimerEvent"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("flash.events"),"TimerEvent")
+                                             paramname "com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff/FireBurnBuff"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 7
+                                                localcount 8
+                                                initscopedepth 10
+                                                maxscopedepth 11
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                                   debugline 143
+                                                   getlocal0
+                                                   pushscope
+                                                   pushnan
+                                                   setlocal3
+                                                   pushnan
+                                                   setlocal 4
+                                                   debug 1, "a_4730", 0, 143
+                                                   debug 1, "i", 1, 153
+                                                   debugline 145
+                                                   findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                                   callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                                   debugline 147
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                                   ifne ofs003e
+                                                   debugline 149
+                                                   findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                   pushbyte 1
+                                                   callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          ofs003e:
+                                                   debugline 153
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                                   getproperty QName(PackageNamespace(""),"length")
+                                                   decrement
+                                                   convert_i
+                                                   setlocal2
+                                                   jump ofs00a6
+                                          ofs004f:
+                                                   label
+                                                   debugline 155
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                                   dup
+                                                   setlocal 5
+                                                   getlocal2
+                                                   dup
+                                                   setlocal 6
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),PackageNamespace(""),PrivateNamespace("FireBurnBuff.as$205"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                   decrement
+                                                   setlocal 7
+                                                   getlocal 5
+                                                   getlocal 6
+                                                   getlocal 7
+                                                   setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),PackageNamespace(""),PrivateNamespace("FireBurnBuff.as$205"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                   kill 7
+                                                   kill 5
+                                                   kill 6
+                                                   debugline 156
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                                   getlocal2
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),PackageNamespace(""),PrivateNamespace("FireBurnBuff.as$205"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                   pushbyte 0
+                                                   ifnle ofs00a0
+                                                   debugline 158
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                                   getlocal2
+                                                   pushbyte 1
+                                                   callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                                   debugline 159
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                                   getlocal2
+                                                   pushbyte 1
+                                                   callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                          ofs00a0:
+                                                   debugline 153
+                                                   getlocal2
+                                                   decrement_i
+                                                   setlocal2
+                                          ofs00a6:
+                                                   getlocal2
+                                                   pushbyte 0
+                                                   ifge ofs004f
+                                                   debugline 164
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                                   getproperty QName(PackageNamespace(""),"length")
+                                                   pushbyte 0
+                                                   ifne ofs00c9
+                                                   debugline 166
+                                                   getlocal0
+                                                   callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                   debugline 167
+                                                   returnvoid
+                                          ofs00c9:
+                                                   debugline 170
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iStartTime")
+                                                   pushbyte 5
+                                                   subtract
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iHurtCD")
+                                                   pushbyte 10
+                                                   multiply
+                                                   modulo
+                                                   pushbyte 0
+                                                   ifne ofs0178
+                                                   debugline 172
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                                   pushnull
+                                                   equals
+                                                   not
+                                                   dup
+                                                   iffalse ofs00fb
+                                                   pop
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                                   getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                   pushbyte 0
+                                                   greaterthan
+                                          ofs00fb:
+                                                   iffalse ofs0178
+                                                   debug 1, "totalPower", 2, 175
+                                                   debug 1, "power", 3, 176
+                                                   debugline 175
+                                                   pushbyte 0
+                                                   convert_d
+                                                   setlocal3
+                                                   debugline 176
+                                                   pushbyte 0
+                                                   setlocal 5
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                                   coerce_a
+                                                   setlocal 6
+                                                   jump ofs0138
+                                          ofs0126:
+                                                   label
+                                                   getlocal 6
+                                                   getlocal 5
+                                                   nextvalue
+                                                   convert_d
+                                                   setlocal 4
+                                                   debugline 178
+                                                   getlocal3
+                                                   getlocal 4
+                                                   add
+                                                   convert_d
+                                                   setlocal3
+                                          ofs0138:
+                                                   debugline 176
+                                                   hasnext2 6, 5
+                                                   iftrue ofs0126
+                                                   kill 6
+                                                   kill 5
+                                                   debugline 181
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                                   getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                   getlocal3
+                                                   subtract
+                                                   pushbyte 0
+                                                   ifngt ofs0168
+                                                   debugline 183
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                                   getlocal3
+                                                   callpropvoid QName(PackageNamespace(""),"a_3969"), 1
+                                                   jump ofs0178
+                                          ofs0168:
+                                                   debugline 187
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetMouveIntruder")
+                                                   getlocal3
+                                                   pushshort 900
+                                                   divide
+                                                   callpropvoid QName(PackageNamespace(""),"PowerfulBombReduceLifeRate"), 1
+                                          ofs0178:
+                                                   debugline 192
+                                                   getlocal0
+                                                   dup
+                                                   setlocal 5
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iStartTime")
+                                                   increment_i
+                                                   setlocal 6
+                                                   getlocal 5
+                                                   getlocal 6
+                                                   setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon:FireBurnBuff"),"m_iStartTime")
+                                                   kill 6
+                                                   kill 5
+                                                   debugline 193
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 9
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                          debugline 12
+                                          findpropstrict Multiname("FireBurnBuff",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          newclass 294
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.DragonYear.CandleYinDragon"),"FireBurnBuff")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon;FireBurnBuff.as"
+                                          debugline 1
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

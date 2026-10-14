@@ -1,0 +1,137 @@
+package com.aurora.ui.maogoutd.resource.tools
+{
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   
+   public class a_4408 extends Bitmap
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 6
+            maxscopedepth 7
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4408(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.tools:BaseFieldGridAlarm/BaseFieldGridAlarm"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("flash.display"),"BitmapData")
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace(""),"Boolean")
+            paramname null
+            paramname null
+            paramname null
+            optional Null()
+            optional Utf8("auto")
+            optional False()
+            returns null
+            
+            body
+               maxstack 4
+               localcount 4
+               initscopedepth 7
+               maxscopedepth 8
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;BaseFieldGridAlarm.as"
+                  debugline 8
+                  getlocal0
+                  pushscope
+                  debug 1, "bitmapData", 0, 8
+                  debug 1, "pixelSnapping", 1, 8
+                  debug 1, "smoothing", 2, 8
+                  debugline 10
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  getlocal3
+                  constructsuper 3
+                  debugline 11
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_3940() : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_3940")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.tools:BaseFieldGridAlarm/Realease"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 7
+                  maxscopedepth 8
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;BaseFieldGridAlarm.as"
+                     debugline 13
+                     getlocal0
+                     pushscope
+                     debugline 15
+                     pushfalse
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 6
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;BaseFieldGridAlarm.as"
+            debugline 6
+            findpropstrict Multiname("a_4408",[PackageNamespace("com.aurora.ui.maogoutd.resource.tools")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+            pushscope
+            getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+            pushscope
+            getlex QName(PackageNamespace("flash.display"),"Bitmap")
+            pushscope
+            getlex QName(PackageNamespace("flash.display"),"Bitmap")
+            newclass 42
+            popscope
+            popscope
+            popscope
+            popscope
+            initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4408")
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\tools;BaseFieldGridAlarm.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

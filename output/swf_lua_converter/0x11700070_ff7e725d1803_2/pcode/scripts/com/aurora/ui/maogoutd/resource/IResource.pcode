@@ -1,0 +1,50 @@
+package com.aurora.ui.maogoutd.resource
+{
+   public interface IResource
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function a_3932() : Function;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;IResource.as"
+         debugline 5
+         findpropstrict Multiname("IResource",[PackageNamespace("com.aurora.ui.maogoutd.resource")])
+         pushnull
+         newclass 0
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"IResource")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

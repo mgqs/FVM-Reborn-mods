@@ -1,4 +1,4 @@
-// Generated from SWF FrameLabel tags; ranges are inclusive, 1-based.
+
 function longyuan_animation_table(_kind) {
  switch (_kind) {
   case "pingmin": return {"正常行走": [spr_pingmin, 1, 8], "重伤行走": [spr_pingmin, 9, 16], "正常吃东西循环": [spr_pingmin, 17, 20], "重伤吃东西循环": [spr_pingmin, 21, 24], "倒地": [spr_pingmin, 25, 37]};
@@ -12,6 +12,7 @@ function longyuan_animation_table(_kind) {
   case "zhinian": return {"正常前进": [spr_zhinian, 1, 8], "正常啃咬": [spr_zhinian, 9, 13], "破损前进": [spr_zhinian, 14, 21], "破损啃咬": [spr_zhinian, 22, 26], "死亡": [spr_zhinian, 27, 40]};
   case "fuzhou": return {"正常前进": [spr_fuzhou, 1, 12], "正常施法": [spr_fuzhou, 13, 27], "正常攻击": [spr_fuzhou, 28, 35], "破损前进": [spr_fuzhou, 36, 47], "破损施法": [spr_fuzhou, 48, 62], "破损攻击": [spr_fuzhou, 63, 70], "死亡": [spr_fuzhou, 71, 81]};
   case "zhizhujing": return {"正常待机": [spr_zhizhujing, 1, 8], "缠绕卡片": [spr_zhizhujing, 9, 23], "死亡": [spr_zhizhujing, 24, 32]};
+  case "zhizhujing_soul": return {"正常待机": [spr_zhizhujing_1, 1, 8], "正常抱住物品": [spr_zhizhujing_1, 9, 17], "死亡": [spr_zhizhujing_1, 18, 26]};
   case "dijing": return {"正常走路": [spr_dijing, 1, 8], "受伤走路": [spr_dijing, 9, 16], "正常吃东西": [spr_dijing, 17, 23], "受伤吃东西": [spr_dijing, 24, 30], "倒地": [spr_dijing, 31, 40]};
   case "kailu_soul": return {"出生": [spr_ly_kailu_soul, 1, 8], "正常前进": [spr_ly_kailu_soul, 9, 18], "破损前进": [spr_ly_kailu_soul, 19, 28], "爆炸死亡": [spr_ly_kailu_soul, 29, 45], "普通死亡": [spr_ly_kailu_soul, 46, 59]};
   case "zhinian_soul": return {"出生": [spr_ly_zhinian_soul, 1, 9], "正常灵魂前进": [spr_ly_zhinian_soul, 10, 21], "正常攻击卡片": [spr_ly_zhinian_soul, 22, 31], "正常冲刺": [spr_ly_zhinian_soul, 32, 53], "破损灵魂前进": [spr_ly_zhinian_soul, 54, 65], "破损正常攻击卡片": [spr_ly_zhinian_soul, 66, 75], "破损冲刺": [spr_ly_zhinian_soul, 76, 97], "死亡": [spr_ly_zhinian_soul, 98, 109]};

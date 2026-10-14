@@ -1,0 +1,1359 @@
+package a_4757
+{
+   import a_4716.b_154;
+   import a_4716.b_155;
+   import a_4716.b_160;
+   import a_4727.b_164;
+   import a_4729.EventType;
+   import a_4752.GameStringManager;
+   import a_4758.a_2208;
+   import a_4759.IProtocal;
+   import a_4759.b_166;
+   import a_4759.b_169;
+   import a_4760.a_2248;
+   import a_4771.a_2650;
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.a_2667;
+   import com.aurora.protocol.common.a_2670;
+   import com.aurora.ui.maogoutd.doctor.GameDoctor;
+   import flash.utils.ByteArray;
+   
+   public class a_2200 implements b_169
+   {
+      
+      private static var a_774:a_2200;
+      
+      protected static var mapProtocalRoutine:Object;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_774", 0, 24
+               debug 1, "mapProtocalRoutine", 1, 25
+               findproperty QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+               newobject 0
+               setproperty QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var a_775:a_2650;
+      
+      public var parameters:Object = null;
+      
+      public function a_2200()
+      {
+         method
+            name "com.aurora.handler:AuthenBaseProtocalHandler/AuthenBaseProtocalHandler"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                  debugline 51
+                  getlocal0
+                  pushscope
+                  debugline 52
+                  getlocal0
+                  constructsuper 0
+                  debugline 53
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4771"),"a_2650")
+                  constructprop QName(PackageNamespace("a_4771"),"a_2650"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                  debugline 54
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                  getlex QName(PackageNamespace("a_4729"),"EventType")
+                  getproperty QName(PackageNamespace(""),"a_564")
+                  setproperty QName(PackageNamespace(""),"eventType")
+                  debugline 55
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2200
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.handler:AuthenBaseProtocalHandler/getInstance"
+               returns QName(PackageNamespace("a_4757"),"a_2200")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                     debugline 41
+                     getlocal0
+                     pushscope
+                     debugline 43
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_774")
+                     ifne ofs001c
+                     debugline 45
+                     findproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_774")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_774")
+            ofs001c:
+                     debugline 48
+                     getlex QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_774")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function getProtocolVersion() : uint
+         {
+            trait method QName(PackageNamespace(""),"getProtocolVersion")
+               dispid 0
+               method
+                  name "com.aurora.handler:AuthenBaseProtocalHandler/getProtocolVersion"
+                  returns QName(PackageNamespace(""),"uint")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                        debugline 57
+                        getlocal0
+                        pushscope
+                        debugline 59
+                        pushbyte 1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get authenConn() : a_2650
+            {
+               trait getter QName(PackageNamespace(""),"authenConn")
+                  dispid 0
+                  method
+                     name "com.aurora.handler:AuthenBaseProtocalHandler/authenConn/get"
+                     returns QName(PackageNamespace("a_4771"),"a_2650")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                           debugline 62
+                           getlocal0
+                           pushscope
+                           debugline 64
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function refreshAuthenConnection() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"refreshAuthenConnection")
+                     dispid 0
+                     method
+                        name "com.aurora.handler:AuthenBaseProtocalHandler/refreshAuthenConnection"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 3
+                           localcount 5
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                              debugline 67
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debug 1, "hostsArray", 0, 69
+                              debug 1, "hostsNum", 1, 70
+                              debug 1, "authenHost", 2, 72
+                              debug 1, "i", 3, 73
+                              debugline 69
+                              getlex QName(PackageNamespace("a_4760"),"a_2248")
+                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                              callproperty QName(PackageNamespace(""),"a_2250"), 0
+                              coerce QName(PackageNamespace(""),"Array")
+                              setlocal1
+                              debugline 70
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"length")
+                              convert_i
+                              setlocal2
+                              debugline 73
+                              pushbyte 0
+                              setlocal 4
+                              jump ofs0140
+                     ofs0044:
+                              label
+                              debugline 75
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              pushnull
+                              equals
+                              not
+                              dup
+                              iffalse ofs005f
+                              pop
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              getproperty Multiname("sitetype",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              pushstring "4399"
+                              equals
+                     ofs005f:
+                              dup
+                              iffalse ofs0070
+                              pop
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              getproperty Multiname("group_id",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              pushstring "423"
+                              equals
+                     ofs0070:
+                              iffalse ofs00a7
+                              debugline 77
+                              getlocal1
+                              getlocal2
+                              decrement
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debugline 79
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("DesIP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("DesPort",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"SetDestInfo"), 2
+                              debugline 80
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("IP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("Port",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"reconnect"), 2
+                              debugline 82
+                              pushtrue
+                              returnvalue
+                     ofs00a7:
+                              debugline 84
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              pushnull
+                              equals
+                              not
+                              dup
+                              iffalse ofs00c1
+                              pop
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              getproperty Multiname("sitetype",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              pushstring "joyyou"
+                              equals
+                     ofs00c1:
+                              dup
+                              iffalse ofs00d2
+                              pop
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"parameters")
+                              getproperty Multiname("group_id",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              pushstring "2"
+                              equals
+                     ofs00d2:
+                              iffalse ofs0109
+                              debugline 86
+                              getlocal1
+                              getlocal2
+                              decrement
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debugline 88
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("DesIP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("DesPort",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"SetDestInfo"), 2
+                              debugline 89
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("IP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("Port",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"reconnect"), 2
+                              debugline 91
+                              pushtrue
+                              returnvalue
+                     ofs0109:
+                              debugline 96
+                              getlocal1
+                              pushbyte 0
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal3
+                              debugline 98
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("DesIP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("DesPort",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"SetDestInfo"), 2
+                              debugline 99
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getlocal3
+                              getproperty Multiname("IP",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              getlocal3
+                              getproperty Multiname("Port",[PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                              callpropvoid QName(PackageNamespace(""),"reconnect"), 2
+                              debugline 100
+                              pushtrue
+                              returnvalue
+                              debugline 73
+                              inclocal_i 4
+                     ofs0140:
+                              getlocal 4
+                              getlocal2
+                              lessthan
+                              dup
+                              iffalse ofs0153
+                              pop
+                              pushfalse
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                              getproperty QName(PackageNamespace(""),"connected")
+                              equals
+                     ofs0153:
+                              iftrue ofs0044
+                              debugline 105
+                              pushfalse
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_2201(tcpConn:a_2650, messageId:uint, protocalBody:ByteArray, optionBuffer:ByteArray = null) : Boolean
+                  {
+                     trait method QName(PackageNamespace(""),"a_2201")
+                        dispid 0
+                        method
+                           name "com.aurora.handler:AuthenBaseProtocalHandler/Send"
+                           flag HAS_OPTIONAL
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("a_4771"),"a_2650")
+                           param QName(PackageNamespace(""),"uint")
+                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                           paramname "getInstance"
+                           paramname "getInstance"
+                           paramname "getInstance"
+                           paramname "getInstance"
+                           optional Null()
+                           returns QName(PackageNamespace(""),"Boolean")
+                           
+                           body
+                              maxstack 6
+                              localcount 9
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                 debugline 108
+                                 getlocal0
+                                 pushscope
+                                 pushbyte 0
+                                 setlocal 8
+                                 debug 1, "tcpConn", 0, 108
+                                 debug 1, "messageId", 1, 108
+                                 debug 1, "protocalBody", 2, 108
+                                 debug 1, "optionBuffer", 3, 108
+                                 debug 1, "optionalLenght", 4, 122
+                                 debug 1, "stMessageHeader", 5, 124
+                                 debug 1, "packageBytes", 6, 138
+                                 debug 1, "encode_length", 7, 140
+                                 debugline 110
+                                 getlocal2
+                                 pushbyte 0
+                                 ifnlt ofs0056
+                                 debugline 112
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "error: messageId must > 0"
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 113
+                                 pushfalse
+                                 returnvalue
+                        ofs0056:
+                                 debugline 116
+                                 getlocal3
+                                 pushnull
+                                 ifne ofs006e
+                                 debugline 118
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "protocalBody is null "
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 119
+                                 pushfalse
+                                 returnvalue
+                        ofs006e:
+                                 debugline 122
+                                 getlocal 4
+                                 getlex QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 istypelate
+                                 iffalse ofs0083
+                                 getlocal 4
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 convert_i
+                                 jump ofs0085
+                        ofs0083:
+                                 pushbyte 0
+                        ofs0085:
+                                 convert_i
+                                 setlocal 5
+                                 debugline 124
+                                 findpropstrict QName(PackageNamespace("com.aurora.protocol.common"),"a_2670")
+                                 constructprop QName(PackageNamespace("com.aurora.protocol.common"),"a_2670"), 0
+                                 coerce QName(PackageNamespace("com.aurora.protocol.common"),"a_2670")
+                                 setlocal 6
+                                 debugline 125
+                                 getlocal 6
+                                 getlex QName(PackageNamespace("a_4716"),"b_154")
+                                 getproperty QName(PackageNamespace(""),"a_331")
+                                 debugline 126
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 add
+                                 debugline 127
+                                 getlocal 5
+                                 add
+                                 setproperty QName(PackageNamespace(""),"nPackageLength")
+                                 debugline 128
+                                 getlocal 6
+                                 pushbyte -1
+                                 setproperty QName(PackageNamespace(""),"nUIN")
+                                 debugline 129
+                                 getlocal 6
+                                 getlex QName(PackageNamespace("a_4716"),"b_155")
+                                 getproperty QName(PackageNamespace(""),"b_159")
+                                 setproperty QName(PackageNamespace(""),"shFlag")
+                                 debugline 130
+                                 getlocal 6
+                                 getlocal 5
+                                 setproperty QName(PackageNamespace(""),"shOptionalLen")
+                                 debugline 131
+                                 getlocal 6
+                                 getlocal 4
+                                 setproperty QName(PackageNamespace(""),"lpbyOptional")
+                                 debugline 132
+                                 getlocal 6
+                                 getlex QName(PackageNamespace("a_4716"),"b_154")
+                                 getproperty QName(PackageNamespace(""),"a_331")
+                                 getlocal 5
+                                 add
+                                 setproperty QName(PackageNamespace(""),"shHeaderLen")
+                                 debugline 133
+                                 getlocal 6
+                                 getlocal2
+                                 setproperty QName(PackageNamespace(""),"shMessageID")
+                                 debugline 134
+                                 getlocal 6
+                                 getlex QName(PackageNamespace("a_4716"),"b_154")
+                                 getproperty QName(PackageNamespace(""),"a_104")
+                                 setproperty QName(PackageNamespace(""),"shMessageType")
+                                 debugline 135
+                                 getlocal 6
+                                 getlocal0
+                                 callproperty QName(PackageNamespace(""),"getProtocolVersion"), 0
+                                 setproperty QName(PackageNamespace(""),"shVersion")
+                                 debugline 136
+                                 getlocal 6
+                                 pushbyte -1
+                                 setproperty QName(PackageNamespace(""),"nPlayerID")
+                                 debugline 138
+                                 findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 7
+                                 debugline 141
+                                 getlocal 6
+                                 getlocal 7
+                                 getlocal 8
+                                 callpropvoid QName(PackageNamespace(""),"encode"), 2
+                                 debugline 143
+                                 getlocal 7
+                                 getlocal3
+                                 pushbyte 0
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                 debugline 145
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                                 getlocal 7
+                                 callproperty QName(PackageNamespace(""),"a_2651"), 1
+                                 iftrue ofs018e
+                                 debugline 147
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "getAuthenConnection().SendDate(packageBytes) failed"
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 148
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                 getproperty QName(PackageNamespace(""),"instance")
+                                 pushstring "type"
+                                 pushstring "ce"
+                                 newobject 1
+                                 getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 pushint 132662
+                                 callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                 pushstring "getAuthenConnection().SendDate(packageBytes) failed"
+                                 pushstring "cpShow"
+                                 pushtrue
+                                 newobject 1
+                                 callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                 debugline 149
+                                 pushfalse
+                                 returnvalue
+                        ofs018e:
+                                 debugline 152
+                                 pushfalse
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),"a_775")
+                                 getproperty QName(PackageNamespace(""),"connected")
+                                 ifne ofs01e6
+                                 debugline 154
+                                 getlocal0
+                                 callproperty QName(PackageNamespace(""),"refreshAuthenConnection"), 0
+                                 iftrue ofs01e6
+                                 debugline 156
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "refreshAuthenConnection failed."
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 157
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                 getproperty QName(PackageNamespace(""),"instance")
+                                 pushstring "type"
+                                 pushstring "ce"
+                                 newobject 1
+                                 getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 pushint 132663
+                                 callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                 pushstring "refreshAuthenConnection failed."
+                                 pushstring "cpShow"
+                                 pushtrue
+                                 newobject 1
+                                 callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                 debugline 158
+                                 pushfalse
+                                 returnvalue
+                        ofs01e6:
+                                 debugline 162
+                                 pushtrue
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_2202(pProtocol:IProtocal, messageIds:Array) : void
+                     {
+                        trait method QName(PackageNamespace(""),"a_2202")
+                           dispid 0
+                           method
+                              name "com.aurora.handler:AuthenBaseProtocalHandler/RegisterProtocal"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("a_4759"),"IProtocal")
+                              param QName(PackageNamespace(""),"Array")
+                              paramname "trace"
+                              paramname "trace"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 6
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                    debugline 165
+                                    getlocal0
+                                    pushscope
+                                    pushbyte 0
+                                    convert_u
+                                    setlocal3
+                                    debug 1, "pProtocol", 0, 165
+                                    debug 1, "messageIds", 1, 165
+                                    debug 1, "messageId", 2, 175
+                                    debugline 167
+                                    getlocal1
+                                    pushnull
+                                    equals
+                                    dup
+                                    iftrue ofs0030
+                                    pop
+                                    getlocal2
+                                    pushnull
+                                    equals
+                           ofs0030:
+                                    iffalse ofs0045
+                                    debugline 169
+                                    findpropstrict QName(PackageNamespace(""),"trace")
+                                    pushstring "RegisterProtocal failed"
+                                    callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                    debugline 170
+                                    returnvoid
+                           ofs0045:
+                                    debugline 173
+                                    getlocal0
+                                    getlocal1
+                                    callpropvoid QName(PackageNamespace(""),"a_2203"), 1
+                                    debugline 175
+                                    pushbyte 0
+                                    setlocal 4
+                                    getlocal2
+                                    coerce_a
+                                    setlocal 5
+                                    jump ofs0092
+                           ofs005d:
+                                    label
+                                    getlocal 5
+                                    getlocal 4
+                                    nextvalue
+                                    convert_u
+                                    setlocal3
+                                    debugline 177
+                                    pushnull
+                                    getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                                    ifeq ofs0087
+                                    debugline 179
+                                    findpropstrict QName(PackageNamespace(""),"trace")
+                                    pushstring "messageId:"
+                                    getlocal3
+                                    add
+                                    pushstring "exists in mapDecodeRoutines"
+                                    add
+                                    callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           ofs0087:
+                                    debugline 182
+                                    getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                    getlocal3
+                                    getlocal1
+                                    setproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                           ofs0092:
+                                    debugline 175
+                                    hasnext2 5, 4
+                                    iftrue ofs005d
+                                    kill 5
+                                    kill 4
+                                    debugline 184
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function a_2203(pProtocol:IProtocal) : void
+                        {
+                           trait method QName(PackageNamespace(""),"a_2203")
+                              dispid 0
+                              method
+                                 name "com.aurora.handler:AuthenBaseProtocalHandler/UnregisterProtocal"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("a_4759"),"IProtocal")
+                                 paramname "trace"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 5
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                       debugline 186
+                                       getlocal0
+                                       pushscope
+                                       pushnull
+                                       coerce QName(PackageNamespace(""),"Object")
+                                       setlocal2
+                                       debug 1, "pProtocol", 0, 186
+                                       debug 1, "property", 1, 194
+                                       debugline 188
+                                       getlocal1
+                                       pushnull
+                                       ifne ofs0034
+                                       debugline 190
+                                       findpropstrict QName(PackageNamespace(""),"trace")
+                                       pushstring "pProtocal is null, UnregisterProtocal failed"
+                                       callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                       debugline 191
+                                       returnvoid
+                              ofs0034:
+                                       debugline 194
+                                       pushbyte 0
+                                       setlocal3
+                                       getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                       coerce_a
+                                       setlocal 4
+                                       jump ofs0066
+                              ofs0044:
+                                       label
+                                       getlocal 4
+                                       getlocal3
+                                       nextname
+                                       coerce QName(PackageNamespace(""),"Object")
+                                       setlocal2
+                                       debugline 196
+                                       getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                       getlocal2
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                                       getlocal1
+                                       ifne ofs0066
+                                       debugline 198
+                                       getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                       getlocal2
+                                       deleteproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                                       pop
+                              ofs0066:
+                                       debugline 194
+                                       hasnext2 4, 3
+                                       iftrue ofs0044
+                                       kill 4
+                                       kill 3
+                                       debugline 201
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_2204(packageBuffer:ByteArray) : void
+                           {
+                              trait method QName(PackageNamespace(""),"a_2204")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.handler:AuthenBaseProtocalHandler/OnReceivePackage"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                    paramname "trace"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 6
+                                       localcount 13
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                          debugline 203
+                                          getlocal0
+                                          pushscope
+                                          pushbyte 0
+                                          setlocal 4
+                                          pushbyte 0
+                                          convert_u
+                                          setlocal 6
+                                          pushbyte 0
+                                          setlocal 7
+                                          pushnull
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 8
+                                          pushnull
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 9
+                                          pushnull
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 10
+                                          pushbyte 0
+                                          convert_u
+                                          setlocal 11
+                                          pushnull
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 12
+                                          debug 1, "packageBuffer", 0, 203
+                                          debug 1, "startPosition", 1, 205
+                                          debug 1, "authenPackageHeader", 2, 207
+                                          debug 1, "decodeLenght", 3, 208
+                                          debug 1, "nDecodedSize", 4, 218
+                                          debugline 205
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"position")
+                                          convert_i
+                                          setlocal2
+                                          debugline 207
+                                          findpropstrict QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                                          constructprop QName(PackageNamespace("com.aurora.protocol.common"),"a_2667"), 0
+                                          coerce QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                                          setlocal3
+                                          debugline 209
+                                          getlocal3
+                                          getlocal1
+                                          getlocal 4
+                                          callpropvoid QName(PackageNamespace(""),"decode"), 2
+                                          debugline 211
+                                          pushbyte 0
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"nPackageLength")
+                                          ifngt ofs00b9
+                                          debugline 213
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "authenPackageHeader.shOptionalLen less than 0, exit"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 214
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                          getproperty QName(PackageNamespace(""),"instance")
+                                          pushstring "type"
+                                          pushstring "ce"
+                                          newobject 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132664
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          pushstring "authenPackageHeader.shOptionalLen less than 0"
+                                          pushstring "cpShow"
+                                          pushtrue
+                                          newobject 1
+                                          callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                          debugline 215
+                                          returnvoid
+                                 ofs00b9:
+                                          debugline 218
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"position")
+                                          getlocal2
+                                          subtract
+                                          convert_i
+                                          setlocal 5
+                                          debugline 220
+                                          pushbyte 0
+                                          getlocal 5
+                                          ifnge ofs0108
+                                          debugline 222
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "nDecodedSize must > 0"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 223
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                          getproperty QName(PackageNamespace(""),"instance")
+                                          pushstring "type"
+                                          pushstring "ce"
+                                          newobject 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132665
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          pushstring "nDecodedSize must > 0"
+                                          pushstring "cpShow"
+                                          pushtrue
+                                          newobject 1
+                                          callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                 ofs0108:
+                                          debugline 225
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"nPackageLength")
+                                          getlocal 5
+                                          ifnle ofs014d
+                                          debugline 227
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "shPackageLength must > nDecodedSize"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 228
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                          getproperty QName(PackageNamespace(""),"instance")
+                                          pushstring "type"
+                                          pushstring "ce"
+                                          newobject 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132666
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          pushstring "shPackageLength must > nDecodedSize"
+                                          pushstring "cpShow"
+                                          pushtrue
+                                          newobject 1
+                                          callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                 ofs014d:
+                                          debugline 231
+                                          pushbyte 0
+                                          getlocal 5
+                                          lessthan
+                                          dup
+                                          iffalse ofs0162
+                                          pop
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"nPackageLength")
+                                          getlocal 5
+                                          greaterthan
+                                 ofs0162:
+                                          iffalse ofs03ae
+                                          debug 1, "nEncryptedLength", 5, 233
+                                          debugline 233
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"nPackageLength")
+                                          getlocal 5
+                                          subtract
+                                          convert_u
+                                          setlocal 6
+                                          debugline 236
+                                          pushbyte 0
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"shFlag")
+                                          getlex QName(PackageNamespace("a_4716"),"b_160")
+                                          getproperty QName(PackageNamespace(""),"b_162")
+                                          bitand
+                                          ifeq ofs0386
+                                          debugline 238
+                                          pushbyte 0
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"bytesAvailable")
+                                          ifnlt ofs0382
+                                          debug 1, "nDecodeRound", 6, 241
+                                          debug 1, "arrDecryptedPart", 7, 247
+                                          debug 1, "arrEncryptedPart", 8, 248
+                                          debug 1, "sessionKey", 9, 252
+                                          debug 1, "nDecryptedDataLength", 10, 259
+                                          debugline 241
+                                          pushbyte -32
+                                          setlocal 7
+                                          debugline 242
+                                          pushbyte 0
+                                          getlocal3
+                                          getproperty QName(PackageNamespace(""),"shFlag")
+                                          getlex QName(PackageNamespace("a_4716"),"b_155")
+                                          getproperty QName(PackageNamespace(""),"b_158")
+                                          bitand
+                                          ifeq ofs01e0
+                                          debugline 244
+                                          pushbyte -8
+                                          setlocal 7
+                                 ofs01e0:
+                                          debugline 247
+                                          findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 8
+                                          debugline 248
+                                          findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 9
+                                          debugline 249
+                                          getlocal 9
+                                          getlocal1
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"position")
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"length")
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"position")
+                                          subtract
+                                          callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                          debugline 250
+                                          getlocal 9
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 252
+                                          getlex QName(PackageNamespace("a_4758"),"a_2208")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          getproperty QName(PackageNamespace(""),"passwordHash")
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 10
+                                          debugline 257
+                                          getlocal 10
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 259
+                                          getlex QName(PackageNamespace("a_4727"),"b_164")
+                                          getlocal 9
+                                          getlocal 8
+                                          getlocal 10
+                                          getlocal 7
+                                          callproperty QName(PackageNamespace(""),"a_1775"), 4
+                                          convert_u
+                                          setlocal 11
+                                          debugline 261
+                                          getlocal 10
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 263
+                                          pushbyte 0
+                                          getlocal 11
+                                          ifnge ofs02ae
+                                          debug 1, "authenKey", 11, 265
+                                          debugline 265
+                                          findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                          coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          setlocal 12
+                                          debugline 266
+                                          getlocal 12
+                                          getlex QName(PackageNamespace("a_4758"),"a_2208")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          callproperty QName(PackageNamespace(""),"getLocalKey"), 0
+                                          callpropvoid QName(PackageNamespace(""),"writeUTFBytes"), 1
+                                          debugline 268
+                                          getlocal 9
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 269
+                                          getlocal 8
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"length")
+                                          debugline 270
+                                          getlex QName(PackageNamespace("a_4727"),"b_164")
+                                          getlocal 9
+                                          getlocal 8
+                                          getlocal 12
+                                          getlocal 7
+                                          callproperty QName(PackageNamespace(""),"a_1775"), 4
+                                          convert_u
+                                          setlocal 11
+                                 ofs02ae:
+                                          debugline 273
+                                          pushbyte 0
+                                          getlocal 11
+                                          ifnlt ofs0346
+                                          debugline 275
+                                          getlocal 8
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 276
+                                          getlocal 8
+                                          getproperty QName(PackageNamespace(""),"length")
+                                          pushbyte 4
+                                          ifngt ofs02fb
+                                          debugline 278
+                                          getlocal3
+                                          getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                          getlocal 8
+                                          callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                                          setproperty QName(PackageNamespace(""),"nSequence")
+                                          debugline 279
+                                          getlocal 11
+                                          pushbyte 4
+                                          subtract
+                                          convert_u
+                                          setlocal 11
+                                          debugline 280
+                                          getlocal0
+                                          getlocal3
+                                          getlocal 8
+                                          callpropvoid QName(PackageNamespace(""),"a_2205"), 2
+                                          jump ofs033e
+                                 ofs02fb:
+                                          debugline 284
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring " 解压出来的部分 没有包含body"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 285
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                          getproperty QName(PackageNamespace(""),"instance")
+                                          pushstring "type"
+                                          pushstring "ce"
+                                          newobject 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132667
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132670
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          pushstring "cpShow"
+                                          pushtrue
+                                          newobject 1
+                                          callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                 ofs033e:
+                                          debugline 288
+                                          returnvoid
+                                          jump ofs0346
+                                 ofs0346:
+                                          debugline 292
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "ERROR: nDecryptedDataLength  must > 0"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 293
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                          getproperty QName(PackageNamespace(""),"instance")
+                                          pushstring "type"
+                                          pushstring "ce"
+                                          newobject 1
+                                          getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          pushint 132668
+                                          callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                          pushstring "ERROR: nDecryptedDataLength  must > 0"
+                                          pushstring "cpShow"
+                                          pushtrue
+                                          newobject 1
+                                          callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                          debugline 294
+                                          returnvoid
+                                 ofs0382:
+                                          jump ofs03ae
+                                 ofs0386:
+                                          debugline 300
+                                          getlocal3
+                                          getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                          getlocal1
+                                          callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                                          setproperty QName(PackageNamespace(""),"nSequence")
+                                          debugline 301
+                                          getlocal 6
+                                          pushbyte 4
+                                          subtract
+                                          convert_u
+                                          setlocal 6
+                                          debugline 303
+                                          getlocal0
+                                          getlocal3
+                                          getlocal1
+                                          callpropvoid QName(PackageNamespace(""),"a_2205"), 2
+                                          debugline 305
+                                          returnvoid
+                                 ofs03ae:
+                                          debugline 347
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function a_2205(authenPackageHeader:a_2667, bodyBuffer:ByteArray) : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"a_2205")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.handler:AuthenBaseProtocalHandler/DispatchPackage"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                                       param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                       paramname "getInstance"
+                                       paramname "getInstance"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 4
+                                          localcount 5
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                             debugline 349
+                                             getlocal0
+                                             pushscope
+                                             pushnull
+                                             coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             setlocal 4
+                                             debug 1, "authenPackageHeader", 0, 349
+                                             debug 1, "bodyBuffer", 1, 349
+                                             debug 1, "handler", 2, 351
+                                             debugline 351
+                                             getlex QName(StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),"mapProtocalRoutine")
+                                             getlocal1
+                                             getproperty QName(PackageNamespace(""),"shMessageID")
+                                             getproperty MultinameL([PrivateNamespace("com.aurora.handler:AuthenBaseProtocalHandler"),StaticProtectedNs("com.aurora.handler:AuthenBaseProtocalHandler"),PackageNamespace("a_4757"),PackageNamespace(""),PrivateNamespace("AuthenBaseProtocalHandler.as$493"),PackageInternalNs("a_4757"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler:AuthenBaseProtocalHandler")])
+                                             coerce QName(PackageNamespace(""),"Object")
+                                             setlocal3
+                                             debugline 353
+                                             pushnull
+                                             getlocal3
+                                             equals
+                                             not
+                                             dup
+                                             iffalse ofs0044
+                                             pop
+                                             getlocal3
+                                             getlex QName(PackageNamespace("a_4759"),"b_166")
+                                             istypelate
+                                    ofs0044:
+                                             iffalse ofs00a9
+                                             debug 1, "copyBodyBuffer", 3, 355
+                                             debugline 355
+                                             findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                             coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             setlocal 4
+                                             debugline 357
+                                             pushnull
+                                             getlocal2
+                                             ifeq ofs0087
+                                             debugline 359
+                                             getlocal 4
+                                             getlocal2
+                                             getlocal2
+                                             getproperty QName(PackageNamespace(""),"position")
+                                             getlocal2
+                                             getproperty QName(PackageNamespace(""),"bytesAvailable")
+                                             callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                             debugline 360
+                                             getlocal 4
+                                             pushbyte 0
+                                             setproperty QName(PackageNamespace(""),"position")
+                                             debugline 361
+                                             pushnull
+                                             coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             setlocal2
+                                    ofs0087:
+                                             debugline 364
+                                             getlocal 4
+                                             pushbyte 0
+                                             setproperty QName(PackageNamespace(""),"position")
+                                             debugline 365
+                                             getlocal3
+                                             getlex QName(PackageNamespace("a_4759"),"b_166")
+                                             astypelate
+                                             getlocal1
+                                             getlocal 4
+                                             callpropvoid QName(PackageNamespace(""),"a_2224"), 2
+                                             debugline 367
+                                             pushtrue
+                                             returnvalue
+                                             jump ofs00a9
+                                    ofs00a9:
+                                             debugline 371
+                                             findpropstrict QName(PackageNamespace(""),"trace")
+                                             pushstring "Can\'t find the handler or module for MessageID:"
+                                             getlocal1
+                                             getproperty QName(PackageNamespace(""),"shMessageID")
+                                             add
+                                             callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                             debugline 374
+                                             pushnull
+                                             coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             setlocal2
+                                             debugline 376
+                                             pushfalse
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function a_2206(tcpConn:a_2650, messageId:uint, protocalBody:ByteArray, optionBuffer:ByteArray = null) : Boolean
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_2206")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.handler:AuthenBaseProtocalHandler/HudongSend"
+                                          flag HAS_OPTIONAL
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("a_4771"),"a_2650")
+                                          param QName(PackageNamespace(""),"uint")
+                                          param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          paramname "getInstance"
+                                          paramname "getInstance"
+                                          paramname "getInstance"
+                                          paramname "getInstance"
+                                          optional Null()
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 5
+                                             initscopedepth 4
+                                             maxscopedepth 5
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                                debugline 379
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "tcpConn", 0, 379
+                                                debug 1, "messageId", 1, 379
+                                                debug 1, "protocalBody", 2, 379
+                                                debug 1, "optionBuffer", 3, 379
+                                                debugline 381
+                                                pushfalse
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                 }
+                              }
+                              
+                              method
+                                 name ""
+                                 returns null
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 1
+                                    maxscopedepth 3
+                                    
+                                    code
+                                       getlocal0
+                                       pushscope
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                       debugline 22
+                                       findpropstrict Multiname("a_2200",[PackageNamespace("a_4757")])
+                                       getlex QName(PackageNamespace(""),"Object")
+                                       pushscope
+                                       getlex QName(PackageNamespace(""),"Object")
+                                       newclass 169
+                                       popscope
+                                       initproperty QName(PackageNamespace("a_4757"),"a_2200")
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler;AuthenBaseProtocalHandler.as"
+                                       debugline 1
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                              

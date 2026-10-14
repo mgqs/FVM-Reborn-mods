@@ -1,0 +1,496 @@
+package com.aurora.ui.maogoutd.game
+{
+   import com.aurora.ui.maogoutd.resource.defender.a_3962;
+   
+   public class BattlePlaceDefenderTrigger
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function BattlePlaceDefenderTrigger()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger/BattlePlaceDefenderTrigger"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                  debugline 82
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      internal static function GoldLightBaderBoomTrigger(gride:a_3491, iDefenseTypeID:int) : void
+      {
+         trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.game"),"GoldLightBaderBoomTrigger")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger/com.aurora.ui.maogoutd.game:GoldLightBaderBoomTrigger"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+               param QName(PackageNamespace(""),"int")
+               paramname "maxCount"
+               paramname "maxCount"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 5
+                  localcount 8
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                     debugline 8
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     setlocal3
+                     pushnull
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal 4
+                     pushnull
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal 5
+                     debug 1, "gride", 0, 8
+                     debug 1, "iDefenseTypeID", 1, 8
+                     debugline 10
+                     getlocal2
+                     pushint 286400570
+                     equals
+                     dup
+                     iftrue ofs0032
+                     pop
+                     getlocal2
+                     pushint 286400571
+                     equals
+            ofs0032:
+                     dup
+                     iftrue ofs003d
+                     pop
+                     getlocal2
+                     pushint 286400572
+                     equals
+            ofs003d:
+                     dup
+                     iftrue ofs0048
+                     pop
+                     getlocal2
+                     pushint 286400573
+                     equals
+            ofs0048:
+                     iffalse ofs00bd
+                     debug 1, "maxCount", 2, 13
+                     debugline 13
+                     findpropstrict QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetGlobalTriggerLimit")
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                     callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetGlobalTriggerLimit"), 1
+                     convert_i
+                     setlocal3
+                     debugline 14
+                     getlocal3
+                     pushbyte 0
+                     ifngt ofs00bd
+                     debug 1, "nearestDefenses", 3, 16
+                     debug 1, "def", 4, 17
+                     debugline 16
+                     findpropstrict QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetNearestDefensesByTypeID")
+                     getlocal1
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                     getlocal1
+                     getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                     getlocal3
+                     callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetNearestDefensesByTypeID"), 4
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal 4
+                     debugline 17
+                     pushbyte 0
+                     setlocal 6
+                     getlocal 4
+                     coerce_a
+                     setlocal 7
+                     jump ofs00b0
+            ofs009c:
+                     label
+                     getlocal 7
+                     getlocal 6
+                     nextvalue
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     setlocal 5
+                     debugline 19
+                     getlocal 5
+                     pushbyte 1
+                     callpropvoid QName(PackageNamespace(""),"SpecialSkillCallBack"), 1
+            ofs00b0:
+                     debugline 17
+                     hasnext2 7, 6
+                     iftrue ofs009c
+                     kill 7
+                     kill 6
+            ofs00bd:
+                     debugline 23
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private static function GetNearestDefensesByTypeID(gride:a_3491, targetX:int, targetY:int, maxCount:int) : Array
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetNearestDefensesByTypeID")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger/private:GetNearestDefensesByTypeID"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"
+                  paramname "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"
+                  paramname "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"
+                  paramname "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"
+                  returns QName(PackageNamespace(""),"Array")
+                  
+                  body
+                     maxstack 5
+                     localcount 17
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                        debugline 25
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal 11
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        setlocal 12
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal 13
+                        pushnan
+                        setlocal 14
+                        pushnan
+                        setlocal 15
+                        pushnan
+                        setlocal 16
+                        debug 1, "gride", 0, 25
+                        debug 1, "targetX", 1, 25
+                        debug 1, "targetY", 2, 25
+                        debug 1, "maxCount", 3, 25
+                        debug 1, "battlefield", 4, 27
+                        debug 1, "candidates", 5, 28
+                        debug 1, "y", 6, 30
+                        debug 1, "result", 7, 54
+                        debug 1, "len", 8, 55
+                        debug 1, "i", 9, 56
+                        debugline 27
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        setlocal 5
+                        debugline 28
+                        newarray 0
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal 6
+                        debugline 30
+                        pushbyte 0
+                        setlocal 7
+                        jump ofs013f
+               ofs0076:
+                        label
+                        debug 1, "x", 10, 32
+                        debugline 32
+                        pushbyte 0
+                        setlocal 11
+                        jump ofs0130
+               ofs0087:
+                        label
+                        debug 1, "stFieldGrid", 11, 34
+                        debug 1, "defense", 12, 37
+                        debugline 34
+                        getlocal 5
+                        getlocal 11
+                        getlocal 7
+                        callproperty QName(PackageNamespace(""),"a_3438"), 2
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        setlocal 12
+                        debugline 35
+                        getlocal 12
+                        iftrue ofs00b0
+                        jump ofs012c
+               ofs00b0:
+                        debugline 37
+                        getlocal 12
+                        getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal 13
+                        debugline 38
+                        getlocal 13
+                        convert_b
+                        dup
+                        iffalse ofs00d4
+                        pop
+                        findpropstrict QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"isGoldLightBaderTower")
+                        getlocal 13
+                        callproperty QName(PackageNamespace(""),"a_3512"), 0
+                        callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"isGoldLightBaderTower"), 1
+                        convert_b
+               ofs00d4:
+                        iffalse ofs012c
+                        debug 1, "dx", 13, 40
+                        debug 1, "dy", 14, 41
+                        debug 1, "distSquared", 15, 42
+                        debugline 40
+                        getlocal 13
+                        getproperty QName(PackageNamespace(""),"stFieldGrid")
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        getlocal2
+                        subtract
+                        convert_d
+                        setlocal 14
+                        debugline 41
+                        getlocal 13
+                        getproperty QName(PackageNamespace(""),"stFieldGrid")
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        getlocal3
+                        subtract
+                        convert_d
+                        setlocal 15
+                        debugline 42
+                        getlocal 14
+                        getlocal 14
+                        multiply
+                        getlocal 15
+                        getlocal 15
+                        multiply
+                        add
+                        convert_d
+                        setlocal 16
+                        debugline 45
+                        getlocal 6
+                        pushstring "def"
+                        getlocal 13
+                        pushstring "dist"
+                        getlocal 16
+                        newobject 2
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs012c:
+                        debugline 32
+                        inclocal_i 11
+               ofs0130:
+                        getlocal 11
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        iflt ofs0087
+                        debugline 30
+                        inclocal_i 7
+               ofs013f:
+                        getlocal 7
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        iflt ofs0076
+                        debugline 51
+                        getlocal 6
+                        pushstring "dist"
+                        getlex QName(PackageNamespace(""),"Array")
+                        getproperty QName(PackageNamespace(""),"NUMERIC")
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"sortOn"), 2
+                        debugline 54
+                        newarray 0
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal 8
+                        debugline 55
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal 4
+                        getlocal 6
+                        getproperty QName(PackageNamespace(""),"length")
+                        callproperty QName(PackageNamespace(""),"min"), 2
+                        convert_i
+                        setlocal 9
+                        debugline 56
+                        pushbyte 0
+                        setlocal 10
+                        jump ofs0196
+               ofs017f:
+                        label
+                        debugline 58
+                        getlocal 8
+                        getlocal 6
+                        getlocal 10
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("BattlePlaceDefenderTrigger.as$257"),PackageInternalNs("com.aurora.ui.maogoutd.game"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger")])
+                        getproperty Multiname("def",[PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("BattlePlaceDefenderTrigger.as$257"),PackageInternalNs("com.aurora.ui.maogoutd.game"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger")])
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 56
+                        inclocal_i 10
+               ofs0196:
+                        getlocal 10
+                        getlocal 9
+                        iflt ofs017f
+                        debugline 61
+                        getlocal 8
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private static function isGoldLightBaderTower(id:uint) : Boolean
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"isGoldLightBaderTower")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger/private:isGoldLightBaderTower"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     paramname "result"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                           debugline 64
+                           getlocal0
+                           pushscope
+                           debug 1, "id", 0, 64
+                           debugline 66
+                           getlocal1
+                           pushint 286401899
+                           equals
+                           dup
+                           iftrue ofs001f
+                           pop
+                           getlocal1
+                           pushint 286401900
+                           equals
+                  ofs001f:
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private static function GetGlobalTriggerLimit(battlefield:BattleFieldView) : int
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger"),"GetGlobalTriggerLimit")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.ui.maogoutd.game:BattlePlaceDefenderTrigger/private:GetGlobalTriggerLimit"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        paramname "m_stCurrentBattbleFieldView"
+                        returns QName(PackageNamespace(""),"int")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 3
+                           maxscopedepth 4
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                              debugline 69
+                              getlocal0
+                              pushscope
+                              debug 1, "battlefield", 0, 69
+                              debugline 71
+                              getlocal1
+                              pushint 286401900
+                              callproperty QName(PackageNamespace(""),"a_3422"), 1
+                              pushbyte 0
+                              ifngt ofs0022
+                              debugline 72
+                              pushbyte 7
+                              returnvalue
+                     ofs0022:
+                              debugline 74
+                              getlocal1
+                              pushint 286401899
+                              callproperty QName(PackageNamespace(""),"a_3422"), 1
+                              pushbyte 0
+                              ifngt ofs0037
+                              debugline 75
+                              pushbyte 5
+                              returnvalue
+                     ofs0037:
+                              debugline 77
+                              pushbyte 0
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                     debugline 5
+                     findpropstrict Multiname("BattlePlaceDefenderTrigger",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 41
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattlePlaceDefenderTrigger")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattlePlaceDefenderTrigger.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

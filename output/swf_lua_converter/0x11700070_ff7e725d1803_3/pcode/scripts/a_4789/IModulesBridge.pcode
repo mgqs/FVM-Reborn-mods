@@ -1,0 +1,58 @@
+package a_4789
+{
+   public interface IModulesBridge
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function addListener(param1:Object, param2:Boolean = false) : void;
+      
+      function removeListener(param1:Object) : void;
+      
+      function removeAll() : void;
+      
+      function destroy() : void;
+      
+      function execute(param1:String, param2:Object, ... rest) : *;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\ui\\bridge;IModulesBridge.as"
+         debugline 3
+         findpropstrict Multiname("IModulesBridge",[PackageNamespace("a_4789")])
+         pushnull
+         newclass 48
+         initproperty QName(PackageNamespace("a_4789"),"IModulesBridge")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

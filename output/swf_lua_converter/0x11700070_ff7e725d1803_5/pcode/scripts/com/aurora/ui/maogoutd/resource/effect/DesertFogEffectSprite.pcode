@@ -1,0 +1,1435 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import a_4728.a_1778;
+   import a_4729.a_1789;
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.gamemap.newMap.SnakeYear.DesertCross.DesertFog2Effect;
+   import com.aurora.ui.maogoutd.resource.shot.a_4348;
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   import flash.display.Sprite;
+   
+   public class DesertFogEffectSprite extends Sprite
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var a_1413:Boolean = false;
+      
+      public var ms_ClearWaiteTimes:int;
+      
+      public var ms_upDateTimes:int;
+      
+      private var a_1267:Bitmap;
+      
+      private var a_1414:BitmapData;
+      
+      private var m_stCurrentBattleFieldView:BattleFieldView;
+      
+      private var m_arrLastFog:Array;
+      
+      private var m_arrFieldGrid:Array;
+      
+      private var m_sNowTime:int;
+      
+      private var m_iLastGridNum:int;
+      
+      public var InitGridNum:int;
+      
+      public var clearSeconds:int = 0;
+      
+      private var m_isClearBoo:Boolean;
+      
+      private var fogEffectType:int = 0;
+      
+      public function DesertFogEffectSprite()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/DesertFogEffectSprite"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                  debugline 27
+                  getlocal0
+                  pushscope
+                  debugline 24
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                  debugline 25
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                  debugline 29
+                  getlocal0
+                  constructsuper 0
+                  debugline 31
+                  findproperty QName(PackageNamespace(""),"mouseEnabled")
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"mouseEnabled")
+                  debugline 32
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_1797(stCurrentBattleFieldView:BattleFieldView) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_1797")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/Initialize"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+               paramname "m_arrFieldGrid"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                     debugline 34
+                     getlocal0
+                     pushscope
+                     debug 1, "stCurrentBattleFieldView", 0, 34
+                     debugline 36
+                     getlocal0
+                     getlocal1
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                     debugline 37
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function get LastGridNum() : int
+         {
+            trait getter QName(PackageNamespace(""),"LastGridNum")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/LastGridNum/get"
+                  returns QName(PackageNamespace(""),"int")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                        debugline 41
+                        getlocal0
+                        pushscope
+                        debugline 43
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function OnTimeInterval(iTimeNum:uint) : void
+            {
+               trait method QName(PackageNamespace(""),"OnTimeInterval")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/OnTimeInterval"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     paramname "e"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 6
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                           debugline 46
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                           setlocal2
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                           setlocal3
+                           debug 1, "iTimeNum", 0, 46
+                           debug 1, "e", 1, 52
+                           debug 1, "stFieldGrid", 2, 57
+                           debugline 48
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"a_1413")
+                           iftrue ofs002f
+                           debugline 50
+                           returnvoid
+                  ofs002f:
+                           debugline 52
+                           pushbyte 0
+                           setlocal 4
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                           coerce_a
+                           setlocal 5
+                           jump ofs0052
+                  ofs0040:
+                           label
+                           getlocal 5
+                           getlocal 4
+                           nextvalue
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                           setlocal2
+                           debugline 54
+                           getlocal2
+                           getlocal1
+                           callpropvoid QName(PackageNamespace(""),"a_3957"), 1
+                  ofs0052:
+                           debugline 52
+                           hasnext2 5, 4
+                           iftrue ofs0040
+                           kill 5
+                           kill 4
+                           debugline 57
+                           pushbyte 0
+                           setlocal 4
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                           coerce_a
+                           setlocal 5
+                           jump ofs008f
+                  ofs0070:
+                           label
+                           getlocal 5
+                           getlocal 4
+                           nextvalue
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                           setlocal3
+                           debugline 59
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                           pushnull
+                           ifeq ofs008f
+                           debugline 61
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                           getlocal1
+                           callpropvoid QName(PackageNamespace(""),"a_3957"), 1
+                  ofs008f:
+                           debugline 57
+                           hasnext2 5, 4
+                           iftrue ofs0070
+                           kill 5
+                           kill 4
+                           debugline 64
+                           getlocal0
+                           dup
+                           setlocal 4
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                           increment_i
+                           setlocal 5
+                           getlocal 4
+                           getlocal 5
+                           setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                           kill 5
+                           kill 4
+                           debugline 65
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_isClearBoo")
+                           iffalse ofs00ec
+                           debugline 67
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"ms_ClearWaiteTimes")
+                           pushbyte 20
+                           multiply
+                           ifne ofs00e8
+                           debugline 69
+                           getlocal0
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"InitGridNum")
+                           callpropvoid QName(PackageNamespace(""),"UpdateFog"), 1
+                           debugline 70
+                           getlocal0
+                           pushfalse
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_isClearBoo")
+                           debugline 71
+                           getlocal0
+                           pushbyte 0
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                  ofs00e8:
+                           jump ofs011a
+                  ofs00ec:
+                           debugline 74
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"ms_upDateTimes")
+                           pushbyte 20
+                           multiply
+                           modulo
+                           pushbyte 0
+                           ifne ofs011a
+                           debugline 76
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                           pushbyte 9
+                           ifnle ofs011a
+                           debugline 78
+                           getlocal0
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                           pushbyte 1
+                           add
+                           callpropvoid QName(PackageNamespace(""),"UpdateFog"), 1
+                  ofs011a:
+                           debugline 81
+                           getlocal1
+                           pushbyte 2
+                           modulo
+                           pushbyte 0
+                           ifne ofs012d
+                           debugline 83
+                           getlocal0
+                           callpropvoid QName(PackageNamespace(""),"clearShot"), 0
+                  ofs012d:
+                           debugline 85
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function initFog(iGridNum:int = 1, waiteTimes:int = 50, upDateTime:int = 15) : void
+               {
+                  trait method QName(PackageNamespace(""),"initFog")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/initFog"
+                        flag HAS_OPTIONAL
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        param QName(PackageNamespace(""),"int")
+                        param QName(PackageNamespace(""),"int")
+                        paramname "e"
+                        paramname "e"
+                        paramname "e"
+                        optional Integer(1)
+                        optional Integer(50)
+                        optional Integer(15)
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 4
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                              debugline 95
+                              getlocal0
+                              pushscope
+                              debug 1, "iGridNum", 0, 95
+                              debug 1, "waiteTimes", 1, 95
+                              debug 1, "upDateTime", 2, 95
+                              debugline 97
+                              getlocal0
+                              getlocal2
+                              initproperty QName(PackageNamespace(""),"ms_ClearWaiteTimes")
+                              debugline 98
+                              getlocal0
+                              getlocal3
+                              initproperty QName(PackageNamespace(""),"ms_upDateTimes")
+                              debugline 99
+                              getlocal0
+                              pushbyte 0
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                              debugline 100
+                              getlocal0
+                              pushfalse
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_isClearBoo")
+                              debugline 101
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PackageNamespace(""),"InitGridNum")
+                              debugline 102
+                              getlocal0
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"UpdateFog"), 1
+                              debugline 103
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function InitData(fogType:int, clearS:int) : void
+                  {
+                     trait method QName(PackageNamespace(""),"InitData")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/InitData"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"int")
+                           param QName(PackageNamespace(""),"int")
+                           paramname "e"
+                           paramname "e"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 3
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                 debugline 104
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "fogType", 0, 104
+                                 debug 1, "clearS", 1, 104
+                                 debugline 105
+                                 getlocal0
+                                 getlocal1
+                                 initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"fogEffectType")
+                                 debugline 106
+                                 getlocal0
+                                 getlocal2
+                                 initproperty QName(PackageNamespace(""),"clearSeconds")
+                                 debugline 107
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function clearFog() : void
+                     {
+                        trait method QName(PackageNamespace(""),"clearFog")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/clearFog"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                    debugline 109
+                                    getlocal0
+                                    pushscope
+                                    debugline 111
+                                    getlocal0
+                                    pushtrue
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_isClearBoo")
+                                    debugline 112
+                                    getlocal0
+                                    pushbyte 0
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_sNowTime")
+                                    debugline 115
+                                    getlocal0
+                                    pushfalse
+                                    callpropvoid QName(PackageNamespace(""),"ReleaseFog"), 1
+                                    debugline 117
+                                    getlex QName(PackageNamespace("a_4729"),"a_1789")
+                                    callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                    findpropstrict QName(PackageNamespace("a_4728"),"a_1778")
+                                    pushstring "ClearFog_Desert"
+                                    constructprop QName(PackageNamespace("a_4728"),"a_1778"), 1
+                                    callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                    debugline 118
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function GetDesertFogEffect() : BaseDesertFogEffect
+                        {
+                           trait method QName(PackageNamespace(""),"GetDesertFogEffect")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/GetDesertFogEffect"
+                                 returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 9
+                                    maxscopedepth 10
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                       debugline 121
+                                       getlocal0
+                                       pushscope
+                                       debugline 122
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"fogEffectType")
+                                       pushbyte 0
+                                       ifne ofs001d
+                                       debugline 123
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"DesertFogEffect")
+                                       callproperty QName(PackageNamespace(""),"a_3926"), 0
+                                       returnvalue
+                              ofs001d:
+                                       debugline 125
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"fogEffectType")
+                                       pushbyte 1
+                                       ifne ofs0033
+                                       debugline 126
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap.newMap.SnakeYear.DesertCross"),"DesertFog2Effect")
+                                       callproperty QName(PackageNamespace(""),"a_3926"), 0
+                                       returnvalue
+                              ofs0033:
+                                       debugline 128
+                                       pushnull
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function UpdateFog(iGridNum:int = 1) : void
+                           {
+                              trait method QName(PackageNamespace(""),"UpdateFog")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/UpdateFog"
+                                    flag HAS_OPTIONAL
+                                    flag HAS_PARAM_NAMES
+                                    flag NEED_ACTIVATION
+                                    param QName(PackageNamespace(""),"int")
+                                    paramname "e"
+                                    optional Integer(1)
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 5
+                                       initscopedepth 10
+                                       maxscopedepth 15
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"iGridNum")
+                                          slotid 1
+                                          type QName(PackageNamespace(""),"int")
+                                          value Integer(1)
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"stFieldGridsVector")
+                                          slotid 2
+                                          type QName(PackageNamespace(""),"Array")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"i")
+                                          slotid 3
+                                          type QName(PackageNamespace(""),"int")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"j")
+                                          slotid 4
+                                          type QName(PackageNamespace(""),"int")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"stFieldGrid")
+                                          slotid 5
+                                          type QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"m_stDesertFogEffect")
+                                          slotid 6
+                                          type QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"index")
+                                          slotid 7
+                                          type QName(PackageNamespace(""),"int")
+                                       end ; trait
+                                       trait slot QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),"e")
+                                          slotid 8
+                                          type QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                       end ; trait
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                          debugline 130
+                                          getlocal0
+                                          pushscope
+                                          newactivation
+                                          dup
+                                          setlocal2
+                                          pushscope
+                                          debug 1, "UpdateFog$0", 1, 130
+                                          getscopeobject 1
+                                          pushbyte 0
+                                          setslot 3
+                                          getscopeobject 1
+                                          pushbyte 0
+                                          setslot 4
+                                          getscopeobject 1
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          setslot 5
+                                          getscopeobject 1
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                          setslot 6
+                                          getscopeobject 1
+                                          pushbyte 0
+                                          setslot 7
+                                          getscopeobject 1
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                          setslot 8
+                                          getscopeobject 1
+                                          getlocal1
+                                          setslot 1
+                                          debug 1, "iGridNum", 0, 130
+                                          debugline 132
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"a_1413")
+                                          iftrue ofs0057
+                                          debugline 134
+                                          returnvoid
+                                 ofs0057:
+                                          debugline 137
+                                          getscopeobject 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"stFieldGridsVector")
+                                          coerce QName(PackageNamespace(""),"Array")
+                                          setslot 2
+                                          debugline 143
+                                          getscopeobject 1
+                                          getslot 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                          ifngt ofs0229
+                                          debugline 145
+                                          getscopeobject 1
+                                          pushbyte 0
+                                          setslot 3
+                                          jump ofs0218
+                                 ofs0083:
+                                          label
+                                          debugline 147
+                                          getscopeobject 1
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1011")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                          subtract
+                                          convert_i
+                                          setslot 4
+                                          jump ofs01f9
+                                 ofs009a:
+                                          label
+                                          debugline 149
+                                          getscopeobject 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                          getscopeobject 1
+                                          getslot 4
+                                          getscopeobject 1
+                                          getslot 3
+                                          callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          setslot 5
+                                          debugline 150
+                                          getscopeobject 1
+                                          getslot 5
+                                          pushnull
+                                          ifeq ofs0166
+                                          debugline 152
+                                          getscopeobject 1
+                                          getslot 5
+                                          getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          pushnull
+                                          ifne ofs0162
+                                          debugline 154
+                                          getscopeobject 1
+                                          getlocal0
+                                          callproperty QName(PackageNamespace(""),"GetDesertFogEffect"), 0
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                          setslot 6
+                                          debugline 155
+                                          getscopeobject 1
+                                          getslot 6
+                                          pushfalse
+                                          callpropvoid QName(PackageNamespace(""),"a_1797"), 1
+                                          debugline 156
+                                          getscopeobject 1
+                                          getslot 6
+                                          getscopeobject 1
+                                          getslot 5
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"clearSeconds")
+                                          pushbyte 20
+                                          multiply
+                                          callpropvoid QName(PackageNamespace(""),"InitData"), 2
+                                          debugline 157
+                                          getscopeobject 1
+                                          getslot 6
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1080")
+                                          getscopeobject 1
+                                          getslot 4
+                                          multiply
+                                          pushbyte 30
+                                          subtract
+                                          setproperty QName(PackageNamespace(""),"x")
+                                          debugline 158
+                                          getscopeobject 1
+                                          getslot 6
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1081")
+                                          getscopeobject 1
+                                          getslot 3
+                                          multiply
+                                          pushbyte 30
+                                          add
+                                          setproperty QName(PackageNamespace(""),"y")
+                                          debugline 159
+                                          getscopeobject 1
+                                          getslot 6
+                                          callpropvoid QName(PackageNamespace(""),"showFog"), 0
+                                          debugline 160
+                                          getscopeobject 1
+                                          getslot 5
+                                          getscopeobject 1
+                                          getslot 6
+                                          setproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          debugline 161
+                                          getlocal0
+                                          getscopeobject 1
+                                          getslot 6
+                                          callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                                          debugline 162
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                          getscopeobject 1
+                                          getslot 5
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0162:
+                                          jump ofs01ec
+                                 ofs0166:
+                                          debugline 167
+                                          getscopeobject 1
+                                          getlocal0
+                                          callproperty QName(PackageNamespace(""),"GetDesertFogEffect"), 0
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                          setslot 6
+                                          debugline 168
+                                          getscopeobject 1
+                                          getslot 6
+                                          pushfalse
+                                          callpropvoid QName(PackageNamespace(""),"a_1797"), 1
+                                          debugline 169
+                                          getscopeobject 1
+                                          getslot 6
+                                          getscopeobject 1
+                                          getslot 4
+                                          getscopeobject 1
+                                          getslot 3
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                          callpropvoid QName(PackageNamespace(""),"InitData2"), 3
+                                          debugline 170
+                                          getscopeobject 1
+                                          getslot 6
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1080")
+                                          getscopeobject 1
+                                          getslot 4
+                                          multiply
+                                          pushbyte 30
+                                          subtract
+                                          setproperty QName(PackageNamespace(""),"x")
+                                          debugline 171
+                                          getscopeobject 1
+                                          getslot 6
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1081")
+                                          getscopeobject 1
+                                          getslot 3
+                                          multiply
+                                          pushbyte 30
+                                          add
+                                          setproperty QName(PackageNamespace(""),"y")
+                                          debugline 172
+                                          getscopeobject 1
+                                          getslot 6
+                                          callpropvoid QName(PackageNamespace(""),"showFog"), 0
+                                          debugline 173
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                          getscopeobject 1
+                                          getslot 6
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                          debugline 174
+                                          getlocal0
+                                          getscopeobject 1
+                                          getslot 6
+                                          callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                                 ofs01ec:
+                                          debugline 147
+                                          getscopeobject 1
+                                          getslot 4
+                                          decrement_i
+                                          getscopeobject 1
+                                          swap
+                                          setslot 4
+                                 ofs01f9:
+                                          getscopeobject 1
+                                          getslot 4
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1011")
+                                          getscopeobject 1
+                                          getslot 1
+                                          subtract
+                                          ifgt ofs009a
+                                          debugline 145
+                                          getscopeobject 1
+                                          getslot 3
+                                          increment_i
+                                          getscopeobject 1
+                                          swap
+                                          setslot 3
+                                 ofs0218:
+                                          getscopeobject 1
+                                          getslot 3
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1012")
+                                          iflt ofs0083
+                                          jump ofs03b5
+                                 ofs0229:
+                                          debugline 179
+                                          getscopeobject 1
+                                          getslot 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                          ifnlt ofs03b5
+                                          debugline 181
+                                          getscopeobject 1
+                                          pushbyte 0
+                                          setslot 3
+                                          jump ofs03a8
+                                 ofs0245:
+                                          label
+                                          debugline 183
+                                          getscopeobject 1
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1011")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                          subtract
+                                          convert_i
+                                          setslot 4
+                                          jump ofs0389
+                                 ofs025c:
+                                          label
+                                          debugline 185
+                                          getscopeobject 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                          getscopeobject 1
+                                          getslot 4
+                                          getscopeobject 1
+                                          getslot 3
+                                          callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          setslot 5
+                                          debugline 186
+                                          getscopeobject 1
+                                          getslot 5
+                                          pushnull
+                                          equals
+                                          not
+                                          dup
+                                          iffalse ofs0290
+                                          pop
+                                          getscopeobject 1
+                                          getslot 5
+                                          getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          pushnull
+                                          equals
+                                          not
+                                 ofs0290:
+                                          iffalse ofs030d
+                                 ofs0294:
+                                          debugline 190
+                                          debugline 190
+                                          getscopeobject 1
+                                          getslot 5
+                                          getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          callpropvoid QName(PackageNamespace(""),"clearFog"), 0
+                                          debugline 191
+                                          getlocal0
+                                          getscopeobject 1
+                                          getslot 5
+                                          getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                          debugline 192
+                                          getscopeobject 1
+                                          getslot 5
+                                          pushnull
+                                          setproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          debugline 193
+                                          getscopeobject 1
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                          getscopeobject 1
+                                          getslot 5
+                                          getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          convert_i
+                                          setslot 7
+                                          debugline 194
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                          getscopeobject 1
+                                          getslot 7
+                                          deleteproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("DesertFogEffectSprite.as$190"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                          pop
+                                 ofs02e5:
+                                          debugline 196
+                                          jump ofs0309
+                                 ofs02ec:
+                                          getlocal0
+                                          pushscope
+                                          getlocal2
+                                          pushscope
+                                          newcatch 0
+                                          dup
+                                          setlocal3
+                                          dup
+                                          pushscope
+                                          swap
+                                          setslot 1
+                                          debugline 198
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "找不到特效!"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          popscope
+                                          kill 3
+                                 ofs0309:
+                                          jump ofs037c
+                                 ofs030d:
+                                          debugline 203
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "清楚最后一列沙尘暴！"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 204
+                                          pushbyte 0
+                                          setlocal3
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                          coerce_a
+                                          setlocal 4
+                                          jump ofs034e
+                                 ofs032b:
+                                          label
+                                          getscopeobject 1
+                                          getlocal 4
+                                          getlocal3
+                                          nextvalue
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                          setslot 8
+                                          debugline 206
+                                          getscopeobject 1
+                                          getslot 8
+                                          callpropvoid QName(PackageNamespace(""),"clearFog"), 0
+                                          debugline 207
+                                          getlocal0
+                                          getscopeobject 1
+                                          getslot 8
+                                          callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                 ofs034e:
+                                          debugline 204
+                                          hasnext2 4, 3
+                                          iftrue ofs032b
+                                          kill 4
+                                          kill 3
+                                          jump ofs036c
+                                 ofs0360:
+                                          label
+                                          debugline 211
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                 ofs036c:
+                                          debugline 209
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                          getproperty QName(PackageNamespace(""),"length")
+                                          pushbyte 0
+                                          ifgt ofs0360
+                                 ofs037c:
+                                          debugline 183
+                                          getscopeobject 1
+                                          getslot 4
+                                          increment_i
+                                          getscopeobject 1
+                                          swap
+                                          setslot 4
+                                 ofs0389:
+                                          getscopeobject 1
+                                          getslot 4
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1011")
+                                          getscopeobject 1
+                                          getslot 1
+                                          subtract
+                                          iflt ofs025c
+                                          debugline 181
+                                          getscopeobject 1
+                                          getslot 3
+                                          increment_i
+                                          getscopeobject 1
+                                          swap
+                                          setslot 3
+                                 ofs03a8:
+                                          getscopeobject 1
+                                          getslot 3
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                          getproperty QName(PackageNamespace(""),"a_1012")
+                                          iflt ofs0245
+                                 ofs03b5:
+                                          debugline 218
+                                          getlocal0
+                                          getscopeobject 1
+                                          getslot 1
+                                          initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                          debugline 219
+                                          returnvoid
+                                       end ; code
+                                       try from ofs0294 to ofs02e5 target ofs02ec type QName(PackageNamespace(""),"Error") name QName(PackageNamespace(""),"error") end
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function ReleaseFog(bReset:Boolean = true) : void
+                              {
+                                 trait method QName(PackageNamespace(""),"ReleaseFog")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/ReleaseFog"
+                                       flag HAS_OPTIONAL
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"Boolean")
+                                       paramname "e"
+                                       optional True()
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 6
+                                          initscopedepth 9
+                                          maxscopedepth 10
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                             debugline 221
+                                             getlocal0
+                                             pushscope
+                                             pushnull
+                                             coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             setlocal2
+                                             pushnull
+                                             coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                             setlocal3
+                                             debug 1, "bReset", 0, 221
+                                             debug 1, "stFieldGrid", 1, 228
+                                             debug 1, "e", 2, 244
+                                             debugline 223
+                                             getlocal1
+                                             iffalse ofs0040
+                                             debugline 224
+                                             getlocal0
+                                             pushbyte 0
+                                             initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"fogEffectType")
+                                             debugline 225
+                                             getlocal0
+                                             pushbyte 0
+                                             initproperty QName(PackageNamespace(""),"clearSeconds")
+                                    ofs0040:
+                                             debugline 228
+                                             pushbyte 0
+                                             setlocal 4
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                             coerce_a
+                                             setlocal 5
+                                             jump ofs0086
+                                    ofs0052:
+                                             label
+                                             getlocal 5
+                                             getlocal 4
+                                             nextvalue
+                                             coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             setlocal2
+                                             debugline 230
+                                             getlocal2
+                                             getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                             pushnull
+                                             ifeq ofs0086
+                                             debugline 232
+                                             getlocal2
+                                             getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                             callpropvoid QName(PackageNamespace(""),"clearFog"), 0
+                                             debugline 233
+                                             getlocal0
+                                             getlocal2
+                                             getproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                             callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                             debugline 234
+                                             getlocal2
+                                             pushnull
+                                             setproperty QName(PackageNamespace(""),"m_stDesertFogEffect")
+                                    ofs0086:
+                                             debugline 228
+                                             hasnext2 5, 4
+                                             iftrue ofs0052
+                                             kill 5
+                                             kill 4
+                                             jump ofs00a4
+                                    ofs0098:
+                                             label
+                                             debugline 240
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                    ofs00a4:
+                                             debugline 238
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"length")
+                                             pushbyte 0
+                                             ifgt ofs0098
+                                             debugline 242
+                                             getlocal0
+                                             pushbyte 0
+                                             initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                             debugline 244
+                                             pushbyte 0
+                                             setlocal 4
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                             coerce_a
+                                             setlocal 5
+                                             jump ofs00ea
+                                    ofs00cf:
+                                             label
+                                             getlocal 5
+                                             getlocal 4
+                                             nextvalue
+                                             coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseDesertFogEffect")
+                                             setlocal3
+                                             debugline 246
+                                             getlocal3
+                                             callpropvoid QName(PackageNamespace(""),"clearFog"), 0
+                                             debugline 247
+                                             getlocal0
+                                             getlocal3
+                                             callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                    ofs00ea:
+                                             debugline 244
+                                             hasnext2 5, 4
+                                             iftrue ofs00cf
+                                             kill 5
+                                             kill 4
+                                             jump ofs0108
+                                    ofs00fc:
+                                             label
+                                             debugline 251
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                    ofs0108:
+                                             debugline 249
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_arrLastFog")
+                                             getproperty QName(PackageNamespace(""),"length")
+                                             pushbyte 0
+                                             ifgt ofs00fc
+                                             debugline 253
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 private function HasShadowMouse(iNoY:int) : Boolean
+                                 {
+                                    trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"HasShadowMouse")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/private:HasShadowMouse"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"int")
+                                          paramname "m_arrFieldGrid"
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 4
+                                             initscopedepth 9
+                                             maxscopedepth 10
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                                debugline 256
+                                                getlocal0
+                                                pushscope
+                                                pushnull
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                setlocal3
+                                                debug 1, "iNoY", 0, 256
+                                                debug 1, "j", 1, 257
+                                                debugline 257
+                                                pushbyte 0
+                                                setlocal2
+                                                jump ofs0054
+                                       ofs0024:
+                                                label
+                                                debug 1, "grid", 2, 258
+                                                debugline 258
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                                getlocal2
+                                                getlocal1
+                                                callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                setlocal3
+                                                debugline 259
+                                                getlocal3
+                                                pushbyte 31
+                                                callproperty QName(PackageNamespace(""),"HasTag"), 1
+                                                iffalse ofs004f
+                                                debugline 260
+                                                pushtrue
+                                                returnvalue
+                                       ofs004f:
+                                                debugline 257
+                                                inclocal_i 2
+                                       ofs0054:
+                                                getlocal2
+                                                getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                getproperty QName(PackageNamespace(""),"a_1011")
+                                                iflt ofs0024
+                                                debugline 263
+                                                pushfalse
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function clearShot() : void
+                                    {
+                                       trait method QName(PackageNamespace(""),"clearShot")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite/clearShot"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 4
+                                                localcount 5
+                                                initscopedepth 9
+                                                maxscopedepth 10
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                                   debugline 266
+                                                   getlocal0
+                                                   pushscope
+                                                   pushnull
+                                                   coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                                                   setlocal1
+                                                   debug 1, "stBaseShot", 0, 268
+                                                   debug 1, "i", 1, 269
+                                                   debugline 269
+                                                   pushbyte 0
+                                                   setlocal2
+                                                   jump ofs00cc
+                                          ofs0024:
+                                                   label
+                                                   debugline 271
+                                                   getlocal0
+                                                   getlocal2
+                                                   callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"HasShadowMouse"), 1
+                                                   iffalse ofs0036
+                                                   jump ofs00c7
+                                          ofs0036:
+                                                   debugline 272
+                                                   pushbyte 0
+                                                   setlocal3
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_stCurrentBattleFieldView")
+                                                   getproperty QName(PackageNamespace(""),"m_stBaseShotVector")
+                                                   getlocal2
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("DesertFogEffectSprite.as$190"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                   callproperty Multiname("slice",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("DesertFogEffectSprite.as$190"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")]), 0
+                                                   coerce_a
+                                                   setlocal 4
+                                                   jump ofs00b9
+                                          ofs0052:
+                                                   label
+                                                   getlocal 4
+                                                   getlocal3
+                                                   nextvalue
+                                                   coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                                                   setlocal1
+                                                   debugline 274
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"isParabolaPath")
+                                                   not
+                                                   dup
+                                                   iffalse ofs006d
+                                                   pop
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"m_isShotHighSkySpace")
+                                                   not
+                                          ofs006d:
+                                                   dup
+                                                   iffalse ofs007c
+                                                   pop
+                                                   debugline 274
+                                                   getlocal1
+                                                   callproperty QName(PackageNamespace(""),"m_FollowingShot"), 0
+                                                   not
+                                          ofs007c:
+                                                   dup
+                                                   iffalse ofs009a
+                                                   pop
+                                                   debugline 275
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"x")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1080")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                   getproperty QName(PackageNamespace(""),"a_1011")
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:DesertFogEffectSprite"),"m_iLastGridNum")
+                                                   subtract
+                                                   multiply
+                                                   greaterthan
+                                          ofs009a:
+                                                   dup
+                                                   iffalse ofs00ad
+                                                   pop
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"x")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1080")
+                                                   pushbyte 9
+                                                   multiply
+                                                   lessthan
+                                          ofs00ad:
+                                                   iffalse ofs00b9
+                                                   debugline 277
+                                                   getlocal1
+                                                   callpropvoid QName(PackageNamespace(""),"a_4350"), 0
+                                          ofs00b9:
+                                                   debugline 272
+                                                   hasnext2 4, 3
+                                                   iftrue ofs0052
+                                                   kill 4
+                                                   kill 3
+                                          ofs00c7:
+                                                   debugline 269
+                                                   inclocal_i 2
+                                          ofs00cc:
+                                                   getlocal2
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                   getproperty QName(PackageNamespace(""),"a_1012")
+                                                   iflt ofs0024
+                                                   debugline 281
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 8
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                          debugline 14
+                                          findpropstrict Multiname("DesertFogEffectSprite",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          newclass 189
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"DesertFogEffectSprite")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;DesertFogEffectSprite.as"
+                                          debugline 1
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

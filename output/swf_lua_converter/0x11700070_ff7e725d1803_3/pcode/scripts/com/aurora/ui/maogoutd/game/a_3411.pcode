@@ -1,0 +1,209 @@
+package com.aurora.ui.maogoutd.game
+{
+   import flash.display.Sprite;
+   
+   public class a_3411 extends Sprite
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_3411()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BaseGameBattleUI/BaseGameBattleUI"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                  debugline 8
+                  getlocal0
+                  pushscope
+                  debugline 10
+                  getlocal0
+                  constructsuper 0
+                  debugline 11
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_3412() : CardGrowPanelView
+      {
+         trait method QName(PackageNamespace(""),"a_3412")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game:BaseGameBattleUI/GetCardGrowPanelView"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"CardGrowPanelView")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                     debugline 13
+                     getlocal0
+                     pushscope
+                     debugline 15
+                     pushnull
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_3413() : BattleFieldFor4View
+         {
+            trait method QName(PackageNamespace(""),"a_3413")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:BaseGameBattleUI/GetBattleFieldFor4View"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldFor4View")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                        debugline 18
+                        getlocal0
+                        pushscope
+                        debugline 20
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get IsExistDefensePlaceOnHand() : Boolean
+            {
+               trait getter QName(PackageNamespace(""),"IsExistDefensePlaceOnHand")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game:BaseGameBattleUI/IsExistDefensePlaceOnHand/get"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                           debugline 23
+                           getlocal0
+                           pushscope
+                           debugline 25
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function set IsExistDefensePlaceOnHand(isExist:Boolean) : void
+               {
+                  trait setter QName(PackageNamespace(""),"IsExistDefensePlaceOnHand")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game:BaseGameBattleUI/IsExistDefensePlaceOnHand/set"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"Boolean")
+                        paramname "com.aurora.ui.maogoutd.game:BaseGameBattleUI/BaseGameBattleUI"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 1
+                           localcount 2
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                              debugline 28
+                              getlocal0
+                              pushscope
+                              debug 1, "isExist", 0, 28
+                              debugline 30
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 8
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                     debugline 5
+                     findpropstrict Multiname("a_3411",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     pushscope
+                     getlex QName(PackageNamespace("flash.display"),"Sprite")
+                     newclass 197
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3411")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BaseGameBattleUI.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            
