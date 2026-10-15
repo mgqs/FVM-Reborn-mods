@@ -1,0 +1,629 @@
+package com.aurora.protocol.profile
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CUserBaseProfile implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iUin:int;
+      
+      public var m_szAccount:String;
+      
+      public var m_nUserType:int;
+      
+      public var m_isActivate:int;
+      
+      public var m_szRealName:String;
+      
+      public var m_szNickName:String;
+      
+      public var m_szUserSignature:String;
+      
+      public var m_sex:int;
+      
+      public var m_szCardID:String;
+      
+      public var m_szBirthday:String;
+      
+      public var m_isLunarbirthday:int;
+      
+      public var m_szConstellation:String;
+      
+      public var m_szRegdataTime:String;
+      
+      public var m_szRegIP:String;
+      
+      public var m_iFaceVersion:int;
+      
+      public var m_shFaceID:int;
+      
+      public var m_szSmallFaceURL:String;
+      
+      public var m_szMiddleFaceURL:String;
+      
+      public var m_szLargeFaceURL:String;
+      
+      public var m_szHomeProv:String;
+      
+      public var m_szHomeCity:String;
+      
+      public var m_szHomeTown:String;
+      
+      public var m_szLiveProv:String;
+      
+      public var m_szLiveCity:String;
+      
+      public var m_szLiveTown:String;
+      
+      public var m_szPhoneNum:String;
+      
+      public var m_szQQ:String;
+      
+      public var m_szMSN:String;
+      
+      public var m_szEmail:String;
+      
+      public var m_szContactAdr:String;
+      
+      public var m_szZipCode:String;
+      
+      public var m_isInboxVoice:int;
+      
+      public function CUserBaseProfile()
+      {
+         method
+            name "com.aurora.protocol.profile:CUserBaseProfile/CUserBaseProfile"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                  debugline 49
+                  getlocal0
+                  pushscope
+                  debugline 50
+                  getlocal0
+                  constructsuper 0
+                  debugline 51
+                  getlocal0
+                  pushbyte -1
+                  initproperty QName(PackageNamespace(""),"m_iUin")
+                  debugline 52
+                  findpropstrict QName(PackageNamespace(""),"trace")
+                  pushstring "CUserBaseProfile"
+                  callpropvoid QName(PackageNamespace(""),"trace"), 1
+                  debugline 53
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.profile:CUserBaseProfile/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "CUserBaseProfile"
+               paramname "CUserBaseProfile"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 33
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                     debugline 55
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 55
+                     debug 1, "encode_length", 1, 55
+                     debug 1, "propertyArray", 2, 57
+                     pushstring "m_iUin"
+                     pushstring "int32"
+                     debugline 58
+                     newarray 2
+                     pushstring "m_szAccount"
+                     pushstring "string"
+                     debugline 59
+                     pushbyte 32
+                     newarray 3
+                     pushstring "m_nUserType"
+                     pushstring "int16"
+                     debugline 60
+                     newarray 2
+                     pushstring "m_isActivate"
+                     pushstring "int8"
+                     debugline 61
+                     newarray 2
+                     pushstring "m_szRealName"
+                     pushstring "string"
+                     debugline 62
+                     pushbyte 64
+                     newarray 3
+                     pushstring "m_szNickName"
+                     pushstring "string"
+                     debugline 63
+                     pushbyte 64
+                     newarray 3
+                     pushstring "m_szUserSignature"
+                     pushstring "string"
+                     debugline 64
+                     pushshort 128
+                     newarray 3
+                     pushstring "m_sex"
+                     pushstring "int8"
+                     debugline 65
+                     newarray 2
+                     pushstring "m_szCardID"
+                     pushstring "string"
+                     debugline 66
+                     pushbyte 19
+                     newarray 3
+                     pushstring "m_szBirthday"
+                     pushstring "string"
+                     debugline 67
+                     pushbyte 11
+                     newarray 3
+                     pushstring "m_isLunarbirthday"
+                     pushstring "int8"
+                     debugline 68
+                     newarray 2
+                     pushstring "m_szConstellation"
+                     pushstring "string"
+                     debugline 69
+                     pushbyte 10
+                     newarray 3
+                     pushstring "m_szRegdataTime"
+                     pushstring "string"
+                     debugline 70
+                     pushbyte 30
+                     newarray 3
+                     pushstring "m_szRegIP"
+                     pushstring "string"
+                     debugline 71
+                     pushbyte 20
+                     newarray 3
+                     pushstring "m_iFaceVersion"
+                     pushstring "int32"
+                     debugline 72
+                     newarray 2
+                     pushstring "m_shFaceID"
+                     pushstring "int16"
+                     debugline 73
+                     newarray 2
+                     pushstring "m_szSmallFaceURL"
+                     pushstring "string"
+                     debugline 74
+                     pushshort 256
+                     newarray 3
+                     pushstring "m_szMiddleFaceURL"
+                     pushstring "string"
+                     debugline 75
+                     pushshort 256
+                     newarray 3
+                     pushstring "m_szLargeFaceURL"
+                     pushstring "string"
+                     debugline 76
+                     pushshort 256
+                     newarray 3
+                     pushstring "m_szHomeProv"
+                     pushstring "string"
+                     debugline 77
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szHomeCity"
+                     pushstring "string"
+                     debugline 78
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szHomeTown"
+                     pushstring "string"
+                     debugline 79
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szLiveProv"
+                     pushstring "string"
+                     debugline 80
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szLiveCity"
+                     pushstring "string"
+                     debugline 81
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szLiveTown"
+                     pushstring "string"
+                     debugline 82
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szPhoneNum"
+                     pushstring "string"
+                     debugline 83
+                     pushbyte 20
+                     newarray 3
+                     pushstring "m_szQQ"
+                     pushstring "string"
+                     debugline 84
+                     pushbyte 20
+                     newarray 3
+                     pushstring "m_szMSN"
+                     pushstring "string"
+                     debugline 85
+                     pushbyte 50
+                     newarray 3
+                     pushstring "m_szEmail"
+                     pushstring "string"
+                     debugline 86
+                     pushbyte 100
+                     newarray 3
+                     pushstring "m_szContactAdr"
+                     pushstring "string"
+                     debugline 87
+                     pushbyte 100
+                     newarray 3
+                     pushstring "m_szZipCode"
+                     pushstring "string"
+                     debugline 88
+                     pushbyte 20
+                     newarray 3
+                     pushstring "m_isInboxVoice"
+                     pushstring "int8"
+                     debugline 89
+                     newarray 2
+                     newarray 32
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 92
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.profile:CUserBaseProfile/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "CUserBaseProfile"
+                  paramname "CUserBaseProfile"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                        debugline 95
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 95
+                        debug 1, "decode_length", 1, 95
+                        debugline 98
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iUin")
+                        debugline 99
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 32
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szAccount")
+                        debugline 100
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nUserType")
+                        debugline 101
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_isActivate")
+                        debugline 102
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 64
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szRealName")
+                        debugline 103
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 64
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szNickName")
+                        debugline 104
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushshort 128
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szUserSignature")
+                        debugline 105
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_sex")
+                        debugline 106
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 19
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szCardID")
+                        debugline 107
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 11
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szBirthday")
+                        debugline 108
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_isLunarbirthday")
+                        debugline 109
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 10
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szConstellation")
+                        debugline 110
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 30
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szRegdataTime")
+                        debugline 111
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 20
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szRegIP")
+                        debugline 112
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iFaceVersion")
+                        debugline 113
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_shFaceID")
+                        debugline 114
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushshort 256
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szSmallFaceURL")
+                        debugline 115
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushshort 256
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szMiddleFaceURL")
+                        debugline 116
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushshort 256
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szLargeFaceURL")
+                        debugline 118
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szHomeProv")
+                        debugline 119
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szHomeCity")
+                        debugline 120
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szHomeTown")
+                        debugline 121
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szLiveProv")
+                        debugline 122
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szLiveCity")
+                        debugline 123
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szLiveTown")
+                        debugline 124
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 20
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szPhoneNum")
+                        debugline 125
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 20
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szQQ")
+                        debugline 126
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 50
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szMSN")
+                        debugline 127
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 100
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szEmail")
+                        debugline 128
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 100
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szContactAdr")
+                        debugline 129
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 20
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szZipCode")
+                        debugline 130
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_isInboxVoice")
+                        debugline 131
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.profile:CUserBaseProfile/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                           debugline 172
+                           getlocal0
+                           pushscope
+                           debugline 174
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                  debugline 8
+                  findpropstrict Multiname("CUserBaseProfile",[PackageNamespace("com.aurora.protocol.profile")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 149
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.profile"),"CUserBaseProfile")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\profile;CUserBaseProfile.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

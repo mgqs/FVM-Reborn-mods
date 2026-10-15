@@ -1,0 +1,269 @@
+package com.aurora.ui.maogoutd.resource.Intruder
+{
+   public class a_4255
+   {
+      
+      private static var a_1286:a_4255;
+      
+      private static var a_1510:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1286", 0, 7
+               debug 1, "a_1510", 1, 8
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+               newarray 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4255()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory/MoveIntruderFactory"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                  debugline 20
+                  getlocal0
+                  pushscope
+                  debugline 21
+                  getlocal0
+                  constructsuper 0
+                  debugline 26
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_4255
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4255")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                     debugline 10
+                     getlocal0
+                     pushscope
+                     debugline 12
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1286")
+                     ifne ofs001c
+                     debugline 14
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1286")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1286")
+            ofs001c:
+                     debugline 17
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1286")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4256(iMoveIntruderTypeId:uint) : a_4206
+         {
+            trait method QName(PackageNamespace(""),"a_4256")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory/GetMoveIntruder"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "F:\FlashKenai\src;com\aurora\ui\maogoutd\resource\Intruder;MoveIntruderFactory.as"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                        debugline 28
+                        getlocal0
+                        pushscope
+                        debug 1, "iMoveIntruderTypeId", 0, 28
+                        debugline 30
+                        pushnull
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),PrivateNamespace("MoveIntruderFactory.as$122"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.Intruder"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("Object")])
+                        ifeq ofs002c
+                        debugline 32
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                        dup
+                        setlocal2
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),PrivateNamespace("MoveIntruderFactory.as$122"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.Intruder"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("Object")])
+                        getlocal2
+                        call 0
+                        kill 2
+                        returnvalue
+               ofs002c:
+                        debugline 35
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4257(iMoveIntruderTypeId:uint, fMoveIntruderCreator:Function) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_4257")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory/RegisterMoveIntruderCreator"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "a_4255"
+                     paramname "a_4255"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                           debugline 38
+                           getlocal0
+                           pushscope
+                           debug 1, "iMoveIntruderTypeId", 0, 38
+                           debug 1, "fMoveIntruderCreator", 1, 38
+                           debugline 40
+                           pushnull
+                           getlocal2
+                           equals
+                           dup
+                           iftrue ofs0028
+                           pop
+                           pushnull
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),PrivateNamespace("MoveIntruderFactory.as$122"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.Intruder"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("Object")])
+                           equals
+                           not
+                  ofs0028:
+                           iffalse ofs003c
+                           debugline 42
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterMoveIntruderCreator failed"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 44
+                           pushfalse
+                           returnvalue
+                  ofs003c:
+                           debugline 47
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),PrivateNamespace("MoveIntruderFactory.as$122"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.Intruder"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),StaticProtectedNs("Object")])
+                           debugline 49
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3923() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3923")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory/ClearAllCreator"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                              debugline 52
+                              getlocal0
+                              pushscope
+                              debugline 54
+                              findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                              newarray 0
+                              setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.Intruder:MoveIntruderFactory"),"a_1510")
+                              debugline 56
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                     debugline 5
+                     findpropstrict Multiname("a_4255",[PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 7
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4255")
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\Intruder;MoveIntruderFactory.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

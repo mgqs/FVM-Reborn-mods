@@ -1,0 +1,54 @@
+package com.aurora.ui.maogoutd.iface
+{
+   public interface IGameMoveMapBlock
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function MoveStart() : void;
+      
+      function ReleaseMoveMap() : void;
+      
+      function OnTimeInterval(param1:uint) : void;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\iface;IGameMoveMapBlock.as"
+         debugline 3
+         findpropstrict Multiname("IGameMoveMapBlock",[PackageNamespace("com.aurora.ui.maogoutd.iface")])
+         pushnull
+         newclass 83
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.iface"),"IGameMoveMapBlock")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

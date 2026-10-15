@@ -1,0 +1,289 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2703 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_bySeatID:int;
+      
+      public var m_uiTickCount:uint;
+      
+      public var m_byTeamNo:int;
+      
+      public var m_byEnemyCount:int;
+      
+      public var m_arrVanishEnemy:Array;
+      
+      private var a_858:CVanishEnemy;
+      
+      public function a_2703()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/CNotifyPlayerEnemyVanish"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/CNotifyPlayerEnemyVanish"
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/CNotifyPlayerEnemyVanish"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 8
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                     debugline 23
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 23
+                     debug 1, "encode_length", 1, 23
+                     debug 1, "propertyArray", 2, 25
+                     pushstring "m_bySeatID"
+                     pushstring "int8"
+                     debugline 26
+                     newarray 2
+                     pushstring "m_uiTickCount"
+                     pushstring "uint32"
+                     debugline 27
+                     newarray 2
+                     pushstring "m_byTeamNo"
+                     pushstring "int8"
+                     debugline 28
+                     newarray 2
+                     pushstring "m_byEnemyCount"
+                     pushstring "int8"
+                     debugline 29
+                     newarray 2
+                     pushstring "m_arrVanishEnemy"
+                     pushstring "object"
+                     pushstring "com.aurora.protocol.game.maogoutd.CVanishEnemy"
+                     pushstring "nosize"
+                     debugline 30
+                     newarray 3
+                     newarray 2
+                     newarray 5
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 33
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/CNotifyPlayerEnemyVanish"
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/CNotifyPlayerEnemyVanish"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                        debugline 36
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal3
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishEnemy")
+                        setlocal 5
+                        debug 1, "byte_array", 0, 36
+                        debug 1, "decode_length", 1, 36
+                        debug 1, "iDecodeSize", 2, 54
+                        debug 1, "i", 3, 57
+                        debugline 49
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_bySeatID")
+                        debugline 50
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_uint32"), 1
+                        initproperty QName(PackageNamespace(""),"m_uiTickCount")
+                        debugline 51
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byTeamNo")
+                        debugline 52
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byEnemyCount")
+                        debugline 55
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PackageNamespace(""),"m_arrVanishEnemy")
+                        debugline 57
+                        pushbyte 0
+                        setlocal 4
+                        jump ofs00a2
+               ofs0072:
+                        label
+                        debug 1, "stVanishEnemy", 4, 59
+                        debugline 59
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishEnemy")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishEnemy"), 0
+                        coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishEnemy")
+                        setlocal 5
+                        debugline 60
+                        getlocal 5
+                        getlocal1
+                        getlocal3
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+                        debugline 62
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_arrVanishEnemy")
+                        getlocal 4
+                        getlocal 5
+                        setproperty MultinameL([PrivateNamespace("com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish"),PackageNamespace(""),PackageNamespace("com.aurora.protocol.game.maogoutd"),PrivateNamespace("CNotifyPlayerEnemyVanish.as$318"),PackageInternalNs("com.aurora.protocol.game.maogoutd"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish"),StaticProtectedNs("com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish")])
+                        debugline 57
+                        inclocal_i 4
+               ofs00a2:
+                        getlocal 4
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_byEnemyCount")
+                        iflt ofs0072
+                        debugline 65
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyPlayerEnemyVanish/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                           debugline 68
+                           getlocal0
+                           pushscope
+                           debugline 70
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2703",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 139
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"a_2703")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyPlayerEnemyVanish.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

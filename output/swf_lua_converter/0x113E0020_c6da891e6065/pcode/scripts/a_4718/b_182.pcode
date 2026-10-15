@@ -1,0 +1,97 @@
+package a_4718
+{
+   public class b_182
+   {
+      
+      public static const a_432:uint = 0;
+      
+      public static const a_433:uint = 1;
+      
+      public static const a_434:uint = 2;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_432", 0, 5
+               findproperty QName(PackageNamespace(""),"a_432")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"a_432")
+               debug 1, "a_433", 1, 6
+               findproperty QName(PackageNamespace(""),"a_433")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"a_433")
+               debug 1, "a_434", 2, 7
+               findproperty QName(PackageNamespace(""),"a_434")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"a_434")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_182()
+      {
+         method
+            name "com.aurora.constant.game.maogoutd:EnmShotEffectType/EnmShotEffectType"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotEffectType.as"
+                  debugline 10
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotEffectType.as"
+         debugline 3
+         findpropstrict Multiname("b_182",[PackageNamespace("a_4718")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 17
+         popscope
+         initproperty QName(PackageNamespace("a_4718"),"b_182")
+         debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotEffectType.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

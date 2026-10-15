@@ -1,0 +1,106 @@
+package a_4725
+{
+   import flash.display.Loader;
+   import flash.net.URLLoader;
+   import flash.system.ApplicationDomain;
+   import flash.system.SecurityDomain;
+   
+   public class AurLoadTask
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var name:String;
+      
+      public var type:int;
+      
+      public var url:String;
+      
+      public var loader:Loader;
+      
+      public var stUrlLoader:URLLoader;
+      
+      public var iTryLoadTimes:int;
+      
+      public var isCheckPolicyFile:Boolean;
+      
+      public var isAddToCurrentAppDomain:Boolean;
+      
+      public var isAddToCurrentSecurityDomain:Boolean;
+      
+      public var stUserDefineAppDoman:ApplicationDomain;
+      
+      public var stUserDefineSecurityDomain:SecurityDomain;
+      
+      public function AurLoadTask()
+      {
+         method
+            name "com.aurora.data.load:AurLoadTask/AurLoadTask"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data\\load;AurLoadTask.as"
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data\\load;AurLoadTask.as"
+         debugline 8
+         findpropstrict Multiname("AurLoadTask",[PackageNamespace("a_4725")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 85
+         popscope
+         initproperty QName(PackageNamespace("a_4725"),"AurLoadTask")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data\\load;AurLoadTask.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

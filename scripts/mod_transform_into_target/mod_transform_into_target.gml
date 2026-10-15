@@ -57,7 +57,7 @@ function transform_into_target()
     }
     
     var world = get_world_position_from_grid(pos.col, pos.row);
-    var new_plant = instance_create_depth(world.x, world.y, 0, obj_type);
+    var new_plant = external_mod_spawn(world.x, world.y, 0, target_card_id, target_shape);
     new_plant.card_id = target_card_id;
     new_plant.card_shape = target_shape;
     new_plant.transform_recorded = true;

@@ -1,0 +1,279 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import a_4718.b_179;
+   import com.aurora.ui.maogoutd.resource.tools.a_4421;
+   
+   public class a_4012
+   {
+      
+      private static var a_1286:a_4012;
+      
+      private static var a_1364:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1286", 0, 8
+               debug 1, "a_1364", 1, 9
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+               newarray 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4012()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender:DefenseFactory/DefenseFactory"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                  debugline 21
+                  getlocal0
+                  pushscope
+                  debugline 22
+                  getlocal0
+                  constructsuper 0
+                  debugline 23
+                  getlocal0
+                  getlex QName(PackageNamespace("a_4718"),"b_179")
+                  getproperty QName(PackageNamespace(""),"a_403")
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.tools"),"a_4421")
+                  getproperty QName(PackageNamespace(""),"a_3926")
+                  callpropvoid QName(PackageNamespace(""),"a_4014"), 2
+                  debugline 24
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_4012
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender:DefenseFactory/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4012")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                     debugline 11
+                     getlocal0
+                     pushscope
+                     debugline 13
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1286")
+                     ifne ofs001c
+                     debugline 15
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1286")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1286")
+            ofs001c:
+                     debugline 18
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1286")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4013(iDefenseTypeId:uint) : a_3962
+         {
+            trait method QName(PackageNamespace(""),"a_4013")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender:DefenseFactory/GetDefense"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "a_4718"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                        debugline 26
+                        getlocal0
+                        pushscope
+                        debug 1, "iDefenseTypeId", 0, 26
+                        debugline 28
+                        pushnull
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageNamespace(""),PrivateNamespace("DefenseFactory.as$141"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("Object")])
+                        ifeq ofs002c
+                        debugline 30
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                        dup
+                        setlocal2
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageNamespace(""),PrivateNamespace("DefenseFactory.as$141"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("Object")])
+                        getlocal2
+                        call 0
+                        kill 2
+                        returnvalue
+               ofs002c:
+                        debugline 33
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4014(iDefenseTypeId:uint, fDefenseCreator:Function) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_4014")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender:DefenseFactory/RegisterDefenseCreator"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "com.aurora.ui.maogoutd.resource.tools"
+                     paramname "com.aurora.ui.maogoutd.resource.tools"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                           debugline 36
+                           getlocal0
+                           pushscope
+                           debug 1, "iDefenseTypeId", 0, 36
+                           debug 1, "fDefenseCreator", 1, 36
+                           debugline 38
+                           pushnull
+                           getlocal2
+                           equals
+                           dup
+                           iftrue ofs0028
+                           pop
+                           pushnull
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageNamespace(""),PrivateNamespace("DefenseFactory.as$141"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("Object")])
+                           equals
+                           not
+                  ofs0028:
+                           iffalse ofs003c
+                           debugline 40
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterDefenseCreator failed"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 42
+                           pushfalse
+                           returnvalue
+                  ofs003c:
+                           debugline 45
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageNamespace(""),PrivateNamespace("DefenseFactory.as$141"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),StaticProtectedNs("Object")])
+                           debugline 47
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3923() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3923")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender:DefenseFactory/ClearAllCreator"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                              debugline 50
+                              getlocal0
+                              pushscope
+                              debugline 52
+                              findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                              newarray 0
+                              setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:DefenseFactory"),"a_1364")
+                              debugline 54
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                     debugline 6
+                     findpropstrict Multiname("a_4012",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 15
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4012")
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;DefenseFactory.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

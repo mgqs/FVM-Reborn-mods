@@ -1,0 +1,526 @@
+package a_4752
+{
+   import flash.utils.Dictionary;
+   
+   public class TagComponent
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _tags:Array;
+      
+      private var _sumDict:Dictionary;
+      
+      public function TagComponent()
+      {
+         method
+            name "com.aurora.game.maogoutd.common:TagComponent/TagComponent"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                  debugline 113
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Array")
+                  constructprop QName(PackageNamespace(""),"Array"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                  debugline 145
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                  getlocal0
+                  constructsuper 0
+                  debugline 178
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function AddTag(iTag:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"AddTag")
+            dispid 0
+            method
+               name "com.aurora.game.maogoutd.common:TagComponent/AddTag"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               paramname "iTag"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                     debugline 119
+                     getlocal0
+                     pushscope
+                     debug 1, "iTag", 0, 119
+                     debugline 120
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                     getlocal1
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                     pushbyte -1
+                     ifne ofs002d
+                     debugline 121
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                     getlocal1
+                     callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                     debugline 122
+                     pushtrue
+                     returnvalue
+            ofs002d:
+                     debugline 124
+                     pushfalse
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function RemoveTag(iTag:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"RemoveTag")
+               dispid 0
+               method
+                  name "com.aurora.game.maogoutd.common:TagComponent/RemoveTag"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  paramname "iTag"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                        debugline 127
+                        getlocal0
+                        pushscope
+                        debug 1, "iTag", 0, 127
+                        debug 1, "idx", 1, 128
+                        debugline 128
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                        getlocal1
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                        convert_i
+                        setlocal2
+                        debugline 129
+                        getlocal2
+                        pushbyte -1
+                        ifeq ofs003f
+                        debugline 130
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                        getlocal2
+                        pushbyte 1
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                        debugline 131
+                        pushtrue
+                        returnvalue
+               ofs003f:
+                        debugline 133
+                        pushfalse
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function HasTag(iTag:int) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"HasTag")
+                  dispid 0
+                  method
+                     name "com.aurora.game.maogoutd.common:TagComponent/HasTag"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "iTag"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                           debugline 136
+                           getlocal0
+                           pushscope
+                           debug 1, "iTag", 0, 136
+                           debugline 137
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                           pushbyte -1
+                           equals
+                           not
+                           dup
+                           iftrue ofs0036
+                           pop
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                           getlocal1
+                           pushint 10000000
+                           add
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                           pushbyte -1
+                           equals
+                           not
+                  ofs0036:
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function ClearAll() : void
+               {
+                  trait method QName(PackageNamespace(""),"ClearAll")
+                     dispid 0
+                     method
+                        name "com.aurora.game.maogoutd.common:TagComponent/ClearAll"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                              debugline 140
+                              getlocal0
+                              pushscope
+                              debugline 141
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_tags")
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"length")
+                              debugline 142
+                              getlocal0
+                              findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                              constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                              initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                              debugline 143
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function AddSum(key:String) : void
+                  {
+                     trait method QName(PackageNamespace(""),"AddSum")
+                        dispid 0
+                        method
+                           name "com.aurora.game.maogoutd.common:TagComponent/AddSum"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"String")
+                           paramname "Boolean"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 4
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                 debugline 146
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "key", 0, 146
+                                 debugline 147
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                 pushnull
+                                 ifne ofs002c
+                                 debugline 148
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                 getlocal1
+                                 pushbyte 0
+                                 setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                        ofs002c:
+                                 debugline 150
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                 getlocal1
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                 pushbyte 1
+                                 add
+                                 setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                 debugline 151
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function RemoveSum(key:String) : void
+                     {
+                        trait method QName(PackageNamespace(""),"RemoveSum")
+                           dispid 0
+                           method
+                              name "com.aurora.game.maogoutd.common:TagComponent/RemoveSum"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"String")
+                              paramname "Boolean"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 4
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                    debugline 153
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "key", 0, 153
+                                    debugline 154
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                    pushnull
+                                    ifne ofs0023
+                                    debugline 156
+                                    returnvoid
+                           ofs0023:
+                                    debugline 158
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                    getlocal1
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                    decrement
+                                    setproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                    debugline 159
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                    pushbyte 0
+                                    ifnle ofs0051
+                                    debugline 160
+                                    getlocal0
+                                    getlocal1
+                                    callpropvoid QName(PackageNamespace(""),"DeleteSum"), 1
+                           ofs0051:
+                                    debugline 162
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function DeleteSum(key:String) : void
+                        {
+                           trait method QName(PackageNamespace(""),"DeleteSum")
+                              dispid 0
+                              method
+                                 name "com.aurora.game.maogoutd.common:TagComponent/DeleteSum"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"String")
+                                 paramname "Boolean"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                       debugline 164
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "key", 0, 164
+                                       debugline 165
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                       getlocal1
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                       pushnull
+                                       ifeq ofs0028
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                       getlocal1
+                                       deleteproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                       pop
+                              ofs0028:
+                                       debugline 166
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function GetSum(key:String) : int
+                           {
+                              trait method QName(PackageNamespace(""),"GetSum")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.game.maogoutd.common:TagComponent/GetSum"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"String")
+                                    paramname "_tags"
+                                    returns QName(PackageNamespace(""),"int")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 2
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                          debugline 168
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "key", 0, 168
+                                          debugline 169
+                                          getlex QName(PackageNamespace(""),"Math")
+                                          pushbyte 0
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                          getlocal1
+                                          getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                          pushnull
+                                          equals
+                                          iffalse ofs002c
+                                          pushbyte 0
+                                          convert_d
+                                          jump ofs0035
+                                 ofs002c:
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),"_sumDict")
+                                          getlocal1
+                                          getproperty MultinameL([PrivateNamespace("com.aurora.game.maogoutd.common:TagComponent"),Namespace("http://adobe.com/AS3/2006/builtin"),PackageNamespace(""),PrivateNamespace("TagComponent.as$86"),PackageNamespace("a_4752"),PackageInternalNs("a_4752"),ProtectedNamespace("com.aurora.game.maogoutd.common:TagComponent"),StaticProtectedNs("com.aurora.game.maogoutd.common:TagComponent")])
+                                          convert_d
+                                 ofs0035:
+                                          callproperty QName(PackageNamespace(""),"max"), 2
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function HasSum(key:String) : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"HasSum")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.game.maogoutd.common:TagComponent/HasSum"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"String")
+                                       paramname "iTag"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                             debugline 172
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "key", 0, 172
+                                             debugline 173
+                                             getlocal0
+                                             getlocal1
+                                             callproperty QName(PackageNamespace(""),"GetSum"), 1
+                                             pushbyte 0
+                                             greaterthan
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                              }
+                           }
+                           
+                           method
+                              name ""
+                              returns null
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 1
+                                 maxscopedepth 3
+                                 
+                                 code
+                                    getlocal0
+                                    pushscope
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                    debugline 5
+                                    findpropstrict Multiname("TagComponent",[PackageNamespace("a_4752")])
+                                    getlex QName(PackageNamespace(""),"Object")
+                                    pushscope
+                                    getlex QName(PackageNamespace(""),"Object")
+                                    newclass 7
+                                    popscope
+                                    initproperty QName(PackageNamespace("a_4752"),"TagComponent")
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;TagComponent.as"
+                                    debugline 1
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                           

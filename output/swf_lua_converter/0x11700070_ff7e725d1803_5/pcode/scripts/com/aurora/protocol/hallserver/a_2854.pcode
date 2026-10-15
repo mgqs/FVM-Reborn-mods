@@ -1,0 +1,203 @@
+package com.aurora.protocol.hallserver
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2854 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iServiceID:int;
+      
+      public var m_iExpireTime:int;
+      
+      public function a_2854()
+      {
+         method
+            name "com.aurora.protocol.hallserver:CServiceData/CServiceData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                  debugline 12
+                  getlocal0
+                  pushscope
+                  debugline 13
+                  getlocal0
+                  constructsuper 0
+                  debugline 14
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.hallserver:CServiceData/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.hallserver:CServiceData"
+               paramname "com.aurora.protocol.hallserver:CServiceData"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                     debugline 16
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 16
+                     debug 1, "encode_length", 1, 16
+                     debugline 18
+                     pushfalse
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.hallserver:CServiceData/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.hallserver:CServiceData"
+                  paramname "com.aurora.protocol.hallserver:CServiceData"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                        debugline 21
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 21
+                        debug 1, "decode_length", 1, 21
+                        debug 1, "siez", 2, 23
+                        debugline 23
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        convert_i
+                        setlocal3
+                        debugline 24
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iServiceID")
+                        debugline 25
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iExpireTime")
+                        debugline 26
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.hallserver:CServiceData/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                           debugline 29
+                           getlocal0
+                           pushscope
+                           debugline 31
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                  debugline 7
+                  findpropstrict Multiname("a_2854",[PackageNamespace("com.aurora.protocol.hallserver")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 156
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2854")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CServiceData.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

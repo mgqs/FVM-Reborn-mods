@@ -1,0 +1,103 @@
+package a_4718
+{
+   public class b_179
+   {
+      
+      public static const a_403:uint = 1;
+      
+      public static const enm_HelmetCopperScoop:uint = 2;
+      
+      public static const enm_HelmetSilverScoop:uint = 3;
+      
+      public static const enm_HelmetGoldenScoop:uint = 4;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_403", 0, 5
+               findproperty QName(PackageNamespace(""),"a_403")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"a_403")
+               debug 1, "enm_HelmetCopperScoop", 1, 6
+               findproperty QName(PackageNamespace(""),"enm_HelmetCopperScoop")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"enm_HelmetCopperScoop")
+               debug 1, "enm_HelmetSilverScoop", 2, 7
+               findproperty QName(PackageNamespace(""),"enm_HelmetSilverScoop")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"enm_HelmetSilverScoop")
+               debug 1, "enm_HelmetGoldenScoop", 3, 8
+               findproperty QName(PackageNamespace(""),"enm_HelmetGoldenScoop")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"enm_HelmetGoldenScoop")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_179()
+      {
+         method
+            name "com.aurora.constant.game.maogoutd:EnmDefenseTypeID/EnmDefenseTypeID"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmDefenseTypeID.as"
+                  debugline 29
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmDefenseTypeID.as"
+         debugline 3
+         findpropstrict Multiname("b_179",[PackageNamespace("a_4718")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 95
+         popscope
+         initproperty QName(PackageNamespace("a_4718"),"b_179")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\game\\maogoutd;EnmDefenseTypeID.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

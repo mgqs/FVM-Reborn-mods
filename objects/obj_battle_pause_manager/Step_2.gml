@@ -452,6 +452,10 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 }
 
 if (keyboard_check_pressed(vk_escape)) {
+    if (instance_exists(obj_mod_menu)) {
+        obj_mod_menu.close_panel();
+        exit;
+    }
     if (!global.is_paused) {
         // ESC暂停：暂停并显示菜单
         global.is_paused = true;

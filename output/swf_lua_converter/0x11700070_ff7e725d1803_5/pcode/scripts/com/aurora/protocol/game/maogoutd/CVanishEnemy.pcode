@@ -1,0 +1,236 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CVanishEnemy implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iEnemyID:int;
+      
+      public var m_iEnemyTypeID:int;
+      
+      public var m_byYGridNo:int;
+      
+      public var m_byXGridNo:int;
+      
+      public function CVanishEnemy()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CVanishEnemy/CVanishEnemy"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                  debugline 15
+                  getlocal0
+                  pushscope
+                  debugline 16
+                  getlocal0
+                  constructsuper 0
+                  debugline 17
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CVanishEnemy/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol"
+               paramname "com.aurora.protocol"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                     debugline 19
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 19
+                     debug 1, "encode_length", 1, 19
+                     debugline 30
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iEnemyID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 31
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iEnemyTypeID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 32
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byYGridNo")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 33
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byXGridNo")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 35
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CVanishEnemy/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol"
+                  paramname "com.aurora.protocol"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                        debugline 38
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 38
+                        debug 1, "decode_length", 1, 38
+                        debugline 49
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iEnemyID")
+                        debugline 50
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iEnemyTypeID")
+                        debugline 51
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byYGridNo")
+                        debugline 52
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byXGridNo")
+                        debugline 54
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CVanishEnemy/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                           debugline 57
+                           getlocal0
+                           pushscope
+                           debugline 59
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                  debugline 8
+                  findpropstrict Multiname("CVanishEnemy",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 132
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CVanishEnemy")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CVanishEnemy.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

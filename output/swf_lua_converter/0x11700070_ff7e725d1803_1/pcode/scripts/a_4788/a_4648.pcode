@@ -1,0 +1,785 @@
+package a_4788
+{
+   import flash.events.StatusEvent;
+   import flash.net.LocalConnection;
+   
+   public class a_4648
+   {
+      
+      private static var conn:LocalConnection;
+      
+      public static var identity:String = "^-^无名氏^-^";
+      
+      public static var OmitTrace:Boolean = true;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "conn", 0, 12
+               debug 1, "identity", 1, 14
+               findproperty QName(PackageNamespace(""),"identity")
+               pushstring "^-^无名氏^-^"
+               setproperty QName(PackageNamespace(""),"identity")
+               debug 1, "OmitTrace", 2, 15
+               findproperty QName(PackageNamespace(""),"OmitTrace")
+               pushtrue
+               setproperty QName(PackageNamespace(""),"OmitTrace")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4648()
+      {
+         method
+            name "com.aurora.utils.net:AS3Debugger/AS3Debugger"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                  debugline 17
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  constructsuper 0
+                  debugline 19
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "AS3Debugger 为静态类，不允许实例化"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_4649(msg:*, id:String = "") : void
+      {
+         trait method QName(PackageNamespace(""),"a_4649")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.utils.net:AS3Debugger/Trace"
+               flag HAS_OPTIONAL
+               flag HAS_PARAM_NAMES
+               param null
+               param QName(PackageNamespace(""),"String")
+               paramname "http://adobe.com/AS3/2006/builtin"
+               paramname "http://adobe.com/AS3/2006/builtin"
+               optional Utf8("")
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 5
+                  localcount 4
+                  initscopedepth 3
+                  maxscopedepth 6
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     debug 1, "msg", 0, 21
+                     debug 1, "id", 1, 21
+                     debugline 23
+                     getlex QName(PackageNamespace("a_4788"),"a_4648")
+                     getproperty QName(PackageNamespace(""),"OmitTrace")
+                     iftrue ofs0020
+                     returnvoid
+            ofs0020:
+                     debugline 25
+                     getlocal2
+                     pushstring ""
+                     ifne ofs0033
+                     debugline 26
+                     getlex QName(PackageNamespace("a_4788"),"a_4648")
+                     getproperty QName(PackageNamespace(""),"identity")
+                     coerce_s
+                     setlocal2
+            ofs0033:
+                     debugline 28
+                     getlex QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"conn")
+                     pushnull
+                     ifne ofs005d
+                     debugline 29
+                     findproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"conn")
+                     findpropstrict QName(PackageNamespace("flash.net"),"LocalConnection")
+                     constructprop QName(PackageNamespace("flash.net"),"LocalConnection"), 0
+                     setproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"conn")
+                     debugline 30
+                     getlex QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"conn")
+                     getlex QName(PackageNamespace("flash.events"),"StatusEvent")
+                     getproperty QName(PackageNamespace(""),"STATUS")
+                     getlex QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"onStatus")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+            ofs005d:
+                     debugline 35
+                     getlocal1
+                     callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")]), 0
+                     pushstring "[object Object]"
+                     ifne ofs007b
+                     debugline 36
+                     findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString")
+                     getlocal1
+                     callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString"), 1
+                     coerce_a
+                     setlocal1
+                     jump ofs00b5
+            ofs007b:
+                     debugline 37
+                     getlocal1
+                     getlex QName(PackageNamespace(""),"Array")
+                     istypelate
+                     iffalse ofs0095
+                     debugline 38
+                     findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString")
+                     getlocal1
+                     callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString"), 1
+                     coerce_a
+                     setlocal1
+                     jump ofs00b5
+            ofs0095:
+                     debugline 39
+                     getlocal1
+                     getlex QName(PackageNamespace(""),"XML")
+                     istypelate
+                     iffalse ofs00ac
+                     debugline 40
+                     getlocal1
+                     callproperty Multiname("toXMLString",[PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")]), 0
+                     coerce_a
+                     setlocal1
+                     jump ofs00b5
+            ofs00ac:
+                     debugline 42
+                     getlocal1
+                     callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")]), 0
+                     coerce_a
+                     setlocal1
+            ofs00b5:
+                     debugline 45
+                     findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"htmlFormat")
+                     getlocal1
+                     callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"htmlFormat"), 1
+                     coerce_a
+                     setlocal1
+                     pushstring "<font color=\'#ff0000\'>["
+                     debugline 46
+                     findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getTime")
+                     callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getTime"), 0
+                     add
+                     pushstring "]</font>"
+                     add
+                     pushstring "<font size=\'12\' color=\'#00ff00\' face=\'宋体\'>"
+                     add
+                     getlocal1
+                     add
+                     pushstring "</font>"
+                     add
+                     coerce_a
+                     setlocal1
+            ofs00de:
+                     debugline 48
+                     getlex QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"conn")
+                     pushstring "_debugConnection"
+                     pushstring "transMsg"
+                     getlocal1
+                     getlocal2
+                     callpropvoid QName(PackageNamespace(""),"send"), 4
+            ofs00ef:
+                     debugline 49
+                     jump ofs0103
+            ofs00f5:
+                     getlocal0
+                     pushscope
+                     newcatch 0
+                     dup
+                     setlocal3
+                     dup
+                     pushscope
+                     swap
+                     setslot 1
+                     popscope
+                     kill 3
+            ofs0103:
+                     debugline 52
+                     returnvoid
+                  end ; code
+                  try from ofs00de to ofs00ef target ofs00f5 type QName(PackageNamespace(""),"Error") name QName(PackageNamespace(""),"e") end
+               end ; body
+            end ; method
+         }
+         
+         private static function htmlFormat(msg:String) : String
+         {
+            trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"htmlFormat")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.utils.net:AS3Debugger/private:htmlFormat"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"String")
+                  paramname "[object Object]"
+                  returns QName(PackageNamespace(""),"String")
+                  
+                  body
+                     maxstack 4
+                     localcount 2
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                        debugline 53
+                        getlocal0
+                        pushscope
+                        debug 1, "msg", 0, 53
+                        debugline 71
+                        getlocal1
+                        getlex QName(PackageNamespace(""),"RegExp")
+                        pushstring "\\&"
+                        pushstring "g"
+                        construct 2
+                        pushstring "&amp;"
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                        coerce_s
+                        setlocal1
+                        debugline 72
+                        getlocal1
+                        getlex QName(PackageNamespace(""),"RegExp")
+                        pushstring "\\<"
+                        pushstring "g"
+                        construct 2
+                        pushstring "&lt;"
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                        coerce_s
+                        setlocal1
+                        debugline 73
+                        getlocal1
+                        getlex QName(PackageNamespace(""),"RegExp")
+                        pushstring "\\>"
+                        pushstring "g"
+                        construct 2
+                        pushstring "&gt;"
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                        coerce_s
+                        setlocal1
+                        debugline 74
+                        getlocal1
+                        getlex QName(PackageNamespace(""),"RegExp")
+                        pushstring "\\\""
+                        pushstring "g"
+                        construct 2
+                        pushstring "&quot;"
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                        coerce_s
+                        setlocal1
+                        debugline 75
+                        getlocal1
+                        getlex QName(PackageNamespace(""),"RegExp")
+                        pushstring "\\\'"
+                        pushstring "g"
+                        construct 2
+                        pushstring "&apos;"
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"replace"), 2
+                        coerce_s
+                        setlocal1
+                        debugline 77
+                        getlocal1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private static function getTime() : String
+            {
+               trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getTime")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.utils.net:AS3Debugger/private:getTime"
+                     returns QName(PackageNamespace(""),"String")
+                     
+                     body
+                        maxstack 3
+                        localcount 2
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                           debugline 79
+                           getlocal0
+                           pushscope
+                           debug 1, "date", 0, 81
+                           debugline 81
+                           findpropstrict QName(PackageNamespace(""),"Date")
+                           constructprop QName(PackageNamespace(""),"Date"), 0
+                           coerce QName(PackageNamespace(""),"Date")
+                           setlocal1
+                           debugline 82
+                           findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime")
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"getHours"), 0
+                           callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime"), 1
+                           pushstring ":"
+                           add
+                           findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime")
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"getMinutes"), 0
+                           callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime"), 1
+                           add
+                           pushstring ":"
+                           add
+                           findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime")
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"getSeconds"), 0
+                           callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime"), 1
+                           add
+                           pushstring "."
+                           add
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"getMilliseconds"), 0
+                           add
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private static function getFormatTime(t:uint) : String
+               {
+                  trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"getFormatTime")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.utils.net:AS3Debugger/private:getFormatTime"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"uint")
+                        paramname "[object Object]"
+                        returns QName(PackageNamespace(""),"String")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 3
+                           maxscopedepth 4
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                              debugline 84
+                              getlocal0
+                              pushscope
+                              debug 1, "t", 0, 84
+                              debugline 86
+                              getlocal1
+                              pushbyte 10
+                              lessthan
+                              iffalse ofs0021
+                              pushstring "0"
+                              getlocal1
+                              add
+                              coerce_s
+                              jump ofs0026
+                     ofs0021:
+                              pushstring ""
+                              getlocal1
+                              add
+                              coerce_s
+                     ofs0026:
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private static function onStatus(a_4730:StatusEvent) : void
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"onStatus")
+                        flag FINAL
+                        dispid 7
+                        method
+                           name "com.aurora.utils.net:AS3Debugger/private:onStatus"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("flash.events"),"StatusEvent")
+                           paramname "http://adobe.com/AS3/2006/builtin"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 3
+                              initscopedepth 3
+                              maxscopedepth 4
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                                 debugline 88
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "a_4730", 0, 88
+                                 jump ofs0030
+                        ofs0011:
+                                 label
+                                 debugline 92
+                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                 pushstring "LocalConnection.send() succeeded"
+                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                 debugline 93
+                                 jump ofs0073
+                        ofs0024:
+                                 label
+                                 debugline 96
+                                 jump ofs0073
+                        ofs002b:
+                                 label
+                                 jump ofs0073
+                        ofs0030:
+                                 debugline 90
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"level")
+                                 setlocal2
+                                 pushstring "status"
+                                 debugline 91
+                                 getlocal2
+                                 ifstrictne ofs0047
+                                 pushbyte 0
+                                 jump ofs0063
+                        ofs0047:
+                                 pushstring "error"
+                                 debugline 94
+                                 getlocal2
+                                 ifstrictne ofs0057
+                                 pushbyte 1
+                                 jump ofs0063
+                        ofs0057:
+                                 jump ofs0061
+                                 pushbyte 2
+                                 jump ofs0061
+                        ofs0061:
+                                 pushbyte 2
+                        ofs0063:
+                                 kill 2
+                                 lookupswitch ofs002b, [ofs0011, ofs0024, ofs002b]
+                        ofs0073:
+                                 debugline 98
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     private static function objectToString(obj:Object) : String
+                     {
+                        trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString")
+                           flag FINAL
+                           dispid 8
+                           method
+                              name "com.aurora.utils.net:AS3Debugger/private:objectToString"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"Object")
+                              paramname "[object Object]"
+                              returns QName(PackageNamespace(""),"String")
+                              
+                              body
+                                 maxstack 5
+                                 localcount 6
+                                 initscopedepth 3
+                                 maxscopedepth 4
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                                    debugline 100
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce_s
+                                    setlocal3
+                                    debug 1, "obj", 0, 100
+                                    debug 1, "str", 1, 102
+                                    debug 1, "k", 2, 103
+                                    pushstring "{"
+                                    debugline 102
+                                    coerce_s
+                                    setlocal2
+                                    debugline 103
+                                    pushbyte 0
+                                    setlocal 4
+                                    getlocal1
+                                    coerce_a
+                                    setlocal 5
+                                    jump ofs00ae
+                           ofs0031:
+                                    label
+                                    getlocal 5
+                                    getlocal 4
+                                    nextname
+                                    coerce_s
+                                    setlocal3
+                                    debugline 104
+                                    getlocal1
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                    callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")]), 0
+                                    pushstring "[object Object]"
+                                    ifne ofs006b
+                                    debugline 105
+                                    getlocal2
+                                    getlocal3
+                                    pushstring ":"
+                                    add
+                                    findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString")
+                                    getlocal1
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                    callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString"), 1
+                                    add
+                                    pushstring ","
+                                    add
+                                    add
+                                    coerce_s
+                                    setlocal2
+                                    jump ofs00ae
+                           ofs006b:
+                                    debugline 106
+                                    getlocal1
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                    getlex QName(PackageNamespace(""),"Array")
+                                    istypelate
+                                    iffalse ofs0099
+                                    debugline 107
+                                    getlocal2
+                                    getlocal3
+                                    pushstring ":"
+                                    add
+                                    findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString")
+                                    getlocal1
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                    callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString"), 1
+                                    add
+                                    pushstring ","
+                                    add
+                                    add
+                                    coerce_s
+                                    setlocal2
+                                    jump ofs00ae
+                           ofs0099:
+                                    debugline 109
+                                    getlocal2
+                                    getlocal3
+                                    pushstring ":"
+                                    add
+                                    getlocal1
+                                    getlocal3
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                    add
+                                    pushstring ","
+                                    add
+                                    add
+                                    coerce_s
+                                    setlocal2
+                           ofs00ae:
+                                    debugline 103
+                                    hasnext2 5, 4
+                                    iftrue ofs0031
+                                    kill 5
+                                    kill 4
+                                    debugline 112
+                                    getlocal2
+                                    pushbyte 0
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"length")
+                                    decrement
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"substr"), 2
+                                    coerce_s
+                                    setlocal2
+                                    debugline 113
+                                    getlocal2
+                                    pushstring "}"
+                                    add
+                                    setlocal2
+                                    debugline 114
+                                    getlocal2
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private static function arrayToString(a:Array) : String
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString")
+                              flag FINAL
+                              dispid 9
+                              method
+                                 name "com.aurora.utils.net:AS3Debugger/private:arrayToString"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"Array")
+                                 paramname "[object Object]"
+                                 returns QName(PackageNamespace(""),"String")
+                                 
+                                 body
+                                    maxstack 4
+                                    localcount 5
+                                    initscopedepth 3
+                                    maxscopedepth 4
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                                       debugline 117
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "a", 0, 117
+                                       debug 1, "len", 1, 119
+                                       debug 1, "str", 2, 120
+                                       debug 1, "i", 3, 121
+                                       debugline 119
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"length")
+                                       convert_u
+                                       setlocal2
+                                       pushstring "["
+                                       debugline 120
+                                       coerce_s
+                                       setlocal3
+                                       debugline 121
+                                       pushbyte 0
+                                       convert_u
+                                       setlocal 4
+                                       jump ofs00aa
+                              ofs0039:
+                                       label
+                                       debugline 122
+                                       getlocal1
+                                       getlocal 4
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                       callproperty Multiname("toString",[PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")]), 0
+                                       pushstring "[object Object]"
+                                       ifne ofs0068
+                                       debugline 123
+                                       getlocal3
+                                       findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString")
+                                       getlocal1
+                                       getlocal 4
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                       callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"objectToString"), 1
+                                       pushstring ","
+                                       add
+                                       add
+                                       coerce_s
+                                       setlocal3
+                                       jump ofs00a2
+                              ofs0068:
+                                       debugline 124
+                                       getlocal1
+                                       getlocal 4
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                       getlex QName(PackageNamespace(""),"Array")
+                                       istypelate
+                                       iffalse ofs0092
+                                       debugline 125
+                                       getlocal3
+                                       findpropstrict QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString")
+                                       getlocal1
+                                       getlocal 4
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                       callproperty QName(PrivateNamespace("com.aurora.utils.net:AS3Debugger"),"arrayToString"), 1
+                                       pushstring ","
+                                       add
+                                       add
+                                       coerce_s
+                                       setlocal3
+                                       jump ofs00a2
+                              ofs0092:
+                                       debugline 127
+                                       getlocal3
+                                       getlocal1
+                                       getlocal 4
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.utils.net:AS3Debugger"),PackageNamespace(""),PackageNamespace("a_4788"),PrivateNamespace("AS3Debugger.as$250"),PackageInternalNs("a_4788"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.utils.net:AS3Debugger"),StaticProtectedNs("com.aurora.utils.net:AS3Debugger")])
+                                       pushstring ","
+                                       add
+                                       add
+                                       coerce_s
+                                       setlocal3
+                              ofs00a2:
+                                       debugline 121
+                                       getlocal 4
+                                       increment
+                                       convert_u
+                                       setlocal 4
+                              ofs00aa:
+                                       getlocal 4
+                                       getlocal2
+                                       iflt ofs0039
+                                       debugline 130
+                                       getlocal3
+                                       pushbyte 0
+                                       getlocal3
+                                       getproperty QName(PackageNamespace(""),"length")
+                                       decrement
+                                       callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"substr"), 2
+                                       coerce_s
+                                       setlocal3
+                                       debugline 131
+                                       getlocal3
+                                       pushstring "]"
+                                       add
+                                       setlocal3
+                                       debugline 132
+                                       getlocal3
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                              debugline 10
+                              findpropstrict Multiname("a_4648",[PackageNamespace("a_4788")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 35
+                              popscope
+                              initproperty QName(PackageNamespace("a_4788"),"a_4648")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils\\net;AS3Debugger.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

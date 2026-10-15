@@ -1,0 +1,2341 @@
+{
+  "expected": [
+    {
+      "name": "com.aurora.ui.maogoutd.resource.IResource",
+      "script_index": 0
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.game.a_3491",
+      "script_index": 1
+    },
+    {
+      "name": "a_4753.b_150",
+      "script_index": 2
+    },
+    {
+      "name": "com.aurora.protocol.common.CMessageBody",
+      "script_index": 3
+    },
+    {
+      "name": "com.aurora.protocol.a_2664",
+      "script_index": 4
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.b_147",
+      "script_index": 5
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+      "script_index": 6
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.Intruder.a_4255",
+      "script_index": 7
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap",
+      "script_index": 8
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.Intruder.a_4258",
+      "script_index": 9
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.Intruder.a_4269",
+      "script_index": 10
+    },
+    {
+      "name": "a_4715.AurUtility",
+      "script_index": 11
+    },
+    {
+      "name": "a_4718.b_203",
+      "script_index": 12
+    },
+    {
+      "name": "a_4718.b_181",
+      "script_index": 13
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.energy.a_4162",
+      "script_index": 14
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_4012",
+      "script_index": 15
+    },
+    {
+      "name": "a_4718.b_180",
+      "script_index": 16
+    },
+    {
+      "name": "a_4718.b_182",
+      "script_index": 17
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.shot.a_4388",
+      "script_index": 18
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.props.EffectObjectValue",
+      "script_index": 19
+    },
+    {
+      "name": "a_4718.b_179",
+      "script_index": 20
+    },
+    {
+      "name": "a_4718.b_183",
+      "script_index": 21
+    },
+    {
+      "name": "a_4724.AvatarDetailInfo",
+      "script_index": 22
+    },
+    {
+      "name": "a_4728.a_1778",
+      "script_index": 23
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.CVanishDefender",
+      "script_index": 24
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+      "script_index": 25
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2708",
+      "script_index": 26
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2703",
+      "script_index": 27
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2696",
+      "script_index": 28
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2702",
+      "script_index": 29
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2704",
+      "script_index": 30
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2695",
+      "script_index": 31
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2694",
+      "script_index": 32
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.a_2707",
+      "script_index": 33
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.CGameResult",
+      "script_index": 34
+    },
+    {
+      "name": "com.aurora.protocol.game.maogoutd.CUseCard",
+      "script_index": 35
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata",
+      "script_index": 36
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData",
+      "script_index": 37
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData",
+      "script_index": 38
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata",
+      "script_index": 39
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+      "script_index": 40
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.a_4409",
+      "script_index": 41
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.a_4408",
+      "script_index": 42
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.a_4440",
+      "script_index": 43
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+      "script_index": 44
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.a_3909",
+      "script_index": 45
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "script_index": 46
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.a_4128",
+      "script_index": 47
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.a_4425",
+      "script_index": 48
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie",
+      "script_index": 49
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie",
+      "script_index": 50
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie",
+      "script_index": 51
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie",
+      "script_index": 52
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie",
+      "script_index": 53
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "script_index": 54
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+      "script_index": 55
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.a_4108",
+      "script_index": 56
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.shot.a_4348",
+      "script_index": 57
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.a_4142",
+      "script_index": 58
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.a_4111",
+      "script_index": 59
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.energy.a_4157",
+      "script_index": 60
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.effect.a_4143",
+      "script_index": 61
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3976",
+      "script_index": 62
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3975",
+      "script_index": 63
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3960",
+      "script_index": 64
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3971",
+      "script_index": 65
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3953",
+      "script_index": 66
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3977",
+      "script_index": 67
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3959",
+      "script_index": 68
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_3972",
+      "script_index": 69
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.defender.a_4002",
+      "script_index": 70
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.tools.a_4421",
+      "script_index": 71
+    },
+    {
+      "name": "com.aurora.ui.maogoutd.resource.avatar.a_3924",
+      "script_index": 72
+    }
+  ],
+  "missing": [],
+  "files": [
+    {
+      "file": "source\\scripts\\a_4715\\AurUtility.as",
+      "sha256": "1ff02084a0e4da0f477bab930ee247a13283886d478d50fb402b3a1351120ced",
+      "classes": [
+        "a_4715.AurUtility"
+      ],
+      "methods": [
+        "AurUtility",
+        "a_1727"
+      ],
+      "imports": [
+        "flash.net.getClassByAlias",
+        "flash.utils.getDefinitionByName"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.net.getClassByAlias",
+        "flash.utils.getDefinitionByName"
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_179.as",
+      "sha256": "20a146e60d191ca46ef82d9925461b18c50a6f1d2fbc940488905e44182c4835",
+      "classes": [
+        "a_4718.b_179"
+      ],
+      "methods": [
+        "b_179"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_180.as",
+      "sha256": "3f843e038c0eef7c28c5ca0bd3051a653d212f5ce8b92e5243cf848419e8ab42",
+      "classes": [
+        "a_4718.b_180"
+      ],
+      "methods": [
+        "b_180"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_181.as",
+      "sha256": "38ecf1383e3835201d859b608609056077742cea78688f078c8e818b217bcad9",
+      "classes": [
+        "a_4718.b_181"
+      ],
+      "methods": [
+        "b_181"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_182.as",
+      "sha256": "34005ff10f74bb3bba26babcb74af26e21e48a0609bcdc6162a9aa4b3040da8c",
+      "classes": [
+        "a_4718.b_182"
+      ],
+      "methods": [
+        "b_182"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_183.as",
+      "sha256": "e97de8104a1c1a2ed6aaae0d464aff0d015aaa3e1ab0d629454c7b96311e1365",
+      "classes": [
+        "a_4718.b_183"
+      ],
+      "methods": [
+        "b_183"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_203.as",
+      "sha256": "594a321824b9535f2af5c1b72e7dc7d46aa3defe9749fefef2c27daa348c3254",
+      "classes": [
+        "a_4718.b_203"
+      ],
+      "methods": [
+        "b_203"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 static",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4724\\AvatarDetailInfo.as",
+      "sha256": "6be4237a974a3ccd33a86b6a4dcc9290ba701f3740d4c99a22efade29b7d49eb",
+      "classes": [
+        "a_4724.AvatarDetailInfo"
+      ],
+      "methods": [
+        "AvatarDetailInfo",
+        "setAvaterDeatil"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'? 342884624 : 342884640;'",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\a_4728\\a_1778.as",
+      "sha256": "bcd01dbf8df23a84998fcdaa6354904efbfdc01ccd078515f87087fd12c253a6",
+      "classes": [
+        "a_4728.a_1778"
+      ],
+      "methods": [
+        "a_1778",
+        "clone",
+        "dataObject",
+        "dataObject"
+      ],
+      "imports": [
+        "flash.events.Event",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [
+        "Event"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.events.Event",
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4753\\b_150.as",
+      "sha256": "0f0298eb7b0ef7076fc8eb72b4c6f637fa65fd2d046c2c27c22354fc2bf6d945",
+      "classes": [
+        "a_4753.b_150"
+      ],
+      "methods": [
+        "a_2109",
+        "a_2110",
+        "a_2111",
+        "a_2112",
+        "a_2056",
+        "a_2113",
+        "a_2057",
+        "a_2058",
+        "a_2059",
+        "a_2060",
+        "a_2061",
+        "a_2062",
+        "a_2063",
+        "a_2065",
+        "a_2114",
+        "a_2115",
+        "a_2116",
+        "a_2117",
+        "a_2118",
+        "a_2070",
+        "a_2071",
+        "a_2072"
+      ],
+      "imports": [
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\a_2664.as",
+      "sha256": "eee25cb27ee4584b5e46a319fc2b578ffd9a5c08cc7fc828b65442eb327f468f",
+      "classes": [
+        "com.aurora.protocol.a_2664"
+      ],
+      "methods": [
+        "a_2664",
+        "encode_int8",
+        "decode_int8",
+        "encode_uint8",
+        "decode_uint8",
+        "encode_int16",
+        "decode_int16",
+        "encode_uint16",
+        "decode_uint16",
+        "encode_int32",
+        "decode_int32",
+        "encode_uint32",
+        "decode_uint32",
+        "encode_int64",
+        "decode_int64",
+        "encode_string",
+        "decode_string",
+        "encode_memory",
+        "decode_memory",
+        "a_2665",
+        "a_2666"
+      ],
+      "imports": [
+        "a_4715.AurUtility",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.errors.EOFError",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'? int(4294967295 - Math.'",
+      "external_imports": [
+        "flash.errors.EOFError",
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\common\\CMessageBody.as",
+      "sha256": "e05fdf32fdc19931237ccae7e1283fa12a23b2709a85ff4f8954ae30cd409a7c",
+      "classes": [
+        "com.aurora.protocol.common.CMessageBody"
+      ],
+      "methods": [
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2694.as",
+      "sha256": "4359abb14aa91713f64c23ad9ef3cea0110c3a05f0d7b2e62350ea91696acb13",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2694"
+      ],
+      "methods": [
+        "a_2694",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_byLoseTeamID\",\"int8'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2695.as",
+      "sha256": "46d3dd7ec53ec2f64c2eb5a192445f7627a604392e6a7d037693d2ffc83bc0d8",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2695"
+      ],
+      "methods": [
+        "a_2695",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_nTotalIntruderWaveN'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2696.as",
+      "sha256": "ddb066f92e7bff70d47d38791c6333616b7055ef6779b2fdbd9461c28780f431",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2696"
+      ],
+      "methods": [
+        "a_2696",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_byRow\",\"uint8\"],[\"m'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2702.as",
+      "sha256": "fdb621a381a16c37ef48b0ce38c785694eb3e3033153840bc908fd92290613e9",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2702"
+      ],
+      "methods": [
+        "a_2702",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_bySeatID\",\"int8\"],['",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2703.as",
+      "sha256": "05f699da81628005854bde8efea6fd7021eaf29b546cb06884403278b48d6866",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2703"
+      ],
+      "methods": [
+        "a_2703",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_bySeatID\",\"int8\"],['",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2704.as",
+      "sha256": "4b0c0eb3730f1026ae5f7a1db466b32340345529aa5a517aa6aede983fe5426f",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2704"
+      ],
+      "methods": [
+        "a_2704",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_uiTickCount\",\"uint3'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2707.as",
+      "sha256": "89aeae4e5ec94d70cd23373ff8074d35e4d3c40405a98696cb82e4725d7c080b",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2707"
+      ],
+      "methods": [
+        "a_2707",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_byPlayerSeatID\",\"in'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2708.as",
+      "sha256": "fb91ac208b6189a4731362ddf81f988f38da3d3bb820d4ccea4c9566c1632f3a",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2708"
+      ],
+      "methods": [
+        "a_2708",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_uiTickCount\",\"uint3'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CGameResult.as",
+      "sha256": "e31ac31a4f13f3e6db9f3225a9e309ca553cc02555ab9a0c07e87eafb4407124",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CGameResult"
+      ],
+      "methods": [
+        "CGameResult",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_bySeatID\",\"int8\"],['",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CUseCard.as",
+      "sha256": "23d716c65943993389cd48078d354b35f80ae133066e6a3892bb8901d9cddfb5",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CUseCard"
+      ],
+      "methods": [
+        "CUseCard",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_iPlayerCardID\",\"int'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishDefender.as",
+      "sha256": "a74e1f09316764e3be8cbab7c08338581160c419832af6d13709e10a9f7bedca",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CVanishDefender"
+      ],
+      "methods": [
+        "CVanishDefender",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_iDefenderID\",\"int32'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishEnemy.as",
+      "sha256": "bfef4e767c864a1b9609f3c6331209ea7ca12d99cb83f58c524b94ca32070079",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CVanishEnemy"
+      ],
+      "methods": [
+        "CVanishEnemy",
+        "encode",
+        "decode",
+        "dump"
+      ],
+      "imports": [
+        "com.aurora.protocol.a_2664",
+        "com.aurora.protocol.common.CMessageBody",
+        "flash.utils.ByteArray"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[[\"m_iEnemyID\",\"int16\"],'",
+      "external_imports": [
+        "flash.utils.ByteArray"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\b_147.as",
+      "sha256": "5f2a602e5a3bc2e9880628a5f2f495d0edd920f5008cc962116a62194c1e68ae",
+      "classes": [
+        "com.aurora.ui.maogoutd.b_147"
+      ],
+      "methods": [
+        "a_3600",
+        "a_3601",
+        "a_3602",
+        "a_3603",
+        "a_3604",
+        "a_3605",
+        "a_3606",
+        "a_3607",
+        "a_3435",
+        "a_3608",
+        "a_555",
+        "a_3436",
+        "a_3610",
+        "a_558",
+        "a_3612",
+        "a_3613",
+        "a_1847",
+        "a_3477"
+      ],
+      "imports": [
+        "a_4753.b_150",
+        "com.aurora.protocol.game.maogoutd.a_2694",
+        "com.aurora.protocol.game.maogoutd.a_2695",
+        "com.aurora.protocol.game.maogoutd.a_2696",
+        "com.aurora.protocol.game.maogoutd.a_2702",
+        "com.aurora.protocol.game.maogoutd.a_2703",
+        "com.aurora.protocol.game.maogoutd.a_2704",
+        "com.aurora.protocol.game.maogoutd.a_2707",
+        "com.aurora.protocol.game.maogoutd.a_2708",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\game\\a_3491.as",
+      "sha256": "e134bda4ad46f6b4cea0270b59c5c286c92a1f1b2011506e5ec88fc88321cab5",
+      "classes": [
+        "com.aurora.ui.maogoutd.game.a_3491"
+      ],
+      "methods": [
+        "a_3491",
+        "a_3492",
+        "a_3494",
+        "a_3495",
+        "a_3442",
+        "a_3496",
+        "a_3443",
+        "a_3497",
+        "a_3444",
+        "a_3498",
+        "a_3446",
+        "a_3499",
+        "a_3447",
+        "a_3500",
+        "a_3445",
+        "a_3501",
+        "a_3459",
+        "a_3457",
+        "a_3502",
+        "a_3503"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+        "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+        "com.aurora.ui.maogoutd.resource.defender.a_3953",
+        "com.aurora.ui.maogoutd.resource.defender.a_3959",
+        "com.aurora.ui.maogoutd.resource.defender.a_3960",
+        "com.aurora.ui.maogoutd.resource.defender.a_3962",
+        "com.aurora.ui.maogoutd.resource.defender.a_3971",
+        "com.aurora.ui.maogoutd.resource.defender.a_3975",
+        "com.aurora.ui.maogoutd.resource.defender.a_3977",
+        "com.aurora.ui.maogoutd.resource.tools.a_4408",
+        "com.aurora.ui.maogoutd.resource.tools.a_4409"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'!(null == this.m_stProte'",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleFieldView.as",
+      "sha256": "ffeb6791485c30ab420f4a14fce700b1c63146a321d6c4c0566ab70c96ebe3af",
+      "classes": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView"
+      ],
+      "methods": [
+        "BattleFieldView",
+        "arrBackDepthBitmap",
+        "arrFrontDepthBitmap",
+        "stFieldRowIntruderStatusArray",
+        "iBattleFieldStageType",
+        "isOwnBattleField",
+        "iIntruderMoveDirection",
+        "stFieldGridsVector",
+        "iTimeIntervalNum",
+        "a_3423",
+        "a_3424",
+        "a_3426",
+        "a_3427",
+        "a_3428",
+        "a_3430",
+        "a_3431",
+        "a_1797",
+        "a_3432",
+        "a_3433",
+        "a_3434",
+        "a_3415",
+        "a_3435",
+        "a_1847",
+        "a_3436",
+        "a_2180",
+        "a_3416",
+        "a_3437",
+        "a_3438",
+        "a_3441",
+        "a_3442",
+        "a_3443",
+        "a_3444",
+        "a_3445",
+        "a_3446",
+        "a_3447",
+        "a_3448",
+        "a_3449",
+        "a_3450",
+        "a_3451",
+        "a_3452",
+        "a_3453",
+        "a_3454",
+        "a_3455",
+        "a_3456",
+        "a_3457",
+        "a_3458",
+        "a_3459",
+        "a_3460",
+        "a_3461",
+        "a_3462",
+        "a_3463",
+        "a_3466",
+        "a_3467",
+        "a_3468",
+        "a_3469",
+        "a_3470",
+        "a_3471"
+      ],
+      "imports": [
+        "a_4718.b_180",
+        "a_4718.b_181",
+        "a_4718.b_203",
+        "com.aurora.ui.maogoutd.b_147",
+        "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4255",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4258",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4269",
+        "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+        "com.aurora.ui.maogoutd.resource.defender.a_3953",
+        "com.aurora.ui.maogoutd.resource.defender.a_3959",
+        "com.aurora.ui.maogoutd.resource.defender.a_3960",
+        "com.aurora.ui.maogoutd.resource.defender.a_3962",
+        "com.aurora.ui.maogoutd.resource.defender.a_3971",
+        "com.aurora.ui.maogoutd.resource.defender.a_3972",
+        "com.aurora.ui.maogoutd.resource.defender.a_3975",
+        "com.aurora.ui.maogoutd.resource.defender.a_3976",
+        "com.aurora.ui.maogoutd.resource.defender.a_3977",
+        "com.aurora.ui.maogoutd.resource.defender.a_4012",
+        "com.aurora.ui.maogoutd.resource.effect.a_4111",
+        "com.aurora.ui.maogoutd.resource.effect.a_4128",
+        "com.aurora.ui.maogoutd.resource.effect.a_4142",
+        "com.aurora.ui.maogoutd.resource.energy.a_4157",
+        "com.aurora.ui.maogoutd.resource.energy.a_4162",
+        "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+        "com.aurora.ui.maogoutd.resource.shot.a_4348",
+        "com.aurora.ui.maogoutd.resource.tools.a_4408",
+        "com.aurora.ui.maogoutd.resource.tools.a_4440",
+        "flash.display.Bitmap",
+        "flash.display.MovieClip",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.media.Sound",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "Sprite"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      private'",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.MovieClip",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.media.Sound",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\a_3909.as",
+      "sha256": "faf97460ba2705c58902c25e40dd6e76108c2d730ad85b440a6e9b37b714190e",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.a_3909"
+      ],
+      "methods": [
+        "a_3909",
+        "width",
+        "height",
+        "iTotalFrames",
+        "stDisplayBitmap",
+        "a_3910",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3914",
+        "a_3915",
+        "playForward",
+        "nextFrame",
+        "gotoAndStop",
+        "a_3419",
+        "a_3917",
+        "a_3918"
+      ],
+      "imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.FrameLabel",
+        "flash.display.MovieClip",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.ColorTransform",
+        "flash.geom.Matrix",
+        "flash.geom.Point",
+        "flash.geom.Rectangle",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "Sprite"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& Boolean(this.a_1269))'",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.FrameLabel",
+        "flash.display.MovieClip",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.ColorTransform",
+        "flash.geom.Matrix",
+        "flash.geom.Point",
+        "flash.geom.Rectangle",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\avatar\\a_3924.as",
+      "sha256": "3483d0a555afb1011718a7c2eb5a497318d48bcbccdff00336508ff19c10f903",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.avatar.a_3924"
+      ],
+      "methods": [
+        "a_3924",
+        "a_3925",
+        "a_1797",
+        "a_3969",
+        "a_3954"
+      ],
+      "imports": [
+        "a_4724.AvatarDetailInfo",
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.defender.a_3953"
+      ],
+      "base_classes": [
+        "a_3953"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'!isOwnBattleFiled && Boo'",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\a_3939.as",
+      "sha256": "a2ee5f15bc891803cdb92b069993bd8408bc3108742018b84bcaf4a9179ff248",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.a_3939"
+      ],
+      "methods": [
+        "a_3939",
+        "a_3926",
+        "a_3940"
+      ],
+      "imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "Bitmap"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\IrregularCirlceFogBitmapdata.as",
+      "sha256": "d800406bbf8b76f984c9e8201b34b5fb6a31f035537ba4e547218455047f7e0a",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata"
+      ],
+      "methods": [
+        "IrregularCirlceFogBitmapdata"
+      ],
+      "imports": [
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "BitmapData"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RatEarthHoleBitmapdata.as",
+      "sha256": "569b89ffa496fbb8f4845be4c6a66880b576ebecf9b7467f940597f75195fbdc",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata"
+      ],
+      "methods": [
+        "RatEarthHoleBitmapdata"
+      ],
+      "imports": [
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "BitmapData"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RedDangerFieldAlarmBitmapData.as",
+      "sha256": "71ed943dd78274d948e678c941dd9964673a8a604dddc1d58f3f77905de1e0f1",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData"
+      ],
+      "methods": [
+        "RedDangerFieldAlarmBitmapData"
+      ],
+      "imports": [
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "BitmapData"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RegularCirlceFogBitmapData.as",
+      "sha256": "21b9bb3cf053a15853b747a546a0b617220c0cf29e806bdb35add0f6959047b0",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData"
+      ],
+      "methods": [
+        "RegularCirlceFogBitmapData"
+      ],
+      "imports": [
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "BitmapData"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3953.as",
+      "sha256": "a5b41dbee6490c97fe1de7302a3661b3cdc43c66edcdfda35bb6fa35c5d0be9c",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3953"
+      ],
+      "methods": [
+        "a_3953",
+        "iBattleFighterType",
+        "iBreadFighterType",
+        "isShotAllTheTime",
+        "isCanInWater",
+        "isOnlyOnTray",
+        "a_1797",
+        "a_3954",
+        "a_3969",
+        "a_3955",
+        "a_3956",
+        "a_3957",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.shot.a_4348",
+        "com.aurora.ui.maogoutd.resource.shot.a_4388",
+        "flash.display.FrameLabel"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": [
+        "flash.display.FrameLabel"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3959.as",
+      "sha256": "604336ab5dafcdc3127b4276fc9908f90b52d902070c3b1fa108ff5a3ce8b748",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3959"
+      ],
+      "methods": [
+        "a_3959",
+        "numPoisonMultiplier",
+        "numColdSlowMultiplier",
+        "numHotMultiplier",
+        "a_1797",
+        "a_3969",
+        "a_3957",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3960.as",
+      "sha256": "ee50bf042befdd330ddee8e13a07774d8993ba04bc64e94c4fc73c6c687887de",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3960"
+      ],
+      "methods": [
+        "a_3960",
+        "isCanBeEaten",
+        "a_1797",
+        "a_3961",
+        "a_3969",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "flash.display.FrameLabel"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& iCurrentTime >= this.'",
+      "external_imports": [
+        "flash.display.FrameLabel"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3962.as",
+      "sha256": "32a029c2534f258fd7210f17867267f8995d6181842d873e6e98dc3a42ecf241",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3962"
+      ],
+      "methods": [
+        "a_3962",
+        "iXPosSheft",
+        "iYPosSheft",
+        "isNeedAddShawdow",
+        "iDefenseTypeID",
+        "iDefensePrice",
+        "iLifeValue",
+        "stFieldGrid",
+        "a_3512",
+        "a_3963",
+        "a_1797",
+        "a_3964",
+        "a_3969",
+        "a_3940",
+        "a_3970"
+      ],
+      "imports": [
+        "a_4753.b_150",
+        "com.aurora.protocol.game.maogoutd.CVanishDefender",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.Bitmap"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& this.a_1339 <= 0)\\n   '",
+      "external_imports": [
+        "flash.display.Bitmap"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3971.as",
+      "sha256": "c9b9027cbdbff2622bcfc79d26416e7c5dc66cdb3da7507d183f2086af8e7bfe",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3971"
+      ],
+      "methods": [
+        "a_3971",
+        "iEnergyTypeID",
+        "a_1797",
+        "a_3969",
+        "a_3955",
+        "a_3956",
+        "a_3957",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.energy.a_4157",
+        "com.aurora.ui.maogoutd.resource.energy.a_4162",
+        "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+        "flash.display.FrameLabel",
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": [
+        "flash.display.FrameLabel",
+        "flash.display.MovieClip"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3972.as",
+      "sha256": "a4b490aef729b72f1c6ac2e4b2078fca7faf928e6b4beaa19ed9491071fcddab",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3972"
+      ],
+      "methods": [
+        "a_3972",
+        "a_1797",
+        "a_3973",
+        "a_3974",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+        "com.aurora.ui.maogoutd.resource.tools.a_4425",
+        "flash.display.FrameLabel"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'% 2 == 0)\\n         {\\n   '",
+      "external_imports": [
+        "flash.display.FrameLabel"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3975.as",
+      "sha256": "0cb28c7ab8e9268602242f199585392d0ae45423fb6aecec70f5d956ceea95a4",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3975"
+      ],
+      "methods": [
+        "a_3975",
+        "a_1797",
+        "a_3969",
+        "a_3957",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "flash.display.FrameLabel"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[a_1275] as FrameLabel).'",
+      "external_imports": [
+        "flash.display.FrameLabel"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3976.as",
+      "sha256": "6362bbc4008ba5659a00ccf75f391d292b9559d68267755ae756ef6b7e9b129b",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3976"
+      ],
+      "methods": [
+        "a_3976"
+      ],
+      "imports": [],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 4 行：父类需要完整迁移：a_3962",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3977.as",
+      "sha256": "1c4aa54854ac06143fa1dabd5fd291dfff2a23708affabd2097b42181dbb05de",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3977"
+      ],
+      "methods": [
+        "a_3977",
+        "a_1797",
+        "a_3969",
+        "a_3957",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491"
+      ],
+      "base_classes": [
+        "a_3962"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_4002.as",
+      "sha256": "a451edf98a01a2255a943bedd3dd9b31c4628f4decb1c48bc37dea26e5cc57b7",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_4002"
+      ],
+      "methods": [
+        "a_4002",
+        "a_3926",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3940",
+        "play",
+        "stop",
+        "a_4003"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3976"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_4012.as",
+      "sha256": "8fdf1eaf39e3756848ae0cd693ca682c487dbc21c69997b5a7222787b56f15fc",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_4012"
+      ],
+      "methods": [
+        "a_4012",
+        "getInstance",
+        "a_4013",
+        "a_4014",
+        "a_3923"
+      ],
+      "imports": [
+        "a_4718.b_179",
+        "com.aurora.ui.maogoutd.resource.tools.a_4421"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\CoffeeWakeUpBeanDefenseMovie.as",
+      "sha256": "a64ec6273f3172b63ac8578be6dafe9293300dca61ee01477f37802078d0fea5",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie"
+      ],
+      "methods": [
+        "CoffeeWakeUpBeanDefenseMovie"
+      ],
+      "imports": [
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "MovieClip"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[Embed(source=\"/_assets/'",
+      "external_imports": [
+        "flash.display.MovieClip"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\CoffeeWakeUpBeanDefenseResource.as",
+      "sha256": "77f24050c88e8a6fcb7cc7f1a90399d153aca58c40a2f089972dbe084c97bb5c",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource"
+      ],
+      "methods": [
+        "CoffeeWakeUpBeanDefenseResource",
+        "a_3932"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.IResource",
+        "flash.display.Sprite"
+      ],
+      "base_classes": [
+        "Sprite"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[SWF(width=\"550\", height'",
+      "external_imports": [
+        "flash.display.Sprite"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4108.as",
+      "sha256": "cd6d06bd15628ce6c58a0964bc5e045e21e3f871fb7adf03f8e86c83a6136e7d",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4108"
+      ],
+      "methods": [
+        "a_4108",
+        "a_1797",
+        "play",
+        "stop",
+        "a_3940",
+        "a_4109"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4111.as",
+      "sha256": "1f6721f0d0913d11167b29305765ecaf39fa6f2a559dd340bb4ca1645243a84d",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4111"
+      ],
+      "methods": [
+        "a_4111",
+        "a_3926",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3940",
+        "play",
+        "stop",
+        "a_4003"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4128.as",
+      "sha256": "2a57f7707a77c04e7d7bc0d6966902b4c49c8f78cb5dc40b8b1674e77ba4b4b8",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4128"
+      ],
+      "methods": [
+        "a_4128",
+        "a_1797",
+        "a_4129",
+        "a_4130"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata",
+        "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData",
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.Sprite",
+        "flash.geom.Matrix"
+      ],
+      "base_classes": [
+        "Sprite"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'!a_1413)\\n         {\\n    '",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.Sprite",
+        "flash.geom.Matrix"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4142.as",
+      "sha256": "bf8a3d86dcdc3b7b4d67f78a91b7bdad276243f8a91d6c9c603ec03546f8b50f",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4142"
+      ],
+      "methods": [
+        "a_4142",
+        "a_3926",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3940",
+        "play",
+        "stop",
+        "a_4003"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4143.as",
+      "sha256": "202e8864da476d66e8f452f0236b96f500c556c2b2846ca9d2f04b45f4a63907",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4143"
+      ],
+      "methods": [
+        "a_4143",
+        "a_3926",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3940",
+        "play",
+        "stop",
+        "a_4003"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CommonWaterSprayMovie.as",
+      "sha256": "3b4963e674d84f7346ac28d7909de6e19eefd330506284b86a1a7e37bf633fe1",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie"
+      ],
+      "methods": [
+        "CommonWaterSprayMovie"
+      ],
+      "imports": [
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "MovieClip"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.MovieClip"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\PlacementEffectMovie.as",
+      "sha256": "30f20a200874d77ab117b92d82b2dec242814d2247d129956f591bc1a1d6cff5",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie"
+      ],
+      "methods": [
+        "PlacementEffectMovie"
+      ],
+      "imports": [
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "MovieClip"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.MovieClip"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SmallMouseMoveIntruderBoomDieMovie.as",
+      "sha256": "ee9b978773e6062481f0b5fdcd6742d39b9d8bc0917fa344ffa338b73c0eb5a0",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie"
+      ],
+      "methods": [
+        "SmallMouseMoveIntruderBoomDieMovie"
+      ],
+      "imports": [
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "MovieClip"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.MovieClip"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4157.as",
+      "sha256": "d661af0ae652cbfc242d13f129a10ecb02d678786477f2a54916249139158b6b",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.energy.a_4157"
+      ],
+      "methods": [
+        "a_4157",
+        "globalID",
+        "a_1797",
+        "a_3940",
+        "a_4160",
+        "a_4161"
+      ],
+      "imports": [
+        "a_4728.a_1778",
+        "a_4753.b_150",
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.MouseEvent",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& this.a_1436 > 0)\\n    '",
+      "external_imports": [
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.MouseEvent",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4162.as",
+      "sha256": "765bf6c56e3812bf439b610ace9200d7fef1db3fb529efac3220ef8aec55caf4",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.energy.a_4162"
+      ],
+      "methods": [
+        "a_4162",
+        "getInstance",
+        "a_4163",
+        "a_4164",
+        "a_3923"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4206.as",
+      "sha256": "e352da0ae4e977f65080b327ec6c6685312a129f65119bed49ceaad93edd543e",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206"
+      ],
+      "methods": [
+        "a_4206",
+        "iSpaceState",
+        "isCannotSeeByFighter",
+        "iLifeValue",
+        "iArmorLifeValue",
+        "isEatingDefense",
+        "iYPosSkewing",
+        "a_1797",
+        "globalMoveFighterID",
+        "iGlobalMoveFighterID",
+        "a_3940",
+        "ResetMovieStatus",
+        "a_4208",
+        "a_3969",
+        "a_4209",
+        "a_4210",
+        "a_4211",
+        "a_4212",
+        "a_4215",
+        "a_4216",
+        "play",
+        "stop",
+        "a_4140",
+        "a_4160"
+      ],
+      "imports": [
+        "a_4718.b_182",
+        "a_4753.b_150",
+        "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "com.aurora.ui.maogoutd.resource.defender.a_3962",
+        "com.aurora.ui.maogoutd.resource.effect.a_4108",
+        "com.aurora.ui.maogoutd.resource.effect.a_4143",
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.FrameLabel",
+        "flash.display.Sprite",
+        "flash.geom.ColorTransform",
+        "flash.geom.Rectangle"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& Boolean(this.m_stCurr'",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.FrameLabel",
+        "flash.display.Sprite",
+        "flash.geom.ColorTransform",
+        "flash.geom.Rectangle"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4255.as",
+      "sha256": "8e0dbc224add7f23886afa1ef2c1438d48a4874b44582936835b5e95d6985841",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4255"
+      ],
+      "methods": [
+        "a_4255",
+        "getInstance",
+        "a_4256",
+        "a_4257",
+        "a_3923"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4258.as",
+      "sha256": "8c870840b468b781d99c9cdf2352fa62e03897ecf990cccb3b052abab05d05bc",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4258"
+      ],
+      "methods": [
+        "a_4258",
+        "a_1797",
+        "a_3608",
+        "a_4259"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n         this.a_1512'",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4269.as",
+      "sha256": "32d408f55f498fc4e965854bdb0704a22c11cad3aa5fa55592390c41b2bf192e",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+      ],
+      "methods": [
+        "a_4269"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 var",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\IResource.as",
+      "sha256": "db6bc332d3778084a939360f845ed2642c5c6755b8ba75938df55916c531d13f",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.IResource"
+      ],
+      "methods": [
+        "a_3932"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 class，遇到 interface",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\ISmallGameDetailInfoMap.as",
+      "sha256": "2ecef879c7bce2325ac0d026c9ff50f1cbbb4cd7bc97f80cdf209cde0412a986",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap"
+      ],
+      "methods": [
+        "a_3575",
+        "a_3576",
+        "a_3577",
+        "a_3578"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 class，遇到 interface",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\EffectObjectValue.as",
+      "sha256": "db5c41aca4d737fadbe4d1c5ff537f21554eadc77a165c71962f1f5a43f529f7",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.props.EffectObjectValue"
+      ],
+      "methods": [
+        "EffectObjectValue"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 6 行：需要 function，遇到 var",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\IBaseProp.as",
+      "sha256": "84c6c2984b6633f5423300ffddff095277959696f5a408bd7034d20396884e13",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.props.IBaseProp"
+      ],
+      "methods": [
+        "a_4322",
+        "a_4323",
+        "a_4326",
+        "a_4327",
+        "a_4328",
+        "a_4329"
+      ],
+      "imports": [
+        "flash.display.MovieClip",
+        "flash.display.Sprite"
+      ],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.MovieClip",
+        "flash.display.Sprite"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4348.as",
+      "sha256": "3ac66b6386f9b2bec65ac0fe83f05006e5e62c6ddd123d0f3a893c87beaf871f",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.shot.a_4348"
+      ],
+      "methods": [
+        "a_4348",
+        "iShotSequenceNum",
+        "globalID",
+        "a_1797",
+        "a_4349",
+        "a_3940",
+        "a_4350",
+        "a_4216",
+        "a_4351",
+        "a_4352"
+      ],
+      "imports": [
+        "a_4718.b_182",
+        "a_4718.b_183",
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+        "com.aurora.ui.maogoutd.resource.a_3909",
+        "flash.display.FrameLabel"
+      ],
+      "base_classes": [
+        "a_3909"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[this.m_iYGridNo].push(t'",
+      "external_imports": [
+        "flash.display.FrameLabel"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4388.as",
+      "sha256": "3d0f569a4bbb6c55ed24ad462b5bf5c2b3bfc37cd83937ca8ef7d9b1d25e013a",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.shot.a_4388"
+      ],
+      "methods": [
+        "a_4388",
+        "getInstance",
+        "a_4389",
+        "a_4390",
+        "a_3923"
+      ],
+      "imports": [],
+      "base_classes": [],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'[];\\n      \\n      public '",
+      "external_imports": []
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4408.as",
+      "sha256": "6a284f22b53faa347ca8556158fc9616f55e1612538cb3a23204f7cfd726277e",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4408"
+      ],
+      "methods": [
+        "a_4408",
+        "a_3940"
+      ],
+      "imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "Bitmap"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4409.as",
+      "sha256": "e0b4ca4e501ace1f479a267aa52ec1814e53d381c3d468ddd9918ab1ba72eb36",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4409"
+      ],
+      "methods": [
+        "a_4409",
+        "a_3940"
+      ],
+      "imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "Bitmap"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4421.as",
+      "sha256": "530b0b0d011827634ab401d8669c5c22ddb70dcbbbbe07d29a917ea577f8fd8c",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4421"
+      ],
+      "methods": [
+        "a_4421",
+        "a_3926",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3940",
+        "play",
+        "stop",
+        "a_4003"
+      ],
+      "imports": [
+        "a_4718.b_179",
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "com.aurora.ui.maogoutd.game.a_3491",
+        "com.aurora.ui.maogoutd.resource.avatar.a_3924",
+        "com.aurora.ui.maogoutd.resource.defender.a_3976",
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "a_3976"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& !(a_1334.m_stAttackFi'",
+      "external_imports": [
+        "flash.display.BitmapData",
+        "flash.display.MovieClip",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Point",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4425.as",
+      "sha256": "8653413ba36b0a12b1b2d66bbc98cbbe4b2aa3e002eb996abe74662f98f49298",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4425"
+      ],
+      "methods": [
+        "a_4425",
+        "a_3926",
+        "a_1797",
+        "a_3940",
+        "a_4426"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView",
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Matrix",
+        "flash.utils.Timer"
+      ],
+      "base_classes": [
+        "Sprite"
+      ],
+      "conversion": "unconverted",
+      "reason": "不支持的字符或运算符：'&& parent.contains(this)'",
+      "external_imports": [
+        "flash.display.Bitmap",
+        "flash.display.BitmapData",
+        "flash.display.Sprite",
+        "flash.events.Event",
+        "flash.events.TimerEvent",
+        "flash.geom.Matrix",
+        "flash.utils.Timer"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4440.as",
+      "sha256": "fdf04357d517309edf071aa0b67dc52619c32f243c42e915fda6a74e080521ae",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4440"
+      ],
+      "methods": [
+        "a_4440",
+        "a_3926",
+        "a_3940"
+      ],
+      "imports": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData",
+        "flash.display.BitmapData"
+      ],
+      "base_classes": [
+        "a_4408"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.BitmapData"
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetScoopMovie.as",
+      "sha256": "332644dc752e79f0e227dcca3f97d3f1f82c97c42deb230eec4983f195bbdc24",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie"
+      ],
+      "methods": [
+        "HelmetScoopMovie"
+      ],
+      "imports": [
+        "flash.display.MovieClip"
+      ],
+      "base_classes": [
+        "MovieClip"
+      ],
+      "conversion": "unconverted",
+      "reason": "第 3 行：需要 public，遇到 import",
+      "external_imports": [
+        "flash.display.MovieClip"
+      ]
+    }
+  ]
+}

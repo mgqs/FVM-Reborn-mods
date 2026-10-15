@@ -1,0 +1,15 @@
+{
+  "status": "conversion_blocked",
+  "source": "C:\\Users\\18203\\Desktop\\0x11700070.swf",
+  "errors": [
+    "严格模式阻止输出：380 个脚本未转换；目前仅支持单个无外部依赖的回调类，不能忽略其他脚本。"
+  ],
+  "lua_emitted": false,
+  "as3_catalog_entries": 380,
+  "exported_sources": 380,
+  "total_methods": 3132,
+  "unsupported_sources": 380,
+  "abc_method_bodies": 3797,
+  "pcode_files": 380,
+  "tag_count": 302
+}

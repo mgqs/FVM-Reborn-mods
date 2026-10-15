@@ -1,0 +1,24 @@
+{
+  "name": "fvm-reborn-mod",
+  "version": "1.0.0",
+  "description": "《美食大战老鼠：重生》是一款基于 GameMaker 引擎重新编写的《美食大战老鼠》同人游戏，旨在回归塔防初衷，优化不合理的游戏体验。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgqs/FVM-Reborn-mods.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mgqs/FVM-Reborn-mods/issues"
+  },
+  "homepage": "https://github.com/mgqs/FVM-Reborn-mods#readme"
+}

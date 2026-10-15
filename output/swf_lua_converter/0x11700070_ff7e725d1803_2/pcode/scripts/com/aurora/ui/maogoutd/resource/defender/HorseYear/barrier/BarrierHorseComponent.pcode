@@ -1,0 +1,637 @@
+package com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.defender.a_3962;
+   
+   public class BarrierHorseComponent
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _attackType:int = 0;
+      
+      public var _baseDefense:a_3962 = null;
+      
+      public var m_stBattleView:BattleFieldView;
+      
+      public var stTargetField:a_3491;
+      
+      private var a_1321:int = 99999;
+      
+      private const a_1310:int = 8;
+      
+      public var _trans:int = 1;
+      
+      private var _duration:int = 0;
+      
+      public var _shotHurtPower:int = 0;
+      
+      private var _xOffset:int = 0;
+      
+      private var _yOffset:int = 0;
+      
+      private var _iCreateTime:int = -1;
+      
+      private var _iXGridNo:int = 0;
+      
+      private var _iYGridNo:int = 0;
+      
+      public function BarrierHorseComponent()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/BarrierHorseComponent"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                  debugline 9
+                  getlocal0
+                  pushscope
+                  debugline 11
+                  getlocal0
+                  constructsuper 0
+                  debugline 12
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function get m_iXGridNo() : int
+      {
+         trait getter QName(PackageNamespace(""),"m_iXGridNo")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/m_iXGridNo/get"
+               returns QName(PackageNamespace(""),"int")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                     debugline 37
+                     getlocal0
+                     pushscope
+                     debugline 38
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"_trans")
+                     pushbyte 3
+                     equals
+                     dup
+                     iffalse ofs0020
+                     pop
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"_baseDefense")
+                     getproperty QName(PackageNamespace(""),"stFieldGrid")
+                     pushnull
+                     equals
+                     not
+            ofs0020:
+                     iffalse ofs002b
+                     debugline 39
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iXGridNo")
+                     returnvalue
+            ofs002b:
+                     debugline 41
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"_baseDefense")
+                     getproperty QName(PackageNamespace(""),"stFieldGrid")
+                     getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function get m_iYGridNo() : int
+         {
+            trait getter QName(PackageNamespace(""),"m_iYGridNo")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/m_iYGridNo/get"
+                  returns QName(PackageNamespace(""),"int")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                        debugline 43
+                        getlocal0
+                        pushscope
+                        debugline 44
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"_trans")
+                        pushbyte 3
+                        equals
+                        dup
+                        iffalse ofs0020
+                        pop
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"_baseDefense")
+                        getproperty QName(PackageNamespace(""),"stFieldGrid")
+                        pushnull
+                        equals
+                        not
+               ofs0020:
+                        iffalse ofs002b
+                        debugline 45
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iYGridNo")
+                        returnvalue
+               ofs002b:
+                        debugline 47
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"_baseDefense")
+                        getproperty QName(PackageNamespace(""),"stFieldGrid")
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function InitData(baseDefense:a_3962, trans:int, xOffset:int, yOffset:int) : void
+            {
+               trait method QName(PackageNamespace(""),"InitData")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/InitData"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                     param QName(PackageNamespace(""),"int")
+                     param QName(PackageNamespace(""),"int")
+                     param QName(PackageNamespace(""),"int")
+                     paramname "a_3966"
+                     paramname "a_3966"
+                     paramname "a_3966"
+                     paramname "a_3966"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 5
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                           debugline 50
+                           getlocal0
+                           pushscope
+                           debug 1, "baseDefense", 0, 50
+                           debug 1, "trans", 1, 50
+                           debug 1, "xOffset", 2, 50
+                           debug 1, "yOffset", 3, 50
+                           debugline 51
+                           getlocal0
+                           pushbyte 0
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_attackType")
+                           debugline 52
+                           getlocal0
+                           getlocal1
+                           initproperty QName(PackageNamespace(""),"_baseDefense")
+                           debugline 53
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"_baseDefense")
+                           pushbyte 0
+                           dup
+                           callpropvoid QName(PackageNamespace(""),"SetAnimationOnce2Loop"), 2
+                           debugline 54
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"stFieldGrid")
+                           initproperty QName(PackageNamespace(""),"stTargetField")
+                           debugline 55
+                           getlocal0
+                           pushint 99999
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                           debugline 56
+                           getlocal0
+                           getlocal2
+                           initproperty QName(PackageNamespace(""),"_trans")
+                           debugline 57
+                           getlocal0
+                           getlocal3
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_xOffset")
+                           debugline 58
+                           getlocal0
+                           getlocal 4
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_yOffset")
+                           debugline 61
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_iSkillDegree")
+                           callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"a_3966"), 1
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_duration")
+                           debugline 62
+                           getlocal0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"a_1094")
+                           callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"a_3965"), 1
+                           initproperty QName(PackageNamespace(""),"_shotHurtPower")
+                           debugline 63
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"stFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           initproperty QName(PackageNamespace(""),"m_stBattleView")
+                           debugline 65
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"stFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iXGridNo")
+                           debugline 66
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"stFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iYGridNo")
+                           debugline 68
+                           getlocal0
+                           pushbyte -1
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iCreateTime")
+                           debugline 69
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getlocal0
+                           callpropvoid QName(PackageNamespace(""),"AddOne"), 1
+                           debugline 70
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3897(iCurrentTime:int) : void
+               {
+                  trait method QName(PackageNamespace(""),"a_3897")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/Update"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "a_3966"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 3
+                           localcount 3
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                              debugline 72
+                              getlocal0
+                              pushscope
+                              debug 1, "iCurrentTime", 0, 72
+                              debug 1, "attackType", 1, 84
+                              debugline 73
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iCreateTime")
+                              pushbyte -1
+                              ifne ofs0026
+                              debugline 74
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iCreateTime")
+                     ofs0026:
+                              debugline 76
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_iCreateTime")
+                              subtract
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_duration")
+                              ifnge ofs004a
+                              debugline 77
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"_baseDefense")
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"_baseDefense")
+                              getproperty QName(PackageNamespace(""),"iLifeValue")
+                              callpropvoid QName(PackageNamespace(""),"a_3969"), 1
+                              debugline 78
+                              returnvoid
+                     ofs004a:
+                              debugline 80
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                              pushint 99999
+                              ifne ofs005e
+                              getlocal0
+                              getlocal1
+                              pushbyte 1
+                              add
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                     ofs005e:
+                              debugline 84
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                              getproperty QName(PackageNamespace(""),"attackType")
+                              convert_i
+                              setlocal2
+                              debugline 86
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_attackType")
+                              getlocal2
+                              ifeq ofs00b5
+                              debugline 87
+                              getlocal0
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1310")
+                              add
+                              pushbyte 1
+                              add
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                              debugline 88
+                              getlocal0
+                              getlocal2
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_attackType")
+                              debugline 89
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"_baseDefense")
+                              pushbyte 1
+                              pushbyte 0
+                              callpropvoid QName(PackageNamespace(""),"SetAnimationOnce2Loop"), 2
+                              debugline 90
+                              getlocal2
+                              pushbyte 1
+                              ifne ofs00ae
+                              debugline 91
+                              getlocal0
+                              callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"CreateGridBuff"), 0
+                              jump ofs00b5
+                     ofs00ae:
+                              debugline 93
+                              getlocal0
+                              callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"RemoveGridBuff"), 0
+                     ofs00b5:
+                              debugline 97
+                              getlocal2
+                              pushbyte 1
+                              ifne ofs00c6
+                              debugline 99
+                              getlocal0
+                              getlocal1
+                              callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"OneGridShot"), 1
+                     ofs00c6:
+                              debugline 101
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                              getlocal1
+                              callpropvoid QName(PackageNamespace(""),"a_3897"), 1
+                              debugline 102
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  protected function CreateGridBuff() : void
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"CreateGridBuff")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/protected:CreateGridBuff"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 5
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                 debugline 105
+                                 getlocal0
+                                 pushscope
+                                 debugline 106
+                                 getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"_baseDefense")
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"_trans")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_xOffset")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"_yOffset")
+                                 callpropvoid QName(PackageNamespace(""),"CreateGridBuff"), 4
+                                 debugline 107
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     private function RemoveGridBuff() : void
+                     {
+                        trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"RemoveGridBuff")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/private:RemoveGridBuff"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                    debugline 109
+                                    getlocal0
+                                    pushscope
+                                    debugline 110
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                                    callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"_baseDefense")
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"_trans")
+                                    callpropvoid QName(PackageNamespace(""),"RemoveGridBuff"), 2
+                                    debugline 111
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function OneGridShot(iCurrentTime:int) : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"OneGridShot")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/private:OneGridShot"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "a_3966"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 4
+                                    localcount 3
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                       debugline 114
+                                       getlocal0
+                                       pushscope
+                                       pushnull
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       setlocal2
+                                       debug 1, "iCurrentTime", 0, 114
+                                       debugline 115
+                                       getlocal1
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                                       subtract
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                                       getproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"SHOT_INTERVAL")
+                                       ifnge ofs0072
+                                       debug 1, "grid", 1, 119
+                                       debugline 117
+                                       getlocal0
+                                       getlocal1
+                                       initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent"),"a_1321")
+                                       debugline 119
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"_baseDefense")
+                                       getproperty QName(PackageNamespace(""),"stFieldGrid")
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       setlocal2
+                                       debugline 120
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                                       getlocal2
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"_trans")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"_shotHurtPower")
+                                       callpropvoid QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageGrid"), 3
+                                       debugline 121
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                       pushbyte 1
+                                       add
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                       callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"_trans")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"_shotHurtPower")
+                                       callpropvoid QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageGrid"), 3
+                              ofs0072:
+                                       debugline 123
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function Remove() : void
+                           {
+                              trait method QName(PackageNamespace(""),"Remove")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseComponent/Remove"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                          debugline 125
+                                          getlocal0
+                                          pushscope
+                                          debugline 126
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseManager")
+                                          callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"RemoveOne"), 1
+                                          debugline 127
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                           }
+                        }
+                        
+                        method
+                           name ""
+                           returns null
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 1
+                              maxscopedepth 3
+                              
+                              code
+                                 getlocal0
+                                 pushscope
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                 debugline 7
+                                 findpropstrict Multiname("BarrierHorseComponent",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier")])
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 pushscope
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 newclass 64
+                                 popscope
+                                 initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseComponent")
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseComponent.as"
+                                 debugline 1
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                        

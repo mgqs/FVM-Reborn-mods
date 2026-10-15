@@ -1,6 +1,6 @@
 // obj_pause_menu - Step Event
 // 检查是否有子菜单打开
-submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm);
+submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_mod_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm);
 
 // 如果没有子菜单打开，则处理按钮交互
 if (!submenu_open) {

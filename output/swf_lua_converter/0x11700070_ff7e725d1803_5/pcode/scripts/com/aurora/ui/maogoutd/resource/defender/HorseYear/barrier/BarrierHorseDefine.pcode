@@ -1,0 +1,876 @@
+package com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   
+   public class BarrierHorseDefine
+   {
+      
+      internal static const DEFENSE_PRICE:int = 180;
+      
+      internal static const SHOT_INTERVAL:int = 40;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "DEFENSE_PRICE", 0, 9
+               findproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DEFENSE_PRICE")
+               pushshort 180
+               initproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DEFENSE_PRICE")
+               debug 1, "SHOT_INTERVAL", 1, 10
+               findproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"SHOT_INTERVAL")
+               pushbyte 20
+               pushbyte 2
+               multiply
+               initproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"SHOT_INTERVAL")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function BarrierHorseDefine()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/BarrierHorseDefine"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                  debugline 127
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      internal static function a_3964(iSkillDegree:int = 0) : int
+      {
+         trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"a_3964")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:GetGrownTime"
+               flag HAS_OPTIONAL
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"
+               optional Integer(0)
+               returns QName(PackageNamespace(""),"int")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                     debugline 19
+                     getlocal0
+                     pushscope
+                     debug 1, "iSkillDegree", 0, 19
+                     debugline 21
+                     pushbyte 25
+                     pushbyte 10
+                     multiply
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         internal static function a_3965(iStarDegree:int) : int
+         {
+            trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"a_3965")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:GetCardStarDegreeEffectValue"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"
+                  returns QName(PackageNamespace(""),"int")
+                  
+                  body
+                     maxstack 2
+                     localcount 4
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                        debugline 30
+                        getlocal0
+                        pushscope
+                        debug 1, "iStarDegree", 0, 30
+                        debug 1, "iStarDegreeEffect", 1, 32
+                        debugline 32
+                        pushbyte 6
+                        convert_d
+                        setlocal2
+                        jump ofs00dd
+               ofs001d:
+                        label
+                        debugline 35
+                        pushbyte 7
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0028:
+                        label
+                        debugline 36
+                        pushbyte 8
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0033:
+                        label
+                        debugline 37
+                        pushbyte 9
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs003e:
+                        label
+                        debugline 38
+                        pushbyte 12
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0049:
+                        label
+                        debugline 39
+                        pushbyte 14
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0054:
+                        label
+                        debugline 40
+                        pushbyte 16
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs005f:
+                        label
+                        debugline 41
+                        pushbyte 18
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs006a:
+                        label
+                        debugline 42
+                        pushbyte 22
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0075:
+                        label
+                        debugline 43
+                        pushbyte 26
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0080:
+                        label
+                        debugline 44
+                        pushbyte 30
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs008b:
+                        label
+                        debugline 45
+                        pushbyte 34
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs0096:
+                        label
+                        debugline 46
+                        pushbyte 38
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00a1:
+                        label
+                        debugline 47
+                        pushbyte 45
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00ac:
+                        label
+                        debugline 48
+                        pushbyte 52
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00b7:
+                        label
+                        debugline 49
+                        pushbyte 59
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00c2:
+                        label
+                        debugline 50
+                        pushbyte 66
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00cd:
+                        label
+                        debugline 51
+                        pushbyte 73
+                        convert_d
+                        setlocal2
+                        jump ofs0229
+               ofs00d8:
+                        label
+                        jump ofs0229
+               ofs00dd:
+                        debugline 33
+                        getlocal1
+                        setlocal3
+                        debugline 35
+                        pushbyte 0
+                        getlocal3
+                        ifstrictne ofs00f0
+                        pushbyte 0
+                        jump ofs01ec
+               ofs00f0:
+                        debugline 36
+                        pushbyte 1
+                        getlocal3
+                        ifstrictne ofs00ff
+                        pushbyte 1
+                        jump ofs01ec
+               ofs00ff:
+                        debugline 37
+                        pushbyte 2
+                        getlocal3
+                        ifstrictne ofs010e
+                        pushbyte 2
+                        jump ofs01ec
+               ofs010e:
+                        debugline 38
+                        pushbyte 3
+                        getlocal3
+                        ifstrictne ofs011d
+                        pushbyte 3
+                        jump ofs01ec
+               ofs011d:
+                        debugline 39
+                        pushbyte 4
+                        getlocal3
+                        ifstrictne ofs012c
+                        pushbyte 4
+                        jump ofs01ec
+               ofs012c:
+                        debugline 40
+                        pushbyte 5
+                        getlocal3
+                        ifstrictne ofs013b
+                        pushbyte 5
+                        jump ofs01ec
+               ofs013b:
+                        debugline 41
+                        pushbyte 6
+                        getlocal3
+                        ifstrictne ofs014a
+                        pushbyte 6
+                        jump ofs01ec
+               ofs014a:
+                        debugline 42
+                        pushbyte 7
+                        getlocal3
+                        ifstrictne ofs0159
+                        pushbyte 7
+                        jump ofs01ec
+               ofs0159:
+                        debugline 43
+                        pushbyte 8
+                        getlocal3
+                        ifstrictne ofs0168
+                        pushbyte 8
+                        jump ofs01ec
+               ofs0168:
+                        debugline 44
+                        pushbyte 9
+                        getlocal3
+                        ifstrictne ofs0177
+                        pushbyte 9
+                        jump ofs01ec
+               ofs0177:
+                        debugline 45
+                        pushbyte 10
+                        getlocal3
+                        ifstrictne ofs0186
+                        pushbyte 10
+                        jump ofs01ec
+               ofs0186:
+                        debugline 46
+                        pushbyte 11
+                        getlocal3
+                        ifstrictne ofs0195
+                        pushbyte 11
+                        jump ofs01ec
+               ofs0195:
+                        debugline 47
+                        pushbyte 12
+                        getlocal3
+                        ifstrictne ofs01a4
+                        pushbyte 12
+                        jump ofs01ec
+               ofs01a4:
+                        debugline 48
+                        pushbyte 13
+                        getlocal3
+                        ifstrictne ofs01b3
+                        pushbyte 13
+                        jump ofs01ec
+               ofs01b3:
+                        debugline 49
+                        pushbyte 14
+                        getlocal3
+                        ifstrictne ofs01c2
+                        pushbyte 14
+                        jump ofs01ec
+               ofs01c2:
+                        debugline 50
+                        pushbyte 15
+                        getlocal3
+                        ifstrictne ofs01d1
+                        pushbyte 15
+                        jump ofs01ec
+               ofs01d1:
+                        debugline 51
+                        pushbyte 16
+                        getlocal3
+                        ifstrictne ofs01e0
+                        pushbyte 16
+                        jump ofs01ec
+               ofs01e0:
+                        jump ofs01ea
+                        pushbyte 17
+                        jump ofs01ea
+               ofs01ea:
+                        pushbyte 17
+               ofs01ec:
+                        kill 3
+                        lookupswitch ofs00d8, [ofs001d, ofs0028, ofs0033, ofs003e, ofs0049, ofs0054, ofs005f, ofs006a, ofs0075, ofs0080, ofs008b, ofs0096, ofs00a1, ofs00ac, ofs00b7, ofs00c2, ofs00cd, ofs00d8]
+               ofs0229:
+                        debugline 53
+                        getlocal2
+                        pushbyte 10
+                        multiply
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            internal static function a_3966(iSkillDegree:int) : int
+            {
+               trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"a_3966")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:GetCardSkillEffectValue"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 2
+                        localcount 4
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                           debugline 56
+                           getlocal0
+                           pushscope
+                           debug 1, "iSkillDegree", 0, 56
+                           debug 1, "iSkillDegreeEffect", 1, 58
+                           debugline 58
+                           pushbyte 25
+                           convert_d
+                           setlocal2
+                           jump ofs0085
+                  ofs001d:
+                           label
+                           debugline 61
+                           pushbyte 25
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0028:
+                           label
+                           debugline 62
+                           pushbyte 26
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0033:
+                           label
+                           debugline 63
+                           pushbyte 27
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs003e:
+                           label
+                           debugline 64
+                           pushbyte 28
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0049:
+                           label
+                           debugline 65
+                           pushbyte 30
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0054:
+                           label
+                           debugline 66
+                           pushbyte 33
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs005f:
+                           label
+                           debugline 67
+                           pushbyte 36
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs006a:
+                           label
+                           debugline 68
+                           pushbyte 40
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0075:
+                           label
+                           debugline 69
+                           pushbyte 45
+                           convert_d
+                           setlocal2
+                           jump ofs0141
+                  ofs0080:
+                           label
+                           jump ofs0141
+                  ofs0085:
+                           debugline 59
+                           getlocal1
+                           setlocal3
+                           debugline 61
+                           pushbyte 0
+                           getlocal3
+                           ifstrictne ofs0098
+                           pushbyte 0
+                           jump ofs011c
+                  ofs0098:
+                           debugline 62
+                           pushbyte 1
+                           getlocal3
+                           ifstrictne ofs00a7
+                           pushbyte 1
+                           jump ofs011c
+                  ofs00a7:
+                           debugline 63
+                           pushbyte 2
+                           getlocal3
+                           ifstrictne ofs00b6
+                           pushbyte 2
+                           jump ofs011c
+                  ofs00b6:
+                           debugline 64
+                           pushbyte 3
+                           getlocal3
+                           ifstrictne ofs00c5
+                           pushbyte 3
+                           jump ofs011c
+                  ofs00c5:
+                           debugline 65
+                           pushbyte 4
+                           getlocal3
+                           ifstrictne ofs00d4
+                           pushbyte 4
+                           jump ofs011c
+                  ofs00d4:
+                           debugline 66
+                           pushbyte 5
+                           getlocal3
+                           ifstrictne ofs00e3
+                           pushbyte 5
+                           jump ofs011c
+                  ofs00e3:
+                           debugline 67
+                           pushbyte 6
+                           getlocal3
+                           ifstrictne ofs00f2
+                           pushbyte 6
+                           jump ofs011c
+                  ofs00f2:
+                           debugline 68
+                           pushbyte 7
+                           getlocal3
+                           ifstrictne ofs0101
+                           pushbyte 7
+                           jump ofs011c
+                  ofs0101:
+                           debugline 69
+                           pushbyte 8
+                           getlocal3
+                           ifstrictne ofs0110
+                           pushbyte 8
+                           jump ofs011c
+                  ofs0110:
+                           jump ofs011a
+                           pushbyte 9
+                           jump ofs011a
+                  ofs011a:
+                           pushbyte 9
+                  ofs011c:
+                           kill 3
+                           lookupswitch ofs0080, [ofs001d, ofs0028, ofs0033, ofs003e, ofs0049, ofs0054, ofs005f, ofs006a, ofs0075, ofs0080]
+                  ofs0141:
+                           debugline 71
+                           getlocal2
+                           pushbyte 20
+                           multiply
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               internal static function DamageGrid(grid:a_3491, trans:int, hurtPower:Number) : void
+               {
+                  trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageGrid")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:DamageGrid"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        param QName(PackageNamespace(""),"int")
+                        param QName(PackageNamespace(""),"Number")
+                        paramname "int"
+                        paramname "int"
+                        paramname "int"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 4
+                           localcount 8
+                           initscopedepth 3
+                           maxscopedepth 4
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                              debugline 74
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                              setlocal 5
+                              debug 1, "grid", 0, 74
+                              debug 1, "trans", 1, 74
+                              debug 1, "hurtPower", 2, 74
+                              debug 1, "arrMoveIntruder", 3, 76
+                              debug 1, "stMoveIntruder", 4, 77
+                              debugline 75
+                              getlocal1
+                              pushnull
+                              ifne ofs0033
+                              returnvoid
+                     ofs0033:
+                              debugline 76
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"a_1511")
+                              callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"slice"), 0
+                              coerce QName(PackageNamespace(""),"Array")
+                              setlocal 4
+                              debugline 77
+                              pushbyte 0
+                              setlocal 6
+                              getlocal 4
+                              coerce_a
+                              setlocal 7
+                              jump ofs0067
+                     ofs0050:
+                              label
+                              getlocal 7
+                              getlocal 6
+                              nextvalue
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                              setlocal 5
+                              debugline 80
+                              findpropstrict QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageMouse")
+                              getlocal 5
+                              getlocal2
+                              getlocal3
+                              callpropvoid QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageMouse"), 3
+                     ofs0067:
+                              debugline 77
+                              hasnext2 7, 6
+                              iftrue ofs0050
+                              kill 7
+                              kill 6
+                              debugline 82
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  internal static function DamageMouse(stMoveIntruder:a_4206, trans:int, hurtPower:Number) : void
+                  {
+                     trait method QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"DamageMouse")
+                        flag FINAL
+                        dispid 7
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:BarrierHorseDefine/com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier:DamageMouse"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                           param QName(PackageNamespace(""),"int")
+                           param QName(PackageNamespace(""),"Number")
+                           paramname "int"
+                           paramname "int"
+                           paramname "int"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 3
+                              localcount 6
+                              initscopedepth 3
+                              maxscopedepth 4
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                                 debugline 85
+                                 getlocal0
+                                 pushscope
+                                 pushbyte 0
+                                 setlocal 4
+                                 pushnan
+                                 setlocal 5
+                                 debug 1, "stMoveIntruder", 0, 85
+                                 debug 1, "trans", 1, 85
+                                 debug 1, "hurtPower", 2, 85
+                                 debugline 86
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"IsElite")
+                                 pushfalse
+                                 ifne ofs004b
+                                 debugline 88
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"iSpaceState")
+                                 pushbyte 1
+                                 ifeq ofs0047
+                                 debugline 89
+                                 getlocal1
+                                 callpropvoid QName(PackageNamespace(""),"a_4210"), 0
+                                 debugline 90
+                                 getlocal1
+                                 pushbyte 1
+                                 callpropvoid QName(PackageNamespace(""),"PowerfulBombReduceLifeRate"), 1
+                        ofs0047:
+                                 jump ofs0153
+                        ofs004b:
+                                 debugline 93
+                                 getlocal2
+                                 pushbyte 1
+                                 ifne ofs0064
+                                 debugline 94
+                                 getlocal1
+                                 getlocal3
+                                 pushshort 900
+                                 divide
+                                 callpropvoid QName(PackageNamespace(""),"PowerfulBombReduceLifeRate"), 1
+                                 jump ofs0153
+                        ofs0064:
+                                 debug 1, "sum", 3, 97
+                                 debug 1, "damageRate", 4, 98
+                                 debugline 97
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"tagCom")
+                                 pushstring "barrier_horse_damage"
+                                 callproperty QName(PackageNamespace(""),"GetSum"), 1
+                                 pushbyte 1
+                                 add
+                                 convert_i
+                                 setlocal 4
+                                 debugline 98
+                                 pushbyte 1
+                                 convert_d
+                                 setlocal 5
+                                 debugline 99
+                                 getlocal 4
+                                 pushbyte 1
+                                 ifne ofs009f
+                                 debugline 100
+                                 pushbyte 1
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs009f:
+                                 debugline 101
+                                 getlocal 4
+                                 pushbyte 2
+                                 ifne ofs00b4
+                                 debugline 102
+                                 pushdouble 1.2
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs00b4:
+                                 debugline 103
+                                 getlocal 4
+                                 pushbyte 3
+                                 ifne ofs00c9
+                                 debugline 104
+                                 pushdouble 1.4
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs00c9:
+                                 debugline 105
+                                 getlocal 4
+                                 pushbyte 4
+                                 ifne ofs00de
+                                 debugline 106
+                                 pushdouble 1.6
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs00de:
+                                 debugline 107
+                                 getlocal 4
+                                 pushbyte 5
+                                 ifne ofs00f3
+                                 debugline 108
+                                 pushdouble 1.8
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs00f3:
+                                 debugline 109
+                                 getlocal 4
+                                 pushbyte 6
+                                 ifne ofs0108
+                                 debugline 110
+                                 pushbyte 2
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs0108:
+                                 debugline 111
+                                 getlocal 4
+                                 pushbyte 7
+                                 ifne ofs011d
+                                 debugline 112
+                                 pushdouble 2.5
+                                 convert_d
+                                 setlocal 5
+                                 jump ofs0124
+                        ofs011d:
+                                 debugline 114
+                                 pushbyte 3
+                                 convert_d
+                                 setlocal 5
+                        ofs0124:
+                                 debugline 116
+                                 getlocal2
+                                 pushbyte 3
+                                 ifne ofs0137
+                                 debugline 117
+                                 getlocal 5
+                                 pushbyte 2
+                                 multiply
+                                 convert_d
+                                 setlocal 5
+                        ofs0137:
+                                 debugline 119
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"tagCom")
+                                 pushstring "barrier_horse_damage"
+                                 callpropvoid QName(PackageNamespace(""),"AddSum"), 1
+                                 debugline 120
+                                 getlocal1
+                                 getlocal 5
+                                 getlocal3
+                                 multiply
+                                 pushshort 900
+                                 divide
+                                 callpropvoid QName(PackageNamespace(""),"PowerfulBombReduceLifeRate"), 1
+                        ofs0153:
+                                 debugline 124
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                  }
+               }
+               
+               method
+                  name ""
+                  returns null
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 1
+                     maxscopedepth 3
+                     
+                     code
+                        getlocal0
+                        pushscope
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                        debugline 6
+                        findpropstrict Multiname("BarrierHorseDefine",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier")])
+                        getlex QName(PackageNamespace(""),"Object")
+                        pushscope
+                        getlex QName(PackageNamespace(""),"Object")
+                        newclass 78
+                        popscope
+                        initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.barrier"),"BarrierHorseDefine")
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier;BarrierHorseDefine.as"
+                        debugline 1
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+               

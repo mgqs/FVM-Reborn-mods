@@ -1,0 +1,217 @@
+package com.aurora.ui.maogoutd.game
+{
+   public final class BattleLayerDefine
+   {
+      
+      public static const EFFECTS_BASE2_TYPE:int = 0;
+      
+      public static const EFFECTS_BASE_TYPE:int = 0;
+      
+      public static const DEFENSE_TRAY_TYPE:int = 1;
+      
+      public static const DEFENSE_SHADOW_TYPE:int = 2;
+      
+      public static const DEFENSE_PROTECTOR_BEFORE_TYPE:int = 3;
+      
+      public static const DEFENSE_PROTECTOR_AFTER_TYPE:int = 4;
+      
+      public static const DEFENSE_ATTACK_FIGHTER_TYPE:int = 5;
+      
+      public static const DEFENSE_BOOM_TYPE:int = 6;
+      
+      public static const DEFENSE_FLOWER_TYPE:int = 7;
+      
+      public static const DEFENSE_AUXILIARY_FIGHTER_TYPE:int = 8;
+      
+      public static const DEFENSE_BOTTOM_TOOL_TYPE:int = 16;
+      
+      public static const DEFENSE_TOP_TOOL_TYPE:int = 17;
+      
+      public static const INTRUDER_WATER_TYPE:int = 9;
+      
+      public static const INTRUDER_LAND_TYPE:int = 10;
+      
+      public static const INTRUDER_SKY_TYPE:int = 11;
+      
+      public static const INTRUDER_SKY_BOSS_TYPE:int = 12;
+      
+      public static const SHOT_TYPE:int = 13;
+      
+      public static const EFFECTS_TOP_TYPE:int = 15;
+      
+      public static const OBSTACL_TYPE:int = 19;
+      
+      public static const EFFECT_LAYER_TOP_TYPE:int = 20;
+      
+      public static const EFFECT_LAYER_TRAY_BOTTOM_TYPE:int = 21;
+      
+      public static const INTRUDER_BOTTOM_TYPE:int = 22;
+      
+      public static const BOSS_BOTTOM_EFFECT_TYPE:int = 23;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "EFFECTS_BASE2_TYPE", 0, 14
+               findproperty QName(PackageNamespace(""),"EFFECTS_BASE2_TYPE")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"EFFECTS_BASE2_TYPE")
+               debug 1, "EFFECTS_BASE_TYPE", 1, 15
+               findproperty QName(PackageNamespace(""),"EFFECTS_BASE_TYPE")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"EFFECTS_BASE_TYPE")
+               debug 1, "DEFENSE_TRAY_TYPE", 2, 16
+               findproperty QName(PackageNamespace(""),"DEFENSE_TRAY_TYPE")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"DEFENSE_TRAY_TYPE")
+               debug 1, "DEFENSE_SHADOW_TYPE", 3, 17
+               findproperty QName(PackageNamespace(""),"DEFENSE_SHADOW_TYPE")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"DEFENSE_SHADOW_TYPE")
+               debug 1, "DEFENSE_PROTECTOR_BEFORE_TYPE", 4, 18
+               findproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_BEFORE_TYPE")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_BEFORE_TYPE")
+               debug 1, "DEFENSE_PROTECTOR_AFTER_TYPE", 5, 19
+               findproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_AFTER_TYPE")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"DEFENSE_PROTECTOR_AFTER_TYPE")
+               debug 1, "DEFENSE_ATTACK_FIGHTER_TYPE", 6, 20
+               findproperty QName(PackageNamespace(""),"DEFENSE_ATTACK_FIGHTER_TYPE")
+               pushbyte 5
+               initproperty QName(PackageNamespace(""),"DEFENSE_ATTACK_FIGHTER_TYPE")
+               debug 1, "DEFENSE_BOOM_TYPE", 7, 21
+               findproperty QName(PackageNamespace(""),"DEFENSE_BOOM_TYPE")
+               pushbyte 6
+               initproperty QName(PackageNamespace(""),"DEFENSE_BOOM_TYPE")
+               debug 1, "DEFENSE_FLOWER_TYPE", 8, 22
+               findproperty QName(PackageNamespace(""),"DEFENSE_FLOWER_TYPE")
+               pushbyte 7
+               initproperty QName(PackageNamespace(""),"DEFENSE_FLOWER_TYPE")
+               debug 1, "DEFENSE_AUXILIARY_FIGHTER_TYPE", 9, 23
+               findproperty QName(PackageNamespace(""),"DEFENSE_AUXILIARY_FIGHTER_TYPE")
+               pushbyte 8
+               initproperty QName(PackageNamespace(""),"DEFENSE_AUXILIARY_FIGHTER_TYPE")
+               debug 1, "DEFENSE_BOTTOM_TOOL_TYPE", 10, 24
+               findproperty QName(PackageNamespace(""),"DEFENSE_BOTTOM_TOOL_TYPE")
+               pushbyte 16
+               initproperty QName(PackageNamespace(""),"DEFENSE_BOTTOM_TOOL_TYPE")
+               debug 1, "DEFENSE_TOP_TOOL_TYPE", 11, 25
+               findproperty QName(PackageNamespace(""),"DEFENSE_TOP_TOOL_TYPE")
+               pushbyte 17
+               initproperty QName(PackageNamespace(""),"DEFENSE_TOP_TOOL_TYPE")
+               debug 1, "INTRUDER_WATER_TYPE", 12, 27
+               findproperty QName(PackageNamespace(""),"INTRUDER_WATER_TYPE")
+               pushbyte 9
+               initproperty QName(PackageNamespace(""),"INTRUDER_WATER_TYPE")
+               debug 1, "INTRUDER_LAND_TYPE", 13, 28
+               findproperty QName(PackageNamespace(""),"INTRUDER_LAND_TYPE")
+               pushbyte 10
+               initproperty QName(PackageNamespace(""),"INTRUDER_LAND_TYPE")
+               debug 1, "INTRUDER_SKY_TYPE", 14, 29
+               findproperty QName(PackageNamespace(""),"INTRUDER_SKY_TYPE")
+               pushbyte 11
+               initproperty QName(PackageNamespace(""),"INTRUDER_SKY_TYPE")
+               debug 1, "INTRUDER_SKY_BOSS_TYPE", 15, 30
+               findproperty QName(PackageNamespace(""),"INTRUDER_SKY_BOSS_TYPE")
+               pushbyte 12
+               initproperty QName(PackageNamespace(""),"INTRUDER_SKY_BOSS_TYPE")
+               debug 1, "SHOT_TYPE", 16, 31
+               findproperty QName(PackageNamespace(""),"SHOT_TYPE")
+               pushbyte 13
+               initproperty QName(PackageNamespace(""),"SHOT_TYPE")
+               debug 1, "EFFECTS_TOP_TYPE", 17, 33
+               findproperty QName(PackageNamespace(""),"EFFECTS_TOP_TYPE")
+               pushbyte 15
+               initproperty QName(PackageNamespace(""),"EFFECTS_TOP_TYPE")
+               debug 1, "OBSTACL_TYPE", 18, 35
+               findproperty QName(PackageNamespace(""),"OBSTACL_TYPE")
+               pushbyte 19
+               initproperty QName(PackageNamespace(""),"OBSTACL_TYPE")
+               debug 1, "EFFECT_LAYER_TOP_TYPE", 19, 36
+               findproperty QName(PackageNamespace(""),"EFFECT_LAYER_TOP_TYPE")
+               pushbyte 20
+               initproperty QName(PackageNamespace(""),"EFFECT_LAYER_TOP_TYPE")
+               debug 1, "EFFECT_LAYER_TRAY_BOTTOM_TYPE", 20, 38
+               findproperty QName(PackageNamespace(""),"EFFECT_LAYER_TRAY_BOTTOM_TYPE")
+               pushbyte 21
+               initproperty QName(PackageNamespace(""),"EFFECT_LAYER_TRAY_BOTTOM_TYPE")
+               debug 1, "INTRUDER_BOTTOM_TYPE", 21, 39
+               findproperty QName(PackageNamespace(""),"INTRUDER_BOTTOM_TYPE")
+               pushbyte 22
+               initproperty QName(PackageNamespace(""),"INTRUDER_BOTTOM_TYPE")
+               debug 1, "BOSS_BOTTOM_EFFECT_TYPE", 22, 41
+               findproperty QName(PackageNamespace(""),"BOSS_BOTTOM_EFFECT_TYPE")
+               pushbyte 23
+               initproperty QName(PackageNamespace(""),"BOSS_BOTTOM_EFFECT_TYPE")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function BattleLayerDefine()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BattleLayerDefine/BattleLayerDefine"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerDefine.as"
+                  debugline 45
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerDefine.as"
+         debugline 12
+         findpropstrict Multiname("BattleLayerDefine",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 12
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerDefine.as"
+         debugline 10
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

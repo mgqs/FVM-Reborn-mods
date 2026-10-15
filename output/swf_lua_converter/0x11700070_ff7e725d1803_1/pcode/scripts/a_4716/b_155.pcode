@@ -1,0 +1,103 @@
+package a_4716
+{
+   public class b_155
+   {
+      
+      public static const b_156:int = 0;
+      
+      public static const b_157:int = 4;
+      
+      public static const b_158:int = 8;
+      
+      public static const b_159:int = 32;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "b_156", 0, 6
+               findproperty QName(PackageNamespace(""),"b_156")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"b_156")
+               debug 1, "b_157", 1, 7
+               findproperty QName(PackageNamespace(""),"b_157")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"b_157")
+               debug 1, "b_158", 2, 8
+               findproperty QName(PackageNamespace(""),"b_158")
+               pushbyte 8
+               initproperty QName(PackageNamespace(""),"b_158")
+               debug 1, "b_159", 3, 9
+               findproperty QName(PackageNamespace(""),"b_159")
+               pushbyte 32
+               initproperty QName(PackageNamespace(""),"b_159")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_155()
+      {
+         method
+            name "com.aurora.constant:EnmCryptAlgorithm/EnmCryptAlgorithm"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCryptAlgorithm.as"
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCryptAlgorithm.as"
+         debugline 4
+         findpropstrict Multiname("b_155",[PackageNamespace("a_4716")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 108
+         popscope
+         initproperty QName(PackageNamespace("a_4716"),"b_155")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmCryptAlgorithm.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

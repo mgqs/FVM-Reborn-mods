@@ -1,0 +1,244 @@
+package com.aurora.ui.maogoutd.resource.shot.ShotTrigger
+{
+   public class PenetrateCountTrigger extends BaseShotTrigger
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 5
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_PeneCount:int = 0;
+      
+      private var m_MaxCount:int = 0;
+      
+      public function PenetrateCountTrigger(probability:int = 100, seed:int = -1, nowCount:int = 0, maxCount:int = -1)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger/PenetrateCountTrigger"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            optional Integer(100)
+            optional Integer(-1)
+            optional Integer(0)
+            optional Integer(-1)
+            returns null
+            
+            body
+               maxstack 3
+               localcount 5
+               initscopedepth 5
+               maxscopedepth 6
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                  debugline 8
+                  getlocal0
+                  pushscope
+                  debug 1, "probability", 0, 8
+                  debug 1, "seed", 1, 8
+                  debug 1, "nowCount", 2, 8
+                  debug 1, "maxCount", 3, 8
+                  debugline 10
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  constructsuper 2
+                  debugline 11
+                  getlocal0
+                  getlocal3
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_PeneCount")
+                  debugline 12
+                  getlocal0
+                  getlocal 4
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_MaxCount")
+                  debugline 13
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override protected function OnExecute() : void
+      {
+         trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"OnExecute")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger/protected:OnExecute"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 2
+                  localcount 3
+                  initscopedepth 5
+                  maxscopedepth 6
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debugline 17
+                     getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                     not
+                     dup
+                     iftrue ofs001a
+                     pop
+                     getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                     getproperty QName(PackageNamespace(""),"m_isPenetrate")
+                     not
+            ofs001a:
+                     iffalse ofs001f
+                     returnvoid
+            ofs001f:
+                     debugline 18
+                     getlocal0
+                     dup
+                     setlocal1
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_PeneCount")
+                     increment_i
+                     setlocal2
+                     getlocal1
+                     getlocal2
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_PeneCount")
+                     kill 2
+                     kill 1
+                     debugline 19
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_PeneCount")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_MaxCount")
+                     ifnge ofs0050
+                     debugline 21
+                     getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                     iffalse ofs0050
+                     getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                     pushfalse
+                     setproperty QName(PackageNamespace(""),"m_isPenetrate")
+            ofs0050:
+                     debugline 23
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override protected function CheckValid() : Boolean
+         {
+            trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"CheckValid")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger/protected:CheckValid"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 5
+                     maxscopedepth 6
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                        debugline 25
+                        getlocal0
+                        pushscope
+                        debugline 27
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override public function a_4451() : BaseShotTrigger
+            {
+               trait method QName(PackageNamespace(""),"a_4451")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger/Clone"
+                     returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                     
+                     body
+                        maxstack 5
+                        localcount 1
+                        initscopedepth 5
+                        maxscopedepth 6
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                           debugline 29
+                           getlocal0
+                           pushscope
+                           debugline 32
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"PenetrateCountTrigger")
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_probability")
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_seed")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_PeneCount")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:PenetrateCountTrigger"),"m_MaxCount")
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"PenetrateCountTrigger"), 4
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 4
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                  debugline 4
+                  findpropstrict Multiname("PenetrateCountTrigger",[PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                  pushscope
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                  newclass 163
+                  popscope
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"PenetrateCountTrigger")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;PenetrateCountTrigger.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

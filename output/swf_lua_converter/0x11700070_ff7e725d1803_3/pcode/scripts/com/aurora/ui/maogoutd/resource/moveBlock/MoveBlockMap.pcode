@@ -1,0 +1,2384 @@
+package com.aurora.ui.maogoutd.resource.moveBlock
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.iface.IGameMoveMapBlock;
+   import flash.display.Bitmap;
+   import flash.display.DisplayObject;
+   import flash.display.Sprite;
+   
+   public class MoveBlockMap extends Sprite implements IGameMoveMapBlock
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      protected var m_stCurrentBattleFieldView:BattleFieldView;
+      
+      protected var m_stMoveBlockFieldGrid:MoveBlockFieldGrid;
+      
+      private var m_bIsRun:Boolean = false;
+      
+      private var m_iCurrentTimeNum:int;
+      
+      protected var m_iSleepTime:int;
+      
+      private var m_stMapBitmap:Bitmap;
+      
+      public var m_vDisplayObject:Vector.<DisplayObject>;
+      
+      public var m_vTmpDisplayObject:Vector.<DisplayObject>;
+      
+      private var m_stGetBitmapData:Function;
+      
+      public var m_stMoveBlockData:MoveBlockData;
+      
+      public function MoveBlockMap(iOffsetX:int = 0, iOffsetY:int = 0)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/MoveBlockMap"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            paramname null
+            optional Integer(0)
+            optional Integer(0)
+            returns null
+            
+            body
+               maxstack 3
+               localcount 3
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                  debugline 34
+                  getlocal0
+                  pushscope
+                  debug 1, "iOffsetX", 0, 34
+                  debug 1, "iOffsetY", 1, 34
+                  debugline 35
+                  getlocal0
+                  constructsuper 0
+                  debugline 36
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                  constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                  debugline 37
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                  getlocal1
+                  setproperty QName(PackageNamespace(""),"x")
+                  debugline 38
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                  getlocal2
+                  setproperty QName(PackageNamespace(""),"y")
+                  debugline 39
+                  findpropstrict QName(PackageNamespace(""),"addChild")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                  callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  debugline 40
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),PackageNamespace(""),PrivateNamespace("MoveBlockMap.as$372"),PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),PackageInternalNs("com.aurora.ui.maogoutd.resource.moveBlock"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                  debugline 42
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function SetBattleFieldView(stBattleFieldView:BattleFieldView) : void
+      {
+         trait method QName(PackageNamespace(""),"SetBattleFieldView")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/SetBattleFieldView"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+               paramname "DisplayObject"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 3
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                     debugline 44
+                     getlocal0
+                     pushscope
+                     debug 1, "stBattleFieldView", 0, 44
+                     debugline 46
+                     getlocal0
+                     getlocal1
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                     debugline 47
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                     iftrue ofs0029
+                     debugline 49
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid"), 0
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+            ofs0029:
+                     debugline 51
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                     iftrue ofs0040
+                     debugline 53
+                     findpropstrict QName(PackageNamespace(""),"Error")
+                     pushstring "地图数据出错！！！  m_stMoveBlockData is Null"
+                     constructprop QName(PackageNamespace(""),"Error"), 1
+                     throw
+            ofs0040:
+                     debugline 56
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                     getproperty QName(PackageNamespace(""),"m_iWidth")
+                     setproperty QName(PackageNamespace(""),"m_iWidth")
+                     debugline 57
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                     getproperty QName(PackageNamespace(""),"m_iHeight")
+                     setproperty QName(PackageNamespace(""),"m_iHeight")
+                     debugline 58
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                     getlocal0
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                     callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stGetBitmapData"), 1
+                     setproperty QName(PackageNamespace(""),"bitmapData")
+                     debugline 59
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"parent")
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                     ifeq ofs0090
+                     debugline 61
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                     getproperty QName(PackageNamespace(""),"stMoveSprite")
+                     getlocal0
+                     pushbyte 0
+                     callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+            ofs0090:
+                     debugline 63
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function InitBlockMap(stMoveBlockData:MoveBlockData, stGetBitmapData:Function) : void
+         {
+            trait method QName(PackageNamespace(""),"InitBlockMap")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/InitBlockMap"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockData")
+                  param QName(PackageNamespace(""),"Function")
+                  paramname "DisplayObject"
+                  paramname "DisplayObject"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                        debugline 65
+                        getlocal0
+                        pushscope
+                        debug 1, "stMoveBlockData", 0, 65
+                        debug 1, "stGetBitmapData", 1, 65
+                        debugline 67
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                        iffalse ofs002a
+                        debugline 69
+                        findpropstrict QName(PackageNamespace(""),"Error")
+                        pushstring "写错了，这地方初始化一次就够了"
+                        constructprop QName(PackageNamespace(""),"Error"), 1
+                        throw
+               ofs002a:
+                        debugline 72
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stGetBitmapData")
+                        debugline 73
+                        getlocal0
+                        getlocal1
+                        initproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                        debugline 74
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                        callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stGetBitmapData"), 1
+                        setproperty QName(PackageNamespace(""),"bitmapData")
+                        debugline 75
+                        findpropstrict QName(PackageNamespace(""),"addChildAt")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                        pushbyte 0
+                        callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                        debugline 76
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private function Reset() : void
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"Reset")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/private:Reset"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                           debugline 78
+                           getlocal0
+                           pushscope
+                           debugline 80
+                           getlocal0
+                           pushbyte 0
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iCurrentTimeNum")
+                           debugline 81
+                           getlocal0
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_WaitTime")
+                           initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                           debugline 82
+                           findproperty QName(PackageNamespace(""),"x")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_iDefultXGridNo")
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                           getproperty QName(PackageNamespace(""),"a_1080")
+                           multiply
+                           initproperty QName(PackageNamespace(""),"x")
+                           debugline 83
+                           findproperty QName(PackageNamespace(""),"y")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_iDefultYGridNo")
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                           getproperty QName(PackageNamespace(""),"a_1081")
+                           multiply
+                           initproperty QName(PackageNamespace(""),"y")
+                           debugline 84
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_iDefultDirection")
+                           setproperty QName(PackageNamespace(""),"m_iDirection")
+                           debugline 85
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_iDefultXGridNo")
+                           setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                           debugline 86
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                           getproperty QName(PackageNamespace(""),"m_iDefultYGridNo")
+                           setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                           debugline 87
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                           setproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                           debugline 88
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                           setproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                           debugline 89
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                           pushbyte 0
+                           setproperty QName(PackageNamespace(""),"length")
+                           debugline 90
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function MoveStart() : void
+               {
+                  trait method QName(PackageNamespace(""),"MoveStart")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/MoveStart"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                              debugline 92
+                              getlocal0
+                              pushscope
+                              debugline 94
+                              getlocal0
+                              pushtrue
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_bIsRun")
+                              debugline 95
+                              getlocal0
+                              callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"Reset"), 0
+                              debugline 96
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function ReleaseMoveMap() : void
+                  {
+                     trait method QName(PackageNamespace(""),"ReleaseMoveMap")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/ReleaseMoveMap"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                 debugline 98
+                                 getlocal0
+                                 pushscope
+                                 debugline 100
+                                 getlocal0
+                                 pushfalse
+                                 initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_bIsRun")
+                                 debugline 101
+                                 getlocal0
+                                 callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"Reset"), 0
+                                 debugline 102
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                                 getproperty QName(PackageNamespace(""),"bitmapData")
+                                 iffalse ofs0039
+                                 debugline 104
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                                 getproperty QName(PackageNamespace(""),"bitmapData")
+                                 callpropvoid QName(PackageNamespace(""),"dispose"), 0
+                                 debugline 105
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMapBitmap")
+                                 pushnull
+                                 setproperty QName(PackageNamespace(""),"bitmapData")
+                        ofs0039:
+                                 debugline 108
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function OnTimeInterval(iTimeNum:uint) : void
+                     {
+                        trait method QName(PackageNamespace(""),"OnTimeInterval")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/OnTimeInterval"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"uint")
+                              paramname "DisplayObject"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 4
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                    debugline 109
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "iTimeNum", 0, 109
+                                    debugline 111
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_bIsRun")
+                                    iffalse ofs0074
+                                    debugline 113
+                                    getlocal0
+                                    getlocal1
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iCurrentTimeNum")
+                                    debugline 114
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                    getproperty QName(PackageNamespace(""),"m_iLoopGo")
+                                    convert_b
+                                    dup
+                                    iffalse ofs0035
+                                    pop
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs0035:
+                                    iffalse ofs004f
+                                    debugline 116
+                                    getlocal0
+                                    dup
+                                    setlocal2
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                    decrement_i
+                                    setlocal3
+                                    getlocal2
+                                    getlocal3
+                                    setproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                    kill 3
+                                    kill 2
+                                    debugline 117
+                                    returnvoid
+                           ofs004f:
+                                    debugline 119
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                    getproperty QName(PackageNamespace(""),"m_iLoopGo")
+                                    not
+                                    dup
+                                    iffalse ofs0066
+                                    pop
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                    pushbyte 0
+                                    greaterthan
+                           ofs0066:
+                                    iffalse ofs006d
+                                    debugline 121
+                                    returnvoid
+                           ofs006d:
+                                    debugline 123
+                                    getlocal0
+                                    callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"Move"), 0
+                           ofs0074:
+                                    debugline 125
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function Move() : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"Move")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/private:Move"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 9
+                                    maxscopedepth 10
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                       debugline 127
+                                       getlocal0
+                                       pushscope
+                                       jump ofs0050
+                              ofs000b:
+                                       label
+                                       debugline 132
+                                       getlocal0
+                                       callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveUp"), 0
+                                       debugline 133
+                                       jump ofs00c9
+                              ofs001b:
+                                       label
+                                       debugline 135
+                                       getlocal0
+                                       callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDown"), 0
+                                       debugline 136
+                                       jump ofs00c9
+                              ofs002b:
+                                       label
+                                       debugline 138
+                                       getlocal0
+                                       callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveLeft"), 0
+                                       debugline 139
+                                       jump ofs00c9
+                              ofs003b:
+                                       label
+                                       debugline 141
+                                       getlocal0
+                                       callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveRight"), 0
+                                       debugline 142
+                                       jump ofs00c9
+                              ofs004b:
+                                       label
+                                       jump ofs00c9
+                              ofs0050:
+                                       debugline 129
+                                       getlocal0
+                                       getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"m_iDirection")
+                                       setlocal1
+                                       debugline 131
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                       getlocal1
+                                       ifstrictne ofs006e
+                                       pushbyte 0
+                                       jump ofs00b3
+                              ofs006e:
+                                       debugline 134
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                       getlocal1
+                                       ifstrictne ofs0081
+                                       pushbyte 1
+                                       jump ofs00b3
+                              ofs0081:
+                                       debugline 137
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                       getlocal1
+                                       ifstrictne ofs0094
+                                       pushbyte 2
+                                       jump ofs00b3
+                              ofs0094:
+                                       debugline 140
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                       getlocal1
+                                       ifstrictne ofs00a7
+                                       pushbyte 3
+                                       jump ofs00b3
+                              ofs00a7:
+                                       jump ofs00b1
+                                       pushbyte 4
+                                       jump ofs00b1
+                              ofs00b1:
+                                       pushbyte 4
+                              ofs00b3:
+                                       kill 1
+                                       lookupswitch ofs004b, [ofs000b, ofs001b, ofs002b, ofs003b, ofs004b]
+                              ofs00c9:
+                                       debugline 145
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           protected function CheckCanMove() : Boolean
+                           {
+                              trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"CheckCanMove")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:CheckCanMove"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 8
+                                       initscopedepth 9
+                                       maxscopedepth 10
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                          debugline 148
+                                          getlocal0
+                                          pushscope
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockMap")
+                                          setlocal3
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                          setlocal 4
+                                          pushnull
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                          setlocal 5
+                                          debug 1, "iXGridNo", 0, 149
+                                          debug 1, "block", 1, 151
+                                          debug 1, "stBlock", 2, 152
+                                          debugline 149
+                                          getlex QName(PackageNamespace(""),"Math")
+                                          getlex QName(PackageNamespace(""),"x")
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                          getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                          subtract
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1080")
+                                          pushbyte 2
+                                          divide
+                                          add
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                          getproperty QName(PackageNamespace(""),"a_1080")
+                                          divide
+                                          callproperty QName(PackageNamespace(""),"floor"), 1
+                                          convert_i
+                                          setlocal1
+                                          debugline 151
+                                          pushfalse
+                                          setlocal2
+                                          debugline 152
+                                          pushbyte 0
+                                          setlocal 6
+                                          getlocal0
+                                          getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          callproperty QName(PackageNamespace(""),"GetMoveBlockMap"), 0
+                                          coerce_a
+                                          setlocal 7
+                                          jump ofs00f5
+                                 ofs0071:
+                                          label
+                                          getlocal 7
+                                          getlocal 6
+                                          nextvalue
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockMap")
+                                          setlocal3
+                                          debug 1, "grid1", 3, 154
+                                          debug 1, "grid2", 4, 155
+                                          debugline 154
+                                          getlocal0
+                                          callproperty QName(PackageNamespace(""),"getMoveBlockFieldGrid"), 0
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                          setlocal 4
+                                          debugline 155
+                                          getlocal3
+                                          callproperty QName(PackageNamespace(""),"getMoveBlockFieldGrid"), 0
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                          setlocal 5
+                                          debugline 156
+                                          getlocal 4
+                                          getlocal 5
+                                          equals
+                                          not
+                                          dup
+                                          iffalse ofs00b7
+                                          pop
+                                          getlocal 5
+                                          getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                          getlocal1
+                                          equals
+                                 ofs00b7:
+                                          dup
+                                          iffalse ofs00c8
+                                          pop
+                                          getlocal 4
+                                          getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                          getlocal 5
+                                          getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                          equals
+                                 ofs00c8:
+                                          iffalse ofs00f5
+                                          debugline 157
+                                          pushtrue
+                                          setlocal2
+                                          debugline 158
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "移动阻止:"
+                                          getlocal 5
+                                          getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                          add
+                                          pushstring "   "
+                                          add
+                                          getlocal 4
+                                          getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 159
+                                          jump ofs00ff
+                                 ofs00f5:
+                                          debugline 152
+                                          hasnext2 7, 6
+                                          iftrue ofs0071
+                                 ofs00ff:
+                                          kill 7
+                                          kill 6
+                                          debugline 162
+                                          getlocal2
+                                          not
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              protected function MoveUp() : void
+                              {
+                                 trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveUp")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:MoveUp"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 5
+                                          localcount 5
+                                          initscopedepth 9
+                                          maxscopedepth 10
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                             debugline 165
+                                             getlocal0
+                                             pushscope
+                                             pushnull
+                                             coerce TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockMap")>)
+                                             setlocal2
+                                             debug 1, "iAddY", 0, 167
+                                             debugline 167
+                                             pushbyte 0
+                                             convert_d
+                                             setlocal1
+                                             debugline 169
+                                             getlex QName(PackageNamespace(""),"y")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iStartYGridNo")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             multiply
+                                             ifngt ofs018c
+                                             debugline 171
+                                             getlex QName(PackageNamespace(""),"y")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                             subtract
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iStartYGridNo")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             multiply
+                                             ifngt ofs00b3
+                                             debug 1, "m_vMoveBlockMap", 1, 176
+                                             debugline 173
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                             negate
+                                             convert_d
+                                             setlocal1
+                                             debugline 174
+                                             findproperty QName(PackageNamespace(""),"y")
+                                             getlex QName(PackageNamespace(""),"y")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                             subtract
+                                             initproperty QName(PackageNamespace(""),"y")
+                                             debugline 176
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                             callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                             callproperty QName(PackageNamespace(""),"GetMoveBlockMap"), 0
+                                             coerce TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockMap")>)
+                                             setlocal2
+                                             debugline 177
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getlex QName(PackageNamespace(""),"Math")
+                                             getlex QName(PackageNamespace(""),"y")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             pushbyte 2
+                                             divide
+                                             add
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             divide
+                                             callproperty QName(PackageNamespace(""),"floor"), 1
+                                             setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             jump ofs00e0
+                                    ofs00b3:
+                                             debugline 181
+                                             getlex QName(PackageNamespace(""),"y")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iStartYGridNo")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             multiply
+                                             subtract
+                                             negate
+                                             convert_d
+                                             setlocal1
+                                             debugline 182
+                                             findproperty QName(PackageNamespace(""),"y")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iStartYGridNo")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                             getproperty QName(PackageNamespace(""),"a_1081")
+                                             multiply
+                                             initproperty QName(PackageNamespace(""),"y")
+                                    ofs00e0:
+                                             debugline 185
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             ifeq ofs017d
+                                             debugline 187
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                             setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             debugline 188
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                             setproperty QName(PackageNamespace(""),"m_iDirection")
+                                             debugline 189
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             callproperty QName(PackageNamespace(""),"MoveHandler"), 1
+                                             iffalse ofs015a
+                                             debugline 191
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             dup
+                                             setlocal3
+                                             getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                             decrement_i
+                                             setlocal 4
+                                             getlocal3
+                                             getlocal 4
+                                             setproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                             kill 4
+                                             kill 3
+                                             debugline 192
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             dup
+                                             setlocal3
+                                             getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             decrement_i
+                                             setlocal 4
+                                             getlocal3
+                                             getlocal 4
+                                             setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             kill 4
+                                             kill 3
+                                    ofs015a:
+                                             debugline 194
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                             ifeq ofs017d
+                                             debugline 196
+                                             findpropstrict QName(PackageNamespace(""),"Error")
+                                             pushstring "相差不是一点点"
+                                             constructprop QName(PackageNamespace(""),"Error"), 1
+                                             throw
+                                    ofs017d:
+                                             debugline 199
+                                             getlocal0
+                                             pushbyte 0
+                                             getlocal1
+                                             callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDisplayObject"), 2
+                                             jump ofs01df
+                                    ofs018c:
+                                             debugline 203
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iDirection")
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iDefultDirection")
+                                             ifne ofs01b3
+                                             debugline 205
+                                             getlocal0
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iStartResidenceTime")
+                                             initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                             jump ofs01c1
+                                    ofs01b3:
+                                             debugline 209
+                                             getlocal0
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                             getproperty QName(PackageNamespace(""),"m_iEndResideceTime")
+                                             initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                    ofs01c1:
+                                             debugline 211
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getlocal0
+                                             getlocal0
+                                             getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                             getproperty QName(PackageNamespace(""),"m_iDirection")
+                                             callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"getDirection"), 1
+                                             setproperty QName(PackageNamespace(""),"m_iDirection")
+                                             debugline 212
+                                             getlocal0
+                                             callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"OnArriedBound"), 0
+                                    ofs01df:
+                                             debugline 215
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 protected function OnArriedBound() : void
+                                 {
+                                    trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"OnArriedBound")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:OnArriedBound"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 1
+                                             initscopedepth 9
+                                             maxscopedepth 10
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                debugline 217
+                                                getlocal0
+                                                pushscope
+                                                debugline 219
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    protected function MoveDown() : void
+                                    {
+                                       trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDown")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:MoveDown"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 5
+                                                localcount 4
+                                                initscopedepth 9
+                                                maxscopedepth 10
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                   debugline 221
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "iAddY", 0, 223
+                                                   debugline 223
+                                                   pushbyte 0
+                                                   convert_d
+                                                   setlocal1
+                                                   debugline 224
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iEndYGridNo")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   multiply
+                                                   ifnlt ofs0172
+                                                   debugline 226
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                   add
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iEndYGridNo")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   multiply
+                                                   ifnlt ofs008d
+                                                   debugline 228
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                   convert_d
+                                                   setlocal1
+                                                   debugline 229
+                                                   findproperty QName(PackageNamespace(""),"y")
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   getlocal1
+                                                   add
+                                                   initproperty QName(PackageNamespace(""),"y")
+                                                   debugline 230
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getlex QName(PackageNamespace(""),"Math")
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   pushbyte 2
+                                                   divide
+                                                   add
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   divide
+                                                   callproperty QName(PackageNamespace(""),"floor"), 1
+                                                   setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   jump ofs00b9
+                                          ofs008d:
+                                                   debugline 234
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iEndYGridNo")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   multiply
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   subtract
+                                                   convert_d
+                                                   setlocal1
+                                                   debugline 235
+                                                   findproperty QName(PackageNamespace(""),"y")
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iEndYGridNo")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   getproperty QName(PackageNamespace(""),"a_1081")
+                                                   multiply
+                                                   initproperty QName(PackageNamespace(""),"y")
+                                          ofs00b9:
+                                                   debugline 240
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   ifeq ofs0163
+                                                   debugline 242
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                                   setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   debugline 243
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                   setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                   debugline 244
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   callproperty QName(PackageNamespace(""),"MoveHandler"), 1
+                                                   iffalse ofs0133
+                                                   debugline 246
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   dup
+                                                   setlocal2
+                                                   getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                                   increment_i
+                                                   setlocal3
+                                                   getlocal2
+                                                   getlocal3
+                                                   setproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                                   kill 3
+                                                   kill 2
+                                                   debugline 247
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   dup
+                                                   setlocal2
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   increment_i
+                                                   setlocal3
+                                                   getlocal2
+                                                   getlocal3
+                                                   setproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   kill 3
+                                                   kill 2
+                                                   jump ofs0140
+                                          ofs0133:
+                                                   debugline 251
+                                                   findpropstrict QName(PackageNamespace(""),"trace")
+                                                   pushstring "MoveHandler 失败了"
+                                                   callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          ofs0140:
+                                                   debugline 254
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iLastYGridNo")
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   ifeq ofs0163
+                                                   debugline 256
+                                                   findpropstrict QName(PackageNamespace(""),"Error")
+                                                   pushstring "相差不是一点点"
+                                                   constructprop QName(PackageNamespace(""),"Error"), 1
+                                                   throw
+                                          ofs0163:
+                                                   debugline 259
+                                                   getlocal0
+                                                   pushbyte 0
+                                                   getlocal1
+                                                   callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDisplayObject"), 2
+                                                   jump ofs01c5
+                                          ofs0172:
+                                                   debugline 263
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iDefultDirection")
+                                                   ifne ofs0199
+                                                   debugline 265
+                                                   getlocal0
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iEndResideceTime")
+                                                   initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                                   jump ofs01a7
+                                          ofs0199:
+                                                   debugline 269
+                                                   getlocal0
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                   getproperty QName(PackageNamespace(""),"m_iStartResidenceTime")
+                                                   initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                          ofs01a7:
+                                                   debugline 271
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getlocal0
+                                                   getlocal0
+                                                   getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                   getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                   callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"getDirection"), 1
+                                                   setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                   debugline 272
+                                                   getlocal0
+                                                   callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"OnArriedBound"), 0
+                                          ofs01c5:
+                                                   debugline 274
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       protected function MoveLeft() : void
+                                       {
+                                          trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveLeft")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:MoveLeft"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 5
+                                                   localcount 4
+                                                   initscopedepth 9
+                                                   maxscopedepth 10
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                      debugline 276
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "iAddX", 0, 278
+                                                      debugline 278
+                                                      pushbyte 0
+                                                      convert_d
+                                                      setlocal1
+                                                      debugline 282
+                                                      getlex QName(PackageNamespace(""),"x")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iStartXGridNo")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      multiply
+                                                      ifngt ofs0175
+                                                      debugline 284
+                                                      getlex QName(PackageNamespace(""),"x")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                      subtract
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iStartXGridNo")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      multiply
+                                                      ifngt ofs00a0
+                                                      debugline 287
+                                                      getlocal0
+                                                      callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"CheckCanMove"), 0
+                                                      iffalse ofs009c
+                                                      debugline 288
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                      negate
+                                                      convert_d
+                                                      setlocal1
+                                                      debugline 289
+                                                      findproperty QName(PackageNamespace(""),"x")
+                                                      getlex QName(PackageNamespace(""),"x")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                      subtract
+                                                      initproperty QName(PackageNamespace(""),"x")
+                                                      debugline 290
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getlex QName(PackageNamespace(""),"Math")
+                                                      getlex QName(PackageNamespace(""),"x")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      pushbyte 2
+                                                      divide
+                                                      add
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      divide
+                                                      callproperty QName(PackageNamespace(""),"floor"), 1
+                                                      setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                             ofs009c:
+                                                      jump ofs00cd
+                                             ofs00a0:
+                                                      debugline 295
+                                                      getlex QName(PackageNamespace(""),"x")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iStartXGridNo")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      multiply
+                                                      subtract
+                                                      negate
+                                                      convert_d
+                                                      setlocal1
+                                                      debugline 296
+                                                      findproperty QName(PackageNamespace(""),"x")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iStartXGridNo")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                      getproperty QName(PackageNamespace(""),"a_1080")
+                                                      multiply
+                                                      initproperty QName(PackageNamespace(""),"x")
+                                             ofs00cd:
+                                                      debugline 299
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                      ifeq ofs0166
+                                                      debugline 301
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                      setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                      debugline 302
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                      setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                      debugline 303
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      callproperty QName(PackageNamespace(""),"MoveHandler"), 1
+                                                      iffalse ofs0143
+                                                      debugline 305
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      dup
+                                                      setlocal2
+                                                      getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                      decrement_i
+                                                      setlocal3
+                                                      getlocal2
+                                                      getlocal3
+                                                      setproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                      kill 3
+                                                      kill 2
+                                                      debugline 306
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      dup
+                                                      setlocal2
+                                                      getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                      decrement_i
+                                                      setlocal3
+                                                      getlocal2
+                                                      getlocal3
+                                                      setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                      kill 3
+                                                      kill 2
+                                             ofs0143:
+                                                      debugline 308
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                      ifeq ofs0166
+                                                      debugline 310
+                                                      findpropstrict QName(PackageNamespace(""),"Error")
+                                                      pushstring "相差不是一点点"
+                                                      constructprop QName(PackageNamespace(""),"Error"), 1
+                                                      throw
+                                             ofs0166:
+                                                      debugline 313
+                                                      getlocal0
+                                                      getlocal1
+                                                      pushbyte 0
+                                                      callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDisplayObject"), 2
+                                                      jump ofs01c8
+                                             ofs0175:
+                                                      debugline 317
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iDefultDirection")
+                                                      ifne ofs019c
+                                                      debugline 319
+                                                      getlocal0
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iStartResidenceTime")
+                                                      initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                                      jump ofs01aa
+                                             ofs019c:
+                                                      debugline 323
+                                                      getlocal0
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                      getproperty QName(PackageNamespace(""),"m_iEndResideceTime")
+                                                      initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                             ofs01aa:
+                                                      debugline 325
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getlocal0
+                                                      getlocal0
+                                                      getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                      callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"getDirection"), 1
+                                                      setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                      debugline 326
+                                                      getlocal0
+                                                      callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"OnArriedBound"), 0
+                                             ofs01c8:
+                                                      debugline 329
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          protected function MoveRight() : void
+                                          {
+                                             trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveRight")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:MoveRight"
+                                                   returns QName(PackageNamespace(""),"void")
+                                                   
+                                                   body
+                                                      maxstack 5
+                                                      localcount 4
+                                                      initscopedepth 9
+                                                      maxscopedepth 10
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                         debugline 331
+                                                         getlocal0
+                                                         pushscope
+                                                         debug 1, "iAddX", 0, 333
+                                                         debugline 333
+                                                         pushbyte 0
+                                                         convert_d
+                                                         setlocal1
+                                                         debugline 334
+                                                         getlex QName(PackageNamespace(""),"x")
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iEndXGridNo")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         multiply
+                                                         ifnlt ofs0187
+                                                         debugline 336
+                                                         getlex QName(PackageNamespace(""),"x")
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                         add
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iEndXGridNo")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         multiply
+                                                         ifnlt ofs008d
+                                                         debugline 338
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iSpeed")
+                                                         convert_d
+                                                         setlocal1
+                                                         debugline 339
+                                                         findproperty QName(PackageNamespace(""),"x")
+                                                         getlex QName(PackageNamespace(""),"x")
+                                                         getlocal1
+                                                         add
+                                                         initproperty QName(PackageNamespace(""),"x")
+                                                         debugline 340
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getlex QName(PackageNamespace(""),"Math")
+                                                         getlex QName(PackageNamespace(""),"x")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         pushbyte 2
+                                                         divide
+                                                         add
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         divide
+                                                         callproperty QName(PackageNamespace(""),"floor"), 1
+                                                         setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         jump ofs00b9
+                                                ofs008d:
+                                                         debugline 344
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iEndXGridNo")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         multiply
+                                                         getlex QName(PackageNamespace(""),"x")
+                                                         subtract
+                                                         convert_d
+                                                         setlocal1
+                                                         debugline 345
+                                                         findproperty QName(PackageNamespace(""),"x")
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iEndXGridNo")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                         getproperty QName(PackageNamespace(""),"a_1080")
+                                                         multiply
+                                                         initproperty QName(PackageNamespace(""),"x")
+                                                ofs00b9:
+                                                         debugline 350
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         ifeq ofs0178
+                                                         debugline 352
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         debugline 353
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                         setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                         debugline 354
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stCurrentBattleFieldView")
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         callproperty QName(PackageNamespace(""),"MoveHandler"), 1
+                                                         iffalse ofs0133
+                                                         debugline 356
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         dup
+                                                         setlocal2
+                                                         getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         increment_i
+                                                         setlocal3
+                                                         getlocal2
+                                                         getlocal3
+                                                         setproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         kill 3
+                                                         kill 2
+                                                         debugline 357
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         dup
+                                                         setlocal2
+                                                         getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         increment_i
+                                                         setlocal3
+                                                         getlocal2
+                                                         getlocal3
+                                                         setproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         kill 3
+                                                         kill 2
+                                                         jump ofs0140
+                                                ofs0133:
+                                                         debugline 361
+                                                         findpropstrict QName(PackageNamespace(""),"trace")
+                                                         pushstring "MoveHandler 失败了"
+                                                         callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                ofs0140:
+                                                         debugline 363
+                                                         findpropstrict QName(PackageNamespace(""),"trace")
+                                                         pushstring "m_stMoveBlockFieldGrid.m_iLastXGridNo:"
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         add
+                                                         callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                         debugline 364
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iLastXGridNo")
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                         ifeq ofs0178
+                                                         debugline 366
+                                                         findpropstrict QName(PackageNamespace(""),"Error")
+                                                         pushstring "相差不是一点点"
+                                                         constructprop QName(PackageNamespace(""),"Error"), 1
+                                                         throw
+                                                ofs0178:
+                                                         debugline 369
+                                                         getlocal0
+                                                         getlocal1
+                                                         pushbyte 0
+                                                         callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDisplayObject"), 2
+                                                         jump ofs01da
+                                                ofs0187:
+                                                         debugline 373
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iDefultDirection")
+                                                         ifne ofs01ae
+                                                         debugline 375
+                                                         getlocal0
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iEndResideceTime")
+                                                         initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                                         jump ofs01bc
+                                                ofs01ae:
+                                                         debugline 379
+                                                         getlocal0
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                         getproperty QName(PackageNamespace(""),"m_iStartResidenceTime")
+                                                         initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_iSleepTime")
+                                                ofs01bc:
+                                                         debugline 381
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getlocal0
+                                                         getlocal0
+                                                         getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                         getproperty QName(PackageNamespace(""),"m_iDirection")
+                                                         callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"getDirection"), 1
+                                                         setproperty QName(PackageNamespace(""),"m_iDirection")
+                                                         debugline 382
+                                                         getlocal0
+                                                         callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"OnArriedBound"), 0
+                                                ofs01da:
+                                                         debugline 384
+                                                         returnvoid
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             protected function getDirection(m_iDirection:int) : int
+                                             {
+                                                trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"getDirection")
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:getDirection"
+                                                      flag HAS_PARAM_NAMES
+                                                      param QName(PackageNamespace(""),"int")
+                                                      paramname "x"
+                                                      returns QName(PackageNamespace(""),"int")
+                                                      
+                                                      body
+                                                         maxstack 2
+                                                         localcount 3
+                                                         initscopedepth 9
+                                                         maxscopedepth 10
+                                                         
+                                                         code
+                                                            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                            debugline 386
+                                                            getlocal0
+                                                            pushscope
+                                                            debug 1, "m_iDirection", 0, 386
+                                                            debugline 388
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                            getproperty QName(PackageNamespace(""),"m_iDirectionType")
+                                                            pushbyte 0
+                                                            ifne ofs00c7
+                                                            jump ofs0050
+                                                   ofs0023:
+                                                            label
+                                                            debugline 392
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            returnvalue
+                                                   ofs002d:
+                                                            label
+                                                            debugline 393
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            returnvalue
+                                                   ofs0037:
+                                                            label
+                                                            debugline 394
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            returnvalue
+                                                   ofs0041:
+                                                            label
+                                                            debugline 395
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            returnvalue
+                                                   ofs004b:
+                                                            label
+                                                            jump ofs00c3
+                                                   ofs0050:
+                                                            debugline 390
+                                                            getlocal1
+                                                            setlocal2
+                                                            debugline 392
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            getlocal2
+                                                            ifstrictne ofs0068
+                                                            pushbyte 0
+                                                            jump ofs00ad
+                                                   ofs0068:
+                                                            debugline 393
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            getlocal2
+                                                            ifstrictne ofs007b
+                                                            pushbyte 1
+                                                            jump ofs00ad
+                                                   ofs007b:
+                                                            debugline 394
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            getlocal2
+                                                            ifstrictne ofs008e
+                                                            pushbyte 2
+                                                            jump ofs00ad
+                                                   ofs008e:
+                                                            debugline 395
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            getlocal2
+                                                            ifstrictne ofs00a1
+                                                            pushbyte 3
+                                                            jump ofs00ad
+                                                   ofs00a1:
+                                                            jump ofs00ab
+                                                            pushbyte 4
+                                                            jump ofs00ab
+                                                   ofs00ab:
+                                                            pushbyte 4
+                                                   ofs00ad:
+                                                            kill 2
+                                                            lookupswitch ofs004b, [ofs0023, ofs002d, ofs0037, ofs0041, ofs004b]
+                                                   ofs00c3:
+                                                            jump ofs0247
+                                                   ofs00c7:
+                                                            debugline 398
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                            getproperty QName(PackageNamespace(""),"m_iDirectionType")
+                                                            pushbyte 1
+                                                            ifne ofs017f
+                                                            jump ofs0108
+                                                   ofs00db:
+                                                            label
+                                                            debugline 402
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            returnvalue
+                                                   ofs00e5:
+                                                            label
+                                                            debugline 403
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            returnvalue
+                                                   ofs00ef:
+                                                            label
+                                                            debugline 404
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            returnvalue
+                                                   ofs00f9:
+                                                            label
+                                                            debugline 405
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            returnvalue
+                                                   ofs0103:
+                                                            label
+                                                            jump ofs017b
+                                                   ofs0108:
+                                                            debugline 400
+                                                            getlocal1
+                                                            setlocal2
+                                                            debugline 402
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            getlocal2
+                                                            ifstrictne ofs0120
+                                                            pushbyte 0
+                                                            jump ofs0165
+                                                   ofs0120:
+                                                            debugline 403
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            getlocal2
+                                                            ifstrictne ofs0133
+                                                            pushbyte 1
+                                                            jump ofs0165
+                                                   ofs0133:
+                                                            debugline 404
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            getlocal2
+                                                            ifstrictne ofs0146
+                                                            pushbyte 2
+                                                            jump ofs0165
+                                                   ofs0146:
+                                                            debugline 405
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            getlocal2
+                                                            ifstrictne ofs0159
+                                                            pushbyte 3
+                                                            jump ofs0165
+                                                   ofs0159:
+                                                            jump ofs0163
+                                                            pushbyte 4
+                                                            jump ofs0163
+                                                   ofs0163:
+                                                            pushbyte 4
+                                                   ofs0165:
+                                                            kill 2
+                                                            lookupswitch ofs0103, [ofs00db, ofs00e5, ofs00ef, ofs00f9, ofs0103]
+                                                   ofs017b:
+                                                            jump ofs0247
+                                                   ofs017f:
+                                                            debugline 408
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                            getproperty QName(PackageNamespace(""),"m_iDirectionType")
+                                                            pushbyte 2
+                                                            ifne ofs0193
+                                                            jump ofs0247
+                                                   ofs0193:
+                                                            debugline 411
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                            getproperty QName(PackageNamespace(""),"m_iDirectionType")
+                                                            pushbyte 3
+                                                            ifne ofs0247
+                                                            jump ofs01d4
+                                                   ofs01a7:
+                                                            label
+                                                            debugline 415
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            returnvalue
+                                                   ofs01b1:
+                                                            label
+                                                            debugline 416
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            returnvalue
+                                                   ofs01bb:
+                                                            label
+                                                            debugline 417
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            returnvalue
+                                                   ofs01c5:
+                                                            label
+                                                            debugline 418
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            returnvalue
+                                                   ofs01cf:
+                                                            label
+                                                            jump ofs0247
+                                                   ofs01d4:
+                                                            debugline 413
+                                                            getlocal1
+                                                            setlocal2
+                                                            debugline 415
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_LEFT")
+                                                            getlocal2
+                                                            ifstrictne ofs01ec
+                                                            pushbyte 0
+                                                            jump ofs0231
+                                                   ofs01ec:
+                                                            debugline 416
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_DOWN")
+                                                            getlocal2
+                                                            ifstrictne ofs01ff
+                                                            pushbyte 1
+                                                            jump ofs0231
+                                                   ofs01ff:
+                                                            debugline 417
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_RIGHT")
+                                                            getlocal2
+                                                            ifstrictne ofs0212
+                                                            pushbyte 2
+                                                            jump ofs0231
+                                                   ofs0212:
+                                                            debugline 418
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                            getproperty QName(PackageNamespace(""),"MOVE_UP")
+                                                            getlocal2
+                                                            ifstrictne ofs0225
+                                                            pushbyte 3
+                                                            jump ofs0231
+                                                   ofs0225:
+                                                            jump ofs022f
+                                                            pushbyte 4
+                                                            jump ofs022f
+                                                   ofs022f:
+                                                            pushbyte 4
+                                                   ofs0231:
+                                                            kill 2
+                                                            lookupswitch ofs01cf, [ofs01a7, ofs01b1, ofs01bb, ofs01c5, ofs01cf]
+                                                   ofs0247:
+                                                            debugline 421
+                                                            getlocal1
+                                                            returnvalue
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                                
+                                                protected function MoveDisplayObject(iX:Number, iY:Number) : void
+                                                {
+                                                   trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"MoveDisplayObject")
+                                                      dispid 0
+                                                      method
+                                                         name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/protected:MoveDisplayObject"
+                                                         flag HAS_PARAM_NAMES
+                                                         param QName(PackageNamespace(""),"Number")
+                                                         param QName(PackageNamespace(""),"Number")
+                                                         paramname "DisplayObject"
+                                                         paramname "DisplayObject"
+                                                         returns QName(PackageNamespace(""),"void")
+                                                         
+                                                         body
+                                                            maxstack 3
+                                                            localcount 6
+                                                            initscopedepth 9
+                                                            maxscopedepth 10
+                                                            
+                                                            code
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                               debugline 424
+                                                               getlocal0
+                                                               pushscope
+                                                               pushnull
+                                                               coerce QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                               setlocal3
+                                                               debug 1, "iX", 0, 424
+                                                               debug 1, "iY", 1, 424
+                                                               debug 1, "stDis", 2, 431
+                                                               debugline 426
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               iftrue ofs003c
+                                                               debugline 428
+                                                               getlocal0
+                                                               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),PackageNamespace(""),PrivateNamespace("MoveBlockMap.as$372"),PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),PackageInternalNs("com.aurora.ui.maogoutd.resource.moveBlock"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+                                                               getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                               applytype 1
+                                                               construct 0
+                                                               initproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                      ofs003c:
+                                                               debugline 430
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"length")
+                                                               debugline 431
+                                                               pushbyte 0
+                                                               setlocal 4
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                               coerce_a
+                                                               setlocal 5
+                                                               jump ofs00af
+                                                      ofs005a:
+                                                               label
+                                                               getlocal 5
+                                                               getlocal 4
+                                                               nextvalue
+                                                               coerce QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                               setlocal3
+                                                               debugline 433
+                                                               getlocal3
+                                                               getlocal3
+                                                               getproperty QName(PackageNamespace(""),"x")
+                                                               getlocal1
+                                                               add
+                                                               setproperty QName(PackageNamespace(""),"x")
+                                                               debugline 434
+                                                               getlocal3
+                                                               getlocal3
+                                                               getproperty QName(PackageNamespace(""),"y")
+                                                               getlocal2
+                                                               add
+                                                               setproperty QName(PackageNamespace(""),"y")
+                                                               debugline 435
+                                                               getlocal3
+                                                               getproperty QName(PackageNamespace(""),"parent")
+                                                               iftrue ofs00af
+                                                               debugline 437
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               iftrue ofs00a3
+                                                               debugline 439
+                                                               getlocal0
+                                                               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),PackageNamespace(""),PrivateNamespace("MoveBlockMap.as$372"),PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),PackageInternalNs("com.aurora.ui.maogoutd.resource.moveBlock"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+                                                               getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                               applytype 1
+                                                               construct 0
+                                                               initproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                      ofs00a3:
+                                                               debugline 441
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               getlocal3
+                                                               callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                                      ofs00af:
+                                                               debugline 431
+                                                               hasnext2 5, 4
+                                                               iftrue ofs005a
+                                                               kill 5
+                                                               kill 4
+                                                               jump ofs00d2
+                                                      ofs00c1:
+                                                               label
+                                                               debugline 446
+                                                               getlocal0
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"a_3455"), 1
+                                                      ofs00d2:
+                                                               debugline 444
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_vTmpDisplayObject")
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               iftrue ofs00c1
+                                                               debugline 448
+                                                               returnvoid
+                                                            end ; code
+                                                         end ; body
+                                                      end ; method
+                                                   }
+                                                   
+                                                   public function a_3441(stDisplayObject:DisplayObject, iXGridNo:int, iYGridNo:int) : Boolean
+                                                   {
+                                                      trait method QName(PackageNamespace(""),"a_3441")
+                                                         dispid 0
+                                                         method
+                                                            name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/AddBaseDefense"
+                                                            flag HAS_PARAM_NAMES
+                                                            param QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                            param QName(PackageNamespace(""),"int")
+                                                            param QName(PackageNamespace(""),"int")
+                                                            paramname "m_iLastYGridNo"
+                                                            paramname "m_iLastYGridNo"
+                                                            paramname "m_iLastYGridNo"
+                                                            returns QName(PackageNamespace(""),"Boolean")
+                                                            
+                                                            body
+                                                               maxstack 5
+                                                               localcount 4
+                                                               initscopedepth 9
+                                                               maxscopedepth 10
+                                                               
+                                                               code
+                                                                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                                  debugline 450
+                                                                  getlocal0
+                                                                  pushscope
+                                                                  debug 1, "stDisplayObject", 0, 450
+                                                                  debug 1, "iXGridNo", 1, 450
+                                                                  debug 1, "iYGridNo", 2, 450
+                                                                  debugline 453
+                                                                  getlocal3
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                                  greaterequals
+                                                                  dup
+                                                                  iffalse ofs0043
+                                                                  pop
+                                                                  debugline 454
+                                                                  getlocal3
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iHeight")
+                                                                  add
+                                                                  lessthan
+                                                         ofs0043:
+                                                                  dup
+                                                                  iffalse ofs0055
+                                                                  pop
+                                                                  debugline 455
+                                                                  getlocal2
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                                  greaterequals
+                                                         ofs0055:
+                                                                  dup
+                                                                  iffalse ofs006f
+                                                                  pop
+                                                                  debugline 456
+                                                                  getlocal2
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iWidth")
+                                                                  add
+                                                                  lessthan
+                                                         ofs006f:
+                                                                  iffalse ofs0107
+                                                                  debugline 458
+                                                                  pushbyte -1
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                                  getlocal1
+                                                                  callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                  ifne ofs0107
+                                                                  debugline 460
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_bIsRun")
+                                                                  iffalse ofs00f6
+                                                                  debugline 462
+                                                                  getlocal1
+                                                                  getlocal1
+                                                                  getproperty QName(PackageNamespace(""),"x")
+                                                                  getlex QName(PackageNamespace(""),"x")
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                                  getproperty QName(PackageNamespace(""),"m_iDefultXGridNo")
+                                                                  subtract
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                                  getproperty QName(PackageNamespace(""),"a_1080")
+                                                                  multiply
+                                                                  subtract
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                                  getproperty QName(PackageNamespace(""),"m_iDefultXGridNo")
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                                  getproperty QName(PackageNamespace(""),"a_1080")
+                                                                  multiply
+                                                                  subtract
+                                                                  add
+                                                                  setproperty QName(PackageNamespace(""),"x")
+                                                                  debugline 463
+                                                                  getlocal1
+                                                                  getlocal1
+                                                                  getproperty QName(PackageNamespace(""),"y")
+                                                                  getlex QName(PackageNamespace(""),"y")
+                                                                  getlocal0
+                                                                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                  getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                                  getproperty QName(PackageNamespace(""),"m_iDefultYGridNo")
+                                                                  subtract
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                                  getproperty QName(PackageNamespace(""),"a_1081")
+                                                                  multiply
+                                                                  subtract
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_stMoveBlockData")
+                                                                  getproperty QName(PackageNamespace(""),"m_iDefultYGridNo")
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                                  getproperty QName(PackageNamespace(""),"a_1081")
+                                                                  multiply
+                                                                  subtract
+                                                                  add
+                                                                  setproperty QName(PackageNamespace(""),"y")
+                                                         ofs00f6:
+                                                                  debugline 465
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                                  getlocal1
+                                                                  callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                                                  debugline 467
+                                                                  pushtrue
+                                                                  returnvalue
+                                                         ofs0107:
+                                                                  debugline 470
+                                                                  pushfalse
+                                                                  returnvalue
+                                                               end ; code
+                                                            end ; body
+                                                         end ; method
+                                                      }
+                                                      
+                                                      public function getMoveBlockFieldGrid() : MoveBlockFieldGrid
+                                                      {
+                                                         trait method QName(PackageNamespace(""),"getMoveBlockFieldGrid")
+                                                            dispid 0
+                                                            method
+                                                               name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/getMoveBlockFieldGrid"
+                                                               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockFieldGrid")
+                                                               
+                                                               body
+                                                                  maxstack 1
+                                                                  localcount 1
+                                                                  initscopedepth 9
+                                                                  maxscopedepth 10
+                                                                  
+                                                                  code
+                                                                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                                     debugline 473
+                                                                     getlocal0
+                                                                     pushscope
+                                                                     debugline 475
+                                                                     getlocal0
+                                                                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap"),"m_stMoveBlockFieldGrid")
+                                                                     returnvalue
+                                                                  end ; code
+                                                               end ; body
+                                                            end ; method
+                                                         }
+                                                         
+                                                         public function a_3455(stDisplayObject:DisplayObject) : void
+                                                         {
+                                                            trait method QName(PackageNamespace(""),"a_3455")
+                                                               dispid 0
+                                                               method
+                                                                  name "com.aurora.ui.maogoutd.resource.moveBlock:MoveBlockMap/RemoveBaseDefense"
+                                                                  flag HAS_PARAM_NAMES
+                                                                  param QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                                  paramname "DisplayObject"
+                                                                  returns QName(PackageNamespace(""),"void")
+                                                                  
+                                                                  body
+                                                                     maxstack 3
+                                                                     localcount 2
+                                                                     initscopedepth 9
+                                                                     maxscopedepth 10
+                                                                     
+                                                                     code
+                                                                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                                        debugline 477
+                                                                        getlocal0
+                                                                        pushscope
+                                                                        debug 1, "stDisplayObject", 0, 477
+                                                                        debugline 479
+                                                                        pushbyte -1
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                                        getlocal1
+                                                                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                        ifeq ofs0037
+                                                                        debugline 481
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_vDisplayObject")
+                                                                        getlocal1
+                                                                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                        pushbyte 1
+                                                                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                                               ofs0037:
+                                                                        debugline 483
+                                                                        returnvoid
+                                                                     end ; code
+                                                                  end ; body
+                                                               end ; method
+                                                            }
+                                                         }
+                                                      }
+                                                      
+                                                      method
+                                                         name ""
+                                                         returns null
+                                                         
+                                                         body
+                                                            maxstack 2
+                                                            localcount 1
+                                                            initscopedepth 1
+                                                            maxscopedepth 8
+                                                            
+                                                            code
+                                                               getlocal0
+                                                               pushscope
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                               debugline 20
+                                                               findpropstrict Multiname("MoveBlockMap",[PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock")])
+                                                               getlex QName(PackageNamespace(""),"Object")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                                               pushscope
+                                                               getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                                               newclass 198
+                                                               popscope
+                                                               popscope
+                                                               popscope
+                                                               popscope
+                                                               popscope
+                                                               popscope
+                                                               initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.moveBlock"),"MoveBlockMap")
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\moveBlock;MoveBlockMap.as"
+                                                               debugline 10
+                                                               returnvoid
+                                                            end ; code
+                                                         end ; body
+                                                      end ; method
+                                                      

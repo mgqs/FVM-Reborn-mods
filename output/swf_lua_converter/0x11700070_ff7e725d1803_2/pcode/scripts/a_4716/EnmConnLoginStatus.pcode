@@ -1,0 +1,97 @@
+package a_4716
+{
+   public class EnmConnLoginStatus
+   {
+      
+      public static const enmNoLogin:int = -1;
+      
+      public static const enmLogining:int = 0;
+      
+      public static const enmLogined:int = 1;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "enmNoLogin", 0, 5
+               findproperty QName(PackageNamespace(""),"enmNoLogin")
+               pushbyte -1
+               initproperty QName(PackageNamespace(""),"enmNoLogin")
+               debug 1, "enmLogining", 1, 6
+               findproperty QName(PackageNamespace(""),"enmLogining")
+               pushbyte 0
+               initproperty QName(PackageNamespace(""),"enmLogining")
+               debug 1, "enmLogined", 2, 7
+               findproperty QName(PackageNamespace(""),"enmLogined")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"enmLogined")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function EnmConnLoginStatus()
+      {
+         method
+            name "com.aurora.constant:EnmConnLoginStatus/EnmConnLoginStatus"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmConnLoginStatus.as"
+                  debugline 10
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmConnLoginStatus.as"
+         debugline 3
+         findpropstrict Multiname("EnmConnLoginStatus",[PackageNamespace("a_4716")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 120
+         popscope
+         initproperty QName(PackageNamespace("a_4716"),"EnmConnLoginStatus")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;EnmConnLoginStatus.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

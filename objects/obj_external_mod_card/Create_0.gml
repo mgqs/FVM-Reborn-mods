@@ -1,0 +1,31 @@
+var _spawn = variable_global_exists("_external_spawn_context") ? global._external_spawn_context : {};
+event_inherited();
+external_spawn_id = external_mod_field(_spawn, "external_spawn_id", "");
+external_spawn_shape = external_mod_field(_spawn, "external_spawn_shape", 0);
+external_spawn_level = external_mod_field(_spawn, "external_spawn_level", 0);
+external_spawn_skill = external_mod_field(_spawn, "external_spawn_skill", 0);
+plant_id = external_spawn_id;
+shape = external_spawn_shape;
+current_level = external_spawn_level;
+skill = external_spawn_skill;
+obj_type = object_index;
+mod_definition = external_mod_get(plant_id);
+mod_lua_handle = -1;
+mod_script_failed = false;
+mod_timers = [];
+mod_started = false;
+mod_animation_frame = 0;
+mod_animation_name = "idle";
+if (is_undefined(mod_definition)) { instance_destroy(); exit; }
+var sh = mod_definition.shapes[shape];
+name = sh.name;
+description = sh.description;
+plant_type = sh.plant_type;
+feature_type = sh.feature_type;
+target_card = sh.target_card;
+target_type = sh.target_type;
+event_user(0);
+external_mod_animate(id, "idle");
+var response = json_parse(native_mod_lua_create(mod_definition.source));
+if (response.ok) mod_lua_handle = response.handle;
+else { mod_script_failed = true; show_debug_message("[Mod " + plant_id + "] " + response.error); }

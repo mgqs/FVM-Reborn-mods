@@ -1,0 +1,726 @@
+package com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect.HurtBuff;
+   import com.aurora.ui.maogoutd.resource.defender.a_3962;
+   import com.aurora.ui.maogoutd.resource.effect.a_4108;
+   import flash.display.BitmapData;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class ImperialStrikeHurtBuff extends a_4108
+   {
+      
+      private static var ms_stImperialStrikeHurtBuffVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stImperialStrikeHurtBuffVector", 0, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ms_stImperialStrikeHurtBuffVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ms_stImperialStrikeHurtBuffVector")
+               debug 1, "a_1300", 1, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1300")
+               debug 1, "a_1301", 2, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1301")
+               debug 1, "a_1302", 3, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuffMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuffMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iStartTime:int;
+      
+      public var stOriginalFieldGrid:a_3491;
+      
+      public var m_BaseDefense:a_3962;
+      
+      private var m_Buffs:Vector.<HurtBuff>;
+      
+      private var m_TotalPower:Number = 0;
+      
+      public function ImperialStrikeHurtBuff()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/ImperialStrikeHurtBuff"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                  debugline 39
+                  getlocal0
+                  pushscope
+                  debugline 25
+                  getlocal0
+                  findpropstrict Multiname("Vector",[PackageNamespace("__AS3__.vec")])
+                  getproperty Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect"),"HurtBuff")
+                  applytype 1
+                  pushbyte 0
+                  construct 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                  debugline 41
+                  getlocal0
+                  constructsuper 0
+                  debugline 42
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : ImperialStrikeHurtBuff
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuff")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 10
+                  maxscopedepth 11
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                     debugline 27
+                     getlocal0
+                     pushscope
+                     debug 1, "stImperialStrikeHurtBuff", 0, 29
+                     debugline 29
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ms_stImperialStrikeHurtBuffVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuff")
+                     setlocal1
+                     debugline 31
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 33
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuff")
+                     setlocal1
+            ofs002b:
+                     debugline 36
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(isReversed:Boolean) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "flash.geom"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                        debugline 44
+                        getlocal0
+                        pushscope
+                        debug 1, "isReversed", 0, 44
+                        debugline 46
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                        debugline 47
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_iStartTime")
+                        debugline 48
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                        iffalse ofs003f
+                        debugline 50
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                        getproperty QName(PackageNamespace(""),"stFieldGrid")
+                        callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"addShield"), 1
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                        getlocal0
+                        setproperty QName(PackageNamespace(""),"m_FangyuBuff")
+               ofs003f:
+                        debugline 53
+                        findpropstrict QName(PackageNamespace(""),"play")
+                        callpropvoid QName(PackageNamespace(""),"play"), 0
+                        debugline 54
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                           debugline 57
+                           getlocal0
+                           pushscope
+                           debugline 59
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                              debugline 62
+                              getlocal0
+                              pushscope
+                              debugline 64
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                 debugline 67
+                                 getlocal0
+                                 pushscope
+                                 debugline 69
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function AddBuff(duration:int, power:Number) : void
+                     {
+                        trait method QName(PackageNamespace(""),"AddBuff")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/AddBuff"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              param QName(PackageNamespace(""),"Number")
+                              paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/GetFreeInstance"
+                              paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/GetFreeInstance"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 4
+                                 localcount 3
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                    debugline 73
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "duration", 0, 73
+                                    debug 1, "power", 1, 73
+                                    debugline 74
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                    findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect"),"HurtBuff")
+                                    getlocal1
+                                    getlocal2
+                                    constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect"),"HurtBuff"), 2
+                                    callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                    debugline 75
+                                    getlocal0
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_TotalPower")
+                                    getlocal2
+                                    add
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_TotalPower")
+                                    debugline 76
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override protected function a_4109(a_4730:Event) : void
+                        {
+                           trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"a_4109")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:OnPlayNextFrameTimeEvent"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("flash.events"),"Event")
+                                 paramname "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/GetFreeInstance"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 5
+                                    localcount 6
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                       debugline 77
+                                       getlocal0
+                                       pushscope
+                                       pushnull
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect"),"HurtBuff")
+                                       setlocal3
+                                       debug 1, "a_4730", 0, 77
+                                       debug 1, "i", 1, 89
+                                       debugline 79
+                                       getlocal0
+                                       dup
+                                       setlocal 4
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_iStartTime")
+                                       increment_i
+                                       setlocal 5
+                                       getlocal 4
+                                       getlocal 5
+                                       setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_iStartTime")
+                                       kill 5
+                                       kill 4
+                                       debugline 81
+                                       findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                       callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                       debugline 83
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                       equals
+                                       dup
+                                       iftrue ofs004d
+                                       pop
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1278")
+                                       pushnull
+                                       equals
+                                       not
+                              ofs004d:
+                                       iffalse ofs006a
+                                       debugline 85
+                                       findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                       getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                       astypelate
+                                       getproperty QName(PackageNamespace(""),"frame")
+                                       callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                              ofs006a:
+                                       debugline 89
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getproperty QName(PackageNamespace(""),"length")
+                                       decrement
+                                       convert_i
+                                       setlocal2
+                                       jump ofs00e4
+                              ofs007a:
+                                       label
+                                       debug 1, "buff", 2, 90
+                                       debugline 90
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getlocal2
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.elementSnake.effect"),"HurtBuff")
+                                       setlocal3
+                                       debugline 91
+                                       getlocal3
+                                       dup
+                                       setlocal 4
+                                       getproperty QName(PackageNamespace(""),"duration")
+                                       decrement_i
+                                       dup
+                                       setlocal 5
+                                       getlocal 4
+                                       getlocal 5
+                                       setproperty QName(PackageNamespace(""),"duration")
+                                       kill 5
+                                       kill 4
+                                       pushbyte 0
+                                       ifnle ofs00df
+                                       debugline 92
+                                       getlocal0
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_TotalPower")
+                                       getlocal3
+                                       getproperty QName(PackageNamespace(""),"power")
+                                       subtract
+                                       initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_TotalPower")
+                                       debugline 93
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getlocal2
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getproperty QName(PackageNamespace(""),"length")
+                                       decrement
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                       setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),PackageNamespace(""),PrivateNamespace("ImperialStrikeHurtBuff.as$93"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                       debugline 94
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                              ofs00df:
+                                       debugline 89
+                                       getlocal2
+                                       decrement_i
+                                       setlocal2
+                              ofs00e4:
+                                       getlocal2
+                                       pushbyte 0
+                                       ifge ofs007a
+                                       debugline 99
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"m_Buffs")
+                                       getproperty QName(PackageNamespace(""),"length")
+                                       pushbyte 0
+                                       ifne ofs0104
+                                       debugline 100
+                                       getlocal0
+                                       callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                       debugline 101
+                                       returnvoid
+                              ofs0104:
+                                       debugline 103
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           protected function addShield(stFieldGrid:a_3491) : Boolean
+                           {
+                              trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"addShield")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:addShield"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    paramname "flash.geom"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 2
+                                       initscopedepth 11
+                                       maxscopedepth 12
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                          debugline 105
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "stFieldGrid", 0, 105
+                                          debugline 107
+                                          getlocal1
+                                          iffalse ofs0039
+                                          debugline 109
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          iffalse ofs0039
+                                          debugline 111
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          getlocal0
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                          callpropvoid QName(PackageNamespace(""),"AddMoveDisplayObject"), 3
+                                 ofs0039:
+                                          debugline 115
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              protected function ClearShield(stFieldGrid:a_3491) : Boolean
+                              {
+                                 trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ClearShield")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/protected:ClearShield"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       paramname "flash.geom"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 11
+                                          maxscopedepth 12
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                             debugline 117
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "stFieldGrid", 0, 117
+                                             debugline 119
+                                             getlocal1
+                                             iffalse ofs0031
+                                             debugline 121
+                                             getlocal1
+                                             getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                             callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                             iffalse ofs0031
+                                             debugline 123
+                                             getlocal1
+                                             getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                             callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"RemoveMoveDisplayObject"), 1
+                                    ofs0031:
+                                             debugline 126
+                                             pushtrue
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 override public function a_3940() : Boolean
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_3940")
+                                       flag OVERRIDE
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff/Realease"
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 1
+                                             initscopedepth 11
+                                             maxscopedepth 12
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                                debugline 129
+                                                getlocal0
+                                                pushscope
+                                                debugline 131
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                                                iffalse ofs0035
+                                                debugline 133
+                                                getlocal0
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                                                getproperty QName(PackageNamespace(""),"stFieldGrid")
+                                                callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ClearShield"), 1
+                                                debugline 134
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_BaseDefense")
+                                                pushnull
+                                                setproperty QName(PackageNamespace(""),"m_FangyuBuff")
+                                                debugline 135
+                                                getlocal0
+                                                pushnull
+                                                initproperty QName(PackageNamespace(""),"m_BaseDefense")
+                                       ofs0035:
+                                                debugline 137
+                                                getlocal0
+                                                callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                                debugline 139
+                                                pushbyte -1
+                                                getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ms_stImperialStrikeHurtBuffVector")
+                                                getlocal0
+                                                callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                ifne ofs0059
+                                                debugline 141
+                                                getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome:ImperialStrikeHurtBuff"),"ms_stImperialStrikeHurtBuffVector")
+                                                getlocal0
+                                                callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                       ofs0059:
+                                                debugline 144
+                                                getlex QName(PackageNamespace(""),"parent")
+                                                convert_b
+                                                dup
+                                                iffalse ofs006f
+                                                pop
+                                                getlex QName(PackageNamespace(""),"parent")
+                                                getlocal0
+                                                callproperty QName(PackageNamespace(""),"contains"), 1
+                                                convert_b
+                                       ofs006f:
+                                                iffalse ofs007e
+                                                debugline 146
+                                                getlex QName(PackageNamespace(""),"parent")
+                                                getlocal0
+                                                callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                       ofs007e:
+                                                debugline 148
+                                                pushtrue
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                 }
+                              }
+                              
+                              method
+                                 name ""
+                                 returns null
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 1
+                                    maxscopedepth 10
+                                    
+                                    code
+                                       getlocal0
+                                       pushscope
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                       debugline 14
+                                       findpropstrict Multiname("ImperialStrikeHurtBuff",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome")])
+                                       getlex QName(PackageNamespace(""),"Object")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                       pushscope
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                       pushscope
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                                       pushscope
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                                       newclass 322
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.stardome"),"ImperialStrikeHurtBuff")
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome;ImperialStrikeHurtBuff.as"
+                                       debugline 1
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                              

@@ -1,0 +1,119 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Timer;
+   
+   public class SleepingEffect extends a_3909
+   {
+      
+      private static var ms_stSleepingEffectVector:Array = new Array();
+      
+      private static var a_1300:Vector.<BitmapData> = new Vector.<BitmapData>(100);
+      
+      private static var a_1301:Vector.<Point> = new Vector.<Point>(100);
+      
+      private static var a_1302:MovieClip = new SleepingEffectMovie();
+      
+      private var m_stTiemr:Timer;
+      
+      private var m_iStartTime:int;
+      
+      private var m_iSleepTime:int;
+      
+      public function SleepingEffect()
+      {
+         super();
+         this.m_stTiemr = new Timer(100);
+      }
+      
+      public static function a_3926() : SleepingEffect
+      {
+         var stSleepingEffect:SleepingEffect = ms_stSleepingEffectVector.pop();
+         if(null == stSleepingEffect)
+         {
+            stSleepingEffect = new SleepingEffect();
+         }
+         return stSleepingEffect;
+      }
+      
+      public function a_1797(isReseaved:Boolean) : Boolean
+      {
+         a_1283 = isReseaved;
+         this.m_stTiemr.addEventListener(TimerEvent.TIMER,this.a_4003);
+         this.visible = true;
+         gotoAndStop(1);
+         this.play();
+         this.m_iStartTime = 0;
+         return true;
+      }
+      
+      public function get a_3958() : int
+      {
+         return this.m_iSleepTime;
+      }
+      
+      public function set a_3958(iSleepTime:int) : void
+      {
+         this.m_iStartTime = 0;
+         this.m_iSleepTime = iSleepTime;
+      }
+      
+      override protected function a_3911() : Vector.<BitmapData>
+      {
+         return a_1300;
+      }
+      
+      override protected function a_3912() : Vector.<Point>
+      {
+         return a_1301;
+      }
+      
+      override protected function a_3913() : MovieClip
+      {
+         return a_1302;
+      }
+      
+      public function a_3940() : Boolean
+      {
+         this.visible = false;
+         gotoAndStop(1);
+         this.m_stTiemr.removeEventListener(TimerEvent.TIMER,this.a_4003);
+         this.m_stTiemr.stop();
+         if(-1 == ms_stSleepingEffectVector.indexOf(this))
+         {
+            ms_stSleepingEffectVector.push(this);
+         }
+         return true;
+      }
+      
+      public function play() : void
+      {
+         this.m_stTiemr.start();
+      }
+      
+      public function stop() : void
+      {
+         this.m_stTiemr.stop();
+      }
+      
+      private function a_4003(a_4730:Event) : void
+      {
+         nextFrame();
+         if(a_1273 == a_1274)
+         {
+            gotoAndStop(1);
+         }
+         ++this.m_iStartTime;
+         if(this.m_iStartTime > this.m_iSleepTime * 10)
+         {
+            this.a_3940();
+         }
+      }
+   }
+}
+

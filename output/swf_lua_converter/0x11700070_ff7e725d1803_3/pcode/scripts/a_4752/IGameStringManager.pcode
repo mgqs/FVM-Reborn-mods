@@ -1,0 +1,62 @@
+package a_4752
+{
+   import flash.events.IEventDispatcher;
+   
+   public interface IGameStringManager extends IEventDispatcher
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 4
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function getString(param1:int, param2:Array = null) : String;
+      
+      function getHolder() : String;
+      
+      function setString(param1:XML) : void;
+      
+      function loadString(param1:String) : void;
+      
+      function replaceString(param1:String, param2:Array = null, param3:String = null) : String;
+      
+      function GetServerCodeMessage(param1:int) : String;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;IGameStringManager.as"
+         debugline 5
+         findpropstrict Multiname("IGameStringManager",[PackageNamespace("a_4752")])
+         pushnull
+         newclass 127
+         initproperty QName(PackageNamespace("a_4752"),"IGameStringManager")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

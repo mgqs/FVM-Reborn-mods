@@ -1,0 +1,1719 @@
+package a_4771
+{
+   import a_4716.CommonConst;
+   import a_4716.EnmConnLoginStatus;
+   import a_4722.a_1765;
+   import a_4728.a_1778;
+   import a_4729.EventType;
+   import a_4729.a_1779;
+   import a_4729.a_1789;
+   import a_4732.TcpPackageEvent;
+   import a_4752.GameStringManager;
+   import a_4788.a_4648;
+   import com.aurora.protocol.a_2664;
+   import com.aurora.ui.maogoutd.doctor.GameDoctor;
+   import flash.errors.IOError;
+   import flash.events.Event;
+   import flash.events.IOErrorEvent;
+   import flash.events.ProgressEvent;
+   import flash.events.SecurityErrorEvent;
+   import flash.net.Socket;
+   import flash.utils.ByteArray;
+   import flash.utils.setTimeout;
+   
+   public class a_2650 extends Socket
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 5
+            maxscopedepth 6
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var a_787:a_1765;
+      
+      private var m_host:String;
+      
+      private var m_port:int;
+      
+      private var m_desIP:String;
+      
+      private var m_desPort:int;
+      
+      public var m_szSessionKey:ByteArray;
+      
+      public var m_iPlayerID:int = -1;
+      
+      public var m_iLoginStatus:int = -1;
+      
+      public var eventType:String;
+      
+      private var eventManage:a_1779;
+      
+      private var tempPackage:ByteArray;
+      
+      private var leftSize:uint;
+      
+      private var paddingSendData:ByteArray;
+      
+      private var NextSocketdata:Socket = null;
+      
+      private var m_iRecursiveCount:int = 0;
+      
+      private const MAX_RECURSIVE:int = 1;
+      
+      private var m_bWaitNextFrameParse:Boolean = false;
+      
+      public function a_2650(_host:String = null, _port:int = 0, _serverType:int = -1, _serverId:int = -1, _desIP:String = null, _desPort:int = 0)
+      {
+         method
+            name "com.aurora.handler.network:TcpConnection/TcpConnection"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"String")
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            optional Null()
+            optional Integer(0)
+            optional Integer(-1)
+            optional Integer(-1)
+            optional Null()
+            optional Integer(0)
+            returns null
+            
+            body
+               maxstack 3
+               localcount 7
+               initscopedepth 6
+               maxscopedepth 7
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                  debugline 41
+                  getlocal0
+                  pushscope
+                  debug 1, "_host", 0, 41
+                  debug 1, "_port", 1, 41
+                  debug 1, "_serverType", 2, 41
+                  debug 1, "_serverId", 3, 41
+                  debug 1, "_desIP", 4, 41
+                  debug 1, "_desPort", 5, 41
+                  debugline 44
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4722"),"a_1765")
+                  constructprop QName(PackageNamespace("a_4722"),"a_1765"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                  debugline 45
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                  getlocal3
+                  setproperty QName(PackageNamespace(""),"m_iServerType")
+                  debugline 46
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                  getlocal 4
+                  setproperty QName(PackageNamespace(""),"m_iServerID")
+                  debugline 47
+                  getlocal0
+                  getlex QName(PackageNamespace("a_4729"),"EventType")
+                  getproperty QName(PackageNamespace(""),"a_561")
+                  initproperty QName(PackageNamespace(""),"eventType")
+                  debugline 48
+                  getlocal0
+                  getlex QName(PackageNamespace("a_4729"),"a_1789")
+                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"eventManage")
+                  debugline 49
+                  getlocal0
+                  pushnull
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                  debugline 50
+                  getlocal0
+                  pushbyte 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                  debugline 51
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                  debugline 52
+                  getlocal0
+                  getlocal2
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                  debugline 53
+                  getlocal0
+                  getlocal 5
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desIP")
+                  debugline 54
+                  getlocal0
+                  getlocal 6
+                  initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desPort")
+                  debugline 55
+                  getlocal0
+                  callpropvoid QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"initialize"), 0
+                  debugline 56
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  constructsuper 2
+                  debugline 57
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function SetDestInfo(szDestIP:String = null, iDestPort:int = 0) : void
+      {
+         trait method QName(PackageNamespace(""),"SetDestInfo")
+            dispid 0
+            method
+               name "com.aurora.handler.network:TcpConnection/SetDestInfo"
+               flag HAS_OPTIONAL
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"String")
+               param QName(PackageNamespace(""),"int")
+               paramname "getInstance"
+               paramname "getInstance"
+               optional Null()
+               optional Integer(0)
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 2
+                  localcount 3
+                  initscopedepth 6
+                  maxscopedepth 7
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                     debugline 59
+                     getlocal0
+                     pushscope
+                     debug 1, "szDestIP", 0, 59
+                     debug 1, "iDestPort", 1, 59
+                     debugline 61
+                     getlocal0
+                     getlocal1
+                     initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desIP")
+                     debugline 62
+                     getlocal0
+                     getlocal2
+                     initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desPort")
+                     debugline 63
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function closeConnection() : void
+         {
+            trait method QName(PackageNamespace(""),"closeConnection")
+               dispid 0
+               method
+                  name "com.aurora.handler.network:TcpConnection/closeConnection"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 6
+                     maxscopedepth 7
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                        debugline 65
+                        getlocal0
+                        pushscope
+                        debugline 67
+                        getlex QName(PackageNamespace(""),"connected")
+                        iffalse ofs0034
+                        debugline 69
+                        findpropstrict QName(PackageNamespace(""),"close")
+                        callpropvoid QName(PackageNamespace(""),"close"), 0
+                        debugline 71
+                        getlocal0
+                        pushbyte -1
+                        initproperty QName(PackageNamespace(""),"m_iPlayerID")
+                        debugline 72
+                        getlocal0
+                        getlex QName(PackageNamespace("a_4716"),"EnmConnLoginStatus")
+                        getproperty QName(PackageNamespace(""),"enmNoLogin")
+                        initproperty QName(PackageNamespace(""),"m_iLoginStatus")
+                        debugline 73
+                        getlocal0
+                        pushnull
+                        initproperty QName(PackageNamespace(""),"m_szSessionKey")
+               ofs0034:
+                        debugline 75
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get serverType() : int
+            {
+               trait getter QName(PackageNamespace(""),"serverType")
+                  dispid 0
+                  method
+                     name "com.aurora.handler.network:TcpConnection/serverType/get"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 6
+                        maxscopedepth 7
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                           debugline 77
+                           getlocal0
+                           pushscope
+                           debugline 79
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                           getproperty QName(PackageNamespace(""),"m_iServerType")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function get serverId() : int
+               {
+                  trait getter QName(PackageNamespace(""),"serverId")
+                     dispid 0
+                     method
+                        name "com.aurora.handler.network:TcpConnection/serverId/get"
+                        returns QName(PackageNamespace(""),"int")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 6
+                           maxscopedepth 7
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                              debugline 82
+                              getlocal0
+                              pushscope
+                              debugline 84
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                              getproperty QName(PackageNamespace(""),"m_iServerID")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function get host() : String
+                  {
+                     trait getter QName(PackageNamespace(""),"host")
+                        dispid 0
+                        method
+                           name "com.aurora.handler.network:TcpConnection/host/get"
+                           returns QName(PackageNamespace(""),"String")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 6
+                              maxscopedepth 7
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                 debugline 87
+                                 getlocal0
+                                 pushscope
+                                 debugline 89
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function get port() : int
+                     {
+                        trait getter QName(PackageNamespace(""),"port")
+                           dispid 0
+                           method
+                              name "com.aurora.handler.network:TcpConnection/port/get"
+                              returns QName(PackageNamespace(""),"int")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 6
+                                 maxscopedepth 7
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                    debugline 92
+                                    getlocal0
+                                    pushscope
+                                    debugline 94
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function initialize() : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"initialize")
+                              dispid 0
+                              method
+                                 name "com.aurora.handler.network:TcpConnection/private:initialize"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 5
+                                    localcount 1
+                                    initscopedepth 6
+                                    maxscopedepth 7
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                       debugline 97
+                                       getlocal0
+                                       pushscope
+                                       debugline 100
+                                       findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                       getlex QName(PackageNamespace("flash.events"),"Event")
+                                       getproperty QName(PackageNamespace(""),"CONNECT")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"a_2654")
+                                       callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                       debugline 101
+                                       findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                       getlex QName(PackageNamespace("flash.events"),"SecurityErrorEvent")
+                                       getproperty QName(PackageNamespace(""),"SECURITY_ERROR")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"a_2653")
+                                       callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                       debugline 102
+                                       findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                       getlex QName(PackageNamespace("flash.events"),"IOErrorEvent")
+                                       getproperty QName(PackageNamespace(""),"IO_ERROR")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"a_2652")
+                                       callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                       debugline 103
+                                       findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                       getlex QName(PackageNamespace("flash.events"),"ProgressEvent")
+                                       getproperty QName(PackageNamespace(""),"SOCKET_DATA")
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"processRecievedPackage")
+                                       pushfalse
+                                       pushint 65535
+                                       callpropvoid QName(PackageNamespace(""),"addEventListener"), 4
+                                       debugline 104
+                                       findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                       getlex QName(PackageNamespace("flash.events"),"Event")
+                                       getproperty QName(PackageNamespace(""),"CLOSE")
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"a_2655")
+                                       callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                       debugline 105
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function processRecievedPackage(a_4730:ProgressEvent) : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"processRecievedPackage")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.handler.network:TcpConnection/private:processRecievedPackage"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("flash.events"),"ProgressEvent")
+                                    paramname "getInstance"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 5
+                                       localcount 9
+                                       initscopedepth 6
+                                       maxscopedepth 7
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                          debugline 111
+                                          getlocal0
+                                          pushscope
+                                          pushnull
+                                          coerce QName(PackageNamespace("flash.net"),"Socket")
+                                          setlocal2
+                                          pushbyte 0
+                                          setlocal 6
+                                          debug 1, "a_4730", 0, 111
+                                          debug 1, "sourceSocket", 1, 114
+                                          debug 1, "bytesAvail", 2, 129
+                                          debug 1, "packageEvent", 3, 130
+                                          debug 1, "packageLen", 4, 164
+                                          debugline 115
+                                          getlocal1
+                                          pushnull
+                                          ifne ofs0047
+                                          debugline 117
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"NextSocketdata")
+                                          coerce QName(PackageNamespace("flash.net"),"Socket")
+                                          setlocal2
+                                          jump ofs0055
+                                 ofs0047:
+                                          debugline 121
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"target")
+                                          getlex QName(PackageNamespace("flash.net"),"Socket")
+                                          astypelate
+                                          coerce QName(PackageNamespace("flash.net"),"Socket")
+                                          setlocal2
+                                 ofs0055:
+                                          debugline 123
+                                          pushnull
+                                          getlocal2
+                                          ifne ofs006c
+                                          debugline 125
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "sourceSocket is null, failed return!"
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 126
+                                          returnvoid
+                                 ofs006c:
+                                          debugline 129
+                                          getlocal2
+                                          getproperty QName(PackageNamespace(""),"bytesAvailable")
+                                          convert_u
+                                          setlocal3
+                                          debugline 130
+                                          findpropstrict QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"eventType")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"m_szSessionKey")
+                                          constructprop QName(PackageNamespace("a_4732"),"TcpPackageEvent"), 3
+                                          coerce QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                          setlocal 4
+                                          debugline 131
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "sourceSocket.bytesAvailable"
+                                          getlocal2
+                                          getproperty QName(PackageNamespace(""),"bytesAvailable")
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 132
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          pushbyte 0
+                                          ifngt ofs01a5
+                                          debug 1, "read_size", 5, 135
+                                          debugline 135
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          getlocal3
+                                          greaterthan
+                                          iffalse ofs00c9
+                                          getlocal3
+                                          convert_i
+                                          jump ofs00ce
+                                 ofs00c9:
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          convert_i
+                                 ofs00ce:
+                                          convert_i
+                                          setlocal 6
+                                          debugline 137
+                                          getlocal2
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          getproperty QName(PackageNamespace(""),"length")
+                                          getlocal 6
+                                          callpropvoid QName(PackageNamespace(""),"readBytes"), 3
+                                          debugline 138
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "leftSize["
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          add
+                                          pushstring "] > 0 so readed left bytes["
+                                          add
+                                          getlocal 6
+                                          add
+                                          pushstring "]"
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 139
+                                          getlocal0
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          getlocal 6
+                                          subtract
+                                          initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          debugline 141
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          pushbyte 0
+                                          ifne ofs01a1
+                                          debugline 143
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 144
+                                          getlocal 4
+                                          getproperty QName(PackageNamespace(""),"packageBytes")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          getproperty QName(PackageNamespace(""),"length")
+                                          callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                          debugline 145
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"eventManage")
+                                          getlocal 4
+                                          callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                          debugline 147
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"length")
+                                          debugline 148
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                          debugline 150
+                                          getlocal3
+                                          getlocal 6
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          add
+                                          ifngt ofs01a1
+                                          debugline 152
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "bytesAvail ["
+                                          getlocal3
+                                          add
+                                          pushstring "] > read_size - CommonConst.Package_Len_Size so resend ProgressEvent.SOCKET_DATA event"
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 153
+                                          getlocal2
+                                          findpropstrict QName(PackageNamespace("flash.events"),"ProgressEvent")
+                                          getlex QName(PackageNamespace("flash.events"),"ProgressEvent")
+                                          getproperty QName(PackageNamespace(""),"SOCKET_DATA")
+                                          constructprop QName(PackageNamespace("flash.events"),"ProgressEvent"), 1
+                                          callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                 ofs01a1:
+                                          debugline 156
+                                          returnvoid
+                                 ofs01a5:
+                                          debugline 159
+                                          getlocal3
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          ifnlt ofs01ca
+                                          debugline 161
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "bytesAvail["
+                                          getlocal3
+                                          add
+                                          pushstring "] < CommonConst.Package_Len_Size return!"
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 162
+                                          returnvoid
+                                 ofs01ca:
+                                          debugline 164
+                                          getlocal2
+                                          callproperty QName(PackageNamespace(""),"readInt"), 0
+                                          convert_i
+                                          setlocal 5
+                                          debugline 166
+                                          getlocal 5
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          ifnle ofs020c
+                                          debugline 168
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "packageLen["
+                                          getlocal 5
+                                          add
+                                          pushstring "] < CommonConst.Package_Len_Size read out left error package!"
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 170
+                                          getlocal2
+                                          getlocal3
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          subtract
+                                          callpropvoid QName(PackageNamespace(""),"readUTFBytes"), 1
+                                          debugline 171
+                                          returnvoid
+                                 ofs020c:
+                                          debugline 174
+                                          getlocal 5
+                                          getlocal3
+                                          ifnle ofs02d9
+                                          debugline 176
+                                          getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                          getlocal 4
+                                          getproperty QName(PackageNamespace(""),"packageBytes")
+                                          getlocal 5
+                                          callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                                          debugline 177
+                                          getlocal2
+                                          getlocal 4
+                                          getproperty QName(PackageNamespace(""),"packageBytes")
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          getlocal 5
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          subtract
+                                          callpropvoid QName(PackageNamespace(""),"readBytes"), 3
+                                          debugline 179
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"eventType")
+                                          getlex QName(PackageNamespace("a_4729"),"EventType")
+                                          getproperty QName(PackageNamespace(""),"a_564")
+                                          ifne ofs0265
+                                          debugline 181
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"eventManage")
+                                          getlocal 4
+                                          callpropvoid QName(PackageNamespace(""),"a_1784"), 1
+                                          jump ofs0283
+                                 ofs0265:
+                                          debugline 183
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"eventType")
+                                          getlex QName(PackageNamespace("a_4729"),"EventType")
+                                          getproperty QName(PackageNamespace(""),"a_561")
+                                          ifne ofs0283
+                                          debugline 185
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"eventManage")
+                                          getlocal 4
+                                          callpropvoid QName(PackageNamespace(""),"a_1783"), 1
+                                 ofs0283:
+                                          debugline 188
+                                          getlocal3
+                                          getlocal 5
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          add
+                                          ifngt ofs02d5
+                                          debugline 191
+                                          getlocal0
+                                          dup
+                                          setlocal 7
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_iRecursiveCount")
+                                          increment_i
+                                          setlocal 8
+                                          getlocal 7
+                                          getlocal 8
+                                          setproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_iRecursiveCount")
+                                          kill 8
+                                          kill 7
+                                          debugline 194
+                                          getlocal0
+                                          getlocal2
+                                          initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"NextSocketdata")
+                                          debugline 195
+                                          getlocal0
+                                          pushnull
+                                          callpropvoid QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"processRecievedPackage"), 1
+                                          debugline 196
+                                          getlocal0
+                                          dup
+                                          setlocal 7
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_iRecursiveCount")
+                                          decrement_i
+                                          setlocal 8
+                                          getlocal 7
+                                          getlocal 8
+                                          setproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_iRecursiveCount")
+                                          kill 8
+                                          kill 7
+                                 ofs02d5:
+                                          jump ofs0358
+                                 ofs02d9:
+                                          debugline 201
+                                          findpropstrict QName(PackageNamespace(""),"trace")
+                                          pushstring "packageLen["
+                                          getlocal 5
+                                          add
+                                          pushstring "] > bytesAvail["
+                                          add
+                                          getlocal3
+                                          add
+                                          pushstring " read out left bytes!"
+                                          add
+                                          callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                          debugline 203
+                                          pushnull
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          ifne ofs030f
+                                          debugline 205
+                                          getlocal0
+                                          findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                          initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          jump ofs0327
+                                 ofs030f:
+                                          debugline 209
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"length")
+                                          debugline 210
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"position")
+                                 ofs0327:
+                                          debugline 212
+                                          getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          getlocal 5
+                                          callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                                          debugline 213
+                                          getlocal0
+                                          getlocal 5
+                                          getlocal3
+                                          subtract
+                                          initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"leftSize")
+                                          debugline 214
+                                          getlocal2
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tempPackage")
+                                          pushbyte 4
+                                          getlocal3
+                                          getlex QName(PackageNamespace("a_4716"),"CommonConst")
+                                          getproperty QName(PackageNamespace(""),"a_102")
+                                          subtract
+                                          callpropvoid QName(PackageNamespace(""),"readBytes"), 3
+                                 ofs0358:
+                                          debugline 216
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              private function tryTriggerNextParse(socket:Socket) : void
+                              {
+                                 trait method QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"tryTriggerNextParse")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.handler.network:TcpConnection/private:tryTriggerNextParse"
+                                       flag HAS_PARAM_NAMES
+                                       flag NEED_ACTIVATION
+                                       param QName(PackageNamespace("flash.net"),"Socket")
+                                       paramname "getInstance"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 3
+                                          localcount 3
+                                          initscopedepth 7
+                                          maxscopedepth 9
+                                          trait slot QName(PackageInternalNs("a_4771"),"socket")
+                                             slotid 1
+                                             type QName(PackageNamespace("flash.net"),"Socket")
+                                          end ; trait
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                             debugline 220
+                                             getlocal0
+                                             pushscope
+                                             newactivation
+                                             dup
+                                             setlocal2
+                                             pushscope
+                                             debug 1, "tryTriggerNextParse$0", 1, 220
+                                             getscopeobject 1
+                                             getlocal1
+                                             setslot 1
+                                             debug 1, "socket", 0, 220
+                                             debugline 222
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_bWaitNextFrameParse")
+                                             iffalse ofs002e
+                                             debugline 223
+                                             returnvoid
+                                    ofs002e:
+                                             debugline 225
+                                             getlocal0
+                                             pushtrue
+                                             initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_bWaitNextFrameParse")
+                                             debugline 228
+                                             findpropstrict QName(PackageNamespace("flash.utils"),"setTimeout")
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                             debugline 228
+                                             newfunction 1461
+                                             debugline 231
+                                             pushbyte 1
+                                             callpropvoid QName(PackageNamespace("flash.utils"),"setTimeout"), 2
+                                             debugline 232
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 private function finishSendData() : Boolean
+                                 {
+                                    trait method QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"finishSendData")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.handler.network:TcpConnection/private:finishSendData"
+                                          flag NEED_ACTIVATION
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 4
+                                             localcount 4
+                                             initscopedepth 7
+                                             maxscopedepth 21
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                debugline 234
+                                                getlocal0
+                                                pushscope
+                                                newactivation
+                                                dup
+                                                setlocal1
+                                                pushscope
+                                                debug 1, "finishSendData$0", 0, 234
+                                                debugline 236
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                ifne ofs0031
+                                                debugline 238
+                                                findpropstrict QName(PackageNamespace(""),"trace")
+                                                pushstring "paddingSendData is null"
+                                                callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                debugline 239
+                                                pushfalse
+                                                returnvalue
+                                       ofs0031:
+                                                debugline 244
+                                                findpropstrict QName(PackageNamespace(""),"writeBytes")
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                pushbyte 0
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                       ofs0048:
+                                                debugline 246
+                                                jump ofs00ac
+                                       ofs004f:
+                                                getlocal0
+                                                pushscope
+                                                getlocal1
+                                                pushscope
+                                                newcatch 0
+                                                dup
+                                                setlocal2
+                                                dup
+                                                pushscope
+                                                swap
+                                                setslot 1
+                                                debugline 248
+                                                findpropstrict QName(PackageNamespace(""),"trace")
+                                                pushstring "send data failed, caused by IOError"
+                                                callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                       ofs0069:
+                                                debugline 252
+                                                findpropstrict QName(PackageNamespace(""),"writeBytes")
+                                                getlex QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                pushbyte 0
+                                                getlex QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                       ofs007e:
+                                                debugline 254
+                                                jump ofs00a9
+                                       ofs0085:
+                                                getlocal0
+                                                pushscope
+                                                getlocal1
+                                                pushscope
+                                                getlocal2
+                                                pushscope
+                                                newcatch 1
+                                                dup
+                                                setlocal3
+                                                dup
+                                                pushscope
+                                                swap
+                                                setslot 1
+                                                debugline 256
+                                                findpropstrict QName(PackageNamespace(""),"trace")
+                                                pushstring "send data failed, caused by IOError"
+                                                callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                debugline 257
+                                                pushfalse
+                                                returnvalue
+                                                popscope
+                                                kill 3
+                                       ofs00a9:
+                                                popscope
+                                                kill 2
+                                       ofs00ac:
+                                                debugline 263
+                                                findpropstrict QName(PackageNamespace(""),"flush")
+                                                callpropvoid QName(PackageNamespace(""),"flush"), 0
+                                       ofs00b6:
+                                                debugline 265
+                                                jump ofs010f
+                                       ofs00bd:
+                                                getlocal0
+                                                pushscope
+                                                getlocal1
+                                                pushscope
+                                                newcatch 2
+                                                dup
+                                                setlocal2
+                                                dup
+                                                pushscope
+                                                swap
+                                                setslot 1
+                                                debugline 267
+                                                findpropstrict QName(PackageNamespace(""),"trace")
+                                                pushstring "send data failed, caused by IOError"
+                                                callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                       ofs00d7:
+                                                debugline 271
+                                                findpropstrict QName(PackageNamespace(""),"flush")
+                                                callpropvoid QName(PackageNamespace(""),"flush"), 0
+                                       ofs00e1:
+                                                debugline 273
+                                                jump ofs010c
+                                       ofs00e8:
+                                                getlocal0
+                                                pushscope
+                                                getlocal1
+                                                pushscope
+                                                getlocal2
+                                                pushscope
+                                                newcatch 3
+                                                dup
+                                                setlocal3
+                                                dup
+                                                pushscope
+                                                swap
+                                                setslot 1
+                                                debugline 275
+                                                findpropstrict QName(PackageNamespace(""),"trace")
+                                                pushstring "send data failed, caused by IOError"
+                                                callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                debugline 276
+                                                pushfalse
+                                                returnvalue
+                                                popscope
+                                                kill 3
+                                       ofs010c:
+                                                popscope
+                                                kill 2
+                                       ofs010f:
+                                                debugline 279
+                                                getlocal0
+                                                pushnull
+                                                initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                debugline 280
+                                                pushtrue
+                                                returnvalue
+                                             end ; code
+                                             try from ofs0031 to ofs0048 target ofs004f type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                             try from ofs0069 to ofs007e target ofs0085 type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                             try from ofs00ac to ofs00b6 target ofs00bd type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                             try from ofs00d7 to ofs00e1 target ofs00e8 type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function a_2651(packageBytes:ByteArray) : Boolean
+                                    {
+                                       trait method QName(PackageNamespace(""),"a_2651")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.handler.network:TcpConnection/SendDate"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             paramname "NextSocketdata"
+                                             returns QName(PackageNamespace(""),"Boolean")
+                                             
+                                             body
+                                                maxstack 4
+                                                localcount 2
+                                                initscopedepth 6
+                                                maxscopedepth 7
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                   debugline 283
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "packageBytes", 0, 283
+                                                   debugline 285
+                                                   pushnull
+                                                   getlocal1
+                                                   ifne ofs002a
+                                                   debugline 287
+                                                   findpropstrict QName(PackageNamespace(""),"trace")
+                                                   pushstring "packageBytes is null"
+                                                   callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                   debugline 288
+                                                   pushfalse
+                                                   returnvalue
+                                          ofs002a:
+                                                   debugline 291
+                                                   pushnull
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                   ifne ofs0042
+                                                   debugline 293
+                                                   getlocal0
+                                                   getlocal1
+                                                   initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                   jump ofs0065
+                                          ofs0042:
+                                                   debugline 297
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                   getproperty QName(PackageNamespace(""),"length")
+                                                   setproperty QName(PackageNamespace(""),"position")
+                                                   debugline 298
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"paddingSendData")
+                                                   getlocal1
+                                                   pushbyte 0
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"length")
+                                                   callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                          ofs0065:
+                                                   debugline 301
+                                                   pushtrue
+                                                   getlex QName(PackageNamespace(""),"connected")
+                                                   ifne ofs0079
+                                                   debugline 303
+                                                   getlocal0
+                                                   callproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"finishSendData"), 0
+                                                   returnvalue
+                                          ofs0079:
+                                                   debugline 305
+                                                   pushtrue
+                                                   returnvalue
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function reconnect(_host:String = null, _port:int = 0) : Boolean
+                                       {
+                                          trait method QName(PackageNamespace(""),"reconnect")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.handler.network:TcpConnection/reconnect"
+                                                flag HAS_OPTIONAL
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace(""),"String")
+                                                param QName(PackageNamespace(""),"int")
+                                                paramname "NextSocketdata"
+                                                paramname "NextSocketdata"
+                                                optional Null()
+                                                optional Integer(0)
+                                                returns QName(PackageNamespace(""),"Boolean")
+                                                
+                                                body
+                                                   maxstack 3
+                                                   localcount 3
+                                                   initscopedepth 6
+                                                   maxscopedepth 7
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                      debugline 308
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "_host", 0, 308
+                                                      debug 1, "_port", 1, 308
+                                                      debugline 310
+                                                      getlocal1
+                                                      pushnull
+                                                      equals
+                                                      not
+                                                      dup
+                                                      iffalse ofs0027
+                                                      pop
+                                                      getlocal2
+                                                      pushbyte 0
+                                                      greaterthan
+                                             ofs0027:
+                                                      iffalse ofs0052
+                                                      debugline 312
+                                                      getlocal0
+                                                      getlocal1
+                                                      initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                                                      debugline 313
+                                                      getlocal0
+                                                      getlocal2
+                                                      initproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                                                      debugline 314
+                                                      findpropstrict QName(PackageNamespace(""),"connect")
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                                                      callpropvoid QName(PackageNamespace(""),"connect"), 2
+                                                      debugline 315
+                                                      pushtrue
+                                                      returnvalue
+                                             ofs0052:
+                                                      debugline 317
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                                                      pushnull
+                                                      equals
+                                                      not
+                                                      dup
+                                                      iffalse ofs0069
+                                                      pop
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                                                      pushbyte 0
+                                                      greaterthan
+                                             ofs0069:
+                                                      iffalse ofs0084
+                                                      debugline 319
+                                                      findpropstrict QName(PackageNamespace(""),"connect")
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_host")
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_port")
+                                                      callpropvoid QName(PackageNamespace(""),"connect"), 2
+                                                      debugline 320
+                                                      pushtrue
+                                                      returnvalue
+                                             ofs0084:
+                                                      debugline 322
+                                                      pushfalse
+                                                      returnvalue
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function a_2652(a_4730:IOErrorEvent) : void
+                                          {
+                                             trait method QName(PackageNamespace(""),"a_2652")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.handler.network:TcpConnection/OnIOERROR"
+                                                   flag HAS_PARAM_NAMES
+                                                   param QName(PackageNamespace("flash.events"),"IOErrorEvent")
+                                                   paramname "getInstance"
+                                                   returns QName(PackageNamespace(""),"void")
+                                                   
+                                                   body
+                                                      maxstack 6
+                                                      localcount 2
+                                                      initscopedepth 6
+                                                      maxscopedepth 7
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                         debugline 325
+                                                         getlocal0
+                                                         pushscope
+                                                         debug 1, "a_4730", 0, 325
+                                                         debugline 327
+                                                         getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                         pushstring "send to server: "
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"host")
+                                                         add
+                                                         pushstring ":"
+                                                         add
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"port")
+                                                         add
+                                                         pushstring " failed fo IO error:"
+                                                         add
+                                                         getlocal1
+                                                         getproperty QName(PackageNamespace(""),"text")
+                                                         add
+                                                         callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                         debugline 328
+                                                         getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                         getproperty QName(PackageNamespace(""),"instance")
+                                                         pushstring "type"
+                                                         pushstring "ce"
+                                                         newobject 1
+                                                         getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                         callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                         pushint 132659
+                                                         callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                         getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                         callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                         pushint 132660
+                                                         callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                         getlocal1
+                                                         getproperty QName(PackageNamespace(""),"text")
+                                                         add
+                                                         pushstring "cpShow"
+                                                         pushtrue
+                                                         newobject 1
+                                                         callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                         debugline 329
+                                                         returnvoid
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             public function a_2653(a_4730:SecurityErrorEvent) : void
+                                             {
+                                                trait method QName(PackageNamespace(""),"a_2653")
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.handler.network:TcpConnection/OnSECURITYERROR"
+                                                      flag HAS_PARAM_NAMES
+                                                      param QName(PackageNamespace("flash.events"),"SecurityErrorEvent")
+                                                      paramname "getInstance"
+                                                      returns QName(PackageNamespace(""),"void")
+                                                      
+                                                      body
+                                                         maxstack 6
+                                                         localcount 2
+                                                         initscopedepth 6
+                                                         maxscopedepth 7
+                                                         
+                                                         code
+                                                            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                            debugline 331
+                                                            getlocal0
+                                                            pushscope
+                                                            debug 1, "a_4730", 0, 331
+                                                            debugline 333
+                                                            getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                            pushstring "connect failed : "
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"host")
+                                                            add
+                                                            pushstring ":"
+                                                            add
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"port")
+                                                            add
+                                                            pushstring " for security error:"
+                                                            add
+                                                            getlocal1
+                                                            getproperty QName(PackageNamespace(""),"text")
+                                                            add
+                                                            callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                            debugline 334
+                                                            getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                            getproperty QName(PackageNamespace(""),"instance")
+                                                            pushstring "type"
+                                                            pushstring "ce"
+                                                            newobject 1
+                                                            getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                            callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                            pushint 132659
+                                                            callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                            getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                            callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                            pushint 132661
+                                                            callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                            getlocal1
+                                                            getproperty QName(PackageNamespace(""),"text")
+                                                            add
+                                                            pushstring "cpShow"
+                                                            pushtrue
+                                                            newobject 1
+                                                            callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                            debugline 335
+                                                            returnvoid
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                                
+                                                public function a_2654(a_4730:Event) : void
+                                                {
+                                                   trait method QName(PackageNamespace(""),"a_2654")
+                                                      dispid 0
+                                                      method
+                                                         name "com.aurora.handler.network:TcpConnection/OnConnected"
+                                                         flag HAS_PARAM_NAMES
+                                                         flag NEED_ACTIVATION
+                                                         param QName(PackageNamespace("flash.events"),"Event")
+                                                         paramname "getInstance"
+                                                         returns QName(PackageNamespace(""),"void")
+                                                         
+                                                         body
+                                                            maxstack 4
+                                                            localcount 5
+                                                            initscopedepth 7
+                                                            maxscopedepth 16
+                                                            trait slot QName(PackageInternalNs("a_4771"),"a_4730")
+                                                               slotid 1
+                                                               type QName(PackageNamespace("flash.events"),"Event")
+                                                            end ; trait
+                                                            trait slot QName(PackageInternalNs("a_4771"),"httpGetByte")
+                                                               slotid 2
+                                                               type QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                            end ; trait
+                                                            trait slot QName(PackageInternalNs("a_4771"),"str")
+                                                               slotid 3
+                                                               type QName(PackageNamespace(""),"String")
+                                                            end ; trait
+                                                            
+                                                            code
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                               debugline 337
+                                                               getlocal0
+                                                               pushscope
+                                                               newactivation
+                                                               dup
+                                                               setlocal2
+                                                               pushscope
+                                                               debug 1, "OnConnected$0", 1, 337
+                                                               getscopeobject 1
+                                                               pushnull
+                                                               coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               setslot 2
+                                                               getscopeobject 1
+                                                               pushnull
+                                                               coerce_s
+                                                               setslot 3
+                                                               getscopeobject 1
+                                                               getlocal1
+                                                               setslot 1
+                                                               debug 1, "a_4730", 0, 337
+                                                               debugline 339
+                                                               getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                               pushstring "Connect to server: "
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"host")
+                                                               add
+                                                               pushstring ":"
+                                                               add
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"port")
+                                                               add
+                                                               pushstring " success:"
+                                                               add
+                                                               getscopeobject 1
+                                                               getslot 1
+                                                               add
+                                                               callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                               debugline 341
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desIP")
+                                                               pushnull
+                                                               equals
+                                                               not
+                                                               dup
+                                                               iffalse ofs0067
+                                                               pop
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desPort")
+                                                               pushbyte 0
+                                                               greaterthan
+                                                      ofs0067:
+                                                               iffalse ofs011d
+                                                               debugline 343
+                                                               getscopeobject 1
+                                                               findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                               coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               setslot 2
+                                                               debugline 344
+                                                               getscopeobject 1
+                                                               pushstring "GET / HTTP/1.1\r\nHost: "
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desIP")
+                                                               add
+                                                               pushstring ":"
+                                                               add
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"m_desPort")
+                                                               add
+                                                               pushstring "\r\n\r\n"
+                                                               add
+                                                               setslot 3
+                                                               debugline 345
+                                                               getscopeobject 1
+                                                               getslot 2
+                                                               getscopeobject 1
+                                                               getslot 3
+                                                               callpropvoid QName(PackageNamespace(""),"writeUTFBytes"), 1
+                                                      ofs00a4:
+                                                               debugline 349
+                                                               findpropstrict QName(PackageNamespace(""),"writeBytes")
+                                                               getscopeobject 1
+                                                               getslot 2
+                                                               pushbyte 0
+                                                               getscopeobject 1
+                                                               getslot 2
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                                      ofs00bb:
+                                                               debugline 351
+                                                               jump ofs011d
+                                                      ofs00c2:
+                                                               getlocal0
+                                                               pushscope
+                                                               getlocal2
+                                                               pushscope
+                                                               newcatch 0
+                                                               dup
+                                                               setlocal3
+                                                               dup
+                                                               pushscope
+                                                               swap
+                                                               setslot 1
+                                                               debugline 353
+                                                               findpropstrict QName(PackageNamespace(""),"trace")
+                                                               pushstring "send data failed, caused by IOError"
+                                                               callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                      ofs00dc:
+                                                               debugline 356
+                                                               findpropstrict QName(PackageNamespace(""),"writeBytes")
+                                                               getscopeobject 1
+                                                               getslot 2
+                                                               pushbyte 0
+                                                               getscopeobject 1
+                                                               getslot 2
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                                      ofs00f3:
+                                                               debugline 358
+                                                               jump ofs011a
+                                                      ofs00fa:
+                                                               getlocal0
+                                                               pushscope
+                                                               getlocal2
+                                                               pushscope
+                                                               getlocal3
+                                                               pushscope
+                                                               newcatch 1
+                                                               dup
+                                                               setlocal 4
+                                                               dup
+                                                               pushscope
+                                                               swap
+                                                               setslot 1
+                                                               debugline 360
+                                                               findpropstrict QName(PackageNamespace(""),"trace")
+                                                               pushstring "send data failed, caused by IOError"
+                                                               callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                               popscope
+                                                               kill 4
+                                                      ofs011a:
+                                                               popscope
+                                                               kill 3
+                                                      ofs011d:
+                                                               debugline 365
+                                                               getlocal0
+                                                               callpropvoid QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"finishSendData"), 0
+                                                               debugline 367
+                                                               returnvoid
+                                                            end ; code
+                                                            try from ofs00a4 to ofs00bb target ofs00c2 type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                                            try from ofs00dc to ofs00f3 target ofs00fa type QName(PackageNamespace("flash.errors"),"IOError") name QName(PackageNamespace(""),"error") end
+                                                         end ; body
+                                                      end ; method
+                                                   }
+                                                   
+                                                   public function a_2655(a_4730:Event) : void
+                                                   {
+                                                      trait method QName(PackageNamespace(""),"a_2655")
+                                                         dispid 0
+                                                         method
+                                                            name "com.aurora.handler.network:TcpConnection/OnClosed"
+                                                            flag HAS_PARAM_NAMES
+                                                            param QName(PackageNamespace("flash.events"),"Event")
+                                                            paramname "getInstance"
+                                                            returns QName(PackageNamespace(""),"void")
+                                                            
+                                                            body
+                                                               maxstack 3
+                                                               localcount 6
+                                                               initscopedepth 6
+                                                               maxscopedepth 7
+                                                               
+                                                               code
+                                                                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                                  debugline 369
+                                                                  getlocal0
+                                                                  pushscope
+                                                                  debug 1, "a_4730", 0, 369
+                                                                  debug 1, "iServerID", 1, 371
+                                                                  debug 1, "iServerType", 2, 372
+                                                                  debug 1, "dd", 3, 374
+                                                                  debug 1, "dataEvent", 4, 375
+                                                                  debugline 371
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                                                                  getproperty QName(PackageNamespace(""),"m_iServerID")
+                                                                  convert_i
+                                                                  setlocal2
+                                                                  debugline 372
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"a_787")
+                                                                  getproperty QName(PackageNamespace(""),"m_iServerType")
+                                                                  convert_i
+                                                                  setlocal3
+                                                                  debugline 374
+                                                                  getlocal1
+                                                                  coerce QName(PackageNamespace("flash.events"),"Event")
+                                                                  setlocal 4
+                                                                  debugline 375
+                                                                  findpropstrict QName(PackageNamespace("a_4728"),"a_1778")
+                                                                  getlex QName(PackageNamespace("a_4729"),"EventType")
+                                                                  getproperty QName(PackageNamespace(""),"a_567")
+                                                                  constructprop QName(PackageNamespace("a_4728"),"a_1778"), 1
+                                                                  coerce QName(PackageNamespace("a_4728"),"a_1778")
+                                                                  setlocal 5
+                                                                  debugline 376
+                                                                  getlocal 5
+                                                                  getlocal2
+                                                                  getlocal3
+                                                                  newarray 2
+                                                                  setproperty QName(PackageNamespace(""),"dataObject")
+                                                                  debugline 377
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.network:TcpConnection"),"eventManage")
+                                                                  getlocal 5
+                                                                  callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                                                  debugline 379
+                                                                  getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                                  pushstring "Socket OnClosed Event: "
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"host")
+                                                                  add
+                                                                  pushstring ":"
+                                                                  add
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"port")
+                                                                  add
+                                                                  pushstring " closed:"
+                                                                  add
+                                                                  getlocal1
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                                  debugline 380
+                                                                  findpropstrict QName(PackageNamespace(""),"close")
+                                                                  callpropvoid QName(PackageNamespace(""),"close"), 0
+                                                                  debugline 382
+                                                                  getlocal0
+                                                                  pushbyte -1
+                                                                  initproperty QName(PackageNamespace(""),"m_iPlayerID")
+                                                                  debugline 383
+                                                                  getlocal0
+                                                                  getlex QName(PackageNamespace("a_4716"),"EnmConnLoginStatus")
+                                                                  getproperty QName(PackageNamespace(""),"enmNoLogin")
+                                                                  initproperty QName(PackageNamespace(""),"m_iLoginStatus")
+                                                                  debugline 384
+                                                                  getlocal0
+                                                                  pushnull
+                                                                  initproperty QName(PackageNamespace(""),"m_szSessionKey")
+                                                                  debugline 385
+                                                                  returnvoid
+                                                               end ; code
+                                                            end ; body
+                                                         end ; method
+                                                      }
+                                                   }
+                                                }
+                                                
+                                                method
+                                                   name ""
+                                                   returns null
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 1
+                                                      initscopedepth 1
+                                                      maxscopedepth 5
+                                                      
+                                                      code
+                                                         getlocal0
+                                                         pushscope
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                         debugline 25
+                                                         findpropstrict Multiname("a_2650",[PackageNamespace("a_4771")])
+                                                         getlex QName(PackageNamespace(""),"Object")
+                                                         pushscope
+                                                         getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                                         pushscope
+                                                         getlex QName(PackageNamespace("flash.net"),"Socket")
+                                                         pushscope
+                                                         getlex QName(PackageNamespace("flash.net"),"Socket")
+                                                         newclass 179
+                                                         popscope
+                                                         popscope
+                                                         popscope
+                                                         initproperty QName(PackageNamespace("a_4771"),"a_2650")
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;TcpConnection.as"
+                                                         debugline 1
+                                                         returnvoid
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                                

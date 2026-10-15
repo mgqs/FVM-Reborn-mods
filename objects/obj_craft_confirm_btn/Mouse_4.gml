@@ -10,8 +10,9 @@ if target_id != ""{
 		if array_get_index(cannot_upgrade_card_list,target_id) != -1{
 			show_notice("该卡片无法被强化",60)
 		}
-		else if current_level <= 15{
+		else if current_level < 16{
 			var craft_rule_info = get_card_craft_rule(string(current_level+1))
+			if (is_undefined(craft_rule_info)) { show_notice("该星级尚未配置强化配方", 60); exit; }
 			var display_spices_amount = 0
 			var display_clover_amount = 0
 			var use_enhanced_spices = false

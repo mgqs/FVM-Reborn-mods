@@ -1,0 +1,269 @@
+package com.aurora.protocol.game
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CPlayerGameConfig implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iMinPoint:int;
+      
+      public var m_iMaxPointGap:int;
+      
+      public var m_byMaxOfflineRate:int;
+      
+      public var m_byIPBit:int;
+      
+      public var m_uiBitMap:int;
+      
+      public var m_byOtherSize:int;
+      
+      public var m_aiOthers:Array;
+      
+      public function CPlayerGameConfig()
+      {
+         method
+            name "com.aurora.protocol.game:CPlayerGameConfig/CPlayerGameConfig"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                  debugline 17
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  constructsuper 0
+                  debugline 19
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game:CPlayerGameConfig/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game:CPlayerGameConfig"
+               paramname "com.aurora.protocol.game:CPlayerGameConfig"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 21
+                     debug 1, "encode_length", 1, 21
+                     debugline 34
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game:CPlayerGameConfig/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game:CPlayerGameConfig"
+                  paramname "com.aurora.protocol.game:CPlayerGameConfig"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                        debugline 37
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal 5
+                        debug 1, "byte_array", 0, 37
+                        debug 1, "decode_length", 1, 37
+                        debug 1, "size", 2, 39
+                        debug 1, "index", 3, 48
+                        debugline 39
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        convert_i
+                        setlocal3
+                        debugline 40
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iMinPoint")
+                        debugline 41
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iMaxPointGap")
+                        debugline 42
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_byMaxOfflineRate")
+                        debugline 43
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byIPBit")
+                        debugline 44
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_uiBitMap")
+                        debugline 45
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byOtherSize")
+                        debugline 46
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PackageNamespace(""),"m_aiOthers")
+                        debugline 48
+                        pushbyte 0
+                        setlocal 4
+                        jump ofs00b9
+               ofs0095:
+                        label
+                        debug 1, "other", 4, 50
+                        debugline 50
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        convert_i
+                        setlocal 5
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_aiOthers")
+                        getlocal 5
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 48
+                        inclocal_i 4
+               ofs00b9:
+                        getlocal 4
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_byOtherSize")
+                        iflt ofs0095
+                        debugline 53
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game:CPlayerGameConfig/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                           debugline 56
+                           getlocal0
+                           pushscope
+                           debugline 58
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                  debugline 7
+                  findpropstrict Multiname("CPlayerGameConfig",[PackageNamespace("com.aurora.protocol.game")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 158
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game"),"CPlayerGameConfig")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game;CPlayerGameConfig.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

@@ -44,7 +44,7 @@ global.level_name = "曲奇岛"
 global.level_data = {}
 global.debug = 0
 global.laboretory_room = false
-global.game_version = "2.4.1.37"
+global.game_version = "2.4.1.39"
 global.tower_level_click = false
 global.tower_cake_page = 1
 global.cross_server_return_page = -1
@@ -57,6 +57,12 @@ global.native_util = new NativeUtil()
 
 init_native_log()
 move_files()
+
+// Mod 包目录：所有外部 Mod 解压到 %LOCALAPPDATA%\\FVM_Reborn_makk\\mod
+var _mod_folder = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\mod")
+if (native_folder_exists(_mod_folder) == 0) {
+    directory_create(_mod_folder)
+}
 
 // 初始化全局键位映射
 global.keybind_map = ds_map_create();

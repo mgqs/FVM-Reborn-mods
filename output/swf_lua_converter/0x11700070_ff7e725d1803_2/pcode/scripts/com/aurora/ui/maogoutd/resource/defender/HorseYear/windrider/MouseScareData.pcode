@@ -1,0 +1,150 @@
+package com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import flash.display.Bitmap;
+   
+   public class MouseScareData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var intruder:a_4206;
+      
+      public var targetGrid:a_3491;
+      
+      public var bmp:Bitmap;
+      
+      public var goback:Number;
+      
+      public var addFunc:Function;
+      
+      public var battleField:BattleFieldView;
+      
+      public var callBack:Function;
+      
+      public function MouseScareData(intruder:a_4206, targetGrid:a_3491, bmp:Bitmap, goback:Number, addFunc:Function, battleField:BattleFieldView, callBack:Function)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareData/MouseScareData"
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+            param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+            param QName(PackageNamespace("flash.display"),"Bitmap")
+            param QName(PackageNamespace(""),"Number")
+            param QName(PackageNamespace(""),"Function")
+            param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+            param QName(PackageNamespace(""),"Function")
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            paramname null
+            returns null
+            
+            body
+               maxstack 2
+               localcount 8
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareData.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debug 1, "intruder", 0, 19
+                  debug 1, "targetGrid", 1, 19
+                  debug 1, "bmp", 2, 19
+                  debug 1, "goback", 3, 19
+                  debug 1, "addFunc", 4, 19
+                  debug 1, "battleField", 5, 19
+                  debug 1, "callBack", 6, 19
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PackageNamespace(""),"intruder")
+                  debugline 22
+                  getlocal0
+                  getlocal2
+                  initproperty QName(PackageNamespace(""),"targetGrid")
+                  debugline 23
+                  getlocal0
+                  getlocal3
+                  initproperty QName(PackageNamespace(""),"bmp")
+                  debugline 24
+                  getlocal0
+                  getlocal 4
+                  initproperty QName(PackageNamespace(""),"goback")
+                  debugline 25
+                  getlocal0
+                  getlocal 5
+                  initproperty QName(PackageNamespace(""),"addFunc")
+                  debugline 26
+                  getlocal0
+                  getlocal 6
+                  initproperty QName(PackageNamespace(""),"battleField")
+                  debugline 27
+                  getlocal0
+                  getlocal 7
+                  initproperty QName(PackageNamespace(""),"callBack")
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareData.as"
+         debugline 9
+         findpropstrict Multiname("MouseScareData",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 63
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

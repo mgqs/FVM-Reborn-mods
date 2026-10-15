@@ -1,0 +1,1014 @@
+package com.aurora.ui.maogoutd.game
+{
+   import a_4728.a_1778;
+   import com.aurora.ui.maogoutd.ClientLog.CDebugPane;
+   import com.aurora.ui.maogoutd.b_147;
+   import com.aurora.ui.maogoutd.resource.wave.a_4450;
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   import flash.display.Sprite;
+   import flash.events.Event;
+   import flash.events.MouseEvent;
+   import flash.geom.Rectangle;
+   
+   public class BattleFieldFor4View extends Sprite
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_stBackgroudBitmap:Bitmap;
+      
+      public var m_stBackgroudBitmapData:BitmapData;
+      
+      public var m_stMyBattleFieldView:BattleFieldView;
+      
+      public var m_stOpponentBattleFieldView:BattleFieldView;
+      
+      public var m_isForbidMove:Boolean = false;
+      
+      private var m_isDraging:Boolean = false;
+      
+      private var a_1009:Array;
+      
+      private var a_1010:int;
+      
+      public function BattleFieldFor4View()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/BattleFieldFor4View"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                  debugline 31
+                  getlocal0
+                  pushscope
+                  debugline 27
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1009")
+                  debugline 33
+                  getlocal0
+                  constructsuper 0
+                  debugline 36
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                  constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 0
+                  initproperty QName(PackageNamespace(""),"m_stBackgroudBitmap")
+                  debugline 37
+                  findpropstrict QName(PackageNamespace(""),"addChildAt")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stBackgroudBitmap")
+                  pushbyte 0
+                  callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                  debugline 39
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                  constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView"), 0
+                  initproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                  debugline 40
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                  constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView"), 0
+                  initproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                  debugline 41
+                  findpropstrict QName(PackageNamespace(""),"addChild")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                  callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  debugline 42
+                  findpropstrict QName(PackageNamespace(""),"addChild")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                  callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  debugline 45
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                  pushtrue
+                  setproperty QName(PackageNamespace(""),"m_isOwnBattleField")
+                  debugline 47
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                  setproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldInstance")
+                  debugline 48
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                  setproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldInstance")
+                  debugline 50
+                  findproperty QName(PackageNamespace(""),"x")
+                  pushbyte -85
+                  initproperty QName(PackageNamespace(""),"x")
+                  debugline 52
+                  findpropstrict QName(PackageNamespace(""),"addChild")
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                  callproperty QName(PackageNamespace(""),"Get"), 0
+                  callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  debugline 53
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                  callproperty QName(PackageNamespace(""),"Get"), 0
+                  pushshort 209
+                  setproperty QName(PackageNamespace(""),"x")
+                  debugline 54
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                  callproperty QName(PackageNamespace(""),"Get"), 0
+                  pushbyte 110
+                  setproperty QName(PackageNamespace(""),"y")
+                  debugline 56
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_1797(stTDGameBattleUI:b_147) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_1797")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/Initialize"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd"),"b_147")
+               paramname "a_1797"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                     debugline 58
+                     getlocal0
+                     pushscope
+                     debug 1, "stTDGameBattleUI", 0, 58
+                     debugline 61
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stBackgroudBitmapData")
+                     iffalse ofs0028
+                     debugline 63
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stBackgroudBitmap")
+                     pushnull
+                     setproperty QName(PackageNamespace(""),"bitmapData")
+                     debugline 64
+                     getlocal0
+                     pushnull
+                     initproperty QName(PackageNamespace(""),"m_stBackgroudBitmapData")
+            ofs0028:
+                     debugline 67
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                     callpropvoid QName(PackageNamespace(""),"a_3432"), 0
+                     debugline 68
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                     pushbyte -1
+                     getlocal1
+                     callpropvoid QName(PackageNamespace(""),"a_1797"), 2
+                     debugline 70
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                     callpropvoid QName(PackageNamespace(""),"a_3432"), 0
+                     debugline 71
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                     pushbyte 1
+                     getlocal1
+                     callpropvoid QName(PackageNamespace(""),"a_1797"), 2
+                     debugline 73
+                     getlocal0
+                     callpropvoid QName(PackageNamespace(""),"ResetMoveListen"), 0
+                     debugline 75
+                     getlocal0
+                     pushbyte 0
+                     callpropvoid QName(PackageNamespace(""),"a_3417"), 1
+                     debugline 77
+                     getlocal0
+                     pushbyte 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1010")
+                     debugline 79
+                     pushnull
+                     getlex QName(PackageNamespace(""),"root")
+                     ifeq ofs0088
+                     debugline 81
+                     getlex QName(PackageNamespace(""),"root")
+                     pushstring "SmallMapGridClick"
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3420")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+            ofs0088:
+                     debugline 83
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                     callproperty QName(PackageNamespace(""),"Get"), 0
+                     pushstring ""
+                     callpropvoid QName(PackageNamespace(""),"OnLog"), 1
+                     debugline 84
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_3415(iGameMode:int, stMapWaterWave:a_4450 = null) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_3415")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/SetGameMode"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.wave"),"a_4450")
+                  paramname "a_1797"
+                  paramname "a_1797"
+                  optional Null()
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 6
+                     localcount 6
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                        debugline 88
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.wave"),"a_4450")
+                        setlocal3
+                        debug 1, "iGameMode", 0, 88
+                        debug 1, "stMapWaterWave", 1, 88
+                        debug 1, "stTempMapWaterWave", 2, 112
+                        debugline 112
+                        pushbyte 0
+                        setlocal 4
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1009")
+                        coerce_a
+                        setlocal 5
+                        jump ofs0058
+               ofs002f:
+                        label
+                        getlocal 5
+                        getlocal 4
+                        nextvalue
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.wave"),"a_4450")
+                        setlocal3
+                        debugline 114
+                        findpropstrict QName(PackageNamespace(""),"contains")
+                        getlocal3
+                        callproperty QName(PackageNamespace(""),"contains"), 1
+                        iffalse ofs0051
+                        debugline 116
+                        findpropstrict QName(PackageNamespace(""),"removeChild")
+                        getlocal3
+                        callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+               ofs0051:
+                        debugline 119
+                        getlocal3
+                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+               ofs0058:
+                        debugline 112
+                        hasnext2 5, 4
+                        iftrue ofs002f
+                        kill 5
+                        kill 4
+                        debugline 121
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1009")
+                        debugline 124
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stMyBattleFieldView")
+                        getlocal1
+                        callpropvoid QName(PackageNamespace(""),"a_3415"), 1
+                        debugline 125
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stOpponentBattleFieldView")
+                        getlocal1
+                        callpropvoid QName(PackageNamespace(""),"a_3415"), 1
+                        debugline 127
+                        pushbyte 1
+                        getlocal1
+                        ifne ofs00e0
+                        debugline 129
+                        pushnull
+                        getlocal2
+                        ifeq ofs00dc
+                        debugline 131
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"a_1797"), 0
+                        debugline 132
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"a_4332"), 0
+                        debugline 134
+                        getlocal2
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"x")
+                        pushshort 355
+                        add
+                        setproperty QName(PackageNamespace(""),"x")
+                        debugline 135
+                        getlocal2
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"y")
+                        pushshort 252
+                        add
+                        setproperty QName(PackageNamespace(""),"y")
+                        debugline 136
+                        findpropstrict QName(PackageNamespace(""),"addChildAt")
+                        getlocal2
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                        debugline 138
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1009")
+                        getlocal2
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs00dc:
+                        jump ofs0154
+               ofs00e0:
+                        debugline 142
+                        pushbyte 2
+                        getlocal1
+                        ifne ofs014a
+                        debugline 144
+                        pushnull
+                        getlocal2
+                        ifeq ofs0146
+                        debugline 146
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"a_1797"), 0
+                        debugline 147
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"a_4332"), 0
+                        debugline 149
+                        getlocal2
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"x")
+                        pushshort 358
+                        add
+                        setproperty QName(PackageNamespace(""),"x")
+                        debugline 151
+                        getlocal2
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"y")
+                        pushshort 225
+                        pushdouble 0.5
+                        pushshort 177
+                        getlocal2
+                        getproperty QName(PackageNamespace(""),"height")
+                        subtract
+                        multiply
+                        add
+                        add
+                        setproperty QName(PackageNamespace(""),"y")
+                        debugline 152
+                        findpropstrict QName(PackageNamespace(""),"addChildAt")
+                        getlocal2
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                        debugline 154
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1009")
+                        getlocal2
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs0146:
+                        jump ofs0154
+               ofs014a:
+                        debugline 158
+                        pushbyte 3
+                        getlocal1
+                        ifne ofs0154
+               ofs0154:
+                        debugline 164
+                        getlocal0
+                        callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3419"), 0
+                        debugline 166
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_3416(a_4730:Event) : void
+            {
+               trait method QName(PackageNamespace(""),"a_3416")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/OnCheckTimerEvent"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.events"),"Event")
+                     paramname "b_147"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 4
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                           debugline 169
+                           getlocal0
+                           pushscope
+                           debug 1, "a_4730", 0, 169
+                           debugline 171
+                           getlocal0
+                           dup
+                           setlocal2
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1010")
+                           increment_i
+                           setlocal3
+                           getlocal2
+                           getlocal3
+                           setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1010")
+                           kill 3
+                           kill 2
+                           debugline 173
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_1010")
+                           pushbyte 2
+                           modulo
+                           pushbyte 0
+                           ifne ofs0033
+                  ofs0033:
+                           debugline 181
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3417(iBattleFieldIndex:int) : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3417")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/MoveToBattleField"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "a_1797"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 3
+                           localcount 3
+                           initscopedepth 9
+                           maxscopedepth 10
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                              debugline 183
+                              getlocal0
+                              pushscope
+                              debug 1, "iBattleFieldIndex", 0, 183
+                              debug 1, "iXIndex", 1, 185
+                              debugline 185
+                              findpropstrict QName(PackageNamespace(""),"int")
+                              getlocal1
+                              pushbyte 2
+                              modulo
+                              callproperty QName(PackageNamespace(""),"int"), 1
+                              convert_i
+                              setlocal2
+                              debugline 188
+                              findproperty QName(PackageNamespace(""),"x")
+                              getlocal2
+                              pushshort 813
+                              multiply
+                              negate
+                              initproperty QName(PackageNamespace(""),"x")
+                              debugline 191
+                              getlocal0
+                              callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3419"), 0
+                              debugline 193
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function ResetMoveListen() : void
+                  {
+                     trait method QName(PackageNamespace(""),"ResetMoveListen")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/ResetMoveListen"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 3
+                              localcount 1
+                              initscopedepth 9
+                              maxscopedepth 10
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                 debugline 196
+                                 getlocal0
+                                 pushscope
+                                 debugline 198
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"m_isForbidMove")
+                                 iftrue ofs003f
+                                 debugline 200
+                                 findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                 getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                 getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3058")
+                                 callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                 debugline 201
+                                 findpropstrict QName(PackageNamespace(""),"addEventListener")
+                                 getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                 getproperty QName(PackageNamespace(""),"MOUSE_UP")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3059")
+                                 callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                 jump ofs0067
+                        ofs003f:
+                                 debugline 205
+                                 findpropstrict QName(PackageNamespace(""),"removeEventListener")
+                                 getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                 getproperty QName(PackageNamespace(""),"MOUSE_DOWN")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3058")
+                                 callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                 debugline 206
+                                 findpropstrict QName(PackageNamespace(""),"removeEventListener")
+                                 getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                 getproperty QName(PackageNamespace(""),"MOUSE_UP")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3059")
+                                 callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                        ofs0067:
+                                 debugline 208
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override public function startDrag(lockCenter:Boolean = false, bounds:Rectangle = null) : void
+                     {
+                        trait method QName(PackageNamespace(""),"startDrag")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/startDrag"
+                              flag HAS_OPTIONAL
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"Boolean")
+                              param QName(PackageNamespace("flash.geom"),"Rectangle")
+                              paramname "b_147"
+                              paramname "b_147"
+                              optional False()
+                              optional Null()
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 3
+                                 initscopedepth 9
+                                 maxscopedepth 10
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                    debugline 210
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "lockCenter", 0, 210
+                                    debug 1, "bounds", 1, 210
+                                    debugline 212
+                                    getlocal0
+                                    getlocal1
+                                    getlocal2
+                                    callsupervoid QName(PackageNamespace(""),"startDrag"), 2
+                                    debugline 213
+                                    getlocal0
+                                    pushtrue
+                                    initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"m_isDraging")
+                                    debugline 215
+                                    getlex QName(PackageNamespace(""),"stage")
+                                    getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                    getproperty QName(PackageNamespace(""),"MOUSE_MOVE")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3418")
+                                    callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                                    debugline 217
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function stopDrag() : void
+                        {
+                           trait method QName(PackageNamespace(""),"stopDrag")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/stopDrag"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 3
+                                    localcount 1
+                                    initscopedepth 9
+                                    maxscopedepth 10
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                       debugline 219
+                                       getlocal0
+                                       pushscope
+                                       debugline 221
+                                       getlocal0
+                                       callsupervoid QName(PackageNamespace(""),"stopDrag"), 0
+                                       debugline 222
+                                       getlocal0
+                                       callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3419"), 0
+                                       debugline 223
+                                       getlocal0
+                                       pushfalse
+                                       initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"m_isDraging")
+                                       debugline 225
+                                       getlex QName(PackageNamespace(""),"stage")
+                                       getlex QName(PackageNamespace("flash.events"),"MouseEvent")
+                                       getproperty QName(PackageNamespace(""),"MOUSE_MOVE")
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3418")
+                                       callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                       debugline 226
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function a_3058(a_4730:Event) : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3058")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/private:OnMouseDown"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("flash.events"),"Event")
+                                    paramname "b_147"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 2
+                                       initscopedepth 9
+                                       maxscopedepth 10
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                          debugline 228
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "a_4730", 0, 228
+                                          debugline 232
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"startDrag"), 0
+                                          debugline 233
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              private function a_3059(a_4730:Event) : void
+                              {
+                                 trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3059")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/private:OnMouseUp"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("flash.events"),"Event")
+                                       paramname "b_147"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 2
+                                          initscopedepth 9
+                                          maxscopedepth 10
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                             debugline 235
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "a_4730", 0, 235
+                                             debugline 239
+                                             getlocal0
+                                             callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3419"), 0
+                                             debugline 241
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"stopDrag"), 0
+                                             debugline 242
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 private function a_3418(a_4730:Event) : void
+                                 {
+                                    trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3418")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/private:OnMouseMoveEvent"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("flash.events"),"Event")
+                                          paramname "b_147"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 2
+                                             initscopedepth 9
+                                             maxscopedepth 10
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                                debugline 244
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "a_4730", 0, 244
+                                                debugline 246
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"m_isDraging")
+                                                iftrue ofs001e
+                                                debugline 248
+                                                returnvoid
+                                       ofs001e:
+                                                debugline 251
+                                                getlex QName(PackageNamespace(""),"x")
+                                                pushbyte 25
+                                                ifngt ofs0035
+                                                debugline 253
+                                                findproperty QName(PackageNamespace(""),"x")
+                                                pushbyte 25
+                                                initproperty QName(PackageNamespace(""),"x")
+                                       ofs0035:
+                                                debugline 256
+                                                getlex QName(PackageNamespace(""),"y")
+                                                pushbyte 0
+                                                ifeq ofs004c
+                                                debugline 258
+                                                findproperty QName(PackageNamespace(""),"y")
+                                                pushbyte 0
+                                                initproperty QName(PackageNamespace(""),"y")
+                                       ofs004c:
+                                                debugline 261
+                                                getlex QName(PackageNamespace(""),"stage")
+                                                convert_b
+                                                dup
+                                                iffalse ofs006a
+                                                pop
+                                                getlex QName(PackageNamespace(""),"x")
+                                                getlex QName(PackageNamespace(""),"stage")
+                                                getproperty QName(PackageNamespace(""),"stageWidth")
+                                                getlex QName(PackageNamespace(""),"width")
+                                                subtract
+                                                pushbyte 25
+                                                subtract
+                                                lessthan
+                                       ofs006a:
+                                                iffalse ofs0084
+                                                debugline 265
+                                                findproperty QName(PackageNamespace(""),"x")
+                                                getlex QName(PackageNamespace(""),"stage")
+                                                getproperty QName(PackageNamespace(""),"stageWidth")
+                                                getlex QName(PackageNamespace(""),"width")
+                                                subtract
+                                                pushbyte 25
+                                                subtract
+                                                initproperty QName(PackageNamespace(""),"x")
+                                       ofs0084:
+                                                debugline 272
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function a_3419() : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3419")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/private:ReLayout"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 3
+                                                localcount 1
+                                                initscopedepth 9
+                                                maxscopedepth 10
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                                   debugline 274
+                                                   getlocal0
+                                                   pushscope
+                                                   debugline 276
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_isForbidMove")
+                                                   iffalse ofs002d
+                                                   debugline 278
+                                                   findproperty QName(PackageNamespace(""),"x")
+                                                   pushbyte -85
+                                                   initproperty QName(PackageNamespace(""),"x")
+                                                   debugline 279
+                                                   findproperty QName(PackageNamespace(""),"y")
+                                                   pushbyte 0
+                                                   initproperty QName(PackageNamespace(""),"y")
+                                                   debugline 281
+                                                   returnvoid
+                                          ofs002d:
+                                                   debugline 284
+                                                   getlex QName(PackageNamespace(""),"x")
+                                                   pushbyte -85
+                                                   ifngt ofs0044
+                                                   debugline 286
+                                                   findproperty QName(PackageNamespace(""),"x")
+                                                   pushbyte -85
+                                                   initproperty QName(PackageNamespace(""),"x")
+                                          ofs0044:
+                                                   debugline 289
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   pushbyte 0
+                                                   ifeq ofs005b
+                                                   debugline 291
+                                                   findproperty QName(PackageNamespace(""),"y")
+                                                   pushbyte 0
+                                                   initproperty QName(PackageNamespace(""),"y")
+                                          ofs005b:
+                                                   debugline 294
+                                                   getlex QName(PackageNamespace(""),"stage")
+                                                   convert_b
+                                                   dup
+                                                   iffalse ofs0079
+                                                   pop
+                                                   getlex QName(PackageNamespace(""),"x")
+                                                   getlex QName(PackageNamespace(""),"stage")
+                                                   getproperty QName(PackageNamespace(""),"stageWidth")
+                                                   getlex QName(PackageNamespace(""),"width")
+                                                   subtract
+                                                   pushbyte 80
+                                                   add
+                                                   lessthan
+                                          ofs0079:
+                                                   iffalse ofs0093
+                                                   debugline 296
+                                                   findproperty QName(PackageNamespace(""),"x")
+                                                   getlex QName(PackageNamespace(""),"stage")
+                                                   getproperty QName(PackageNamespace(""),"stageWidth")
+                                                   getlex QName(PackageNamespace(""),"width")
+                                                   subtract
+                                                   pushbyte 80
+                                                   add
+                                                   initproperty QName(PackageNamespace(""),"x")
+                                          ofs0093:
+                                                   debugline 303
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       private function a_3420(stDataEvent:a_1778) : void
+                                       {
+                                          trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),"a_3420")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.game:BattleFieldFor4View/private:OnSmallMapGridClickEvent"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace("a_4728"),"a_1778")
+                                                paramname "b_147"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 4
+                                                   initscopedepth 9
+                                                   maxscopedepth 10
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                                      debugline 306
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "stDataEvent", 0, 306
+                                                      debug 1, "iXGridNo", 1, 308
+                                                      debug 1, "iYGridNo", 2, 309
+                                                      debugline 308
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"dataObject")
+                                                      pushbyte 0
+                                                      getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("BattleFieldFor4View.as$452"),PackageInternalNs("com.aurora.ui.maogoutd.game"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                      convert_i
+                                                      setlocal2
+                                                      debugline 309
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"dataObject")
+                                                      pushbyte 1
+                                                      getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("BattleFieldFor4View.as$452"),PackageInternalNs("com.aurora.ui.maogoutd.game"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleFieldFor4View"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                      convert_i
+                                                      setlocal3
+                                                      debugline 313
+                                                      getlocal0
+                                                      pushbyte 1
+                                                      callpropvoid QName(PackageNamespace(""),"a_3417"), 1
+                                                      debugline 314
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                       }
+                                    }
+                                    
+                                    method
+                                       name ""
+                                       returns null
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 1
+                                          initscopedepth 1
+                                          maxscopedepth 8
+                                          
+                                          code
+                                             getlocal0
+                                             pushscope
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                             debugline 15
+                                             findpropstrict Multiname("BattleFieldFor4View",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                                             getlex QName(PackageNamespace(""),"Object")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                             newclass 202
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldFor4View")
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleFieldFor4View.as"
+                                             debugline 1
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                    

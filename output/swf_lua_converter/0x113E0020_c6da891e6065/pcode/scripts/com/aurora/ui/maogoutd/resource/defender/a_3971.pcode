@@ -1,0 +1,558 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.energy.a_4157;
+   import com.aurora.ui.maogoutd.resource.energy.a_4162;
+   import com.aurora.ui.maogoutd.resource.props.IBaseProp;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   
+   public class a_3971 extends a_3962
+   {
+      
+      public static var a_1341:Number = 1;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1341", 0, 13
+               findproperty QName(PackageNamespace(""),"a_1341")
+               pushbyte 1
+               setproperty QName(PackageNamespace(""),"a_1341")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      protected var a_1342:int;
+      
+      protected var a_1343:int;
+      
+      protected var a_1344:int;
+      
+      protected var a_1345:int = 25;
+      
+      public var m_arrEnergyAddValueProp:Array;
+      
+      public function a_3971()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/BaseFlowerDefense"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                  debugline 22
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PackageNamespace(""),"m_arrEnergyAddValueProp")
+                  debugline 24
+                  getlocal0
+                  constructsuper 0
+                  debugline 25
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function get iEnergyTypeID() : int
+      {
+         trait getter QName(PackageNamespace(""),"iEnergyTypeID")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/iEnergyTypeID/get"
+               returns QName(PackageNamespace(""),"int")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                     debugline 27
+                     getlocal0
+                     pushscope
+                     debugline 29
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1344")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(stFieldGrid:a_3491) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  paramname "a_1344"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                        debugline 32
+                        getlocal0
+                        pushscope
+                        debug 1, "stFieldGrid", 0, 32
+                        debugline 34
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                        debugline 36
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                        debugline 39
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override public function a_3969(iRduceLifeValue:int) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_3969")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/ReduceLife"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "a_1344"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                           debugline 43
+                           getlocal0
+                           pushscope
+                           debug 1, "iRduceLifeValue", 0, 43
+                           debugline 45
+                           getlocal0
+                           getlocal1
+                           callsupervoid QName(PackageNamespace(""),"a_3969"), 1
+                           debugline 47
+                           getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1339")
+                           pushbyte 0
+                           ifnle ofs0027
+                           debugline 49
+                           getlocal0
+                           callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                  ofs0027:
+                           debugline 52
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               protected function a_3955() : Number
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_3955")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/protected:GetShotXpos"
+                        returns QName(PackageNamespace(""),"Number")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                              debugline 55
+                              getlocal0
+                              pushscope
+                              debugline 57
+                              getlex QName(PackageNamespace(""),"width")
+                              pushdouble 0.1
+                              multiply
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  protected function a_3956() : Number
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_3956")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/protected:GetShotYPos"
+                           returns QName(PackageNamespace(""),"Number")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                                 debugline 60
+                                 getlocal0
+                                 pushscope
+                                 debugline 62
+                                 pushdouble 0.25
+                                 getlex QName(PackageNamespace(""),"height")
+                                 multiply
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_3957(iCurrentTime:int) : void
+                     {
+                        trait method QName(PackageNamespace(""),"a_3957")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/ShowPlay"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              paramname "flash.display:InteractiveObject"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 6
+                                 localcount 6
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                                    debugline 65
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4157")
+                                    setlocal2
+                                    pushbyte 0
+                                    setlocal3
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.props"),"IBaseProp")
+                                    setlocal 4
+                                    pushnull
+                                    coerce QName(PackageNamespace("flash.display"),"MovieClip")
+                                    setlocal 5
+                                    debug 1, "iCurrentTime", 0, 65
+                                    debugline 67
+                                    findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                    callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                    debugline 69
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1278")
+                                    pushnull
+                                    ifeq ofs004a
+                                    debugline 71
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),PrivateNamespace("BaseFlowerDefense.as$96"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                                    getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                    astypelate
+                                    getproperty QName(PackageNamespace(""),"frame")
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                           ofs004a:
+                                    debugline 74
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                    equals
+                                    dup
+                                    iftrue ofs007c
+                                    pop
+                                    debugline 75
+                                    getlocal1
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1343")
+                                    greaterthan
+                                    dup
+                                    iffalse ofs0070
+                                    pop
+                                    getlocal1
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                                    subtract
+                                    pushbyte 60
+                                    lessthan
+                           ofs0070:
+                                    dup
+                                    iffalse ofs007c
+                                    pop
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1278")
+                                    pushnull
+                                    equals
+                                    not
+                           ofs007c:
+                                    iffalse ofs015e
+                                    debug 1, "stFreeEnergy", 1, 79
+                                    debugline 77
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    pushbyte 1
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                    debugline 79
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4162")
+                                    callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1344")
+                                    callproperty QName(PackageNamespace(""),"a_4163"), 1
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.energy"),"a_4157")
+                                    setlocal2
+                                    debugline 80
+                                    pushnull
+                                    getlocal2
+                                    ifeq ofs015e
+                                    debug 1, "iEnergyValue", 2, 82
+                                    debug 1, "stGameBasePop", 3, 84
+                                    debugline 82
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                    getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                    getproperty QName(PackageNamespace(""),"isOwnBattleField")
+                                    iffalse ofs00d8
+                                    findpropstrict QName(PackageNamespace(""),"int")
+                                    getlex QName(PackageNamespace(""),"a_1341")
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1345")
+                                    multiply
+                                    callproperty QName(PackageNamespace(""),"int"), 1
+                                    convert_i
+                                    jump ofs00da
+                           ofs00d8:
+                                    pushbyte 5
+                           ofs00da:
+                                    convert_i
+                                    setlocal3
+                                    debugline 84
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_arrEnergyAddValueProp")
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.props"),"IBaseProp")
+                                    setlocal 4
+                                    debugline 85
+                                    getlocal 4
+                                    iffalse ofs0101
+                                    debugline 87
+                                    getlocal3
+                                    getlocal 4
+                                    callproperty QName(Namespace("com.aurora.ui.maogoutd.resource.props:IBaseProp"),"a_4328"), 0
+                                    getproperty QName(PackageNamespace(""),"m_iEffectValue")
+                                    add
+                                    convert_i
+                                    setlocal3
+                           ofs0101:
+                                    debugline 90
+                                    getlocal2
+                                    pushbyte 0
+                                    getlocal3
+                                    getlex QName(PackageNamespace(""),"x")
+                                    getlocal0
+                                    callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_3955"), 0
+                                    add
+                                    getlex QName(PackageNamespace(""),"y")
+                                    getlocal0
+                                    callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_3956"), 0
+                                    add
+                                    callpropvoid QName(PackageNamespace(""),"a_1797"), 4
+                                    debugline 91
+                                    getlex QName(PackageNamespace(""),"parent")
+                                    getlocal2
+                                    callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                                    debugline 93
+                                    getlocal 4
+                                    iffalse ofs015e
+                                    debug 1, "stPropDisplayEffect", 4, 95
+                                    debugline 95
+                                    getlocal 4
+                                    callproperty QName(Namespace("com.aurora.ui.maogoutd.resource.props:IBaseProp"),"a_4327"), 0
+                                    coerce QName(PackageNamespace("flash.display"),"MovieClip")
+                                    setlocal 5
+                                    debugline 96
+                                    getlocal 5
+                                    getlocal2
+                                    getproperty QName(PackageNamespace(""),"width")
+                                    setproperty QName(PackageNamespace(""),"x")
+                                    debugline 97
+                                    getlocal 5
+                                    pushbyte -20
+                                    setproperty QName(PackageNamespace(""),"y")
+                                    debugline 98
+                                    getlocal2
+                                    getlocal 5
+                                    callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                           ofs015e:
+                                    debugline 103
+                                    pushbyte 0
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                                    ifne ofs0171
+                                    debugline 105
+                                    getlocal0
+                                    getlocal1
+                                    initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                           ofs0171:
+                                    debugline 108
+                                    getlocal1
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1343")
+                                    add
+                                    ifngt ofs01aa
+                                    debugline 110
+                                    getlocal0
+                                    getlocal1
+                                    initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),"a_1342")
+                                    debugline 112
+                                    findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                    pushbyte 0
+                                    initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                    debugline 113
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                    pushbyte 1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),PrivateNamespace("BaseFlowerDefense.as$96"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                                    getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                    astypelate
+                                    getproperty QName(PackageNamespace(""),"frame")
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                           ofs01aa:
+                                    debugline 115
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function a_3940() : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"a_3940")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender:BaseFlowerDefense/Realease"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                                       debugline 117
+                                       getlocal0
+                                       pushscope
+                                       debugline 119
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                       iffalse ofs0019
+                                       debugline 121
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                       getlocal0
+                                       callpropvoid QName(PackageNamespace(""),"a_3500"), 1
+                              ofs0019:
+                                       debugline 124
+                                       getlocal0
+                                       callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                       debugline 126
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 10
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                              debugline 11
+                              findpropstrict Multiname("a_3971",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"Sprite")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                              newclass 65
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3971")
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;BaseFlowerDefense.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

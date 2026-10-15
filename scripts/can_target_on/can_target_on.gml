@@ -5,12 +5,12 @@ function can_target_on(card_target_type,enemy_target_type){
 		}
 	}
 	if enemy_target_type == "diver"{
-		if card_target_type == "throw" || card_target_type == "track" || card_target_type == "rotate"  || card_target_type == "d_fruit"{
+		if card_target_type == "throw" || card_target_type == "track"{
 			return true
 		}
 	}
 	if enemy_target_type == "air"{
-		if card_target_type == "air" || card_target_type == "track" || card_target_type == "air_only" || card_target_type == "rotate"{
+		if card_target_type == "air" || card_target_type == "track" || card_target_type == "air_only" || card_target_type == "rotate" || card_target_type == "d_fruit"{
 			return true
 		}
 	}
@@ -49,8 +49,8 @@ function get_hittable_enemy_types(bullet_target_type){
 	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground", "invisible"];
 
 	if (bullet_target_type != "air_only") array_push(_types, "normal");
-	if (bullet_target_type == "throw" || bullet_target_type == "track" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "diver");
-	if (bullet_target_type == "air" || bullet_target_type == "track" || bullet_target_type == "air_only" || bullet_target_type == "rotate") array_push(_types, "air");
+	if (bullet_target_type == "throw" || bullet_target_type == "track") array_push(_types, "diver");
+	if (bullet_target_type == "air" || bullet_target_type == "track" || bullet_target_type == "air_only" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "air");
 	if (bullet_target_type == "pierce" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "dance");
 	if (bullet_target_type == "pierce" || bullet_target_type == "normal" || bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "obstacle");
 	if (bullet_target_type == "rotate" || bullet_target_type == "d_fruit") array_push(_types, "underground");

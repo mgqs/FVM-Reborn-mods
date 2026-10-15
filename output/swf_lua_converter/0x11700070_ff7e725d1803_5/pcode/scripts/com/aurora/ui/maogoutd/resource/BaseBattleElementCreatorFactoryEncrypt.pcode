@@ -1,0 +1,371 @@
+package com.aurora.ui.maogoutd.resource
+{
+   public class BaseBattleElementCreatorFactoryEncrypt
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      protected var m_iXorRandNum:uint;
+      
+      protected var m_arrCreatorVector:Array;
+      
+      public function BaseBattleElementCreatorFactoryEncrypt()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/BaseBattleElementCreatorFactoryEncrypt"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                  debugline 8
+                  getlocal0
+                  pushscope
+                  debugline 9
+                  getlocal0
+                  constructsuper 0
+                  debugline 10
+                  getlocal0
+                  callpropvoid QName(PackageNamespace(""),"a_3923"), 0
+                  debugline 11
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      protected function GetXorRand(iDefenseTypeId:uint) : uint
+      {
+         trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"GetXorRand")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/protected:GetXorRand"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"uint")
+               paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+               returns QName(PackageNamespace(""),"uint")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                     debugline 13
+                     getlocal0
+                     pushscope
+                     debug 1, "iDefenseTypeId", 0, 13
+                     debugline 15
+                     getlocal0
+                     getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_iXorRandNum")
+                     getlocal1
+                     bitxor
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function GetObject(iTypeId:uint) : a_3909
+         {
+            trait method QName(PackageNamespace(""),"GetObject")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/GetObject"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "m_iXorRandNum"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                        debugline 18
+                        getlocal0
+                        pushscope
+                        debug 1, "iTypeId", 0, 18
+                        debugline 20
+                        getlocal0
+                        getlocal1
+                        callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"GetXorRand"), 1
+                        convert_u
+                        setlocal1
+                        debugline 21
+                        pushnull
+                        getlocal0
+                        getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PrivateNamespace("BaseBattleElementCreatorFactoryEncrypt.as$153"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt")])
+                        ifeq ofs0038
+                        debugline 23
+                        getlocal0
+                        getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                        dup
+                        setlocal2
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PrivateNamespace("BaseBattleElementCreatorFactoryEncrypt.as$153"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt")])
+                        getlocal2
+                        call 0
+                        kill 2
+                        returnvalue
+               ofs0038:
+                        debugline 25
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function RegisterCreator(iTypeId:uint, funcCreator:Function) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"RegisterCreator")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/RegisterCreator"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "uint"
+                     paramname "uint"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                           debugline 28
+                           getlocal0
+                           pushscope
+                           debug 1, "iTypeId", 0, 28
+                           debug 1, "funcCreator", 1, 28
+                           debugline 30
+                           getlocal0
+                           getlocal1
+                           callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"GetXorRand"), 1
+                           convert_u
+                           setlocal1
+                           debugline 31
+                           pushnull
+                           getlocal2
+                           equals
+                           dup
+                           iftrue ofs0033
+                           pop
+                           pushnull
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PrivateNamespace("BaseBattleElementCreatorFactoryEncrypt.as$153"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt")])
+                           equals
+                           not
+                  ofs0033:
+                           iffalse ofs0049
+                           debugline 33
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterCreator failed::"
+                           getlocal2
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 34
+                           pushfalse
+                           returnvalue
+                  ofs0049:
+                           debugline 36
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),PrivateNamespace("BaseBattleElementCreatorFactoryEncrypt.as$153"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt")])
+                           debugline 37
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3923() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3923")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/ClearAllCreator"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 7
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                              debugline 40
+                              getlocal0
+                              pushscope
+                              debugline 42
+                              getlocal0
+                              newarray 0
+                              initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                              debugline 43
+                              getlocal0
+                              getlex QName(PackageNamespace(""),"int")
+                              getglobalscope
+                              getlex QName(PackageNamespace(""),"Math")
+                              pushint 11579568
+                              getlex QName(PackageNamespace(""),"Math")
+                              callproperty QName(PackageNamespace(""),"random"), 0
+                              pushint 1061109567
+                              multiply
+                              add
+                              callproperty QName(PackageNamespace(""),"ceil"), 1
+                              call 1
+                              initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_iXorRandNum")
+                              debugline 44
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_3922() : Array
+                  {
+                     trait method QName(PackageNamespace(""),"a_3922")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt/GetAllRegistedTypeIDArray"
+                           returns QName(PackageNamespace(""),"Array")
+                           
+                           body
+                              maxstack 4
+                              localcount 6
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                                 debugline 47
+                                 getlocal0
+                                 pushscope
+                                 pushbyte 0
+                                 convert_u
+                                 setlocal1
+                                 pushnull
+                                 coerce_s
+                                 setlocal3
+                                 debug 1, "iTypeID", 0, 49
+                                 debug 1, "arrRegistedTypeID", 1, 50
+                                 debug 1, "strTypeID", 2, 51
+                                 debugline 50
+                                 newarray 0
+                                 coerce QName(PackageNamespace(""),"Array")
+                                 setlocal2
+                                 debugline 51
+                                 pushbyte 0
+                                 setlocal 4
+                                 getlocal0
+                                 getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"m_arrCreatorVector")
+                                 coerce_a
+                                 setlocal 5
+                                 jump ofs005e
+                        ofs0038:
+                                 label
+                                 getlocal 5
+                                 getlocal 4
+                                 nextname
+                                 coerce_s
+                                 setlocal3
+                                 debugline 53
+                                 getlex QName(PackageNamespace(""),"uint")
+                                 getglobalscope
+                                 findpropstrict QName(PackageNamespace(""),"parseInt")
+                                 getlocal3
+                                 callproperty QName(PackageNamespace(""),"parseInt"), 1
+                                 call 1
+                                 convert_u
+                                 setlocal1
+                                 debugline 54
+                                 getlocal2
+                                 getlocal0
+                                 getlocal1
+                                 callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:BaseBattleElementCreatorFactoryEncrypt"),"GetXorRand"), 1
+                                 callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        ofs005e:
+                                 debugline 51
+                                 hasnext2 5, 4
+                                 iftrue ofs0038
+                                 kill 5
+                                 kill 4
+                                 debugline 56
+                                 getlocal2
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                  }
+               }
+               
+               method
+                  name ""
+                  returns null
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 1
+                     maxscopedepth 3
+                     
+                     code
+                        getlocal0
+                        pushscope
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                        debugline 3
+                        findpropstrict Multiname("BaseBattleElementCreatorFactoryEncrypt",[PackageNamespace("com.aurora.ui.maogoutd.resource")])
+                        getlex QName(PackageNamespace(""),"Object")
+                        pushscope
+                        getlex QName(PackageNamespace(""),"Object")
+                        newclass 16
+                        popscope
+                        initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"BaseBattleElementCreatorFactoryEncrypt")
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;BaseBattleElementCreatorFactoryEncrypt.as"
+                        debugline 1
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+               

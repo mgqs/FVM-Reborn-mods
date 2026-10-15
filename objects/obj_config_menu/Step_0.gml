@@ -129,6 +129,10 @@ function draw_games_page(){
 		gift_btn.state = (global.play_mode == 3);
 		gift_btn.tooltip_text = "启用随机礼盒：开局只有礼盒，通关特殊卡可正常获得";
 		array_push(setting_buttons, gift_btn);
+
+		// Mod 管理入口
+		var mod_btn = instance_create_depth(x + 300, y + 285, depth-1, obj_mod_open_button);
+		array_push(setting_buttons, mod_btn);
 		
 		// 创建失焦暂停开关
 	    var btn4 = instance_create_depth(x - 200, y + 260, depth-1, obj_setting_toggle);

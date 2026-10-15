@@ -170,6 +170,39 @@ copy /Y "$(TargetPath)" "$(ProjectDir)..\..\extensions\WindowsNative\"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="mod_lua.cpp" />
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lapi.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lauxlib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lbaselib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lcode.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lcorolib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lctype.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ldblib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ldebug.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ldo.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ldump.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lfunc.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lgc.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\linit.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\liolib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\llex.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lmathlib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lmem.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\loadlib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lobject.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lopcodes.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\loslib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lparser.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lstate.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lstring.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lstrlib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ltable.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ltablib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\ltm.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lundump.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lutf8lib.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lvm.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
+    <ClCompile Include="..\third_party\lua-5.4.8\src\lzio.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
     <ClCompile Include="archive_extractor.cpp" />
   </ItemGroup>
   <ItemGroup>

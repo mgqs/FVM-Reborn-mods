@@ -1,0 +1,719 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Timer;
+   
+   public class IntruderPoisonGasEffect extends a_3909
+   {
+      
+      private static var ms_stIntruderPoisonGasEffectVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stIntruderPoisonGasEffectVector", 0, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"ms_stIntruderPoisonGasEffectVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"ms_stIntruderPoisonGasEffectVector")
+               debug 1, "a_1300", 1, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),PackageNamespace(""),PrivateNamespace("IntruderPoisonGasEffect.as$211"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1300")
+               debug 1, "a_1301", 2, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),PackageNamespace(""),PrivateNamespace("IntruderPoisonGasEffect.as$211"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1301")
+               debug 1, "a_1302", 3, 20
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffectMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffectMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stTiemr:Timer;
+      
+      private var m_iStartTime:int;
+      
+      private var appearedTimes:int = 0;
+      
+      public var stTargetIntruder:a_4206;
+      
+      private var m_iHurtCD:int;
+      
+      private var a_1579:int;
+      
+      private var m_iHurtTimes:int;
+      
+      private var m_iWaitTime:int;
+      
+      public function IntruderPoisonGasEffect()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/IntruderPoisonGasEffect"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                  debugline 40
+                  getlocal0
+                  pushscope
+                  debugline 42
+                  getlocal0
+                  constructsuper 0
+                  debugline 43
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  pushbyte -22
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  debugline 44
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  pushbyte -18
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  debugline 45
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  pushbyte 100
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                  debugline 46
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : IntruderPoisonGasEffect
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffect")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                     debugline 28
+                     getlocal0
+                     pushscope
+                     debug 1, "stIntruderPoisonGasEffect", 0, 30
+                     debugline 30
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"ms_stIntruderPoisonGasEffectVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffect")
+                     setlocal1
+                     debugline 32
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 34
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffect")
+                     setlocal1
+            ofs002b:
+                     debugline 37
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean, iHurtCD:* = 1, iHurtPower:int = 10) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  param null
+                  param QName(PackageNamespace(""),"int")
+                  paramname "a_1279"
+                  paramname "a_1279"
+                  paramname "a_1279"
+                  optional Integer(1)
+                  optional Integer(10)
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                        debugline 54
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 54
+                        debug 1, "iHurtCD", 1, 54
+                        debug 1, "iHurtPower", 2, 54
+                        debugline 56
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 57
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtCD")
+                        debugline 58
+                        getlocal0
+                        getlocal3
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1579")
+                        debugline 59
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtTimes")
+                        debugline 60
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                        getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                        getproperty QName(PackageNamespace(""),"TIMER")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_4003")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                        debugline 62
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 63
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 64
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"play"), 0
+                        debugline 66
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iStartTime")
+                        debugline 67
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"appearedTimes")
+                        debugline 68
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get WaitTime() : int
+            {
+               trait getter QName(PackageNamespace(""),"WaitTime")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/WaitTime/get"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                           debugline 76
+                           getlocal0
+                           pushscope
+                           debugline 78
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iWaitTime")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function set WaitTime(iWaitTime:int) : void
+               {
+                  trait setter QName(PackageNamespace(""),"WaitTime")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/WaitTime/set"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "flash.utils"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                              debugline 80
+                              getlocal0
+                              pushscope
+                              debug 1, "iWaitTime", 0, 80
+                              debugline 82
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iWaitTime")
+                              debugline 83
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3911() : Vector.<BitmapData>
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_3911")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/protected:GetFrameCacheVector"
+                           returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                 debugline 85
+                                 getlocal0
+                                 pushscope
+                                 debugline 87
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1300")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_3912() : Vector.<Point>
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_3912")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/protected:GetFrameCacheSkewingVector"
+                              returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                    debugline 90
+                                    getlocal0
+                                    pushscope
+                                    debugline 92
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1301")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override protected function a_3913() : MovieClip
+                        {
+                           trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_3913")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/protected:GetOriginalMovieClip"
+                                 returns QName(PackageNamespace("flash.display"),"MovieClip")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                       debugline 95
+                                       getlocal0
+                                       pushscope
+                                       debugline 97
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1302")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_3940() : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_3940")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/Realease"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 3
+                                       localcount 1
+                                       initscopedepth 10
+                                       maxscopedepth 11
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                          debugline 101
+                                          getlocal0
+                                          pushscope
+                                          debugline 103
+                                          findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                          pushbyte 1
+                                          callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          debugline 104
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                                          getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                                          getproperty QName(PackageNamespace(""),"TIMER")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_4003")
+                                          callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                          debugline 105
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                                          callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                          debugline 106
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                          pushnull
+                                          ifeq ofs0056
+                                          debugline 108
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                          pushbyte 0
+                                          setproperty QName(PackageNamespace(""),"PoisonHurtPower")
+                                          debugline 109
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                          pushnull
+                                          setproperty QName(PackageNamespace(""),"m_stPoisonGasEffect")
+                                          debugline 110
+                                          getlocal0
+                                          pushnull
+                                          initproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                 ofs0056:
+                                          debugline 112
+                                          pushbyte -1
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"ms_stIntruderPoisonGasEffectVector")
+                                          getlocal0
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          ifne ofs0070
+                                          debugline 114
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"ms_stIntruderPoisonGasEffectVector")
+                                          getlocal0
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0070:
+                                          debugline 117
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          pushnull
+                                          ifeq ofs0086
+                                          debugline 119
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                 ofs0086:
+                                          debugline 121
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function play() : void
+                              {
+                                 trait method QName(PackageNamespace(""),"play")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/play"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 1
+                                          initscopedepth 10
+                                          maxscopedepth 11
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                             debugline 124
+                                             getlocal0
+                                             pushscope
+                                             debugline 126
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                                             callpropvoid QName(PackageNamespace(""),"start"), 0
+                                             debugline 127
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function stop() : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"stop")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/stop"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 1
+                                             initscopedepth 10
+                                             maxscopedepth 11
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                                debugline 129
+                                                getlocal0
+                                                pushscope
+                                                debugline 131
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_stTiemr")
+                                                callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                                debugline 132
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function a_4003(a_4730:Event) : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_4003")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect/private:OnFrameTimerEvent"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("flash.events"),"Event")
+                                             paramname "flash.utils"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 3
+                                                localcount 4
+                                                initscopedepth 10
+                                                maxscopedepth 11
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                                   debugline 134
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "a_4730", 0, 134
+                                                   debugline 136
+                                                   findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                                   callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                                   debugline 138
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                                   ifne ofs0032
+                                                   debugline 140
+                                                   findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                   pushbyte 1
+                                                   callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          ofs0032:
+                                                   debugline 143
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iStartTime")
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtCD")
+                                                   pushbyte 10
+                                                   multiply
+                                                   modulo
+                                                   pushbyte 0
+                                                   ifne ofs00a5
+                                                   debugline 145
+                                                   getlocal0
+                                                   dup
+                                                   setlocal2
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtTimes")
+                                                   increment_i
+                                                   setlocal3
+                                                   getlocal2
+                                                   getlocal3
+                                                   setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtTimes")
+                                                   kill 3
+                                                   kill 2
+                                                   debugline 146
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iHurtTimes")
+                                                   pushbyte 3
+                                                   lessequals
+                                                   dup
+                                                   iffalse ofs0072
+                                                   pop
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                                   pushnull
+                                                   equals
+                                                   not
+                                          ofs0072:
+                                                   dup
+                                                   iffalse ofs0082
+                                                   pop
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                                   getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                   pushbyte 0
+                                                   greaterthan
+                                          ofs0082:
+                                                   dup
+                                                   iffalse ofs0092
+                                                   pop
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                                   getproperty QName(PackageNamespace(""),"parent")
+                                                   pushnull
+                                                   equals
+                                                   not
+                                          ofs0092:
+                                                   iffalse ofs00a5
+                                                   debugline 148
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"stTargetIntruder")
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"a_1579")
+                                                   callpropvoid QName(PackageNamespace(""),"a_3969"), 1
+                                          ofs00a5:
+                                                   debugline 151
+                                                   getlocal0
+                                                   dup
+                                                   setlocal2
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iStartTime")
+                                                   increment_i
+                                                   setlocal3
+                                                   getlocal2
+                                                   getlocal3
+                                                   setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iStartTime")
+                                                   kill 3
+                                                   kill 2
+                                                   debugline 152
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iStartTime")
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:IntruderPoisonGasEffect"),"m_iWaitTime")
+                                                   pushbyte 10
+                                                   multiply
+                                                   ifngt ofs00d3
+                                                   debugline 154
+                                                   getlocal0
+                                                   callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                          ofs00d3:
+                                                   debugline 156
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 9
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                          debugline 13
+                                          findpropstrict Multiname("IntruderPoisonGasEffect",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          newclass 299
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"IntruderPoisonGasEffect")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;IntruderPoisonGasEffect.as"
+                                          debugline 1
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

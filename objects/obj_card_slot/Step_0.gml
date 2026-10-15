@@ -287,7 +287,7 @@ if (is_selected) {
 				gift_fx.spawn_platform = found_plat;
 				gift_queued = true;
 			} else {
-				new_plant = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0,card_obj);
+				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, cshape, clevel, cskill);
 			}
 			if (!gift_queued) {
 				// 计算深度值
