@@ -130,6 +130,8 @@
     {"name":"4e655ca3-c215-47d6-a087-9faee9aea253","path":"sprites/spr_voucher_ronghehaixing_2/spr_voucher_ronghehaixing_2.yy",},
     {"name":"9160e55e-e12d-48ec-af13-0360040b07f5","path":"sprites/spr_voucher_ronghedan_god_1/spr_voucher_ronghedan_god_1.yy",},
     {"name":"5a6fd326-6eb0-40dc-b273-64bf7161ae29","path":"sprites/spr_voucher_ronghedan_god_2/spr_voucher_ronghedan_god_2.yy",},
+    {"name":"bbcd83f5-a11e-4a00-b067-ef9e3abf2f20","path":"sprites/spr_voucher_ronghehuopen_1/spr_voucher_ronghehuopen_1.yy",},
+    {"name":"97ad4a00-5ec8-4bb5-9706-e7cb1ffbe9aa","path":"sprites/spr_voucher_ronghehuopen_2/spr_voucher_ronghehuopen_2.yy",},
     {"name":"3cbdc517-3df2-4c4f-b2f1-a4da7d69ffd2","path":"sprites/spr_voucher_loki/spr_voucher_loki.yy",},
     {"name":"bff9b162-296b-4ad9-8963-431f7132eaf3","path":"sprites/spr_voucher_loki_1/spr_voucher_loki_1.yy",},
     {"name":"15f0b51d-7e47-4495-a1ce-68094e472ea1","path":"sprites/spr_voucher_loki_2/spr_voucher_loki_2.yy",},

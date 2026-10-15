@@ -3522,10 +3522,10 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "星火红柳烤串机",
         shape: 2,
-        description: "星火红柳烤串机：喷射全屏索敌追踪穿透弹",
+        description: "星火红柳烤串机：喷射全屏索敌追踪穿透弹，子弹数量+1",
         hp: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
         cost: [230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230, 230],
-        atk: [162, 188, 216, 270, 324, 378, 450, 540, 630, 756, 890, 1026, 1296, 1620, 2024, 2430, 3050],
+        atk: [81, 94, 108, 135, 162, 189, 225, 270, 315, 378, 445, 513, 648, 810, 1012, 1215, 1525],
         range: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         cooldown: [420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420],
         cycle: [90, 90, 87, 87, 84, 84, 81, 81, 78, 78, 75, 75, 72, 72, 69, 69, 60]
@@ -3575,6 +3575,17 @@ mod_register_plant_lite("xuanfengniu", [
         {name: "终结者煮蛋器",
         shape: 2,
         description: "终结者煮蛋器：向前方3行投掷2个溅射毒气鸡蛋，概率定身", hp:array_create(17,250), cost:array_create(17,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)}
+    ], false);
+    mod_register_plant_lite("ronghehuopen", [
+        {name: "刺梨烧烤盘",
+        shape: 0,
+        description: "刺梨烧烤盘：穿过它的弹药都会提高伤害，啃咬它的老鼠受到等量反伤", hp:array_create(17,250), cost:array_create(17,175), atk:[1.65,2.31,2.475,2.53,2.695,2.75,2.915,2.97,3.135,3.3,3.63,3.96,4.29,4.62,4.95,5.28,5.61], range:array_create(17,1), cooldown:array_create(17,420), cycle:array_create(17,60)},
+        {name: "冰榴莲烤盘",
+        shape: 1,
+        description: "冰榴莲烤盘：穿过它的弹药都会提高伤害，定期在周围5*5范围召唤寒冰之气攻击鼠军", hp:array_create(17,250), cost:array_create(17,175), atk:[1.65,2.31,2.475,2.53,2.695,2.75,2.915,2.97,3.135,3.3,3.63,3.96,4.29,4.62,4.95,5.28,5.61], range:array_create(17,1), cooldown:array_create(17,420), cycle:array_create(17,60)},
+        {name: "缤纷杂果冰盘",
+        shape: 2,
+        description: "缤纷杂果冰盘：穿过它的弹药提高伤害并变为冰弹，定期召唤寒冰之气", hp:array_create(17,250), cost:array_create(17,175), atk:[1.65,2.97,3.19,3.3,3.52,3.63,3.85,3.96,4.18,4.4,4.84,5.28,5.72,6.16,6.6,7.04,7.48], range:array_create(17,1), cooldown:array_create(17,420), cycle:array_create(17,60)}
     ], false);
 
     mod_register_plant_lite("pufferfish", [

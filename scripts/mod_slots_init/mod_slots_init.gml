@@ -2961,7 +2961,7 @@ register_card("shennong_god", obj_shennong_god, [
 register_card("hongliukaochuan", obj_hongliukaochuan, [
 { shape: 0, sprite: spr_hongliukaochuan, cost: 230, cooldown: 420, description: "红柳烤串机：喷射全屏索敌追踪穿透弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan },
 { shape: 1, sprite: spr_hongliukaochuan_1, cost: 230, cooldown: 420, description: "茴香红柳烤串机：喷射全屏索敌追踪穿透弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan_1 },
-{ shape: 2, sprite: spr_hongliukaochuan_2, cost: 230, cooldown: 420, description: "星火红柳烤串机：喷射全屏索敌追踪穿透弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan_2 }
+{ shape: 2, sprite: spr_hongliukaochuan_2, cost: 230, cooldown: 420, description: "星火红柳烤串机：喷射全屏索敌追踪穿透弹，子弹数量+1", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan_2 }
 ]);
 
 // 融合卡：普卡两转（形态 0/1/2），不写 is_gold（缺键读作 undefined，在 == 1 判断下等同 0）；卡底由 is_fusion 类别标记决定（spr_slot_2），不再逐界面硬编码名单。
@@ -2984,6 +2984,11 @@ register_card("ronghedan_god", obj_ronghedan_god, [
 {shape:0,sprite:spr_ronghedan_god,cost:250,cooldown:420,description: "雪芭煮蛋器：投掷2个溅射鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god},
 {shape:1,sprite:spr_ronghedan_god_1,cost:250,cooldown:420,description: "臭豆腐煮蛋器：投掷2个溅射毒气鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_1},
 {shape:2,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description: "终结者煮蛋器：向前方3行投掷2个溅射毒气鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_2}
+]);
+register_card("ronghehuopen", obj_ronghehuopen, [
+{shape:0,sprite:spr_ronghehuopen,cost:175,cooldown:420,description: "刺梨烧烤盘：穿过它的弹药都会提高伤害，啃咬它的老鼠受到等量反伤",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen},
+{shape:1,sprite:spr_ronghehuopen_1,cost:175,cooldown:420,description: "冰榴莲烤盘：穿过它的弹药都会提高伤害，定期在周围5*5范围召唤寒冰之气攻击鼠军",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_1},
+{shape:2,sprite:spr_ronghehuopen_2,cost:175,cooldown:420,description: "缤纷杂果冰盘：穿过它的弹药提高伤害并变为冰弹，定期召唤寒冰之气",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_2}
 ]);
 
     register_card("pufferfish", obj_pufferfish, [
