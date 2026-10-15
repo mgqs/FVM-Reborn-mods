@@ -275,3 +275,100 @@ function edit_gem_max_level(gem_id,new_level){
 		}
 	}
 }
+
+function get_card_fail_streak(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_fail_streak(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_fail_streak(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_fail_streak(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+// 强化失败累计的成功率加成（每次失败 +4~7 的随机值，成功清零；旧存档没这个字段就是 0）
+function get_card_craft_bonus(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			if variable_struct_exists(global.save_data.unlocked_cards[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_craft_bonus(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_craft_bonus(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			if variable_struct_exists(global.save_data.unlocked_gems[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_craft_bonus(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}

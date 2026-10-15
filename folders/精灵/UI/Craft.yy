@@ -18,6 +18,9 @@
     {"name":"1737ac96-5092-414f-ba22-4de522f0afac","path":"sprites/spr_craft_gold_require_bg/spr_craft_gold_require_bg.yy",},
     {"name":"b8c21b5e-6c22-48eb-a701-c8c054fec52d","path":"sprites/spr_craft_material/spr_craft_material.yy",},
     {"name":"8147fed2-f7a9-437e-ba20-9e200faf2fc5","path":"sprites/spr_craft_material_bg/spr_craft_material_bg.yy",},
+    {"name":"18c3e152-6552-4cc3-8a6f-92f59d760b87","path":"sprites/spr_craft_insure_badge/spr_craft_insure_badge.yy",},
+    {"name":"78c87393-2a8b-4867-8c43-d50579430bb9","path":"sprites/spr_craft_rate_label/spr_craft_rate_label.yy",},
+    {"name":"40c5270e-ff2b-4bf9-8ada-57bbc9af203c","path":"sprites/spr_craft_rate_check/spr_craft_rate_check.yy",},
     {"name":"79d8a7f6-cec9-44b1-8fa6-f9c87d3509e1","path":"sprites/spr_craft_select_btn/spr_craft_select_btn.yy",},
     {"name":"f819faf7-a042-438a-b396-d2e48740ea29","path":"sprites/spr_craft_slot_bg/spr_craft_slot_bg.yy",},
     {"name":"394ba226-985b-4639-a27a-098804202e2a","path":"sprites/spr_craft_slot_text/spr_craft_slot_text.yy",}
