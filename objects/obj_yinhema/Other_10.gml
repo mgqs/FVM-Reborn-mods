@@ -11,14 +11,8 @@ if (!variable_global_exists("zodiac_query_card") || !instance_exists(global.zodi
 if (hp <= 0) exit;
 var _c = global.zodiac_query_card;
 if (get_plant_upgrade(_c.plant_id,0,0) == undefined) exit;
-// 仅对指定卡片生效：迷你披萨炉、赖皮蛇、工匠神、炎凰马、炎帝
-// 按 plant_id 匹配，避免名称随转职变化导致匹配失败
-var _ids = ["pizza_oven","laipishe","gongjiang_god","yanhuangma","shennong_god"];
-var _ok = false;
-for (var _i = 0; _i < array_length(_ids); _i++) {
-    if (_c.plant_id == _ids[_i]) {_ok = true; break;}
-}
-if (!_ok) exit;
+// 仅对「直射类 / 固定轨迹类」卡片生效（分类来自 docs/卡片分类.md，见 card_buff_category 模块）
+if (!card_in_category(_c.plant_id, "固定轨迹类")) exit;
 var _r = shape == 0 ? 1 : 2; // 0转3×3，1/2转5×5
 if (abs(grid_col-_c.grid_col) <= _r && abs(grid_row-_c.grid_row) <= _r) {
     var _d = get_plant_data_with_skill(plant_id,shape,current_level,skill);

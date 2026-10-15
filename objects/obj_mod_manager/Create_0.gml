@@ -15,6 +15,8 @@ mod_boss_init();
 mod_cards_init();
 // 跨服商店的生肖卡名称/描述直接读取 mod_cards_init 注册的卡片形态数据，必须在其后执行
 cross_server_shop_init();
+// 卡片分类模块是增幅分组的数据源，必须在 mod_buff_init 之前建立
+card_category_init();
 mod_buff_init();
 zhiyumiao_config_init();
 

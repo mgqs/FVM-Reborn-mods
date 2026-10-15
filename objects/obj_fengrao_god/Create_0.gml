@@ -19,11 +19,7 @@ is_slowdown = false;
 
 buffer_type = "five_dir";
 
-if (shape >= 1)
-    buffer_type_2 = "multi_dir";
-else
-    buffer_type_2 = undefined;
-
+// 五向增幅只对应「多向类」（分类驱动），不再挂载 multi_dir 第二类型。
 buff_stacking = (shape >= 3);
 buff_max_stacks = 2;
 

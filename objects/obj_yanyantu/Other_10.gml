@@ -11,18 +11,8 @@ if (!variable_global_exists("zodiac_query_card") || !instance_exists(global.zodi
 if (hp <= 0) exit;
 var _c = global.zodiac_query_card;
 if (get_plant_upgrade(_c.plant_id,0,0) == undefined) exit;
-// 仅对指定产火卡片生效：太阳神/双子座按 plant_id 直判，其余按名称匹配
-if (_c.plant_id != "sun_god" && _c.plant_id != "shuangzi") {
-    var _pd = get_plant_shape_data(_c.plant_id,0);
-    if (_pd == undefined) exit;
-    var _n = _pd[? "name"];
-    var _names = ["小火炉","大火炉","酒杯灯","双子座","太阳神","暖暖鸡","咕咕鸡","火焰牛","7周年蜡烛","生日帽","守能汪","喵喵炉","扑克牌护罩"];
-    var _ok = false;
-    for (var _i = 0; _i < array_length(_names); _i++) {
-        if (_n == _names[_i] || string_pos(_names[_i],_n) > 0) {_ok = true; break;}
-    }
-    if (!_ok) exit;
-}
+// 仅对「产能类」卡片生效（分类来自 docs/卡片分类.md，见 card_buff_category 模块）
+if (!card_in_category(_c.plant_id, "产能类")) exit;
 var _r = shape == 2 ? 2 : 1; // 0/1转3×3，2转5×5
 if (abs(grid_col-_c.grid_col) <= _r && abs(grid_row-_c.grid_row) <= _r) {
     var _d = get_plant_data_with_skill(plant_id,shape,current_level,skill);

@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},
     {"name":"difficulty_rules","path":"scripts/difficulty_rules/difficulty_rules.yy",},
     {"name":"gods_goods_registry","path":"scripts/gods_goods_registry/gods_goods_registry.yy",},
     {"name":"gods_shop_init","path":"scripts/gods_shop_init/gods_shop_init.yy",},
