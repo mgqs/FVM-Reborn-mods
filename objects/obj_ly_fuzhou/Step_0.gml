@@ -29,14 +29,18 @@ if (ly_mode == "cast") {
 
         ly_fire = max(0, ly_fire - 1);
         ly_amulet = instance_create_depth(x - 35, y - 65, depth - 1, obj_ly_amulet, {owner: id, lane: grid_row});
-        ly_cooldown = ly_summon_cooldown;
+        array_push(ly_summoned_cols, grid_col);
+        ly_cooldown = 0;
+        invincible = true;
         ly_mode = "walk"; ly_action = "";
     }
     exit;
 }
 invincible = instance_exists(ly_amulet);
 
-if (ly_fire > 0 && ly_cooldown <= 0 && !instance_exists(ly_amulet)) {
+var _can_summon = array_get_index(ly_summon_cols, grid_col) != -1 && array_get_index(ly_summoned_cols, grid_col) == -1;
+if (ly_fire > 0 && _can_summon && !instance_exists(ly_amulet)) {
+    invincible = true;
     ly_mode = "cast"; longyuan_play(longyuan_variant("正常施法", "破损施法"), true); exit;
 }
 

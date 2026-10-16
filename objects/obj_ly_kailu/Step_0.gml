@@ -11,7 +11,7 @@ state = ly_mode == "dead" ? ENEMY_STATE.DEAD : ENEMY_STATE.ACTING;
 if (ly_mode == "dead") {
     longyuan_animate();
     if (ly_done) {
-        if (!ly_soul && ly_night) longyuan_change_soul();
+        if (!ly_soul && !ash_death && ly_night) longyuan_change_soul();
         else { image_alpha -= 0.08; if (image_alpha <= 0) instance_destroy(); }
     }
     exit;
@@ -31,6 +31,28 @@ if (ly_mode == "spawn" || ly_mode == "appear" || ly_mode == "drop") {
             ly_mode = "walk"; ly_action = "";
         }
     }
+    exit;
+}
+
+if (ly_mode == "dash") {
+    var _dash_card = longyuan_card_in_cell(grid_col, grid_row);
+    if (instance_exists(_dash_card)) {
+        longyuan_destroy_card(_dash_card);
+        instance_destroy();
+        exit;
+    }
+    x -= max(1, _speed * 2);
+    longyuan_animate();
+    if (x <= ly_dash_target_x) { ly_mode = "walk"; ly_action = ""; }
+    exit;
+}
+
+var _dash_col = array_get_index(ly_dash_cols, grid_col);
+if (_dash_col != -1 && array_get_index(ly_dashed_cols, grid_col) == -1) {
+    array_push(ly_dashed_cols, grid_col);
+    ly_dash_target_x = x - global.grid_cell_size_x * 3;
+    ly_mode = "dash";
+    longyuan_play(ly_soul ? longyuan_variant("正常前进", "破损前进") : longyuan_variant("正常大火冲刺", "破损大火冲刺"), true);
     exit;
 }
 

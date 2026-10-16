@@ -19,15 +19,16 @@ if (ly_mode == "dead") {
 if (hp <= 0) { longyuan_begin_death(); exit; }
 if (is_frozen || is_stun || is_scare) exit;
 
+if (ly_fan && hp <= maxhp - helmet_hp) {
+    ly_mode = "drop";
+    longyuan_play("下落", true);
+}
+
 ly_cooldown = max(0, ly_cooldown - 1);
 ly_dodge_cooldown = max(0, ly_dodge_cooldown - 1);
 var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (target_type == "air") {
-    var _wind = false;
-    with (obj_ly_dongfeng) {
-        if (hp > 0 && ly_fan && ly_action == "持扇攻击" && !is_frozen && !is_stun && !is_scare) _wind = true;
-    }
-    if (_wind) _speed *= ly_wind_multiplier;
+    _speed *= longyuan_air_speed_multiplier();
 }
 if (ly_fan) {
     var _fan_near = false;
@@ -51,7 +52,13 @@ if (ly_mode == "spawn" || ly_mode == "appear" || ly_mode == "drop") {
 
 target_plant = longyuan_find_plant(false);
 
-if (ly_fan && ly_cooldown <= 0) {
+if (ly_fan && !ly_wind_active && grid_col <= 7) {
+    ly_wind_active = true;
+    ly_mode = "wind";
+    longyuan_play("持扇攻击", true);
+}
+
+if (ly_fan && ly_wind_active && ly_cooldown <= 0 && ly_mode != "wind") {
     ly_mode = "wind"; longyuan_play("持扇攻击", true);
 }
 if (ly_mode == "wind") {

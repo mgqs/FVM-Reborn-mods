@@ -14,6 +14,7 @@ is_vehicle = false;
 ly_wind_multiplier = 1.5; // 未给定风力倍率
 ly_fan = true;
 ly_dodge_cooldown = 0;
+ly_dance_cooldown = 0;
 ly_original_hp = 100;
 can_use_ladder = false;
 state = ENEMY_STATE.ACTING;

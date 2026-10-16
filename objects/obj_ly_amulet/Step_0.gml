@@ -7,7 +7,7 @@ if (mode == "fly") {
         target = noone;
         var _left = 1000000000;
         with (obj_card_parent) {
-            if (hp > 0 && plant_id != "player" && plant_type != "coffee" && !invincible && x < _left) { _left = x; other.target = id; }
+            if (hp > 0 && grid_row == other.lane && plant_id != "player" && plant_type != "coffee" && !invincible && x < _left) { _left = x; other.target = id; }
         }
     }
     image_index = floor(timer / 6) mod 6;

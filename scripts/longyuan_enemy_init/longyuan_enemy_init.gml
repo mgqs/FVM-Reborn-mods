@@ -1,7 +1,7 @@
 function longyuan_enemy_init() {
  register_enemy("longyuan_pingmin", {name: "龙渊平民鼠", _obj: obj_ly_pingmin, hp: 100, shield: 0, description: "龙渊平民鼠：普通行走啃咬", speed: 0.32, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_pingmin, feature: "land"});
  register_enemy("longyuan_dijing", {name: "地精鼠", _obj: obj_ly_dijing, hp: 100, shield: 0, description: "地精鼠：潜地至后排，出土眩晕后反向啃咬", speed: 0.9, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_dijing, feature: "land"});
- register_enemy("longyuan_dongfeng", {name: "东风鼠", _obj: obj_ly_dongfeng, hp: 660, shield: 0, description: "东风鼠：持扇时加速全场空中鼠，怕风扇", speed: 0.6, atk: 10, cycle: 36, range: 90, ash_proof: false, spr: spr_dongfeng, feature: "land"});
+ register_enemy("longyuan_dongfeng", {name: "东风鼠", _obj: obj_ly_dongfeng, hp: 2340, shield: 0, description: "东风鼠：飞至第8列后扇风，使全体空军速度翻倍", speed: 0.3, atk: 10, cycle: 36, range: 90, ash_proof: true, spr: spr_dongfeng, feature: "land"});
  register_enemy("longyuan_gaoqiao", {name: "高跷鼠", _obj: obj_ly_gaoqiao, hp: 170, shield: 0, description: "高跷鼠：移动时闪避攻击，遇重型防御才停止", speed: 0.9, atk: 10, cycle: 42, range: 90, ash_proof: false, spr: spr_gaoqiao, feature: "land"});
  register_enemy("longyuan_kailu", {name: "开路鼠", _obj: obj_ly_kailu, hp: 660, shield: 0, description: "开路鼠：冲刺撞击卡片，夜间死亡化魂", speed: 0.6, atk: 20, cycle: 42, range: 90, ash_proof: false, spr: spr_kailu, feature: "land"});
  register_enemy("longyuan_langyabang", {name: "狼牙棒鼠", _obj: obj_ly_langyabang, hp: 1800, shield: 0, description: "狼牙棒鼠：巨型鼠式重击", speed: 0.27, atk: 900, cycle: 108, range: 120, ash_proof: true, spr: spr_langyabang, feature: "land"});
@@ -12,4 +12,11 @@ function longyuan_enemy_init() {
  register_enemy("longyuan_fuzhou", {name: "符咒鼠", _obj: obj_ly_fuzhou, hp: 1200, shield: 0, description: "符咒鼠：施法放出符咒，符咒存在时无敌并转化最左卡片", speed: 0.3, atk: 10, cycle: 48, range: 90, ash_proof: false, spr: spr_fuzhou, feature: "land"});
  register_enemy("longyuan_zhizhujing", {name: "蜘蛛精鼠", _obj: obj_ly_zhizhujing, hp: 660, shield: 0, description: "蜘蛛精鼠：待机和缠绕动作已接入，完整技能待补充", speed: 0, atk: 10, cycle: 90, range: 90, ash_proof: false, spr: spr_zhizhujing, feature: "land"});
  register_enemy("longyuan_fuzhou_minion", {name: "符咒随从鼠", _obj: obj_ly_fuzhou_minion, hp: 100, shield: 0, description: "符咒随从鼠：符咒转化的魂系随从", speed: 0.32, atk: 10, cycle: 42, range: 90, ash_proof: false, spr: spr_fuzhou_zhaohuan_2, feature: "land"});
+ // ===== 龙渊（长渊）关卡 BOSS（mouse_id 与对象 Create 中的 mouse_id 一致）=====
+ register_enemy("ly_diting", {name: "谛听鼠", _obj: obj_ly_boss_diting, hp: 200000, shield: 0, description: "谛听鼠：遁地突袭/音波/网格火与狱鼠陷阱", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_diting_boss, feature: "land"});
+ register_enemy("ly_hengha_horseface", {name: "哼哈将军·马面", _obj: obj_ly_boss_hengha_horseface, hp: 180000, shield: 0, description: "哼哈将军·马面：掷铃与召食物精灵", speed: 0.4, atk: 4000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_hengha_horseface, feature: "land"});
+ register_enemy("ly_hengha_oxhead", {name: "哼哈将军·牛头", _obj: obj_ly_boss_hengha_oxhead, hp: 180000, shield: 0, description: "哼哈将军·牛头：跳跃砸地与闪现", speed: 0.4, atk: 4000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_hengha_oxhead, feature: "land"});
+ register_enemy("ly_mengpo", {name: "孟婆鼠", _obj: obj_ly_boss_mengpo, hp: 220000, shield: 0, description: "孟婆鼠：下雨/狂风/茶树与蘑菇", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_mengpo_boss, feature: "land"});
+ register_enemy("ly_wuchang", {name: "无常鼠", _obj: obj_ly_boss_wuchang, hp: 260000, shield: 0, description: "无常鼠：白黑双形态/金币/锁链/火轮/招魂幡", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_wuchang_boss, feature: "land"});
+ register_enemy("ly_youshen", {name: "游神鼠", _obj: obj_ly_boss_youshen, hp: 300000, shield: 0, description: "游神鼠：卷轴/迷雾/冲撞", speed: 0.4, atk: 6000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_youshen_boss, feature: "land"});
 }
