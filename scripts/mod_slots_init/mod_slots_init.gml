@@ -2990,6 +2990,11 @@ register_card("ronghehuopen", obj_ronghehuopen, [
 {shape:1,sprite:spr_ronghehuopen_1,cost:175,cooldown:420,description: "冰榴莲烤盘：穿过它的弹药都会提高伤害，定期在周围5*5范围召唤寒冰之气攻击鼠军",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_1},
 {shape:2,sprite:spr_ronghehuopen_2,cost:175,cooldown:420,description: "缤纷杂果冰盘：穿过它的弹药提高伤害并变为冰弹，定期召唤寒冰之气",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_2}
 ]);
+register_card("ronghesanxian", obj_ronghesanxian, [
+{shape:0,sprite:spr_ronghesanxian,cost:325,cooldown:420,description: "子母三线酒架：向前方三行各发射2发葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian},
+{shape:1,sprite:spr_ronghesanxian_1,cost:325,cooldown:420,description: "仙人掌花酒架：向前方三行各发射3发葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_1},
+{shape:2,sprite:spr_ronghesanxian_2,cost:325,cooldown:420,description: "烤灯笼鱼酒架：向前方三行各发射1发可穿透的葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_2}
+]);
 
     register_card("pufferfish", obj_pufferfish, [
     {shape: 0, sprite: spr_pufferfish, cost: 325, cooldown: 3300, description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish},

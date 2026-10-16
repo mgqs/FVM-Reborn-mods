@@ -91,6 +91,7 @@ function card_category_data()
         ["youyu_god", "多向类", "类海星类", ""],
         ["brazier", "增幅类", "子弹增幅", "平射增幅"],
         ["ronghehuopen", "增幅类", "子弹增幅", "平射增幅"],
+        ["ronghesanxian", "直射类", "三线类", ""],
         ["jinniu", "增幅类", "子弹增幅", "平射增幅"],
         ["fire_god", "增幅类", "子弹增幅", "平射增幅"],
         ["blueberry_tower", "增幅类", "子弹增幅", "投掷增幅"],

@@ -369,7 +369,8 @@ function fusion_get_prerequisites() {
         youyu_god:     "takoyaki",        // 融合鱿鱼   ← 章鱼烧（二转：火影章鱼烧）
         ronghehaixing: "coal_starfish",   // 融合海星   ← 炭烧海星（二转：芥末海星刺身）
         ronghedan_god: "egg_boiler_pult",  // 融合煮蛋器 ← 煮蛋器投手（二转：强袭煮蛋器）
-        ronghehuopen:  "brazier"           // 融合火盆   ← 火盆（二转：岩烧烤盘）
+        ronghehuopen:  "brazier",          // 融合火盆   ← 火盆（二转：岩烧烤盘）
+        ronghesanxian: "triple_wine_rack"  // 融合三线   ← 三线酒架（二转：终结者酒架）
     };
 }
 
