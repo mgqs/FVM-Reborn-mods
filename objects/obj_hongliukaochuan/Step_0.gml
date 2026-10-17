@@ -55,6 +55,10 @@ if (has_enemy)
     if (attack_timer == (cycle - _fire_delay * current_flash_speed))
         event_user(1);
 
+    // 二转（星火）：双发错帧连发 —— 第一发后 5 帧再补一发（数值 = 一转档，不再翻倍）
+    if (shape >= 2 && attack_timer == (cycle - _fire_delay * current_flash_speed) + 5)
+        event_user(1);
+
     if (attack_timer > cycle)
     {
         attack_timer = 0;

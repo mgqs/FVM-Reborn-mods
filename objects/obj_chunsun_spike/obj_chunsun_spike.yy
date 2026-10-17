@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{"name":"spr_chunsun_spike","path":"sprites/spr_chunsun_spike/spr_chunsun_spike.yy",},
+  "spriteId":{
+    "name":"spr_chunsun_spike",
+    "path":"sprites/spr_chunsun_spike/spr_chunsun_spike.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
