@@ -32,5 +32,5 @@ longyuan_move_action = function() {
     if (hp > maxhp * 0.15) return "破损剩余1份丝线移动";
     return "破损无丝线移动";
 };
-longyuan_attack_action = function() { return longyuan_variant("正常啃咬", "破损啃咬"); };
+longyuan_attack_action = function() { return longyuan_move_action(); };
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };

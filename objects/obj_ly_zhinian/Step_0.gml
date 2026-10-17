@@ -11,7 +11,7 @@ state = ly_mode == "dead" ? ENEMY_STATE.DEAD : ENEMY_STATE.ACTING;
 if (ly_mode == "dead") {
     longyuan_animate();
     if (ly_done) {
-        if (!ly_soul && ly_night) longyuan_change_soul();
+        if (!ly_soul && !ash_death && ly_night) longyuan_change_soul();
         else { image_alpha -= 0.08; if (image_alpha <= 0) instance_destroy(); }
     }
     exit;
@@ -38,13 +38,30 @@ target_plant = longyuan_find_plant(false);
 
 if (instance_exists(target_plant)) {
     ly_mode = "attack";
-    longyuan_play(longyuan_attack_action());
+    var _attack_action = (ly_soul && ly_soul_special) ? "正常冲刺" : longyuan_attack_action();
+    longyuan_play(_attack_action);
     longyuan_animate();
     var _clip = ly_anims[$ ly_action];
     var _hit_frame = floor((_clip[2] - _clip[1] + 1) / 2);
-    if (!ly_hit && ly_frame >= _hit_frame) { longyuan_damage_plant(target_plant, atk); ly_hit = true; }
+    if (!ly_hit && ly_frame >= _hit_frame) {
+        if (ly_soul && ly_soul_special) {
+            for (var _offset = 1; _offset <= 2; ++_offset) {
+                var _card = longyuan_card_in_cell(grid_col - _offset, grid_row);
+                if (instance_exists(_card)) longyuan_damage_plant_piercing(_card, 100);
+            }
+            x -= global.grid_cell_size_x * 2;
+            ly_soul_special = false;
+            ly_soul_attack_count = 0;
+        }
+        else longyuan_damage_plant(target_plant, atk);
+        ly_hit = true;
+    }
     if (ly_done && ly_frame >= max(_clip[2] - _clip[1] + 1, atk_cycle * 10 / game_get_speed(gamespeed_fps))) {
         ly_frame = 0; ly_hit = false;
+        if (ly_soul && ly_action != "正常冲刺") {
+            ly_soul_attack_count++;
+            if (ly_soul_attack_count >= 2) ly_soul_special = true;
+        }
 
     }
     exit;

@@ -26,11 +26,7 @@ mouse_id = "longyuan_zhizhujing";
 ly_anims = longyuan_animation_table("zhizhujing");
 hp = 660; maxhp = 660; ly_original_hp = 660;
 move_speed = 0; atk = 10; atk_cycle = 90;
-if (variable_struct_exists(global.level_file, "is_night")) ly_night = global.level_file.is_night;
-else if (variable_global_exists("level_id")) {
-    var _level = string(global.level_id);
-    ly_night = string_pos("night", _level) > 0 || string_pos("_ye", _level) > 0;
-}
+ly_night = longyuan_is_night();
 target_type = "air"; ly_mode = "spider";
 longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };
 longyuan_attack_action = function() { return longyuan_variant("正常啃咬", "破损啃咬"); };

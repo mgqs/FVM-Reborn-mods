@@ -16,4 +16,6 @@ function map_object_init(){
 	register_map_object("wind_tunnel",{"name":"风洞","_obj":obj_wind_tunnel,"x_offset":5,"y_offset":-35})
 	register_map_object("lava",{"name":"岩浆","_obj":obj_lava,"x_offset":0,"y_offset":-35})
 	register_map_object("seawater",{"name":"海水","_obj":obj_seawater,"x_offset":0,"y_offset":-35})
+	// 龙柱：固定落在关卡正中间格子；种类由 global.longzhu_kind 指定（cheng/lv/huang/lv2），默认 cheng
+	register_map_object("longzhu",{"name":"龙柱","_obj":obj_longzhu,"x_offset":0,"y_offset":-35})
 }

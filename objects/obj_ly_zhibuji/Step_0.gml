@@ -46,7 +46,6 @@ if (ly_pending_shots > 0) {
 }
 
 target_plant = longyuan_find_plant(false);
-target_plant = noone;
 
 if (instance_exists(target_plant)) {
     ly_mode = "attack";

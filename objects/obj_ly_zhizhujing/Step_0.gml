@@ -11,19 +11,20 @@ state = ly_mode == "dead" ? ENEMY_STATE.DEAD : ENEMY_STATE.ACTING;
 if (ly_mode == "dead") {
     longyuan_animate();
     if (ly_done) {
-        if (!ly_soul && ly_night) longyuan_change_soul();
+        if (!ly_soul && !ash_death && ly_night) longyuan_change_soul();
         else { image_alpha -= 0.08; if (image_alpha <= 0) instance_destroy(); }
     }
     exit;
 }
 if (hp <= 0) { longyuan_begin_death(); exit; }
 if (is_frozen || is_stun || is_scare) exit;
+var _air_speed_multiplier = longyuan_air_speed_multiplier();
 {
     ly_mode = "spider";
     target_plant = longyuan_find_plant(false);
     if (instance_exists(target_plant)) {
         var _spider_dx = target_plant.x - x;
-        if (abs(_spider_dx) > 18) x += sign(_spider_dx) * 1.8;
+        if (abs(_spider_dx) > 18) x += sign(_spider_dx) * 1.8 * _air_speed_multiplier;
         var _spider_action = ly_soul ? "正常抱住物品" : "缠绕卡片";
         longyuan_play(_spider_action);
         longyuan_animate();

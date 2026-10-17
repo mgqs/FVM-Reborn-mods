@@ -25,7 +25,7 @@ mouse_id = "longyuan_yaoguan";
 ly_anims = longyuan_animation_table("yaoguan");
 hp = 660; maxhp = 660; ly_original_hp = 660;
 move_speed = 0.6; atk = 10; atk_cycle = 48;
-is_soul = true; ly_fire = 3;
+is_soul = false; ly_fire = 3;
 longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };
 longyuan_attack_action = function() { return longyuan_variant("正常啃咬", "破损啃咬"); };
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };

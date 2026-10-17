@@ -96,6 +96,27 @@ function mod_info_island_init()
     register_card_info_island("yeziguo", "[灰烬类][触发类][碾压类]\n基础能力：跳起秒杀前方单格鼠军,并砸晕周围的老鼠。\n *星级影响[冷却时间],技能影响[攻击力]。\n\n一转能力：秒杀范围扩大到3*3。\n\n二转能力：可连砸3次。");
     register_card_info_island("chunsun", "[灰烬类][持续类]\n基础能力：准备一段时间之后,可以长出穿刺老鼠的春笋。\n对范围内所有陆、地鼠军造成[攻击力]点伤害并直接秒杀击飞陆地非防爆鼠。\n攻击5次或持续45s即消失。\n *星级影响[攻击力],技能影响[准备时间]。\n\n一转能力：笋子存在时间延长至90s。\n\n二转能力：笋子攻击范围扩大到3×5。");
 
+    // 龙渊关卡敌人情报岛信息
+    register_enemy_info_island("longyuan_pingmin", "龙渊平民鼠：普通行走并啃食前方卡片。")
+    register_enemy_info_island("longyuan_dijing", "地精鼠：入场时以0.9的速度挖掘，地下时仅能被旋转喷射类伤害命中。到达地图左侧后出土并眩晕，随后以0.15的速度向右移动并攻击前方卡片。")
+    register_enemy_info_island("longyuan_dongfeng", "东风鼠：空中单位，生命值与机械投弹鼠同档。飞到第8列后扇风，使场上空中鼠移动速度翻倍；扇子被破坏后风效停止。")
+    register_enemy_info_island("longyuan_gaoqiao", "高跷鼠：参考非主流鼠的舞步机制，移动和闪避时可躲避实体子弹；啃食时无法闪避，咖啡喷雾、鱼刺和爆炸等非实体伤害仍可命中。")
+    register_enemy_info_island("longyuan_kailu", "开路鼠：走到第4列、第8列后分别冲刺3格。夜晚被击杀且不是灰烬死亡时会化为魂体；本体或魂体接触卡片会自爆并摧毁该格美食。")
+    register_enemy_info_island("longyuan_langyabang", "狼牙棒鼠：巨型重型鼠，拥有高生命值和高额近战伤害，会持续压迫前方防线。")
+    register_enemy_info_island("longyuan_longmu", "龙母鼠：携带魂蛋，魂蛋破碎后进入发怒状态并提高移动速度。")
+    register_enemy_info_island("longyuan_yaoguan", "药罐鼠：携带三团魂火，魂火提供减伤；濒死时会消耗魂火治疗场上的魂系老鼠。")
+    register_enemy_info_island("longyuan_zhibuji", "织布机鼠：受到伤害时会发射10点穿透梭弹；鱼刺和火盆可以有效克制它。")
+    register_enemy_info_island("longyuan_zhinian", "执念鼠：普通攻击造成10点伤害。夜晚被击杀且不是灰烬死亡时会化为魂体，魂体普通攻击造成50点伤害，并按两次普攻、一次大招循环；大招前移2格，对沿途两格美食各造成100点穿透伤害。")
+    register_enemy_info_island("longyuan_fuzhou", "符咒鼠：进入第4、6、8列时各召唤一次符咒。符咒飞行或转化出的魂系小鼠存活期间本体无敌；符咒会将本行最左侧卡片转化为魂系小鼠。")
+    register_enemy_info_island("longyuan_zhizhujing", "蜘蛛精鼠：拥有蜘蛛丝和魂系相关能力，会在关卡中使用专属动作与技能。魂体状态受到的伤害降低60%。")
+    register_enemy_info_island("longyuan_fuzhou_minion", "符咒魂鼠：由符咒鼠的符咒转化卡片后生成，拥有独立的魂系行动和攻击能力。")
+    register_enemy_info_island("ly_diting", "谛听鼠：龙渊关卡首领，使用遁地突袭、音波、网格火和狱鼠陷阱等技能。")
+    register_enemy_info_island("ly_hengha_horseface", "哼哈将军·马面：龙渊关卡首领，使用铃铛攻击并召唤美食精灵。")
+    register_enemy_info_island("ly_hengha_oxhead", "哼哈将军·牛头：龙渊关卡首领，使用跳跃砸地和闪现攻击。")
+    register_enemy_info_island("ly_mengpo", "孟婆鼠：龙渊关卡首领，使用降雨、狂风、茶树和蘑菇等技能。")
+    register_enemy_info_island("ly_wuchang", "无常鼠：龙渊关卡首领，拥有白黑双形态，并使用金币、锁链、火轮和招魂幡。")
+    register_enemy_info_island("ly_youshen", "游神鼠：龙渊关卡首领，使用卷轴、迷雾和冲撞技能。")
+
     // 跨服远征感染敌人情报岛信息
     register_enemy_info_island("infected_normal_mouse", "平民僵尸鼠：被感染的普通老鼠,无特殊能力。");
     register_enemy_info_island("infected_football_fan_mouse", "球迷僵尸鼠：被感染的球迷鼠,生命值稍高。");

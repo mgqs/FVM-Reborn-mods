@@ -2,9 +2,9 @@
   "$GMSprite":"v2",
   "%Name":"spr_songludating_ri",
   "bboxMode":0,
-  "bbox_bottom":599,
+  "bbox_bottom":1079,
   "bbox_left":0,
-  "bbox_right":1113,
+  "bbox_right":2004,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -16,7 +16,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":600,
+  "height":1080,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"48b9ed05-e88f-4269-a978-a59ff01e4acc","blendMode":0,"displayName":"default","isLocked":false,"name":"48b9ed05-e88f-4269-a978-a59ff01e4acc","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -86,5 +86,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":1114,
+  "width":2005,
 }

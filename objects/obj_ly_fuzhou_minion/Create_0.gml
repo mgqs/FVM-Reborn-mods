@@ -22,6 +22,7 @@ ly_anims = longyuan_animation_table("fuzhou_minion");
 hp = 100; maxhp = 100; ly_original_hp = 100;
 move_speed = 0.32; atk = 10; atk_cycle = 42;
 is_soul = true; ly_mode = "spawn"; longyuan_play("出生", true);
+ly_soul = true; target_type = "invisible";
 longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };
 longyuan_attack_action = function() { return longyuan_variant("正常啃咬", "破损啃咬"); };
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };
