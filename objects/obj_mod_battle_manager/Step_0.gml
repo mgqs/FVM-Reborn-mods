@@ -124,6 +124,17 @@ else
                             buff_multiplier = max(tr_normal, tr_stack);
                             break;
 
+                        case "tracker_advanced":
+                            var grid_tracker_advanced = ds_map_find_value(global.buff_grid, "tracker_advanced");
+                            var stack_tracker_advanced = ds_map_find_value(global.buff_stack_grid, "tracker_advanced");
+                            buff_multiplier = max(grid_tracker_advanced[self.grid_col][self.grid_row], stack_tracker_advanced[self.grid_col][self.grid_row]);
+                            break;
+
+                        case "tracker_berry":
+                            var grid_tracker_berry = ds_map_find_value(global.buff_grid, "tracker_berry");
+                            buff_multiplier = grid_tracker_berry[self.grid_col][self.grid_row];
+                            break;
+
                         case "xiangshui":
                             var grid_xiangshui = ds_map_find_value(global.buff_grid, "xiangshui");
                             var stack_xiangshui = ds_map_find_value(global.buff_stack_grid, "xiangshui");
@@ -139,11 +150,16 @@ else
                             break;
 
                         case "five_dir":
-                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
-                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
-                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
-                            buff_multiplier = max(fd_normal, fd_stack);
+                            if (self.plant_id == "youyu_god" && self.shape < 3)
+                                buff_multiplier = 1;
+                            else
+                            {
+                                var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
+                                var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                                var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
+                                var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
+                                buff_multiplier = max(fd_normal, fd_stack);
+                            }
                             break;
 
                         case "multi_dir":
@@ -184,6 +200,17 @@ else
                             buff2_multiplier = max(tr2_normal, tr2_stack);
                             break;
 
+                        case "tracker_advanced":
+                            var grid_tracker_advanced2 = ds_map_find_value(global.buff_grid, "tracker_advanced");
+                            var stack_tracker_advanced2 = ds_map_find_value(global.buff_stack_grid, "tracker_advanced");
+                            buff2_multiplier = max(grid_tracker_advanced2[self.grid_col][self.grid_row], stack_tracker_advanced2[self.grid_col][self.grid_row]);
+                            break;
+
+                        case "tracker_berry":
+                            var grid_tracker_berry2 = ds_map_find_value(global.buff_grid, "tracker_berry");
+                            buff2_multiplier = grid_tracker_berry2[self.grid_col][self.grid_row];
+                            break;
+
                         case "xiangshui":
                             var grid_xiangshui2 = ds_map_find_value(global.buff_grid, "xiangshui");
                             var stack_xiangshui2 = ds_map_find_value(global.buff_stack_grid, "xiangshui");
@@ -199,11 +226,16 @@ else
                             break;
 
                         case "five_dir":
-                            var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
-                            var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                            var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
-                            var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
-                            buff2_multiplier = max(fd2_normal, fd2_stack);
+                            if (self.plant_id == "youyu_god" && self.shape < 3)
+                                buff2_multiplier = 1;
+                            else
+                            {
+                                var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
+                                var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                                var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
+                                var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
+                                buff2_multiplier = max(fd2_normal, fd2_stack);
+                            }
                             break;
 
                         case "multi_dir":

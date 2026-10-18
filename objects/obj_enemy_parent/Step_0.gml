@@ -78,7 +78,7 @@ else{
 	current_move_speed = move_speed
 	current_atk_cycle = atk_cycle
 }
-if (target_type == "air") {
+if (target_type == "air" || (variable_instance_exists(id, "ly_air_speed_bonus") && ly_air_speed_bonus)) {
 	current_move_speed *= longyuan_air_speed_multiplier();
 }
 if left_move_flashs > 0{

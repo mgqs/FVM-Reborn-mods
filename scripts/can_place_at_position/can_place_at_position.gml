@@ -22,6 +22,10 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     if (col < 0 || col >= global.grid_cols || row < 0 || row >= global.grid_rows) {
         return false;
     }
+    // 蜘蛛精蛛网封格：该格存在 spr_zhizhujing_wang（obj_ly_web）时无法放置卡片
+    if (variable_global_exists("longyuan_web_cells") && global.longyuan_web_cells[row * global.grid_cols + col]) {
+        return false;
+    }
 	//调试相关
 	if global.debug{
 		return true
@@ -67,8 +71,8 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
         }
     }
     
-    // 泡椒春笋不占格：可与其他卡叠放，但同一格只能有一张春笋（自己不与自己叠放）
-    if (card_id == "chunsun" && !global.replace_placement)
+    // 不占格卡可与其他卡叠放，但同一格不能重复放置自身。
+    if ((card_id == "chunsun" || card_id == "xiandima") && !global.replace_placement)
     {
         for (var i = 0; i < ds_list_size(plant_list); i++)
         {

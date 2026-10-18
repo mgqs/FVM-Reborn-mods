@@ -52,18 +52,16 @@ if (ly_mode == "spawn" || ly_mode == "appear" || ly_mode == "drop") {
 
 target_plant = longyuan_find_plant(false);
 
-if (ly_fan && !ly_wind_active && grid_col <= 7) {
+// 到达第8列（0-based=7）且仍持扇时，一生只施法一次：ly_wind_active 锁存，之后不再重复。
+if (ly_fan && !ly_wind_active && grid_col <= LY_DONGFENG_TRIGGER_COL) {
     ly_wind_active = true;
     ly_mode = "wind";
     longyuan_play("持扇攻击", true);
 }
 
-if (ly_fan && ly_wind_active && ly_cooldown <= 0 && ly_mode != "wind") {
-    ly_mode = "wind"; longyuan_play("持扇攻击", true);
-}
 if (ly_mode == "wind") {
     longyuan_animate();
-    if (ly_done) { ly_mode = "walk"; ly_cooldown = 180; ly_action = ""; }
+    if (ly_done) { ly_mode = "walk"; ly_action = ""; }
     exit;
 }
 if (instance_exists(target_plant)) {

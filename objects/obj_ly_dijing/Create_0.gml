@@ -19,7 +19,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_dijing";
 ly_anims = longyuan_animation_table("dijing");
-hp = 100; maxhp = 100; ly_original_hp = 100;
+hp = 500; maxhp = 500; ly_original_hp = 500;
 move_speed = 0.9; atk = 10; atk_cycle = 36;
 target_type = "underground"; attack_range = -90; ly_mode = "dig";
 special_ash = true;
@@ -31,11 +31,12 @@ longyuan_move_action = function() { return longyuan_variant("正常走路", "受
 longyuan_attack_action = function() { return longyuan_variant("正常吃东西", "受伤吃东西"); };
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("倒地", true); };
 longyuan_dijing_food_ahead = function() {
-    if (longyuan_bridge_contact(x - 24, y, x + 24, y, grid_row) != noone) return true;
-    var _found = false;
+    var _bridge = longyuan_bridge_contact(x - 24, y, x + 24, y, grid_row);
+    if (instance_exists(_bridge)) return _bridge;
+    var _found = noone;
     with (obj_card_parent) {
         if (hp > 0 && grid_row == other.grid_row && abs(x - other.x) <= 50
-            && (plant_id == "mixian" || plant_id == "hongliukaochuan")) _found = true;
+            && (plant_id == "mixian" || plant_id == "hongliukaochuan")) _found = id;
     }
     return _found;
 };

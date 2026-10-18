@@ -4,6 +4,10 @@
 // 每个存活且处于调用方光环范围内的音盒马，把自身攻击力倍率并入该全局值（同类取最高）。
 // 注意：event_user(0) 也在 Create 事件中被调用用于初始化；
 // 当 global.zodiac_query_card 未设置时，委托父类完成属性初始化。
+if (variable_instance_exists(id, "zodiac_initializing") && zodiac_initializing) {
+    event_inherited();
+    return;
+}
 if (!variable_global_exists("zodiac_query_card") || !instance_exists(global.zodiac_query_card)) {
     event_inherited();
     return;

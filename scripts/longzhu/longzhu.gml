@@ -27,21 +27,21 @@
 /// ============================================================
 
 /// ---------- 可调常量 ----------
-#macro LONGZHU_INTERVAL                 180   // 效果触发周期（帧）
+#macro LONGZHU_INTERVAL                 900   // 效果触发周期（帧）
 #macro LONGZHU_AWAKE_TIME               180   // 「清醒」效果持续（帧）
 #macro LONGZHU_PROTECT_TIME             900   // 「保护」效果持续（帧）——对齐星穹马一转 zodiac_guard_duration
 #macro LONGZHU_PROTECT_HITS             1     // 「保护」可抵挡次数——对齐星穹马一转
-#macro LONGZHU_GREEDY_LIMIT             1500  // 存在未封印贪婪龙柱时的火苗上限
-#macro LONGZHU_GREEDY_SEALED_BONUS      15000 // ≥4 根贪婪龙柱被封印时，上限的额外增量
+#macro LONGZHU_GREEDY_LIMIT             1000  // 存在未封印贪婪龙柱时的火苗上限基数
+#macro LONGZHU_GREEDY_SEALED_BONUS      20000 // ≥4 根贪婪龙柱被封印时，上限的额外增量
 #macro LONGZHU_GREEDY_SEALED_NEED       4     // 触发上限提升所需的被封印贪婪龙柱数量
-#macro LONGZHU_GREEDY_RETURN_RATIO      0.1   // 贪婪返还能量比例（按 3x3 内卡片耗能计算）
-#macro LONGZHU_RED_APPLE_DAMAGE         30    // 红苹果子弹伤害
+#macro LONGZHU_GREEDY_RETURN_RATIO      0.5   // 贪婪返还能量比例（按 3x3 内卡片耗能计算）
+#macro LONGZHU_RED_APPLE_DAMAGE         2000  // 红苹果子弹伤害
 #macro LONGZHU_RED_APPLE_SPEED          5     // 红苹果子弹速度
 #macro LONGZHU_RED_APPLE_LIFE           600   // 红苹果子弹最长存活（帧）
-#macro LONGZHU_GREEN_APPLE_HP           120   // 青苹果耐久
-#macro LONGZHU_GREEN_APPLE_HEAL         50    // 青苹果每次为接触老鼠回复的体力
+#macro LONGZHU_GREEN_APPLE_HP           2000000 // 青苹果耐久
+#macro LONGZHU_GREEN_APPLE_HEAL         10000 // 青苹果每次为接触老鼠回复的体力
 #macro LONGZHU_GREEN_APPLE_HEAL_INTERVAL 30   // 青苹果治疗间隔（帧）
-#macro LONGZHU_GREEN_APPLE_LIFE          1200 // 青苹果存活时长（帧）
+#macro LONGZHU_GREEN_APPLE_LIFE          2400 // 青苹果存活时长（帧）
 #macro LONGZHU_PILLAR_BASE_DEPTH        (-1200) // 龙柱绘制深度
 #macro LONGZHU_APPLE_DEPTH_OFFSET       (-1100) // 苹果绘制深度
 #macro LONGZHU_SCALE                    2      // 龙柱本体精灵放大倍数
@@ -64,6 +64,51 @@ function longzhu_kind_for_level() {
 	}
 	if (variable_global_exists("longzhu_kind") && global.longzhu_kind != "") return global.longzhu_kind;
 	return "cheng";
+}
+
+function longzhu_setup_level_pillars() {
+	if (global.longzhu_level_pillars_setup) return;
+	global.longzhu_level_pillars_setup = true;
+	var _level = string(global.level_id);
+	var _kind = longzhu_kind_for_level();
+	var _positions = [];
+	switch (_level) {
+		case "longyuan_1": _positions = [[6, 1], [6, 5]]; break;
+		case "longyuan_2": _positions = [[6, 1], [2, 3], [6, 5]]; break;
+		case "longyuan_3": _positions = [[1, 3], [7, 3]]; break;
+		case "longyuan_4": _positions = [[2, 1], [6, 2], [4, 5]]; break;
+		case "longyuan_5": _positions = [[3, 1], [6, 1], [3, 5], [6, 5]]; break;
+		case "longyuan_6": _positions = [[2, 1], [6, 1], [2, 5], [6, 5]]; break;
+		default: return;
+	}
+	var _first = instance_find(obj_longzhu, 0);
+	if (_level == "longyuan_1" || _level == "longyuan_2") {
+		with (obj_longzhu) instance_destroy();
+		global.longzhu_orange_wave1_done = false;
+		global.longzhu_orange_wave2_done = false;
+		return;
+	}
+	if (instance_exists(_first)) {
+		_first.col = _positions[0][0]; _first.row = _positions[0][1];
+		var _pos = get_world_position_from_grid(_first.col, _first.row);
+		_first.x = _pos.x; _first.y = _pos.y;
+		longzhu_setup(_first, _kind);
+	} else longzhu_spawn(_kind, _positions[0][0], _positions[0][1]);
+	for (var _i = 1; _i < array_length(_positions); ++_i) longzhu_spawn(_kind, _positions[_i][0], _positions[_i][1]);
+}
+
+function longzhu_update_level_pillars(_wave) {
+	var _level = string(global.level_id);
+	if ((_level == "longyuan_1" || _level == "longyuan_2") && _wave >= 0 && !global.longzhu_orange_wave1_done) {
+		global.longzhu_orange_wave1_done = true;
+		var _kind = longzhu_kind_for_level();
+		longzhu_spawn(_kind, 6, 1);
+		longzhu_spawn(_kind, _level == "longyuan_1" ? 6 : 2, _level == "longyuan_1" ? 5 : 3);
+	}
+	if (_level == "longyuan_2" && _wave >= 1 && !global.longzhu_orange_wave2_done) {
+		global.longzhu_orange_wave2_done = true;
+		longzhu_spawn(longzhu_kind_for_level(), 6, 5);
+	}
 }
 
 /// ---------- 生成 ----------
@@ -241,7 +286,7 @@ function longzhu_infect_card(_card, _owner) {
 }
 
 /// ---------- 贪婪：火苗 ----------
-/// 重算火苗上限（每步调用；无贪婪龙柱时保持基础值 15000）
+/// 重算火苗上限（每步调用；无贪婪龙柱时保持基础值）
 function longzhu_flame_cap_refresh() {
 	if (!variable_global_exists("flame_cap_base")) global.flame_cap_base = 15000;
 	var _cap = global.flame_cap_base;
@@ -250,7 +295,8 @@ function longzhu_flame_cap_refresh() {
 		if (longzhu_kind != "huang") continue;
 		if (longzhu_sealed) _sealed++; else _unsealed++;
 	}
-	if (_unsealed > 0) _cap = LONGZHU_GREEDY_LIMIT;
+	var _total = _unsealed + _sealed;
+	if (_total > 0) _cap = _sealed == _total ? 10000 : LONGZHU_GREEDY_LIMIT + 500 * _sealed;
 	if (_sealed >= LONGZHU_GREEDY_SEALED_NEED) _cap += LONGZHU_GREEDY_SEALED_BONUS;
 	global.flame_cap = _cap;
 	return _cap;

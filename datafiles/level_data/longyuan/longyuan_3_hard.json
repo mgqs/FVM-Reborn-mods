@@ -8,7 +8,7 @@
   "map_rows": 7,
   "starting_flame": 50,
   "first_wave_delay": 30,
-  "total_waves": 5,
+  "total_waves": 7,
   "elite_wave": 2,
   "boss_wave": 5,
   "hp_modify": 1.8,
@@ -586,12 +586,12 @@
     },
     {
       "wave_index": 5,
-      "boss": "ly_diting",
+      "boss": "ly_youshen",
       "boss_1_hp_modify": 1.5,
-      "boss2": "ly_hengha_horseface",
-      "boss_2_hp_modify": 1.5,
-      "boss3": "ly_hengha_oxhead",
-      "boss_3_hp_modify": 1.5,
+      "boss2": "",
+      "boss_2_hp_modify": 1,
+      "boss3": "",
+      "boss_3_hp_modify": 1,
       "boss_wave": true,
       "subwaves": [
         {
@@ -619,6 +619,48 @@
               "prosperity": 0,
               "type": "longyuan_pingmin"
             }
+          ]
+        }
+      ]
+    },
+    {
+      "wave_index": 6,
+      "boss": "ly_hengha_horseface",
+      "boss_1_hp_modify": 1.5,
+      "boss2": "ly_hengha_oxhead",
+      "boss_2_hp_modify": 1,
+      "boss3": "",
+      "boss_3_hp_modify": 1,
+      "boss_wave": true,
+      "subwaves": [
+        {
+          "subwave_index": 1,
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1,
+          "enemy_list": [
+            { "row": -1, "prosperity": 0, "type": "longyuan_gaoqiao" },
+            { "row": -1, "prosperity": 0, "type": "longyuan_zhinian" }
+          ]
+        }
+      ]
+    },
+    {
+      "wave_index": 7,
+      "boss": "ly_diting",
+      "boss_1_hp_modify": 1.5,
+      "boss2": "",
+      "boss_2_hp_modify": 1,
+      "boss3": "",
+      "boss_3_hp_modify": 1,
+      "boss_wave": true,
+      "subwaves": [
+        {
+          "subwave_index": 1,
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1,
+          "enemy_list": [
+            { "row": -1, "prosperity": 0, "type": "longyuan_kailu" },
+            { "row": -1, "prosperity": 0, "type": "longyuan_langyabang" }
           ]
         }
       ]

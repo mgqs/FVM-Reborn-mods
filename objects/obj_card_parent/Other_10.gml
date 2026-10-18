@@ -5,6 +5,16 @@
 var plant_data = get_plant_data(plant_id);
 current_level = 0
 var _gift_context = undefined;
+var _spawn_context = variable_global_exists("_external_spawn_context") ? global._external_spawn_context : undefined;
+if (is_struct(_spawn_context)
+    && variable_struct_exists(_spawn_context, "external_spawn_id")
+    && _spawn_context.external_spawn_id == plant_id) {
+    _gift_context = {
+        level: external_mod_field(_spawn_context, "external_spawn_level", 0),
+        skill: external_mod_field(_spawn_context, "external_spawn_skill", 0),
+        shape: external_mod_field(_spawn_context, "external_spawn_shape", 0)
+    };
+}
 if (variable_global_exists("random_gift_spawn_context") && is_struct(global.random_gift_spawn_context)
     && variable_struct_exists(global.random_gift_spawn_context, "card_id")
     && global.random_gift_spawn_context.card_id == plant_id) {

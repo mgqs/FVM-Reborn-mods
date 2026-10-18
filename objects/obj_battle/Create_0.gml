@@ -38,6 +38,14 @@ global.grid_cell_size_y = 116
 global.grid_offset_y = 228
 global.grid_cols = global.level_file.map_cols
 global.grid_rows = global.level_file.map_rows
+global.longzhu_level_pillars_setup = false;
+global.longyuan_bridge_red_active = false;
+global.longyuan_bridge_yellow_active = false;
+global.longyuan_bridge_lava_cells = array_create(global.grid_cols * global.grid_rows, false);
+global.longyuan_bridge_obstacle_red = noone;
+global.longyuan_bridge_obstacle_yellow = noone;
+global.longyuan_bridge_obstacle_timer_red = 0;
+global.longyuan_bridge_obstacle_timer_yellow = 0;
 
 global.enemy_col_n = array_create(global.grid_cols, 0);
 
@@ -151,10 +159,21 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 				var card_data = deck_get_card_data(cards[k],0)
 				if (card_data == noone) continue;
 				var card_obj = card_data[? "obj"]
+				var initial_shape = 0;
+				if (cards[k] == "yinhema" && variable_global_exists("save_data")
+					&& variable_struct_exists(global.save_data, "unlocked_cards")
+					&& is_array(global.save_data.unlocked_cards)) {
+					for (var unlocked_index = 0; unlocked_index < array_length(global.save_data.unlocked_cards); unlocked_index++) {
+						if (global.save_data.unlocked_cards[unlocked_index].id == "yinhema") {
+							initial_shape = clamp(global.save_data.unlocked_cards[unlocked_index].shape, 0, 2);
+							break;
+						}
+					}
+				}
 				var new_x = global.grid_offset_x + j * global.grid_cell_size_x
 				var new_y = global.grid_offset_y + i * global.grid_cell_size_y
 				var grid_pos = get_grid_position_from_world(new_x,new_y)
-				var new_plant = external_mod_spawn(grid_pos.x, grid_pos.y, 0, cards[k], 0);
+				var new_plant = external_mod_spawn(grid_pos.x, grid_pos.y, 0, cards[k], initial_shape);
 				var depth_value = calculate_plant_depth(j, i, new_plant.plant_type);
 				card_created(new_plant, j, i);
 				new_plant.depth = depth_value
@@ -189,6 +208,8 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 		cat_inst.attack_anim = 9
 	}
 }
+
+longzhu_setup_level_pillars();
 
 current_wave = 0
 current_subwave = 0

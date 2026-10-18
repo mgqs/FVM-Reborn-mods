@@ -1,7 +1,7 @@
 var _base_info = get_card_info_simple(card_id)
 if _base_info != false{
 	clevel = _base_info.level
-	cshape = _base_info.shape
+	cshape = shape
 }
 //cskill = get_card_info_simple(card_id).skill
 var plant_data = get_plant_data(card_id);
@@ -9,7 +9,6 @@ if (plant_data != undefined) {
 	
 	var card_save_data = get_card_info(card_id)
 	clevel = card_save_data.level
-	cshape = card_save_data.shape
 	cskill = card_save_data.skill
 	if (is_random_gift_mode() && card_id == "wanpilong") cshape = 2
     

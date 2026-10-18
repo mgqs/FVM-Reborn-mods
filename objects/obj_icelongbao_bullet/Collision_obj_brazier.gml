@@ -1,4 +1,4 @@
-if ds_list_find_index(brazier_list,other.id) == -1 && burnt < 2 && row == other.grid_row{
+if source_card_id == "gatlin_ice_long_bao" && ds_list_find_index(brazier_list,other.id) == -1 && burnt < 2 && row == other.grid_row{
 	burnt += 1
 	if burnt == 2{
 		damage = round(damage * other.atk)

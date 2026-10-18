@@ -1,6 +1,5 @@
 if (global.is_paused) exit;
 if (!instance_exists(owner) || owner.hp <= 0 || hp <= 0) { instance_destroy(); exit; }
-owner.invincible = true;
 timer++;
 if (mode == "fly") {
     if (!instance_exists(target) || target.hp <= 0) {
@@ -22,8 +21,9 @@ if (mode == "fly") {
     if (timer >= 72) {
         if (instance_exists(target) && target.hp > 0 && !target.invincible) {
             var _pos = {x: target.x, y: target.y};
+            var _owner = owner;
             with (target) { no_revive_record = true; is_shoveled = true; instance_destroy(); }
-            instance_create_depth(_pos.x, _pos.y, depth, obj_ly_fuzhou_minion);
+            instance_create_depth(_pos.x, _pos.y, depth, obj_ly_fuzhou_minion, {ly_owner: _owner});
         }
         instance_destroy();
     }

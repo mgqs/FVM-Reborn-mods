@@ -14,6 +14,7 @@ flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
 buffer_type = "tracker";
+buffer_type_2 = (shape >= 3) ? "tracker_advanced" : undefined;
 buff_value = atk / 100;
 buff_shape = (shape >= 1) ? "5x5" : "3x3";
 buff_cells = build_buff_cells(grid_col, grid_row, buff_shape, buff_value);

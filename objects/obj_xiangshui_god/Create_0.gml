@@ -17,6 +17,7 @@ flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
 buffer_type = "tracker";
+buffer_type_2 = (shape >= 3) ? "tracker_advanced" : undefined;
 
 // 追踪增幅统一由 tracker 分组承担（分类驱动），不再需要 xiangshui 第二类型。
 buff_value = atk / 100;

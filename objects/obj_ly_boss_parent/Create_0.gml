@@ -12,6 +12,7 @@ ly_done = false;
 ly_anim_rate = 5;       // 每动画帧停留 5 步（约 12fps）
 ly_hpbar_done = false;  // 血条是否已延迟创建
 hpbar_inst = noone;     // 血条实例（Destroy 时清理）
+ly_shared_boss_peer = noone;
 ly_phase = 0;           // 技能分段的子阶段计时（子类复用）
 state = BOSS_STATE.APPEAR;
 image_speed = 0;        // BOSS 动画完全由 longyuan_clip_* 驱动，禁用引擎自动帧推进

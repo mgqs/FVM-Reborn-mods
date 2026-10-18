@@ -11,4 +11,7 @@ state = "appear"
 anim_wait = 90
 special_ash = true
 mouse_id = "paratrooper_mouse_shield"
+is_diting_umbrella = false
+ly_triggered = false
+ly_trigger_timer = 0
 

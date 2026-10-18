@@ -5,7 +5,7 @@ image_speed = 0; // 动画完全由 longyuan_clip_* 驱动
 ly_kind = "mengpo";
 ly_anims = longyuan_animation_table("mengpo");
 mouse_id = "ly_mengpo";
-hp = 220000; maxhp = 220000;
+hp = 300000; maxhp = 300000;
 
 // ===== 占位数值（可调）=====
 atk = 5000;          // 占位：技能伤害
@@ -13,6 +13,7 @@ wait_time = 60;      // 占位：待机时长（步）
 ly_move_speed = 2;   // 占位：移动速度（像素/步）
 ly_rain_inst = noone;  // 常驻下雨实例
 ly_wind_inst = noone;  // 常驻狂风实例
+ly_skill_index = 0;
 
 ly_boss_step = function() {
     var _act, _tcol, _tpos, _r;
@@ -34,11 +35,9 @@ ly_boss_step = function() {
             longyuan_clip_frame(timer, ly_anim_rate, true);
             if (timer >= wait_time) {
                 timer = 0; ly_phase = 0;
-                _r = irandom_range(1, 100); // 占位权重：MOVE 40 / SKILL1 25 / SKILL2 20 / SKILL3 15
-                if (_r <= 40) state = BOSS_STATE.MOVE;
-                else if (_r <= 65) state = BOSS_STATE.SKILL1;
-                else if (_r <= 85) state = BOSS_STATE.SKILL2;
-                else state = BOSS_STATE.SKILL3;
+                var _cycle = [BOSS_STATE.SKILL2, BOSS_STATE.SKILL1, BOSS_STATE.SKILL2, BOSS_STATE.SKILL3];
+                state = _cycle[ly_skill_index mod array_length(_cycle)];
+                ly_skill_index++;
             }
             break;
         }

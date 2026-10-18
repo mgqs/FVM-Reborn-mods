@@ -5,13 +5,14 @@ image_speed = 0; // 动画完全由 longyuan_clip_* 驱动
 ly_kind = "wuchang";
 ly_anims = longyuan_animation_table("wuchang");
 mouse_id = "ly_wuchang";
-hp = 260000; maxhp = 260000;
+hp = 250000; maxhp = 250000;
 
 // ===== 占位数值（可调）=====
 atk = 5000;          // 占位：技能伤害
 wait_time = 60;      // 占位：待机时长（步）
 ly_move_speed = 2;   // 占位：移动速度（像素/步）
 ly_white = true;     // 自定义：true=白形态，false=黑形态（决定下一次待机动作名）
+ly_skill_index = 0;
 
 ly_boss_step = function() {
     var _act, _tcol, _tpos, _r;
@@ -29,12 +30,10 @@ ly_boss_step = function() {
             longyuan_clip_frame(timer, ly_anim_rate, true);
             if (timer >= wait_time) {
                 timer = 0; ly_phase = 0;
-                _r = irandom_range(1, 100); // 占位权重：MOVE 30 / SKILL1 25 / SKILL2 20 / SKILL3 15 / SKILL4 10
-                if (_r <= 30) state = BOSS_STATE.MOVE;
-                else if (_r <= 55) state = BOSS_STATE.SKILL1;
-                else if (_r <= 75) state = BOSS_STATE.SKILL2;
-                else if (_r <= 90) state = BOSS_STATE.SKILL3;
-                else state = BOSS_STATE.SKILL4;
+                var _cycle = [BOSS_STATE.SKILL1, BOSS_STATE.SKILL2, BOSS_STATE.SKILL3, BOSS_STATE.SKILL4];
+                state = _cycle[ly_skill_index mod array_length(_cycle)];
+                ly_skill_index++;
+                ly_white = !ly_white;
             }
             break;
         }

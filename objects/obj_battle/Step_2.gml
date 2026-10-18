@@ -1,3 +1,5 @@
+longzhu_update_level_pillars(current_wave);
+longyuan_bridge_update(current_wave);
 obj_pool_prewarm_tick();
 
 for (var _i = 0; _i < array_length(global._move_instance_pre_arr); _i++) {
@@ -90,7 +92,19 @@ if _is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < to
 	}
 }
 // 普通关卡的 Boss 波也在这里兜底确认，避免波次计时器与清场发生在同一帧时漏掉 Boss。
-if !_is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < total_wave && global.save_data.unlocked_items.elite_unlocked {
+var _longyuan_full_progression = string_copy(global.level_id, 1, 8) == "longyuan";
+// 龙渊：进入精英波后（BOSS 出现前）切换精英音乐；BOSS 阵亡回到 pre 阶段后亦在此自动恢复
+if (_longyuan_full_progression && level_stage == "pre"
+	&& current_wave >= global.level_file.elite_wave
+	&& instance_exists(obj_battle_music_controller)) {
+	with (obj_battle_music_controller) {
+		if (new_battle_music != global.level_data.elite_music) {
+			new_battle_music = global.level_data.elite_music;
+			event_user(10);
+		}
+	}
+}
+if !_is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < total_wave && (global.save_data.unlocked_items.elite_unlocked || _longyuan_full_progression) {
 	var _main_boss_data = global.level_file.waves[current_wave]
 	if _main_boss_data.boss_wave && _main_boss_data.boss != "" && current_wave_alive_count == 0 {
 		var _main_boss_sub_total = array_length(_main_boss_data.subwaves)
@@ -129,6 +143,13 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 					var boss_2_inst = instance_create_depth(enemy_pos_2.x-80,enemy_pos_2.y+30,-200,global.enemy_map[? _boss2_id]._obj)
 					boss_2_inst.hp *= wave_data.boss_2_hp_modify
 					boss_2_inst.maxhp *= wave_data.boss_2_hp_modify
+					if (_boss_id == "ly_hengha_horseface" && _boss2_id == "ly_hengha_oxhead") {
+						var _shared_max = min(boss_inst.maxhp, boss_2_inst.maxhp);
+						boss_inst.maxhp = _shared_max; boss_2_inst.maxhp = _shared_max;
+						boss_inst.hp = _shared_max; boss_2_inst.hp = _shared_max;
+						boss_inst.ly_shared_boss_peer = boss_2_inst;
+						boss_2_inst.ly_shared_boss_peer = boss_inst;
+					}
 					boss_count ++
 				}
 			}
@@ -139,7 +160,7 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 		event_user(10)
 	}
 }
-if (!global.save_data.unlocked_items.elite_unlocked && current_wave >= global.level_file.elite_wave)||current_wave >= global.level_file.total_waves{
+if (!global.save_data.unlocked_items.elite_unlocked && current_wave >= global.level_file.elite_wave && !_longyuan_full_progression)||current_wave >= global.level_file.total_waves{
 	if current_wave_alive_count == 0 && !instance_exists(obj_game_over) && !instance_exists(obj_gacha_drop){
 		battle_finish_win();
 	}

@@ -15,6 +15,7 @@ is_vehicle = false;
 ly_dodge_cooldown = 0;
 ly_soul_attack_count = 0;
 ly_soul_special = false;
+ly_rush_moved = false;
 ly_night = false;
 ly_original_hp = 100;
 can_use_ladder = false;
@@ -23,7 +24,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_zhinian";
 ly_anims = longyuan_animation_table("zhinian");
-hp = 660; maxhp = 660; ly_original_hp = 660;
+hp = 1000; maxhp = 1000; ly_original_hp = 1000;
 move_speed = 0.3; atk = 10; atk_cycle = 36;
 ly_night = longyuan_is_night();
 
@@ -35,7 +36,5 @@ longyuan_change_soul = function() {
     ly_kind = "zhinian_soul"; ly_anims = longyuan_animation_table(ly_kind);
     hp = maxhp; ash_death = false; image_alpha = 1; ly_action = "";
     ly_mode = "spawn"; longyuan_play("出生", true);
-    ly_anims[$ "正常攻击卡片"] = [spr_ly_zhinian_soul, 22, 31];
-    ly_anims[$ "破损攻击卡片"] = [spr_ly_zhinian_soul, 66, 75];
-    atk = 50; ly_soul_attack_count = 0; ly_soul_special = false; move_speed = 0.6;
+    atk = LY_ZHINIAN_SOUL_ATK; ly_soul_attack_count = 0; ly_soul_special = false; ly_rush_moved = false; move_speed = 0.6;
 };

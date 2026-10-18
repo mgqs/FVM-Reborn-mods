@@ -1,7 +1,7 @@
 function build_buff_grid()
 {
     global.buff_grid = ds_map_create();
-    var types = ["tracker", "thrower", "sprayer", "sprayer_row", "five_dir", "multi_dir", "xiangshui"];
+    var types = ["tracker", "tracker_berry", "tracker_advanced", "thrower", "sprayer", "sprayer_row", "five_dir", "multi_dir", "xiangshui"];
     
     for (var t = 0; t < array_length(types); t++)
     {
@@ -114,7 +114,7 @@ function apply_buff(arg0)
             exit;
 
         // 直线喷壶保留其他来源的范围，仅将魔杖蛇的增幅限制在本行。
-        if (type == "sprayer" && (arg0.plant_id != "mozhang" || r == arg0.grid_row))
+        if (type == "sprayer" && arg0.plant_id == "mozhang" && r == arg0.grid_row)
         {
             var row_sprayer_grid = ds_map_find_value(global.buff_grid, "sprayer_row");
             row_sprayer_grid[c][r] = max(row_sprayer_grid[c][r], v);
@@ -132,6 +132,12 @@ function apply_buff(arg0)
         {
             if (v > grid[c][r])
                 grid[c][r] = v;
+        }
+
+        if (arg0.plant_id == "berry_dessert")
+        {
+            var berry_tracker_grid = ds_map_find_value(global.buff_grid, "tracker_berry");
+            if (v > berry_tracker_grid[c][r]) berry_tracker_grid[c][r] = v;
         }
         
         if (variable_instance_exists(arg0, "buffer_type_2") && !is_undefined(arg0.buffer_type_2))

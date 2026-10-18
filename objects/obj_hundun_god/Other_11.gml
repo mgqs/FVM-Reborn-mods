@@ -13,16 +13,23 @@ if shape == 0{
 		if instance_exists(target_inst){
 			with target_inst{
 				if can_hit(other.target_type, target_type){
-					if !immune_to_ash && hp > 0{
+					var _dijing_requires_terminal = mouse_id == "longyuan_dijing" && ly_mode == "dig" && other.shape < 3;
+					if _dijing_requires_terminal && hp > 0{
 						instance_destroy()
 						other.enemy_hitted = true
 					}
-					else if hp > 0{
+					else if !_dijing_requires_terminal && !immune_to_ash && hp > 0{
+						instance_destroy()
+						other.enemy_hitted = true
+					}
+					else if !_dijing_requires_terminal && hp > 0{
 						var _dmg = _elite_damage
 						if _double_hit
 							_dmg = _elite_damage * 2
 						damage_amount = _dmg
 						damage_type = "pierce"
+						damage_source_object = other.object_index
+						damage_source_card_shape = other.shape
 						event_user(0)
 						other.enemy_hitted = true
 					}
@@ -37,6 +44,7 @@ else{
 
 	with obj_enemy_parent{
 		if hp > 0{
+			if mouse_id == "longyuan_dijing" && ly_mode == "dig" && other.shape < 3 continue;
 			var _rd = abs(grid_row - _center_row)
 			var _cd = abs(grid_col - _center_col)
 			if _rd <= _grid_range_row && _cd <= _grid_range_col && can_hit(other.target_type, target_type){
@@ -61,6 +69,8 @@ else{
 			with _dmg_list[i]{
 				damage_amount = _dmg
 				damage_type = "pierce"
+				damage_source_object = other.object_index
+				damage_source_card_shape = other.shape
 				event_user(0)
 			}
 		}

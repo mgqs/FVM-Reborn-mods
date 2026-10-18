@@ -51,6 +51,7 @@ if (!has_activated && state_timer >= activate_delay) {
             with (_e) {
                 damage_amount = _damage;
                 damage_type = "physical";
+                damage_source_object = other.object_index;
                 event_user(0);
             }
         }

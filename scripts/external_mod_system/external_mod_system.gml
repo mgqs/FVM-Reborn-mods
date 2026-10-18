@@ -418,13 +418,23 @@ function external_mod_spawn(px, py, z, cid, card_shape = -1, level = -1, card_sk
     var data = deck_get_card_data(cid, max(0, card_shape));
     if (data == noone) return noone;
     var obj = data[? "obj"];
-    if (obj != obj_external_mod_card) return instance_create_depth(px, py, z, obj);
     var saved = get_card_info_simple(cid);
     var d = external_mod_get(cid);
+    var s = max(0, card_shape < 0 ? (saved == false ? 0 : saved.shape) : card_shape);
+    var l = max(0, level < 0 ? (saved == false ? 0 : saved.level) : level);
+    var sk = max(0, card_skill < 0 ? (saved == false ? 0 : saved.skill) : card_skill);
+    if (obj != obj_external_mod_card) {
+        return instance_create_depth_define(px, py, z, obj, {
+            external_spawn_id: cid,
+            external_spawn_shape: s,
+            external_spawn_level: l,
+            external_spawn_skill: sk
+        });
+    }
     if (is_undefined(d)) return noone;
-    var s = clamp(card_shape < 0 ? (saved == false ? 0 : saved.shape) : card_shape, 0, array_length(d.shapes) - 1);
-    var l = level < 0 ? clamp(saved == false ? 0 : saved.level, 0, 16) : clamp(level, 0, d.max_level);
-    var sk = clamp(card_skill < 0 ? (saved == false ? 0 : saved.skill) : card_skill, 0, is_undefined(d.skill) ? 0 : 8);
+    s = clamp(s, 0, array_length(d.shapes) - 1);
+    l = clamp(l, 0, d.max_level);
+    sk = clamp(sk, 0, is_undefined(d.skill) ? 0 : 8);
     return instance_create_depth_define(px, py, z, obj, {external_spawn_id: cid, external_spawn_shape: s, external_spawn_level: l, external_spawn_skill: sk});
 }
 

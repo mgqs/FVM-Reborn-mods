@@ -11,6 +11,7 @@ var _x = x;
 		        
 		            damage_amount = other.atk;
 				damage_type = "true";
+				damage_source_object = other.object_index;
 				event_user(0)
 		            audio_play_sound(snd_hit1,0,0)
 		    }

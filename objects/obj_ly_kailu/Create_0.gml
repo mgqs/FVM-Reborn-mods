@@ -9,6 +9,9 @@ ly_hit = false;
 ly_mode = "walk";
 ly_cooldown = 0;
 ly_soul = false;
+ly_boss_soul = false;
+ly_absorb_boss = noone;
+ly_dash_exploded = false;
 is_soul = false;
 invincible = false;
 is_vehicle = false;
@@ -24,13 +27,17 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_kailu";
 ly_anims = longyuan_animation_table("kailu");
-hp = 660; maxhp = 660; ly_original_hp = 660;
-move_speed = 0.6; atk = 20; atk_cycle = 42;
+hp = 1000; maxhp = 1000; ly_original_hp = 1000;
+move_speed = 0.6; atk = LY_KAILU_BITE_DAMAGE; atk_cycle = 42;
 ly_night = longyuan_is_night();
 
 longyuan_move_action = function() { return ly_soul ? longyuan_variant("正常前进", "破损前进") : longyuan_variant("正常无火前进", "破损无火前进"); };
 longyuan_attack_action = function() { return ly_soul ? longyuan_variant("正常前进", "破损前进") : longyuan_variant("正常无火撞击", "破损无火撞击"); };
-longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play((ly_soul ? (ash_death ? "爆炸死亡" : "普通死亡") : "死亡"), true); };
+longyuan_begin_death = function() {
+    ly_mode = "dead"; target_plant = noone; ly_action = "";
+    if (ly_soul) longyuan_play(ash_death ? "爆炸死亡" : "普通死亡", true);
+    else longyuan_play("死亡", true);
+};
 longyuan_change_soul = function() {
     ly_soul = true; is_soul = true; target_type = "invisible";
     ly_kind = "kailu_soul"; ly_anims = longyuan_animation_table(ly_kind);

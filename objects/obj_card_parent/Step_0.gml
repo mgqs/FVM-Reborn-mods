@@ -25,6 +25,18 @@ if chongsheng_buff_timer > 0 {
 		if hp > max_hp hp = max_hp
 	}
 }
+
+if (longyuan_webbed && longyuan_web_shield_hp > 0 && hp < _prev_hp) {
+	var _web_damage = _prev_hp - hp;
+	var _web_absorbed = min(_web_damage, longyuan_web_shield_hp);
+	hp += _web_absorbed;
+	longyuan_web_shield_hp -= _web_absorbed;
+	if (longyuan_web_shield_hp <= 0) {
+		longyuan_webbed = false;
+		if (longyuan_webbed_sprite != -1) sprite_index = longyuan_webbed_sprite;
+		if (state == CARD_STATE.SLEEP) state = CARD_STATE.IDLE;
+	}
+}
 _prev_hp = hp
 if (variable_instance_exists(id,"zodiac_guard_time") && zodiac_guard_time > 0) {
     zodiac_guard_time--;

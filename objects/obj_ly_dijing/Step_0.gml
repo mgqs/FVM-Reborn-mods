@@ -24,8 +24,10 @@ if (is_frozen || is_stun || is_scare) exit;
 
 var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (ly_mode == "dig") {
-    if (longyuan_dijing_food_ahead()) {
+    var _surface_card = longyuan_dijing_food_ahead();
+    if (instance_exists(_surface_card)) {
         ly_food_surface = true;
+        longyuan_damage_plant(_surface_card, 50);
         ly_mode = "appear";
         target_type = "normal";
         longyuan_play("出土", true);

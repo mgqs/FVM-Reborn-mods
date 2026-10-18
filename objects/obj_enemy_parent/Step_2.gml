@@ -1,5 +1,7 @@
 damage_amount = 0
 damage_type = ""
+damage_source_object = noone
+damage_source_card_shape = -1
 
 if not hp_modified{
 	if global.difficulty == 0{

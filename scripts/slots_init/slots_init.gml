@@ -356,9 +356,9 @@ function slots_init(){
 	    {"shape":1, "sprite":spr_delicacy_firework_1, "cost":200, "cooldown":60*60, "description":"美食爆竹：3*4范围爆炸，命中老鼠产生火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_delicacy_firework_1},
 		{"shape":2, "sprite":spr_delicacy_firework_2, "cost":250, "cooldown":60*60, "description":"美食礼花：5*5范围爆炸，命中老鼠产生火苗","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_delicacy_firework_2}
 	]);
-	//register_card("fruit_tart", obj_fruit_tart, [
-	//    {"shape":0, "sprite":spr_fruit_tart, "cost":150, "cooldown":14*60, "description":"美味水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart},
-	//    {"shape":1, "sprite":spr_fruit_tart_1, "cost":150, "cooldown":7*60, "description":"风车水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_1},
-	//	{"shape":2, "sprite":spr_fruit_tart_2, "cost":150, "cooldown":7*60, "description":"巧克力水果塔：为本行投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_2}
-	//]);
+	register_card("fruit_tart", obj_fruit_tart, [
+	    {"shape":0, "sprite":spr_fruit_tart, "cost":150, "cooldown":14*60, "description":"美味水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart},
+	    {"shape":1, "sprite":spr_fruit_tart_1, "cost":150, "cooldown":7*60, "description":"风车水果塔：为本行左侧的投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_1},
+		{"shape":2, "sprite":spr_fruit_tart_2, "cost":150, "cooldown":7*60, "description":"巧克力水果塔：为本行投掷类卡片增加伤害","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_fruit_tart_2}
+	]);
 }

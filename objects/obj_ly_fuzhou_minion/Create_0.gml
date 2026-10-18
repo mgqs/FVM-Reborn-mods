@@ -13,13 +13,14 @@ invincible = false;
 is_vehicle = false;
 ly_dodge_cooldown = 0;
 ly_original_hp = 100;
+ly_owner = noone;
 can_use_ladder = false;
 state = ENEMY_STATE.ACTING;
 
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_fuzhou_minion";
 ly_anims = longyuan_animation_table("fuzhou_minion");
-hp = 100; maxhp = 100; ly_original_hp = 100;
+hp = 200; maxhp = 200; ly_original_hp = 200;
 move_speed = 0.32; atk = 10; atk_cycle = 42;
 is_soul = true; ly_mode = "spawn"; longyuan_play("出生", true);
 ly_soul = true; target_type = "invisible";

@@ -21,7 +21,6 @@ var ht_radius = shape == 2 ? 2 : 1;
 var has_target = false;
 for (var ht_i = 0; ht_i < array_length(ht_enemies); ht_i++) {
     var ht_e = ht_enemies[ht_i];
-    if (ht_e.target_type != "normal" && ht_e.target_type != "air") continue;
     var ht_g = get_grid_position_from_world(ht_e.x,ht_e.y);
     if (ht_g.col >= 0 && ht_g.col < global.grid_cols && ht_g.row >= 0 && ht_g.row < global.grid_rows
         && abs(ht_g.col-grid_col) <= ht_radius && abs(ht_g.row-grid_row) <= ht_radius) {has_target = true; break;}

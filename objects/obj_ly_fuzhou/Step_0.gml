@@ -29,17 +29,20 @@ if (ly_mode == "cast") {
 
         ly_fire = max(0, ly_fire - 1);
         ly_amulet = instance_create_depth(x - 35, y - 65, depth - 1, obj_ly_amulet, {owner: id, lane: grid_row});
-        array_push(ly_summoned_cols, grid_col);
+        // 本次阈值已完成，出队：下一档为第6列(5)、再下一档为第4列(3)
+        if (array_length(ly_summon_cols) > 0) array_delete(ly_summon_cols, 0, 1);
         ly_cooldown = 0;
         invincible = true;
         ly_mode = "walk"; ly_action = "";
     }
     exit;
 }
-invincible = instance_exists(ly_amulet);
+// 符咒/符咒魂鼠存活期间本体持续无敌；二者皆无才解除。
+invincible = ly_has_servant(id);
 
-var _can_summon = array_get_index(ly_summon_cols, grid_col) != -1 && array_get_index(ly_summoned_cols, grid_col) == -1;
-if (ly_fire > 0 && _can_summon && !instance_exists(ly_amulet)) {
+// 推进到当前阈值列即施法（参考东风鼠 <= 判定：啃卡停在卡右侧一格时也能触发）
+if (ly_fire > 0 && array_length(ly_summon_cols) > 0 && grid_col <= ly_summon_cols[0]
+    && !instance_exists(ly_amulet)) {
     invincible = true;
     ly_mode = "cast"; longyuan_play(longyuan_variant("正常施法", "破损施法"), true); exit;
 }

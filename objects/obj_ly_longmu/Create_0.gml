@@ -20,7 +20,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_longmu";
 ly_anims = longyuan_animation_table("longmu");
-hp = 100; maxhp = 100; ly_original_hp = 100;
+hp = 200; maxhp = 200; ly_original_hp = 200;
 move_speed = 0.36; atk = 10; atk_cycle = 36;
 shield_hp = 80; shield_max_hp = 80;
 longyuan_move_action = function() { return ly_egg ? longyuan_variant("正常有蛋前进", "破损有蛋前进") : longyuan_variant("正常无蛋前进", "破损无蛋前进"); };

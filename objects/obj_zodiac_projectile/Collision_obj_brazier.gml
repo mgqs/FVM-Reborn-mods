@@ -1,4 +1,4 @@
-if ((kind == "fire" || kind == "star") && ds_list_find_index(brazier_list, other.id) == -1
+if ((kind == "fire" || (kind == "star" && abs(move_y) < 0.001)) && ds_list_find_index(brazier_list, other.id) == -1
     && !burnt && center_row == other.grid_row)
 {
     burnt = true;

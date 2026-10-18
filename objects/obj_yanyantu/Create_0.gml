@@ -1,7 +1,9 @@
 event_inherited();
 plant_id = "yanyantu";
 obj_type = object_index;
+zodiac_initializing = true;
 event_user(0);
+zodiac_initializing = false;
 
 plant_type = "normal";
 feature_type = "normal";
@@ -16,14 +18,5 @@ flash_speed = 5;
 zodiac_timer = 0;
 zodiac_age = 0;
 
-// 常驻跟随光环特效（无范围拉伸，原尺寸播放）
 zodiac_effects = [];
-var e = instance_create_depth(x,y,-3000,obj_zodiac_effect);
-e.sprite_index = spr_yanyantu_effect;
-if (shape == 1) e.sprite_index = spr_yanyantu_effect_1;
-else if (shape >= 2) e.sprite_index = spr_yanyantu_effect_2;
-e.life = 2147483647;
-e.image_index = 0;
-e.image_speed = 0.5;
-array_push(zodiac_effects,e);
 if (variable_global_exists("buff_apply_id")) global.buff_apply_id++;

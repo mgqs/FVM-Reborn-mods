@@ -249,7 +249,8 @@ else{
 
 if wave_timer <= 0 && level_stage == "pre"{
 	if !boss_waiting_clear {
-		if(global.save_data.unlocked_items.elite_unlocked) || !global.save_data.unlocked_items.elite_unlocked && current_wave < global.level_file.elite_wave{
+		var _longyuan_full_progression = string_copy(global.level_id, 1, 8) == "longyuan";
+		if(global.save_data.unlocked_items.elite_unlocked) || !global.save_data.unlocked_items.elite_unlocked && current_wave < global.level_file.elite_wave || _longyuan_full_progression{
 			if current_wave < total_wave{
 				enemy_subwave_summon()
 			}
@@ -257,7 +258,7 @@ if wave_timer <= 0 && level_stage == "pre"{
 				current_subwave+=1
 			}
 			else if current_wave < total_wave{
-				if wave_data.boss_wave && global.save_data.unlocked_items.elite_unlocked{
+				if wave_data.boss_wave && (global.save_data.unlocked_items.elite_unlocked || _longyuan_full_progression){
 					// BOSS波：所有小怪生成完毕，等待玩家清光后再出BOSS
 					boss_waiting_clear = true
 				}

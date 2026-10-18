@@ -16,10 +16,11 @@ function mod_buff_init()
     ds_map_set(global.plant_buff_map, "hufa_god", "attach");
     ds_map_set(global.plant_buff_map, "hongliukaochuan", "attach");
 
+    // 第二 buff 类型映射：盖亚神使同时读取投掷和追踪增幅，最后取较高倍率。
+    global.plant_buff_map_2 = ds_map_create();
+
     // 按分类写入 thrower / tracker / five_dir / sprayer 四个增幅分组
     // （会覆盖上面冲突的 attach 条目，如 hufa_god、hongliukaochuan）
     mod_apply_category_buff_map();
 
-    // 第二 buff 类型映射：分类驱动后不再需要跨分类的第二类型，保留空表以兼容既有查询逻辑。
-    global.plant_buff_map_2 = ds_map_create();
 }

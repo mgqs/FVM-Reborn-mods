@@ -15,4 +15,11 @@ with obj_battle {
         }
     }
 }
+// BOSS 阵亡：切回原本的精英阶段音乐（龙渊 BOSS 均在精英阶段登场）
+if (instance_exists(obj_battle_music_controller)) {
+    with (obj_battle_music_controller) {
+        new_battle_music = global.level_data.elite_music;
+        event_user(10);
+    }
+}
 if (instance_exists(hpbar_inst)) instance_destroy(hpbar_inst);

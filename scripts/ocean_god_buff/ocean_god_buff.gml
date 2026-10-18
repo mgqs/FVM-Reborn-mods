@@ -132,6 +132,10 @@ function get_zhanqima_buff_multiplier(card)
     if (card.plant_id == "zhanqima")
         return 1;
 
+    var attack_major_categories = ["直射类", "投掷类", "多向类", "专业防空类", "喷壶类", "追踪类", "非远程类", "灰烬类"];
+    if (array_get_index(attack_major_categories, card_get_major(card.plant_id)) < 0)
+        return 1;
+
     var best = 1;
     with (obj_zhanqima)
     {

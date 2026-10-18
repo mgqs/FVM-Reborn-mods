@@ -62,4 +62,7 @@ chongsheng_buff_timer = 0
 chongsheng_buff_reduction = 0
 chongsheng_buff_source = noone
 _prev_hp = hp
+longyuan_webbed = false
+longyuan_web_shield_hp = 0
+longyuan_webbed_sprite = -1
 

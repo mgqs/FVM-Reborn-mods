@@ -69,8 +69,7 @@ function try_place_once(){
 		var card_data = noone
 		var _info = get_card_info_simple(card_id)
 		if _info != false{
-			var card_shape = _info.shape
-			card_data = deck_get_card_data(card_id,card_shape)
+			card_data = deck_get_card_data(card_id,shape)
 		}
 		if card_id == "magic_chicken"{
 			if global.last_placed_card_id != ""{
@@ -198,7 +197,7 @@ function try_place_once(){
 				gift_fx.spawn_platform = found_plat;
 				gift_queued = true;
 			} else {
-				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, cshape, clevel, cskill);
+				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, shape, clevel, cskill);
 			}
 			if (!gift_queued) {
 				// 计算深度值

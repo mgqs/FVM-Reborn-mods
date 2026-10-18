@@ -35,6 +35,7 @@ if !has_dealt_damage{
 					// 造成伤害
 					damage_amount = other.damage
 					damage_type = "physical"
+					damage_source_object = other.object_index
 					event_user(0)
 				}
 			}

@@ -29,6 +29,17 @@ if flash_value > 0{
 
 timer++
 
+if (is_diting_umbrella && hp <= 0) {
+	if (!ly_triggered) { ly_triggered = true; ly_trigger_timer = 0; invincible = true; hp = 1; }
+	ly_trigger_timer++;
+	if (ly_trigger_timer >= 3 * game_get_speed(gamespeed_fps)) {
+		var _soul = instance_create_depth(x, y, depth - 1, obj_ly_kailu);
+		if (instance_exists(_soul)) _soul.longyuan_change_soul();
+		instance_destroy();
+	}
+	exit;
+}
+
 if state == "appear"{
 	image_index = floor(timer/5) mod 8
 	if timer >= 8 * 5 - 1{

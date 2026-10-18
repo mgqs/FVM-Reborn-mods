@@ -36,17 +36,6 @@ for(var i = 0 ; i <button_array_length ; i++){
 }
 
 // 测试关卡入口（所有岛屿通用）
-
-	// 龙渊入口与右移后的测试入口。
-var longyuan_inst = instance_create_depth(950,56,-2,obj_levelselect_button)
-longyuan_inst.image_xscale = 0.28
-longyuan_inst.image_yscale = 0.28
-longyuan_inst.target_level_id = "longyuan_entry"
-longyuan_inst.level_index = -1
-longyuan_inst.player_level_require = 1
-longyuan_inst.pre_level_require = []
-longyuan_inst.sprite_index = spr_longyuan_entry
-
 var test_inst = instance_create_depth(1120,56,-2,obj_levelselect_button)
 test_inst.image_xscale = 0.18
 test_inst.image_yscale = 0.18

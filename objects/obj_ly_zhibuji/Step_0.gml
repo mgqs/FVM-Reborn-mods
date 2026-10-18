@@ -26,23 +26,20 @@ var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (ly_mode == "shoot") {
     longyuan_animate();
     if (ly_done) {
-
-        instance_create_depth(x - 45, y - 45, depth - 1, obj_ly_shuttle, {lane: grid_row});
-        ly_pending_shots = max(0, ly_pending_shots - 1);
+        // 织布机丝：整行穿透，对经过的每张卡片造成 10 点伤害（火盆等可阻挡，见 obj_ly_shuttle）。
+        instance_create_depth(x - 45, y - 45, depth - 1, obj_ly_shuttle, {lane: grid_row, damage: LY_SHUTTLE_DAMAGE});
         ly_mode = "walk"; ly_action = "";
     }
     exit;
 }
 
-if (ly_pending_shots > 0) {
+// 有待发阈值：依次取出并播对应 6 帧发射动作（70/40/10% 档自动切减丝外观）。
+if (array_length(ly_shot_queue) > 0) {
+    ly_shoot_index = ly_shot_queue[0];
+    array_delete(ly_shot_queue, 0, 1);
     ly_mode = "shoot";
-    // SWF的23/37/59帧虽然仍标“移动”，均为对应剩余丝线的6帧段，保留原区间。
-    var _action = "全丝线发射子弹";
-    if (hp <= maxhp * 0.75) { ly_anims[$ "发射"] = [spr_zhibuji, 23, 28]; _action = "发射"; }
-    if (hp <= maxhp * 0.5) ly_anims[$ "发射"] = [spr_zhibuji, 37, 42];
-    if (hp <= maxhp * 0.3) ly_anims[$ "发射"] = [spr_zhibuji, 59, 64];
-    if (hp <= maxhp * 0.15) { ly_pending_shots = 0; ly_mode = "walk"; }
-    else { ly_action = ""; longyuan_play(_action, true); exit; }
+    longyuan_play(ly_shot_actions[ly_shoot_index], true);
+    exit;
 }
 
 target_plant = longyuan_find_plant(false);

@@ -110,12 +110,12 @@ function mod_info_island_init()
     register_enemy_info_island("longyuan_fuzhou", "符咒鼠：进入第4、6、8列时各召唤一次符咒。符咒飞行或转化出的魂系小鼠存活期间本体无敌；符咒会将本行最左侧卡片转化为魂系小鼠。")
     register_enemy_info_island("longyuan_zhizhujing", "蜘蛛精鼠：拥有蜘蛛丝和魂系相关能力，会在关卡中使用专属动作与技能。魂体状态受到的伤害降低60%。")
     register_enemy_info_island("longyuan_fuzhou_minion", "符咒魂鼠：由符咒鼠的符咒转化卡片后生成，拥有独立的魂系行动和攻击能力。")
-    register_enemy_info_island("ly_diting", "谛听鼠：龙渊关卡首领，使用遁地突袭、音波、网格火和狱鼠陷阱等技能。")
-    register_enemy_info_island("ly_hengha_horseface", "哼哈将军·马面：龙渊关卡首领，使用铃铛攻击并召唤美食精灵。")
-    register_enemy_info_island("ly_hengha_oxhead", "哼哈将军·牛头：龙渊关卡首领，使用跳跃砸地和闪现攻击。")
-    register_enemy_info_island("ly_mengpo", "孟婆鼠：龙渊关卡首领，使用降雨、狂风、茶树和蘑菇等技能。")
-    register_enemy_info_island("ly_wuchang", "无常鼠：龙渊关卡首领，拥有白黑双形态，并使用金币、锁链、火轮和招魂幡。")
-    register_enemy_info_island("ly_youshen", "游神鼠：龙渊关卡首领，使用卷轴、迷雾和冲撞技能。")
+    register_enemy_info_island("ly_diting", "谛听鼠：钻入卡片密集区并对3×3范围造成400伤害；伞阵覆盖7张卡片，伞被音波或出土触发后3秒爆炸并生成魂系开路鼠；音波遇到第一张卡片会停在该处，每秒造成25点伤害，最多持续20秒。")
+    register_enemy_info_island("ly_hengha_horseface", "哼哈将军·马面：与牛头共用15万生命值，依次进行战略转移、掷铃和召唤8个食灵；铃铛由牛头敲击触发。")
+    register_enemy_info_island("ly_hengha_oxhead", "哼哈将军·牛头：与马面共用15万生命值，依次进行十字砸击、跳跃敲钟和吸收魂体。")
+    register_enemy_info_island("ly_mengpo", "孟婆鼠：使用茶树、降雨和狂风技能；茶壶浇灌茶树后会进入采茶攻击阶段。")
+    register_enemy_info_island("ly_wuchang", "无常鼠：黑白形态轮换，使用锁链、白锭、黑钩和招魂幡等阶段技能。")
+    register_enemy_info_island("ly_youshen", "游神鼠：夜巡符在3×3范围每秒造成10点伤害、持续10秒；眩晕术沿8点路径移动后催眠4×6范围15秒；冲撞沿随机纵列逐格摧毁卡片。")
 
     // 跨服远征感染敌人情报岛信息
     register_enemy_info_island("infected_normal_mouse", "平民僵尸鼠：被感染的普通老鼠,无特殊能力。");

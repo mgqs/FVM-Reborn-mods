@@ -22,6 +22,9 @@ if (zodiac_timer >= cycle) {
     }
     if (fj_can_attack) {
         state = CARD_STATE.ATTACK;
+        // Start the attack sequence from its first frame even if the idle
+        // animation timer was partway through a cycle.
+        timer = 0;
         image_index = idle_anim + 1;
         zodiac_shot_this_anim = false;
     }
@@ -45,7 +48,9 @@ if (state == CARD_STATE.ATTACK) {
         zodiac_shot_this_anim = false;
         exit;
     }
-    if (!zodiac_shot_this_anim && image_index == 18) {
+    // The parent animation advances on its own timer, so use a range here
+    // instead of requiring an exact frame boundary.
+    if (!zodiac_shot_this_anim && image_index >= 18) {
         zodiac_shot_this_anim = true;
     // 索敌：正前方同行最近的可见陆军，排除地下鼠与未显形鬼鼠
     var fj_list = [];
@@ -86,8 +91,9 @@ if (state == CARD_STATE.ATTACK) {
         b.center_row = grid_row;
         }
     }
-    if (zodiac_shot_this_anim && image_index == idle_anim + 1) {
+    if (zodiac_shot_this_anim && image_index > idle_anim + attack_anim) {
         state = CARD_STATE.IDLE;
+        timer = 0;
         image_index = 0;
         zodiac_shot_this_anim = false;
     }

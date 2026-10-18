@@ -23,6 +23,13 @@ if (!instance_exists(obj_cross_server_enter))
         instance_create_depth(850, 56, -3, obj_cross_server_enter);
 }
 
+// 龙渊入口按钮
+if (!instance_exists(obj_longyuan_enter))
+{
+    if (room == room_map || room == room_menu)
+        instance_create_depth(950, 56, -3, obj_longyuan_enter);
+}
+
 if (!noticed && global.preloaded == true)
 {
     if (room == room_menu)

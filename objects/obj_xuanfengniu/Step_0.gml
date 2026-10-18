@@ -13,38 +13,13 @@ if (!has_activated && _anim_loop_done) {
     is_activating = true;
     state = CARD_STATE.RELAX;
 
-    // 1) 对指定飞行老鼠造成伤害（不再秒杀，扣除血量）
-    var _damage_targets = [
-        obj_aircraft_carrier,
-        obj_kamikaze_glider_mouse,
-        obj_machine_bee,
-        obj_machine_flag_mouse,
-        obj_machine_bomb_mouse,
-        obj_airbrone_explosive_mouse,
-        obj_flight_barrier_mouse
-    ];
-    for (var _d = 0; _d < array_length(_damage_targets); _d++) {
-        var _obj = _damage_targets[_d];
-        with (_obj) {
-            if (hp > 0 && state != ENEMY_STATE.DEAD) {
-                damage_amount = other.damage;
-                damage_type = "normal";
-                event_user(0);
-                instance_create_depth(x, y, depth - 10, obj_xuanfengniu_effect);
-            }
-        }
-    }
-
-    // 2) 快照其余合法空中老鼠（按白名单筛选）
+    // 1) 快照指定名单内的老鼠，逐个执行秒杀。
     var _ids = [];
 
     with (obj_enemy_parent) {
         if (hp <= 0) continue;
         if (state == ENEMY_STATE.DEAD) continue;
-        if (is_boss) continue;
-
-        // 必须在白名单内才能被吹走
-        if (array_get_index(other.air_mouse_whitelist, mouse_id) == -1) continue;
+        if (array_get_index(other.instant_kill_mouse_ids, mouse_id) == -1) continue;
 
         array_push(_ids, id);
     }
@@ -56,7 +31,7 @@ if (!has_activated && _anim_loop_done) {
         return 0;
     });
 
-    // 2) 逐个幂等移除（吹走方式：不掉金币、不计击杀）
+    // 2) 逐个幂等移除（秒杀方式：不掉金币、不计击杀）
     for (var i = 0; i < array_length(_ids); i++) {
         var _e = _ids[i];
         if (!instance_exists(_e)) continue;
@@ -64,6 +39,9 @@ if (!has_activated && _anim_loop_done) {
 
         // 标记移除原因，跳过金币掉落与击杀奖励
         _e.is_blown_away = true;
+        _e.hp = 0;
+        _e.shield_hp = 0;
+        _e.helmet_hp = 0;
         _e.state = ENEMY_STATE.DEAD;
         _e.target_type = "normal";
         instance_create_depth(_e.x, _e.y, _e.depth - 10, obj_xuanfengniu_effect);

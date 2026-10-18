@@ -322,10 +322,38 @@ function mod_apply_category_buff_map()
 
         for (var i = 0; i < ds_list_size(_list); i++)
         {
-            ds_map_set(global.plant_buff_map, ds_list_find_value(_list, i), _group);
-            _total++;
+            var _card_id = ds_list_find_value(_list, i);
+            var _allowed = false;
+            switch (_group)
+            {
+                case "thrower": _allowed = card_in_category(_card_id, "投掷类") || _card_id == "gaia"; break;
+                case "tracker": _allowed = _card_id == "guiyuanma" || _card_id == "takoyaki" || _card_id == "juxie" || _card_id == "moon_god" || _card_id == "yufengma" || _card_id == "gaia"; break;
+                case "five_dir": _allowed = card_in_category(_card_id, "多向类"); break;
+                case "sprayer": _allowed = card_in_category(_card_id, "旋转喷壶类") || card_in_category(_card_id, "直线喷壶类") || _card_id == "hongliukaochuan" || _card_id == "hufa_god"; break;
+            }
+            if (_allowed)
+            {
+                ds_map_set(global.plant_buff_map, _card_id, _group);
+                _total++;
+            }
         }
     }
+
+    // Cross-category targets named explicitly by the buff rules.
+    ds_map_set(global.plant_buff_map, "yufengma", "tracker");
+    ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
+    var _advanced_tracker = get_cards_in_category("群轰追踪");
+    for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
+        ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
+    _advanced_tracker = get_cards_in_category("散点追踪");
+    for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
+        ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
+    ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");
+    ds_map_set(global.plant_buff_map, "joker", "tracker_advanced");
+    ds_map_set(global.plant_buff_map, "hongliukaochuan", "sprayer");
+    ds_map_set(global.plant_buff_map, "hufa_god", "sprayer");
+    ds_map_set(global.plant_buff_map, "gaia", "thrower");
+    ds_map_set(global.plant_buff_map_2, "gaia", "tracker");
 
     show_debug_message("增幅分组按分类重建：" + string(_total) + " 条");
     return _total;

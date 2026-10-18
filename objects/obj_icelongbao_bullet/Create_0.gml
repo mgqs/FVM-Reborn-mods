@@ -1,4 +1,5 @@
 damage = 0
+source_card_id = ""
 move_speed = 0
 row = 0
 damage_type = "normal"

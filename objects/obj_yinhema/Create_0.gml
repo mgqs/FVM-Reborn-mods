@@ -1,7 +1,9 @@
 event_inherited();
 plant_id = "yinhema";
 obj_type = object_index;
+zodiac_initializing = true;
 event_user(0);
+zodiac_initializing = false;
 
 plant_type = "normal";
 feature_type = "normal";
