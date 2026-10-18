@@ -158,10 +158,6 @@ function get_zhanqima_buff_multiplier(card)
 /// @return {string} buff 类型（"row_sprayer"/"sprayer"/"attach"/"both"/"none"）
 function mod_get_ocean_buff_type(arg0)
 {
-    // 护法神和烤串机同时属于附加类和喷壶类，单独处理以避免附加类提前返回。
-    if (arg0 == "hufa_god" || arg0 == "hongliukaochuan")
-        return "both";
-
     var type = mod_get_buff_type(arg0);
 
     // 喷壶类

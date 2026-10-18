@@ -1448,5 +1448,11 @@ register_gods_goods("ronghehaixing_2", {type:"shape", cost:"32", unlock_item_id:
 register_gods_goods("ronghedan_god", {type:"card", cost:"16", unlock_item_id:"ronghedan_god", description:"雪芭煮蛋器：双蛋攻击，35%范围溅射并有概率定身", display_name:"雪芭煮蛋器"});
 register_gods_goods("ronghedan_god_1", {type:"shape", cost:"16", unlock_item_id:"ronghedan_god", target_shape:1, description:"臭豆腐煮蛋器：溅射范围额外附加毒气伤害", display_name:"深度融合食谱（臭豆腐煮蛋器）", spr:spr_voucher_ronghedan_god_1});
 register_gods_goods("ronghedan_god_2", {type:"shape", cost:"32", unlock_item_id:"ronghedan_god", target_shape:2, description:"终结者煮蛋器：子弹伤害提升，可向前方三行投掷子弹", display_name:"灵魂融合食谱（终结者煮蛋器）", spr:spr_voucher_ronghedan_god_2});
+register_gods_goods("ronghehuopen", {type:"card", cost:"16", unlock_item_id:"ronghehuopen", description:"刺梨烧烤盘：穿过它的弹药都会提高伤害，啃咬反伤", display_name:"刺梨烧烤盘"});
+register_gods_goods("ronghehuopen_1", {type:"shape", cost:"16", unlock_item_id:"ronghehuopen", target_shape:1, description:"冰榴莲烤盘：定期在周围5*5范围召唤寒冰之气攻击鼠军", display_name:"深度融合食谱（冰榴莲烤盘）", spr:spr_voucher_ronghehuopen_1});
+register_gods_goods("ronghehuopen_2", {type:"shape", cost:"32", unlock_item_id:"ronghehuopen", target_shape:2, description:"缤纷杂果冰盘：伤害增强，过火子弹变冰弹", display_name:"灵魂融合食谱（缤纷杂果冰盘）", spr:spr_voucher_ronghehuopen_2});
+register_gods_goods("ronghesanxian", {type:"card", cost:"16", unlock_item_id:"ronghesanxian", description:"子母三线酒架：同时攻击前方三条线，每行2发葡萄酒弹", display_name:"子母三线酒架"});
+register_gods_goods("ronghesanxian_1", {type:"shape", cost:"16", unlock_item_id:"ronghesanxian", target_shape:1, description:"仙人掌花酒架：每行增加1发子弹", display_name:"深度融合食谱（仙人掌花酒架）", spr:spr_voucher_ronghesanxian_1});
+register_gods_goods("ronghesanxian_2", {type:"shape", cost:"32", unlock_item_id:"ronghesanxian", target_shape:2, description:"烤灯笼鱼酒架：每行三发浓缩为每行1发，子弹可穿透老鼠与障碍", display_name:"灵魂融合食谱（烤灯笼鱼酒架）", spr:spr_voucher_ronghesanxian_2});
 
 }
