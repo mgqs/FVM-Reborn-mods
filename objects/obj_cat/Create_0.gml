@@ -21,7 +21,8 @@ ignore_list = ["mario_mouse","mario_pipeline","arno","pharaoh_coffin","temple_ph
 				"iron_man","spider_man_mouse","hulk_mouse","mouse_train_3","mermaid_mary","mermaid_wave","machine_shark_1",
 				"lobster_knight","electric_jellyfish","jellyfish_bullet","war_god","war_god_duck","war_god_wood","hercules",
 				"thor","infected_arno","infected_mario_pipeline","infected_mario_mouse",
-				"honglonglong","infected_zhanshen","infected_pharaoh","longyuan_dijing"
+				"honglonglong","infected_zhanshen","infected_pharaoh","longyuan_dijing",
+				"ly_diting","ly_youshen"
 ]
 
 target_ignore = ["mole","bat_mouse","sawblade_mouse","dentist_mouse","baron_bats","paratrooper_mouse_shield","kamikaze_glider_mouse",

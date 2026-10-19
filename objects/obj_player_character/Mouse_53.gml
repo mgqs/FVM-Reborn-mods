@@ -25,6 +25,44 @@ if not is_placed{
 		card_created(id,grid_col,grid_row)
 		audio_play_sound(snd_place1,0,0)
 		instance_create_depth(x,y,-2,obj_place_effect)
+		var _equipped_attire_id = card_equipped_attire_id("player");
+		var _transformation_sprite = -1;
+		var _equipped_items = global.save_data.equipped_items;
+		var _gem_slots = [_equipped_items.main_weapon, _equipped_items.secondary_weapon, _equipped_items.super_weapon];
+		for (var _slot_index = 0; _slot_index < array_length(_gem_slots); _slot_index++) {
+			var _slot_gems = _gem_slots[_slot_index].gems;
+			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen2"
+				&& array_get_index(_slot_gems, "star_wand_gem_1") != -1) {
+				_transformation_sprite = spr_huan_bianshen2;
+				break;
+			}
+			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen3"
+				&& array_get_index(_slot_gems, "star_wand_gem_5") != -1) {
+				_transformation_sprite = spr_yao_bianshen2;
+				break;
+			}
+			if (_equipped_attire_id == "player_attire_shouhuzhishen"
+				&& array_get_index(_slot_gems, "zeus_ren_gem") != -1) {
+				_transformation_sprite = spr_bianshen2;
+				break;
+			}
+		}
+		if (_transformation_sprite != -1) {
+			var _transformation_effect = instance_create_depth(0, 0, -10000, obj_12yinliao_effect);
+			_transformation_effect.sprite_index = _transformation_sprite;
+			_transformation_effect.is_one_shot = true;
+			_transformation_effect.center_screen = true;
+			_transformation_effect.flash_speed = 6;
+			if (_transformation_sprite != spr_bianshen2) {
+				var _entrance_effect = instance_create_depth(x, y, depth - 2, obj_place_effect);
+				_entrance_effect.sprite_index = spr_ruchang;
+				_entrance_effect.image_xscale = image_xscale;
+				_entrance_effect.image_yscale = image_yscale;
+				_entrance_effect.depth = -10001;
+				_entrance_effect.custom_playback = true;
+				_entrance_effect.playback_speed = 0.2;
+			}
+		}
 		var plany_list = ds_grid_get(global.grid_plants,grid_col,grid_row)
 		if global.grid_terrains[grid_row][grid_col].type == "water"{
 			var card = instance_create_depth(x,y-10,depth+1,obj_wooden_plate)

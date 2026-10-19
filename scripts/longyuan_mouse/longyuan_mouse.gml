@@ -42,11 +42,10 @@
 
 // 9. 谛听鼠
 #macro LY_DITING_PRISON_HP 10000   // 钟基础血量
-#macro LY_DITING_PRISON_COUNT 7    // 技能2随机罩住卡片数
+#macro LY_DITING_PRISON_COUNT 7    // 技能3随机生成钟的数量
 #macro LY_DITING_PRISON_FUSE 180   // 被引信后 3 秒自毁
+#macro LY_DITING_PRISON_LIFE 600   // 钟存在 10 秒后摧毁罩住的卡片
 #macro LY_DITING_SKILL1_DMG 400    // 遁地突袭 3×3 每卡伤害
-#macro LY_DITING_SOUNDWAVE_ROWS 5  // 音波随机行数
-#macro LY_DITING_SOUNDWAVE_HIT 400 // 音波命中第一张卡伤害
 #macro LY_DITING_SOUNDWAVE_DPS 400 // 音波驻留每秒伤害（占位，待游戏内调）
 #macro LY_DITING_SOUNDWAVE_LIFE 1200 // 音波驻留 20 秒
 
@@ -151,6 +150,25 @@ function longyuan_diting_dense_cell() {
             else if (_count == _max_count) array_push(_best, {col: _col, row: _row});
         }
     }
+    return _best[irandom(array_length(_best) - 1)];
+}
+
+/// 谛听技能1专用：在指定行内找 3×3 最密集的列（只搜 ≤_max_col 的列，保证向左横移能到达），返回列号。
+function longyuan_diting_dense_col_in_row(_row, _max_col) {
+    var _best = [], _max_count = -1;
+    for (var _col = 0; _col <= _max_col && _col < global.grid_cols; ++_col) {
+        var _count = 0;
+        for (var _dx = -1; _dx <= 1; ++_dx) {
+            for (var _dy = -1; _dy <= 1; ++_dy) {
+                var _c = _col + _dx, _r = _row + _dy;
+                if (_c >= 0 && _c < global.grid_cols && _r >= 0 && _r < global.grid_rows
+                    && instance_exists(longyuan_card_in_cell(_c, _r))) _count++;
+            }
+        }
+        if (_count > _max_count) { _best = [_col]; _max_count = _count; }
+        else if (_count == _max_count) array_push(_best, _col);
+    }
+    if (array_length(_best) == 0) return max(0, _max_col);
     return _best[irandom(array_length(_best) - 1)];
 }
 

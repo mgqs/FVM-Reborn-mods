@@ -16,6 +16,11 @@ if (fx_kind == "youshen_toxic") {
     if (fx_life >= fx_duration) { instance_destroy(); exit; }
 }
 
+if (fx_kind == "youshen_mist_visual") {
+    fx_life++;
+    if (fx_life >= LY_YOUSHEN_MIST_LIFE) { instance_destroy(); exit; }
+}
+
 // 夜巡符咒：从第10列右向左飞到目标格 → 打开放毒雾 10 秒 → 回收消失
 if (fx_kind == "youshen_scroll_live") {
     if (!variable_instance_exists(id, "fx_stage")) {
@@ -28,30 +33,29 @@ if (fx_kind == "youshen_scroll_live") {
             x = fx_target_x;
             fx_stage = 1;
             fx_life = 0;
-            fx_next_action = "施法";
-            fx_loop_after = true;
-            longyuan_clip_set("打开");
             timer = 0;
-            fx_loop = false;
         }
     }
     else if (fx_stage == 1) {
         if (!fx_mist_made) {
             fx_mist_made = true;
-            var _fog = instance_create_depth(x, y + 15, depth - 1, obj_ly_boss_fx);
-            longyuan_boss_fx_start(_fog, "youshen_mist", "待机", true, 5);
-            _fog.fx_kind = "youshen_toxic";
-            _fog.fx_col = fx_col; _fog.fx_row = fx_row;
-            _fog.fx_life = 0; _fog.fx_damage_timer = 0;
-            _fog.fx_duration = LY_YOUSHEN_MIST_LIFE;
+            for (var _dx = -1; _dx <= 1; ++_dx) {
+                for (var _dy = -1; _dy <= 1; ++_dy) {
+                    var _cell = get_world_position_from_grid(fx_col + _dx, fx_row + _dy);
+                    if (fx_col + _dx < 0 || fx_col + _dx >= global.grid_cols || fx_row + _dy < 0 || fx_row + _dy >= global.grid_rows) continue;
+                    var _fog = instance_create_depth(_cell.x, _cell.y + 15, depth - 1, obj_ly_boss_fx);
+                    longyuan_boss_fx_start(_fog, "youshen_mist", "待机", true, 5);
+                    _fog.fx_kind = (_dx == 0 && _dy == 0) ? "youshen_toxic" : "youshen_mist_visual";
+                    _fog.fx_col = fx_col; _fog.fx_row = fx_row;
+                    _fog.fx_life = 0; _fog.fx_damage_timer = 0;
+                    _fog.fx_duration = LY_YOUSHEN_MIST_LIFE;
+                }
+            }
         }
         fx_life++;
         if (fx_life >= LY_YOUSHEN_MIST_LIFE) {
-            fx_stage = 2;
-            fx_next_action = "";
-            longyuan_clip_set("消失");
-            timer = 0;
-            fx_loop = false;
+            instance_destroy();
+            exit;
         }
     }
 }
@@ -85,25 +89,14 @@ if (fx_kind == "diting_soundwave_live") {
     var _swcol = get_grid_position_from_world(x, y).col;
     // 飞行路径/驻留格上的钟被引信（不销毁音波）
     longyuan_diting_prison_fuse_cell(_swcol, fx_row);
-    if (!fx_stuck) {
-        // 右→左飞行，命中本行第一张卡：400 伤害并停在该位置
-        var _hit_card = longyuan_card_in_cell(_swcol, fx_row);
-        if (instance_exists(_hit_card)) {
-            fx_stuck = true;
-            x = _hit_card.x;
-            longyuan_damage_plant(_hit_card, LY_DITING_SOUNDWAVE_HIT);
-            fx_damage_timer = 0;
-        } else {
-            x += fx_direction * fx_speed;
-            if (x <= global.grid_offset_x - 40) { instance_destroy(); exit; }
-        }
-    } else {
-        // 驻留期间每秒对该格第一张卡持续造成伤害
-        fx_damage_timer++;
-        if (fx_damage_timer >= game_get_speed(gamespeed_fps)) {
-            fx_damage_timer = 0;
-            var _stay = longyuan_card_in_cell(get_grid_position_from_world(x, y).col, fx_row);
-            if (instance_exists(_stay)) longyuan_damage_plant(_stay, fx_damage);
+    x += fx_direction * fx_speed;
+    if (x <= global.grid_offset_x - 40) { instance_destroy(); exit; }
+    // 音波经过整行时按秒对本行所有卡片造成一次伤害。
+    fx_damage_timer++;
+    if (fx_damage_timer >= game_get_speed(gamespeed_fps)) {
+        fx_damage_timer = 0;
+        for (var _col = 0; _col < global.grid_cols; ++_col) {
+            longyuan_damage_cell(_col, fx_row, fx_damage);
         }
     }
 }

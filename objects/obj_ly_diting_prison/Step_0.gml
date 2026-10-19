@@ -18,6 +18,16 @@ if (hp <= 0 && ly_mode != "dead") {
     longyuan_play("死亡", true);
 }
 
+// 超时未摧毁：钟存在 LY_DITING_PRISON_LIFE（10 秒）后摧毁其罩住的卡片并消散。
+if ((ly_mode == "birth" || ly_mode == "idle") && hp > 0) {
+    ly_life++;
+    if (ly_life >= LY_DITING_PRISON_LIFE) {
+        longyuan_damage_cell(prison_col, prison_row, 0, true);
+        ly_mode = "dead";
+        longyuan_play("死亡", true);
+    }
+}
+
 switch (ly_mode) {
     case "birth":
         longyuan_animate();

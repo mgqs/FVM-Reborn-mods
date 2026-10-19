@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ly_diting_boss",
-    "path":"sprites/spr_ly_diting_boss/spr_ly_diting_boss.yy",
+    "name":"spr_ly_diting_idel",
+    "path":"sprites/spr_ly_diting_idel/spr_ly_diting_idel.yy",
   },
   "spriteMaskId":null,
   "visible":true,

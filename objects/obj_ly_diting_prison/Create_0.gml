@@ -10,6 +10,7 @@ ly_once = false;
 ly_hit = false;
 ly_mode = "birth";
 ly_timer = 0;
+ly_life = 0;
 prison_col = -1;
 prison_row = -1;
 

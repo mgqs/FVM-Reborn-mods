@@ -12,6 +12,20 @@ function can_copy_card_at_position(_x, _y, _plant_type, _feature_type, _card_id,
     if (_actual_base == undefined)
         _actual_base = "none";
 
+    // 复制仙笛马时，目标格已有仙笛马则跳过。
+    if (_card_id == "xiandima" && !global.replace_placement) {
+        var _xiandima_grid_pos = get_grid_position_from_world(_x, _y);
+        var _xiandima_plant_list = ds_grid_get(global.grid_plants, _xiandima_grid_pos.col, _xiandima_grid_pos.row);
+        for (var i = 0; i < ds_list_size(_xiandima_plant_list); i++) {
+            var _plant = ds_list_find_value(_xiandima_plant_list, i);
+            if (instance_exists(_plant)
+                && variable_instance_exists(_plant, "plant_id")
+                && _plant.plant_id == "xiandima") {
+                return false;
+            }
+        }
+    }
+
     if (!can_place_at_position(_x, _y, _plant_type, _feature_type, _actual_base, _card_id))
         return false;
 
