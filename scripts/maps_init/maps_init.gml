@@ -380,7 +380,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_1",
 					"rewards":[{"card_id":"cotton_candy","target_shape":1},
-								{"card_id":"xuanfengniu","target_shape":1}
+								{"card_id":"xuanfengniu","target_shape":1},
+								{"card_id":"shuanggu","target_shape":1}
 							]
 				},
 				{
@@ -720,7 +721,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_23_2",
-					"rewards":[{"card_id":"king_long_bao","target_shape":2}
+					"rewards":[{"card_id":"king_long_bao","target_shape":2},
+								{"card_id":"shuanggu","target_shape":2}
 							]
 				},
 				{

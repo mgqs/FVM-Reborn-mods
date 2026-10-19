@@ -87,5 +87,7 @@ function mod_skill_init()
     register_card_skill("ronghehuopen", "hp", [250, 300, 350, 400, 450, 500, 550, 600, 650]);
     register_card_skill("ronghesanxian", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("chunsun", "prepare_time", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
+    register_card_skill("shuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
+    register_card_skill("rongheshuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
 
 }

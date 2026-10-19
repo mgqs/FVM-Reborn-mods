@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Shooter",
+  "folderPath":"folders/精灵/mod/Cards/Shooter.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shooter",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"shuanggu","path":"folders/精灵/mod/Cards/Shooter/shuanggu.yy",},
+    {"name":"rongheshuanggu","path":"folders/精灵/mod/Cards/Shooter/rongheshuanggu.yy",}
+  ],
+  "listItems":[],
+}
