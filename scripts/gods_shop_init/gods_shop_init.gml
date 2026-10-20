@@ -1454,8 +1454,5 @@ register_gods_goods("ronghehuopen_2", {type:"shape", cost:"32", unlock_item_id:"
 register_gods_goods("ronghesanxian", {type:"card", cost:"16", unlock_item_id:"ronghesanxian", description:"子母三线酒架：同时攻击前方三条线，每行2发葡萄酒弹", display_name:"子母三线酒架"});
 register_gods_goods("ronghesanxian_1", {type:"shape", cost:"16", unlock_item_id:"ronghesanxian", target_shape:1, description:"仙人掌花酒架：每行增加1发子弹", display_name:"深度融合食谱（仙人掌花酒架）", spr:spr_voucher_ronghesanxian_1});
 register_gods_goods("ronghesanxian_2", {type:"shape", cost:"32", unlock_item_id:"ronghesanxian", target_shape:2, description:"烤灯笼鱼酒架：每行三发浓缩为每行1发，子弹可穿透老鼠与障碍", display_name:"灵魂融合食谱（烤灯笼鱼酒架）", spr:spr_voucher_ronghesanxian_2});
-register_gods_goods("rongheshuanggu", {type:"card", cost:"16", unlock_item_id:"rongheshuanggu", description:"热狗耗油双菇：对陆、对空各4发子弹", display_name:"热狗耗油双菇"});
-register_gods_goods("rongheshuanggu_1", {type:"shape", cost:"16", unlock_item_id:"rongheshuanggu", target_shape:1, description:"喷壶耗油双菇：对地子弹变为无限穿透", display_name:"深度融合食谱（喷壶耗油双菇）", spr:spr_voucher_rongheshuanggu_1});
-register_gods_goods("rongheshuanggu_2", {type:"shape", cost:"32", unlock_item_id:"rongheshuanggu", target_shape:2, description:"糖葫芦耗油双菇：对空子弹变为全屏追踪", display_name:"灵魂融合食谱（糖葫芦耗油双菇）", spr:spr_voucher_rongheshuanggu_2});
 
 }

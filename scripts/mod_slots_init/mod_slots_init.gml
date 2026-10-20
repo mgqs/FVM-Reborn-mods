@@ -2964,12 +2964,6 @@ register_card("hongliukaochuan", obj_hongliukaochuan, [
 { shape: 2, sprite: spr_hongliukaochuan_2, cost: 230, cooldown: 420, description: "星火红柳烤串机：喷射全屏索敌追踪穿透弹，子弹数量+1", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_hongliukaochuan_2 }
 ]);
 
-register_card("shuanggu", obj_shuanggu, [
-{shape:0,sprite:spr_shuanggu,cost:255,cooldown:420,description: "耗油双菇：同时向前方发射2发对陆子弹和2发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu},
-{shape:1,sprite:spr_shuanggu_1,cost:255,cooldown:420,description: "伯爵耗油双菇：同时向前方发射2发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_1},
-{shape:2,sprite:spr_shuanggu_2,cost:255,cooldown:420,description: "皇家耗油双菇：同时向前方发射3发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_2}
-]);
-
 // 融合卡：普卡两转（形态 0/1/2），不写 is_gold（缺键读作 undefined，在 == 1 判断下等同 0）；卡底由 is_fusion 类别标记决定（spr_slot_2），不再逐界面硬编码名单。
 register_card("lizi_god", obj_lizi_god, [
 {shape:0,sprite:spr_lizi_god,cost:160,cooldown:420,description: "酱香锅烤栗子：投掷栗子造成3*3范围灼烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_lizi_god},
@@ -3002,12 +2996,6 @@ register_card("ronghesanxian", obj_ronghesanxian, [
 {shape:2,sprite:spr_ronghesanxian_2,cost:325,cooldown:420,description: "烤灯笼鱼酒架：向前方三行各发射1发可穿透的葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_2}
 ]);
 
-register_card("rongheshuanggu", obj_rongheshuanggu, [
-{shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗耗油双菇：同时向前方发射4发对陆子弹和4发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
-{shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶耗油双菇：对陆子弹变为无限穿透",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},
-{shape:2,sprite:spr_rongheshuanggu_2,cost:255,cooldown:420,description: "糖葫芦耗油双菇：对空子弹变为全屏追踪",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_2}
-]);
-
     register_card("pufferfish", obj_pufferfish, [
     {shape: 0, sprite: spr_pufferfish, cost: 325, cooldown: 3300, description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish},
     {shape: 1, sprite: spr_pufferfish_1, cost: 325, cooldown: 3300, description: "朝天椒河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_1},
@@ -3019,5 +3007,4 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     {shape: 1, sprite: spr_yeziguo_1, cost: 75, cooldown: 1800, description: "浓香椰子果：跳起碾压前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_1},
     {shape: 2, sprite: spr_yeziguo_2, cost: 75, cooldown: 1800, description: "金丝椰子果：跳起连续碾压3次前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_2}
     ]);
-
 }

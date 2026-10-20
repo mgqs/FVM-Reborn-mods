@@ -320,7 +320,7 @@ function craft_rate_settings_init(){
 		dropstar_min: 5,
 		assure_enabled: _assure,
 		// 保险金费用：直接查表，依次对应 1★~15★（5★ 及以下不掉星所以是 0）；
-		// 固定价格，不再乘难度倍率（2026-10-19 按用户要求去掉）
+		// 实收还要乘难度倍率（difficulty_get_reward_multiplier：永恒 3 倍 / 不朽 5 倍）
 		assure_gold_table: [0, 0, 0, 0, 0, 3000, 3900, 5800, 8200, 11600, 50000, 100000, 250000, 350000, 500000],
 	// 升星率：分段衰减。1★ 固定必成；2★ 起逐级乘衰减并取整，换挡点见 tierN_at
 	// 现值 → 1★ 100 / 2-5★ 90..66（-0.90）/ 6★ 49（-0.74，台阶）/ 7-9★ 43..32（-0.87）/ 10★ 16（-0.50，跳楼）/ 11-15★ 11..3（-0.70）/ 16★ 1（-0.34）
@@ -360,12 +360,12 @@ function craft_assure_active(){
 }
 
 /// @func craft_assure_gold(current_level)
-/// @desc 保险金费用：查 assure_gold_table（依次对应 1★~15★，5★ 及以下为 0，那几星不掉星）；
-///       固定价格，不乘难度倍率；超出表长按最高档
+/// @desc 保险金费用：查 assure_gold_table（依次对应 1★~15★，5★ 及以下为 0，那几星不掉星），
+///       再乘当前难度倍率（difficulty_get_reward_multiplier：永恒 3 倍 / 不朽 5 倍）；超出表长按最高档
 function craft_assure_gold(current_level){
 	var _s = craft_rate_settings()
 	var _idx = clamp(current_level - 1, 0, array_length(_s.assure_gold_table) - 1)
-	return _s.assure_gold_table[_idx]
+	return _s.assure_gold_table[_idx] * difficulty_get_reward_multiplier()
 }
 
 /// @func craft_rate_base(target_level)

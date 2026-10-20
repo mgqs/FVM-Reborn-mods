@@ -370,31 +370,35 @@ function fusion_get_prerequisites() {
         ronghehaixing: "coal_starfish",   // 融合海星   ← 炭烧海星（二转：芥末海星刺身）
         ronghedan_god: "egg_boiler_pult",  // 融合煮蛋器 ← 煮蛋器投手（二转：强袭煮蛋器）
         ronghehuopen:  "brazier",          // 融合火盆   ← 火盆（二转：岩烧烤盘）
-        ronghesanxian: "triple_wine_rack",  // 融合三线   ← 三线酒架（二转：终结者酒架）
-        rongheshuanggu: "shuanggu"         // 融合双菇  ← 耗油双菇（二转：皇家耗油双菇）
+        ronghesanxian: "triple_wine_rack"  // 融合三线   ← 三线酒架（二转：终结者酒架）
     };
 }
 
 /// @function fusion_prereq_met(card_id)
-/// @desc 融合卡前置是否达成：只要**拥有前置卡本体（0 转）**即可（2026-10-19 由「二转」放宽）
+/// @desc 融合卡前置是否达成：对应前置卡已拥有且 max_shape >= 2
+///       「拥有过二转」即可，当前调回低形态不影响（与抽卡其它判定口径一致）
 /// @param {string} card_id 融合卡 id
 /// @return {bool} 表里没有的卡恒为 true（非融合卡不受影响）
 function fusion_prereq_met(card_id) {
     var _prereqs = fusion_get_prerequisites();
     if (!variable_struct_exists(_prereqs, card_id)) return true;
 
-    return is_card_unlocked(_prereqs[$ card_id]);
+    var _pre_id = _prereqs[$ card_id];
+    if (!is_card_unlocked(_pre_id)) return false;
+
+    var _info = get_card_info_simple(_pre_id);
+    return max(_info.max_shape, _info.shape) >= 2;
 }
 
 /// @function fusion_prereq_name(card_id)
-/// @desc 前置卡的本体（0 转）形态名（用于提示文案）；未配置前置 / 查不到名字时返回空串
+/// @desc 前置卡的二转形态名（用于提示文案）；未配置前置 / 查不到名字时返回空串
 /// @param {string} card_id 融合卡 id
 /// @return {string}
 function fusion_prereq_name(card_id) {
     var _prereqs = fusion_get_prerequisites();
     if (!variable_struct_exists(_prereqs, card_id)) return "";
 
-    var _shape_data = get_plant_shape_data(_prereqs[$ card_id], 0);
+    var _shape_data = get_plant_shape_data(_prereqs[$ card_id], 2);
     if (_shape_data == undefined) return "";
     return _shape_data[? "name"];
 }

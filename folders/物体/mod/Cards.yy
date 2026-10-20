@@ -98,7 +98,5 @@
     {"name":"obj_chunsun","path":"objects/obj_chunsun/obj_chunsun.yy",},
     {"name":"obj_chunsun_spike","path":"objects/obj_chunsun_spike/obj_chunsun_spike.yy",},
     {"name":"obj_chunsun_launch_fx","path":"objects/obj_chunsun_launch_fx/obj_chunsun_launch_fx.yy",},
-    {"name":"obj_shuanggu","path":"objects/obj_shuanggu/obj_shuanggu.yy",},
-    {"name":"obj_rongheshuanggu","path":"objects/obj_rongheshuanggu/obj_rongheshuanggu.yy",},
   ],
 }

@@ -19,8 +19,7 @@
     {"name":"heian_god","path":"folders/精灵/mod/Cards/heian_god.yy",},
     {"name":"mozhang","path":"folders/精灵/mod/Cards/mozhang.yy",},
     {"name":"time_god","path":"folders/精灵/mod/Cards/time_god.yy",},
-    {"name":"houyi_god","path":"folders/精灵/mod/Cards/houyi_god.yy",},{"name":"zhanqima","path":"folders/精灵/mod/Cards/zhanqima.yy",},
-    {"name":"Shooter","path":"folders/精灵/mod/Cards/Shooter.yy",}
+    {"name":"houyi_god","path":"folders/精灵/mod/Cards/houyi_god.yy",},{"name":"zhanqima","path":"folders/精灵/mod/Cards/zhanqima.yy",}
   ],
   "listItems":[
     {"name":"968adf00-d1a7-4d6a-9f10-063907ae108b","path":"sprites/spr_athena/spr_athena.yy",},
@@ -251,6 +250,6 @@
     {"name":"202df785-560e-4b92-9932-e6f19f569736","path":"sprites/spr_zhurong/spr_zhurong.yy",},
     {"name":"3d0f8df1-7726-4021-a8cb-02fc0c78060a","path":"sprites/spr_zhurong_1/spr_zhurong_1.yy",},
     {"name":"be1d90b3-ad63-448b-925d-36cb7dc0e95e","path":"sprites/spr_zhurong_2/spr_zhurong_2.yy",},
-    {"name":"8e4783db-0701-4c1c-b563-966bb9927b38","path":"sprites/spr_zhurong_3/spr_zhurong_3.yy",},
+    {"name":"8e4783db-0701-4c1c-b563-966bb9927b38","path":"sprites/spr_zhurong_3/spr_zhurong_3.yy",}
   ],
 }
