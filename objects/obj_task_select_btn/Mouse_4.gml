@@ -5,5 +5,5 @@ if obj_task_bg.button_select != btn_index{
 		refresh_task_list()
 		
 	}
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 }

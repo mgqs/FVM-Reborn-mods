@@ -23,7 +23,8 @@
     {"name":"Tower Cake","path":"folders/精灵/UI/Tower Cake.yy",},
     {"name":"Player Info","path":"folders/精灵/UI/Player Info.yy",},
     {"name":"Icon","path":"folders/精灵/UI/Icon.yy",},
-    {"name":"Option","path":"folders/精灵/UI/Option.yy",}
+    {"name":"Option","path":"folders/精灵/UI/Option.yy",},
+    {"name":"Camp Shop","path":"folders/精灵/UI/Camp Shop.yy",}
   ],
   "listItems":[
     {"name":"136edd46-1f64-4ac4-8fb0-7c4568548554","path":"sprites/spr_game_logo/spr_game_logo.yy",}

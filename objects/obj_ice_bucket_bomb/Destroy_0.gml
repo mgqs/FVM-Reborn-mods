@@ -68,7 +68,7 @@ if state == CARD_STATE.IDLE{
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	 audio_play_sound(snd_mouse_frozen, 0, false);
+	 global.audio.play(snd_mouse_frozen, 0, false);
 	 if global.screen_flash{
 		screen_flash(merge_color(c_blue,c_white,0.5),20)
 	}

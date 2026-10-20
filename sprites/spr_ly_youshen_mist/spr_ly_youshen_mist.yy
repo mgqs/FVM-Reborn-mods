@@ -39,7 +39,7 @@
   ],
   "name":"spr_ly_youshen_mist",
   "nineSlice":null,
-  "origin":4,
+  "origin":7,
   "parent":{
     "name":"youshen",
     "path":"folders/精灵/Enemy/longyuan/BOSS/youshen.yy",
@@ -140,7 +140,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":43,
-    "yorigin":42,
+    "yorigin":84,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

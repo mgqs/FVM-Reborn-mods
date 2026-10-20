@@ -4,6 +4,9 @@ if button_pushed{
 		image_index = floor(timer / 4)
 	}
 	else{
+		// Consume the click before requesting the room transition so it is not
+		// restarted every frame while the transition is running.
+		button_pushed = false
 		audio_pause_sound(mus_readyroom)
 		global.gui_stack.to(room_battle)
 		texture_prefetch("bullet")

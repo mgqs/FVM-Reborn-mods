@@ -25,6 +25,8 @@
     {"$GMSpriteFrame":"v1","%Name":"724f045f-8330-441a-b212-20f425554211","name":"724f045f-8330-441a-b212-20f425554211","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"8ce69bf3-9f56-4ba6-a884-20f2d4364b95","name":"8ce69bf3-9f56-4ba6-a884-20f2d4364b95","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"a06359a2-7302-4311-8ae3-661533a6e425","name":"a06359a2-7302-4311-8ae3-661533a6e425","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"424df744-d790-47d3-b955-ae1daa01b139","name":"424df744-d790-47d3-b955-ae1daa01b139","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f0bd7ebb-29f5-4a35-98fc-54344dfbbfd0","name":"f0bd7ebb-29f5-4a35-98fc-54344dfbbfd0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -61,7 +63,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":13.0,
+    "length":15.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -119,6 +121,12 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a06359a2-7302-4311-8ae3-661533a6e425","path":"sprites/spr_craft_material/spr_craft_material.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b43f96ec-af0c-41e4-838d-0b2e97a041c9","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"424df744-d790-47d3-b955-ae1daa01b139","path":"sprites/spr_craft_material/spr_craft_material.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"9301273c-74c8-4d04-a709-399a34350b3e","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f0bd7ebb-29f5-4a35-98fc-54344dfbbfd0","path":"sprites/spr_craft_material/spr_craft_material.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"d3039241-24d0-4211-b485-1f02c963bdd6","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

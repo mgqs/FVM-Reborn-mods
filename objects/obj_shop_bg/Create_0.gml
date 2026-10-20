@@ -271,3 +271,15 @@ function shop_list_recharge(){
 		}
 	}
 }
+
+panel_anim_init(id, 0.28, 0.18, 260);
+panel_anim_kids(id, [obj_closeshop_btn, obj_shop_select_btn, obj_shop_page_btn,
+	obj_shop_buy_btn, obj_shop_buy_confirm]);
+
+pg_t = -1;
+pg_frames = 17;
+pg_dir = 1;
+pg_surf = -1;
+pg_old_surf = -1;
+pg_switch = false;
+pg_alpha = 1;

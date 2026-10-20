@@ -18,4 +18,4 @@ inst2.move_speed = -8
 inst2.row = grid_row
 inst2.image_angle = 180
 
-audio_play_sound(snd_shot, 0, 0);
+global.audio.play(snd_shot, 0, 0);

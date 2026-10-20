@@ -1,2 +1,5 @@
 if (surface_exists(info_surface))
     surface_free(info_surface)
+if (surface_exists(anim_surf))
+    surface_free(anim_surf)
+panel_anim_free(id)

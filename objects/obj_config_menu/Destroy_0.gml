@@ -11,3 +11,5 @@ for (var i = 0; i < array_length(setting_buttons); i++) {
         instance_destroy(setting_buttons[i]);
     }
 }
+if (surface_exists(pg_surf)) surface_free(pg_surf)
+panel_anim_free(id)

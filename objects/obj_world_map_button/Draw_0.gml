@@ -1,4 +1,4 @@
-if global.menu_screen{
+if global.menu_screen && room_transition_state().mode != 1{
 	draw_self()
 	draw_sprite_ext(spr_map_name_display, 0, x, y+85, 0.9, 0.9, 0, c_white, 1)
 	draw_set_color(c_white)

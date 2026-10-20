@@ -22,7 +22,7 @@ ignore_list = ["mario_mouse","mario_pipeline","arno","pharaoh_coffin","temple_ph
 				"lobster_knight","electric_jellyfish","jellyfish_bullet","war_god","war_god_duck","war_god_wood","hercules",
 				"thor","infected_arno","infected_mario_pipeline","infected_mario_mouse",
 				"honglonglong","infected_zhanshen","infected_pharaoh","longyuan_dijing",
-				"ly_diting","ly_youshen"
+				"ly_diting","ly_youshen","travel_record","beverage_machine","face_cookie"
 ]
 
 target_ignore = ["mole","bat_mouse","sawblade_mouse","dentist_mouse","baron_bats","paratrooper_mouse_shield","kamikaze_glider_mouse",

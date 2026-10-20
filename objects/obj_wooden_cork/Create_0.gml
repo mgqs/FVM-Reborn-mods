@@ -19,4 +19,4 @@ plant_type = "coffee"
 is_slowdown = false
 current_hp = hp
 
-audio_play_sound(snd_wooden_cork,0,0)
+global.audio.play(snd_wooden_cork,0,0)

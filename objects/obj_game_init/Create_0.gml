@@ -42,9 +42,10 @@ global.level_id = ""
 global.level_file = {}
 global.level_name = "曲奇岛"
 global.level_data = {}
+global.ui_anim = 1
 global.debug = 0
 global.laboretory_room = false
-global.game_version = "2.4.1.41"
+global.game_version = "3.0.0.1"
 global.tower_level_click = false
 global.tower_cake_page = 1
 global.cross_server_return_page = -1
@@ -155,7 +156,15 @@ global.play_mode = clamp(global.play_mode, 0, 3);
 global.borderless_window = ini_read_bool("settings", "borderless_window", true);
 global.save_slot = ini_read_real("settings", "save_slot", 0)
 global.lose_focus_pause = ini_read_bool("settings", "lose_focus_pause", true);
+global.ui_anim = clamp(ini_read_real("settings", "ui_anim", 1), 0, 2);
+if (ini_read_string("settings", "ui_anim", "") == "") {
+    ini_write_real("settings", "ui_anim", global.ui_anim);
+}
 global.ime_block = ini_read_bool("settings", "ime_block", true); // 输入法屏蔽开关（个别输入法环境异常时可关）
+global.mouse_limit_hz = ini_read_real("settings", "mouse_limit_hz", 500);
+if (ini_read_string("settings", "mouse_limit_hz", "") == "") {
+    ini_write_real("settings", "mouse_limit_hz", 500);
+}
 // 兼容旧配置：键缺失时补写，玩家可手改 %LOCALAPPDATA%\FVM_Reborn_makk\config.ini 关闭
 if (ini_read_string("settings", "ime_block", "") == "") {
     ini_write_bool("settings", "ime_block", true);

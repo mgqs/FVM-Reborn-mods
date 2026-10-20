@@ -33,6 +33,6 @@ if (volume_type == "music") {
     ini_write_real("settings", "sound_volume", global.sound_volume);
     ini_close();
 }
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 
 

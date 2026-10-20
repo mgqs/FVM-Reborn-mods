@@ -1,6 +1,6 @@
 // 用户事件1 - 发射子弹
 var inst = instance_create_depth(x+40, y-95, depth-500, obj_panfriedbun_bullet)
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk

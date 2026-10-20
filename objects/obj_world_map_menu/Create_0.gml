@@ -1,5 +1,9 @@
 image_xscale = 0.9
 image_yscale = 0.9
+
+panel_anim_init(id, 0.28, 0.18, 260)
+panel_anim_kids(id, [obj_world_map_close_btn, obj_world_map_choose_btn])
+
 instance_create_depth(x+620,y-410,depth-1,obj_world_map_close_btn)
 instance_create_depth(x+15,y-160,depth-1,obj_world_map_choose_btn)
 var btn = instance_create_depth(x-365,y-85,depth-1,obj_world_map_choose_btn)
@@ -42,3 +46,10 @@ btn6.map_name = "火山遗迹"
 btn6.map_id = "volcanic_ruins"
 btn6.room_target = room_map
 btn6.level_require = 36
+
+var btn7 = instance_create_depth(x+172,y+7,depth-1,obj_world_map_choose_btn)
+btn7.sprite_index = spr_world_map_explore_camp
+btn7.map_name = "探险营地"
+btn7.map_id = "explore_camp"
+btn7.room_target = room_map
+btn7.level_require = 20

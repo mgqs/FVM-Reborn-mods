@@ -53,7 +53,7 @@
 	}
 
 	// 播放攻击声音
-	 audio_play_sound(snd_coke_bomb_explode, 0, false);
+	 global.audio.play(snd_coke_bomb_explode, 0, false);
 	 if global.screen_shake{
 		Camera_Shock(5,20)
 	}

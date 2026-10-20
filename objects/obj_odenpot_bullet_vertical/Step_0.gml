@@ -12,7 +12,7 @@ if attack_timer == 2{
 		if place_meeting(x,y,other){
 
 			if hp > 0 and ((other.shape < 2 && abs(other.row - grid_row)<=4)||(other.shape >= 2 && (grid_row == other.row || abs(x-other.x)<=150)))  and can_hit(other.target_type,target_type){
-				audio_play_sound(hit_sound,0,0)
+				global.audio.play(hit_sound,0,0)
 				damage_amount = other.damage
 				damage_type = other.damage_type
 				event_user(0)

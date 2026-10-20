@@ -1,7 +1,10 @@
 // 绘制半透明遮罩
-draw_set_alpha(0.5)
+panel_anim_step(id)
+if (!instance_exists(id)) { exit }
+var _a = ui_anim_alpha(id)
+draw_set_alpha(0.5 * _a)
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
-draw_set_alpha(1);
+draw_set_alpha(_a);
 draw_self()
 
 draw_self()
@@ -10,11 +13,11 @@ draw_set_color(c_white)
 draw_set_font(font_yuan); // 使用菜单字体
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(x, y - 165, "宝石信息编辑");
+draw_text(x, y - 165 * pop_s, "宝石信息编辑");
 // 绘制文字
-draw_text(x, y - 105, "星级");
+draw_text(x, y - 105 * pop_s, "星级");
 for(var i = 0 ; i< 1 ; i++){
-	draw_sprite_ext(spr_package_number_bg, 0, x, y-70+80*i, 0.75, 0.75, 0, c_white, 1)
+	draw_sprite_ext(spr_package_number_bg, 0, x, y+(-70+80*i)*pop_s, 0.75*pop_s, 0.75*pop_s, 0, c_white, _a)
 }
 if not info_got{
 	var card_id = global.save_data.unlocked_gems[target_card_index].id
@@ -24,5 +27,6 @@ if not info_got{
 	info_got = 1
 }
 draw_set_font(font_number);
-draw_text(x,y-70,$"{target_current_info}/{target_max_info}")
+draw_text(x,y+(-70)*pop_s,$"{target_current_info}/{target_max_info}")
 draw_set_font(font_yuan);
+draw_set_alpha(1)

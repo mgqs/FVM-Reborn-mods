@@ -1,9 +1,17 @@
 // 绘制事件
-draw_set_alpha(0.5);
+panel_anim_step(id)
+if (!instance_exists(id)) exit
+draw_set_alpha(0.5 * ui_anim_alpha(id));
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+panel_anim_begin(id)
 draw_self()
+if (pg_t >= 0) {
+	pg_t++;
+	if (pg_t > pg_frames) pg_t = -1;
+}
+pg_alpha = (pg_t >= 0) ? 1 - power(1 - pg_t / pg_frames, 3) : 1;
 
 // 绘制玩家金币数量
 draw_set_font(font_number); 
@@ -25,7 +33,6 @@ for(var i = 0 ; i< 4; i++){
 		draw_sprite_ext(spr_shop_goods_bg,0,x-618+411*i,y-190+165*j,1.8,1.8,0,c_white,1)
 	}
 }
-
 //按类型绘制图标
 
 for(var i = 0 ; i< 4; i++){
@@ -186,3 +193,5 @@ for(var i = 0 ; i< 4; i++){
 		}
 	}
 }
+draw_set_alpha(1)
+panel_anim_end_slide(id, 260)

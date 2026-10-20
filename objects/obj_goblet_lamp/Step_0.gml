@@ -29,7 +29,7 @@ if grow_timer < grow_time{
 }
 else if grow_timer == grow_time{
 	state = CARD_STATE.GROW
-	audio_play_sound(snd_goblet_lamp_grow,0,0)
+	global.audio.play(snd_goblet_lamp_grow,0,0)
 	grow_timer++
 }
 else if grow_timer < grow_time+8*current_flash_speed{

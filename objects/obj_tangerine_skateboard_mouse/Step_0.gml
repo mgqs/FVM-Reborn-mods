@@ -253,7 +253,7 @@ switch(state) {
 			
 	            //播放音效
 				var a = irandom_range(0,2)
-				audio_play_sound(ds_list_find_value(obj_battle.chomp_sound_list,a),0,0)
+				global.audio.play(ds_list_find_value(obj_battle.chomp_sound_list,a),0,0)
 	            // 重置攻击计时器
 	            attack_timer = 0;
 	        }
@@ -309,5 +309,5 @@ if x < global.grid_offset_x-150 && hp > 0 && not place_meeting(x,y,obj_cat){
 	global.is_paused = true
 	global.game_over = true
 	instance_create_depth(room_width/2,room_height/2,-3001,obj_game_over)
-	audio_play_sound(snd_lose,0,0)
+	global.audio.play(snd_lose,0,0)
 }

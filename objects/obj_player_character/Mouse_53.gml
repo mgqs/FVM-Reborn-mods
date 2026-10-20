@@ -23,7 +23,7 @@ if not is_placed{
 		grid_row = grid_pos.row
 		grid_col = grid_pos.col
 		card_created(id,grid_col,grid_row)
-		audio_play_sound(snd_place1,0,0)
+		global.audio.play(snd_place1,0,0)
 		instance_create_depth(x,y,-2,obj_place_effect)
 		var _equipped_attire_id = card_equipped_attire_id("player");
 		var _transformation_sprite = -1;

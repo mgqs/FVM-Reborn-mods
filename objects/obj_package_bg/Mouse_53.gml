@@ -1,7 +1,7 @@
 if package_button_select == 1{
 	if not is_submenu_opened{
 		if hover_card_index != -1{
-			audio_play_sound(snd_button,0,0)
+			global.audio.play(snd_button,0,0)
 			var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_card_edit_menu)
 			inst.target_card_index = deck_sort_order[hover_card_index] / 2
 			var deck_entry = global.player_deck[| deck_sort_order[hover_card_index]+1];
@@ -18,7 +18,7 @@ if (package_button_select == 2) {
 	if not is_submenu_opened{
 	    // 武器背包标签页
 	    if (hover_weapon_index != -1) {
-			audio_play_sound(snd_button,0,0)
+			global.audio.play(snd_button,0,0)
 	        var weapon_id = global.save_data.unlocked_weapons[hover_weapon_index].id;
 			var weapon_info = get_weapon_info(weapon_id)
 	        var is_equipped = is_weapon_equipped(weapon_id);
@@ -33,7 +33,7 @@ if (package_button_select == 2) {
 	        }
 	    }
 		if (hover_gem_index != -1) {
-			audio_play_sound(snd_button,0,0)
+			global.audio.play(snd_button,0,0)
 	        var weapon_id = global.save_data.unlocked_gems[hover_gem_index].id;
 			var weapon_info = get_gem_info(weapon_id)
 	        var is_equipped = (get_gem_index(weapon_id) != -1);
@@ -56,7 +56,7 @@ else if package_button_select == 3{
 			var _price = get_material_sell_price(_mat_id)
 			var _amount = get_material_amount(_mat_id)
 			if _price > 0 && _amount > 0{
-				audio_play_sound(snd_button,0,0)
+				global.audio.play(snd_button,0,0)
 				var _mat_data = get_material_info(_mat_id)
 				var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_material_sell_confirm)
 				inst.sell_material_id = _mat_id

@@ -53,3 +53,34 @@ if (!_ime_typing && ime_tick >= 60) {
         native_disable_ime(window_handle());
     }
 }
+
+if (!variable_instance_exists(id, "ml_tick")) {
+    ml_tick = 10;
+    ml_on = false;
+    ml_focus_stable = false;
+    ml_focus_count = 0;
+    if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
+}
+ml_tick++;
+if (ml_tick >= 10) {
+    ml_tick = 0;
+    if (global.mouse_limit_hz > 0 && native_start_mouse_limit != undefined) {
+        var _ml_focus = window_has_focus();
+        if (_ml_focus != ml_focus_stable) {
+            ml_focus_count++;
+            if (ml_focus_count >= 3) {
+                ml_focus_stable = _ml_focus;
+                ml_focus_count = 0;
+            }
+        } else {
+            ml_focus_count = 0;
+        }
+        if (ml_focus_stable && !ml_on) {
+            native_start_mouse_limit(global.mouse_limit_hz, window_handle());
+            ml_on = true;
+        } else if (!ml_focus_stable && ml_on) {
+            native_stop_mouse_limit();
+            ml_on = false;
+        }
+    }
+}

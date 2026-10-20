@@ -6,7 +6,7 @@ if shape == 1{
 if shape == 2{
 	inst.sprite_index = spr_sugar_ball_pult_bullet_2
 }
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk

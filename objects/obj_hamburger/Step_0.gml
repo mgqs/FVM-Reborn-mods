@@ -71,7 +71,7 @@ if state != CARD_STATE.SLEEP && state != CARD_STATE.RELAX{
 			enemy_encounted = false
 	    }
 		if (attack_timer == attack_anim * current_flash_speed * 0.5){
-			audio_play_sound(snd_hamburger_eat,0,0)
+			global.audio.play(snd_hamburger_eat,0,0)
 	        event_user(1); // 发射子弹
 		}
 	}

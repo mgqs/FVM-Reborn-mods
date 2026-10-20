@@ -1,8 +1,13 @@
 // 绘制事件
-draw_set_alpha(0.5);
+panel_anim_step(id, false)
+if (!instance_exists(id)) { exit }
+draw_set_alpha(0.5 * pnl_o);
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+if (!surface_exists(anim_surf)) anim_surf = surface_create(room_width, room_height)
+surface_set_target(anim_surf)
+draw_clear_alpha(c_black, 0)
 draw_self()
 
 // 绘制背包格子背景
@@ -19,6 +24,32 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_bottom);
 draw_set_font(font_yuan)
 
+if (!variable_instance_exists(id, "tab_fade")) { tab_fade = 1; tab_fade_t = -1; tab_shown = info_button_select }
+if (tab_shown != info_button_select) {
+	tab_shown = info_button_select
+	tab_fade = 0
+	tab_fade_t = 0
+	y_offset = y_offset_target
+	if (variable_instance_exists(id, "sr_rowv")) {
+		for (var _k = 0; _k < array_length(sr_rowv); _k++) sr_rowv[_k] = -1
+	}
+}
+if (tab_fade_t >= 0) {
+	if (!ui_anim_on(1)) { tab_fade = 1; tab_fade_t = -1 }
+	else {
+		tab_fade_t += ui_anim_dt()
+		tab_fade = ui_anim_ease(clamp(tab_fade_t / 0.20, 0, 1), 2)
+		if (tab_fade_t >= 0.55) { tab_fade = 1; tab_fade_t = -1 }
+	}
+}
+if (!variable_instance_exists(id, "sr_rowv") || array_length(sr_rowv) < info_rows + 2) sr_rowv = array_create(info_rows + 2, -1)
+var _sr_i0 = max(0, floor((y_offset - 39.5) / 213))
+var _sr_i1 = min(info_rows - 1, floor((y_offset + 700) / 213))
+for (var _sr_i = _sr_i0; _sr_i <= _sr_i1; _sr_i++) {
+	if (sr_rowv[_sr_i] < 0) sr_rowv[_sr_i] = 0
+	else if (sr_rowv[_sr_i] < 5) sr_rowv[_sr_i] += ui_anim_dt()
+}
+
 // 根据当前页签的实际条目数量计算行数，避免固定 40 行导致后续卡片不绘制。
 var _info_item_count = 0
 if (info_button_select == 1) {
@@ -34,6 +65,9 @@ if (info_button_select == 1) {
     _info_item_count = array_length(global.level_id_list)
 }
 info_rows = max(1, ceil(_info_item_count / info_cols))
+var _max_scroll = max(0, 142 * 1.5 * info_rows - surface_height)
+y_offset_target = clamp(y_offset_target, 0, _max_scroll)
+y_offset = clamp(y_offset, 0, _max_scroll)
 
 if info_button_select == 1 {
 	if surface_exists(info_surface){
@@ -41,11 +75,12 @@ if info_button_select == 1 {
 		draw_clear_alpha(c_black,0)
     for(var i = 0 ; i < info_rows ; i++){
         for(var j = 0 ; j < info_cols ; j++){
-			if j + i * info_cols == select_card_index{
-				draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+            var _cell_alpha = cell_reveal_alpha(i, j)
+            if j + i * info_cols == select_card_index{
+                draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, _cell_alpha)
 			}
 			else{
-				draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+                draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, _cell_alpha)
 			}
         }
     }
@@ -99,15 +134,18 @@ if info_button_select == 1 {
             var card_x = x - 1154 + col * 128*1.5;
             var card_y = y - 435 + row * 142*1.5-y_offset;
             
+            var _cell_alpha = cell_reveal_alpha(row, col)
             // 绘制卡片
 				var _slot_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
-				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.30, 0.30, 0, c_white, 1);
-                draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.8, 0.8, 0, c_white, 1);
+                draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.30, 0.30, 0, c_white, _cell_alpha);
+                draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.8, 0.8, 0, c_white, _cell_alpha);
 				draw_set_color(c_white);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(font_yuan)
-				draw_text(card_x,card_y+87,card_name)
+                draw_set_alpha(_cell_alpha)
+                draw_text(card_x,card_y+87,card_name)
+                draw_set_alpha(1)
 				draw_set_font(font_yuan)
                 // 检查鼠标是否悬停在卡片上
                 var spr_width = 128*1.5;
@@ -129,7 +167,7 @@ if info_button_select == 1 {
 	
 	surface_reset_target()
 	}
-	draw_surface(info_surface,x-1380,y-368)
+	draw_surface_ext(info_surface,x-1380,y-368,1,1,0,c_white,tab_fade)
     // 绘制悬停提示
     if (hover_card_index != -1) {
         // 获取鼠标位置
@@ -233,10 +271,10 @@ else if info_button_select == 2 {
     for(var i = 0 ; i < info_rows ; i++){
         for(var j = 0 ; j < info_cols ; j++){
 			if j + i * info_cols == select_card_index{
-				draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+                draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, cell_reveal_alpha(i,j))
 			}
 			else{
-				draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+                draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, cell_reveal_alpha(i,j))
 			}
         }
     }
@@ -258,15 +296,18 @@ else if info_button_select == 2 {
         if (row < info_rows) {
             var card_x = x - 1154 + col * 128*1.5;
             var card_y = y - 435 + row * 142*1.5-y_offset;
+            var _cell_alpha = cell_reveal_alpha(row,col)
             
             // 绘制敌人
 				
-                draw_sprite_ext(enemy_data.spr, 0, card_x, card_y+65, 1, 1, 0, c_white, 1);
+                draw_sprite_ext(enemy_data.spr, 0, card_x, card_y+65, 1, 1, 0, c_white, _cell_alpha);
 				draw_set_color(c_white);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_middle);
 				draw_set_font(font_yuan)
-				draw_text(card_x,card_y+87,enemy_data.name)
+                draw_set_alpha(_cell_alpha)
+                draw_text(card_x,card_y+87,enemy_data.name)
+                draw_set_alpha(1)
 				draw_set_font(font_yuan)
                 // 检查鼠标是否悬停在敌人上
                 var spr_width = 128*1.5;
@@ -288,7 +329,7 @@ else if info_button_select == 2 {
 	
 	surface_reset_target()
 	}
-	draw_surface(info_surface,x-1380,y-368)
+	draw_surface_ext(info_surface,x-1380,y-368,1,1,0,c_white,tab_fade)
     // 绘制悬停提示
     if (hover_card_index != -1) {
         // 获取鼠标位置
@@ -355,10 +396,10 @@ else if info_button_select == 3 {
     for(var i = 0 ; i < info_rows ; i++){
         for(var j = 0 ; j < info_cols ; j++){
 			if j + i * info_cols == select_card_index{
-				draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+                draw_sprite_ext(spr_info_island_info_bg, 1, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, cell_reveal_alpha(i,j))
 			}
 			else{
-				draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, 1)
+                draw_sprite_ext(spr_info_island_info_bg, 0, x-1154+j*128*1.5, y - 435 + 142*1.5 * i-y_offset, 0.75, 0.75, 0, c_white, cell_reveal_alpha(i,j))
 			}
         }
     }
@@ -380,19 +421,22 @@ else if info_button_select == 3 {
         if (row < info_rows) {
             var card_x = x - 1154 + col * 128*1.5;
             var card_y = y - 435 + row * 142*1.5-y_offset;
+            var _cell_alpha = cell_reveal_alpha(row,col)
             
             // 绘制敌人
 			if struct_exists(enemy_data,"spr_index"){
-				draw_sprite_ext(enemy_data.icon, enemy_data.spr_index, card_x, card_y, 0.2, 0.2, 0, c_white, 1);
+                draw_sprite_ext(enemy_data.icon, enemy_data.spr_index, card_x, card_y, 0.2, 0.2, 0, c_white, _cell_alpha);
 			}
 			else{
-				draw_sprite_ext(enemy_data.icon, enemy_index, card_x, card_y, 0.2, 0.2, 0, c_white, 1);
+                draw_sprite_ext(enemy_data.icon, enemy_index, card_x, card_y, 0.2, 0.2, 0, c_white, _cell_alpha);
 			}
 			draw_set_color(c_white);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
 			draw_set_font(font_yuan)
-			draw_text(card_x,card_y+87,enemy_data.name)
+            draw_set_alpha(_cell_alpha)
+            draw_text(card_x,card_y+87,enemy_data.name)
+            draw_set_alpha(1)
 			draw_set_font(font_yuan)
             // 检查鼠标是否悬停在敌人上
             var spr_width = 128*1.5;
@@ -414,7 +458,7 @@ else if info_button_select == 3 {
 	
 	surface_reset_target()
 	}
-	draw_surface(info_surface,x-1380,y-368)
+	draw_surface_ext(info_surface,x-1380,y-368,1,1,0,c_white,tab_fade)
     // 绘制悬停提示
     if (hover_card_index != -1) {
         // 获取鼠标位置
@@ -471,6 +515,12 @@ else if info_button_select == 3 {
 
 
 // ===== 滚动条参数 =====
+if (ui_anim_on(1)) {
+    y_offset += (y_offset_target - y_offset) * 0.28
+    if (abs(y_offset_target - y_offset) < 0.5) y_offset = y_offset_target
+} else {
+    y_offset = y_offset_target
+}
 var sb_x       = x - 1388 + surface_width + 10;  // 起始位置 x（左边界）
 var sb_y_start = y - 352;                          // 起始位置 y（顶部）
 var sb_y_end   = y - 384 + surface_height;         // 结束位置 y（底部）
@@ -523,3 +573,8 @@ if (scroll_max > 0) {
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_alpha(1);
+surface_reset_target()
+var _split = 951
+var _shift = (1 - pnl_o) * anim_slide
+draw_surface_part_ext(anim_surf, 0, 0, _split, room_height, -_shift, 0, 1, 1, c_white, pnl_o)
+draw_surface_part_ext(anim_surf, _split, 0, room_width - _split, room_height, _split + _shift, 0, 1, 1, c_white, pnl_o)

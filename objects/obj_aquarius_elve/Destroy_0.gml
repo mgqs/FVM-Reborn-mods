@@ -69,7 +69,7 @@
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	 audio_play_sound(snd_bottle_explode, 0, false);
+	 global.audio.play(snd_bottle_explode, 0, false);
 	 if global.screen_shake{
 		Camera_Shock(5,20)
 	}

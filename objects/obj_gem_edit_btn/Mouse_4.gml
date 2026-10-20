@@ -1,4 +1,4 @@
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 if btn_type == "plus"{
 	var max_value = 0
 	if target_info == "level"{

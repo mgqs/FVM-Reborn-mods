@@ -1,6 +1,6 @@
 // 切换状态
 state = !state;
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 
 // 抽卡版和欧皇版互斥，并统一保存为 play_mode。
 if (config_key == "play_mode_gacha" && state) {
@@ -80,4 +80,7 @@ else if (config_key == "borderless_window"){
 }
 else if (config_key == "lose_focus_pause"){
 	global.lose_focus_pause = state
+}
+else if (config_key == "ui_anim"){
+	global.ui_anim = state ? 1 : 0
 }

@@ -32,7 +32,7 @@ if !global.is_paused{
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	audio_play_sound(snd_flour_sack, 0, false);
+	global.audio.play(snd_flour_sack, 0, false);
 }
 else{
 	alarm[0] = 1

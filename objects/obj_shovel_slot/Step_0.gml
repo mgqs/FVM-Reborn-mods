@@ -10,14 +10,14 @@ if (mouse_check_button_pressed(mb_left)) {
     
     if (point_in_rectangle(mx, my, x, y, x+150, y+150)) {
         select_shovel();
-		audio_play_sound(snd_shovel,0,0)
+		global.audio.play(snd_shovel,0,0)
     }
 }
 if keyboard_check_pressed(slot_key){
 	if !is_selected{
 		select_shovel();
 		hotkey_pressed = true
-		audio_play_sound(snd_shovel,0,0)
+		global.audio.play(snd_shovel,0,0)
 	}
 	else{
 		deselect_shovel();
@@ -120,12 +120,12 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x,logical_world.y + platform_shift_y,-2,obj_place_effect)
-				audio_play_sound(snd_place2, 1, false);
+				global.audio.play(snd_place2, 1, false);
 			}
 			else if global.grid_terrains[logical_row][logical_col].type == "water"{
 				var inst = instance_create_depth(logical_world.x + platform_shift_x,logical_world.y + platform_shift_y + 20,-2500,obj_place_effect)
 				inst.sprite_index = spr_enter_water_effect
-				audio_play_sound(snd_enter_water,0,0)
+				global.audio.play(snd_enter_water,0,0)
 			}
 			is_shoveled = true;
             if (plant_id == "dandantu" && !has_exploded) {
@@ -148,12 +148,12 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
 		shovel_effect.sprite_index = shovel_spr
 		if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x,logical_world.y + platform_shift_y,-2,obj_place_effect)
-				audio_play_sound(snd_place2, 1, false);
+				global.audio.play(snd_place2, 1, false);
 			}
 			else if global.grid_terrains[logical_row][logical_col].type == "water"{
 				var inst = instance_create_depth(logical_world.x + platform_shift_x,logical_world.y + platform_shift_y + 20,-2500,obj_place_effect)
 				inst.sprite_index = spr_enter_water_effect
-				audio_play_sound(snd_enter_water,0,0)
+				global.audio.play(snd_enter_water,0,0)
 			}
 		deselect_shovel()
         

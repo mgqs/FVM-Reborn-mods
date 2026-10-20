@@ -211,6 +211,7 @@ copy /Y "$(TargetPath)" "$(ProjectDir)..\..\extensions\WindowsNative\"</Command>
     <ClInclude Include="typedef.h" />
     <ClInclude Include="entry.h" />
     <ClInclude Include="archive_extractor.h" />
+    <ClInclude Include="mouse_limit.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

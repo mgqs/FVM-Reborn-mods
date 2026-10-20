@@ -469,7 +469,7 @@ if (keyboard_check_pressed(vk_escape)) {
         // 尝试关闭菜单（菜单自身会处理ESC关闭）
         var menu = instance_find(obj_pause_menu, 0);
         if (menu != noone && !menu.submenu_open) {
-            instance_destroy(menu);
+			panel_anim_close(menu);
             global.is_paused = false;
             global.show_menu = false;
         }
@@ -479,7 +479,7 @@ if (keyboard_check_pressed(vk_escape)) {
 if (keyboard_check_pressed(ord("R"))) {
 	if global.game_over{
 		if instance_exists(obj_game_over) && obj_game_over.sprite_index == spr_lose{
-			room_restart()
+			room_transition_start(room)
 		}
 	}
 }

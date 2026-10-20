@@ -1,6 +1,6 @@
 if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 	pressed = true
-    audio_play_sound(snd_button, 0, 0);
+    global.audio.play(snd_button, 0, 0);
 	if target_level_id == "longyuan_entry"{
 		global.map_id = "longyuan"
 		global.map_name = "龙渊"
@@ -8,6 +8,12 @@ if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 		exit
 	}
 	texture_prefetch("cards")
+	if target_level_id == "camp_shop"{
+		instance_create_depth(room_width/2,room_height/2,-5,obj_camp_shop_bg)
+		obj_player_info_ui.menu_type = 4
+		obj_world_map_button.world_map = 2
+		exit
+	}
 	if global.map_id == "longyuan" && target_level_id != "test_level" {
 		var _longyuan_file = "level_data/" + (global.difficulty >= 2 ? target_level_file_hard : target_level_file)
 		if !file_exists(_longyuan_file) {

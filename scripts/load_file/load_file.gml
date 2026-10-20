@@ -46,6 +46,15 @@ function load_file(file_slot) {
         // 非破坏性迁移：补充缺失字段，保留通关记录和游玩时间等进度数据
         ensure_save_data()
 
+        // 源版 1.8 -> 1.9：已通关奶酪城堡的存档解锁神圣宝石
+        if (_v == 1.8 || _v == "1.8") {
+            if (array_get_index(global.save_data.completed_levels, "cheese_castle") != -1) {
+                unlock_gem("holy_gem")
+            }
+            global.save_data.version = 1.9
+            save_file(file_slot)
+        }
+
         return true;
     } catch(e) {
         show_debug_message("存档解析错误: " + string(e));

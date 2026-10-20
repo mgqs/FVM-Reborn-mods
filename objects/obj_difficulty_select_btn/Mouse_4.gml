@@ -18,7 +18,7 @@ if room != room_battle{
 			}
 		}
 	}
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	// 保存到配置文件
 	if (config_key != "") {
 	    ini_open("config.ini");
@@ -40,6 +40,6 @@ if room != room_battle{
 	}
 }
 else{
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	show_notice("无法在游戏中修改难度",60)
 }

@@ -138,7 +138,7 @@ function bullet_enemy_reachable(_inst) {
     if (!variable_global_exists("bullet_range_margin")) global.bullet_range_margin = 128;
     var _m = global.bullet_range_margin + 64;
     var _x = _inst.x;
-    if (global.enemy_min_left > _x + _m) return false;
+    // 仅当子弹已经飞过所有敌人时才跳过检测（敌人都在子弹左边很远）
     if (global.enemy_max_right < _x - _m) return false;
     return true;
 }

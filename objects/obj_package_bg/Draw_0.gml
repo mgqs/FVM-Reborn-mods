@@ -1,8 +1,11 @@
 // 绘制事件
-draw_set_alpha(0.5);
+panel_anim_step(id)
+if (!instance_exists(id)) exit
+draw_set_alpha(0.5 * ui_anim_alpha(id));
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+panel_anim_begin(id)
 draw_self()
 
 // 绘制背包格子背景
@@ -19,6 +22,12 @@ draw_set_color(c_white);
 draw_set_halign(fa_left);
 draw_set_valign(fa_bottom);
 draw_set_font(font_yuan)
+if (pg_t_l >= 0) {
+	pg_t_l++;
+	if (pg_t_l > pg_frames) pg_t_l = -1;
+}
+var _pg_alpha_l = (pg_t_l >= 0) ? 1 - power(1 - pg_t_l / pg_frames, 3) : 1;
+draw_set_alpha(_pg_alpha_l);
 if info_button_select == 1{
 	//绘制武器栏位文字
 	draw_set_halign(fa_left);
@@ -110,6 +119,12 @@ else if info_button_select == 3{
 	draw_set_valign(fa_bottom);
 	draw_set_font(font_yuan)
 }
+draw_set_alpha(1);
+if (pg_t_r >= 0) {
+	pg_t_r++;
+	if (pg_t_r > pg_frames) pg_t_r = -1;
+}
+var _pg_alpha_r = (pg_t_r >= 0) ? 1 - power(1 - pg_t_r / pg_frames, 3) : 1;
 if package_button_select == 1 {
 	if surface_exists(package_surface){
 		surface_set_target(package_surface)
@@ -241,28 +256,18 @@ if package_button_select == 1 {
     }
 	
 	surface_reset_target()
-	draw_surface(package_surface,x-354-42,y-361-48)
+	draw_surface_ext(package_surface,x-354-42,y-361-48,1,1,0,c_white,_pg_alpha_r)
     
     // 绘制悬停提示
-    if (hover_card_index != -1) {
+    if (hover_card_index != -1 && !instance_exists(obj_craft_bg)) {
         // 获取鼠标位置
         var tooltip_x = mouse_x + 15;
         var tooltip_y = mouse_y + 15;
 		
 		var tooltip_text = "左键点击调节卡片\n右键点击查看情报"
         
-        // 绘制提示背景
-        draw_set_color(c_black);
-        draw_set_alpha(0.7);
-        draw_rectangle(tooltip_x - 5, tooltip_y - 5, 
-                      tooltip_x + string_width(tooltip_text)+5, tooltip_y + string_height(tooltip_text)+5, false);
-        
-        // 绘制提示文本
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_top);
-        draw_set_alpha(1);
-        draw_set_color(c_white);
-        draw_text(tooltip_x, tooltip_y, tooltip_text);
+        draw_set_font(font_yuan);
+        tooltip_set(tooltip_x, tooltip_y, tooltip_text, 1);
     }
 }
 else if package_button_select == 2 {
@@ -517,7 +522,7 @@ else if package_button_select == 2 {
 	}
 
 	surface_reset_target()
-	draw_surface(package_surface,x-354-42,y-368-44)
+	draw_surface_ext(package_surface,x-354-42,y-368-44,1,1,0,c_white,_pg_alpha_r)
 
 	// 绘制悬停提示
 	if (hover_weapon_index != -1) {
@@ -540,17 +545,8 @@ else if package_button_select == 2 {
 				tooltip_text = weapon_data.description + "\n左键点击装备"
 			}
 
-			// 绘制提示背景
-			draw_set_color(c_black);
-			draw_set_alpha(0.7);
-			draw_rectangle(tooltip_x - string_width(tooltip_text) - 5, tooltip_y - 5,
-			              tooltip_x +5, tooltip_y + string_height(tooltip_text)+5, false);
-			//绘制提示文本
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_top);
-			draw_set_alpha(1);
-			draw_set_color(c_white);
-			draw_text(tooltip_x- string_width(tooltip_text), tooltip_y, tooltip_text);
+			draw_set_font(font_yuan);
+			tooltip_set(tooltip_x, tooltip_y, tooltip_text, -1);
 
 
 		}
@@ -577,17 +573,8 @@ else if package_button_select == 2 {
 				tooltip_text = weapon_data.description + "\n左键点击镶嵌\n右键点击编辑"
 			}
 
-			// 绘制提示背景
-			draw_set_color(c_black);
-			draw_set_alpha(0.7);
-			draw_rectangle(tooltip_x - string_width(tooltip_text)- 5, tooltip_y - 5,
-			              tooltip_x +5, tooltip_y + string_height(tooltip_text)+5, false);
-			//绘制提示文本
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_top);
-			draw_set_alpha(1);
-			draw_set_color(c_white);
-			draw_text(tooltip_x- string_width(tooltip_text), tooltip_y, tooltip_text);
+			draw_set_font(font_yuan);
+			tooltip_set(tooltip_x, tooltip_y, tooltip_text, -1);
 
 
 		}
@@ -684,7 +671,7 @@ else if package_button_select == 3{
         }
     }
 	surface_reset_target()
-	draw_surface(package_surface,x-354-42,y-368-44)
+	draw_surface_ext(package_surface,x-354-42,y-368-44,1,1,0,c_white,_pg_alpha_r)
 	// 绘制悬停提示
     if (hover_material_index != -1) {
 		material_list = ds_map_keys_to_array(global.material_pool)
@@ -710,18 +697,8 @@ else if package_button_select == 3{
 			}
 
 
-            // 绘制提示背景
-			draw_set_font(font_yuan)
-            draw_set_color(c_black);
-            draw_set_alpha(0.7);
-            draw_rectangle(tooltip_x - string_width(tooltip_text) - 5, tooltip_y - 5,
-                          tooltip_x +5, tooltip_y + string_height(tooltip_text)+5, false);
-			//绘制提示文本
-			draw_set_halign(fa_left);
-            draw_set_valign(fa_top);
-            draw_set_alpha(1);
-            draw_set_color(c_white);
-			draw_text(tooltip_x- string_width(tooltip_text), tooltip_y, tooltip_text);
+			draw_set_font(font_yuan);
+			tooltip_set(tooltip_x, tooltip_y, tooltip_text, -1);
 
 
         }
@@ -732,3 +709,45 @@ else if package_button_select == 3{
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_alpha(1);
+tooltip_draw();
+var _sb_scl = 2.2;
+var _sb_w = sprite_get_width(spr_info_island_scroll_bar) * _sb_scl;
+var _sb_h = sprite_get_height(spr_info_island_scroll_bar) * _sb_scl;
+var _sb_l = x - 354 - 42;
+var _sb_t = (package_button_select == 1) ? (y - 361 - 48) : (y - 368 - 44);
+var _sb_x = _sb_l + 756 - _sb_w + 28 + _sb_w * 0.5;
+var _sb_vh = 775;
+var _sb_max = 0;
+if (package_button_select == 1) {
+	_sb_max = variable_instance_exists(id, "max_y_offset_1") ? max_y_offset_1 : max(0, (package_rows - 8) * 96);
+} else if (package_button_select == 2) {
+	_sb_max = variable_instance_exists(id, "max_y_offset_2") ? max_y_offset_2 : max(0, (package_rows - 9) * 88);
+} else {
+	_sb_max = variable_instance_exists(id, "max_y_offset_3") ? max_y_offset_3 : max(0, (package_rows - 9) * 88);
+}
+if (ui_anim_on(1)) {
+	y_offset += (y_offset_target - y_offset) * 0.28;
+	if (abs(y_offset_target - y_offset) < 0.5) y_offset = y_offset_target;
+} else {
+	y_offset = y_offset_target;
+}
+if (_sb_max > 0 && _sb_vh > _sb_h) {
+	var _sb_travel = _sb_vh - _sb_h;
+	var _sb_y = _sb_t + clamp(y_offset / _sb_max, 0, 1) * _sb_travel;
+	draw_sprite_ext(spr_info_island_scroll_bar, 0, _sb_x, _sb_y, _sb_scl, _sb_scl, 0, c_white, 1);
+	if (mouse_check_button_pressed(mb_left)) {
+		if (point_in_rectangle(mouse_x, mouse_y, _sb_x, _sb_y, _sb_x + _sb_w, _sb_y + _sb_h)) {
+			sb_dragging = true;
+			sb_drag_y = mouse_y;
+			sb_drag_offset = y_offset;
+		} else if (point_in_rectangle(mouse_x, mouse_y, _sb_x, _sb_t, _sb_x + _sb_w, _sb_t + _sb_vh)) {
+			y_offset_target = clamp((mouse_y - _sb_t - _sb_h * 0.5) / _sb_travel * _sb_max, 0, _sb_max);
+		}
+	}
+	if (sb_dragging && mouse_check_button(mb_left)) {
+		y_offset = clamp(sb_drag_offset + (mouse_y - sb_drag_y) * (_sb_max / _sb_travel), 0, _sb_max);
+		y_offset_target = y_offset;
+	}
+	if (mouse_check_button_released(mb_left)) sb_dragging = false;
+}
+panel_anim_end_split(id, 951, 260)

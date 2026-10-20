@@ -139,4 +139,11 @@ function enemy_init(){
 	register_enemy("infected_zhanshen",{"name":"变异战神","_obj":obj_infected_zhanshen,"hp":250000,"shield":0,"description":"变异战神：瀑布遗迹BOSS","speed":0.072,"atk":2000,"cycle":1,"range":90,"ash_proof":true,"spr":spr_infected_zhanshen_idle,"feature":"land"})
 	register_enemy("hercules",{"name":"大力神","_obj":obj_hercules,"hp":400000,"shield":0,"description":"大力神：丛林遗迹BOSS","speed":0.072,"atk":2000,"cycle":1,"range":90,"ash_proof":true,"spr":spr_hercules_idle,"feature":"land"})
 	register_enemy("thor",{"name":"雷神","_obj":obj_thor_head,"hp":800000,"shield":0,"description":"雷神：基地遗迹BOSS","speed":0.3,"atk":2000,"cycle":1,"range":90,"ash_proof":true,"spr":spr_thor_head_idle,"feature":"land"})
+	register_enemy("explore_mouse",{"name":"探险鼠","_obj":obj_explore_mouse,"hp":240,"shield":0,"description":"探险鼠：很普通的老鼠，无特殊能力","speed":0.30,"atk":10,"cycle":36,"range":90,"ash_proof":false,"spr":spr_explore_mouse,"feature":"land"})
+	register_enemy("tire_mouse",{"name":"轮胎鼠","_obj":obj_tire_mouse,"hp":1200,"shield":0,"description":"轮胎鼠：碾压卡片，扔出轮胎","speed":0.90,"atk":2000,"cycle":1,"range":90,"ash_proof":false,"spr":spr_tire_mouse,"feature":"land"})
+	register_enemy("suv_mouse",{"name":"越野车鼠","_obj":obj_suv_mouse,"hp":3600,"shield":0,"description":"越野车鼠：碾压卡片，借助跳台跳跃","speed":0.50,"atk":2000,"cycle":1,"range":90,"ash_proof":true,"spr":spr_suv_mouse,"feature":"land"})
+	register_enemy("carpet_mouse",{"name":"飞毯鼠","_obj":obj_carpet_mouse,"hp":1800,"shield":0,"description":"飞毯鼠：空降并使用地毯罩住卡片","speed":0.30,"atk":10,"cycle":36,"range":90,"ash_proof":false,"spr":spr_carpet_mouse_air,"feature":"land"})
+	register_enemy("barrel_mouse",{"name":"酒桶鼠","_obj":obj_barrel_mouse,"hp":2700,"shield":0,"description":"酒桶鼠：免疫爆炸伤害并减伤","speed":0.45,"atk":10,"cycle":36,"range":90,"ash_proof":true,"spr":spr_barrel_mouse,"feature":"land"})
+	register_enemy("travel_record",{"name":"旅行唱机","_obj":obj_travel_record,"hp":50000,"shield":0,"description":"旅行唱机：探险营地BOSS","speed":0.3,"atk":10,"cycle":36,"range":90,"ash_proof":true,"spr":spr_travel_record_idle_2,"feature":"land"})
+	register_enemy("beverage_machine",{"name":"饮料贩卖机","_obj":obj_beverage_machine,"hp":80000,"shield":0,"description":"饮料贩卖机：探险营地BOSS","speed":0.3,"atk":10,"cycle":36,"range":90,"ash_proof":true,"spr":spr_beverage_machine_idle,"feature":"land"})
 }

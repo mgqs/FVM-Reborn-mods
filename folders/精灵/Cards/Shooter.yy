@@ -24,7 +24,8 @@
     {"name":"coal_starfish","path":"folders/精灵/Cards/Shooter/coal_starfish.yy",},
     {"name":"king_triple_long_bao","path":"folders/精灵/Cards/Shooter/king_triple_long_bao.yy",},
     {"name":"tar_sprayer","path":"folders/精灵/Cards/Shooter/tar_sprayer.yy",},
-    {"name":"pizza_oven","path":"folders/精灵/Cards/Shooter/pizza_oven.yy",}
+    {"name":"pizza_oven","path":"folders/精灵/Cards/Shooter/pizza_oven.yy",},
+    {"name":"nut_frier","path":"folders/精灵/Cards/Shooter/nut_frier.yy",}
   ],
   "listItems":[
     {"name":"74b52c6c-61df-4535-adac-d33527c80232","path":"sprites/spr_double_ice_long_bao/spr_double_ice_long_bao.yy",},

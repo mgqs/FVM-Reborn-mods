@@ -20,29 +20,40 @@ gem_material_id_list = ["less_crystal","middle_crystal","advanced_crystal"]
 
 hover_card_index = -1
 hover_gem_index = -1
-craft_sort_order = []
 close_timer = -1
 
 y_offset = 0
+y_offset_target = 0
+// 滚动条状态（绘制与拖动都在 Draw_0 末尾，与滚轮共用 y_offset）
+sb_dragging = false
+sb_drag_y = 0
+sb_drag_offset = 0
 card_surface = -1
 
 current_uprade_target_id = ""
 
-spices_use_order = ["natural_spices","secret_spices","royal_spices"]
-clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
-crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
-
-// 概率强化 / 失败掉星 / 保险金 三个开关：同一排放在纸卷顶部空白带（再往下会被香料槽挡住）
+// Probability-upgrade toggles
 rate_toggle_x = x - 600
 rate_toggle_y = y - 105
 rate_toggle_hover = false
-
 dropstar_toggle_x = x - 420
 dropstar_toggle_y = y - 105
 dropstar_toggle_hover = false
-
 assure_badge_cx = x - 90
 assure_badge_cy = y + 140
 assure_toggle_x = x - 90
 assure_toggle_y = y + 202
 assure_toggle_hover = false
+
+spices_use_order = ["natural_spices","secret_spices","royal_spices"]
+clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
+crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
+
+// 整块面板的进出场过渡（实现在 scripts/GuiStack/GuiStack.gml）
+panel_anim_init(id, 0.28, 0.18, 260)
+panel_anim_kids(id, [obj_closecraft_btn, obj_craft_select_btn, obj_craft_confirm_btn])
+
+// 合成屋的三个元素（房间坐标 1920x1080，对着绘制坐标算的）：[x1,y1,x2,y2,dx,dy]，dx/dy = 从哪边来
+craft_parts = [[130,  15, 1096,  900, -1, 0],   // 左上板块（卡片/宝石强化台）：从左边
+               [130, 900, 1096, 1065,  0, 1],   // 下面的道具条：从下边
+               [1096, 15, 1790, 1065,  1, 0]]   // 右边的素材格：从右边

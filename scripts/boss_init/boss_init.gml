@@ -42,4 +42,6 @@ function boss_init(){
 	register_boss("ly_mengpo",{"name":"孟婆鼠","hp":220000,"icon":spr_arno_icon})
 	register_boss("ly_wuchang",{"name":"无常鼠","hp":260000,"icon":spr_arno_icon})
 	register_boss("ly_youshen",{"name":"游神鼠","hp":300000,"icon":spr_arno_icon})
+	register_boss("travel_record",{"name":"旅行唱机","hp":50000,"icon":spr_mario_mouse_icon})
+	register_boss("beverage_machine",{"name":"饮料贩卖机","hp":80000,"icon":spr_mario_mouse_icon})
 }

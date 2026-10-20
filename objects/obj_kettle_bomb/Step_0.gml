@@ -103,5 +103,5 @@ if attack_timer == idle_anim*current_flash_speed{
 	instance_destroy()
 }
 if attack_timer == 1{
-	audio_play_sound(snd_kettle_bomb_explode,0,0)
+	global.audio.play(snd_kettle_bomb_explode,0,0)
 }

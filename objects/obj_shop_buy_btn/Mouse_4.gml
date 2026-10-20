@@ -1,6 +1,6 @@
 if not obj_shop_bg.is_submenu_opened and not is_disabled{
 	
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	if btn_type == "attire" && is_attire_owned{
 		equip_attire(target_item)
 		save_file(global.save_slot)

@@ -19,6 +19,6 @@ if not disabled{
 	with obj_task_bg{
 		refresh_task_list()
 	}
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	show_notice("奖励已领取",60)
 }

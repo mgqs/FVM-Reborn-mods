@@ -7,7 +7,7 @@ if instance_exists(target_inst){
 		if !immune_to_ash && hp > 0{
 			var inst = instance_create_depth(x,y-25,-500,obj_place_effect)
 			inst.sprite_index = spr_enter_water_effect
-			audio_play_sound(snd_enter_water,0,0)
+			global.audio.play(snd_enter_water,0,0)
 			other.enemy_hitted = true
 			instance_destroy()
 				

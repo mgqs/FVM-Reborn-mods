@@ -318,10 +318,10 @@ if (is_selected) {
 			}
             
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
-				audio_play_sound(snd_place1,0,0)
+				global.audio.play(snd_place1,0,0)
 			}
 			else if global.grid_terrains[logical_row][logical_col].type == "water"{
-				audio_play_sound(snd_enter_water,0,0)
+				global.audio.play(snd_enter_water,0,0)
 			}
             // 取消选择
             is_selected = false;

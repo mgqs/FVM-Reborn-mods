@@ -19,7 +19,8 @@
     {"name":"Player Menu","path":"folders/物体/Menu/Player Menu.yy",},
     {"name":"Player Info","path":"folders/物体/Menu/Player Info.yy",},
     {"name":"Cookbook","path":"folders/物体/Menu/Cookbook.yy",},
-    {"name":"Shop","path":"folders/物体/Menu/Shop.yy",}
+    {"name":"Shop","path":"folders/物体/Menu/Shop.yy",},
+    {"name":"Camp Shop","path":"folders/物体/Menu/Camp Shop.yy",}
   ],
   "listItems":[
     {"name":"obj_load_bar","path":"objects/obj_load_bar/obj_load_bar.yy",},

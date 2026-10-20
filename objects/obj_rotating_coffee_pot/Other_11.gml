@@ -13,7 +13,7 @@ var _x = x;
 				damage_type = "true";
 				damage_source_object = other.object_index;
 				event_user(0)
-		            audio_play_sound(snd_hit1,0,0)
+		            global.audio.play(snd_hit1,0,0)
 		    }
 		
 	}

@@ -26,7 +26,7 @@ if shape == 2{
 
 
 // 播放攻击声音
-audio_play_sound(snd_coke_bomb_explode, 0, false);
+global.audio.play(snd_coke_bomb_explode, 0, false);
 	 
 var effect_inst = instance_create_depth(x,y,depth,obj_coke_bomb_explode)
 if shape == 0 {

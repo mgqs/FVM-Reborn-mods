@@ -1,8 +1,8 @@
 if obj_info_island_bg.info_button_select == 1 and obj_info_island_bg.select_card_index!= -1{
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 if not obj_info_island_bg.is_submenu_opened{
 		
-			audio_play_sound(snd_button,0,0)
+			global.audio.play(snd_button,0,0)
 			var inst = instance_create_depth(room_width/2,room_height/2,depth-5,obj_info_island_edit_menu)
 			// 计算当前选中卡片的最大转职数
 			var _sorted_index = obj_info_island_bg.deck_sort_order[obj_info_island_bg.select_card_index];

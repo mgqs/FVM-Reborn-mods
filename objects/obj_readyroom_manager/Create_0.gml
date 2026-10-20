@@ -25,6 +25,33 @@ slot_cols = 13
 slot_surface = -1
 map_surface = -1
 y_offset = 0
+y_offset_target = 0
+sb_dragging = false
+sb_drag_y = 0
+sb_drag_offset = 0
+
+fly_active = false
+fly_add = true
+fly_t = 0
+fly_dur = 18
+fly_sx = 0
+fly_sy = 0
+fly_tx = 0
+fly_ty = 0
+fly_spr = -1
+fly_slot = -1
+fly_pool_i = -1
+fly_batch = []
+hover_card_x = 0
+hover_card_y = 0
+hover_card_spr = -1
+
+function readyroom_pool_visual_index(_card_id) {
+	for (var _i = 0; _i < array_length(deck_sort_order); _i++) {
+		if (global.player_deck[| deck_sort_order[_i]] == _card_id) return _i;
+	}
+	return -1;
+}
 
 is_submenu_open = false
 

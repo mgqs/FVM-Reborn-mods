@@ -49,7 +49,7 @@ function select_slot(){
             instance_destroy(global.selected_slot.selected_preview);
             global.selected_slot.selected_preview = noone;
         }
-        audio_play_sound(snd_card_lift,0,0)
+        global.audio.play(snd_card_lift,0,0)
         // 设置全局选中卡槽为当前卡槽
         global.selected_slot = id;
 }
@@ -225,10 +225,10 @@ function try_place_once(){
 			}
 			
             if global.grid_terrains[logical_row][logical_col].type == "normal"{
-				audio_play_sound(snd_place1,0,0)
+				global.audio.play(snd_place1,0,0)
 			}
 			else if global.grid_terrains[logical_row][logical_col].type == "water"{
-				audio_play_sound(snd_enter_water,0,0)
+				global.audio.play(snd_enter_water,0,0)
 			}
             // 取消选择
             is_selected = false;

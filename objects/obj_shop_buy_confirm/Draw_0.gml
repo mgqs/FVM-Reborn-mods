@@ -1,33 +1,39 @@
 // obj_quit_confirm - Draw Event
+panel_anim_step(id)
+if (!instance_exists(id)) exit
+var _a = ui_anim_alpha(id)
 
 // 绘制半透明背景
 if not instance_exists(obj_pause_menu){
-	draw_set_alpha(0.5);
+	draw_set_alpha(0.5 * _a);
 	draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
-	draw_set_alpha(1);
+	draw_set_alpha(_a);
 }
 
 // 绘制背景
-draw_sprite_ext(bg, 0, x, y, 1.5, 1.5, 0, c_white, 1);
+draw_sprite_ext(bg, 0, x, y, 1.5 * pop_s, 1.5 * pop_s, 0, c_white, _a);
 
 // 绘制提示文本
 draw_set_font(font_yuan);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_color(c_white)
-draw_text(x, y - 112, "购买确认")
-draw_text(x, y - 10, "确定以"+string(banding_buy_btn.cost)+"G购买"+banding_buy_btn.goods_name+"吗？");
+draw_set_alpha(_a)
+draw_text(x, y - 112 * pop_s, "购买确认")
+var _buy_nm = instance_exists(banding_buy_btn) ? banding_buy_btn.goods_name : buy_goods_name;
+var _buy_cost = instance_exists(banding_buy_btn) ? banding_buy_btn.cost : 0;
+draw_text(x, y - 10 * pop_s, "确定以"+string(_buy_cost)+"G购买"+_buy_nm+"吗？");
 if obj_shop_bg.shop_button_select == 4{
 	draw_set_color(c_yellow)
-	draw_text(x, y + 15, "你需要在背包中切换卡片时装。");
+		draw_text(x, y + 15 * pop_s, "你需要在背包中切换卡片时装。");
 	draw_set_color(c_white)
 }
 
 // 绘制按钮
 for (var i = 0; i < array_length(buttons); i++) {
     var btn = buttons[i];
-    var btn_x = x + btn[0];
-    var btn_y = y + 70;
+    var btn_x = x + btn[0] * pop_s;
+    var btn_y = y + 70 * pop_s;
     
     // 确定按钮状态
     var frame = 0; // 普通状态
@@ -35,7 +41,8 @@ for (var i = 0; i < array_length(buttons); i++) {
         frame = (mouse_check_button_pressed(mb_left)) ? 2 : 1;
     }
     
-    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, 0.75, 0.75,  0,  c_white,  1);
+    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, 0.75 * pop_s, 0.75 * pop_s,  0,  c_white,  _a);
     draw_set_font(font_yuan);
     draw_text(btn_x, btn_y, btn[1]);
 }
+draw_set_alpha(1)

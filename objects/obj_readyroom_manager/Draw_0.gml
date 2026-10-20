@@ -5,6 +5,12 @@ draw_set_font(font_yuan)
 draw_text(190,45,global.map_name)
 draw_set_color(c_black)
 draw_text(565,53,global.level_data.name)
+if (ui_anim_on(1)) {
+	y_offset += (y_offset_target - y_offset) * 0.28
+	if (abs(y_offset_target - y_offset) < 0.5) y_offset = y_offset_target
+} else {
+	y_offset = y_offset_target
+}
 {//绘制可选择的防御卡
 	surface_set_target(slot_surface)
 	draw_clear_alpha(c_black, 0)
@@ -43,6 +49,7 @@ draw_text(565,53,global.level_data.name)
     if (_ready_total_rows < slot_cols) _ready_total_rows = slot_cols
     // surface 高度 420，起始 y=48，可视高度约 420-48=372
     ready_max_y_offset = max(0, _ready_total_rows * 96 - 372)
+	y_offset_target = clamp(y_offset_target, 0, ready_max_y_offset)
     if (y_offset > ready_max_y_offset) y_offset = ready_max_y_offset
     if (y_offset < 0) y_offset = 0
 
@@ -94,6 +101,9 @@ for(var i = 0 ; i < slot_rows ; i++){
 			}
             
             // 绘制卡片
+            var _fly_back = fly_active && !fly_add && fly_pool_i == card_index;
+            for (var _fi = 0; _fi < array_length(fly_batch); _fi++) if (fly_batch[_fi].pool_i == card_index && !fly_batch[_fi].add) _fly_back = true;
+            if (_fly_back) { is_unlocked = false; is_selected = true; }
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
 				var _slot_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
@@ -121,7 +131,7 @@ for(var i = 0 ; i < slot_rows ; i++){
                 var spr_width = 84;
                 var spr_height = 96;
 				
-				var hover_x = x + 803 + col * 84
+				var hover_x = card_x + (x - 25 + 803 - 42)
 				var hover_y = y + 375 + row * 96 - y_offset
                 
                 if (point_in_rectangle(mouse_x, mouse_y, 
@@ -129,6 +139,9 @@ for(var i = 0 ; i < slot_rows ; i++){
                                       hover_x + spr_width/2, hover_y + spr_height/2)) 
 				&& mouse_y > y+315 && mouse_y < y+755{
                     hover_card_index = card_index;
+                    hover_card_x = card_x + (x - 25 + 803 - 42);
+                    hover_card_y = card_y + (y + 375 - 48);
+                    hover_card_spr = card_data[? "sprite"];
                 }
             } else if (is_selected){
                 // 未解锁的卡片使用灰色滤镜
@@ -158,9 +171,51 @@ for(var i = 0 ; i < slot_rows ; i++){
         
         card_index++;
     }
+	if (fly_active && sprite_exists(fly_spr)) {
+		var _p = fly_t / fly_dur; var _e = 1 - power(1 - _p, 3);
+		var _fx = lerp(fly_sx, fly_tx, _e) - (x - 25 + 803 - 42);
+		var _fy = lerp(fly_sy, fly_ty, _e) - (y + 375 - 48);
+		draw_sprite_ext(spr_slot, 0, _fx, _fy - 3, 0.25, 0.25, 0, c_white, 1);
+		draw_sprite_ext(fly_spr, 0, _fx, _fy + 15, 0.7, 0.7, 0, c_white, 1);
+	}
+	for (var _bi = 0; _bi < array_length(fly_batch); _bi++) {
+		var _b = fly_batch[_bi]; var _p = min(1, _b.t / _b.dur); var _e = 1 - power(1 - _p, 3);
+		var _bx = lerp(_b.sx, _b.tx, _e) - (x - 25 + 803 - 42);
+		var _by = lerp(_b.sy, _b.ty, _e) - (y + 375 - 48);
+		draw_sprite_ext(spr_slot, 0, _bx, _by - 3, 0.25, 0.25, 0, c_white, 1);
+		draw_sprite_ext(_b.spr, 0, _bx, _by + 15, 0.7, 0.7, 0, c_white, 1);
+	}
 	surface_reset_target()
 }
 draw_surface(slot_surface,x-25+803-42,y+ 375-48)
+{
+	var _sb_scl = 2.2
+	var _sb_w = sprite_get_width(spr_info_island_scroll_bar) * _sb_scl
+	var _sb_h = sprite_get_height(spr_info_island_scroll_bar) * _sb_scl
+	var _sb_l = x - 25 + 803 - 42
+	var _sb_t = y + 375 - 48
+	var _sb_x = _sb_l + (x + 42 + slot_rows * 84) + 6 + _sb_w * 0.5
+	var _sb_vh = 420
+	var _sb_max = ready_max_y_offset
+	if (_sb_max > 0 && _sb_vh > _sb_h) {
+		var _sb_travel = _sb_vh - _sb_h
+		var _sb_y = _sb_t + clamp(y_offset / _sb_max, 0, 1) * _sb_travel
+		draw_sprite_ext(spr_info_island_scroll_bar, 0, _sb_x, _sb_y, _sb_scl, _sb_scl, 0, c_white, 1)
+		if (mouse_check_button_pressed(mb_left)) {
+			if (point_in_rectangle(mouse_x, mouse_y, _sb_x, _sb_y, _sb_x + _sb_w, _sb_y + _sb_h)) {
+				sb_dragging = true
+				sb_drag_y = mouse_y
+				sb_drag_offset = y_offset
+			} else if (point_in_rectangle(mouse_x, mouse_y, _sb_x, _sb_t, _sb_x + _sb_w, _sb_t + _sb_vh)) {
+				y_offset_target = clamp((mouse_y - _sb_t - _sb_h * 0.5) / _sb_travel * _sb_max, 0, _sb_max)
+			}
+		}
+		if (sb_dragging && mouse_check_button(mb_left)) {
+			y_offset_target = clamp(sb_drag_offset + (mouse_y - sb_drag_y) * (_sb_max / _sb_travel), 0, _sb_max)
+		}
+		if (mouse_check_button_released(mb_left)) sb_dragging = false
+	}
+}
 {// 绘制悬停提示
     if (hover_card_index != -1 && !is_submenu_open) {
 		var card_id = global.player_deck[| deck_sort_order[hover_card_index]];
@@ -228,6 +283,9 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 	
 	// 已解锁的卡片正常绘制
 				var _slot_spr3 = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
+				var _slot_flying_in = fly_active && fly_add && fly_slot == i;
+				for (var _fi = 0; _fi < array_length(fly_batch); _fi++) if (fly_batch[_fi].add && fly_batch[_fi].slot == i) _slot_flying_in = true;
+				if (!_slot_flying_in) {
 				draw_sprite_ext(_slot_spr3, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
                 draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_color(c_black);
@@ -247,6 +305,7 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 				var level = global.save_data.unlocked_cards[info_index].level
 				if level > 0{
 					draw_sprite_ext(spr_star_slot,  level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, c_white, 1);
+				}
 				}
                 // 检查鼠标是否悬停在卡片上
                 var spr_width = 84;

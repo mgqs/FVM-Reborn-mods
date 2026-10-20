@@ -39,6 +39,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("bleed_gem",{"type":"gem","cost":"20000","unlock_item_id":"bleed_gem","description":"流血宝石：伤害周围敌人","display_name":"流血宝石"})
 	register_goods("guard_gem",{"type":"gem","cost":"20000","unlock_item_id":"guard_gem","description":"守护宝石：治疗周围卡片并增加生命上限","display_name":"守护宝石"})
 	register_goods("strength_gem",{"type":"gem","cost":"50000","unlock_item_id":"strength_gem","description":"蓄力宝石：增加周围卡片伤害","display_name":"蓄力宝石"})
+	register_goods("ice_gem",{"type":"gem","cost":"30000","unlock_item_id":"ice_gem","description":"减速宝石：对伤害到的老鼠造成减速\n需镶嵌于超级武器槽位","display_name":"减速宝石（超级武器）"})
 	register_goods("ice_spoon_crossbow",{"type":"weapon","cost":"20000","unlock_item_id":"ice_spoon_crossbow","description":"冰勺弩枪：投掷减速冰鸡蛋","display_name":"冰勺弩枪"})
 	register_goods("poseidon_dart_gun",{"type":"weapon","cost":"80000","unlock_item_id":"poseidon_dart_gun","description":"海神镖枪：发射两个追踪飞镖攻击敌人","display_name":"海神镖枪"})
 	register_goods("double_ice_crossbow",{"type":"weapon","cost":"50000","unlock_item_id":"double_ice_crossbow","description":"冰霜连弩：投掷两个减速冰鸡蛋","display_name":"冰霜连弩"})
@@ -218,4 +219,8 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("liehuohu",{"type":"card","cost":"100000","unlock_item_id":"liehuohu","description":"烈火虎：生产火苗并储能，消失时返还剩余储能","display_name":"烈火虎"})
 	register_goods("shegengbao",{"type":"card","cost":"25000","unlock_item_id":"shegengbao","description":"蛇羹煲：无需格子，回收目标格全部卡片的火苗能量","display_name":"蛇羹煲"})
 	register_goods("xuanfengniu",{"type":"card","cost":"60000","unlock_item_id":"xuanfengniu","description":"旋风牛：吹走全屏特定空中老鼠，一转可清障，二转不需要格子","display_name":"旋风牛"})
+	register_goods("sugar_roxburghii_1",{"type":"camp","cost":"3","unlock_item_id":"sugar_roxburghii","description":"烟熏刺梨：购买后解锁糖渍刺梨一转","display_name":"烟熏刺梨（一转）","coin_type":"less_camp_coin","target_shape":1})
+	register_goods("sugar_roxburghii_2",{"type":"camp","cost":"3","unlock_item_id":"sugar_roxburghii","description":"生腌酸刺梨：购买后解锁糖渍刺梨二转","display_name":"生腌酸刺梨（二转）","coin_type":"camp_coin","target_shape":2})
+	register_goods("nut_frier_1",{"type":"camp","cost":"3","unlock_item_id":"nut_frier","description":"橡子搅拌机：购买后解锁坚果爆炒机一转","display_name":"橡子搅拌机（一转）","coin_type":"less_camp_coin","target_shape":1})
+	register_goods("nut_frier_2",{"type":"camp","cost":"3","unlock_item_id":"nut_frier","description":"松塔爆破机：购买后解锁坚果爆炒机二转","display_name":"松塔爆破机（二转）","coin_type":"camp_coin","target_shape":2})
 }

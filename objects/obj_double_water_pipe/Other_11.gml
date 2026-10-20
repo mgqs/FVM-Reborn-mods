@@ -19,4 +19,4 @@ if card_equipped_attire_id(plant_id) == "water_pipe_libra"{
 	inst2.sprite_index = spr_water_pipe_libra_bullet
 }
 
-audio_play_sound(snd_shot, 0, 0);
+global.audio.play(snd_shot, 0, 0);

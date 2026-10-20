@@ -1,4 +1,4 @@
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 if btn_type == "confirm"{
 	var card_id = global.player_deck[| obj_card_edit_menu.target_card_index*2];
 	var length = array_length(global.save_data.unlocked_cards)
@@ -68,4 +68,4 @@ else if btn_type == "apply"{
 	save_file(global.save_slot)
 }
 obj_package_bg.is_submenu_opened = false
-instance_destroy(obj_card_edit_menu)
+panel_anim_close(obj_card_edit_menu)

@@ -1,4 +1,4 @@
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 
 var target_id = obj_craft_bg.current_uprade_target_id
 if target_id != ""{

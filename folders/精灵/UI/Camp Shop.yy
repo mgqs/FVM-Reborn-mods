@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"Camp Shop",
+  "folderPath":"folders/精灵/UI/Camp Shop.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Camp Shop",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_camp_shop_bg","path":"sprites/spr_camp_shop_bg/spr_camp_shop_bg.yy",},
+    {"name":"spr_camp_shop_buy_btn","path":"sprites/spr_camp_shop_buy_btn/spr_camp_shop_buy_btn.yy",},
+    {"name":"spr_camp_shop_buy_confirm_btn","path":"sprites/spr_camp_shop_buy_confirm_btn/spr_camp_shop_buy_confirm_btn.yy",},
+    {"name":"spr_camp_shop_buy_confirm_close_btn","path":"sprites/spr_camp_shop_buy_confirm_close_btn/spr_camp_shop_buy_confirm_close_btn.yy",},
+    {"name":"spr_camp_shop_buy_confirm_coin_display","path":"sprites/spr_camp_shop_buy_confirm_coin_display/spr_camp_shop_buy_confirm_coin_display.yy",},
+    {"name":"spr_camp_shop_buy_confirm_menu","path":"sprites/spr_camp_shop_buy_confirm_menu/spr_camp_shop_buy_confirm_menu.yy",},
+    {"name":"spr_camp_shop_close_btn","path":"sprites/spr_camp_shop_close_btn/spr_camp_shop_close_btn.yy",},
+    {"name":"spr_camp_shop_coin_display","path":"sprites/spr_camp_shop_coin_display/spr_camp_shop_coin_display.yy",},
+    {"name":"spr_camp_shop_goods_bg","path":"sprites/spr_camp_shop_goods_bg/spr_camp_shop_goods_bg.yy",},
+    {"name":"spr_camp_shop_next_btn","path":"sprites/spr_camp_shop_next_btn/spr_camp_shop_next_btn.yy",},
+    {"name":"spr_camp_shop_page_bg","path":"sprites/spr_camp_shop_page_bg/spr_camp_shop_page_bg.yy",},
+    {"name":"spr_camp_shop_prev_btn","path":"sprites/spr_camp_shop_prev_btn/spr_camp_shop_prev_btn.yy",},
+    {"name":"spr_camp_shop_sold_out","path":"sprites/spr_camp_shop_sold_out/spr_camp_shop_sold_out.yy",}
+  ],
+}

@@ -30,7 +30,7 @@ if (!instance_exists(obj_longyuan_enter))
         instance_create_depth(950, 56, -3, obj_longyuan_enter);
 }
 
-if (!noticed && global.preloaded == true)
+if (!noticed && variable_global_exists("preloaded") && global.preloaded == true)
 {
     if (room == room_menu)
     {

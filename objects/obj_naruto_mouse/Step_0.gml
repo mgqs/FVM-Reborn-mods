@@ -38,7 +38,7 @@ if dash && (state == ENEMY_STATE.ATTACK or timer > 4.5*60){
 
 	        //播放音效
 			var a = irandom_range(0,2)
-			audio_play_sound(ds_list_find_value(obj_battle.chomp_sound_list,a),0,0)
+			global.audio.play(ds_list_find_value(obj_battle.chomp_sound_list,a),0,0)
 		}
 	}
 }

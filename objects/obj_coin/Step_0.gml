@@ -60,7 +60,7 @@ if (!is_collected) {
         collect_timer = 0;
         start_x = x;
         start_y = y;
-        //audio_play_sound(snd_flame_collect, 1, false);
+        //global.audio.play(snd_flame_collect, 1, false);
     }
 }
 
