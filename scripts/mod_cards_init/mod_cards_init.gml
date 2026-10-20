@@ -3670,4 +3670,27 @@ mod_register_plant_lite("xuanfengniu", [
             cycle: array_create(17, 0)
         }
     ], false);
+
+    mod_register_plant_lite("shuanggu", [
+        {name: "耗油双菇",
+        shape: 0,
+        description: "耗油双菇：同时向前方发射2发对陆子弹和2发对空子弹", hp:array_create(17,90), cost:array_create(17,255), atk:[28,34,40,46,52,58,64,70,76,86,96,106,116,136,156,176,216], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)},
+        {name: "伯爵耗油双菇",
+        shape: 1,
+        description: "伯爵耗油双菇：同时向前方发射2发对陆子弹和3发对空子弹", hp:array_create(17,90), cost:array_create(17,255), atk:[28,34,40,46,52,58,64,70,76,86,96,106,116,136,156,176,216], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)},
+        {name: "皇家耗油双菇",
+        shape: 2,
+        description: "皇家耗油双菇：同时向前方发射3发对陆子弹和3发对空子弹", hp:array_create(17,90), cost:array_create(17,255), atk:[28,34,40,46,52,58,64,70,76,86,96,106,116,136,156,176,216], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)}
+    ], false);
+    mod_register_plant_lite("rongheshuanggu", [
+        {name: "热狗耗油双菇",
+        shape: 0,
+        description: "热狗耗油双菇：同时向前方发射4发对陆子弹和4发对空子弹", hp:array_create(17,90), cost:array_create(17,255), atk:[28,51,60,69,78,87,96,105,114,129,144,159,174,204,234,264,324], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)},
+        {name: "喷壶耗油双菇",
+        shape: 1,
+        description: "喷壶耗油双菇：对陆子弹变为无限穿透，对空4发不变", hp:array_create(17,90), cost:array_create(17,255), atk:[28,75,89,103,117,131,145,159,173,193,213,233,256,294,344,399,494], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)},
+        {name: "糖葫芦耗油双菇",
+        shape: 2,
+        description: "糖葫芦耗油双菇：对空子弹变为全屏追踪，对地穿透不变", hp:array_create(17,90), cost:array_create(17,255), atk:[28,75,89,103,117,131,145,159,173,193,213,233,256,294,344,399,494], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)}
+    ], false);
 }
