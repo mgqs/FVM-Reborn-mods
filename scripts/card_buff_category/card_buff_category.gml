@@ -152,6 +152,8 @@ function card_category_data()
         ["hotdog_cannon", "专业防空类", "陆空兼备类", ""],
         ["donut", "专业防空类", "陆空兼备类", ""],
         ["joker", "专业防空类", "陆空兼备类", ""],
+        ["shuanggu", "专业防空类", "陆空兼备类", ""],
+        ["rongheshuanggu", "专业防空类", "陆空兼备类", ""],
         ["coffee_pot", "喷壶类", "直线喷壶类", ""],
         ["oden_pot", "喷壶类", "直线喷壶类", ""],
         ["beef_hotpot", "喷壶类", "直线喷壶类", ""],

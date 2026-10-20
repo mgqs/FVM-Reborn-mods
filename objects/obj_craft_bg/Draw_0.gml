@@ -115,18 +115,50 @@ if button_select == 0{
 		}
 		
 	}
+	// 排序：普卡 → 融合卡 → 金卡（类型内保持存档原顺序）。craft_sort_order 是实例变量，
+	// Mouse_53 点卡时也要用它把 hover_card_index 换算回 unlocked_cards 的下标
+	craft_sort_order = []
+	var _craft_fusion_order = []
+	var _craft_gold_order = []
+	for(var _csi = 0; _csi < array_length(global.save_data.unlocked_cards); _csi++){
+		var _sort_card = global.save_data.unlocked_cards[_csi]
+		var _sort_slot = deck_get_card_data(_sort_card.id, _sort_card.shape)
+		if (_sort_slot != noone && ds_map_find_value(_sort_slot, "is_fusion") == 1){
+			array_push(_craft_fusion_order, _csi)
+		}
+		else if (_sort_slot != noone && ds_map_find_value(_sort_slot, "is_gold") == 1){
+			array_push(_craft_gold_order, _csi)
+		}
+		else{
+			array_push(craft_sort_order, _csi)
+		}
+	}
+	for(var _csi = 0; _csi < array_length(_craft_fusion_order); _csi++){
+		array_push(craft_sort_order, _craft_fusion_order[_csi])
+	}
+	for(var _csi = 0; _csi < array_length(_craft_gold_order); _csi++){
+		array_push(craft_sort_order, _craft_gold_order[_csi])
+	}
+
+	// 行数按卡数动态算（至少 20 行＝原样式），滚动上限同步，避免卡多了滚不到
+	var _craft_rows = max(20, ceil(array_length(craft_sort_order) / 7))
+	craft_max_y_offset = max(0, 96 * _craft_rows - 815)
+	// 卡数变少（或换档）时把滚动夹回上限，避免停在空白区
+	y_offset_target = clamp(y_offset_target, 0, craft_max_y_offset)
+	y_offset = clamp(y_offset, 0, craft_max_y_offset)
 	if (!surface_exists(card_surface)){ card_surface = surface_create(600,815) }   // 保证配对，别 set 到不存在的 surface
 	surface_set_target(card_surface)
 	//绘制右侧栏位
 	for(var i = 0 ; i < 7 ; i++){
-        for(var j = 0 ; j < 20 ; j++){
+        for(var j = 0 ; j < _craft_rows ; j++){
             draw_sprite_ext(spr_package_slot_bg, 0, 42+i*84, 48+96 * j-y_offset, 0.9, 0.9, 0, c_white, 1)
         }
     }
 	//绘制所有已解锁防御卡
 	var card_index = 0
 	hover_card_index = -1
-	for(var i = 0 ; i < array_length(global.save_data.unlocked_cards);i++){
+	for(var di = 0 ; di < array_length(craft_sort_order);di++){
+		var i = craft_sort_order[di]
 		var card_col = card_index mod 7
 		var card_row = card_index div 7
 		var card_data = global.save_data.unlocked_cards[i]
@@ -136,7 +168,9 @@ if button_select == 0{
 		var card_y = 48+96 * card_row - y_offset
 
 		if (card_slot_data != noone) {
-			draw_sprite_ext(spr_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
+			// 卡底：融合卡 spr_slot_2 > 金卡 spr_slot_1 > 普通 spr_slot（与其它列表界面同一口径）
+			var _base_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot)
+			draw_sprite_ext(_base_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 			draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 			draw_set_color(c_black);
 			draw_set_halign(fa_center);
@@ -184,7 +218,8 @@ if button_select == 0{
 		var card_x = x - 307
 		var card_y = y + 103
 		
-		draw_sprite_ext(spr_slot,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
+		var _slot_base_spr = is_fusion_card(current_uprade_target_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot)
+		draw_sprite_ext(_slot_base_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
 		draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
 		draw_set_color(c_black);
 		draw_set_halign(fa_center);
@@ -204,6 +239,27 @@ if button_select == 0{
 			draw_set_valign(fa_middle)
 			draw_set_halign(fa_left)
 			draw_text(x-160,y+300,string(craft_rule.gold_amount))
+			// 保险金消耗数字（画在徽章中间；不够钱时转红）——只要总开关「概率强化」开着就显示
+			// 金额最多 6 位：基准字号放得下 5 位，超过 5 位按位数等比缩小
+			if craft_rate_settings().enabled{
+				var _assure_cost = craft_assure_gold(card_data.max_level)
+				var _amt_txt = string(_assure_cost)
+				var _amt_len = string_length(_amt_txt)
+				var _amt_sc = 1
+				if (_amt_len > 5) _amt_sc = 5 / _amt_len
+				draw_set_valign(fa_middle)
+				draw_set_halign(fa_center)
+				draw_set_colour(c_black)
+				draw_text_transformed(assure_badge_cx-1, assure_badge_cy+4-1, _amt_txt, _amt_sc, _amt_sc, 0)
+				draw_text_transformed(assure_badge_cx+1, assure_badge_cy+4-1, _amt_txt, _amt_sc, _amt_sc, 0)
+				draw_text_transformed(assure_badge_cx-1, assure_badge_cy+4+1, _amt_txt, _amt_sc, _amt_sc, 0)
+				draw_text_transformed(assure_badge_cx+1, assure_badge_cy+4+1, _amt_txt, _amt_sc, _amt_sc, 0)
+				draw_set_colour(c_white)
+				if global.save_data.player.gold < _assure_cost draw_set_colour(c_red)
+				draw_text_transformed(assure_badge_cx, assure_badge_cy+4, _amt_txt, _amt_sc, _amt_sc, 0)
+				draw_set_colour(c_white)
+				draw_set_halign(fa_left)
+			}
 			draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.spices_require).icon, x-455, y-20, 0.9, 0.9, 0, c_white, 1)
 			draw_set_halign(fa_center)
 			draw_set_colour(c_black)
@@ -404,7 +460,7 @@ else if button_select == 1{
     // 精灵原点是左上角 → x 是「按钮左边缘」，补半个按钮宽让中心落在凹槽线上
     var _sb_x   = _sb_l + 600 - _sb_w + 28 + _sb_w * 0.5
     var _sb_vh  = 815                                    // 视口高 = card_surface 高度
-    var _sb_max = 96 * 20 - 815                          // 与 Mouse_61 同一上限
+    var _sb_max = craft_max_y_offset                     // 与 Mouse_61 同一上限（按解锁卡数动态算）
     // 滚动平滑趋近：滚轮与点轨道只改目标值，这里每帧非线性逼近（等级 1；等级 0 直接到位）
     if (ui_anim_on(1)) {
         y_offset += (y_offset_target - y_offset) * 0.28

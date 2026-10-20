@@ -136,6 +136,15 @@ switch (button_select) {
 					(_vl - _lft) / _sc, 0, (_vr - _vl) / _sc, _sh, _vl, _top, _sc, _sc, c_white, 1);
 			}
 		}
+		// 玩法模式开关的文字标签（文案 / 位置沿用旧版 7afe4865f）
+		draw_set_font(font_yuan);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
+		draw_text(x + 340, y + 60,  "抽卡模式");
+		draw_text(x + 340, y + 140, "欧皇模式");
+		draw_text(x + 340, y + 220, "随机礼盒模式");
+		draw_set_valign(fa_top);
 		break
     
     // 可以添加其他设置页面

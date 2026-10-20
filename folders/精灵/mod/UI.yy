@@ -159,6 +159,8 @@
     {"name":"fb24cb50-5a36-413d-80f9-367a2dcb6232","path":"sprites/spr_zeus_anger_gem_icon/spr_zeus_anger_gem_icon.yy",},
     {"name":"21f5f1be-f3d1-4514-9225-54dd1aa80263","path":"sprites/spr_zeus_bolt_icon/spr_zeus_bolt_icon.yy",},
     {"name":"2bbb4c9a-879e-44d5-89bb-42271d8258ec","path":"sprites/spr_zeus_power_gem_icon/spr_zeus_power_gem_icon.yy",},
-    {"name":"a5c0e069-ee72-4d14-8f5f-aec3140448b9","path":"sprites/spr_zeus_shadow_gem_icon/spr_zeus_shadow_gem_icon.yy",}
+    {"name":"a5c0e069-ee72-4d14-8f5f-aec3140448b9","path":"sprites/spr_zeus_shadow_gem_icon/spr_zeus_shadow_gem_icon.yy",},
+    {"name":"4103344f-7ffe-4a22-987c-f138b4373bd4","path":"sprites/spr_voucher_rongheshuanggu_1/spr_voucher_rongheshuanggu_1.yy",},
+    {"name":"7c1d1174-5f0a-4ce1-be1c-e183a0ca8788","path":"sprites/spr_voucher_rongheshuanggu_2/spr_voucher_rongheshuanggu_2.yy",},
   ],
 }

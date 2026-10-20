@@ -35,6 +35,7 @@
     {"name":"mod_transform_into_target","path":"scripts/mod_transform_into_target/mod_transform_into_target.yy",},
     {"name":"mod_weapons_init","path":"scripts/mod_weapons_init/mod_weapons_init.yy",},
     {"name":"zhiyumiao_config","path":"scripts/zhiyumiao_config/zhiyumiao_config.yy",},
-    {"name":"precise_bbox_collision","path":"scripts/precise_bbox_collision/precise_bbox_collision.yy",}
+    {"name":"precise_bbox_collision","path":"scripts/precise_bbox_collision/precise_bbox_collision.yy",},
+    {"name":"ronghehuopen_pass_fire","path":"scripts/ronghehuopen_pass_fire/ronghehuopen_pass_fire.yy",}
   ],
 }

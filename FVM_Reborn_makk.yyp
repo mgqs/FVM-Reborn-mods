@@ -2033,6 +2033,7 @@
     {"id":{"name":"position_in_plantable_area","path":"scripts/position_in_plantable_area/position_in_plantable_area.yy",},},
     {"id":{"name":"precise_bbox_collision","path":"scripts/precise_bbox_collision/precise_bbox_collision.yy",},},
     {"id":{"name":"register_card","path":"scripts/register_card/register_card.yy",},},
+    {"id":{"name":"ronghehuopen_pass_fire","path":"scripts/ronghehuopen_pass_fire/ronghehuopen_pass_fire.yy",},},
     {"id":{"name":"room_transition","path":"scripts/room_transition/room_transition.yy",},},
     {"id":{"name":"save_file","path":"scripts/save_file/save_file.yy",},},
     {"id":{"name":"screen_flash","path":"scripts/screen_flash/screen_flash.yy",},},

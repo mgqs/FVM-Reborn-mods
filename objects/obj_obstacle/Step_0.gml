@@ -18,7 +18,12 @@ for (var _i = 0; _i < _bullet_count; _i++)
         continue;
     var _dt = variable_instance_exists(_bullet, "damage_type") ? _bullet.damage_type : "normal";
     var _tt = variable_instance_exists(_bullet, "target_type") ? _bullet.target_type : "normal";
-    if (_dt != "pierce" && _tt == "normal")
+    // 穿透弹放行：damage_type == "pierce"，或子弹自己标了 pierce_all
+    // （融合三线 2 转 / 融合双菇 1·2 转的无限穿透 —— 它们自己的 Collision_obj_obstacle 里都写了
+    //  `if (pierce_all) exit;`，这里必须同口径放行，否则障碍这一侧会先把子弹销毁，表现为「穿透失效」）
+    var _pierce = (_dt == "pierce")
+               || (variable_instance_exists(_bullet, "pierce_all") && _bullet.pierce_all);
+    if (!_pierce && _tt == "normal")
     {
         instance_destroy(_bullet);
     }

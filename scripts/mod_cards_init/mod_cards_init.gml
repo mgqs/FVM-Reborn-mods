@@ -3596,7 +3596,7 @@ mod_register_plant_lite("xuanfengniu", [
         description: "仙人掌花酒架：向前方三行各发射3发葡萄酒弹，命中后概率附加燃烧", hp:array_create(17,50), cost:array_create(17,325), atk:[10,17,20,23,26,29,32,37,45,56,75,97,120,142,172,195,217], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,78)},
         {name: "烤灯笼鱼酒架",
         shape: 2,
-        description: "烤灯笼鱼酒架：向前方三行各发射1发可穿透的葡萄酒弹，命中后概率附加燃烧", hp:array_create(17,50), cost:array_create(17,325), atk:[30,51,60,69,78,87,96,111,135,168,225,291,360,426,516,585,651], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,78)}
+        description: "烤灯笼鱼酒架：向前方三行各发射3发可穿透的葡萄酒弹，命中后概率附加燃烧", hp:array_create(17,50), cost:array_create(17,325), atk:[10,17,20,23,26,29,32,37,45,56,75,97,120,142,172,195,217], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,78)}
     ], false);
 
     mod_register_plant_lite("pufferfish", [

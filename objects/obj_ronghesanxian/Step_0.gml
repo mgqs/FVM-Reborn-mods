@@ -29,7 +29,7 @@ if (has_enemy) {
 	}
 	// 开火时机绑在攻击动画第 17 帧（image_index 16，此时花嘴已伸出），
 	// 一次齐射 = 三行各 1 发；一次攻击动画内按 shots_per_row 分次齐射、错 5 帧
-	// （0 转 2 次 → 每行 2 发；1 转 3 次 → 每行 3 发；2 转 1 次 → 每行 1 发）
+	// （0 转 2 次 → 每行 2 发；1 转 / 2 转 3 次 → 每行 3 发）
 	// 用 fired_this_attack 兜住：image_index 会在 16~19 之间停留多个 flash_speed 帧
 	if (state == CARD_STATE.ATTACK && !fired_this_attack && image_index >= 16){
 		fired_this_attack = true;

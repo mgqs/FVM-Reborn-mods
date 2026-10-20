@@ -22,40 +22,48 @@ with (obj_bullet_parent){
 	}
 }
 
-for (var _i = 0; _i < array_length(_ice); _i++){
-	var _b = _ice[_i];
-	if (!instance_exists(_b)) continue;
-	var _bl = _b.bbox_left;
-	var _bt = _b.bbox_top;
-	var _br = _b.bbox_right;
-	var _bb = _b.bbox_bottom;
-	with (obj_enemy_parent){
-		if (hp > 0){
-			// 减速：严格相交 + 无护盾（沿用原判定，不改手感）
-			if ((!variable_instance_exists(id, "shield_hp") || shield_hp <= 0)
-				&& bbox_left < _br && bbox_right > _bl
-				&& bbox_top < _bb && bbox_bottom > _bt){
-				ice_timer = max(ice_timer, 600);   // 冰冻小笼包同款减速
-			}
+// 场上没有冰弹 → 直接早退，一帧也不扫敌人（旧写法是「每颗冰弹 × 每只敌人」双 bbox 全扫，卡顿主因）
+if (array_length(_ice) > 0){
+	idle_frames = 0;
+	var _probe = kill_probe;
+	var _hit = ds_list_create();
+	var _near = ds_list_create();
+	for (var _i = 0; _i < array_length(_ice); _i++){
+		var _b = _ice[_i];
+		if (!instance_exists(_b)) continue;
+		var _bl = _b.bbox_left;
+		var _bt = _b.bbox_top;
+		var _br = _b.bbox_right;
+		var _bb = _b.bbox_bottom;
 
-			// 击杀快照：往外放宽 kill_probe（子弹这一帧才位移进老鼠，Begin Step 时可能还差几像素，
-			// 用严格相交会漏掉「第一下就打死」这种最常见的情况）。
-			// ⚠️ 这里**不看护盾** —— damage_type == "pierce" 时护盾和 hp 同时扣，带盾也能被一击打死，
-			//    按护盾过滤会整类漏掉（如捧花僵尸）。
-			// 记录本身不会造成误报 —— End Step 还要它这一帧真的掉到 hp <= 0 才算。
-			if (bbox_left < _br + other.kill_probe && bbox_right > _bl - other.kill_probe
-				&& bbox_top < _bb + other.kill_probe && bbox_bottom > _bt - other.kill_probe){
-				// 能不能播碎冰：与工程里「灰烬击杀」同口径（`var can_ash = !immune_to_ash`）——
-				// 防爆鼠等免疫灰烬的怪本来就没有灰烬死亡特效，这里也不给它碎冰；BOSS 同样跳过。
-				// 必须在 Begin Step 算好一起存：End Step 时这只老鼠可能已经被销毁 / 被池回收，读不到字段。
-				var _can_shatter = true;
-				if (variable_instance_exists(id, "immune_to_ash") && immune_to_ash) _can_shatter = false;
-				if (variable_instance_exists(id, "is_boss") && is_boss) _can_shatter = false;
-				// 连 image_yscale / image_xscale 一起记：碎冰鼠要按敌人的缩放和朝向摆，否则大小/朝向对不上
-				array_push(other.rec_enemy, [id, x, y, depth, hp, object_index, image_xscale, image_yscale, _can_shatter]);
+		// 减速：严格相交 + 无护盾（沿用原判定）；用引擎空间索引只取附近的敌人
+		ds_list_clear(_hit);
+		collision_rectangle_list(_bl, _bt, _br, _bb, obj_enemy_parent, false, true, _hit, false);
+		for (var _k = 0; _k < ds_list_size(_hit); _k++){
+			with (ds_list_find_value(_hit, _k)){
+				if (hp > 0 && (!variable_instance_exists(id, "shield_hp") || shield_hp <= 0)){
+					ice_timer = max(ice_timer, 600);   // 冰冻小笼包同款减速
+				}
+			}
+		}
+
+		// 击杀快照：往外放宽 kill_probe（子弹这一帧才位移进老鼠，严格相交会漏「第一下就打死」）
+		ds_list_clear(_near);
+		collision_rectangle_list(_bl - _probe, _bt - _probe, _br + _probe, _bb + _probe, obj_enemy_parent, false, true, _near, false);
+		for (var _k = 0; _k < ds_list_size(_near); _k++){
+			with (ds_list_find_value(_near, _k)){
+				if (hp > 0){
+					// 能不能播碎冰：与「灰烬击杀」同口径（防爆鼠等免疫灰烬的不给碎冰，BOSS 跳过）
+					var _can_shatter = true;
+					if (variable_instance_exists(id, "immune_to_ash") && immune_to_ash) _can_shatter = false;
+					if (variable_instance_exists(id, "is_boss") && is_boss) _can_shatter = false;
+					array_push(other.rec_enemy, [id, x, y, depth, hp, object_index, image_xscale, image_yscale, _can_shatter]);
+				}
 			}
 		}
 	}
+	ds_list_destroy(_hit);
+	ds_list_destroy(_near);
 }
 
 if (array_length(_ice) == 0){

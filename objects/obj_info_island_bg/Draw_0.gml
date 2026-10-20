@@ -562,6 +562,8 @@ if (scroll_max > 0) {
         var dy = mouse_y - scrollbar_drag_start_y;
         y_offset = scrollbar_drag_start_offset + dy * (scroll_max / (track_h - bar_height));
         y_offset = clamp(y_offset, 0, scroll_max);
+        // 拖动时同步目标值：否则下一帧被上面的平滑公式拽回旧目标（表现为「强行回弹」）
+        y_offset_target = y_offset;
     }
 
     if (mouse_check_button_released(mb_left)) {

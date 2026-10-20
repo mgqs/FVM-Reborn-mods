@@ -14,7 +14,7 @@
     {"name":"save_god","path":"folders/物体/mod/Cards/save_god.yy",},
     {"name":"baibianshe","path":"folders/物体/mod/Cards/baibianshe.yy",},
     {"name":"xiangshui_god","path":"folders/物体/mod/Cards/xiangshui_god.yy",},
-    {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",}
+    {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",},
   ],
   "listItems":[
     {"name":"obj_pufferfish","path":"objects/obj_pufferfish/obj_pufferfish.yy",},
@@ -98,5 +98,7 @@
     {"name":"obj_chunsun","path":"objects/obj_chunsun/obj_chunsun.yy",},
     {"name":"obj_chunsun_spike","path":"objects/obj_chunsun_spike/obj_chunsun_spike.yy",},
     {"name":"obj_chunsun_launch_fx","path":"objects/obj_chunsun_launch_fx/obj_chunsun_launch_fx.yy",},
+    {"name":"obj_shuanggu","path":"objects/obj_shuanggu/obj_shuanggu.yy",},
+    {"name":"obj_rongheshuanggu","path":"objects/obj_rongheshuanggu/obj_rongheshuanggu.yy",},
   ],
 }

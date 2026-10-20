@@ -31,6 +31,8 @@ sb_drag_offset = 0
 card_surface = -1
 
 current_uprade_target_id = ""
+// 卡片列表排序映射（普卡 → 融合 → 金卡）：Draw_0 每帧重建，Mouse_53 点卡时按下标取卡
+craft_sort_order = []
 
 // Probability-upgrade toggles
 rate_toggle_x = x - 600
