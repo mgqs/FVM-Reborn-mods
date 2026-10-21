@@ -43,8 +43,23 @@ function load_file(file_slot) {
             }
         }
 
+        var _tasks_were_missing = !variable_struct_exists(global.save_data, "tasks") || !is_array(global.save_data.tasks)
+
         // 非破坏性迁移：补充缺失字段，保留通关记录和游玩时间等进度数据
         ensure_save_data()
+
+        // 确保旧存档也能在支线任务列表中看到探险营地任务。
+        var _camp_task_exists = false
+        for (var _task_i = 0; _task_i < array_length(global.save_data.tasks); _task_i++) {
+            if (global.save_data.tasks[_task_i].id == "camp_level_0") {
+                _camp_task_exists = true
+                break
+            }
+        }
+        if (!_camp_task_exists) {
+            array_push(global.save_data.tasks, {id: "camp_level_0", progress: [0], state: "new"})
+        }
+        if (!_camp_task_exists || _tasks_were_missing) save_file(file_slot)
 
         // 源版 1.8 -> 1.9：已通关奶酪城堡的存档解锁神圣宝石
         if (_v == 1.8 || _v == "1.8") {
@@ -247,6 +262,11 @@ function reset_file(file_slot){
 			"tasks":[
 				{
 					"id":"main_level_0",
+					"progress":[0],
+					"state":"new"
+				},
+				{
+					"id":"camp_level_0",
 					"progress":[0],
 					"state":"new"
 				},

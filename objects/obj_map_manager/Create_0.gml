@@ -14,6 +14,7 @@ var map_button_array = struct_get(ds_map_find_value(global.maps_map,current_map_
 var button_array_length = array_length(map_button_array)
 for(var i = 0 ; i <button_array_length ; i++){
 	var button_struct = map_button_array[i]
+	if (!variable_struct_exists(button_struct, "button_x") || !variable_struct_exists(button_struct, "button_y")) continue;
 	var inst = instance_create_depth(button_struct.button_x,button_struct.button_y,-2,obj_levelselect_button)
 	inst.image_index = button_struct.button_index
 	inst.target_level_id = button_struct.id

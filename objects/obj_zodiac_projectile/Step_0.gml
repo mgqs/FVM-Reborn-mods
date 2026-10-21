@@ -62,7 +62,7 @@ if (kind == "star" && _do_hit && variable_global_exists("enemy_sx_gen") && globa
     instance_destroy();
     exit;
 }
-if (_can_reach && variable_global_exists("enemy_sx") && variable_global_exists("enemy_sx_gen")) {
+if (_can_reach && kind != "phoenix" && variable_global_exists("enemy_sx") && variable_global_exists("enemy_sx_gen")) {
     var _sap_y_margin = (kind == "star" && variable_global_exists("grid_cell_size_y")) ? global.grid_cell_size_y : 0;
     var _sap_targets = bullet_sap_type_list(id,kind == "star" ? "__all__" : "normal",_sap_y_margin);
     if (kind == "star") enemies = _sap_targets;

@@ -37,6 +37,8 @@ global.player_sprite = noone;
 load_file(global.save_slot)
 //reset_file(global.save_slot)
 
+difficulty_grant_immortal_start_cards()
+
 // 不朽难度开局5w金币（仅新存档，一次性奖励）
 if global.difficulty == 5 && !variable_struct_exists(global.save_data, "immortal_bonus_given"){
 	if array_length(global.save_data.completed_levels) == 0{

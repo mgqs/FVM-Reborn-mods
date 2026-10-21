@@ -92,6 +92,24 @@ function difficulty_get_reward_multiplier() {
     }
 }
 
+/// @function difficulty_grant_immortal_start_cards()
+/// @desc 普通不朽难度的新存档解锁炎焱兔和一张随机白板卡
+function difficulty_grant_immortal_start_cards() {
+    if (global.difficulty != 5 || global.play_mode != 0) return false;
+    if (variable_struct_exists(global.save_data, "immortal_start_cards_given")) return false;
+    if (array_length(global.save_data.completed_levels) != 0) return false;
+
+    var _card_pool = [
+        "spoon_rabbit", "yanhuangma", "guiyuanma", "double_blade_snake", "hongliukaochuan",
+        "yufengma", "fenjima", "xiandima", "laipishe", "starrabbit"
+    ];
+    unlock_card("yanyantu", 0, 0, 0);
+    unlock_card(_card_pool[irandom(array_length(_card_pool) - 1)], 0, 0, 0);
+    global.save_data.immortal_start_cards_given = true;
+    save_file(global.save_slot);
+    return true;
+}
+
 /// @function difficulty_get_name()
 /// @desc 返回基础难度名称
 function difficulty_get_name(_difficulty) {

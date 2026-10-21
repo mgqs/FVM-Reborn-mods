@@ -1146,14 +1146,14 @@ if is_real(global.level_file.version){
 			//处理全屏海水事件
 			if event_list[i].id == "full_seawater"{
 				if event_timer == 1{
-					for(i = 0 ; i < global.grid_rows ; i++){
+					for(var _row = 0 ; _row < global.grid_rows ; _row++){
 						for(var j = 0 ; j < global.grid_cols; j++){
 
-							var obs_pos = get_world_position_from_grid(j,i)
+							var obs_pos = get_world_position_from_grid(j,_row)
 							var inst = instance_create_depth(obs_pos.x,obs_pos.y-35,-1200,obj_seawater)
-							inst.row = i
+							inst.row = _row
 							inst.col = j
-							inst.depth = calculate_plant_depth(j,i,"coffee")
+							inst.depth = calculate_plant_depth(j,_row,"coffee")
 						
 						}
 					}

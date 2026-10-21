@@ -9,8 +9,8 @@ timer++;
 
 if (instance_exists(target_enemy) && target_enemy.hp > 0)
 {
-    var target_x = target_enemy.x;
-    var target_y = target_enemy.y - 75;
+    var target_x = (target_enemy.bbox_left + target_enemy.bbox_right) * 0.5;
+    var target_y = (target_enemy.bbox_top + target_enemy.bbox_bottom) * 0.5;
     var dir = point_direction(x, y, target_x, target_y);
     x += lengthdir_x(move_speed, dir);
     y += lengthdir_y(move_speed, dir);

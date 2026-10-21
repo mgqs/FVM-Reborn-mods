@@ -28,6 +28,14 @@ if room != room_battle{
 
 	if (config_key == "difficulty"){
 		global.difficulty = state
+		difficulty_grant_immortal_start_cards()
+		if (state == 5) && global.play_mode == 0
+			&& !variable_struct_exists(global.save_data, "immortal_start_cards_notice_given")
+			&& array_length(global.save_data.completed_levels) == 0{
+			show_notice("不朽难度奖励：解锁炎焱兔和随机白板卡", 60)
+			global.save_data.immortal_start_cards_notice_given = true
+			save_file(global.save_slot)
+		}
 		// 切换到不朽难度时，新存档发放原有难度奖励。
 		if (state == 5) && !variable_struct_exists(global.save_data, "immortal_bonus_given"){
 			if array_length(global.save_data.completed_levels) == 0{
