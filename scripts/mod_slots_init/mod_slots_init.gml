@@ -3002,6 +3002,12 @@ register_card("ronghesanxian", obj_ronghesanxian, [
 {shape:2,sprite:spr_ronghesanxian_2,cost:325,cooldown:420,description: "烤灯笼鱼酒架：向前方三行各发射3发可穿透的葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_2}
 ]);
 
+register_card("ronghedapao", obj_ronghedapao, [
+{shape:0,sprite:spr_ronghedapao,cost:300,cooldown:1500,description: "脆心死神大炮：向本行投下2枚巧克力炸弹，3*3范围爆炸",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao},
+{shape:1,sprite:spr_ronghedapao_1,cost:300,cooldown:1500,description: "霸王死神大炮：向本行投下2枚巧克力炸弹，爆炸范围扩大至3*5",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_1},
+{shape:2,sprite:spr_ronghedapao_2,cost:225,cooldown:1500,description: "乾坤死神大炮：向本行投下2枚巧克力炸弹，爆炸改为碾压秒杀",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_2}
+]);
+
 register_card("rongheshuanggu", obj_rongheshuanggu, [
 {shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗耗油双菇：同时向前方发射4发对陆子弹和4发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
 {shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶耗油双菇：对陆子弹变为无限穿透，对空4发不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},

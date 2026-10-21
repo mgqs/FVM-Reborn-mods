@@ -162,5 +162,7 @@
     {"name":"a5c0e069-ee72-4d14-8f5f-aec3140448b9","path":"sprites/spr_zeus_shadow_gem_icon/spr_zeus_shadow_gem_icon.yy",},
     {"name":"4103344f-7ffe-4a22-987c-f138b4373bd4","path":"sprites/spr_voucher_rongheshuanggu_1/spr_voucher_rongheshuanggu_1.yy",},
     {"name":"7c1d1174-5f0a-4ce1-be1c-e183a0ca8788","path":"sprites/spr_voucher_rongheshuanggu_2/spr_voucher_rongheshuanggu_2.yy",},
-  ],
+    {"name":"1d7461b7-d69c-4d7c-8178-a218a03dbb96","path":"sprites/spr_voucher_ronghedapao_1/spr_voucher_ronghedapao_1.yy",},
+    {"name":"5d992873-4800-4f9b-b3b8-93a51e7a68cb","path":"sprites/spr_voucher_ronghedapao_2/spr_voucher_ronghedapao_2.yy",},
+],
 }

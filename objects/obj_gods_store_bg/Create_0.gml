@@ -70,11 +70,13 @@ function gods_shop_list_recharge()
                     
                     if (is_unlocked)
                         inst.is_disabled = true;
-                    else if (!fusion_prereq_met(inst.target_item))
+                    else if (!fusion_prereq_met(inst.target_item, 2))
                     {
-                        // 融合卡：需先拥有前置卡的二转（与抽卡同一份前置表）
+                        // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
+                        // 例外：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
+                        var _need_txt = prereq_body_only(inst.target_item) ? "" : "二转";
                         inst.meet_requirements = false;
-                        inst.requirement_notice = "需先拥有「" + fusion_prereq_name(inst.target_item) + "」才能兑换！";
+                        inst.requirement_notice = "需先拥有「" + fusion_prereq_name(inst.target_item) + "」" + _need_txt + "才能兑换！";
                     }
                 }
             }

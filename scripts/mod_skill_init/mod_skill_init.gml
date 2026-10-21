@@ -90,5 +90,6 @@ function mod_skill_init()
     register_card_skill("rongheshuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
     register_card_skill("chunsun", "prepare_time", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
     register_card_skill("niuyouguo", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
+    register_card_skill("ronghedapao", "cooldown", [1500, 1410, 1320, 1230, 1140, 1050, 960, 870, 780]);
 
 }

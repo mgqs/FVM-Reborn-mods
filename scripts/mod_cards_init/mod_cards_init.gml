@@ -3598,6 +3598,17 @@ mod_register_plant_lite("xuanfengniu", [
         shape: 2,
         description: "烤灯笼鱼酒架：向前方三行各发射3发可穿透的葡萄酒弹，命中后概率附加燃烧", hp:array_create(17,50), cost:array_create(17,325), atk:[10,17,20,23,26,29,32,37,45,56,75,97,120,142,172,195,217], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,78)}
     ], false);
+    mod_register_plant_lite("ronghedapao", [
+        {name: "脆心死神大炮",
+        shape: 0,
+        description: "脆心死神大炮：向本行投下2枚巧克力炸弹，3*3范围爆炸", hp:array_create(17,50), cost:array_create(17,300), atk:[900,1000,1100,1200,1300,1400,1500,1600,1700,1900,2100,2300,2500,2700,2900,3400,3900], range:array_create(17,10), cooldown:array_create(17,1500), cycle:[2100,2040,1980,1920,1800,1680,1560,1440,1320,1200,1080,900,780,600,480,300,180]},
+        {name: "霸王死神大炮",
+        shape: 1,
+        description: "霸王死神大炮：向本行投下2枚巧克力炸弹，爆炸范围扩大至3*5", hp:array_create(17,50), cost:array_create(17,300), atk:[900,1100,1300,1500,1700,1900,2100,2300,2500,2900,3300,3700,4100,4500,4900,5900,6900], range:array_create(17,10), cooldown:array_create(17,1500), cycle:[2100,2040,1980,1920,1800,1680,1560,1440,1320,1200,1080,900,780,600,480,300,180]},
+        {name: "乾坤死神大炮",
+        shape: 2,
+        description: "乾坤死神大炮：向本行投下2枚巧克力炸弹，爆炸改为碾压秒杀", hp:array_create(17,50), cost:array_create(17,225), atk:[900,1200,1500,1800,2100,2400,2700,3000,3300,3900,4500,5100,5700,6300,6900,8400,9900], range:array_create(17,10), cooldown:array_create(17,1500), cycle:[2100,2040,1980,1920,1800,1680,1560,1440,1320,1200,1080,900,780,600,480,300,180]}
+    ], false);
 
     mod_register_plant_lite("pufferfish", [
         {
