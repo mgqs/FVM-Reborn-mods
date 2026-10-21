@@ -100,5 +100,6 @@
     {"name":"obj_chunsun_launch_fx","path":"objects/obj_chunsun_launch_fx/obj_chunsun_launch_fx.yy",},
     {"name":"obj_shuanggu","path":"objects/obj_shuanggu/obj_shuanggu.yy",},
     {"name":"obj_rongheshuanggu","path":"objects/obj_rongheshuanggu/obj_rongheshuanggu.yy",},
+    {"name":"obj_niuyouguo","path":"objects/obj_niuyouguo/obj_niuyouguo.yy",},
   ],
 }

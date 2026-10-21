@@ -11,7 +11,8 @@
   "visible":true,
   "folders":[
     {"name":"shuanggu","path":"folders/精灵/mod/Cards/Shooter/shuanggu.yy",},
-    {"name":"rongheshuanggu","path":"folders/精灵/mod/Cards/Shooter/rongheshuanggu.yy",}
+    {"name":"rongheshuanggu","path":"folders/精灵/mod/Cards/Shooter/rongheshuanggu.yy",},
+    {"name":"niuyouguo","path":"folders/精灵/mod/Cards/Shooter/niuyouguo.yy",}
   ],
   "listItems":[],
 }

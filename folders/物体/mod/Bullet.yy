@@ -74,5 +74,6 @@
     {"name":"obj_shuanggu_bullet_air","path":"objects/obj_shuanggu_bullet_air/obj_shuanggu_bullet_air.yy",},
     {"name":"obj_rongheshuanggu_bullet","path":"objects/obj_rongheshuanggu_bullet/obj_rongheshuanggu_bullet.yy",},
     {"name":"obj_rongheshuanggu_bullet_air","path":"objects/obj_rongheshuanggu_bullet_air/obj_rongheshuanggu_bullet_air.yy",},
+    {"name":"obj_niuyouguo_bullet","path":"objects/obj_niuyouguo_bullet/obj_niuyouguo_bullet.yy",},
   ],
 }

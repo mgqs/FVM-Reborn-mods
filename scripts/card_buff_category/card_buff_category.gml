@@ -89,6 +89,7 @@ function card_category_data()
         ["starrabbit", "多向类", "类海星类", ""],
         ["rig", "多向类", "类海星类", ""],
         ["youyu_god", "多向类", "类海星类", ""],
+        ["niuyouguo", "多向类", "三向类", ""],
         ["brazier", "增幅类", "子弹增幅", "平射增幅"],
         ["ronghehuopen", "增幅类", "子弹增幅", "平射增幅"],
         ["ronghesanxian", "直射类", "三线类", ""],
@@ -332,7 +333,8 @@ function mod_apply_category_buff_map()
             {
                 case "thrower": _allowed = card_in_category(_card_id, "投掷类") || _card_id == "gaia"; break;
                 case "tracker": _allowed = _card_id == "guiyuanma" || _card_id == "takoyaki" || _card_id == "juxie" || _card_id == "moon_god" || _card_id == "yufengma" || _card_id == "gaia"; break;
-                case "five_dir": _allowed = card_in_category(_card_id, "多向类"); break;
+                // niuyouguo（邪恶牛油果）：分类上是多向类，但不吃多向类拐 —— 只吃战旗马这类全体增幅
+                case "five_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo"; break;
                 case "sprayer": _allowed = card_in_category(_card_id, "旋转喷壶类") || card_in_category(_card_id, "直线喷壶类") || _card_id == "hongliukaochuan" || _card_id == "hufa_god"; break;
             }
             if (_allowed)

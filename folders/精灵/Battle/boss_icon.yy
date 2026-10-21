@@ -13,8 +13,10 @@
   "listItems":[
     {"name":"d2b51489-dc3e-4766-ac0d-3a9573f3b6de","path":"sprites/spr_angelababy_icon/spr_angelababy_icon.yy",},
     {"name":"d0ee84a4-0753-4d20-a52e-58ec3cbe7484","path":"sprites/spr_arno_icon/spr_arno_icon.yy",},
+    {"name":"c8e43dd2-2c8d-4afb-8c96-79300484e4e4","path":"sprites/spr_beverage_machine_icon/spr_beverage_machine_icon.yy",},
     {"name":"596ad65c-f403-469e-9634-05f6a1a9777f","path":"sprites/spr_blonde_mary_icon/spr_blonde_mary_icon.yy",},
     {"name":"171b553b-7409-4eba-9068-c7ffcc610f60","path":"sprites/spr_captain_america_mouse_icon/spr_captain_america_mouse_icon.yy",},
+    {"name":"4adbc899-3483-4d0b-b6bf-abdc73c6583b","path":"sprites/spr_electric_jellyfish_icon/spr_electric_jellyfish_icon.yy",},
     {"name":"52da5de4-0178-4a2d-a5d2-5f11b9d8c5c8","path":"sprites/spr_fog_julie_icon/spr_fog_julie_icon.yy",},
     {"name":"bdfc962b-97a8-40d6-af06-000d032ea4d9","path":"sprites/spr_hells_messenger_icon/spr_hells_messenger_icon.yy",},
     {"name":"64a354cd-fa24-415c-94b8-a052996fdead","path":"sprites/spr_hot_vajra_icon/spr_hot_vajra_icon.yy",},
@@ -24,13 +26,17 @@
     {"name":"810e2e13-6bab-4373-9622-78a401c73214","path":"sprites/spr_iron_man_mouse_icon/spr_iron_man_mouse_icon.yy",},
     {"name":"4326bc50-0807-42df-aee9-bade5d7ab6b7","path":"sprites/spr_irritable_jack_icon/spr_irritable_jack_icon.yy",},
     {"name":"b1e284fa-fbdb-42bf-a0b4-ca68b46fe39a","path":"sprites/spr_lieutenant_buzz_icon/spr_lieutenant_buzz_icon.yy",},
+    {"name":"b4ba70c6-e9b1-447d-b2ec-b378db2a7521","path":"sprites/spr_lobster_knight_icon/spr_lobster_knight_icon.yy",},
+    {"name":"88190156-c48e-4d86-bc77-0d0963d9cfee","path":"sprites/spr_machine_shark_icon/spr_machine_shark_icon.yy",},
     {"name":"4a74fda0-359f-423f-9c5a-94b24accc111","path":"sprites/spr_mario_mouse_icon/spr_mario_mouse_icon.yy",},
+    {"name":"afd7066d-42ae-455b-913d-1e182492d682","path":"sprites/spr_mermaid_mary_icon/spr_mermaid_mary_icon.yy",},
     {"name":"d5384cd0-e127-4cf3-b219-e4abbdafbbe8","path":"sprites/spr_mouse_train_icon/spr_mouse_train_icon.yy",},
     {"name":"5f307547-f8e3-42c1-980e-596cdea8b5fd","path":"sprites/spr_needle_baron_icon/spr_needle_baron_icon.yy",},
     {"name":"87f9a914-b3fa-4713-b8ad-5f257de6f10f","path":"sprites/spr_pete_icon/spr_pete_icon.yy",},
     {"name":"eae0e6f0-8e7a-4d63-8f8a-c1dfaaa0d497","path":"sprites/spr_pharaoh_icon/spr_pharaoh_icon.yy",},
     {"name":"9e0875d4-60f8-43ed-9fc6-f80d81aa28be","path":"sprites/spr_pink_paul_icon/spr_pink_paul_icon.yy",},
     {"name":"04decf5c-6b6b-4327-a75e-d9a49201a95f","path":"sprites/spr_rumble_icon/spr_rumble_icon.yy",},
-    {"name":"edbd2163-68d4-44e7-891a-5301de8b073a","path":"sprites/spr_spider_man_mouse_icon/spr_spider_man_mouse_icon.yy",}
+    {"name":"edbd2163-68d4-44e7-891a-5301de8b073a","path":"sprites/spr_spider_man_mouse_icon/spr_spider_man_mouse_icon.yy",},
+    {"name":"e4d0767d-5bed-4289-bed1-7395bf568190","path":"sprites/spr_travel_record_icon/spr_travel_record_icon.yy",}
   ],
 }

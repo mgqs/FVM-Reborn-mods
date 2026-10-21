@@ -1,12 +1,12 @@
 {
   "$GMSprite":"v2",
   "%Name":"spr_ronghehaixing_bullet_2",
-  "bboxMode":2,
-  "bbox_bottom":50,
-  "bbox_left":29,
-  "bbox_right":45,
-  "bbox_top":32,
-  "collisionKind":0,
+  "bboxMode":0,
+  "bbox_bottom":60,
+  "bbox_left":21,
+  "bbox_right":56,
+  "bbox_top":23,
+  "collisionKind":4,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
   "edgeFiltering":false,
@@ -20,9 +20,6 @@
     {"$GMSpriteFrame":"v1","%Name":"d3ef4fd3-0811-41a4-a510-2cdd7507784e","name":"d3ef4fd3-0811-41a4-a510-2cdd7507784e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"f86e0e0b-91b2-47a2-9f08-05b84623b121","name":"f86e0e0b-91b2-47a2-9f08-05b84623b121","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"12f767ed-0f14-4420-82f7-8c1c1a97771e","name":"12f767ed-0f14-4420-82f7-8c1c1a97771e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"11764b04-a77e-44cf-a97a-540efcc340c6","name":"11764b04-a77e-44cf-a97a-540efcc340c6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"9f87ed37-7a52-46eb-a8af-bed0c1cce067","name":"9f87ed37-7a52-46eb-a8af-bed0c1cce067","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"0c8784cc-a962-4057-94b3-f8fbdfe76651","name":"0c8784cc-a962-4057-94b3-f8fbdfe76651","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -59,7 +56,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":11.0,
+    "length":8.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -102,15 +99,6 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"12f767ed-0f14-4420-82f7-8c1c1a97771e","path":"sprites/spr_ronghehaixing_bullet_2/spr_ronghehaixing_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"52f722fc-4c68-4c93-a25f-76fee3337f14","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"11764b04-a77e-44cf-a97a-540efcc340c6","path":"sprites/spr_ronghehaixing_bullet_2/spr_ronghehaixing_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0a5b42c5-3cc2-468c-b764-a19b79279279","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9f87ed37-7a52-46eb-a8af-bed0c1cce067","path":"sprites/spr_ronghehaixing_bullet_2/spr_ronghehaixing_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"9ad8b186-c013-4bcf-9b9d-704612ce2561","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0c8784cc-a962-4057-94b3-f8fbdfe76651","path":"sprites/spr_ronghehaixing_bullet_2/spr_ronghehaixing_bullet_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"04815e1f-0410-4b35-9365-7aad7165271b","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

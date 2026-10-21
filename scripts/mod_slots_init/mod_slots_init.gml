@@ -3019,4 +3019,10 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     {shape: 1, sprite: spr_yeziguo_1, cost: 75, cooldown: 1800, description: "浓香椰子果：跳起碾压前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_1},
     {shape: 2, sprite: spr_yeziguo_2, cost: 75, cooldown: 1800, description: "金丝椰子果：跳起连续碾压3次前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_2}
     ]);
+
+    register_card("niuyouguo", obj_niuyouguo, [
+    {shape:0,sprite:spr_niuyouguo,cost:210,cooldown:1800,description: "邪恶牛油果：向前方三个方向各发射1发穿透飞镖",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo},
+    {shape:1,sprite:spr_niuyouguo_1,cost:210,cooldown:1800,description: "沙沙牛油果：向前方三个方向各发射1发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_1},
+    {shape:2,sprite:spr_niuyouguo_2,cost:210,cooldown:1800,description: "桑巴牛油果：向前方三个方向各发射2发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_2}
+    ]);
 }
