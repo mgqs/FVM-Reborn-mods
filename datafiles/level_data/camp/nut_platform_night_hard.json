@@ -349,13 +349,13 @@
                 {
                     "enemy_list": [
                         {
-                            "type": "suv_mouse",
-                            "row": 2.0,
+                            "type": "barrel_mouse",
+                            "row": -1.0,
                             "prosperity": 0.0
                         },
                         {
-                            "type": "suv_mouse",
-                            "row": 6.0,
+                            "type": "barrel_mouse",
+                            "row": -1.0,
                             "prosperity": 0.0
                         }
                     ],
