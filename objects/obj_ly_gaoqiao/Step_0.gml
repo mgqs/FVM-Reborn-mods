@@ -8,7 +8,7 @@ else target_type = "dance";
 if (hp <= 0 && state != ENEMY_STATE.DEAD) {
     state = ENEMY_STATE.DEAD;
     timer = 0;
-    sprite_index = spr_gaoqiao;
+    sprite_index = ly_anims[$ "死亡"][0];
 }
 
 // ----- 高架物后退（保留专属逻辑）：NORMAL 时前方 2 格内有高架物/连通米线桥，则转 IDLE 自管后撤 -----
@@ -65,12 +65,15 @@ switch (state) {
         break;
     }
     case ENEMY_STATE.ACTING: {
-        // 舞步闪避：精灵第11-30帧（0-based 10-29），共20帧，对齐非主流鼠 mod 20；结束回 NORMAL 并进冷却
-        var _len = LY_GAOQIAO_DANCE_FRAMES;
-        image_index = ly_dodge_start + floor(timer / flash_speed) mod _len;
-        if (timer >= _len * flash_speed - 1 || hp <= 0) {
-            timer = 0;
-            sprite_index = spr_gaoqiao;
+        // 舞步闪避：随机选 3 段闪避精灵（各独立文件，一次性播完后回 NORMAL）
+        if (!ly_dodge_playing) {
+            longyuan_play(choose("闪避A", "闪避B", "闪避C"), true);
+            ly_dodge_playing = true;
+        }
+        longyuan_animate();
+        if (ly_done || hp <= 0) {
+            ly_dodge_playing = false; ly_action = "";
+            sprite_index = ly_anims[$ "正常移动"][0];
             state = ENEMY_STATE.NORMAL;
             dance_cooldown = is_slowdown ? 240 : 120;
         }

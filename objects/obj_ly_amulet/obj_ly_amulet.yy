@@ -31,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_fuzhou_gongji",
-    "path":"sprites/spr_fuzhou_gongji/spr_fuzhou_gongji.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

@@ -36,12 +36,12 @@ function boss_init(){
 	register_boss("hercules",{"name":"大力神","hp":400000,"icon":spr_rumble_icon})
 	register_boss("thor",{"name":"雷神","hp":800000,"icon":spr_rumble_icon})
 	// ===== 龙渊（长渊）关卡 BOSS =====
-	register_boss("ly_diting",{"name":"谛听鼠","hp":200000,"icon":spr_arno_icon})
-	register_boss("ly_hengha_horseface",{"name":"哼哈将军·马面","hp":180000,"icon":spr_arno_icon})
-	register_boss("ly_hengha_oxhead",{"name":"哼哈将军·牛头","hp":180000,"icon":spr_arno_icon})
-	register_boss("ly_mengpo",{"name":"孟婆鼠","hp":220000,"icon":spr_arno_icon})
-	register_boss("ly_wuchang",{"name":"无常鼠","hp":260000,"icon":spr_arno_icon})
-	register_boss("ly_youshen",{"name":"游神鼠","hp":300000,"icon":spr_arno_icon})
+	register_boss("ly_diting",{"name":"谛听鼠","hp":200000,"icon":spr_diting_icon})
+	register_boss("ly_hengha_horseface",{"name":"哼哈将军·马面","hp":180000,"icon":spr_hengha_icon})
+	register_boss("ly_hengha_oxhead",{"name":"哼哈将军·牛头","hp":180000,"icon":spr_hengha_icon})
+	register_boss("ly_mengpo",{"name":"孟婆鼠","hp":220000,"icon":spr_mengpo_icon})
+	register_boss("ly_wuchang",{"name":"无常鼠","hp":260000,"icon":spr_wuchang_icon})
+	register_boss("ly_youshen",{"name":"游神鼠","hp":300000,"icon":spr_youshen_icon})
 	register_boss("travel_record",{"name":"旅行唱机","hp":50000,"icon":spr_travel_record_icon})
 	register_boss("beverage_machine",{"name":"饮料贩卖机","hp":80000,"icon":spr_beverage_machine_icon})
 }

@@ -35,10 +35,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_yaoguan",
-    "path":"sprites/spr_yaoguan/spr_yaoguan.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

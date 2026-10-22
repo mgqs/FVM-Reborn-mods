@@ -16,10 +16,11 @@ ly_ambush_col = -1; ly_ambush_row = -1; // 技能1钻出目标格（-1 表示未
 ly_boss_step = function() {
     var _act, _tcol, _tpos;
 
-    // 遁地期间（常规移动钻入/地下段、技能1 含前置重置阶段、高速横移段）无敌。
+    // 遁地期间（常规移动钻入/地下段、技能1 含前置重置阶段、高速横移段、技能后摇 DISAPPEAR）无敌。
     invincible = false;
     if (state == BOSS_STATE.MOVE && ly_phase < 2) invincible = true;
     if (state == BOSS_STATE.SKILL1 && ly_phase < 2) invincible = true;
+    if (state == BOSS_STATE.DISAPPEAR) invincible = true;
 
     switch (state) {
         case BOSS_STATE.APPEAR: {
@@ -117,7 +118,7 @@ ly_boss_step = function() {
                     ly_hit = true;
                 }
                 if (longyuan_clip_done(timer, ly_anim_rate)) {
-                    ly_phase = 0; ly_hit = false; timer = 0; state = BOSS_STATE.IDLE;
+                    ly_phase = 0; ly_hit = false; timer = 0; state = BOSS_STATE.DISAPPEAR;
                 }
             }
             break;
@@ -127,15 +128,20 @@ ly_boss_step = function() {
             if (ly_action != _act) longyuan_clip_set(_act);
             longyuan_clip_frame(timer, ly_anim_rate, false);
             if (timer == 20) {
-                var _pos = get_world_position_from_grid(global.grid_cols - 1, grid_row);
-                var _wave = instance_create_depth(_pos.x, _pos.y - 20, -1300, obj_ly_boss_fx);
-                longyuan_boss_fx_start(_wave, "diting_soundwave", "待机", true, 5);
-                _wave.fx_kind = "diting_soundwave_live";
-                _wave.fx_row = grid_row; _wave.fx_direction = -1; _wave.fx_speed = 6;
-                _wave.fx_life = 0; _wave.fx_damage_timer = 0; _wave.fx_stuck = false;
-                _wave.fx_damage = LY_DITING_SOUNDWAVE_DPS;
+                // 技能2 音波：仅在本行及上下相邻行（共 3 行）生成，每行一条向左扫过
+                for (var _off = -1; _off <= 1; ++_off) {
+                    var _r = grid_row + _off;
+                    if (_r < 0 || _r >= global.grid_rows) continue;
+                    var _pos = get_world_position_from_grid(global.grid_cols - 1, _r);
+                    var _wave = instance_create_depth(_pos.x, _pos.y - 20, -1300, obj_ly_boss_fx);
+                    longyuan_boss_fx_start(_wave, "diting_soundwave", "待机", true, 5);
+                    _wave.fx_kind = "diting_soundwave_live";
+                    _wave.fx_row = _r; _wave.fx_direction = -1; _wave.fx_speed = 6;
+                    _wave.fx_life = 0; _wave.fx_damage_timer = 0; _wave.fx_stuck = false;
+                    _wave.fx_damage = LY_DITING_SOUNDWAVE_DPS;
+                }
             }
-            if (longyuan_clip_done(timer, ly_anim_rate)) { timer = 0; state = BOSS_STATE.IDLE; }
+            if (longyuan_clip_done(timer, ly_anim_rate)) { timer = 0; state = BOSS_STATE.DISAPPEAR; }
             break;
         }
         case BOSS_STATE.SKILL3: { // 技能3：在随机 7 张卡片位置生成可攻击的钟
@@ -162,7 +168,41 @@ ly_boss_step = function() {
                     _placed++;
                 }
             }
-            if (longyuan_clip_done(timer, ly_anim_rate)) { timer = 0; state = BOSS_STATE.IDLE; }
+            if (longyuan_clip_done(timer, ly_anim_rate)) { timer = 0; state = BOSS_STATE.DISAPPEAR; }
+            break;
+        }
+        case BOSS_STATE.DISAPPEAR: { // 技能后摇遁地：钻入（zuanru）→ 瞬移第9列随机行 → 钻出（zuanchu）→ 回 IDLE
+            if (ly_phase == 0) {
+                // 若本就在第 9 列（最右列），无需钻入/钻出，直接回 IDLE 并清掉残留动作避免循环
+                if (get_grid_position_from_world(x, y).col >= global.grid_cols - 1) {
+                    state = BOSS_STATE.IDLE;
+                    ly_phase = 0;
+                    timer = 0;
+                    ly_action = "";
+                    longyuan_clip_set(longyuan_variant("正常待机", "破损待机"));
+                } else {
+                    // 钻入：spr_ly_diting_zuanru（动画表已配好正常/破损对半切）
+                    _act = longyuan_variant("正常钻入", "破损钻入");
+                    if (ly_action != _act) longyuan_clip_set(_act);
+                    longyuan_clip_frame(timer, ly_anim_rate, false);
+                    if (longyuan_clip_done(timer, ly_anim_rate)) {
+                        // 瞬移到第 9 列（grid_cols-1）随机一行
+                        var _target_row = irandom(global.grid_rows - 1);
+                        var _tp = get_world_position_from_grid(global.grid_cols - 1, _target_row);
+                        x = _tp.x; y = _tp.y;
+                        timer = 0; ly_phase = 1;
+                    }
+                }
+            }
+            else {
+                // 钻出：spr_ly_diting_zuanchu
+                _act = longyuan_variant("正常钻出", "破损钻出");
+                if (ly_action != _act) longyuan_clip_set(_act);
+                longyuan_clip_frame(timer, ly_anim_rate, false);
+                if (longyuan_clip_done(timer, ly_anim_rate)) {
+                    ly_phase = 0; timer = 0; state = BOSS_STATE.IDLE;
+                }
+            }
             break;
         }
     }

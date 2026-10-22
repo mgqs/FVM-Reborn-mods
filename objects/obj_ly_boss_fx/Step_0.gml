@@ -101,26 +101,88 @@ if (fx_kind == "diting_soundwave_live") {
     }
 }
 
+// 哼哈铃铛：自管完整生命周期（0 飞行 → 1 变大 → 2 待机 → 3 攻击待机/4 待机2 → 5 飞走）
+// 放在通用 clip_frame 之前，避免通用“非循环动作播完”逻辑干扰钟的状态
+if (fx_kind == "hengha_bell") {
+    if (!variable_instance_exists(id, "fx_bell_stage")) {
+        fx_bell_stage = 0;
+        fx_bell_stage2 = false;   // 马面技能3 要求切「待机2」
+        fx_bell_leave = false;    // 离场：播「飞走」后销毁
+        fx_bell_ring = false;     // 牛头敲钟标记
+        fx_bell_ringing = false;
+    }
+
+    // 马面技能3：切「待机2」（钟尚未落地时先不动，落地后再切；已被敲过也切）
+    if (fx_bell_stage2 && fx_bell_stage >= 1 && fx_bell_stage <= 3) {
+        fx_bell_stage = 4;
+        longyuan_clip_set("待机2");
+        timer = 0;
+    }
+    // 牛头敲钟：切「攻击待机」（未落地的钟先记下，落地后再生效）
+    if (fx_bell_ring && !fx_bell_ringing && fx_bell_stage >= 1) {
+        fx_bell_ringing = true;
+        if (fx_bell_stage <= 2) {
+            fx_bell_stage = 3;
+            longyuan_clip_set("攻击待机");
+            timer = 0;
+        }
+    }
+    // 离场：切「飞走」，播完销毁（不再永久留在场上）
+    if (fx_bell_leave && fx_bell_stage != 5) {
+        fx_bell_stage = 5;
+        longyuan_clip_set("飞走");
+        timer = 0;
+    }
+
+    switch (fx_bell_stage) {
+        case 0: {
+            // 飞行：朝目标格直线飞行；900 步仍未到则直接吸附到目标，避免卡在半空
+            var _tx = x, _ty = y;
+            if (variable_instance_exists(id, "fx_target_x")) {
+                // 优先使用创建时记录的像素坐标（网格坐标可能尚未赋值）
+                _tx = fx_target_x;
+                _ty = fx_target_y;
+            }
+            else if (variable_instance_exists(id, "fx_target_col") && fx_target_col >= 0) {
+                var _tp = get_world_position_from_grid(fx_target_col, fx_target_row);
+                _tx = _tp.x; _ty = _tp.y;
+            }
+            var _dd = point_distance(x, y, _tx, _ty);
+            if (_dd > 4 && timer < 900) {
+                var _dir = point_direction(x, y, _tx, _ty);
+                x += lengthdir_x(6, _dir);
+                y += lengthdir_y(6, _dir);
+            } else {
+                x = _tx; y = _ty;
+                fx_target_col = -1;
+                fx_bell_stage = 1;
+                longyuan_clip_set("变大");
+                timer = 0;
+            }
+            break;
+        }
+        case 1: {
+            if (longyuan_clip_done(timer, fx_rate)) {
+                fx_bell_stage = 2;
+                longyuan_clip_set("待机");
+                timer = 0;
+            }
+            break;
+        }
+        case 5: {
+            if (longyuan_clip_done(timer, fx_rate)) { instance_destroy(); exit; }
+            break;
+        }
+    }
+
+    // 钟的动画始终由自己的计时器推进，且始终循环
+    longyuan_clip_frame(timer, fx_rate, !(fx_bell_stage == 1 || fx_bell_stage == 5));
+    timer++;
+    exit;
+}
+
 // 按本地计时器驱动当前动作的子图帧
 longyuan_clip_frame(timer, fx_rate, fx_loop);
-
-// 哼哈铃铛：飞行→变大→待机常驻；牛头敲钟后摇晃一次→飞走销毁
-if (fx_kind == "hengha_bell") {
-    if (!variable_instance_exists(id, "fx_bell_ring")) { fx_bell_ring = false; fx_bell_ringing = false; }
-    if (!fx_bell_ringing && ly_action == "变大" && longyuan_clip_done(timer, fx_rate)) {
-        longyuan_clip_set("待机");
-        timer = 0;
-        fx_loop = true;
-    }
-    if (fx_bell_ring && !fx_bell_ringing) {
-        fx_bell_ringing = true;
-        fx_next_action = "飞走";
-        fx_loop_after = false;
-        longyuan_clip_set("摇晃待机");
-        timer = 0;
-        fx_loop = false;
-    }
-}
 
 // 非循环动作播完：切换到后续动作，或销毁
 if (!fx_loop && longyuan_clip_done(timer, fx_rate)) {

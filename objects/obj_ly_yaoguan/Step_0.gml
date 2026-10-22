@@ -26,20 +26,17 @@ var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (ly_mode == "heal") {
     longyuan_animate();
     if (ly_done) {
-
-        ly_fire = max(0, ly_fire - 1);
-        var _ratio = LY_YAOGUAN_HEAL_RATIO;
-        with (obj_enemy_parent) {
-            if (hp > 0 && state != ENEMY_STATE.DEAD && variable_instance_exists(id, "is_soul") && is_soul) hp = min(maxhp, hp + maxhp * _ratio);
-        }
+        // 回血仅给自己，播放完才回；动画期间 hp 掉 0 会被下方 dead 分支拦截，自然阻断
+        ly_heal_charges = max(0, ly_heal_charges - 1);
+        hp = min(maxhp, hp + maxhp * LY_YAOGUAN_HEAL_RATIO);
         move_speed = LY_YAOGUAN_HEAL_DONE_SPEED;
         ly_mode = "walk"; ly_action = "";
     }
     exit;
 }
 
-// 生命值低于最大生命 30% 且仍有魂火时进入回血；魂火耗尽后条件永不成立，不再触发。
-if (ly_fire > 0 && hp <= maxhp * LY_YAOGUAN_HEAL_TRIGGER) {
+// 生命值低于最大生命 30% 且仍有回血次数时进入回血；用完后永不触发。
+if (ly_heal_charges > 0 && hp <= maxhp * LY_YAOGUAN_HEAL_TRIGGER) {
     ly_mode = "heal"; longyuan_play(longyuan_variant("正常回血", "破损回血"), true); exit;
 }
 

@@ -15,6 +15,7 @@ var _col0 = clamp(floor((min(x, _old_x) - 15 - global.grid_offset_x) / global.gr
 var _col1 = clamp(floor((max(x, _old_x) + 15 - global.grid_offset_x) / global.grid_cell_size_x), 0, global.grid_cols - 1);
 for (var _c = _col0; _c <= _col1; ++_c) {
     var _list = ds_grid_get(global.grid_plants, _c, lane);
+    if (!ds_exists(_list, ds_type_list)) continue;
     for (var _i = 0; _i < ds_list_size(_list); ++_i) {
         var _card = _list[| _i];
         if (!instance_exists(_card) || _card.hp <= 0) continue;

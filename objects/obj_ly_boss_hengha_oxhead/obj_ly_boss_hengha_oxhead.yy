@@ -32,10 +32,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_ly_hengha_oxhead",
-    "path":"sprites/spr_ly_hengha_oxhead/spr_ly_hengha_oxhead.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

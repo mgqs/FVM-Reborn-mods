@@ -28,7 +28,13 @@ if (ly_mode == "cast") {
     if (ly_done) {
 
         ly_fire = max(0, ly_fire - 1);
-        ly_amulet = instance_create_depth(x - 35, y - 65, depth - 1, obj_ly_amulet, {owner: id, lane: grid_row});
+        // GameMaker instance_create_depth 只有 4 参数，owner/lane 必须创建后手动赋值
+        var _amu = instance_create_depth(x - 35, y - 65, depth - 1, obj_ly_amulet);
+        if (instance_exists(_amu)) {
+            _amu.owner = id;
+            _amu.lane = grid_row;
+            ly_amulet = _amu;
+        }
         // 本次阈值已完成，出队：下一档为第6列(5)、再下一档为第4列(3)
         if (array_length(ly_summon_cols) > 0) array_delete(ly_summon_cols, 0, 1);
         ly_cooldown = 0;
@@ -43,6 +49,7 @@ invincible = ly_has_servant(id);
 // 推进到当前阈值列即施法（参考东风鼠 <= 判定：啃卡停在卡右侧一格时也能触发）
 if (ly_fire > 0 && array_length(ly_summon_cols) > 0 && grid_col <= ly_summon_cols[0]
     && !instance_exists(ly_amulet)) {
+    show_debug_message("fuzhou cast triggered at col=" + string(grid_col) + " threshold=" + string(ly_summon_cols[0]));
     invincible = true;
     ly_mode = "cast"; longyuan_play(longyuan_variant("正常施法", "破损施法"), true); exit;
 }
