@@ -1585,7 +1585,7 @@ function attire_init(){
 		"player_attire_monvling",
 		{
 			"target_card":"player",
-			"name":"魔女「零」",
+			"name":"魔女[零]",
 			"icon":spr_player_attire_monvling_icon,
 			"spr":spr_player_attire_monvling,
 		}

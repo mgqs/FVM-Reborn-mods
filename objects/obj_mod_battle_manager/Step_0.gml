@@ -150,16 +150,14 @@ else
                             break;
 
                         case "five_dir":
-                            if (self.plant_id == "youyu_god" && self.shape < 3)
-                                buff_multiplier = 1;
-                            else
-                            {
-                                var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
-                                var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                                var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
-                                var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
-                                buff_multiplier = max(fd_normal, fd_stack);
-                            }
+                            // 2026-10-22：删掉旧的「youyu_god 且 shape < 3 就倍率 = 1」限制 ——
+                            // 融合卡只有 0/1/2 转，shape 永远 < 3，等于融合鱿鱼恒吃不到五向增幅。
+                            // 现在与融合海星同口径：多向类都吃丰饶神的五向增幅。
+                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
+                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
+                            buff_multiplier = max(fd_normal, fd_stack);
                             break;
 
                         case "multi_dir":
@@ -226,16 +224,12 @@ else
                             break;
 
                         case "five_dir":
-                            if (self.plant_id == "youyu_god" && self.shape < 3)
-                                buff2_multiplier = 1;
-                            else
-                            {
-                                var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
-                                var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                                var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
-                                var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
-                                buff2_multiplier = max(fd2_normal, fd2_stack);
-                            }
+                            // 第二类型分支：同第一类型，删掉 youyu_god 的旧限制（融合卡只有 0/1/2 转，恒 < 3）
+                            var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
+                            var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
+                            var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
+                            var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
+                            buff2_multiplier = max(fd2_normal, fd2_stack);
                             break;
 
                         case "multi_dir":

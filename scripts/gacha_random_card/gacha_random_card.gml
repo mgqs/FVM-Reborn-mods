@@ -380,10 +380,10 @@ function fusion_get_prerequisites() {
         ronghekafei:    ["coffee_cup"],         // 融合咖啡杯   ← 骨瓷咖啡杯
 
         // ---- 神灵卡 ----
-        sheng_huo:      ["beef_hotpot"],                     // 圣火 ← 肥牛火锅
-        hufa_god:       ["hongliukaochuan"],                 // 护法 ← 烤串机
+        sheng_huo:      ["beef_hotpot", "spicy_pot"],        // 圣火 ← 肥牛火锅 + 麻辣香锅（2026-10-23 补双前置）
+        hufa_god:       ["hongliukaochuan", "double_blade_snake"], // 护法 ← 烤串机 + 双刃蛇（同为穿透/斩杀，2026-10-23 补双前置）
         gongjiang_god:  ["laipishe", "pizza_oven"],          // 工匠 ← 赖皮蛇 + 披萨炉
-        brahma:         ["baibianshe", "magic_chicken"],     // 创造神 ← 百变蛇 + 幻幻鸡
+        brahma:         ["magic_chicken", "baibianshe"],     // 创造神 ← 幻幻鸡 + 百变蛇（幻幻鸡没有二转，放前面让「二转」只落在百变蛇上）
         guangming_god:  ["dragon_fruit"],                    // 光明神 ← 火龙果
         shennong_god:   ["yanhuangma"],                      // 炎帝 ← 炎凰马
         haiyang_god:    ["hspeed_juicer", "mozhang"],        // 海洋 ← 榨汁机 + 魔杖蛇
@@ -392,11 +392,37 @@ function fusion_get_prerequisites() {
         chongsheng_god: ["xingqiongma", "anranxiaohunfan"],  // 重生神 ← 星穹马 + 天妇罗盖饭
         sun_god:        ["small_fire", "shuangzi"],          // 太阳神 ← 小火炉 + 双子座精灵
         heian_god:      ["durian"],                          // 黑暗神 ← 榴莲
-        aurora:         ["fruit_tart"],                      // 曙光女神 ← 风车水果塔
+        aurora:         ["blueberry_tower"],                  // 曙光女神 ← 蓝莓信号塔塔（水果塔是未实装卡，2026-10-22 从前置里去掉）
         houyi_god:      ["ronghesanxian"],                   // 宗布神 ← 融合三线
-        joker:          ["donut"],                           // 恶作剧神 ← 多拿滋
+        joker:          ["donut", "cat_box"],                // 恶作剧神 ← 多拿滋 + 猫猫盒（猫猫盒只有 0 转，按形态上限兜底＝拥有本体即可）
         time_god:       ["ice_cream"],                       // 时间神 ← 冰激凌
-        xiangshui_god:  ["berry_dessert"]                    // 宴飨女神 ← 莓果点心
+        xiangshui_god:  ["berry_dessert"],                   // 宴飨女神 ← 莓果点心
+
+        // ---- 2026-10-22 补全：原版 26 神里此前没登记前置的 15 张 ----
+        war_god:        ["double_water_pipe", "tiancheng"],       // 战神 ← 双向水管 + 天秤座精灵
+        thor:           ["egg_boiler_pult", "shuangyu"],          // 雷神 ← 煮蛋器投手 + 双鱼座精灵
+        fire_god:       ["brazier", "jinniu"],                    // 火神 ← 火盆 + 金牛座精灵
+        moon_god:       ["takoyaki", "juxie"],                    // 月神 ← 章鱼烧 + 巨蟹座精灵
+        power_god:      ["tang_hu_lu"],                           // 大力神 ← 糖葫芦炮弹
+        gaia:           ["chocolate_cannon"],                     // 大地女神 ← 巧克力大炮
+        zhurong:        ["pan_fried_bun", "lizi_god"],            // 赤帝 ← 生煎锅 + 融合栗子
+        rig:            ["starrabbit", "nut_frier"],              // 守护神 ← 星星兔 + 坚果爆炒机
+        ymir:           ["grilled_lizard_pult", "spoon_rabbit"],  // 巨神 ← 烤蜥蜴投手 + 勺勺兔（原灵融煮蛋，2026-10-23 换）
+        save_god:       ["bull_firework", "baiyang"],             // 救世神 ← 金牛烟花 + 白羊座精灵
+        poseidon:       ["rotating_coffee_pot", "shizi"],         // 海神 ← 旋转咖啡喷壶 + 狮子座精灵
+        ghost_god:      ["coal_starfish"],                        // 冥神 ← 炭烧海星
+        odin:           ["tar_sprayer"],                          // 主神 ← 焦油喷壶
+        water_god:      ["cherry_pudding"],                       // 水神 ← 樱桃反弹布丁
+        hundun_god:     ["hamburger"],                            // 混沌神使 ← 汉堡包
+
+        // ---- 2026-10-23 补最后 7 张（用户给定前置，诸神一律要求二转）----
+        firework_dragon_real: ["firework_dragon", "shegengbao"],  // 真·花火龙 ← 花火龙 + 蛇羹煲
+        hera:           ["melon_shield", "chunv"],                // 天后 ← 瓜皮护罩 + 处女座精灵
+        ice_god:        ["cold_drew"],                            // 冰神 ← 冰块冷萃机
+        zeus:           ["athena", "curry_lobster_cannon"],       // 宙斯 ← 雅典娜守护 + 咖喱龙虾炮
+        love_god:       ["sheshou", "triple_wine_rack"],          // 爱神 ← 射手座精灵 + 三线酒架
+        panduola_god:   ["coke_bomb", "pufferfish"],              // 潘多拉 ← 可乐炸弹 + 爆辣河豚（玉兔灯笼，2026-10-23 换）
+        lingrong_god:   ["cotton_candy"]                          // 魔导士软糖 ← 棉花糖
     };
 }
 
@@ -413,12 +439,26 @@ function prereq_body_only(card_id) {
     return (card_id == "clotho");
 }
 
+/// @function card_max_available_shape(card_id)
+/// @desc 这张卡**注册了**的最大形态序号（0 起算）；查不到返回 -1。
+///       用途：前置要求「练到二转」，但个别卡只有 0 转（2026-10-22 查出 `blueberry_tower` 蓝莓塔、
+///       `magic_chicken` 幻幻鸡），够不到二转。按「练到它自己的最大形态」算满足，
+///       否则诸神商店会永远提示未满足（永远买不了）、抽卡会跳过这张前置直接给目标卡本体。
+function card_max_available_shape(card_id) {
+    var _max = -1;
+    for (var _s = 0; _s <= 3; _s++) {
+        if (get_plant_shape_data(card_id, _s) != undefined) _max = _s;
+    }
+    return _max;
+}
+
 /// @function fusion_prereq_met(card_id, _need_shape)
 /// @desc 前置是否达成。前置表里的卡**全部**满足才算达成。
 /// @param {string} card_id 目标卡 id
 /// @param {real} _need_shape 0 = 拥有本体即可（抽卡）；2 = 前置卡需练到二转（诸神商店）
 ///        用 max_shape 判定（当前 shape 可被调低，max_shape 才是「曾经练到过」），
 ///        与营地商店「降转后不能重买转职」同一个坑。
+///        卡本身形态数不够时按它自己的最大形态算（见 card_max_available_shape）。
 /// @return {bool} 表里没有的卡恒为 true
 function fusion_prereq_met(card_id, _need_shape = 0) {
     var _prereqs = fusion_get_prerequisites();
@@ -430,13 +470,18 @@ function fusion_prereq_met(card_id, _need_shape = 0) {
     for (var _i = 0; _i < array_length(_list); _i++) {
         var _info = get_card_info_simple(_list[_i]);
         if (!is_struct(_info)) return false;                 // 连本体都没有
-        if (_need_shape > 0 && _info.max_shape < _need_shape) return false;
+        if (_need_shape > 0) {
+            var _avail = card_max_available_shape(_list[_i]);
+            var _required = (_avail >= 0) ? min(_need_shape, _avail) : _need_shape;
+            if (_info.max_shape < _required) return false;
+        }
     }
     return true;
 }
 
 /// @function fusion_prereq_name(card_id)
-/// @desc 前置卡本体（0 转）形态名，多张用「」「」串起来（用于提示文案）
+/// @desc 前置卡本体（0 转）形态名，多张用「][」串起来（用于提示文案；
+///       注意别用 「」——游戏字体没有这两个字形的映射，会渲成豆腐块，统一用半角方括号）
 /// @param {string} card_id 目标卡 id
 /// @return {string} 未配置前置 / 查不到名字时返回空串
 function fusion_prereq_name(card_id) {
@@ -448,10 +493,27 @@ function fusion_prereq_name(card_id) {
     for (var _i = 0; _i < array_length(_list); _i++) {
         var _shape_data = get_plant_shape_data(_list[_i], 0);
         if (_shape_data == undefined) continue;
-        if (_out != "") _out += "」「";
+        if (_out != "") _out += "][";
         _out += _shape_data[? "name"];
     }
     return _out;
+}
+
+/// @function fusion_prereq_any_upgradable(card_id)
+/// @desc 前置表里是否**至少有一张**卡能练到二转（自身形态 >= 2）。
+///       全是只有 0 转的卡时（幻幻鸡 `magic_chicken` / 蓝莓塔 `blueberry_tower`），
+///       诸神商店的提示不该写「二转」，否则玩家会一直找一张根本不存在的二转形态。
+/// @param {string} card_id 目标卡 id
+/// @return {bool} 表里没有这张卡时返回 false
+function fusion_prereq_any_upgradable(card_id) {
+    var _prereqs = fusion_get_prerequisites();
+    if (!variable_struct_exists(_prereqs, card_id)) return false;
+
+    var _list = _prereqs[$ card_id];
+    for (var _i = 0; _i < array_length(_list); _i++) {
+        if (card_max_available_shape(_list[_i]) >= 2) return true;
+    }
+    return false;
 }
 
 /// @function gacha_resolve_prereq_reward(_cand)
@@ -484,12 +546,16 @@ function gacha_resolve_prereq_reward(_cand) {
         }
     }
 
-    // ② 再按顺序把前置推到二转（命运 _need_max = 0，这一步不会命中）
+    // ② 再按顺序把前置推到二转；**卡本身没有二转时按它自己的最大形态算**
+    //    （蓝莓塔 blueberry_tower / 幻幻鸡 magic_chicken 只有 0 转，直接视为已满足，
+    //      否则会 continue 跳过、最后误发目标卡本体）
     for (var _j = 0; _j < array_length(_list); _j++) {
         var _info = get_card_info_simple(_list[_j]);
         if (!is_struct(_info)) continue;
         var _cur = max(_info.max_shape, _info.shape);   // 取大值：降转不算退回
-        if (_cur < _need_max) {
+        var _avail = card_max_available_shape(_list[_j]);
+        var _target = (_avail >= 0) ? min(_need_max, _avail) : _need_max;
+        if (_cur < _target) {
             var _next = _cur + 1;
             if (get_plant_shape_data(_list[_j], _next) == undefined) continue;
             return { reward_type: "card", id: _list[_j], shape: _next };

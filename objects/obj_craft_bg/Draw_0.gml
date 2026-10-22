@@ -31,26 +31,12 @@ draw_text(rate_toggle_x + 25, rate_toggle_y + 1, "概率强化")
 draw_set_colour(_rate_color)
 draw_text(rate_toggle_x + 26, rate_toggle_y, "概率强化")
 
-if (!_rate_on) draw_set_alpha(0.45)
-var _dropstar_frame = _rate_settings.dropstar_enabled ? 1 : 0
-draw_sprite_ext(spr_craft_rate_check, _dropstar_frame, dropstar_toggle_x, dropstar_toggle_y, 1.4, 1.4, 0, c_white, 1)
-if (dropstar_toggle_hover && _rate_on) {
-    draw_set_alpha(0.25)
-    draw_rectangle(dropstar_toggle_x - 18, dropstar_toggle_y - 18, dropstar_toggle_x + 18, dropstar_toggle_y + 18, false)
-    draw_set_alpha(1)
-}
-var _dropstar_color = _rate_settings.dropstar_enabled ? make_colour_rgb(35, 165, 55) : make_colour_rgb(205, 40, 30)
-draw_set_colour(c_black)
-draw_text(dropstar_toggle_x + 25, dropstar_toggle_y + 1, "失败掉星")
-draw_set_colour(_dropstar_color)
-draw_text(dropstar_toggle_x + 26, dropstar_toggle_y, "失败掉星")
 draw_set_colour(c_white)
 draw_set_valign(fa_top)
 draw_set_halign(fa_left)
-if (!_rate_on) draw_set_alpha(1)
 
 if (button_select == 0) {
-    var _assure_off = !_rate_on || !_rate_settings.dropstar_enabled
+    var _assure_off = !_rate_on
     if (_assure_off) draw_set_alpha(0.45)
     var _assure_frame = _rate_settings.assure_enabled ? 1 : 0
     draw_sprite_ext(spr_craft_insure_badge, 0, assure_badge_cx, assure_badge_cy, 1.5, 1.5, 0, c_white, 1)
@@ -73,7 +59,68 @@ if (button_select == 0) {
     if (_assure_off) draw_set_alpha(1)
 }
 
-draw_sprite_ext(spr_craft_gold_require_bg,0,x-45,y+300,1.8,1.8,0,c_white,1)
+// 需金币（左）与成功率（右）同一排：两条都用 spr_craft_gold_require_bg 贴图（原点在右端）
+draw_sprite_ext(spr_craft_gold_require_bg,0,x-350,y+300,1.8,1.8,0,c_white,1)
+
+// 成功率栏（右条）：框 = spr_craft_gold_require_bg 换过来画 + 空白段盖掉自带"需金币:"
+// 标签用 spr_craft_rate_label（条内左侧，与隔壁金币条自带的"需金币:"排法一致），数值仍用字体
+var _rr_bar_x = x - 45
+var _rr_bar_y = y + 300
+var _rr_bar_left = _rr_bar_x - 230.4      // 条子左缘（128*1.8，原点在右端）
+var _rr_bar_ix = _rr_bar_left + 3.6       // 框内区左缘（2 像素 * 1.8）
+var _rr_bar_iy = _rr_bar_y - 18           // 框内区上缘（整条高 20*1.8）
+var _rr_set = craft_rate_settings()
+var _rr_base = 100
+var _rr_streak = 0
+var _rr_bonus = 0
+var _rr_text = "100%"
+if _rr_set.enabled{
+	_rr_text = "--"
+	if current_uprade_target_id != ""{
+		if button_select == 0{
+			var _rr_card = get_card_info_simple(current_uprade_target_id)
+			if _rr_card != false{
+				_rr_base = get_card_craft_rate_base(current_uprade_target_id, _rr_card.max_level+1)
+				_rr_streak = get_card_fail_streak(current_uprade_target_id)
+				_rr_bonus = get_card_craft_bonus(current_uprade_target_id)
+			}
+		}
+		else{
+			_rr_base = get_gem_craft_rate_base(current_uprade_target_id, get_gem_max_level(current_uprade_target_id)+1)
+			_rr_streak = get_gem_fail_streak(current_uprade_target_id)
+			_rr_bonus = get_gem_craft_bonus(current_uprade_target_id)
+		}
+		if _rr_set.pity_guarantee > 0 && _rr_streak >= _rr_set.pity_guarantee{
+			_rr_text = "必成"
+		}
+		else if _rr_bonus > 0{
+			_rr_text = string_format(_rr_base,1,2)+"%+"+string_format(_rr_bonus,1,2)+"%"
+		}
+		else{
+			_rr_text = string_format(_rr_base,1,2)+"%"
+		}
+	}
+}
+draw_sprite_ext(spr_craft_gold_require_bg, 0, _rr_bar_x, _rr_bar_y, 1.8, 1.8, 0, c_white, 1)
+// 用同一贴图的空白段（x=90 起的 4x20 整列）把框上自带的"需金币:"盖掉 → 变成空条
+// 横向拉到 88 像素（＝90-2）宽，左端留 2 像素不盖，保住左边的圆角描边
+draw_sprite_part_ext(spr_craft_gold_require_bg, 0, 90, 0, 4, 20, _rr_bar_ix, _rr_bar_iy, 39.6, 1.8, c_white, 1)
+draw_sprite_ext(spr_craft_rate_label, 0, _rr_bar_left + 10, _rr_bar_y, 1.5, 1.5, 0, c_white, 1)
+// 数值：白字 + 四向深色描边
+draw_set_font(font_number)
+draw_set_valign(fa_middle)
+draw_set_halign(fa_center)
+var _rr_text_x = _rr_bar_left + 150
+draw_set_colour(c_black)
+draw_text(_rr_text_x-1, _rr_bar_y-1, _rr_text)
+draw_text(_rr_text_x+1, _rr_bar_y-1, _rr_text)
+draw_text(_rr_text_x-1, _rr_bar_y+1, _rr_text)
+draw_text(_rr_text_x+1, _rr_bar_y+1, _rr_text)
+draw_set_colour(c_white)
+draw_text(_rr_text_x, _rr_bar_y, _rr_text)
+draw_set_colour(c_white)
+draw_set_valign(fa_top)
+draw_set_halign(fa_left)
 
 draw_set_font(font_number)
 draw_set_colour(c_yellow)
@@ -238,7 +285,7 @@ if button_select == 0{
 			draw_set_colour(c_yellow)
 			draw_set_valign(fa_middle)
 			draw_set_halign(fa_left)
-			draw_text(x-160,y+300,string(craft_rule.gold_amount))
+			draw_text(x-460,y+300,string(craft_rule.gold_amount))
 			// 保险金消耗数字（画在徽章中间；不够钱时转红）——只要总开关「概率强化」开着就显示
 			// 金额最多 6 位：基准字号放得下 5 位，超过 5 位按位数等比缩小
 			if craft_rate_settings().enabled{
@@ -419,7 +466,7 @@ else if button_select == 1{
 			draw_set_colour(c_yellow)
 			draw_set_valign(fa_middle)
 			draw_set_halign(fa_left)
-			draw_text(x-160,y+300,string(craft_rule.gold_amount))
+			draw_text(x-460,y+300,string(craft_rule.gold_amount))
 			draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.crystal_require).icon, x-305, y-40, 0.9, 0.9, 0, c_white, 1)
 			draw_set_halign(fa_center)
 			draw_set_colour(c_black)

@@ -310,13 +310,11 @@ function craft_rule_init(){
 function craft_rate_settings_init(){
 	var _enabled = true
 	if !is_undefined(global.craft_rate_enabled) _enabled = global.craft_rate_enabled
-	var _dropstar = true
-	if !is_undefined(global.craft_dropstar_enabled) _dropstar = global.craft_dropstar_enabled
 	var _assure = false
 	if !is_undefined(global.craft_assure_enabled) _assure = global.craft_assure_enabled
 	global.craft_rate = {
 		enabled: _enabled,
-		dropstar_enabled: _dropstar,
+		// 掉星已内置进「概率强化」（没有独立开关）：enabled 为真且当前星级 > dropstar_min 时失败必掉
 		dropstar_min: 5,
 		assure_enabled: _assure,
 		// 保险金费用：直接查表，依次对应 1★~15★（5★ 及以下不掉星所以是 0）；
@@ -347,16 +345,19 @@ function craft_rate_settings(){
 	return global.craft_rate
 }
 
+/// @func craft_dropstar_can_drop(current_level)
+/// @desc 强化失败是否掉星：掉星已内置进「概率强化」，没有独立开关 ——
+///       概率强化开着且当前星级 > dropstar_min 就掉（5★ 及以下免疫）
 function craft_dropstar_can_drop(current_level){
 	var _s = craft_rate_settings()
-	return _s.dropstar_enabled && current_level > _s.dropstar_min
+	return _s.enabled && current_level > _s.dropstar_min
 }
 
 /// @func craft_assure_active()
-/// @desc 保险金是否生效：勾选了保险金，且失败掉星开着（否则没星可保）
+/// @desc 保险金是否生效：勾选了保险金，且「概率强化」开着（掉星内置在里面；关掉概率强化=100%必成，没星可保）
 function craft_assure_active(){
 	var _s = craft_rate_settings()
-	return _s.assure_enabled && _s.dropstar_enabled
+	return _s.assure_enabled && _s.enabled
 }
 
 /// @func craft_assure_gold(current_level)
