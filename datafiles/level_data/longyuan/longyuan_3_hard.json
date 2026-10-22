@@ -28,27 +28,27 @@
       },
       {
         "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
         "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "water",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "water",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "water",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "water",
         "plant": []
       },
       {
@@ -63,6 +63,11 @@
       }
     ],
     [
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
       {
         "object": [],
         "type": "normal",
@@ -91,11 +96,6 @@
       {
         "object": [],
         "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
         "plant": []
       },
       {
@@ -638,8 +638,16 @@
           "local_min_wave_time": -1,
           "local_max_wave_time": -1,
           "enemy_list": [
-            { "row": -1, "prosperity": 0, "type": "longyuan_gaoqiao" },
-            { "row": -1, "prosperity": 0, "type": "longyuan_zhinian" }
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "longyuan_gaoqiao"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "longyuan_zhinian"
+            }
           ]
         }
       ]
@@ -659,8 +667,16 @@
           "local_min_wave_time": -1,
           "local_max_wave_time": -1,
           "enemy_list": [
-            { "row": -1, "prosperity": 0, "type": "longyuan_kailu" },
-            { "row": -1, "prosperity": 0, "type": "longyuan_langyabang" }
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "longyuan_kailu"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "longyuan_langyabang"
+            }
           ]
         }
       ]

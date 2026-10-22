@@ -34,10 +34,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_fuzhou_zhaohuan_2",
-    "path":"sprites/spr_fuzhou_zhaohuan_2/spr_fuzhou_zhaohuan_2.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

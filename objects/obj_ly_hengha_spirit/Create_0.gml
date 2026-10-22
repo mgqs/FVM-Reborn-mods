@@ -24,5 +24,8 @@ state = ENEMY_STATE.ACTING;
 
 ly_absorbing = false;
 ly_absorb_boss = noone;
+ly_melted = false;      // 已抵达第9列：消散并已返还血量
+ly_kill_col = -1;       // 出生动画播完后需要销毁的卡片格
+ly_kill_row = -1;
 
 longyuan_play("出生", true);

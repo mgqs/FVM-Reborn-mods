@@ -32,10 +32,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_ly_hengha_horseface",
-    "path":"sprites/spr_ly_hengha_horseface/spr_ly_hengha_horseface.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

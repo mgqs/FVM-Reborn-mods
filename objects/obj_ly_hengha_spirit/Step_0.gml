@@ -16,7 +16,15 @@ if (hp <= 0 && ly_mode != "dead") {
 
 if (ly_mode == "birth") {
     longyuan_animate();
-    if (ly_done) { ly_mode = "idle"; longyuan_play("待机"); }
+    if (ly_done) {
+        // 出生动画播完，该格子的卡片直接销毁
+        if (ly_kill_col >= 0) {
+            longyuan_damage_cell(ly_kill_col, ly_kill_row, 0, true);
+            ly_kill_col = -1; ly_kill_row = -1;
+        }
+        ly_mode = "idle";
+        longyuan_play("待机");
+    }
     exit;
 }
 
@@ -27,6 +35,13 @@ if (ly_mode == "dead") {
 }
 
 // 待机/被吸收：原地待机；吸收后向右（第 9 列）移动。
+if (ly_melted) {
+    longyuan_play("死亡", true);
+    longyuan_animate();
+    if (ly_done) instance_destroy();
+    exit;
+}
+
 longyuan_play("待机");
 longyuan_animate();
 if (ly_absorbing) {
@@ -39,7 +54,8 @@ if (ly_absorbing) {
             if (instance_exists(_boss.ly_shared_boss_peer))
                 _boss.ly_shared_boss_peer.hp = max(_boss.ly_shared_boss_peer.hp, _boss.hp);
         }
-        instance_destroy();
-        exit;
+        ly_melted = true;
+        longyuan_play("死亡", true);
+        longyuan_animate();
     }
 }

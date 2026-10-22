@@ -42,7 +42,7 @@
 #macro LONGZHU_GREEN_APPLE_HEAL         10000 // 青苹果每次为接触老鼠回复的体力
 #macro LONGZHU_GREEN_APPLE_HEAL_INTERVAL 30   // 青苹果治疗间隔（帧）
 #macro LONGZHU_GREEN_APPLE_LIFE          2400 // 青苹果存活时长（帧）
-#macro LONGZHU_PILLAR_BASE_DEPTH        (-1200) // 龙柱绘制深度
+#macro LONGZHU_PILLAR_BASE_DEPTH        (49)   // 龙柱绘制深度：地图(50)之上，卡片/敌人(-10~-320)之下
 #macro LONGZHU_APPLE_DEPTH_OFFSET       (-1100) // 苹果绘制深度
 #macro LONGZHU_SCALE                    2      // 龙柱本体精灵放大倍数
 

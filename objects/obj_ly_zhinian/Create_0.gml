@@ -32,7 +32,7 @@ longyuan_move_action = function() { return ly_soul ? longyuan_variant("正常灵
 longyuan_attack_action = function() { return ly_soul ? longyuan_variant("正常攻击卡片", "破损攻击卡片") : longyuan_variant("正常啃咬", "破损啃咬"); };
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };
 longyuan_change_soul = function() {
-    ly_soul = true; is_soul = true; target_type = "invisible";
+    ly_soul = true; is_soul = true; target_type = "normal";
     ly_kind = "zhinian_soul"; ly_anims = longyuan_animation_table(ly_kind);
     hp = maxhp; ash_death = false; image_alpha = 1; ly_action = "";
     ly_mode = "spawn"; longyuan_play("出生", true);

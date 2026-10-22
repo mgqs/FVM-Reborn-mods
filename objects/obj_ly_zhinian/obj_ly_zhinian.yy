@@ -34,10 +34,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_zhinian",
-    "path":"sprites/spr_zhinian/spr_zhinian.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

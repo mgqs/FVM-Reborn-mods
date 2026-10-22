@@ -56,6 +56,10 @@ function load_file(file_slot) {
                 break
             }
         }
+        // 已完成的任务会从 tasks 移除并进入 completed_tasks，这里需避免重新添加导致重复弹出。
+        if (!_camp_task_exists && array_get_index(global.save_data.completed_tasks, "camp_level_0") != -1) {
+            _camp_task_exists = true
+        }
         if (!_camp_task_exists) {
             array_push(global.save_data.tasks, {id: "camp_level_0", progress: [0], state: "new"})
         }
