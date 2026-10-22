@@ -1,4 +1,4 @@
-// obj_shuanggu_effect_air（耗油双菇 · 对空命中特效）
+// obj_shuanggu_effect_air（蚝油双菇 · 对空命中特效）
 image_speed = 0
 timer = 0
 image_xscale = 1.4

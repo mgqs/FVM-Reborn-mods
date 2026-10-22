@@ -27,7 +27,7 @@ function gods_shop_init()
     register_gods_goods("rig",
     {
         type: "card",
-        cost: "16",
+        cost: "30",
         unlock_item_id: "rig",
         description: "里格神使：前方5方向发射穿透子弹",
         display_name: "里格神使"
@@ -35,7 +35,7 @@ function gods_shop_init()
     register_gods_goods("brahma",
     {
         type: "card",
-        cost: "16",
+        cost: "30",
         unlock_item_id: "brahma",
         description: "梵天神使：变身出多个上一次种下的卡片",
         display_name: "梵天神使"
@@ -43,7 +43,7 @@ function gods_shop_init()
     register_gods_goods("clotho",
     {
         type: "card",
-        cost: "16",
+        cost: "30",
         unlock_item_id: "clotho",
         description: "克洛托神使：随机改变范围内卡片星级，一段时间后恢复",
         display_name: "克洛托神使"
@@ -187,7 +187,7 @@ function gods_shop_init()
     register_gods_goods("sheng_huo",
     {
         type: "card",
-        cost: "16",
+        cost: "30",
         unlock_item_id: "sheng_huo",
         description: "赫斯提亚神使：施展火焰术，向前方3行释放神圣穿透型火焰，灼烧沿途鼠军",
         display_name: "赫斯提亚神使"
@@ -241,7 +241,7 @@ function gods_shop_init()
     register_gods_goods("rig_1",
     {
         type: "shape",
-        cost: "16",
+        cost: "35",
         unlock_item_id: "rig",
         target_shape: 1,
         description: "里格圣神：[攻击力]额外提升10%，能量守恒",
@@ -251,7 +251,7 @@ function gods_shop_init()
     register_gods_goods("brahma_1",
     {
         type: "shape",
-        cost: "16",
+        cost: "35",
         unlock_item_id: "brahma",
         target_shape: 1,
         description: "梵天圣神：放置造成5x5灰烬爆炸",
@@ -261,7 +261,7 @@ function gods_shop_init()
     register_gods_goods("clotho_1",
     {
         type: "shape",
-        cost: "16",
+        cost: "35",
         unlock_item_id: "clotho",
         target_shape: 1,
         description: "克洛托圣神：优化升星概率，必定升星",
@@ -441,7 +441,7 @@ function gods_shop_init()
     register_gods_goods("sheng_huo_1",
     {
         type: "shape",
-        cost: "16",
+        cost: "35",
         unlock_item_id: "sheng_huo",
         target_shape: 1,
         description: "赫斯提亚圣神：伤害大幅度提升, 几率眩晕,灰烬效果",
@@ -501,7 +501,7 @@ function gods_shop_init()
     register_gods_goods("rig_2",
     {
         type: "shape",
-        cost: "32",
+        cost: "50",
         unlock_item_id: "rig",
         target_shape: 2,
         description: "守护神·里格：攻击力根据场上里格的数量提升",
@@ -511,7 +511,7 @@ function gods_shop_init()
     register_gods_goods("brahma_2",
     {
         type: "shape",
-        cost: "32",
+        cost: "50",
         unlock_item_id: "brahma",
         target_shape: 2,
         description: "创造神·梵天：额外复制一张卡片",
@@ -521,7 +521,7 @@ function gods_shop_init()
     register_gods_goods("clotho_2",
     {
         type: "shape",
-        cost: "32",
+        cost: "50",
         unlock_item_id: "clotho",
         target_shape: 2,
         description: "命运女神·克洛托：优化升星概率，影响范围扩大到5x5",
@@ -701,7 +701,7 @@ function gods_shop_init()
     register_gods_goods("sheng_huo_2",
     {
         type: "shape",
-        cost: "32",
+        cost: "50",
         unlock_item_id: "sheng_huo",
         target_shape: 2,
         description: "圣火女神·赫斯提亚：可伤害老鼠类型增加空中和地下",
@@ -761,7 +761,7 @@ function gods_shop_init()
     register_gods_goods("rig_3",
     {
         type: "shape",
-        cost: "48",
+        cost: "65",
         unlock_item_id: "rig",
         target_shape: 3,
         description: "至尊守护神：每次攻击额外发射一轮子弹",
@@ -771,7 +771,7 @@ function gods_shop_init()
     register_gods_goods("clotho_3",
     {
         type: "shape",
-        cost: "48",
+        cost: "65",
         unlock_item_id: "clotho",
         target_shape: 3,
         description: "至尊命运女神：优化升星概率，影响范围扩大到7x5",
@@ -781,7 +781,7 @@ function gods_shop_init()
     register_gods_goods("brahma_3",
     {
         type: "shape",
-        cost: "48",
+        cost: "65",
         unlock_item_id: "brahma",
         target_shape: 3,
         description: "至尊创造神：再额外复制两张卡片，共5张",
@@ -951,7 +951,7 @@ function gods_shop_init()
     register_gods_goods("sheng_huo_3",
     {
         type: "shape",
-        cost: "48",
+        cost: "65",
         unlock_item_id: "sheng_huo",
         target_shape: 3,
         description: "至尊圣火女神：施展火焰术，同类卡片可提升伤害，几率产生暴烈一击",
@@ -1108,7 +1108,7 @@ register_gods_goods("panduola_god_3",
 register_gods_goods("houyi_god",
 {
     type: "card",
-    cost: "16",
+    cost: "30",
     unlock_item_id: "houyi_god",
     description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
     display_name: "后羿神使"
@@ -1117,7 +1117,7 @@ register_gods_goods("houyi_god",
 register_gods_goods("houyi_god_1",
 {
     type: "shape",
-    cost: "16",
+    cost: "35",
     unlock_item_id: "houyi_god",
     target_shape: 1,
     description: "后羿圣神：灼烧效果提升，中路子弹+1",
@@ -1128,7 +1128,7 @@ register_gods_goods("houyi_god_1",
 register_gods_goods("houyi_god_2",
 {
     type: "shape",
-    cost: "32",
+    cost: "50",
     unlock_item_id: "houyi_god",
     target_shape: 2,
     description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
@@ -1139,7 +1139,7 @@ register_gods_goods("houyi_god_2",
 register_gods_goods("houyi_god_3",
 {
     type: "shape",
-    cost: "48",
+    cost: "65",
     unlock_item_id: "houyi_god",
     target_shape: 3,
     description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
@@ -1150,7 +1150,7 @@ register_gods_goods("houyi_god_3",
 register_gods_goods("gongjiang_god",
 {
     type: "card",
-    cost: "16",
+    cost: "30",
     unlock_item_id: "gongjiang_god",
     description: "鲁班神使：发射1发河豚子弹（4倍伤害）沿固定轨迹往返，可攻击地下/陆地/飞行老鼠",
     display_name: "鲁班神使"
@@ -1159,7 +1159,7 @@ register_gods_goods("gongjiang_god",
 register_gods_goods("gongjiang_god_1",
 {
     type: "shape",
-    cost: "16",
+    cost: "35",
     unlock_item_id: "gongjiang_god",
     target_shape: 1,
     description: "鲁班圣神：子弹威力提升，概率附加河豚毒素",
@@ -1170,7 +1170,7 @@ register_gods_goods("gongjiang_god_1",
 register_gods_goods("gongjiang_god_2",
 {
     type: "shape",
-    cost: "32",
+    cost: "50",
     unlock_item_id: "gongjiang_god",
     target_shape: 2,
     description: "工匠神·鲁班：子弹威力提升至5倍，概率释放河豚毒素",
@@ -1181,7 +1181,7 @@ register_gods_goods("gongjiang_god_2",
 register_gods_goods("gongjiang_god_3",
 {
     type: "shape",
-    cost: "48",
+    cost: "65",
     unlock_item_id: "gongjiang_god",
     target_shape: 3,
     description: "至尊工匠神：第1、2列增加上下竖向子弹，子弹威力再次提升",
@@ -1250,7 +1250,7 @@ register_gods_goods("hundun_god_3",
 register_gods_goods("lingrong_god",
 {
     type: "card",
-    cost: "16",
+    cost: "10",
     unlock_item_id: "lingrong_god",
     description: "魔导士软糖：三合一承载卡片，在水上、空中和岩浆上承载卡片并填补空洞",
     display_name: "魔导士软糖"
@@ -1259,7 +1259,7 @@ register_gods_goods("lingrong_god",
 register_gods_goods("lingrong_god_1",
 {
     type: "shape",
-    cost: "16",
+    cost: "25",
     unlock_item_id: "lingrong_god",
     target_shape: 1,
     description: "彩虹棉花软糖：竖向生成三张，三合一承载卡片",
@@ -1270,7 +1270,7 @@ register_gods_goods("lingrong_god_1",
 register_gods_goods("lingrong_god_2",
 {
     type: "shape",
-    cost: "32",
+    cost: "40",
     unlock_item_id: "lingrong_god",
     target_shape: 2,
     description: "无敌猫猫软糖：直接生成九张，三合一承载卡片",
@@ -1354,7 +1354,7 @@ register_gods_goods("chongsheng_god_3",
 register_gods_goods("hufa_god",
 {
     type: "card",
-    cost: "16",
+    cost: "30",
     unlock_item_id: "hufa_god",
     description: "俱吠罗神使：全屏索敌追踪穿透弹，秒杀不防爆鼠，15%概率定身1.5秒",
     display_name: "俱吠罗神使"
@@ -1363,7 +1363,7 @@ register_gods_goods("hufa_god",
 register_gods_goods("hufa_god_1",
 {
     type: "shape",
-    cost: "16",
+    cost: "35",
     unlock_item_id: "hufa_god",
     target_shape: 1,
     description: "俱吠罗圣神：攻击力提升，魂系老鼠1.8倍伤害",
@@ -1374,7 +1374,7 @@ register_gods_goods("hufa_god_1",
 register_gods_goods("hufa_god_2",
 {
     type: "shape",
-    cost: "32",
+    cost: "50",
     unlock_item_id: "hufa_god",
     target_shape: 2,
     description: "护法神·俱吠罗：追加地鼠目标，攻击力大幅提升",
@@ -1385,7 +1385,7 @@ register_gods_goods("hufa_god_2",
 register_gods_goods("hufa_god_3",
 {
     type: "shape",
-    cost: "48",
+    cost: "65",
     unlock_item_id: "hufa_god",
     target_shape: 3,
     description: "至尊护法神：终转对BOSS造成基础形态攻击力2倍伤害",
@@ -1436,15 +1436,15 @@ register_gods_goods("haiyang_god_3",
 });
 
 // 融合卡：本体 + 一转 / 二转凭证进入诸神商店。
-register_gods_goods("lizi_god", {type:"card", cost:"10", unlock_item_id:"lizi_god", description:"酱香锅烤栗子：滚动栗子并造成灼烧", display_name:"酱香锅烤栗子"});
-register_gods_goods("lizi_god_1", {type:"shape", cost:"15", unlock_item_id:"lizi_god", target_shape:1, description:"可乐香烤栗子：周期性追加3×3爆炸", display_name:"深度融合食谱（可乐香烤栗子）", spr:spr_voucher_lizi_god_1});
-register_gods_goods("lizi_god_2", {type:"shape", cost:"20", unlock_item_id:"lizi_god", target_shape:2, description:"如意香烤栗子：向前方3行投掷栗子子弹", display_name:"灵魂融合食谱（如意香烤栗子）", spr:spr_voucher_lizi_god_2});
-register_gods_goods("youyu_god", {type:"card", cost:"10", unlock_item_id:"youyu_god", description:"火影怪味鱿鱼：八方向各两发鱿鱼弹，无需底座", display_name:"火影怪味鱿鱼"});
-register_gods_goods("youyu_god_1", {type:"shape", cost:"15", unlock_item_id:"youyu_god", target_shape:1, description:"合金怪味鱿鱼：前后两路各增一发子弹，中路子弹可过火", display_name:"深度融合食谱（合金怪味鱿鱼）", spr:spr_voucher_youyu_god_1});
-register_gods_goods("youyu_god_2", {type:"shape", cost:"20", unlock_item_id:"youyu_god", target_shape:2, description:"松香怪味鱿鱼：向前增加2路子弹，共计22发", display_name:"灵魂融合食谱（松香怪味鱿鱼）", spr:spr_voucher_youyu_god_2});
-register_gods_goods("ronghehaixing", {type:"card", cost:"10", unlock_item_id:"ronghehaixing", description:"仙人球海星刺身：双发多方向刺身弹", display_name:"仙人球海星刺身"});
-register_gods_goods("ronghehaixing_1", {type:"shape", cost:"15", unlock_item_id:"ronghehaixing", target_shape:1, description:"奶油海星刺身：攻击附加单格溅射", display_name:"深度融合食谱（奶油海星刺身）", spr:spr_voucher_ronghehaixing_1});
-register_gods_goods("ronghehaixing_2", {type:"shape", cost:"20", unlock_item_id:"ronghehaixing", target_shape:2, description:"王冠海星刺身：斜向子弹碰上下边框后转为追踪弹", display_name:"灵魂融合食谱（王冠海星刺身）", spr:spr_voucher_ronghehaixing_2});
+register_gods_goods("lizi_god", {type:"card", cost:"15", unlock_item_id:"lizi_god", description:"酱香锅烤栗子：滚动栗子并造成灼烧", display_name:"酱香锅烤栗子"});
+register_gods_goods("lizi_god_1", {type:"shape", cost:"20", unlock_item_id:"lizi_god", target_shape:1, description:"可乐香烤栗子：周期性追加3×3爆炸", display_name:"深度融合食谱（可乐香烤栗子）", spr:spr_voucher_lizi_god_1});
+register_gods_goods("lizi_god_2", {type:"shape", cost:"25", unlock_item_id:"lizi_god", target_shape:2, description:"如意香烤栗子：向前方3行投掷栗子子弹", display_name:"灵魂融合食谱（如意香烤栗子）", spr:spr_voucher_lizi_god_2});
+register_gods_goods("youyu_god", {type:"card", cost:"15", unlock_item_id:"youyu_god", description:"火影怪味鱿鱼：八方向各两发鱿鱼弹，无需底座", display_name:"火影怪味鱿鱼"});
+register_gods_goods("youyu_god_1", {type:"shape", cost:"20", unlock_item_id:"youyu_god", target_shape:1, description:"合金怪味鱿鱼：前后两路各增一发子弹，中路子弹可过火", display_name:"深度融合食谱（合金怪味鱿鱼）", spr:spr_voucher_youyu_god_1});
+register_gods_goods("youyu_god_2", {type:"shape", cost:"25", unlock_item_id:"youyu_god", target_shape:2, description:"松香怪味鱿鱼：向前增加2路子弹，共计22发", display_name:"灵魂融合食谱（松香怪味鱿鱼）", spr:spr_voucher_youyu_god_2});
+register_gods_goods("ronghehaixing", {type:"card", cost:"15", unlock_item_id:"ronghehaixing", description:"仙人球海星刺身：双发多方向刺身弹", display_name:"仙人球海星刺身"});
+register_gods_goods("ronghehaixing_1", {type:"shape", cost:"20", unlock_item_id:"ronghehaixing", target_shape:1, description:"奶油海星刺身：攻击附加单格溅射", display_name:"深度融合食谱（奶油海星刺身）", spr:spr_voucher_ronghehaixing_1});
+register_gods_goods("ronghehaixing_2", {type:"shape", cost:"25", unlock_item_id:"ronghehaixing", target_shape:2, description:"王冠海星刺身：斜向子弹碰上下边框后转为追踪弹", display_name:"灵魂融合食谱（王冠海星刺身）", spr:spr_voucher_ronghehaixing_2});
 register_gods_goods("ronghedan_god", {type:"card", cost:"10", unlock_item_id:"ronghedan_god", description:"雪芭煮蛋器：双蛋攻击，35%范围溅射并有概率定身", display_name:"雪芭煮蛋器"});
 register_gods_goods("ronghedan_god_1", {type:"shape", cost:"15", unlock_item_id:"ronghedan_god", target_shape:1, description:"臭豆腐煮蛋器：溅射范围额外附加毒气伤害", display_name:"深度融合食谱（臭豆腐煮蛋器）", spr:spr_voucher_ronghedan_god_1});
 register_gods_goods("ronghedan_god_2", {type:"shape", cost:"20", unlock_item_id:"ronghedan_god", target_shape:2, description:"终结者煮蛋器：子弹伤害提升，可向前方三行投掷子弹", display_name:"灵魂融合食谱（终结者煮蛋器）", spr:spr_voucher_ronghedan_god_2});
@@ -1454,11 +1454,14 @@ register_gods_goods("ronghehuopen_2", {type:"shape", cost:"20", unlock_item_id:"
 register_gods_goods("ronghesanxian", {type:"card", cost:"10", unlock_item_id:"ronghesanxian", description:"子母三线酒架：同时攻击前方三条线，每行2发葡萄酒弹", display_name:"子母三线酒架"});
 register_gods_goods("ronghesanxian_1", {type:"shape", cost:"15", unlock_item_id:"ronghesanxian", target_shape:1, description:"仙人掌花酒架：每行增加1发子弹", display_name:"深度融合食谱（仙人掌花酒架）", spr:spr_voucher_ronghesanxian_1});
 register_gods_goods("ronghesanxian_2", {type:"shape", cost:"20", unlock_item_id:"ronghesanxian", target_shape:2, description:"烤灯笼鱼酒架：每行3发子弹，且子弹可穿透老鼠与障碍", display_name:"灵魂融合食谱（烤灯笼鱼酒架）", spr:spr_voucher_ronghesanxian_2});
-register_gods_goods("rongheshuanggu", {type:"card", cost:"10", unlock_item_id:"rongheshuanggu", description:"热狗耗油双菇：对陆、对空各4发子弹", display_name:"热狗耗油双菇"});
-register_gods_goods("rongheshuanggu_1", {type:"shape", cost:"15", unlock_item_id:"rongheshuanggu", target_shape:1, description:"喷壶耗油双菇：对地子弹变为无限穿透", display_name:"深度融合食谱（喷壶耗油双菇）", spr:spr_voucher_rongheshuanggu_1});
-register_gods_goods("rongheshuanggu_2", {type:"shape", cost:"20", unlock_item_id:"rongheshuanggu", target_shape:2, description:"糖葫芦耗油双菇：对空子弹变为全屏追踪", display_name:"灵魂融合食谱（糖葫芦耗油双菇）", spr:spr_voucher_rongheshuanggu_2});
-register_gods_goods("ronghedapao", {type:"card", cost:"10", unlock_item_id:"ronghedapao", description:"脆心死神大炮：向本行投下2枚巧克力炸弹，3*3范围爆炸", display_name:"脆心死神大炮"});
-register_gods_goods("ronghedapao_1", {type:"shape", cost:"15", unlock_item_id:"ronghedapao", target_shape:1, description:"霸王死神大炮：爆炸范围扩大至3*5", display_name:"深度融合食谱（霸王死神大炮）", spr:spr_voucher_ronghedapao_1});
-register_gods_goods("ronghedapao_2", {type:"shape", cost:"20", unlock_item_id:"ronghedapao", target_shape:2, description:"乾坤死神大炮：耗能减少75，爆炸改为碾压", display_name:"灵魂融合食谱（乾坤死神大炮）", spr:spr_voucher_ronghedapao_2});
+register_gods_goods("rongheshuanggu", {type:"card", cost:"10", unlock_item_id:"rongheshuanggu", description:"热狗蚝油双菇：对陆、对空各4发子弹", display_name:"热狗蚝油双菇"});
+register_gods_goods("rongheshuanggu_1", {type:"shape", cost:"15", unlock_item_id:"rongheshuanggu", target_shape:1, description:"喷壶蚝油双菇：对地子弹变为无限穿透", display_name:"深度融合食谱（喷壶蚝油双菇）", spr:spr_voucher_rongheshuanggu_1});
+register_gods_goods("rongheshuanggu_2", {type:"shape", cost:"20", unlock_item_id:"rongheshuanggu", target_shape:2, description:"糖葫芦蚝油双菇：对空子弹变为全屏追踪", display_name:"灵魂融合食谱（糖葫芦蚝油双菇）", spr:spr_voucher_rongheshuanggu_2});
+register_gods_goods("ronghedapao", {type:"card", cost:"15", unlock_item_id:"ronghedapao", description:"脆心死神大炮：向本行投下2枚巧克力炸弹，3*3范围爆炸", display_name:"脆心死神大炮"});
+register_gods_goods("ronghedapao_1", {type:"shape", cost:"20", unlock_item_id:"ronghedapao", target_shape:1, description:"霸王死神大炮：爆炸范围扩大至3*5", display_name:"深度融合食谱（霸王死神大炮）", spr:spr_voucher_ronghedapao_1});
+register_gods_goods("ronghedapao_2", {type:"shape", cost:"25", unlock_item_id:"ronghedapao", target_shape:2, description:"乾坤死神大炮：耗能减少75，爆炸改为碾压", display_name:"灵魂融合食谱（乾坤死神大炮）", spr:spr_voucher_ronghedapao_2});
+register_gods_goods("ronghekafei", {type:"card", cost:"10", unlock_item_id:"ronghekafei", description:"机枪咖啡杯：向前方连续发射3发咖啡弹，不需要火苗就能使用", display_name:"机枪咖啡杯"});
+register_gods_goods("ronghekafei_1", {type:"shape", cost:"15", unlock_item_id:"ronghekafei", target_shape:1, description:"喷壶咖啡杯：子弹浓缩为1发高伤害的穿透弹", display_name:"深度融合食谱（喷壶咖啡杯）", spr:spr_voucher_ronghekafei_1});
+register_gods_goods("ronghekafei_2", {type:"shape", cost:"20", unlock_item_id:"ronghekafei", target_shape:2, description:"三叠咖啡杯：三个杯子各吐1发穿透弹，总伤害为深度融合的3倍", display_name:"灵魂融合食谱（三叠咖啡杯）", spr:spr_voucher_ronghekafei_2});
 
 }

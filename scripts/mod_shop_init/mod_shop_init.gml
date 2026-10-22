@@ -567,7 +567,7 @@ function mod_shop_init()
         display_name: "爆辣河豚"
     });
 
-    register_goods("shuanggu", { type: "card", cost: "40000", unlock_item_id: "shuanggu", description: "耗油双菇：同时向前方发射对陆与对空子弹", display_name: "耗油双菇" });
+    register_goods("shuanggu", { type: "card", cost: "40000", unlock_item_id: "shuanggu", description: "蚝油双菇：同时向前方发射对陆与对空子弹", display_name: "蚝油双菇" });
 
     register_goods("yeziguo", { type: "card", cost: "1130", unlock_item_id: "yeziguo", description: "椰子果：跳起碾压前方鼠军", display_name: "椰子果" });
     register_goods("yeziguo_1", { type: "card", card_id: "yeziguo", card_shape: 1, cost: "260", unlock_item_id: "yeziguo", required_card_shape: 0, description: "浓香椰子果：解锁一转", display_name: "浓香椰子果" });

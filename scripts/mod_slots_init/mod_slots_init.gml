@@ -2965,9 +2965,9 @@ register_card("hongliukaochuan", obj_hongliukaochuan, [
 ]);
 
 register_card("shuanggu", obj_shuanggu, [
-{shape:0,sprite:spr_shuanggu,cost:255,cooldown:420,description: "耗油双菇：同时向前方发射2发对陆子弹和2发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu},
-{shape:1,sprite:spr_shuanggu_1,cost:255,cooldown:420,description: "伯爵耗油双菇：同时向前方发射2发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_1},
-{shape:2,sprite:spr_shuanggu_2,cost:255,cooldown:420,description: "皇家耗油双菇：同时向前方发射3发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_2}
+{shape:0,sprite:spr_shuanggu,cost:255,cooldown:420,description: "蚝油双菇：同时向前方发射2发对陆子弹和2发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu},
+{shape:1,sprite:spr_shuanggu_1,cost:255,cooldown:420,description: "伯爵蚝油双菇：同时向前方发射2发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_1},
+{shape:2,sprite:spr_shuanggu_2,cost:255,cooldown:420,description: "皇家蚝油双菇：同时向前方发射3发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_2}
 ]);
 
 // 融合卡：普卡两转（形态 0/1/2），不写 is_gold（缺键读作 undefined，在 == 1 判断下等同 0）；卡底由 is_fusion 类别标记决定（spr_slot_2），不再逐界面硬编码名单。
@@ -3008,10 +3008,16 @@ register_card("ronghedapao", obj_ronghedapao, [
 {shape:2,sprite:spr_ronghedapao_2,cost:225,cooldown:1500,description: "乾坤死神大炮：向本行投下2枚巧克力炸弹，爆炸改为碾压秒杀",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_2}
 ]);
 
+register_card("ronghekafei", obj_ronghekafei, [
+{shape:0,sprite:spr_ronghekafei,cost:0,cooldown:420,description: "机枪咖啡杯：向前方连续发射3发咖啡弹，不需要火苗就能使用",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei},
+{shape:1,sprite:spr_ronghekafei_1,cost:0,cooldown:420,description: "喷壶咖啡杯：向前方发射1发浓缩咖啡弹，可穿透老鼠与障碍",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_1},
+{shape:2,sprite:spr_ronghekafei_2,cost:0,cooldown:420,description: "三叠咖啡杯：三个杯子各吐1发浓缩咖啡弹，可穿透老鼠与障碍",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_2}
+]);
+
 register_card("rongheshuanggu", obj_rongheshuanggu, [
-{shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗耗油双菇：同时向前方发射4发对陆子弹和4发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
-{shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶耗油双菇：对陆子弹变为无限穿透，对空4发不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},
-{shape:2,sprite:spr_rongheshuanggu_2,cost:255,cooldown:420,description: "糖葫芦耗油双菇：对空子弹变为全屏追踪，对地穿透不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_2}
+{shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗蚝油双菇：同时向前方发射4发对陆子弹和4发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
+{shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶蚝油双菇：对陆子弹变为无限穿透，对空4发不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},
+{shape:2,sprite:spr_rongheshuanggu_2,cost:255,cooldown:420,description: "糖葫芦蚝油双菇：对空子弹变为全屏追踪，对地穿透不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_2}
 ]);
 
     register_card("pufferfish", obj_pufferfish, [

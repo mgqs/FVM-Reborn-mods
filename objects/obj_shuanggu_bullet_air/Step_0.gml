@@ -1,4 +1,4 @@
-// obj_shuanggu_bullet_air（耗油双菇 · 对空子弹）Step
+// obj_shuanggu_bullet_air（蚝油双菇 · 对空子弹）Step
 if global.is_paused {
     exit;
 }

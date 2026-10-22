@@ -184,6 +184,7 @@ function card_category_data()
         ["fishbone", "非远程类", "鱼刺类", ""],
         ["chocolate_cannon", "灰烬类", "轰炸类", ""],
         ["ronghedapao", "灰烬类", "轰炸类", ""],
+        ["ronghekafei", "直射类", "传统直线类", ""],
         ["gaia", "灰烬类", "轰炸类", ""],
         ["durian", "灰烬类", "持续类", ""],
         ["dragon_fruit", "灰烬类", "持续类", ""],

@@ -164,5 +164,7 @@
     {"name":"7c1d1174-5f0a-4ce1-be1c-e183a0ca8788","path":"sprites/spr_voucher_rongheshuanggu_2/spr_voucher_rongheshuanggu_2.yy",},
     {"name":"1d7461b7-d69c-4d7c-8178-a218a03dbb96","path":"sprites/spr_voucher_ronghedapao_1/spr_voucher_ronghedapao_1.yy",},
     {"name":"5d992873-4800-4f9b-b3b8-93a51e7a68cb","path":"sprites/spr_voucher_ronghedapao_2/spr_voucher_ronghedapao_2.yy",},
+    {"name":"86b7a36c-2b48-4369-b880-577d52faea0e","path":"sprites/spr_voucher_ronghekafei_1/spr_voucher_ronghekafei_1.yy",},
+    {"name":"229360b2-9ef0-4c4e-9e38-2c0d6ee01e53","path":"sprites/spr_voucher_ronghekafei_2/spr_voucher_ronghekafei_2.yy",},
 ],
 }

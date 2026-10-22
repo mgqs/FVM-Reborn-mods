@@ -33,6 +33,7 @@
     {"name":"obj_brazier","path":"objects/obj_triplewinerack_bullet/obj_triplewinerack_bullet.yy",},
     {"name":"obj_brazier","path":"objects/obj_waterpipe_bullet/obj_waterpipe_bullet.yy",},
     {"name":"obj_brazier","path":"objects/obj_xiaolongbao_bullet/obj_xiaolongbao_bullet.yy",},
-    {"name":"obj_brazier","path":"objects/obj_xiaolongbao_bullet_vertical/obj_xiaolongbao_bullet_vertical.yy",}
+    {"name":"obj_brazier","path":"objects/obj_xiaolongbao_bullet_vertical/obj_xiaolongbao_bullet_vertical.yy",},
+    {"name":"obj_ronghekafei_bullet","path":"objects/obj_ronghekafei_bullet/obj_ronghekafei_bullet.yy",}
   ],
 }

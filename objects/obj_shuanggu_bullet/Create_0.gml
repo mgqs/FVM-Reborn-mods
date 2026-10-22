@@ -1,4 +1,4 @@
-// obj_shuanggu_bullet（耗油双菇 · 对陆子弹）
+// obj_shuanggu_bullet（蚝油双菇 · 对陆子弹）
 damage = 0
 move_speed = 0
 row = 0

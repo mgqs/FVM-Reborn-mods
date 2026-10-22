@@ -375,8 +375,9 @@ function fusion_get_prerequisites() {
         ronghedan_god:  ["egg_boiler_pult"],    // 融合煮蛋器 ← 煮蛋器投手
         ronghehuopen:   ["brazier"],            // 融合火盆   ← 火盆
         ronghesanxian:  ["triple_wine_rack"],   // 融合三线   ← 三线酒架
-        rongheshuanggu: ["shuanggu"],           // 融合双菇   ← 耗油双菇
+        rongheshuanggu: ["shuanggu"],           // 融合双菇   ← 蚝油双菇
         ronghedapao:    ["chocolate_cannon"],   // 融合巧克力炮 ← 死神大炮
+        ronghekafei:    ["coffee_cup"],         // 融合咖啡杯   ← 骨瓷咖啡杯
 
         // ---- 神灵卡 ----
         sheng_huo:      ["beef_hotpot"],                     // 圣火 ← 肥牛火锅
