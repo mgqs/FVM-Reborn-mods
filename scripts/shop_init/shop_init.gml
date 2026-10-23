@@ -207,7 +207,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("player_attire_xiangshuibaihe",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xiangshuibaihe","description":"角色的香水百合时装","display_name":"香水百合"})
 	register_goods("player_attire_guijishishen",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_guijishishen","description":"角色的鬼姬式神时装","display_name":"鬼姬式神"})
 	register_goods("player_attire_molishaonv",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_molishaonv","description":"角色的魔力少女时装","display_name":"魔力少女"})
-	register_goods("player_attire_monvling",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_monvling","description":"角色的魔女「零」时装","display_name":"魔女「零」"})
+	register_goods("player_attire_monvling",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_monvling","description":"角色的魔女[零]时装","display_name":"魔女[零]"})
 	register_goods("player_attire_moyingshengyiyiji",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_moyingshengyiyiji","description":"角色的魔影圣衣一级时装","display_name":"魔影圣衣一级"})
 	register_goods("player_attire_moyingshengyierji",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_moyingshengyierji","description":"角色的魔影圣衣二级时装","display_name":"魔影圣衣二级"})
 	register_goods("player_attire_mofaxueyuan",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_mofaxueyuan","description":"角色的魔法学院时装","display_name":"魔法学院"})

@@ -68,7 +68,7 @@ if target_id != ""{
 					material_ratio = rate_settings.fail_material_ratio
 					gold_ratio = rate_settings.fail_gold_ratio
 				}
-				// 保险金（雏形）：勾选且失败掉星开着时，每次强化多付一笔大额金币，失败时不掉星
+				// 保险金：勾选且「概率强化」开着时，每次强化多付一笔大额金币，失败时不掉星（掉星内置在概率强化里）
 				var assure_cost = 0
 				if craft_assure_active() assure_cost = craft_assure_gold(current_level)
 				if global.save_data.player.gold < ceil(craft_rule_info.gold_amount*gold_ratio) + assure_cost{

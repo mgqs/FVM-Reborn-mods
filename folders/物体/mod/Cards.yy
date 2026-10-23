@@ -101,5 +101,6 @@
     {"name":"obj_shuanggu","path":"objects/obj_shuanggu/obj_shuanggu.yy",},
     {"name":"obj_rongheshuanggu","path":"objects/obj_rongheshuanggu/obj_rongheshuanggu.yy",},
     {"name":"obj_niuyouguo","path":"objects/obj_niuyouguo/obj_niuyouguo.yy",},
+    {"name":"obj_ronghekafei","path":"objects/obj_ronghekafei/obj_ronghekafei.yy",},
   ],
 }

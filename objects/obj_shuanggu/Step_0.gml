@@ -1,4 +1,4 @@
-// obj_shuanggu（耗油双菇）Step 事件
+// obj_shuanggu（蚝油双菇）Step 事件
 if global.is_paused{
 	exit
 }

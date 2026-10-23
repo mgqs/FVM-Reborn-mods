@@ -184,6 +184,8 @@ function card_category_data()
         ["iron_fishbone", "非远程类", "鱼刺类", ""],
         ["fishbone", "非远程类", "鱼刺类", ""],
         ["chocolate_cannon", "灰烬类", "轰炸类", ""],
+        ["ronghedapao", "灰烬类", "轰炸类", ""],
+        ["ronghekafei", "直射类", "传统直线类", ""],
         ["gaia", "灰烬类", "轰炸类", ""],
         ["durian", "灰烬类", "持续类", ""],
         ["dragon_fruit", "灰烬类", "持续类", ""],
@@ -348,13 +350,20 @@ function mod_apply_category_buff_map()
 
     // Cross-category targets named explicitly by the buff rules.
     ds_map_set(global.plant_buff_map, "yufengma", "tracker");
-    ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
     var _advanced_tracker = get_cards_in_category("群轰追踪");
     for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
         ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
     _advanced_tracker = get_cards_in_category("散点追踪");
     for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
         ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
+
+    // 冷萃机（散点追踪）同时吃两档追踪增幅：
+    //   主类型 tracker_berry    = 莓果点心（apply_buff 里按 plant_id 单独写的那一格）
+    //   次类型 tracker_advanced = 宴飨女神（散点追踪整体那一档），两者取较高倍率
+    // ⚠️ 必须写在上面「散点追踪」循环之后：那条循环会把 cold_drew 覆盖成 tracker_advanced，
+    //    导致莓果点心的格子写了却没人读（2026-10-22 修复）
+    ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
+    ds_map_set(global.plant_buff_map_2, "cold_drew", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "joker", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "hongliukaochuan", "sprayer");
