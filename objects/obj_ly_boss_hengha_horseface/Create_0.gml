@@ -4,7 +4,7 @@ image_speed = 0; // 动画完全由 longyuan_clip_* 驱动
 // ===== 哼哈二将·马面 =====
 ly_kind = "hengha_horseface";
 ly_anims = longyuan_animation_table("hengha_horseface");
-mouse_id = "ly_hengha_horseface";
+mouse_id = "ly_hengha";
 hp = 150000; maxhp = 150000;
 
 // ===== 数值 =====

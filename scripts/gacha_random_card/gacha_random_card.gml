@@ -127,7 +127,7 @@ function random_gift_spawn_card(_x, _y, _col, _row, _level) {
 }
 
 /// @function gacha_get_excluded_cards()
-/// @desc 获取本体仅通过关卡奖励获得的八张卡片；其转职可通过抽卡获得。
+/// @desc 获取本体仅通过关卡奖励获得的卡片；其转职可通过抽卡获得。
 /// @return {array}
 function gacha_get_excluded_cards() {
     return [
@@ -138,7 +138,8 @@ function gacha_get_excluded_cards() {
         "oil_lamp",           // 油灯
         "soda_bubble",        // 苏打气泡
         "tang_hu_lu",         // 糖葫芦炮弹
-        "double_water_pipe"   // 双向水管
+        "double_water_pipe",  // 双向水管
+        "mixian"              // 米线（松露大厅首通奖励）
     ];
 }
 
@@ -589,7 +590,7 @@ function gacha_pick_random_reward() {
         var card_id = global.player_deck[| i];
 		if (card_id == "lihe") continue;
 
-        // 八张特殊卡只抽转职；已获得本体后，在任意关卡都可以抽转职。
+        // 本体仅关卡奖励的特殊卡只抽转职；已获得本体后，在任意关卡都可以抽转职。
         if (gacha_is_excluded_card(card_id) && !is_card_unlocked(card_id)
             && !gacha_is_current_level_reward_card(card_id)) continue;
 

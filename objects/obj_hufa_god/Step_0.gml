@@ -11,7 +11,8 @@ var current_flash_speed = flash_speed;
 if (is_slowdown)
     current_flash_speed *= 2;
 
-var _hittable = (shape < 2) ? ["normal", "air", "invisible"] : ["normal", "air", "underground", "invisible"];
+// 喷壶类可命中钻地中的地精鼠
+var _hittable = (shape < 2) ? ["normal", "air", "invisible", "underground"] : ["normal", "air", "underground", "invisible"];
 
 var has_enemy = false;
 
@@ -26,6 +27,8 @@ if (variable_global_exists("enemy_by_type"))
             for (var _i = 0; _i < array_length(_list); _i++)
             {
                 var _e = _list[_i];
+                // underground 只对本关钻地中的地精鼠开放
+                if (_key == "underground" && !is_digging_dijing(_e)) continue;
                 if (instance_exists(_e) && _e.hp > 0)
                 {
                     has_enemy = true;

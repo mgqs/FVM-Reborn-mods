@@ -30,7 +30,7 @@
   ],
   "name":"spr_yanyantu_effect",
   "nineSlice":null,
-  "origin":7,
+  "origin":9,
   "parent":{
     "name":"yanyantu",
     "path":"folders/精灵/mod/Cards/Flame Producer/yanyantu.yy",
@@ -104,7 +104,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":28,
-    "yorigin":41,
+    "yorigin":50,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

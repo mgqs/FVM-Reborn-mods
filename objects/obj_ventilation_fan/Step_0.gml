@@ -25,7 +25,14 @@ if effect_timer == 4 * current_flash_speed{
 	}
 	with obj_enemy_parent{
 		if target_type == "air" && array_get_index(other.ignore_list,mouse_id) == -1{
-			if !immune_to_ash{
+			// 东风鼠：换气扇直接秒杀（免疫灰烬不等于免疫吹飞）。
+			if mouse_id == "longyuan_dongfeng"{
+				var inst = instance_create_depth(x,y,-500,obj_mouse_blow_effect)
+				inst.sprite_index = sprite_index
+				inst.image_index = image_index
+				instance_destroy()
+			}
+			else if !immune_to_ash{
 				var inst = instance_create_depth(x,y,-500,obj_mouse_blow_effect)
 				inst.sprite_index = sprite_index
 				inst.image_index = image_index

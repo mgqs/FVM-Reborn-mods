@@ -269,6 +269,11 @@ switch(state) {
 		
         // 使用碰撞检测查找攻击范围内的植物
         with (obj_card_parent) {
+			// 高跷鼠只把三种高大面包视为可攻击目标，其余低矮植物直接忽略
+			if (other.mouse_id == "longyuan_gaoqiao"
+				&& plant_id != "chocolate_bread"
+				&& plant_id != "pineapple_explosive_bread"
+				&& plant_id != "lightning_baguette") continue;
 			var dx = x - other.x;
 			var dy = y - other.y;
 			var is_in_front = false
@@ -278,7 +283,7 @@ switch(state) {
 			else{
 				is_in_front = (dx > 0 && dx < -other.attack_range);
 			}
-				
+
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;
@@ -292,25 +297,25 @@ switch(state) {
                 // 按铲除顺序优先选择
                 for (var i = 0; i < ds_list_size(global.eat_order); i++) {
                     var tar_type = ds_list_find_value(global.eat_order, i);
-                    
+
                     if (plant_type == tar_type) {
                         plant_order_list[i] = id;
                         break;
                     }
                 }
-				
-                
+
+
                 if (plant_in_range != noone) break;
             }
         }
-		
+
 		for(var i = 0 ; i < 4 ; i++){
 			if plant_order_list[i] != noone{
 				plant_in_range = plant_order_list[i]
 				break
 			}
 		}
-        
+
         // 如果找到目标植物，进入攻击状态
         if (plant_in_range != noone) {
             state = ENEMY_STATE.ATTACK;
@@ -384,6 +389,11 @@ switch(state) {
 		
         // 使用碰撞检测查找攻击范围内的植物
         with (obj_card_parent) {
+			// 高跷鼠只把三种高大面包视为可攻击目标，其余低矮植物直接忽略
+			if (other.mouse_id == "longyuan_gaoqiao"
+				&& plant_id != "chocolate_bread"
+				&& plant_id != "pineapple_explosive_bread"
+				&& plant_id != "lightning_baguette") continue;
 			var dx = x - other.x;
 			var dy = y - other.y;
 			var is_in_front = false
@@ -393,7 +403,7 @@ switch(state) {
 			else{
 				is_in_front = (dx > 0 && dx < -other.attack_range);
 			}
-				
+
             // 检查是否在攻击范围内
             // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
             var _skip_by_ladder = false;

@@ -44,6 +44,13 @@ function can_hit(bullet_target_type,enemy_target_type){
 	return can_target_on(bullet_target_type,enemy_target_type)
 }
 
+/// 是否为钻地状态中的龙渊地精鼠（喷壶类卡片可在索敌与命中阶段放行）
+function is_digging_dijing(_inst){
+	return instance_exists(_inst)
+		&& variable_instance_exists(_inst, "mouse_id") && _inst.mouse_id == "longyuan_dijing"
+		&& variable_instance_exists(_inst, "ly_mode") && _inst.ly_mode == "dig";
+}
+
 function get_hittable_enemy_types(bullet_target_type){
 	var _types = [];
 	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground", "invisible"];

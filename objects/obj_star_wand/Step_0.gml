@@ -34,6 +34,9 @@ var has_enemy = false;
 
 with (obj_enemy_parent)
 {
+    // 地精鼠钻地期间不应被星之神杖索敌
+    if (variable_instance_exists(id, "mouse_id") && mouse_id == "longyuan_dijing"
+        && variable_instance_exists(id, "ly_mode") && ly_mode == "dig") continue;
     if (can_hit("all", target_type) && hp > 0)
     {
         has_enemy = true;

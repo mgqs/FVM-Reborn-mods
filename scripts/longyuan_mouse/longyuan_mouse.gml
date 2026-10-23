@@ -30,7 +30,7 @@
 #macro LY_GAOQIAO_DANCE_HURT_START 55 // 破损形态舞步起始 image_index（0-based，对应1-based 56-75）
 
 // 6. 执念鼠
-#macro LY_ZHINIAN_SOUL_REDUCTION 0.4 // 夜魂体受伤系数（减伤60%）
+#macro LY_ZHINIAN_SOUL_REDUCTION 0.1 // 夜魂体受伤系数（减伤90%）
 #macro LY_ZHINIAN_SOUL_ATK 50        // 魂体普通攻击伤害（用户要求 50）
 #macro LY_ZHINIAN_SOUL_ATK_COUNT 3   // 几次普攻后放大
 #macro LY_ZHINIAN_RUSH_DIST 2        // 大招前移格数（销毁途经卡片）
@@ -339,6 +339,16 @@ function longyuan_damage_plant(_plant, _damage) {
     with (_plant) {
         hp -= _damage;
         event_user(2);
+    }
+    // 龙渊鼠啃咬音效：仅老鼠本体触发（BOSS 技能、梭子等不吃卡片音）。
+    if (variable_instance_exists(id, "mouse_id") && mouse_id != ""
+        && !(variable_instance_exists(id, "is_boss") && is_boss)) {
+        if (!variable_global_exists("ly_last_chomp_time")) global.ly_last_chomp_time = 0;
+        // 80ms 节流，避免冲刺/多卡同时命中时音效叠爆。
+        if (current_time - global.ly_last_chomp_time > 80) {
+            global.ly_last_chomp_time = current_time;
+            global.audio.play(ds_list_find_value(obj_battle.chomp_sound_list, irandom_range(0, 2)), 0, 0);
+        }
     }
 }
 

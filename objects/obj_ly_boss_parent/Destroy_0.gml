@@ -1,3 +1,9 @@
+// 连体 BOSS 的副体（如哼哈将军牛头）共用血量与 ID，不参与 boss_count/波次推进，也不销毁共用血条
+if (ly_boss_is_peer) exit;
+
+// 主体阵亡时同步清理仍存活的副体（同一 ID 与生命值）
+if (instance_exists(ly_shared_boss_peer)) instance_destroy(ly_shared_boss_peer);
+
 // BOSS 阵亡：扣减 boss_count、推进波次/结算胜利，并清理血条（照 obj_arno Destroy，去掉阿诺专属解锁）
 with obj_battle {
     if boss_count > 1 {

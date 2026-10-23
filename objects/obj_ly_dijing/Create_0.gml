@@ -23,7 +23,14 @@ hp = 500; maxhp = 500; ly_original_hp = 500;
 move_speed = 0.9; atk = 10; atk_cycle = 36;
 target_type = "underground"; attack_range = -90; ly_mode = "dig";
 special_ash = true;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 ly_food_surface = false;
+// 钻地时撞到的地表卡片，出土后优先啃咬它，避免因站位偏差找不到目标而原地发呆。
+ly_food_target = noone;
+// 钻地期间是否正被允许的伤害命中（由攻击方按 can_hit 设置，仅当前帧有效）。
+// 参照 obj_mole：只有能命中 underground 目标的攻击类型（rotate / d_fruit / all）可以打到钻地状态。
+ly_dig_hittable = false;
 ly_anims[$ "挖地"] = [spr_dijing_dig, 1, 6];
 ly_anims[$ "出土"] = [spr_dijing_apper, 1, 29];
 ly_anims[$ "眩晕"] = [spr_dijing_stun, 1, 4];

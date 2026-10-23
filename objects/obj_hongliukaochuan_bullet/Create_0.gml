@@ -12,5 +12,7 @@ damage_type = "pierce";
 target_type = "normal";
 hitted_enemy = ds_list_create();
 hittable_types = ["normal", "air", "invisible"];
+// 喷壶类可命中钻地中的地精鼠（其余地下目标仍不可命中）
+array_push(hittable_types, "underground");
 image_xscale = 1.6;
 image_yscale = 1.6;

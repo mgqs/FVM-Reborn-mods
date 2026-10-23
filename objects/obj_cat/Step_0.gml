@@ -20,6 +20,8 @@ switch (state) {
 with obj_enemy_parent{
 	// 龙渊 BOSS 不参与最左侧“猫”的唤醒/击杀机制（不吃猫的碰撞与清理）
 	if (object_index == obj_ly_boss_parent || object_is_ancestor(object_index, obj_ly_boss_parent)) continue;
+	// 马面技能三召唤的食灵不触发第 0 列的猫
+	if (object_index == obj_ly_hengha_spirit) continue;
 	if abs(x - other.x) <= 120{
 		if other.state == "idle" && other.row == grid_row && hp > 0 && (array_get_index(other.ignore_list,mouse_id) == -1)&& (array_get_index(other.target_ignore,mouse_id) == -1){
 			other.state = "awake"

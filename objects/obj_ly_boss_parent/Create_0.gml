@@ -3,6 +3,8 @@ event_inherited();
 
 // ===== 龙渊 BOSS 公共状态 =====
 is_boss = true;
+// 龙渊 BOSS 防爆：炸弹等秒杀类效果只造成伤害，不能直接消灭 BOSS。
+immune_to_ash = true;
 ly_kind = "";
 ly_anims = {};
 ly_action = "";
@@ -13,6 +15,7 @@ ly_anim_rate = 5;       // 每动画帧停留 5 步（约 12fps）
 ly_hpbar_done = false;  // 血条是否已延迟创建
 hpbar_inst = noone;     // 血条实例（Destroy 时清理）
 ly_shared_boss_peer = noone;
+ly_boss_is_peer = false;  // 连体 BOSS 的副体（如哼哈将军牛头），不参与 boss_count 与波次推进
 ly_phase = 0;           // 技能分段的子阶段计时（子类复用）
 state = BOSS_STATE.APPEAR;
 image_speed = 0;        // BOSS 动画完全由 longyuan_clip_* 驱动，禁用引擎自动帧推进

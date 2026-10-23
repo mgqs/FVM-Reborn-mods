@@ -49,6 +49,7 @@ if (variable_global_exists("enemy_by_type"))
                     {
                         damage_amount = final_damage;
                         damage_type = other.damage_type;
+                        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                         event_user(0);
                     }
                     else

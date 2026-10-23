@@ -28,7 +28,7 @@
 
 /// ---------- 可调常量 ----------
 #macro LONGZHU_INTERVAL                 900   // 效果触发周期（帧）
-#macro LONGZHU_AWAKE_TIME               180   // 「清醒」效果持续（帧）
+#macro LONGZHU_AWAKE_TIME               1800  // 「清醒」+「不可催眠」持续（帧）：覆盖完整施法周期，解封时立即清除
 #macro LONGZHU_PROTECT_TIME             900   // 「保护」效果持续（帧）——对齐星穹马一转 zodiac_guard_duration
 #macro LONGZHU_PROTECT_HITS             1     // 「保护」可抵挡次数——对齐星穹马一转
 #macro LONGZHU_GREEDY_LIMIT             1000  // 存在未封印贪婪龙柱时的火苗上限基数
@@ -209,7 +209,7 @@ function longzhu_attack_card_ids() {
 			"wine_bottle_bomb", "whisky_bomb", "panduola_god", "rabbit_lantern", "delicacy_firework",
 			"ice_bucket_bomb", "aquarius_elve", "pufferfish", "baiyang", "bull_firework",
 			"save_god", "yeziguo", "qingse_shishi", "flour_sack", "mouse_clip",
-			"steel_wool", "skewer_bomb", "chili_powder", "dandantu"
+			"steel_wool", "skewer_bomb", "chili_powder", "dandantu", "mixian"
 		];
 	}
 	return global.longzhu_attack_id_list;
@@ -244,18 +244,42 @@ function longzhu_cards_in_3x3(_col, _row) {
 function longzhu_sleep_card(_card) {
 	if (!instance_exists(_card) || _card.hp <= 0) return;
 	if (_card.plant_id == "player") return;
+	// 处于米线清醒印记期间不可被催眠
+	if (_card.awake_buff_timer > 0) return;
 	with (_card) { state = CARD_STATE.SLEEP; }
 }
 
 /// 清醒：写入清醒计时器，期间卡片会自行脱离睡眠且不会被再次催眠
+/// 封印期间每 15s 在 3x3 内每张卡片右上角播放一次 spr_mixian_effect2
 function longzhu_awake_card(_card) {
 	if (!instance_exists(_card) || _card.hp <= 0) return;
-	with (_card) { awake_buff_timer = max(awake_buff_timer, LONGZHU_AWAKE_TIME); }
+	if (_card.plant_id == "player") return;
+	var _pillar_id = id;
+	with (_card) {
+		awake_buff_timer = max(awake_buff_timer, LONGZHU_AWAKE_TIME);
+		mixian_awake_source = _pillar_id;
+
+		var _fx = instance_create_depth(x + 34, y - 62, depth - 1, obj_mixian_fx);
+		_fx.fx_sprite = spr_mixian_effect2;
+		_fx.fx_frames = sprite_get_number(spr_mixian_effect2);
+		_fx.fx_rate = 5;
+	}
+}
+
+/// 龙柱解封时清除由它施加的清醒印记
+function longzhu_clear_awake_source(_pillar) {
+	with (obj_card_parent) {
+		if (variable_instance_exists(id, "mixian_awake_source") && mixian_awake_source == _pillar) {
+			mixian_awake_source = noone;
+			awake_buff_timer = 0;
+		}
+	}
 }
 
 /// 摧毁：清空血量，走卡片既有死亡流程（Destroy 事件会清理网格）
 function longzhu_destroy_card(_card) {
 	if (!instance_exists(_card) || _card.hp <= 0) return;
+	if (_card.plant_id == "player") return; // 龙柱只作用于卡片，不杀死玩家角色
 	if (_card.invincible) return;
 	with (_card) { hp = 0; event_user(2); }
 }
@@ -464,6 +488,7 @@ function longzhu_bridge_disconnect(_owner) {
 			longzhu_sealed = false;
 			longzhu_clip_set(id, "飞起", true);
 			longzhu_effect_timer = 0;
+			longzhu_clear_awake_source(id);
 		}
 	}
 	longzhu_greedy_flame_clamp();

@@ -20,8 +20,8 @@
 
 ### 1.2 BOSS 关卡编组与解锁
 
-- 百味关 `longyuan_3_hard` 在第 5 波召唤 `ly_youshen`，第 6 波同时召唤共享生命值的 `ly_hengha_horseface` 与 `ly_hengha_oxhead`，第 7 波召唤 `ly_diting`。
-- 奶盖桥 `longyuan_6_hard` 在第 5 波同时召唤共享生命值的马面与牛头，第 6 波召唤 `ly_wuchang`，第 7 波召唤 `ly_mengpo`。
+- 百味关 `longyuan_3_hard` 在第 5 波召唤 `ly_youshen`，第 6 波召唤 `ly_hengha`（牛头与马面共用一个 ID 和一条生命值，同时出场），第 7 波召唤 `ly_diting`。
+- 奶盖桥 `longyuan_6_hard` 在第 5 波召唤 `ly_hengha`（马面与牛头共用 ID 与生命值），第 6 波召唤 `ly_wuchang`，第 7 波召唤 `ly_mengpo`。
 - 其余四个 Longyuan 关卡各保留一个 BOSS 波。多 BOSS 关卡必须逐波击败当前 BOSS，才会推进到下一波；最后一只被击败后才结算胜利。
 - 六个关卡按 `longyuan_1` 至 `longyuan_6` 顺序解锁；首关无需前置，后续每关要求完成紧邻的上一关。
 
@@ -305,8 +305,8 @@
 
 ### 3.2 哼哈将军·马面
 
-**ID：** `ly_hengha_horseface`  
-**生命值：** 180000  
+**ID：** `ly_hengha`（与牛头共用同一 ID 与生命值，由副体 `_peer_obj` 同时生成）  
+**生命值：** 150000（与牛头共用）  
 **技能攻击基准值：** 4000  
 **基础移动速度：** 2  
 **待机时间：** 60 步
@@ -323,8 +323,8 @@
 
 ### 3.3 哼哈将军·牛头
 
-**ID：** `ly_hengha_oxhead`  
-**生命值：** 180000  
+**ID：** `ly_hengha`（与马面共用同一 ID 与生命值，作为副体 `_peer_obj` 同时生成）  
+**生命值：** 150000（与马面共用）  
 **技能攻击基准值：** 4000  
 **基础移动速度：** 2  
 **待机时间：** 60 步

@@ -35,6 +35,41 @@ function mod_cards_init()
         cycle: array_create(17, 120)
     }], false);
 
+    mod_register_plant_lite("mixian", [
+    {
+        name: "桥头米线",
+        shape: 0,
+        description: "桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化，同时以5*5范围攻击老鼠",
+        hp: array_create(17, 150),
+        cost: array_create(17, 200),
+        atk: [42, 50, 58, 66, 82, 98, 114, 138, 162, 186, 220, 270, 320, 370, 420, 470, 550],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 90)
+    },
+    {
+        name: "灵泉桥头米线",
+        shape: 1,
+        description: "灵泉桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化；被老鼠啃咬时反伤",
+        hp: array_create(17, 150),
+        cost: array_create(17, 200),
+        atk: [42, 50, 58, 66, 82, 98, 114, 138, 162, 186, 220, 270, 320, 370, 420, 470, 550],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 90)
+    },
+    {
+        name: "金汤桥头米线",
+        shape: 2,
+        description: "金汤桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化，攻击力更高",
+        hp: array_create(17, 150),
+        cost: array_create(17, 200),
+        atk: [54, 65, 75, 85, 106, 127, 148, 179, 210, 241, 286, 351, 416, 481, 546, 611, 715],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 90)
+    }], false);
+
     // 生肖卡注册（共12张，17级数据表）
     mod_register_plant_lite("yanyantu", [
     {

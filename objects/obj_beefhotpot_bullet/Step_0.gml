@@ -23,6 +23,9 @@ if (attack_timer mod 12 == 2 && variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
+            // underground 只对本关钻地中的地精鼠开放
+            if (_key == "underground" && !(variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
+                && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig")) continue;
             if (_e.hp > 0 && row == _e.grid_row
                 && ((shape <= 1 && _e.x - x <= 4.5*global.grid_cell_size_x) || (shape >= 1 && _e.x - x <= 5.5*global.grid_cell_size_x))
     && precise_bbox_collision(id, _e))
@@ -33,6 +36,7 @@ if (attack_timer mod 12 == 2 && variable_global_exists("enemy_by_type"))
                         audio_play_sound(snd_fire_hit,0,0)
                         damage_amount = other.damage
                         damage_type = other.damage_type
+                        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                         event_user(0)
                     }
                     else{
