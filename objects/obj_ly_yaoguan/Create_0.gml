@@ -11,6 +11,8 @@ ly_cooldown = 0;
 is_soul = false;
 invincible = false;
 is_vehicle = false;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 ly_fire = LY_YAOGUAN_FIRE_COUNT;  // 减伤用魂火数（3团 → 60% 减伤）
 ly_heal_charges = 1;              // 回血次数（用户要求仅触发一次）
 ly_dodge_cooldown = 0;

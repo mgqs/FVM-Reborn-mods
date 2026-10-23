@@ -5,6 +5,11 @@ function mod_slots_init()
     { shape: 1, sprite: spr_chunsun_1_icon, cost: 210, cooldown: 420, description: "火辣泡椒笋：准备一段时间后长出穿刺老鼠的春笋，笋子存在时间延长", plant_type: "gridless", feature_type: "normal", target_card: "none", place_preview: spr_chunsun_1 },
     { shape: 2, sprite: spr_chunsun_2_icon, cost: 210, cooldown: 420, description: "望乡泡椒笋：准备一段时间后长出穿刺老鼠的春笋，生长范围扩大到3*5", plant_type: "gridless", feature_type: "normal", target_card: "none", place_preview: spr_chunsun_2 }]);
 
+    register_card("mixian", obj_mixian, [
+    { shape: 0, sprite: spr_mixian, cost: 200, cooldown: 900, description: "桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化，同时以5*5范围攻击老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_mixian },
+    { shape: 1, sprite: spr_mixian_1, cost: 200, cooldown: 900, description: "灵泉桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化；被老鼠啃咬时反伤", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_mixian_1 },
+    { shape: 2, sprite: spr_mixian_2, cost: 200, cooldown: 900, description: "金汤桥头米线：连接5*5范围内最近的一根龙柱，1张即可封印，2张连接同一根龙柱可净化，攻击力更高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_mixian_2 }]);
+
     // 生肖卡注册（共12张，每张3个形态）
     register_card("yanyantu", obj_yanyantu, [
     { shape: 0, sprite: spr_yanyantu, cost: 200, cooldown: 2400, description: "炎焱兔：3*3范围内火炉类卡片提升产能数量", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yanyantu },
@@ -39,9 +44,9 @@ function mod_slots_init()
     { shape: 1, sprite: spr_yinhema_1, cost: 320, cooldown: 2700, description: "叮咚音盒马：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_1 },
     { shape: 2, sprite: spr_yinhema_2, cost: 320, cooldown: 2700, description: "玲珑音盒马：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_2 }]);
     register_card("xiandima", obj_xiandima, [
-    { shape: 0, sprite: spr_xiandima, cost: 335, cooldown: 900, description: "仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
-    { shape: 1, sprite: spr_xiandima_1, cost: 335, cooldown: 900, description: "悠扬仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
-    { shape: 2, sprite: spr_xiandima_2, cost: 335, cooldown: 900, description: "天籁仙笛马：不占格子，吹奏仙乐引导6只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_2 }]);
+    { shape: 0, sprite: spr_xiandima_icon, cost: 335, cooldown: 900, description: "仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
+    { shape: 1, sprite: spr_xiandima_icon1, cost: 335, cooldown: 900, description: "悠扬仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
+    { shape: 2, sprite: spr_xiandima_icon2, cost: 335, cooldown: 900, description: "天籁仙笛马：不占格子，吹奏仙乐引导6只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_2 }]);
     register_card("xingqiongma", obj_xingqiongma, [
     { shape: 0, sprite: spr_xingqiongma, cost: 350, cooldown: 3600, description: "星穹马：复活5*5范围内1张死亡的卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma },
     { shape: 1, sprite: spr_xingqiongma_1, cost: 350, cooldown: 3600, description: "璀璨星穹马：复活5*5范围内1张死亡的卡片，并为范围内卡牌施加减伤", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_1 },

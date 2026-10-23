@@ -20,6 +20,8 @@ if (_now_sealed != longzhu_sealed) {
 	} else {
 		longzhu_clip_set(id, "飞起", true);
 		if (longzhu_kind == "huang") longzhu_greedy_flame_clamp();
+		// 解封（米线断裂、封印被解除等）时立即清除该柱施加的清醒印记
+		longzhu_clear_awake_source(id);
 	}
 }
 longzhu_bridge_touch = false;

@@ -14,6 +14,8 @@ ly_absorb_boss = noone;
 ly_dash_exploded = false;
 is_soul = false;
 invincible = false;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 is_vehicle = false;
 ly_dodge_cooldown = 0;
 ly_dash_cols = [7, 3];

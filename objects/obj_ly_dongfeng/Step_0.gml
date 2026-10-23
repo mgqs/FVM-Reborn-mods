@@ -44,7 +44,19 @@ if (ly_fan) {
     with (obj_card_parent) {
         if (hp > 0 && grid_row == other.grid_row && plant_id == "ventilation_fan" && abs(x - other.x) < global.grid_cell_size_x * 4) _fan_near = true;
     }
-    if (_fan_near && ly_mode != "drop") { ly_mode = "drop"; longyuan_play("下落", true); }
+    // 换气扇对东风鼠直接秒杀（不再只是吹落）
+    if (_fan_near) {
+        var _blow = instance_create_depth(x, y, depth - 10, obj_mouse_blow_effect);
+        _blow.sprite_index = sprite_index;
+        _blow.image_index = image_index;
+        is_blown_away = true;
+        hp = 0;
+        shield_hp = 0;
+        helmet_hp = 0;
+        state = ENEMY_STATE.DEAD;
+        instance_destroy();
+        exit;
+    }
 }
 
 if (ly_mode == "spawn" || ly_mode == "appear" || ly_mode == "drop") {

@@ -12,6 +12,8 @@ var _x = x;
 		            damage_amount = other.atk;
 				damage_type = "true";
 				damage_source_object = other.object_index;
+				// 已通过 can_hit 判定（rotate 可命中 underground），允许命中钻地中的地精鼠（同鼹鼠规则）
+				if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
 				event_user(0)
 		            global.audio.play(snd_hit1,0,0)
 		    }

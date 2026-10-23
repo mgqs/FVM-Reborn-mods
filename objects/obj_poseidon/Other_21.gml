@@ -14,6 +14,8 @@ with (obj_enemy_parent)
         
         damage_amount = other.atk;
         damage_type = "true";
+        // 喷壶类可命中钻地中的地精鼠
+        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
         event_user(0);
         audio_play_sound(snd_hit1, 0, 0);
     }

@@ -11,6 +11,8 @@ ly_cooldown = 0;
 is_soul = false;
 invincible = false;
 is_vehicle = false;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 ly_fire = 3;                     // 3次施法（8/6/4 列各一次）
 ly_amulet = noone;
 ly_summon_cols = [7, 5, 3];   // 三次施法推进阈值（0-based：第8/6/4列，啃咬停在卡右一格时也能触发）

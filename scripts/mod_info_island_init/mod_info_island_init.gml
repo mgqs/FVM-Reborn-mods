@@ -95,28 +95,28 @@ function mod_info_island_init()
     register_card_info_island("pufferfish", "[灰烬类][瞬发类][爆炸类]\n基础能力：是美食也可能是毒药,种卡后清除全屏老鼠,或者清除部分卡片。\n *星级影响[冷却时间],技能影响[无]。\n\n一转能力：毒素效果降低。\n\n二转能力：中毒几率降低。");
     register_card_info_island("yeziguo", "[灰烬类][触发类][碾压类]\n基础能力：跳起秒杀前方单格鼠军,并砸晕周围的老鼠。\n *星级影响[冷却时间],技能影响[攻击力]。\n\n一转能力：秒杀范围扩大到3*3。\n\n二转能力：可连砸3次。");
     register_card_info_island("chunsun", "[灰烬类][持续类]\n基础能力：准备一段时间之后,可以长出穿刺老鼠的春笋。\n对范围内所有陆、地鼠军造成[攻击力]点伤害并直接秒杀击飞陆地非防爆鼠。\n攻击5次或持续45s即消失。\n *星级影响[攻击力],技能影响[准备时间]。\n\n一转能力：笋子存在时间延长至90s。\n\n二转能力：笋子攻击范围扩大到3×5。");
+    register_card_info_island("mixian", "[增幅类][名单类增幅][固定轨迹增幅]\n基础能力：连接5*5范围内的1个龙柱,1张即可封印龙柱,2张连接\n同一个龙柱可净化龙柱。攻击5*5范围内的陆军。\n *星级影响[攻击力],技能影响[攻击间隔]。\n\n一转能力：被老鼠啃咬时反伤。\n\n二转能力：攻击力提升。");
     register_card_info_island("niuyouguo", "[多向类][三向类]\n基础能力：向前方三个方向各发射1发扇形穿透飞镖,可穿透老鼠与障碍。\n *星级影响[攻击力],技能影响[攻击速度]。\n\n一转能力：命中的老鼠附加减速效果。\n\n二转能力：每个方向增加1发飞镖。");
 
     // 龙渊关卡敌人情报岛信息
     register_enemy_info_island("longyuan_pingmin", "龙渊平民鼠：普通行走并啃食前方卡片。")
-    register_enemy_info_island("longyuan_dijing", "地精鼠：入场时以0.9的速度挖掘，地下时仅能被旋转喷射类伤害命中。到达地图左侧后出土并眩晕，随后以0.15的速度向右移动并攻击前方卡片。")
-    register_enemy_info_island("longyuan_dongfeng", "东风鼠：空中单位，生命值与机械投弹鼠同档。飞到第8列后扇风，使场上空中鼠移动速度翻倍；扇子被破坏后风效停止。")
-    register_enemy_info_island("longyuan_gaoqiao", "高跷鼠：参考非主流鼠的舞步机制，移动和闪避时可躲避实体子弹；啃食时无法闪避，咖啡喷雾、鱼刺和爆炸等非实体伤害仍可命中。")
-    register_enemy_info_island("longyuan_kailu", "开路鼠：走到第4列、第8列后分别冲刺3格。夜晚被击杀且不是灰烬死亡时会化为魂体；本体或魂体接触卡片会自爆并摧毁该格美食。")
+    register_enemy_info_island("longyuan_dijing", "地精鼠：入场时以0.9的速度挖掘，地下时仅能被旋转喷射类伤害命中。\n到达地图左侧后出土并眩晕，随后以0.15的速度向右移动并攻击前方卡片。")
+    register_enemy_info_island("longyuan_dongfeng", "东风鼠：空中单位，生命值与机械投弹鼠同档。飞到第8列后扇风\n使场上空中鼠移动速度翻倍;扇子被破坏后风效停止。")
+    register_enemy_info_island("longyuan_gaoqiao", "高跷鼠：参考非主流鼠的舞步机制，移动和闪避时可躲避实体子弹;\n啃食时无法闪避，咖啡喷雾、鱼刺和爆炸等非实体伤害仍可命中。")
+    register_enemy_info_island("longyuan_kailu", "开路鼠：走到第4列、第8列后分别冲刺3格。夜晚被击杀且不是灰烬死亡时会化为魂体\n本体或魂体接触卡片会自爆并摧毁该格美食。")
     register_enemy_info_island("longyuan_langyabang", "狼牙棒鼠：巨型重型鼠，拥有高生命值和高额近战伤害，会持续压迫前方防线。")
     register_enemy_info_island("longyuan_longmu", "龙母鼠：携带魂蛋，魂蛋破碎后进入发怒状态并提高移动速度。")
-    register_enemy_info_island("longyuan_yaoguan", "药罐鼠：携带三团魂火，魂火提供减伤；濒死时会消耗魂火治疗场上的魂系老鼠。")
-    register_enemy_info_island("longyuan_zhibuji", "织布机鼠：受到伤害时会发射10点穿透梭弹；鱼刺和火盆可以有效克制它。")
-    register_enemy_info_island("longyuan_zhinian", "执念鼠：普通攻击造成10点伤害。夜晚被击杀且不是灰烬死亡时会化为魂体，魂体普通攻击造成50点伤害，并按两次普攻、一次大招循环；大招前移2格，对沿途两格美食各造成100点穿透伤害。")
-    register_enemy_info_island("longyuan_fuzhou", "符咒鼠：进入第4、6、8列时各召唤一次符咒。符咒飞行或转化出的魂系小鼠存活期间本体无敌；符咒会将本行最左侧卡片转化为魂系小鼠。")
-    register_enemy_info_island("longyuan_zhizhujing", "蜘蛛精鼠：拥有蜘蛛丝和魂系相关能力，会在关卡中使用专属动作与技能。魂体状态受到的伤害降低60%。")
-    register_enemy_info_island("longyuan_fuzhou_minion", "符咒魂鼠：由符咒鼠的符咒转化卡片后生成，拥有独立的魂系行动和攻击能力。")
-    register_enemy_info_island("ly_diting", "谛听鼠：遁地移动并发动3×3突袭；音波周期性伤害本行卡片；钟可被攻击，受到音波或钻出攻击后3秒自毁并生成魂系开路鼠。")
-    register_enemy_info_island("ly_hengha_horseface", "哼哈将军·马面：与牛头共用15万生命值，依次进行战略转移、掷铃和召唤8个食灵；铃铛由牛头敲击触发。")
-    register_enemy_info_island("ly_hengha_oxhead", "哼哈将军·牛头：与马面共用15万生命值，依次进行十字砸击、跳跃敲钟和吸收魂体。")
-    register_enemy_info_island("ly_mengpo", "孟婆鼠：使用茶树、降雨和狂风技能；茶壶浇灌茶树后会进入采茶攻击阶段。")
+    register_enemy_info_island("longyuan_yaoguan", "药罐鼠：携带三团魂火，魂火提供减伤;濒死时会消耗魂火治疗场上的魂系老鼠。")
+    register_enemy_info_island("longyuan_zhibuji", "织布机鼠：受到伤害时会发射10点穿透梭弹;鱼刺和火盆可以有效克制它。")
+    register_enemy_info_island("longyuan_zhinian", "执念鼠：普通攻击造成10点伤害。夜晚被击杀且不是灰烬死亡时会化为魂体\n魂体普通攻击造成50点伤害，并按三次普攻、一次大招循环\n大招前移2格，对沿途两格美食各造成100点穿透伤害。")
+    register_enemy_info_island("longyuan_fuzhou", "符咒鼠：进入第4、6、8列时各召唤一次符咒。\n符咒飞行或转化出的魂系小鼠存活期间本体无敌;\n符咒会将本行最左侧卡片转化为魂系小鼠。")
+    register_enemy_info_island("longyuan_zhizhujing", "蜘蛛精鼠：拥有蜘蛛丝和魂系相关能力\n会在关卡中使用专属动作与技能\n魂体状态受到的伤害降低60%。")
+    register_enemy_info_island("longyuan_fuzhou_minion", "符咒魂鼠：由符咒鼠的符咒转化卡片后生成\n拥有独立的魂系行动和攻击能力。")
+    register_enemy_info_island("ly_diting", "谛听鼠：遁地移动并发动3×3突袭;\n音波周期性伤害本行卡片;\n钟可被攻击，受到音波或钻出攻击后3秒自毁并生成魂系开路鼠。")
+    register_enemy_info_island("ly_hengha", "哼哈将军：牛头与马面共用15万生命值，同时出场。\n马面依次进行战略转移、掷铃和召唤8个食灵;\n牛头依次进行十字砸击、跳跃敲钟和吸收魂体\n铃铛由牛头敲击触发。")
+    register_enemy_info_island("ly_mengpo", "孟婆鼠：使用茶树、降雨和狂风技能;茶壶浇灌茶树后会进入采茶攻击阶段。")
     register_enemy_info_island("ly_wuchang", "无常鼠：黑白形态轮换，使用锁链、白锭、黑钩和招魂幡等阶段技能。")
-    register_enemy_info_island("ly_youshen", "游神鼠：夜巡符在3×3范围每秒造成10点伤害、持续10秒；眩晕术沿8点路径移动后催眠4×6范围15秒；冲撞沿随机纵列逐格摧毁卡片。")
+    register_enemy_info_island("ly_youshen", "游神鼠：夜巡符在3×3范围每秒造成10点伤害、持续10秒\n眩晕术沿8点路径移动后催眠4×6范围15秒\n冲撞沿随机纵列逐格摧毁卡片。")
 
     // 跨服远征感染敌人情报岛信息
     register_enemy_info_island("infected_normal_mouse", "平民僵尸鼠：被感染的普通老鼠,无特殊能力。");

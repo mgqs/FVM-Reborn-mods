@@ -27,16 +27,24 @@ if flash_value > 0 {
 
 // 延迟创建血条：先由子类 Create 设好 mouse_id，再建血条，规避 Create 顺序问题
 if (!ly_hpbar_done && mouse_id != "") {
-    hpbar_inst = instance_create_depth(450, 1040, -900, obj_boss_hpbar);
-    hpbar_inst.target_boss = id;
-    hpbar_inst.boss_id = mouse_id;
-    if (obj_battle.boss_count > 0) hpbar_inst.y -= 40;
-    ly_hpbar_done = true;
+    // 连体 BOSS（哼哈将军牛头/马面）共用一条血条：沿用同伴已创建的血条
+    if (instance_exists(ly_shared_boss_peer) && ly_shared_boss_peer.ly_hpbar_done) {
+        hpbar_inst = ly_shared_boss_peer.hpbar_inst;
+        ly_hpbar_done = true;
+    }
+    else {
+        hpbar_inst = instance_create_depth(450, 1040, -900, obj_boss_hpbar);
+        hpbar_inst.target_boss = id;
+        hpbar_inst.boss_id = mouse_id;
+        if (obj_battle.boss_count > 0) hpbar_inst.y -= 40;
+        ly_hpbar_done = true;
+    }
 }
 
 // 死亡判定（照 obj_arno）
 if (hp <= 0 && state != BOSS_STATE.DEATH) {
-    global.save_data.player.gold += 500;
+    // 连体 BOSS 的副体不重复发放击杀奖励
+    if (!ly_boss_is_peer) global.save_data.player.gold += 500;
     timer = 0;
     state = BOSS_STATE.DEATH;
     target_plant = noone;  // 清除攻击目标

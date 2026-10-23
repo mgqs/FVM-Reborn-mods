@@ -22,8 +22,8 @@
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const enemyOptions=['longyuan_pingmin','longyuan_dijing','longyuan_dongfeng','longyuan_gaoqiao','longyuan_kailu','longyuan_langyabang','longyuan_longmu','longyuan_yaoguan','longyuan_zhibuji','longyuan_zhinian','longyuan_fuzhou','longyuan_zhizhujing','ly_youshen','ly_hengha_horseface','ly_hengha_oxhead','ly_diting','ly_wuchang','ly_mengpo','infected_iron_pan_mouse','infected_mario_mouse'];
-const longyuanBossOptions=['ly_youshen','ly_hengha_horseface','ly_hengha_oxhead','ly_diting','ly_wuchang','ly_mengpo'];
+const enemyOptions=['longyuan_pingmin','longyuan_dijing','longyuan_dongfeng','longyuan_gaoqiao','longyuan_kailu','longyuan_langyabang','longyuan_longmu','longyuan_yaoguan','longyuan_zhibuji','longyuan_zhinian','longyuan_fuzhou','longyuan_zhizhujing','ly_youshen','ly_hengha','ly_diting','ly_wuchang','ly_mengpo','infected_iron_pan_mouse','infected_mario_mouse'];
+const longyuanBossOptions=['ly_youshen','ly_hengha','ly_diting','ly_wuchang','ly_mengpo'];
 const crossServerBossOptions=['infected_mario_mouse','infected_arno','infected_bingzha','infected_fire_residue','honglonglong','infected_pharaoh','infected_zhanshen'];
 let mode='longyuan',tab='map',selectedCell=-1,selectedWave=0,dirty=false;
 function emptyLevel(id='longyuan_1_hard',cols=9,rows=7){return {version:1.2,level_name:id,level_time_feature:'night',map_sprite:'spr_baiweiguan',time_limit:0,map_cols:cols,map_rows:rows,starting_flame:50,first_wave_delay:30,total_waves:5,elite_wave:2,boss_wave:5,hp_modify:1,min_wave_time:240,max_wave_time:1500,map:Array.from({length:rows},()=>Array.from({length:cols},()=>({object:[],type:'normal',plant:[]}))),waves:Array.from({length:5},(_,i)=>({wave_index:i+1,boss:'',boss_1_hp_modify:0,boss2:'',boss_2_hp_modify:1,boss3:'',boss_3_hp_modify:1,boss_wave:false,subwaves:[{subwave_index:1,local_min_wave_time:-1,local_max_wave_time:-1,enemy_list:[]}]})),rewards:[]}}

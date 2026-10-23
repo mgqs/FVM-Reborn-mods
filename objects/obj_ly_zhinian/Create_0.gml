@@ -12,6 +12,8 @@ ly_soul = false;
 is_soul = false;
 invincible = false;
 is_vehicle = false;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 ly_dodge_cooldown = 0;
 ly_soul_attack_count = 0;
 ly_soul_special = false;
@@ -24,7 +26,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_zhinian";
 ly_anims = longyuan_animation_table("zhinian");
-hp = 1000; maxhp = 1000; ly_original_hp = 1000;
+hp = 3000; maxhp = 3000; ly_original_hp = 3000;
 move_speed = 0.3; atk = 10; atk_cycle = 36;
 ly_night = longyuan_is_night();
 

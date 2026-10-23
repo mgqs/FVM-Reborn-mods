@@ -29,6 +29,8 @@ ly_anims = longyuan_animation_table("zhibuji");
 hp = 3500; maxhp = 3500; ly_original_hp = 3500;
 move_speed = 0.3; atk = 10; atk_cycle = 36;
 is_vehicle = true; giant_type = true;
+// 防爆：炸弹等秒杀效果只造成伤害；同时免疫减速控制（Step 中每帧清空 ice_timer）。
+immune_to_ash = true;
 longyuan_move_action = function() {
     if (hp > maxhp * 0.7) return "全丝线移动";
     if (hp > maxhp * 0.4) return "剩余2份丝线移动";

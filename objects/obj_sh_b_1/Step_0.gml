@@ -22,6 +22,9 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
+            // underground 只对本关钻地中的地精鼠开放
+            if (_key == "underground" && !(variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
+                && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig")) continue;
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
                 && abs(row - _e.grid_row) <= 1
@@ -42,6 +45,7 @@ if (variable_global_exists("enemy_by_type"))
                     {
                         damage_amount = other.damage;
                         damage_type = other.damage_type;
+                        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                         event_user(0);
                     }
                     else

@@ -24,7 +24,7 @@ if (state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE)
 {
     with (obj_enemy_parent)
     {
-        if ((grid_row == (other.grid_row - 1) || grid_row == other.grid_row || grid_row == (other.grid_row + 1)) && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
+        if ((grid_row == (other.grid_row - 1) || grid_row == other.grid_row || grid_row == (other.grid_row + 1)) && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && (can_target_on(other.target_type, target_type) || is_digging_dijing(id)))
         {
             has_enemy = true;
             break;

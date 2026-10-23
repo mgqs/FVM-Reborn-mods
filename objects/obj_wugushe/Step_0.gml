@@ -21,7 +21,7 @@ var ht_radius = shape == 2 ? 2 : 1;
 var has_target = false;
 for (var ht_i = 0; ht_i < array_length(ht_enemies); ht_i++) {
     var ht_e = ht_enemies[ht_i];
-    if (ht_e.target_type != "normal" && ht_e.target_type != "air") continue;
+    if (!is_digging_dijing(ht_e) && ht_e.target_type != "normal" && ht_e.target_type != "air") continue;
     var ht_g = get_grid_position_from_world(ht_e.x,ht_e.y);
     if (ht_g.col >= 0 && ht_g.col < global.grid_cols && ht_g.row >= 0 && ht_g.row < global.grid_rows
         && abs(ht_g.col-grid_col) <= ht_radius && abs(ht_g.row-grid_row) <= ht_radius) {has_target = true; break;}
@@ -68,7 +68,10 @@ if (state == CARD_STATE.ATTACK) {
         var po_targets = [];
         for (var po_i = 0; po_i < array_length(po_enemies); po_i++) {
             var po_e = po_enemies[po_i];
-            if (po_e.target_type != "normal" && po_e.target_type != "air") continue;
+            // 钻地中的地精鼠也可被喷壶类（巫蛊蛇）命中
+            var po_e_dig_dijing = (variable_instance_exists(po_e, "mouse_id") && po_e.mouse_id == "longyuan_dijing"
+                && variable_instance_exists(po_e, "ly_mode") && po_e.ly_mode == "dig");
+            if (!po_e_dig_dijing && po_e.target_type != "normal" && po_e.target_type != "air") continue;
             var po_g = get_grid_position_from_world(po_e.x,po_e.y);
             if (po_g.col < 0 || po_g.col >= global.grid_cols || po_g.row < 0 || po_g.row >= global.grid_rows) continue;
             if (abs(po_g.col-grid_col) <= po_radius && abs(po_g.row-grid_row) <= po_radius) array_push(po_targets,po_e);
@@ -81,6 +84,7 @@ if (state == CARD_STATE.ATTACK) {
                 with (po_t) {
                     damage_amount = wg_dmg;
                     damage_type = "pierce";
+                    if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                     event_user(0);
                 }
                 if (random(1) < (shape == 0 ? 0.10 : 0.15)) {
@@ -102,6 +106,7 @@ if (state == CARD_STATE.ATTACK) {
                     with (po_t) {
                         damage_amount = gt_dmg;
                         damage_type = "true";
+                        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                         event_user(0);
                     }
                     // 非防爆鼠（情报岛中不防爆，即非精英/BOSS）直接秒杀；防爆鼠仅承受百分比伤害
@@ -110,6 +115,7 @@ if (state == CARD_STATE.ATTACK) {
                         with (po_t) {
                             damage_amount = gk_dmg;
                             damage_type = "true";
+                            if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                             event_user(0);
                         }
                     }

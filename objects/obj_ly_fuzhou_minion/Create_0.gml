@@ -11,6 +11,8 @@ ly_cooldown = 0;
 is_soul = false;
 invincible = false;
 is_vehicle = false;
+// 防爆：炸弹等秒杀效果只造成伤害。
+immune_to_ash = true;
 ly_dodge_cooldown = 0;
 ly_original_hp = 100;
 ly_owner = noone;

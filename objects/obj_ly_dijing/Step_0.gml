@@ -27,6 +27,7 @@ if (ly_mode == "dig") {
     var _surface_card = longyuan_dijing_food_ahead();
     if (instance_exists(_surface_card)) {
         ly_food_surface = true;
+        ly_food_target = _surface_card;
         longyuan_damage_plant(_surface_card, 50);
         ly_mode = "appear";
         target_type = "normal";
@@ -58,14 +59,20 @@ if (ly_mode == "stunned") {
     ly_cooldown = max(0, ly_cooldown - 1);
     if (ly_cooldown <= 0) {
         ly_mode = "walk";
-        move_speed = ly_food_surface ? 0.15 : -0.15;
+        // 出土后使用正常可见的慢速前进（原 0.15 近乎原地不动，表现为“发呆”）。
+        move_speed = ly_food_surface ? 0.3 : -0.3;
         attack_range = ly_food_surface ? 90 : -90;
         ly_action = "";
     }
     exit;
 }
 
-target_plant = longyuan_find_plant(false);
+if (instance_exists(ly_food_target) && ly_food_target.hp > 0) {
+    target_plant = ly_food_target;
+}
+else {
+    target_plant = longyuan_find_plant(false);
+}
 if (instance_exists(target_plant)) {
     ly_mode = "attack";
     longyuan_play(longyuan_attack_action());

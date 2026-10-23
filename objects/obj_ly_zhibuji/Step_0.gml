@@ -2,6 +2,8 @@ if (global.is_paused) exit;
 // 保留父对象注册、状态效果、深度及胜负处理；ACTING禁止旧动画偏移算法。
 var _saved_index = image_index;
 var _saved_alpha = image_alpha;
+// 免疫减速控制：清空冰冻减速计时，父对象据此不会置 is_slowdown。
+ice_timer = 0;
 state = ENEMY_STATE.ACTING;
 event_inherited();
 if (!instance_exists(id)) exit;
@@ -49,17 +51,9 @@ if (array_length(ly_shot_queue) > 0) {
 target_plant = longyuan_find_plant(false);
 
 if (instance_exists(target_plant)) {
-    ly_mode = "attack";
-    longyuan_play(longyuan_attack_action());
-    longyuan_animate();
-    var _clip = ly_anims[$ ly_action];
-    var _hit_frame = floor((_clip[2] - _clip[1] + 1) / 2);
-    if (!ly_hit && ly_frame >= _hit_frame) { longyuan_damage_plant(target_plant, atk); ly_hit = true; }
-    if (ly_done && ly_frame >= max(_clip[2] - _clip[1] + 1, atk_cycle * 10 / game_get_speed(gamespeed_fps))) {
-        ly_frame = 0; ly_hit = false;
-
-    }
-    exit;
+    // 织布机鼠不再做啃咬动作，遇到卡片直接将其摧毁后继续前进。
+    longyuan_destroy_card(target_plant);
+    target_plant = noone;
 }
 ly_mode = "walk";
 longyuan_play(longyuan_move_action());
