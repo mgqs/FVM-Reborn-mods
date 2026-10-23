@@ -28,7 +28,9 @@ plant_type = "normal"
 feature_type = "normal"
 is_slowdown = false
 attack_type = ATTACK_TYPE.SHOOTER
-target_type = "normal"
+// 对空 + 穿透：pierce 打不到空军、air 会丢障碍/隐形/舞者，所以用组合类型 pierce_air
+// （见 scripts/can_target_on：air 放行，其余按 pierce 走；get_hittable_enemy_types 给 normal+air+dance+obstacle+invisible）
+target_type = "pierce_air"
 
 // 每个方向几条飞镖：本体 / 一转 1 条，二转 2 条
 shots_per_side = (shape >= 2) ? 2 : 1

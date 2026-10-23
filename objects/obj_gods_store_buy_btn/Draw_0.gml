@@ -9,8 +9,14 @@ draw_set_valign(fa_middle);
 
 if (btn_type == "card")
     draw_text(x, y - 106, goods_name);
-else if (btn_type == "shape")
-    draw_text_ext_transformed(x, y - 106, goods_name, 25, 1920, 0.9, 0.9, 0);
+else
+{
+    // 食谱类名字长（深度融合菜谱（xxx））→ 按宽度自动缩，别顶出格子
+    var _nsc = 0.9;
+    var _nw = string_width(goods_name);
+    if (_nw * _nsc > 360) _nsc = 360 / _nw;
+    draw_text_ext_transformed(x, y - 106, goods_name, 25, 1920, _nsc, _nsc, 0);
+}
 
 if (!is_disabled)
 {

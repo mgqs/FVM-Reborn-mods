@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_fusion_gray",
+  "name":"sh_fusion_gray",
+  "parent":{
+    "name":"着色器",
+    "path":"folders/着色器.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

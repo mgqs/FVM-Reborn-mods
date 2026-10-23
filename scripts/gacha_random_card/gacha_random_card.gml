@@ -453,6 +453,85 @@ function card_max_available_shape(card_id) {
     return _max;
 }
 
+/// @function fusion_recipe_id(card_id, shape)
+/// @desc 食谱道具在背包里的 id（诸神商店卖的就是这个；融合页也用它当「融合菜谱」）
+function fusion_recipe_id(card_id, shape) {
+    return "recipe_" + card_id + "_" + string(shape);
+}
+
+/// @function has_fusion_recipe(card_id, shape)
+/// @desc 背包里有没有这张卡这个形态的食谱道具
+function has_fusion_recipe(card_id, shape) {
+    return (get_material_amount(fusion_recipe_id(card_id, shape)) > 0);
+}
+
+/// @function gacha_make_card_reward(card_id, shape)
+/// @desc 「发一张卡」的唯一出口：**融合卡一律只发对应形态的融合菜谱道具**，其它卡照常发卡本体。
+///       候选池 / 补前置本体 / 推前置到下一形态 三处都走它 ——
+///       2026-10-24 修：宗布神(←融合三线)、赤帝(←融合栗子) 的前置本身是融合卡，
+///       那两条 return 原来手写 {reward_type:"card"}，绕过了候选池里的 recipe 转换，直接把融合卡发出去了
+function gacha_make_card_reward(_id, _shape) {
+    if (is_fusion_card(_id)) {
+        return { reward_type: "recipe", id: _id, shape: _shape, recipe_id: fusion_recipe_id(_id, _shape) };
+    }
+    return { reward_type: "card", id: _id, shape: _shape };
+}
+
+/// @function fusion_recipe_sprite(card_id, shape)
+/// @desc 食谱图标 = [精灵, 帧]：形态 0 用 spr_fusion_recipe0（帧号按 fusion_demo 顺序），1/2 用诸神那套 spr_voucher_*
+function fusion_recipe_sprite(card_id, shape) {
+    if (shape <= 0) return [spr_fusion_recipe0, fusion_recipe0_frame(card_id)];
+    var _s = asset_get_index("spr_voucher_" + card_id + "_" + string(shape));
+    if (_s == -1) _s = spr_fusion_recipe0;
+    return [_s, 0];
+}
+
+/// @function fusion_recipe_display_name(card_id, shape)
+/// @desc 食谱道具的显示名（口径与诸神商店一致：融合菜谱 / 深度融合菜谱 / 灵魂融合菜谱（卡名））
+function fusion_recipe_display_name(card_id, shape) {
+    return fusion_recipe_grade_name(shape) + "（" + fusion_recipe_card_name(card_id, shape) + "）";
+}
+
+/// @function fusion_recipe_grade_name(shape)
+/// @desc 食谱档位名（卡形态 → 食谱品级）：0 初级 / 1 深度融合 / 2 灵魂融合。
+///       抽卡奖励弹窗把名字拆成「卡名 + 档位」两行，档位文案只在这里维护
+function fusion_recipe_grade_name(shape) {
+    if (shape <= 0) return "初级融合菜谱";
+    if (shape == 1) return "深度融合菜谱";
+    return "灵魂融合菜谱";
+}
+
+/// @function fusion_recipe_card_name(card_id, shape)
+/// @desc 食谱对应的卡名 —— **按形态取**（如融合栗子：0 转酱香锅烤栗子 / 1 转可乐香烤栗子 / 2 转如意香烤栗子）。
+///       该形态没注册时退回本体形态名，都查不到回退成卡 id
+function fusion_recipe_card_name(card_id, shape = 0) {
+    var _nm = "";
+    var _sd = get_plant_shape_data(card_id, shape);
+    if (_sd == undefined && shape != 0) {
+        _sd = get_plant_shape_data(card_id, 0);
+    }
+    // ⚠️ 形态数据是 ds_map（register_plant_lite 建的），不是结构体 → 直接 [? "name"] 取；
+    // 也不要用 is_real() 守卫：新版运行时 ds_map 句柄过 is_real 返回 false，名字会退回成卡 id
+    if (_sd != undefined) {
+        var _v = _sd[? "name"];
+        if (!is_undefined(_v) && is_string(_v)) _nm = _v;
+    }
+    if (_nm == "") _nm = card_id;
+    return _nm;
+}
+
+/// @function card_owned_shape(card_id)
+/// @desc 存档里这张卡已有的最高形态（没解锁 = -1）
+///       诸神商店卖「食谱道具」时要判断「这张卡已经到几转了」——融合页那份
+///       fusion_owned_shape() 是 obj_craft_bg 的实例方法，别的对象里调不到，所以这里给一份全局版
+function card_owned_shape(card_id) {
+    var _cur = -1;
+    for (var _i = 0; _i < 3; _i++) {
+        if (deck_get_card_data(card_id, _i) != noone) _cur = _i;
+    }
+    return _cur;
+}
+
 /// @function fusion_prereq_met(card_id, _need_shape)
 /// @desc 前置是否达成。前置表里的卡**全部**满足才算达成。
 /// @param {string} card_id 目标卡 id
@@ -540,10 +619,10 @@ function gacha_resolve_prereq_reward(_cand) {
 
     var _need_max = 2;   // 其余卡：前置要推到二转
 
-    // ① 先补缺的本体
+    // ① 先补缺的本体（前置本身可能就是融合卡 → 由 gacha_make_card_reward 统一转成菜谱）
     for (var _i = 0; _i < array_length(_list); _i++) {
         if (!is_card_unlocked(_list[_i])) {
-            return { reward_type: "card", id: _list[_i], shape: 0 };
+            return gacha_make_card_reward(_list[_i], 0);
         }
     }
 
@@ -559,7 +638,7 @@ function gacha_resolve_prereq_reward(_cand) {
         if (_cur < _target) {
             var _next = _cur + 1;
             if (get_plant_shape_data(_list[_j], _next) == undefined) continue;
-            return { reward_type: "card", id: _list[_j], shape: _next };
+            return gacha_make_card_reward(_list[_j], _next);   // 前置是融合卡时同样只发菜谱
         }
     }
 
@@ -570,7 +649,7 @@ function gacha_resolve_prereq_reward(_cand) {
 /// @function gacha_pick_random_reward()
 /// @desc 按类别权重随机抽取一个奖励（卡片/武器/宝石）
 /// 类别权重（见下方权重段）：融合卡 / 金卡 / 生肖卡 / 普通卡 / MOD武器 / 宝石
-///   融合卡单列一档（星际 15 / 欧皇 55）
+///   融合卡单列一档（星际 20 / 欧皇 55）
 /// 抽取规则：
 /// 1. 卡片：未拥有时抽0形态，已拥有时抽下一形态，满形态不进候选池
 ///    融合卡抽 0 形态（本体）前，需先拥有其前置卡的二转形态（见 fusion_get_prerequisites）
@@ -594,6 +673,27 @@ function gacha_pick_random_reward() {
         if (gacha_is_excluded_card(card_id) && !is_card_unlocked(card_id)
             && !gacha_is_current_level_reward_card(card_id)) continue;
 
+        // ── 融合卡：只发菜谱，形态**随机**挑一个「还没拥有、也还没菜谱」的 ──
+        //   2026-10-24 用户口径：不再固定「拥有形态 + 1」，改成在没锁的形态里随机；
+        //   已经拥有的形态、背包里已有该形态菜谱的都排除；一个都没得发 → 整张卡不进池
+        if (is_fusion_card(card_id)) {
+            var _fowned = -1;
+            if (is_card_unlocked(card_id)) {
+                var _finfo = get_card_info_simple(card_id);
+                _fowned = max(_finfo.max_shape, _finfo.shape);
+            }
+            var _fcands = [];
+            for (var _fs = 0; _fs <= 3; _fs++) {
+                if (get_plant_shape_data(card_id, _fs) == undefined) break;   // 形态到头了
+                if (_fs <= _fowned) continue;                                 // 这个形态已经拥有
+                if (has_fusion_recipe(card_id, _fs)) continue;                // 这个形态的菜谱已经到手
+                array_push(_fcands, _fs);
+            }
+            if (array_length(_fcands) == 0) continue;                         // 全都有了，不进池
+            array_push(fusion_candidates, gacha_make_card_reward(card_id, _fcands[irandom(array_length(_fcands) - 1)]));
+            continue;
+        }
+
         var current_shape = -1;
         var target_shape = 0;
 
@@ -616,6 +716,11 @@ function gacha_pick_random_reward() {
             continue;
         }
 
+        // 已经有「这个形态的食谱道具」→ 同样不进池（形态靠融合页融出来，不再重复抽同一形态）
+        if (has_fusion_recipe(card_id, target_shape)) {
+            continue;
+        }
+
         // 硬前置的卡（目前只有命运：「只要创造神本体」）：前置没本体就不进池。
         // 这类卡不参与「抽到后换前置」的替换，所以必须在池子里就拦住。
         // 其余需前置的卡（融合 / 其它神灵）照常进池，抽到后由 gacha_resolve_prereq_reward 换成前置卡。
@@ -629,10 +734,8 @@ function gacha_pick_random_reward() {
             shape: target_shape
         };
 
-        // 融合卡单列一档（优先级高于金卡，否则会落到金卡池里重复计算概率）
-        if (is_fusion_card(card_id)) {
-            array_push(fusion_candidates, candidate);
-        } else if (gacha_is_gold_card(card_id)) {
+        // 融合卡已经在上面单独处理并 continue，走到这里只剩普通 / 金卡 / 生肖
+        if (gacha_is_gold_card(card_id)) {
             array_push(gold_candidates, candidate);
         } else if (gacha_is_zodiac_card(card_id)) {
             array_push(zodiac_candidates, candidate);
@@ -683,9 +786,10 @@ function gacha_pick_random_reward() {
 
     // === 按权重选择类别 ===
     // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
-    //   星际抽卡（难度6）：融合卡15 / 金卡5 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5
-    //   欧皇抽卡（难度7）：融合卡55 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5
-    var fusion_weight = 15;
+    //   星际抽卡（难度6）：融合卡20 / 金卡5 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5  → 融合菜谱 ≈16.7%
+    //   欧皇抽卡（难度7）：融合卡55 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5  → 融合菜谱 ≈35.5%
+    //   2026-10-24 融合卡权重由 15 提到 20（欧皇 55 不变）；这是**权重**不是概率，别按百分比去反算
+    var fusion_weight = 20;
     var gold_weight = 5;
     var zodiac_weight = 20;
     var normal_weight = 74;
@@ -783,6 +887,8 @@ function gacha_pick_fallback_reward() {
     for (var i = 0; i < ds_list_size(global.player_deck); i += 2) {
         var card_id = global.player_deck[| i];
         if (is_card_unlocked(card_id)) {
+            // 兜底是「满形态时随机一张提等级」，融合卡不参与 —— 它只能靠融合页拿，别在这里把本体发出去
+            if (is_fusion_card(card_id)) continue;
             var info = get_card_info_simple(card_id);
             array_push(all_cards, {
                 reward_type: "card",

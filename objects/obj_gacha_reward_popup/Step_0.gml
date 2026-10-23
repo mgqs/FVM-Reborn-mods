@@ -58,6 +58,9 @@ if (mouse_check_button_pressed(mb_left)) {
                 unlock_weapon(reward_id);
             } else if (reward_type == "gem") {
                 unlock_gem(reward_id);
+            } else if (reward_type == "recipe") {
+                // 融合菜谱道具：进背包，融合页拿它当「融合菜谱」
+                add_material_amount(fusion_recipe_id(reward_id, target_shape), 1);
             }
 
             received = true;
