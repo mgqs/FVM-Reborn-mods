@@ -115,6 +115,8 @@ function longyuan_is_night() {
 }
 
 function longyuan_apply_soul_damage_reduction(_factor = 0.1) {
+	// 被灯影花糕的魂虫命中后「现形」：等效已显形，不再吃魂体减伤。
+	if (variable_instance_exists(id, "huagao_reveal") && huagao_reveal) return;
 	damage_amount *= _factor;
 }
 
@@ -276,7 +278,7 @@ function longyuan_sleep_area(_col, _row, _cols, _rows, _duration) {
     return _cards;
 }
 
-function longyuan_destroy_card(_card) {
+function longyuan_destroy_card(_card, _no_effect = false) {
     if (!instance_exists(_card) || _card.hp <= 0 || _card.invincible) return;
     var _pos = {x: _card.x, y: _card.y};
     with (_card) {
@@ -284,8 +286,21 @@ function longyuan_destroy_card(_card) {
         is_shoveled = true;
         instance_destroy();
     }
+    if (_no_effect) return;
     var _effect = instance_create_depth(_pos.x, _pos.y, -800, obj_coke_bomb_explode);
     _effect.sprite_index = spr_coke_bomb_explode;
+}
+
+/// 龙渊「魂系」敌人判定：执念鼠/开路鼠魂体、符咒鼠、符咒魂鼠等
+function longyuan_is_soul_enemy(_e) {
+    if (!instance_exists(_e)) return false;
+    if (variable_instance_exists(_e, "is_soul") && _e.is_soul) return true;
+    if (variable_instance_exists(_e, "ly_soul") && _e.ly_soul) return true;
+    if (variable_instance_exists(_e, "mouse_id")) {
+        var _id = _e.mouse_id;
+        if (_id == "longyuan_fuzhou" || _id == "longyuan_fuzhou_minion") return true;
+    }
+    return false;
 }
 
 function longyuan_damage_plant_piercing(_plant, _damage) {

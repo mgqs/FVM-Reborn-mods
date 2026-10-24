@@ -4200,7 +4200,10 @@
           "amount": 150
         }
       ],
-      "card_unlock": [],
+      "card_unlock": [
+        "huagao",
+        "fushengcha"
+      ],
       "weapon_unlock": [],
       "gem_unlock": [],
       "player_level": 30

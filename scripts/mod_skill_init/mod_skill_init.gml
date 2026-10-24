@@ -7,8 +7,11 @@ function mod_skill_init()
     register_card_skill("yufengma", "cycle", [120, 117, 114, 111, 108, 102, 96, 90, 78]);
     register_card_skill("fenjima", "cycle", [108, 105, 102, 99, 96, 90, 84, 78, 60]);
     register_card_skill("guiyuanma", "cycle", [156, 153, 150, 147, 144, 141, 138, 132, 120]);
+    register_card_skill("huagao", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 168]);
     register_card_skill("yanhuangma", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 150]);
     register_card_skill("yinhema", "cooldown", [2700, 2580, 2460, 2340, 2220, 2040, 1800, 1500, 900]);
+    // 浮生茶冷却 50/48/46/44/40/35/30/25/18 秒；9 星起沿用 18 秒（mod_cards_init 的 1080）
+    register_card_skill("fushengcha", "cooldown", [3000, 2880, 2760, 2640, 2400, 2100, 1800, 1500, 1080]);
     register_card_skill("xiandima", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("xingqiongma", "zodiac_guard_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);
     register_card_skill("starrabbit", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
@@ -30,6 +33,7 @@ function mod_skill_init()
     register_card_skill("brahma", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
     register_card_skill("baibianshe", "cycle", [145, 145, 145, 145, 145, 145, 145, 145, 145]);
     register_card_skill("blueberry_tower", "cooldown", [2100, 1980, 1860, 1740, 1620, 1500, 1380, 1200, 900]);
+    register_card_skill("zhuzhujiaqiang", "cooldown", [2100, 1920, 1740, 1560, 1380, 1200, 960, 720, 420]);
     register_card_skill("rig", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("donut", "cycle", [84, 81, 78, 75, 72, 69, 66, 60, 54]);
     register_card_skill("clotho", "cycle", [3600, 3900, 4200, 4500, 4800, 5100, 5700, 6300, 7200]);

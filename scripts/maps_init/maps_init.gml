@@ -43,7 +43,9 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"none",
-					"rewards":[{"card_id":"wooden_plate","target_shape":1}
+					"rewards":[{"card_id":"wooden_plate","target_shape":1},
+								{"card_id":"mixian","target_shape":1},
+								{"card_id":"huagao","target_shape":1}
 							]
 					},
 					{
@@ -57,7 +59,8 @@ function maps_init(){
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_1_1",
 					"rewards":[{"card_id":"oil_lamp","target_shape":1},
-								{"card_id":"wanpilong","target_shape":1}
+								{"card_id":"wanpilong","target_shape":1},
+								{"card_id":"fushengcha","target_shape":1}
 							]
 				},
 				{
@@ -114,7 +117,8 @@ function maps_init(){
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_3_1",
 					"rewards":[{"card_id":"rotating_coffee_pot","target_shape":1},
-								{"card_id":"zhiyumiao","target_shape":1}
+								{"card_id":"zhiyumiao","target_shape":1},
+								{"card_id":"zhuzhujiaqiang","target_shape":1}
 							]
 				},
 				{
@@ -395,7 +399,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_2",
 					"rewards":[{"card_id":"flour_sack","target_shape":1},
-								{"card_id":"rabbit_lantern","target_shape":1}
+								{"card_id":"rabbit_lantern","target_shape":1},
+								{"card_id":"mixian","target_shape":2}
 							]
 				},
 				{
@@ -544,7 +549,8 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_17_2",
 					"rewards":[{"card_id":"wooden_plate","target_shape":2},
-								{"card_id":"coffee_cup","target_shape":2}
+								{"card_id":"coffee_cup","target_shape":2},
+								{"card_id":"huagao","target_shape":2}
 							]
 				},
 				{
@@ -722,7 +728,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_23_2",
 					"rewards":[{"card_id":"king_long_bao","target_shape":2},
-								{"card_id":"shuanggu","target_shape":2}
+								{"card_id":"shuanggu","target_shape":2},
+								{"card_id":"fushengcha","target_shape":2}
 							]
 				},
 				{
@@ -930,7 +937,8 @@ function maps_init(){
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_30_2",
 					"rewards":[{"card_id":"brazier","target_shape":2},
-								{"card_id":"berry_dessert","target_shape":2}
+								{"card_id":"berry_dessert","target_shape":2},
+								{"card_id":"zhuzhujiaqiang","target_shape":2}
 							]
 				},
 				{

@@ -85,9 +85,7 @@ if (variable_global_exists("enemy_by_type"))
                     _is_boss = true;
                 }
                 var _immune_to_ash = _e.immune_to_ash;
-                var _is_soul = false;
-                if (variable_instance_exists(_e, "is_soul"))
-                    _is_soul = _e.is_soul;
+                var _is_soul = longyuan_is_soul_enemy(_e);
                 var _is_submarine = (string_pos("submarine", object_get_name(_e.object_index)) > 0);
 
                 var _dmg = damage;
@@ -101,13 +99,13 @@ if (variable_global_exists("enemy_by_type"))
                 {
                     _dmg = damage;
                 }
-                else if (_immune_to_ash)
-                {
-                    _dmg = damage;
-                }
                 else if (_is_soul)
                 {
                     _dmg = floor(damage * 1.8);
+                }
+                else if (_immune_to_ash)
+                {
+                    _dmg = damage;
                 }
                 else if (_is_submarine)
                 {

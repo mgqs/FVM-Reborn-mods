@@ -41,11 +41,13 @@ if (variable_global_exists("enemy_by_type"))
                 && precise_bbox_collision(id, _e))
             {
                 var _prev_hp = _e.hp;
+                // 炎帝对魂系敌人（符咒鼠/符咒魂鼠/执念鼠魂体等）造成 2 倍基础伤害
+                var _dmg = longyuan_is_soul_enemy(_e) ? floor(damage * 2) : damage;
 
                 with (_e)
                 {
                     audio_play_sound(hit_sound, 0, 0);
-                    damage_amount = other.damage;
+                    damage_amount = _dmg;
                     damage_type = other.damage_type;
                     event_user(0);
                 }

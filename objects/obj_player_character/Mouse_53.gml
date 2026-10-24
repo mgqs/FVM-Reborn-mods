@@ -54,6 +54,7 @@ if not is_placed{
 			_transformation_effect.center_screen = true;
 			_transformation_effect.flash_speed = 6;
 			if (_transformation_sprite != spr_bianshen2) {
+				_transformation_effect.scale_multiplier = 2;
 				var _entrance_effect = instance_create_depth(x, y, depth - 2, obj_place_effect);
 				_entrance_effect.sprite_index = spr_ruchang;
 				_entrance_effect.image_xscale = image_xscale;

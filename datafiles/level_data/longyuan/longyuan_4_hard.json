@@ -32,12 +32,9 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -48,7 +45,14 @@
       },
       {
         "object": [],
-        "type": "water",
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
@@ -79,12 +83,9 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -95,7 +96,14 @@
       },
       {
         "object": [],
-        "type": "water",
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
@@ -121,12 +129,9 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -147,7 +152,14 @@
       },
       {
         "object": [],
-        "type": "water",
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
@@ -168,8 +180,10 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
@@ -185,64 +199,23 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      }
-    ],
-    [
-      {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
       {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "water",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -260,11 +233,13 @@
       },
       {
         "object": [],
-        "type": "water",
+        "type": "normal",
         "plant": []
       },
       {
-        "object": [],
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -279,8 +254,10 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
@@ -306,12 +283,60 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
         "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      }
+    ],
+    [
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -332,12 +357,21 @@
       },
       {
         "object": [],
-        "type": "water",
+        "type": "normal",
         "plant": []
       },
       {
-        "object": [],
-        "type": "water",
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
         "plant": []
       },
       {
