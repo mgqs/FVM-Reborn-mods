@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},
     {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},
     {"name":"difficulty_rules","path":"scripts/difficulty_rules/difficulty_rules.yy",},
     {"name":"gods_goods_registry","path":"scripts/gods_goods_registry/gods_goods_registry.yy",},

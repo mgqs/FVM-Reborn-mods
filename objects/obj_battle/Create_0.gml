@@ -159,21 +159,12 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 				var card_data = deck_get_card_data(cards[k],0)
 				if (card_data == noone) continue;
 				var card_obj = card_data[? "obj"]
-				var initial_shape = 0;
-				if (cards[k] == "yinhema" && variable_global_exists("save_data")
-					&& variable_struct_exists(global.save_data, "unlocked_cards")
-					&& is_array(global.save_data.unlocked_cards)) {
-					for (var unlocked_index = 0; unlocked_index < array_length(global.save_data.unlocked_cards); unlocked_index++) {
-						if (global.save_data.unlocked_cards[unlocked_index].id == "yinhema") {
-							initial_shape = clamp(global.save_data.unlocked_cards[unlocked_index].shape, 0, 2);
-							break;
-						}
-					}
-				}
+				// 预置卡形态 = 玩家当前形态：第 5 参传 -1，external_mod_spawn 内部会读 save_data 的 shape（没拥有则 0）
+				// 2026-10-24 修：原来锁死 0、只给 yinhema 特判，导致曲奇岛小火炉 / 慕斯酒杯灯等地图内置卡永远 0 转
 				var new_x = global.grid_offset_x + j * global.grid_cell_size_x
 				var new_y = global.grid_offset_y + i * global.grid_cell_size_y
 				var grid_pos = get_grid_position_from_world(new_x,new_y)
-				var new_plant = external_mod_spawn(grid_pos.x, grid_pos.y, 0, cards[k], initial_shape);
+				var new_plant = external_mod_spawn(grid_pos.x, grid_pos.y, 0, cards[k], -1);
 				var depth_value = calculate_plant_depth(j, i, new_plant.plant_type);
 				card_created(new_plant, j, i);
 				new_plant.depth = depth_value

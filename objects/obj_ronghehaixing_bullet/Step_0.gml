@@ -15,20 +15,24 @@ if (delay > 0) {
 }
 visible = true
 
-// 追踪模式（终转边界反弹后）
+// 追踪模式（终转边界反弹后）：目标无效 → 重新找最近敌人；贴身不转向（避免每帧翻转）
 if (has_bounced_wall) {
-	if (instance_exists(target_id) && target_id.hp > 0) {
+	if (homing_target_ok(target_id))
+	{
 		var _aim_h = 37;
 		var _dx = target_id.x - x;
 		var _dy = (target_id.y - _aim_h) - y;
 		var _len = point_distance(0, 0, _dx, _dy);
-		if (_len > 0) {
+		// 只在「离得还远」时转向：原来用 move_speed 当阈值，可那是 x 分量（可能为负），判断是错的
+		if (_len > bullet_speed * 0.5)
+		{
 			move_speed = (_dx / _len) * bullet_speed;
 			y_move_speed = (_dy / _len) * bullet_speed;
 		}
-		image_angle = point_direction(0, 0, move_speed, y_move_speed);
-	} else {
-		// 目标丢失，重新寻找最近敌人
+	}
+	else
+	{
+		// 目标丢失 / 无敌 / 隐身 → 重新寻找最近的敌人（子弹本体就是全程追踪，别删这段）
 		target_id = noone;
 		var _best = 1000000000;
 		for (var _t = 0; _t < array_length(hittable_types); _t++) {
@@ -47,6 +51,7 @@ if (has_bounced_wall) {
 			}
 		}
 	}
+	image_angle = point_direction(0, 0, move_speed, y_move_speed);
 }
 
 x += move_speed

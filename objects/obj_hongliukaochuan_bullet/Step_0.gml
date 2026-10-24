@@ -16,18 +16,28 @@ if (timer > max_life || x > 2200 || y > 1200 || x < 0 || y < 0)
 
 if (!has_hit)
 {
-    if (instance_exists(target_id) && target_id.hp > 0)
+    if (homing_target_ok(target_id))
     {
-        // 瞄准点抬高：敌人精灵原点在脚底，瞄到身体；和 obj_hongliukaochuan/Other_11.gml 的 _aim_h 保持一致
+        // 瞄准点抬高：敌人精灵原点在脚底，瞄到身体（与 obj_hongliukaochuan/Other_11.gml 的 _aim_h 一致）
         var _aim_h = 37;
         var _dx = target_id.x - x;
         var _dy = (target_id.y - _aim_h) - y;
         var _len = point_distance(0, 0, _dx, _dy);
-        if (_len > 0)
+        if (_len > move_speed * 2)
         {
             move_x = (_dx / _len) * move_speed;
             move_y = (_dy / _len) * move_speed;
         }
+        else
+        {
+            // 已经贴到目标身上 → 放弃追踪，保持当前方向穿过去（不再来回折返抽搐）
+            target_id = noone;
+        }
+    }
+    else
+    {
+        // 目标消失 / 无敌 / 隐身 → 永久脱离，直线飞出地图为止
+        target_id = noone;
     }
     image_angle = point_direction(0, 0, move_x, move_y);
 }
