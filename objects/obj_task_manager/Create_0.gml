@@ -5,7 +5,7 @@ not_equip_weapon = false
 not_use_designated_card = false
 
 card_group = {
-	"bomb":["coke_bomb","kettle_bomb","flour_sack","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"]
+	"bomb":["coke_bomb","kettle_bomb","flour_sack","pufferfish","yeziguo","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"]
 }
 
 function reset_task_state(){
@@ -118,6 +118,38 @@ function refresh_task_progress(){
 						complete_count++
 					}
 				}
+				//卡槽数量限制类任务
+				if task_data.requirements[j].type == "slot_limit"{
+					//记录当前出战卡片数量（不超过上限即达标）
+					edit_task_progress(task_id,j,deck_slot_count())
+					if get_task_progress(task_id,j) <= task_data.requirements[j].require{
+						complete_count++
+					}
+				}
+				//卡片星级、转职、技能限制类任务
+				if task_data.requirements[j].type == "card_progress_limit"{
+					var _card_ok = true
+					for(var k = 0 ; k < ds_list_size(global.selected_deck) ; k++){
+						if deck_slot_is_empty(k) continue;
+						var _card_info = get_card_info_simple(global.selected_deck[| k][? "card_id"])
+						if _card_info == false continue;
+						if _card_info.level > task_data.requirements[j].card_level_limit
+						|| _card_info.shape > task_data.requirements[j].card_shape_limit
+						|| _card_info.skill > task_data.requirements[j].card_skill_limit{
+							_card_ok = false
+							break
+						}
+					}
+					if _card_ok{
+						edit_task_progress(task_id,j,1)
+					}
+					else{
+						edit_task_progress(task_id,j,0)
+					}
+					if get_task_progress(task_id,j) >= task_data.requirements[j].require{
+						complete_count++
+					}
+				}
 			}
 			//如果所有任务要求均达成，则完成任务
 			if complete_count >= complete_require{
@@ -131,7 +163,7 @@ function refresh_task_progress(){
 			}
 			//如果是单局完成的任务，未完成则重置进度
 			else if task_data.single_game{
-				for(var j = 0 ; j < array_length(global.save_data.tasks[i].progress) ; j++){ 
+				for(var j = 0 ; j < array_length(task_data.requirements) ; j++){ 
 					edit_task_progress(task_id,j,0)
 				}
 			}

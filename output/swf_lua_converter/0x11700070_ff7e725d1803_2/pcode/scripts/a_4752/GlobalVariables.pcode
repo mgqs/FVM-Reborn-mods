@@ -1,0 +1,188 @@
+package a_4752
+{
+   import flash.utils.Dictionary;
+   
+   public class GlobalVariables
+   {
+      
+      private static var instance:GlobalVariables;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "instance", 0, 12
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iMonthCardVipService:int;
+      
+      public var m_iMoonMapID:int;
+      
+      public var m_iGodownMapID:int;
+      
+      public var m_iDieMapID:int;
+      
+      public var m_iLastDefender:int;
+      
+      public var m_prevPlacedCardDic:Dictionary;
+      
+      public var m_iLastDefenderPosX:int;
+      
+      public var m_iLastDefenderPosY:int;
+      
+      public var m_iSecpwd:Boolean;
+      
+      public var m_iHasSecpwd:Boolean;
+      
+      public var m_iEatDieArr:Array;
+      
+      public var m_isTeamUp:Boolean;
+      
+      public var m_isExchangeShowNoTip:Boolean;
+      
+      public function GlobalVariables()
+      {
+         method
+            name "com.aurora.game.maogoutd.common:GlobalVariables/GlobalVariables"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariables.as"
+                  debugline 36
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PackageNamespace(""),"m_prevPlacedCardDic")
+                  debugline 37
+                  getlocal0
+                  constructsuper 0
+                  debugline 38
+                  getlocal0
+                  pushbyte 0
+                  initproperty QName(PackageNamespace(""),"m_iMonthCardVipService")
+                  debugline 39
+                  getlocal0
+                  pushbyte 0
+                  initproperty QName(PackageNamespace(""),"m_iMoonMapID")
+                  debugline 40
+                  getlocal0
+                  pushbyte 0
+                  initproperty QName(PackageNamespace(""),"m_iGodownMapID")
+                  debugline 41
+                  getlocal0
+                  pushbyte 0
+                  initproperty QName(PackageNamespace(""),"m_iDieMapID")
+                  debugline 42
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"m_iSecpwd")
+                  debugline 43
+                  getlocal0
+                  pushtrue
+                  initproperty QName(PackageNamespace(""),"m_isExchangeShowNoTip")
+                  debugline 44
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"m_iHasSecpwd")
+                  debugline 45
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Array")
+                  constructprop QName(PackageNamespace(""),"Array"), 0
+                  initproperty QName(PackageNamespace(""),"m_iEatDieArr")
+                  debugline 46
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : GlobalVariables
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.game.maogoutd.common:GlobalVariables/getInstance"
+               returns QName(PackageNamespace("a_4752"),"GlobalVariables")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariables.as"
+                     debugline 27
+                     getlocal0
+                     pushscope
+                     debugline 29
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariables"),"instance")
+                     pushnull
+                     ifne ofs001c
+                     debugline 31
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariables"),"instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariables"),"instance")
+            ofs001c:
+                     debugline 33
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariables"),"instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 3
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariables.as"
+            debugline 10
+            findpropstrict Multiname("GlobalVariables",[PackageNamespace("a_4752")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace(""),"Object")
+            newclass 82
+            popscope
+            initproperty QName(PackageNamespace("a_4752"),"GlobalVariables")
+            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariables.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

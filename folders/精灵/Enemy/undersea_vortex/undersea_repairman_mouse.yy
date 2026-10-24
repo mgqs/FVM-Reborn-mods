@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_repairman_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_repairman_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_repairman_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"9535a1e8-8dd8-4684-8e26-0da4df317091","path":"sprites/spr_undersea_repairman_ladder/spr_undersea_repairman_ladder.yy",},
+    {"name":"9bed4a11-e9b0-4c3f-ae27-b0eb2a3be774","path":"sprites/spr_undersea_repairman_ladder_1/spr_undersea_repairman_ladder_1.yy",},
+    {"name":"a830d7d4-ae5a-401a-8a22-30a87a397797","path":"sprites/spr_undersea_repairman_mouse/spr_undersea_repairman_mouse.yy",},
+    {"name":"ca46ccec-752f-434c-aeb5-e4aadb92700a","path":"sprites/spr_undersea_repairman_mouse_place/spr_undersea_repairman_mouse_place.yy",},
+    {"name":"5acffb01-ee96-4c9f-9e02-14c163849a02","path":"sprites/spr_undersea_repairman_mouse_shield/spr_undersea_repairman_mouse_shield.yy",}
+  ],
+}

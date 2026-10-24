@@ -1,0 +1,248 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2696 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_byRow:uint;
+      
+      public var m_byColumn:uint;
+      
+      public var m_iGoldNum:int;
+      
+      public var m_nDropPropSequence:int;
+      
+      public var m_uiPropID:int;
+      
+      public function a_2696()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/CNotifyIntruderDropGoldOrProp"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                  debugline 16
+                  getlocal0
+                  pushscope
+                  debugline 17
+                  getlocal0
+                  constructsuper 0
+                  debugline 18
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/CNotifyIntruderDropGoldOrProp"
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/CNotifyIntruderDropGoldOrProp"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 6
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                     debugline 20
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 20
+                     debug 1, "encode_length", 1, 20
+                     debug 1, "propertyArray", 2, 22
+                     pushstring "m_byRow"
+                     pushstring "uint8"
+                     debugline 23
+                     newarray 2
+                     pushstring "m_byColumn"
+                     pushstring "uint8"
+                     debugline 24
+                     newarray 2
+                     pushstring "m_iGoldNum"
+                     pushstring "int32"
+                     debugline 25
+                     newarray 2
+                     pushstring "m_nDropPropSequence"
+                     pushstring "int16"
+                     debugline 26
+                     newarray 2
+                     pushstring "m_uiPropID"
+                     pushstring "uint32"
+                     debugline 27
+                     newarray 2
+                     newarray 5
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 30
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/CNotifyIntruderDropGoldOrProp"
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/CNotifyIntruderDropGoldOrProp"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 6
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                        debugline 33
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 33
+                        debug 1, "decode_length", 1, 33
+                        debug 1, "propertyArray", 2, 35
+                        pushstring "m_byRow"
+                        pushstring "uint8"
+                        debugline 36
+                        newarray 2
+                        pushstring "m_byColumn"
+                        pushstring "uint8"
+                        debugline 37
+                        newarray 2
+                        pushstring "m_iGoldNum"
+                        pushstring "int32"
+                        debugline 38
+                        newarray 2
+                        pushstring "m_nDropPropSequence"
+                        pushstring "int16"
+                        debugline 39
+                        newarray 2
+                        pushstring "m_uiPropID"
+                        pushstring "uint32"
+                        debugline 40
+                        newarray 2
+                        newarray 5
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 43
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyIntruderDropGoldOrProp/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                           debugline 46
+                           getlocal0
+                           pushscope
+                           debugline 48
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2696",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 28
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"a_2696")
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyIntruderDropGoldOrProp.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

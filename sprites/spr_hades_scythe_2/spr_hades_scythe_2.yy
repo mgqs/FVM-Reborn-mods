@@ -60,8 +60,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"hades_scythe",
+    "path":"folders/精灵/mod/germ/hades_scythe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

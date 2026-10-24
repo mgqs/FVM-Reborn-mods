@@ -9,9 +9,13 @@ else{
 	maxhp = 0
 	hp_rate = 0
 }
+var icon_scale = 1.8
 if boss_id != ""{
 	icon_spr = global.boss_list[? boss_id].icon
 	boss_name = global.boss_list[? boss_id].name
+	// 龙渊 BOSS 图标按数据表缩放到 0.9（原 1.8 的一半）
+	if (variable_struct_exists(global.boss_list[? boss_id], "icon_scale"))
+		icon_scale = global.boss_list[? boss_id].icon_scale
 }
 var icon_height = sprite_height * 1.8
 draw_set_color(bg_color)
@@ -50,5 +54,5 @@ else{
 	draw_set_halign(fa_top)
 }
 if obj_battle.boss_count < 2{
-	draw_sprite_ext(icon_spr,0,x-3,y,1.8,1.8,0,c_white,1)
+	draw_sprite_ext(icon_spr,0,x-3,y,icon_scale,icon_scale,0,c_white,1)
 }

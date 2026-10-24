@@ -1,3 +1,4 @@
+external_mod_burn_step();
 if (!instance_exists(obj_mod_battle_manager))
 {
     var battle = instance_find(obj_battle, 0);
@@ -15,7 +16,21 @@ if (!instance_exists(obj_gods_hall_enter))
         instance_create_depth(750, 56, -3, obj_gods_hall_enter);
 }
 
-if (!noticed && global.preloaded == true)
+// 跨服远征入口按钮
+if (!instance_exists(obj_cross_server_enter))
+{
+    if (room == room_map || room == room_menu)
+        instance_create_depth(850, 56, -3, obj_cross_server_enter);
+}
+
+// 龙渊入口按钮
+if (!instance_exists(obj_longyuan_enter))
+{
+    if (room == room_map || room == room_menu)
+        instance_create_depth(950, 56, -3, obj_longyuan_enter);
+}
+
+if (!noticed && variable_global_exists("preloaded") && global.preloaded == true)
 {
     if (room == room_menu)
     {

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"liehuohu_storage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"liehuohu_storage",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_nizhuanniu",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_nizhuanniu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_nizhuanniu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fc102b7c-3ae0-4004-bbd7-ea67a1a87fc6","path":"sprites/spr_nizhuanniu/spr_nizhuanniu.yy",},
+    {"name":"27dfd30a-0713-4d84-9578-d8bcd4eaf4c9","path":"sprites/spr_nizhuanniu_1/spr_nizhuanniu_1.yy",},
+    {"name":"266f8684-9f3e-45b8-936a-6460ac3f689e","path":"sprites/spr_nizhuanniu_2/spr_nizhuanniu_2.yy",}
+  ],
+}

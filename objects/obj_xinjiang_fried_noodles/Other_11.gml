@@ -13,7 +13,7 @@ for(var i = 0;i < array_length(target_enemy);i++){
 					damage_amount = other.atk
 					damage_type = "normal"
 					event_user(0)
-					audio_play_sound(hit_sound,0,0)
+					global.audio.play(hit_sound,0,0)
 				}
 			}
 		}

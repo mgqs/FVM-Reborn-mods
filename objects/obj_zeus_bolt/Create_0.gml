@@ -18,6 +18,7 @@ cycle = weapon_info.cycle;
 bullet_amount = weapon_info.bullet_amount;
 bullet_style = 0;
 splash_ratio = 0;
+atk_add = 0;
 fire_count = 0;
 fire_cd = 25;
 
@@ -29,6 +30,11 @@ if (get_gem_index("zeus_shadow_gem") != -1)
 
 if (get_gem_index("zeus_power_gem") != -1)
     atk = weapon_info.atk_impact[get_gem_level("zeus_power_gem")];
+
+if (get_gem_index("zeus_ren_gem") != -1)
+    atk_add = get_gem_info("zeus_ren_gem").atk_add[get_gem_level("zeus_ren_gem")];
+
+atk += atk_add;
 
 if (get_gem_index("zeus_anger_gem") != -1)
     bullet_amount = weapon_info.bullet_amount_impact[get_gem_level("zeus_anger_gem")];
@@ -57,4 +63,3 @@ switch (bullet_style)
         bullet_shape = spr_zeus_bolt_bullet_4;
         break;
 }
-

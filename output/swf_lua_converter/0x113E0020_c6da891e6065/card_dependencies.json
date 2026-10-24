@@ -1,0 +1,3756 @@
+{
+  "entry": "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+  "entry_candidates": [
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource"
+  ],
+  "edges": {
+    "a_4715.AurUtility": [],
+    "a_4718.b_179": [],
+    "a_4718.b_180": [],
+    "a_4718.b_181": [],
+    "a_4718.b_182": [],
+    "a_4718.b_183": [],
+    "a_4718.b_203": [],
+    "a_4724.AvatarDetailInfo": [],
+    "a_4728.a_1778": [],
+    "a_4753.b_150": [],
+    "com.aurora.protocol.a_2664": [
+      "a_4715.AurUtility",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.common.CMessageBody": [],
+    "com.aurora.protocol.game.maogoutd.a_2694": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody",
+      "com.aurora.protocol.game.maogoutd.CGameResult"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2695": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2696": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2702": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody",
+      "com.aurora.protocol.game.maogoutd.CVanishDefender"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2703": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody",
+      "com.aurora.protocol.game.maogoutd.CVanishEnemy"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2704": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2707": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2708": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.CGameResult": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody",
+      "com.aurora.protocol.game.maogoutd.CUseCard"
+    ],
+    "com.aurora.protocol.game.maogoutd.CUseCard": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.CVanishDefender": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.protocol.game.maogoutd.CVanishEnemy": [
+      "com.aurora.protocol.a_2664",
+      "com.aurora.protocol.common.CMessageBody"
+    ],
+    "com.aurora.ui.maogoutd.b_147": [
+      "a_4753.b_150",
+      "com.aurora.protocol.game.maogoutd.a_2694",
+      "com.aurora.protocol.game.maogoutd.a_2695",
+      "com.aurora.protocol.game.maogoutd.a_2696",
+      "com.aurora.protocol.game.maogoutd.a_2702",
+      "com.aurora.protocol.game.maogoutd.a_2703",
+      "com.aurora.protocol.game.maogoutd.a_2704",
+      "com.aurora.protocol.game.maogoutd.a_2707",
+      "com.aurora.protocol.game.maogoutd.a_2708",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+    ],
+    "com.aurora.ui.maogoutd.game.a_3491": [
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+      "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+      "com.aurora.ui.maogoutd.resource.defender.a_3953",
+      "com.aurora.ui.maogoutd.resource.defender.a_3959",
+      "com.aurora.ui.maogoutd.resource.defender.a_3960",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.defender.a_3971",
+      "com.aurora.ui.maogoutd.resource.defender.a_3975",
+      "com.aurora.ui.maogoutd.resource.defender.a_3977",
+      "com.aurora.ui.maogoutd.resource.tools.a_4408",
+      "com.aurora.ui.maogoutd.resource.tools.a_4409"
+    ],
+    "com.aurora.ui.maogoutd.game.BattleFieldView": [
+      "a_4718.b_180",
+      "a_4718.b_181",
+      "a_4718.b_203",
+      "com.aurora.ui.maogoutd.b_147",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4255",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4258",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4269",
+      "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+      "com.aurora.ui.maogoutd.resource.defender.a_3953",
+      "com.aurora.ui.maogoutd.resource.defender.a_3959",
+      "com.aurora.ui.maogoutd.resource.defender.a_3960",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.defender.a_3971",
+      "com.aurora.ui.maogoutd.resource.defender.a_3972",
+      "com.aurora.ui.maogoutd.resource.defender.a_3975",
+      "com.aurora.ui.maogoutd.resource.defender.a_3976",
+      "com.aurora.ui.maogoutd.resource.defender.a_3977",
+      "com.aurora.ui.maogoutd.resource.defender.a_4012",
+      "com.aurora.ui.maogoutd.resource.effect.a_4111",
+      "com.aurora.ui.maogoutd.resource.effect.a_4128",
+      "com.aurora.ui.maogoutd.resource.effect.a_4142",
+      "com.aurora.ui.maogoutd.resource.energy.a_4157",
+      "com.aurora.ui.maogoutd.resource.energy.a_4162",
+      "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+      "com.aurora.ui.maogoutd.resource.shot.a_4348",
+      "com.aurora.ui.maogoutd.resource.tools.a_4408",
+      "com.aurora.ui.maogoutd.resource.tools.a_4440"
+    ],
+    "com.aurora.ui.maogoutd.resource.a_3909": [],
+    "com.aurora.ui.maogoutd.resource.avatar.a_3924": [
+      "a_4724.AvatarDetailInfo",
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3953"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.a_3939": [
+      "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata": [],
+    "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata": [],
+    "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData": [],
+    "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData": [],
+    "com.aurora.ui.maogoutd.resource.defender.a_3953": [
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.shot.a_4348",
+      "com.aurora.ui.maogoutd.resource.shot.a_4388"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3959": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3960": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3962": [
+      "a_4753.b_150",
+      "com.aurora.protocol.game.maogoutd.CVanishDefender",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.a_3909"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3971": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.energy.a_4157",
+      "com.aurora.ui.maogoutd.resource.energy.a_4162",
+      "com.aurora.ui.maogoutd.resource.props.IBaseProp"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3972": [
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.tools.a_4425"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3975": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3976": [
+      "com.aurora.ui.maogoutd.resource.defender.a_3962"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3977": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_4002": [
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie",
+      "com.aurora.ui.maogoutd.resource.defender.a_3976"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_4012": [
+      "a_4718.b_179",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.tools.a_4421"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie": [],
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource": [
+      "com.aurora.ui.maogoutd.resource.IResource",
+      "com.aurora.ui.maogoutd.resource.defender.a_4002"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4108": [
+      "com.aurora.ui.maogoutd.resource.a_3909"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4111": [
+      "com.aurora.ui.maogoutd.resource.a_3909",
+      "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4128": [
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata",
+      "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4142": [
+      "com.aurora.ui.maogoutd.resource.a_3909",
+      "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4143": [
+      "com.aurora.ui.maogoutd.resource.a_3909",
+      "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie": [],
+    "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie": [],
+    "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie": [],
+    "com.aurora.ui.maogoutd.resource.energy.a_4157": [
+      "a_4728.a_1778",
+      "a_4753.b_150",
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.resource.a_3909"
+    ],
+    "com.aurora.ui.maogoutd.resource.energy.a_4162": [
+      "com.aurora.ui.maogoutd.resource.energy.a_4157"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4206": [
+      "a_4718.b_182",
+      "a_4753.b_150",
+      "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.a_3909",
+      "com.aurora.ui.maogoutd.resource.defender.a_3962",
+      "com.aurora.ui.maogoutd.resource.effect.a_4108",
+      "com.aurora.ui.maogoutd.resource.effect.a_4143"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4255": [
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4206"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4258": [
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4269": [],
+    "com.aurora.ui.maogoutd.resource.IResource": [],
+    "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap": [],
+    "com.aurora.ui.maogoutd.resource.props.EffectObjectValue": [],
+    "com.aurora.ui.maogoutd.resource.props.IBaseProp": [
+      "com.aurora.ui.maogoutd.resource.props.EffectObjectValue"
+    ],
+    "com.aurora.ui.maogoutd.resource.shot.a_4348": [
+      "a_4718.b_182",
+      "a_4718.b_183",
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+      "com.aurora.ui.maogoutd.resource.a_3909",
+      "com.aurora.ui.maogoutd.resource.shot.a_4388"
+    ],
+    "com.aurora.ui.maogoutd.resource.shot.a_4388": [
+      "com.aurora.ui.maogoutd.resource.shot.a_4348"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4408": [],
+    "com.aurora.ui.maogoutd.resource.tools.a_4409": [],
+    "com.aurora.ui.maogoutd.resource.tools.a_4421": [
+      "a_4718.b_179",
+      "com.aurora.ui.maogoutd.game.BattleFieldView",
+      "com.aurora.ui.maogoutd.game.a_3491",
+      "com.aurora.ui.maogoutd.resource.avatar.a_3924",
+      "com.aurora.ui.maogoutd.resource.defender.a_3976",
+      "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4425": [
+      "com.aurora.ui.maogoutd.game.BattleFieldView"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4440": [
+      "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData",
+      "com.aurora.ui.maogoutd.resource.tools.a_4408"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie": []
+  },
+  "methods": {
+    "a_4715.AurUtility": [
+      "AurUtility",
+      "a_1727"
+    ],
+    "a_4718.b_179": [
+      "b_179"
+    ],
+    "a_4718.b_180": [
+      "b_180"
+    ],
+    "a_4718.b_181": [
+      "b_181"
+    ],
+    "a_4718.b_182": [
+      "b_182"
+    ],
+    "a_4718.b_183": [
+      "b_183"
+    ],
+    "a_4718.b_203": [
+      "b_203"
+    ],
+    "a_4724.AvatarDetailInfo": [
+      "AvatarDetailInfo",
+      "setAvaterDeatil"
+    ],
+    "a_4728.a_1778": [
+      "a_1778",
+      "clone",
+      "dataObject",
+      "dataObject"
+    ],
+    "a_4753.b_150": [
+      "a_2109",
+      "a_2110",
+      "a_2111",
+      "a_2112",
+      "a_2056",
+      "a_2113",
+      "a_2057",
+      "a_2058",
+      "a_2059",
+      "a_2060",
+      "a_2061",
+      "a_2062",
+      "a_2063",
+      "a_2065",
+      "a_2114",
+      "a_2115",
+      "a_2116",
+      "a_2117",
+      "a_2118",
+      "a_2070",
+      "a_2071",
+      "a_2072"
+    ],
+    "com.aurora.protocol.a_2664": [
+      "a_2664",
+      "encode_int8",
+      "decode_int8",
+      "encode_uint8",
+      "decode_uint8",
+      "encode_int16",
+      "decode_int16",
+      "encode_uint16",
+      "decode_uint16",
+      "encode_int32",
+      "decode_int32",
+      "encode_uint32",
+      "decode_uint32",
+      "encode_int64",
+      "decode_int64",
+      "encode_string",
+      "decode_string",
+      "encode_memory",
+      "decode_memory",
+      "a_2665",
+      "a_2666"
+    ],
+    "com.aurora.protocol.common.CMessageBody": [
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.CGameResult": [
+      "CGameResult",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.CUseCard": [
+      "CUseCard",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.CVanishDefender": [
+      "CVanishDefender",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.CVanishEnemy": [
+      "CVanishEnemy",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2694": [
+      "a_2694",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2695": [
+      "a_2695",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2696": [
+      "a_2696",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2702": [
+      "a_2702",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2703": [
+      "a_2703",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2704": [
+      "a_2704",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2707": [
+      "a_2707",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.protocol.game.maogoutd.a_2708": [
+      "a_2708",
+      "encode",
+      "decode",
+      "dump"
+    ],
+    "com.aurora.ui.maogoutd.b_147": [
+      "a_3600",
+      "a_3601",
+      "a_3602",
+      "a_3603",
+      "a_3604",
+      "a_3605",
+      "a_3606",
+      "a_3607",
+      "a_3435",
+      "a_3608",
+      "a_555",
+      "a_3436",
+      "a_3610",
+      "a_558",
+      "a_3612",
+      "a_3613",
+      "a_1847",
+      "a_3477"
+    ],
+    "com.aurora.ui.maogoutd.game.BattleFieldView": [
+      "BattleFieldView",
+      "arrBackDepthBitmap",
+      "arrFrontDepthBitmap",
+      "stFieldRowIntruderStatusArray",
+      "iBattleFieldStageType",
+      "isOwnBattleField",
+      "iIntruderMoveDirection",
+      "stFieldGridsVector",
+      "iTimeIntervalNum",
+      "a_3423",
+      "a_3424",
+      "a_3426",
+      "a_3427",
+      "a_3428",
+      "a_3430",
+      "a_3431",
+      "a_1797",
+      "a_3432",
+      "a_3433",
+      "a_3434",
+      "a_3415",
+      "a_3435",
+      "a_1847",
+      "a_3436",
+      "a_2180",
+      "a_3416",
+      "a_3437",
+      "a_3438",
+      "a_3441",
+      "a_3442",
+      "a_3443",
+      "a_3444",
+      "a_3445",
+      "a_3446",
+      "a_3447",
+      "a_3448",
+      "a_3449",
+      "a_3450",
+      "a_3451",
+      "a_3452",
+      "a_3453",
+      "a_3454",
+      "a_3455",
+      "a_3456",
+      "a_3457",
+      "a_3458",
+      "a_3459",
+      "a_3460",
+      "a_3461",
+      "a_3462",
+      "a_3463",
+      "a_3466",
+      "a_3467",
+      "a_3468",
+      "a_3469",
+      "a_3470",
+      "a_3471"
+    ],
+    "com.aurora.ui.maogoutd.game.a_3491": [
+      "a_3491",
+      "a_3492",
+      "a_3494",
+      "a_3495",
+      "a_3442",
+      "a_3496",
+      "a_3443",
+      "a_3497",
+      "a_3444",
+      "a_3498",
+      "a_3446",
+      "a_3499",
+      "a_3447",
+      "a_3500",
+      "a_3445",
+      "a_3501",
+      "a_3459",
+      "a_3457",
+      "a_3502",
+      "a_3503"
+    ],
+    "com.aurora.ui.maogoutd.resource.IResource": [
+      "a_3932"
+    ],
+    "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap": [
+      "a_3575",
+      "a_3576",
+      "a_3577",
+      "a_3578"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4206": [
+      "a_4206",
+      "iSpaceState",
+      "isCannotSeeByFighter",
+      "iLifeValue",
+      "iArmorLifeValue",
+      "isEatingDefense",
+      "iYPosSkewing",
+      "a_1797",
+      "globalMoveFighterID",
+      "iGlobalMoveFighterID",
+      "a_3940",
+      "ResetMovieStatus",
+      "a_4208",
+      "a_3969",
+      "a_4209",
+      "a_4210",
+      "a_4211",
+      "a_4212",
+      "a_4215",
+      "a_4216",
+      "play",
+      "stop",
+      "a_4140",
+      "a_4160"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4255": [
+      "a_4255",
+      "getInstance",
+      "a_4256",
+      "a_4257",
+      "a_3923"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4258": [
+      "a_4258",
+      "a_1797",
+      "a_3608",
+      "a_4259"
+    ],
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4269": [
+      "a_4269"
+    ],
+    "com.aurora.ui.maogoutd.resource.a_3909": [
+      "a_3909",
+      "width",
+      "height",
+      "iTotalFrames",
+      "stDisplayBitmap",
+      "a_3910",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3914",
+      "a_3915",
+      "playForward",
+      "nextFrame",
+      "gotoAndStop",
+      "a_3419",
+      "a_3917",
+      "a_3918"
+    ],
+    "com.aurora.ui.maogoutd.resource.avatar.a_3924": [
+      "a_3924",
+      "a_3925",
+      "a_1797",
+      "a_3969",
+      "a_3954"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata": [
+      "IrregularCirlceFogBitmapdata"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata": [
+      "RatEarthHoleBitmapdata"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData": [
+      "RedDangerFieldAlarmBitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData": [
+      "RegularCirlceFogBitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.a_3939": [
+      "a_3939",
+      "a_3926",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie": [
+      "CoffeeWakeUpBeanDefenseMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource": [
+      "CoffeeWakeUpBeanDefenseResource",
+      "a_3932"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3953": [
+      "a_3953",
+      "iBattleFighterType",
+      "iBreadFighterType",
+      "isShotAllTheTime",
+      "isCanInWater",
+      "isOnlyOnTray",
+      "a_1797",
+      "a_3954",
+      "a_3969",
+      "a_3955",
+      "a_3956",
+      "a_3957",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3959": [
+      "a_3959",
+      "numPoisonMultiplier",
+      "numColdSlowMultiplier",
+      "numHotMultiplier",
+      "a_1797",
+      "a_3969",
+      "a_3957",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3960": [
+      "a_3960",
+      "isCanBeEaten",
+      "a_1797",
+      "a_3961",
+      "a_3969",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3962": [
+      "a_3962",
+      "iXPosSheft",
+      "iYPosSheft",
+      "isNeedAddShawdow",
+      "iDefenseTypeID",
+      "iDefensePrice",
+      "iLifeValue",
+      "stFieldGrid",
+      "a_3512",
+      "a_3963",
+      "a_1797",
+      "a_3964",
+      "a_3969",
+      "a_3940",
+      "a_3970"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3971": [
+      "a_3971",
+      "iEnergyTypeID",
+      "a_1797",
+      "a_3969",
+      "a_3955",
+      "a_3956",
+      "a_3957",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3972": [
+      "a_3972",
+      "a_1797",
+      "a_3973",
+      "a_3974",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3975": [
+      "a_3975",
+      "a_1797",
+      "a_3969",
+      "a_3957",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3976": [
+      "a_3976"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_3977": [
+      "a_3977",
+      "a_1797",
+      "a_3969",
+      "a_3957",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_4002": [
+      "a_4002",
+      "a_3926",
+      "a_1797",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3940",
+      "play",
+      "stop",
+      "a_4003"
+    ],
+    "com.aurora.ui.maogoutd.resource.defender.a_4012": [
+      "a_4012",
+      "getInstance",
+      "a_4013",
+      "a_4014",
+      "a_3923"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie": [
+      "CommonWaterSprayMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie": [
+      "PlacementEffectMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie": [
+      "SmallMouseMoveIntruderBoomDieMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4108": [
+      "a_4108",
+      "a_1797",
+      "play",
+      "stop",
+      "a_3940",
+      "a_4109"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4111": [
+      "a_4111",
+      "a_3926",
+      "a_1797",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3940",
+      "play",
+      "stop",
+      "a_4003"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4128": [
+      "a_4128",
+      "a_1797",
+      "a_4129",
+      "a_4130"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4142": [
+      "a_4142",
+      "a_3926",
+      "a_1797",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3940",
+      "play",
+      "stop",
+      "a_4003"
+    ],
+    "com.aurora.ui.maogoutd.resource.effect.a_4143": [
+      "a_4143",
+      "a_3926",
+      "a_1797",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3940",
+      "play",
+      "stop",
+      "a_4003"
+    ],
+    "com.aurora.ui.maogoutd.resource.energy.a_4157": [
+      "a_4157",
+      "globalID",
+      "a_1797",
+      "a_3940",
+      "a_4160",
+      "a_4161"
+    ],
+    "com.aurora.ui.maogoutd.resource.energy.a_4162": [
+      "a_4162",
+      "getInstance",
+      "a_4163",
+      "a_4164",
+      "a_3923"
+    ],
+    "com.aurora.ui.maogoutd.resource.props.EffectObjectValue": [
+      "EffectObjectValue"
+    ],
+    "com.aurora.ui.maogoutd.resource.props.IBaseProp": [
+      "a_4322",
+      "a_4323",
+      "a_4326",
+      "a_4327",
+      "a_4328",
+      "a_4329"
+    ],
+    "com.aurora.ui.maogoutd.resource.shot.a_4348": [
+      "a_4348",
+      "iShotSequenceNum",
+      "globalID",
+      "a_1797",
+      "a_4349",
+      "a_3940",
+      "a_4350",
+      "a_4216",
+      "a_4351",
+      "a_4352"
+    ],
+    "com.aurora.ui.maogoutd.resource.shot.a_4388": [
+      "a_4388",
+      "getInstance",
+      "a_4389",
+      "a_4390",
+      "a_3923"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie": [
+      "HelmetScoopMovie"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4408": [
+      "a_4408",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4409": [
+      "a_4409",
+      "a_3940"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4421": [
+      "a_4421",
+      "a_3926",
+      "a_1797",
+      "a_3911",
+      "a_3912",
+      "a_3913",
+      "a_3940",
+      "play",
+      "stop",
+      "a_4003"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4425": [
+      "a_4425",
+      "a_3926",
+      "a_1797",
+      "a_3940",
+      "a_4426"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4440": [
+      "a_4440",
+      "a_3926",
+      "a_3940"
+    ]
+  },
+  "special_dependencies": {
+    "a_4715.AurUtility": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "AurUtility",
+        "a_1727",
+        "getClassByAlias",
+        "getDefinitionByName",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [
+        "getDefinitionByName"
+      ],
+      "embedded_symbol": []
+    },
+    "a_4718.b_179": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_179",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4718.b_180": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_180",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4718.b_181": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_181",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4718.b_182": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_182",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4718.b_183": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_183",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4718.b_203": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "b_203",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4724.AvatarDetailInfo": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "AvatarDetailInfo",
+        "each",
+        "int",
+        "setAvaterDeatil",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4728.a_1778": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "ByteArray",
+        "a_1778",
+        "clone",
+        "dataObject",
+        "readObject",
+        "super",
+        "writeObject"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "a_4753.b_150": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2056",
+        "a_2057",
+        "a_2058",
+        "a_2059",
+        "a_2060",
+        "a_2061",
+        "a_2062",
+        "a_2063",
+        "a_2065",
+        "a_2070",
+        "a_2071",
+        "a_2072",
+        "a_2109",
+        "a_2110",
+        "a_2111",
+        "a_2112",
+        "a_2113",
+        "a_2114",
+        "a_2115",
+        "a_2116",
+        "a_2117",
+        "a_2118"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.a_2664": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "ByteArray",
+        "ReferClass",
+        "a_1727",
+        "a_2664",
+        "a_2665",
+        "a_2666",
+        "abs",
+        "concat",
+        "decode",
+        "decode_int16",
+        "decode_int32",
+        "decode_int64",
+        "decode_int8",
+        "decode_memory",
+        "decode_string",
+        "decode_uint16",
+        "decode_uint32",
+        "decode_uint8",
+        "each",
+        "encode",
+        "encode_int16",
+        "encode_int32",
+        "encode_int64",
+        "encode_int8",
+        "encode_memory",
+        "encode_string",
+        "encode_uint16",
+        "encode_uint32",
+        "encode_uint8",
+        "int",
+        "push",
+        "readByte",
+        "readInt",
+        "readShort",
+        "readUTFBytes",
+        "readUnsignedByte",
+        "readUnsignedInt",
+        "readUnsignedShort",
+        "substr",
+        "super",
+        "trace",
+        "uint",
+        "writeByte",
+        "writeBytes",
+        "writeInt",
+        "writeShort",
+        "writeUTF",
+        "writeUnsignedInt"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.common.CMessageBody": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "decode",
+        "dump",
+        "encode"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.CGameResult": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CGameResult",
+        "a_2665",
+        "a_2666",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.CUseCard": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CUseCard",
+        "a_2665",
+        "a_2666",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.CVanishDefender": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CVanishDefender",
+        "a_2665",
+        "a_2666",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.CVanishEnemy": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CVanishEnemy",
+        "a_2665",
+        "a_2666",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2694": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2694",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2695": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2695",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2696": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2696",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2702": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2702",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2703": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2703",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2704": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2704",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2707": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2707",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.protocol.game.maogoutd.a_2708": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_2665",
+        "a_2666",
+        "a_2708",
+        "decode",
+        "dump",
+        "encode",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.b_147": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1847",
+        "a_3435",
+        "a_3436",
+        "a_3477",
+        "a_3600",
+        "a_3601",
+        "a_3602",
+        "a_3603",
+        "a_3604",
+        "a_3605",
+        "a_3606",
+        "a_3607",
+        "a_3608",
+        "a_3610",
+        "a_3612",
+        "a_3613",
+        "a_555",
+        "a_558"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.game.BattleFieldView": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "BattleFieldView",
+        "Bitmap",
+        "Boolean",
+        "Date",
+        "Error",
+        "Sound",
+        "Timer",
+        "a_1797",
+        "a_1847",
+        "a_2180",
+        "a_3415",
+        "a_3416",
+        "a_3423",
+        "a_3424",
+        "a_3426",
+        "a_3427",
+        "a_3428",
+        "a_3430",
+        "a_3431",
+        "a_3432",
+        "a_3433",
+        "a_3434",
+        "a_3435",
+        "a_3436",
+        "a_3437",
+        "a_3438",
+        "a_3441",
+        "a_3442",
+        "a_3443",
+        "a_3444",
+        "a_3445",
+        "a_3446",
+        "a_3447",
+        "a_3448",
+        "a_3449",
+        "a_3450",
+        "a_3451",
+        "a_3452",
+        "a_3453",
+        "a_3454",
+        "a_3455",
+        "a_3456",
+        "a_3457",
+        "a_3458",
+        "a_3459",
+        "a_3460",
+        "a_3461",
+        "a_3462",
+        "a_3463",
+        "a_3466",
+        "a_3467",
+        "a_3468",
+        "a_3469",
+        "a_3470",
+        "a_3471",
+        "a_3477",
+        "a_3491",
+        "a_3492",
+        "a_3495",
+        "a_3496",
+        "a_3497",
+        "a_3498",
+        "a_3499",
+        "a_3500",
+        "a_3501",
+        "a_3502",
+        "a_3512",
+        "a_3575",
+        "a_3576",
+        "a_3577",
+        "a_3578",
+        "a_3608",
+        "a_3926",
+        "a_3940",
+        "a_3954",
+        "a_3957",
+        "a_3961",
+        "a_3969",
+        "a_3973",
+        "a_3974",
+        "a_4013",
+        "a_4128",
+        "a_4129",
+        "a_4140",
+        "a_4163",
+        "a_4212",
+        "a_4216",
+        "a_4256",
+        "a_4258",
+        "a_4259",
+        "a_4269",
+        "a_4327",
+        "a_4328",
+        "a_4350",
+        "addChild",
+        "addChildAt",
+        "addEventListener",
+        "arrBackDepthBitmap",
+        "arrFrontDepthBitmap",
+        "contains",
+        "each",
+        "getChildIndex",
+        "getInstance",
+        "iBattleFieldStageType",
+        "iIntruderMoveDirection",
+        "iTimeIntervalNum",
+        "indexOf",
+        "int",
+        "isOwnBattleField",
+        "play",
+        "pop",
+        "push",
+        "random",
+        "removeChild",
+        "slice",
+        "stFieldGridsVector",
+        "stFieldRowIntruderStatusArray",
+        "start",
+        "stop",
+        "super",
+        "toString",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.game.a_3491": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "a_3442",
+        "a_3443",
+        "a_3444",
+        "a_3445",
+        "a_3446",
+        "a_3447",
+        "a_3457",
+        "a_3459",
+        "a_3491",
+        "a_3492",
+        "a_3494",
+        "a_3495",
+        "a_3496",
+        "a_3497",
+        "a_3498",
+        "a_3499",
+        "a_3500",
+        "a_3501",
+        "a_3502",
+        "a_3503",
+        "a_3940",
+        "getChildIndex",
+        "indexOf",
+        "push",
+        "splice",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.IResource": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_3932"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_3575",
+        "a_3576",
+        "a_3577",
+        "a_3578"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4206": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Bitmap",
+        "Boolean",
+        "CVanishEnemy",
+        "ColorTransform",
+        "Rectangle",
+        "ResetMovieStatus",
+        "Sprite",
+        "a_1797",
+        "a_2061",
+        "a_2062",
+        "a_3438",
+        "a_3457",
+        "a_3459",
+        "a_3926",
+        "a_3940",
+        "a_3969",
+        "a_4140",
+        "a_4160",
+        "a_4206",
+        "a_4208",
+        "a_4209",
+        "a_4210",
+        "a_4211",
+        "a_4212",
+        "a_4215",
+        "a_4216",
+        "abs",
+        "addChildAt",
+        "clone",
+        "colorTransform",
+        "dispose",
+        "getChildIndex",
+        "globalMoveFighterID",
+        "gotoAndStop",
+        "iArmorLifeValue",
+        "iGlobalMoveFighterID",
+        "iLifeValue",
+        "iSpaceState",
+        "iYPosSkewing",
+        "indexOf",
+        "int",
+        "isCannotSeeByFighter",
+        "isEatingDefense",
+        "nextFrame",
+        "play",
+        "splice",
+        "stop",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4255": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "a_3923",
+        "a_4255",
+        "a_4256",
+        "a_4257",
+        "getInstance",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4258": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "a_1797",
+        "a_3608",
+        "a_4258",
+        "a_4259",
+        "each",
+        "int",
+        "push",
+        "shift",
+        "sortOn",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4269": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_4269",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.a_3909": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "Bitmap",
+        "BitmapData",
+        "Boolean",
+        "ColorTransform",
+        "Matrix",
+        "Point",
+        "Rectangle",
+        "Sprite",
+        "a_3419",
+        "a_3909",
+        "a_3910",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3914",
+        "a_3915",
+        "a_3917",
+        "a_3918",
+        "addChild",
+        "addEventListener",
+        "clone",
+        "colorTransform",
+        "copyPixels",
+        "dispose",
+        "draw",
+        "each",
+        "equals",
+        "fillRect",
+        "getBounds",
+        "getColorBoundsRect",
+        "getPixel32",
+        "gotoAndStop",
+        "height",
+        "iTotalFrames",
+        "int",
+        "nextFrame",
+        "playForward",
+        "removeChild",
+        "setPixel32",
+        "stDisplayBitmap",
+        "super",
+        "trace",
+        "width"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.avatar.a_3924": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "Boolean",
+        "a_1797",
+        "a_2063",
+        "a_3576",
+        "a_3924",
+        "a_3925",
+        "a_3954",
+        "a_3969",
+        "super",
+        "uint"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "IrregularCirlceFogBitmapdata",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "RatEarthHoleBitmapdata",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "RedDangerFieldAlarmBitmapData",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "RegularCirlceFogBitmapData",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.bitmap.a_3939": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "RatEarthHoleBitmapdata",
+        "a_3926",
+        "a_3939",
+        "a_3940",
+        "indexOf",
+        "pop",
+        "push",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CoffeeWakeUpBeanDefenseMovie",
+        "Embed",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": [
+        "Embed(source=\"/_assets/assets.swf\", symbol=\"symbol22\")"
+      ]
+    },
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CoffeeWakeUpBeanDefenseResource",
+        "SWF",
+        "a_3932",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3953": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3430",
+        "a_3433",
+        "a_3438",
+        "a_3497",
+        "a_3940",
+        "a_3953",
+        "a_3954",
+        "a_3955",
+        "a_3956",
+        "a_3957",
+        "a_3969",
+        "a_4389",
+        "addChildAt",
+        "getInstance",
+        "gotoAndStop",
+        "iBattleFighterType",
+        "iBreadFighterType",
+        "isCanInWater",
+        "isOnlyOnTray",
+        "isShotAllTheTime",
+        "nextFrame",
+        "pop",
+        "push",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3959": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3501",
+        "a_3940",
+        "a_3957",
+        "a_3959",
+        "a_3969",
+        "gotoAndStop",
+        "nextFrame",
+        "numColdSlowMultiplier",
+        "numHotMultiplier",
+        "numPoisonMultiplier",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3960": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3499",
+        "a_3940",
+        "a_3960",
+        "a_3961",
+        "a_3969",
+        "gotoAndStop",
+        "isCanBeEaten",
+        "nextFrame",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3962": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "Boolean",
+        "CVanishDefender",
+        "a_1797",
+        "a_2060",
+        "a_3512",
+        "a_3940",
+        "a_3962",
+        "a_3963",
+        "a_3964",
+        "a_3969",
+        "a_3970",
+        "gotoAndStop",
+        "iDefensePrice",
+        "iDefenseTypeID",
+        "iLifeValue",
+        "iXPosSheft",
+        "iYPosSheft",
+        "isNeedAddShawdow",
+        "removeChild",
+        "stFieldGrid",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3971": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3500",
+        "a_3940",
+        "a_3955",
+        "a_3956",
+        "a_3957",
+        "a_3969",
+        "a_3971",
+        "a_4163",
+        "a_4327",
+        "a_4328",
+        "addChild",
+        "getInstance",
+        "gotoAndStop",
+        "iEnergyTypeID",
+        "int",
+        "nextFrame",
+        "pop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3972": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3438",
+        "a_3926",
+        "a_3940",
+        "a_3969",
+        "a_3972",
+        "a_3973",
+        "a_3974",
+        "a_4212",
+        "addChild",
+        "clone",
+        "each",
+        "gotoAndStop",
+        "hitTestObject",
+        "int",
+        "nextFrame",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3975": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3496",
+        "a_3940",
+        "a_3957",
+        "a_3969",
+        "a_3975",
+        "gotoAndStop",
+        "nextFrame",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3976": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_3976",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_3977": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_1797",
+        "a_3498",
+        "a_3940",
+        "a_3957",
+        "a_3969",
+        "a_3977",
+        "gotoAndStop",
+        "nextFrame",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_4002": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "CoffeeWakeUpBeanDefenseMovie",
+        "Timer",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3926",
+        "a_3940",
+        "a_3970",
+        "a_4002",
+        "a_4003",
+        "addEventListener",
+        "contains",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "pop",
+        "push",
+        "removeChild",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.defender.a_4012": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "a_3923",
+        "a_4012",
+        "a_4013",
+        "a_4014",
+        "getInstance",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "CommonWaterSprayMovie",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "PlacementEffectMovie",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "SmallMouseMoveIntruderBoomDieMovie",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.a_4108": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "Timer",
+        "a_1797",
+        "a_3940",
+        "a_4108",
+        "a_4109",
+        "addEventListener",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.a_4111": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "CommonWaterSprayMovie",
+        "Timer",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3926",
+        "a_3940",
+        "a_4003",
+        "a_4111",
+        "addEventListener",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "pop",
+        "push",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.a_4128": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Bitmap",
+        "BitmapData",
+        "Boolean",
+        "IrregularCirlceFogBitmapdata",
+        "Matrix",
+        "RegularCirlceFogBitmapData",
+        "a_1797",
+        "a_4128",
+        "a_4129",
+        "a_4130",
+        "addChild",
+        "draw",
+        "fillRect",
+        "int",
+        "lock",
+        "super",
+        "translate",
+        "unlock"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.a_4142": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "PlacementEffectMovie",
+        "Timer",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3926",
+        "a_3940",
+        "a_4003",
+        "a_4142",
+        "addEventListener",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "pop",
+        "push",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.effect.a_4143": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "SmallMouseMoveIntruderBoomDieMovie",
+        "Timer",
+        "a_1797",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3926",
+        "a_3940",
+        "a_4003",
+        "a_4143",
+        "addEventListener",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "pop",
+        "push",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.energy.a_4157": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Point",
+        "Timer",
+        "a_1778",
+        "a_1797",
+        "a_2065",
+        "a_3940",
+        "a_4157",
+        "a_4160",
+        "a_4161",
+        "abs",
+        "addChild",
+        "addEventListener",
+        "dispatchEvent",
+        "globalID",
+        "globalToLocal",
+        "gotoAndStop",
+        "int",
+        "localToGlobal",
+        "nextFrame",
+        "play",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.energy.a_4162": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "a_3923",
+        "a_4162",
+        "a_4163",
+        "a_4164",
+        "getInstance",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.props.EffectObjectValue": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "EffectObjectValue",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.props.IBaseProp": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_4322",
+        "a_4323",
+        "a_4326",
+        "a_4327",
+        "a_4328",
+        "a_4329"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.shot.a_4348": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "Boolean",
+        "a_1797",
+        "a_3431",
+        "a_3438",
+        "a_3940",
+        "a_3969",
+        "a_4208",
+        "a_4209",
+        "a_4216",
+        "a_4348",
+        "a_4349",
+        "a_4350",
+        "a_4351",
+        "a_4352",
+        "a_4389",
+        "abs",
+        "addChild",
+        "getInstance",
+        "globalID",
+        "gotoAndStop",
+        "hitTestObject",
+        "iShotSequenceNum",
+        "indexOf",
+        "int",
+        "nextFrame",
+        "play",
+        "push",
+        "slice",
+        "sortOn",
+        "splice",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.shot.a_4388": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "a_3923",
+        "a_4388",
+        "a_4389",
+        "a_4390",
+        "getInstance",
+        "super",
+        "trace"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "HelmetScoopMovie",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.a_4408": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_3940",
+        "a_4408",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.a_4409": {
+      "static_initialization": false,
+      "frame_scripts": [],
+      "calls": [
+        "a_3940",
+        "a_4409",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.a_4421": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "Boolean",
+        "HelmetScoopMovie",
+        "Timer",
+        "a_1797",
+        "a_3496",
+        "a_3497",
+        "a_3499",
+        "a_3500",
+        "a_3501",
+        "a_3911",
+        "a_3912",
+        "a_3913",
+        "a_3926",
+        "a_3940",
+        "a_3969",
+        "a_4003",
+        "a_4421",
+        "addEventListener",
+        "contains",
+        "gotoAndStop",
+        "nextFrame",
+        "play",
+        "pop",
+        "push",
+        "removeChild",
+        "removeEventListener",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.a_4425": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "Bitmap",
+        "Boolean",
+        "Matrix",
+        "Timer",
+        "a_1797",
+        "a_3926",
+        "a_3940",
+        "a_4425",
+        "a_4426",
+        "addChild",
+        "addEventListener",
+        "contains",
+        "dispose",
+        "indexOf",
+        "pop",
+        "push",
+        "removeChild",
+        "rotate",
+        "start",
+        "stop",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    },
+    "com.aurora.ui.maogoutd.resource.tools.a_4440": {
+      "static_initialization": true,
+      "frame_scripts": [],
+      "calls": [
+        "Array",
+        "RedDangerFieldAlarmBitmapData",
+        "a_3926",
+        "a_3940",
+        "a_4440",
+        "pop",
+        "push",
+        "super"
+      ],
+      "dynamic_loading_or_reflection": [],
+      "embedded_symbol": []
+    }
+  },
+  "reachable_classes": [
+    "a_4715.AurUtility",
+    "a_4718.b_179",
+    "a_4718.b_180",
+    "a_4718.b_181",
+    "a_4718.b_182",
+    "a_4718.b_183",
+    "a_4718.b_203",
+    "a_4724.AvatarDetailInfo",
+    "a_4728.a_1778",
+    "a_4753.b_150",
+    "com.aurora.protocol.a_2664",
+    "com.aurora.protocol.common.CMessageBody",
+    "com.aurora.protocol.game.maogoutd.CGameResult",
+    "com.aurora.protocol.game.maogoutd.CUseCard",
+    "com.aurora.protocol.game.maogoutd.CVanishDefender",
+    "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+    "com.aurora.protocol.game.maogoutd.a_2694",
+    "com.aurora.protocol.game.maogoutd.a_2695",
+    "com.aurora.protocol.game.maogoutd.a_2696",
+    "com.aurora.protocol.game.maogoutd.a_2702",
+    "com.aurora.protocol.game.maogoutd.a_2703",
+    "com.aurora.protocol.game.maogoutd.a_2704",
+    "com.aurora.protocol.game.maogoutd.a_2707",
+    "com.aurora.protocol.game.maogoutd.a_2708",
+    "com.aurora.ui.maogoutd.b_147",
+    "com.aurora.ui.maogoutd.game.BattleFieldView",
+    "com.aurora.ui.maogoutd.game.a_3491",
+    "com.aurora.ui.maogoutd.resource.IResource",
+    "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap",
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4255",
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4258",
+    "com.aurora.ui.maogoutd.resource.Intruder.a_4269",
+    "com.aurora.ui.maogoutd.resource.a_3909",
+    "com.aurora.ui.maogoutd.resource.avatar.a_3924",
+    "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata",
+    "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata",
+    "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData",
+    "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData",
+    "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie",
+    "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+    "com.aurora.ui.maogoutd.resource.defender.a_3953",
+    "com.aurora.ui.maogoutd.resource.defender.a_3959",
+    "com.aurora.ui.maogoutd.resource.defender.a_3960",
+    "com.aurora.ui.maogoutd.resource.defender.a_3962",
+    "com.aurora.ui.maogoutd.resource.defender.a_3971",
+    "com.aurora.ui.maogoutd.resource.defender.a_3972",
+    "com.aurora.ui.maogoutd.resource.defender.a_3975",
+    "com.aurora.ui.maogoutd.resource.defender.a_3976",
+    "com.aurora.ui.maogoutd.resource.defender.a_3977",
+    "com.aurora.ui.maogoutd.resource.defender.a_4002",
+    "com.aurora.ui.maogoutd.resource.defender.a_4012",
+    "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie",
+    "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie",
+    "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie",
+    "com.aurora.ui.maogoutd.resource.effect.a_4108",
+    "com.aurora.ui.maogoutd.resource.effect.a_4111",
+    "com.aurora.ui.maogoutd.resource.effect.a_4128",
+    "com.aurora.ui.maogoutd.resource.effect.a_4142",
+    "com.aurora.ui.maogoutd.resource.effect.a_4143",
+    "com.aurora.ui.maogoutd.resource.energy.a_4157",
+    "com.aurora.ui.maogoutd.resource.energy.a_4162",
+    "com.aurora.ui.maogoutd.resource.props.EffectObjectValue",
+    "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+    "com.aurora.ui.maogoutd.resource.shot.a_4348",
+    "com.aurora.ui.maogoutd.resource.shot.a_4388",
+    "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie",
+    "com.aurora.ui.maogoutd.resource.tools.a_4408",
+    "com.aurora.ui.maogoutd.resource.tools.a_4409",
+    "com.aurora.ui.maogoutd.resource.tools.a_4421",
+    "com.aurora.ui.maogoutd.resource.tools.a_4425",
+    "com.aurora.ui.maogoutd.resource.tools.a_4440"
+  ],
+  "external_dependencies": {
+    "a_4728.a_1778": [
+      "Event"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata": [
+      "BitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata": [
+      "BitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData": [
+      "BitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData": [
+      "BitmapData"
+    ],
+    "com.aurora.ui.maogoutd.resource.bitmap.a_3939": [
+      "Bitmap"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4408": [
+      "Bitmap"
+    ],
+    "com.aurora.ui.maogoutd.resource.tools.a_4409": [
+      "Bitmap"
+    ]
+  },
+  "files": [
+    {
+      "file": "source\\scripts\\a_4715\\AurUtility.as",
+      "classes": [
+        "a_4715.AurUtility"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+          "com.aurora.protocol.a_2664",
+          "a_4715.AurUtility"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_179.as",
+      "classes": [
+        "a_4718.b_179"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012",
+          "a_4718.b_179"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_180.as",
+      "classes": [
+        "a_4718.b_180"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "a_4718.b_180"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_181.as",
+      "classes": [
+        "a_4718.b_181"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "a_4718.b_181"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_182.as",
+      "classes": [
+        "a_4718.b_182"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.shot.a_4348",
+          "a_4718.b_182"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_183.as",
+      "classes": [
+        "a_4718.b_183"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.shot.a_4348",
+          "a_4718.b_183"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4718\\b_203.as",
+      "classes": [
+        "a_4718.b_203"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "a_4718.b_203"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4724\\AvatarDetailInfo.as",
+      "classes": [
+        "a_4724.AvatarDetailInfo"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012",
+          "com.aurora.ui.maogoutd.resource.tools.a_4421",
+          "com.aurora.ui.maogoutd.resource.avatar.a_3924",
+          "a_4724.AvatarDetailInfo"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4728\\a_1778.as",
+      "classes": [
+        "a_4728.a_1778"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971",
+          "com.aurora.ui.maogoutd.resource.energy.a_4157",
+          "a_4728.a_1778"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\a_4753\\b_150.as",
+      "classes": [
+        "a_4753.b_150"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.a_3976",
+          "com.aurora.ui.maogoutd.resource.defender.a_3962",
+          "a_4753.b_150"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\a_2664.as",
+      "classes": [
+        "com.aurora.protocol.a_2664"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+          "com.aurora.protocol.a_2664"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\common\\CMessageBody.as",
+      "classes": [
+        "com.aurora.protocol.common.CMessageBody"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.protocol.game.maogoutd.CVanishEnemy",
+          "com.aurora.protocol.common.CMessageBody"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2694.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2694"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2694"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2695.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2695"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2695"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2696.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2696"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2696"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2702.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2702"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2702"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2703.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2703"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2703"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2704.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2704"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2704"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2707.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2707"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2707"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2708.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.a_2708"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2708"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CGameResult.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CGameResult"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2694",
+          "com.aurora.protocol.game.maogoutd.CGameResult"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CUseCard.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CUseCard"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147",
+          "com.aurora.protocol.game.maogoutd.a_2694",
+          "com.aurora.protocol.game.maogoutd.CGameResult",
+          "com.aurora.protocol.game.maogoutd.CUseCard"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishDefender.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CVanishDefender"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.a_3976",
+          "com.aurora.ui.maogoutd.resource.defender.a_3962",
+          "com.aurora.protocol.game.maogoutd.CVanishDefender"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishEnemy.as",
+      "classes": [
+        "com.aurora.protocol.game.maogoutd.CVanishEnemy"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.protocol.game.maogoutd.CVanishEnemy"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\b_147.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.b_147"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.b_147"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\game\\a_3491.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.game.a_3491"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleFieldView.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.game.BattleFieldView"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\a_3909.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.a_3909"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.a_3976",
+          "com.aurora.ui.maogoutd.resource.defender.a_3962",
+          "com.aurora.ui.maogoutd.resource.a_3909"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\avatar\\a_3924.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.avatar.a_3924"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012",
+          "com.aurora.ui.maogoutd.resource.tools.a_4421",
+          "com.aurora.ui.maogoutd.resource.avatar.a_3924"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\a_3939.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.a_3939"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.bitmap.a_3939"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\IrregularCirlceFogBitmapdata.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4128",
+          "com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RatEarthHoleBitmapdata.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.bitmap.a_3939",
+          "com.aurora.ui.maogoutd.resource.bitmap.RatEarthHoleBitmapdata"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RedDangerFieldAlarmBitmapData.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.tools.a_4440",
+          "com.aurora.ui.maogoutd.resource.bitmap.RedDangerFieldAlarmBitmapData"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RegularCirlceFogBitmapData.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4128",
+          "com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3953.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3953"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3953"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3959.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3959"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3959"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3960.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3960"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3960"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3962.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3962"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.a_3976",
+          "com.aurora.ui.maogoutd.resource.defender.a_3962"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3971.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3971"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3972.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3972"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_3972"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3975.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3975"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3975"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3976.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3976"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.a_3976"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3977.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_3977"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3977"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_4002.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_4002"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_4012.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.a_4012"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\CoffeeWakeUpBeanDefenseMovie.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseMovie"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\CoffeeWakeUpBeanDefenseResource.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4108.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4108"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.ui.maogoutd.resource.effect.a_4108"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4111.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4111"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4111"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4128.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4128"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4128"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4142.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4142"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4142"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4143.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.a_4143"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.ui.maogoutd.resource.effect.a_4143"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CommonWaterSprayMovie.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4111",
+          "com.aurora.ui.maogoutd.resource.effect.CommonWaterSprayMovie"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\PlacementEffectMovie.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.effect.a_4142",
+          "com.aurora.ui.maogoutd.resource.effect.PlacementEffectMovie"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SmallMouseMoveIntruderBoomDieMovie.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206",
+          "com.aurora.ui.maogoutd.resource.effect.a_4143",
+          "com.aurora.ui.maogoutd.resource.effect.SmallMouseMoveIntruderBoomDieMovie"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4157.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.energy.a_4157"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971",
+          "com.aurora.ui.maogoutd.resource.energy.a_4157"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4162.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.energy.a_4162"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971",
+          "com.aurora.ui.maogoutd.resource.energy.a_4162"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4206.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4206"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4206"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4255.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4255"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4255"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4258.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4258"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4258"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4269.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.Intruder.a_4269"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\IResource.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.IResource"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.IResource"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\ISmallGameDetailInfoMap.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.ISmallGameDetailInfoMap"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\EffectObjectValue.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.props.EffectObjectValue"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971",
+          "com.aurora.ui.maogoutd.resource.props.IBaseProp",
+          "com.aurora.ui.maogoutd.resource.props.EffectObjectValue"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\IBaseProp.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.props.IBaseProp"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.defender.a_3971",
+          "com.aurora.ui.maogoutd.resource.props.IBaseProp"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4348.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.shot.a_4348"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.shot.a_4348"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4388.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.shot.a_4388"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.shot.a_4348",
+          "com.aurora.ui.maogoutd.resource.shot.a_4388"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4408.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4408"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.tools.a_4408"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4409.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4409"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.resource.tools.a_4409"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4421.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4421"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012",
+          "com.aurora.ui.maogoutd.resource.tools.a_4421"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4425.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4425"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_3972",
+          "com.aurora.ui.maogoutd.resource.tools.a_4425"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4440.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.a_4440"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.tools.a_4440"
+        ]
+      ]
+    },
+    {
+      "file": "source\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetScoopMovie.as",
+      "classes": [
+        "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie"
+      ],
+      "classification": "behavior_dependency",
+      "reason": "入口及保守静态依赖链",
+      "dependency_paths": [
+        [
+          "com.aurora.ui.maogoutd.resource.defender.CoffeeWakeUpBeanDefenseResource",
+          "com.aurora.ui.maogoutd.resource.defender.a_4002",
+          "com.aurora.ui.maogoutd.game.a_3491",
+          "com.aurora.ui.maogoutd.game.BattleFieldView",
+          "com.aurora.ui.maogoutd.resource.defender.a_4012",
+          "com.aurora.ui.maogoutd.resource.tools.a_4421",
+          "com.aurora.ui.maogoutd.resource.tools.HelmetScoopMovie"
+        ]
+      ]
+    }
+  ],
+  "analysis_limits": [
+    "保守类级依赖，不是通用 AS3 方法级数据流证明",
+    "动态反射、外部 SWF、帧脚本需由转换器或经过核对的适配器进一步处理；分析报告本身不授权输出 Lua"
+  ]
+}

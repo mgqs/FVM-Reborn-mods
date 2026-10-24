@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr-zhiyumiao",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr-zhiyumiao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr-zhiyumiao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e5dc388f-e7bb-4f8f-9870-6c9581ea0dda","path":"sprites/spr_zhiyumiao/spr_zhiyumiao.yy",},
+    {"name":"2de119bf-4fb1-4153-867e-833f04304110","path":"sprites/spr_zhiyumiao_1/spr_zhiyumiao_1.yy",},
+    {"name":"4d3f0ac9-29c6-4287-9497-06b7206ddd12","path":"sprites/spr_zhiyumiao_2/spr_zhiyumiao_2.yy",},
+    {"name":"472f5416-84ea-4992-8bc5-12cbec224b59","path":"sprites/spr_zhiyumiao_effect/spr_zhiyumiao_effect.yy",}
+  ],
+}

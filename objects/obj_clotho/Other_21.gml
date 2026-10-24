@@ -7,23 +7,20 @@ if (shape == 2)
 else if (shape == 3)
     row_offset = 3;
 
-var max_level_offset = 0;
-
-if (shape == 2)
-    max_level_offset = 1;
-else if (shape == 3)
-    max_level_offset = 2;
+var max_level_offset = 2;
 
 with (obj_card_parent)
 {
     var dx = abs(grid_col - other.grid_col);
     var dy = abs(grid_row - other.grid_row);
     
-    if (plant_id != "clotho" && plant_id != "player" && dx <= col_offset && dy <= row_offset)
+    if (plant_id != "clotho" && plant_id != "player" && plant_id != "kuileima" && dx <= col_offset && dy <= row_offset)
     {
         var new_level = clamp(current_level + level_offset, 0, 16 + max_level_offset);
         
-        if (new_level >= 17 && array_contains(other.gold_cards, plant_id))
+        var mod_card = external_mod_get(plant_id);
+        var is_gold_target = is_undefined(mod_card) ? array_contains(other.gold_cards, plant_id) : mod_card.is_god;
+        if (new_level >= 17 && is_gold_target)
         {
             current_level = new_level;
             var upgrade_data = get_plant_data_with_skill(plant_id, shape, current_level, skill);

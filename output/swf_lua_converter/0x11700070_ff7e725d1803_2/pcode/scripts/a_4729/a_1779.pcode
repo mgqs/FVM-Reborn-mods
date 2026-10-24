@@ -1,0 +1,599 @@
+package a_4729
+{
+   import a_4732.TcpPackageEvent;
+   import a_4757.a_2200;
+   import a_4757.a_2220;
+   import a_4759.b_169;
+   import a_4771.a_2648;
+   import flash.events.EventDispatcher;
+   
+   public class a_1779 extends EventDispatcher
+   {
+      
+      protected static var mapGameHandlerRoutine:Object;
+      
+      protected static var baseProtocalHandler:a_2220;
+      
+      protected static var serverManager:a_2648;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 4
+            maxscopedepth 5
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "mapGameHandlerRoutine", 0, 15
+               findproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+               newobject 0
+               setproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+               debug 1, "baseProtocalHandler", 1, 16
+               debug 1, "serverManager", 2, 17
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_1779()
+      {
+         method
+            name "com.aurora.event:EventManager/EventManager"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 5
+               maxscopedepth 6
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  findproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"serverManager")
+                  getlex QName(PackageNamespace("a_4771"),"a_2648")
+                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                  setproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"serverManager")
+                  debugline 22
+                  getlocal0
+                  callpropvoid QName(PackageNamespace(""),"initailize"), 0
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function initailize() : void
+      {
+         trait method QName(PackageNamespace(""),"initailize")
+            dispid 0
+            method
+               name "com.aurora.event:EventManager/initailize"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 3
+                  localcount 1
+                  initscopedepth 5
+                  maxscopedepth 6
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     debugline 27
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("a_4729"),"EventType")
+                     getproperty QName(PackageNamespace(""),"a_561")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_1783")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 28
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("a_4729"),"EventType")
+                     getproperty QName(PackageNamespace(""),"a_564")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_1784")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 29
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("a_4729"),"EventType")
+                     getproperty QName(PackageNamespace(""),"a_563")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_1786")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 30
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("a_4729"),"EventType")
+                     getproperty QName(PackageNamespace(""),"a_562")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_1785")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 31
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("a_4729"),"EventType")
+                     getproperty QName(PackageNamespace(""),"a_566")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"a_1788")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 32
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1780(_baseHandler:b_169) : void
+         {
+            trait method QName(PackageNamespace(""),"a_1780")
+               dispid 0
+               method
+                  name "com.aurora.event:EventManager/BindBaseProtocal"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("a_4759"),"b_169")
+                  paramname "a_1784"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 2
+                     initscopedepth 5
+                     maxscopedepth 6
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                        debugline 34
+                        getlocal0
+                        pushscope
+                        debug 1, "_baseHandler", 0, 34
+                        debugline 36
+                        pushnull
+                        getlocal1
+                        equals
+                        not
+                        dup
+                        iffalse ofs001d
+                        pop
+                        getlocal1
+                        getlex QName(PackageNamespace("a_4759"),"b_169")
+                        istypelate
+               ofs001d:
+                        iffalse ofs0031
+                        debugline 38
+                        findproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                        getlocal1
+                        getlex QName(PackageNamespace("a_4757"),"a_2220")
+                        astypelate
+                        setproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                        jump ofs003d
+               ofs0031:
+                        debugline 42
+                        findpropstrict QName(PackageNamespace(""),"trace")
+                        pushstring "Error: _baseHandler must be baseProtocal object."
+                        callpropvoid QName(PackageNamespace(""),"trace"), 1
+               ofs003d:
+                        debugline 44
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_1781(gameId:uint, gameHandler:Object) : void
+            {
+               trait method QName(PackageNamespace(""),"a_1781")
+                  dispid 0
+                  method
+                     name "com.aurora.event:EventManager/RegisterGameHandler"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Object")
+                     paramname "a_1784"
+                     paramname "a_1784"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 5
+                        maxscopedepth 6
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                           debugline 46
+                           getlocal0
+                           pushscope
+                           debug 1, "gameId", 0, 46
+                           debug 1, "gameHandler", 1, 46
+                           debugline 48
+                           getlocal1
+                           pushbyte 0
+                           lessequals
+                           dup
+                           iftrue ofs0022
+                           pop
+                           getlocal2
+                           pushnull
+                           equals
+                  ofs0022:
+                           iffalse ofs0035
+                           debugline 50
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterGameHandler failed"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 51
+                           returnvoid
+                  ofs0035:
+                           debugline 54
+                           pushnull
+                           getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.event:EventManager"),StaticProtectedNs("com.aurora.event:EventManager"),PackageNamespace(""),PackageNamespace("a_4729"),PrivateNamespace("EventManager.as$445"),PackageInternalNs("a_4729"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.event:EventManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           ifeq ofs0055
+                           debugline 56
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "gameID:"
+                           getlocal1
+                           add
+                           pushstring "exists in mapGameHandlerRoutine"
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                  ofs0055:
+                           debugline 58
+                           getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.event:EventManager"),StaticProtectedNs("com.aurora.event:EventManager"),PackageNamespace(""),PackageNamespace("a_4729"),PrivateNamespace("EventManager.as$445"),PackageInternalNs("a_4729"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.event:EventManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                           debugline 59
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_1782(gameHandler:Object) : void
+               {
+                  trait method QName(PackageNamespace(""),"a_1782")
+                     dispid 0
+                     method
+                        name "com.aurora.event:EventManager/UnRegisterGameHandler"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"Object")
+                        paramname "a_1784"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 5
+                           initscopedepth 5
+                           maxscopedepth 6
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                              debugline 61
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal2
+                              debug 1, "gameHandler", 0, 61
+                              debug 1, "property", 1, 69
+                              debugline 63
+                              pushnull
+                              getlocal1
+                              ifne ofs002e
+                              debugline 65
+                              findpropstrict QName(PackageNamespace(""),"trace")
+                              pushstring "gameHandler is null, UnRegisterGameHandler failed"
+                              callpropvoid QName(PackageNamespace(""),"trace"), 1
+                              debugline 66
+                              returnvoid
+                     ofs002e:
+                              debugline 69
+                              pushbyte 0
+                              setlocal3
+                              getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+                              coerce_a
+                              setlocal 4
+                              jump ofs005d
+                     ofs003d:
+                              label
+                              getlocal 4
+                              getlocal3
+                              nextname
+                              coerce QName(PackageNamespace(""),"Object")
+                              setlocal2
+                              debugline 71
+                              getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+                              getlocal2
+                              getproperty MultinameL([PrivateNamespace("com.aurora.event:EventManager"),StaticProtectedNs("com.aurora.event:EventManager"),PackageNamespace(""),PackageNamespace("a_4729"),PrivateNamespace("EventManager.as$445"),PackageInternalNs("a_4729"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.event:EventManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                              getlocal1
+                              ifne ofs005d
+                              debugline 73
+                              getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"mapGameHandlerRoutine")
+                              getlocal2
+                              deleteproperty MultinameL([PrivateNamespace("com.aurora.event:EventManager"),StaticProtectedNs("com.aurora.event:EventManager"),PackageNamespace(""),PackageNamespace("a_4729"),PrivateNamespace("EventManager.as$445"),PackageInternalNs("a_4729"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.event:EventManager"),StaticProtectedNs("flash.events:EventDispatcher")])
+                              pop
+                     ofs005d:
+                              debugline 69
+                              hasnext2 4, 3
+                              iftrue ofs003d
+                              kill 4
+                              kill 3
+                              debugline 76
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_1783(a_4730:TcpPackageEvent) : void
+                  {
+                     trait method QName(PackageNamespace(""),"a_1783")
+                        dispid 0
+                        method
+                           name "com.aurora.event:EventManager/OnRecievePackage"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                           paramname "a_1784"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 4
+                              localcount 2
+                              initscopedepth 5
+                              maxscopedepth 6
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                 debugline 78
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "a_4730", 0, 78
+                                 debugline 80
+                                 pushnull
+                                 getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                                 ifne ofs0025
+                                 debugline 82
+                                 findproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                                 getlex QName(PackageNamespace("a_4757"),"a_2220")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 setproperty QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                        ofs0025:
+                                 debugline 84
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"packageBytes")
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 85
+                                 getlex QName(StaticProtectedNs("com.aurora.event:EventManager"),"baseProtocalHandler")
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"a_787")
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"m_stKeyInfo")
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"packageBytes")
+                                 callpropvoid QName(PackageNamespace(""),"a_2204"), 3
+                                 debugline 87
+                                 pushnull
+                                 coerce QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                 setlocal1
+                                 debugline 88
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_1784(a_4730:TcpPackageEvent) : void
+                     {
+                        trait method QName(PackageNamespace(""),"a_1784")
+                           dispid 0
+                           method
+                              name "com.aurora.event:EventManager/OnRecieveAuthenPackage"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                              paramname "a_1784"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 5
+                                 maxscopedepth 6
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                    debugline 90
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "a_4730", 0, 90
+                                    debugline 92
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"packageBytes")
+                                    pushbyte 0
+                                    setproperty QName(PackageNamespace(""),"position")
+                                    debugline 93
+                                    getlex QName(PackageNamespace("a_4757"),"a_2200")
+                                    callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"packageBytes")
+                                    callpropvoid QName(PackageNamespace(""),"a_2204"), 1
+                                    debugline 95
+                                    pushnull
+                                    coerce QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                    setlocal1
+                                    debugline 96
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function a_1785(a_4730:TcpPackageEvent) : void
+                        {
+                           trait method QName(PackageNamespace(""),"a_1785")
+                              dispid 0
+                              method
+                                 name "com.aurora.event:EventManager/OnSendPackageToLogic"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                 paramname "a_1784"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 2
+                                    initscopedepth 5
+                                    maxscopedepth 6
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                       debugline 98
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "a_4730", 0, 98
+                                       debugline 101
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_1786(a_4730:TcpPackageEvent) : void
+                           {
+                              trait method QName(PackageNamespace(""),"a_1786")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.event:EventManager/OnSendPackageToHall"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                    paramname "a_1784"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 2
+                                       initscopedepth 5
+                                       maxscopedepth 6
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                          debugline 103
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "a_4730", 0, 103
+                                          debugline 105
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function a_1787(a_4730:TcpPackageEvent) : void
+                              {
+                                 trait method QName(PackageNamespace(""),"a_1787")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.event:EventManager/OnRecieveGameData"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                       paramname "a_1784"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 2
+                                          initscopedepth 5
+                                          maxscopedepth 6
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                             debugline 107
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "a_4730", 0, 107
+                                             debugline 109
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function a_1788(a_4730:TcpPackageEvent) : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_1788")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.event:EventManager/OnSendGameData"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("a_4732"),"TcpPackageEvent")
+                                          paramname "a_1784"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 2
+                                             initscopedepth 5
+                                             maxscopedepth 6
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                                debugline 111
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "a_4730", 0, 111
+                                                debugline 113
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                 }
+                              }
+                              
+                              method
+                                 name ""
+                                 returns null
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 1
+                                    maxscopedepth 4
+                                    
+                                    code
+                                       getlocal0
+                                       pushscope
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                       debugline 13
+                                       findpropstrict Multiname("a_1779",[PackageNamespace("a_4729")])
+                                       getlex QName(PackageNamespace(""),"Object")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                       newclass 175
+                                       popscope
+                                       popscope
+                                       initproperty QName(PackageNamespace("a_4729"),"a_1779")
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManager.as"
+                                       debugline 4
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                              

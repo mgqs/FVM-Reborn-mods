@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"spider_man_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/spider_man_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spider_man_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ef595b41-06ab-4c7c-afe1-3000107d0e2e","path":"sprites/spr_spider_man_mouse_death/spr_spider_man_mouse_death.yy",},
+    {"name":"82aeed27-96ef-4f73-9d3f-22854db2962a","path":"sprites/spr_spider_man_mouse_effect/spr_spider_man_mouse_effect.yy",},
+    {"name":"d44f9883-de01-4a82-83b3-6ddaa463e4c8","path":"sprites/spr_spider_man_mouse_idle/spr_spider_man_mouse_idle.yy",},
+    {"name":"340c376b-b1a2-46c2-8a5a-19f380c12bf5","path":"sprites/spr_spider_man_mouse_skill_1/spr_spider_man_mouse_skill_1.yy",},
+    {"name":"19f7ec8b-1580-4775-b455-6da3bf1ac0ad","path":"sprites/spr_spider_man_mouse_skill_2/spr_spider_man_mouse_skill_2.yy",},
+    {"name":"7daca710-b641-4ba5-b0d0-175d3c5ab69f","path":"sprites/spr_spider_man_mouse_skill_2_ready/spr_spider_man_mouse_skill_2_ready.yy",},
+    {"name":"570f3c1a-d0f1-40da-b23f-8bb9130e0104","path":"sprites/spr_spider_man_mouse_skill_3/spr_spider_man_mouse_skill_3.yy",},
+    {"name":"284fce56-1cb9-49fe-a812-d6870ad57727","path":"sprites/spr_spider_man_mouse_web/spr_spider_man_mouse_web.yy",},
+    {"name":"565ccb84-9467-4823-8dfc-7c3c7c7d28be","path":"sprites/spr_spider_man_mouse_web_effect/spr_spider_man_mouse_web_effect.yy",}
+  ],
+}

@@ -41,7 +41,7 @@ with obj_card_parent{
 					for(var j = 0 ; j < other.bun_card_info[i].bun_amount ; j++){
 						if other.bun_count < other.max_bun{
 							other.bun_count++
-							array_push(other.bullet_list,{"bullet_type":other.bun_card_info[i].bullet_type,"damage":atk})
+							array_push(other.bullet_list,{"card_id":plant_id,"bullet_type":other.bun_card_info[i].bullet_type,"damage":atk})
 							can_absorb = true
 						}
 					}

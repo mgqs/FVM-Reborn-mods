@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"throw",
+  "folderPath":"folders/物体/Bullet/throw.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"throw",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_chocolatecannon_bullet","path":"objects/obj_chocolatecannon_bullet/obj_chocolatecannon_bullet.yy",},
+    {"name":"obj_chocolatepult_bullet","path":"objects/obj_chocolatepult_bullet/obj_chocolatepult_bullet.yy",},
+    {"name":"obj_currylobstercannon_bullet","path":"objects/obj_currylobstercannon_bullet/obj_currylobstercannon_bullet.yy",},
+    {"name":"obj_eggboilerpult_bullet","path":"objects/obj_eggboilerpult_bullet/obj_eggboilerpult_bullet.yy",},
+    {"name":"obj_iceeggboilerpult_bullet","path":"objects/obj_iceeggboilerpult_bullet/obj_iceeggboilerpult_bullet.yy",},
+    {"name":"obj_panfriedbun_bullet","path":"objects/obj_panfriedbun_bullet/obj_panfriedbun_bullet.yy",},
+    {"name":"obj_saladpult_bullet","path":"objects/obj_saladpult_bullet/obj_saladpult_bullet.yy",},
+    {"name":"obj_stinkytofupult_bullet","path":"objects/obj_stinkytofupult_bullet/obj_stinkytofupult_bullet.yy",},
+    {"name":"obj_sugarballpult_bullet","path":"objects/obj_sugarballpult_bullet/obj_sugarballpult_bullet.yy",}
+  ],
+}

@@ -4,7 +4,7 @@ if !is_cookbook_equipped(cookbook_id){
 	var current_cookbook_amount = array_length(global.save_data.equipped_cookbook[cookbook_rank])
 	if current_cookbook_amount < max_cookbook_slot{
 		equip_cookbook(cookbook_id)
-		audio_play_sound(snd_button,0,0)
+		global.audio.play(snd_button,0,0)
 		show_notice("食谱已装配",60)
 	}
 	else{
@@ -13,6 +13,6 @@ if !is_cookbook_equipped(cookbook_id){
 }
 else{
 	unequip_cookbook(cookbook_id)
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	show_notice("食谱已卸下",60)
 }

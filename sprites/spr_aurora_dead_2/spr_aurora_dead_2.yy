@@ -34,8 +34,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"aurora",
+    "path":"folders/精灵/mod/Cards/Assistant/aurora.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

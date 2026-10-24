@@ -1,6 +1,9 @@
 // obj_pause_menu - Step Event
+panel_anim_step(id);
+if (!instance_exists(id)) exit;
 // 检查是否有子菜单打开
-submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm);
+submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_mod_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm);
+if (variable_instance_exists(id, "pnl_closing") && pnl_closing) exit;
 
 // 如果没有子菜单打开，则处理按钮交互
 if (!submenu_open) {
@@ -27,10 +30,10 @@ if (!submenu_open) {
             if (mouse_check_button_released(mb_left)) {
                 switch (i) {
                     case 0: // 继续游戏
-                        instance_destroy();
+                        panel_anim_close(id);
                         global.is_paused = false;
                         global.show_menu = false;
-                        break;
+                        exit;
                         
                     case 1: // 设置
                         instance_create_depth(menu_x, menu_y, depth-1, obj_config_menu);
@@ -43,7 +46,7 @@ if (!submenu_open) {
 						instance_create_depth(menu_x, menu_y, depth-1, obj_restart_confirm);
                         break;
                 }
-				audio_play_sound(snd_button,0,0)
+				global.audio.play(snd_button,0,0)
             }
             break;
         }

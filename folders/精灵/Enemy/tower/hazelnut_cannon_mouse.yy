@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"hazelnut_cannon_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/hazelnut_cannon_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hazelnut_cannon_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"225a49f1-0ba1-4523-8b78-82a77e7a45b9","path":"sprites/spr_hazelnut_cannon_mouse/spr_hazelnut_cannon_mouse.yy",},
+    {"name":"c9d91d60-3caa-43c6-9127-2a81bbad935b","path":"sprites/spr_hazelnut_cannon_mouse_move/spr_hazelnut_cannon_mouse_move.yy",}
+  ],
+}

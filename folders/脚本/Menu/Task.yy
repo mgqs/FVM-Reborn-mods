@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Task",
+  "folderPath":"folders/脚本/Menu/Task.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Task",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"task_edit","path":"scripts/task_edit/task_edit.yy",},
+    {"name":"task_init","path":"scripts/task_init/task_init.yy",}
+  ],
+}

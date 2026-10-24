@@ -1,0 +1,269 @@
+package com.aurora.ui.maogoutd.resource.shot
+{
+   public class a_4388
+   {
+      
+      private static var a_1286:a_4388;
+      
+      private static var a_1604:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1286", 0, 5
+               debug 1, "a_1604", 1, 6
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+               newarray 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_4388()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.shot:ShotFactory/ShotFactory"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                  debugline 18
+                  getlocal0
+                  pushscope
+                  debugline 19
+                  getlocal0
+                  constructsuper 0
+                  debugline 22
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_4388
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.shot:ShotFactory/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4388")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                     debugline 8
+                     getlocal0
+                     pushscope
+                     debugline 10
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1286")
+                     ifne ofs001c
+                     debugline 12
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1286")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1286")
+            ofs001c:
+                     debugline 15
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1286")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4389(iShotTypeId:uint) : a_4348
+         {
+            trait method QName(PackageNamespace(""),"a_4389")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.shot:ShotFactory/GetShot"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "F:\FlashKenai\src;com\aurora\ui\maogoutd\resource\shot;ShotFactory.as"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                        debugline 24
+                        getlocal0
+                        pushscope
+                        debug 1, "iShotTypeId", 0, 24
+                        debugline 26
+                        pushnull
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),PrivateNamespace("ShotFactory.as$144"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.shot"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("Object")])
+                        ifeq ofs002c
+                        debugline 28
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                        dup
+                        setlocal2
+                        getlocal1
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),PrivateNamespace("ShotFactory.as$144"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.shot"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("Object")])
+                        getlocal2
+                        call 0
+                        kill 2
+                        returnvalue
+               ofs002c:
+                        debugline 31
+                        pushnull
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4390(iShotTypeId:uint, fShotCreator:Function) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_4390")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.shot:ShotFactory/RegisterShotCreator"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "a_4388"
+                     paramname "a_4388"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                           debugline 34
+                           getlocal0
+                           pushscope
+                           debug 1, "iShotTypeId", 0, 34
+                           debug 1, "fShotCreator", 1, 34
+                           debugline 36
+                           pushnull
+                           getlocal2
+                           equals
+                           dup
+                           iftrue ofs0028
+                           pop
+                           pushnull
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                           getlocal1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),PrivateNamespace("ShotFactory.as$144"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.shot"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("Object")])
+                           equals
+                           not
+                  ofs0028:
+                           iffalse ofs003c
+                           debugline 38
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "RegisterShotCreator failed"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 40
+                           pushfalse
+                           returnvalue
+                  ofs003c:
+                           debugline 43
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                           getlocal1
+                           getlocal2
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),PrivateNamespace("ShotFactory.as$144"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.resource.shot"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),StaticProtectedNs("Object")])
+                           debugline 45
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3923() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3923")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.shot:ShotFactory/ClearAllCreator"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                              debugline 48
+                              getlocal0
+                              pushscope
+                              debugline 50
+                              findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                              newarray 0
+                              setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot:ShotFactory"),"a_1604")
+                              debugline 52
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                     debugline 3
+                     findpropstrict Multiname("a_4388",[PackageNamespace("com.aurora.ui.maogoutd.resource.shot")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 18
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4388")
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\shot;ShotFactory.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

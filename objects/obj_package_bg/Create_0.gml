@@ -9,6 +9,13 @@ is_submenu_opened = false
 gem_start_line = 0
 y_offset = 0
 package_surface = -1
+y_offset_target = 0
+sb_dragging = false
+sb_drag_y = 0
+sb_drag_offset = 0
+pg_t_l = -1
+pg_t_r = -1
+pg_frames = 13
 //创建背包栏位选择按钮
 var btn1 = instance_create_depth(x-300,y-455,depth-1,obj_packageselect_btn)
 btn1.type = "Package"
@@ -36,7 +43,14 @@ btn6.button_index = 3
 btn6.sprite_index = spr_packageselect_btn_6
 
 hover_card_index = -1; // 当前悬停的卡片索引
+deck_sort_order = [] // 卡片排序映射（普通卡在前 → 融合卡居中 → 金卡在后）
 hover_weapon_index = -1
 hover_gem_index = -1
 hover_material_index = -1
 view_max_shapes = 0
+
+panel_anim_init(id, 0.28, 0.18, 260, 1);
+panel_anim_kids(id, [obj_closepackage_btn, obj_packageselect_btn,
+    obj_card_edit_menu, obj_card_edit_select_btn, obj_card_edit_btn,
+    obj_card_attire_menu, obj_card_attire_select_btn,
+    obj_gem_edit_menu, obj_gem_edit_select_btn, obj_gem_edit_btn]);

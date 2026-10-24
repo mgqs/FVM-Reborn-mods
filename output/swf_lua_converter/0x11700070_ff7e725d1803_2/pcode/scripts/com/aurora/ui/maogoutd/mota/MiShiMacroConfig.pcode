@@ -1,0 +1,111 @@
+package com.aurora.ui.maogoutd.mota
+{
+   public class MiShiMacroConfig
+   {
+      
+      public static const MISHI_TYPE_LJS:uint = 1;
+      
+      public static const MISHI_TYPE_CJG:uint = 2;
+      
+      public static const MISHI_TYPE_WWW:uint = 3;
+      
+      public static const MISHI_TYPE_SJG:uint = 4;
+      
+      public static const MISHI_TYPE_MBK:uint = 5;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "MISHI_TYPE_LJS", 0, 12
+               findproperty QName(PackageNamespace(""),"MISHI_TYPE_LJS")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"MISHI_TYPE_LJS")
+               debug 1, "MISHI_TYPE_CJG", 1, 13
+               findproperty QName(PackageNamespace(""),"MISHI_TYPE_CJG")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"MISHI_TYPE_CJG")
+               debug 1, "MISHI_TYPE_WWW", 2, 14
+               findproperty QName(PackageNamespace(""),"MISHI_TYPE_WWW")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"MISHI_TYPE_WWW")
+               debug 1, "MISHI_TYPE_SJG", 3, 15
+               findproperty QName(PackageNamespace(""),"MISHI_TYPE_SJG")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"MISHI_TYPE_SJG")
+               debug 1, "MISHI_TYPE_MBK", 4, 16
+               findproperty QName(PackageNamespace(""),"MISHI_TYPE_MBK")
+               pushbyte 5
+               initproperty QName(PackageNamespace(""),"MISHI_TYPE_MBK")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function MiShiMacroConfig()
+      {
+         method
+            name "com.aurora.ui.maogoutd.mota:MiShiMacroConfig/MiShiMacroConfig"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\mota;MiShiMacroConfig.as"
+                  debugline 18
+                  getlocal0
+                  pushscope
+                  debugline 19
+                  getlocal0
+                  constructsuper 0
+                  debugline 20
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\mota;MiShiMacroConfig.as"
+         debugline 10
+         findpropstrict Multiname("MiShiMacroConfig",[PackageNamespace("com.aurora.ui.maogoutd.mota")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 126
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\mota;MiShiMacroConfig.as"
+         debugline 8
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

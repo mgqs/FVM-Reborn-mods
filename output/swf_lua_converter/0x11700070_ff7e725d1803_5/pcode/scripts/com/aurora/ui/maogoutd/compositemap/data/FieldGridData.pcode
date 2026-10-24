@@ -1,0 +1,93 @@
+package com.aurora.ui.maogoutd.compositemap.data
+{
+   public class FieldGridData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iGridType:int;
+      
+      public var x:int;
+      
+      public var y:int;
+      
+      public var m_strResUrl:String;
+      
+      public var tornado_group:int = -1;
+      
+      public var tornado_type:int = 0;
+      
+      public function FieldGridData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.compositemap.data:FieldGridData/FieldGridData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;FieldGridData.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;FieldGridData.as"
+         debugline 10
+         findpropstrict Multiname("FieldGridData",[PackageNamespace("com.aurora.ui.maogoutd.compositemap.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 73
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.compositemap.data"),"FieldGridData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;FieldGridData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

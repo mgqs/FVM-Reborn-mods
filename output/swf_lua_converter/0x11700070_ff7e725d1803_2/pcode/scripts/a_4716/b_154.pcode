@@ -1,0 +1,2935 @@
+package a_4716
+{
+   public class b_154
+   {
+      
+      public static const a_104:uint = 1;
+      
+      public static const a_105:uint = 2;
+      
+      public static const a_106:uint = 3;
+      
+      public static const a_107:uint = 4;
+      
+      public static const a_108:uint = 241;
+      
+      public static const a_109:uint = 1;
+      
+      public static const a_110:uint = 2;
+      
+      public static const a_111:uint = 3;
+      
+      public static const a_112:uint = 4;
+      
+      public static const a_113:uint = 5;
+      
+      public static const a_114:uint = 6;
+      
+      public static const a_115:uint = 7;
+      
+      public static const a_116:uint = 257;
+      
+      public static const a_117:uint = 258;
+      
+      public static const a_118:uint = 259;
+      
+      public static const a_119:uint = 260;
+      
+      public static const a_120:uint = 4097;
+      
+      public static const a_121:uint = 4098;
+      
+      public static const a_122:uint = 4099;
+      
+      public static const a_125:uint = 8193;
+      
+      public static const a_126:uint = 8194;
+      
+      public static const a_127:uint = 8195;
+      
+      public static const a_128:uint = 8449;
+      
+      public static const a_129:uint = 8450;
+      
+      public static const a_130:uint = 8451;
+      
+      public static const a_131:uint = 8452;
+      
+      public static const a_132:uint = 8453;
+      
+      public static const a_133:uint = 8454;
+      
+      public static const a_134:uint = 8455;
+      
+      public static const a_135:uint = 8464;
+      
+      public static const a_136:uint = 8465;
+      
+      public static const a_137:uint = 8466;
+      
+      public static const a_138:uint = 8726;
+      
+      public static const a_139:uint = 8727;
+      
+      public static const a_140:uint = 8728;
+      
+      public static const a_141:uint = 8729;
+      
+      public static const a_142:uint = 8730;
+      
+      public static const a_143:uint = 8731;
+      
+      public static const a_144:uint = 8459;
+      
+      public static const a_145:uint = 8460;
+      
+      public static const a_146:uint = 8461;
+      
+      public static const a_147:uint = 8462;
+      
+      public static const a_148:uint = 8705;
+      
+      public static const a_149:uint = 8706;
+      
+      public static const a_150:uint = 8707;
+      
+      public static const a_151:uint = 8708;
+      
+      public static const a_152:uint = 8709;
+      
+      public static const a_153:uint = 8710;
+      
+      public static const a_154:uint = 8711;
+      
+      public static const a_155:uint = 8712;
+      
+      public static const a_156:uint = 8715;
+      
+      public static const a_157:uint = 8719;
+      
+      public static const a_158:uint = 8720;
+      
+      public static const a_159:uint = 8721;
+      
+      public static const a_160:uint = 8724;
+      
+      public static const a_161:uint = 8960;
+      
+      public static const a_162:uint = 8716;
+      
+      public static const a_163:uint = 8717;
+      
+      public static const a_164:uint = 8722;
+      
+      public static const a_165:uint = 8723;
+      
+      public static const a_166:uint = 8961;
+      
+      public static const a_167:uint = 8962;
+      
+      public static const a_168:uint = 14616;
+      
+      public static const a_169:uint = 14619;
+      
+      public static const a_170:uint = 14642;
+      
+      public static const a_171:uint = 9216;
+      
+      public static const MSG_NEW_NOTIFY_SYSTEM_MESSAGE:uint = 9217;
+      
+      public static const a_172:uint = 14609;
+      
+      public static const a_173:uint = 14646;
+      
+      public static const a_174:uint = 14604;
+      
+      public static const a_175:uint = 14605;
+      
+      public static const a_176:uint = 14867;
+      
+      public static const a_177:uint = 14868;
+      
+      public static const a_178:uint = 14869;
+      
+      public static const a_179:uint = 14752;
+      
+      public static const a_180:uint = 14753;
+      
+      public static const a_181:uint = 14754;
+      
+      public static const a_182:uint = 14755;
+      
+      public static const a_183:uint = 14756;
+      
+      public static const a_184:uint = 14757;
+      
+      public static const a_185:uint = 14758;
+      
+      public static const a_186:uint = 14759;
+      
+      public static const a_187:uint = 14760;
+      
+      public static const a_188:uint = 14761;
+      
+      public static const a_189:uint = 14762;
+      
+      public static const a_190:uint = 14763;
+      
+      public static const a_191:uint = 14764;
+      
+      public static const a_192:uint = 14765;
+      
+      public static const a_193:uint = 14766;
+      
+      public static const a_194:uint = 14767;
+      
+      public static const a_195:uint = 14768;
+      
+      public static const a_196:uint = 14769;
+      
+      public static const a_197:uint = 14770;
+      
+      public static const a_198:uint = 14771;
+      
+      public static const a_199:uint = 14772;
+      
+      public static const a_200:uint = 14773;
+      
+      public static const a_201:uint = 14774;
+      
+      public static const a_202:uint = 14775;
+      
+      public static const a_203:uint = 14776;
+      
+      public static const a_204:uint = 14777;
+      
+      public static const a_205:uint = 14779;
+      
+      public static const a_206:uint = 14896;
+      
+      public static const a_207:uint = 14897;
+      
+      public static const a_208:uint = 14898;
+      
+      public static const a_209:uint = 14899;
+      
+      public static const a_210:uint = 14900;
+      
+      public static const a_211:uint = 14901;
+      
+      public static const a_212:uint = 14902;
+      
+      public static const a_213:uint = 14903;
+      
+      public static const MSG_HALL_NOTIFY_CAT_INFO:uint = 14920;
+      
+      public static const MSG_HALL_GET_HOME_INFO:uint = 14912;
+      
+      public static const MSG_HALL_STRUGGLE_CAT:uint = 14913;
+      
+      public static const MSG_HALL_FUNNY_CAT:uint = 14917;
+      
+      public static const MSG_HALL_STEAL_OVEN:uint = 14914;
+      
+      public static const MSG_HALL_HOME_GET_AWARD:uint = 14916;
+      
+      public static const MSG_HALL_HARVEST:uint = 14915;
+      
+      public static const MSG_HALL_OVEN_COOK:uint = 14918;
+      
+      public static const MSG_HALL_HISTORY:uint = 14919;
+      
+      public static const MSG_HALL_GET_HOME_STATE:uint = 14921;
+      
+      public static const MSG_HALL_BUY_FIGHTORSTEAL_COUNT:uint = 14922;
+      
+      public static const MSG_HALL_CLEAR_FIGHT_CD_TIME:uint = 14923;
+      
+      public static const MSG_HALL_RAISE_OVEN:uint = 14924;
+      
+      public static const MSG_HALL_BUY_INSTANCE_COUNT:uint = 14927;
+      
+      public static const a_214:uint = 9473;
+      
+      public static const a_215:uint = 9473;
+      
+      public static const a_216:uint = 9474;
+      
+      public static const a_217:uint = 9475;
+      
+      public static const a_218:uint = 9476;
+      
+      public static const a_219:uint = 9477;
+      
+      public static const a_220:uint = 8725;
+      
+      public static const a_221:uint = 12288;
+      
+      public static const a_222:uint = 12289;
+      
+      public static const a_223:uint = 12544;
+      
+      public static const a_224:uint = 12545;
+      
+      public static const a_225:uint = 12803;
+      
+      public static const a_226:uint = 12804;
+      
+      public static const a_227:uint = 12805;
+      
+      public static const a_228:uint = 12816;
+      
+      public static const a_229:uint = 12806;
+      
+      public static const a_230:uint = 12808;
+      
+      public static const a_231:uint = 14080;
+      
+      public static const a_232:uint = 14081;
+      
+      public static const a_233:uint = 14082;
+      
+      public static const a_234:uint = 14089;
+      
+      public static const a_235:uint = 14592;
+      
+      public static const a_236:uint = 14593;
+      
+      public static const a_237:uint = 14688;
+      
+      public static const a_238:uint = 14736;
+      
+      public static const a_239:uint = 8713;
+      
+      public static const a_240:uint = 8714;
+      
+      public static const a_241:uint = 14594;
+      
+      public static const a_242:uint = 14595;
+      
+      public static const a_243:uint = 14596;
+      
+      public static const a_244:uint = 14597;
+      
+      public static const a_245:uint = 14598;
+      
+      public static const a_246:uint = 14599;
+      
+      public static const a_247:uint = 14600;
+      
+      public static const a_248:uint = 14601;
+      
+      public static const a_249:uint = 14602;
+      
+      public static const a_250:uint = 14603;
+      
+      public static const a_251:uint = 14606;
+      
+      public static const a_252:uint = 14607;
+      
+      public static const a_253:uint = 14608;
+      
+      public static const a_254:uint = 14610;
+      
+      public static const a_255:uint = 14611;
+      
+      public static const a_256:uint = 14612;
+      
+      public static const a_257:uint = 14613;
+      
+      public static const a_258:uint = 14614;
+      
+      public static const a_259:uint = 14615;
+      
+      public static const a_260:uint = 14617;
+      
+      public static const a_261:uint = 14618;
+      
+      public static const a_262:uint = 14620;
+      
+      public static const a_263:uint = 14621;
+      
+      public static const a_264:uint = 14622;
+      
+      public static const a_265:uint = 14623;
+      
+      public static const a_266:uint = 14624;
+      
+      public static const a_267:uint = 14625;
+      
+      public static const a_268:uint = 14626;
+      
+      public static const a_269:uint = 14627;
+      
+      public static const a_270:uint = 14628;
+      
+      public static const a_271:uint = 14629;
+      
+      public static const a_272:uint = 14630;
+      
+      public static const a_273:uint = 14631;
+      
+      public static const a_274:uint = 14632;
+      
+      public static const a_275:uint = 14633;
+      
+      public static const a_276:uint = 14634;
+      
+      public static const a_277:uint = 14635;
+      
+      public static const a_278:uint = 14636;
+      
+      public static const a_279:uint = 14637;
+      
+      public static const a_280:uint = 14638;
+      
+      public static const a_281:uint = 14639;
+      
+      public static const a_282:uint = 14640;
+      
+      public static const a_283:uint = 14641;
+      
+      public static const a_284:uint = 14643;
+      
+      public static const a_285:uint = 14644;
+      
+      public static const a_286:uint = 14645;
+      
+      public static const a_287:uint = 14664;
+      
+      public static const a_288:uint = 14665;
+      
+      public static const a_289:uint = 14672;
+      
+      public static const a_290:uint = 14673;
+      
+      public static const a_291:uint = 14674;
+      
+      public static const a_292:uint = 14675;
+      
+      public static const a_293:uint = 14676;
+      
+      public static const a_294:uint = 14677;
+      
+      public static const a_295:uint = 14678;
+      
+      public static const a_296:uint = 14679;
+      
+      public static const a_297:uint = 14689;
+      
+      public static const a_298:uint = 14689;
+      
+      public static const a_299:uint = 14690;
+      
+      public static const a_300:uint = 14691;
+      
+      public static const a_301:uint = 14692;
+      
+      public static const a_302:uint = 14693;
+      
+      public static const a_303:uint = 14694;
+      
+      public static const a_304:uint = 14695;
+      
+      public static const a_305:uint = 14696;
+      
+      public static const MSG_HALL_UPDATE_HERO_ITEM_EXTRA_INFO:uint = 14699;
+      
+      public static const MSG_HALL_PET_SWALLOW:uint = 14700;
+      
+      public static const MSG_HALL_CHANGE_PET_STATUS:uint = 14701;
+      
+      public static const MSG_HALL_GET_PET_ACCOUNT:uint = 14702;
+      
+      public static const MSG_HALL_PET_SLOT:uint = 14703;
+      
+      public static const MSG_HALL_BUY_CHALLENGE_COUNT:uint = 14746;
+      
+      public static const MSG_HALL_NOTIFY_REFRESH_GAME_EXT_INFO:uint = 14747;
+      
+      public static const MSG_HALL_PET_EAT_ANOTHER:uint = 14748;
+      
+      public static const a_306:uint = 14704;
+      
+      public static const a_307:uint = 14705;
+      
+      public static const a_308:uint = 14706;
+      
+      public static const a_309:uint = 14707;
+      
+      public static const a_310:uint = 14708;
+      
+      public static const a_311:uint = 14709;
+      
+      public static const a_312:uint = 14710;
+      
+      public static const a_313:uint = 14720;
+      
+      public static const a_314:uint = 14721;
+      
+      public static const a_315:uint = 14722;
+      
+      public static const a_316:uint = 14723;
+      
+      public static const a_317:uint = 14724;
+      
+      public static const a_318:uint = 14738;
+      
+      public static const a_319:uint = 14739;
+      
+      public static const a_320:uint = 14740;
+      
+      public static const a_321:uint = 14741;
+      
+      public static const a_322:uint = 14744;
+      
+      public static const a_323:uint = 14849;
+      
+      public static const a_324:uint = 14850;
+      
+      public static const a_325:uint = 14851;
+      
+      public static const a_326:uint = 14866;
+      
+      public static const MSG_HALL_ITEM_GEM_UNLOAD:uint = 14872;
+      
+      public static const MSG_HALL_SLOT_ITEM:uint = 14870;
+      
+      public static const MSG_HALL_ITEM_GEM_IN_LAY:uint = 14871;
+      
+      public static const MSG_HALL_ITEM_GEM_DECOMPOSE:uint = 14874;
+      
+      public static const MSG_HALL_ITEM_GEM_UPGRADE:uint = 14873;
+      
+      public static const MSG_HALL_CARD_TRANSLATE:uint = 14875;
+      
+      public static const MSG_HALL_CARD_FUSION:uint = 14876;
+      
+      public static const MSG_HALL_FUSIONCARD_UPGRADE:uint = 14877;
+      
+      public static const a_327:uint = 14880;
+      
+      public static const a_328:uint = 14881;
+      
+      public static const a_329:uint = 14882;
+      
+      public static const a_330:uint = 128;
+      
+      public static const a_331:uint = 24;
+      
+      public static const a_332:uint = 12809;
+      
+      public static const a_333:uint = 12809;
+      
+      public static const a_334:uint = 14864;
+      
+      public static const a_335:uint = 14865;
+      
+      public static const a_336:uint = 14711;
+      
+      public static const a_337:uint = 14712;
+      
+      public static const MSG_HALL_BUY_CLIMB_TOWER_COUNT:uint = 14925;
+      
+      public static const MSG_HALL_GET_CLIMB_TOWER_RANK:uint = 14926;
+      
+      public static const MSG_HALL_COOKERY_COMPOSE:uint = 14933;
+      
+      public static const MSG_HALL_COOKERY_INFO_GET:uint = 14934;
+      
+      public static const MSG_HALL_COOKERY_STATUS_SET:uint = 14935;
+      
+      public static const MSG_HALL_CHOUJIANG:uint = 14944;
+      
+      public static const MSG_HALL_GET_CHOUJIANG_INFO:uint = 14945;
+      
+      public static const MSG_HALL_GET_ZHENCANG:uint = 14946;
+      
+      public static const MSG_HALL_EXCHANGE:uint = 14947;
+      
+      public static const MSG_HALL_GET_EXCHANGE_INFO:uint = 14948;
+      
+      public static const MSG_HALL_DECOMPOSE:uint = 14949;
+      
+      public static const MSG_HALL_FORTUNE:uint = 14950;
+      
+      public static const MSG_HALL_STARPIECESHOP:uint = 14951;
+      
+      public static const MSG_HALL_SCORESHOP:uint = 14952;
+      
+      public static const MSG_HALL_SCORESHOP_INFO:uint = 14953;
+      
+      public static const MSG_HALL_GET_CHARGE_ACTIVITY_INFO:uint = 15008;
+      
+      public static const MSG_HALL_GET_CUMULATIVE_RECHARGE_AWARD:uint = 15009;
+      
+      public static const MSG_HALL_GET_FIRST_RECHARGE_AWARD:uint = 15010;
+      
+      public static const MSG_HALL_GET_HOLIDAY_ACCUMULATE_AWARD:uint = 15011;
+      
+      public static const MSG_HALL_GET_HOLIDAY_SINGLE_AWARD:uint = 15012;
+      
+      public static const MSG_HALL_GET_HOLIDAY_EXCHANGE_INFO:uint = 15376;
+      
+      public static const MSG_HALL_REQUEST_HOLIDAY_EXCHANGE:uint = 15377;
+      
+      public static const MSG_HALL_GET_PLAYER_MARRIAGE_INFO:uint = 15017;
+      
+      public static const MSG_HALL_MARRIAGE_CERTIFICATE_OPERATION:uint = 15024;
+      
+      public static const MSG_HALL_GET_WEDDING_LIST:uint = 15026;
+      
+      public static const MSG_HALL_RESERVE_WEDDING:uint = 15027;
+      
+      public static const MSG_HALL_CHANGE_WEDDING_DECLARATION:uint = 15033;
+      
+      public static const MSG_HALL_GET_ONGOING_WEDDING_COUNT:uint = 15034;
+      
+      public static const MSG_HALL_WEDDING_ROOM_OPERATION:uint = 15028;
+      
+      public static const MSG_HALL_WEDDING_GET_IN_ROOM:uint = 15029;
+      
+      public static const MSG_HALL_GET_IN_WEDDING_PLAYER_INFO:uint = 15030;
+      
+      public static const MSG_HALL_GET_WEDDING_WELFARE:uint = 15031;
+      
+      public static const MSG_LOGIC_GET_CLIMB_TOWER_RANK:uint = 8467;
+      
+      public static const MSG_HALL_GET_GUIDE_DATA:uint = 14928;
+      
+      public static const MSG_HALL_UPDATE_GUIDE_DATA:uint = 14929;
+      
+      public static const MSG_HALL_GET_VOW_RANK_INFO_LIST:uint = 14930;
+      
+      public static const MSG_HALL_GET_WEDDING_CHARM_INFO:uint = 15013;
+      
+      public static const MSG_HALL_BUY_WEDDING_CHARM_SHOP:uint = 15014;
+      
+      public static const MSG_HALL_NOTIFY_CHARMCOIN_CHANGE:uint = 15015;
+      
+      public static const MSG_HALL_GET_CHARM_RANK:uint = 15040;
+      
+      public static const MSG_HALL_GET_CHARM_INFO:uint = 15041;
+      
+      public static const MSG_HALL_GET_SEND_FLOWERS_RECORD:uint = 15042;
+      
+      public static const MSG_HALL_SEND_FLOWERS:uint = 15043;
+      
+      public static const MSG_HALL_CHARM_AWARD:uint = 15044;
+      
+      public static const MSG_HALL_CHRAM_UPDATE_DECLARATION:uint = 15045;
+      
+      public static const MSG_HALL_GET_SEND_FLOWERS_INFO:uint = 15046;
+      
+      public static const MSG_HALL_CRYSTONE_COMPOSE:uint = 15056;
+      
+      public static const MSG_HALL_CRYSTONE_DECOMPOSE:uint = 15057;
+      
+      public static const MSG_HALL_CRYSTONE_UPGRADE:uint = 15058;
+      
+      public static const MSG_HALL_CRYSTONE_EQUIP:uint = 15059;
+      
+      public static const MSG_HALL_GET_MATCH_RANK:uint = 15104;
+      
+      public static const MSG_HALL_GET_MATCH_AWARD:uint = 15105;
+      
+      public static const MSG_HALL_GET_ISLAND_RANK:uint = 15106;
+      
+      public static const MSG_HALL_GET_ISLAND_AWARD:uint = 15107;
+      
+      public static const MSG_HALL_DISTRIBUTE_ISLAND_AWARD:uint = 15108;
+      
+      public static const MSG_HALL_MAIL_LIST:uint = 14976;
+      
+      public static const MSG_HALL_SEND_MAIL:uint = 14977;
+      
+      public static const MSG_HALL_DELETE_MAIL:uint = 14978;
+      
+      public static const MSG_HALL_READ_MAIL:uint = 14979;
+      
+      public static const MSG_HALL_FETCH_MAIL_ITEM:uint = 14980;
+      
+      public static const MSG_HALL_UPDATE_MAIL_LIST:uint = 14981;
+      
+      public static const MSG_HALL_NOTIFY_NEW_MAIL:uint = 14982;
+      
+      public static const MSG_HALL_GET_TRADE_LIST:uint = 14993;
+      
+      public static const MSG_HALL_GET_PLAYER_TRADE_ITEM:uint = 14994;
+      
+      public static const MSG_HALL_INSERT_TRADE_ITEM:uint = 14995;
+      
+      public static const MSG_HALL_CANCEL_TRADE:uint = 14996;
+      
+      public static const MSG_HALL_BUY_TRADE_ITEM:uint = 14997;
+      
+      public static const MSG_HALL_SEARCH_TRADE:uint = 14998;
+      
+      public static const MSG_HALL_GET_NEW_TASK_LIST:uint = 15360;
+      
+      public static const MSG_HALL_COMPLETE_NEW_TASK:uint = 15361;
+      
+      public static const MSG_HALL_CHECK_NEW_TASK:uint = 15362;
+      
+      public static const MSG_HALL_PUBLISH_CONSORTIA_MASTER_TASK:uint = 15363;
+      
+      public static const MSG_NOTIFY_NEW_TASK_COMPLETE:uint = 15364;
+      
+      public static const MSG_HALL_GET_SWEET_INFO:uint = 15365;
+      
+      public static const MSG_HALL_GET_SWEET_AWARD:uint = 15366;
+      
+      public static const MSG_HALL_GET_LOVE_BUFF_INFO:uint = 15367;
+      
+      public static const MSG_HALL_REQUEST_REPORT_PLAYER:uint = 15617;
+      
+      public static const MSG_HALL_GET_MONTH_CARD_INFO:uint = 15381;
+      
+      public static const MSG_HALL_BUY_MONTH_CARD:uint = 15382;
+      
+      public static const MSG_HALL_GET_MONTH_CARD_AWARD:uint = 15383;
+      
+      public static const MSG_HALL_GET_FOOD_CONTEST_LIST:uint = 15392;
+      
+      public static const MSG_HALL_NOTIFY_FOOD_CONTEST_TASK_COMPLETE:uint = 15393;
+      
+      public static const MSG_HALL_GET_FOOD_CONTEST_AWARD:uint = 15394;
+      
+      public static const MSG_HALL_ACTIVATING_COOKER_GOD_AWARD:uint = 15395;
+      
+      public static const MSG_HALL_BUY_FOOD_EXP:uint = 15396;
+      
+      public static const MSG_HALL_GET_CAMP_LIST:uint = 15397;
+      
+      public static const MSG_HALL_NOTIFY_CAMP_TASK_COMPLETE:uint = 15398;
+      
+      public static const MSG_HALL_GET_CAMP_AWARD:uint = 15399;
+      
+      public static const MSG_HALL_GET_POPULARITY_INFO:uint = 15408;
+      
+      public static const MSG_HALL_NOTIFY_POPULARITY_TASK_COMPLETE:uint = 15409;
+      
+      public static const MSG_HALL_AWARD_POPULARITY:uint = 15410;
+      
+      public static const MSG_HALL_MONTHCARD_SHOP_REFRESH:uint = 15712;
+      
+      public static const MSG_HALL_MONTHCARD_SHOP_BUY:uint = 15713;
+      
+      public static const MSG_HALL_MONTHCARD_INFO:uint = 15714;
+      
+      public static const MSG_HALL_NEW_YEAR_LOGIN_GIFT_INFO:uint = 15618;
+      
+      public static const MSG_HALL_GET_NEW_YEAR_LOGIN_GIFT:uint = 15619;
+      
+      public static const MSG_HALL_GET_TURNTABLE_INFO:uint = 15620;
+      
+      public static const MSG_HALL_PLAY_TURNTABLE:uint = 15621;
+      
+      public static const MSG_HALL_NEW_YEAR_LUCKY_MONEY_INFO:uint = 15632;
+      
+      public static const MSG_HALL_NEW_YEAR_LUCKY_MONEY_GET:uint = 15633;
+      
+      public static const MSG_HALL_GARDEN_INFO:uint = 15637;
+      
+      public static const MSG_HALL_GARDEN_LIST:uint = 15638;
+      
+      public static const MSG_HALL_GARDEN_SOW:uint = 15639;
+      
+      public static const MSG_HALL_GARDEN_OPT_INFO:uint = 15640;
+      
+      public static const MSG_HALL_GARDEN_WATER:uint = 15641;
+      
+      public static const MSG_HALL_GARDEN_MANURE:uint = 15642;
+      
+      public static const MSG_HALL_GARDEN_PICK:uint = 15643;
+      
+      public static const MSG_HALL_SWEET_ISLAND_INFO:uint = 15073;
+      
+      public static const MSG_HALL_SWEET_ISLAND_OPEN:uint = 15074;
+      
+      public static const MSG_HALL_GET_ANIMALS_COIN:uint = 15648;
+      
+      public static const MSG_HALL_ANIMALS_CARD_DECOMPOSE:uint = 15649;
+      
+      public static const MSG_HALL_ANIMALS_CARD_EXCHANGE:uint = 15650;
+      
+      public static const MSG_HALL_ANIMALS_CARD_CALL_INFO:uint = 15651;
+      
+      public static const MSG_HALL_ANIMALS_CALL:uint = 15652;
+      
+      public static const MSG_HALL_LIMIT_SHOP:uint = 15664;
+      
+      public static const MSG_HALL_LIMIT_SHOP_COUNT:uint = 15665;
+      
+      public static const MSG_HALL_GET_CAMP_SHOP:uint = 15400;
+      
+      public static const MSG_HALL_LIMIT_CAMP_SHOP:uint = 15401;
+      
+      public static const MSG_HALL_GET_CAMP_RECORD:uint = 15411;
+      
+      public static const MSG_HALL_UPDATE_DIAR_SATE:uint = 15412;
+      
+      public static const MSG_LOGIC_SEND_CROSS_CHAT_MSG:uint = 9728;
+      
+      public static const MSG_LOGIC_NOTIFY_CROSS_CHAT_MSG:uint = 9729;
+      
+      public static const MSG_CROSS_SITDOWN:uint = 9730;
+      
+      public static const MSG_CROSS_ROOM_LIST:uint = 9731;
+      
+      public static const MSG_CROSS_MAP_INFO:uint = 9732;
+      
+      public static const MSG_NOTIFY_CROSS_TABLE_STATUS_CHANGE:uint = 9733;
+      
+      public static const MSG_CROSS_NOTIFY_TABLE_CREATE:uint = 9734;
+      
+      public static const MSG_CROSS_DROP_COUNT:uint = 9735;
+      
+      public static const MSG_HALL_BUY_CROSS_DROP_COUNT:uint = 15715;
+      
+      public static const MSG_NOTIFY_CROSS_PLAYER_GROUP_INFO:uint = 9736;
+      
+      public static const MSG_CROSS_GET_TABLE_INFO:uint = 9756;
+      
+      public static const MSG_DIY_CREATE_MAP:uint = 9744;
+      
+      public static const MSG_DIY_GET_SELF_MAP:uint = 9747;
+      
+      public static const MSG_DIY_STORE_INFO:uint = 9748;
+      
+      public static const MSG_DIY_GET_MAP_INFO:uint = 9749;
+      
+      public static const MSG_DIY_PUBLISH_MAP:uint = 9751;
+      
+      public static const MSG_DIY_UPDATE_MAP_INFO:uint = 9745;
+      
+      public static const MSG_DIY_UPDATE_MAP_WAVE:uint = 9746;
+      
+      public static const MSG_DIY_GET_MAP_WAVE:uint = 9752;
+      
+      public static const MSG_DIY_DEL_MAP:uint = 9753;
+      
+      public static const MSG_DIY_GET_MAP_LIST:uint = 9754;
+      
+      public static const MSG_DIY_GET_PLAYER_MAP_DATA:uint = 9755;
+      
+      public static const MSG_NOTIFY_DIY_MAP_INFO:uint = 9757;
+      
+      public static const MSG_NOTIFY_DIY_MAP_MOUSE:uint = 9758;
+      
+      public static const MSG_DIY_APPRAISE_MAP:uint = 9759;
+      
+      public static const MSG_DIY_RECEIVE_DIYB:uint = 9760;
+      
+      public static const MSG_DIY_GET_TERRAIN:uint = 9761;
+      
+      public static const MSG_DIY_UPDATE_TERRAIN:uint = 9762;
+      
+      public static const MSG_NOTIFY_DIY_MAP_TERRAIN:uint = 9763;
+      
+      public static const MSG_HALL_LIMIT_REWARD_INFO:uint = 15685;
+      
+      public static const MSG_HALL_LIMIT_REWARD:uint = 15686;
+      
+      public static const MSG_HALL_CONSBEN_INFO:uint = 15669;
+      
+      public static const MSG_HALL_DONATE_CONSBEN_PIECE:uint = 15670;
+      
+      public static const MSG_HALL_CONSBEN_PLAYER_RANK:uint = 15671;
+      
+      public static const MSG_HALL_CONSBEN_CONS_RANK:uint = 15672;
+      
+      public static const MSG_HALL_TAROT_INFO:uint = 15680;
+      
+      public static const MSG_HALL_PLAY_TAROT:uint = 15681;
+      
+      public static const MSG_HALL_TAROT_AWARD:uint = 15682;
+      
+      public static const MSG_HALL_CRYSTONE_SLOT_GET:uint = 15060;
+      
+      public static const MSG_HALL_CRYSTONE_SLOT_ADD:uint = 15061;
+      
+      public static const MSG_HALL_PRIZE_DRAW:uint = 15696;
+      
+      public static const MSG_HALL_PRIZE_DRAW_INFO:uint = 15697;
+      
+      public static const MSG_HALL_PRIZE_DRAW_AWARD:uint = 15698;
+      
+      public static const MSG_HALL_PRIZE_DRAW_BUFF_INFO:uint = 15699;
+      
+      public static const MSG_HALL_PRIZE_DRAW_CHANGE_BUFF:uint = 15700;
+      
+      public static const MSG_HALL_PRIZE_DRAW_DECOMPOSE:uint = 15701;
+      
+      public static const MSG_HALL_SUPPER_CHOUJIANG_EXCHANGE:uint = 15702;
+      
+      public static const MSG_HALL_EVOLUTION:uint = 15687;
+      
+      public static const MSG_HALL_ITEM_EVOLUTION:uint = 14936;
+      
+      public static const MSG_HALL_CHECK_NEW_SVR_TASK:uint = 15728;
+      
+      public static const MSG_HALL_UPDATE_SECPWD:uint = 15717;
+      
+      public static const MSG_HALL_NEED_SECPWD:uint = 15718;
+      
+      public static const MSG_HALL_INPUT_SECPWD:uint = 15719;
+      
+      public static const MSG_HALL_HAS_SECPWD:uint = 15720;
+      
+      public static const MSG_HALL_NEED_CHECK:uint = 15729;
+      
+      public static const MSG_HALL_CHECK_INPUT:uint = 15730;
+      
+      public static const MSG_GET_WORLD_BOSS_INFO:uint = 15776;
+      
+      public static const MSG_GET_WORLD_BOSS_RANK:uint = 15777;
+      
+      public static const MSG_GET_CHECK_WORLD_BOSS_PLAYER_INFO:uint = 15778;
+      
+      public static const MSG_GET_WORLD_BOSS_AWARD:uint = 15779;
+      
+      public static const MSG_GET_WORLDBOSS_SHOP:uint = 15780;
+      
+      public static const MSG_WORLDBOSS_SHOP_BUY:uint = 15781;
+      
+      public static const MSG_GET_WORLDBOSS_RECORD:uint = 15782;
+      
+      public static const MSG_GET_WORLDBOSS_SUMMARY:uint = 15783;
+      
+      public static const MSG_WORLDBOSS_FAST_PK:uint = 15784;
+      
+      public static const MSG_REQUEST_GET_WORLDBOSS_MAP:uint = 15785;
+      
+      public static const MSG_REQUEST_DIVIDE_MAIN_INFO:uint = 15786;
+      
+      public static const MSG_REQUEST_DIVIDE_AWARD:uint = 15787;
+      
+      public static const MSG_REQUEST_DIVIDE_RECEIVE_AWARD:uint = 15788;
+      
+      public static const MSG_NEW_SVR_GIFT_LOGIN:uint = 15733;
+      
+      public static const MSG_NEW_SVR_GIFT_RECEIEVE:uint = 15734;
+      
+      public static const MSG_HALL_MONOPOLY_INFO:uint = 15744;
+      
+      public static const MSG_HALL_MONOPOLY_PLAY:uint = 15745;
+      
+      public static const MSG_HALL_MONOPOLY_RANK_INFO:uint = 15746;
+      
+      public static const MSG_HALL_MONOPOLY_RANK_AWARD:uint = 15747;
+      
+      public static const MSG_HALL_HANDBOOK:uint = 15748;
+      
+      public static const MSG_GET_TWO_PATA_COUNT:uint = 9776;
+      
+      public static const MSG_GET_TWO_PATA_LEVEL:uint = 9777;
+      
+      public static const MSG_GET_TWO_PATA_RANK:uint = 9778;
+      
+      public static const MSG_GET_TWO_PATA_AWARD:uint = 9779;
+      
+      public static const MSG_GET_TWO_PATA_RANK_INFO:uint = 8468;
+      
+      public static const MSG_HALL_DAILY_PAY_INFO:uint = 15749;
+      
+      public static const MSG_HALL_DAILY_PAY_AWARD:uint = 15750;
+      
+      public static const MSG_HALL_GET_SMALL_ROOM_INFO:uint = 16007;
+      
+      public static const MSG_HALL_SAVE_SMALL_ROOM_INFO:uint = 15752;
+      
+      public static const MSG_HALL_SMALL_ROOM_BUY:uint = 15753;
+      
+      public static const MSG_GET_SPECIAL_ACTIVITY_INFO:uint = 15760;
+      
+      public static const MSG_REQUEST_GET_SPECIAL_ACT_AWARD:uint = 15762;
+      
+      public static const MSG_HALL_DEAL_CRM_DATA:uint = 14931;
+      
+      public static const MSG_GET_BOX_INFO:uint = 12817;
+      
+      public static const MSG_UPDATE_BOX_INFO:uint = 12818;
+      
+      public static const MSG_EXPAND_STOREBOX:uint = 12819;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 4
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_104", 0, 5
+               findproperty QName(PackageNamespace(""),"a_104")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"a_104")
+               debug 1, "a_105", 1, 6
+               findproperty QName(PackageNamespace(""),"a_105")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"a_105")
+               debug 1, "a_106", 2, 7
+               findproperty QName(PackageNamespace(""),"a_106")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"a_106")
+               debug 1, "a_107", 3, 8
+               findproperty QName(PackageNamespace(""),"a_107")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"a_107")
+               debug 1, "a_108", 4, 16
+               findproperty QName(PackageNamespace(""),"a_108")
+               pushshort 241
+               initproperty QName(PackageNamespace(""),"a_108")
+               debug 1, "a_109", 5, 20
+               findproperty QName(PackageNamespace(""),"a_109")
+               pushbyte 1
+               initproperty QName(PackageNamespace(""),"a_109")
+               debug 1, "a_110", 6, 21
+               findproperty QName(PackageNamespace(""),"a_110")
+               pushbyte 2
+               initproperty QName(PackageNamespace(""),"a_110")
+               debug 1, "a_111", 7, 23
+               findproperty QName(PackageNamespace(""),"a_111")
+               pushbyte 3
+               initproperty QName(PackageNamespace(""),"a_111")
+               debug 1, "a_112", 8, 24
+               findproperty QName(PackageNamespace(""),"a_112")
+               pushbyte 4
+               initproperty QName(PackageNamespace(""),"a_112")
+               debug 1, "a_113", 9, 26
+               findproperty QName(PackageNamespace(""),"a_113")
+               pushbyte 5
+               initproperty QName(PackageNamespace(""),"a_113")
+               debug 1, "a_114", 10, 27
+               findproperty QName(PackageNamespace(""),"a_114")
+               pushbyte 6
+               initproperty QName(PackageNamespace(""),"a_114")
+               debug 1, "a_115", 11, 28
+               findproperty QName(PackageNamespace(""),"a_115")
+               pushbyte 7
+               initproperty QName(PackageNamespace(""),"a_115")
+               debug 1, "a_116", 12, 30
+               findproperty QName(PackageNamespace(""),"a_116")
+               pushshort 257
+               initproperty QName(PackageNamespace(""),"a_116")
+               debug 1, "a_117", 13, 31
+               findproperty QName(PackageNamespace(""),"a_117")
+               pushshort 258
+               initproperty QName(PackageNamespace(""),"a_117")
+               debug 1, "a_118", 14, 32
+               findproperty QName(PackageNamespace(""),"a_118")
+               pushshort 259
+               initproperty QName(PackageNamespace(""),"a_118")
+               debug 1, "a_119", 15, 33
+               findproperty QName(PackageNamespace(""),"a_119")
+               pushshort 260
+               initproperty QName(PackageNamespace(""),"a_119")
+               debug 1, "a_120", 16, 36
+               findproperty QName(PackageNamespace(""),"a_120")
+               pushshort 4097
+               initproperty QName(PackageNamespace(""),"a_120")
+               debug 1, "a_121", 17, 37
+               findproperty QName(PackageNamespace(""),"a_121")
+               pushshort 4098
+               initproperty QName(PackageNamespace(""),"a_121")
+               debug 1, "a_122", 18, 38
+               findproperty QName(PackageNamespace(""),"a_122")
+               pushshort 4099
+               initproperty QName(PackageNamespace(""),"a_122")
+               debug 1, "a_125", 19, 43
+               findproperty QName(PackageNamespace(""),"a_125")
+               pushshort 8193
+               initproperty QName(PackageNamespace(""),"a_125")
+               debug 1, "a_126", 20, 44
+               findproperty QName(PackageNamespace(""),"a_126")
+               pushshort 8194
+               initproperty QName(PackageNamespace(""),"a_126")
+               debug 1, "a_127", 21, 45
+               findproperty QName(PackageNamespace(""),"a_127")
+               pushshort 8195
+               initproperty QName(PackageNamespace(""),"a_127")
+               debug 1, "a_128", 22, 48
+               findproperty QName(PackageNamespace(""),"a_128")
+               pushshort 8449
+               initproperty QName(PackageNamespace(""),"a_128")
+               debug 1, "a_129", 23, 49
+               findproperty QName(PackageNamespace(""),"a_129")
+               pushshort 8450
+               initproperty QName(PackageNamespace(""),"a_129")
+               debug 1, "a_130", 24, 50
+               findproperty QName(PackageNamespace(""),"a_130")
+               pushshort 8451
+               initproperty QName(PackageNamespace(""),"a_130")
+               debug 1, "a_131", 25, 51
+               findproperty QName(PackageNamespace(""),"a_131")
+               pushshort 8452
+               initproperty QName(PackageNamespace(""),"a_131")
+               debug 1, "a_132", 26, 52
+               findproperty QName(PackageNamespace(""),"a_132")
+               pushshort 8453
+               initproperty QName(PackageNamespace(""),"a_132")
+               debug 1, "a_133", 27, 53
+               findproperty QName(PackageNamespace(""),"a_133")
+               pushshort 8454
+               initproperty QName(PackageNamespace(""),"a_133")
+               debug 1, "a_134", 28, 54
+               findproperty QName(PackageNamespace(""),"a_134")
+               pushshort 8455
+               initproperty QName(PackageNamespace(""),"a_134")
+               debug 1, "a_135", 29, 55
+               findproperty QName(PackageNamespace(""),"a_135")
+               pushshort 8464
+               initproperty QName(PackageNamespace(""),"a_135")
+               debug 1, "a_136", 30, 56
+               findproperty QName(PackageNamespace(""),"a_136")
+               pushshort 8465
+               initproperty QName(PackageNamespace(""),"a_136")
+               debug 1, "a_137", 31, 57
+               findproperty QName(PackageNamespace(""),"a_137")
+               pushshort 8466
+               initproperty QName(PackageNamespace(""),"a_137")
+               debug 1, "a_138", 32, 58
+               findproperty QName(PackageNamespace(""),"a_138")
+               pushshort 8726
+               initproperty QName(PackageNamespace(""),"a_138")
+               debug 1, "a_139", 33, 59
+               findproperty QName(PackageNamespace(""),"a_139")
+               pushshort 8727
+               initproperty QName(PackageNamespace(""),"a_139")
+               debug 1, "a_140", 34, 60
+               findproperty QName(PackageNamespace(""),"a_140")
+               pushshort 8728
+               initproperty QName(PackageNamespace(""),"a_140")
+               debug 1, "a_141", 35, 61
+               findproperty QName(PackageNamespace(""),"a_141")
+               pushshort 8729
+               initproperty QName(PackageNamespace(""),"a_141")
+               debug 1, "a_142", 36, 62
+               findproperty QName(PackageNamespace(""),"a_142")
+               pushshort 8730
+               initproperty QName(PackageNamespace(""),"a_142")
+               debug 1, "a_143", 37, 63
+               findproperty QName(PackageNamespace(""),"a_143")
+               pushshort 8731
+               initproperty QName(PackageNamespace(""),"a_143")
+               debug 1, "a_144", 38, 66
+               findproperty QName(PackageNamespace(""),"a_144")
+               pushshort 8459
+               initproperty QName(PackageNamespace(""),"a_144")
+               debug 1, "a_145", 39, 67
+               findproperty QName(PackageNamespace(""),"a_145")
+               pushshort 8460
+               initproperty QName(PackageNamespace(""),"a_145")
+               debug 1, "a_146", 40, 68
+               findproperty QName(PackageNamespace(""),"a_146")
+               pushshort 8461
+               initproperty QName(PackageNamespace(""),"a_146")
+               debug 1, "a_147", 41, 69
+               findproperty QName(PackageNamespace(""),"a_147")
+               pushshort 8462
+               initproperty QName(PackageNamespace(""),"a_147")
+               debug 1, "a_148", 42, 72
+               findproperty QName(PackageNamespace(""),"a_148")
+               pushshort 8705
+               initproperty QName(PackageNamespace(""),"a_148")
+               debug 1, "a_149", 43, 73
+               findproperty QName(PackageNamespace(""),"a_149")
+               pushshort 8706
+               initproperty QName(PackageNamespace(""),"a_149")
+               debug 1, "a_150", 44, 74
+               findproperty QName(PackageNamespace(""),"a_150")
+               pushshort 8707
+               initproperty QName(PackageNamespace(""),"a_150")
+               debug 1, "a_151", 45, 75
+               findproperty QName(PackageNamespace(""),"a_151")
+               pushshort 8708
+               initproperty QName(PackageNamespace(""),"a_151")
+               debug 1, "a_152", 46, 76
+               findproperty QName(PackageNamespace(""),"a_152")
+               pushshort 8709
+               initproperty QName(PackageNamespace(""),"a_152")
+               debug 1, "a_153", 47, 77
+               findproperty QName(PackageNamespace(""),"a_153")
+               pushshort 8710
+               initproperty QName(PackageNamespace(""),"a_153")
+               debug 1, "a_154", 48, 78
+               findproperty QName(PackageNamespace(""),"a_154")
+               pushshort 8711
+               initproperty QName(PackageNamespace(""),"a_154")
+               debug 1, "a_155", 49, 79
+               findproperty QName(PackageNamespace(""),"a_155")
+               pushshort 8712
+               initproperty QName(PackageNamespace(""),"a_155")
+               debug 1, "a_156", 50, 81
+               findproperty QName(PackageNamespace(""),"a_156")
+               pushshort 8715
+               initproperty QName(PackageNamespace(""),"a_156")
+               debug 1, "a_157", 51, 83
+               findproperty QName(PackageNamespace(""),"a_157")
+               pushshort 8719
+               initproperty QName(PackageNamespace(""),"a_157")
+               debug 1, "a_158", 52, 84
+               findproperty QName(PackageNamespace(""),"a_158")
+               pushshort 8720
+               initproperty QName(PackageNamespace(""),"a_158")
+               debug 1, "a_159", 53, 85
+               findproperty QName(PackageNamespace(""),"a_159")
+               pushshort 8721
+               initproperty QName(PackageNamespace(""),"a_159")
+               debug 1, "a_160", 54, 87
+               findproperty QName(PackageNamespace(""),"a_160")
+               pushshort 8724
+               initproperty QName(PackageNamespace(""),"a_160")
+               debug 1, "a_161", 55, 90
+               findproperty QName(PackageNamespace(""),"a_161")
+               pushshort 8960
+               initproperty QName(PackageNamespace(""),"a_161")
+               debug 1, "a_162", 56, 92
+               findproperty QName(PackageNamespace(""),"a_162")
+               pushshort 8716
+               initproperty QName(PackageNamespace(""),"a_162")
+               debug 1, "a_163", 57, 93
+               findproperty QName(PackageNamespace(""),"a_163")
+               pushshort 8717
+               initproperty QName(PackageNamespace(""),"a_163")
+               debug 1, "a_164", 58, 94
+               findproperty QName(PackageNamespace(""),"a_164")
+               pushshort 8722
+               initproperty QName(PackageNamespace(""),"a_164")
+               debug 1, "a_165", 59, 95
+               findproperty QName(PackageNamespace(""),"a_165")
+               pushshort 8723
+               initproperty QName(PackageNamespace(""),"a_165")
+               debug 1, "a_166", 60, 96
+               findproperty QName(PackageNamespace(""),"a_166")
+               pushshort 8961
+               initproperty QName(PackageNamespace(""),"a_166")
+               debug 1, "a_167", 61, 97
+               findproperty QName(PackageNamespace(""),"a_167")
+               pushshort 8962
+               initproperty QName(PackageNamespace(""),"a_167")
+               debug 1, "a_168", 62, 98
+               findproperty QName(PackageNamespace(""),"a_168")
+               pushshort 14616
+               initproperty QName(PackageNamespace(""),"a_168")
+               debug 1, "a_169", 63, 99
+               findproperty QName(PackageNamespace(""),"a_169")
+               pushshort 14619
+               initproperty QName(PackageNamespace(""),"a_169")
+               debug 1, "a_170", 64, 100
+               findproperty QName(PackageNamespace(""),"a_170")
+               pushshort 14642
+               initproperty QName(PackageNamespace(""),"a_170")
+               debug 1, "a_171", 65, 101
+               findproperty QName(PackageNamespace(""),"a_171")
+               pushshort 9216
+               initproperty QName(PackageNamespace(""),"a_171")
+               debug 1, "MSG_NEW_NOTIFY_SYSTEM_MESSAGE", 66, 102
+               findproperty QName(PackageNamespace(""),"MSG_NEW_NOTIFY_SYSTEM_MESSAGE")
+               pushshort 9217
+               initproperty QName(PackageNamespace(""),"MSG_NEW_NOTIFY_SYSTEM_MESSAGE")
+               debug 1, "a_172", 67, 103
+               findproperty QName(PackageNamespace(""),"a_172")
+               pushshort 14609
+               initproperty QName(PackageNamespace(""),"a_172")
+               debug 1, "a_173", 68, 104
+               findproperty QName(PackageNamespace(""),"a_173")
+               pushshort 14646
+               initproperty QName(PackageNamespace(""),"a_173")
+               debug 1, "a_174", 69, 106
+               findproperty QName(PackageNamespace(""),"a_174")
+               pushshort 14604
+               initproperty QName(PackageNamespace(""),"a_174")
+               debug 1, "a_175", 70, 107
+               findproperty QName(PackageNamespace(""),"a_175")
+               pushshort 14605
+               initproperty QName(PackageNamespace(""),"a_175")
+               debug 1, "a_176", 71, 109
+               findproperty QName(PackageNamespace(""),"a_176")
+               pushshort 14867
+               initproperty QName(PackageNamespace(""),"a_176")
+               debug 1, "a_177", 72, 110
+               findproperty QName(PackageNamespace(""),"a_177")
+               pushshort 14868
+               initproperty QName(PackageNamespace(""),"a_177")
+               debug 1, "a_178", 73, 111
+               findproperty QName(PackageNamespace(""),"a_178")
+               pushshort 14869
+               initproperty QName(PackageNamespace(""),"a_178")
+               debug 1, "a_179", 74, 113
+               findproperty QName(PackageNamespace(""),"a_179")
+               pushshort 14752
+               initproperty QName(PackageNamespace(""),"a_179")
+               debug 1, "a_180", 75, 114
+               findproperty QName(PackageNamespace(""),"a_180")
+               pushshort 14753
+               initproperty QName(PackageNamespace(""),"a_180")
+               debug 1, "a_181", 76, 115
+               findproperty QName(PackageNamespace(""),"a_181")
+               pushshort 14754
+               initproperty QName(PackageNamespace(""),"a_181")
+               debug 1, "a_182", 77, 116
+               findproperty QName(PackageNamespace(""),"a_182")
+               pushshort 14755
+               initproperty QName(PackageNamespace(""),"a_182")
+               debug 1, "a_183", 78, 117
+               findproperty QName(PackageNamespace(""),"a_183")
+               pushshort 14756
+               initproperty QName(PackageNamespace(""),"a_183")
+               debug 1, "a_184", 79, 118
+               findproperty QName(PackageNamespace(""),"a_184")
+               pushshort 14757
+               initproperty QName(PackageNamespace(""),"a_184")
+               debug 1, "a_185", 80, 119
+               findproperty QName(PackageNamespace(""),"a_185")
+               pushshort 14758
+               initproperty QName(PackageNamespace(""),"a_185")
+               debug 1, "a_186", 81, 120
+               findproperty QName(PackageNamespace(""),"a_186")
+               pushshort 14759
+               initproperty QName(PackageNamespace(""),"a_186")
+               debug 1, "a_187", 82, 121
+               findproperty QName(PackageNamespace(""),"a_187")
+               pushshort 14760
+               initproperty QName(PackageNamespace(""),"a_187")
+               debug 1, "a_188", 83, 122
+               findproperty QName(PackageNamespace(""),"a_188")
+               pushshort 14761
+               initproperty QName(PackageNamespace(""),"a_188")
+               debug 1, "a_189", 84, 123
+               findproperty QName(PackageNamespace(""),"a_189")
+               pushshort 14762
+               initproperty QName(PackageNamespace(""),"a_189")
+               debug 1, "a_190", 85, 124
+               findproperty QName(PackageNamespace(""),"a_190")
+               pushshort 14763
+               initproperty QName(PackageNamespace(""),"a_190")
+               debug 1, "a_191", 86, 125
+               findproperty QName(PackageNamespace(""),"a_191")
+               pushshort 14764
+               initproperty QName(PackageNamespace(""),"a_191")
+               debug 1, "a_192", 87, 126
+               findproperty QName(PackageNamespace(""),"a_192")
+               pushshort 14765
+               initproperty QName(PackageNamespace(""),"a_192")
+               debug 1, "a_193", 88, 127
+               findproperty QName(PackageNamespace(""),"a_193")
+               pushshort 14766
+               initproperty QName(PackageNamespace(""),"a_193")
+               debug 1, "a_194", 89, 128
+               findproperty QName(PackageNamespace(""),"a_194")
+               pushshort 14767
+               initproperty QName(PackageNamespace(""),"a_194")
+               debug 1, "a_195", 90, 129
+               findproperty QName(PackageNamespace(""),"a_195")
+               pushshort 14768
+               initproperty QName(PackageNamespace(""),"a_195")
+               debug 1, "a_196", 91, 130
+               findproperty QName(PackageNamespace(""),"a_196")
+               pushshort 14769
+               initproperty QName(PackageNamespace(""),"a_196")
+               debug 1, "a_197", 92, 131
+               findproperty QName(PackageNamespace(""),"a_197")
+               pushshort 14770
+               initproperty QName(PackageNamespace(""),"a_197")
+               debug 1, "a_198", 93, 132
+               findproperty QName(PackageNamespace(""),"a_198")
+               pushshort 14771
+               initproperty QName(PackageNamespace(""),"a_198")
+               debug 1, "a_199", 94, 133
+               findproperty QName(PackageNamespace(""),"a_199")
+               pushshort 14772
+               initproperty QName(PackageNamespace(""),"a_199")
+               debug 1, "a_200", 95, 134
+               findproperty QName(PackageNamespace(""),"a_200")
+               pushshort 14773
+               initproperty QName(PackageNamespace(""),"a_200")
+               debug 1, "a_201", 96, 135
+               findproperty QName(PackageNamespace(""),"a_201")
+               pushshort 14774
+               initproperty QName(PackageNamespace(""),"a_201")
+               debug 1, "a_202", 97, 136
+               findproperty QName(PackageNamespace(""),"a_202")
+               pushshort 14775
+               initproperty QName(PackageNamespace(""),"a_202")
+               debug 1, "a_203", 98, 137
+               findproperty QName(PackageNamespace(""),"a_203")
+               pushshort 14776
+               initproperty QName(PackageNamespace(""),"a_203")
+               debug 1, "a_204", 99, 138
+               findproperty QName(PackageNamespace(""),"a_204")
+               pushshort 14777
+               initproperty QName(PackageNamespace(""),"a_204")
+               debug 1, "a_205", 100, 139
+               findproperty QName(PackageNamespace(""),"a_205")
+               pushshort 14779
+               initproperty QName(PackageNamespace(""),"a_205")
+               debug 1, "a_206", 101, 143
+               findproperty QName(PackageNamespace(""),"a_206")
+               pushshort 14896
+               initproperty QName(PackageNamespace(""),"a_206")
+               debug 1, "a_207", 102, 144
+               findproperty QName(PackageNamespace(""),"a_207")
+               pushshort 14897
+               initproperty QName(PackageNamespace(""),"a_207")
+               debug 1, "a_208", 103, 145
+               findproperty QName(PackageNamespace(""),"a_208")
+               pushshort 14898
+               initproperty QName(PackageNamespace(""),"a_208")
+               debug 1, "a_209", 104, 146
+               findproperty QName(PackageNamespace(""),"a_209")
+               pushshort 14899
+               initproperty QName(PackageNamespace(""),"a_209")
+               debug 1, "a_210", 105, 147
+               findproperty QName(PackageNamespace(""),"a_210")
+               pushshort 14900
+               initproperty QName(PackageNamespace(""),"a_210")
+               debug 1, "a_211", 106, 148
+               findproperty QName(PackageNamespace(""),"a_211")
+               pushshort 14901
+               initproperty QName(PackageNamespace(""),"a_211")
+               debug 1, "a_212", 107, 149
+               findproperty QName(PackageNamespace(""),"a_212")
+               pushshort 14902
+               initproperty QName(PackageNamespace(""),"a_212")
+               debug 1, "a_213", 108, 150
+               findproperty QName(PackageNamespace(""),"a_213")
+               pushshort 14903
+               initproperty QName(PackageNamespace(""),"a_213")
+               debug 1, "MSG_HALL_NOTIFY_CAT_INFO", 109, 155
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CAT_INFO")
+               pushshort 14920
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CAT_INFO")
+               debug 1, "MSG_HALL_GET_HOME_INFO", 110, 156
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOME_INFO")
+               pushshort 14912
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOME_INFO")
+               debug 1, "MSG_HALL_STRUGGLE_CAT", 111, 157
+               findproperty QName(PackageNamespace(""),"MSG_HALL_STRUGGLE_CAT")
+               pushshort 14913
+               initproperty QName(PackageNamespace(""),"MSG_HALL_STRUGGLE_CAT")
+               debug 1, "MSG_HALL_FUNNY_CAT", 112, 158
+               findproperty QName(PackageNamespace(""),"MSG_HALL_FUNNY_CAT")
+               pushshort 14917
+               initproperty QName(PackageNamespace(""),"MSG_HALL_FUNNY_CAT")
+               debug 1, "MSG_HALL_STEAL_OVEN", 113, 159
+               findproperty QName(PackageNamespace(""),"MSG_HALL_STEAL_OVEN")
+               pushshort 14914
+               initproperty QName(PackageNamespace(""),"MSG_HALL_STEAL_OVEN")
+               debug 1, "MSG_HALL_HOME_GET_AWARD", 114, 160
+               findproperty QName(PackageNamespace(""),"MSG_HALL_HOME_GET_AWARD")
+               pushshort 14916
+               initproperty QName(PackageNamespace(""),"MSG_HALL_HOME_GET_AWARD")
+               debug 1, "MSG_HALL_HARVEST", 115, 161
+               findproperty QName(PackageNamespace(""),"MSG_HALL_HARVEST")
+               pushshort 14915
+               initproperty QName(PackageNamespace(""),"MSG_HALL_HARVEST")
+               debug 1, "MSG_HALL_OVEN_COOK", 116, 162
+               findproperty QName(PackageNamespace(""),"MSG_HALL_OVEN_COOK")
+               pushshort 14918
+               initproperty QName(PackageNamespace(""),"MSG_HALL_OVEN_COOK")
+               debug 1, "MSG_HALL_HISTORY", 117, 163
+               findproperty QName(PackageNamespace(""),"MSG_HALL_HISTORY")
+               pushshort 14919
+               initproperty QName(PackageNamespace(""),"MSG_HALL_HISTORY")
+               debug 1, "MSG_HALL_GET_HOME_STATE", 118, 164
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOME_STATE")
+               pushshort 14921
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOME_STATE")
+               debug 1, "MSG_HALL_BUY_FIGHTORSTEAL_COUNT", 119, 165
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_FIGHTORSTEAL_COUNT")
+               pushshort 14922
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_FIGHTORSTEAL_COUNT")
+               debug 1, "MSG_HALL_CLEAR_FIGHT_CD_TIME", 120, 166
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CLEAR_FIGHT_CD_TIME")
+               pushshort 14923
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CLEAR_FIGHT_CD_TIME")
+               debug 1, "MSG_HALL_RAISE_OVEN", 121, 167
+               findproperty QName(PackageNamespace(""),"MSG_HALL_RAISE_OVEN")
+               pushshort 14924
+               initproperty QName(PackageNamespace(""),"MSG_HALL_RAISE_OVEN")
+               debug 1, "MSG_HALL_BUY_INSTANCE_COUNT", 122, 171
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_INSTANCE_COUNT")
+               pushshort 14927
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_INSTANCE_COUNT")
+               debug 1, "a_214", 123, 173
+               findproperty QName(PackageNamespace(""),"a_214")
+               pushshort 9473
+               initproperty QName(PackageNamespace(""),"a_214")
+               debug 1, "a_215", 124, 174
+               findproperty QName(PackageNamespace(""),"a_215")
+               pushshort 9473
+               initproperty QName(PackageNamespace(""),"a_215")
+               debug 1, "a_216", 125, 175
+               findproperty QName(PackageNamespace(""),"a_216")
+               pushshort 9474
+               initproperty QName(PackageNamespace(""),"a_216")
+               debug 1, "a_217", 126, 176
+               findproperty QName(PackageNamespace(""),"a_217")
+               pushshort 9475
+               initproperty QName(PackageNamespace(""),"a_217")
+               debug 1, "a_218", 127, 177
+               findproperty QName(PackageNamespace(""),"a_218")
+               pushshort 9476
+               initproperty QName(PackageNamespace(""),"a_218")
+               debug 1, "a_219", 128, 178
+               findproperty QName(PackageNamespace(""),"a_219")
+               pushshort 9477
+               initproperty QName(PackageNamespace(""),"a_219")
+               debug 1, "a_220", 129, 179
+               findproperty QName(PackageNamespace(""),"a_220")
+               pushshort 8725
+               initproperty QName(PackageNamespace(""),"a_220")
+               debug 1, "a_221", 130, 182
+               findproperty QName(PackageNamespace(""),"a_221")
+               pushshort 12288
+               initproperty QName(PackageNamespace(""),"a_221")
+               debug 1, "a_222", 131, 183
+               findproperty QName(PackageNamespace(""),"a_222")
+               pushshort 12289
+               initproperty QName(PackageNamespace(""),"a_222")
+               debug 1, "a_223", 132, 187
+               findproperty QName(PackageNamespace(""),"a_223")
+               pushshort 12544
+               initproperty QName(PackageNamespace(""),"a_223")
+               debug 1, "a_224", 133, 188
+               findproperty QName(PackageNamespace(""),"a_224")
+               pushshort 12545
+               initproperty QName(PackageNamespace(""),"a_224")
+               debug 1, "a_225", 134, 190
+               findproperty QName(PackageNamespace(""),"a_225")
+               pushshort 12803
+               initproperty QName(PackageNamespace(""),"a_225")
+               debug 1, "a_226", 135, 191
+               findproperty QName(PackageNamespace(""),"a_226")
+               pushshort 12804
+               initproperty QName(PackageNamespace(""),"a_226")
+               debug 1, "a_227", 136, 192
+               findproperty QName(PackageNamespace(""),"a_227")
+               pushshort 12805
+               initproperty QName(PackageNamespace(""),"a_227")
+               debug 1, "a_228", 137, 193
+               findproperty QName(PackageNamespace(""),"a_228")
+               pushshort 12816
+               initproperty QName(PackageNamespace(""),"a_228")
+               debug 1, "a_229", 138, 195
+               findproperty QName(PackageNamespace(""),"a_229")
+               pushshort 12806
+               initproperty QName(PackageNamespace(""),"a_229")
+               debug 1, "a_230", 139, 196
+               findproperty QName(PackageNamespace(""),"a_230")
+               pushshort 12808
+               initproperty QName(PackageNamespace(""),"a_230")
+               debug 1, "a_231", 140, 198
+               findproperty QName(PackageNamespace(""),"a_231")
+               pushshort 14080
+               initproperty QName(PackageNamespace(""),"a_231")
+               debug 1, "a_232", 141, 199
+               findproperty QName(PackageNamespace(""),"a_232")
+               pushshort 14081
+               initproperty QName(PackageNamespace(""),"a_232")
+               debug 1, "a_233", 142, 200
+               findproperty QName(PackageNamespace(""),"a_233")
+               pushshort 14082
+               initproperty QName(PackageNamespace(""),"a_233")
+               debug 1, "a_234", 143, 202
+               findproperty QName(PackageNamespace(""),"a_234")
+               pushshort 14089
+               initproperty QName(PackageNamespace(""),"a_234")
+               debug 1, "a_235", 144, 205
+               findproperty QName(PackageNamespace(""),"a_235")
+               pushshort 14592
+               initproperty QName(PackageNamespace(""),"a_235")
+               debug 1, "a_236", 145, 206
+               findproperty QName(PackageNamespace(""),"a_236")
+               pushshort 14593
+               initproperty QName(PackageNamespace(""),"a_236")
+               debug 1, "a_237", 146, 207
+               findproperty QName(PackageNamespace(""),"a_237")
+               pushshort 14688
+               initproperty QName(PackageNamespace(""),"a_237")
+               debug 1, "a_238", 147, 208
+               findproperty QName(PackageNamespace(""),"a_238")
+               pushshort 14736
+               initproperty QName(PackageNamespace(""),"a_238")
+               debug 1, "a_239", 148, 209
+               findproperty QName(PackageNamespace(""),"a_239")
+               pushshort 8713
+               initproperty QName(PackageNamespace(""),"a_239")
+               debug 1, "a_240", 149, 210
+               findproperty QName(PackageNamespace(""),"a_240")
+               pushshort 8714
+               initproperty QName(PackageNamespace(""),"a_240")
+               debug 1, "a_241", 150, 212
+               findproperty QName(PackageNamespace(""),"a_241")
+               pushshort 14594
+               initproperty QName(PackageNamespace(""),"a_241")
+               debug 1, "a_242", 151, 213
+               findproperty QName(PackageNamespace(""),"a_242")
+               pushshort 14595
+               initproperty QName(PackageNamespace(""),"a_242")
+               debug 1, "a_243", 152, 214
+               findproperty QName(PackageNamespace(""),"a_243")
+               pushshort 14596
+               initproperty QName(PackageNamespace(""),"a_243")
+               debug 1, "a_244", 153, 215
+               findproperty QName(PackageNamespace(""),"a_244")
+               pushshort 14597
+               initproperty QName(PackageNamespace(""),"a_244")
+               debug 1, "a_245", 154, 216
+               findproperty QName(PackageNamespace(""),"a_245")
+               pushshort 14598
+               initproperty QName(PackageNamespace(""),"a_245")
+               debug 1, "a_246", 155, 217
+               findproperty QName(PackageNamespace(""),"a_246")
+               pushshort 14599
+               initproperty QName(PackageNamespace(""),"a_246")
+               debug 1, "a_247", 156, 218
+               findproperty QName(PackageNamespace(""),"a_247")
+               pushshort 14600
+               initproperty QName(PackageNamespace(""),"a_247")
+               debug 1, "a_248", 157, 219
+               findproperty QName(PackageNamespace(""),"a_248")
+               pushshort 14601
+               initproperty QName(PackageNamespace(""),"a_248")
+               debug 1, "a_249", 158, 220
+               findproperty QName(PackageNamespace(""),"a_249")
+               pushshort 14602
+               initproperty QName(PackageNamespace(""),"a_249")
+               debug 1, "a_250", 159, 221
+               findproperty QName(PackageNamespace(""),"a_250")
+               pushshort 14603
+               initproperty QName(PackageNamespace(""),"a_250")
+               debug 1, "a_251", 160, 223
+               findproperty QName(PackageNamespace(""),"a_251")
+               pushshort 14606
+               initproperty QName(PackageNamespace(""),"a_251")
+               debug 1, "a_252", 161, 224
+               findproperty QName(PackageNamespace(""),"a_252")
+               pushshort 14607
+               initproperty QName(PackageNamespace(""),"a_252")
+               debug 1, "a_253", 162, 225
+               findproperty QName(PackageNamespace(""),"a_253")
+               pushshort 14608
+               initproperty QName(PackageNamespace(""),"a_253")
+               debug 1, "a_254", 163, 227
+               findproperty QName(PackageNamespace(""),"a_254")
+               pushshort 14610
+               initproperty QName(PackageNamespace(""),"a_254")
+               debug 1, "a_255", 164, 228
+               findproperty QName(PackageNamespace(""),"a_255")
+               pushshort 14611
+               initproperty QName(PackageNamespace(""),"a_255")
+               debug 1, "a_256", 165, 229
+               findproperty QName(PackageNamespace(""),"a_256")
+               pushshort 14612
+               initproperty QName(PackageNamespace(""),"a_256")
+               debug 1, "a_257", 166, 230
+               findproperty QName(PackageNamespace(""),"a_257")
+               pushshort 14613
+               initproperty QName(PackageNamespace(""),"a_257")
+               debug 1, "a_258", 167, 231
+               findproperty QName(PackageNamespace(""),"a_258")
+               pushshort 14614
+               initproperty QName(PackageNamespace(""),"a_258")
+               debug 1, "a_259", 168, 232
+               findproperty QName(PackageNamespace(""),"a_259")
+               pushshort 14615
+               initproperty QName(PackageNamespace(""),"a_259")
+               debug 1, "a_260", 169, 234
+               findproperty QName(PackageNamespace(""),"a_260")
+               pushshort 14617
+               initproperty QName(PackageNamespace(""),"a_260")
+               debug 1, "a_261", 170, 235
+               findproperty QName(PackageNamespace(""),"a_261")
+               pushshort 14618
+               initproperty QName(PackageNamespace(""),"a_261")
+               debug 1, "a_262", 171, 236
+               findproperty QName(PackageNamespace(""),"a_262")
+               pushshort 14620
+               initproperty QName(PackageNamespace(""),"a_262")
+               debug 1, "a_263", 172, 237
+               findproperty QName(PackageNamespace(""),"a_263")
+               pushshort 14621
+               initproperty QName(PackageNamespace(""),"a_263")
+               debug 1, "a_264", 173, 238
+               findproperty QName(PackageNamespace(""),"a_264")
+               pushshort 14622
+               initproperty QName(PackageNamespace(""),"a_264")
+               debug 1, "a_265", 174, 239
+               findproperty QName(PackageNamespace(""),"a_265")
+               pushshort 14623
+               initproperty QName(PackageNamespace(""),"a_265")
+               debug 1, "a_266", 175, 240
+               findproperty QName(PackageNamespace(""),"a_266")
+               pushshort 14624
+               initproperty QName(PackageNamespace(""),"a_266")
+               debug 1, "a_267", 176, 241
+               findproperty QName(PackageNamespace(""),"a_267")
+               pushshort 14625
+               initproperty QName(PackageNamespace(""),"a_267")
+               debug 1, "a_268", 177, 242
+               findproperty QName(PackageNamespace(""),"a_268")
+               pushshort 14626
+               initproperty QName(PackageNamespace(""),"a_268")
+               debug 1, "a_269", 178, 244
+               findproperty QName(PackageNamespace(""),"a_269")
+               pushshort 14627
+               initproperty QName(PackageNamespace(""),"a_269")
+               debug 1, "a_270", 179, 245
+               findproperty QName(PackageNamespace(""),"a_270")
+               pushshort 14628
+               initproperty QName(PackageNamespace(""),"a_270")
+               debug 1, "a_271", 180, 246
+               findproperty QName(PackageNamespace(""),"a_271")
+               pushshort 14629
+               initproperty QName(PackageNamespace(""),"a_271")
+               debug 1, "a_272", 181, 247
+               findproperty QName(PackageNamespace(""),"a_272")
+               pushshort 14630
+               initproperty QName(PackageNamespace(""),"a_272")
+               debug 1, "a_273", 182, 248
+               findproperty QName(PackageNamespace(""),"a_273")
+               pushshort 14631
+               initproperty QName(PackageNamespace(""),"a_273")
+               debug 1, "a_274", 183, 249
+               findproperty QName(PackageNamespace(""),"a_274")
+               pushshort 14632
+               initproperty QName(PackageNamespace(""),"a_274")
+               debug 1, "a_275", 184, 250
+               findproperty QName(PackageNamespace(""),"a_275")
+               pushshort 14633
+               initproperty QName(PackageNamespace(""),"a_275")
+               debug 1, "a_276", 185, 251
+               findproperty QName(PackageNamespace(""),"a_276")
+               pushshort 14634
+               initproperty QName(PackageNamespace(""),"a_276")
+               debug 1, "a_277", 186, 252
+               findproperty QName(PackageNamespace(""),"a_277")
+               pushshort 14635
+               initproperty QName(PackageNamespace(""),"a_277")
+               debug 1, "a_278", 187, 253
+               findproperty QName(PackageNamespace(""),"a_278")
+               pushshort 14636
+               initproperty QName(PackageNamespace(""),"a_278")
+               debug 1, "a_279", 188, 254
+               findproperty QName(PackageNamespace(""),"a_279")
+               pushshort 14637
+               initproperty QName(PackageNamespace(""),"a_279")
+               debug 1, "a_280", 189, 255
+               findproperty QName(PackageNamespace(""),"a_280")
+               pushshort 14638
+               initproperty QName(PackageNamespace(""),"a_280")
+               debug 1, "a_281", 190, 256
+               findproperty QName(PackageNamespace(""),"a_281")
+               pushshort 14639
+               initproperty QName(PackageNamespace(""),"a_281")
+               debug 1, "a_282", 191, 257
+               findproperty QName(PackageNamespace(""),"a_282")
+               pushshort 14640
+               initproperty QName(PackageNamespace(""),"a_282")
+               debug 1, "a_283", 192, 258
+               findproperty QName(PackageNamespace(""),"a_283")
+               pushshort 14641
+               initproperty QName(PackageNamespace(""),"a_283")
+               debug 1, "a_284", 193, 259
+               findproperty QName(PackageNamespace(""),"a_284")
+               pushshort 14643
+               initproperty QName(PackageNamespace(""),"a_284")
+               debug 1, "a_285", 194, 260
+               findproperty QName(PackageNamespace(""),"a_285")
+               pushshort 14644
+               initproperty QName(PackageNamespace(""),"a_285")
+               debug 1, "a_286", 195, 261
+               findproperty QName(PackageNamespace(""),"a_286")
+               pushshort 14645
+               initproperty QName(PackageNamespace(""),"a_286")
+               debug 1, "a_287", 196, 263
+               findproperty QName(PackageNamespace(""),"a_287")
+               pushshort 14664
+               initproperty QName(PackageNamespace(""),"a_287")
+               debug 1, "a_288", 197, 264
+               findproperty QName(PackageNamespace(""),"a_288")
+               pushshort 14665
+               initproperty QName(PackageNamespace(""),"a_288")
+               debug 1, "a_289", 198, 265
+               findproperty QName(PackageNamespace(""),"a_289")
+               pushshort 14672
+               initproperty QName(PackageNamespace(""),"a_289")
+               debug 1, "a_290", 199, 267
+               findproperty QName(PackageNamespace(""),"a_290")
+               pushshort 14673
+               initproperty QName(PackageNamespace(""),"a_290")
+               debug 1, "a_291", 200, 268
+               findproperty QName(PackageNamespace(""),"a_291")
+               pushshort 14674
+               initproperty QName(PackageNamespace(""),"a_291")
+               debug 1, "a_292", 201, 269
+               findproperty QName(PackageNamespace(""),"a_292")
+               pushshort 14675
+               initproperty QName(PackageNamespace(""),"a_292")
+               debug 1, "a_293", 202, 270
+               findproperty QName(PackageNamespace(""),"a_293")
+               pushshort 14676
+               initproperty QName(PackageNamespace(""),"a_293")
+               debug 1, "a_294", 203, 271
+               findproperty QName(PackageNamespace(""),"a_294")
+               pushshort 14677
+               initproperty QName(PackageNamespace(""),"a_294")
+               debug 1, "a_295", 204, 272
+               findproperty QName(PackageNamespace(""),"a_295")
+               pushshort 14678
+               initproperty QName(PackageNamespace(""),"a_295")
+               debug 1, "a_296", 205, 273
+               findproperty QName(PackageNamespace(""),"a_296")
+               pushshort 14679
+               initproperty QName(PackageNamespace(""),"a_296")
+               debug 1, "a_297", 206, 275
+               findproperty QName(PackageNamespace(""),"a_297")
+               pushshort 14689
+               initproperty QName(PackageNamespace(""),"a_297")
+               debug 1, "a_298", 207, 276
+               findproperty QName(PackageNamespace(""),"a_298")
+               pushshort 14689
+               initproperty QName(PackageNamespace(""),"a_298")
+               debug 1, "a_299", 208, 277
+               findproperty QName(PackageNamespace(""),"a_299")
+               pushshort 14690
+               initproperty QName(PackageNamespace(""),"a_299")
+               debug 1, "a_300", 209, 278
+               findproperty QName(PackageNamespace(""),"a_300")
+               pushshort 14691
+               initproperty QName(PackageNamespace(""),"a_300")
+               debug 1, "a_301", 210, 279
+               findproperty QName(PackageNamespace(""),"a_301")
+               pushshort 14692
+               initproperty QName(PackageNamespace(""),"a_301")
+               debug 1, "a_302", 211, 280
+               findproperty QName(PackageNamespace(""),"a_302")
+               pushshort 14693
+               initproperty QName(PackageNamespace(""),"a_302")
+               debug 1, "a_303", 212, 281
+               findproperty QName(PackageNamespace(""),"a_303")
+               pushshort 14694
+               initproperty QName(PackageNamespace(""),"a_303")
+               debug 1, "a_304", 213, 282
+               findproperty QName(PackageNamespace(""),"a_304")
+               pushshort 14695
+               initproperty QName(PackageNamespace(""),"a_304")
+               debug 1, "a_305", 214, 283
+               findproperty QName(PackageNamespace(""),"a_305")
+               pushshort 14696
+               initproperty QName(PackageNamespace(""),"a_305")
+               debug 1, "MSG_HALL_UPDATE_HERO_ITEM_EXTRA_INFO", 215, 284
+               findproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_HERO_ITEM_EXTRA_INFO")
+               pushshort 14699
+               initproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_HERO_ITEM_EXTRA_INFO")
+               debug 1, "MSG_HALL_PET_SWALLOW", 216, 285
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PET_SWALLOW")
+               pushshort 14700
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PET_SWALLOW")
+               debug 1, "MSG_HALL_CHANGE_PET_STATUS", 217, 286
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHANGE_PET_STATUS")
+               pushshort 14701
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHANGE_PET_STATUS")
+               debug 1, "MSG_HALL_GET_PET_ACCOUNT", 218, 288
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_PET_ACCOUNT")
+               pushshort 14702
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_PET_ACCOUNT")
+               debug 1, "MSG_HALL_PET_SLOT", 219, 289
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PET_SLOT")
+               pushshort 14703
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PET_SLOT")
+               debug 1, "MSG_HALL_BUY_CHALLENGE_COUNT", 220, 291
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CHALLENGE_COUNT")
+               pushshort 14746
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CHALLENGE_COUNT")
+               debug 1, "MSG_HALL_NOTIFY_REFRESH_GAME_EXT_INFO", 221, 292
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_REFRESH_GAME_EXT_INFO")
+               pushshort 14747
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_REFRESH_GAME_EXT_INFO")
+               debug 1, "MSG_HALL_PET_EAT_ANOTHER", 222, 294
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PET_EAT_ANOTHER")
+               pushshort 14748
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PET_EAT_ANOTHER")
+               debug 1, "a_306", 223, 298
+               findproperty QName(PackageNamespace(""),"a_306")
+               pushshort 14704
+               initproperty QName(PackageNamespace(""),"a_306")
+               debug 1, "a_307", 224, 299
+               findproperty QName(PackageNamespace(""),"a_307")
+               pushshort 14705
+               initproperty QName(PackageNamespace(""),"a_307")
+               debug 1, "a_308", 225, 300
+               findproperty QName(PackageNamespace(""),"a_308")
+               pushshort 14706
+               initproperty QName(PackageNamespace(""),"a_308")
+               debug 1, "a_309", 226, 301
+               findproperty QName(PackageNamespace(""),"a_309")
+               pushshort 14707
+               initproperty QName(PackageNamespace(""),"a_309")
+               debug 1, "a_310", 227, 302
+               findproperty QName(PackageNamespace(""),"a_310")
+               pushshort 14708
+               initproperty QName(PackageNamespace(""),"a_310")
+               debug 1, "a_311", 228, 303
+               findproperty QName(PackageNamespace(""),"a_311")
+               pushshort 14709
+               initproperty QName(PackageNamespace(""),"a_311")
+               debug 1, "a_312", 229, 304
+               findproperty QName(PackageNamespace(""),"a_312")
+               pushshort 14710
+               initproperty QName(PackageNamespace(""),"a_312")
+               debug 1, "a_313", 230, 305
+               findproperty QName(PackageNamespace(""),"a_313")
+               pushshort 14720
+               initproperty QName(PackageNamespace(""),"a_313")
+               debug 1, "a_314", 231, 306
+               findproperty QName(PackageNamespace(""),"a_314")
+               pushshort 14721
+               initproperty QName(PackageNamespace(""),"a_314")
+               debug 1, "a_315", 232, 307
+               findproperty QName(PackageNamespace(""),"a_315")
+               pushshort 14722
+               initproperty QName(PackageNamespace(""),"a_315")
+               debug 1, "a_316", 233, 308
+               findproperty QName(PackageNamespace(""),"a_316")
+               pushshort 14723
+               initproperty QName(PackageNamespace(""),"a_316")
+               debug 1, "a_317", 234, 309
+               findproperty QName(PackageNamespace(""),"a_317")
+               pushshort 14724
+               initproperty QName(PackageNamespace(""),"a_317")
+               debug 1, "a_318", 235, 311
+               findproperty QName(PackageNamespace(""),"a_318")
+               pushshort 14738
+               initproperty QName(PackageNamespace(""),"a_318")
+               debug 1, "a_319", 236, 312
+               findproperty QName(PackageNamespace(""),"a_319")
+               pushshort 14739
+               initproperty QName(PackageNamespace(""),"a_319")
+               debug 1, "a_320", 237, 313
+               findproperty QName(PackageNamespace(""),"a_320")
+               pushshort 14740
+               initproperty QName(PackageNamespace(""),"a_320")
+               debug 1, "a_321", 238, 314
+               findproperty QName(PackageNamespace(""),"a_321")
+               pushshort 14741
+               initproperty QName(PackageNamespace(""),"a_321")
+               debug 1, "a_322", 239, 316
+               findproperty QName(PackageNamespace(""),"a_322")
+               pushshort 14744
+               initproperty QName(PackageNamespace(""),"a_322")
+               debug 1, "a_323", 240, 320
+               findproperty QName(PackageNamespace(""),"a_323")
+               pushshort 14849
+               initproperty QName(PackageNamespace(""),"a_323")
+               debug 1, "a_324", 241, 321
+               findproperty QName(PackageNamespace(""),"a_324")
+               pushshort 14850
+               initproperty QName(PackageNamespace(""),"a_324")
+               debug 1, "a_325", 242, 322
+               findproperty QName(PackageNamespace(""),"a_325")
+               pushshort 14851
+               initproperty QName(PackageNamespace(""),"a_325")
+               debug 1, "a_326", 243, 323
+               findproperty QName(PackageNamespace(""),"a_326")
+               pushshort 14866
+               initproperty QName(PackageNamespace(""),"a_326")
+               debug 1, "MSG_HALL_ITEM_GEM_UNLOAD", 244, 324
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_UNLOAD")
+               pushshort 14872
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_UNLOAD")
+               debug 1, "MSG_HALL_SLOT_ITEM", 245, 325
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SLOT_ITEM")
+               pushshort 14870
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SLOT_ITEM")
+               debug 1, "MSG_HALL_ITEM_GEM_IN_LAY", 246, 326
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_IN_LAY")
+               pushshort 14871
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_IN_LAY")
+               debug 1, "MSG_HALL_ITEM_GEM_DECOMPOSE", 247, 327
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_DECOMPOSE")
+               pushshort 14874
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_DECOMPOSE")
+               debug 1, "MSG_HALL_ITEM_GEM_UPGRADE", 248, 328
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_UPGRADE")
+               pushshort 14873
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_GEM_UPGRADE")
+               debug 1, "MSG_HALL_CARD_TRANSLATE", 249, 329
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CARD_TRANSLATE")
+               pushshort 14875
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CARD_TRANSLATE")
+               debug 1, "MSG_HALL_CARD_FUSION", 250, 332
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CARD_FUSION")
+               pushshort 14876
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CARD_FUSION")
+               debug 1, "MSG_HALL_FUSIONCARD_UPGRADE", 251, 333
+               findproperty QName(PackageNamespace(""),"MSG_HALL_FUSIONCARD_UPGRADE")
+               pushshort 14877
+               initproperty QName(PackageNamespace(""),"MSG_HALL_FUSIONCARD_UPGRADE")
+               debug 1, "a_327", 252, 335
+               findproperty QName(PackageNamespace(""),"a_327")
+               pushshort 14880
+               initproperty QName(PackageNamespace(""),"a_327")
+               debug 1, "a_328", 253, 336
+               findproperty QName(PackageNamespace(""),"a_328")
+               pushshort 14881
+               initproperty QName(PackageNamespace(""),"a_328")
+               debug 1, "a_329", 254, 337
+               findproperty QName(PackageNamespace(""),"a_329")
+               pushshort 14882
+               initproperty QName(PackageNamespace(""),"a_329")
+               debug 1, "a_330", 255, 339
+               findproperty QName(PackageNamespace(""),"a_330")
+               pushshort 128
+               initproperty QName(PackageNamespace(""),"a_330")
+               debug 1, "a_331", 0, 340
+               findproperty QName(PackageNamespace(""),"a_331")
+               pushbyte 6
+               pushbyte 2
+               multiply
+               pushbyte 3
+               pushbyte 4
+               multiply
+               add
+               initproperty QName(PackageNamespace(""),"a_331")
+               debug 1, "a_332", 1, 342
+               findproperty QName(PackageNamespace(""),"a_332")
+               pushshort 12809
+               initproperty QName(PackageNamespace(""),"a_332")
+               debug 1, "a_333", 2, 343
+               findproperty QName(PackageNamespace(""),"a_333")
+               pushshort 12809
+               initproperty QName(PackageNamespace(""),"a_333")
+               debug 1, "a_334", 3, 345
+               findproperty QName(PackageNamespace(""),"a_334")
+               pushshort 14864
+               initproperty QName(PackageNamespace(""),"a_334")
+               debug 1, "a_335", 4, 346
+               findproperty QName(PackageNamespace(""),"a_335")
+               pushshort 14865
+               initproperty QName(PackageNamespace(""),"a_335")
+               debug 1, "a_336", 5, 348
+               findproperty QName(PackageNamespace(""),"a_336")
+               pushshort 14711
+               initproperty QName(PackageNamespace(""),"a_336")
+               debug 1, "a_337", 6, 349
+               findproperty QName(PackageNamespace(""),"a_337")
+               pushshort 14712
+               initproperty QName(PackageNamespace(""),"a_337")
+               debug 1, "MSG_HALL_BUY_CLIMB_TOWER_COUNT", 7, 350
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CLIMB_TOWER_COUNT")
+               pushshort 14925
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CLIMB_TOWER_COUNT")
+               debug 1, "MSG_HALL_GET_CLIMB_TOWER_RANK", 8, 351
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CLIMB_TOWER_RANK")
+               pushshort 14926
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CLIMB_TOWER_RANK")
+               debug 1, "MSG_HALL_COOKERY_COMPOSE", 9, 354
+               findproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_COMPOSE")
+               pushshort 14933
+               initproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_COMPOSE")
+               debug 1, "MSG_HALL_COOKERY_INFO_GET", 10, 355
+               findproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_INFO_GET")
+               pushshort 14934
+               initproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_INFO_GET")
+               debug 1, "MSG_HALL_COOKERY_STATUS_SET", 11, 356
+               findproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_STATUS_SET")
+               pushshort 14935
+               initproperty QName(PackageNamespace(""),"MSG_HALL_COOKERY_STATUS_SET")
+               debug 1, "MSG_HALL_CHOUJIANG", 12, 359
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHOUJIANG")
+               pushshort 14944
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHOUJIANG")
+               debug 1, "MSG_HALL_GET_CHOUJIANG_INFO", 13, 360
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHOUJIANG_INFO")
+               pushshort 14945
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHOUJIANG_INFO")
+               debug 1, "MSG_HALL_GET_ZHENCANG", 14, 361
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_ZHENCANG")
+               pushshort 14946
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_ZHENCANG")
+               debug 1, "MSG_HALL_EXCHANGE", 15, 363
+               findproperty QName(PackageNamespace(""),"MSG_HALL_EXCHANGE")
+               pushshort 14947
+               initproperty QName(PackageNamespace(""),"MSG_HALL_EXCHANGE")
+               debug 1, "MSG_HALL_GET_EXCHANGE_INFO", 16, 364
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_EXCHANGE_INFO")
+               pushshort 14948
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_EXCHANGE_INFO")
+               debug 1, "MSG_HALL_DECOMPOSE", 17, 365
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DECOMPOSE")
+               pushshort 14949
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DECOMPOSE")
+               debug 1, "MSG_HALL_FORTUNE", 18, 366
+               findproperty QName(PackageNamespace(""),"MSG_HALL_FORTUNE")
+               pushshort 14950
+               initproperty QName(PackageNamespace(""),"MSG_HALL_FORTUNE")
+               debug 1, "MSG_HALL_STARPIECESHOP", 19, 368
+               findproperty QName(PackageNamespace(""),"MSG_HALL_STARPIECESHOP")
+               pushshort 14951
+               initproperty QName(PackageNamespace(""),"MSG_HALL_STARPIECESHOP")
+               debug 1, "MSG_HALL_SCORESHOP", 20, 370
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SCORESHOP")
+               pushshort 14952
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SCORESHOP")
+               debug 1, "MSG_HALL_SCORESHOP_INFO", 21, 371
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SCORESHOP_INFO")
+               pushshort 14953
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SCORESHOP_INFO")
+               debug 1, "MSG_HALL_GET_CHARGE_ACTIVITY_INFO", 22, 373
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARGE_ACTIVITY_INFO")
+               pushshort 15008
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARGE_ACTIVITY_INFO")
+               debug 1, "MSG_HALL_GET_CUMULATIVE_RECHARGE_AWARD", 23, 374
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CUMULATIVE_RECHARGE_AWARD")
+               pushshort 15009
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CUMULATIVE_RECHARGE_AWARD")
+               debug 1, "MSG_HALL_GET_FIRST_RECHARGE_AWARD", 24, 375
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_FIRST_RECHARGE_AWARD")
+               pushshort 15010
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_FIRST_RECHARGE_AWARD")
+               debug 1, "MSG_HALL_GET_HOLIDAY_ACCUMULATE_AWARD", 25, 376
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_ACCUMULATE_AWARD")
+               pushshort 15011
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_ACCUMULATE_AWARD")
+               debug 1, "MSG_HALL_GET_HOLIDAY_SINGLE_AWARD", 26, 377
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_SINGLE_AWARD")
+               pushshort 15012
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_SINGLE_AWARD")
+               debug 1, "MSG_HALL_GET_HOLIDAY_EXCHANGE_INFO", 27, 378
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_EXCHANGE_INFO")
+               pushshort 15376
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_HOLIDAY_EXCHANGE_INFO")
+               debug 1, "MSG_HALL_REQUEST_HOLIDAY_EXCHANGE", 28, 379
+               findproperty QName(PackageNamespace(""),"MSG_HALL_REQUEST_HOLIDAY_EXCHANGE")
+               pushshort 15377
+               initproperty QName(PackageNamespace(""),"MSG_HALL_REQUEST_HOLIDAY_EXCHANGE")
+               debug 1, "MSG_HALL_GET_PLAYER_MARRIAGE_INFO", 29, 381
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_PLAYER_MARRIAGE_INFO")
+               pushshort 15017
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_PLAYER_MARRIAGE_INFO")
+               debug 1, "MSG_HALL_MARRIAGE_CERTIFICATE_OPERATION", 30, 382
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MARRIAGE_CERTIFICATE_OPERATION")
+               pushshort 15024
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MARRIAGE_CERTIFICATE_OPERATION")
+               debug 1, "MSG_HALL_GET_WEDDING_LIST", 31, 383
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_LIST")
+               pushshort 15026
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_LIST")
+               debug 1, "MSG_HALL_RESERVE_WEDDING", 32, 384
+               findproperty QName(PackageNamespace(""),"MSG_HALL_RESERVE_WEDDING")
+               pushshort 15027
+               initproperty QName(PackageNamespace(""),"MSG_HALL_RESERVE_WEDDING")
+               debug 1, "MSG_HALL_CHANGE_WEDDING_DECLARATION", 33, 385
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHANGE_WEDDING_DECLARATION")
+               pushshort 15033
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHANGE_WEDDING_DECLARATION")
+               debug 1, "MSG_HALL_GET_ONGOING_WEDDING_COUNT", 34, 386
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_ONGOING_WEDDING_COUNT")
+               pushshort 15034
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_ONGOING_WEDDING_COUNT")
+               debug 1, "MSG_HALL_WEDDING_ROOM_OPERATION", 35, 388
+               findproperty QName(PackageNamespace(""),"MSG_HALL_WEDDING_ROOM_OPERATION")
+               pushshort 15028
+               initproperty QName(PackageNamespace(""),"MSG_HALL_WEDDING_ROOM_OPERATION")
+               debug 1, "MSG_HALL_WEDDING_GET_IN_ROOM", 36, 389
+               findproperty QName(PackageNamespace(""),"MSG_HALL_WEDDING_GET_IN_ROOM")
+               pushshort 15029
+               initproperty QName(PackageNamespace(""),"MSG_HALL_WEDDING_GET_IN_ROOM")
+               debug 1, "MSG_HALL_GET_IN_WEDDING_PLAYER_INFO", 37, 390
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_IN_WEDDING_PLAYER_INFO")
+               pushshort 15030
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_IN_WEDDING_PLAYER_INFO")
+               debug 1, "MSG_HALL_GET_WEDDING_WELFARE", 38, 391
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_WELFARE")
+               pushshort 15031
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_WELFARE")
+               debug 1, "MSG_LOGIC_GET_CLIMB_TOWER_RANK", 39, 393
+               findproperty QName(PackageNamespace(""),"MSG_LOGIC_GET_CLIMB_TOWER_RANK")
+               pushshort 8467
+               initproperty QName(PackageNamespace(""),"MSG_LOGIC_GET_CLIMB_TOWER_RANK")
+               debug 1, "MSG_HALL_GET_GUIDE_DATA", 40, 395
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_GUIDE_DATA")
+               pushshort 14928
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_GUIDE_DATA")
+               debug 1, "MSG_HALL_UPDATE_GUIDE_DATA", 41, 396
+               findproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_GUIDE_DATA")
+               pushshort 14929
+               initproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_GUIDE_DATA")
+               debug 1, "MSG_HALL_GET_VOW_RANK_INFO_LIST", 42, 398
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_VOW_RANK_INFO_LIST")
+               pushshort 14930
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_VOW_RANK_INFO_LIST")
+               debug 1, "MSG_HALL_GET_WEDDING_CHARM_INFO", 43, 401
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_CHARM_INFO")
+               pushshort 15013
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_WEDDING_CHARM_INFO")
+               debug 1, "MSG_HALL_BUY_WEDDING_CHARM_SHOP", 44, 402
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_WEDDING_CHARM_SHOP")
+               pushshort 15014
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_WEDDING_CHARM_SHOP")
+               debug 1, "MSG_HALL_NOTIFY_CHARMCOIN_CHANGE", 45, 403
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CHARMCOIN_CHANGE")
+               pushshort 15015
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CHARMCOIN_CHANGE")
+               debug 1, "MSG_HALL_GET_CHARM_RANK", 46, 405
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARM_RANK")
+               pushshort 15040
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARM_RANK")
+               debug 1, "MSG_HALL_GET_CHARM_INFO", 47, 406
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARM_INFO")
+               pushshort 15041
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CHARM_INFO")
+               debug 1, "MSG_HALL_GET_SEND_FLOWERS_RECORD", 48, 407
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_SEND_FLOWERS_RECORD")
+               pushshort 15042
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_SEND_FLOWERS_RECORD")
+               debug 1, "MSG_HALL_SEND_FLOWERS", 49, 408
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SEND_FLOWERS")
+               pushshort 15043
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SEND_FLOWERS")
+               debug 1, "MSG_HALL_CHARM_AWARD", 50, 409
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHARM_AWARD")
+               pushshort 15044
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHARM_AWARD")
+               debug 1, "MSG_HALL_CHRAM_UPDATE_DECLARATION", 51, 410
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHRAM_UPDATE_DECLARATION")
+               pushshort 15045
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHRAM_UPDATE_DECLARATION")
+               debug 1, "MSG_HALL_GET_SEND_FLOWERS_INFO", 52, 411
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_SEND_FLOWERS_INFO")
+               pushshort 15046
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_SEND_FLOWERS_INFO")
+               debug 1, "MSG_HALL_CRYSTONE_COMPOSE", 53, 414
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_COMPOSE")
+               pushshort 15056
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_COMPOSE")
+               debug 1, "MSG_HALL_CRYSTONE_DECOMPOSE", 54, 415
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_DECOMPOSE")
+               pushshort 15057
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_DECOMPOSE")
+               debug 1, "MSG_HALL_CRYSTONE_UPGRADE", 55, 416
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_UPGRADE")
+               pushshort 15058
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_UPGRADE")
+               debug 1, "MSG_HALL_CRYSTONE_EQUIP", 56, 417
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_EQUIP")
+               pushshort 15059
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_EQUIP")
+               debug 1, "MSG_HALL_GET_MATCH_RANK", 57, 421
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_MATCH_RANK")
+               pushshort 15104
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_MATCH_RANK")
+               debug 1, "MSG_HALL_GET_MATCH_AWARD", 58, 422
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_MATCH_AWARD")
+               pushshort 15105
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_MATCH_AWARD")
+               debug 1, "MSG_HALL_GET_ISLAND_RANK", 59, 424
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_ISLAND_RANK")
+               pushshort 15106
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_ISLAND_RANK")
+               debug 1, "MSG_HALL_GET_ISLAND_AWARD", 60, 425
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_ISLAND_AWARD")
+               pushshort 15107
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_ISLAND_AWARD")
+               debug 1, "MSG_HALL_DISTRIBUTE_ISLAND_AWARD", 61, 426
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DISTRIBUTE_ISLAND_AWARD")
+               pushshort 15108
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DISTRIBUTE_ISLAND_AWARD")
+               debug 1, "MSG_HALL_MAIL_LIST", 62, 430
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MAIL_LIST")
+               pushshort 14976
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MAIL_LIST")
+               debug 1, "MSG_HALL_SEND_MAIL", 63, 431
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SEND_MAIL")
+               pushshort 14977
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SEND_MAIL")
+               debug 1, "MSG_HALL_DELETE_MAIL", 64, 432
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DELETE_MAIL")
+               pushshort 14978
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DELETE_MAIL")
+               debug 1, "MSG_HALL_READ_MAIL", 65, 433
+               findproperty QName(PackageNamespace(""),"MSG_HALL_READ_MAIL")
+               pushshort 14979
+               initproperty QName(PackageNamespace(""),"MSG_HALL_READ_MAIL")
+               debug 1, "MSG_HALL_FETCH_MAIL_ITEM", 66, 434
+               findproperty QName(PackageNamespace(""),"MSG_HALL_FETCH_MAIL_ITEM")
+               pushshort 14980
+               initproperty QName(PackageNamespace(""),"MSG_HALL_FETCH_MAIL_ITEM")
+               debug 1, "MSG_HALL_UPDATE_MAIL_LIST", 67, 435
+               findproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_MAIL_LIST")
+               pushshort 14981
+               initproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_MAIL_LIST")
+               debug 1, "MSG_HALL_NOTIFY_NEW_MAIL", 68, 436
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_NEW_MAIL")
+               pushshort 14982
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_NEW_MAIL")
+               debug 1, "MSG_HALL_GET_TRADE_LIST", 69, 440
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_TRADE_LIST")
+               pushshort 14993
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_TRADE_LIST")
+               debug 1, "MSG_HALL_GET_PLAYER_TRADE_ITEM", 70, 441
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_PLAYER_TRADE_ITEM")
+               pushshort 14994
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_PLAYER_TRADE_ITEM")
+               debug 1, "MSG_HALL_INSERT_TRADE_ITEM", 71, 442
+               findproperty QName(PackageNamespace(""),"MSG_HALL_INSERT_TRADE_ITEM")
+               pushshort 14995
+               initproperty QName(PackageNamespace(""),"MSG_HALL_INSERT_TRADE_ITEM")
+               debug 1, "MSG_HALL_CANCEL_TRADE", 72, 443
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CANCEL_TRADE")
+               pushshort 14996
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CANCEL_TRADE")
+               debug 1, "MSG_HALL_BUY_TRADE_ITEM", 73, 444
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_TRADE_ITEM")
+               pushshort 14997
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_TRADE_ITEM")
+               debug 1, "MSG_HALL_SEARCH_TRADE", 74, 445
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SEARCH_TRADE")
+               pushshort 14998
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SEARCH_TRADE")
+               debug 1, "MSG_HALL_GET_NEW_TASK_LIST", 75, 448
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_NEW_TASK_LIST")
+               pushshort 15360
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_NEW_TASK_LIST")
+               debug 1, "MSG_HALL_COMPLETE_NEW_TASK", 76, 449
+               findproperty QName(PackageNamespace(""),"MSG_HALL_COMPLETE_NEW_TASK")
+               pushshort 15361
+               initproperty QName(PackageNamespace(""),"MSG_HALL_COMPLETE_NEW_TASK")
+               debug 1, "MSG_HALL_CHECK_NEW_TASK", 77, 450
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_NEW_TASK")
+               pushshort 15362
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_NEW_TASK")
+               debug 1, "MSG_HALL_PUBLISH_CONSORTIA_MASTER_TASK", 78, 451
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PUBLISH_CONSORTIA_MASTER_TASK")
+               pushshort 15363
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PUBLISH_CONSORTIA_MASTER_TASK")
+               debug 1, "MSG_NOTIFY_NEW_TASK_COMPLETE", 79, 452
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_NEW_TASK_COMPLETE")
+               pushshort 15364
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_NEW_TASK_COMPLETE")
+               debug 1, "MSG_HALL_GET_SWEET_INFO", 80, 455
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_SWEET_INFO")
+               pushshort 15365
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_SWEET_INFO")
+               debug 1, "MSG_HALL_GET_SWEET_AWARD", 81, 456
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_SWEET_AWARD")
+               pushshort 15366
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_SWEET_AWARD")
+               debug 1, "MSG_HALL_GET_LOVE_BUFF_INFO", 82, 457
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_LOVE_BUFF_INFO")
+               pushshort 15367
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_LOVE_BUFF_INFO")
+               debug 1, "MSG_HALL_REQUEST_REPORT_PLAYER", 83, 460
+               findproperty QName(PackageNamespace(""),"MSG_HALL_REQUEST_REPORT_PLAYER")
+               pushshort 15617
+               initproperty QName(PackageNamespace(""),"MSG_HALL_REQUEST_REPORT_PLAYER")
+               debug 1, "MSG_HALL_GET_MONTH_CARD_INFO", 84, 463
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_MONTH_CARD_INFO")
+               pushshort 15381
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_MONTH_CARD_INFO")
+               debug 1, "MSG_HALL_BUY_MONTH_CARD", 85, 464
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_MONTH_CARD")
+               pushshort 15382
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_MONTH_CARD")
+               debug 1, "MSG_HALL_GET_MONTH_CARD_AWARD", 86, 465
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_MONTH_CARD_AWARD")
+               pushshort 15383
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_MONTH_CARD_AWARD")
+               debug 1, "MSG_HALL_GET_FOOD_CONTEST_LIST", 87, 468
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_FOOD_CONTEST_LIST")
+               pushshort 15392
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_FOOD_CONTEST_LIST")
+               debug 1, "MSG_HALL_NOTIFY_FOOD_CONTEST_TASK_COMPLETE", 88, 469
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_FOOD_CONTEST_TASK_COMPLETE")
+               pushshort 15393
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_FOOD_CONTEST_TASK_COMPLETE")
+               debug 1, "MSG_HALL_GET_FOOD_CONTEST_AWARD", 89, 470
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_FOOD_CONTEST_AWARD")
+               pushshort 15394
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_FOOD_CONTEST_AWARD")
+               debug 1, "MSG_HALL_ACTIVATING_COOKER_GOD_AWARD", 90, 471
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ACTIVATING_COOKER_GOD_AWARD")
+               pushshort 15395
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ACTIVATING_COOKER_GOD_AWARD")
+               debug 1, "MSG_HALL_BUY_FOOD_EXP", 91, 472
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_FOOD_EXP")
+               pushshort 15396
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_FOOD_EXP")
+               debug 1, "MSG_HALL_GET_CAMP_LIST", 92, 475
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_LIST")
+               pushshort 15397
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_LIST")
+               debug 1, "MSG_HALL_NOTIFY_CAMP_TASK_COMPLETE", 93, 476
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CAMP_TASK_COMPLETE")
+               pushshort 15398
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_CAMP_TASK_COMPLETE")
+               debug 1, "MSG_HALL_GET_CAMP_AWARD", 94, 477
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_AWARD")
+               pushshort 15399
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_AWARD")
+               debug 1, "MSG_HALL_GET_POPULARITY_INFO", 95, 480
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_POPULARITY_INFO")
+               pushshort 15408
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_POPULARITY_INFO")
+               debug 1, "MSG_HALL_NOTIFY_POPULARITY_TASK_COMPLETE", 96, 481
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_POPULARITY_TASK_COMPLETE")
+               pushshort 15409
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NOTIFY_POPULARITY_TASK_COMPLETE")
+               debug 1, "MSG_HALL_AWARD_POPULARITY", 97, 482
+               findproperty QName(PackageNamespace(""),"MSG_HALL_AWARD_POPULARITY")
+               pushshort 15410
+               initproperty QName(PackageNamespace(""),"MSG_HALL_AWARD_POPULARITY")
+               debug 1, "MSG_HALL_MONTHCARD_SHOP_REFRESH", 98, 484
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_SHOP_REFRESH")
+               pushshort 15712
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_SHOP_REFRESH")
+               debug 1, "MSG_HALL_MONTHCARD_SHOP_BUY", 99, 485
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_SHOP_BUY")
+               pushshort 15713
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_SHOP_BUY")
+               debug 1, "MSG_HALL_MONTHCARD_INFO", 100, 486
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_INFO")
+               pushshort 15714
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONTHCARD_INFO")
+               debug 1, "MSG_HALL_NEW_YEAR_LOGIN_GIFT_INFO", 101, 489
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LOGIN_GIFT_INFO")
+               pushshort 15618
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LOGIN_GIFT_INFO")
+               debug 1, "MSG_HALL_GET_NEW_YEAR_LOGIN_GIFT", 102, 490
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_NEW_YEAR_LOGIN_GIFT")
+               pushshort 15619
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_NEW_YEAR_LOGIN_GIFT")
+               debug 1, "MSG_HALL_GET_TURNTABLE_INFO", 103, 491
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_TURNTABLE_INFO")
+               pushshort 15620
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_TURNTABLE_INFO")
+               debug 1, "MSG_HALL_PLAY_TURNTABLE", 104, 492
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PLAY_TURNTABLE")
+               pushshort 15621
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PLAY_TURNTABLE")
+               debug 1, "MSG_HALL_NEW_YEAR_LUCKY_MONEY_INFO", 105, 493
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LUCKY_MONEY_INFO")
+               pushshort 15632
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LUCKY_MONEY_INFO")
+               debug 1, "MSG_HALL_NEW_YEAR_LUCKY_MONEY_GET", 106, 494
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LUCKY_MONEY_GET")
+               pushshort 15633
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NEW_YEAR_LUCKY_MONEY_GET")
+               debug 1, "MSG_HALL_GARDEN_INFO", 107, 497
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_INFO")
+               pushshort 15637
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_INFO")
+               debug 1, "MSG_HALL_GARDEN_LIST", 108, 498
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_LIST")
+               pushshort 15638
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_LIST")
+               debug 1, "MSG_HALL_GARDEN_SOW", 109, 499
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_SOW")
+               pushshort 15639
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_SOW")
+               debug 1, "MSG_HALL_GARDEN_OPT_INFO", 110, 500
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_OPT_INFO")
+               pushshort 15640
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_OPT_INFO")
+               debug 1, "MSG_HALL_GARDEN_WATER", 111, 501
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_WATER")
+               pushshort 15641
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_WATER")
+               debug 1, "MSG_HALL_GARDEN_MANURE", 112, 502
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_MANURE")
+               pushshort 15642
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_MANURE")
+               debug 1, "MSG_HALL_GARDEN_PICK", 113, 503
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_PICK")
+               pushshort 15643
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GARDEN_PICK")
+               debug 1, "MSG_HALL_SWEET_ISLAND_INFO", 114, 506
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SWEET_ISLAND_INFO")
+               pushshort 15073
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SWEET_ISLAND_INFO")
+               debug 1, "MSG_HALL_SWEET_ISLAND_OPEN", 115, 507
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SWEET_ISLAND_OPEN")
+               pushshort 15074
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SWEET_ISLAND_OPEN")
+               debug 1, "MSG_HALL_GET_ANIMALS_COIN", 116, 510
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_ANIMALS_COIN")
+               pushshort 15648
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_ANIMALS_COIN")
+               debug 1, "MSG_HALL_ANIMALS_CARD_DECOMPOSE", 117, 511
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_DECOMPOSE")
+               pushshort 15649
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_DECOMPOSE")
+               debug 1, "MSG_HALL_ANIMALS_CARD_EXCHANGE", 118, 512
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_EXCHANGE")
+               pushshort 15650
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_EXCHANGE")
+               debug 1, "MSG_HALL_ANIMALS_CARD_CALL_INFO", 119, 513
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_CALL_INFO")
+               pushshort 15651
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CARD_CALL_INFO")
+               debug 1, "MSG_HALL_ANIMALS_CALL", 120, 514
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CALL")
+               pushshort 15652
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ANIMALS_CALL")
+               debug 1, "MSG_HALL_LIMIT_SHOP", 121, 517
+               findproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_SHOP")
+               pushshort 15664
+               initproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_SHOP")
+               debug 1, "MSG_HALL_LIMIT_SHOP_COUNT", 122, 518
+               findproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_SHOP_COUNT")
+               pushshort 15665
+               initproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_SHOP_COUNT")
+               debug 1, "MSG_HALL_GET_CAMP_SHOP", 123, 520
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_SHOP")
+               pushshort 15400
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_SHOP")
+               debug 1, "MSG_HALL_LIMIT_CAMP_SHOP", 124, 521
+               findproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_CAMP_SHOP")
+               pushshort 15401
+               initproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_CAMP_SHOP")
+               debug 1, "MSG_HALL_GET_CAMP_RECORD", 125, 523
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_RECORD")
+               pushshort 15411
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_CAMP_RECORD")
+               debug 1, "MSG_HALL_UPDATE_DIAR_SATE", 126, 524
+               findproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_DIAR_SATE")
+               pushshort 15412
+               initproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_DIAR_SATE")
+               debug 1, "MSG_LOGIC_SEND_CROSS_CHAT_MSG", 127, 526
+               findproperty QName(PackageNamespace(""),"MSG_LOGIC_SEND_CROSS_CHAT_MSG")
+               pushshort 9728
+               initproperty QName(PackageNamespace(""),"MSG_LOGIC_SEND_CROSS_CHAT_MSG")
+               debug 1, "MSG_LOGIC_NOTIFY_CROSS_CHAT_MSG", 128, 527
+               findproperty QName(PackageNamespace(""),"MSG_LOGIC_NOTIFY_CROSS_CHAT_MSG")
+               pushshort 9729
+               initproperty QName(PackageNamespace(""),"MSG_LOGIC_NOTIFY_CROSS_CHAT_MSG")
+               debug 1, "MSG_CROSS_SITDOWN", 129, 528
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_SITDOWN")
+               pushshort 9730
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_SITDOWN")
+               debug 1, "MSG_CROSS_ROOM_LIST", 130, 529
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_ROOM_LIST")
+               pushshort 9731
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_ROOM_LIST")
+               debug 1, "MSG_CROSS_MAP_INFO", 131, 530
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_MAP_INFO")
+               pushshort 9732
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_MAP_INFO")
+               debug 1, "MSG_NOTIFY_CROSS_TABLE_STATUS_CHANGE", 132, 531
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_CROSS_TABLE_STATUS_CHANGE")
+               pushshort 9733
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_CROSS_TABLE_STATUS_CHANGE")
+               debug 1, "MSG_CROSS_NOTIFY_TABLE_CREATE", 133, 532
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_NOTIFY_TABLE_CREATE")
+               pushshort 9734
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_NOTIFY_TABLE_CREATE")
+               debug 1, "MSG_CROSS_DROP_COUNT", 134, 533
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_DROP_COUNT")
+               pushshort 9735
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_DROP_COUNT")
+               debug 1, "MSG_HALL_BUY_CROSS_DROP_COUNT", 135, 534
+               findproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CROSS_DROP_COUNT")
+               pushshort 15715
+               initproperty QName(PackageNamespace(""),"MSG_HALL_BUY_CROSS_DROP_COUNT")
+               debug 1, "MSG_NOTIFY_CROSS_PLAYER_GROUP_INFO", 136, 535
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_CROSS_PLAYER_GROUP_INFO")
+               pushshort 9736
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_CROSS_PLAYER_GROUP_INFO")
+               debug 1, "MSG_CROSS_GET_TABLE_INFO", 137, 536
+               findproperty QName(PackageNamespace(""),"MSG_CROSS_GET_TABLE_INFO")
+               pushshort 9756
+               initproperty QName(PackageNamespace(""),"MSG_CROSS_GET_TABLE_INFO")
+               debug 1, "MSG_DIY_CREATE_MAP", 138, 539
+               findproperty QName(PackageNamespace(""),"MSG_DIY_CREATE_MAP")
+               pushshort 9744
+               initproperty QName(PackageNamespace(""),"MSG_DIY_CREATE_MAP")
+               debug 1, "MSG_DIY_GET_SELF_MAP", 139, 540
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_SELF_MAP")
+               pushshort 9747
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_SELF_MAP")
+               debug 1, "MSG_DIY_STORE_INFO", 140, 541
+               findproperty QName(PackageNamespace(""),"MSG_DIY_STORE_INFO")
+               pushshort 9748
+               initproperty QName(PackageNamespace(""),"MSG_DIY_STORE_INFO")
+               debug 1, "MSG_DIY_GET_MAP_INFO", 141, 542
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_INFO")
+               pushshort 9749
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_INFO")
+               debug 1, "MSG_DIY_PUBLISH_MAP", 142, 543
+               findproperty QName(PackageNamespace(""),"MSG_DIY_PUBLISH_MAP")
+               pushshort 9751
+               initproperty QName(PackageNamespace(""),"MSG_DIY_PUBLISH_MAP")
+               debug 1, "MSG_DIY_UPDATE_MAP_INFO", 143, 544
+               findproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_MAP_INFO")
+               pushshort 9745
+               initproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_MAP_INFO")
+               debug 1, "MSG_DIY_UPDATE_MAP_WAVE", 144, 545
+               findproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_MAP_WAVE")
+               pushshort 9746
+               initproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_MAP_WAVE")
+               debug 1, "MSG_DIY_GET_MAP_WAVE", 145, 546
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_WAVE")
+               pushshort 9752
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_WAVE")
+               debug 1, "MSG_DIY_DEL_MAP", 146, 547
+               findproperty QName(PackageNamespace(""),"MSG_DIY_DEL_MAP")
+               pushshort 9753
+               initproperty QName(PackageNamespace(""),"MSG_DIY_DEL_MAP")
+               debug 1, "MSG_DIY_GET_MAP_LIST", 147, 548
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_LIST")
+               pushshort 9754
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_MAP_LIST")
+               debug 1, "MSG_DIY_GET_PLAYER_MAP_DATA", 148, 549
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_PLAYER_MAP_DATA")
+               pushshort 9755
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_PLAYER_MAP_DATA")
+               debug 1, "MSG_NOTIFY_DIY_MAP_INFO", 149, 550
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_INFO")
+               pushshort 9757
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_INFO")
+               debug 1, "MSG_NOTIFY_DIY_MAP_MOUSE", 150, 551
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_MOUSE")
+               pushshort 9758
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_MOUSE")
+               debug 1, "MSG_DIY_APPRAISE_MAP", 151, 552
+               findproperty QName(PackageNamespace(""),"MSG_DIY_APPRAISE_MAP")
+               pushshort 9759
+               initproperty QName(PackageNamespace(""),"MSG_DIY_APPRAISE_MAP")
+               debug 1, "MSG_DIY_RECEIVE_DIYB", 152, 553
+               findproperty QName(PackageNamespace(""),"MSG_DIY_RECEIVE_DIYB")
+               pushshort 9760
+               initproperty QName(PackageNamespace(""),"MSG_DIY_RECEIVE_DIYB")
+               debug 1, "MSG_DIY_GET_TERRAIN", 153, 555
+               findproperty QName(PackageNamespace(""),"MSG_DIY_GET_TERRAIN")
+               pushshort 9761
+               initproperty QName(PackageNamespace(""),"MSG_DIY_GET_TERRAIN")
+               debug 1, "MSG_DIY_UPDATE_TERRAIN", 154, 556
+               findproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_TERRAIN")
+               pushshort 9762
+               initproperty QName(PackageNamespace(""),"MSG_DIY_UPDATE_TERRAIN")
+               debug 1, "MSG_NOTIFY_DIY_MAP_TERRAIN", 155, 557
+               findproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_TERRAIN")
+               pushshort 9763
+               initproperty QName(PackageNamespace(""),"MSG_NOTIFY_DIY_MAP_TERRAIN")
+               debug 1, "MSG_HALL_LIMIT_REWARD_INFO", 156, 560
+               findproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_REWARD_INFO")
+               pushshort 15685
+               initproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_REWARD_INFO")
+               debug 1, "MSG_HALL_LIMIT_REWARD", 157, 561
+               findproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_REWARD")
+               pushshort 15686
+               initproperty QName(PackageNamespace(""),"MSG_HALL_LIMIT_REWARD")
+               debug 1, "MSG_HALL_CONSBEN_INFO", 158, 565
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_INFO")
+               pushshort 15669
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_INFO")
+               debug 1, "MSG_HALL_DONATE_CONSBEN_PIECE", 159, 566
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DONATE_CONSBEN_PIECE")
+               pushshort 15670
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DONATE_CONSBEN_PIECE")
+               debug 1, "MSG_HALL_CONSBEN_PLAYER_RANK", 160, 567
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_PLAYER_RANK")
+               pushshort 15671
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_PLAYER_RANK")
+               debug 1, "MSG_HALL_CONSBEN_CONS_RANK", 161, 568
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_CONS_RANK")
+               pushshort 15672
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CONSBEN_CONS_RANK")
+               debug 1, "MSG_HALL_TAROT_INFO", 162, 571
+               findproperty QName(PackageNamespace(""),"MSG_HALL_TAROT_INFO")
+               pushshort 15680
+               initproperty QName(PackageNamespace(""),"MSG_HALL_TAROT_INFO")
+               debug 1, "MSG_HALL_PLAY_TAROT", 163, 572
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PLAY_TAROT")
+               pushshort 15681
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PLAY_TAROT")
+               debug 1, "MSG_HALL_TAROT_AWARD", 164, 573
+               findproperty QName(PackageNamespace(""),"MSG_HALL_TAROT_AWARD")
+               pushshort 15682
+               initproperty QName(PackageNamespace(""),"MSG_HALL_TAROT_AWARD")
+               debug 1, "MSG_HALL_CRYSTONE_SLOT_GET", 165, 576
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_SLOT_GET")
+               pushshort 15060
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_SLOT_GET")
+               debug 1, "MSG_HALL_CRYSTONE_SLOT_ADD", 166, 577
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_SLOT_ADD")
+               pushshort 15061
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CRYSTONE_SLOT_ADD")
+               debug 1, "MSG_HALL_PRIZE_DRAW", 167, 580
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW")
+               pushshort 15696
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW")
+               debug 1, "MSG_HALL_PRIZE_DRAW_INFO", 168, 581
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_INFO")
+               pushshort 15697
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_INFO")
+               debug 1, "MSG_HALL_PRIZE_DRAW_AWARD", 169, 582
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_AWARD")
+               pushshort 15698
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_AWARD")
+               debug 1, "MSG_HALL_PRIZE_DRAW_BUFF_INFO", 170, 583
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_BUFF_INFO")
+               pushshort 15699
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_BUFF_INFO")
+               debug 1, "MSG_HALL_PRIZE_DRAW_CHANGE_BUFF", 171, 584
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_CHANGE_BUFF")
+               pushshort 15700
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_CHANGE_BUFF")
+               debug 1, "MSG_HALL_PRIZE_DRAW_DECOMPOSE", 172, 585
+               findproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_DECOMPOSE")
+               pushshort 15701
+               initproperty QName(PackageNamespace(""),"MSG_HALL_PRIZE_DRAW_DECOMPOSE")
+               debug 1, "MSG_HALL_SUPPER_CHOUJIANG_EXCHANGE", 173, 587
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SUPPER_CHOUJIANG_EXCHANGE")
+               pushshort 15702
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SUPPER_CHOUJIANG_EXCHANGE")
+               debug 1, "MSG_HALL_EVOLUTION", 174, 590
+               findproperty QName(PackageNamespace(""),"MSG_HALL_EVOLUTION")
+               pushshort 15687
+               initproperty QName(PackageNamespace(""),"MSG_HALL_EVOLUTION")
+               debug 1, "MSG_HALL_ITEM_EVOLUTION", 175, 591
+               findproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_EVOLUTION")
+               pushshort 14936
+               initproperty QName(PackageNamespace(""),"MSG_HALL_ITEM_EVOLUTION")
+               debug 1, "MSG_HALL_CHECK_NEW_SVR_TASK", 176, 594
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_NEW_SVR_TASK")
+               pushshort 15728
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_NEW_SVR_TASK")
+               debug 1, "MSG_HALL_UPDATE_SECPWD", 177, 597
+               findproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_SECPWD")
+               pushshort 15717
+               initproperty QName(PackageNamespace(""),"MSG_HALL_UPDATE_SECPWD")
+               debug 1, "MSG_HALL_NEED_SECPWD", 178, 598
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NEED_SECPWD")
+               pushshort 15718
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NEED_SECPWD")
+               debug 1, "MSG_HALL_INPUT_SECPWD", 179, 599
+               findproperty QName(PackageNamespace(""),"MSG_HALL_INPUT_SECPWD")
+               pushshort 15719
+               initproperty QName(PackageNamespace(""),"MSG_HALL_INPUT_SECPWD")
+               debug 1, "MSG_HALL_HAS_SECPWD", 180, 600
+               findproperty QName(PackageNamespace(""),"MSG_HALL_HAS_SECPWD")
+               pushshort 15720
+               initproperty QName(PackageNamespace(""),"MSG_HALL_HAS_SECPWD")
+               debug 1, "MSG_HALL_NEED_CHECK", 181, 603
+               findproperty QName(PackageNamespace(""),"MSG_HALL_NEED_CHECK")
+               pushshort 15729
+               initproperty QName(PackageNamespace(""),"MSG_HALL_NEED_CHECK")
+               debug 1, "MSG_HALL_CHECK_INPUT", 182, 604
+               findproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_INPUT")
+               pushshort 15730
+               initproperty QName(PackageNamespace(""),"MSG_HALL_CHECK_INPUT")
+               debug 1, "MSG_GET_WORLD_BOSS_INFO", 183, 607
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_INFO")
+               pushshort 15776
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_INFO")
+               debug 1, "MSG_GET_WORLD_BOSS_RANK", 184, 608
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_RANK")
+               pushshort 15777
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_RANK")
+               debug 1, "MSG_GET_CHECK_WORLD_BOSS_PLAYER_INFO", 185, 609
+               findproperty QName(PackageNamespace(""),"MSG_GET_CHECK_WORLD_BOSS_PLAYER_INFO")
+               pushshort 15778
+               initproperty QName(PackageNamespace(""),"MSG_GET_CHECK_WORLD_BOSS_PLAYER_INFO")
+               debug 1, "MSG_GET_WORLD_BOSS_AWARD", 186, 610
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_AWARD")
+               pushshort 15779
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLD_BOSS_AWARD")
+               debug 1, "MSG_GET_WORLDBOSS_SHOP", 187, 612
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_SHOP")
+               pushshort 15780
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_SHOP")
+               debug 1, "MSG_WORLDBOSS_SHOP_BUY", 188, 613
+               findproperty QName(PackageNamespace(""),"MSG_WORLDBOSS_SHOP_BUY")
+               pushshort 15781
+               initproperty QName(PackageNamespace(""),"MSG_WORLDBOSS_SHOP_BUY")
+               debug 1, "MSG_GET_WORLDBOSS_RECORD", 189, 615
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_RECORD")
+               pushshort 15782
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_RECORD")
+               debug 1, "MSG_GET_WORLDBOSS_SUMMARY", 190, 616
+               findproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_SUMMARY")
+               pushshort 15783
+               initproperty QName(PackageNamespace(""),"MSG_GET_WORLDBOSS_SUMMARY")
+               debug 1, "MSG_WORLDBOSS_FAST_PK", 191, 617
+               findproperty QName(PackageNamespace(""),"MSG_WORLDBOSS_FAST_PK")
+               pushshort 15784
+               initproperty QName(PackageNamespace(""),"MSG_WORLDBOSS_FAST_PK")
+               debug 1, "MSG_REQUEST_GET_WORLDBOSS_MAP", 192, 618
+               findproperty QName(PackageNamespace(""),"MSG_REQUEST_GET_WORLDBOSS_MAP")
+               pushshort 15785
+               initproperty QName(PackageNamespace(""),"MSG_REQUEST_GET_WORLDBOSS_MAP")
+               debug 1, "MSG_REQUEST_DIVIDE_MAIN_INFO", 193, 619
+               findproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_MAIN_INFO")
+               pushshort 15786
+               initproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_MAIN_INFO")
+               debug 1, "MSG_REQUEST_DIVIDE_AWARD", 194, 620
+               findproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_AWARD")
+               pushshort 15787
+               initproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_AWARD")
+               debug 1, "MSG_REQUEST_DIVIDE_RECEIVE_AWARD", 195, 621
+               findproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_RECEIVE_AWARD")
+               pushshort 15788
+               initproperty QName(PackageNamespace(""),"MSG_REQUEST_DIVIDE_RECEIVE_AWARD")
+               debug 1, "MSG_NEW_SVR_GIFT_LOGIN", 196, 624
+               findproperty QName(PackageNamespace(""),"MSG_NEW_SVR_GIFT_LOGIN")
+               pushshort 15733
+               initproperty QName(PackageNamespace(""),"MSG_NEW_SVR_GIFT_LOGIN")
+               debug 1, "MSG_NEW_SVR_GIFT_RECEIEVE", 197, 625
+               findproperty QName(PackageNamespace(""),"MSG_NEW_SVR_GIFT_RECEIEVE")
+               pushshort 15734
+               initproperty QName(PackageNamespace(""),"MSG_NEW_SVR_GIFT_RECEIEVE")
+               debug 1, "MSG_HALL_MONOPOLY_INFO", 198, 628
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_INFO")
+               pushshort 15744
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_INFO")
+               debug 1, "MSG_HALL_MONOPOLY_PLAY", 199, 629
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_PLAY")
+               pushshort 15745
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_PLAY")
+               debug 1, "MSG_HALL_MONOPOLY_RANK_INFO", 200, 631
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_RANK_INFO")
+               pushshort 15746
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_RANK_INFO")
+               debug 1, "MSG_HALL_MONOPOLY_RANK_AWARD", 201, 632
+               findproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_RANK_AWARD")
+               pushshort 15747
+               initproperty QName(PackageNamespace(""),"MSG_HALL_MONOPOLY_RANK_AWARD")
+               debug 1, "MSG_HALL_HANDBOOK", 202, 635
+               findproperty QName(PackageNamespace(""),"MSG_HALL_HANDBOOK")
+               pushshort 15748
+               initproperty QName(PackageNamespace(""),"MSG_HALL_HANDBOOK")
+               debug 1, "MSG_GET_TWO_PATA_COUNT", 203, 638
+               findproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_COUNT")
+               pushshort 9776
+               initproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_COUNT")
+               debug 1, "MSG_GET_TWO_PATA_LEVEL", 204, 639
+               findproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_LEVEL")
+               pushshort 9777
+               initproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_LEVEL")
+               debug 1, "MSG_GET_TWO_PATA_RANK", 205, 640
+               findproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_RANK")
+               pushshort 9778
+               initproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_RANK")
+               debug 1, "MSG_GET_TWO_PATA_AWARD", 206, 641
+               findproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_AWARD")
+               pushshort 9779
+               initproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_AWARD")
+               debug 1, "MSG_GET_TWO_PATA_RANK_INFO", 207, 642
+               findproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_RANK_INFO")
+               pushshort 8468
+               initproperty QName(PackageNamespace(""),"MSG_GET_TWO_PATA_RANK_INFO")
+               debug 1, "MSG_HALL_DAILY_PAY_INFO", 208, 645
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DAILY_PAY_INFO")
+               pushshort 15749
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DAILY_PAY_INFO")
+               debug 1, "MSG_HALL_DAILY_PAY_AWARD", 209, 646
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DAILY_PAY_AWARD")
+               pushshort 15750
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DAILY_PAY_AWARD")
+               debug 1, "MSG_HALL_GET_SMALL_ROOM_INFO", 210, 648
+               findproperty QName(PackageNamespace(""),"MSG_HALL_GET_SMALL_ROOM_INFO")
+               pushshort 16007
+               initproperty QName(PackageNamespace(""),"MSG_HALL_GET_SMALL_ROOM_INFO")
+               debug 1, "MSG_HALL_SAVE_SMALL_ROOM_INFO", 211, 649
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SAVE_SMALL_ROOM_INFO")
+               pushshort 15752
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SAVE_SMALL_ROOM_INFO")
+               debug 1, "MSG_HALL_SMALL_ROOM_BUY", 212, 650
+               findproperty QName(PackageNamespace(""),"MSG_HALL_SMALL_ROOM_BUY")
+               pushshort 15753
+               initproperty QName(PackageNamespace(""),"MSG_HALL_SMALL_ROOM_BUY")
+               debug 1, "MSG_GET_SPECIAL_ACTIVITY_INFO", 213, 652
+               findproperty QName(PackageNamespace(""),"MSG_GET_SPECIAL_ACTIVITY_INFO")
+               pushshort 15760
+               initproperty QName(PackageNamespace(""),"MSG_GET_SPECIAL_ACTIVITY_INFO")
+               debug 1, "MSG_REQUEST_GET_SPECIAL_ACT_AWARD", 214, 653
+               findproperty QName(PackageNamespace(""),"MSG_REQUEST_GET_SPECIAL_ACT_AWARD")
+               pushshort 15762
+               initproperty QName(PackageNamespace(""),"MSG_REQUEST_GET_SPECIAL_ACT_AWARD")
+               debug 1, "MSG_HALL_DEAL_CRM_DATA", 215, 655
+               findproperty QName(PackageNamespace(""),"MSG_HALL_DEAL_CRM_DATA")
+               pushshort 14931
+               initproperty QName(PackageNamespace(""),"MSG_HALL_DEAL_CRM_DATA")
+               debug 1, "MSG_GET_BOX_INFO", 216, 657
+               findproperty QName(PackageNamespace(""),"MSG_GET_BOX_INFO")
+               pushshort 12817
+               initproperty QName(PackageNamespace(""),"MSG_GET_BOX_INFO")
+               debug 1, "MSG_UPDATE_BOX_INFO", 217, 658
+               findproperty QName(PackageNamespace(""),"MSG_UPDATE_BOX_INFO")
+               pushshort 12818
+               initproperty QName(PackageNamespace(""),"MSG_UPDATE_BOX_INFO")
+               debug 1, "MSG_EXPAND_STOREBOX", 218, 659
+               findproperty QName(PackageNamespace(""),"MSG_EXPAND_STOREBOX")
+               pushshort 12819
+               initproperty QName(PackageNamespace(""),"MSG_EXPAND_STOREBOX")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_154()
+      {
+         method
+            name "com.aurora.constant:CSMessageConst/CSMessageConst"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;CSMessageConst.as"
+                  debugline 662
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;CSMessageConst.as"
+         debugline 3
+         findpropstrict Multiname("b_154",[PackageNamespace("a_4716")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 110
+         popscope
+         initproperty QName(PackageNamespace("a_4716"),"b_154")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant;CSMessageConst.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

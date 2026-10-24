@@ -1,0 +1,314 @@
+package com.adobe.utils
+{
+   public class IntUtil
+   {
+      
+      private static var hexChars:String = "0123456789abcdef";
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "hexChars", 0, 66
+               findproperty QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+               pushstring "0123456789abcdef"
+               setproperty QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function IntUtil()
+      {
+         method
+            name "com.adobe.utils:IntUtil/IntUtil"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                  debugline 100
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function rol(x:int, n:int) : int
+      {
+         trait method QName(PackageNamespace(""),"rol")
+            flag FINAL
+            dispid 3
+            method
+               name "com.adobe.utils:IntUtil/rol"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"int")
+               param QName(PackageNamespace(""),"int")
+               paramname "hexChars"
+               paramname "hexChars"
+               returns QName(PackageNamespace(""),"int")
+               
+               body
+                  maxstack 4
+                  localcount 3
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                     debugline 49
+                     getlocal0
+                     pushscope
+                     debug 1, "x", 0, 49
+                     debug 1, "n", 1, 49
+                     debugline 50
+                     getlocal1
+                     getlocal2
+                     lshift
+                     getlocal1
+                     pushbyte 32
+                     getlocal2
+                     subtract
+                     urshift
+                     bitor
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function ror(x:int, n:int) : uint
+         {
+            trait method QName(PackageNamespace(""),"ror")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.adobe.utils:IntUtil/ror"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "0123456789abcdef"
+                  paramname "0123456789abcdef"
+                  returns QName(PackageNamespace(""),"uint")
+                  
+                  body
+                     maxstack 4
+                     localcount 4
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                        debugline 60
+                        getlocal0
+                        pushscope
+                        debug 1, "x", 0, 60
+                        debug 1, "n", 1, 60
+                        debug 1, "nn", 2, 61
+                        debugline 61
+                        pushbyte 32
+                        getlocal2
+                        subtract
+                        convert_i
+                        setlocal3
+                        debugline 62
+                        getlocal1
+                        getlocal3
+                        lshift
+                        getlocal1
+                        pushbyte 32
+                        getlocal3
+                        subtract
+                        urshift
+                        bitor
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public static function toHex(n:int, bigEndian:Boolean = false) : String
+            {
+               trait method QName(PackageNamespace(""),"toHex")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.adobe.utils:IntUtil/toHex"
+                     flag HAS_OPTIONAL
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     param QName(PackageNamespace(""),"Boolean")
+                     paramname "D:\workspace\git\msclient\as3corelib\src;com\adobe\utils;IntUtil.as"
+                     paramname "D:\workspace\git\msclient\as3corelib\src;com\adobe\utils;IntUtil.as"
+                     optional False()
+                     returns QName(PackageNamespace(""),"String")
+                     
+                     body
+                        maxstack 6
+                        localcount 6
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                           debugline 80
+                           getlocal0
+                           pushscope
+                           pushbyte 0
+                           setlocal 4
+                           pushbyte 0
+                           setlocal 5
+                           debug 1, "n", 0, 80
+                           debug 1, "bigEndian", 1, 80
+                           debug 1, "s", 2, 81
+                           pushstring ""
+                           debugline 81
+                           coerce_s
+                           setlocal3
+                           debugline 83
+                           getlocal2
+                           iffalse ofs0083
+                           debug 1, "i", 3, 84
+                           debugline 84
+                           pushbyte 0
+                           setlocal 4
+                           jump ofs0077
+                  ofs003e:
+                           label
+                           debugline 85
+                           getlocal3
+                           getlex QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+                           getlocal1
+                           pushbyte 3
+                           getlocal 4
+                           subtract
+                           pushbyte 8
+                           multiply
+                           pushbyte 4
+                           add
+                           rshift
+                           pushbyte 15
+                           bitand
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           debugline 86
+                           getlex QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+                           getlocal1
+                           pushbyte 3
+                           getlocal 4
+                           subtract
+                           pushbyte 8
+                           multiply
+                           rshift
+                           pushbyte 15
+                           bitand
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           add
+                           add
+                           coerce_s
+                           setlocal3
+                           debugline 84
+                           inclocal_i 4
+                  ofs0077:
+                           getlocal 4
+                           pushbyte 4
+                           iflt ofs003e
+                           jump ofs00ce
+                  ofs0083:
+                           debug 1, "x", 4, 89
+                           debugline 89
+                           pushbyte 0
+                           setlocal 5
+                           jump ofs00c6
+                  ofs0093:
+                           label
+                           debugline 90
+                           getlocal3
+                           getlex QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+                           getlocal1
+                           getlocal 5
+                           pushbyte 8
+                           multiply
+                           pushbyte 4
+                           add
+                           rshift
+                           pushbyte 15
+                           bitand
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           debugline 91
+                           getlex QName(PrivateNamespace("com.adobe.utils:IntUtil"),"hexChars")
+                           getlocal1
+                           getlocal 5
+                           pushbyte 8
+                           multiply
+                           rshift
+                           pushbyte 15
+                           bitand
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           add
+                           add
+                           coerce_s
+                           setlocal3
+                           debugline 89
+                           inclocal_i 5
+                  ofs00c6:
+                           getlocal 5
+                           pushbyte 4
+                           iflt ofs0093
+                  ofs00ce:
+                           debugline 95
+                           getlocal3
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                  debugline 40
+                  findpropstrict Multiname("IntUtil",[PackageNamespace("com.adobe.utils")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 124
+                  popscope
+                  initproperty QName(PackageNamespace("com.adobe.utils"),"IntUtil")
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;IntUtil.as"
+                  debugline 32
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

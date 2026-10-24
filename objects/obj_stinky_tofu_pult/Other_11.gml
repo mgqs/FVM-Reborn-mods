@@ -1,6 +1,6 @@
 // 用户事件1 - 发射子弹
 var inst = instance_create_depth(x+20, y-125, depth-500, obj_stinkytofupult_bullet)
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk
@@ -49,7 +49,7 @@ if (target_instance != noone && instance_exists(target_instance)) {
 inst.hit_enemy = false
 inst.splashed = false
 inst.shape = shape
-if stinky_tofu_timer >= stinky_tofu_cooldown{
+// 概率触发毒雾子弹
+if irandom(99) < poison_chance{
 	inst.sprite_index = spr_stinkytofupult_bullet_poison
-	stinky_tofu_timer = 0
 }

@@ -1,0 +1,605 @@
+package com.aurora.ui.maogoutd.resource.effect.baseClimb
+{
+   import a_4715.EncrypBooleanEx;
+   import a_4715.EncrypIntEx;
+   import a_4715.EncrypNumber;
+   import com.aurora.ui.maogoutd.resource.effect.a_4108;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class BaseClimbEffect extends a_4108
+   {
+      
+      private static var ms_stBaseClimbEffect:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stBaseClimbEffect", 0, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"ms_stBaseClimbEffect")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"ms_stBaseClimbEffect")
+               debug 1, "a_1300", 1, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),PackageNamespace(""),PrivateNamespace("BaseClimbEffect.as$170"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect.baseClimb"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1300")
+               debug 1, "a_1301", 2, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),PackageNamespace(""),PrivateNamespace("BaseClimbEffect.as$170"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect.baseClimb"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1301")
+               debug 1, "a_1302", 3, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1302")
+               findpropstrict QName(PackageNamespace("flash.display"),"MovieClip")
+               constructprop QName(PackageNamespace("flash.display"),"MovieClip"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      protected var m_fClimbHeightEx:EncrypNumber;
+      
+      protected var m_fClimbWidthEx:EncrypNumber;
+      
+      protected var m_iClimbTickEx:EncrypIntEx;
+      
+      protected var m_bIsNeedParabola:EncrypBooleanEx;
+      
+      private var m_bIsRunning:Boolean;
+      
+      public function BaseClimbEffect()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/BaseClimbEffect"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                  debugline 60
+                  getlocal0
+                  pushscope
+                  debugline 62
+                  getlocal0
+                  constructsuper 0
+                  debugline 63
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  pushdouble -0.5
+                  getlex QName(PackageNamespace(""),"width")
+                  multiply
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  debugline 64
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypNumber")
+                  pushbyte 6
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypNumber"), 1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_fClimbHeightEx")
+                  debugline 65
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypIntEx")
+                  pushbyte 20
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypIntEx"), 1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_iClimbTickEx")
+                  debugline 66
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypNumber")
+                  pushbyte 1
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypNumber"), 1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_fClimbWidthEx")
+                  debugline 67
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypBooleanEx")
+                  pushfalse
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypBooleanEx"), 1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsNeedParabola")
+                  debugline 68
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      override protected function a_3911() : Vector.<BitmapData>
+      {
+         trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_3911")
+            flag OVERRIDE
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/protected:GetFrameCacheVector"
+               returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     debugline 23
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1300")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override protected function a_3912() : Vector.<Point>
+         {
+            trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_3912")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/protected:GetFrameCacheSkewingVector"
+                  returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                        debugline 26
+                        getlocal0
+                        pushscope
+                        debugline 28
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1301")
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3913() : MovieClip
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_3913")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/protected:GetOriginalMovieClip"
+                     returns QName(PackageNamespace("flash.display"),"MovieClip")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                           debugline 31
+                           getlocal0
+                           pushscope
+                           debugline 33
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_1302")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function get ClimbHeight() : Number
+               {
+                  trait getter QName(PackageNamespace(""),"ClimbHeight")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/ClimbHeight/get"
+                        returns QName(PackageNamespace(""),"Number")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                              debugline 37
+                              getlocal0
+                              pushscope
+                              debugline 39
+                              getlocal0
+                              getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_fClimbHeightEx")
+                              getproperty QName(PackageNamespace(""),"Value")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function get ClimbWidth() : Number
+                  {
+                     trait getter QName(PackageNamespace(""),"ClimbWidth")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/ClimbWidth/get"
+                           returns QName(PackageNamespace(""),"Number")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                 debugline 43
+                                 getlocal0
+                                 pushscope
+                                 debugline 45
+                                 getlocal0
+                                 getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_fClimbWidthEx")
+                                 getproperty QName(PackageNamespace(""),"Value")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function get ClimbTick() : int
+                     {
+                        trait getter QName(PackageNamespace(""),"ClimbTick")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/ClimbTick/get"
+                              returns QName(PackageNamespace(""),"int")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                    debugline 49
+                                    getlocal0
+                                    pushscope
+                                    debugline 51
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_iClimbTickEx")
+                                    getproperty QName(PackageNamespace(""),"Value")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function get IsNeedParabola() : Boolean
+                        {
+                           trait getter QName(PackageNamespace(""),"IsNeedParabola")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/IsNeedParabola/get"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                       debugline 55
+                                       getlocal0
+                                       pushscope
+                                       debugline 57
+                                       getlocal0
+                                       getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsNeedParabola")
+                                       getproperty QName(PackageNamespace(""),"Value")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           override public function a_1797(isReversed:Boolean) : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_1797")
+                                 flag OVERRIDE
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/Initialize"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"Boolean")
+                                    paramname "a_1301"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 2
+                                       initscopedepth 11
+                                       maxscopedepth 12
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                          debugline 70
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "isReversed", 0, 70
+                                          debugline 72
+                                          getlocal0
+                                          getlocal1
+                                          callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                                          debugline 73
+                                          getlocal0
+                                          pushfalse
+                                          initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsRunning")
+                                          debugline 74
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              override public function a_3940() : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"a_3940")
+                                    flag OVERRIDE
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/Realease"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 1
+                                          initscopedepth 11
+                                          maxscopedepth 12
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                             debugline 77
+                                             getlocal0
+                                             pushscope
+                                             debugline 79
+                                             getlocal0
+                                             pushfalse
+                                             initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsRunning")
+                                             debugline 80
+                                             getlocal0
+                                             callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                             debugline 81
+                                             pushnull
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"parent")
+                                             ifeq ofs002b
+                                             debugline 83
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"parent")
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                    ofs002b:
+                                             debugline 85
+                                             pushtrue
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function a_3567(bIsNeed:Boolean = false) : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_3567")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/StartPlay"
+                                          flag HAS_OPTIONAL
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"Boolean")
+                                          paramname "m_fClimbWidthEx"
+                                          optional False()
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 2
+                                             initscopedepth 11
+                                             maxscopedepth 12
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                                debugline 89
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "bIsNeed", 0, 89
+                                                debugline 91
+                                                getlocal1
+                                                not
+                                                dup
+                                                iffalse ofs001c
+                                                pop
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsRunning")
+                                                convert_b
+                                       ofs001c:
+                                                iffalse ofs0021
+                                                returnvoid
+                                       ofs0021:
+                                                debugline 92
+                                                findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                pushbyte 1
+                                                callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                                debugline 93
+                                                findpropstrict QName(PackageNamespace(""),"play")
+                                                callpropvoid QName(PackageNamespace(""),"play"), 0
+                                                debugline 94
+                                                getlocal0
+                                                pushtrue
+                                                initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsRunning")
+                                                debugline 95
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function EndPlay() : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"EndPlay")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/private:EndPlay"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 2
+                                                localcount 1
+                                                initscopedepth 11
+                                                maxscopedepth 12
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                                   debugline 97
+                                                   getlocal0
+                                                   pushscope
+                                                   debugline 99
+                                                   findpropstrict QName(PackageNamespace(""),"stop")
+                                                   callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                                   debugline 100
+                                                   findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                   pushbyte 1
+                                                   callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                                   debugline 101
+                                                   getlocal0
+                                                   pushfalse
+                                                   initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"m_bIsRunning")
+                                                   debugline 102
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       override protected function a_4109(a_4730:Event) : void
+                                       {
+                                          trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"a_4109")
+                                             flag OVERRIDE
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect/protected:OnPlayNextFrameTimeEvent"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace("flash.events"),"Event")
+                                                paramname "m_fClimbWidthEx"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 2
+                                                   initscopedepth 11
+                                                   maxscopedepth 12
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                                      debugline 104
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "a_4730", 0, 104
+                                                      debugline 106
+                                                      findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                                      callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                                      debugline 107
+                                                      getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                                      getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                                      ifne ofs0027
+                                                      getlocal0
+                                                      callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb:BaseClimbEffect"),"EndPlay"), 0
+                                             ofs0027:
+                                                      debugline 108
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                       }
+                                    }
+                                    
+                                    method
+                                       name ""
+                                       returns null
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 1
+                                          initscopedepth 1
+                                          maxscopedepth 10
+                                          
+                                          code
+                                             getlocal0
+                                             pushscope
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                             debugline 13
+                                             findpropstrict Multiname("BaseClimbEffect",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb")])
+                                             getlex QName(PackageNamespace(""),"Object")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                             pushscope
+                                             getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                             pushscope
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                             pushscope
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                                             pushscope
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                                             newclass 341
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             popscope
+                                             initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect.baseClimb"),"BaseClimbEffect")
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb;BaseClimbEffect.as"
+                                             debugline 1
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                    

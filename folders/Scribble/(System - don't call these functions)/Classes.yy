@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"Classes",
+  "folderPath":"folders/Scribble/(System - don't call these functions)/Classes.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Classes",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"__scribble_class_element","path":"scripts/__scribble_class_element/__scribble_class_element.yy",},
+    {"name":"__scribble_class_event","path":"scripts/__scribble_class_event/__scribble_class_event.yy",},
+    {"name":"__scribble_class_font","path":"scripts/__scribble_class_font/__scribble_class_font.yy",},
+    {"name":"__scribble_class_line","path":"scripts/__scribble_class_line/__scribble_class_line.yy",},
+    {"name":"__scribble_class_material","path":"scripts/__scribble_class_material/__scribble_class_material.yy",},
+    {"name":"__scribble_class_model","path":"scripts/__scribble_class_model/__scribble_class_model.yy",},
+    {"name":"__scribble_class_null_element","path":"scripts/__scribble_class_null_element/__scribble_class_null_element.yy",},
+    {"name":"__scribble_class_page","path":"scripts/__scribble_class_page/__scribble_class_page.yy",},
+    {"name":"__scribble_class_typist","path":"scripts/__scribble_class_typist/__scribble_class_typist.yy",}
+  ],
+}

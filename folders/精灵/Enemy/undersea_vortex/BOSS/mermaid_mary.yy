@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"mermaid_mary",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/BOSS/mermaid_mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mermaid_mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"d596e720-2725-4c39-a0ef-630f09ccc6ad","path":"sprites/spr_mermaid_mary_bullet/spr_mermaid_mary_bullet.yy",},
+    {"name":"1ca278b0-4302-42bd-b8dc-7c6e79932d08","path":"sprites/spr_mermaid_mary_dash/spr_mermaid_mary_dash.yy",},
+    {"name":"8d9d1921-bf2d-49c3-b5d1-e1e4b92bab0c","path":"sprites/spr_mermaid_mary_death/spr_mermaid_mary_death.yy",},
+    {"name":"fe752c60-0add-4eb8-9fcd-f8c36a72bc57","path":"sprites/spr_mermaid_mary_idle/spr_mermaid_mary_idle.yy",},
+    {"name":"b97daf50-251d-4890-a8a1-c32933c7aa69","path":"sprites/spr_mermaid_mary_move/spr_mermaid_mary_move.yy",},
+    {"name":"fc56d6c6-ef4f-420a-89c7-5a50b7e9d07d","path":"sprites/spr_mermaid_mary_music/spr_mermaid_mary_music.yy",},
+    {"name":"2e639b72-e689-40ce-b9cf-b7ba38ec5a54","path":"sprites/spr_mermaid_mary_skill_1/spr_mermaid_mary_skill_1.yy",},
+    {"name":"e49e06d1-9d16-4cc4-b7b5-af7244aa9301","path":"sprites/spr_mermaid_mary_skill_2/spr_mermaid_mary_skill_2.yy",},
+    {"name":"5dd0cb0c-9d07-487d-aca1-f4aec9d82c0b","path":"sprites/spr_mermaid_mary_skill_3/spr_mermaid_mary_skill_3.yy",},
+    {"name":"403ec4e0-c0eb-4ae4-a8f4-aaed66e19caf","path":"sprites/spr_mermaid_mary_wave/spr_mermaid_mary_wave.yy",}
+  ],
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"wrestler_mouse",
+  "folderPath":"folders/精灵/Enemy/tower/wrestler_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wrestler_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"bdc0bd42-4955-480d-bd4e-38cf3ff0898c","path":"sprites/spr_little_wrestler/spr_little_wrestler.yy",},
+    {"name":"a8a2fd00-c667-4924-bfb1-0f64c2e0ea70","path":"sprites/spr_little_wrestler_throw/spr_little_wrestler_throw.yy",},
+    {"name":"dd639eb4-0138-4ec9-838b-fa50f9089fca","path":"sprites/spr_wrestler_mouse/spr_wrestler_mouse.yy",},
+    {"name":"ec4f1d62-50b8-413d-824e-9173bc144e56","path":"sprites/spr_wrestler_mouse_has_small/spr_wrestler_mouse_has_small.yy",},
+    {"name":"13e6cd7d-346b-4291-8ffa-9d3d7108a1df","path":"sprites/spr_wrestler_mouse_throw/spr_wrestler_mouse_throw.yy",}
+  ],
+}

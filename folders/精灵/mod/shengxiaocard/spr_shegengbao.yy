@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_shegengbao",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_shegengbao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_shegengbao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"67a6d674-b88d-428b-9280-ab7cb439ab7b","path":"sprites/spr_shegengbao/spr_shegengbao.yy",},
+    {"name":"4c7920b5-f450-4059-8dd8-32accec1b663","path":"sprites/spr_shegengbao_1/spr_shegengbao_1.yy",},
+    {"name":"be5e0c83-d8ff-4dd7-8afe-43fcfb12fce1","path":"sprites/spr_shegengbao_2/spr_shegengbao_2.yy",}
+  ],
+}

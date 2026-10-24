@@ -14,6 +14,8 @@ if (shape >= 1)
         {
             damage_amount = other.damage * splash_ratio;
             damage_type = other.damage_type;
+            // 已通过 can_hit("rotate") 判定，允许命中钻地中的地精鼠（同鼹鼠规则）
+            if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
             event_user(0);
         }
     }

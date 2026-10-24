@@ -1,0 +1,183 @@
+package com.aurora.ui.maogoutd.game
+{
+   import flash.display.DisplayObject;
+   
+   public class BattleLayerInfo
+   {
+      
+      private static var m_vInfo:Vector.<BattleLayerInfo>;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "m_vInfo", 0, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),"m_vInfo")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),PrivateNamespace("BattleLayerInfo.as$368"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.game"),PackageInternalNs("com.aurora.ui.maogoutd.game"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),StaticProtectedNs("com.aurora.ui.maogoutd.game:BattleLayerInfo"),PackageNamespace("__AS3__.vec")])
+               getlocal0
+               applytype 1
+               construct 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),"m_vInfo")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iType:int;
+      
+      public var a_1598:a_3491;
+      
+      public var m_stDisplayObject:DisplayObject;
+      
+      public function BattleLayerInfo()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:BattleLayerInfo/BattleLayerInfo"
+            returns null
+            
+            body
+               maxstack 5
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerInfo.as"
+                  debugline 20
+                  getlocal0
+                  pushscope
+                  debugline 21
+                  getlocal0
+                  constructsuper 0
+                  debugline 22
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  pushnull
+                  pushbyte 0
+                  dup
+                  constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491"), 3
+                  initproperty QName(PackageNamespace(""),"a_1598")
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : BattleLayerInfo
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.game:BattleLayerInfo/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+               
+               body
+                  maxstack 1
+                  localcount 2
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerInfo.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     debug 1, "stInfo", 0, 27
+                     debugline 27
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),"m_vInfo")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                     setlocal1
+                     debugline 28
+                     getlocal1
+                     iftrue ofs0028
+                     debugline 30
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+                     setlocal1
+            ofs0028:
+                     debugline 32
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4330() : void
+         {
+            trait method QName(PackageNamespace(""),"a_4330")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:BattleLayerInfo/Release"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerInfo.as"
+                        debugline 35
+                        getlocal0
+                        pushscope
+                        debugline 37
+                        getlocal0
+                        pushnull
+                        initproperty QName(PackageNamespace(""),"m_stDisplayObject")
+                        debugline 38
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.game:BattleLayerInfo"),"m_vInfo")
+                        getlocal0
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                        debugline 39
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerInfo.as"
+               debugline 14
+               findpropstrict Multiname("BattleLayerInfo",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 68
+               popscope
+               initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerInfo")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game;BattleLayerInfo.as"
+               debugline 10
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

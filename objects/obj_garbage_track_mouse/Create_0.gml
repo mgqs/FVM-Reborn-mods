@@ -14,4 +14,4 @@ special_ash = true
 
 atk_cycle = 1
 atk = 2000
-
+can_use_ladder = false

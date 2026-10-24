@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"UI",
-    "path":"folders/精灵/mod/UI.yy",
+    "name":"baiyang",
+    "path":"folders/精灵/mod/Cards/boomer/baiyang.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

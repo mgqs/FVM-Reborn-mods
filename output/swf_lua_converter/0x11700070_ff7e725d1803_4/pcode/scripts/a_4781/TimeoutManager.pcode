@@ -1,0 +1,395 @@
+package a_4781
+{
+   import flash.utils.Dictionary;
+   import flash.utils.clearTimeout;
+   import flash.utils.setTimeout;
+   
+   public class TimeoutManager
+   {
+      
+      private static var instance:TimeoutManager;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "instance", 0, 8
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var timeouts:Dictionary;
+      
+      public function TimeoutManager()
+      {
+         method
+            name "com.aurora.utils:TimeoutManager/TimeoutManager"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                  debugline 11
+                  getlocal0
+                  pushscope
+                  debugline 11
+                  getlocal0
+                  constructsuper 0
+                  debugline 12
+                  getlex QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"instance")
+                  iffalse ofs0022
+                  debugline 13
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "Singleton class. Use getInstance() method to get an instance."
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs0022:
+                  debugline 15
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                  debugline 16
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : TimeoutManager
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.utils:TimeoutManager/getInstance"
+               returns QName(PackageNamespace("a_4781"),"TimeoutManager")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                     debugline 18
+                     getlocal0
+                     pushscope
+                     debugline 19
+                     getlex QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"instance")
+                     iftrue ofs001b
+                     debugline 20
+                     findproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"instance")
+            ofs001b:
+                     debugline 22
+                     getlex QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function init() : void
+         {
+            trait method QName(PackageNamespace(""),"init")
+               dispid 0
+               method
+                  name "com.aurora.utils:TimeoutManager/init"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                        debugline 24
+                        getlocal0
+                        pushscope
+                        debugline 27
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function addTimeout(id:String, delay:Number, callback:Function, ... args) : void
+            {
+               trait method QName(PackageNamespace(""),"addTimeout")
+                  dispid 0
+                  method
+                     name "com.aurora.utils:TimeoutManager/addTimeout"
+                     flag HAS_PARAM_NAMES
+                     flag NEED_ACTIVATION
+                     flag NEED_REST
+                     param QName(PackageNamespace(""),"String")
+                     param QName(PackageNamespace(""),"Number")
+                     param QName(PackageNamespace(""),"Function")
+                     paramname "a_4781"
+                     paramname "a_4781"
+                     paramname "a_4781"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 4
+                        localcount 6
+                        initscopedepth 5
+                        maxscopedepth 7
+                        trait slot QName(PackageInternalNs("a_4781"),"id")
+                           slotid 1
+                           type QName(PackageNamespace(""),"String")
+                        end ; trait
+                        trait slot QName(PackageInternalNs("a_4781"),"delay")
+                           slotid 2
+                           type QName(PackageNamespace(""),"Number")
+                        end ; trait
+                        trait slot QName(PackageInternalNs("a_4781"),"callback")
+                           slotid 3
+                           type QName(PackageNamespace(""),"Function")
+                        end ; trait
+                        trait slot QName(PackageNamespace(""),"args")
+                           slotid 4
+                           type QName(PackageNamespace(""),"Array")
+                        end ; trait
+                        trait slot QName(PackageInternalNs("a_4781"),"timeoutId")
+                           slotid 5
+                           type QName(PackageNamespace(""),"uint")
+                        end ; trait
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                           debugline 28
+                           getlocal0
+                           pushscope
+                           newactivation
+                           dup
+                           setlocal 5
+                           pushscope
+                           debug 1, "addTimeout$0", 4, 28
+                           getscopeobject 1
+                           getlocal1
+                           setslot 1
+                           getscopeobject 1
+                           getlocal2
+                           setslot 2
+                           getscopeobject 1
+                           getlocal3
+                           setslot 3
+                           getscopeobject 1
+                           getlocal 4
+                           setslot 4
+                           debug 1, "id", 0, 28
+                           debug 1, "delay", 1, 28
+                           debug 1, "callback", 2, 28
+                           debug 1, "args", 3, 28
+                           debugline 29
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                           getscopeobject 1
+                           getslot 1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                           pushnull
+                           ifeq ofs0065
+                           debugline 30
+                           findpropstrict QName(PackageNamespace("flash.utils"),"clearTimeout")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                           getscopeobject 1
+                           getslot 1
+                           getproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                           callpropvoid QName(PackageNamespace("flash.utils"),"clearTimeout"), 1
+                  ofs0065:
+                           debugline 32
+                           getscopeobject 1
+                           findpropstrict QName(PackageNamespace("flash.utils"),"setTimeout")
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                           debugline 32
+                           newfunction 677
+                           debugline 35
+                           getscopeobject 1
+                           getslot 2
+                           callproperty QName(PackageNamespace("flash.utils"),"setTimeout"), 2
+                           convert_u
+                           setslot 5
+                           debugline 36
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                           getscopeobject 1
+                           getslot 1
+                           getscopeobject 1
+                           getslot 5
+                           setproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                           debugline 37
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function removeTimeout(id:String) : void
+               {
+                  trait method QName(PackageNamespace(""),"removeTimeout")
+                     dispid 0
+                     method
+                        name "com.aurora.utils:TimeoutManager/removeTimeout"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"String")
+                        paramname "a_4781"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 3
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                              debugline 39
+                              getlocal0
+                              pushscope
+                              debug 1, "id", 0, 39
+                              debugline 40
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                              getlocal1
+                              getproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                              pushnull
+                              ifeq ofs0038
+                              debugline 41
+                              findpropstrict QName(PackageNamespace("flash.utils"),"clearTimeout")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                              getlocal1
+                              getproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                              callpropvoid QName(PackageNamespace("flash.utils"),"clearTimeout"), 1
+                              debugline 42
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                              getlocal1
+                              deleteproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                              pop
+                     ofs0038:
+                              debugline 44
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function clearAllTimeouts() : void
+                  {
+                     trait method QName(PackageNamespace(""),"clearAllTimeouts")
+                        dispid 0
+                        method
+                           name "com.aurora.utils:TimeoutManager/clearAllTimeouts"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 3
+                              localcount 4
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                                 debugline 46
+                                 getlocal0
+                                 pushscope
+                                 pushnull
+                                 coerce_s
+                                 setlocal1
+                                 debug 1, "id", 0, 47
+                                 debugline 47
+                                 pushbyte 0
+                                 setlocal2
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                                 coerce_a
+                                 setlocal3
+                                 jump ofs0041
+                        ofs001f:
+                                 label
+                                 getlocal3
+                                 getlocal2
+                                 nextname
+                                 coerce_s
+                                 setlocal1
+                                 debugline 48
+                                 findpropstrict QName(PackageNamespace("flash.utils"),"clearTimeout")
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                                 callpropvoid QName(PackageNamespace("flash.utils"),"clearTimeout"), 1
+                                 debugline 49
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.utils:TimeoutManager"),"timeouts")
+                                 getlocal1
+                                 deleteproperty MultinameL([PrivateNamespace("com.aurora.utils:TimeoutManager"),PackageNamespace("a_4781"),PackageNamespace(""),PackageInternalNs("a_4781"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("TimeoutManager.as$386"),ProtectedNamespace("com.aurora.utils:TimeoutManager"),StaticProtectedNs("com.aurora.utils:TimeoutManager")])
+                                 pop
+                        ofs0041:
+                                 debugline 47
+                                 hasnext2 3, 2
+                                 iftrue ofs001f
+                                 kill 3
+                                 kill 2
+                                 debugline 51
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                  }
+               }
+               
+               method
+                  name ""
+                  returns null
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 1
+                     maxscopedepth 3
+                     
+                     code
+                        getlocal0
+                        pushscope
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                        debugline 7
+                        findpropstrict Multiname("TimeoutManager",[PackageNamespace("a_4781")])
+                        getlex QName(PackageNamespace(""),"Object")
+                        pushscope
+                        getlex QName(PackageNamespace(""),"Object")
+                        newclass 77
+                        popscope
+                        initproperty QName(PackageNamespace("a_4781"),"TimeoutManager")
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\utils;TimeoutManager.as"
+                        debugline 1
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+               

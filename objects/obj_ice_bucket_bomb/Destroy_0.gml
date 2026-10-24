@@ -41,7 +41,7 @@ if state == CARD_STATE.IDLE{
 		}
 		if other.shape == 2{
 			if (point_distance(x, y, _x, _y) < _range && grid_row >= other.grid_row-1&&grid_row <= other.grid_row+1) {
-		        if (hp > other.atk) {
+		        if (immune_to_ash && hp > other.atk) {
 		            // 对免疫灰烬的敌人只造成伤害
 		            hp -= other.atk;
 					event_user(0)
@@ -49,7 +49,7 @@ if state == CARD_STATE.IDLE{
 		            //effect_create_above(effect_smoke, x, y, 1, c_gray);
 		        } else {
 		            // 直接摧毁非免疫敌人
-					if not special_ash{
+					if not ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash){
 						var inst = instance_create_depth(x,y-20,depth,obj_mouse_ash_death)
 						inst.sprite_index = spr_mouse_ice_death
 					}
@@ -68,7 +68,7 @@ if state == CARD_STATE.IDLE{
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	 audio_play_sound(snd_mouse_frozen, 0, false);
+	 global.audio.play(snd_mouse_frozen, 0, false);
 	 if global.screen_flash{
 		screen_flash(merge_color(c_blue,c_white,0.5),20)
 	}

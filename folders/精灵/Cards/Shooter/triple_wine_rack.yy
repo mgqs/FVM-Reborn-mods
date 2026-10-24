@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"triple_wine_rack",
+  "folderPath":"folders/精灵/Cards/Shooter/triple_wine_rack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"triple_wine_rack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1bdc139a-bc02-4666-9ff2-aaa42dbc29a8","path":"sprites/spr_triple_wine_rack/spr_triple_wine_rack.yy",},
+    {"name":"403e326e-f95f-4888-8eeb-42e797df8504","path":"sprites/spr_triple_wine_rack_1/spr_triple_wine_rack_1.yy",},
+    {"name":"c8edd346-d7d3-4668-b8c4-22a666ab6c55","path":"sprites/spr_triple_wine_rack_2/spr_triple_wine_rack_2.yy",}
+  ],
+}

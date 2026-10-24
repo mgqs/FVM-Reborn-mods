@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"Player",
+  "folderPath":"folders/物体/Player.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Player",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Weapons","path":"folders/物体/Player/Weapons.yy",},
+    {"name":"Gems","path":"folders/物体/Player/Gems.yy",}
+  ],
+  "listItems":[
+    {"name":"obj_player_character","path":"objects/obj_player_character/obj_player_character.yy",}
+  ],
+}

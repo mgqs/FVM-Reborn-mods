@@ -1,0 +1,1522 @@
+[
+  {
+    "file": "pcode\\scripts\\a_4715\\AurUtility.pcode",
+    "sha256": "c5c1f1673efabe024fa8685d34362a20a97f4dce46edc46e5311c0fd8315f434"
+  },
+  {
+    "file": "pcode\\scripts\\a_4715\\EncrypBooleanEx.pcode",
+    "sha256": "8dab0cee033d81c4915bebd865d6ac81b2f86fe21a78b6be9e22b97ce55353bd"
+  },
+  {
+    "file": "pcode\\scripts\\a_4715\\EncrypIntEx.pcode",
+    "sha256": "ed25214e1d4cc13b6ef8a82ea2128ac0f6470cc82e88b93bdf52a5381f4e1b8d"
+  },
+  {
+    "file": "pcode\\scripts\\a_4715\\EncrypNumber.pcode",
+    "sha256": "961efa4586c323c0be9e2cbe7c2cddea0d8a131d72c880771a9dc9d979af9ac9"
+  },
+  {
+    "file": "pcode\\scripts\\a_4715\\EncrypUintEx.pcode",
+    "sha256": "2a4ab2e637aafbc9824005ab82964410d0758ad26d479ebc99abe8cd8ef806ce"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\a_1730.pcode",
+    "sha256": "9ec5b2afb55613caeccc559703f9f4f419a398df7909b2c786f5107b0b24f527"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\a_1731.pcode",
+    "sha256": "f6a939ad49350059ee98226dad5d3b7ae41d324dae4c651395420fcead9c87ae"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\b_154.pcode",
+    "sha256": "ce52b38b5cd4208b9749bb3e2349a6f2d7178e58362d8b0606b3c0f606982ef3"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\b_155.pcode",
+    "sha256": "31013b7334a5cf46c1b136b9423c94767eafd07ee802374503bb4eb753d7aead"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\b_160.pcode",
+    "sha256": "ae9503dab77768f4b9adc76c4e2df4562e5e11b419df2e10f6a5d38a1efed58d"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\CommonConst.pcode",
+    "sha256": "916b776afc53bebf7a31b693093f4f1145bb0e7e0809406b50734b38e507c9b6"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\EnmAppTypeID.pcode",
+    "sha256": "b59c1c2239f6189e1241c2410b3e3130cad5a31ba48d9c86d81e390f42b311c8"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\EnmBaseProtocolState.pcode",
+    "sha256": "a236b7013bf2f37fc70fffb467dfa40d01fb35d9367fefedcebb25f68a615514"
+  },
+  {
+    "file": "pcode\\scripts\\a_4716\\EnmConnLoginStatus.pcode",
+    "sha256": "ef4b46efd1ce9b70a06ae66065cfb35183e3054ce51362e7dc7b0a34fadf9e9e"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_179.pcode",
+    "sha256": "02bff1a05e829d30e3800edbd712fdea62bab1d4cfcd2584cd4d08f43bbc226d"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_180.pcode",
+    "sha256": "4fc54d070f47e16967e4ed93c58e9448a8861ec746cd1ce16d690907bf79cb87"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_181.pcode",
+    "sha256": "03d3d9ce09aa1b5c09faaf3890b12d7e10f00f7a1d72a8bc82dcc91e12868c56"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_182.pcode",
+    "sha256": "67e48f6dfb8391feccb49ed0f39d337e488b3a536b02b60654b14af656cd343b"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_183.pcode",
+    "sha256": "fd9b77f0f6666aea2c497f3d09f6f4d2cca13ad815c9a4f786ed6d1ede3ce5f1"
+  },
+  {
+    "file": "pcode\\scripts\\a_4718\\b_203.pcode",
+    "sha256": "27aecd285672d434a37b68da72b34904542ae54ea26895f73df3330160ac018d"
+  },
+  {
+    "file": "pcode\\scripts\\a_4719\\EnmLoaderType.pcode",
+    "sha256": "6e4cf08ca0a3cf9e3021d23977ddbbb06abc3ba579a34aca7b0351b5104ea28b"
+  },
+  {
+    "file": "pcode\\scripts\\a_4720\\a_1749.pcode",
+    "sha256": "7b2e35c453c9a2abe8f0c575057831ad5c97d5d1296eff2a0b7279f155584de1"
+  },
+  {
+    "file": "pcode\\scripts\\a_4722\\a_1765.pcode",
+    "sha256": "43b2980ad93b18f847afa64b5570270e9b30ef0c9bece1f292224c6e3bc615cf"
+  },
+  {
+    "file": "pcode\\scripts\\a_4722\\a_1771.pcode",
+    "sha256": "eea66bfce61fb3ee8670e5e458ce9e0d149c280da77b1b565704bf26f4891449"
+  },
+  {
+    "file": "pcode\\scripts\\a_4723\\RegisterInfo.pcode",
+    "sha256": "2a4e8cf96f4c76a54d8bebbaf791a2885fc6ed1cfb43300a0c38acc9d5d8a6c4"
+  },
+  {
+    "file": "pcode\\scripts\\a_4724\\AvatarDetailInfo.pcode",
+    "sha256": "70cd4beb8fb37cc672203cdc8441220e5c0d621670e9e3dad202c65a93a54343"
+  },
+  {
+    "file": "pcode\\scripts\\a_4725\\AurLoadTask.pcode",
+    "sha256": "affdc4d166f340769db9e19fb9885c5e1f75fdb21bbbc6acc1eebd8baf43db02"
+  },
+  {
+    "file": "pcode\\scripts\\a_4727\\b_164.pcode",
+    "sha256": "4352e769c08dd241595f5e4512f56b685b952635bf6df1a768c85e399ab11eac"
+  },
+  {
+    "file": "pcode\\scripts\\a_4728\\a_1778.pcode",
+    "sha256": "f4e5eb7457de9ddfe781c7b373e7208ee3699a7cf4d01eb1302d646e93c3d00a"
+  },
+  {
+    "file": "pcode\\scripts\\a_4729\\a_1779.pcode",
+    "sha256": "e51326e9ffa7ac70dfff09207a7d9dd347b318775edb82c8060c8abf68292bf7"
+  },
+  {
+    "file": "pcode\\scripts\\a_4729\\a_1789.pcode",
+    "sha256": "33e11d85ca687f826e6a0773ab16b89b2d63dd5f8cb86e461b6883e35762221c"
+  },
+  {
+    "file": "pcode\\scripts\\a_4729\\EventType.pcode",
+    "sha256": "2437be023c4b59afd09351536a76bd04f308cdded4becd23dcc22f117c50a421"
+  },
+  {
+    "file": "pcode\\scripts\\a_4732\\TcpPackageEvent.pcode",
+    "sha256": "4a63390314b59eb5ca9a5443c44c802447fa5ffb00eb786e7000e9105018c22f"
+  },
+  {
+    "file": "pcode\\scripts\\a_4739\\a_1828.pcode",
+    "sha256": "b9e4d93470c7c398b8a14a01dd1325c1e833783546fa0629636a388ff391a54b"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\a_2027.pcode",
+    "sha256": "9edbbd50065b33ff6b8e4404954ec42928db8091d7d033fde7bee5bbfeae48da"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\a_2036.pcode",
+    "sha256": "ff2c601cba25934df5385a2aca3539dcd22cd5dce47450842b3b7e99793ffb35"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\Base64.pcode",
+    "sha256": "ed83a7e53a2cf589cc6492c9058f5f81e47a66fbb04cbddbfcada359226d3a76"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\GameStringManager.pcode",
+    "sha256": "d83b29eb74cc745564b4634efb6ff6ad9eefac09ec54bc773297df63196a380e"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\GlobalVariables.pcode",
+    "sha256": "b59ae47d86dfa8561af0f0697f462b35ea981f0eb83cf745c9f0570a6319b6cf"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\IGameStringManager.pcode",
+    "sha256": "7f456d2f7bff5d7153cb67bfb448aa0b78c202de90137478887734a7272a6c02"
+  },
+  {
+    "file": "pcode\\scripts\\a_4752\\TagComponent.pcode",
+    "sha256": "d9d33d6c2195b8d133b094596fb12c1cbd9044578a490a3f372b2ddf7d07e16c"
+  },
+  {
+    "file": "pcode\\scripts\\a_4753\\b_150.pcode",
+    "sha256": "bee04e69fa14a920d72fe4a7360a20a29adcd47dd1a4f77311a728d98689e697"
+  },
+  {
+    "file": "pcode\\scripts\\a_4754\\a_2155.pcode",
+    "sha256": "283fb766a1102e9ab21be3b2e4afb1c8a6c0c446c91c906759ce7f133ce8f4e3"
+  },
+  {
+    "file": "pcode\\scripts\\a_4754\\a_2161.pcode",
+    "sha256": "117e776a64589cfe38d2eee95a238385e4ae8674208c2598bb30e0e8c540131b"
+  },
+  {
+    "file": "pcode\\scripts\\a_4757\\a_2200.pcode",
+    "sha256": "317fcac8b5f3b66bc14950e0a4505a28e38010fa77401a0c415b21821b53b2ff"
+  },
+  {
+    "file": "pcode\\scripts\\a_4757\\a_2220.pcode",
+    "sha256": "55c4248ccda85f8fe491ee85d5af2a6e759fb034ab2a3a85f0cbafff6fac5800"
+  },
+  {
+    "file": "pcode\\scripts\\a_4758\\a_2208.pcode",
+    "sha256": "b66ef30fcb9a0bfdd730a766f4245567f5a4c4b13ef98baf667deaf7b976b19a"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\b_166.pcode",
+    "sha256": "e2d76f6ca1c80a100d0188b765022a295ef55cf7048bd5d110f5d0c9bb6bd318"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\b_167.pcode",
+    "sha256": "0e4fe6701da9ad871462adac3e4aa48449b92464751c45a4bc87ba0ee00855c2"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\b_168.pcode",
+    "sha256": "fe320e45d68af795f49076e1530c0348677b6682a50647ba62fd92e35732810c"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\b_169.pcode",
+    "sha256": "a30d29d814352b2ab926cc8e7c404ca38b992572f852bed5c4e754de175fdab9"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\b_170.pcode",
+    "sha256": "0cfd78d5a878786c7bd1f224d036bb7ef94cbcdd23033e339a2890084b6f9c24"
+  },
+  {
+    "file": "pcode\\scripts\\a_4759\\IProtocal.pcode",
+    "sha256": "9b09453b44c8459c093a933d865d735c8222ea445dcfaf8ac0ddebcfd8ef4b79"
+  },
+  {
+    "file": "pcode\\scripts\\a_4760\\a_2248.pcode",
+    "sha256": "5ead4908233e19a308cf66d70d8d80e124fb75040167b475ea3a880b87c36738"
+  },
+  {
+    "file": "pcode\\scripts\\a_4771\\a_2648.pcode",
+    "sha256": "e4b639df0b1009ba616ccb117456c23d9dde6846ef1c55c3545036d157d93abb"
+  },
+  {
+    "file": "pcode\\scripts\\a_4771\\a_2650.pcode",
+    "sha256": "30f1902141576a67073540fb964fc86e699a994eee30bc8834c9f4f4ad901634"
+  },
+  {
+    "file": "pcode\\scripts\\a_4774\\a_3004.pcode",
+    "sha256": "0acf57db427021c0cc83cffc34fe7e537a6e07f5ad71c62d1aa891d010fc17b8"
+  },
+  {
+    "file": "pcode\\scripts\\a_4781\\TimeoutManager.pcode",
+    "sha256": "ed061332ab8ae60ee3a9d15034f941e7d45ff3f16e8bd87d969b92687f694c55"
+  },
+  {
+    "file": "pcode\\scripts\\a_4788\\a_4648.pcode",
+    "sha256": "3e149d9f9a9c8746efdac2ae500ee7022836b8ccc7e552233b4338346c14f8ce"
+  },
+  {
+    "file": "pcode\\scripts\\a_4789\\a_4657.pcode",
+    "sha256": "7bc887e27a39b436e6ea4e4616a8c289119a40830ecd98908659beeb723613ad"
+  },
+  {
+    "file": "pcode\\scripts\\a_4789\\IModulesBridge.pcode",
+    "sha256": "e7ac94f6b513c3542db45d718bf65b1a6406556bb9663d8ef0b620deba3a4ea4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\adobe\\crypto\\MD5.pcode",
+    "sha256": "04c52dd64b2065e34e4570723ecd1a1f270264caae0e42625ea78662e7671521"
+  },
+  {
+    "file": "pcode\\scripts\\com\\adobe\\utils\\IntUtil.pcode",
+    "sha256": "9611d3b7f76cd596fc1b6675ef0e1a9dd3a62b01d71bf110e0941ff8305a5784"
+  },
+  {
+    "file": "pcode\\scripts\\com\\adobe\\utils\\RandomSeed.pcode",
+    "sha256": "f4b513a2d7c689ce61b0184555a5b5f16c70e987ca236b4729979c808113b412"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\a_2664.pcode",
+    "sha256": "40b015a80de7b46e65a552e66c54df8416d4ffdc492626bb3e1f6ab769da40f6"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\authen\\a_2660.pcode",
+    "sha256": "f5836cbd49655ead8b09f9b8c124d809a8423bed4c2c6e0ed287b03a17e18151"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\authen\\a_2661.pcode",
+    "sha256": "b7d42be28d5ac02148308c6e24b897978fabe1ff62f3c400327ad2d0819efd10"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\authen\\a_2662.pcode",
+    "sha256": "754e0795fbb9d4e779a3d6af045dbb017fa9d432b27544c2b400e29794e56770"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\authen\\a_2663.pcode",
+    "sha256": "7a3459cfee679e192bda17c74cb75aa1865bd81a91d8e8255ea00c278e2eea61"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\common\\a_2667.pcode",
+    "sha256": "23d6e838f2b97cfcd7087cb297910f3186fa1794af194c3a98ab1d122df1f4d5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\common\\a_2670.pcode",
+    "sha256": "47f1b0833138950ee1370afb3738cafad5a2dbd706ce04109987039cf65fd3a0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\common\\CMessageBody.pcode",
+    "sha256": "7fbf387fed91dc00cfbbeebef9a628511c253da22d588d3cddf1381d100eeef3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\CPlayerGameConfig.pcode",
+    "sha256": "ab9a8acbeedfc297a88cd171a0e1bf098a2418f9bc3eea66ba8b940251a0aa29"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2694.pcode",
+    "sha256": "0158b20f6d070175e8a800c9a0b95a8056a3dbe992d70d537fe9d7e5dd55e5e7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2695.pcode",
+    "sha256": "23bc57e957e8a8822a93b206d619770758bd2f7441c21d8257ba85badbc2138c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2696.pcode",
+    "sha256": "4d5655d6c2bf27104e5e573703228af0c06b43cacb7373bda37a06f4d66de361"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2702.pcode",
+    "sha256": "531cae627d60a41b43750ba50997be103ea8370a1ea1e8ec26b8990a305e69ce"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2703.pcode",
+    "sha256": "c2ab2ec23ec996b5d15a7d015ef1c2d8e1dba1cccd558064e65947d571dd2eab"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2704.pcode",
+    "sha256": "f79c18091de811dc5772f3b7b0eb27f0550785f77b61c856b92e7f15ceb05d44"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2707.pcode",
+    "sha256": "5f84fc85a0b96eccfd70b33302cfddb04048f753ce0a7232e72b476fc425ccb7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\a_2708.pcode",
+    "sha256": "9fa1648ade01af46e7fb32a0e1641447e7429c674e69e2fbbaa8c94a88ac7db5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CardDieVO.pcode",
+    "sha256": "acb94c3ccd3231420cc64b03e02e8f4c986b55816cba77c47fadc9a2ec53503f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CEntityStateChange.pcode",
+    "sha256": "f731410d4e7457c811c1cccd5b7f78c85d8426163ffbd08a1681a1d4e4081cbf"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CGameResult.pcode",
+    "sha256": "7c5b685f67ce58dfc54b39d3dcec592569869c472e375aeec9c6764589752720"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CKilledMouseInfo.pcode",
+    "sha256": "4862981436e6235196b17b835d254b414325bd3efd10d659ac8c7eaee9ccb3ba"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CNotifyEntityStateChange.pcode",
+    "sha256": "a24693efda53ee119fa530eed8d169751da4244a3c20335bc776bb75a699291e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CNotifyGameStep.pcode",
+    "sha256": "2c2dc42e39582586d37e38416f673af1ec8018963de55e7d38063acac4431f41"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CPickUpItem.pcode",
+    "sha256": "f54ac96a5f51c9e750f8be56f43a91cc59433ddb40583f5abcfa77a262694b98"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CUseCard.pcode",
+    "sha256": "f77a169eda5097ec597bf54fd6c1406f7ff2a367a1a8184293e6f332a708ba42"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishDefender.pcode",
+    "sha256": "79894d8cedceb8b293869fe239f7508008ca3a4b80b32d761b7c6d7623261f94"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\game\\maogoutd\\CVanishEnemy.pcode",
+    "sha256": "ec522106b677d28ea0410f93f2bf166470c2cf0da538d7112eb7e59c73adcb27"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\hallserver\\a_2744.pcode",
+    "sha256": "c9ff05cb75de6f11fd65dee668134ad64763ddefc647908fb8ce311d96683aa3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\hallserver\\a_2745.pcode",
+    "sha256": "54fc0f1164be6694184f4da2ae279f7eaa8c4c498addcc5ace459268f9ec2b38"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\hallserver\\a_2751.pcode",
+    "sha256": "1f473cd10134e1fddb85efd2ac662166bf7ad412a879c8bb49d1af7909da688d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\hallserver\\a_2854.pcode",
+    "sha256": "2f9b6e374ac4e244eb02b46252dc1953880a2fb099e7c4f521a06573dc40ec6c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\hallserver\\a_2872.pcode",
+    "sha256": "3b76e33f7dbff7ac8ee99a7c2cc3199e5131d7da4993039f626b133d4c31c01c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\logicserver\\diy\\enmDIYWaveCodeVersion.pcode",
+    "sha256": "029081a34ded64bae2e397ab7a588fe422b3b2f6a17ec290942bf2c7419a2052"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\protocol\\profile\\CUserBaseProfile.pcode",
+    "sha256": "a7583095f44dad9f77bf9952c09ebaef9a5a704b885ffc75f5f64886c0e952fe"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\b_147.pcode",
+    "sha256": "e827d5f9c5bfd42bd9ad084cfe6aa7b2cd813ea40c4e8154b86506a7e0823d9a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\a_4807.pcode",
+    "sha256": "374ca29124c001a2e5cc087b08ecd511e532fac4546d4d874571925bb8b2d28b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\CardMD5Info.pcode",
+    "sha256": "9c645e5c36397cbd60db8ecaef7e3bb8584377119f762642868396025c87fc47"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\CDebugPane.pcode",
+    "sha256": "42bcce2b431d7ba38763344a03de4f3c336429d942f1b8e46070f196211b202e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\CheckIDHandler.pcode",
+    "sha256": "6d743641c27f94576be6b2f4e95e5ca4e3ac97e7462e7181ebc0a2684c53a2a1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\Fps.pcode",
+    "sha256": "3e1fa8f20e248b41c7d761e8d34e8561e6f31ef55cf27795f1280ba31521b0e9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\ClientLog\\MessageTipHandler.pcode",
+    "sha256": "fc8a541aaa2a85526f85d6c9cdb15bb1e8cf80c591764c5da82d2909d3312bea"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\component\\a_3306.pcode",
+    "sha256": "9970ef5fe0f9536074ee7b25f4703ed96a6da0aae1b315a6794116c3ae628336"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\compositemap\\data\\ComMapData.pcode",
+    "sha256": "53181df21b815a8f4134f62bf09c54be77e2eb945eb16c41b8b418bb0419eca5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\compositemap\\data\\FieldGridData.pcode",
+    "sha256": "364bc1b024a51bc1f556aa31cfa485cc43b56ddb914b016544bea33d2f0a1c3c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\BossData.pcode",
+    "sha256": "83d5ada166da2440b3f72187987119d471e3588785cb99f88c8b37f9ec95c9b9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\BossLevelData.pcode",
+    "sha256": "c0c576dcb33c3bbb08049bbaeee1b8b5d4ad6f3e58cb7ed414e6d4fc568eb714"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\DegreeValue.pcode",
+    "sha256": "c12dbe25781c8e76cfcd6cf72352cb2aecea78d12496b18bc5e0e7c3295244a6"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\DescData.pcode",
+    "sha256": "a55302b46679629491f60b9a341ebd9cf55326e505ab1d50ec705c510c8e6b84"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\LandItemData.pcode",
+    "sha256": "ab9d4a4ddda2afd10a367acad9329ed9f82633e43f688cd56b0a2a470bf27078"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MapData.pcode",
+    "sha256": "8405cd8b1148ea7e3a4c883093877a3b602b3bce1fd7ae14bd89da4134f388c3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MapformData.pcode",
+    "sha256": "273a4efb5d8a68ffee8c292143fa5796f8af8daa9576e2461764f438b067c7f1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MonsterData.pcode",
+    "sha256": "4d8d92195941750d808ad9dbe4e5eff610a35643a0c8e099fd5aa810afe7ef1d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MouseLinesChatBubblesData.pcode",
+    "sha256": "f85a81bf694095557be3c50d0fad8a3afe11fdce0cba2da29151ed63b4ad5eb7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MouseLinesData.pcode",
+    "sha256": "89c6c97b9de4bdc7d6e1d976fc37e41dc78ad30407f3355b4632b225edbd08d7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\MouseLinesTalkMouseData.pcode",
+    "sha256": "db50b4dd04455256ae81854099bbc04c444f08ff878e45e82b0d0344f7c8e802"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data\\ShopData.pcode",
+    "sha256": "d6a9c4130450c1907c5b79bb0dc189f802f9861160e3e8b0e786877b60031551"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\diy\\xml\\DIYConfigData.pcode",
+    "sha256": "398d56926424de5c25e244190f1b25b5d4d6aad1f854f7135d33b9ca4ec03575"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\doctor\\ConnectionRandomNumber.pcode",
+    "sha256": "32bdffb039da0153ba557ba9806dcfb70d5fcf664567dceb9b1f4bef701a0ea4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\doctor\\GameDoctor.pcode",
+    "sha256": "fc5b9477696e88b9eeb9c640e3b173196dddbe56c65ee1c7e466df4dbe3f779a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\a_3411.pcode",
+    "sha256": "aa35dd5357e9e54c4460dab1b87715e42489c4e1f85e22e20078bff4734b639a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\a_3491.pcode",
+    "sha256": "65d6754eb187f4251e942148598465d9c865fcf33380bd28b80a22f4a88d2ff9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\Base\\AttackDefenseParams.pcode",
+    "sha256": "ea4085e23252efbda46d872ad5dc8d5621f800623b8224dd94e912146e11a550"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\Base\\BaseGameMoveIntruder.pcode",
+    "sha256": "e8e89b5ec4af981601593bff811fd1e4c825c40f442e5787c8771bb62207b4ef"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleFieldFor4View.pcode",
+    "sha256": "8c5bddfaf01e222496404275dd561afbc1f8ff893457bc89d2104b523a8d5652"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleFieldView.pcode",
+    "sha256": "ce458e1130e7b93129ac439bff87e59ea443c9f72aea5173fe95a4a58dc3fdbf"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleLayer.pcode",
+    "sha256": "ffdf0c81b6ca69229d652a4448b3f68864981328133c92ff088015f7b139bf41"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleLayerDefine.pcode",
+    "sha256": "91ea50bd28c969a1f1a4452c30d97ba088dc1a946b26433bb7f02e9d2a9c77ba"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleLayerInfo.pcode",
+    "sha256": "f0ebb69613169c096f18efab27470aa769616411ce04bf0d3232f3dbb97405a7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattleLayerManager.pcode",
+    "sha256": "e669c34e91683a01b109c71af2af0b7d55b595be067b9c80cd199c6135fb52c7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\BattlePlaceDefenderTrigger.pcode",
+    "sha256": "7a691db347b0a2f5b4b1b9bef60eddb2ab93a7c1afc36700a33730e49d208ea4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\Buff\\BattleBuffData.pcode",
+    "sha256": "0cb3ef0d7165097c2e569830b2293b217c183d031c789f286d6bbfd3e7c6fbb1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\Buff\\BattleBuffParams.pcode",
+    "sha256": "77148e4c8690c10743fd2ba7bae1918d546f4fddc52899a4e677c635702017ef"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\Buff\\BuffComponent.pcode",
+    "sha256": "6c9609c8d762dc2438c4f4d8d709773e6fa878a5cbea8ea81d21765988d17cc4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\CardGrowPanelView.pcode",
+    "sha256": "e287e9e5717141af22d1adf7b8154fe6bff97fd0f53ef01a109fa2f2768c1575"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\CheckFieldGrid.pcode",
+    "sha256": "c66f4374574ef45d10c935456e7dc45768abf9e1565d8422d240e7afdcbf8e06"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\GameCardView.pcode",
+    "sha256": "55c739c3b9dad923e1a7e578f038a539e903ba6cf7acabc51d368300c17affaa"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\HelmetScoopAreaView.pcode",
+    "sha256": "a85f5dccd9625914f9f0af468d6b4453dfc35f06db227d7493823df987ab0d61"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\game\\StaticFieldGrid.pcode",
+    "sha256": "6ffe1a0d4055b161ca4996202014049b95dee75e0fa83c99ebb66a766c77a50c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\handbook\\controller\\HandbookController.pcode",
+    "sha256": "457e253b3b576b0c94eca68107fa22b3ba2f721e845ac11ec53e9d2b3dc82bc8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\handbook\\model\\CardHandbookData.pcode",
+    "sha256": "5f88fc314a36f1f69942e6b0b3ca94b28cb3b676763a04e310981b946ed251f5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\handbook\\model\\HandbookConfigData.pcode",
+    "sha256": "246fe3784ba3996be0310595dad388d0ea3e088fe132fde540169c4983fae033"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\handbook\\model\\HandbookDataAward.pcode",
+    "sha256": "a6f164dcec69e28094ed29dd0096c058d9f5133ecbc1b860a17fa72212741124"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\handbook\\model\\SuitHandbookData.pcode",
+    "sha256": "0e59c08be71e77fc024d59ed884a63d690c0265f6f79802c29e2f206ee337929"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\iface\\IBossMoveIntruder.pcode",
+    "sha256": "20cfcaf940934881845a973c7d4b15fa8288225202de1acfd953a32ba0eef140"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\iface\\IGameMoveMapBlock.pcode",
+    "sha256": "2a8ec6b38be1a4fd1dd1614224c375cf73346c91577b76db7b0051ccbfbf8b81"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\iface\\ITDMessageTip.pcode",
+    "sha256": "fe2f145baa2140ba6373176870fb24da2e8f16b58d77c661f9974746c1751c9b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\mota\\MiShiMacroConfig.pcode",
+    "sha256": "646269e7743b991891635ffafbf4a390c09be6179216704a70045db8b7b9c11d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\recipes\\datatype\\RecipesAttrStruct.pcode",
+    "sha256": "dec1eab613f302effb515e8c9d654fa54535a820705178ee1202ebb546efc737"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\recipes\\datatype\\RecipesPostCardInfo.pcode",
+    "sha256": "f51fc54b6d4ed175c9ade705fea61d2af57732ecd30d88d36ba2f95e47967af5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\recipes\\datatype\\RecipesStructComposeInfo.pcode",
+    "sha256": "517c194c968c6094741e383a51c28f33d24fb6899231c948d97d7fb834e5dae1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\recipes\\datatype\\RecipesStructRecipesActive.pcode",
+    "sha256": "5a6b989b9ef6106acf89a2b22f03ef53d1c19c403df25296690f7d0848eb7e1f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\a_3909.pcode",
+    "sha256": "d04295f36e17ad378ee1bc143baf1535c96288ee5419c6542946c504cc076ed1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\avatar\\a_3924.pcode",
+    "sha256": "04a6c14c5ff8ffd936a7a88f859ede5fed3aa9d9715a1f4add260350c7e51e6d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\avatar\\IBattleAnim.pcode",
+    "sha256": "f18bf78c7c0799aa684916605fabfd95bedf69af96b658312570d3cc698e2ff1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\BaseBattleElementCreatorFactoryEncrypt.pcode",
+    "sha256": "cfbc39b4a4be2dce999537d547564cffb3f70d4785e5b3a09cef2c9e83c10c49"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\IrregularCirlceFogBitmapdata.pcode",
+    "sha256": "37b0663ab9a3e3dfb1ce0523f55fb46aa4c93f6134adf688effb422b4a747570"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\MouseScareBitmapdata.pcode",
+    "sha256": "0af6f97cb8d412446b3c9817c0ec5c6da17f58526cfdb806a0a906eb857bae95"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RedDangerFieldAlarmBitmapData.pcode",
+    "sha256": "d1248c81e26e16edd94204c3daa77b655e4c3919f29e15c3e4730b5858abd91e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\bitmap\\RegularCirlceFogBitmapData.pcode",
+    "sha256": "e4760d404c2b5e8d035e03672792202e9a0b6839920c75a9a61f8383b56198c1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3953.pcode",
+    "sha256": "3adc9a68019d76007506076e403067357ac013223e4113a883745f6d8d5532e0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3959.pcode",
+    "sha256": "d9d65742272d56e1ffe30153a759f585267209bdbc7539c150e1e436acdfb2d9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3960.pcode",
+    "sha256": "24b4640db5a3b8e2fab0b84cf4abf5b3951cecc2c1a29f41749cd16de884a068"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3962.pcode",
+    "sha256": "d03f591cf4024a0219904deedb230dd367e05356593076f37110e4209f8892ca"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3971.pcode",
+    "sha256": "1a1936b62a4015e74ddf1c7110b623f1efd660423f9af329e76abdbc756bd99b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3972.pcode",
+    "sha256": "eaae1cce32ffd8bc1690d512bc0c8b700e4352176aaf890b889a283d09ade8b2"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3975.pcode",
+    "sha256": "6dedceb126f6929a24d1fceab39aaaa459026f1524db774037ac5eb7459c30e0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3976.pcode",
+    "sha256": "44259dc00db4f429decdad179a18661b49052d2a7d5ac7582498ee1bbec372e8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_3977.pcode",
+    "sha256": "e2a4eb8aac0c9288f91cfd2e12e755f0a863118e44a6ea4f6f905bd41873b4f2"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\a_4012.pcode",
+    "sha256": "a6b4e23bcec2a24da8ff90ccda5d066cc91253ad9f50cbbb8d0d343f120e4b68"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\defenderSet\\BaseAttackFighterSet.pcode",
+    "sha256": "4c230c67abf571e27a07110db35bcb17949f943a52849945e9f7e139ba028462"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\defenderSet\\IDefenderSet.pcode",
+    "sha256": "bf673bffe4580824860b03e6a3698b8517b5cd7d41c498b6b40b776453126091"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon\\FireBurnBuff.pcode",
+    "sha256": "fa2c3263da1b5f304f90df41f9460ed35fe72ffcc9c42b55871faa34eb0cead3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\CandleYinDragon\\FireBurnBuffMovie.pcode",
+    "sha256": "5d37332217d4ed57d93edc37c0ef749ebf5f959576e39f150acfdb39c7d3e501"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\GoldEros\\MouseMoveIntruderBatDieEffect.pcode",
+    "sha256": "f04a03849f8c975090f4fa33d7978fb09ef5773facfed5ad76fc8afd34aac26f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\DragonYear\\GoldEros\\MouseMoveIntruderBatDieEffectMovie.pcode",
+    "sha256": "2cd5ce8ac0d80350a85bae9e34becc6f5618a34f4183d0da707bffca9501eebb"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\CanAddBuffInfoManager.pcode",
+    "sha256": "1df9635664162637cc98d883d33676a04f593f1f004b0b07208cb89ef06ddba2"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\IntruderBurnEffect.pcode",
+    "sha256": "999cc2c7a1e9ee53d349f0fedd48da86289b8beaf5595f79f067f012c4f9c764"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunDefence.pcode",
+    "sha256": "afa3f91c86d174e4dd36526e0da8b234a54809784b4477d1d0736e262fb2d54e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunPrimaryAttackFighter.pcode",
+    "sha256": "08f68a37308699830d326aff4f883c0d5947e357dc3d6c40275bddf9b87f3f12"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunPrimaryAttackFighterMovie.pcode",
+    "sha256": "b3f9a9de1af7ddb6c68f35751c27f830e30709f3dea69528d468b5d21ab06534"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunPrimaryAttackFighterResource.pcode",
+    "sha256": "5d9f529bda8a300a1f41069166c954fe181e3cbe3996a900df93f1f0b683f4f5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunPrimaryShot.pcode",
+    "sha256": "b2a6fd67c1a69ae109d48c06da49c0fc10bf64b0843af610a623a9f1640b1d6b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun\\TermiThreeShotGunPrimaryShotMovie.pcode",
+    "sha256": "75db3410110f096079dcdab6afe5efd4214283a06e89653b78193db04bf0ab55"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseComponent.pcode",
+    "sha256": "8144acd48d967d464412ed069a1d48c67c7df886101e8560ca0622f86fa5d955"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseDefine.pcode",
+    "sha256": "2d3c22569187a116c3844c227c8fe2e9155625b9a55dd1d27c8587c6aa367379"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseEffectOneBuffMovie.pcode",
+    "sha256": "4301d9c20b1188960f3cfe0bb1e78ae6d7204688e60980de785e75c2862f88fd"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseEffectSceneBuffMovie.pcode",
+    "sha256": "b24eeec61bc3b64a732f5556d33cb1b287a4077a28e67b466a4622774c85a016"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseLineMovieClip.pcode",
+    "sha256": "c29275c00039917fe48f8a90a5cfd340a3f6b33fecfcec336e6a776d4c38880f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseManager.pcode",
+    "sha256": "c50f1642d607e8d23a85992ad112be70c883e56d6c29d37e5d501266e7584ba0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\barrier\\BarrierHorseNormalShot.pcode",
+    "sha256": "73aa3daf07f639565e4505ead93c077d625eaf3dad728cce817e88406158cf4b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome\\ImperialStrikeHurtBuff.pcode",
+    "sha256": "d04a0533c7c5c07ef914d51d1653fc5f8ff22e747db4886f1048b497fdfb7aa1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\stardome\\ImperialStrikeHurtBuffMovie.pcode",
+    "sha256": "675b4b935e786d12400b61c6f9bc71b05b01e880849a74990079fc32aec02c93"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider\\MouseScareData.pcode",
+    "sha256": "2ebadb58ad241c62cdd2e9e73e60bfd24d56490a86c48c97b16f354bb7e77c6f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider\\MouseScareHandler.pcode",
+    "sha256": "47ef78fc432032e387de26368d02bd66458471a4d542cf49a3e7c5051cadb426"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\PigYear\\IceCreamPitcher\\FrozenCardEffect.pcode",
+    "sha256": "e0a50fff20634fc823f0d5b5e435c3f8aa63ec8df08568a9caec7ed66901cc86"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\PigYear\\IceCreamPitcher\\FrozenCardEffectMovie.pcode",
+    "sha256": "7ce471bf4e93a7a3fbe5de5402887477a3bea91e522bbce6ff3d19a469a0231b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\PigYear\\IceCreamPitcher\\ShiHuaEffect.pcode",
+    "sha256": "f6bde665e8661d94b11f8f07fd8cf3ad5cdb4d56c96d34b5f9bd71b0ae1b1669"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\PigYear\\IceCreamPitcher\\ShiHuaEffectMovie.pcode",
+    "sha256": "6998df1d4842d3a403be400d03f06d57b188b2af08d37001c52a130c295a3935"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\RabbitYear\\YanYanRabbit\\YanYanRabbitAddFireBuff.pcode",
+    "sha256": "17bd3758c5d23d9d6005f7bd78fc4e2a621b54a2487d7b5cd684a08bee7285ee"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\RabbitYear\\YanYanRabbit\\YanYanRabbitAddFireBuffMovie.pcode",
+    "sha256": "69837709118f1d11dbc4299ebe11355443cf22c98d315f3489385bfb698da3cf"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\elementSnake\\effect\\HurtBuff.pcode",
+    "sha256": "239cf5bf3fed1ddec44b11a6583931e5275b913bf86a46b61f2f6a77b47552e8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake\\MageSnakeIntruderPoisonEffect.pcode",
+    "sha256": "69ce7040d252f04d3b8545bb6e5123ffec8131cb175c2b6cdbb71885becdb5de"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake\\MageSnakeIntruderPoisonEffectMovie.pcode",
+    "sha256": "c6a5cb94f712401434075feea784d093630f59b4665ca76f3cb1b7c1f0ee16c8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake\\MageSnakePoisonBuff.pcode",
+    "sha256": "10e86e60613feca48a73dd0ed9ba18eda3403024e7ad863185249808a02ac2ed"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake\\MageSnakePoisonBuffMovie.pcode",
+    "sha256": "7952d05fbd5f0cc465b067c038bf44e9903249cf2ba69034e3061e8fa5f27881"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\yinyangSnake\\effect\\IntruderBloodEffect.pcode",
+    "sha256": "e6426f849a6945dfc35fff118ea96f8d80d42edc22113c69f5923f8c742fa015"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\yinyangSnake\\effect\\IntruderBloodEffectMovie.pcode",
+    "sha256": "d24848c9c53dd4a3fa783c2d9a5afded6209c5f36a2a3791e8e2aa911d4c560b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\TigerYear\\JiaoTiger\\JiaoTigerPoisonShot.pcode",
+    "sha256": "2513b3ef0fdbc9c5fbf8f25d47381587b1bd95623c32c2924ec74cad29800d69"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\defender\\TigerYear\\JiaoTiger\\JiaoTigerPoisonShotMovie.pcode",
+    "sha256": "6e6fa04b75b5c865f74bc9cb294675a9a0968fc89b96b317c2d4a04bed9de800"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4108.pcode",
+    "sha256": "fa0aa7e41d2df3b5962b0ac8918e308afb7d6342605e73d41d405fddf9734797"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4110.pcode",
+    "sha256": "99a47f62036394600bc16f8a8b820b0b3f5b3b4c38eb1493e065d07f4b4620b9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4111.pcode",
+    "sha256": "2536853e82c79415bf254d6cd5da34e259992d874ed4aa61f1cc1b2dd09c8487"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4128.pcode",
+    "sha256": "db442034b923a6d1c25e19263adb680b5a4ed59b19dffda88dbba7e81beea748"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4133.pcode",
+    "sha256": "3a78d1cdab55a44d0d3fb49b8bec0b6c723caaf5aaced21ae3de9350dc9b2277"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4135.pcode",
+    "sha256": "0a7bd5510e152ee6d11d106ea72008f8be12d83ce089b8f213a14858ca4882fe"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4142.pcode",
+    "sha256": "436c336d60d2b65f6ff59c1bae7669bda296fa6e131d0c47f332de2d3a2a68fe"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4143.pcode",
+    "sha256": "4aa3b2c6a0e18f6ce895bace61a9f59ab8c95e1e41496f18da8ed57d0436b281"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4145.pcode",
+    "sha256": "53383766c37d7501216fd2ad90d3b513f80ae2c183a70714558fb476bc164399"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4147.pcode",
+    "sha256": "ed79c9f1c6049bb7709800bf1ae8b1bad1707871176a32c3229d70807a76a7b1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4149.pcode",
+    "sha256": "a851a30a2ccf22844c4f7cc087a5a7f4ebe8ab803f9e77f737766112f58a5f94"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4151.pcode",
+    "sha256": "ea2dc8b8f18a2f2532aaac222171fdf3c2a001dbb6a7c8f54eeef6f47d1301ba"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4153.pcode",
+    "sha256": "5c610821de8f2817b0e51863109badddbd698204a837ffd944836bb28a7da6aa"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\a_4155.pcode",
+    "sha256": "e3a5158f9ef75ccb843f53c826f5c84ff4953ef9a9e743cb407bbd61116dc673"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\AddBloodEffect.pcode",
+    "sha256": "3d2dfa4295ba279a1a5adc9c698ecfb863c5eaacd6a66d52166a03caf338ad90"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\AddBloodEffectMovie.pcode",
+    "sha256": "737ca3c4997545df71384a6f9f2176a5a8759126527b4b434205cf024920c55a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\AurShadow.pcode",
+    "sha256": "110e447b5ff26b76bba782c837f327cfaeef0afb8d14adc5114da4bfbcfe9d62"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\BaseAccelerationEffect.pcode",
+    "sha256": "80791687d4f0e1524fb8ce850c557e03b257ee5869f691423f517bdec2af1250"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\baseClimb\\BaseClimbEffect.pcode",
+    "sha256": "7cd48826e958918b83458352e0546506db9b3acef37e89b3dc84800eecc9b478"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\BaseDesertFogEffect.pcode",
+    "sha256": "0bacd78b186f49882f9ea69d3ce4d293335062daff930e28aabfc8428772730b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\BaseGameEffect.pcode",
+    "sha256": "66f8a15c5584b2edd5aea5bdd927ff67cf604d65f16b135ecdc0621624412fce"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CardExpAddEffect.pcode",
+    "sha256": "348dbade804298c7a5b16cfbe73ccf319e5f43c27bb26e2964e6898317d5b350"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CardExpAddEffectMovie.pcode",
+    "sha256": "0acd969ac18d9c37e85ea5d6501ec93ac321db1e547b711b8592af14a5b65edc"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CardLoverAttackAddEffect.pcode",
+    "sha256": "64c957afa75b11fb51f4ff02d52efb0c751e3d30c5d071b51ca76bc684bac268"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CardLoverEnergyAddEffect.pcode",
+    "sha256": "7db8b8d7838505d4ac3a55138b4bf122dd5aad00c73298f588164666efee97b9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CharmMouseBoomDie.pcode",
+    "sha256": "cfce2ed85a765c4fa829abeade99b867458c03b8a35ad34ab5759b55600e3b5f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CharmMouseBoomDieMovie.pcode",
+    "sha256": "251f1528731e162fc46080ec3a21dac34592e6cefcda80a17e7cafe803560333"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\CommonWaterSprayMovie.pcode",
+    "sha256": "1767ede33c51830a4164c6e022cb39f026ecc9ab6ba1266b64c9d76fd02c70a1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\DesertFogEffect.pcode",
+    "sha256": "7b60523b1853a97d61c3aeed9a63f28dfa1896ad651cea0068e594a10525c0ec"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\DesertFogEffectMovie.pcode",
+    "sha256": "0576fe0c9cb92bbd6000868b035f70e1aab997a55820d887f136589ad24d6532"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\DesertFogEffectSprite.pcode",
+    "sha256": "e050e3a3eb71b4570c99e3e65752fff2481ad9744d48d0adee706f6b0deff755"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel10Animation.pcode",
+    "sha256": "64f9e9ccb083d48a2f0387044d5775473991866642db24fcc1932325db1056bc"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel10AnimationMovie.pcode",
+    "sha256": "00c71afd18ce4ebd9b7a8c77c8c34dba62ab6811097d55a6b6f9e404822b0d83"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel11Animation.pcode",
+    "sha256": "fbaa74f0e55063b389c1ff403679ce50c52bbb78e6b9214e3eb154acfe781226"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel11AnimationMovie.pcode",
+    "sha256": "59a00911796fdab4008634582c05672354906cb2c9d542b9d0ec8371ec9b5bce"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel12Animation.pcode",
+    "sha256": "3eabb4f5f9ab66f828df0aaa5468c693f222f66a2f36a6cdd517444a20113f25"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel12AnimationMovie.pcode",
+    "sha256": "f6f0277c5b6cb38431a573d9728b4a00162db89519e29892159873ed8e1f6676"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel13Animation.pcode",
+    "sha256": "3433e5660ef2660a5750d6a9fa30e31c32af301a1b129468c1155cca69185eed"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel13AnimationMovie.pcode",
+    "sha256": "7aa3fd19fb25fe22e620eaa3f98e6f4ebbf5d9ac908eead4e4b73246e394b0f4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel14Animation.pcode",
+    "sha256": "1cc917ad283f66bdae492b249fdb7f2b0f53717f67851d60e5d0b7a57339755d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel14AnimationMovie.pcode",
+    "sha256": "f064164cee77e3636b1573c987042be49c735047dc4f4bb2a98dfdcd736dbb32"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel15Animation.pcode",
+    "sha256": "5f2420c67e68d496a32d6a9e9bc91449efa601ef52330135e9879d0e0381bd14"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel15AnimationMovie.pcode",
+    "sha256": "a53e075173465834af9ea43a1ce4660ca6444e0cab83a0535bcd8b12ac2f163c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel16Animation.pcode",
+    "sha256": "57511b0151f8b87051f6ee302b85c7c0e784c2c71b899ed907f6379a84507051"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel16AnimationMovie.pcode",
+    "sha256": "30c15d8027d773971dfaa395d4d2d531d361dc06449837cc749aa0686aead7e7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel1Animation.pcode",
+    "sha256": "eabd3f2e13b7e2305b268542c00cb56a5f15a43f7503a584948d5e0b38902ba5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel1AnimationMovie.pcode",
+    "sha256": "81fff2497f7fdd6a28f2cb7f57e04cc5585a48f778d4dda42829016c8214937b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel2Animation.pcode",
+    "sha256": "246868008605dfd98172d57da72260bd7ac659a88ad43c19e6368f88c8417cde"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel2AnimationMovie.pcode",
+    "sha256": "d1ee5e64eb4119919e9ab809de743e472e4fb1250a61235311df0ffc815ac7e0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel3Animation.pcode",
+    "sha256": "484468ad8c29290ed06289541a580960b82af01bfb632136be2d1bd6ca8d56a0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel3AnimationMovie.pcode",
+    "sha256": "d647b29b6189dd62fad557cb86585610c7b2be928152cd0d1e94a73f0a86c44a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel4Animation.pcode",
+    "sha256": "19cb9b7e454850e4bac98aaa83e2fcd67289c706fc2a48f7e59d11d2a79ab3b4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel4AnimationMovie.pcode",
+    "sha256": "736611c850aecc2fab874ce22b5757285b9c775190d141c4e76708db4b7e99c0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel5Animation.pcode",
+    "sha256": "eae06a81b8b858117cf055d8b9bfb7b192d71316fc75449c75e84b87b396653e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel5AnimationMovie.pcode",
+    "sha256": "7c47511186e1da42eaf8a6a059bf8e511cfecc78938b411574b534a9b5dee943"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel6Animation.pcode",
+    "sha256": "f1679cecaa4a9c98c6ed24dc4a89945be2aea223821875c65b990e5200fe2c32"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel6AnimationMovie.pcode",
+    "sha256": "754f64277eb4afaeb37e79ac38986fe5df312409c1a017f5eecd95db9facdc8e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel7Animation.pcode",
+    "sha256": "1879dffdce5ba7fc0f5fa28d465ae4acb5fdaa9ca952fc3e593400bf7c5fc68f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel7AnimationMovie.pcode",
+    "sha256": "e2f2b00773f227919b810503ea70a28a72888e685180d9671e9d314283cc9580"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel8Animation.pcode",
+    "sha256": "b1ea2a4461bfdb17faa7889fb7040313500b8f7e850defb83ac1a155920bb7c5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel8AnimationMovie.pcode",
+    "sha256": "24d94c880f4120be107966b68371087b9b947509055e3e95f87b334219ee2a2c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel9Animation.pcode",
+    "sha256": "49a65955bacaa9daac3fdd96896491b2a89fa8475a61e7e54de454029569fa83"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\GradeLevelAnimation\\GradeLevel9AnimationMovie.pcode",
+    "sha256": "ad84568480b2478f73351bf411f7788fec23452c19c509679a2714ed99978841"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderMeiHuoEffect.pcode",
+    "sha256": "4ab2f6696c1e88b3d41298afdb1eea98ea8a2d47b13073f673fc772105cf4ef8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderMeiHuoEffectMovie.pcode",
+    "sha256": "31d1a20bbedb3ca9e648d7062b3fc118efd893261f378500632d5449275a4a68"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderMianYiEffect.pcode",
+    "sha256": "5a60bbf95a53228f13ddb4f3b644d7acc8f09a8fceece2b506775449f89cd92c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderMianYiEffectMovie.pcode",
+    "sha256": "945526f6e20d7d67326394f1d04c267890684d312e7c0be96bb812b496b33fb3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderPoisonGasEffect.pcode",
+    "sha256": "6bdee9177c9453dd345c47ada9c1ddc34a8f1dec4e761c5bd2f7409b91cde6e9"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderPoisonGasEffectMovie.pcode",
+    "sha256": "e6e8ea0d10b33303d402f9cd7b395da3b28f659c50783a05d8ed213135bbac6c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderShanDianEffect.pcode",
+    "sha256": "d778ee8cb455707d781bb6aa02477e04e061bd69d37d86977f1499c47661f96e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IntruderShanDianEffectMovie.pcode",
+    "sha256": "cce74d6b4dfb5235c20e66244f448b9be41da590662ef5ee6ff100be5fc90216"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\IPickFireObject.pcode",
+    "sha256": "205855cbda6ab6b0d64466e748811a21cb4f2ddb240a4b7b38eadfc7456b9b39"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\MouseComeUpEarthEffectMovie.pcode",
+    "sha256": "710ae21b91e3d318285375ded614a8cf44e054879d3e6f6878cacab0eef50d6c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\MouseEarthHoleMovie.pcode",
+    "sha256": "4f1742cc6ceb42dbb5504c2e74cd4db7f4a19085cb55f28c5431657028f18b2c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\MouseSecondEarthHole.pcode",
+    "sha256": "71aaf843b714775f7e2005faa8e4f747ccfedb324771d81e87d9f420dabb38ee"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\MouseSecondEarthHoleMovie.pcode",
+    "sha256": "c659808aba93e1737c087491c2e7b056ba1c69fe8fe1398159a62debbe651cbb"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\PlacementEffectMovie.pcode",
+    "sha256": "2fc45576e748022b6c5fe82a1664e239f1aae0793a9ac7233985ffcf4b512ea5"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SleepingEffect.pcode",
+    "sha256": "dd2aa6d80e5a0e4991b0b737633aa7189312745f7440ac7a902d99926472d236"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SleepingEffectMovie.pcode",
+    "sha256": "30664980bcec20dcf9d5fac24bbbdc1d3404238858fcfe1fca7db27eee8ac1c7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SmallMouseMoveIntruderBoomDieMovie.pcode",
+    "sha256": "5211f59c0db6b76fad2b80fcd9e9795015e31438f9391e3061ada5bf3a41f7f2"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SpaceMarkEffect.pcode",
+    "sha256": "ae07e84b915b466956bfa29dfaff54378b6ae24bdf067aa0ce198858a81a75b8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\SpaceMarkEffectMovie.pcode",
+    "sha256": "1aaae23135133865c3f68a49bed6b1ff6c2191c744615fefac772d1f3af251a1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre10Decoration.pcode",
+    "sha256": "acfb546bc80f9d408eead493696509c51c3f569a98cf3557e380737fa4d65a60"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre10DecorationMovie.pcode",
+    "sha256": "d2c4f1f1613227ec8a47b406128b43b68b1f6f7e736a18d7d1d71dbce02079b4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre11Decoration.pcode",
+    "sha256": "3002c33cf15497043246fcaee470c60857b73acf79edd8df86408f79af3d3450"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre11DecorationMovie.pcode",
+    "sha256": "1b57a31245589fa645cef79a414816b00c84564fdf5b491fa924d665bbd6bb51"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre12Decoration.pcode",
+    "sha256": "941983f74afa97816595a9bb55db35654ae50deba8b5cce6dda442b71421a63a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre12DecorationMovie.pcode",
+    "sha256": "39986e64ca45b4d95b6d1e2da2f0a06bbd497304d506ccc01f9b8e9b5baf1c27"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre13Decoration.pcode",
+    "sha256": "f29928e047486b3decffcdf4607429e16cf88ea2a3c1b64c95873545bb91e622"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre13DecorationMovie.pcode",
+    "sha256": "15053b040773a9a229049d37a2b1b85b1d3def6f4e171483b227be950ec03c67"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre14Decoration.pcode",
+    "sha256": "155fc70f119fb5b67d1c585785587b82c9144dd7ac3893bfd56b9a873fb4be0c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre14DecorationMovie.pcode",
+    "sha256": "11d2786dbd83035c7de295f997e6305edfb7a448d065ee1de4bdda5af7838974"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre15Decoration.pcode",
+    "sha256": "34cb60cb100617096bcfa32f1098582aaf78e9a8ef88a36c4b50562d9e946001"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre15DecorationMovie.pcode",
+    "sha256": "28843f87294626c9ff4204a070ff92c5e4deb4ffb95f873ed4e85dae70e76c2f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre16Decoration.pcode",
+    "sha256": "496641a55de62e58747dde2ab8fa998ea0439fcdb0f9ecd395b5b4b7b083d7b0"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre16DecorationMovie.pcode",
+    "sha256": "8567f85731d14a97751da0a5832d101f1cf337bc48bd671bbe14b9c8660dc48e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre18Decoration.pcode",
+    "sha256": "93ef61d1483c300ee21b7d87fa1b691bce53e0f40546598fb5034f9a04e11871"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre18DecorationMovie.pcode",
+    "sha256": "ebb82c7dd827b3956ca1a3b61e198fe3ca6df6502d30bd313c74a621d5f4b278"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre19Decoration.pcode",
+    "sha256": "12457642444248d4f8da04b6cc6a17f121f6d5c43cab2d4bab1c07f4a928fa7a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre19DecorationMovie.pcode",
+    "sha256": "85c7cbba7c24bdad2fc9c767332666645fda45ba48c2480b6d0ac72c937b7826"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre20Decoration.pcode",
+    "sha256": "1efdd201ed90c5d2260f6f366f6c0e131dcf6babbaf6b74193f7732690102d1b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre20DecorationMovie.pcode",
+    "sha256": "80424ebc0cd4d58a2b426a89bbd0929bc803175237500625725cac2ab750d9cf"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre4DecorationMovie.pcode",
+    "sha256": "353ea551da3ebf9ea0be06cc090679ece6933f1e91e17a885f35098341f21fbf"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre5DecorationMovie.pcode",
+    "sha256": "ff9a371a09613dbf4ef508d710ad76ae07e57576ca1f61cbd89f8b6191f8e627"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre6DecorationMovie.pcode",
+    "sha256": "e49fa2added53f02abe315b0a9e036826229450eda85b1cd7c665a6c88a9aee6"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre7DecorationMovie.pcode",
+    "sha256": "c1a4a2e52ad27148f3494366788ef5812811c6be8547f7409a21186412299c02"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre8DecorationMovie.pcode",
+    "sha256": "d5016cea7f6583f68a847fac7fb532df336c2b275429e6b6122d44a0459fe624"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegre9DecorationMovie.pcode",
+    "sha256": "242089274201b0f7bed22ac48f20429977a06ab733d1f9e64863acffb97638e8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegreMaxDecoration.pcode",
+    "sha256": "0a04c6233f993e7ebfbf2fb18a4d836c1acc72955b681be5706c97626833a162"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\StarDegreMaxDecorationMovie.pcode",
+    "sha256": "e81ba409e0fdcffb72fcfb0260809fade043e9c811d06d8df6ebc87c9fae2f5e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\VertigoEffect.pcode",
+    "sha256": "dd3ba2f60455cdf33d245e4af00bbccd63934605033d47c6dcb1a8c5f493be80"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\VertigoEffectMovie.pcode",
+    "sha256": "332d0a3c36591655516999052a49d4f2d3fda07d768560599a76ccfffb4f75e1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\VolcanicFireEffect.pcode",
+    "sha256": "0eeb58e37d3bbff30ee93472ac6cd4d5fd1aac672ed4cff67d399b39a74fbd64"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\VolcanicFireEffectMovie.pcode",
+    "sha256": "3607192cf009839342e1759a7d8775c54ed92189a85b84759c27ca2dafd2a10f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\WindbreakEffect.pcode",
+    "sha256": "6945f195aa0a3b84bd227de527a1016fd236cd61956307d62b25802331a9bcc1"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\effect\\WindbreakEffectMovie.pcode",
+    "sha256": "5704b988f96513a2dbda39a6dea70be18e2a3dd9bfde0e3341f94b33df460a50"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\EffectManager.pcode",
+    "sha256": "31a95a1d92662435ed12771d2913714dcb2fada384b108dcb3d4a090d43fb292"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4157.pcode",
+    "sha256": "01b1efb89f249f8984ceeaab077f8ab006eed55b4439690921e5cd1795822582"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\energy\\a_4162.pcode",
+    "sha256": "f4cd3101edb706c9e8dcaba37236f1ec5f39913a761b1de86edfba4f5f760b2d"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\a_4187.pcode",
+    "sha256": "212419c1d8d007d463417e49a4b4cdb064371e8d578d708132a946e43b8b6525"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\BaseGameMap.pcode",
+    "sha256": "ac4d80f01b6bc9de6af4ea6432c6b00c4284e862d1ca5eb0f2458abee7554163"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\newMap\\BaseGameMoveMap.pcode",
+    "sha256": "4aeeed72046e2f603b2ae34f4b483818b6b0480f065c300fb01a0db08d82bca8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\newMap\\CattleYear\\ThundCity\\Effect\\BurnEffect.pcode",
+    "sha256": "8da7a7ce134c769f17a32e161b27488d378b0d0d995bc02b64e29043ebe1f8f2"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\newMap\\CattleYear\\ThundCity\\Effect\\BurnEffectMovie.pcode",
+    "sha256": "701ca415c3bcb9d04fe50607ccee765d0cac546c469a27745ef0e5bac86ee08e"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\newMap\\SnakeYear\\DesertCross\\DesertFog2Effect.pcode",
+    "sha256": "b3216a93dc8d90640fbdd9bdfc22f6bfe41a4b68b1cbcfe8e45adfd74821291f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\gamemap\\newMap\\SnakeYear\\DesertCross\\DesertFog2EffectMovie.pcode",
+    "sha256": "63543f0370c69e22f744ac5b058f2247c1993d1a5790d99ac5b7e22bfc4c1e06"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\GameMovieClip.pcode",
+    "sha256": "d737893a1e4dda9814dccf5f8daffb43fe9774103a1d94d110287c1d383ee359"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4206.pcode",
+    "sha256": "1392b708ad615e87279194960d0b3fcab1633671b4e6572895a0feb858d5e701"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4255.pcode",
+    "sha256": "6f1e9a6661818d155acedbe204a138f833585cee3a2cc387da5fbad55acce57f"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4258.pcode",
+    "sha256": "a8fc6c4d72db800159cf45f2cf8c2a4677d74e43f2b829fc1bfec94fa4307638"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\a_4269.pcode",
+    "sha256": "37a202b8312fc514969cd04fd24c36579117170514d5214801839c9bec901cea"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\newBoss\\BaseBossMoveIntruder.pcode",
+    "sha256": "26cf5f6eb7b73693662db17fe019d6e459af4f9dd275b5700ddfff0ce25ac2a8"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\Intruder\\newBoss\\RandomSeedBoss.pcode",
+    "sha256": "5755ced50fa3b537b03715a34f9fdcd1f0d1dad2e7d2bcb3952c7b51e81c06c4"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\IResource.pcode",
+    "sha256": "2d060a71a12b3094fa490265cb28cf3b75e4363e9e228a1f805453fa684b4172"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\ISmallGameDetailInfoMap.pcode",
+    "sha256": "655130b9d86c7565d1a48552f9d23c37e86f2707e09ecde1d44e2affd9701c5c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\moveBlock\\MoveBlockData.pcode",
+    "sha256": "0a6d645a72b52a434f978d5bbe73489a68cf0ffc63f41cf1713fe5d7aaf65ec3"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\moveBlock\\MoveBlockFieldGrid.pcode",
+    "sha256": "195f6688c03a73d0f5ad2c1045a605c691b26081ed9f7f12f3de10adb55364ca"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\moveBlock\\MoveBlockMap.pcode",
+    "sha256": "7d8853a63f31b77fdafde6d6df078c8d7b4c3b99299e1b92d956feccd2a8c207"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\EffectObjectValue.pcode",
+    "sha256": "1e493777ce395cda4c0956eec43ed0ab0c1f55d1c715adca62836636d1e419e7"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\props\\IBaseProp.pcode",
+    "sha256": "fed943a950f152862a56fb312d6cd01680d5f6f03f13e4061c09691010f2c42b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4348.pcode",
+    "sha256": "b4e8bf3e01e7233fddb66c740d95997ba21cdce115726d7b283250ccb5c2964a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\a_4388.pcode",
+    "sha256": "ced5c6da1dc45fedc2a1f8d0c0e4e8673c4fa50181369001ac16e8ae996231a6"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\SecretWish\\CollisionHit.pcode",
+    "sha256": "4b5ada923ddd5ba0a3cb22802c268c840c7b85ba015a2ddcfa9242add4ebea6a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger\\BaseShotTrigger.pcode",
+    "sha256": "28c0a2217867bbc46a722ca9388d35d6596b2e057223613df3e72a322299ae64"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger\\BurnBuffTrigger.pcode",
+    "sha256": "006fbfe311e8fba27f71efc9a7b5442f6ef632ee67750b7ecb1512b7e260cfb6"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger\\PenetrateCountTrigger.pcode",
+    "sha256": "a23567fd6cb585a0e6b7d130be813c63257e3c6a2d89d1881f5d137ae87f04fc"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger\\ShotTriggerManager.pcode",
+    "sha256": "c08d23d42600c73741636edf394bd28ad733dd5bb1ac3914c7bff6d28653d258"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger\\ShotTriggerType.pcode",
+    "sha256": "7cf3d4b4df8b55e09b65395ef8ddb7650fd35840450fc697bd881cdb34aa7f65"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\sound\\a_4404.pcode",
+    "sha256": "011a5977c1b73fc282f658528fe8e4ff0b421b1b82e5f834cbe12b62c9a62b1a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4408.pcode",
+    "sha256": "2c2a6e34dce20b1baa4a46dc2f9349f9cdd9b7ef44f64c1c78098cc9651d4e59"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4421.pcode",
+    "sha256": "95607844a5993c56bdff18d9724d231fe401080dc20981f7f6b188f367279cca"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4425.pcode",
+    "sha256": "cbfb71a32085e3b5f1f24052d7277cafaa4057b6faf4834a3ef1e4cb42e83a84"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4440.pcode",
+    "sha256": "84a6b19f3e930948336546154eb1cddf82d599ff60953eeb024e16ec920e404b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\a_4448.pcode",
+    "sha256": "fcde0e79555af0f62a821fca5b520c46bb5cb3e4bbb86e3fc85842ad593c3e8a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetCopperScoop.pcode",
+    "sha256": "e695b2c0e339f1fbe4a38b4a6ef005e12e5fc914961280c63d6943487ad6f163"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetCopperScoopMovie.pcode",
+    "sha256": "6a29dbe8279e0527d833e6223751d0e6e378fc46c7db15f3bf70484d51216f5b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetGoldenScoop.pcode",
+    "sha256": "8a3593b2ea9fc17365731a0c6dcb8be4a504ea0651011bdb8a9c9c17a2c4763b"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetGoldenScoopMovie.pcode",
+    "sha256": "9c6884f9fba73ee0e787523978d7d851358aa5f098d8934aaefe3dc23da6fd46"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetScoopMovie.pcode",
+    "sha256": "42f369f98287bbc136769faaf11cfa0b0da0edabdba105ee4f54f13c0ad5ef4a"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetSilverScoop.pcode",
+    "sha256": "ff9ebffd3fda82ece08cadb471800a747b9a5404ff9165021c1c09f79b50aa40"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\HelmetSilverScoopMovie.pcode",
+    "sha256": "cd46ade34e8e1978fb9693c86db13ac082aa6bc2fd540aaf22da5f14452d03ba"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\WarningSign.pcode",
+    "sha256": "a03aff3e7db66016a46939238505ecf4d1e42cebeec57fd87085b1fb25933a39"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\WarningSignMovie.pcode",
+    "sha256": "eef656f9fbcbbb5363a3eb70a08f68498cf1d701cb0b174cbd8a59de9e7bbbff"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\tools\\WaterWaveMovie.pcode",
+    "sha256": "33348fc0766099617250d778c60cc1a2118f9647dfa775c6bb36707ad72c5fbb"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\resource\\wave\\a_4450.pcode",
+    "sha256": "a1da987bc7c6a59060c1f4cfc870bf236659f24452dd4660943f44282623449c"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\role\\a_4461.pcode",
+    "sha256": "74717baafeedabb7cf89ab10316261a73b416c45c42d44bd1fd8f8a40cfad5cd"
+  },
+  {
+    "file": "pcode\\scripts\\com\\aurora\\ui\\maogoutd\\role\\a_4463.pcode",
+    "sha256": "1c251253527c3ba2fcd745f200a2fd21c16e1f17c6252002757fde13b6460958"
+  }
+]

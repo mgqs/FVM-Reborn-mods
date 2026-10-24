@@ -1,0 +1,304 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   import flash.events.TimerEvent;
+   import flash.utils.Timer;
+   
+   public class CheckIDHandler
+   {
+      
+      private static var m_pInstance:CheckIDHandler;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "m_pInstance", 0, 8
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),"m_pInstance")
+               getlocal0
+               construct 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),"m_pInstance")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_vCardMD5Info:Vector.<CardMD5Info>;
+      
+      private var m_stTimer:Timer;
+      
+      public function CheckIDHandler()
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/CheckIDHandler"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                  debugline 11
+                  getlocal0
+                  pushscope
+                  debugline 12
+                  getlocal0
+                  constructsuper 0
+                  debugline 13
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),PrivateNamespace("CheckIDHandler.as$464"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.ClientLog"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),StaticProtectedNs("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PackageNamespace(""),"m_vCardMD5Info")
+                  debugline 16
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : CheckIDHandler
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CheckIDHandler")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                     debugline 30
+                     getlocal0
+                     pushscope
+                     debugline 32
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),"m_pInstance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private function OnTimerHandler(e:TimerEvent) : void
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:CheckIDHandler"),"OnTimerHandler")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/private:OnTimerHandler"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.events"),"TimerEvent")
+                  paramname "CheckIDHandler"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 1
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                        debugline 18
+                        getlocal0
+                        pushscope
+                        debug 1, "e", 0, 18
+                        debugline 20
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"CheckMD5"), 0
+                        debugline 21
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function Push(id:int) : void
+            {
+               trait method QName(PackageNamespace(""),"Push")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/Push"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "CheckIDHandler"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                           debugline 23
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                           setlocal2
+                           debug 1, "id", 0, 23
+                           debug 1, "stCardMD5Info", 1, 25
+                           debugline 26
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                           getlocal1
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info"), 1
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                           setlocal2
+                           debugline 27
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_vCardMD5Info")
+                           getlocal2
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           debugline 28
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function CheckMD5() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"CheckMD5")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/CheckMD5"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 5
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                              debugline 35
+                              getlocal0
+                              pushscope
+                              pushnull
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                              setlocal1
+                              debug 1, "stCardMD5Info", 0, 37
+                              debug 1, "bCheck", 1, 38
+                              debugline 38
+                              pushfalse
+                              setlocal2
+                              debugline 39
+                              pushbyte 0
+                              setlocal3
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_vCardMD5Info")
+                              coerce_a
+                              setlocal 4
+                              jump ofs004a
+                     ofs002c:
+                              label
+                              getlocal 4
+                              getlocal3
+                              nextvalue
+                              coerce QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CardMD5Info")
+                              setlocal1
+                              debugline 41
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"SimpleCheckID"), 0
+                              iftrue ofs004a
+                              debugline 43
+                              pushtrue
+                              setlocal2
+                              debugline 44
+                              jump ofs0053
+                     ofs004a:
+                              debugline 39
+                              hasnext2 4, 3
+                              iftrue ofs002c
+                     ofs0053:
+                              kill 4
+                              kill 3
+                              debugline 47
+                              getlocal2
+                              iffalse ofs005e
+                     ofs005e:
+                              debugline 51
+                              getlocal2
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function CheckStart() : void
+                  {
+                     trait method QName(PackageNamespace(""),"CheckStart")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.ClientLog:CheckIDHandler/CheckStart"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                                 debugline 54
+                                 getlocal0
+                                 pushscope
+                                 debugline 57
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                  }
+               }
+               
+               method
+                  name ""
+                  returns null
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 1
+                     maxscopedepth 3
+                     
+                     code
+                        getlocal0
+                        pushscope
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                        debugline 6
+                        findpropstrict Multiname("CheckIDHandler",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+                        getlex QName(PackageNamespace(""),"Object")
+                        pushscope
+                        getlex QName(PackageNamespace(""),"Object")
+                        newclass 92
+                        popscope
+                        initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CheckIDHandler")
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;CheckIDHandler.as"
+                        debugline 1
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+               

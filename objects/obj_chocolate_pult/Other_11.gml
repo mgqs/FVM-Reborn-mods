@@ -1,7 +1,7 @@
 // 用户事件1 - 发射子弹
 large_chocolate_count ++
 var inst = instance_create_depth(x-20, y-125, depth-500, obj_chocolatepult_bullet)
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk

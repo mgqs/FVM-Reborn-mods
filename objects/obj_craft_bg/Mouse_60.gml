@@ -1,6 +1,3 @@
-if y_offset > 40{
-	y_offset -= 40
-}
-else{
-	y_offset = 0
+if button_select == 0 || button_select == 1{
+	y_offset_target = max(0, y_offset_target - 40)
 }

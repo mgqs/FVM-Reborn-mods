@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"动画曲线",
+  "folderPath":"folders/动画曲线.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"动画曲线",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

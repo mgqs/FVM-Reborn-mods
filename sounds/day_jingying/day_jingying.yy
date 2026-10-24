@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"day_jingying",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":62.88,
+  "exportDir":"",
+  "name":"day_jingying",
+  "parent":{
+    "name":"longyuan",
+    "path":"folders/声音/Battle BGM/longyuan.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"day_jingying.mp3",
+  "volume":1.0,
+}

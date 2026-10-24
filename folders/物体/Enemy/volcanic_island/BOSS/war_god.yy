@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"war_god",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/war_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"war_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_war_god","path":"objects/obj_war_god/obj_war_god.yy",},
+    {"name":"obj_war_god_duck","path":"objects/obj_war_god_duck/obj_war_god_duck.yy",},
+    {"name":"obj_war_god_gear","path":"objects/obj_war_god_gear/obj_war_god_gear.yy",},
+    {"name":"obj_war_god_soldier","path":"objects/obj_war_god_soldier/obj_war_god_soldier.yy",},
+    {"name":"obj_war_god_summon","path":"objects/obj_war_god_summon/obj_war_god_summon.yy",},
+    {"name":"obj_war_god_wood","path":"objects/obj_war_god_wood/obj_war_god_wood.yy",}
+  ],
+}

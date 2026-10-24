@@ -1,0 +1,95 @@
+package com.aurora.ui.maogoutd
+{
+   import a_4753.b_150;
+   import com.aurora.protocol.game.maogoutd.a_2694;
+   import com.aurora.protocol.game.maogoutd.a_2695;
+   import com.aurora.protocol.game.maogoutd.a_2696;
+   import com.aurora.protocol.game.maogoutd.a_2702;
+   import com.aurora.protocol.game.maogoutd.a_2703;
+   import com.aurora.protocol.game.maogoutd.a_2704;
+   import com.aurora.protocol.game.maogoutd.a_2707;
+   import com.aurora.protocol.game.maogoutd.a_2708;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4269;
+   
+   public interface b_147
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function a_3600(param1:b_150) : Boolean;
+      
+      function a_3601() : uint;
+      
+      function a_3602() : uint;
+      
+      function a_3603(param1:Array, param2:Array) : Boolean;
+      
+      function a_3604(param1:Array, param2:Array) : Boolean;
+      
+      function a_3605(param1:Array, param2:Array) : Boolean;
+      
+      function a_3606(param1:Array, param2:Array) : Boolean;
+      
+      function a_3607(param1:Object) : Boolean;
+      
+      function a_3435(param1:a_2695) : Boolean;
+      
+      function a_3608(param1:Vector.<a_4269>, param2:int, param3:int) : Boolean;
+      
+      function a_555(param1:a_2704) : Boolean;
+      
+      function a_3436(param1:a_2708) : Boolean;
+      
+      function a_3610(param1:a_2703) : Boolean;
+      
+      function a_558(param1:a_2702) : Boolean;
+      
+      function a_3612(param1:a_2707) : Boolean;
+      
+      function a_3613(param1:a_2696) : Boolean;
+      
+      function a_1847(param1:a_2694) : Boolean;
+      
+      function a_3477(param1:int) : Boolean;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd;ITDGameBattleUI.as"
+         debugline 14
+         findpropstrict Multiname("b_147",[PackageNamespace("com.aurora.ui.maogoutd")])
+         pushnull
+         newclass 5
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd"),"b_147")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

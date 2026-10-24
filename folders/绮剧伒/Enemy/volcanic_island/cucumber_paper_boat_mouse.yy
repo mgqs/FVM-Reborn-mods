@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"cucumber_paper_boat_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/cucumber_paper_boat_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cucumber_paper_boat_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

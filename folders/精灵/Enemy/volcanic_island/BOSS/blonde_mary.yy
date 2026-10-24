@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"blonde_mary",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/blonde_mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"blonde_mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"5986e6f7-3443-4ff2-a728-9282a2800467","path":"sprites/spr_blonde_mary_appear/spr_blonde_mary_appear.yy",},
+    {"name":"72e3319b-739f-41bb-9fa5-c3394cece54e","path":"sprites/spr_blonde_mary_boomerang/spr_blonde_mary_boomerang.yy",},
+    {"name":"1cb1052d-4813-4190-bc26-01fb7795868d","path":"sprites/spr_blonde_mary_death/spr_blonde_mary_death.yy",},
+    {"name":"797309a7-cede-4674-b1f0-a78b834ee49a","path":"sprites/spr_blonde_mary_disappear/spr_blonde_mary_disappear.yy",},
+    {"name":"6f2aa2f9-fe08-4dac-b0e9-56363a5d1288","path":"sprites/spr_blonde_mary_idle/spr_blonde_mary_idle.yy",},
+    {"name":"608819b9-d148-4e1f-a75e-48731f13595d","path":"sprites/spr_blonde_mary_skill_1_backward/spr_blonde_mary_skill_1_backward.yy",},
+    {"name":"b576ca35-0b7a-405c-908d-959e2a724cb6","path":"sprites/spr_blonde_mary_skill_1_forward/spr_blonde_mary_skill_1_forward.yy",},
+    {"name":"5587f169-60c3-4c9f-a998-0fbebc51e4d6","path":"sprites/spr_blonde_mary_skill_2/spr_blonde_mary_skill_2.yy",},
+    {"name":"31d56083-36aa-47db-a019-f520735a8d2b","path":"sprites/spr_blonde_mary_skill_2_ready/spr_blonde_mary_skill_2_ready.yy",},
+    {"name":"c0ba48b8-37ab-4e51-8b0a-571e5cac662b","path":"sprites/spr_blonde_mary_skill_3/spr_blonde_mary_skill_3.yy",}
+  ],
+}

@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"Boss_zhandou",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":62.015987,
+  "exportDir":"",
+  "name":"Boss_zhandou",
+  "parent":{
+    "name":"longyuan",
+    "path":"folders/声音/Battle BGM/longyuan.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Boss_zhandou.mp3",
+  "volume":1.0,
+}

@@ -1,6 +1,8 @@
 // obj_pause_menu - Draw Event
+var _ui_alpha = ui_anim_alpha(id);
+
 // 绘制半透明背景
-draw_set_alpha(0.5);
+draw_set_alpha(0.5 * _ui_alpha);
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
 
@@ -8,6 +10,7 @@ draw_set_alpha(1);
 //var bg = spr_pause_menu;
 //draw_sprite_ext(bg, 0, menu_x, menu_y, 1, 1, 0, c_white, 1);
 draw_self()
+draw_set_alpha(_ui_alpha);
 
 // 绘制标题
 draw_set_color(c_white)
@@ -39,9 +42,10 @@ for (var i = 0; i < array_length(buttons); i++) {
     }
     
     // 绘制按钮
-    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, 0.75, 0.75,  0,  c_white,  1);
+    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, 0.75, 0.75,  0,  c_white,  _ui_alpha);
     
     // 绘制按钮文本
     draw_set_font(font_yuan);
     draw_text(btn_x, btn_y, btn[1]);
 }
+draw_set_alpha(1);

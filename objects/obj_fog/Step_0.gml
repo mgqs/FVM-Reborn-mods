@@ -12,6 +12,10 @@ with obj_oil_lamp{
 		array_push(dis_list,dis)
 	}
 }
+// 萤火蛇全形态均可像一转油灯一样照亮全屏迷雾
+with obj_yinghuoshe{
+	array_push(dis_list,0)
+}
 with obj_brazier{
 	var dis = abs(grid_row - other.row) + abs(grid_col - other.col)
 	if dis == 0{

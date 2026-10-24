@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"longyuan_animation_table",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"longyuan_animation_table",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

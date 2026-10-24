@@ -20,6 +20,7 @@
 #include "archive_extractor.h"
 #include "file_system.h"
 #include "json.hpp"
+#include "mouse_limit.h"
 #include "typedef.h"
 
 #include <commctrl.h>
@@ -632,4 +633,24 @@ GmlCallable auto UnzipMapFile(const char *zip_path,
   } catch (const std::exception &e) {
     return FailWith(NativeError::ExtractFailed, e.what());
   }
+}
+
+/**
+ * @brief 启动鼠标输入限频。
+ * @param hz 目标频率（上限 1000，建议 500）；<= 0 时不启动。
+ * @param hwnd_value 游戏窗口句柄；为 0 时使用当前前台窗口。
+ * @return 1 = 启动成功，0 = 失败。
+ */
+GmlCallable auto StartMouseLimit(double hz, double hwnd_value) -> double {
+  HWND hwnd = static_cast<HWND>(
+      reinterpret_cast<void *>(static_cast<INT_PTR>(hwnd_value)));
+  return mouse_limit::Start(hz, hwnd);
+}
+
+/** @brief 停止鼠标输入限频并卸载钩子。 */
+GmlCallable auto StopMouseLimit() -> double { return mouse_limit::Stop(); }
+
+/** @brief 读取限频计数：1 被吞掉，2 放行，3 重新注入。 */
+GmlCallable auto MouseLimitStats(double which) -> double {
+  return mouse_limit::Stats(which);
 }

@@ -9,7 +9,7 @@ self.state = {
     viewport_top: 0,
     viewport_width: 0,
     viewport_height: 0,
-    wheel_step: 10,
+    wheel_step: 20,
     padding_left: 0,
     padding_top: 0,
     padding_bottom: 0,

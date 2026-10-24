@@ -1,0 +1,621 @@
+package com.adobe.utils
+{
+   import flash.utils.ByteArray;
+   
+   public class RandomSeed
+   {
+      
+      private static const ADDEND:uint = 11;
+      
+      private static const MULTIPLIER_HIGH:uint = 5;
+      
+      private static const MULTIPLIER_MID:uint = 57068;
+      
+      private static const MULTIPLIER_LOW:uint = 58989;
+      
+      private static var seedExtra:uint = 2353648897;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ADDEND", 0, 12
+               findproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"ADDEND")
+               pushbyte 11
+               initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"ADDEND")
+               debug 1, "MULTIPLIER_HIGH", 1, 13
+               findproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_HIGH")
+               pushbyte 5
+               initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_HIGH")
+               debug 1, "MULTIPLIER_MID", 2, 14
+               findproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_MID")
+               pushint 57068
+               initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_MID")
+               debug 1, "MULTIPLIER_LOW", 3, 15
+               findproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+               pushint 58989
+               initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+               debug 1, "seedExtra", 4, 21
+               findproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+               pushdouble 2353648897
+               setproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var seedHigh:uint;
+      
+      private var seedLow:uint;
+      
+      private var seedMid:uint;
+      
+      public function RandomSeed(high:uint = 2147483648, low:uint = 0)
+      {
+         method
+            name "com.adobe.utils:RandomSeed/RandomSeed"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"uint")
+            param QName(PackageNamespace(""),"uint")
+            paramname null
+            paramname null
+            optional Double(2147483648)
+            optional Integer(0)
+            returns null
+            
+            body
+               maxstack 3
+               localcount 6
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                  debugline 29
+                  getlocal0
+                  pushscope
+                  pushnull
+                  coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                  setlocal3
+                  debug 1, "high", 0, 29
+                  debug 1, "low", 1, 29
+                  debugline 30
+                  getlocal0
+                  constructsuper 0
+                  debugline 31
+                  getlocal1
+                  pushdouble 2147483648
+                  equals
+                  dup
+                  iffalse ofs002c
+                  pop
+                  getlocal2
+                  pushbyte 0
+                  equals
+         ofs002c:
+                  iffalse ofs008d
+                  debug 1, "bytes", 2, 33
+                  debugline 33
+                  findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                  constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                  coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                  setlocal3
+                  debugline 34
+                  getlocal3
+                  findpropstrict QName(PackageNamespace(""),"Date")
+                  constructprop QName(PackageNamespace(""),"Date"), 0
+                  getproperty QName(PackageNamespace(""),"time")
+                  callpropvoid QName(PackageNamespace(""),"writeDouble"), 1
+                  debugline 35
+                  getlocal3
+                  pushbyte 0
+                  setproperty QName(PackageNamespace(""),"position")
+                  debugline 36
+                  getlocal3
+                  callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                  getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+                  add
+                  convert_u
+                  setlocal1
+                  debugline 37
+                  getlocal3
+                  callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                  getlocal1
+                  pushbyte 16
+                  urshift
+                  add
+                  convert_u
+                  setlocal2
+                  debugline 38
+                  findpropstrict QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+                  dup
+                  setlocal 4
+                  getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+                  increment
+                  setlocal 5
+                  getlocal 4
+                  getlocal 5
+                  setproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedExtra")
+                  kill 5
+                  kill 4
+         ofs008d:
+                  debugline 40
+                  getlocal0
+                  getlocal1
+                  getlocal2
+                  callpropvoid QName(PackageNamespace(""),"setSeed"), 2
+                  debugline 41
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function setSeed(high:uint, low:uint) : void
+      {
+         trait method QName(PackageNamespace(""),"setSeed")
+            dispid 0
+            method
+               name "com.adobe.utils:RandomSeed/setSeed"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"uint")
+               param QName(PackageNamespace(""),"uint")
+               paramname "position"
+               paramname "position"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                     debugline 44
+                     getlocal0
+                     pushscope
+                     debug 1, "high", 0, 44
+                     debug 1, "low", 1, 44
+                     debugline 46
+                     getlocal0
+                     getlocal1
+                     pushint 65535
+                     bitand
+                     getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_HIGH")
+                     bitxor
+                     setproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedHigh")
+                     debugline 47
+                     getlocal0
+                     getlocal2
+                     pushbyte 16
+                     rshift
+                     pushint 65535
+                     bitand
+                     getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_MID")
+                     bitxor
+                     setproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedMid")
+                     debugline 48
+                     getlocal0
+                     getlocal2
+                     pushint 65535
+                     bitand
+                     getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+                     bitxor
+                     setproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedLow")
+                     debugline 49
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private function next(max:uint) : uint
+         {
+            trait method QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"next")
+               dispid 0
+               method
+                  name "com.adobe.utils:RandomSeed/private:next"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"uint")
+                  paramname "bytes"
+                  returns QName(PackageNamespace(""),"uint")
+                  
+                  body
+                     maxstack 3
+                     localcount 5
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                        debugline 51
+                        getlocal0
+                        pushscope
+                        debug 1, "max", 0, 51
+                        debug 1, "v2", 1, 53
+                        debug 1, "v3", 2, 54
+                        debug 1, "v4", 3, 55
+                        debugline 53
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedLow")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_HIGH")
+                        multiply
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedMid")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_MID")
+                        multiply
+                        add
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedHigh")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+                        multiply
+                        add
+                        convert_d
+                        setlocal2
+                        debugline 54
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedLow")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_MID")
+                        multiply
+                        convert_d
+                        setlocal3
+                        debugline 55
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedLow")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+                        multiply
+                        convert_d
+                        setlocal 4
+                        debugline 57
+                        getlocal2
+                        getlocal3
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal2
+                        debugline 58
+                        getlocal3
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal3
+                        debugline 59
+                        getlocal3
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedMid")
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"MULTIPLIER_LOW")
+                        multiply
+                        add
+                        convert_d
+                        setlocal3
+                        debugline 61
+                        getlocal2
+                        getlocal3
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal2
+                        debugline 62
+                        getlocal3
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal3
+                        debugline 63
+                        getlocal3
+                        getlocal 4
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal3
+                        debugline 64
+                        getlocal2
+                        getlocal3
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal2
+                        debugline 66
+                        getlocal 4
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal 4
+                        debugline 67
+                        getlocal3
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal3
+                        debugline 68
+                        getlocal2
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal2
+                        debugline 70
+                        getlocal 4
+                        getlex QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"ADDEND")
+                        add
+                        convert_d
+                        setlocal 4
+                        debugline 71
+                        getlocal3
+                        getlocal 4
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal3
+                        debugline 72
+                        getlocal2
+                        getlocal3
+                        pushbyte 16
+                        urshift
+                        add
+                        convert_d
+                        setlocal2
+                        debugline 74
+                        getlocal 4
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal 4
+                        debugline 75
+                        getlocal3
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal3
+                        debugline 76
+                        getlocal2
+                        pushint 65535
+                        bitand
+                        convert_d
+                        setlocal2
+                        debugline 78
+                        getlocal0
+                        getlocal 4
+                        initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedLow")
+                        debugline 79
+                        getlocal0
+                        getlocal3
+                        initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedMid")
+                        debugline 80
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"seedHigh")
+                        debugline 82
+                        getlocal1
+                        pushbyte 0
+                        ifne ofs011d
+                        debugline 83
+                        pushbyte 0
+                        returnvalue
+               ofs011d:
+                        debugline 85
+                        getlocal2
+                        pushbyte 16
+                        lshift
+                        getlocal3
+                        bitor
+                        pushbyte 32
+                        getlocal1
+                        subtract
+                        urshift
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function nextInt(max:int) : uint
+            {
+               trait method QName(PackageNamespace(""),"nextInt")
+                  dispid 0
+                  method
+                     name "com.adobe.utils:RandomSeed/nextInt"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "bytes"
+                     returns QName(PackageNamespace(""),"uint")
+                     
+                     body
+                        maxstack 2
+                        localcount 4
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                           debugline 88
+                           getlocal0
+                           pushscope
+                           pushnan
+                           setlocal2
+                           pushnan
+                           setlocal3
+                           debug 1, "max", 0, 88
+                           debug 1, "v2", 1, 90
+                           debug 1, "v3", 2, 91
+                           debugline 93
+                           getlocal1
+                           pushbyte 0
+                           equals
+                           dup
+                           iftrue ofs0031
+                           pop
+                           getlocal1
+                           pushdouble 2147483648
+                           bitand
+                           pushbyte 0
+                           equals
+                           not
+                  ofs0031:
+                           iffalse ofs003f
+                           debugline 94
+                           findpropstrict QName(PackageNamespace(""),"Error")
+                           constructprop QName(PackageNamespace(""),"Error"), 0
+                           throw
+                  ofs003f:
+                           debugline 96
+                           getlocal1
+                           getlocal1
+                           negate
+                           bitand
+                           getlocal1
+                           ifne ofs00bd
+                           debugline 98
+                           pushbyte 0
+                           convert_d
+                           setlocal2
+                           debugline 99
+                           getlocal1
+                           pushdouble 4294901760
+                           bitand
+                           pushbyte 0
+                           ifeq ofs0064
+                           debugline 100
+                           getlocal2
+                           pushbyte 16
+                           add
+                           convert_d
+                           setlocal2
+                  ofs0064:
+                           debugline 102
+                           getlocal1
+                           pushdouble 4278255360
+                           bitand
+                           pushbyte 0
+                           ifeq ofs0078
+                           debugline 103
+                           getlocal2
+                           pushbyte 8
+                           add
+                           convert_d
+                           setlocal2
+                  ofs0078:
+                           debugline 105
+                           getlocal1
+                           pushdouble 4042322160
+                           bitand
+                           pushbyte 0
+                           ifeq ofs008c
+                           debugline 106
+                           getlocal2
+                           pushbyte 4
+                           add
+                           convert_d
+                           setlocal2
+                  ofs008c:
+                           debugline 108
+                           getlocal1
+                           pushdouble 3435973836
+                           bitand
+                           pushbyte 0
+                           ifeq ofs00a0
+                           debugline 109
+                           getlocal2
+                           pushbyte 2
+                           add
+                           convert_d
+                           setlocal2
+                  ofs00a0:
+                           debugline 111
+                           getlocal1
+                           pushdouble 2863311530
+                           bitand
+                           pushbyte 0
+                           ifeq ofs00b4
+                           debugline 112
+                           getlocal2
+                           pushbyte 1
+                           add
+                           convert_d
+                           setlocal2
+                  ofs00b4:
+                           debugline 114
+                           getlocal0
+                           getlocal2
+                           callproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"next"), 1
+                           returnvalue
+                  ofs00bd:
+                           jump ofs00c2
+                  ofs00c1:
+                           label
+                  ofs00c2:
+                           debugline 118
+                           getlocal0
+                           pushbyte 31
+                           callproperty QName(PrivateNamespace("com.adobe.utils:RandomSeed"),"next"), 1
+                           convert_d
+                           setlocal2
+                           debugline 119
+                           getlocal2
+                           getlocal1
+                           modulo
+                           convert_d
+                           setlocal3
+                           debugline 121
+                           getlocal2
+                           getlocal3
+                           subtract
+                           getlocal1
+                           add
+                           decrement
+                           pushbyte 0
+                           iflt ofs00c1
+                           debugline 122
+                           getlocal3
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                  debugline 10
+                  findpropstrict Multiname("RandomSeed",[PackageNamespace("com.adobe.utils")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 8
+                  popscope
+                  initproperty QName(PackageNamespace("com.adobe.utils"),"RandomSeed")
+                  debugfile "D:\\workspace\\git\\msclient\\as3corelib\\src;com\\adobe\\utils;RandomSeed.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

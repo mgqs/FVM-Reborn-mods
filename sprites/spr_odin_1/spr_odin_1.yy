@@ -46,8 +46,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"odin",
+    "path":"folders/精灵/mod/Cards/Shooter/odin.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

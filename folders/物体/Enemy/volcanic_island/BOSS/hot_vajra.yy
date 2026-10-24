@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"hot_vajra",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/hot_vajra.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hot_vajra",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_hot_vajra","path":"objects/obj_hot_vajra/obj_hot_vajra.yy",},
+    {"name":"obj_vajra_lava","path":"objects/obj_vajra_lava/obj_vajra_lava.yy",},
+    {"name":"obj_vajra_lava_effect","path":"objects/obj_vajra_lava_effect/obj_vajra_lava_effect.yy",},
+    {"name":"obj_vajra_lightning","path":"objects/obj_vajra_lightning/obj_vajra_lightning.yy",},
+    {"name":"obj_vajra_spike","path":"objects/obj_vajra_spike/obj_vajra_spike.yy",}
+  ],
+}

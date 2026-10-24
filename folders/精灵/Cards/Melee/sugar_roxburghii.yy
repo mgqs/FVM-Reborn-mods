@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"sugar_roxburghii",
+  "folderPath":"folders/精灵/Cards/Melee/sugar_roxburghii.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sugar_roxburghii",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_sugar_roxburghii","path":"sprites/spr_sugar_roxburghii/spr_sugar_roxburghii.yy",},
+    {"name":"spr_sugar_roxburghii_1","path":"sprites/spr_sugar_roxburghii_1/spr_sugar_roxburghii_1.yy",},
+    {"name":"spr_sugar_roxburghii_2","path":"sprites/spr_sugar_roxburghii_2/spr_sugar_roxburghii_2.yy",}
+  ],
+}

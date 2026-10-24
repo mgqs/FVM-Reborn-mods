@@ -560,6 +560,24 @@ function cookbook_init(){
 		}
 	)
 	register_cookbook(
+		"camp_stew",
+		{
+			"rank":2,
+			"title":"营地炖肉",
+			"tiny_desc":"减少探险营地卡片冷却",
+			"desc":"糖渍刺梨和坚果爆炒机冷却时间减少1秒",
+			"icon":34,
+			"modif":[
+				{
+					"card_id":["sugar_roxburghii","nut_frier"],
+					"modif_type":"cooldown",
+					"modif_calc":"plus",
+					"amount":-1*60
+				}
+			]
+		}
+	)
+	register_cookbook(
 		"multi_cuisine",
 		{
 			"rank":2,

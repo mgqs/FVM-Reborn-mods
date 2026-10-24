@@ -1,7 +1,27 @@
 if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 	pressed = true
-    audio_play_sound(snd_button, 0, 0);
+    global.audio.play(snd_button, 0, 0);
+	if target_level_id == "longyuan_entry"{
+		global.map_id = "longyuan"
+		global.map_name = "龙渊"
+		if room != room_map global.gui_stack.to(room_map)
+		exit
+	}
 	texture_prefetch("cards")
+	if target_level_id == "camp_shop"{
+		instance_create_depth(room_width/2,room_height/2,-5,obj_camp_shop_bg)
+		obj_player_info_ui.menu_type = 4
+		obj_world_map_button.world_map = 2
+		exit
+	}
+	if global.map_id == "longyuan" && target_level_id != "test_level" {
+		var _longyuan_file = "level_data/" + (global.difficulty >= 2 ? target_level_file_hard : target_level_file)
+		if !file_exists(_longyuan_file) {
+			pressed = false
+			show_notice("该关卡尚未配置", 90)
+			exit
+		}
+	}
 	if target_level_id != "tower_cake"{
 	    global.gui_stack.to(room_ready)
 	
@@ -33,7 +53,11 @@ if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 		    }
 		}
 		var map_button_array = struct_get(ds_map_find_value(global.maps_map,global.map_id),"levels_data")
-		global.level_data = map_button_array[level_index]
+		if target_level_id == "test_level"{
+			global.level_data = {id:"test_level",name:"测试关卡",button_spr:spr_test_level_button,button_index:0,button_x:860,button_y:56,level_file:"test_level.json",hard_level_file:"test_level_hard.json",level_sprite:spr_cookie_island,pre_music:mus_delicious_island_daytime_pre,elite_music:mus_delicious_island_daytime_elite,boss_music:mus_delicious_island_daytime_boss,player_level_require:1,pre_level_require:[]}
+		} else {
+			global.level_data = map_button_array[level_index]
+		}
 		show_debug_message(global.level_data)
 	}
 	else{

@@ -1,0 +1,2383 @@
+package a_4729
+{
+   public class EventType
+   {
+      
+      public static const a_561:String = "0100";
+      
+      public static const a_562:String = "0101";
+      
+      public static const a_563:String = "0102";
+      
+      public static const a_564:String = "0103";
+      
+      public static const a_565:String = "0104";
+      
+      public static const a_566:String = "0105";
+      
+      public static const a_567:String = "0110";
+      
+      public static const a_568:String = "0200";
+      
+      public static const a_569:String = "0201";
+      
+      public static const a_570:String = "0203";
+      
+      public static const a_571:String = "0204";
+      
+      public static const a_572:String = "0205";
+      
+      public static const a_573:String = "0206";
+      
+      public static const a_574:String = "0207";
+      
+      public static const a_575:String = "0208";
+      
+      public static const a_576:String = "0209";
+      
+      public static const a_577:String = "020A";
+      
+      public static const a_578:String = "020B";
+      
+      public static const a_579:String = "020C";
+      
+      public static const a_580:String = "020D";
+      
+      public static const a_581:String = "020E";
+      
+      public static const a_582:String = "020F";
+      
+      public static const a_583:String = "0210";
+      
+      public static const a_584:String = "0211";
+      
+      public static const a_585:String = "0212";
+      
+      public static const a_586:String = "0213";
+      
+      public static const a_587:String = "0214";
+      
+      public static const a_588:String = "0215";
+      
+      public static const a_589:String = "0216";
+      
+      public static const a_590:String = "0217";
+      
+      public static const a_591:String = "0218";
+      
+      public static const a_592:String = "0219";
+      
+      public static const a_593:String = "0220";
+      
+      public static const a_594:String = "0221";
+      
+      public static const a_595:String = "0222";
+      
+      public static const a_596:String = "0223";
+      
+      public static const a_597:String = "0224";
+      
+      public static const a_598:String = "0225";
+      
+      public static const a_599:String = "0226";
+      
+      public static const a_600:String = "0227";
+      
+      public static const a_601:String = "0229";
+      
+      public static const a_602:String = "022A";
+      
+      public static const a_603:String = "022B";
+      
+      public static const a_604:String = "022C";
+      
+      public static const a_605:String = "022D";
+      
+      public static const UseSkillBook:String = "022E";
+      
+      public static const a_607:String = "022F";
+      
+      public static const a_609:String = "0235";
+      
+      public static const a_610:String = "0240";
+      
+      public static const a_611:String = "0241";
+      
+      public static const ITEM_GEM_UNLOAD:String = "0x3A18";
+      
+      public static const SLOT_ITEM:String = "0x3A16";
+      
+      public static const ITEM_GEM_IN_LAY:String = "0x3A17";
+      
+      public static const ITEM_GEM_DECOMPOSE:String = "0x3A1A";
+      
+      public static const ITEM_GEM_UPGRADE:String = "0x3A19";
+      
+      public static const CARD_TRANSLATE_RESPONSE:String = "0x3A1B";
+      
+      public static const a_612:String = "0250";
+      
+      public static const a_613:String = "0251";
+      
+      public static const a_614:String = "0252";
+      
+      public static const a_615:String = "0253";
+      
+      public static const a_616:String = "0254";
+      
+      public static const a_617:String = "0255";
+      
+      public static const a_618:String = "0256";
+      
+      public static const a_619:String = "0257";
+      
+      public static const a_620:String = "0258";
+      
+      public static const a_621:String = "0259";
+      
+      public static const a_622:String = "0259D";
+      
+      public static const a_623:String = "0259A";
+      
+      public static const a_624:String = "0259B";
+      
+      public static const a_625:String = "0259C";
+      
+      public static const a_626:String = "0260";
+      
+      public static const a_627:String = "0261";
+      
+      public static const a_628:String = "0262";
+      
+      public static const a_629:String = "0263";
+      
+      public static const a_630:String = "0269";
+      
+      public static const a_631:String = "0270";
+      
+      public static const a_632:String = "0271";
+      
+      public static const a_633:String = "0280";
+      
+      public static const a_634:String = "0281";
+      
+      public static const a_635:String = "0282";
+      
+      public static const a_636:String = "0283";
+      
+      public static const a_637:String = "0290";
+      
+      public static const a_638:String = "0291";
+      
+      public static const a_639:String = "0292";
+      
+      public static const a_640:String = "3980";
+      
+      public static const a_641:String = "3981";
+      
+      public static const a_642:String = "3982";
+      
+      public static const a_643:String = "3983";
+      
+      public static const a_644:String = "3984";
+      
+      public static const a_645:String = "0400";
+      
+      public static const a_646:String = "0401";
+      
+      public static const a_647:String = "0402";
+      
+      public static const a_648:String = "0300";
+      
+      public static const a_649:String = "0301";
+      
+      public static const a_650:String = "0302";
+      
+      public static const a_651:String = "0303";
+      
+      public static const a_652:String = "0304";
+      
+      public static const a_653:String = "0305";
+      
+      public static const a_654:String = "0900";
+      
+      public static const a_655:String = "0555";
+      
+      public static const a_656:String = "0556";
+      
+      public static const a_657:String = "0557";
+      
+      public static const a_658:String = "0558";
+      
+      public static const a_659:String = "0559";
+      
+      public static const a_660:String = "055A";
+      
+      public static const a_661:String = "055B";
+      
+      public static const a_662:String = "055C";
+      
+      public static const OnceKeyOpen:String = "055D";
+      
+      public static const a_663:String = "0600";
+      
+      public static const a_664:String = "0700";
+      
+      public static const a_665:String = "0x39A0";
+      
+      public static const a_666:String = "0x39A1";
+      
+      public static const a_667:String = "0x39A2";
+      
+      public static const a_668:String = "0x39A3";
+      
+      public static const a_669:String = "0x39A4";
+      
+      public static const a_670:String = "0x39A5";
+      
+      public static const a_671:String = "0x39A6";
+      
+      public static const a_672:String = "0x39A7";
+      
+      public static const a_673:String = "0x39A8";
+      
+      public static const a_674:String = "0x39A9";
+      
+      public static const a_675:String = "0x39AA";
+      
+      public static const a_676:String = "0x39AB";
+      
+      public static const a_677:String = "0x39AC";
+      
+      public static const a_678:String = "0x39AD";
+      
+      public static const a_679:String = "0x39AE";
+      
+      public static const a_680:String = "0x39AF";
+      
+      public static const a_681:String = "0x39B0";
+      
+      public static const a_682:String = "0x39B1";
+      
+      public static const a_683:String = "0x39B2";
+      
+      public static const a_684:String = "0x39B3";
+      
+      public static const a_685:String = "0x39B4";
+      
+      public static const a_686:String = "0x39B5";
+      
+      public static const a_687:String = "0x39B6";
+      
+      public static const a_688:String = "0x39B7";
+      
+      public static const a_689:String = "0x39BB";
+      
+      public static const a_690:String = "0x3A30";
+      
+      public static const a_691:String = "0x3A31";
+      
+      public static const a_692:String = "0x3A32";
+      
+      public static const a_693:String = "0x3A33";
+      
+      public static const a_694:String = "0x3A34";
+      
+      public static const a_695:String = "0x3A35";
+      
+      public static const a_696:String = "0x3A36";
+      
+      public static const a_213:String = "0x3A37";
+      
+      public static const a_698:String = "0x5000";
+      
+      public static const a_228:String = "0x3210";
+      
+      public static const Notfiy_MiBaoKuGameData:String = "0x5001";
+      
+      public static const a_700:String = "0x3A14";
+      
+      public static const a_701:String = "0x3A13";
+      
+      public static const a_702:String = "0x3977";
+      
+      public static const a_703:String = "0x3978";
+      
+      public static const PET_SWALLOW:String = "0x3979";
+      
+      public static const GET_PET_ACCOUNT:String = "0x3980";
+      
+      public static const OPEN_SOLT:String = "0x3981";
+      
+      public static const CHANGE_PET_STATUS:String = "0x3982";
+      
+      public static const BUY_CHALLENGE_COUNT:String = "0x3983";
+      
+      public static const NOTIFY_PET_INFO:String = "0x3984";
+      
+      public static const PET_UPDATA:String = "0x3985";
+      
+      public static const PET_EAT_ANOTHER:String = "0x3986";
+      
+      public static const CHOUJIANG_AWAED:String = "0x3987";
+      
+      public static const BOX_OPENED:String = "0x3988";
+      
+      public static const BOX_ISOPENING:String = "0x3989";
+      
+      public static const CHOUJIANG_INFO:String = "0x398A";
+      
+      public static const ZHENCANG_RESULT:String = "0x398B";
+      
+      public static const ZHENCANG_BTN:String = "0x398C";
+      
+      public static const EXCHANGE_INFO:String = "0x398D";
+      
+      public static const EXCHANGE_RESPONSE:String = "0x398E";
+      
+      public static const DEAL_EXCHANGE:String = "0x398F";
+      
+      public static const FORTUNE_RESULT:String = "0x3990";
+      
+      public static const DECOMPOSE_RESPONSE:String = "0x3991";
+      
+      public static const CHARM_SHOP_INFO:String = "0x4201";
+      
+      public static const CHARM_SHOP_BUY:String = "0x4202";
+      
+      public static const NEW_MARGIN_CHARM_RANK:String = "0x4301";
+      
+      public static const NEW_MARGIN_CHARM_INFO:String = "0x4302";
+      
+      public static const NEW_MARGIN_SEND_FLOWER_RECORD:String = "0x4303";
+      
+      public static const NEW_MARGIN_SEND_FLOWER:String = "0x4304";
+      
+      public static const NEW_MARGIN_CHARM_AWARD:String = "0x4305";
+      
+      public static const NEW_MARGIN_CHARM_UPDATE_DECLARATION:String = "0x4306";
+      
+      public static const NEW_MARGIN_GET_SEND_FLOWER:String = "0x4307";
+      
+      public static const CHARM_CRYSTAL_COMPOSE:String = "0x4401";
+      
+      public static const CHARM_CRYSTAL_DECOMPOSE:String = "0x4402";
+      
+      public static const CHARM_CRYSTAL_UPGRADE:String = "0x4403";
+      
+      public static const CHARM_CRYSTAL_EQUIP:String = "0x4404";
+      
+      public static const GETMATCHRANK_RESULT:String = "0x4000";
+      
+      public static const GETMATCHAWARD_RESULT:String = "0x4001";
+      
+      public static const GETISLANDRANK_RESULT:String = "0x4002";
+      
+      public static const GETISLANDAWARD_RESULT:String = "0x4003";
+      
+      public static const DISTRIBUTEISLANDAWARD_RESULT:String = "0x4004";
+      
+      public static const DEAL_STARPIECESHOP_BUY:String = "0x3992";
+      
+      public static const STARPIECESHOP_RESPONSE:String = "0x3993";
+      
+      public static const DEAL_SCORESHOP_BUY:String = "0x3994";
+      
+      public static const SCORESHOP_RESPONSE:String = "0x3995";
+      
+      public static const SCORESHOP_INFO_RESPONSE:String = "0x3996";
+      
+      public static const MAIL_LIST_RESPONSE:String = "0x4101";
+      
+      public static const MAIL_OPERATE_RESPONSE:String = "0x4102";
+      
+      public static const MAIL_NOTIFY_NEW_MAIL:String = "0x4103";
+      
+      public static const AUCTION_GET_TRADE_ITEM_LIST:String = "0x4121";
+      
+      public static const AUCTION_GET_PLAYER_TRADE_ITEM_LIST:String = "0x4122";
+      
+      public static const AUCTION_OPERATE_RESPONSE:String = "0x4123";
+      
+      public static const GET_NEW_CONSORTIA_TASK_LIST:String = "0x5101";
+      
+      public static const COMPLETE_NEW_CONSORTIA_TASK:String = "0x5102";
+      
+      public static const RANK_AND_PUBLISH_CONSORTIA_TASK:String = "0x5103";
+      
+      public static const UPGRAGE_CONSORTIA_TASK:String = "0x5104";
+      
+      public static const COMPLETE_CONSORTIA_TASK:String = "0x5105";
+      
+      public static const GET_MEISHI_MATCH_TASK_LIST:String = "0x5110";
+      
+      public static const COMPLETE_MEISHI_MATCH_TASK:String = "0x5111";
+      
+      public static const GET_MATCH_TASK_AWARD_BACK:String = "0x5112";
+      
+      public static const ACTIVE_COOKERGOD_BACK:String = "0x5113";
+      
+      public static const BUY_FOOD_EXP_BACK:String = "0x5114";
+      
+      public static const GET_CAMP_TASK_LIST:String = "0x5115";
+      
+      public static const NOTIFY_CAMP_TASK_COMPLETE:String = "0x5116";
+      
+      public static const GET_CAMP_AWARD_BACK:String = "0x5117";
+      
+      public static const GET_POPULARITY_INFO:String = "0x5120";
+      
+      public static const NOTIFY_POPULARITY_TASK_COMPLETE:String = "0x5121";
+      
+      public static const GET_POPULARITY_AWARD_BACK:String = "0x5122";
+      
+      public static const GET_LOVER_INFO:String = "0x6101";
+      
+      public static const GET_LOVER_AWARD:String = "0x6102";
+      
+      public static const GET_PROTECTOR_INFO:String = "0x6103";
+      
+      public static const REPORT_PLAYER:String = "0x5106";
+      
+      public static const GET_MONTH_CARD_INFO:String = "0x6201";
+      
+      public static const BUY_MONTH_CARD:String = "0x6202";
+      
+      public static const GET_MONTH_CARD_AWARD:String = "0x6203";
+      
+      public static const GET_MONTH_CARD_SHOP_INFO:String = "0x6204";
+      
+      public static const REFRESH_MONTH_CARD_SHOP:String = "0x6205";
+      
+      public static const BUY_MONTH_CARD_SHOP_ITEM:String = "0x6206";
+      
+      public static const GET_NEW_YEAR_GIFT_INFO:String = "0x6301";
+      
+      public static const GET_NEW_YEAR_GIFT:String = "0x6302";
+      
+      public static const GET_NEW_YEAR_RED_INFO:String = "0x6303";
+      
+      public static const GET_NEW_YEAR_RED:String = "0x6304";
+      
+      public static const GET_NEW_YEAR_TURN_TABLE_INFO:String = "0x6305";
+      
+      public static const GET_NEW_YEAR_TURN_TABLE:String = "0x6306";
+      
+      public static const SHORT_CUT_NEW_YEAR_BOSS:String = "0x6307";
+      
+      public static const GET_GARDEN_INFO:String = "0x6401";
+      
+      public static const GET_GARDEN_LIST:String = "0x6402";
+      
+      public static const GET_GARDEN_SOW:String = "0x6403";
+      
+      public static const GET_GARDEN_OPT_INFO:String = "0x6404";
+      
+      public static const GET_GARDEN_WATER:String = "0x6405";
+      
+      public static const GET_GARDEN_FERTILIZE:String = "0x6406";
+      
+      public static const GET_GARDEN_PICK:String = "0x6407";
+      
+      public static const SWEET_ISLAND_INFO:String = "0x3AE1";
+      
+      public static const SWEET_ISLAND_OPEN:String = "0x3AE2";
+      
+      public static const GET_ANIMALS_COIN:String = "0x6501";
+      
+      public static const ANIMALS_CARD_DECOMPOSE:String = "0x6502";
+      
+      public static const ANIMALS_CARD_EXCHANGE:String = "0x6503";
+      
+      public static const ANIMALS_CARD_CALL_INFO:String = "0x6504";
+      
+      public static const ANIMALS_CALL:String = "0x6505";
+      
+      public static const TREASURE_NUM_CHANGE:String = "0x6506";
+      
+      public static const DEAL_ANIMALS_EXCHANGE:String = "0x6507";
+      
+      public static const BUY_LIMIT_ITEM:String = "0x6508";
+      
+      public static const QUERY_LIMIT_ITEM:String = "0x6509";
+      
+      public static const GET_EXPLORESTORE_INFO:String = "0x6510";
+      
+      public static const BUY_EXPLORESTORE_BACK:String = "0x6511";
+      
+      public static const GET_EXPLOREDIARY_INFO:String = "0x6512";
+      
+      public static const UPDATE_DIARY_STATE:String = "0x6513";
+      
+      public static const CROSS_SEND_CHAT_MSG:String = "0x6700";
+      
+      public static const CROSS_NOTIFY_CHAT_MSG:String = "0x6701";
+      
+      public static const CROSS_ROOM_LIST:String = "0x6702";
+      
+      public static const CROSS_GAME_RESULT:String = "0x6703";
+      
+      public static const NOTIFY_CROSS_ROOM_STATE:String = "0x6704";
+      
+      public static const NOTIFY_CROSS_ROOM_INFO_LIST:String = "0x6705";
+      
+      public static const CROSS_DROP_COUNT:String = "0x6706";
+      
+      public static const CROSS_BUY_DROP_COUNT:String = "0x6707";
+      
+      public static const NOTIFY_CROSS_PLAYER_GROUP_INFO:String = "0x6708";
+      
+      public static const SHOW_SYSTEM_MESSAGE_BANNER:String = "0x6709";
+      
+      public static const CROSS_GET_TABLE_INFO:String = "0x670a";
+      
+      public static const DIY_GET_SELF_MAP:String = "0x7700";
+      
+      public static const DIY_STORE_INFO:String = "0x7701";
+      
+      public static const DIY_CREATE_MAP:String = "0x7702";
+      
+      public static const DIY_GET_MAP_INFO:String = "0x7703";
+      
+      public static const DIY_UPDATE_MAP_INFO:String = "0x7704";
+      
+      public static const DIY_PUBLISH_MAP:String = "0x7705";
+      
+      public static const DIY_DEL_MAP:String = "0x7706";
+      
+      public static const DIY_GET_MAP_LIST:String = "0x7707";
+      
+      public static const DIY_UPDATE_MAP_WAVE_INFO:String = "0x7708";
+      
+      public static const DIY_GET_MAP_WAVE_INFO:String = "0x7709";
+      
+      public static const DIY_GET_PLAYER_MAP_DATA:String = "0x770a";
+      
+      public static const DIY_ROOM_LIST:String = "0x770b";
+      
+      public static const Diy_SitDown_Success:String = "0x770c";
+      
+      public static const NOTIFY_DIY_ROOM_STATE:String = "0x770d";
+      
+      public static const NOTIFY_DIY_ROOM_INFO_LIST:String = "0x770e";
+      
+      public static const Diy_SitDown_Failed:String = "0x770f";
+      
+      public static const DIY_APPRAISE_MAP:String = "0x7730";
+      
+      public static const DIY_GET_COIN:String = "0x7731";
+      
+      public static const DIY_GET_MAP_LAND_FORM:String = "0x7732";
+      
+      public static const DIY_UPDATE_MAP_LAND_FORM:String = "0x7733";
+      
+      public static const DIY_NOTIFY_MAP_LAND_FORM:String = "0x7734";
+      
+      public static const DIY_CHAPTER_NAME_OR_STAR_CHANGE:String = "0x7710";
+      
+      public static const DIY_PLACE_MONSTER:String = "0x7711";
+      
+      public static const DIY_PLACE_BOSS:String = "0x7712";
+      
+      public static const DIY_SET_BGMAP:String = "0x7713";
+      
+      public static const DIY_SAVE_WAVE_INFO:String = "0x7715";
+      
+      public static const DIY_CHOICE_BOSS_OR_SIMPLE:String = "0x7716";
+      
+      public static const NOTIFY_DIY_MAP_INFO:String = "0x7717";
+      
+      public static const NOTIFY_DIY_MAP_MOUSE:String = "0x7718";
+      
+      public static const DIY_CHOICE_BOSS_OR_SIMPLE_SURE:String = "0x7719";
+      
+      public static const DIY_PUT_DOWN_ERASE:String = "0x7721";
+      
+      public static const DIY_CHANGE_VISIBLE:String = "0x7722";
+      
+      public static const DARKCRYSTAL_NUM_CHANGE:String = "0x6601";
+      
+      public static const GET_CARBEN_INFO:String = "0x6602";
+      
+      public static const GET_SUBMIT_PIECE_INFO:String = "0x6603";
+      
+      public static const GET_CARBEN_PLAYER_RANK_INFO:String = "0x6604";
+      
+      public static const GET_CARBEN_CONSORTIA_RANK_INFO:String = "0x6605";
+      
+      public static const DEAL_DARKCRYSTAL_EXCHANGE:String = "0x6606";
+      
+      public static const LIMIT_REWARD_INFO:String = "0x6801";
+      
+      public static const LIMIT_REWARD_REQUEST:String = "0x6802";
+      
+      public static const GET_TAROT:String = "0x6610";
+      
+      public static const GET_TAROT_INFO:String = "0x6611";
+      
+      public static const GET_TAROT_AWARD:String = "0x6612";
+      
+      public static const GET_LOVER_RECIPE_SLOT:String = "0x6615";
+      
+      public static const ADD_LOVER_RECIPE_SLOT:String = "0x6616";
+      
+      public static const GET_ONEPIECE:String = "0x6620";
+      
+      public static const GET_ONEPIECE_INFO:String = "0x6621";
+      
+      public static const GET_ONEPIECE_AWARD:String = "0x6622";
+      
+      public static const GOD_NUM_CHANGE:String = "0x6623";
+      
+      public static const GET_ONEPIECE_BUFF_INFO:String = "0x6624";
+      
+      public static const GET_ONEPIECE_CHANGE_BUFF:String = "0x6625";
+      
+      public static const GET_ONEPIECE_DECOMPOSE:String = "0x6626";
+      
+      public static const DEAL_GOD_EXCHANGE:String = "0x6627";
+      
+      public static const USE_LUCKSTAR_EXCHNAGE:String = "0x6628";
+      
+      public static const GET_GOLD_CARD_EVOLUTION:String = "0x7800";
+      
+      public static const GET_ARTIFACT_EVOLUTION:String = "0x7801";
+      
+      public static const GET_GEM_EVOLUTION:String = "0x7802";
+      
+      public static const CARD_FUSION_BACK:String = "0x7803";
+      
+      public static const CARD_UPGRADE_BACK:String = "0x7804";
+      
+      public static const CHECK_NEW_SVR_TASK:String = "0x7001";
+      
+      public static const CHECK_NEW_SVR_GIFT:String = "0x7002";
+      
+      public static const RECEIEVE_NEW_SVR_GIFT:String = "0x7003";
+      
+      public static const HAS_SECPWD:String = "0x6640";
+      
+      public static const UPDATE_SECPWD:String = "0x6641";
+      
+      public static const UNEED_SECPWD:String = "0x6642";
+      
+      public static const INPUT_SECPWD:String = "0x6643";
+      
+      public static const NEED_VERIFY_IN_GAME:String = "0x6644";
+      
+      public static const VERIFY_IN_GAME_INPUT:String = "0x6645";
+      
+      public static const VERIFY_IN_GAME_CHANGE:String = "0x6646";
+      
+      public static const QQGAME_POST_CONSUME:String = "0x6648";
+      
+      public static const QQGAME_POST_QUIT:String = "0x6649";
+      
+      public static const MONOPOLY_INFO:String = "0x6650";
+      
+      public static const MONOPOLY_PLAY:String = "0x6651";
+      
+      public static const MONOPOLY_RANK_INFO:String = "0x6652";
+      
+      public static const MONOPOLY_RANK_AWARD:String = "0x6653";
+      
+      public static const HANDBOOK_AWARD:String = "0x6660";
+      
+      public static const DAILYPAYINFO:String = "0x6661";
+      
+      public static const DAILYPAYAWARD:String = "0x6662";
+      
+      public static const GET_BACK_SMALLROOMINFO:String = "0x6663";
+      
+      public static const SAVE_BACK_SMALLROOMINFO:String = "0x6664";
+      
+      public static const BUY_BACK_SMALLROOM:String = "0x6665";
+      
+      public static const GET_BACK_CRM_INFO:String = "0x6663";
+      
+      public static const GET_TWO_PATA_COUNT:String = "0x6670";
+      
+      public static const GET_TWO_PATA_LEVEL:String = "0x6671";
+      
+      public static const GET_TWO_PATA_RANK:String = "0x6672";
+      
+      public static const GET_TWO_PATA_AWARD:String = "0x6673";
+      
+      public static const UPDATE_DENTITYCARDINFO:String = "0x6674";
+      
+      public static const GET_TWO_PATA_RANK_INFO:String = "0x6675";
+      
+      public static const GET_STROEBOX_INFO:String = "0x6676";
+      
+      public static const EXPAND_STOREBOX_BACK:String = "0x6677";
+      
+      public static const UPDATE_STROEBOX:String = "0x6678";
+      
+      public static const WORLD_BOSS_SYSTEM_MSG:String = "0x6688";
+      
+      public static const WORLD_BOSS_SEASON_END:String = "0x6689";
+      
+      public static const GET_WORLD_BOSS_INFO:String = "0x6690";
+      
+      public static const GET_WORLD_BOSS_RANK:String = "0x6691";
+      
+      public static const CHECK_WORLD_BOSS_PLAYER_INFO:String = "0x6692";
+      
+      public static const GET_WORLD_BOSS_LEVEL_USER_PK_INFO:String = "0x6693";
+      
+      public static const GET_WORLD_BOSS_AWARD_RESPONSE:String = "0x6694";
+      
+      public static const GET_WORLD_BOSS_AWARD_UI:String = "0x6695";
+      
+      public static const GET_MSG_WORLDBOSS_SHOP_INFO:String = "0x6696";
+      
+      public static const GET_MSG_WORLDBOSS_SHOP_BUY:String = "0x6697";
+      
+      public static const GET_MSG_WORLDBOSS_RECORD:String = "0x6698";
+      
+      public static const GET_MSG_WORLDBOSS_SUMMARY:String = "0x6699";
+      
+      public static const GET_MSG_WORLDBOSS_FAST_PK:String = "0x6700";
+      
+      public static const OPEN_PANEL_BY_EXT_FLA:String = "0x6720";
+      
+      public static const CHANGE_TRAIN_MODE:String = "0x6721";
+      
+      public static const GRID_SELECTED_EVENT:String = "0x6722";
+      
+      public static const WORLD_BOSS_ENTER_TRAIN_ROOM:String = "0x6724";
+      
+      public static const REQUEST_WORLD_BOSS_GET_MAP_ID:String = "0x6725";
+      
+      public static const RESPONSE_WORLD_BOSS_GET_TRAIN_MAP_ID:String = "0x6726";
+      
+      public static const WORLD_BOSS_LEADER_DIVIDE_MEMBER_DELETE_GRID_ITEM:String = "0x6727";
+      
+      public static const WORLD_BOSS_LEADER_DIVIDE_MEMBER_CLICK_ITEM:String = "0x6728";
+      
+      public static const WORLD_BOSS_DIVIDE_AWARD_MAIN_INFO:String = "0x6729";
+      
+      public static const WORLD_BOSS_DIVIDE_AWARD:String = "0x6730";
+      
+      public static const WORLD_BOSS_DIVIDE_RECEIVE_AWARD:String = "0x6731";
+      
+      public static const GET_BIRTHDAY_ACTIVITY_SPECIAL_ACTIVITY_INFO:String = "0x6760";
+      
+      public static const GET_BIRTHDAY_ACTIVITY_SPECIAL_ACT_AWARD:String = "0x6761";
+      
+      public static const GET_BIRTHDAY_ACTIVITY_MAIL_RECEIVE_AWARD:String = "0x6762";
+      
+      public static const GET_BIRTHDAY_ACTIVITY_AWARD:String = "0x6763";
+      
+      public static const VIRTUAL_LIST_GRID_CLICK_EVENT:String = "0x9000";
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_561", 0, 6
+               findproperty QName(PackageNamespace(""),"a_561")
+               pushstring "0100"
+               initproperty QName(PackageNamespace(""),"a_561")
+               debug 1, "a_562", 1, 7
+               findproperty QName(PackageNamespace(""),"a_562")
+               pushstring "0101"
+               initproperty QName(PackageNamespace(""),"a_562")
+               debug 1, "a_563", 2, 8
+               findproperty QName(PackageNamespace(""),"a_563")
+               pushstring "0102"
+               initproperty QName(PackageNamespace(""),"a_563")
+               debug 1, "a_564", 3, 9
+               findproperty QName(PackageNamespace(""),"a_564")
+               pushstring "0103"
+               initproperty QName(PackageNamespace(""),"a_564")
+               debug 1, "a_565", 4, 12
+               findproperty QName(PackageNamespace(""),"a_565")
+               pushstring "0104"
+               initproperty QName(PackageNamespace(""),"a_565")
+               debug 1, "a_566", 5, 13
+               findproperty QName(PackageNamespace(""),"a_566")
+               pushstring "0105"
+               initproperty QName(PackageNamespace(""),"a_566")
+               debug 1, "a_567", 6, 14
+               findproperty QName(PackageNamespace(""),"a_567")
+               pushstring "0110"
+               initproperty QName(PackageNamespace(""),"a_567")
+               debug 1, "a_568", 7, 17
+               findproperty QName(PackageNamespace(""),"a_568")
+               pushstring "0200"
+               initproperty QName(PackageNamespace(""),"a_568")
+               debug 1, "a_569", 8, 18
+               findproperty QName(PackageNamespace(""),"a_569")
+               pushstring "0201"
+               initproperty QName(PackageNamespace(""),"a_569")
+               debug 1, "a_570", 9, 19
+               findproperty QName(PackageNamespace(""),"a_570")
+               pushstring "0203"
+               initproperty QName(PackageNamespace(""),"a_570")
+               debug 1, "a_571", 10, 20
+               findproperty QName(PackageNamespace(""),"a_571")
+               pushstring "0204"
+               initproperty QName(PackageNamespace(""),"a_571")
+               debug 1, "a_572", 11, 21
+               findproperty QName(PackageNamespace(""),"a_572")
+               pushstring "0205"
+               initproperty QName(PackageNamespace(""),"a_572")
+               debug 1, "a_573", 12, 22
+               findproperty QName(PackageNamespace(""),"a_573")
+               pushstring "0206"
+               initproperty QName(PackageNamespace(""),"a_573")
+               debug 1, "a_574", 13, 23
+               findproperty QName(PackageNamespace(""),"a_574")
+               pushstring "0207"
+               initproperty QName(PackageNamespace(""),"a_574")
+               debug 1, "a_575", 14, 24
+               findproperty QName(PackageNamespace(""),"a_575")
+               pushstring "0208"
+               initproperty QName(PackageNamespace(""),"a_575")
+               debug 1, "a_576", 15, 25
+               findproperty QName(PackageNamespace(""),"a_576")
+               pushstring "0209"
+               initproperty QName(PackageNamespace(""),"a_576")
+               debug 1, "a_577", 16, 26
+               findproperty QName(PackageNamespace(""),"a_577")
+               pushstring "020A"
+               initproperty QName(PackageNamespace(""),"a_577")
+               debug 1, "a_578", 17, 27
+               findproperty QName(PackageNamespace(""),"a_578")
+               pushstring "020B"
+               initproperty QName(PackageNamespace(""),"a_578")
+               debug 1, "a_579", 18, 28
+               findproperty QName(PackageNamespace(""),"a_579")
+               pushstring "020C"
+               initproperty QName(PackageNamespace(""),"a_579")
+               debug 1, "a_580", 19, 29
+               findproperty QName(PackageNamespace(""),"a_580")
+               pushstring "020D"
+               initproperty QName(PackageNamespace(""),"a_580")
+               debug 1, "a_581", 20, 30
+               findproperty QName(PackageNamespace(""),"a_581")
+               pushstring "020E"
+               initproperty QName(PackageNamespace(""),"a_581")
+               debug 1, "a_582", 21, 31
+               findproperty QName(PackageNamespace(""),"a_582")
+               pushstring "020F"
+               initproperty QName(PackageNamespace(""),"a_582")
+               debug 1, "a_583", 22, 32
+               findproperty QName(PackageNamespace(""),"a_583")
+               pushstring "0210"
+               initproperty QName(PackageNamespace(""),"a_583")
+               debug 1, "a_584", 23, 33
+               findproperty QName(PackageNamespace(""),"a_584")
+               pushstring "0211"
+               initproperty QName(PackageNamespace(""),"a_584")
+               debug 1, "a_585", 24, 34
+               findproperty QName(PackageNamespace(""),"a_585")
+               pushstring "0212"
+               initproperty QName(PackageNamespace(""),"a_585")
+               debug 1, "a_586", 25, 35
+               findproperty QName(PackageNamespace(""),"a_586")
+               pushstring "0213"
+               initproperty QName(PackageNamespace(""),"a_586")
+               debug 1, "a_587", 26, 36
+               findproperty QName(PackageNamespace(""),"a_587")
+               pushstring "0214"
+               initproperty QName(PackageNamespace(""),"a_587")
+               debug 1, "a_588", 27, 37
+               findproperty QName(PackageNamespace(""),"a_588")
+               pushstring "0215"
+               initproperty QName(PackageNamespace(""),"a_588")
+               debug 1, "a_589", 28, 38
+               findproperty QName(PackageNamespace(""),"a_589")
+               pushstring "0216"
+               initproperty QName(PackageNamespace(""),"a_589")
+               debug 1, "a_590", 29, 39
+               findproperty QName(PackageNamespace(""),"a_590")
+               pushstring "0217"
+               initproperty QName(PackageNamespace(""),"a_590")
+               debug 1, "a_591", 30, 40
+               findproperty QName(PackageNamespace(""),"a_591")
+               pushstring "0218"
+               initproperty QName(PackageNamespace(""),"a_591")
+               debug 1, "a_592", 31, 41
+               findproperty QName(PackageNamespace(""),"a_592")
+               pushstring "0219"
+               initproperty QName(PackageNamespace(""),"a_592")
+               debug 1, "a_593", 32, 44
+               findproperty QName(PackageNamespace(""),"a_593")
+               pushstring "0220"
+               initproperty QName(PackageNamespace(""),"a_593")
+               debug 1, "a_594", 33, 45
+               findproperty QName(PackageNamespace(""),"a_594")
+               pushstring "0221"
+               initproperty QName(PackageNamespace(""),"a_594")
+               debug 1, "a_595", 34, 46
+               findproperty QName(PackageNamespace(""),"a_595")
+               pushstring "0222"
+               initproperty QName(PackageNamespace(""),"a_595")
+               debug 1, "a_596", 35, 47
+               findproperty QName(PackageNamespace(""),"a_596")
+               pushstring "0223"
+               initproperty QName(PackageNamespace(""),"a_596")
+               debug 1, "a_597", 36, 48
+               findproperty QName(PackageNamespace(""),"a_597")
+               pushstring "0224"
+               initproperty QName(PackageNamespace(""),"a_597")
+               debug 1, "a_598", 37, 49
+               findproperty QName(PackageNamespace(""),"a_598")
+               pushstring "0225"
+               initproperty QName(PackageNamespace(""),"a_598")
+               debug 1, "a_599", 38, 50
+               findproperty QName(PackageNamespace(""),"a_599")
+               pushstring "0226"
+               initproperty QName(PackageNamespace(""),"a_599")
+               debug 1, "a_600", 39, 51
+               findproperty QName(PackageNamespace(""),"a_600")
+               pushstring "0227"
+               initproperty QName(PackageNamespace(""),"a_600")
+               debug 1, "a_601", 40, 52
+               findproperty QName(PackageNamespace(""),"a_601")
+               pushstring "0229"
+               initproperty QName(PackageNamespace(""),"a_601")
+               debug 1, "a_602", 41, 53
+               findproperty QName(PackageNamespace(""),"a_602")
+               pushstring "022A"
+               initproperty QName(PackageNamespace(""),"a_602")
+               debug 1, "a_603", 42, 54
+               findproperty QName(PackageNamespace(""),"a_603")
+               pushstring "022B"
+               initproperty QName(PackageNamespace(""),"a_603")
+               debug 1, "a_604", 43, 55
+               findproperty QName(PackageNamespace(""),"a_604")
+               pushstring "022C"
+               initproperty QName(PackageNamespace(""),"a_604")
+               debug 1, "a_605", 44, 56
+               findproperty QName(PackageNamespace(""),"a_605")
+               pushstring "022D"
+               initproperty QName(PackageNamespace(""),"a_605")
+               debug 1, "UseSkillBook", 45, 57
+               findproperty QName(PackageNamespace(""),"UseSkillBook")
+               pushstring "022E"
+               initproperty QName(PackageNamespace(""),"UseSkillBook")
+               debug 1, "a_607", 46, 58
+               findproperty QName(PackageNamespace(""),"a_607")
+               pushstring "022F"
+               initproperty QName(PackageNamespace(""),"a_607")
+               debug 1, "a_609", 47, 63
+               findproperty QName(PackageNamespace(""),"a_609")
+               pushstring "0235"
+               initproperty QName(PackageNamespace(""),"a_609")
+               debug 1, "a_610", 48, 64
+               findproperty QName(PackageNamespace(""),"a_610")
+               pushstring "0240"
+               initproperty QName(PackageNamespace(""),"a_610")
+               debug 1, "a_611", 49, 65
+               findproperty QName(PackageNamespace(""),"a_611")
+               pushstring "0241"
+               initproperty QName(PackageNamespace(""),"a_611")
+               debug 1, "ITEM_GEM_UNLOAD", 50, 66
+               findproperty QName(PackageNamespace(""),"ITEM_GEM_UNLOAD")
+               pushstring "0x3A18"
+               initproperty QName(PackageNamespace(""),"ITEM_GEM_UNLOAD")
+               debug 1, "SLOT_ITEM", 51, 67
+               findproperty QName(PackageNamespace(""),"SLOT_ITEM")
+               pushstring "0x3A16"
+               initproperty QName(PackageNamespace(""),"SLOT_ITEM")
+               debug 1, "ITEM_GEM_IN_LAY", 52, 68
+               findproperty QName(PackageNamespace(""),"ITEM_GEM_IN_LAY")
+               pushstring "0x3A17"
+               initproperty QName(PackageNamespace(""),"ITEM_GEM_IN_LAY")
+               debug 1, "ITEM_GEM_DECOMPOSE", 53, 69
+               findproperty QName(PackageNamespace(""),"ITEM_GEM_DECOMPOSE")
+               pushstring "0x3A1A"
+               initproperty QName(PackageNamespace(""),"ITEM_GEM_DECOMPOSE")
+               debug 1, "ITEM_GEM_UPGRADE", 54, 70
+               findproperty QName(PackageNamespace(""),"ITEM_GEM_UPGRADE")
+               pushstring "0x3A19"
+               initproperty QName(PackageNamespace(""),"ITEM_GEM_UPGRADE")
+               debug 1, "CARD_TRANSLATE_RESPONSE", 55, 71
+               findproperty QName(PackageNamespace(""),"CARD_TRANSLATE_RESPONSE")
+               pushstring "0x3A1B"
+               initproperty QName(PackageNamespace(""),"CARD_TRANSLATE_RESPONSE")
+               debug 1, "a_612", 56, 73
+               findproperty QName(PackageNamespace(""),"a_612")
+               pushstring "0250"
+               initproperty QName(PackageNamespace(""),"a_612")
+               debug 1, "a_613", 57, 74
+               findproperty QName(PackageNamespace(""),"a_613")
+               pushstring "0251"
+               initproperty QName(PackageNamespace(""),"a_613")
+               debug 1, "a_614", 58, 75
+               findproperty QName(PackageNamespace(""),"a_614")
+               pushstring "0252"
+               initproperty QName(PackageNamespace(""),"a_614")
+               debug 1, "a_615", 59, 76
+               findproperty QName(PackageNamespace(""),"a_615")
+               pushstring "0253"
+               initproperty QName(PackageNamespace(""),"a_615")
+               debug 1, "a_616", 60, 77
+               findproperty QName(PackageNamespace(""),"a_616")
+               pushstring "0254"
+               initproperty QName(PackageNamespace(""),"a_616")
+               debug 1, "a_617", 61, 78
+               findproperty QName(PackageNamespace(""),"a_617")
+               pushstring "0255"
+               initproperty QName(PackageNamespace(""),"a_617")
+               debug 1, "a_618", 62, 79
+               findproperty QName(PackageNamespace(""),"a_618")
+               pushstring "0256"
+               initproperty QName(PackageNamespace(""),"a_618")
+               debug 1, "a_619", 63, 80
+               findproperty QName(PackageNamespace(""),"a_619")
+               pushstring "0257"
+               initproperty QName(PackageNamespace(""),"a_619")
+               debug 1, "a_620", 64, 81
+               findproperty QName(PackageNamespace(""),"a_620")
+               pushstring "0258"
+               initproperty QName(PackageNamespace(""),"a_620")
+               debug 1, "a_621", 65, 82
+               findproperty QName(PackageNamespace(""),"a_621")
+               pushstring "0259"
+               initproperty QName(PackageNamespace(""),"a_621")
+               debug 1, "a_622", 66, 83
+               findproperty QName(PackageNamespace(""),"a_622")
+               pushstring "0259D"
+               initproperty QName(PackageNamespace(""),"a_622")
+               debug 1, "a_623", 67, 85
+               findproperty QName(PackageNamespace(""),"a_623")
+               pushstring "0259A"
+               initproperty QName(PackageNamespace(""),"a_623")
+               debug 1, "a_624", 68, 87
+               findproperty QName(PackageNamespace(""),"a_624")
+               pushstring "0259B"
+               initproperty QName(PackageNamespace(""),"a_624")
+               debug 1, "a_625", 69, 88
+               findproperty QName(PackageNamespace(""),"a_625")
+               pushstring "0259C"
+               initproperty QName(PackageNamespace(""),"a_625")
+               debug 1, "a_626", 70, 90
+               findproperty QName(PackageNamespace(""),"a_626")
+               pushstring "0260"
+               initproperty QName(PackageNamespace(""),"a_626")
+               debug 1, "a_627", 71, 91
+               findproperty QName(PackageNamespace(""),"a_627")
+               pushstring "0261"
+               initproperty QName(PackageNamespace(""),"a_627")
+               debug 1, "a_628", 72, 92
+               findproperty QName(PackageNamespace(""),"a_628")
+               pushstring "0262"
+               initproperty QName(PackageNamespace(""),"a_628")
+               debug 1, "a_629", 73, 93
+               findproperty QName(PackageNamespace(""),"a_629")
+               pushstring "0263"
+               initproperty QName(PackageNamespace(""),"a_629")
+               debug 1, "a_630", 74, 94
+               findproperty QName(PackageNamespace(""),"a_630")
+               pushstring "0269"
+               initproperty QName(PackageNamespace(""),"a_630")
+               debug 1, "a_631", 75, 96
+               findproperty QName(PackageNamespace(""),"a_631")
+               pushstring "0270"
+               initproperty QName(PackageNamespace(""),"a_631")
+               debug 1, "a_632", 76, 98
+               findproperty QName(PackageNamespace(""),"a_632")
+               pushstring "0271"
+               initproperty QName(PackageNamespace(""),"a_632")
+               debug 1, "a_633", 77, 100
+               findproperty QName(PackageNamespace(""),"a_633")
+               pushstring "0280"
+               initproperty QName(PackageNamespace(""),"a_633")
+               debug 1, "a_634", 78, 101
+               findproperty QName(PackageNamespace(""),"a_634")
+               pushstring "0281"
+               initproperty QName(PackageNamespace(""),"a_634")
+               debug 1, "a_635", 79, 102
+               findproperty QName(PackageNamespace(""),"a_635")
+               pushstring "0282"
+               initproperty QName(PackageNamespace(""),"a_635")
+               debug 1, "a_636", 80, 103
+               findproperty QName(PackageNamespace(""),"a_636")
+               pushstring "0283"
+               initproperty QName(PackageNamespace(""),"a_636")
+               debug 1, "a_637", 81, 105
+               findproperty QName(PackageNamespace(""),"a_637")
+               pushstring "0290"
+               initproperty QName(PackageNamespace(""),"a_637")
+               debug 1, "a_638", 82, 107
+               findproperty QName(PackageNamespace(""),"a_638")
+               pushstring "0291"
+               initproperty QName(PackageNamespace(""),"a_638")
+               debug 1, "a_639", 83, 108
+               findproperty QName(PackageNamespace(""),"a_639")
+               pushstring "0292"
+               initproperty QName(PackageNamespace(""),"a_639")
+               debug 1, "a_640", 84, 110
+               findproperty QName(PackageNamespace(""),"a_640")
+               pushstring "3980"
+               initproperty QName(PackageNamespace(""),"a_640")
+               debug 1, "a_641", 85, 111
+               findproperty QName(PackageNamespace(""),"a_641")
+               pushstring "3981"
+               initproperty QName(PackageNamespace(""),"a_641")
+               debug 1, "a_642", 86, 112
+               findproperty QName(PackageNamespace(""),"a_642")
+               pushstring "3982"
+               initproperty QName(PackageNamespace(""),"a_642")
+               debug 1, "a_643", 87, 113
+               findproperty QName(PackageNamespace(""),"a_643")
+               pushstring "3983"
+               initproperty QName(PackageNamespace(""),"a_643")
+               debug 1, "a_644", 88, 114
+               findproperty QName(PackageNamespace(""),"a_644")
+               pushstring "3984"
+               initproperty QName(PackageNamespace(""),"a_644")
+               debug 1, "a_645", 89, 116
+               findproperty QName(PackageNamespace(""),"a_645")
+               pushstring "0400"
+               initproperty QName(PackageNamespace(""),"a_645")
+               debug 1, "a_646", 90, 117
+               findproperty QName(PackageNamespace(""),"a_646")
+               pushstring "0401"
+               initproperty QName(PackageNamespace(""),"a_646")
+               debug 1, "a_647", 91, 118
+               findproperty QName(PackageNamespace(""),"a_647")
+               pushstring "0402"
+               initproperty QName(PackageNamespace(""),"a_647")
+               debug 1, "a_648", 92, 120
+               findproperty QName(PackageNamespace(""),"a_648")
+               pushstring "0300"
+               initproperty QName(PackageNamespace(""),"a_648")
+               debug 1, "a_649", 93, 121
+               findproperty QName(PackageNamespace(""),"a_649")
+               pushstring "0301"
+               initproperty QName(PackageNamespace(""),"a_649")
+               debug 1, "a_650", 94, 122
+               findproperty QName(PackageNamespace(""),"a_650")
+               pushstring "0302"
+               initproperty QName(PackageNamespace(""),"a_650")
+               debug 1, "a_651", 95, 123
+               findproperty QName(PackageNamespace(""),"a_651")
+               pushstring "0303"
+               initproperty QName(PackageNamespace(""),"a_651")
+               debug 1, "a_652", 96, 124
+               findproperty QName(PackageNamespace(""),"a_652")
+               pushstring "0304"
+               initproperty QName(PackageNamespace(""),"a_652")
+               debug 1, "a_653", 97, 125
+               findproperty QName(PackageNamespace(""),"a_653")
+               pushstring "0305"
+               initproperty QName(PackageNamespace(""),"a_653")
+               debug 1, "a_654", 98, 127
+               findproperty QName(PackageNamespace(""),"a_654")
+               pushstring "0900"
+               initproperty QName(PackageNamespace(""),"a_654")
+               debug 1, "a_655", 99, 129
+               findproperty QName(PackageNamespace(""),"a_655")
+               pushstring "0555"
+               initproperty QName(PackageNamespace(""),"a_655")
+               debug 1, "a_656", 100, 130
+               findproperty QName(PackageNamespace(""),"a_656")
+               pushstring "0556"
+               initproperty QName(PackageNamespace(""),"a_656")
+               debug 1, "a_657", 101, 131
+               findproperty QName(PackageNamespace(""),"a_657")
+               pushstring "0557"
+               initproperty QName(PackageNamespace(""),"a_657")
+               debug 1, "a_658", 102, 132
+               findproperty QName(PackageNamespace(""),"a_658")
+               pushstring "0558"
+               initproperty QName(PackageNamespace(""),"a_658")
+               debug 1, "a_659", 103, 133
+               findproperty QName(PackageNamespace(""),"a_659")
+               pushstring "0559"
+               initproperty QName(PackageNamespace(""),"a_659")
+               debug 1, "a_660", 104, 134
+               findproperty QName(PackageNamespace(""),"a_660")
+               pushstring "055A"
+               initproperty QName(PackageNamespace(""),"a_660")
+               debug 1, "a_661", 105, 135
+               findproperty QName(PackageNamespace(""),"a_661")
+               pushstring "055B"
+               initproperty QName(PackageNamespace(""),"a_661")
+               debug 1, "a_662", 106, 136
+               findproperty QName(PackageNamespace(""),"a_662")
+               pushstring "055C"
+               initproperty QName(PackageNamespace(""),"a_662")
+               debug 1, "OnceKeyOpen", 107, 139
+               findproperty QName(PackageNamespace(""),"OnceKeyOpen")
+               pushstring "055D"
+               initproperty QName(PackageNamespace(""),"OnceKeyOpen")
+               debug 1, "a_663", 108, 142
+               findproperty QName(PackageNamespace(""),"a_663")
+               pushstring "0600"
+               initproperty QName(PackageNamespace(""),"a_663")
+               debug 1, "a_664", 109, 143
+               findproperty QName(PackageNamespace(""),"a_664")
+               pushstring "0700"
+               initproperty QName(PackageNamespace(""),"a_664")
+               debug 1, "a_665", 110, 145
+               findproperty QName(PackageNamespace(""),"a_665")
+               pushstring "0x39A0"
+               initproperty QName(PackageNamespace(""),"a_665")
+               debug 1, "a_666", 111, 146
+               findproperty QName(PackageNamespace(""),"a_666")
+               pushstring "0x39A1"
+               initproperty QName(PackageNamespace(""),"a_666")
+               debug 1, "a_667", 112, 147
+               findproperty QName(PackageNamespace(""),"a_667")
+               pushstring "0x39A2"
+               initproperty QName(PackageNamespace(""),"a_667")
+               debug 1, "a_668", 113, 148
+               findproperty QName(PackageNamespace(""),"a_668")
+               pushstring "0x39A3"
+               initproperty QName(PackageNamespace(""),"a_668")
+               debug 1, "a_669", 114, 149
+               findproperty QName(PackageNamespace(""),"a_669")
+               pushstring "0x39A4"
+               initproperty QName(PackageNamespace(""),"a_669")
+               debug 1, "a_670", 115, 150
+               findproperty QName(PackageNamespace(""),"a_670")
+               pushstring "0x39A5"
+               initproperty QName(PackageNamespace(""),"a_670")
+               debug 1, "a_671", 116, 151
+               findproperty QName(PackageNamespace(""),"a_671")
+               pushstring "0x39A6"
+               initproperty QName(PackageNamespace(""),"a_671")
+               debug 1, "a_672", 117, 152
+               findproperty QName(PackageNamespace(""),"a_672")
+               pushstring "0x39A7"
+               initproperty QName(PackageNamespace(""),"a_672")
+               debug 1, "a_673", 118, 153
+               findproperty QName(PackageNamespace(""),"a_673")
+               pushstring "0x39A8"
+               initproperty QName(PackageNamespace(""),"a_673")
+               debug 1, "a_674", 119, 155
+               findproperty QName(PackageNamespace(""),"a_674")
+               pushstring "0x39A9"
+               initproperty QName(PackageNamespace(""),"a_674")
+               debug 1, "a_675", 120, 156
+               findproperty QName(PackageNamespace(""),"a_675")
+               pushstring "0x39AA"
+               initproperty QName(PackageNamespace(""),"a_675")
+               debug 1, "a_676", 121, 157
+               findproperty QName(PackageNamespace(""),"a_676")
+               pushstring "0x39AB"
+               initproperty QName(PackageNamespace(""),"a_676")
+               debug 1, "a_677", 122, 158
+               findproperty QName(PackageNamespace(""),"a_677")
+               pushstring "0x39AC"
+               initproperty QName(PackageNamespace(""),"a_677")
+               debug 1, "a_678", 123, 159
+               findproperty QName(PackageNamespace(""),"a_678")
+               pushstring "0x39AD"
+               initproperty QName(PackageNamespace(""),"a_678")
+               debug 1, "a_679", 124, 160
+               findproperty QName(PackageNamespace(""),"a_679")
+               pushstring "0x39AE"
+               initproperty QName(PackageNamespace(""),"a_679")
+               debug 1, "a_680", 125, 161
+               findproperty QName(PackageNamespace(""),"a_680")
+               pushstring "0x39AF"
+               initproperty QName(PackageNamespace(""),"a_680")
+               debug 1, "a_681", 126, 162
+               findproperty QName(PackageNamespace(""),"a_681")
+               pushstring "0x39B0"
+               initproperty QName(PackageNamespace(""),"a_681")
+               debug 1, "a_682", 127, 163
+               findproperty QName(PackageNamespace(""),"a_682")
+               pushstring "0x39B1"
+               initproperty QName(PackageNamespace(""),"a_682")
+               debug 1, "a_683", 128, 164
+               findproperty QName(PackageNamespace(""),"a_683")
+               pushstring "0x39B2"
+               initproperty QName(PackageNamespace(""),"a_683")
+               debug 1, "a_684", 129, 165
+               findproperty QName(PackageNamespace(""),"a_684")
+               pushstring "0x39B3"
+               initproperty QName(PackageNamespace(""),"a_684")
+               debug 1, "a_685", 130, 166
+               findproperty QName(PackageNamespace(""),"a_685")
+               pushstring "0x39B4"
+               initproperty QName(PackageNamespace(""),"a_685")
+               debug 1, "a_686", 131, 167
+               findproperty QName(PackageNamespace(""),"a_686")
+               pushstring "0x39B5"
+               initproperty QName(PackageNamespace(""),"a_686")
+               debug 1, "a_687", 132, 168
+               findproperty QName(PackageNamespace(""),"a_687")
+               pushstring "0x39B6"
+               initproperty QName(PackageNamespace(""),"a_687")
+               debug 1, "a_688", 133, 169
+               findproperty QName(PackageNamespace(""),"a_688")
+               pushstring "0x39B7"
+               initproperty QName(PackageNamespace(""),"a_688")
+               debug 1, "a_689", 134, 170
+               findproperty QName(PackageNamespace(""),"a_689")
+               pushstring "0x39BB"
+               initproperty QName(PackageNamespace(""),"a_689")
+               debug 1, "a_690", 135, 175
+               findproperty QName(PackageNamespace(""),"a_690")
+               pushstring "0x3A30"
+               initproperty QName(PackageNamespace(""),"a_690")
+               debug 1, "a_691", 136, 176
+               findproperty QName(PackageNamespace(""),"a_691")
+               pushstring "0x3A31"
+               initproperty QName(PackageNamespace(""),"a_691")
+               debug 1, "a_692", 137, 177
+               findproperty QName(PackageNamespace(""),"a_692")
+               pushstring "0x3A32"
+               initproperty QName(PackageNamespace(""),"a_692")
+               debug 1, "a_693", 138, 178
+               findproperty QName(PackageNamespace(""),"a_693")
+               pushstring "0x3A33"
+               initproperty QName(PackageNamespace(""),"a_693")
+               debug 1, "a_694", 139, 179
+               findproperty QName(PackageNamespace(""),"a_694")
+               pushstring "0x3A34"
+               initproperty QName(PackageNamespace(""),"a_694")
+               debug 1, "a_695", 140, 180
+               findproperty QName(PackageNamespace(""),"a_695")
+               pushstring "0x3A35"
+               initproperty QName(PackageNamespace(""),"a_695")
+               debug 1, "a_696", 141, 181
+               findproperty QName(PackageNamespace(""),"a_696")
+               pushstring "0x3A36"
+               initproperty QName(PackageNamespace(""),"a_696")
+               debug 1, "a_213", 142, 182
+               findproperty QName(PackageNamespace(""),"a_213")
+               pushstring "0x3A37"
+               initproperty QName(PackageNamespace(""),"a_213")
+               debug 1, "a_698", 143, 187
+               findproperty QName(PackageNamespace(""),"a_698")
+               pushstring "0x5000"
+               initproperty QName(PackageNamespace(""),"a_698")
+               debug 1, "a_228", 144, 188
+               findproperty QName(PackageNamespace(""),"a_228")
+               pushstring "0x3210"
+               initproperty QName(PackageNamespace(""),"a_228")
+               debug 1, "Notfiy_MiBaoKuGameData", 145, 189
+               findproperty QName(PackageNamespace(""),"Notfiy_MiBaoKuGameData")
+               pushstring "0x5001"
+               initproperty QName(PackageNamespace(""),"Notfiy_MiBaoKuGameData")
+               debug 1, "a_700", 146, 193
+               findproperty QName(PackageNamespace(""),"a_700")
+               pushstring "0x3A14"
+               initproperty QName(PackageNamespace(""),"a_700")
+               debug 1, "a_701", 147, 194
+               findproperty QName(PackageNamespace(""),"a_701")
+               pushstring "0x3A13"
+               initproperty QName(PackageNamespace(""),"a_701")
+               debug 1, "a_702", 148, 196
+               findproperty QName(PackageNamespace(""),"a_702")
+               pushstring "0x3977"
+               initproperty QName(PackageNamespace(""),"a_702")
+               debug 1, "a_703", 149, 197
+               findproperty QName(PackageNamespace(""),"a_703")
+               pushstring "0x3978"
+               initproperty QName(PackageNamespace(""),"a_703")
+               debug 1, "PET_SWALLOW", 150, 199
+               findproperty QName(PackageNamespace(""),"PET_SWALLOW")
+               pushstring "0x3979"
+               initproperty QName(PackageNamespace(""),"PET_SWALLOW")
+               debug 1, "GET_PET_ACCOUNT", 151, 200
+               findproperty QName(PackageNamespace(""),"GET_PET_ACCOUNT")
+               pushstring "0x3980"
+               initproperty QName(PackageNamespace(""),"GET_PET_ACCOUNT")
+               debug 1, "OPEN_SOLT", 152, 201
+               findproperty QName(PackageNamespace(""),"OPEN_SOLT")
+               pushstring "0x3981"
+               initproperty QName(PackageNamespace(""),"OPEN_SOLT")
+               debug 1, "CHANGE_PET_STATUS", 153, 202
+               findproperty QName(PackageNamespace(""),"CHANGE_PET_STATUS")
+               pushstring "0x3982"
+               initproperty QName(PackageNamespace(""),"CHANGE_PET_STATUS")
+               debug 1, "BUY_CHALLENGE_COUNT", 154, 203
+               findproperty QName(PackageNamespace(""),"BUY_CHALLENGE_COUNT")
+               pushstring "0x3983"
+               initproperty QName(PackageNamespace(""),"BUY_CHALLENGE_COUNT")
+               debug 1, "NOTIFY_PET_INFO", 155, 204
+               findproperty QName(PackageNamespace(""),"NOTIFY_PET_INFO")
+               pushstring "0x3984"
+               initproperty QName(PackageNamespace(""),"NOTIFY_PET_INFO")
+               debug 1, "PET_UPDATA", 156, 208
+               findproperty QName(PackageNamespace(""),"PET_UPDATA")
+               pushstring "0x3985"
+               initproperty QName(PackageNamespace(""),"PET_UPDATA")
+               debug 1, "PET_EAT_ANOTHER", 157, 209
+               findproperty QName(PackageNamespace(""),"PET_EAT_ANOTHER")
+               pushstring "0x3986"
+               initproperty QName(PackageNamespace(""),"PET_EAT_ANOTHER")
+               debug 1, "CHOUJIANG_AWAED", 158, 212
+               findproperty QName(PackageNamespace(""),"CHOUJIANG_AWAED")
+               pushstring "0x3987"
+               initproperty QName(PackageNamespace(""),"CHOUJIANG_AWAED")
+               debug 1, "BOX_OPENED", 159, 213
+               findproperty QName(PackageNamespace(""),"BOX_OPENED")
+               pushstring "0x3988"
+               initproperty QName(PackageNamespace(""),"BOX_OPENED")
+               debug 1, "BOX_ISOPENING", 160, 214
+               findproperty QName(PackageNamespace(""),"BOX_ISOPENING")
+               pushstring "0x3989"
+               initproperty QName(PackageNamespace(""),"BOX_ISOPENING")
+               debug 1, "CHOUJIANG_INFO", 161, 215
+               findproperty QName(PackageNamespace(""),"CHOUJIANG_INFO")
+               pushstring "0x398A"
+               initproperty QName(PackageNamespace(""),"CHOUJIANG_INFO")
+               debug 1, "ZHENCANG_RESULT", 162, 216
+               findproperty QName(PackageNamespace(""),"ZHENCANG_RESULT")
+               pushstring "0x398B"
+               initproperty QName(PackageNamespace(""),"ZHENCANG_RESULT")
+               debug 1, "ZHENCANG_BTN", 163, 217
+               findproperty QName(PackageNamespace(""),"ZHENCANG_BTN")
+               pushstring "0x398C"
+               initproperty QName(PackageNamespace(""),"ZHENCANG_BTN")
+               debug 1, "EXCHANGE_INFO", 164, 218
+               findproperty QName(PackageNamespace(""),"EXCHANGE_INFO")
+               pushstring "0x398D"
+               initproperty QName(PackageNamespace(""),"EXCHANGE_INFO")
+               debug 1, "EXCHANGE_RESPONSE", 165, 219
+               findproperty QName(PackageNamespace(""),"EXCHANGE_RESPONSE")
+               pushstring "0x398E"
+               initproperty QName(PackageNamespace(""),"EXCHANGE_RESPONSE")
+               debug 1, "DEAL_EXCHANGE", 166, 220
+               findproperty QName(PackageNamespace(""),"DEAL_EXCHANGE")
+               pushstring "0x398F"
+               initproperty QName(PackageNamespace(""),"DEAL_EXCHANGE")
+               debug 1, "FORTUNE_RESULT", 167, 221
+               findproperty QName(PackageNamespace(""),"FORTUNE_RESULT")
+               pushstring "0x3990"
+               initproperty QName(PackageNamespace(""),"FORTUNE_RESULT")
+               debug 1, "DECOMPOSE_RESPONSE", 168, 222
+               findproperty QName(PackageNamespace(""),"DECOMPOSE_RESPONSE")
+               pushstring "0x3991"
+               initproperty QName(PackageNamespace(""),"DECOMPOSE_RESPONSE")
+               debug 1, "CHARM_SHOP_INFO", 169, 224
+               findproperty QName(PackageNamespace(""),"CHARM_SHOP_INFO")
+               pushstring "0x4201"
+               initproperty QName(PackageNamespace(""),"CHARM_SHOP_INFO")
+               debug 1, "CHARM_SHOP_BUY", 170, 225
+               findproperty QName(PackageNamespace(""),"CHARM_SHOP_BUY")
+               pushstring "0x4202"
+               initproperty QName(PackageNamespace(""),"CHARM_SHOP_BUY")
+               debug 1, "NEW_MARGIN_CHARM_RANK", 171, 227
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_RANK")
+               pushstring "0x4301"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_RANK")
+               debug 1, "NEW_MARGIN_CHARM_INFO", 172, 228
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_INFO")
+               pushstring "0x4302"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_INFO")
+               debug 1, "NEW_MARGIN_SEND_FLOWER_RECORD", 173, 229
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_SEND_FLOWER_RECORD")
+               pushstring "0x4303"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_SEND_FLOWER_RECORD")
+               debug 1, "NEW_MARGIN_SEND_FLOWER", 174, 230
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_SEND_FLOWER")
+               pushstring "0x4304"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_SEND_FLOWER")
+               debug 1, "NEW_MARGIN_CHARM_AWARD", 175, 231
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_AWARD")
+               pushstring "0x4305"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_AWARD")
+               debug 1, "NEW_MARGIN_CHARM_UPDATE_DECLARATION", 176, 232
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_UPDATE_DECLARATION")
+               pushstring "0x4306"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_CHARM_UPDATE_DECLARATION")
+               debug 1, "NEW_MARGIN_GET_SEND_FLOWER", 177, 233
+               findproperty QName(PackageNamespace(""),"NEW_MARGIN_GET_SEND_FLOWER")
+               pushstring "0x4307"
+               initproperty QName(PackageNamespace(""),"NEW_MARGIN_GET_SEND_FLOWER")
+               debug 1, "CHARM_CRYSTAL_COMPOSE", 178, 235
+               findproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_COMPOSE")
+               pushstring "0x4401"
+               initproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_COMPOSE")
+               debug 1, "CHARM_CRYSTAL_DECOMPOSE", 179, 236
+               findproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_DECOMPOSE")
+               pushstring "0x4402"
+               initproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_DECOMPOSE")
+               debug 1, "CHARM_CRYSTAL_UPGRADE", 180, 237
+               findproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_UPGRADE")
+               pushstring "0x4403"
+               initproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_UPGRADE")
+               debug 1, "CHARM_CRYSTAL_EQUIP", 181, 238
+               findproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_EQUIP")
+               pushstring "0x4404"
+               initproperty QName(PackageNamespace(""),"CHARM_CRYSTAL_EQUIP")
+               debug 1, "GETMATCHRANK_RESULT", 182, 243
+               findproperty QName(PackageNamespace(""),"GETMATCHRANK_RESULT")
+               pushstring "0x4000"
+               initproperty QName(PackageNamespace(""),"GETMATCHRANK_RESULT")
+               debug 1, "GETMATCHAWARD_RESULT", 183, 244
+               findproperty QName(PackageNamespace(""),"GETMATCHAWARD_RESULT")
+               pushstring "0x4001"
+               initproperty QName(PackageNamespace(""),"GETMATCHAWARD_RESULT")
+               debug 1, "GETISLANDRANK_RESULT", 184, 246
+               findproperty QName(PackageNamespace(""),"GETISLANDRANK_RESULT")
+               pushstring "0x4002"
+               initproperty QName(PackageNamespace(""),"GETISLANDRANK_RESULT")
+               debug 1, "GETISLANDAWARD_RESULT", 185, 247
+               findproperty QName(PackageNamespace(""),"GETISLANDAWARD_RESULT")
+               pushstring "0x4003"
+               initproperty QName(PackageNamespace(""),"GETISLANDAWARD_RESULT")
+               debug 1, "DISTRIBUTEISLANDAWARD_RESULT", 186, 248
+               findproperty QName(PackageNamespace(""),"DISTRIBUTEISLANDAWARD_RESULT")
+               pushstring "0x4004"
+               initproperty QName(PackageNamespace(""),"DISTRIBUTEISLANDAWARD_RESULT")
+               debug 1, "DEAL_STARPIECESHOP_BUY", 187, 252
+               findproperty QName(PackageNamespace(""),"DEAL_STARPIECESHOP_BUY")
+               pushstring "0x3992"
+               initproperty QName(PackageNamespace(""),"DEAL_STARPIECESHOP_BUY")
+               debug 1, "STARPIECESHOP_RESPONSE", 188, 253
+               findproperty QName(PackageNamespace(""),"STARPIECESHOP_RESPONSE")
+               pushstring "0x3993"
+               initproperty QName(PackageNamespace(""),"STARPIECESHOP_RESPONSE")
+               debug 1, "DEAL_SCORESHOP_BUY", 189, 256
+               findproperty QName(PackageNamespace(""),"DEAL_SCORESHOP_BUY")
+               pushstring "0x3994"
+               initproperty QName(PackageNamespace(""),"DEAL_SCORESHOP_BUY")
+               debug 1, "SCORESHOP_RESPONSE", 190, 257
+               findproperty QName(PackageNamespace(""),"SCORESHOP_RESPONSE")
+               pushstring "0x3995"
+               initproperty QName(PackageNamespace(""),"SCORESHOP_RESPONSE")
+               debug 1, "SCORESHOP_INFO_RESPONSE", 191, 258
+               findproperty QName(PackageNamespace(""),"SCORESHOP_INFO_RESPONSE")
+               pushstring "0x3996"
+               initproperty QName(PackageNamespace(""),"SCORESHOP_INFO_RESPONSE")
+               debug 1, "MAIL_LIST_RESPONSE", 192, 261
+               findproperty QName(PackageNamespace(""),"MAIL_LIST_RESPONSE")
+               pushstring "0x4101"
+               initproperty QName(PackageNamespace(""),"MAIL_LIST_RESPONSE")
+               debug 1, "MAIL_OPERATE_RESPONSE", 193, 262
+               findproperty QName(PackageNamespace(""),"MAIL_OPERATE_RESPONSE")
+               pushstring "0x4102"
+               initproperty QName(PackageNamespace(""),"MAIL_OPERATE_RESPONSE")
+               debug 1, "MAIL_NOTIFY_NEW_MAIL", 194, 263
+               findproperty QName(PackageNamespace(""),"MAIL_NOTIFY_NEW_MAIL")
+               pushstring "0x4103"
+               initproperty QName(PackageNamespace(""),"MAIL_NOTIFY_NEW_MAIL")
+               debug 1, "AUCTION_GET_TRADE_ITEM_LIST", 195, 266
+               findproperty QName(PackageNamespace(""),"AUCTION_GET_TRADE_ITEM_LIST")
+               pushstring "0x4121"
+               initproperty QName(PackageNamespace(""),"AUCTION_GET_TRADE_ITEM_LIST")
+               debug 1, "AUCTION_GET_PLAYER_TRADE_ITEM_LIST", 196, 267
+               findproperty QName(PackageNamespace(""),"AUCTION_GET_PLAYER_TRADE_ITEM_LIST")
+               pushstring "0x4122"
+               initproperty QName(PackageNamespace(""),"AUCTION_GET_PLAYER_TRADE_ITEM_LIST")
+               debug 1, "AUCTION_OPERATE_RESPONSE", 197, 268
+               findproperty QName(PackageNamespace(""),"AUCTION_OPERATE_RESPONSE")
+               pushstring "0x4123"
+               initproperty QName(PackageNamespace(""),"AUCTION_OPERATE_RESPONSE")
+               debug 1, "GET_NEW_CONSORTIA_TASK_LIST", 198, 271
+               findproperty QName(PackageNamespace(""),"GET_NEW_CONSORTIA_TASK_LIST")
+               pushstring "0x5101"
+               initproperty QName(PackageNamespace(""),"GET_NEW_CONSORTIA_TASK_LIST")
+               debug 1, "COMPLETE_NEW_CONSORTIA_TASK", 199, 272
+               findproperty QName(PackageNamespace(""),"COMPLETE_NEW_CONSORTIA_TASK")
+               pushstring "0x5102"
+               initproperty QName(PackageNamespace(""),"COMPLETE_NEW_CONSORTIA_TASK")
+               debug 1, "RANK_AND_PUBLISH_CONSORTIA_TASK", 200, 273
+               findproperty QName(PackageNamespace(""),"RANK_AND_PUBLISH_CONSORTIA_TASK")
+               pushstring "0x5103"
+               initproperty QName(PackageNamespace(""),"RANK_AND_PUBLISH_CONSORTIA_TASK")
+               debug 1, "UPGRAGE_CONSORTIA_TASK", 201, 274
+               findproperty QName(PackageNamespace(""),"UPGRAGE_CONSORTIA_TASK")
+               pushstring "0x5104"
+               initproperty QName(PackageNamespace(""),"UPGRAGE_CONSORTIA_TASK")
+               debug 1, "COMPLETE_CONSORTIA_TASK", 202, 275
+               findproperty QName(PackageNamespace(""),"COMPLETE_CONSORTIA_TASK")
+               pushstring "0x5105"
+               initproperty QName(PackageNamespace(""),"COMPLETE_CONSORTIA_TASK")
+               debug 1, "GET_MEISHI_MATCH_TASK_LIST", 203, 278
+               findproperty QName(PackageNamespace(""),"GET_MEISHI_MATCH_TASK_LIST")
+               pushstring "0x5110"
+               initproperty QName(PackageNamespace(""),"GET_MEISHI_MATCH_TASK_LIST")
+               debug 1, "COMPLETE_MEISHI_MATCH_TASK", 204, 279
+               findproperty QName(PackageNamespace(""),"COMPLETE_MEISHI_MATCH_TASK")
+               pushstring "0x5111"
+               initproperty QName(PackageNamespace(""),"COMPLETE_MEISHI_MATCH_TASK")
+               debug 1, "GET_MATCH_TASK_AWARD_BACK", 205, 280
+               findproperty QName(PackageNamespace(""),"GET_MATCH_TASK_AWARD_BACK")
+               pushstring "0x5112"
+               initproperty QName(PackageNamespace(""),"GET_MATCH_TASK_AWARD_BACK")
+               debug 1, "ACTIVE_COOKERGOD_BACK", 206, 281
+               findproperty QName(PackageNamespace(""),"ACTIVE_COOKERGOD_BACK")
+               pushstring "0x5113"
+               initproperty QName(PackageNamespace(""),"ACTIVE_COOKERGOD_BACK")
+               debug 1, "BUY_FOOD_EXP_BACK", 207, 282
+               findproperty QName(PackageNamespace(""),"BUY_FOOD_EXP_BACK")
+               pushstring "0x5114"
+               initproperty QName(PackageNamespace(""),"BUY_FOOD_EXP_BACK")
+               debug 1, "GET_CAMP_TASK_LIST", 208, 285
+               findproperty QName(PackageNamespace(""),"GET_CAMP_TASK_LIST")
+               pushstring "0x5115"
+               initproperty QName(PackageNamespace(""),"GET_CAMP_TASK_LIST")
+               debug 1, "NOTIFY_CAMP_TASK_COMPLETE", 209, 286
+               findproperty QName(PackageNamespace(""),"NOTIFY_CAMP_TASK_COMPLETE")
+               pushstring "0x5116"
+               initproperty QName(PackageNamespace(""),"NOTIFY_CAMP_TASK_COMPLETE")
+               debug 1, "GET_CAMP_AWARD_BACK", 210, 287
+               findproperty QName(PackageNamespace(""),"GET_CAMP_AWARD_BACK")
+               pushstring "0x5117"
+               initproperty QName(PackageNamespace(""),"GET_CAMP_AWARD_BACK")
+               debug 1, "GET_POPULARITY_INFO", 211, 290
+               findproperty QName(PackageNamespace(""),"GET_POPULARITY_INFO")
+               pushstring "0x5120"
+               initproperty QName(PackageNamespace(""),"GET_POPULARITY_INFO")
+               debug 1, "NOTIFY_POPULARITY_TASK_COMPLETE", 212, 291
+               findproperty QName(PackageNamespace(""),"NOTIFY_POPULARITY_TASK_COMPLETE")
+               pushstring "0x5121"
+               initproperty QName(PackageNamespace(""),"NOTIFY_POPULARITY_TASK_COMPLETE")
+               debug 1, "GET_POPULARITY_AWARD_BACK", 213, 292
+               findproperty QName(PackageNamespace(""),"GET_POPULARITY_AWARD_BACK")
+               pushstring "0x5122"
+               initproperty QName(PackageNamespace(""),"GET_POPULARITY_AWARD_BACK")
+               debug 1, "GET_LOVER_INFO", 214, 294
+               findproperty QName(PackageNamespace(""),"GET_LOVER_INFO")
+               pushstring "0x6101"
+               initproperty QName(PackageNamespace(""),"GET_LOVER_INFO")
+               debug 1, "GET_LOVER_AWARD", 215, 295
+               findproperty QName(PackageNamespace(""),"GET_LOVER_AWARD")
+               pushstring "0x6102"
+               initproperty QName(PackageNamespace(""),"GET_LOVER_AWARD")
+               debug 1, "GET_PROTECTOR_INFO", 216, 296
+               findproperty QName(PackageNamespace(""),"GET_PROTECTOR_INFO")
+               pushstring "0x6103"
+               initproperty QName(PackageNamespace(""),"GET_PROTECTOR_INFO")
+               debug 1, "REPORT_PLAYER", 217, 298
+               findproperty QName(PackageNamespace(""),"REPORT_PLAYER")
+               pushstring "0x5106"
+               initproperty QName(PackageNamespace(""),"REPORT_PLAYER")
+               debug 1, "GET_MONTH_CARD_INFO", 218, 300
+               findproperty QName(PackageNamespace(""),"GET_MONTH_CARD_INFO")
+               pushstring "0x6201"
+               initproperty QName(PackageNamespace(""),"GET_MONTH_CARD_INFO")
+               debug 1, "BUY_MONTH_CARD", 219, 301
+               findproperty QName(PackageNamespace(""),"BUY_MONTH_CARD")
+               pushstring "0x6202"
+               initproperty QName(PackageNamespace(""),"BUY_MONTH_CARD")
+               debug 1, "GET_MONTH_CARD_AWARD", 220, 302
+               findproperty QName(PackageNamespace(""),"GET_MONTH_CARD_AWARD")
+               pushstring "0x6203"
+               initproperty QName(PackageNamespace(""),"GET_MONTH_CARD_AWARD")
+               debug 1, "GET_MONTH_CARD_SHOP_INFO", 221, 304
+               findproperty QName(PackageNamespace(""),"GET_MONTH_CARD_SHOP_INFO")
+               pushstring "0x6204"
+               initproperty QName(PackageNamespace(""),"GET_MONTH_CARD_SHOP_INFO")
+               debug 1, "REFRESH_MONTH_CARD_SHOP", 222, 305
+               findproperty QName(PackageNamespace(""),"REFRESH_MONTH_CARD_SHOP")
+               pushstring "0x6205"
+               initproperty QName(PackageNamespace(""),"REFRESH_MONTH_CARD_SHOP")
+               debug 1, "BUY_MONTH_CARD_SHOP_ITEM", 223, 306
+               findproperty QName(PackageNamespace(""),"BUY_MONTH_CARD_SHOP_ITEM")
+               pushstring "0x6206"
+               initproperty QName(PackageNamespace(""),"BUY_MONTH_CARD_SHOP_ITEM")
+               debug 1, "GET_NEW_YEAR_GIFT_INFO", 224, 309
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_GIFT_INFO")
+               pushstring "0x6301"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_GIFT_INFO")
+               debug 1, "GET_NEW_YEAR_GIFT", 225, 310
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_GIFT")
+               pushstring "0x6302"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_GIFT")
+               debug 1, "GET_NEW_YEAR_RED_INFO", 226, 311
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_RED_INFO")
+               pushstring "0x6303"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_RED_INFO")
+               debug 1, "GET_NEW_YEAR_RED", 227, 312
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_RED")
+               pushstring "0x6304"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_RED")
+               debug 1, "GET_NEW_YEAR_TURN_TABLE_INFO", 228, 313
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_TURN_TABLE_INFO")
+               pushstring "0x6305"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_TURN_TABLE_INFO")
+               debug 1, "GET_NEW_YEAR_TURN_TABLE", 229, 314
+               findproperty QName(PackageNamespace(""),"GET_NEW_YEAR_TURN_TABLE")
+               pushstring "0x6306"
+               initproperty QName(PackageNamespace(""),"GET_NEW_YEAR_TURN_TABLE")
+               debug 1, "SHORT_CUT_NEW_YEAR_BOSS", 230, 315
+               findproperty QName(PackageNamespace(""),"SHORT_CUT_NEW_YEAR_BOSS")
+               pushstring "0x6307"
+               initproperty QName(PackageNamespace(""),"SHORT_CUT_NEW_YEAR_BOSS")
+               debug 1, "GET_GARDEN_INFO", 231, 318
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_INFO")
+               pushstring "0x6401"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_INFO")
+               debug 1, "GET_GARDEN_LIST", 232, 319
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_LIST")
+               pushstring "0x6402"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_LIST")
+               debug 1, "GET_GARDEN_SOW", 233, 320
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_SOW")
+               pushstring "0x6403"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_SOW")
+               debug 1, "GET_GARDEN_OPT_INFO", 234, 321
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_OPT_INFO")
+               pushstring "0x6404"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_OPT_INFO")
+               debug 1, "GET_GARDEN_WATER", 235, 322
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_WATER")
+               pushstring "0x6405"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_WATER")
+               debug 1, "GET_GARDEN_FERTILIZE", 236, 323
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_FERTILIZE")
+               pushstring "0x6406"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_FERTILIZE")
+               debug 1, "GET_GARDEN_PICK", 237, 324
+               findproperty QName(PackageNamespace(""),"GET_GARDEN_PICK")
+               pushstring "0x6407"
+               initproperty QName(PackageNamespace(""),"GET_GARDEN_PICK")
+               debug 1, "SWEET_ISLAND_INFO", 238, 326
+               findproperty QName(PackageNamespace(""),"SWEET_ISLAND_INFO")
+               pushstring "0x3AE1"
+               initproperty QName(PackageNamespace(""),"SWEET_ISLAND_INFO")
+               debug 1, "SWEET_ISLAND_OPEN", 239, 327
+               findproperty QName(PackageNamespace(""),"SWEET_ISLAND_OPEN")
+               pushstring "0x3AE2"
+               initproperty QName(PackageNamespace(""),"SWEET_ISLAND_OPEN")
+               debug 1, "GET_ANIMALS_COIN", 240, 330
+               findproperty QName(PackageNamespace(""),"GET_ANIMALS_COIN")
+               pushstring "0x6501"
+               initproperty QName(PackageNamespace(""),"GET_ANIMALS_COIN")
+               debug 1, "ANIMALS_CARD_DECOMPOSE", 241, 331
+               findproperty QName(PackageNamespace(""),"ANIMALS_CARD_DECOMPOSE")
+               pushstring "0x6502"
+               initproperty QName(PackageNamespace(""),"ANIMALS_CARD_DECOMPOSE")
+               debug 1, "ANIMALS_CARD_EXCHANGE", 242, 332
+               findproperty QName(PackageNamespace(""),"ANIMALS_CARD_EXCHANGE")
+               pushstring "0x6503"
+               initproperty QName(PackageNamespace(""),"ANIMALS_CARD_EXCHANGE")
+               debug 1, "ANIMALS_CARD_CALL_INFO", 243, 333
+               findproperty QName(PackageNamespace(""),"ANIMALS_CARD_CALL_INFO")
+               pushstring "0x6504"
+               initproperty QName(PackageNamespace(""),"ANIMALS_CARD_CALL_INFO")
+               debug 1, "ANIMALS_CALL", 244, 334
+               findproperty QName(PackageNamespace(""),"ANIMALS_CALL")
+               pushstring "0x6505"
+               initproperty QName(PackageNamespace(""),"ANIMALS_CALL")
+               debug 1, "TREASURE_NUM_CHANGE", 245, 335
+               findproperty QName(PackageNamespace(""),"TREASURE_NUM_CHANGE")
+               pushstring "0x6506"
+               initproperty QName(PackageNamespace(""),"TREASURE_NUM_CHANGE")
+               debug 1, "DEAL_ANIMALS_EXCHANGE", 246, 336
+               findproperty QName(PackageNamespace(""),"DEAL_ANIMALS_EXCHANGE")
+               pushstring "0x6507"
+               initproperty QName(PackageNamespace(""),"DEAL_ANIMALS_EXCHANGE")
+               debug 1, "BUY_LIMIT_ITEM", 247, 339
+               findproperty QName(PackageNamespace(""),"BUY_LIMIT_ITEM")
+               pushstring "0x6508"
+               initproperty QName(PackageNamespace(""),"BUY_LIMIT_ITEM")
+               debug 1, "QUERY_LIMIT_ITEM", 248, 340
+               findproperty QName(PackageNamespace(""),"QUERY_LIMIT_ITEM")
+               pushstring "0x6509"
+               initproperty QName(PackageNamespace(""),"QUERY_LIMIT_ITEM")
+               debug 1, "GET_EXPLORESTORE_INFO", 249, 342
+               findproperty QName(PackageNamespace(""),"GET_EXPLORESTORE_INFO")
+               pushstring "0x6510"
+               initproperty QName(PackageNamespace(""),"GET_EXPLORESTORE_INFO")
+               debug 1, "BUY_EXPLORESTORE_BACK", 250, 343
+               findproperty QName(PackageNamespace(""),"BUY_EXPLORESTORE_BACK")
+               pushstring "0x6511"
+               initproperty QName(PackageNamespace(""),"BUY_EXPLORESTORE_BACK")
+               debug 1, "GET_EXPLOREDIARY_INFO", 251, 345
+               findproperty QName(PackageNamespace(""),"GET_EXPLOREDIARY_INFO")
+               pushstring "0x6512"
+               initproperty QName(PackageNamespace(""),"GET_EXPLOREDIARY_INFO")
+               debug 1, "UPDATE_DIARY_STATE", 252, 346
+               findproperty QName(PackageNamespace(""),"UPDATE_DIARY_STATE")
+               pushstring "0x6513"
+               initproperty QName(PackageNamespace(""),"UPDATE_DIARY_STATE")
+               debug 1, "CROSS_SEND_CHAT_MSG", 253, 348
+               findproperty QName(PackageNamespace(""),"CROSS_SEND_CHAT_MSG")
+               pushstring "0x6700"
+               initproperty QName(PackageNamespace(""),"CROSS_SEND_CHAT_MSG")
+               debug 1, "CROSS_NOTIFY_CHAT_MSG", 254, 349
+               findproperty QName(PackageNamespace(""),"CROSS_NOTIFY_CHAT_MSG")
+               pushstring "0x6701"
+               initproperty QName(PackageNamespace(""),"CROSS_NOTIFY_CHAT_MSG")
+               debug 1, "CROSS_ROOM_LIST", 255, 350
+               findproperty QName(PackageNamespace(""),"CROSS_ROOM_LIST")
+               pushstring "0x6702"
+               initproperty QName(PackageNamespace(""),"CROSS_ROOM_LIST")
+               debug 1, "CROSS_GAME_RESULT", 0, 351
+               findproperty QName(PackageNamespace(""),"CROSS_GAME_RESULT")
+               pushstring "0x6703"
+               initproperty QName(PackageNamespace(""),"CROSS_GAME_RESULT")
+               debug 1, "NOTIFY_CROSS_ROOM_STATE", 1, 352
+               findproperty QName(PackageNamespace(""),"NOTIFY_CROSS_ROOM_STATE")
+               pushstring "0x6704"
+               initproperty QName(PackageNamespace(""),"NOTIFY_CROSS_ROOM_STATE")
+               debug 1, "NOTIFY_CROSS_ROOM_INFO_LIST", 2, 353
+               findproperty QName(PackageNamespace(""),"NOTIFY_CROSS_ROOM_INFO_LIST")
+               pushstring "0x6705"
+               initproperty QName(PackageNamespace(""),"NOTIFY_CROSS_ROOM_INFO_LIST")
+               debug 1, "CROSS_DROP_COUNT", 3, 354
+               findproperty QName(PackageNamespace(""),"CROSS_DROP_COUNT")
+               pushstring "0x6706"
+               initproperty QName(PackageNamespace(""),"CROSS_DROP_COUNT")
+               debug 1, "CROSS_BUY_DROP_COUNT", 4, 355
+               findproperty QName(PackageNamespace(""),"CROSS_BUY_DROP_COUNT")
+               pushstring "0x6707"
+               initproperty QName(PackageNamespace(""),"CROSS_BUY_DROP_COUNT")
+               debug 1, "NOTIFY_CROSS_PLAYER_GROUP_INFO", 5, 356
+               findproperty QName(PackageNamespace(""),"NOTIFY_CROSS_PLAYER_GROUP_INFO")
+               pushstring "0x6708"
+               initproperty QName(PackageNamespace(""),"NOTIFY_CROSS_PLAYER_GROUP_INFO")
+               debug 1, "SHOW_SYSTEM_MESSAGE_BANNER", 6, 357
+               findproperty QName(PackageNamespace(""),"SHOW_SYSTEM_MESSAGE_BANNER")
+               pushstring "0x6709"
+               initproperty QName(PackageNamespace(""),"SHOW_SYSTEM_MESSAGE_BANNER")
+               debug 1, "CROSS_GET_TABLE_INFO", 7, 358
+               findproperty QName(PackageNamespace(""),"CROSS_GET_TABLE_INFO")
+               pushstring "0x670a"
+               initproperty QName(PackageNamespace(""),"CROSS_GET_TABLE_INFO")
+               debug 1, "DIY_GET_SELF_MAP", 8, 361
+               findproperty QName(PackageNamespace(""),"DIY_GET_SELF_MAP")
+               pushstring "0x7700"
+               initproperty QName(PackageNamespace(""),"DIY_GET_SELF_MAP")
+               debug 1, "DIY_STORE_INFO", 9, 362
+               findproperty QName(PackageNamespace(""),"DIY_STORE_INFO")
+               pushstring "0x7701"
+               initproperty QName(PackageNamespace(""),"DIY_STORE_INFO")
+               debug 1, "DIY_CREATE_MAP", 10, 363
+               findproperty QName(PackageNamespace(""),"DIY_CREATE_MAP")
+               pushstring "0x7702"
+               initproperty QName(PackageNamespace(""),"DIY_CREATE_MAP")
+               debug 1, "DIY_GET_MAP_INFO", 11, 364
+               findproperty QName(PackageNamespace(""),"DIY_GET_MAP_INFO")
+               pushstring "0x7703"
+               initproperty QName(PackageNamespace(""),"DIY_GET_MAP_INFO")
+               debug 1, "DIY_UPDATE_MAP_INFO", 12, 365
+               findproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_INFO")
+               pushstring "0x7704"
+               initproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_INFO")
+               debug 1, "DIY_PUBLISH_MAP", 13, 366
+               findproperty QName(PackageNamespace(""),"DIY_PUBLISH_MAP")
+               pushstring "0x7705"
+               initproperty QName(PackageNamespace(""),"DIY_PUBLISH_MAP")
+               debug 1, "DIY_DEL_MAP", 14, 367
+               findproperty QName(PackageNamespace(""),"DIY_DEL_MAP")
+               pushstring "0x7706"
+               initproperty QName(PackageNamespace(""),"DIY_DEL_MAP")
+               debug 1, "DIY_GET_MAP_LIST", 15, 368
+               findproperty QName(PackageNamespace(""),"DIY_GET_MAP_LIST")
+               pushstring "0x7707"
+               initproperty QName(PackageNamespace(""),"DIY_GET_MAP_LIST")
+               debug 1, "DIY_UPDATE_MAP_WAVE_INFO", 16, 369
+               findproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_WAVE_INFO")
+               pushstring "0x7708"
+               initproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_WAVE_INFO")
+               debug 1, "DIY_GET_MAP_WAVE_INFO", 17, 370
+               findproperty QName(PackageNamespace(""),"DIY_GET_MAP_WAVE_INFO")
+               pushstring "0x7709"
+               initproperty QName(PackageNamespace(""),"DIY_GET_MAP_WAVE_INFO")
+               debug 1, "DIY_GET_PLAYER_MAP_DATA", 18, 371
+               findproperty QName(PackageNamespace(""),"DIY_GET_PLAYER_MAP_DATA")
+               pushstring "0x770a"
+               initproperty QName(PackageNamespace(""),"DIY_GET_PLAYER_MAP_DATA")
+               debug 1, "DIY_ROOM_LIST", 19, 372
+               findproperty QName(PackageNamespace(""),"DIY_ROOM_LIST")
+               pushstring "0x770b"
+               initproperty QName(PackageNamespace(""),"DIY_ROOM_LIST")
+               debug 1, "Diy_SitDown_Success", 20, 373
+               findproperty QName(PackageNamespace(""),"Diy_SitDown_Success")
+               pushstring "0x770c"
+               initproperty QName(PackageNamespace(""),"Diy_SitDown_Success")
+               debug 1, "NOTIFY_DIY_ROOM_STATE", 21, 374
+               findproperty QName(PackageNamespace(""),"NOTIFY_DIY_ROOM_STATE")
+               pushstring "0x770d"
+               initproperty QName(PackageNamespace(""),"NOTIFY_DIY_ROOM_STATE")
+               debug 1, "NOTIFY_DIY_ROOM_INFO_LIST", 22, 375
+               findproperty QName(PackageNamespace(""),"NOTIFY_DIY_ROOM_INFO_LIST")
+               pushstring "0x770e"
+               initproperty QName(PackageNamespace(""),"NOTIFY_DIY_ROOM_INFO_LIST")
+               debug 1, "Diy_SitDown_Failed", 23, 376
+               findproperty QName(PackageNamespace(""),"Diy_SitDown_Failed")
+               pushstring "0x770f"
+               initproperty QName(PackageNamespace(""),"Diy_SitDown_Failed")
+               debug 1, "DIY_APPRAISE_MAP", 24, 377
+               findproperty QName(PackageNamespace(""),"DIY_APPRAISE_MAP")
+               pushstring "0x7730"
+               initproperty QName(PackageNamespace(""),"DIY_APPRAISE_MAP")
+               debug 1, "DIY_GET_COIN", 25, 378
+               findproperty QName(PackageNamespace(""),"DIY_GET_COIN")
+               pushstring "0x7731"
+               initproperty QName(PackageNamespace(""),"DIY_GET_COIN")
+               debug 1, "DIY_GET_MAP_LAND_FORM", 26, 379
+               findproperty QName(PackageNamespace(""),"DIY_GET_MAP_LAND_FORM")
+               pushstring "0x7732"
+               initproperty QName(PackageNamespace(""),"DIY_GET_MAP_LAND_FORM")
+               debug 1, "DIY_UPDATE_MAP_LAND_FORM", 27, 380
+               findproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_LAND_FORM")
+               pushstring "0x7733"
+               initproperty QName(PackageNamespace(""),"DIY_UPDATE_MAP_LAND_FORM")
+               debug 1, "DIY_NOTIFY_MAP_LAND_FORM", 28, 381
+               findproperty QName(PackageNamespace(""),"DIY_NOTIFY_MAP_LAND_FORM")
+               pushstring "0x7734"
+               initproperty QName(PackageNamespace(""),"DIY_NOTIFY_MAP_LAND_FORM")
+               debug 1, "DIY_CHAPTER_NAME_OR_STAR_CHANGE", 29, 383
+               findproperty QName(PackageNamespace(""),"DIY_CHAPTER_NAME_OR_STAR_CHANGE")
+               pushstring "0x7710"
+               initproperty QName(PackageNamespace(""),"DIY_CHAPTER_NAME_OR_STAR_CHANGE")
+               debug 1, "DIY_PLACE_MONSTER", 30, 384
+               findproperty QName(PackageNamespace(""),"DIY_PLACE_MONSTER")
+               pushstring "0x7711"
+               initproperty QName(PackageNamespace(""),"DIY_PLACE_MONSTER")
+               debug 1, "DIY_PLACE_BOSS", 31, 385
+               findproperty QName(PackageNamespace(""),"DIY_PLACE_BOSS")
+               pushstring "0x7712"
+               initproperty QName(PackageNamespace(""),"DIY_PLACE_BOSS")
+               debug 1, "DIY_SET_BGMAP", 32, 386
+               findproperty QName(PackageNamespace(""),"DIY_SET_BGMAP")
+               pushstring "0x7713"
+               initproperty QName(PackageNamespace(""),"DIY_SET_BGMAP")
+               debug 1, "DIY_SAVE_WAVE_INFO", 33, 387
+               findproperty QName(PackageNamespace(""),"DIY_SAVE_WAVE_INFO")
+               pushstring "0x7715"
+               initproperty QName(PackageNamespace(""),"DIY_SAVE_WAVE_INFO")
+               debug 1, "DIY_CHOICE_BOSS_OR_SIMPLE", 34, 388
+               findproperty QName(PackageNamespace(""),"DIY_CHOICE_BOSS_OR_SIMPLE")
+               pushstring "0x7716"
+               initproperty QName(PackageNamespace(""),"DIY_CHOICE_BOSS_OR_SIMPLE")
+               debug 1, "NOTIFY_DIY_MAP_INFO", 35, 389
+               findproperty QName(PackageNamespace(""),"NOTIFY_DIY_MAP_INFO")
+               pushstring "0x7717"
+               initproperty QName(PackageNamespace(""),"NOTIFY_DIY_MAP_INFO")
+               debug 1, "NOTIFY_DIY_MAP_MOUSE", 36, 390
+               findproperty QName(PackageNamespace(""),"NOTIFY_DIY_MAP_MOUSE")
+               pushstring "0x7718"
+               initproperty QName(PackageNamespace(""),"NOTIFY_DIY_MAP_MOUSE")
+               debug 1, "DIY_CHOICE_BOSS_OR_SIMPLE_SURE", 37, 391
+               findproperty QName(PackageNamespace(""),"DIY_CHOICE_BOSS_OR_SIMPLE_SURE")
+               pushstring "0x7719"
+               initproperty QName(PackageNamespace(""),"DIY_CHOICE_BOSS_OR_SIMPLE_SURE")
+               debug 1, "DIY_PUT_DOWN_ERASE", 38, 392
+               findproperty QName(PackageNamespace(""),"DIY_PUT_DOWN_ERASE")
+               pushstring "0x7721"
+               initproperty QName(PackageNamespace(""),"DIY_PUT_DOWN_ERASE")
+               debug 1, "DIY_CHANGE_VISIBLE", 39, 393
+               findproperty QName(PackageNamespace(""),"DIY_CHANGE_VISIBLE")
+               pushstring "0x7722"
+               initproperty QName(PackageNamespace(""),"DIY_CHANGE_VISIBLE")
+               debug 1, "DARKCRYSTAL_NUM_CHANGE", 40, 396
+               findproperty QName(PackageNamespace(""),"DARKCRYSTAL_NUM_CHANGE")
+               pushstring "0x6601"
+               initproperty QName(PackageNamespace(""),"DARKCRYSTAL_NUM_CHANGE")
+               debug 1, "GET_CARBEN_INFO", 41, 397
+               findproperty QName(PackageNamespace(""),"GET_CARBEN_INFO")
+               pushstring "0x6602"
+               initproperty QName(PackageNamespace(""),"GET_CARBEN_INFO")
+               debug 1, "GET_SUBMIT_PIECE_INFO", 42, 398
+               findproperty QName(PackageNamespace(""),"GET_SUBMIT_PIECE_INFO")
+               pushstring "0x6603"
+               initproperty QName(PackageNamespace(""),"GET_SUBMIT_PIECE_INFO")
+               debug 1, "GET_CARBEN_PLAYER_RANK_INFO", 43, 399
+               findproperty QName(PackageNamespace(""),"GET_CARBEN_PLAYER_RANK_INFO")
+               pushstring "0x6604"
+               initproperty QName(PackageNamespace(""),"GET_CARBEN_PLAYER_RANK_INFO")
+               debug 1, "GET_CARBEN_CONSORTIA_RANK_INFO", 44, 400
+               findproperty QName(PackageNamespace(""),"GET_CARBEN_CONSORTIA_RANK_INFO")
+               pushstring "0x6605"
+               initproperty QName(PackageNamespace(""),"GET_CARBEN_CONSORTIA_RANK_INFO")
+               debug 1, "DEAL_DARKCRYSTAL_EXCHANGE", 45, 401
+               findproperty QName(PackageNamespace(""),"DEAL_DARKCRYSTAL_EXCHANGE")
+               pushstring "0x6606"
+               initproperty QName(PackageNamespace(""),"DEAL_DARKCRYSTAL_EXCHANGE")
+               debug 1, "LIMIT_REWARD_INFO", 46, 403
+               findproperty QName(PackageNamespace(""),"LIMIT_REWARD_INFO")
+               pushstring "0x6801"
+               initproperty QName(PackageNamespace(""),"LIMIT_REWARD_INFO")
+               debug 1, "LIMIT_REWARD_REQUEST", 47, 404
+               findproperty QName(PackageNamespace(""),"LIMIT_REWARD_REQUEST")
+               pushstring "0x6802"
+               initproperty QName(PackageNamespace(""),"LIMIT_REWARD_REQUEST")
+               debug 1, "GET_TAROT", 48, 407
+               findproperty QName(PackageNamespace(""),"GET_TAROT")
+               pushstring "0x6610"
+               initproperty QName(PackageNamespace(""),"GET_TAROT")
+               debug 1, "GET_TAROT_INFO", 49, 408
+               findproperty QName(PackageNamespace(""),"GET_TAROT_INFO")
+               pushstring "0x6611"
+               initproperty QName(PackageNamespace(""),"GET_TAROT_INFO")
+               debug 1, "GET_TAROT_AWARD", 50, 409
+               findproperty QName(PackageNamespace(""),"GET_TAROT_AWARD")
+               pushstring "0x6612"
+               initproperty QName(PackageNamespace(""),"GET_TAROT_AWARD")
+               debug 1, "GET_LOVER_RECIPE_SLOT", 51, 412
+               findproperty QName(PackageNamespace(""),"GET_LOVER_RECIPE_SLOT")
+               pushstring "0x6615"
+               initproperty QName(PackageNamespace(""),"GET_LOVER_RECIPE_SLOT")
+               debug 1, "ADD_LOVER_RECIPE_SLOT", 52, 413
+               findproperty QName(PackageNamespace(""),"ADD_LOVER_RECIPE_SLOT")
+               pushstring "0x6616"
+               initproperty QName(PackageNamespace(""),"ADD_LOVER_RECIPE_SLOT")
+               debug 1, "GET_ONEPIECE", 53, 416
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE")
+               pushstring "0x6620"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE")
+               debug 1, "GET_ONEPIECE_INFO", 54, 417
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE_INFO")
+               pushstring "0x6621"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE_INFO")
+               debug 1, "GET_ONEPIECE_AWARD", 55, 418
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE_AWARD")
+               pushstring "0x6622"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE_AWARD")
+               debug 1, "GOD_NUM_CHANGE", 56, 419
+               findproperty QName(PackageNamespace(""),"GOD_NUM_CHANGE")
+               pushstring "0x6623"
+               initproperty QName(PackageNamespace(""),"GOD_NUM_CHANGE")
+               debug 1, "GET_ONEPIECE_BUFF_INFO", 57, 420
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE_BUFF_INFO")
+               pushstring "0x6624"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE_BUFF_INFO")
+               debug 1, "GET_ONEPIECE_CHANGE_BUFF", 58, 421
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE_CHANGE_BUFF")
+               pushstring "0x6625"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE_CHANGE_BUFF")
+               debug 1, "GET_ONEPIECE_DECOMPOSE", 59, 422
+               findproperty QName(PackageNamespace(""),"GET_ONEPIECE_DECOMPOSE")
+               pushstring "0x6626"
+               initproperty QName(PackageNamespace(""),"GET_ONEPIECE_DECOMPOSE")
+               debug 1, "DEAL_GOD_EXCHANGE", 60, 423
+               findproperty QName(PackageNamespace(""),"DEAL_GOD_EXCHANGE")
+               pushstring "0x6627"
+               initproperty QName(PackageNamespace(""),"DEAL_GOD_EXCHANGE")
+               debug 1, "USE_LUCKSTAR_EXCHNAGE", 61, 424
+               findproperty QName(PackageNamespace(""),"USE_LUCKSTAR_EXCHNAGE")
+               pushstring "0x6628"
+               initproperty QName(PackageNamespace(""),"USE_LUCKSTAR_EXCHNAGE")
+               debug 1, "GET_GOLD_CARD_EVOLUTION", 62, 427
+               findproperty QName(PackageNamespace(""),"GET_GOLD_CARD_EVOLUTION")
+               pushstring "0x7800"
+               initproperty QName(PackageNamespace(""),"GET_GOLD_CARD_EVOLUTION")
+               debug 1, "GET_ARTIFACT_EVOLUTION", 63, 428
+               findproperty QName(PackageNamespace(""),"GET_ARTIFACT_EVOLUTION")
+               pushstring "0x7801"
+               initproperty QName(PackageNamespace(""),"GET_ARTIFACT_EVOLUTION")
+               debug 1, "GET_GEM_EVOLUTION", 64, 429
+               findproperty QName(PackageNamespace(""),"GET_GEM_EVOLUTION")
+               pushstring "0x7802"
+               initproperty QName(PackageNamespace(""),"GET_GEM_EVOLUTION")
+               debug 1, "CARD_FUSION_BACK", 65, 431
+               findproperty QName(PackageNamespace(""),"CARD_FUSION_BACK")
+               pushstring "0x7803"
+               initproperty QName(PackageNamespace(""),"CARD_FUSION_BACK")
+               debug 1, "CARD_UPGRADE_BACK", 66, 432
+               findproperty QName(PackageNamespace(""),"CARD_UPGRADE_BACK")
+               pushstring "0x7804"
+               initproperty QName(PackageNamespace(""),"CARD_UPGRADE_BACK")
+               debug 1, "CHECK_NEW_SVR_TASK", 67, 434
+               findproperty QName(PackageNamespace(""),"CHECK_NEW_SVR_TASK")
+               pushstring "0x7001"
+               initproperty QName(PackageNamespace(""),"CHECK_NEW_SVR_TASK")
+               debug 1, "CHECK_NEW_SVR_GIFT", 68, 436
+               findproperty QName(PackageNamespace(""),"CHECK_NEW_SVR_GIFT")
+               pushstring "0x7002"
+               initproperty QName(PackageNamespace(""),"CHECK_NEW_SVR_GIFT")
+               debug 1, "RECEIEVE_NEW_SVR_GIFT", 69, 437
+               findproperty QName(PackageNamespace(""),"RECEIEVE_NEW_SVR_GIFT")
+               pushstring "0x7003"
+               initproperty QName(PackageNamespace(""),"RECEIEVE_NEW_SVR_GIFT")
+               debug 1, "HAS_SECPWD", 70, 440
+               findproperty QName(PackageNamespace(""),"HAS_SECPWD")
+               pushstring "0x6640"
+               initproperty QName(PackageNamespace(""),"HAS_SECPWD")
+               debug 1, "UPDATE_SECPWD", 71, 441
+               findproperty QName(PackageNamespace(""),"UPDATE_SECPWD")
+               pushstring "0x6641"
+               initproperty QName(PackageNamespace(""),"UPDATE_SECPWD")
+               debug 1, "UNEED_SECPWD", 72, 442
+               findproperty QName(PackageNamespace(""),"UNEED_SECPWD")
+               pushstring "0x6642"
+               initproperty QName(PackageNamespace(""),"UNEED_SECPWD")
+               debug 1, "INPUT_SECPWD", 73, 443
+               findproperty QName(PackageNamespace(""),"INPUT_SECPWD")
+               pushstring "0x6643"
+               initproperty QName(PackageNamespace(""),"INPUT_SECPWD")
+               debug 1, "NEED_VERIFY_IN_GAME", 74, 446
+               findproperty QName(PackageNamespace(""),"NEED_VERIFY_IN_GAME")
+               pushstring "0x6644"
+               initproperty QName(PackageNamespace(""),"NEED_VERIFY_IN_GAME")
+               debug 1, "VERIFY_IN_GAME_INPUT", 75, 447
+               findproperty QName(PackageNamespace(""),"VERIFY_IN_GAME_INPUT")
+               pushstring "0x6645"
+               initproperty QName(PackageNamespace(""),"VERIFY_IN_GAME_INPUT")
+               debug 1, "VERIFY_IN_GAME_CHANGE", 76, 448
+               findproperty QName(PackageNamespace(""),"VERIFY_IN_GAME_CHANGE")
+               pushstring "0x6646"
+               initproperty QName(PackageNamespace(""),"VERIFY_IN_GAME_CHANGE")
+               debug 1, "QQGAME_POST_CONSUME", 77, 451
+               findproperty QName(PackageNamespace(""),"QQGAME_POST_CONSUME")
+               pushstring "0x6648"
+               initproperty QName(PackageNamespace(""),"QQGAME_POST_CONSUME")
+               debug 1, "QQGAME_POST_QUIT", 78, 452
+               findproperty QName(PackageNamespace(""),"QQGAME_POST_QUIT")
+               pushstring "0x6649"
+               initproperty QName(PackageNamespace(""),"QQGAME_POST_QUIT")
+               debug 1, "MONOPOLY_INFO", 79, 455
+               findproperty QName(PackageNamespace(""),"MONOPOLY_INFO")
+               pushstring "0x6650"
+               initproperty QName(PackageNamespace(""),"MONOPOLY_INFO")
+               debug 1, "MONOPOLY_PLAY", 80, 456
+               findproperty QName(PackageNamespace(""),"MONOPOLY_PLAY")
+               pushstring "0x6651"
+               initproperty QName(PackageNamespace(""),"MONOPOLY_PLAY")
+               debug 1, "MONOPOLY_RANK_INFO", 81, 457
+               findproperty QName(PackageNamespace(""),"MONOPOLY_RANK_INFO")
+               pushstring "0x6652"
+               initproperty QName(PackageNamespace(""),"MONOPOLY_RANK_INFO")
+               debug 1, "MONOPOLY_RANK_AWARD", 82, 458
+               findproperty QName(PackageNamespace(""),"MONOPOLY_RANK_AWARD")
+               pushstring "0x6653"
+               initproperty QName(PackageNamespace(""),"MONOPOLY_RANK_AWARD")
+               debug 1, "HANDBOOK_AWARD", 83, 461
+               findproperty QName(PackageNamespace(""),"HANDBOOK_AWARD")
+               pushstring "0x6660"
+               initproperty QName(PackageNamespace(""),"HANDBOOK_AWARD")
+               debug 1, "DAILYPAYINFO", 84, 463
+               findproperty QName(PackageNamespace(""),"DAILYPAYINFO")
+               pushstring "0x6661"
+               initproperty QName(PackageNamespace(""),"DAILYPAYINFO")
+               debug 1, "DAILYPAYAWARD", 85, 464
+               findproperty QName(PackageNamespace(""),"DAILYPAYAWARD")
+               pushstring "0x6662"
+               initproperty QName(PackageNamespace(""),"DAILYPAYAWARD")
+               debug 1, "GET_BACK_SMALLROOMINFO", 86, 467
+               findproperty QName(PackageNamespace(""),"GET_BACK_SMALLROOMINFO")
+               pushstring "0x6663"
+               initproperty QName(PackageNamespace(""),"GET_BACK_SMALLROOMINFO")
+               debug 1, "SAVE_BACK_SMALLROOMINFO", 87, 468
+               findproperty QName(PackageNamespace(""),"SAVE_BACK_SMALLROOMINFO")
+               pushstring "0x6664"
+               initproperty QName(PackageNamespace(""),"SAVE_BACK_SMALLROOMINFO")
+               debug 1, "BUY_BACK_SMALLROOM", 88, 469
+               findproperty QName(PackageNamespace(""),"BUY_BACK_SMALLROOM")
+               pushstring "0x6665"
+               initproperty QName(PackageNamespace(""),"BUY_BACK_SMALLROOM")
+               debug 1, "GET_BACK_CRM_INFO", 89, 471
+               findproperty QName(PackageNamespace(""),"GET_BACK_CRM_INFO")
+               pushstring "0x6663"
+               initproperty QName(PackageNamespace(""),"GET_BACK_CRM_INFO")
+               debug 1, "GET_TWO_PATA_COUNT", 90, 473
+               findproperty QName(PackageNamespace(""),"GET_TWO_PATA_COUNT")
+               pushstring "0x6670"
+               initproperty QName(PackageNamespace(""),"GET_TWO_PATA_COUNT")
+               debug 1, "GET_TWO_PATA_LEVEL", 91, 474
+               findproperty QName(PackageNamespace(""),"GET_TWO_PATA_LEVEL")
+               pushstring "0x6671"
+               initproperty QName(PackageNamespace(""),"GET_TWO_PATA_LEVEL")
+               debug 1, "GET_TWO_PATA_RANK", 92, 475
+               findproperty QName(PackageNamespace(""),"GET_TWO_PATA_RANK")
+               pushstring "0x6672"
+               initproperty QName(PackageNamespace(""),"GET_TWO_PATA_RANK")
+               debug 1, "GET_TWO_PATA_AWARD", 93, 476
+               findproperty QName(PackageNamespace(""),"GET_TWO_PATA_AWARD")
+               pushstring "0x6673"
+               initproperty QName(PackageNamespace(""),"GET_TWO_PATA_AWARD")
+               debug 1, "UPDATE_DENTITYCARDINFO", 94, 478
+               findproperty QName(PackageNamespace(""),"UPDATE_DENTITYCARDINFO")
+               pushstring "0x6674"
+               initproperty QName(PackageNamespace(""),"UPDATE_DENTITYCARDINFO")
+               debug 1, "GET_TWO_PATA_RANK_INFO", 95, 480
+               findproperty QName(PackageNamespace(""),"GET_TWO_PATA_RANK_INFO")
+               pushstring "0x6675"
+               initproperty QName(PackageNamespace(""),"GET_TWO_PATA_RANK_INFO")
+               debug 1, "GET_STROEBOX_INFO", 96, 482
+               findproperty QName(PackageNamespace(""),"GET_STROEBOX_INFO")
+               pushstring "0x6676"
+               initproperty QName(PackageNamespace(""),"GET_STROEBOX_INFO")
+               debug 1, "EXPAND_STOREBOX_BACK", 97, 483
+               findproperty QName(PackageNamespace(""),"EXPAND_STOREBOX_BACK")
+               pushstring "0x6677"
+               initproperty QName(PackageNamespace(""),"EXPAND_STOREBOX_BACK")
+               debug 1, "UPDATE_STROEBOX", 98, 484
+               findproperty QName(PackageNamespace(""),"UPDATE_STROEBOX")
+               pushstring "0x6678"
+               initproperty QName(PackageNamespace(""),"UPDATE_STROEBOX")
+               debug 1, "WORLD_BOSS_SYSTEM_MSG", 99, 487
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_SYSTEM_MSG")
+               pushstring "0x6688"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_SYSTEM_MSG")
+               debug 1, "WORLD_BOSS_SEASON_END", 100, 488
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_SEASON_END")
+               pushstring "0x6689"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_SEASON_END")
+               debug 1, "GET_WORLD_BOSS_INFO", 101, 489
+               findproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_INFO")
+               pushstring "0x6690"
+               initproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_INFO")
+               debug 1, "GET_WORLD_BOSS_RANK", 102, 490
+               findproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_RANK")
+               pushstring "0x6691"
+               initproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_RANK")
+               debug 1, "CHECK_WORLD_BOSS_PLAYER_INFO", 103, 491
+               findproperty QName(PackageNamespace(""),"CHECK_WORLD_BOSS_PLAYER_INFO")
+               pushstring "0x6692"
+               initproperty QName(PackageNamespace(""),"CHECK_WORLD_BOSS_PLAYER_INFO")
+               debug 1, "GET_WORLD_BOSS_LEVEL_USER_PK_INFO", 104, 492
+               findproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_LEVEL_USER_PK_INFO")
+               pushstring "0x6693"
+               initproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_LEVEL_USER_PK_INFO")
+               debug 1, "GET_WORLD_BOSS_AWARD_RESPONSE", 105, 493
+               findproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_AWARD_RESPONSE")
+               pushstring "0x6694"
+               initproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_AWARD_RESPONSE")
+               debug 1, "GET_WORLD_BOSS_AWARD_UI", 106, 494
+               findproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_AWARD_UI")
+               pushstring "0x6695"
+               initproperty QName(PackageNamespace(""),"GET_WORLD_BOSS_AWARD_UI")
+               debug 1, "GET_MSG_WORLDBOSS_SHOP_INFO", 107, 495
+               findproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SHOP_INFO")
+               pushstring "0x6696"
+               initproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SHOP_INFO")
+               debug 1, "GET_MSG_WORLDBOSS_SHOP_BUY", 108, 496
+               findproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SHOP_BUY")
+               pushstring "0x6697"
+               initproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SHOP_BUY")
+               debug 1, "GET_MSG_WORLDBOSS_RECORD", 109, 497
+               findproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_RECORD")
+               pushstring "0x6698"
+               initproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_RECORD")
+               debug 1, "GET_MSG_WORLDBOSS_SUMMARY", 110, 498
+               findproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SUMMARY")
+               pushstring "0x6699"
+               initproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_SUMMARY")
+               debug 1, "GET_MSG_WORLDBOSS_FAST_PK", 111, 499
+               findproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_FAST_PK")
+               pushstring "0x6700"
+               initproperty QName(PackageNamespace(""),"GET_MSG_WORLDBOSS_FAST_PK")
+               debug 1, "OPEN_PANEL_BY_EXT_FLA", 112, 500
+               findproperty QName(PackageNamespace(""),"OPEN_PANEL_BY_EXT_FLA")
+               pushstring "0x6720"
+               initproperty QName(PackageNamespace(""),"OPEN_PANEL_BY_EXT_FLA")
+               debug 1, "CHANGE_TRAIN_MODE", 113, 501
+               findproperty QName(PackageNamespace(""),"CHANGE_TRAIN_MODE")
+               pushstring "0x6721"
+               initproperty QName(PackageNamespace(""),"CHANGE_TRAIN_MODE")
+               debug 1, "GRID_SELECTED_EVENT", 114, 502
+               findproperty QName(PackageNamespace(""),"GRID_SELECTED_EVENT")
+               pushstring "0x6722"
+               initproperty QName(PackageNamespace(""),"GRID_SELECTED_EVENT")
+               debug 1, "WORLD_BOSS_ENTER_TRAIN_ROOM", 115, 503
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_ENTER_TRAIN_ROOM")
+               pushstring "0x6724"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_ENTER_TRAIN_ROOM")
+               debug 1, "REQUEST_WORLD_BOSS_GET_MAP_ID", 116, 504
+               findproperty QName(PackageNamespace(""),"REQUEST_WORLD_BOSS_GET_MAP_ID")
+               pushstring "0x6725"
+               initproperty QName(PackageNamespace(""),"REQUEST_WORLD_BOSS_GET_MAP_ID")
+               debug 1, "RESPONSE_WORLD_BOSS_GET_TRAIN_MAP_ID", 117, 505
+               findproperty QName(PackageNamespace(""),"RESPONSE_WORLD_BOSS_GET_TRAIN_MAP_ID")
+               pushstring "0x6726"
+               initproperty QName(PackageNamespace(""),"RESPONSE_WORLD_BOSS_GET_TRAIN_MAP_ID")
+               debug 1, "WORLD_BOSS_LEADER_DIVIDE_MEMBER_DELETE_GRID_ITEM", 118, 506
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_LEADER_DIVIDE_MEMBER_DELETE_GRID_ITEM")
+               pushstring "0x6727"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_LEADER_DIVIDE_MEMBER_DELETE_GRID_ITEM")
+               debug 1, "WORLD_BOSS_LEADER_DIVIDE_MEMBER_CLICK_ITEM", 119, 507
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_LEADER_DIVIDE_MEMBER_CLICK_ITEM")
+               pushstring "0x6728"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_LEADER_DIVIDE_MEMBER_CLICK_ITEM")
+               debug 1, "WORLD_BOSS_DIVIDE_AWARD_MAIN_INFO", 120, 509
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_AWARD_MAIN_INFO")
+               pushstring "0x6729"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_AWARD_MAIN_INFO")
+               debug 1, "WORLD_BOSS_DIVIDE_AWARD", 121, 510
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_AWARD")
+               pushstring "0x6730"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_AWARD")
+               debug 1, "WORLD_BOSS_DIVIDE_RECEIVE_AWARD", 122, 511
+               findproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_RECEIVE_AWARD")
+               pushstring "0x6731"
+               initproperty QName(PackageNamespace(""),"WORLD_BOSS_DIVIDE_RECEIVE_AWARD")
+               debug 1, "GET_BIRTHDAY_ACTIVITY_SPECIAL_ACTIVITY_INFO", 123, 515
+               findproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_SPECIAL_ACTIVITY_INFO")
+               pushstring "0x6760"
+               initproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_SPECIAL_ACTIVITY_INFO")
+               debug 1, "GET_BIRTHDAY_ACTIVITY_SPECIAL_ACT_AWARD", 124, 516
+               findproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_SPECIAL_ACT_AWARD")
+               pushstring "0x6761"
+               initproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_SPECIAL_ACT_AWARD")
+               debug 1, "GET_BIRTHDAY_ACTIVITY_MAIL_RECEIVE_AWARD", 125, 517
+               findproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_MAIL_RECEIVE_AWARD")
+               pushstring "0x6762"
+               initproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_MAIL_RECEIVE_AWARD")
+               debug 1, "GET_BIRTHDAY_ACTIVITY_AWARD", 126, 518
+               findproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_AWARD")
+               pushstring "0x6763"
+               initproperty QName(PackageNamespace(""),"GET_BIRTHDAY_ACTIVITY_AWARD")
+               debug 1, "VIRTUAL_LIST_GRID_CLICK_EVENT", 127, 522
+               findproperty QName(PackageNamespace(""),"VIRTUAL_LIST_GRID_CLICK_EVENT")
+               pushstring "0x9000"
+               initproperty QName(PackageNamespace(""),"VIRTUAL_LIST_GRID_CLICK_EVENT")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function EventType()
+      {
+         method
+            name "com.aurora.event:EventType/EventType"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventType.as"
+                  debugline 526
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventType.as"
+         debugline 3
+         findpropstrict Multiname("EventType",[PackageNamespace("a_4729")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 94
+         popscope
+         initproperty QName(PackageNamespace("a_4729"),"EventType")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventType.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

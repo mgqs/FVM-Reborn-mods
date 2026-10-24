@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"扩展",
+  "folderPath":"folders/扩展.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"扩展",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

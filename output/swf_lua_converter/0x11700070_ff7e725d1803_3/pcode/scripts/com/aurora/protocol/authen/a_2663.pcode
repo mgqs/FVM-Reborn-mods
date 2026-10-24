@@ -1,0 +1,332 @@
+package com.aurora.protocol.authen
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2663 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_nResultID:int;
+      
+      public var m_iUIN:int;
+      
+      public var m_szAccount:String;
+      
+      public var m_nUserType:uint;
+      
+      public var m_szSessionKey:ByteArray;
+      
+      public var m_bySignatureLen:int;
+      
+      public var m_szPlayerSignature:ByteArray;
+      
+      public var m_szReasonMsg:String;
+      
+      public var m_szUrl:String;
+      
+      public function a_2663()
+      {
+         method
+            name "com.aurora.protocol.authen:CResponseAuthenticate/CResponseAuthenticate"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                  debugline 21
+                  getlocal0
+                  pushscope
+                  debugline 22
+                  getlocal0
+                  constructsuper 0
+                  debugline 23
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.authen:CResponseAuthenticate/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "Array"
+               paramname "Array"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 8
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                     debugline 25
+                     getlocal0
+                     pushscope
+                     pushnull
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debug 1, "byte_array", 0, 25
+                     debug 1, "encode_length", 1, 25
+                     debug 1, "propertyArray", 2, 27
+                     debugline 29
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_nResultID")
+                     pushbyte 0
+                     ifne ofs007f
+                     pushstring "m_nResultID"
+                     pushstring "int16"
+                     debugline 32
+                     newarray 2
+                     pushstring "m_iUIN"
+                     pushstring "int32"
+                     debugline 33
+                     newarray 2
+                     pushstring "m_szAccount"
+                     pushstring "string"
+                     debugline 34
+                     pushbyte 64
+                     newarray 3
+                     pushstring "m_nUserType"
+                     pushstring "int16"
+                     debugline 35
+                     newarray 2
+                     pushstring "m_szSessionKey"
+                     pushstring "memory"
+                     debugline 36
+                     pushbyte 16
+                     pushstring "nosize"
+                     newarray 4
+                     pushstring "m_bySignatureLen"
+                     pushstring "int16"
+                     debugline 37
+                     newarray 2
+                     pushstring "m_szPlayerSignature"
+                     pushstring "memory"
+                     debugline 38
+                     newarray 2
+                     newarray 7
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     jump ofs00a7
+            ofs007f:
+                     pushstring "m_nResultID"
+                     pushstring "int16"
+                     debugline 44
+                     newarray 2
+                     pushstring "m_szReasonMsg"
+                     pushstring "string"
+                     debugline 45
+                     pushshort 2048
+                     newarray 3
+                     pushstring "m_szUrl"
+                     pushstring "string"
+                     debugline 46
+                     pushbyte 64
+                     newarray 3
+                     newarray 3
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+            ofs00a7:
+                     debugline 50
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.authen:CResponseAuthenticate/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "Array"
+                  paramname "Array"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 7
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                        debugline 53
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debug 1, "byte_array", 0, 53
+                        debug 1, "decode_length", 1, 53
+                        debug 1, "propertyArray", 2, 56
+                        debugline 55
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nResultID")
+                        debugline 58
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_nResultID")
+                        pushbyte 0
+                        ifne ofs0083
+                        pushstring "m_iUIN"
+                        pushstring "int32"
+                        debugline 61
+                        newarray 2
+                        pushstring "m_szAccount"
+                        pushstring "string"
+                        debugline 62
+                        pushbyte 64
+                        newarray 3
+                        pushstring "m_nUserType"
+                        pushstring "int16"
+                        debugline 63
+                        newarray 2
+                        pushstring "m_szSessionKey"
+                        pushstring "memory"
+                        debugline 64
+                        pushbyte 16
+                        pushstring "nosize"
+                        newarray 4
+                        pushstring "m_bySignatureLen"
+                        pushstring "int16"
+                        debugline 65
+                        newarray 2
+                        pushstring "m_szPlayerSignature"
+                        pushstring "memory"
+                        debugline 66
+                        newarray 2
+                        newarray 6
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        jump ofs00a1
+               ofs0083:
+                        pushstring "m_szReasonMsg"
+                        pushstring "string"
+                        debugline 72
+                        pushshort 2048
+                        newarray 3
+                        pushstring "m_szUrl"
+                        pushstring "string"
+                        debugline 73
+                        pushbyte 64
+                        newarray 3
+                        newarray 2
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+               ofs00a1:
+                        debugline 77
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.authen:CResponseAuthenticate/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                           debugline 80
+                           getlocal0
+                           pushscope
+                           debugline 82
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2663",[PackageNamespace("com.aurora.protocol.authen")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 154
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.authen"),"a_2663")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\authen;CResponseAuthenticate.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

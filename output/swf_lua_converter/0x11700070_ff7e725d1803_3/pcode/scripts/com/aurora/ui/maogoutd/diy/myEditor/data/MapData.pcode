@@ -1,0 +1,116 @@
+package com.aurora.ui.maogoutd.diy.myEditor.data
+{
+   import com.aurora.ui.maogoutd.compositemap.data.FieldGridData;
+   
+   public class MapData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var iMapID:int;
+      
+      public var sMapName:String;
+      
+      public var strBGUrl:String;
+      
+      public var strInsideBGUrl:String;
+      
+      public var strShowBGUrl:String;
+      
+      public var strShowInsideBGUrl:String;
+      
+      public var strSoundBGUrl:String;
+      
+      public var strBossSoundBGUrl:String;
+      
+      public var iAirTime:int;
+      
+      public var iNight:int;
+      
+      public var iPrice:int;
+      
+      public var iWater:int;
+      
+      public var vGridData:Vector.<FieldGridData>;
+      
+      public function MapData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.diy.myEditor.data:MapData/MapData"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MapData.as"
+                  debugline 22
+                  getlocal0
+                  pushscope
+                  debugline 23
+                  getlocal0
+                  constructsuper 0
+                  debugline 24
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.diy.myEditor.data:MapData"),PrivateNamespace("MapData.as$331"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),PackageInternalNs("com.aurora.ui.maogoutd.diy.myEditor.data"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.diy.myEditor.data:MapData"),StaticProtectedNs("com.aurora.ui.maogoutd.diy.myEditor.data:MapData"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.compositemap.data"),"FieldGridData")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PackageNamespace(""),"vGridData")
+                  debugline 25
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MapData.as"
+         debugline 5
+         findpropstrict Multiname("MapData",[PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 60
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"MapData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;MapData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

@@ -11,10 +11,16 @@ if is_slowdown{
 attack_timer++
 
 if attack_timer == 15 * current_flash_speed - 1{
+	var _blacklist = ["brahma","magic_chicken","ice_cream","shegengbao","kuileima","xingqiongma"]
+	if target_card == "" || array_get_index(_blacklist,target_card) != -1{
+		exit
+	}
 	var card_save_data = get_card_info_simple(target_card)
 	if card_save_data != false{
-		var prev_card_info = get_plant_data_with_skill(target_card,card_save_data.shape,card_save_data.level,card_save_data.skill)
 		var card_slot_data = deck_get_card_data(target_card,card_save_data.shape)
+		if card_slot_data == noone{
+			exit
+		}
 		
 		var found_plat = noone;
 		var platform_shift_x = 0;
@@ -64,11 +70,16 @@ if attack_timer == 15 * current_flash_speed - 1{
 		}
 		
 		var logical_world = get_world_position_from_grid(logical_col, logical_row);
-		var new_card = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_slot_data[? "obj"])
-		card_created(new_card, logical_col, logical_row)
-		// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
-		if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
-			new_card.platform_grid_lock = true;
+		var _copy_plant_type = ds_map_find_value(card_slot_data, "plant_type");
+		var _copy_feature_type = ds_map_find_value(card_slot_data, "feature_type");
+		var _copy_target_card = ds_map_find_value(card_slot_data, "target_card");
+		if (target_card != "xiandima" || can_copy_card_at_position(logical_world.x, logical_world.y, _copy_plant_type, _copy_feature_type, target_card, _copy_target_card)) {
+			var new_card = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, target_card)
+			card_created(new_card, logical_col, logical_row)
+			// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
+			if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
+				new_card.platform_grid_lock = true;
+			}
 		}
 	}
 }

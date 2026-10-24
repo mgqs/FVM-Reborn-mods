@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"cherry_pudding",
+  "folderPath":"folders/精灵/Cards/Assistant/cherry_pudding.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cherry_pudding",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"72e5a6b5-1d03-4393-ad2d-07d27ab4a5ff","path":"sprites/spr_cherry_pudding/spr_cherry_pudding.yy",},
+    {"name":"29e35789-eef8-4821-be7a-516bb3a7d8a6","path":"sprites/spr_cherry_pudding_1/spr_cherry_pudding_1.yy",},
+    {"name":"fcb67d1b-32ed-4728-9cc4-c21e78414400","path":"sprites/spr_cherry_pudding_2/spr_cherry_pudding_2.yy",}
+  ],
+}

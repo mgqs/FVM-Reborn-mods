@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"water_penguin_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/water_penguin_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"water_penguin_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"42949398-b34d-4e17-adfb-1048b4f107cc","path":"sprites/spr_water_penguin_mouse/spr_water_penguin_mouse.yy",},
+    {"name":"7e3f587b-56ab-4a0c-861c-0594370e1af2","path":"sprites/spr_water_penguin_mouse_enter/spr_water_penguin_mouse_enter.yy",},
+    {"name":"b62582ef-6714-41f1-98c5-763ec18fddd2","path":"sprites/spr_water_penguin_mouse_land/spr_water_penguin_mouse_land.yy",},
+    {"name":"8aeba849-e09a-4b6b-b05b-8b016f2b5803","path":"sprites/spr_water_penguin_mouse_throw/spr_water_penguin_mouse_throw.yy",}
+  ],
+}

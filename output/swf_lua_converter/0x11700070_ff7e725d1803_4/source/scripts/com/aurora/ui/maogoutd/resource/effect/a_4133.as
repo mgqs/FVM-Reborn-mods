@@ -1,0 +1,65 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.geom.Point;
+   
+   public class a_4133 extends a_4108
+   {
+      
+      private static var a_1419:Array = new Array();
+      
+      private static var a_1300:Vector.<BitmapData> = new Vector.<BitmapData>(20);
+      
+      private static var a_1301:Vector.<Point> = new Vector.<Point>(20);
+      
+      private static var a_1302:MovieClip = new MouseComeUpEarthEffectMovie();
+      
+      public function a_4133()
+      {
+         super();
+      }
+      
+      public static function a_3926() : a_4133
+      {
+         var stMouseComeUpEarthEffect:a_4133 = a_1419.pop();
+         if(null == stMouseComeUpEarthEffect)
+         {
+            stMouseComeUpEarthEffect = new a_4133();
+         }
+         return stMouseComeUpEarthEffect;
+      }
+      
+      override public function a_1797(isReversed:Boolean) : Boolean
+      {
+         super.a_1797(isReversed);
+         return true;
+      }
+      
+      override protected function a_3911() : Vector.<BitmapData>
+      {
+         return a_1300;
+      }
+      
+      override protected function a_3912() : Vector.<Point>
+      {
+         return a_1301;
+      }
+      
+      override protected function a_3913() : MovieClip
+      {
+         return a_1302;
+      }
+      
+      override public function a_3940() : Boolean
+      {
+         super.a_3940();
+         if(-1 == a_1419.indexOf(this))
+         {
+            a_1419.push(this);
+         }
+         return true;
+      }
+   }
+}
+

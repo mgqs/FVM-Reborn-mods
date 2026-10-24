@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"pepper_floating_isle_platform_daytime",
+  "folderPath":"folders/精灵/Map Object/platform/pepper_floating_isle_platform_daytime.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pepper_floating_isle_platform_daytime",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"14579a8d-763d-4f42-9086-11f3397c1ee1","path":"sprites/spr_pepper_floating_isle_platform_daytime_1/spr_pepper_floating_isle_platform_daytime_1.yy",},
+    {"name":"0a534fd6-4e58-436d-ab4f-e0aa6a616a13","path":"sprites/spr_pepper_floating_isle_platform_daytime_2/spr_pepper_floating_isle_platform_daytime_2.yy",},
+    {"name":"b7a5cd42-035a-4309-b8a7-868e11a0d790","path":"sprites/spr_pepper_floating_isle_platform_daytime_3/spr_pepper_floating_isle_platform_daytime_3.yy",},
+    {"name":"7053a13e-f0e0-40e0-a6fe-069e834cce7a","path":"sprites/spr_pepper_floating_isle_platform_daytime_4/spr_pepper_floating_isle_platform_daytime_4.yy",}
+  ],
+}

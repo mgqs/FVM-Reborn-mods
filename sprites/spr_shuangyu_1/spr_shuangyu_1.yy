@@ -50,8 +50,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"shuangyu",
+    "path":"folders/精灵/mod/Cards/Pult/shuangyu.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -1,3 +1,4 @@
+obj_card_attire_menu.sw_pending_dir = (type == "prev") ? -1 : 1;
 if type == "prev"{
 	if obj_card_attire_menu.selected_attire_index > -1{
 		obj_card_attire_menu.selected_attire_index -= 1
@@ -14,4 +15,4 @@ else{
 		obj_card_attire_menu.selected_attire_index = -1
 	}
 }
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)

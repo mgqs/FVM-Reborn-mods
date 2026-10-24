@@ -1,0 +1,1042 @@
+package com.aurora.ui.maogoutd.resource
+{
+   import com.aurora.ui.maogoutd.game.Base.BaseGameMoveIntruder;
+   import com.aurora.ui.maogoutd.resource.effect.BaseGameEffect;
+   import com.aurora.ui.maogoutd.resource.effect.a_4108;
+   import flash.display.BitmapData;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Dictionary;
+   import flash.utils.Timer;
+   import flash.utils.getQualifiedClassName;
+   import flash.utils.getTimer;
+   
+   public class EffectManager
+   {
+      
+      private static var _instance:EffectManager;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 17
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_timer:Timer;
+      
+      private var m_list:Array;
+      
+      private var m_lastTick:int = -1;
+      
+      private const TICK_INTERVAL:int = 100;
+      
+      private var m_dictPool:Dictionary;
+      
+      private var m_dictEffect:Dictionary;
+      
+      public var lastMoveClip:GameMovieClip;
+      
+      public var m_arrEffectArray:Array;
+      
+      public function EffectManager()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource:EffectManager/EffectManager"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                  debugline 22
+                  getlocal0
+                  pushscope
+                  debugline 95
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                  debugline 98
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Dictionary")
+                  constructprop QName(PackageNamespace("flash.utils"),"Dictionary"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictEffect")
+                  debugline 103
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Array")
+                  constructprop QName(PackageNamespace(""),"Array"), 0
+                  initproperty QName(PackageNamespace(""),"m_arrEffectArray")
+                  debugline 23
+                  getlocal0
+                  constructsuper 0
+                  debugline 24
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                  debugline 25
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"TICK_INTERVAL")
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_timer")
+                  debugline 26
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_timer")
+                  getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                  getproperty QName(PackageNamespace(""),"TIMER")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"OnTick")
+                  callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                  debugline 27
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_timer")
+                  callpropvoid QName(PackageNamespace(""),"start"), 0
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : EffectManager
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource:EffectManager/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                     debugline 30
+                     getlocal0
+                     pushscope
+                     debugline 32
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"_instance")
+                     pushnull
+                     ifne ofs001c
+                     debugline 34
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"_instance")
+            ofs001c:
+                     debugline 36
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function Add(effect:a_4108) : void
+         {
+            trait method QName(PackageNamespace(""),"Add")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource:EffectManager/Add"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                  paramname "flash.events"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                        debugline 39
+                        getlocal0
+                        pushscope
+                        debug 1, "effect", 0, 39
+                        debugline 41
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                        getlocal1
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                        pushbyte -1
+                        ifne ofs0029
+                        debugline 43
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                        getlocal1
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs0029:
+                        debugline 45
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function Remove(effect:a_4108) : void
+            {
+               trait method QName(PackageNamespace(""),"Remove")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource:EffectManager/Remove"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4108")
+                     paramname "flash.events"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                           debugline 47
+                           getlocal0
+                           pushscope
+                           debug 1, "effect", 0, 47
+                           debug 1, "idx", 1, 49
+                           debugline 49
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                           getlocal1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                           convert_i
+                           setlocal2
+                           debugline 50
+                           getlocal2
+                           pushbyte -1
+                           ifeq ofs0036
+                           debugline 52
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                           getlocal2
+                           pushbyte 1
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                  ofs0036:
+                           debugline 54
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private function OnTick(e:TimerEvent) : void
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"OnTick")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource:EffectManager/private:OnTick"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.events"),"TimerEvent")
+                        paramname "flash.events"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 4
+                           localcount 5
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                              debugline 56
+                              getlocal0
+                              pushscope
+                              debug 1, "e", 0, 56
+                              debug 1, "now", 1, 58
+                              debug 1, "delta", 2, 66
+                              debug 1, "tickCount", 3, 73
+                              debugline 58
+                              findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                              callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                              convert_i
+                              setlocal2
+                              debugline 60
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_lastTick")
+                              pushbyte -1
+                              ifne ofs0040
+                              debugline 62
+                              getlocal0
+                              getlocal2
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_lastTick")
+                              debugline 63
+                              returnvoid
+                     ofs0040:
+                              debugline 66
+                              getlocal2
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_lastTick")
+                              subtract
+                              convert_i
+                              setlocal3
+                              debugline 68
+                              getlocal3
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"TICK_INTERVAL")
+                              ifnlt ofs0058
+                              debugline 70
+                              returnvoid
+                     ofs0058:
+                              debugline 73
+                              getlocal3
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"TICK_INTERVAL")
+                              divide
+                              convert_i
+                              setlocal 4
+                              debugline 74
+                              getlex QName(PackageNamespace(""),"Math")
+                              getlocal 4
+                              pushbyte 5
+                              callproperty QName(PackageNamespace(""),"min"), 2
+                              convert_i
+                              setlocal 4
+                              debugline 76
+                              getlocal0
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_lastTick")
+                              getlocal 4
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"TICK_INTERVAL")
+                              multiply
+                              add
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_lastTick")
+                              jump ofs0091
+                     ofs0089:
+                              label
+                              debugline 80
+                              getlocal0
+                              callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"OnLogicTick"), 0
+                     ofs0091:
+                              debugline 78
+                              getlocal 4
+                              dup
+                              decrement_i
+                              setlocal 4
+                              pushbyte 0
+                              ifgt ofs0089
+                              debugline 82
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private function OnLogicTick() : void
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"OnLogicTick")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource:EffectManager/private:OnLogicTick"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                 debugline 83
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "i", 0, 85
+                                 debugline 85
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 decrement
+                                 convert_i
+                                 setlocal1
+                                 jump ofs0040
+                        ofs001d:
+                                 label
+                                 debugline 87
+                                 getlocal1
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 ifnlt ofs003b
+                                 debugline 88
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_list")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                 pushnull
+                                 callpropvoid Multiname("Tick",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")]), 1
+                        ofs003b:
+                                 debugline 85
+                                 getlocal1
+                                 decrement_i
+                                 setlocal1
+                        ofs0040:
+                                 getlocal1
+                                 pushbyte 0
+                                 ifge ofs001d
+                                 debugline 91
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function GetMoveClip(gameMoveClipClass:Class) : Object
+                     {
+                        trait method QName(PackageNamespace(""),"GetMoveClip")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource:EffectManager/GetMoveClip"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"Class")
+                              paramname "void"
+                              returns QName(PackageNamespace(""),"Object")
+                              
+                              body
+                                 maxstack 4
+                                 localcount 5
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                    debugline 105
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal3
+                                    pushnull
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"GameMovieClip")
+                                    setlocal 4
+                                    debug 1, "gameMoveClipClass", 0, 105
+                                    debug 1, "className", 1, 106
+                                    debugline 106
+                                    findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                    getlocal1
+                                    callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                    coerce_s
+                                    setlocal2
+                                    debugline 108
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictEffect")
+                                    getlocal2
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                    pushnull
+                                    ifne ofs0099
+                                    debug 1, "obj", 2, 109
+                                    debug 1, "moveClip", 3, 110
+                                    debugline 109
+                                    findpropstrict QName(PackageNamespace(""),"Object")
+                                    constructprop QName(PackageNamespace(""),"Object"), 0
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal3
+                                    debugline 110
+                                    getlocal1
+                                    construct 0
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"GameMovieClip")
+                                    setlocal 4
+                                    debugline 111
+                                    getlocal3
+                                    getlocal 4
+                                    setproperty Multiname("moveClip",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                    debugline 112
+                                    getlocal3
+                                    getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("__AS3__.vec")])
+                                    getlex QName(PackageNamespace("flash.display"),"BitmapData")
+                                    applytype 1
+                                    getlocal 4
+                                    getproperty QName(PackageNamespace(""),"totalFrames")
+                                    pushbyte 1
+                                    add
+                                    construct 1
+                                    setproperty Multiname("a_1300",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                    debugline 113
+                                    getlocal3
+                                    getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("__AS3__.vec")])
+                                    getlex QName(PackageNamespace("flash.geom"),"Point")
+                                    applytype 1
+                                    getlocal 4
+                                    getproperty QName(PackageNamespace(""),"totalFrames")
+                                    pushbyte 1
+                                    add
+                                    construct 1
+                                    setproperty Multiname("a_1301",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                    debugline 114
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictEffect")
+                                    getlocal2
+                                    getlocal3
+                                    setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                           ofs0099:
+                                    debugline 116
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictEffect")
+                                    getlocal2
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function GetMoveClip2(movieClip:GameMovieClip) : Object
+                        {
+                           trait method QName(PackageNamespace(""),"GetMoveClip2")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource:EffectManager/GetMoveClip2"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"GameMovieClip")
+                                 paramname "void"
+                                 returns QName(PackageNamespace(""),"Object")
+                                 
+                                 body
+                                    maxstack 3
+                                    localcount 2
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                       debugline 119
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "movieClip", 0, 119
+                                       debugline 120
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictEffect")
+                                       findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                       getlocal1
+                                       callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function CheckOutEffect(gameMoveClipClass:Class) : BaseGameEffect
+                           {
+                              trait method QName(PackageNamespace(""),"CheckOutEffect")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource:EffectManager/CheckOutEffect"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"Class")
+                                    paramname "m_lastTick"
+                                    returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                    
+                                    body
+                                       maxstack 3
+                                       localcount 2
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                          debugline 124
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "gameMoveClipClass", 0, 124
+                                          debugline 125
+                                          getlocal0
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                          getlocal1
+                                          callproperty QName(PackageNamespace(""),"CheckOutOne"), 2
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function CheckOutOne(effectClass:Class, gameMoveClipClass:Class, anotherKey:String = null) : BaseGameEffect
+                              {
+                                 trait method QName(PackageNamespace(""),"CheckOutOne")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource:EffectManager/CheckOutOne"
+                                       flag HAS_OPTIONAL
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"Class")
+                                       param QName(PackageNamespace(""),"Class")
+                                       param QName(PackageNamespace(""),"String")
+                                       paramname "m_lastTick"
+                                       paramname "m_lastTick"
+                                       paramname "m_lastTick"
+                                       optional Null()
+                                       returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                       
+                                       body
+                                          maxstack 4
+                                          localcount 5
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                             debugline 131
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "effectClass", 0, 131
+                                             debug 1, "gameMoveClipClass", 1, 131
+                                             debug 1, "anotherKey", 2, 131
+                                             debug 1, "effect", 3, 132
+                                             debugline 132
+                                             getlocal0
+                                             getlocal1
+                                             getlocal2
+                                             getlocal3
+                                             callproperty QName(PackageNamespace(""),"CheckOutAurMovieClip"), 3
+                                             getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                             astypelate
+                                             coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                             setlocal 4
+                                             debugline 133
+                                             getlocal 4
+                                             getlocal3
+                                             setproperty QName(PackageNamespace(""),"anotherKey")
+                                             debugline 134
+                                             getlocal 4
+                                             pushfalse
+                                             callpropvoid QName(PackageNamespace(""),"a_1797"), 1
+                                             debugline 135
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_arrEffectArray")
+                                             getlocal 4
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                             debugline 136
+                                             getlocal 4
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function CheckOutAurMovieClip(effectClass:Class, gameMoveClipClass:Class, anotherKey:String = null) : a_3909
+                                 {
+                                    trait method QName(PackageNamespace(""),"CheckOutAurMovieClip")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource:EffectManager/CheckOutAurMovieClip"
+                                          flag HAS_OPTIONAL
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"Class")
+                                          param QName(PackageNamespace(""),"Class")
+                                          param QName(PackageNamespace(""),"String")
+                                          paramname "length"
+                                          paramname "length"
+                                          paramname "length"
+                                          optional Null()
+                                          returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 7
+                                             initscopedepth 4
+                                             maxscopedepth 5
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                debugline 139
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "effectClass", 0, 139
+                                                debug 1, "gameMoveClipClass", 1, 139
+                                                debug 1, "anotherKey", 2, 139
+                                                debug 1, "poolName", 3, 141
+                                                debug 1, "arr", 4, 148
+                                                debug 1, "effect", 5, 149
+                                                debugline 140
+                                                getlocal1
+                                                pushnull
+                                                ifne ofs0040
+                                                getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                                coerce QName(PackageNamespace(""),"Class")
+                                                setlocal1
+                                       ofs0040:
+                                                debugline 141
+                                                findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                getlocal1
+                                                callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                pushstring "_"
+                                                add
+                                                findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                getlocal2
+                                                callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                add
+                                                coerce_s
+                                                setlocal 4
+                                                debugline 142
+                                                getlocal3
+                                                pushnull
+                                                ifeq ofs0072
+                                                debugline 143
+                                                getlocal 4
+                                                pushstring "_"
+                                                getlocal3
+                                                add
+                                                add
+                                                coerce_s
+                                                setlocal 4
+                                       ofs0072:
+                                                debugline 145
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                getlocal 4
+                                                getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                pushnull
+                                                ifne ofs0091
+                                                debugline 146
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                getlocal 4
+                                                newarray 0
+                                                setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                       ofs0091:
+                                                debugline 148
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                getlocal 4
+                                                getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                coerce QName(PackageNamespace(""),"Array")
+                                                setlocal 5
+                                                debugline 149
+                                                pushnull
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                                setlocal 6
+                                                debugline 150
+                                                getlocal 5
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                pushbyte 0
+                                                ifne ofs00d5
+                                                debugline 151
+                                                getlocal0
+                                                getlocal0
+                                                getlocal2
+                                                callproperty QName(PackageNamespace(""),"GetMoveClip"), 1
+                                                getproperty Multiname("moveClip",[PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                initproperty QName(PackageNamespace(""),"lastMoveClip")
+                                                debugline 152
+                                                getlocal1
+                                                construct 0
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                                setlocal 6
+                                                jump ofs00e2
+                                       ofs00d5:
+                                                debugline 154
+                                                getlocal 5
+                                                callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                                setlocal 6
+                                       ofs00e2:
+                                                debugline 156
+                                                getlocal 6
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function CheckInOne(effect:BaseGameEffect) : void
+                                    {
+                                       trait method QName(PackageNamespace(""),"CheckInOne")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource:EffectManager/CheckInOne"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                             paramname "flash.events"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 3
+                                                localcount 4
+                                                initscopedepth 4
+                                                maxscopedepth 5
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                   debugline 160
+                                                   getlocal0
+                                                   pushscope
+                                                   pushnull
+                                                   coerce QName(PackageNamespace(""),"Array")
+                                                   setlocal3
+                                                   debug 1, "effect", 0, 160
+                                                   debug 1, "poolName", 1, 161
+                                                   debugline 161
+                                                   findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                   getlocal1
+                                                   callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                   pushstring "_"
+                                                   add
+                                                   findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                                                   callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                   add
+                                                   coerce_s
+                                                   setlocal2
+                                                   debugline 162
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"anotherKey")
+                                                   pushnull
+                                                   ifeq ofs0052
+                                                   debugline 163
+                                                   getlocal2
+                                                   pushstring "_"
+                                                   getlocal1
+                                                   getproperty QName(PackageNamespace(""),"anotherKey")
+                                                   add
+                                                   add
+                                                   coerce_s
+                                                   setlocal2
+                                          ofs0052:
+                                                   debugline 165
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                   getlocal2
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                   pushnull
+                                                   ifne ofs0075
+                                                   debugline 167
+                                                   findpropstrict QName(PackageNamespace(""),"trace")
+                                                   pushstring "ERROR: poolName is noExist-"
+                                                   getlocal2
+                                                   add
+                                                   callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                   jump ofs00a2
+                                          ofs0075:
+                                                   debug 1, "arr", 2, 169
+                                                   debugline 169
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                   getlocal2
+                                                   getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                   coerce QName(PackageNamespace(""),"Array")
+                                                   setlocal3
+                                                   debugline 170
+                                                   getlocal3
+                                                   getlocal1
+                                                   callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                   pushbyte -1
+                                                   ifne ofs00a2
+                                                   debugline 171
+                                                   getlocal3
+                                                   getlocal1
+                                                   callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                          ofs00a2:
+                                                   debugline 174
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function CheckInOneMouse(mouse:BaseGameMoveIntruder) : void
+                                       {
+                                          trait method QName(PackageNamespace(""),"CheckInOneMouse")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.resource:EffectManager/CheckInOneMouse"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace("com.aurora.ui.maogoutd.game.Base"),"BaseGameMoveIntruder")
+                                                paramname "flash.events"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 3
+                                                   localcount 4
+                                                   initscopedepth 4
+                                                   maxscopedepth 5
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                      debugline 177
+                                                      getlocal0
+                                                      pushscope
+                                                      pushnull
+                                                      coerce QName(PackageNamespace(""),"Array")
+                                                      setlocal3
+                                                      debug 1, "mouse", 0, 177
+                                                      debug 1, "poolName", 1, 178
+                                                      debugline 178
+                                                      findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                      getlocal1
+                                                      callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                      pushstring "_"
+                                                      add
+                                                      findpropstrict QName(PackageNamespace("flash.utils"),"getQualifiedClassName")
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"m_stMoveClip")
+                                                      callproperty QName(PackageNamespace("flash.utils"),"getQualifiedClassName"), 1
+                                                      add
+                                                      coerce_s
+                                                      setlocal2
+                                                      debugline 179
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"anotherKey")
+                                                      pushnull
+                                                      ifeq ofs0052
+                                                      debugline 180
+                                                      getlocal2
+                                                      pushstring "_"
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"anotherKey")
+                                                      add
+                                                      add
+                                                      coerce_s
+                                                      setlocal2
+                                             ofs0052:
+                                                      debugline 182
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                      getlocal2
+                                                      getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                      pushnull
+                                                      ifne ofs0075
+                                                      debugline 184
+                                                      findpropstrict QName(PackageNamespace(""),"trace")
+                                                      pushstring "ERROR: poolName is noExist-"
+                                                      getlocal2
+                                                      add
+                                                      callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                      jump ofs00a2
+                                             ofs0075:
+                                                      debug 1, "arr", 2, 186
+                                                      debugline 186
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),"m_dictPool")
+                                                      getlocal2
+                                                      getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),PackageNamespace("com.aurora.ui.maogoutd.resource"),PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("EffectManager.as$225"),PackageInternalNs("com.aurora.ui.maogoutd.resource"),ProtectedNamespace("com.aurora.ui.maogoutd.resource:EffectManager"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:EffectManager")])
+                                                      coerce QName(PackageNamespace(""),"Array")
+                                                      setlocal3
+                                                      debugline 187
+                                                      getlocal3
+                                                      getlocal1
+                                                      callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                      pushbyte -1
+                                                      ifne ofs00a2
+                                                      debugline 188
+                                                      getlocal3
+                                                      getlocal1
+                                                      callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                             ofs00a2:
+                                                      debugline 191
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function ReleaseAll() : void
+                                          {
+                                             trait method QName(PackageNamespace(""),"ReleaseAll")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.ui.maogoutd.resource:EffectManager/ReleaseAll"
+                                                   returns QName(PackageNamespace(""),"void")
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 2
+                                                      initscopedepth 4
+                                                      maxscopedepth 5
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                         debugline 193
+                                                         getlocal0
+                                                         pushscope
+                                                         pushnull
+                                                         coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                                         setlocal1
+                                                         debug 1, "stEffect", 0, 194
+                                                         jump ofs0036
+                                                ofs0017:
+                                                         label
+                                                         debugline 197
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_arrEffectArray")
+                                                         callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                                         coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"BaseGameEffect")
+                                                         setlocal1
+                                                         debugline 198
+                                                         getlocal1
+                                                         iffalse ofs0036
+                                                         debugline 200
+                                                         getlocal1
+                                                         callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                ofs0036:
+                                                         debugline 195
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_arrEffectArray")
+                                                         getproperty QName(PackageNamespace(""),"length")
+                                                         pushbyte 0
+                                                         ifgt ofs0017
+                                                         debugline 203
+                                                         returnvoid
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                          }
+                                       }
+                                       
+                                       method
+                                          name ""
+                                          returns null
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 1
+                                             initscopedepth 1
+                                             maxscopedepth 3
+                                             
+                                             code
+                                                getlocal0
+                                                pushscope
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                debugline 15
+                                                findpropstrict Multiname("EffectManager",[PackageNamespace("com.aurora.ui.maogoutd.resource")])
+                                                getlex QName(PackageNamespace(""),"Object")
+                                                pushscope
+                                                getlex QName(PackageNamespace(""),"Object")
+                                                newclass 29
+                                                popscope
+                                                initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"EffectManager")
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource;EffectManager.as"
+                                                debugline 1
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                       

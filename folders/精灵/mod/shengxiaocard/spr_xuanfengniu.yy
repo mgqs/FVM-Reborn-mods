@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr_xuanfengniu",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr_xuanfengniu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr_xuanfengniu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_xuanfengniu","path":"sprites/spr_xuanfengniu/spr_xuanfengniu.yy",},
+    {"name":"spr_xuanfengniu_1","path":"sprites/spr_xuanfengniu_1/spr_xuanfengniu_1.yy",},
+    {"name":"spr_xuanfengniu_2","path":"sprites/spr_xuanfengniu_2/spr_xuanfengniu_2.yy",}
+  ],
+}

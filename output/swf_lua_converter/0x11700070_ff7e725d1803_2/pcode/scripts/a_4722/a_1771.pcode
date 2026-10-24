@@ -1,0 +1,169 @@
+package a_4722
+{
+   public dynamic class a_1771
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var a_541:Array;
+      
+      public function a_1771()
+      {
+         method
+            name "com.aurora.data:MessageID2DecodeRoutineMap/MessageID2DecodeRoutineMap"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data;MessageID2DecodeRoutineMap.as"
+                  debugline 8
+                  getlocal0
+                  pushscope
+                  debugline 6
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PrivateNamespace("com.aurora.data:MessageID2DecodeRoutineMap"),"a_541")
+                  debugline 9
+                  getlocal0
+                  constructsuper 0
+                  debugline 10
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function insert(messageId:uint, fnRoutine:Function) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"insert")
+            dispid 0
+            method
+               name "com.aurora.data:MessageID2DecodeRoutineMap/insert"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace(""),"uint")
+               param QName(PackageNamespace(""),"Function")
+               paramname "a_541"
+               paramname "a_541"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data;MessageID2DecodeRoutineMap.as"
+                     debugline 12
+                     getlocal0
+                     pushscope
+                     debug 1, "messageId", 0, 12
+                     debug 1, "fnRoutine", 1, 12
+                     debugline 14
+                     getlocal1
+                     getlocal0
+                     in
+                     iffalse ofs0020
+                     debugline 16
+                     pushfalse
+                     returnvalue
+            ofs0020:
+                     debugline 19
+                     getlocal0
+                     getlocal1
+                     getlocal2
+                     setproperty MultinameL([PrivateNamespace("com.aurora.data:MessageID2DecodeRoutineMap"),PrivateNamespace("MessageID2DecodeRoutineMap.as$528"),PackageNamespace(""),PackageNamespace("a_4722"),PackageInternalNs("a_4722"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.data:MessageID2DecodeRoutineMap"),StaticProtectedNs("com.aurora.data:MessageID2DecodeRoutineMap")])
+                     debugline 20
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.data:MessageID2DecodeRoutineMap"),"a_541")
+                     getlocal1
+                     callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                     debugline 22
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function get protocalMessageIDs() : Array
+         {
+            trait getter QName(PackageNamespace(""),"protocalMessageIDs")
+               dispid 0
+               method
+                  name "com.aurora.data:MessageID2DecodeRoutineMap/protocalMessageIDs/get"
+                  returns QName(PackageNamespace(""),"Array")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data;MessageID2DecodeRoutineMap.as"
+                        debugline 25
+                        getlocal0
+                        pushscope
+                        debugline 27
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.data:MessageID2DecodeRoutineMap"),"a_541")
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"slice"), 0
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data;MessageID2DecodeRoutineMap.as"
+               debugline 4
+               findpropstrict Multiname("a_1771",[PackageNamespace("a_4722")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 116
+               popscope
+               initproperty QName(PackageNamespace("a_4722"),"a_1771")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\data;MessageID2DecodeRoutineMap.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

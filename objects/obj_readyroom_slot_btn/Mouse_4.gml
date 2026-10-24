@@ -14,4 +14,4 @@ else{
 		obj_readyroom_manager.deck_first_slot_index = 0
 	}
 }
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)

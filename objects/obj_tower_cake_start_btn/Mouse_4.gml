@@ -11,5 +11,5 @@ if not obj_tower_cake_bg.is_submenu_opened && is_unlocked{
 			global.gui_stack.to(room_ready)
 		}
 	}
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 }

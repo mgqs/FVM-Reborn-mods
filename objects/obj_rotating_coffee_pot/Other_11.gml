@@ -9,9 +9,13 @@ var _x = x;
 		
 			if (hp > 0 && point_distance(x, y, _x, _y) < _range && grid_row >= other.grid_row-other.range&&grid_row <= other.grid_row+other.range&&can_hit(other.target_type,target_type)) {
 		        
-		            hp -= other.atk;
-					event_user(0)
-		            audio_play_sound(snd_hit1,0,0)
+		            damage_amount = other.atk;
+				damage_type = "true";
+				damage_source_object = other.object_index;
+				// 已通过 can_hit 判定（rotate 可命中 underground），允许命中钻地中的地精鼠（同鼹鼠规则）
+				if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
+				event_user(0)
+		            global.audio.play(snd_hit1,0,0)
 		    }
 		
 	}

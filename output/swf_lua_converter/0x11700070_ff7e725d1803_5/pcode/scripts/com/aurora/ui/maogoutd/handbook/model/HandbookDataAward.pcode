@@ -1,0 +1,101 @@
+package com.aurora.ui.maogoutd.handbook.model
+{
+   public class HandbookDataAward
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var iID:int;
+      
+      public var iItemID:int;
+      
+      public var iNeedNum:int;
+      
+      public var iType:int;
+      
+      public var iTime:int;
+      
+      public var iIsBind:int;
+      
+      public var iAddValue:int;
+      
+      public var iAddExp:int;
+      
+      public var iAddDroprate:int;
+      
+      public var iAddProficiency:int;
+      
+      public var iAddPvPExp:int;
+      
+      public function HandbookDataAward()
+      {
+         method
+            name "com.aurora.ui.maogoutd.handbook.model:HandbookDataAward/HandbookDataAward"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookDataAward.as"
+                  debugline 19
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookDataAward.as"
+         debugline 3
+         findpropstrict Multiname("HandbookDataAward",[PackageNamespace("com.aurora.ui.maogoutd.handbook.model")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 105
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookDataAward.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"xinjiang_fried_noodles",
+  "folderPath":"folders/精灵/Cards/Melee/xinjiang_fried_noodles.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xinjiang_fried_noodles",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ffe11b9f-db62-4909-9776-1fd7e1cd4ee6","path":"sprites/spr_xinjiang_fried_noodles/spr_xinjiang_fried_noodles.yy",},
+    {"name":"9a172240-5fea-4958-ae97-be00f2132c1d","path":"sprites/spr_xinjiang_fried_noodles_1/spr_xinjiang_fried_noodles_1.yy",},
+    {"name":"ec25c26f-aa9e-49a1-9867-1b2d86601b0c","path":"sprites/spr_xinjiang_fried_noodles_2/spr_xinjiang_fried_noodles_2.yy",}
+  ],
+}

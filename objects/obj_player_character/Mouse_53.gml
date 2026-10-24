@@ -1,4 +1,6 @@
-﻿if not is_placed{
+if not is_placed{
+	// 暂停菜单打开时不响应放置，避免点菜单按钮时顺手把人物放到菜单底下的格子
+	if (instance_exists(obj_pause_menu)) exit;
 	var logical_x = mouse_x;
 	var logical_y = mouse_y;
 	var platform_shift_x = 0;
@@ -21,8 +23,47 @@
 		grid_row = grid_pos.row
 		grid_col = grid_pos.col
 		card_created(id,grid_col,grid_row)
-		audio_play_sound(snd_place1,0,0)
+		global.audio.play(snd_place1,0,0)
 		instance_create_depth(x,y,-2,obj_place_effect)
+		var _equipped_attire_id = card_equipped_attire_id("player");
+		var _transformation_sprite = -1;
+		var _equipped_items = global.save_data.equipped_items;
+		var _gem_slots = [_equipped_items.main_weapon, _equipped_items.secondary_weapon, _equipped_items.super_weapon];
+		for (var _slot_index = 0; _slot_index < array_length(_gem_slots); _slot_index++) {
+			var _slot_gems = _gem_slots[_slot_index].gems;
+			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen2"
+				&& array_get_index(_slot_gems, "star_wand_gem_1") != -1) {
+				_transformation_sprite = spr_huan_bianshen2;
+				break;
+			}
+			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen3"
+				&& array_get_index(_slot_gems, "star_wand_gem_5") != -1) {
+				_transformation_sprite = spr_yao_bianshen2;
+				break;
+			}
+			if (_equipped_attire_id == "player_attire_shouhuzhishen"
+				&& array_get_index(_slot_gems, "zeus_ren_gem") != -1) {
+				_transformation_sprite = spr_bianshen2;
+				break;
+			}
+		}
+		if (_transformation_sprite != -1) {
+			var _transformation_effect = instance_create_depth(0, 0, -10000, obj_12yinliao_effect);
+			_transformation_effect.sprite_index = _transformation_sprite;
+			_transformation_effect.is_one_shot = true;
+			_transformation_effect.center_screen = true;
+			_transformation_effect.flash_speed = 6;
+			if (_transformation_sprite != spr_bianshen2) {
+				_transformation_effect.scale_multiplier = 2;
+				var _entrance_effect = instance_create_depth(x, y, depth - 2, obj_place_effect);
+				_entrance_effect.sprite_index = spr_ruchang;
+				_entrance_effect.image_xscale = image_xscale;
+				_entrance_effect.image_yscale = image_yscale;
+				_entrance_effect.depth = -10001;
+				_entrance_effect.custom_playback = true;
+				_entrance_effect.playback_speed = 0.2;
+			}
+		}
 		var plany_list = ds_grid_get(global.grid_plants,grid_col,grid_row)
 		if global.grid_terrains[grid_row][grid_col].type == "water"{
 			var card = instance_create_depth(x,y-10,depth+1,obj_wooden_plate)
@@ -42,7 +83,9 @@
 				var gem_id = gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}
@@ -64,7 +107,9 @@
 				var gem_id = sec_gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}
@@ -80,7 +125,9 @@
 				var gem_id = sup_gem_list[i]
 				var gem_info = get_gem_info(gem_id)
 				if gem_info.obj != noone{
-					instance_create_depth(390,213+gem_index*80,-500,gem_info.obj)
+					var _col = floor(gem_index / 9)
+					var _row = gem_index mod 9
+					instance_create_depth(390+_col*80,213+_row*80,-500,gem_info.obj)
 					gem_index++
 				}
 			}

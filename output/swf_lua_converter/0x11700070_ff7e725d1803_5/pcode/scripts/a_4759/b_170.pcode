@@ -1,0 +1,58 @@
+package a_4759
+{
+   import flash.events.Event;
+   
+   public interface b_170
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function a_2225(param1:String, param2:Function, param3:Boolean = true) : void;
+      
+      function a_2226(param1:String, param2:Function, param3:Boolean = true) : void;
+      
+      function a_2227(param1:String) : Boolean;
+      
+      function a_2228(param1:Event) : Boolean;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\common;IHandler.as"
+         debugline 5
+         findpropstrict Multiname("b_170",[PackageNamespace("a_4759")])
+         pushnull
+         newclass 115
+         initproperty QName(PackageNamespace("a_4759"),"b_170")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

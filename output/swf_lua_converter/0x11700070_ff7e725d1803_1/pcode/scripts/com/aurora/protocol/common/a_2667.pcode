@@ -1,0 +1,335 @@
+package com.aurora.protocol.common
+{
+   import com.aurora.protocol.a_2664;
+   import flash.utils.ByteArray;
+   
+   public class a_2667 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var httpHead:int = 0;
+      
+      public var nPackageLength:int;
+      
+      public var nUIN:int;
+      
+      public var shFlag:int;
+      
+      public var shOptionalLen:int;
+      
+      public var lpbyOptional:ByteArray;
+      
+      public var shHeaderLen:int;
+      
+      public var shMessageID:int;
+      
+      public var shMessageType:int;
+      
+      public var shVersion:int;
+      
+      public var nPlayerID:int;
+      
+      public var nSequence:int;
+      
+      public function a_2667()
+      {
+         method
+            name "com.aurora.protocol.common:AuthPackageHeader/AuthPackageHeader"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                  debugline 24
+                  getlocal0
+                  pushscope
+                  debugline 25
+                  getlocal0
+                  constructsuper 0
+                  debugline 26
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function size() : uint
+      {
+         trait method QName(PackageNamespace(""),"size")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.protocol.common:AuthPackageHeader/size"
+               returns QName(PackageNamespace(""),"uint")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                     debugline 70
+                     getlocal0
+                     pushscope
+                     debugline 72
+                     pushbyte 28
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"encode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.common:AuthPackageHeader/encode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "uint"
+                  paramname "uint"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 12
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                        debugline 28
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 28
+                        debug 1, "encode_length", 1, 28
+                        debug 1, "propertyArray", 2, 31
+                        pushstring "httpHead"
+                        pushstring "int8"
+                        debugline 32
+                        newarray 2
+                        pushstring "nPackageLength"
+                        pushstring "int32"
+                        debugline 33
+                        newarray 2
+                        pushstring "nUIN"
+                        pushstring "int32"
+                        debugline 34
+                        newarray 2
+                        pushstring "shFlag"
+                        pushstring "int16"
+                        debugline 35
+                        newarray 2
+                        pushstring "shOptionalLen"
+                        pushstring "int16"
+                        debugline 36
+                        newarray 2
+                        pushstring "lpbyOptional"
+                        pushstring "memory"
+                        debugline 37
+                        pushshort 128
+                        newarray 3
+                        pushstring "shHeaderLen"
+                        pushstring "int16"
+                        debugline 38
+                        newarray 2
+                        pushstring "shMessageID"
+                        pushstring "int16"
+                        debugline 39
+                        newarray 2
+                        pushstring "shMessageType"
+                        pushstring "int16"
+                        debugline 40
+                        newarray 2
+                        pushstring "shVersion"
+                        pushstring "int16"
+                        debugline 41
+                        newarray 2
+                        pushstring "nPlayerID"
+                        pushstring "int32"
+                        debugline 42
+                        newarray 2
+                        newarray 11
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 46
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2665"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"decode")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.common:AuthPackageHeader/decode"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.utils"),"ByteArray")
+                     param QName(PackageNamespace(""),"int")
+                     paramname "uint"
+                     paramname "uint"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 11
+                        localcount 4
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                           debugline 49
+                           getlocal0
+                           pushscope
+                           debug 1, "byte_array", 0, 49
+                           debug 1, "decode_length", 1, 49
+                           debug 1, "propertyArray", 2, 51
+                           pushstring "nPackageLength"
+                           pushstring "int32"
+                           debugline 53
+                           newarray 2
+                           pushstring "nUIN"
+                           pushstring "int32"
+                           debugline 54
+                           newarray 2
+                           pushstring "shFlag"
+                           pushstring "int16"
+                           debugline 55
+                           newarray 2
+                           pushstring "shOptionalLen"
+                           pushstring "int16"
+                           debugline 56
+                           newarray 2
+                           pushstring "lpbyOptional"
+                           pushstring "memory"
+                           debugline 57
+                           pushshort 128
+                           newarray 3
+                           pushstring "shHeaderLen"
+                           pushstring "int16"
+                           debugline 58
+                           newarray 2
+                           pushstring "shMessageID"
+                           pushstring "int16"
+                           debugline 59
+                           newarray 2
+                           pushstring "shMessageType"
+                           pushstring "int16"
+                           debugline 60
+                           newarray 2
+                           pushstring "shVersion"
+                           pushstring "int16"
+                           debugline 61
+                           newarray 2
+                           pushstring "nPlayerID"
+                           pushstring "int32"
+                           debugline 62
+                           newarray 2
+                           newarray 10
+                           coerce QName(PackageNamespace(""),"Array")
+                           setlocal3
+                           debugline 66
+                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                           getlocal0
+                           getlocal3
+                           getlocal1
+                           getlocal2
+                           callproperty QName(PackageNamespace(""),"a_2666"), 4
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function dump() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"dump")
+                     dispid 0
+                     method
+                        name "com.aurora.protocol.common:AuthPackageHeader/dump"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                              debugline 77
+                              getlocal0
+                              pushscope
+                              debugline 79
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                     debugline 7
+                     findpropstrict Multiname("a_2667",[PackageNamespace("com.aurora.protocol.common")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 148
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\common;AuthPackageHeader.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

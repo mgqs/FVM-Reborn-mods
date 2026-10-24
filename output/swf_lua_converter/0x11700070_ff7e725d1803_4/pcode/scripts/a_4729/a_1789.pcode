@@ -1,0 +1,151 @@
+package a_4729
+{
+   public class a_1789
+   {
+      
+      private static var eventManager:a_1779;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "eventManager", 0, 5
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_1789()
+      {
+         method
+            name "com.aurora.event:EventManagerFactory/EventManagerFactory"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManagerFactory.as"
+                  debugline 7
+                  getlocal0
+                  pushscope
+                  debugline 8
+                  getlocal0
+                  constructsuper 0
+                  debugline 9
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_1779
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.event:EventManagerFactory/getInstance"
+               returns QName(PackageNamespace("a_4729"),"a_1779")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManagerFactory.as"
+                     debugline 11
+                     getlocal0
+                     pushscope
+                     debugline 13
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.event:EventManagerFactory"),"eventManager")
+                     ifne ofs001e
+                     debugline 15
+                     findproperty QName(PrivateNamespace("com.aurora.event:EventManagerFactory"),"eventManager")
+                     findpropstrict QName(PackageNamespace("a_4729"),"a_1779")
+                     constructprop QName(PackageNamespace("a_4729"),"a_1779"), 0
+                     setproperty QName(PrivateNamespace("com.aurora.event:EventManagerFactory"),"eventManager")
+            ofs001e:
+                     debugline 18
+                     getlex QName(PrivateNamespace("com.aurora.event:EventManagerFactory"),"eventManager")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function reBuild() : a_1779
+         {
+            trait method QName(PackageNamespace(""),"reBuild")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.event:EventManagerFactory/reBuild"
+                  returns QName(PackageNamespace("a_4729"),"a_1779")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManagerFactory.as"
+                        debugline 21
+                        getlocal0
+                        pushscope
+                        debugline 23
+                        findpropstrict QName(PackageNamespace("a_4729"),"a_1779")
+                        constructprop QName(PackageNamespace("a_4729"),"a_1779"), 0
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManagerFactory.as"
+               debugline 3
+               findpropstrict Multiname("a_1789",[PackageNamespace("a_4729")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 81
+               popscope
+               initproperty QName(PackageNamespace("a_4729"),"a_1789")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\event;EventManagerFactory.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

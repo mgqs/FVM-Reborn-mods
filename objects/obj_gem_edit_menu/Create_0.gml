@@ -44,3 +44,7 @@ for(var i = 0 ; i< 1 ; i++){
 	btn6.target_card_index = target_card_index
 	btn6.view_max_shape = view_max_shape
 }
+
+panel_anim_init(id, 0.18, 0.14, 0, 3)
+panel_anim_kids(id, [obj_gem_edit_select_btn, obj_gem_edit_btn])
+pop_anim_init(id, [obj_gem_edit_select_btn, obj_gem_edit_btn])

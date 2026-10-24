@@ -1,7 +1,7 @@
 if can_explode{
 	var inst = instance_create_depth(x,y,depth,obj_coke_bomb_explode)
 	inst.sprite_index = spr_machine_mouse_explode
-	audio_play_sound(snd_coke_bomb_explode,0,0)
+	global.audio.play(snd_coke_bomb_explode,0,0)
 	var _x = x;
 	var _y = y;
 	var _range = 200

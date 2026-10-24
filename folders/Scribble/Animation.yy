@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"Animation",
+  "folderPath":"folders/Scribble/Animation.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Animation",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"scribble_anim_blink","path":"scripts/scribble_anim_blink/scribble_anim_blink.yy",},
+    {"name":"scribble_anim_cycle","path":"scripts/scribble_anim_cycle/scribble_anim_cycle.yy",},
+    {"name":"scribble_anim_disabled","path":"scripts/scribble_anim_disabled/scribble_anim_disabled.yy",},
+    {"name":"scribble_anim_get_disabled","path":"scripts/scribble_anim_get_disabled/scribble_anim_get_disabled.yy",},
+    {"name":"scribble_anim_jitter","path":"scripts/scribble_anim_jitter/scribble_anim_jitter.yy",},
+    {"name":"scribble_anim_pulse","path":"scripts/scribble_anim_pulse/scribble_anim_pulse.yy",},
+    {"name":"scribble_anim_rainbow","path":"scripts/scribble_anim_rainbow/scribble_anim_rainbow.yy",},
+    {"name":"scribble_anim_reset","path":"scripts/scribble_anim_reset/scribble_anim_reset.yy",},
+    {"name":"scribble_anim_shake","path":"scripts/scribble_anim_shake/scribble_anim_shake.yy",},
+    {"name":"scribble_anim_wave","path":"scripts/scribble_anim_wave/scribble_anim_wave.yy",},
+    {"name":"scribble_anim_wheel","path":"scripts/scribble_anim_wheel/scribble_anim_wheel.yy",},
+    {"name":"scribble_anim_wobble","path":"scripts/scribble_anim_wobble/scribble_anim_wobble.yy",}
+  ],
+}

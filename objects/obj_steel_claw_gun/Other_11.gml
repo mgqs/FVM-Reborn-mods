@@ -35,4 +35,4 @@ else{
 }
 inst_down.start_y = middle_y; // 记录起始y坐标
 
-audio_play_sound(snd_shot, 0, 0);
+global.audio.play(snd_shot, 0, 0);

@@ -61,6 +61,11 @@ function refresh_level_button(){
 			var c_level_data = level_list[level_index]
 			var inst = instance_create_depth(x-648,y+438-56*i,depth-1,obj_tower_cake_level_btn)
 			inst.btn_index = i
+			var _wf_n = min(15, array_length(level_list) - 15 * (current_page - 1))
+			inst.wf_y0 = inst.y
+			inst.wf_dur = 18
+			inst.wf_t = ui_anim_on(2) ? -(max(0, _wf_n - 1 - i) * 2) : 18
+			inst.image_alpha = (inst.wf_t < 0) ? 0 : 1
 			inst.level_index = level_index
 			inst.btn_text = string((level_index div 2) + 1) + "-" + string((level_index mod 2) + 1)
 		
@@ -110,6 +115,10 @@ for(var __index__ = 0 ; __index__ < array_length(level_list) ; __index__++){
 		}
 		if !is_card_unlocked(inst.target_card_id){
 			inst.unlocked = false
+		}
+		// 抽卡模式：跳过自动领取形态奖励
+		if (is_eternal_gacha_mode()) {
+			inst.unlocked = false;
 		}
 		if inst.unlocked{
 			upgrade_card_shape(inst.target_card_id,inst.target_shape)

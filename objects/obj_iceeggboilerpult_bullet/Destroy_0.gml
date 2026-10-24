@@ -25,4 +25,4 @@
 	        
 	    }
 	}
-	audio_play_sound(snd_egg_bullet,0,0)
+	global.audio.play(snd_egg_bullet,0,0)

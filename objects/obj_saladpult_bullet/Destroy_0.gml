@@ -16,4 +16,4 @@
 	        
 	    }
 	}
-	audio_play_sound(snd_salad_pilt_splash,0,0)
+	global.audio.play(snd_salad_pilt_splash,0,0)

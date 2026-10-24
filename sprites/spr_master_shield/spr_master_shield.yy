@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"master_shield",
+    "path":"folders/精灵/mod/germ/master_shield.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

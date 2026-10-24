@@ -1,5 +1,3 @@
-image_xscale = 1.8
-image_yscale = 1.8
 image_speed = 0
 
 erase_pos = [
@@ -25,3 +23,5 @@ c_radius = 214
 center_x = 0
 center_y = 0
 timer = 0
+image_xscale = 1.8
+image_yscale = 1.8

@@ -1,0 +1,163 @@
+package a_4718
+{
+   public class b_183
+   {
+      
+      public static const b_184:uint = 65537;
+      
+      public static const b_185:uint = 65538;
+      
+      public static const b_186:uint = 65539;
+      
+      public static const b_187:uint = 65540;
+      
+      public static const b_188:uint = 65541;
+      
+      public static const b_189:uint = 65542;
+      
+      public static const b_190:uint = 65543;
+      
+      public static const b_191:uint = 65544;
+      
+      public static const b_192:uint = 65545;
+      
+      public static const b_193:uint = 65546;
+      
+      public static const b_194:uint = 65547;
+      
+      public static const b_195:uint = 65548;
+      
+      public static const b_196:uint = 65549;
+      
+      public static const b_197:uint = 65550;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "b_184", 0, 5
+               findproperty QName(PackageNamespace(""),"b_184")
+               pushint 65537
+               initproperty QName(PackageNamespace(""),"b_184")
+               debug 1, "b_185", 1, 6
+               findproperty QName(PackageNamespace(""),"b_185")
+               pushint 65538
+               initproperty QName(PackageNamespace(""),"b_185")
+               debug 1, "b_186", 2, 7
+               findproperty QName(PackageNamespace(""),"b_186")
+               pushint 65539
+               initproperty QName(PackageNamespace(""),"b_186")
+               debug 1, "b_187", 3, 8
+               findproperty QName(PackageNamespace(""),"b_187")
+               pushint 65540
+               initproperty QName(PackageNamespace(""),"b_187")
+               debug 1, "b_188", 4, 9
+               findproperty QName(PackageNamespace(""),"b_188")
+               pushint 65541
+               initproperty QName(PackageNamespace(""),"b_188")
+               debug 1, "b_189", 5, 10
+               findproperty QName(PackageNamespace(""),"b_189")
+               pushint 65542
+               initproperty QName(PackageNamespace(""),"b_189")
+               debug 1, "b_190", 6, 11
+               findproperty QName(PackageNamespace(""),"b_190")
+               pushint 65543
+               initproperty QName(PackageNamespace(""),"b_190")
+               debug 1, "b_191", 7, 12
+               findproperty QName(PackageNamespace(""),"b_191")
+               pushint 65544
+               initproperty QName(PackageNamespace(""),"b_191")
+               debug 1, "b_192", 8, 13
+               findproperty QName(PackageNamespace(""),"b_192")
+               pushint 65545
+               initproperty QName(PackageNamespace(""),"b_192")
+               debug 1, "b_193", 9, 14
+               findproperty QName(PackageNamespace(""),"b_193")
+               pushint 65546
+               initproperty QName(PackageNamespace(""),"b_193")
+               debug 1, "b_194", 10, 15
+               findproperty QName(PackageNamespace(""),"b_194")
+               pushint 65547
+               initproperty QName(PackageNamespace(""),"b_194")
+               debug 1, "b_195", 11, 16
+               findproperty QName(PackageNamespace(""),"b_195")
+               pushint 65548
+               initproperty QName(PackageNamespace(""),"b_195")
+               debug 1, "b_196", 12, 17
+               findproperty QName(PackageNamespace(""),"b_196")
+               pushint 65549
+               initproperty QName(PackageNamespace(""),"b_196")
+               debug 1, "b_197", 13, 18
+               findproperty QName(PackageNamespace(""),"b_197")
+               pushint 65550
+               initproperty QName(PackageNamespace(""),"b_197")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_183()
+      {
+         method
+            name "com.aurora.constant.game.maogoutd:EnmShotTypeID/EnmShotTypeID"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+         debugline 3
+         findpropstrict Multiname("b_183",[PackageNamespace("a_4718")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 21
+         popscope
+         initproperty QName(PackageNamespace("a_4718"),"b_183")
+         debugfile "F:\\FlashKenai\\src;com\\aurora\\constant\\game\\maogoutd;EnmShotTypeID.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

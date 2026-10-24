@@ -1,0 +1,816 @@
+package com.aurora.ui.maogoutd.doctor
+{
+   import flash.events.SecurityErrorEvent;
+   import flash.events.StatusEvent;
+   import flash.net.LocalConnection;
+   import flash.net.SharedObject;
+   
+   public class GameDoctor
+   {
+      
+      private static var _instance:GameDoctor;
+      
+      public static const FILE_LOADING:String = "DocLoading";
+      
+      public static const FILE_LOADCOMPLETE:String = "DocLoadComplete";
+      
+      public static const FILE_CHECK:String = "DocCheck";
+      
+      public static const FILE_LOADERROR:String = "DocLoadError";
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 16
+               debug 1, "FILE_LOADING", 1, 22
+               findproperty QName(PackageNamespace(""),"FILE_LOADING")
+               pushstring "DocLoading"
+               initproperty QName(PackageNamespace(""),"FILE_LOADING")
+               debug 1, "FILE_LOADCOMPLETE", 2, 23
+               findproperty QName(PackageNamespace(""),"FILE_LOADCOMPLETE")
+               pushstring "DocLoadComplete"
+               initproperty QName(PackageNamespace(""),"FILE_LOADCOMPLETE")
+               debug 1, "FILE_CHECK", 3, 24
+               findproperty QName(PackageNamespace(""),"FILE_CHECK")
+               pushstring "DocCheck"
+               initproperty QName(PackageNamespace(""),"FILE_CHECK")
+               debug 1, "FILE_LOADERROR", 4, 25
+               findproperty QName(PackageNamespace(""),"FILE_LOADERROR")
+               pushstring "DocLoadError"
+               initproperty QName(PackageNamespace(""),"FILE_LOADERROR")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var rconn:LocalConnection;
+      
+      private var conn:LocalConnection;
+      
+      public var loadDoctorCache:Object;
+      
+      public var connDoctorStatusCache:Array;
+      
+      public var isDoctorOpen:Boolean;
+      
+      public var hasRevMsg:Boolean;
+      
+      private var thisDoctorID:Number = 0;
+      
+      private var rIDObj:SharedObject;
+      
+      public function GameDoctor()
+      {
+         method
+            name "com.aurora.ui.maogoutd.doctor:GameDoctor/GameDoctor"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                  debugline 36
+                  getlocal0
+                  pushscope
+                  debugline 37
+                  getlocal0
+                  constructsuper 0
+                  debugline 38
+                  getlocal0
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"hasRevMsg")
+                  debugline 39
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Object")
+                  constructprop QName(PackageNamespace(""),"Object"), 0
+                  initproperty QName(PackageNamespace(""),"loadDoctorCache")
+                  debugline 40
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Array")
+                  constructprop QName(PackageNamespace(""),"Array"), 0
+                  initproperty QName(PackageNamespace(""),"connDoctorStatusCache")
+                  debugline 41
+                  getlocal0
+                  callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"initConn"), 0
+                  debugline 42
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function get instance() : GameDoctor
+      {
+         trait getter QName(PackageNamespace(""),"instance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.doctor:GameDoctor/instance/get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                     debugline 64
+                     getlocal0
+                     pushscope
+                     debugline 66
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"_instance")
+                     pushnull
+                     ifne ofs001a
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"_instance")
+            ofs001a:
+                     debugline 68
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private function initConn() : void
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"initConn")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.doctor:GameDoctor/private:initConn"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 4
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 7
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                        debugline 44
+                        getlocal0
+                        pushscope
+                        debugline 46
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.net"),"LocalConnection")
+                        constructprop QName(PackageNamespace("flash.net"),"LocalConnection"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"conn")
+                        debugline 47
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"conn")
+                        pushstring "*"
+                        callpropvoid QName(PackageNamespace(""),"allowDomain"), 1
+                        debugline 48
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"conn")
+                        pushstring "*"
+                        callpropvoid QName(PackageNamespace(""),"allowInsecureDomain"), 1
+                        debugline 49
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"conn")
+                        getlocal0
+                        setproperty QName(PackageNamespace(""),"client")
+                        debugline 51
+                        getlocal0
+                        getlex QName(PackageNamespace("flash.net"),"SharedObject")
+                        pushstring "randomIDObj"
+                        pushstring "/"
+                        callproperty QName(PackageNamespace(""),"getLocal"), 2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                        debugline 52
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                        getproperty QName(PackageNamespace(""),"data")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"ConnectionRandomNumber")
+                        getproperty QName(PackageNamespace(""),"instance")
+                        getproperty QName(PackageNamespace(""),"randomID")
+                        setproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                        debugline 53
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                        callpropvoid QName(PackageNamespace(""),"flush"), 0
+               ofs0069:
+                        debugline 57
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"conn")
+                        pushstring "_noticeDoctorConnection"
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                        getproperty QName(PackageNamespace(""),"data")
+                        getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                        add
+                        callpropvoid QName(PackageNamespace(""),"connect"), 1
+               ofs0081:
+                        debugline 58
+                        jump ofs0095
+               ofs0087:
+                        getlocal0
+                        pushscope
+                        newcatch 0
+                        dup
+                        setlocal1
+                        dup
+                        pushscope
+                        swap
+                        setslot 1
+                        popscope
+                        kill 1
+               ofs0095:
+                        debugline 62
+                        returnvoid
+                     end ; code
+                     try from ofs0069 to ofs0081 target ofs0087 type QName(PackageNamespace(""),"Error") name QName(PackageNamespace(""),"e") end
+                  end ; body
+               end ; method
+            }
+            
+            public function pushInCache(tObj:Object, showStr:String, hideStr:String, extInfo:Object) : void
+            {
+               trait method QName(PackageNamespace(""),"pushInCache")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.doctor:GameDoctor/pushInCache"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"Object")
+                     param QName(PackageNamespace(""),"String")
+                     param QName(PackageNamespace(""),"String")
+                     param QName(PackageNamespace(""),"Object")
+                     paramname "SharedObject"
+                     paramname "SharedObject"
+                     paramname "SharedObject"
+                     paramname "SharedObject"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 11
+                        localcount 8
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                           debugline 71
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce_s
+                           setlocal 6
+                           debug 1, "tObj", 0, 71
+                           debug 1, "showStr", 1, 71
+                           debug 1, "hideStr", 2, 71
+                           debug 1, "extInfo", 3, 71
+                           debug 1, "str", 4, 73
+                           debug 1, "typeStr", 5, 74
+                           debugline 73
+                           getlocal1
+                           getproperty Multiname("type",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           getlex QName(PackageNamespace(""),"String")
+                           astypelate
+                           coerce_s
+                           setlocal 5
+                           debugline 75
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"isDoctorOpen")
+                           iftrue ofs00f5
+                           jump ofs00a7
+                  ofs0049:
+                           label
+                           debugline 80
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"loadDoctorCache")
+                           getlocal2
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "isCompleted"
+                           getlocal1
+                           getproperty Multiname("isCompleted",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           debugline 81
+                           jump ofs00f1
+                  ofs0070:
+                           label
+                           debugline 83
+                           getlocal 5
+                           pushbyte 1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           coerce_s
+                           setlocal 6
+                           debugline 84
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"connDoctorStatusCache")
+                           pushstring "type"
+                           getlocal 6
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           debugline 85
+                           jump ofs00f1
+                  ofs00a2:
+                           label
+                           jump ofs00f1
+                  ofs00a7:
+                           debugline 77
+                           getlocal 5
+                           pushbyte 0
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           setlocal 7
+                           pushstring "l"
+                           debugline 79
+                           getlocal 7
+                           ifstrictne ofs00c4
+                           pushbyte 0
+                           jump ofs00e1
+                  ofs00c4:
+                           pushstring "c"
+                           debugline 82
+                           getlocal 7
+                           ifstrictne ofs00d5
+                           pushbyte 1
+                           jump ofs00e1
+                  ofs00d5:
+                           jump ofs00df
+                           pushbyte 2
+                           jump ofs00df
+                  ofs00df:
+                           pushbyte 2
+                  ofs00e1:
+                           kill 7
+                           lookupswitch ofs00a2, [ofs0049, ofs0070, ofs00a2]
+                  ofs00f1:
+                           jump ofs0201
+                  ofs00f5:
+                           jump ofs01b7
+                  ofs00f9:
+                           label
+                           debugline 93
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"loadDoctorCache")
+                           getlocal2
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "isCompleted"
+                           getlocal1
+                           getproperty Multiname("isCompleted",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           debugline 94
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                           pushstring "_debugDoctorConnection"
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                           getproperty QName(PackageNamespace(""),"data")
+                           getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           add
+                           pushstring "transTwoObject"
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "isCompleted"
+                           getlocal1
+                           getproperty Multiname("isCompleted",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           callpropvoid QName(PackageNamespace(""),"send"), 3
+                           debugline 95
+                           jump ofs0201
+                  ofs0151:
+                           label
+                           debugline 97
+                           getlocal 5
+                           pushbyte 1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           coerce_s
+                           setlocal 6
+                           debugline 98
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"connDoctorStatusCache")
+                           pushstring "type"
+                           getlocal 6
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           debugline 99
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                           pushstring "_debugDoctorConnection"
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                           getproperty QName(PackageNamespace(""),"data")
+                           getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                           add
+                           pushstring "transTwoObject"
+                           pushstring "type"
+                           getlocal 6
+                           pushstring "id"
+                           getlocal2
+                           pushstring "hStr"
+                           getlocal3
+                           pushstring "eInfo"
+                           getlocal 4
+                           newobject 4
+                           callpropvoid QName(PackageNamespace(""),"send"), 3
+                           debugline 100
+                           jump ofs0201
+                  ofs01b2:
+                           label
+                           jump ofs0201
+                  ofs01b7:
+                           debugline 90
+                           getlocal 5
+                           pushbyte 0
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"charAt"), 1
+                           setlocal 7
+                           pushstring "l"
+                           debugline 92
+                           getlocal 7
+                           ifstrictne ofs01d4
+                           pushbyte 0
+                           jump ofs01f1
+                  ofs01d4:
+                           pushstring "c"
+                           debugline 96
+                           getlocal 7
+                           ifstrictne ofs01e5
+                           pushbyte 1
+                           jump ofs01f1
+                  ofs01e5:
+                           jump ofs01ef
+                           pushbyte 2
+                           jump ofs01ef
+                  ofs01ef:
+                           pushbyte 2
+                  ofs01f1:
+                           kill 7
+                           lookupswitch ofs01b2, [ofs00f9, ofs0151, ofs01b2]
+                  ofs0201:
+                           debugline 105
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function noticeHandler(ranNum:Number) : void
+               {
+                  trait method QName(PackageNamespace(""),"noticeHandler")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.doctor:GameDoctor/noticeHandler"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"Number")
+                        paramname "SharedObject"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 3
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                              debugline 107
+                              getlocal0
+                              pushscope
+                              debug 1, "ranNum", 0, 107
+                              debugline 109
+                              getlocal1
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"thisDoctorID")
+                              ifeq ofs0026
+                              debugline 111
+                              getlocal0
+                              pushfalse
+                              initproperty QName(PackageNamespace(""),"hasRevMsg")
+                              debugline 112
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"thisDoctorID")
+                     ofs0026:
+                              debugline 115
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"hasRevMsg")
+                              iftrue ofs0090
+                              debugline 117
+                              getlocal0
+                              pushtrue
+                              initproperty QName(PackageNamespace(""),"hasRevMsg")
+                              debugline 119
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                              pushnull
+                              ifne ofs0075
+                              debugline 121
+                              getlocal0
+                              findpropstrict QName(PackageNamespace("flash.net"),"LocalConnection")
+                              constructprop QName(PackageNamespace("flash.net"),"LocalConnection"), 0
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                              debugline 122
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                              getlex QName(PackageNamespace("flash.events"),"StatusEvent")
+                              getproperty QName(PackageNamespace(""),"STATUS")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"onGameDoctorStatus")
+                              callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                              debugline 123
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                              getlex QName(PackageNamespace("flash.events"),"SecurityErrorEvent")
+                              getproperty QName(PackageNamespace(""),"SECURITY_ERROR")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"onSecError")
+                              callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     ofs0075:
+                              debugline 126
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                              pushstring "_debugDoctorConnection"
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                              getproperty QName(PackageNamespace(""),"data")
+                              getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                              add
+                              pushstring "stopNotice"
+                              callpropvoid QName(PackageNamespace(""),"send"), 2
+                     ofs0090:
+                              debugline 128
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function noticeCloseHandler() : void
+                  {
+                     trait method QName(PackageNamespace(""),"noticeCloseHandler")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.doctor:GameDoctor/noticeCloseHandler"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                 debugline 130
+                                 getlocal0
+                                 pushscope
+                                 debugline 132
+                                 getlocal0
+                                 pushfalse
+                                 initproperty QName(PackageNamespace(""),"isDoctorOpen")
+                                 debugline 133
+                                 getlocal0
+                                 pushfalse
+                                 initproperty QName(PackageNamespace(""),"hasRevMsg")
+                                 debugline 134
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function hasStopNotice() : void
+                     {
+                        trait method QName(PackageNamespace(""),"hasStopNotice")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.doctor:GameDoctor/hasStopNotice"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 5
+                                 localcount 5
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                    debugline 136
+                                    getlocal0
+                                    pushscope
+                                    pushnull
+                                    coerce_s
+                                    setlocal1
+                                    pushnull
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal2
+                                    debug 1, "key", 0, 138
+                                    debug 1, "item", 1, 143
+                                    debugline 138
+                                    pushbyte 0
+                                    setlocal3
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"loadDoctorCache")
+                                    coerce_a
+                                    setlocal 4
+                                    jump ofs0059
+                           ofs002e:
+                                    label
+                                    getlocal 4
+                                    getlocal3
+                                    nextname
+                                    coerce_s
+                                    setlocal1
+                                    debugline 140
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                                    pushstring "_debugDoctorConnection"
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                                    getproperty QName(PackageNamespace(""),"data")
+                                    getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                                    add
+                                    pushstring "transTwoObject"
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"loadDoctorCache")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                                    callpropvoid QName(PackageNamespace(""),"send"), 3
+                           ofs0059:
+                                    debugline 138
+                                    hasnext2 4, 3
+                                    iftrue ofs002e
+                                    kill 4
+                                    kill 3
+                                    debugline 143
+                                    pushbyte 0
+                                    setlocal3
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"connDoctorStatusCache")
+                                    coerce_a
+                                    setlocal 4
+                                    jump ofs009d
+                           ofs0078:
+                                    label
+                                    getlocal 4
+                                    getlocal3
+                                    nextvalue
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal2
+                                    debugline 145
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rconn")
+                                    pushstring "_debugDoctorConnection"
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"rIDObj")
+                                    getproperty QName(PackageNamespace(""),"data")
+                                    getproperty Multiname("connectionID",[PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.doctor"),PrivateNamespace("GameDoctor.as$519"),PackageInternalNs("com.aurora.ui.maogoutd.doctor"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),StaticProtectedNs("com.aurora.ui.maogoutd.doctor:GameDoctor")])
+                                    add
+                                    pushstring "transTwoObject"
+                                    getlocal2
+                                    callpropvoid QName(PackageNamespace(""),"send"), 3
+                           ofs009d:
+                                    debugline 143
+                                    hasnext2 4, 3
+                                    iftrue ofs0078
+                                    kill 4
+                                    kill 3
+                                    debugline 148
+                                    getlocal0
+                                    pushtrue
+                                    initproperty QName(PackageNamespace(""),"isDoctorOpen")
+                                    debugline 149
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function onGameDoctorStatus(e:StatusEvent) : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"onGameDoctorStatus")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.doctor:GameDoctor/private:onGameDoctorStatus"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("flash.events"),"StatusEvent")
+                                 paramname "SharedObject"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 2
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                       debugline 151
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "e", 0, 151
+                                       debugline 153
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function onSecError(e:SecurityErrorEvent) : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.doctor:GameDoctor"),"onSecError")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.doctor:GameDoctor/private:onSecError"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("flash.events"),"SecurityErrorEvent")
+                                    paramname "SharedObject"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 2
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                          debugline 155
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "e", 0, 155
+                                          debugline 158
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                           }
+                        }
+                        
+                        method
+                           name ""
+                           returns null
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 1
+                              maxscopedepth 3
+                              
+                              code
+                                 getlocal0
+                                 pushscope
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                 debugline 14
+                                 findpropstrict Multiname("GameDoctor",[PackageNamespace("com.aurora.ui.maogoutd.doctor")])
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 pushscope
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 newclass 113
+                                 popscope
+                                 initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\doctor;GameDoctor.as"
+                                 debugline 1
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                        

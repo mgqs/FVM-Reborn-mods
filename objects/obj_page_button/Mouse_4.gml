@@ -10,4 +10,4 @@ if (action == "prev_page") {
         current_settings = noone; // 强制重建页面
     }
 }
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)

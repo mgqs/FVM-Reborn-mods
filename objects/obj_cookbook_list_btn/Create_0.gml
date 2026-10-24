@@ -9,4 +9,9 @@ spr_index = 0
 cookbook_id = "nanxiang_bun"
 cookbook_rank = 0
 
+wf_t = 999
+wf_dur = 18
+wf_off = 0
+wf_a = 1
+
 banding_btn = instance_create_depth(x+280,y,depth-1,obj_equipcookbook_btn)

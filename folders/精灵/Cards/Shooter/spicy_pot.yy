@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spicy_pot",
+  "folderPath":"folders/精灵/Cards/Shooter/spicy_pot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spicy_pot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8addc2f5-3515-42c2-ba1d-485f4499d7a2","path":"sprites/spr_spicy_pot/spr_spicy_pot.yy",},
+    {"name":"6dd1cecc-88d1-4a8a-ad3c-78a6c618f7f5","path":"sprites/spr_spicy_pot_1/spr_spicy_pot_1.yy",},
+    {"name":"f6a59b1f-8428-4e41-9a84-fd183a1a73b3","path":"sprites/spr_spicy_pot_2/spr_spicy_pot_2.yy",}
+  ],
+}

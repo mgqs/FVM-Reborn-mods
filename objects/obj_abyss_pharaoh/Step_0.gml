@@ -2,6 +2,25 @@ if global.is_paused{
 	exit
 }
 
+// Register to global enemy type registry
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
+}
+
 if flash_value > 0 {
 	flash_value -= 10
 }
@@ -203,34 +222,67 @@ switch state{
 		else{
 			image_index = floor(timer/5) mod 12 + 12
 		}
+		
+		// 在技能开始时预先检查是否有可用陆地行，如果没有则直接跳过此技能
+		if timer == 0 {
+			var _has_land = false
+			if (variable_global_exists("row_feature") && is_array(global.row_feature)) {
+				for(var i = 0; i < global.grid_rows; i++) {
+					if (global.row_feature[i] == "land") {
+						_has_land = true
+						break
+					}
+				}
+			}
+			if (!_has_land) {
+				// 没有陆地行，跳过此技能，直接进入下一个
+				skill_cycle += 1
+				timer = 0
+				move_target_row = irandom_range(0, global.grid_rows-1)
+				var land_pos = get_world_position_from_grid(10, move_target_row)
+				y_move_speed = (land_pos.y+33 - y)/180
+				state = BOSS_STATE.MOVE
+				jump_times = 0
+				break
+			}
+		}
+		
 		if timer == 7*5+24*5*jump_times{
 			var avaliable_line = []
-			for(var i = 0 ; i < global.grid_rows-1;i++){
-				var lf = global.row_feature[i]
-				if lf == "land"{
-					array_push(avaliable_line,i)
-				}
-			}
-			var linei = irandom_range(0,array_length(avaliable_line)-1)
-			var hole_col = irandom_range(7,8)
-			var hole_row = avaliable_line[linei]
-			var hole_pos = get_world_position_from_grid(hole_col,hole_row)
-			with obj_card_parent{
-				if grid_row == hole_row && grid_col == hole_col && plant_id != "player" && !invincible{
-					if hp >= max_hp{
-						obj_task_manager.card_loss++
+			if (variable_global_exists("row_feature") && is_array(global.row_feature)) {
+				for(var i = 0 ; i < global.grid_rows; i++){
+					var lf = global.row_feature[i]
+					if lf == "land"{
+						array_push(avaliable_line, i)
 					}
-					instance_destroy()
 				}
 			}
-			instance_create_depth(hole_pos.x,hole_pos.y,-5,obj_pharaoh_hole)
+			var _avaliable_count = array_length(avaliable_line)
+			if (_avaliable_count > 0) {
+				var linei = irandom_range(0, _avaliable_count - 1)
+				// 防御性检查：确保索引有效
+				if (linei < 0) linei = 0
+				if (linei >= _avaliable_count) linei = _avaliable_count - 1
+				var hole_col = irandom_range(7, 8)
+				var hole_row = avaliable_line[linei]
+				var hole_pos = get_world_position_from_grid(hole_col, hole_row)
+				with obj_card_parent{
+					if grid_row == hole_row && grid_col == hole_col && plant_id != "player" && !invincible{
+						if hp >= max_hp{
+							obj_task_manager.card_loss++
+						}
+						instance_destroy()
+					}
+				}
+				instance_create_depth(hole_pos.x, hole_pos.y, -5, obj_pharaoh_hole)
+			}
 			jump_times++
 		}
 		if timer >= 12*5*8-1{
 			skill_cycle += 1
 			timer = 0
-			move_target_row = irandom_range(0,global.grid_rows-1)
-			var land_pos = get_world_position_from_grid(10,move_target_row)
+			move_target_row = irandom_range(0, global.grid_rows-1)
+			var land_pos = get_world_position_from_grid(10, move_target_row)
 			y_move_speed = (land_pos.y+33 - y)/180
 			state = BOSS_STATE.MOVE
 			jump_times = 0

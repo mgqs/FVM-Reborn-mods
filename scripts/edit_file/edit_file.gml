@@ -7,12 +7,12 @@ function unlock_card(card_id, level, shape, skill) {
     // 检查卡片是否已解锁
     for (var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
         if (global.save_data.unlocked_cards[i].id == card_id) {
-            // 卡片已存在，更新等级和转职
-            global.save_data.unlocked_cards[i].level = level;
-            global.save_data.unlocked_cards[i].shape = shape;
-			global.save_data.unlocked_cards[i].skill = skill;
-			global.save_data.unlocked_cards[i].max_shape = shape;
-			global.save_data.unlocked_cards[i].max_level = level;
+            // 卡片已存在，只升级不降级（取最大值）
+            global.save_data.unlocked_cards[i].level = max(global.save_data.unlocked_cards[i].level, level);
+            global.save_data.unlocked_cards[i].shape = max(global.save_data.unlocked_cards[i].shape, shape);
+			global.save_data.unlocked_cards[i].skill = max(global.save_data.unlocked_cards[i].skill, skill);
+			global.save_data.unlocked_cards[i].max_shape = max(global.save_data.unlocked_cards[i].max_shape, shape);
+			global.save_data.unlocked_cards[i].max_level = max(global.save_data.unlocked_cards[i].max_level, level);
             save_file(global.save_slot); // 立即保存
             return true;
         }
@@ -48,6 +48,33 @@ function remove_card(card_id) {
     
     // 未找到卡片
     return false;
+}
+
+/// @function cleanup_orphan_cards()
+/// @desc 移除已解锁但已不存在于卡池(player_deck)的孤儿卡，彻底消除强化界面中的空卡片
+function cleanup_orphan_cards() {
+    var removed = 0;
+    for (var i = array_length(global.save_data.unlocked_cards) - 1; i >= 0; i--) {
+        var entry = global.save_data.unlocked_cards[i];
+        var cid;
+        var cshape = 0;
+        if (is_struct(entry)) {
+            cid = entry.id;
+            cshape = entry.shape;
+        } else {
+            cid = entry;
+        }
+        if (deck_get_card_data(cid, cshape) == noone) {
+            // Disabled/uninstalled external packages retain the player's progress.
+            if (external_mod_known(cid)) continue;
+            show_debug_message("清理孤儿卡: " + string(cid));
+            array_delete(global.save_data.unlocked_cards, i, 1);
+            removed++;
+        }
+    }
+    if (removed > 0)
+        save_file(global.save_slot);
+    return removed;
 }
 
 /// @function upgrade_card(card_id, levels)
@@ -170,7 +197,8 @@ function get_completed_levels() {
 /// @param {string} weapon_id 武器ID
 function is_weapon_unlocked(weapon_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_weapons); i++) {
-        if (global.save_data.unlocked_weapons[i].id == weapon_id) {
+        var _w = global.save_data.unlocked_weapons[i];
+        if ((is_struct(_w) ? _w.id : _w) == weapon_id) {
             return true;
         }
     }
@@ -193,7 +221,8 @@ function unlock_weapon(weapon_id){
 /// @param {string} gem_id 宝石ID
 function is_gem_unlocked(gem_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_gems); i++) {
-        if (global.save_data.unlocked_gems[i].id == gem_id) {
+        var _g = global.save_data.unlocked_gems[i];
+        if ((is_struct(_g) ? _g.id : _g) == gem_id) {
             return true;
         }
     }
@@ -245,4 +274,101 @@ function edit_gem_max_level(gem_id,new_level){
 			global.save_data.unlocked_gems[i].max_level = new_level
 		}
 	}
+}
+
+function get_card_fail_streak(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_fail_streak(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_fail_streak(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_fail_streak(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+// 强化失败累计的成功率加成（每次失败 +4~7 的随机值，成功清零；旧存档没这个字段就是 0）
+function get_card_craft_bonus(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			if variable_struct_exists(global.save_data.unlocked_cards[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_craft_bonus(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_craft_bonus(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			if variable_struct_exists(global.save_data.unlocked_gems[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_craft_bonus(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
 }

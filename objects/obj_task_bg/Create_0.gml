@@ -7,6 +7,7 @@ button_select = -1
 target_task_index = -1
 
 current_task_list = []
+y_offset = 0
 
 instance_create_depth(x+680,y-450,depth-1,obj_closetask_btn)
 instance_create_depth(x+300,y+400,depth-1,obj_task_claim_btn)
@@ -59,6 +60,7 @@ function check_card_upgrade(){
 function refresh_task_list(){
 	check_card_upgrade()
 	instance_destroy(obj_task_line_bg)
+	y_offset = 0
 	//target_task_index = -1
 	current_task_list = []
 	var saved_task_list = global.save_data.tasks
@@ -70,8 +72,12 @@ function refresh_task_list(){
 			array_push(current_task_list,saved_task_list[i])
 			var inst = instance_create_depth(x-400,y-130+52*(array_length(current_task_list)-1),depth-1,obj_task_line_bg)
 			inst.btn_index = array_length(current_task_list)-1
+			inst.wf_t = ui_anim_on(2) ? -(inst.btn_index * 2) : 18
 			inst.task_title = task_data.title
 			inst.state = saved_task_list[i].state
 		}
 	}
 }
+
+panel_anim_init(id, 0.28, 0.18, 260)
+panel_anim_kids(id, [obj_closetask_btn, obj_task_claim_btn, obj_task_line_bg, obj_task_select_btn])

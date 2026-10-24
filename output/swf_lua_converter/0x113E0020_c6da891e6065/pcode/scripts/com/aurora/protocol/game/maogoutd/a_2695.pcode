@@ -1,0 +1,208 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2695 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_nTotalIntruderWaveNum:int;
+      
+      public function a_2695()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyGameStart/CNotifyGameStart"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                  debugline 12
+                  getlocal0
+                  pushscope
+                  debugline 13
+                  getlocal0
+                  constructsuper 0
+                  debugline 14
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyGameStart/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyGameStart/CNotifyGameStart"
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyGameStart/CNotifyGameStart"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 5
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                     debugline 16
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 16
+                     debug 1, "encode_length", 1, 16
+                     debug 1, "propertyArray", 2, 18
+                     pushstring "m_nTotalIntruderWaveNum"
+                     pushstring "int16"
+                     debugline 19
+                     newarray 2
+                     newarray 1
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 22
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyGameStart/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyGameStart/CNotifyGameStart"
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyGameStart/CNotifyGameStart"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 5
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                        debugline 25
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 25
+                        debug 1, "decode_length", 1, 25
+                        debug 1, "propertyArray", 2, 27
+                        pushstring "m_nTotalIntruderWaveNum"
+                        pushstring "int16"
+                        debugline 28
+                        newarray 2
+                        newarray 1
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 31
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyGameStart/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                           debugline 34
+                           getlocal0
+                           pushscope
+                           debugline 36
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2695",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 31
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"a_2695")
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyGameStart.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

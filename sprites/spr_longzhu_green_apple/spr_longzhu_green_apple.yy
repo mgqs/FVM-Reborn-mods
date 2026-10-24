@@ -1,0 +1,1365 @@
+{
+  "$GMSprite": "v2",
+  "%Name": "spr_longzhu_green_apple",
+  "bboxMode": 0,
+  "bbox_bottom": 55,
+  "bbox_left": 0,
+  "bbox_right": 58,
+  "bbox_top": 0,
+  "collisionKind": 4,
+  "collisionTolerance": 0,
+  "DynamicTexturePage": false,
+  "edgeFiltering": false,
+  "For3D": false,
+  "frames": [
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "5420f7d1-4d08-4656-a733-5ee37de7b744",
+      "name": "5420f7d1-4d08-4656-a733-5ee37de7b744",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "5d2e4c94-957a-423a-8998-3d8582fe4994",
+      "name": "5d2e4c94-957a-423a-8998-3d8582fe4994",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "1f452ceb-45c7-4911-820d-a17a7c9b464d",
+      "name": "1f452ceb-45c7-4911-820d-a17a7c9b464d",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "c5b186dd-b30b-4fe7-a906-68474b527cf0",
+      "name": "c5b186dd-b30b-4fe7-a906-68474b527cf0",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "5bc7dde3-302e-455e-a968-9b11650ea797",
+      "name": "5bc7dde3-302e-455e-a968-9b11650ea797",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ff045b2d-a19f-4d1f-b054-883f20718b7e",
+      "name": "ff045b2d-a19f-4d1f-b054-883f20718b7e",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f34987d2-85c6-48f6-8e6d-3a2be97ff5bf",
+      "name": "f34987d2-85c6-48f6-8e6d-3a2be97ff5bf",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ec584b3f-49f7-4778-9a5a-6cfebe87790d",
+      "name": "ec584b3f-49f7-4778-9a5a-6cfebe87790d",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "278788b9-9f84-4a86-b78c-48a88ad63bc3",
+      "name": "278788b9-9f84-4a86-b78c-48a88ad63bc3",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "cc5924a0-d97a-4d43-8cfb-f9be0d724996",
+      "name": "cc5924a0-d97a-4d43-8cfb-f9be0d724996",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "73648d6e-d3b3-4ad4-9b04-c8bc1dacda85",
+      "name": "73648d6e-d3b3-4ad4-9b04-c8bc1dacda85",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "2c86538c-1ac4-4e8b-863e-685e90230991",
+      "name": "2c86538c-1ac4-4e8b-863e-685e90230991",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "9dc72256-4c5d-43c0-92d1-54871be3310e",
+      "name": "9dc72256-4c5d-43c0-92d1-54871be3310e",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "82a06f5e-6ac1-4fa5-b473-9d53cc3e6a05",
+      "name": "82a06f5e-6ac1-4fa5-b473-9d53cc3e6a05",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "5c9bd7f0-c323-4e3f-aae2-86b0ad8f3bfd",
+      "name": "5c9bd7f0-c323-4e3f-aae2-86b0ad8f3bfd",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "da068bcc-bbcc-4b52-b7a5-a9de758b8ad4",
+      "name": "da068bcc-bbcc-4b52-b7a5-a9de758b8ad4",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "810555ab-bc96-4143-ac6e-e3d48e85b621",
+      "name": "810555ab-bc96-4143-ac6e-e3d48e85b621",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "b39d2f3b-eb16-4e75-9a96-5335b10ae2cc",
+      "name": "b39d2f3b-eb16-4e75-9a96-5335b10ae2cc",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "d35a4efe-3594-48d4-90cc-4087ed9e178b",
+      "name": "d35a4efe-3594-48d4-90cc-4087ed9e178b",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ffe25f3d-b4d2-4319-bc50-8b9fd18f49a4",
+      "name": "ffe25f3d-b4d2-4319-bc50-8b9fd18f49a4",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "297f8566-726f-4f29-a2cb-34b5377032d6",
+      "name": "297f8566-726f-4f29-a2cb-34b5377032d6",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "2f9aca61-edba-4604-ba7e-16a754842630",
+      "name": "2f9aca61-edba-4604-ba7e-16a754842630",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "76172617-2f88-47c2-9e6f-05ad66fe7a21",
+      "name": "76172617-2f88-47c2-9e6f-05ad66fe7a21",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "e2c3870b-a7d7-4b67-9f46-5c5e646a87aa",
+      "name": "e2c3870b-a7d7-4b67-9f46-5c5e646a87aa",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "ef611bc6-3ce8-450d-b659-c4e9408638d6",
+      "name": "ef611bc6-3ce8-450d-b659-c4e9408638d6",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "7f33ef74-64b6-4e2d-913c-f8a7854feac6",
+      "name": "7f33ef74-64b6-4e2d-913c-f8a7854feac6",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "bb08fb00-ef09-4524-a4a2-3f51cce46962",
+      "name": "bb08fb00-ef09-4524-a4a2-3f51cce46962",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "e14892ef-72d1-4fa3-8d22-0b23888b9cab",
+      "name": "e14892ef-72d1-4fa3-8d22-0b23888b9cab",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f1de7963-7d61-4110-abc4-8951ccd427f6",
+      "name": "f1de7963-7d61-4110-abc4-8951ccd427f6",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "4ac0990b-5247-431b-bf3e-29f9d9e36553",
+      "name": "4ac0990b-5247-431b-bf3e-29f9d9e36553",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "bd24434d-a049-4072-a56e-a328e2e4476f",
+      "name": "bd24434d-a049-4072-a56e-a328e2e4476f",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "489b67de-9024-44e7-825f-97409511f56e",
+      "name": "489b67de-9024-44e7-825f-97409511f56e",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "dfebfee8-c23f-42dc-b227-bf6a1d84f19e",
+      "name": "dfebfee8-c23f-42dc-b227-bf6a1d84f19e",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "dd4fa6ba-468b-4d40-b198-ac9b8e0e8eb0",
+      "name": "dd4fa6ba-468b-4d40-b198-ac9b8e0e8eb0",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "3b999d0e-3dfc-4a5e-a916-b0e20774adfc",
+      "name": "3b999d0e-3dfc-4a5e-a916-b0e20774adfc",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "cb8819ec-60af-4867-ae9a-165370105883",
+      "name": "cb8819ec-60af-4867-ae9a-165370105883",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "9ef3c0f6-5c63-489d-a255-fd2a856f4f45",
+      "name": "9ef3c0f6-5c63-489d-a255-fd2a856f4f45",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "9ef64142-c9b6-49f8-88ed-5814545a1cd6",
+      "name": "9ef64142-c9b6-49f8-88ed-5814545a1cd6",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "34e159e6-efb6-42fe-86aa-41f08e465645",
+      "name": "34e159e6-efb6-42fe-86aa-41f08e465645",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "f4789ae8-2a3a-41d5-9d38-01fc3732ec76",
+      "name": "f4789ae8-2a3a-41d5-9d38-01fc3732ec76",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "d97af7a6-df98-4491-87e8-3dcbb9952afd",
+      "name": "d97af7a6-df98-4491-87e8-3dcbb9952afd",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "4899f34a-ba61-4f1f-9a92-55af008a8a35",
+      "name": "4899f34a-ba61-4f1f-9a92-55af008a8a35",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "0ef2c69e-3b5c-43fa-af7e-ada4d7f5a31f",
+      "name": "0ef2c69e-3b5c-43fa-af7e-ada4d7f5a31f",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    }
+  ],
+  "gridX": 0,
+  "gridY": 0,
+  "height": 56,
+  "HTile": false,
+  "layers": [
+    {
+      "$GMImageLayer": "",
+      "%Name": "533f1054-d17d-4c7e-87b6-dea47a01d902",
+      "blendMode": 0,
+      "displayName": "default",
+      "isLocked": false,
+      "name": "533f1054-d17d-4c7e-87b6-dea47a01d902",
+      "opacity": 100,
+      "resourceType": "GMImageLayer",
+      "resourceVersion": "2.0",
+      "visible": true
+    }
+  ],
+  "name": "spr_longzhu_green_apple",
+  "nineSlice": null,
+  "origin": 9,
+  "parent": {
+    "name": "longzhu",
+    "path": "folders/精灵/Enemy/longyuan/longzhu.yy"
+  },
+  "preMultiplyAlpha": false,
+  "resourceType": "GMSprite",
+  "resourceVersion": "2.0",
+  "sequence": {
+    "$GMSequence": "v1",
+    "%Name": "spr_longzhu_green_apple",
+    "autoRecord": true,
+    "backdropHeight": 768,
+    "backdropImageOpacity": 0.5,
+    "backdropImagePath": "",
+    "backdropWidth": 1366,
+    "backdropXOffset": 0,
+    "backdropYOffset": 0,
+    "events": {
+      "$KeyframeStore<MessageEventKeyframe>": "",
+      "Keyframes": [],
+      "resourceType": "KeyframeStore<MessageEventKeyframe>",
+      "resourceVersion": "2.0"
+    },
+    "eventStubScript": null,
+    "eventToFunction": {},
+    "length": 43,
+    "lockOrigin": false,
+    "moments": {
+      "$KeyframeStore<MomentsEventKeyframe>": "",
+      "Keyframes": [],
+      "resourceType": "KeyframeStore<MomentsEventKeyframe>",
+      "resourceVersion": "2.0"
+    },
+    "name": "spr_longzhu_green_apple",
+    "playback": 1,
+    "playbackSpeed": 10,
+    "playbackSpeedType": 0,
+    "resourceType": "GMSequence",
+    "resourceVersion": "2.0",
+    "showBackdrop": true,
+    "showBackdropImage": false,
+    "timeUnits": 1,
+    "tracks": [
+      {
+        "$GMSpriteFramesTrack": "",
+        "builtinName": 0,
+        "events": [],
+        "inheritsTrackColour": true,
+        "interpolation": 1,
+        "isCreationTrack": false,
+        "keyframes": {
+          "$KeyframeStore<SpriteFrameKeyframe>": "",
+          "Keyframes": [
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "5420f7d1-4d08-4656-a733-5ee37de7b744",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "1f3e4119-397f-431a-beb5-e4311164aa9a",
+              "IsCreationKey": false,
+              "Key": 0,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "5d2e4c94-957a-423a-8998-3d8582fe4994",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b6a6d230-8718-4ec4-8d91-6a72e4e5a6bb",
+              "IsCreationKey": false,
+              "Key": 1,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "1f452ceb-45c7-4911-820d-a17a7c9b464d",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "6658a644-9d69-462b-891f-1b810377e619",
+              "IsCreationKey": false,
+              "Key": 2,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "c5b186dd-b30b-4fe7-a906-68474b527cf0",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a949a6d1-7f10-40d7-bb6d-c637ba868eed",
+              "IsCreationKey": false,
+              "Key": 3,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "5bc7dde3-302e-455e-a968-9b11650ea797",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b0ada316-447f-43f9-8722-0c957f451b78",
+              "IsCreationKey": false,
+              "Key": 4,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ff045b2d-a19f-4d1f-b054-883f20718b7e",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "ef00e8cf-ae69-4a57-885a-1dd9fedd44d6",
+              "IsCreationKey": false,
+              "Key": 5,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f34987d2-85c6-48f6-8e6d-3a2be97ff5bf",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "078ed408-3e35-4859-89cb-02e65ddc1514",
+              "IsCreationKey": false,
+              "Key": 6,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ec584b3f-49f7-4778-9a5a-6cfebe87790d",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "02173767-5048-4fba-8199-57348f655be3",
+              "IsCreationKey": false,
+              "Key": 7,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "278788b9-9f84-4a86-b78c-48a88ad63bc3",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "f058db63-b066-443a-93cf-46f6c6d5879e",
+              "IsCreationKey": false,
+              "Key": 8,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "cc5924a0-d97a-4d43-8cfb-f9be0d724996",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "77936cb3-ecad-440a-b2ab-c2430f649f52",
+              "IsCreationKey": false,
+              "Key": 9,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "73648d6e-d3b3-4ad4-9b04-c8bc1dacda85",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "7db8ef96-4254-4299-a1eb-00da1b2a0788",
+              "IsCreationKey": false,
+              "Key": 10,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "2c86538c-1ac4-4e8b-863e-685e90230991",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "890e6b62-a3bd-44ca-9e24-b17c55aaa5aa",
+              "IsCreationKey": false,
+              "Key": 11,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "9dc72256-4c5d-43c0-92d1-54871be3310e",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "76f56148-7e1a-43cd-acaf-fb52ace8d366",
+              "IsCreationKey": false,
+              "Key": 12,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "82a06f5e-6ac1-4fa5-b473-9d53cc3e6a05",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "3d6840b7-9d19-49d4-8dab-22e7f10f5df8",
+              "IsCreationKey": false,
+              "Key": 13,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "5c9bd7f0-c323-4e3f-aae2-86b0ad8f3bfd",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "1aa4beb0-7a82-4177-a830-e19177453446",
+              "IsCreationKey": false,
+              "Key": 14,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "da068bcc-bbcc-4b52-b7a5-a9de758b8ad4",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a9a9ff33-48d4-4ae7-b88f-4e155f2c1c93",
+              "IsCreationKey": false,
+              "Key": 15,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "810555ab-bc96-4143-ac6e-e3d48e85b621",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "67747cc2-85bb-4923-8e22-937900209178",
+              "IsCreationKey": false,
+              "Key": 16,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "b39d2f3b-eb16-4e75-9a96-5335b10ae2cc",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a909d55c-00b0-44f8-8318-bb6b282fedb0",
+              "IsCreationKey": false,
+              "Key": 17,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "d35a4efe-3594-48d4-90cc-4087ed9e178b",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "fe211890-74c5-4803-9a81-99e6dc2ce8b0",
+              "IsCreationKey": false,
+              "Key": 18,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ffe25f3d-b4d2-4319-bc50-8b9fd18f49a4",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "5a3bbf8f-f5ba-4cb4-ae5c-3d194e63fa8c",
+              "IsCreationKey": false,
+              "Key": 19,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "297f8566-726f-4f29-a2cb-34b5377032d6",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "bdb393ec-8771-4da4-b159-dd8ecafd1f9a",
+              "IsCreationKey": false,
+              "Key": 20,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "2f9aca61-edba-4604-ba7e-16a754842630",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "e9006c58-bcf5-44c0-ba99-98a3cf728bd6",
+              "IsCreationKey": false,
+              "Key": 21,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "76172617-2f88-47c2-9e6f-05ad66fe7a21",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "105a99fd-7107-40a8-be4c-9e312d270a4a",
+              "IsCreationKey": false,
+              "Key": 22,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "e2c3870b-a7d7-4b67-9f46-5c5e646a87aa",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b4bf1813-c84c-4a5a-b0ca-033f57e45478",
+              "IsCreationKey": false,
+              "Key": 23,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "ef611bc6-3ce8-450d-b659-c4e9408638d6",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "8a53fd80-2c60-4514-873c-617216f0fbff",
+              "IsCreationKey": false,
+              "Key": 24,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "7f33ef74-64b6-4e2d-913c-f8a7854feac6",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "f033f72f-14a0-4e08-8b4c-a6f8278a0db1",
+              "IsCreationKey": false,
+              "Key": 25,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "bb08fb00-ef09-4524-a4a2-3f51cce46962",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "40f55c57-ab08-4ad3-8288-46e4e7fe868a",
+              "IsCreationKey": false,
+              "Key": 26,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "e14892ef-72d1-4fa3-8d22-0b23888b9cab",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "87df77ba-2583-40cc-ac9b-3bfd7291c2f1",
+              "IsCreationKey": false,
+              "Key": 27,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f1de7963-7d61-4110-abc4-8951ccd427f6",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "d0afd937-5e3d-4b51-b353-4a18a3d9f0f9",
+              "IsCreationKey": false,
+              "Key": 28,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "4ac0990b-5247-431b-bf3e-29f9d9e36553",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a9ee64bd-0585-46f5-9876-0b90c1dcc953",
+              "IsCreationKey": false,
+              "Key": 29,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "bd24434d-a049-4072-a56e-a328e2e4476f",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "b62ce3f5-9e31-40e6-983e-6c4afa7f818b",
+              "IsCreationKey": false,
+              "Key": 30,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "489b67de-9024-44e7-825f-97409511f56e",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "c57ba439-e8ba-4579-83c7-dc8db356b05e",
+              "IsCreationKey": false,
+              "Key": 31,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "dfebfee8-c23f-42dc-b227-bf6a1d84f19e",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "5e4ce344-67b9-496a-8340-afbaacb5fa12",
+              "IsCreationKey": false,
+              "Key": 32,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "dd4fa6ba-468b-4d40-b198-ac9b8e0e8eb0",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "98782161-862d-4470-a925-1a4c29af5e4d",
+              "IsCreationKey": false,
+              "Key": 33,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "3b999d0e-3dfc-4a5e-a916-b0e20774adfc",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "8f9ef56a-aa09-4bff-b340-2de09557eadd",
+              "IsCreationKey": false,
+              "Key": 34,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "cb8819ec-60af-4867-ae9a-165370105883",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "0d6272a6-d7d6-4f58-ba85-060173516c01",
+              "IsCreationKey": false,
+              "Key": 35,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "9ef3c0f6-5c63-489d-a255-fd2a856f4f45",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "9333b4c3-7a8c-430a-b68d-97c4810afbf1",
+              "IsCreationKey": false,
+              "Key": 36,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "9ef64142-c9b6-49f8-88ed-5814545a1cd6",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "4f51a85f-5397-4096-a944-15031af80894",
+              "IsCreationKey": false,
+              "Key": 37,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "34e159e6-efb6-42fe-86aa-41f08e465645",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "d22e312a-3748-4aa4-ac7d-972b3018bd3f",
+              "IsCreationKey": false,
+              "Key": 38,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "f4789ae8-2a3a-41d5-9d38-01fc3732ec76",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a8300c19-f41c-4875-a3fb-da519ba85eb3",
+              "IsCreationKey": false,
+              "Key": 39,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "d97af7a6-df98-4491-87e8-3dcbb9952afd",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "85febe37-5ae1-4c89-9ee4-c6b0bdbcb19d",
+              "IsCreationKey": false,
+              "Key": 40,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "4899f34a-ba61-4f1f-9a92-55af008a8a35",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "e0bf0bef-25d4-4429-b9e7-9b649e9e57c7",
+              "IsCreationKey": false,
+              "Key": 41,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "0ef2c69e-3b5c-43fa-af7e-ada4d7f5a31f",
+                    "path": "sprites/spr_longzhu_green_apple/spr_longzhu_green_apple.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "a37d78a1-b307-4df7-9c49-308c72819a79",
+              "IsCreationKey": false,
+              "Key": 42,
+              "Length": 1,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            }
+          ],
+          "resourceType": "KeyframeStore<SpriteFrameKeyframe>",
+          "resourceVersion": "2.0"
+        },
+        "modifiers": [],
+        "name": "frames",
+        "resourceType": "GMSpriteFramesTrack",
+        "resourceVersion": "2.0",
+        "spriteId": null,
+        "trackColour": 0,
+        "tracks": [],
+        "traits": 0
+      }
+    ],
+    "visibleRange": null,
+    "volume": 1,
+    "xorigin": 29,
+    "yorigin": 28
+  },
+  "swatchColours": null,
+  "swfPrecision": 0.5,
+  "textureGroupId": {
+    "name": "Default",
+    "path": "texturegroups/Default"
+  },
+  "type": 0,
+  "VTile": false,
+  "width": 59
+}

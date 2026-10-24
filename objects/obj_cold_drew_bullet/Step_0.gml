@@ -60,5 +60,5 @@ if (!hit_done && image_index == hit_frame)
     audio_play_sound(snd_cold_brew_machine, 0, 0);
 }
 
-if (image_index >= 8)
+if (image_index >= image_number - 1)
     instance_destroy();

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"penguin_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/penguin_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"penguin_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"37b8368e-295c-4cc7-925c-2ab269056a7b","path":"sprites/spr_penguin_mouse/spr_penguin_mouse.yy",},
+    {"name":"c27cfcb9-9270-4e5c-9936-fad925e5b1cf","path":"sprites/spr_penguin_mouse_bomb/spr_penguin_mouse_bomb.yy",},
+    {"name":"4ff38efd-2afd-4b56-b536-3bad6c9ce054","path":"sprites/spr_penguin_mouse_throw/spr_penguin_mouse_throw.yy",}
+  ],
+}

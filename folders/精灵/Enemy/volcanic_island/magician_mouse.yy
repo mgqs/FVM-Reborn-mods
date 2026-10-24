@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"magician_mouse",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/magician_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"magician_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"b1f5ef11-461a-4568-a6b0-8cd5c7352991","path":"sprites/spr_little_magician/spr_little_magician.yy",},
+    {"name":"ab147288-5f10-423c-ae7f-fc7f94441ee9","path":"sprites/spr_little_magician_throw/spr_little_magician_throw.yy",},
+    {"name":"ffefaa29-596a-41f2-bcd8-da1c52412d0e","path":"sprites/spr_magician_mouse/spr_magician_mouse.yy",}
+  ],
+}

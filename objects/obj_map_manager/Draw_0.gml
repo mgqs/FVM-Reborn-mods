@@ -1,5 +1,10 @@
 var map_sprite = struct_get(ds_map_find_value(global.maps_map,current_map_id),"map_sprite")
-draw_sprite(map_sprite,0,room_width/2,room_height/2)
+if current_map_id == "longyuan" {
+	// 与按钮共用原图坐标系，完整铺满地图房间。
+	draw_sprite_stretched(map_sprite,0,0,0,room_width,room_height)
+} else {
+	draw_sprite(map_sprite,0,room_width/2,room_height/2)
+}
 
 if global.map_id == "delicious_island"{
 	if global.save_data.player.level == 6 && global.save_data.unlocked_items.elite_unlocked{

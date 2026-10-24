@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"nut_frier",
+  "folderPath":"folders/精灵/Cards/Shooter/nut_frier.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"nut_frier",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_nut_frier","path":"sprites/spr_nut_frier/spr_nut_frier.yy",},
+    {"name":"spr_nut_frier_1","path":"sprites/spr_nut_frier_1/spr_nut_frier_1.yy",},
+    {"name":"spr_nut_frier_2","path":"sprites/spr_nut_frier_2/spr_nut_frier_2.yy",},
+    {"name":"spr_nut_frier_bullet","path":"sprites/spr_nut_frier_bullet/spr_nut_frier_bullet.yy",},
+    {"name":"spr_nut_frier_bullet_1","path":"sprites/spr_nut_frier_bullet_1/spr_nut_frier_bullet_1.yy",},
+    {"name":"spr_nut_frier_bullet_2","path":"sprites/spr_nut_frier_bullet_2/spr_nut_frier_bullet_2.yy",},
+    {"name":"spr_nut_frier_bullet_effect","path":"sprites/spr_nut_frier_bullet_effect/spr_nut_frier_bullet_effect.yy",},
+    {"name":"spr_nut_frier_bullet_effect_1","path":"sprites/spr_nut_frier_bullet_effect_1/spr_nut_frier_bullet_effect_1.yy",},
+    {"name":"spr_nut_frier_bullet_effect_2","path":"sprites/spr_nut_frier_bullet_effect_2/spr_nut_frier_bullet_effect_2.yy",}
+  ],
+}

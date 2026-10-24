@@ -1,5 +1,13 @@
 function maps_init(){
 	map_registry_init()
+	register_map("longyuan",{"map_name":"龙渊","map_sprite":spr_longyuan,"levels_data":[
+		{"id":"longyuan_1","name":"松露大厅（日）","button_spr":spr_levelselect_button_longyuan,"button_index":0,"button_x":422,"button_y":167,"level_file":"longyuan/longyuan_1_hard.json","hard_level_file":"longyuan/longyuan_1_hard.json","level_sprite":spr_songludating_ri,"pre_music":day_xianfeng,"elite_music":day_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":[]},
+		{"id":"longyuan_2","name":"松露大厅（夜）","button_spr":spr_levelselect_button_longyuan,"button_index":1,"button_x":359,"button_y":227,"level_file":"longyuan/longyuan_2_hard.json","hard_level_file":"longyuan/longyuan_2_hard.json","level_sprite":spr_songludating_ye,"pre_music":night_xianfeng,"elite_music":night_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":["longyuan_1"]},
+		{"id":"longyuan_3","name":"百味关","button_spr":spr_levelselect_button_longyuan,"button_index":2,"button_x":193,"button_y":220,"level_file":"longyuan/longyuan_3_hard.json","hard_level_file":"longyuan/longyuan_3_hard.json","level_sprite":spr_baiweiguan,"pre_music":night_xianfeng,"elite_music":night_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":["longyuan_2"]},
+		{"id":"longyuan_4","name":"赤霞渡（日）","button_spr":spr_levelselect_button_longyuan,"button_index":3,"button_x":160,"button_y":351,"level_file":"longyuan/longyuan_4_hard.json","hard_level_file":"longyuan/longyuan_4_hard.json","level_sprite":spr_chixiadu_ri,"pre_music":day_xianfeng,"elite_music":day_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":["longyuan_3"]},
+		{"id":"longyuan_5","name":"赤霞渡（夜）","button_spr":spr_levelselect_button_longyuan,"button_index":4,"button_x":244,"button_y":397,"level_file":"longyuan/longyuan_5_hard.json","hard_level_file":"longyuan/longyuan_5_hard.json","level_sprite":spr_chixiadu_ye,"pre_music":erqi_xianfeng,"elite_music":erqi_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":["longyuan_4"]},
+		{"id":"longyuan_6","name":"奶盖桥","button_spr":spr_levelselect_button_longyuan,"button_index":5,"button_x":339,"button_y":331,"level_file":"longyuan/longyuan_6_hard.json","hard_level_file":"longyuan/longyuan_6_hard.json","level_sprite":spr_naigaiqiao,"pre_music":erqi_xianfeng,"elite_music":erqi_jingying,"boss_music":Boss_zhandou,"player_level_require":1,"pre_level_require":["longyuan_5"]}
+	]})
 	register_map("delicious_island",{"map_name":"美味岛","map_sprite":spr_delicious_islands,"levels_data":[{"id":"salad_island_land","name":"色拉岛（陆）","button_spr":spr_levelselect_button,"button_index":1,"button_x":1365,"button_y":455,"level_file":"salad_island_land.json","hard_level_file":"salad_island_land_hard.json","level_sprite":spr_salad_island_land,"pre_music":mus_delicious_island_daytime_pre,"elite_music":mus_delicious_island_daytime_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":2,"pre_level_require":[]},
 																										{"id":"salad_island_water","name":"色拉岛（水）","button_spr":spr_levelselect_button,"button_index":2,"button_x":1395,"button_y":620,"level_file":"salad_island_water.json","hard_level_file":"salad_island_water_hard.json","level_sprite":spr_salad_island_water,"pre_music":mus_delicious_island_daytime_pre,"elite_music":mus_delicious_island_daytime_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":3,"pre_level_require":[]},
 																										{"id":"cookie_island","name":"曲奇岛","button_spr":spr_levelselect_button,"button_index":0,"button_x":1295,"button_y":285,"level_file":"cookie_island.json","hard_level_file":"cookie_island_hard.json","level_sprite":spr_cookie_island,"pre_music":mus_delicious_island_daytime_pre,"elite_music":mus_delicious_island_daytime_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":1,"pre_level_require":[]},
@@ -16,8 +24,8 @@ function maps_init(){
 																										{"id":"abyss","name":"深渊岛","button_spr":spr_levelselect_button,"button_index":13,"button_x":690,"button_y":135,"level_file":"abyss.json","hard_level_file":"abyss_hard.json","level_sprite":spr_abyss,"pre_music":mus_delicious_island_crown_pre,"elite_music":mus_delicious_island_crown_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":15,"pre_level_require":[]},
 																										{"id":"tower_cake","name":"深渊岛","button_spr":spr_levelselect_button,"button_index":14,"button_x":1075,"button_y":510,"level_file":"abyss.json","hard_level_file":"abyss_hard.json","level_sprite":spr_abyss,"pre_music":mus_delicious_island_crown_pre,"elite_music":mus_delicious_island_crown_elite,"boss_music":mus_delicious_island_daytime_boss,"player_level_require":8,"pre_level_require":[]},
 																										{"id":"temple_warrior","name":"谷神殿","button_spr":spr_levelselect_button,"button_index":15,"button_x":690,"button_y":720,"level_file":"temple_warrior.json","hard_level_file":"temple_warrior_hard.json","level_sprite":spr_temple_warrior,"pre_music":mus_delicious_tower_pre,"elite_music":mus_delicious_tower_elite,"boss_music":mus_delicious_tower_boss,"player_level_require":40,"pre_level_require":[]},
-																										{"id":"abyss_warrior","name":"星渊岛","button_spr":spr_levelselect_button,"button_index":16,"button_x":810,"button_y":135,"level_file":"abyss_warrior.json","hard_level_file":"abyss_warrior_hard.json","level_sprite":spr_abyss_warrior,"pre_music":mus_delicious_tower_pre,"elite_music":mus_delicious_tower_elite,"boss_music":mus_delicious_tower_boss,"player_level_require":40,"pre_level_require":[]},
-	]})
+																										{"id":"abyss_warrior","name":"星渊岛","button_spr":spr_levelselect_button,"button_index":16,"button_x":810,"button_y":135,"level_file":"abyss_warrior.json","hard_level_file":"abyss_warrior_hard.json","level_sprite":spr_abyss_warrior,"pre_music":mus_delicious_tower_pre,"elite_music":mus_delicious_tower_elite,"boss_music":mus_delicious_tower_boss,"player_level_require":40,"pre_level_require":[]}
+		]})
 	
 	register_map(
 		"tower_cake",
@@ -35,10 +43,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"none",
-					"rewards":[
-							{"card_id":"wooden_plate","target_shape":1},
-							{"card_id":"warm_birds","target_shape":1}
-						]
+					"rewards":[{"card_id":"wooden_plate","target_shape":1},
+								{"card_id":"mixian","target_shape":1},
+								{"card_id":"huagao","target_shape":1}
+							]
 					},
 					{
 						"id":"tower_cake_1_2",
@@ -50,10 +58,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_1_1",
-					"rewards":[
-							{"card_id":"oil_lamp","target_shape":1},
-							{"card_id":"baiyang","target_shape":1}
-						]
+					"rewards":[{"card_id":"oil_lamp","target_shape":1},
+								{"card_id":"wanpilong","target_shape":1},
+								{"card_id":"fushengcha","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_2_1",
@@ -65,11 +73,9 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_1_2",
-					"rewards":[
-							{"card_id":"goblet_lamp","target_shape":1},
-							{"card_id":"chocolate_cannon","target_shape":1},
-							{"card_id":"shuangzi","target_shape":1}
-						]
+					"rewards":[{"card_id":"goblet_lamp","target_shape":1},
+								{"card_id":"chocolate_cannon","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_2_2",
@@ -81,11 +87,9 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_2_1",
-					"rewards":[
-							{"card_id":"gatlin_long_bao","target_shape":1},
-							{"card_id":"tiancheng","target_shape":1},
-							{"card_id":"shuangyu","target_shape":1}
-						]
+					"rewards":[{"card_id":"gatlin_long_bao","target_shape":1},
+								{"card_id":"pufferfish","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_3_1",
@@ -97,11 +101,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_2_2",
-					"rewards":[
-							{"card_id":"iron_fishbone","target_shape":1},
-							{"card_id":"coffee_cup","target_shape":1},
-							{"card_id":"juxie","target_shape":1}
-						]
+					"rewards":[{"card_id":"iron_fishbone","target_shape":1},
+								{"card_id":"coffee_cup","target_shape":1},
+								{"card_id":"corn_shooter","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_3_2",
@@ -113,11 +116,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_3_1",
-					"rewards":[
-							{"card_id":"rotating_coffee_pot","target_shape":1},
-							{"card_id":"jinniu","target_shape":1},
-							{"card_id":"chunv","target_shape":1}
-						]
+					"rewards":[{"card_id":"rotating_coffee_pot","target_shape":1},
+								{"card_id":"zhiyumiao","target_shape":1},
+								{"card_id":"zhuzhujiaqiang","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_4_1",
@@ -129,11 +131,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_3_2",
-					"rewards":[
-							{"card_id":"takoyaki","target_shape":1},
-							{"card_id":"chocolate_bread","target_shape":1},
-							{"card_id":"tianxie","target_shape":1}
-						]
+					"rewards":[{"card_id":"takoyaki","target_shape":1},
+								{"card_id":"chocolate_bread","target_shape":1},
+								{"card_id":"shizi","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_4_2",
@@ -145,10 +146,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_1",
-					"rewards":[
-							{"card_id":"large_fire","target_shape":1},
-							{"card_id":"mojie","target_shape":1}
-						]
+					"rewards":[{"card_id":"large_fire","target_shape":1},
+								{"card_id":"juxie","target_shape":1},
+								{"card_id":"dandantu","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_5_1",
@@ -160,11 +161,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_2",
-					"rewards":[
-							{"card_id":"small_fire","target_shape":1},
-							{"card_id":"athena","target_shape":1},
-							{"card_id":"warm_birds","target_shape":2}
-						]
+					"rewards":[{"card_id":"small_fire","target_shape":1},
+								{"card_id":"shuangzi","target_shape":1},
+								{"card_id":"shegengbao","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_5_2",
@@ -176,11 +176,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_5_1",
-					"rewards":[
-							{"card_id":"ice_egg_boiler_pult","target_shape":1},
-							{"card_id":"coffee_pot","target_shape":1},
-							{"card_id":"grilled_lizard_pult","target_shape":1}
-						]
+					"rewards":[{"card_id":"ice_egg_boiler_pult","target_shape":1},
+								{"card_id":"coffee_pot","target_shape":1},
+								{"card_id":"warm_birds","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_6_1",
@@ -192,10 +191,9 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_5_2",
-					"rewards":[
-							{"card_id":"cherry_pudding","target_shape":1},
-							{"card_id":"cold_drew","target_shape":1}
-						]
+					"rewards":[{"card_id":"cherry_pudding","target_shape":1},
+								{"card_id":"hspeed_juicer","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_6_2",
@@ -207,11 +205,10 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_6_1",
-					"rewards":[
-							{"card_id":"melon_shield","target_shape":1},
-							{"card_id":"double_water_pipe","target_shape":1},
-							{"card_id":"beef_hot_pot","target_shape":1}
-						]
+					"rewards":[{"card_id":"melon_shield","target_shape":1},
+								{"card_id":"double_water_pipe","target_shape":1},
+								{"card_id":"shuangyu","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_7_1",
@@ -223,10 +220,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_6_2",
-					"rewards":[
-							{"card_id":"chocolate_pult","target_shape":1},
-							{"card_id":"mouse_clip","target_shape":1}
-						]
+					"rewards":[{"card_id":"chocolate_pult","target_shape":1},
+								{"card_id":"mouse_clip","target_shape":1},
+								{"card_id":"tiancheng","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_7_2",
@@ -238,12 +235,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_7_1",
-					"rewards":[
-							{"card_id":"triple_wine_rack","target_shape":1},
-							{"card_id":"soda_bubble","target_shape":1},
-							{"card_id":"spicy_pot","target_shape":1},
-							{"card_id":"baiyang","target_shape":2}
-						]
+					"rewards":[{"card_id":"triple_wine_rack","target_shape":1},
+								{"card_id":"soda_bubble","target_shape":1},
+								{"card_id":"chunv","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_8_1",
@@ -255,11 +250,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_7_2",
-					"rewards":[
-							{"card_id":"salad_pult","target_shape":1},
-							{"card_id":"durian","target_shape":1},
-							{"card_id":"chaomian","target_shape":1}
-						]
+					"rewards":[{"card_id":"salad_pult","target_shape":1},
+								{"card_id":"durian","target_shape":1},
+								{"card_id":"sheshou","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_8_2",
@@ -271,11 +265,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_8_1",
-					"rewards":[
-							{"card_id":"brazier","target_shape":1},
-							{"card_id":"coffee_grounds","target_shape":1},
-							{"card_id":"sheshou","target_shape":1}
-						]
+					"rewards":[{"card_id":"brazier","target_shape":1},
+								{"card_id":"coffee_grounds","target_shape":1},
+								{"card_id":"mojie","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_9_1",
@@ -287,11 +280,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_8_2",
-					"rewards":[
-							{"card_id":"stinky_tofu_pult","target_shape":1},
-							{"card_id":"shizi","target_shape":1},
-							{"card_id":"shuangzi","target_shape":2}
-						]
+					"rewards":[{"card_id":"stinky_tofu_pult","target_shape":1},
+								{"card_id":"jinniu","target_shape":1},
+								{"card_id":"baobaoji","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_9_2",
@@ -303,12 +295,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_1",
-					"rewards":[
-							{"card_id":"egg_boiler_pult","target_shape":1},
-							{"card_id":"sugar_ball_pult","target_shape":1},
-							{"card_id":"tiancheng","target_shape":2},
-							{"card_id":"shuangyu","target_shape":2}
-						]
+					"rewards":[{"card_id":"egg_boiler_pult","target_shape":1},
+								{"card_id":"sugar_ball_pult","target_shape":1},
+								{"card_id":"berry_dessert","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_10_1",
@@ -320,11 +310,9 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_2",
-					"rewards":[
-							{"card_id":"firework_dragon","target_shape":1},
-							{"card_id":"juxie","target_shape":2},
-							{"card_id":"jinniu","target_shape":2}
-						]
+					"rewards":[{"card_id":"firework_dragon","target_shape":1},
+								{"card_id":"mozhang","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_10_2",
@@ -336,11 +324,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_10_1",
-					"rewards":[
-							{"card_id":"hamburger","target_shape":1},
-							{"card_id":"chunv","target_shape":2},
-							{"card_id":"tianxie","target_shape":2}
-						]
+					"rewards":[{"card_id":"hamburger","target_shape":1},
+								{"card_id":"grilled_lizard_pult","target_shape":1},
+								{"card_id":"nizhuanniu","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_11_1",
@@ -352,11 +339,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_10_2",
-					"rewards":[
-							{"card_id":"hotdog_cannon","target_shape":1},
-							{"card_id":"dragon_fruit","target_shape":1},
-							{"card_id":"mojie","target_shape":2}
-						]
+					"rewards":[{"card_id":"hotdog_cannon","target_shape":1},
+								{"card_id":"dragon_fruit","target_shape":1},
+								{"card_id":"spoon_rabbit","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_11_2",
@@ -368,11 +354,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_11_1",
-					"rewards":[
-							{"card_id":"tar_sprayer","target_shape":1},
-							{"card_id":"athena","target_shape":2},
-							{"card_id":"grilled_lizard_pult","target_shape":2}
-						]
+					"rewards":[{"card_id":"tar_sprayer","target_shape":1},
+								{"card_id":"donut","target_shape":1},
+								{"card_id":"liehuohu","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_12_1",
@@ -384,10 +369,9 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_11_2",
-					"rewards":[
-							{"card_id":"oden_pot","target_shape":1},
-							{"card_id":"beef_hot_pot","target_shape":2}
-						]
+					"rewards":[{"card_id":"oden_pot","target_shape":1},
+								{"card_id":"double_blade_snake","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_12_2",
@@ -399,11 +383,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_1",
-					"rewards":[
-							{"card_id":"cotton_candy","target_shape":1},
-							{"card_id":"chaomian","target_shape":2},
-							{"card_id":"spicy_pot","target_shape":2}
-						]
+					"rewards":[{"card_id":"cotton_candy","target_shape":1},
+								{"card_id":"xuanfengniu","target_shape":1},
+								{"card_id":"shuanggu","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_13_1",
@@ -415,12 +398,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_2",
-					"rewards":[
-							{"card_id":"flour_sack","target_shape":1},
-							{"card_id":"rabbit_lantern","target_shape":1},
-							{"card_id":"sheshou","target_shape":2},
-							{"card_id":"shizi","target_shape":2}
-						]
+					"rewards":[{"card_id":"flour_sack","target_shape":1},
+								{"card_id":"rabbit_lantern","target_shape":1},
+								{"card_id":"mixian","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_13_2",
@@ -432,11 +413,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_13_1",
-					"rewards":[
-							{"card_id":"coke_bomb","target_shape":1},
-							{"card_id":"ventilation_fan","target_shape":1},
-							{"card_id":"corn_shooter","target_shape":1}
-						]
+					"rewards":[{"card_id":"coke_bomb","target_shape":1},
+								{"card_id":"ventilation_fan","target_shape":1},
+								{"card_id":"qingse_shishi","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_14_1",
@@ -448,12 +428,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_13_2",
-					"rewards":[
-							{"card_id":"wine_bottle_bomb","target_shape":1},
-							{"card_id":"xinjiang_fried_noodles","target_shape":1},
-							{"card_id":"cold_drew","target_shape":2},
-							{"card_id":"spoon_rabbit","target_shape":1}
-						]
+					"rewards":[{"card_id":"wine_bottle_bomb","target_shape":1},
+								{"card_id":"xinjiang_fried_noodles","target_shape":1},
+								{"card_id":"shegengbao","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_14_2",
@@ -465,11 +443,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_14_1",
-					"rewards":[
-							{"card_id":"whisky_bomb","target_shape":1},
-							{"card_id":"aquarius_elve","target_shape":1},
-							{"card_id":"berry_dessert","target_shape":1}
-						]
+					"rewards":[{"card_id":"whisky_bomb","target_shape":1},
+								{"card_id":"aquarius_elve","target_shape":1},
+								{"card_id":"wanpilong","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_15_1",
@@ -481,11 +458,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_14_2",
-					"rewards":[
-							{"card_id":"ice_bucket_bomb","target_shape":1},
-							{"card_id":"king_long_bao","target_shape":1},
-							{"card_id":"corn_shooter","target_shape":2}
-						]
+					"rewards":[{"card_id":"ice_bucket_bomb","target_shape":1},
+								{"card_id":"king_long_bao","target_shape":1},
+								{"card_id":"coal_starfish","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_15_2",
@@ -497,13 +473,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_15_1",
-					"rewards":[
-							{"card_id":"kettle_bomb","target_shape":1},
-							{"card_id":"king_triple_long_bao","target_shape":1},
-							{"card_id":"coal_starfish","target_shape":1},
-							{"card_id":"spoon_rabbit","target_shape":2},
-							{"card_id":"donut","target_shape":1}
-						]
+					"rewards":[{"card_id":"kettle_bomb","target_shape":1},
+								{"card_id":"king_triple_long_bao","target_shape":1},
+								{"card_id":"zhiyumiao","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_16_1",
@@ -515,11 +488,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_15_2",
-					"rewards":[
-							{"card_id":"pineapple_explosive_bread","target_shape":1},
-							{"card_id":"iron_fishbone","target_shape":2},
-							{"card_id":"berry_dessert","target_shape":2}
-						]
+					"rewards":[{"card_id":"pineapple_explosive_bread","target_shape":1},
+								{"card_id":"iron_fishbone","target_shape":2},
+								{"card_id":"dandantu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_16_2",
@@ -531,11 +503,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_16_1",
-					"rewards":[
-							{"card_id":"ice_cream","target_shape":1},
-							{"card_id":"pizza_oven","target_shape":1},
-							{"card_id":"donut","target_shape":2}
-						]
+					"rewards":[{"card_id":"ice_cream","target_shape":1},
+								{"card_id":"pizza_oven","target_shape":1},
+								{"card_id":"anranxiaohunfan","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_17_1",
@@ -547,10 +518,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_16_2",
-					"rewards":[
-						{"card_id":"lightning_baguette","target_shape":1},
-						{"card_id":"delicacy_firework","target_shape":1}
-					]
+					"rewards":[{"card_id":"lightning_baguette","target_shape":1},
+								{"card_id":"delicacy_firework","target_shape":1},
+								{"card_id":"baibianshe","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_17_2",
@@ -562,11 +533,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_17_1",
-					"rewards":[
-							{"card_id":"coffee_grounds","target_shape":2},
-							{"card_id":"chili_powder","target_shape":1},
-							{"card_id":"hspeed_juicer","target_shape":1}
-						]
+					"rewards":[{"card_id":"coffee_grounds","target_shape":2},
+								{"card_id":"chili_powder","target_shape":1},
+								{"card_id":"laipishe","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_18_1",
@@ -578,10 +548,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_17_2",
-					"rewards":[
-						{"card_id":"wooden_plate","target_shape":2},
-						{"card_id":"coffee_cup","target_shape":2}
-					]
+					"rewards":[{"card_id":"wooden_plate","target_shape":2},
+								{"card_id":"coffee_cup","target_shape":2},
+								{"card_id":"huagao","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_18_2",
@@ -593,11 +563,9 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_18_1",
-					"rewards":[
-							{"card_id":"mouse_clip","target_shape":2},
-							{"card_id":"bull_firework","target_shape":1},
-							{"card_id":"hspeed_juicer","target_shape":2}
-						]
+					"rewards":[{"card_id":"mouse_clip","target_shape":2},
+								{"card_id":"bull_firework","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_19_1",
@@ -609,10 +577,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_18_2",
-					"rewards":[
-						{"card_id":"coffee_pot","target_shape":2},
-						{"card_id":"oden_pot","target_shape":2}
-					]
+					"rewards":[{"card_id":"coffee_pot","target_shape":2},
+								{"card_id":"oden_pot","target_shape":2},
+								{"card_id":"baiyang","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_19_2",
@@ -624,10 +592,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_19_1",
-					"rewards":[
-						{"card_id":"melon_shield","target_shape":2},
-						{"card_id":"curry_lobster_cannon","target_shape":1}
-					]
+					"rewards":[{"card_id":"melon_shield","target_shape":2},
+								{"card_id":"curry_lobster_cannon","target_shape":1},
+								{"card_id":"cold_drew","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_20_1",
@@ -639,10 +607,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_19_2",
-					"rewards":[
-						{"card_id":"large_fire","target_shape":2},
-						{"card_id":"horseshoe_crab_bread","target_shape":1}
-					]
+					"rewards":[{"card_id":"horseshoe_crab_bread","target_shape":1},
+								{"card_id":"large_fire","target_shape":2},
+								{"card_id":"athena","target_shape":1}
+							]
 				},
 				{
 					"id":"tower_cake_20_2",
@@ -654,10 +622,10 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_20_1",
-					"rewards":[
-						{"card_id":"ice_egg_boiler_pult","target_shape":2},
-						{"card_id":"tang_hu_lu","target_shape":1}
-					]
+					"rewards":[{"card_id":"tang_hu_lu","target_shape":1},
+								{"card_id":"ice_egg_boiler_pult","target_shape":2},
+								{"card_id":"shuangzi","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_21_1",
@@ -669,10 +637,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_20_2",
-					"rewards":[
-						{"card_id":"takoyaki","target_shape":2},
-						{"card_id":"beef_hotpot","target_shape":1}
-					]
+					"rewards":[{"card_id":"takoyaki","target_shape":2},
+								{"card_id":"beef_hotpot","target_shape":1},
+								{"card_id":"warm_birds","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_21_2",
@@ -684,10 +652,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_21_1",
-					"rewards":[
-						{"card_id":"aquarius_elve","target_shape":2},
-						{"card_id":"spicy_pot","target_shape":1}
-					]
+					"rewards":[{"card_id":"aquarius_elve","target_shape":2},
+								{"card_id":"spicy_pot","target_shape":1},
+								{"card_id":"juxie","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_22_1",
@@ -699,10 +667,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_21_2",
-					"rewards":[
-						{"card_id":"chocolate_pult","target_shape":2},
-						{"card_id":"pan_fried_bun","target_shape":1}
-					]
+					"rewards":[{"card_id":"chocolate_pult","target_shape":2},
+								{"card_id":"pan_fried_bun","target_shape":1},
+								{"card_id":"chunv","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_22_2",
@@ -714,10 +682,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_22_1",
-					"rewards":[
-						{"card_id":"salad_pult","target_shape":2},
-						{"card_id":"flour_sack","target_shape":2}
-					]
+					"rewards":[{"card_id":"salad_pult","target_shape":2},
+								{"card_id":"flour_sack","target_shape":2},
+								{"card_id":"pufferfish","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_23_1",
@@ -729,9 +697,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_22_2",
-					"rewards":[
-						{"card_id":"hotdog_cannon","target_shape":2},
-					]
+					"rewards":[{"card_id":"hotdog_cannon","target_shape":2},
+								{"card_id":"anranxiaohunfan","target_shape":2},
+								{"card_id":"qingse_shishi","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_23_2",
@@ -743,10 +712,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_23_1",
-					"rewards":[
-						{"card_id":"stinky_tofu_pult","target_shape":2},
-						{"card_id":"sugar_ball_pult","target_shape":2}
-					]
+					"rewards":[{"card_id":"stinky_tofu_pult","target_shape":2},
+								{"card_id":"sugar_ball_pult","target_shape":2},
+								{"card_id":"donut","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_24_1",
@@ -758,9 +727,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_23_2",
-					"rewards":[
-						{"card_id":"king_long_bao","target_shape":2}
-					]
+					"rewards":[{"card_id":"king_long_bao","target_shape":2},
+								{"card_id":"shuanggu","target_shape":2},
+								{"card_id":"fushengcha","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_24_2",
@@ -772,10 +742,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_24_1",
-					"rewards":[
-						{"card_id":"goblet_lamp","target_shape":2},
-						{"card_id":"egg_boiler_pult","target_shape":2}
-					]
+					"rewards":[{"card_id":"goblet_lamp","target_shape":2},
+								{"card_id":"egg_boiler_pult","target_shape":2},
+								{"card_id":"baobaoji","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_25_1",
@@ -787,10 +757,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_24_2",
-					"rewards":[
-						{"card_id":"xinjiang_fried_noodles","target_shape":2},
-						{"card_id":"firework_dragon","target_shape":2}
-					]
+					"rewards":[{"card_id":"xinjiang_fried_noodles","target_shape":2},
+								{"card_id":"firework_dragon","target_shape":2},
+								{"card_id":"shuangyu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_25_2",
@@ -802,10 +772,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_25_1",
-					"rewards":[
-						{"card_id":"cotton_candy","target_shape":2},
-						{"card_id":"small_fire","target_shape":2}
-					]
+					"rewards":[{"card_id":"cotton_candy","target_shape":2},
+								{"card_id":"small_fire","target_shape":2},
+								{"card_id":"grilled_lizard_pult","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_26_1",
@@ -817,10 +787,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_25_2",
-					"rewards":[
-						{"card_id":"double_water_pipe","target_shape":2},
-						{"card_id":"coal_starfish","target_shape":2}
-					]
+					"rewards":[{"card_id":"double_water_pipe","target_shape":2},
+								{"card_id":"coal_starfish","target_shape":2},
+								{"card_id":"spoon_rabbit","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_26_2",
@@ -832,11 +802,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_26_1",
-					"rewards":[
-						{"card_id":"coke_bomb","target_shape":2},
-						{"card_id":"pineapple_explosive_bread","target_shape":2},
-						{"card_id":"delicacy_firework","target_shape":2}
-					]
+					"rewards":[{"card_id":"coke_bomb","target_shape":2},
+								{"card_id":"pineapple_explosive_bread","target_shape":2},
+								{"card_id":"delicacy_firework","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_27_1",
@@ -848,9 +817,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_26_2",
-					"rewards":[
-						{"card_id":"triple_wine_rack","target_shape":2}
-					]
+					"rewards":[{"card_id":"triple_wine_rack","target_shape":2},
+								{"card_id":"tiancheng","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_27_2",
@@ -862,10 +831,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_27_1",
-					"rewards":[
-						{"card_id":"wine_bottle_bomb","target_shape":2},
-						{"card_id":"rabbit_lantern","target_shape":2}
-					]
+					"rewards":[{"card_id":"wine_bottle_bomb","target_shape":2},
+								{"card_id":"rabbit_lantern","target_shape":2},
+								{"card_id":"sheshou","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_28_1",
@@ -877,10 +846,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_27_2",
-					"rewards":[
-						{"card_id":"gatlin_long_bao","target_shape":2},
-						{"card_id":"pizza_oven","target_shape":2}
-					]
+					"rewards":[{"card_id":"gatlin_long_bao","target_shape":2},
+								{"card_id":"pizza_oven","target_shape":2},
+								{"card_id":"xuanfengniu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_28_2",
@@ -892,10 +861,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_28_1",
-					"rewards":[
-						{"card_id":"kettle_bomb","target_shape":2},
-						{"card_id":"chili_powder","target_shape":2}
-					]
+					"rewards":[{"card_id":"kettle_bomb","target_shape":2},
+								{"card_id":"chili_powder","target_shape":2},
+								{"card_id":"corn_shooter","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_29_1",
@@ -907,10 +876,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_28_2",
-					"rewards":[
-						{"card_id":"king_triple_long_bao","target_shape":2},
-						{"card_id":"tar_sprayer","target_shape":2}
-					]
+					"rewards":[{"card_id":"king_triple_long_bao","target_shape":2},
+								{"card_id":"tar_sprayer","target_shape":2},
+								{"card_id":"laipishe","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_29_2",
@@ -922,10 +891,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_29_1",
-					"rewards":[
-						{"card_id":"ice_cream","target_shape":2},
-						{"card_id":"hamburger","target_shape":2}
-					]
+					"rewards":[{"card_id":"ice_cream","target_shape":2},
+								{"card_id":"hamburger","target_shape":2},
+								{"card_id":"hspeed_juicer","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_30_1",
@@ -937,10 +906,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_29_2",
-					"rewards":[
-						{"card_id":"lightning_baguette","target_shape":2},
-						{"card_id":"rotating_coffee_pot","target_shape":2}
-					]
+					"rewards":[{"card_id":"lightning_baguette","target_shape":2},
+								{"card_id":"rotating_coffee_pot","target_shape":2},
+								{"card_id":"baibianshe","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_30_2",
@@ -952,10 +921,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_30_1",
-					"rewards":[
-						{"card_id":"ventilation_fan","target_shape":2},
-						{"card_id":"tang_hu_lu","target_shape":2}
-					]
+					"rewards":[{"card_id":"ventilation_fan","target_shape":2},
+								{"card_id":"tang_hu_lu","target_shape":2},
+								{"card_id":"shizi","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_31_1",
@@ -967,9 +936,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_30_2",
-					"rewards":[
-						{"card_id":"brazier","target_shape":2}
-					]
+					"rewards":[{"card_id":"brazier","target_shape":2},
+								{"card_id":"berry_dessert","target_shape":2},
+								{"card_id":"zhuzhujiaqiang","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_31_2",
@@ -981,9 +951,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_31_1",
-					"rewards":[
-						{"card_id":"bull_firework","target_shape":2}
-					]
+					"rewards":[{"card_id":"bull_firework","target_shape":2},
+								{"card_id":"jinniu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_32_1",
@@ -995,9 +965,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_31_2",
-					"rewards":[
-						{"card_id":"cherry_pudding","target_shape":2}
-					]
+					"rewards":[{"card_id":"cherry_pudding","target_shape":2},
+								{"card_id":"baiyang","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_32_2",
@@ -1009,9 +979,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_32_1",
-					"rewards":[
-						{"card_id":"beef_hotpot","target_shape":2}
-					]
+					"rewards":[{"card_id":"beef_hotpot","target_shape":2},
+								{"card_id":"mozhang","target_shape":2},
+								{"card_id":"nizhuanniu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_33_1",
@@ -1023,9 +994,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_32_2",
-					"rewards":[
-						{"card_id":"dragon_fruit","target_shape":2}
-					]
+					"rewards":[{"card_id":"dragon_fruit","target_shape":2},
+								{"card_id":"liehuohu","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_33_2",
@@ -1037,10 +1008,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_33_1",
-					"rewards":[
-						{"card_id":"spicy_pot","target_shape":2},
-						{"card_id":"pan_fried_bun","target_shape":2}
-					]
+					"rewards":[{"card_id":"spicy_pot","target_shape":2},
+								{"card_id":"pan_fried_bun","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_34_1",
@@ -1052,9 +1022,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_33_2",
-					"rewards":[
-						{"card_id":"durian","target_shape":2}
-					]
+					"rewards":[{"card_id":"durian","target_shape":2},
+								{"card_id":"double_blade_snake","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_34_2",
@@ -1066,9 +1036,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_34_1",
-					"rewards":[
-						{"card_id":"whisky_bomb","target_shape":2}
-					]
+					"rewards":[{"card_id":"whisky_bomb","target_shape":2},
+								{"card_id":"mojie","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_35_1",
@@ -1080,10 +1050,10 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_34_2",
-					"rewards":[
-						{"card_id":"chocolate_cannon","target_shape":2},
-						{"card_id":"curry_lobster_cannon","target_shape":2}
-					]
+					"rewards":[{"card_id":"chocolate_cannon","target_shape":2},
+								{"card_id":"curry_lobster_cannon","target_shape":2},
+								{"card_id":"cold_drew","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_35_2",
@@ -1095,9 +1065,9 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_35_1",
-					"rewards":[
-						{"card_id":"ice_bucket_bomb","target_shape":2}
-					]
+					"rewards":[{"card_id":"ice_bucket_bomb","target_shape":2},
+								{"card_id":"athena","target_shape":2}
+							]
 				},
 				{
 					"id":"tower_cake_35_3",
@@ -1965,6 +1935,127 @@ function maps_init(){
 					"boss_music":mus_volcanic_tower_boss,
 					"player_level_require":55,
 					"pre_level_require":["milkshake_base"]
+				},
+			]
+		}
+	)
+	register_map(
+		"explore_camp",
+		{
+			"map_name":"探险营地",
+			"map_sprite":spr_explore_camp,
+			"levels_data":[
+				{
+					"id":"chiffon_camp_daytime",
+					"name":"戚风营地（日）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":0,
+					"button_x":630,
+					"button_y":580,
+					"level_file":"camp/chiffon_camp_daytime.json",
+					"hard_level_file":"camp/chiffon_camp_daytime_hard.json",
+					"level_sprite":spr_chiffon_camp_daytime,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":20,
+					"pre_level_require":[]
+				},
+				{
+					"id":"chiffon_camp_night",
+					"name":"戚风营地（夜）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":1,
+					"button_x":560,
+					"button_y":360,
+					"level_file":"camp/chiffon_camp_night.json",
+					"hard_level_file":"camp/chiffon_camp_night_hard.json",
+					"level_sprite":spr_chiffon_camp_night,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":25,
+					"pre_level_require":["chiffon_camp_daytime"]
+				},
+				{
+					"id":"ice_beer_bar_daytime",
+					"name":"冰啤酒吧（日）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":2,
+					"button_x":730,
+					"button_y":250,
+					"level_file":"camp/ice_beer_bar_daytime.json",
+					"hard_level_file":"camp/ice_beer_bar_daytime_hard.json",
+					"level_sprite":spr_ice_beer_bar_daytime,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":40,
+					"pre_level_require":["chiffon_camp_night"]
+				},
+				{
+					"id":"ice_beer_bar_night",
+					"name":"冰啤酒吧（夜）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":3,
+					"button_x":1000,
+					"button_y":230,
+					"level_file":"camp/ice_beer_bar_night.json",
+					"hard_level_file":"camp/ice_beer_bar_night_hard.json",
+					"level_sprite":spr_ice_beer_bar_night,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":40,
+					"pre_level_require":["ice_beer_bar_daytime"]
+				},
+				{
+					"id":"nut_platform_daytime",
+					"name":"坚果高台（日）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":4,
+					"button_x":1170,
+					"button_y":210,
+					"level_file":"camp/nut_platform_daytime.json",
+					"hard_level_file":"camp/nut_platform_daytime_hard.json",
+					"level_sprite":spr_nut_platform_daytime,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":50,
+					"pre_level_require":["ice_beer_bar_night"]
+				},
+				{
+					"id":"nut_platform_night",
+					"name":"坚果高台（夜）",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":5,
+					"button_x":1350,
+					"button_y":250,
+					"level_file":"camp/nut_platform_night.json",
+					"hard_level_file":"camp/nut_platform_night_hard.json",
+					"level_sprite":spr_nut_platform_night,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":50,
+					"pre_level_require":["nut_platform_daytime"]
+				},
+				{
+					"id":"camp_shop",
+					"name":"营地商店",
+					"button_spr":spr_levelselect_button_camp,
+					"button_index":6,
+					"button_x":1420,
+					"button_y":490,
+					"level_file":"camp/nut_platform_night.json",
+					"hard_level_file":"camp/nut_platform_night_hard.json",
+					"level_sprite":spr_nut_platform_night,
+					"pre_music":mus_explore_camp_pre,
+					"elite_music":mus_explore_camp_pre,
+					"boss_music":mus_explore_camp_boss,
+					"player_level_require":0,
+					"pre_level_require":[]
 				},
 			]
 		}

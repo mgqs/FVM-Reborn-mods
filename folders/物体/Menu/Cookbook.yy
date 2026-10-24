@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"Cookbook",
+  "folderPath":"folders/物体/Menu/Cookbook.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Cookbook",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_closecookbook_btn","path":"objects/obj_closecookbook_btn/obj_closecookbook_btn.yy",},
+    {"name":"obj_cookbook_bg","path":"objects/obj_cookbook_bg/obj_cookbook_bg.yy",},
+    {"name":"obj_cookbook_list_btn","path":"objects/obj_cookbook_list_btn/obj_cookbook_list_btn.yy",},
+    {"name":"obj_cookbook_select_btn","path":"objects/obj_cookbook_select_btn/obj_cookbook_select_btn.yy",},
+    {"name":"obj_equipcookbook_btn","path":"objects/obj_equipcookbook_btn/obj_equipcookbook_btn.yy",}
+  ],
+}

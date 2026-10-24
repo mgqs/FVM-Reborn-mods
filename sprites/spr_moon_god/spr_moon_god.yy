@@ -42,8 +42,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"moon_god",
+    "path":"folders/精灵/mod/Cards/Track/moon_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

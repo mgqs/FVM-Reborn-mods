@@ -57,6 +57,7 @@ bun_card_info = [
 //定义初始子弹槽
 bullet_list = [
 	{
+		"card_id":"xiao_long_bao",
 		"bullet_type":obj_xiaolongbao_bullet,
 		"damage":atk
 	}

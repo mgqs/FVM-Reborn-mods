@@ -1,0 +1,265 @@
+package a_4760
+{
+   public class a_2248
+   {
+      
+      private static var a_788:a_2248;
+      
+      private static var m_sign:Boolean = false;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_788", 0, 5
+               debug 1, "m_sign", 1, 6
+               findproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+               pushfalse
+               setproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var serverInfosArray:Array;
+      
+      public function a_2248()
+      {
+         method
+            name "com.aurora.handler.configure:AuthenServerConfig/AuthenServerConfig"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                  debugline 9
+                  getlocal0
+                  pushscope
+                  debugline 10
+                  getlocal0
+                  constructsuper 0
+                  debugline 11
+                  getlex QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+                  iftrue ofs0022
+                  debugline 12
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "请通过getInstance()方法获取引用！"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs0022:
+                  debugline 14
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2248
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.handler.configure:AuthenServerConfig/getInstance"
+               returns QName(PackageNamespace("a_4760"),"a_2248")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                     debugline 16
+                     getlocal0
+                     pushscope
+                     debugline 18
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"a_788")
+                     ifne ofs002e
+                     debugline 20
+                     findproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+                     pushtrue
+                     setproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+                     debugline 21
+                     findproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"a_788")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"a_788")
+                     debugline 22
+                     findproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+                     pushfalse
+                     setproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"m_sign")
+            ofs002e:
+                     debugline 25
+                     getlex QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"a_788")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_2249(serverListXML:XML) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_2249")
+               dispid 0
+               method
+                  name "com.aurora.handler.configure:AuthenServerConfig/ParseServerListConfigXML"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"XML")
+                  paramname "serverInfosArray"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 11
+                     localcount 5
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                        debugline 28
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace(""),"XML")
+                        setlocal2
+                        debug 1, "serverListXML", 0, 28
+                        debug 1, "server", 1, 32
+                        debugline 30
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"serverInfosArray")
+                        debugline 32
+                        pushbyte 0
+                        setlocal3
+                        getlocal1
+                        getproperty Multiname("Server",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        coerce_a
+                        setlocal 4
+                        jump ofs0066
+               ofs002f:
+                        label
+                        getlocal 4
+                        getlocal3
+                        nextvalue
+                        coerce QName(PackageNamespace(""),"XML")
+                        setlocal2
+                        debugline 34
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"serverInfosArray")
+                        pushstring "ServerID"
+                        getlocal2
+                        getproperty MultinameA("ID",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        pushstring "IP"
+                        getlocal2
+                        getproperty MultinameA("IP",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        pushstring "Port"
+                        getlocal2
+                        getproperty MultinameA("Port",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        pushstring "DesIP"
+                        getlocal2
+                        getproperty MultinameA("DesIP",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        pushstring "DesPort"
+                        getlocal2
+                        getproperty MultinameA("DesPort",[PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),PackageNamespace("a_4760"),PackageNamespace(""),PrivateNamespace("AuthenServerConfig.as$520"),PackageInternalNs("a_4760"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.configure:AuthenServerConfig"),StaticProtectedNs("com.aurora.handler.configure:AuthenServerConfig")])
+                        newobject 5
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs0066:
+                        debugline 32
+                        hasnext2 4, 3
+                        iftrue ofs002f
+                        kill 4
+                        kill 3
+                        debugline 37
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"serverInfosArray")
+                        getproperty QName(PackageNamespace(""),"length")
+                        pushbyte 0
+                        ifngt ofs0086
+                        debugline 39
+                        pushtrue
+                        returnvalue
+               ofs0086:
+                        debugline 42
+                        pushfalse
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_2250() : Array
+            {
+               trait method QName(PackageNamespace(""),"a_2250")
+                  dispid 0
+                  method
+                     name "com.aurora.handler.configure:AuthenServerConfig/GetAuthenServerList"
+                     returns QName(PackageNamespace(""),"Array")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                           debugline 45
+                           getlocal0
+                           pushscope
+                           debugline 47
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.handler.configure:AuthenServerConfig"),"serverInfosArray")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                  debugline 3
+                  findpropstrict Multiname("a_2248",[PackageNamespace("a_4760")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 114
+                  popscope
+                  initproperty QName(PackageNamespace("a_4760"),"a_2248")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\configure;AuthenServerConfig.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

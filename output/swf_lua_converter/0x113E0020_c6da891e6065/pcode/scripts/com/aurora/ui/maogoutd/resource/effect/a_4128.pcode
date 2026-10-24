@@ -1,0 +1,689 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.bitmap.IrregularCirlceFogBitmapdata;
+   import com.aurora.ui.maogoutd.resource.bitmap.RegularCirlceFogBitmapData;
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   import flash.display.Sprite;
+   import flash.geom.Matrix;
+   
+   public class a_4128 extends Sprite
+   {
+      
+      public static var a_1413:Boolean = false;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1413", 0, 15
+               findproperty QName(PackageNamespace(""),"a_1413")
+               pushfalse
+               setproperty QName(PackageNamespace(""),"a_1413")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var a_1267:Bitmap;
+      
+      private var a_1414:BitmapData;
+      
+      private var a_1415:BitmapData;
+      
+      private var a_1416:BitmapData;
+      
+      private var a_1417:Vector.<Vector.<int>>;
+      
+      public function a_4128()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:LargeFogEffect/LargeFogEffect"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                  debugline 25
+                  getlocal0
+                  pushscope
+                  debugline 27
+                  getlocal0
+                  constructsuper 0
+                  debugline 29
+                  findproperty QName(PackageNamespace(""),"mouseEnabled")
+                  pushfalse
+                  initproperty QName(PackageNamespace(""),"mouseEnabled")
+                  debugline 31
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                  constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                  debugline 32
+                  findpropstrict QName(PackageNamespace(""),"addChild")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                  callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  debugline 33
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_1797() : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_1797")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:LargeFogEffect/Initialize"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 6
+                  localcount 3
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                     debugline 35
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     setlocal2
+                     debug 1, "i", 0, 63
+                     debugline 37
+                     getlex QName(PackageNamespace(""),"a_1413")
+                     iftrue ofs0027
+                     debugline 39
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                     pushnull
+                     setproperty QName(PackageNamespace(""),"bitmapData")
+                     debugline 41
+                     pushtrue
+                     returnvalue
+            ofs0027:
+                     debugline 44
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1415")
+                     ifne ofs0043
+                     debugline 46
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"RegularCirlceFogBitmapData")
+                     pushbyte 72
+                     pushbyte 70
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"RegularCirlceFogBitmapData"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1415")
+            ofs0043:
+                     debugline 48
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1416")
+                     ifne ofs005f
+                     debugline 50
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"IrregularCirlceFogBitmapdata")
+                     pushbyte 70
+                     pushbyte 69
+                     constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"IrregularCirlceFogBitmapdata"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1416")
+            ofs005f:
+                     debugline 53
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                     ifne ofs008b
+                     debugline 55
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                     getproperty QName(PackageNamespace(""),"a_1080")
+                     pushbyte 7
+                     multiply
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                     getproperty QName(PackageNamespace(""),"a_1081")
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                     getproperty QName(PackageNamespace(""),"a_1012")
+                     pushbyte 2
+                     add
+                     multiply
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+            ofs008b:
+                     debugline 57
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                     setproperty QName(PackageNamespace(""),"bitmapData")
+                     debugline 59
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                     ifne ofs00bd
+                     debugline 61
+                     getlocal0
+                     getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PackageNamespace("__AS3__.vec")])
+                     getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PackageNamespace("__AS3__.vec")])
+                     getlex QName(PackageNamespace(""),"int")
+                     applytype 1
+                     applytype 1
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                     getproperty QName(PackageNamespace(""),"a_1012")
+                     pushtrue
+                     construct 2
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+            ofs00bd:
+                     debugline 63
+                     pushbyte 0
+                     setlocal1
+                     jump ofs0121
+            ofs00c6:
+                     label
+                     debug 1, "j", 1, 70
+                     debugline 65
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                     ifne ofs00f5
+                     debugline 67
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                     getlocal1
+                     getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PackageNamespace("__AS3__.vec")])
+                     getlex QName(PackageNamespace(""),"int")
+                     applytype 1
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                     getproperty QName(PackageNamespace(""),"a_1011")
+                     pushtrue
+                     construct 2
+                     setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+            ofs00f5:
+                     debugline 70
+                     pushbyte 0
+                     setlocal2
+                     jump ofs0113
+            ofs00fe:
+                     label
+                     debugline 72
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                     getlocal1
+                     getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                     getlocal2
+                     pushbyte 2
+                     setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                     debugline 70
+                     inclocal_i 2
+            ofs0113:
+                     getlocal2
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                     getproperty QName(PackageNamespace(""),"a_1011")
+                     iflt ofs00fe
+                     debugline 63
+                     inclocal_i 1
+            ofs0121:
+                     getlocal1
+                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                     getproperty QName(PackageNamespace(""),"a_1012")
+                     iflt ofs00c6
+                     debugline 76
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_4129(stFieldGridsVector:Array) : void
+         {
+            trait method QName(PackageNamespace(""),"a_4129")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:LargeFogEffect/UpdateStatusByFieldGridVector"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Array")
+                  paramname "flash.events:EventDispatcher"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 5
+                     localcount 11
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                        debugline 79
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal2
+                        pushbyte 0
+                        setlocal3
+                        pushbyte 0
+                        setlocal 4
+                        pushbyte 0
+                        setlocal 5
+                        pushbyte 0
+                        setlocal 6
+                        pushbyte 0
+                        setlocal 7
+                        pushbyte 0
+                        setlocal 8
+                        pushbyte 0
+                        setlocal 9
+                        pushnull
+                        coerce QName(PackageNamespace("flash.geom"),"Matrix")
+                        setlocal 10
+                        debug 1, "stFieldGridsVector", 0, 79
+                        debug 1, "i", 1, 89
+                        debug 1, "j", 2, 90
+                        debugline 81
+                        getlex QName(PackageNamespace(""),"a_1413")
+                        iftrue ofs0049
+                        debugline 83
+                        returnvoid
+               ofs0049:
+                        debugline 86
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        callpropvoid QName(PackageNamespace(""),"lock"), 0
+                        debugline 87
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        getproperty QName(PackageNamespace(""),"rect")
+                        pushbyte 0
+                        callpropvoid QName(PackageNamespace(""),"fillRect"), 2
+                        debugline 91
+                        pushbyte 0
+                        setlocal2
+                        jump ofs009c
+               ofs006f:
+                        label
+                        debugline 93
+                        pushbyte 0
+                        setlocal3
+                        jump ofs008e
+               ofs0079:
+                        label
+                        debugline 95
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                        getlocal2
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getlocal3
+                        pushbyte 2
+                        setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        debugline 93
+                        inclocal_i 3
+               ofs008e:
+                        getlocal3
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        iflt ofs0079
+                        debugline 91
+                        inclocal_i 2
+               ofs009c:
+                        getlocal2
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        iflt ofs006f
+                        debugline 100
+                        pushbyte 0
+                        setlocal2
+                        jump ofs01d9
+               ofs00af:
+                        label
+                        debugline 102
+                        pushbyte 0
+                        setlocal3
+                        jump ofs01cb
+               ofs00b9:
+                        label
+                        debugline 104
+                        getlocal1
+                        getlocal2
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getproperty Multiname("m_stFlowerDefense",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        convert_b
+                        dup
+                        iffalse ofs00e1
+                        pop
+                        pushbyte 1
+                        getlocal1
+                        getlocal2
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getproperty Multiname("m_stFlowerDefense",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getproperty Multiname("iEnergyTypeID",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        equals
+               ofs00e1:
+                        iffalse ofs01c7
+                        debug 1, "yStart", 3, 106
+                        debug 1, "xStart", 4, 107
+                        debug 1, "yEnd", 5, 108
+                        debug 1, "xEnd", 6, 109
+                        debug 1, "y", 7, 111
+                        debugline 106
+                        getlocal2
+                        pushbyte 2
+                        subtract
+                        pushbyte 0
+                        lessthan
+                        iffalse ofs0116
+                        pushbyte 0
+                        jump ofs011b
+               ofs0116:
+                        getlocal2
+                        pushbyte 2
+                        subtract
+                        convert_i
+               ofs011b:
+                        convert_i
+                        setlocal 4
+                        debugline 107
+                        getlocal3
+                        pushbyte 2
+                        subtract
+                        pushbyte 0
+                        lessthan
+                        iffalse ofs0131
+                        pushbyte 0
+                        jump ofs0136
+               ofs0131:
+                        getlocal3
+                        pushbyte 2
+                        subtract
+                        convert_i
+               ofs0136:
+                        convert_i
+                        setlocal 5
+                        debugline 108
+                        getlocal2
+                        pushbyte 2
+                        add
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        greaterequals
+                        iffalse ofs0154
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        decrement
+                        convert_i
+                        jump ofs0159
+               ofs0154:
+                        getlocal2
+                        pushbyte 2
+                        add
+                        convert_i
+               ofs0159:
+                        convert_i
+                        setlocal 6
+                        debugline 109
+                        getlocal3
+                        pushbyte 2
+                        add
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        greaterequals
+                        iffalse ofs0177
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        decrement
+                        convert_i
+                        jump ofs017c
+               ofs0177:
+                        getlocal3
+                        pushbyte 2
+                        add
+                        convert_i
+               ofs017c:
+                        convert_i
+                        setlocal 7
+                        debugline 111
+                        getlocal 4
+                        convert_i
+                        setlocal 8
+                        jump ofs01bf
+               ofs018a:
+                        label
+                        debug 1, "x", 8, 113
+                        debugline 113
+                        getlocal 5
+                        convert_i
+                        setlocal 9
+                        jump ofs01b3
+               ofs019c:
+                        label
+                        debugline 115
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                        getlocal 8
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getlocal 9
+                        pushbyte 0
+                        setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        debugline 113
+                        inclocal_i 9
+               ofs01b3:
+                        getlocal 9
+                        getlocal 7
+                        ifle ofs019c
+                        debugline 111
+                        inclocal_i 8
+               ofs01bf:
+                        getlocal 8
+                        getlocal 6
+                        ifle ofs018a
+               ofs01c7:
+                        debugline 102
+                        inclocal_i 3
+               ofs01cb:
+                        getlocal3
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        iflt ofs00b9
+                        debugline 100
+                        inclocal_i 2
+               ofs01d9:
+                        getlocal2
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        iflt ofs00af
+                        debugline 122
+                        pushbyte 0
+                        setlocal2
+                        jump ofs0277
+               ofs01ec:
+                        label
+                        debugline 124
+                        pushbyte 5
+                        setlocal3
+                        jump ofs0269
+               ofs01f6:
+                        label
+                        debugline 126
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1417")
+                        getlocal2
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),PackageNamespace(""),PrivateNamespace("LargeFogEffect.as$121"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object")])
+                        pushbyte 0
+                        ifngt ofs0265
+                        debug 1, "stDrawMatrix", 9, 128
+                        debugline 128
+                        findpropstrict QName(PackageNamespace("flash.geom"),"Matrix")
+                        constructprop QName(PackageNamespace("flash.geom"),"Matrix"), 0
+                        coerce QName(PackageNamespace("flash.geom"),"Matrix")
+                        setlocal 10
+                        debugline 129
+                        getlocal 10
+                        getlocal3
+                        pushdouble 2.5
+                        subtract
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        getproperty QName(PackageNamespace(""),"a_1080")
+                        multiply
+                        pushdouble 0.5
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1415")
+                        getproperty QName(PackageNamespace(""),"width")
+                        multiply
+                        subtract
+                        getlocal2
+                        pushdouble 1.5
+                        add
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        getproperty QName(PackageNamespace(""),"a_1081")
+                        multiply
+                        pushdouble 0.5
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1415")
+                        getproperty QName(PackageNamespace(""),"height")
+                        multiply
+                        subtract
+                        callpropvoid QName(PackageNamespace(""),"translate"), 2
+                        debugline 131
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1415")
+                        getlocal 10
+                        callpropvoid QName(PackageNamespace(""),"draw"), 2
+               ofs0265:
+                        debugline 124
+                        inclocal_i 3
+               ofs0269:
+                        getlocal3
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        iflt ofs01f6
+                        debugline 122
+                        inclocal_i 2
+               ofs0277:
+                        getlocal2
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1012")
+                        iflt ofs01ec
+                        debugline 136
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        callpropvoid QName(PackageNamespace(""),"unlock"), 0
+                        debugline 137
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1414")
+                        setproperty QName(PackageNamespace(""),"bitmapData")
+                        debugline 138
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_4130() : void
+            {
+               trait method QName(PackageNamespace(""),"a_4130")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:LargeFogEffect/ClearFog"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                           debugline 140
+                           getlocal0
+                           pushscope
+                           debugline 142
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:LargeFogEffect"),"a_1267")
+                           pushnull
+                           setproperty QName(PackageNamespace(""),"bitmapData")
+                           debugline 143
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 8
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                  debugline 13
+                  findpropstrict Multiname("a_4128",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"Sprite")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"Sprite")
+                  newclass 47
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4128")
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;LargeFogEffect.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

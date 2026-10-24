@@ -1,7 +1,10 @@
-draw_set_alpha(0.5);
+panel_anim_step(id)
+if (!instance_exists(id)) { exit }
+draw_set_alpha(0.5 * ui_anim_alpha(id));
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+panel_anim_begin(id)
 draw_self()
 
 if button_select < 0{
@@ -13,7 +16,7 @@ if button_select < 0{
 	draw_text(x+240,y-163,"点击左侧选项卡以选择食谱类型")
 	draw_text(x+230,y+33,"未选择食谱类型")
 	draw_text(x+240,y+128,"点击左侧选项卡以选择食谱类型")
-}
+	}
 else{
 	var cookbook_rank_list = global.save_data.equipped_cookbook[button_select]
 	var cookbook_material = ["copper_cookbook_fragment","silver_cookbook_fragment","gold_cookbook_fragment"]
@@ -63,3 +66,4 @@ else{
 		}
 	}
 }
+panel_anim_end_slide(id, 260)

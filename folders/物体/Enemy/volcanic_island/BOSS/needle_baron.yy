@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"needle_baron",
+  "folderPath":"folders/物体/Enemy/volcanic_island/BOSS/needle_baron.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"needle_baron",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_baron_bats","path":"objects/obj_baron_bats/obj_baron_bats.yy",},
+    {"name":"obj_baron_blade","path":"objects/obj_baron_blade/obj_baron_blade.yy",},
+    {"name":"obj_baron_needle","path":"objects/obj_baron_needle/obj_baron_needle.yy",},
+    {"name":"obj_needle_baron","path":"objects/obj_needle_baron/obj_needle_baron.yy",}
+  ],
+}

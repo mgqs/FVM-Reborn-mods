@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Weapons",
+  "folderPath":"folders/脚本/Weapons.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Weapons",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"weapons_init","path":"scripts/weapons_init/weapons_init.yy",},
+    {"name":"weapon_registry","path":"scripts/weapon_registry/weapon_registry.yy",}
+  ],
+}

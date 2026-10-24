@@ -1,9 +1,17 @@
 // 绘制事件
-draw_set_alpha(0.5);
+panel_anim_step(id)
+if (!instance_exists(id)) exit
+draw_set_alpha(0.5 * ui_anim_alpha(id));
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+panel_anim_begin(id)
 draw_self()
+if (pg_t >= 0) {
+	pg_t++;
+	if (pg_t > pg_frames) pg_t = -1;
+}
+pg_alpha = (pg_t >= 0) ? 1 - power(1 - pg_t / pg_frames, 3) : 1;
 
 // 绘制玩家金币数量
 draw_set_font(font_number); 
@@ -25,7 +33,6 @@ for(var i = 0 ; i< 4; i++){
 		draw_sprite_ext(spr_shop_goods_bg,0,x-618+411*i,y-190+165*j,1.8,1.8,0,c_white,1)
 	}
 }
-
 //按类型绘制图标
 
 for(var i = 0 ; i< 4; i++){
@@ -103,11 +110,17 @@ for(var i = 0 ; i< 4; i++){
 		//绘制道具类型商品
 		else if shop_button_select == 3{
 			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
-				//根据商品id获取卡片信息
+				//根据商品id获取商品信息
 				var goods_info = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)]
 				var goods_spr = goods_info.spr
 				
-				draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+25,1.8,1.8,0,c_white,1)
+				// 神秘礼盒单独调整位置（居中显示）
+				if (goods_info.unlock_item_id == "gacha_box"){
+					draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+60,1.5,1.5,0,c_white,1)
+				}
+				else{
+					draw_sprite_ext(goods_spr,0,x-618+411*j-122,y-215+165*i+25,1.8,1.8,0,c_white,1)
+				}
 				
 				//判断卡槽物品是否已售完
 				if ((goods_info.unlock_item_id == "card_slot" && global.save_data.unlocked_items.max_slot >= 18)
@@ -169,15 +182,16 @@ for(var i = 0 ; i< 4; i++){
 		            if is_attire_unlocked(card_data.unlock_item_id){
 						is_unlocked = true
 					}
-				if is_unlocked{
+				if is_unlocked && get_attire_state(card_data.unlock_item_id) == "equipped"{
 					
 					draw_set_color(c_black)
 					draw_set_alpha(0.5)
 					draw_rectangle(x-618+411*j-205,y-190+165*i-82,x-618+411*j+205,y-190+165*i+82,false)
 					draw_set_alpha(1)
-					draw_sprite_ext(spr_sold_out, 0, x-618+411*j,y-190+165*i, 1.8, 1.8, 0, c_white, 1);
 				}
 			}
 		}
 	}
 }
+draw_set_alpha(1)
+panel_anim_end_slide(id, 260)

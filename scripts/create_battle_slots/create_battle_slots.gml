@@ -11,6 +11,7 @@ function create_battle_slots() {
     for(var i = 0; i < max_slot; i++) {
         if (deck_slot_is_empty(i)) continue; // 跳过空槽
         var deck_entry = global.selected_deck[| i];
+        if (deck_entry[? "card_id"] == "lihe" && !is_random_gift_mode()) continue;
         var card_data = deck_entry[? "data"];
         var inst = noone
 		if n <= 14{
@@ -39,6 +40,7 @@ function create_battle_slots() {
         inst.slot_index = n + 1;
 		inst.card_id = deck_entry[? "card_id"];
         inst.shape = deck_entry[? "shape"]; // 存储形态信息
+		inst.cshape = deck_entry[? "shape"];
 		inst.depth = -2000
 		//show_debug_message("植物卡槽已生成，id：" + inst.card_id)
         n++

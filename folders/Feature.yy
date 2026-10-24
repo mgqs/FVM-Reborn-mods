@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Feature",
+  "folderPath":"folders/Feature.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Feature",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"Laboratory","path":"folders/Feature/Laboratory.yy",}
+  ],
+  "listItems":[],
+}

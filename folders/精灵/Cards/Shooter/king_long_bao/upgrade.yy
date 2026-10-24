@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"upgrade",
+  "folderPath":"folders/精灵/Cards/Shooter/king_long_bao/upgrade.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"upgrade",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8f75baaf-c07c-4506-8f80-ec0a86ca7561","path":"sprites/spr_king_long_bao_0_upgrade_1/spr_king_long_bao_0_upgrade_1.yy",},
+    {"name":"afac57dc-9676-48f1-b71e-9c5a803f20cd","path":"sprites/spr_king_long_bao_0_upgrade_2/spr_king_long_bao_0_upgrade_2.yy",},
+    {"name":"d8518075-a1a4-424e-b762-d1a4119dd4cb","path":"sprites/spr_king_long_bao_1_upgrade_1/spr_king_long_bao_1_upgrade_1.yy",},
+    {"name":"a88cac61-e905-4cec-bd2e-933a5b7252c6","path":"sprites/spr_king_long_bao_1_upgrade_2/spr_king_long_bao_1_upgrade_2.yy",},
+    {"name":"7c857f0e-23fe-488d-b73b-294167190f9f","path":"sprites/spr_king_long_bao_1_upgrade_3/spr_king_long_bao_1_upgrade_3.yy",},
+    {"name":"4c8cc880-ca57-4eb7-b25b-6966395a5425","path":"sprites/spr_king_long_bao_2_upgrade_1/spr_king_long_bao_2_upgrade_1.yy",},
+    {"name":"6fa2e92e-41b2-4bbd-83f9-1cbfee4774f0","path":"sprites/spr_king_long_bao_2_upgrade_2/spr_king_long_bao_2_upgrade_2.yy",},
+    {"name":"b3fa8eed-c1b7-467b-802e-f8a2d8883124","path":"sprites/spr_king_long_bao_2_upgrade_3/spr_king_long_bao_2_upgrade_3.yy",},
+    {"name":"0dd10f8b-9d81-406a-be18-2e39826242d4","path":"sprites/spr_king_long_bao_2_upgrade_4/spr_king_long_bao_2_upgrade_4.yy",},
+    {"name":"bbee5447-64db-4c99-9da7-ab61762e9e79","path":"sprites/spr_king_long_bao_2_upgrade_5/spr_king_long_bao_2_upgrade_5.yy",}
+  ],
+}

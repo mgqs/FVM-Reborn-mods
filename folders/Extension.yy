@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Extension",
+  "folderPath":"folders/Extension.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Extension",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"native_open_folder","path":"extensions/WindowsNative/WindowsNative.yy",}
+  ],
+}

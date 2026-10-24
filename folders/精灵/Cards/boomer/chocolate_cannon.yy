@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"chocolate_cannon",
+  "folderPath":"folders/精灵/Cards/boomer/chocolate_cannon.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"chocolate_cannon",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1777cff6-90c5-4144-a1f6-c6a69f2dd7ba","path":"sprites/spr_chocolate_cannon/spr_chocolate_cannon.yy",},
+    {"name":"28a4bd3b-446f-4f1c-90ad-aa361b4f5f79","path":"sprites/spr_chocolate_cannon_1/spr_chocolate_cannon_1.yy",},
+    {"name":"f583c5ac-1ce4-4cfe-8e73-b6849fb84de1","path":"sprites/spr_chocolate_cannon_2/spr_chocolate_cannon_2.yy",}
+  ],
+}

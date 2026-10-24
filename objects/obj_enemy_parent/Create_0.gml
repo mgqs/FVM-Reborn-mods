@@ -1,6 +1,8 @@
 image_xscale = 1.8
 image_yscale = 1.8
 image_speed = 0
+image_alpha = 1
+image_blend = c_white
 atk = 10 //每次攻击伤害
 atk_cycle = 0.6 * 60 //攻击间隔
 move_speed = 0.32 //移动速度（像素/秒）
@@ -19,6 +21,7 @@ attack_timer = 0
 target_plant = noone
 attack_range = 90
 immune_to_ash = false
+ash_death = false
 ice_timer = 0
 is_slowdown = false
 frozen_timer = 0
@@ -57,6 +60,8 @@ grid_row = 99
 
 damage_amount = 0
 damage_type = ""
+damage_source_object = noone
+damage_source_card_shape = -1
 
 hit_sound = snd_hit1
 
@@ -64,3 +69,25 @@ water_effect_timer = 0
 hp_modified = false
 
 block_mouse_id_list = ["mouse_train_1"]
+
+enemy_registered = false
+enemy_registered_type = ""
+
+// 记录真实出生坐标（供逆转牛等"传送回出生点"逻辑使用）
+birth_x = x;
+birth_y = y;
+
+// 对象池相关变量
+pooled = false;
+
+// ===== 上梯越过植物（梯子功能）=====
+can_use_ladder = true  // 是否能上梯/翻越障碍物（车辆、飞行、鼹鼠等在自己的 Create 里置 false）
+climb_stage = 0        // 0=未越障 1=沿本行水平越障中
+climb_end_x = 0        // 落点 x（植物左侧相邻格右边界）
+climb_base_y = 0       // 越障起始 y（本行基准，弧线结束时回落到这里）
+climb_total_dist = 1   // 起点到落点的水平总距离（算弧线进度用，防除零）
+climb_arc_h = 40       // 弧线最高上抬像素（远小于一格 116，不会跨行）
+climb_speed = 2        // 每帧移动像素（越障速度，越小越慢）
+climb_y = 0            // 越障期间的实际绘制高度（Step 算，Draw 用）
+
+attack_multiplier = 1;

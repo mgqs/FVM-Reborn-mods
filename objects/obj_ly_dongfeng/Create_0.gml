@@ -1,0 +1,32 @@
+event_inherited();
+ly_kind = "dongfeng";
+ly_anims = {};
+ly_action = "";
+ly_frame = 0;
+ly_done = false;
+ly_once = false;
+ly_hit = false;
+ly_mode = "walk";
+ly_cooldown = 0;
+is_soul = false;
+invincible = false;
+is_vehicle = false;
+ly_wind_multiplier = 2;
+ly_fan = true;
+ly_wind_active = false;
+ly_dodge_cooldown = 0;
+ly_original_hp = 100;
+can_use_ladder = false;
+state = ENEMY_STATE.ACTING;
+
+// 本对象的属性、动作和专属状态。
+mouse_id = "longyuan_dongfeng";
+ly_anims = longyuan_animation_table("dongfeng");
+hp = 2340; maxhp = 2340; ly_original_hp = 2340;
+helmet_hp = 940; helmet_max_hp = 940;
+move_speed = 0.3; atk = 10; atk_cycle = 36;
+target_type = "air";
+immune_to_ash = true;
+longyuan_move_action = function() { return ly_fan ? "持扇前进" : longyuan_variant("正常行走", "破损行走"); };
+longyuan_attack_action = function() { return ly_fan ? "持扇攻击" : longyuan_variant("正常啃咬", "破损啃咬"); };
+longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("死亡", true); };

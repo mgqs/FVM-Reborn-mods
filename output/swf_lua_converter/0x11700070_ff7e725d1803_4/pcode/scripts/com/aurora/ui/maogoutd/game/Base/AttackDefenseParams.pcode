@@ -1,0 +1,251 @@
+package com.aurora.ui.maogoutd.game.Base
+{
+   import com.aurora.ui.maogoutd.resource.defender.a_3953;
+   
+   public class AttackDefenseParams
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var bHasAttacker:Boolean = false;
+      
+      public var attackDamage:int = 0;
+      
+      public var baseAttack:int = 0;
+      
+      public var flagAdd:Number = 0;
+      
+      public var iAttackAddend:int = 0;
+      
+      public function AttackDefenseParams()
+      {
+         method
+            name "com.aurora.ui.maogoutd.game.Base:AttackDefenseParams/AttackDefenseParams"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                  debugline 50
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      private function Reset() : void
+      {
+         trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Base:AttackDefenseParams"),"Reset")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game.Base:AttackDefenseParams/private:Reset"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     debugline 16
+                     getlocal0
+                     pushfalse
+                     initproperty QName(PackageNamespace(""),"bHasAttacker")
+                     debugline 17
+                     getlocal0
+                     pushbyte 0
+                     initproperty QName(PackageNamespace(""),"attackDamage")
+                     debugline 18
+                     getlocal0
+                     pushbyte 0
+                     initproperty QName(PackageNamespace(""),"flagAdd")
+                     debugline 19
+                     getlocal0
+                     pushbyte 0
+                     initproperty QName(PackageNamespace(""),"iAttackAddend")
+                     debugline 20
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function InitAttacker(attacker:a_3953) : void
+         {
+            trait method QName(PackageNamespace(""),"InitAttacker")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game.Base:AttackDefenseParams/InitAttacker"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                  paramname "attackDamage"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                        debugline 27
+                        getlocal0
+                        pushscope
+                        debug 1, "attacker", 0, 27
+                        debugline 28
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PackageNamespace(""),"iAttackAddend")
+                        debugline 31
+                        getlocal1
+                        pushnull
+                        ifne ofs0028
+                        debugline 32
+                        getlocal0
+                        callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.game.Base:AttackDefenseParams"),"Reset"), 0
+                        jump ofs004d
+               ofs0028:
+                        debugline 34
+                        getlocal0
+                        pushtrue
+                        initproperty QName(PackageNamespace(""),"bHasAttacker")
+                        debugline 35
+                        getlocal0
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"iAttackDamage")
+                        initproperty QName(PackageNamespace(""),"attackDamage")
+                        debugline 36
+                        getlocal0
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"iBaseAttack")
+                        initproperty QName(PackageNamespace(""),"baseAttack")
+                        debugline 37
+                        getlocal0
+                        getlocal1
+                        getproperty QName(PackageNamespace(""),"m_BattleFlagAddMul")
+                        initproperty QName(PackageNamespace(""),"flagAdd")
+               ofs004d:
+                        debugline 39
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function Copy(other:AttackDefenseParams) : void
+            {
+               trait method QName(PackageNamespace(""),"Copy")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game.Base:AttackDefenseParams/Copy"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.game.Base"),"AttackDefenseParams")
+                     paramname "attackDamage"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                           debugline 41
+                           getlocal0
+                           pushscope
+                           debug 1, "other", 0, 41
+                           debugline 42
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"bHasAttacker")
+                           initproperty QName(PackageNamespace(""),"bHasAttacker")
+                           debugline 43
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"attackDamage")
+                           initproperty QName(PackageNamespace(""),"attackDamage")
+                           debugline 44
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"baseAttack")
+                           initproperty QName(PackageNamespace(""),"baseAttack")
+                           debugline 45
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"flagAdd")
+                           initproperty QName(PackageNamespace(""),"flagAdd")
+                           debugline 46
+                           getlocal0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"flagAdd")
+                           initproperty QName(PackageNamespace(""),"iAttackAddend")
+                           debugline 47
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                  debugline 6
+                  findpropstrict Multiname("AttackDefenseParams",[PackageNamespace("com.aurora.ui.maogoutd.game.Base")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 24
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game.Base"),"AttackDefenseParams")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\game\\Base;AttackDefenseParams.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

@@ -1,0 +1,130 @@
+package com.aurora.ui.maogoutd.compositemap.data
+{
+   public class ComMapData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iMapID:int;
+      
+      public var m_strBGUrl:String;
+      
+      public var m_strInsideBGUrl:String;
+      
+      public var m_strShowBGUrl:String;
+      
+      public var m_strShowInsideBGUrl:String;
+      
+      public var m_strSoundBGUrl:String;
+      
+      public var m_strBossSoundBGUrl:String;
+      
+      public var m_iStageType:int;
+      
+      public var m_iBattleModeType:int;
+      
+      public var m_iWeatherType:int;
+      
+      public var m_iDropType:int;
+      
+      public var m_iAirTime:int;
+      
+      public var m_FrozenTime:int;
+      
+      public var m_FrozenCDTime:int;
+      
+      public var sandstorm_restore:int = -1;
+      
+      public var sandstorm_initial_col:int;
+      
+      public var sandstorm_time:int;
+      
+      public var sandstormCD_time:int;
+      
+      public var tornado_time:int = -1;
+      
+      public var tornado_num:int;
+      
+      public var m_vGridData:Vector.<FieldGridData>;
+      
+      public function ComMapData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.compositemap.data:ComMapData/ComMapData"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;ComMapData.as"
+                  debugline 35
+                  getlocal0
+                  pushscope
+                  debugline 36
+                  getlocal0
+                  constructsuper 0
+                  debugline 37
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.compositemap.data:ComMapData"),PrivateNamespace("ComMapData.as$326"),PackageNamespace(""),PackageNamespace("com.aurora.ui.maogoutd.compositemap.data"),PackageInternalNs("com.aurora.ui.maogoutd.compositemap.data"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.compositemap.data:ComMapData"),StaticProtectedNs("com.aurora.ui.maogoutd.compositemap.data:ComMapData"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.compositemap.data"),"FieldGridData")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PackageNamespace(""),"m_vGridData")
+                  debugline 38
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;ComMapData.as"
+         debugline 3
+         findpropstrict Multiname("ComMapData",[PackageNamespace("com.aurora.ui.maogoutd.compositemap.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 55
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.compositemap.data"),"ComMapData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\compositemap\\data;ComMapData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

@@ -49,8 +49,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"power_god",
+    "path":"folders/精灵/mod/Cards/Track/power_god.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

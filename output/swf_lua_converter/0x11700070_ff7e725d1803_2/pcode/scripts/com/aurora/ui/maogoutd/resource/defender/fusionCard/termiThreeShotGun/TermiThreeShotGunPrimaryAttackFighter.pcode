@@ -1,0 +1,1000 @@
+package com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun
+{
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.BattleLayerDefine;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.defender.a_3953;
+   import com.aurora.ui.maogoutd.resource.shot.a_4348;
+   import flash.display.BitmapData;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   import flash.geom.Point;
+   
+   public class TermiThreeShotGunPrimaryAttackFighter extends a_3953
+   {
+      
+      private static var ms_stTermiThreeShotGunPrimaryAttackFighterVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 11
+            maxscopedepth 12
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stTermiThreeShotGunPrimaryAttackFighterVector", 0, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"ms_stTermiThreeShotGunPrimaryAttackFighterVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"ms_stTermiThreeShotGunPrimaryAttackFighterVector")
+               debug 1, "a_1300", 1, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),PackageNamespace(""),PrivateNamespace("TermiThreeShotGunPrimaryAttackFighter.as$43"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1300")
+               debug 1, "a_1301", 2, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),PackageNamespace(""),PrivateNamespace("TermiThreeShotGunPrimaryAttackFighter.as$43"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1301")
+               debug 1, "a_1302", 3, 20
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryAttackFighterMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryAttackFighterMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var totalShotCount:int = 0;
+      
+      private var shotIndex:int = 0;
+      
+      public function TermiThreeShotGunPrimaryAttackFighter()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/TermiThreeShotGunPrimaryAttackFighter"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 12
+               maxscopedepth 13
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                  debugline 37
+                  getlocal0
+                  pushscope
+                  debugline 39
+                  getlocal0
+                  constructsuper 0
+                  debugline 41
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1095")
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunDefence")
+                  getproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"DEFENSE_PRICE")
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1095")
+                  debugline 43
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1317")
+                  pushbyte 2
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1317")
+                  debugline 44
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1337")
+                  pushbyte 0
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1337")
+                  debugline 45
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1310")
+                  pushbyte 8
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1310")
+                  debugline 46
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1313")
+                  pushtrue
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1313")
+                  debugline 47
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : a_3953
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                     debugline 23
+                     getlocal0
+                     pushscope
+                     debug 1, "stTermiThreeShotGunPrimaryAttackFighter", 0, 25
+                     debugline 25
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"ms_stTermiThreeShotGunPrimaryAttackFighterVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryAttackFighter")
+                     setlocal1
+                     debugline 27
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 29
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryAttackFighter")
+                     setlocal1
+            ofs002b:
+                     debugline 32
+                     getlocal1
+                     pushtrue
+                     setproperty QName(PackageNamespace(""),"visible")
+                     debugline 34
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(stFieldGrid:a_3491) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/GetFreeInstance"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 3
+                     initscopedepth 12
+                     maxscopedepth 13
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                        debugline 49
+                        getlocal0
+                        pushscope
+                        debug 1, "stFieldGrid", 0, 49
+                        debugline 51
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                        debugline 53
+                        getlex QName(PackageNamespace(""),"m_bServerIssued")
+                        iffalse ofs0053
+                        debugline 55
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1311")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunDefence")
+                        getlex QName(PackageNamespace(""),"a_1094")
+                        callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"a_3965"), 1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1311")
+                        debugline 57
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1309")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunDefence")
+                        getlex QName(PackageNamespace(""),"m_iSkillDegree")
+                        callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"a_3966"), 1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1309")
+                        debugline 58
+                        getlocal0
+                        getlocal0
+                        pushbyte 0
+                        dup
+                        setlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"shotIndex")
+                        getlocal2
+                        kill 2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"totalShotCount")
+               ofs0053:
+                        debugline 61
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 12
+                        maxscopedepth 13
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                           debugline 65
+                           getlocal0
+                           pushscope
+                           debugline 67
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 12
+                           maxscopedepth 13
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                              debugline 70
+                              getlocal0
+                              pushscope
+                              debugline 72
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 12
+                              maxscopedepth 13
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                 debugline 75
+                                 getlocal0
+                                 pushscope
+                                 debugline 77
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_3964() : int
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3964")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetGrownTime"
+                              returns QName(PackageNamespace(""),"int")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 12
+                                 maxscopedepth 13
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                    debugline 80
+                                    getlocal0
+                                    pushscope
+                                    debugline 82
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunDefence")
+                                    getlex QName(PackageNamespace(""),"m_iSkillDegree")
+                                    callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"a_3964"), 1
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function a_3969(iRduceLifeValue:int) : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"a_3969")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/ReduceLife"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/GetFreeInstance"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 12
+                                    maxscopedepth 13
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                       debugline 85
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "iRduceLifeValue", 0, 85
+                                       debugline 87
+                                       getlocal0
+                                       getlocal1
+                                       callsupervoid QName(PackageNamespace(""),"a_3969"), 1
+                                       debugline 89
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           override public function a_3957(iCurrentTime:int) : void
+                           {
+                              trait method QName(PackageNamespace(""),"a_3957")
+                                 flag OVERRIDE
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/ShowPlay"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace(""),"int")
+                                    paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/TermiThreeShotGunPrimaryAttackFighter"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 2
+                                       initscopedepth 12
+                                       maxscopedepth 13
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                          debugline 92
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "iCurrentTime", 0, 92
+                                          debugline 94
+                                          getlocal1
+                                          pushbyte 2
+                                          modulo
+                                          pushbyte 0
+                                          ifne ofs0021
+                                          debugline 96
+                                          getlocal0
+                                          getlocal1
+                                          callsupervoid QName(PackageNamespace(""),"a_3957"), 1
+                                 ofs0021:
+                                          debugline 98
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              override public function a_3940() : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"a_3940")
+                                    flag OVERRIDE
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/Realease"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 3
+                                          localcount 1
+                                          initscopedepth 12
+                                          maxscopedepth 13
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                             debugline 100
+                                             getlocal0
+                                             pushscope
+                                             debugline 102
+                                             getlocal0
+                                             callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                             debugline 104
+                                             pushbyte -1
+                                             getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"ms_stTermiThreeShotGunPrimaryAttackFighterVector")
+                                             getlocal0
+                                             callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                             ifne ofs0028
+                                             debugline 106
+                                             getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"ms_stTermiThreeShotGunPrimaryAttackFighterVector")
+                                             getlocal0
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                    ofs0028:
+                                             debugline 109
+                                             pushtrue
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 override public function a_3954(iCurrentTime:int) : Boolean
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_3954")
+                                       flag OVERRIDE
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/Shot"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"int")
+                                          paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/GetFreeInstance"
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 4
+                                             localcount 9
+                                             initscopedepth 12
+                                             maxscopedepth 13
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                debugline 111
+                                                getlocal0
+                                                pushscope
+                                                pushnull
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                                                setlocal2
+                                                pushnan
+                                                setlocal3
+                                                pushbyte 0
+                                                setlocal 4
+                                                pushnull
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                setlocal 5
+                                                pushbyte 0
+                                                setlocal 6
+                                                debug 1, "iCurrentTime", 0, 111
+                                                debug 1, "stLastWaitShot", 1, 113
+                                                debug 1, "numShotXpos", 2, 114
+                                                debug 1, "i", 3, 115
+                                                debug 1, "stStartField", 4, 116
+                                                debugline 117
+                                                getlocal1
+                                                getlex QName(PackageNamespace(""),"m_iPlaceTimeIntervals")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1308")
+                                                add
+                                                greaterthan
+                                                dup
+                                                iffalse ofs0052
+                                                pop
+                                                getlocal1
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1321")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1309")
+                                                add
+                                                greaterequals
+                                       ofs0052:
+                                                iffalse ofs013d
+                                                debug 1, "j", 5, 130
+                                                debugline 119
+                                                findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1321")
+                                                getlocal1
+                                                initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1321")
+                                                debugline 121
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                callproperty QName(PackageNamespace(""),"a_3430"), 1
+                                                pushbyte 0
+                                                ifnle ofs0082
+                                                debugline 123
+                                                pushtrue
+                                                returnvalue
+                                       ofs0082:
+                                                debugline 125
+                                                getlocal0
+                                                dup
+                                                setlocal 7
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"totalShotCount")
+                                                increment_i
+                                                setlocal 8
+                                                getlocal 7
+                                                getlocal 8
+                                                setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"totalShotCount")
+                                                kill 8
+                                                kill 7
+                                                debugline 126
+                                                getlocal0
+                                                pushbyte 0
+                                                initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"shotIndex")
+                                                debugline 127
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                pushbyte 0
+                                                setproperty QName(PackageNamespace(""),"length")
+                                                debugline 129
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                pushbyte 0
+                                                setproperty QName(PackageNamespace(""),"length")
+                                                debugline 130
+                                                pushbyte 0
+                                                setlocal 6
+                                                jump ofs00fb
+                                       ofs00c1:
+                                                label
+                                                debugline 132
+                                                getlocal0
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"pushShot"), 0
+                                                debugline 133
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                pushbyte 0
+                                                ifngt ofs00de
+                                                getlocal0
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"pushShot"), 0
+                                       ofs00de:
+                                                debugline 134
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                getproperty QName(PackageNamespace(""),"a_1012")
+                                                decrement
+                                                ifnlt ofs00f6
+                                                getlocal0
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"pushShot"), 0
+                                       ofs00f6:
+                                                debugline 130
+                                                inclocal_i 6
+                                       ofs00fb:
+                                                getlocal 6
+                                                pushbyte 2
+                                                iflt ofs00c1
+                                                debugline 137
+                                                findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                pushbyte 0
+                                                initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                debugline 139
+                                                findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1307")
+                                                pushbyte 1
+                                                initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1307")
+                                                debugline 140
+                                                findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                pushbyte 0
+                                                initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1275")
+                                                debugline 141
+                                                findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1276")
+                                                pushbyte 1
+                                                getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),PackageNamespace(""),PrivateNamespace("TermiThreeShotGunPrimaryAttackFighter.as$43"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                getlex QName(PackageNamespace("flash.display"),"FrameLabel")
+                                                astypelate
+                                                getproperty QName(PackageNamespace(""),"frame")
+                                                callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                       ofs013d:
+                                                debugline 143
+                                                getlocal1
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1321")
+                                                subtract
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1310")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1317")
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                multiply
+                                                add
+                                                equals
+                                                dup
+                                                iffalse ofs0160
+                                                pop
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                pushbyte 0
+                                                greaterthan
+                                       ofs0160:
+                                                iffalse ofs01ae
+                                                debugline 146
+                                                getlocal0
+                                                pushbyte 1
+                                                pushbyte 45
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"lauchShot"), 2
+                                                debugline 149
+                                                getlocal0
+                                                pushbyte -1
+                                                pushbyte 55
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"lauchShot"), 2
+                                                debugline 152
+                                                getlocal0
+                                                pushbyte 0
+                                                pushbyte 55
+                                                callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"lauchShot"), 2
+                                                debugline 153
+                                                getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                pushbyte 0
+                                                ifngt ofs01ae
+                                                findpropstrict QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                dup
+                                                setlocal 7
+                                                getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                increment_i
+                                                setlocal 8
+                                                getlocal 7
+                                                getlocal 8
+                                                setproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1323")
+                                                kill 8
+                                                kill 7
+                                       ofs01ae:
+                                                debugline 156
+                                                pushtrue
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function lauchShot(direction:int, baseX:int) : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"lauchShot")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/private:lauchShot"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace(""),"int")
+                                             param QName(PackageNamespace(""),"int")
+                                             paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/TermiThreeShotGunPrimaryAttackFighter"
+                                             paramname "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/TermiThreeShotGunPrimaryAttackFighter"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 8
+                                                localcount 10
+                                                initscopedepth 12
+                                                maxscopedepth 13
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                   debugline 160
+                                                   getlocal0
+                                                   pushscope
+                                                   pushbyte 0
+                                                   setlocal 7
+                                                   debug 1, "direction", 0, 160
+                                                   debug 1, "baseX", 1, 160
+                                                   debug 1, "stStartField", 2, 165
+                                                   debug 1, "numShotXpos", 3, 167
+                                                   debug 1, "numShotYpos", 4, 168
+                                                   debug 1, "stShot", 5, 169
+                                                   debugline 162
+                                                   getlocal1
+                                                   pushbyte 1
+                                                   equals
+                                                   dup
+                                                   iffalse ofs0050
+                                                   pop
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                   getproperty QName(PackageNamespace(""),"a_1012")
+                                                   decrement
+                                                   greaterequals
+                                          ofs0050:
+                                                   iffalse ofs0055
+                                                   returnvoid
+                                          ofs0055:
+                                                   debugline 163
+                                                   getlocal1
+                                                   pushbyte -1
+                                                   equals
+                                                   dup
+                                                   iffalse ofs006b
+                                                   pop
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   pushbyte 0
+                                                   lessequals
+                                          ofs006b:
+                                                   iffalse ofs0070
+                                                   returnvoid
+                                          ofs0070:
+                                                   debugline 165
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                                   getlocal1
+                                                   add
+                                                   callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                                   coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                   setlocal3
+                                                   debugline 167
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                                                   iffalse ofs009f
+                                                   getlocal2
+                                                   negate
+                                                   convert_d
+                                                   jump ofs00a1
+                                          ofs009f:
+                                                   getlocal2
+                                                   convert_d
+                                          ofs00a1:
+                                                   convert_d
+                                                   setlocal 4
+                                                   debugline 168
+                                                   getlocal1
+                                                   pushbyte 1
+                                                   ifne ofs00b5
+                                                   pushbyte 28
+                                                   convert_d
+                                                   jump ofs00b8
+                                          ofs00b5:
+                                                   pushbyte 48
+                                                   convert_d
+                                          ofs00b8:
+                                                   convert_d
+                                                   setlocal 5
+                                                   debugline 169
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                   callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                                                   coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                                                   setlocal 6
+                                                   debugline 170
+                                                   getlocal 6
+                                                   iffalse ofs015e
+                                                   debug 1, "id", 6, 173
+                                                   debugline 172
+                                                   getlocal0
+                                                   dup
+                                                   setlocal 8
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"shotIndex")
+                                                   increment_i
+                                                   setlocal 9
+                                                   getlocal 8
+                                                   getlocal 9
+                                                   setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"shotIndex")
+                                                   kill 9
+                                                   kill 8
+                                                   debugline 173
+                                                   getlex QName(PackageNamespace(""),"m_iDefenseGlobalID")
+                                                   pushbyte 14
+                                                   lshift
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"totalShotCount")
+                                                   pushbyte 4
+                                                   lshift
+                                                   bitor
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"shotIndex")
+                                                   bitor
+                                                   setlocal 7
+                                                   debugline 174
+                                                   getlocal 6
+                                                   getlocal1
+                                                   setproperty QName(PackageNamespace(""),"iShotGroupIndex")
+                                                   debugline 175
+                                                   getlocal 6
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunDefence")
+                                                   getlex QName(PackageNamespace(""),"m_iGradeDegree")
+                                                   callproperty QName(PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"GetCardPrimaryValueByGradeDegree"), 1
+                                                   setproperty QName(PackageNamespace(""),"m_isSpecial")
+                                                   debugline 176
+                                                   getlocal 6
+                                                   getlocal 7
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1312")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1311")
+                                                   getlex QName(PackageNamespace(""),"x")
+                                                   getlocal 4
+                                                   add
+                                                   getlex QName(PackageNamespace(""),"y")
+                                                   getlocal 5
+                                                   add
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                   getlocal3
+                                                   callpropvoid QName(PackageNamespace(""),"a_1797"), 7
+                                                   debugline 177
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                                   getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                   getlocal 6
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                                                   getproperty QName(PackageNamespace(""),"SHOT_TYPE")
+                                                   getlocal3
+                                                   callpropvoid QName(PackageNamespace(""),"AddToBattleView"), 3
+                                          ofs015e:
+                                                   debugline 179
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       private function pushShot() : void
+                                       {
+                                          trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"pushShot")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/private:pushShot"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 2
+                                                   initscopedepth 12
+                                                   maxscopedepth 13
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                      debugline 181
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "stShot", 0, 183
+                                                      debugline 183
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryShot")
+                                                      callproperty QName(PackageNamespace(""),"a_4344"), 0
+                                                      coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+                                                      setlocal1
+                                                      debugline 184
+                                                      getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseAttackFighter"),"a_1324")
+                                                      getlocal1
+                                                      callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                                      debugline 185
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          override protected function a_3955() : Number
+                                          {
+                                             trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3955")
+                                                flag OVERRIDE
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetShotXpos"
+                                                   returns QName(PackageNamespace(""),"Number")
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 1
+                                                      initscopedepth 12
+                                                      maxscopedepth 13
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                         debugline 186
+                                                         getlocal0
+                                                         pushscope
+                                                         debugline 188
+                                                         getlex QName(PackageNamespace(""),"width")
+                                                         pushbyte 60
+                                                         add
+                                                         returnvalue
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             override protected function a_3956() : Number
+                                             {
+                                                trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter"),"a_3956")
+                                                   flag OVERRIDE
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun:TermiThreeShotGunPrimaryAttackFighter/protected:GetShotYPos"
+                                                      returns QName(PackageNamespace(""),"Number")
+                                                      
+                                                      body
+                                                         maxstack 1
+                                                         localcount 1
+                                                         initscopedepth 12
+                                                         maxscopedepth 13
+                                                         
+                                                         code
+                                                            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                            debugline 191
+                                                            getlocal0
+                                                            pushscope
+                                                            debugline 193
+                                                            pushbyte -40
+                                                            returnvalue
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                             }
+                                          }
+                                          
+                                          method
+                                             name ""
+                                             returns null
+                                             
+                                             body
+                                                maxstack 2
+                                                localcount 1
+                                                initscopedepth 1
+                                                maxscopedepth 11
+                                                
+                                                code
+                                                   getlocal0
+                                                   pushscope
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                   debugline 15
+                                                   findpropstrict Multiname("TermiThreeShotGunPrimaryAttackFighter",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun")])
+                                                   getlex QName(PackageNamespace(""),"Object")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                                                   pushscope
+                                                   getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                                                   newclass 370
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   popscope
+                                                   initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.fusionCard.termiThreeShotGun"),"TermiThreeShotGunPrimaryAttackFighter")
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\fusionCard\\termiThreeShotGun;TermiThreeShotGunPrimaryAttackFighter.as"
+                                                   debugline 1
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                          

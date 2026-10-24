@@ -1,0 +1,15 @@
+{
+  "status": "conversion_blocked",
+  "source": "D:\\FVM开发\\game\\FVM开发\\res\\res\\resource\\0x113E0020.swf",
+  "errors": [
+    "卡片转换阻塞：所选卡片的父类/方法依赖尚无适配器；见 card_dependencies.json。不会套用其他卡片逻辑。"
+  ],
+  "lua_emitted": false,
+  "as3_catalog_entries": 73,
+  "exported_sources": 73,
+  "total_methods": 454,
+  "unsupported_sources": 73,
+  "abc_method_bodies": 546,
+  "pcode_files": 73,
+  "tag_count": 64
+}

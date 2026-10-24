@@ -1,0 +1,1221 @@
+package com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider
+{
+   import a_4781.TimeoutManager;
+   import com.aurora.ui.maogoutd.game.BattleFieldView;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.bitmap.MouseScareBitmapdata;
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   
+   public class MouseScareHandler
+   {
+      
+      private static var _instance:MouseScareHandler;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 15
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var _scareBitmapPool:Vector.<Bitmap>;
+      
+      private var _usingBitmaps:Vector.<Bitmap>;
+      
+      private var _scaredOutMice:Vector.<a_4206>;
+      
+      private var _baseBitmapData:BitmapData;
+      
+      public function MouseScareHandler()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/MouseScareHandler"
+            returns null
+            
+            body
+               maxstack 4
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                  debugline 23
+                  getlocal0
+                  pushscope
+                  debugline 31
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),PackageNamespace(""),PrivateNamespace("MouseScareHandler.as$251"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("flash.display"),"Bitmap")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scareBitmapPool")
+                  debugline 32
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),PackageNamespace(""),PrivateNamespace("MouseScareHandler.as$251"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("flash.display"),"Bitmap")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                  debugline 35
+                  getlocal0
+                  getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),PackageNamespace(""),PrivateNamespace("MouseScareHandler.as$251"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),PackageNamespace("__AS3__.vec")])
+                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                  applytype 1
+                  construct 0
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                  debugline 24
+                  getlocal0
+                  constructsuper 0
+                  debugline 25
+                  getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_instance")
+                  iffalse ofs004f
+                  debugline 26
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "MouseScareHandler 已经是单例，禁止直接 new！"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs004f:
+                  debugline 27
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"MouseScareBitmapdata")
+                  pushbyte 55
+                  dup
+                  constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.bitmap"),"MouseScareBitmapdata"), 2
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_baseBitmapData")
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : MouseScareHandler
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/getInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareHandler")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                     debugline 16
+                     getlocal0
+                     pushscope
+                     debugline 18
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_instance")
+                     iftrue ofs001b
+                     debugline 19
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_instance")
+            ofs001b:
+                     debugline 20
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private static function GetiNoX(newX:int, a_1283:Boolean) : int
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"GetiNoX")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:GetiNoX"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname ""
+                  paramname ""
+                  returns QName(PackageNamespace(""),"int")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                        debugline 201
+                        getlocal0
+                        pushscope
+                        debug 1, "newX", 0, 201
+                        debug 1, "a_1283", 1, 201
+                        debug 1, "iXGridNo", 2, 202
+                        debugline 202
+                        findpropstrict QName(PackageNamespace(""),"int")
+                        getlocal1
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        getproperty QName(PackageNamespace(""),"a_1080")
+                        divide
+                        callproperty QName(PackageNamespace(""),"int"), 1
+                        convert_i
+                        setlocal3
+                        debugline 204
+                        getlocal2
+                        iffalse ofs0043
+                        debugline 206
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                        getproperty QName(PackageNamespace(""),"a_1011")
+                        decrement
+                        getlocal3
+                        subtract
+                        convert_i
+                        setlocal3
+               ofs0043:
+                        debugline 208
+                        getlocal3
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function scareMouse(intruder:a_4206, deltaX:Number, targetGrid:a_3491, callBack:Function = null, isShowScareBitMap:Boolean = true, isShowSound:Boolean = true) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"scareMouse")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/scareMouse"
+                     flag HAS_OPTIONAL
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                     param QName(PackageNamespace(""),"Number")
+                     param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                     param QName(PackageNamespace(""),"Function")
+                     param QName(PackageNamespace(""),"Boolean")
+                     param QName(PackageNamespace(""),"Boolean")
+                     paramname "newX"
+                     paramname "newX"
+                     paramname "newX"
+                     paramname "newX"
+                     paramname "newX"
+                     paramname "newX"
+                     optional Null()
+                     optional True()
+                     optional True()
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 8
+                        localcount 12
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                           debugline 51
+                           getlocal0
+                           pushscope
+                           debug 1, "intruder", 0, 51
+                           debug 1, "deltaX", 1, 51
+                           debug 1, "targetGrid", 2, 51
+                           debug 1, "callBack", 3, 51
+                           debug 1, "isShowScareBitMap", 4, 51
+                           debug 1, "isShowSound", 5, 51
+                           debug 1, "targetX", 6, 57
+                           debug 1, "battleField", 7, 58
+                           debug 1, "gobackX", 8, 64
+                           debug 1, "bmp", 9, 71
+                           debug 1, "data", 10, 75
+                           debugline 53
+                           getlocal0
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"validateIntruder"), 1
+                           iftrue ofs0059
+                           debugline 54
+                           pushfalse
+                           returnvalue
+                  ofs0059:
+                           debugline 55
+                           getlocal3
+                           iftrue ofs0064
+                           debugline 56
+                           pushfalse
+                           returnvalue
+                  ofs0064:
+                           debugline 57
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"x")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"IsReversed"), 0
+                           iffalse ofs007a
+                           getlocal2
+                           negate
+                           coerce_a
+                           jump ofs007c
+                  ofs007a:
+                           getlocal2
+                           coerce_a
+                  ofs007c:
+                           add
+                           convert_d
+                           setlocal 7
+                           debugline 58
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                           setlocal 8
+                           debugline 60
+                           getlocal0
+                           getlocal 7
+                           pushbyte 0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                           getproperty QName(PackageNamespace(""),"a_1013")
+                           decrement
+                           callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"clamp"), 3
+                           convert_d
+                           setlocal 7
+                           debugline 62
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                           getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                           getlocal3
+                           getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                           ifeq ofs00b6
+                           debugline 63
+                           pushfalse
+                           returnvalue
+                  ofs00b6:
+                           debugline 64
+                           getlocal 7
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"x")
+                           subtract
+                           convert_d
+                           setlocal 9
+                           debugline 66
+                           getlocal0
+                           getlocal1
+                           getlocal 8
+                           callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"removeIntruder"), 2
+                           debugline 68
+                           getlocal 6
+                           iffalse ofs00df
+                           debugline 69
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                           getproperty QName(PackageNamespace(""),"a_1021")
+                           callpropvoid QName(PackageNamespace(""),"play"), 0
+                  ofs00df:
+                           debugline 71
+                           getlocal 5
+                           iffalse ofs00f2
+                           getlocal0
+                           callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"acquireScareBitmap"), 0
+                           coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                           jump ofs00f5
+                  ofs00f2:
+                           pushnull
+                           coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                  ofs00f5:
+                           coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                           setlocal 10
+                           debugline 72
+                           getlocal 10
+                           iffalse ofs010b
+                           debugline 73
+                           getlocal0
+                           getlocal1
+                           getlocal 10
+                           callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"placeScareBitmap"), 2
+                  ofs010b:
+                           debugline 75
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareData")
+                           getlocal1
+                           getlocal3
+                           getlocal 10
+                           getlocal 9
+                           getlocal 8
+                           getproperty QName(PackageNamespace(""),"a_3459")
+                           getlocal 8
+                           getlocal 4
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareData"), 7
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareData")
+                           setlocal 11
+                           debugline 76
+                           getlex QName(PackageNamespace("a_4781"),"TimeoutManager")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"globalMoveFighterID")
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                           pushbyte 100
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"onMouseScareTimeout")
+                           getlocal 11
+                           callpropvoid QName(PackageNamespace(""),"addTimeout"), 4
+                           debugline 78
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               private function acquireScareBitmap() : Bitmap
+               {
+                  trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"acquireScareBitmap")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:acquireScareBitmap"
+                        returns QName(PackageNamespace("flash.display"),"Bitmap")
+                        
+                        body
+                           maxstack 4
+                           localcount 3
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                              debugline 82
+                              getlocal0
+                              pushscope
+                              debug 1, "bmp", 0, 84
+                              debugline 84
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scareBitmapPool")
+                              callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                              coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                              setlocal1
+                              debugline 85
+                              getlocal1
+                              iftrue ofs0033
+                              debugline 86
+                              findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_baseBitmapData")
+                              callproperty QName(PackageNamespace(""),"clone"), 0
+                              constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 1
+                              coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                              setlocal1
+                     ofs0033:
+                              debugline 87
+                              getlocal1
+                              pushtrue
+                              setproperty QName(PackageNamespace(""),"visible")
+                              debugline 88
+                              getlocal1
+                              pushbyte 1
+                              setproperty QName(PackageNamespace(""),"alpha")
+                              debugline 89
+                              getlocal1
+                              getlocal1
+                              pushbyte 1
+                              dup
+                              setlocal2
+                              setproperty QName(PackageNamespace(""),"scaleY")
+                              getlocal2
+                              kill 2
+                              setproperty QName(PackageNamespace(""),"scaleX")
+                              debugline 90
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                              getlocal1
+                              callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                              debugline 91
+                              getlocal1
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private function recycleBitmap(bmp:Bitmap) : void
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"recycleBitmap")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:recycleBitmap"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("flash.display"),"Bitmap")
+                           paramname "a_1013"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 3
+                              localcount 3
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                 debugline 94
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "bmp", 0, 94
+                                 debug 1, "idx", 1, 101
+                                 debugline 96
+                                 getlocal1
+                                 iftrue ofs001d
+                                 debugline 97
+                                 returnvoid
+                        ofs001d:
+                                 debugline 98
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"parent")
+                                 iffalse ofs0032
+                                 debugline 99
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"parent")
+                                 getlocal1
+                                 callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                        ofs0032:
+                                 debugline 100
+                                 getlocal1
+                                 pushfalse
+                                 setproperty QName(PackageNamespace(""),"visible")
+                                 debugline 101
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                                 getlocal1
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                 convert_i
+                                 setlocal2
+                                 debugline 102
+                                 getlocal2
+                                 pushbyte -1
+                                 ifeq ofs005c
+                                 debugline 103
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                                 getlocal2
+                                 pushbyte 1
+                                 callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                        ofs005c:
+                                 debugline 104
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scareBitmapPool")
+                                 getlocal1
+                                 callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 debugline 105
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     private function placeScareBitmap(intruder:a_4206, bmp:Bitmap) : void
+                     {
+                        trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"placeScareBitmap")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:placeScareBitmap"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                              param QName(PackageNamespace("flash.display"),"Bitmap")
+                              paramname "a_1013"
+                              paramname "a_1013"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 4
+                                 localcount 3
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                    debugline 108
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "intruder", 0, 108
+                                    debug 1, "bmp", 1, 108
+                                    debugline 110
+                                    getlocal2
+                                    iftrue ofs001d
+                                    debugline 111
+                                    returnvoid
+                           ofs001d:
+                                    debugline 112
+                                    getlocal2
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"x")
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"stDisplayBitmap")
+                                    getproperty QName(PackageNamespace(""),"x")
+                                    add
+                                    setproperty QName(PackageNamespace(""),"x")
+                                    debugline 113
+                                    getlocal2
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"y")
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"stDisplayBitmap")
+                                    getproperty QName(PackageNamespace(""),"y")
+                                    add
+                                    setproperty QName(PackageNamespace(""),"y")
+                                    debugline 114
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"parent")
+                                    getlocal2
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"parent")
+                                    getlocal1
+                                    callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                                    pushbyte 1
+                                    add
+                                    callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                                    debugline 115
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        private function onMouseScareTimeout(data:MouseScareData) : void
+                        {
+                           trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"onMouseScareTimeout")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:onMouseScareTimeout"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareData")
+                                 paramname "a_1013"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 5
+                                    localcount 9
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                       debugline 118
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "data", 0, 118
+                                       debug 1, "intruder", 1, 120
+                                       debug 1, "targetGrid", 2, 121
+                                       debug 1, "bmp", 3, 122
+                                       debug 1, "goback", 4, 123
+                                       debug 1, "addFunc", 5, 124
+                                       debug 1, "battleField", 6, 125
+                                       debug 1, "callBack", 7, 126
+                                       debugline 120
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"intruder")
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                       setlocal2
+                                       debugline 121
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"targetGrid")
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       setlocal3
+                                       debugline 122
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"bmp")
+                                       coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                                       setlocal 4
+                                       debugline 123
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"goback")
+                                       convert_d
+                                       setlocal 5
+                                       debugline 124
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"addFunc")
+                                       coerce QName(PackageNamespace(""),"Function")
+                                       setlocal 6
+                                       debugline 125
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"battleField")
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                       setlocal 7
+                                       debugline 126
+                                       getlocal1
+                                       getproperty QName(PackageNamespace(""),"callBack")
+                                       coerce QName(PackageNamespace(""),"Function")
+                                       setlocal 8
+                                       debugline 128
+                                       getlocal2
+                                       not
+                                       dup
+                                       iftrue ofs0087
+                                       pop
+                                       getlocal3
+                                       not
+                              ofs0087:
+                                       iffalse ofs008f
+                                       debugline 129
+                                       returnvoid
+                              ofs008f:
+                                       debugline 131
+                                       getlocal2
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"x")
+                                       getlocal 5
+                                       add
+                                       setproperty QName(PackageNamespace(""),"x")
+                                       debugline 133
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stWaterEffect")
+                                       iffalse ofs00e0
+                                       debugline 135
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stWaterEffect")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stWaterEffect")
+                                       getproperty QName(PackageNamespace(""),"x")
+                                       getlocal 5
+                                       add
+                                       setproperty QName(PackageNamespace(""),"x")
+                                       debugline 136
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stWaterEffect")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stWaterEffect")
+                                       getproperty QName(PackageNamespace(""),"y")
+                                       getlocal3
+                                       getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                       getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                                       subtract
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       getproperty QName(PackageNamespace(""),"a_1081")
+                                       multiply
+                                       add
+                                       setproperty QName(PackageNamespace(""),"y")
+                              ofs00e0:
+                                       debugline 139
+                                       getlocal0
+                                       getlocal2
+                                       callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"removeFromScaredOut"), 1
+                                       debugline 141
+                                       getlocal 6
+                                       getglobalscope
+                                       getlocal2
+                                       getlocal3
+                                       pushfalse
+                                       call 3
+                                       pop
+                                       debugline 143
+                                       getlocal0
+                                       getlocal 4
+                                       callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"recycleBitmap"), 1
+                                       debugline 145
+                                       getlex QName(PackageNamespace("a_4781"),"TimeoutManager")
+                                       callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"globalMoveFighterID")
+                                       callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                                       callpropvoid QName(PackageNamespace(""),"removeTimeout"), 1
+                                       debugline 147
+                                       getlocal 8
+                                       pushnull
+                                       ifeq ofs0128
+                                       debugline 148
+                                       getlocal 8
+                                       getglobalscope
+                                       getlocal2
+                                       call 1
+                                       pop
+                              ofs0128:
+                                       debugline 149
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           private function removeIntruder(intruder:a_4206, battleField:BattleFieldView) : void
+                           {
+                              trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"removeIntruder")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:removeIntruder"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                    param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                    paramname "a_1013"
+                                    paramname "a_1013"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 3
+                                       localcount 5
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                          debugline 152
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "intruder", 0, 152
+                                          debug 1, "battleField", 1, 152
+                                          debug 1, "vec", 2, 154
+                                          debug 1, "idx", 3, 155
+                                          debugline 154
+                                          getlocal2
+                                          getproperty QName(PackageNamespace(""),"m_arrBaseMoveIntruderVector")
+                                          coerce QName(PackageNamespace(""),"Array")
+                                          setlocal3
+                                          debugline 155
+                                          getlocal3
+                                          getlocal1
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          convert_i
+                                          setlocal 4
+                                          debugline 156
+                                          getlocal 4
+                                          pushbyte -1
+                                          ifeq ofs0051
+                                          debugline 157
+                                          getlocal3
+                                          getlocal 4
+                                          pushbyte 1
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                 ofs0051:
+                                          debugline 159
+                                          getlocal1
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                          getlocal1
+                                          callpropvoid QName(PackageNamespace(""),"a_3457"), 1
+                                          debugline 160
+                                          getlocal2
+                                          getlocal1
+                                          callpropvoid QName(PackageNamespace(""),"a_3457"), 1
+                                          debugline 162
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                          getlocal1
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          pushbyte -1
+                                          ifne ofs0084
+                                          debugline 163
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                          getlocal1
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0084:
+                                          debugline 164
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              private function removeFromScaredOut(intruder:a_4206) : void
+                              {
+                                 trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"removeFromScaredOut")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:removeFromScaredOut"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                       paramname "a_1013"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 3
+                                          localcount 3
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                             debugline 166
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "intruder", 0, 166
+                                             debug 1, "idx", 1, 168
+                                             debugline 168
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                             getlocal1
+                                             callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                             convert_i
+                                             setlocal2
+                                             debugline 169
+                                             getlocal2
+                                             pushbyte -1
+                                             ifeq ofs003c
+                                             debugline 170
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                             getlocal2
+                                             pushbyte 1
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                    ofs003c:
+                                             debugline 171
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function validateIntruder(intruder:a_4206) : Boolean
+                                 {
+                                    trait method QName(PackageNamespace(""),"validateIntruder")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/validateIntruder"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                          paramname "newX"
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 2
+                                             initscopedepth 4
+                                             maxscopedepth 5
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                debugline 174
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "intruder", 0, 174
+                                                debugline 176
+                                                getlocal1
+                                                not
+                                                dup
+                                                iftrue ofs0021
+                                                pop
+                                                getlocal1
+                                                getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                pushbyte 0
+                                                lessequals
+                                       ofs0021:
+                                                dup
+                                                iftrue ofs002c
+                                                pop
+                                                getlocal1
+                                                getproperty QName(PackageNamespace(""),"IsBossIntruder")
+                                                convert_b
+                                       ofs002c:
+                                                iffalse ofs0035
+                                                debugline 177
+                                                pushfalse
+                                                returnvalue
+                                       ofs0035:
+                                                debugline 178
+                                                getlocal1
+                                                getproperty QName(PackageNamespace(""),"isFearCatHead")
+                                                not
+                                                dup
+                                                iftrue ofs0048
+                                                pop
+                                                getlocal1
+                                                getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                not
+                                       ofs0048:
+                                                iffalse ofs0051
+                                                debugline 179
+                                                pushfalse
+                                                returnvalue
+                                       ofs0051:
+                                                debugline 180
+                                                getlocal1
+                                                getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                getproperty QName(PackageNamespace(""),"m_arrBaseMoveIntruderVector")
+                                                getlocal1
+                                                callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                pushbyte -1
+                                                equals
+                                                not
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function clamp(value:Number, min:Number, max:Number) : Number
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"clamp")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/private:clamp"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace(""),"Number")
+                                             param QName(PackageNamespace(""),"Number")
+                                             param QName(PackageNamespace(""),"Number")
+                                             paramname "callBack"
+                                             paramname "callBack"
+                                             paramname "callBack"
+                                             returns QName(PackageNamespace(""),"Number")
+                                             
+                                             body
+                                                maxstack 5
+                                                localcount 4
+                                                initscopedepth 4
+                                                maxscopedepth 5
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                   debugline 184
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "value", 0, 184
+                                                   debug 1, "min", 1, 184
+                                                   debug 1, "max", 2, 184
+                                                   debugline 186
+                                                   getlex QName(PackageNamespace(""),"Math")
+                                                   getlocal2
+                                                   getlex QName(PackageNamespace(""),"Math")
+                                                   getlocal3
+                                                   getlocal1
+                                                   callproperty QName(PackageNamespace(""),"min"), 2
+                                                   callproperty QName(PackageNamespace(""),"max"), 2
+                                                   returnvalue
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function getTargetGrid(stMoveIntruder:a_4206, offsetX:Number, iYGridNo:int) : a_3491
+                                       {
+                                          trait method QName(PackageNamespace(""),"getTargetGrid")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/getTargetGrid"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                param QName(PackageNamespace(""),"Number")
+                                                param QName(PackageNamespace(""),"int")
+                                                paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\defender\HorseYear\windrider;MouseScareHandler.as"
+                                                paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\defender\HorseYear\windrider;MouseScareHandler.as"
+                                                paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\defender\HorseYear\windrider;MouseScareHandler.as"
+                                                returns QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                
+                                                body
+                                                   maxstack 6
+                                                   localcount 6
+                                                   initscopedepth 4
+                                                   maxscopedepth 5
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                      debugline 190
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "stMoveIntruder", 0, 190
+                                                      debug 1, "offsetX", 1, 190
+                                                      debug 1, "iYGridNo", 2, 190
+                                                      debug 1, "targetX", 3, 194
+                                                      debug 1, "targetGridX", 4, 198
+                                                      debugline 192
+                                                      getlocal1
+                                                      not
+                                                      dup
+                                                      iftrue ofs003b
+                                                      pop
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                      not
+                                             ofs003b:
+                                                      iffalse ofs0044
+                                                      debugline 193
+                                                      pushnull
+                                                      returnvalue
+                                             ofs0044:
+                                                      debugline 194
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"x")
+                                                      getlocal1
+                                                      callproperty QName(PackageNamespace(""),"IsReversed"), 0
+                                                      iffalse ofs005b
+                                                      getlocal2
+                                                      negate
+                                                      coerce_a
+                                                      jump ofs005d
+                                             ofs005b:
+                                                      getlocal2
+                                                      coerce_a
+                                             ofs005d:
+                                                      add
+                                                      convert_d
+                                                      setlocal 4
+                                                      debugline 196
+                                                      getlex QName(PackageNamespace(""),"Math")
+                                                      pushbyte 0
+                                                      getlex QName(PackageNamespace(""),"Math")
+                                                      getlocal 4
+                                                      getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+                                                      getproperty QName(PackageNamespace(""),"a_1013")
+                                                      decrement
+                                                      callproperty QName(PackageNamespace(""),"min"), 2
+                                                      callproperty QName(PackageNamespace(""),"max"), 2
+                                                      convert_d
+                                                      setlocal 4
+                                                      debugline 198
+                                                      findpropstrict QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"GetiNoX")
+                                                      getlocal 4
+                                                      getlocal1
+                                                      callproperty QName(PackageNamespace(""),"IsReversed"), 0
+                                                      callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"GetiNoX"), 2
+                                                      convert_i
+                                                      setlocal 5
+                                                      debugline 199
+                                                      getlocal1
+                                                      getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                      getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                                      getlocal 5
+                                                      getlocal3
+                                                      callproperty QName(PackageNamespace(""),"a_3438"), 2
+                                                      returnvalue
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function clearAll() : void
+                                          {
+                                             trait method QName(PackageNamespace(""),"clearAll")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler/clearAll"
+                                                   returns QName(PackageNamespace(""),"void")
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 5
+                                                      initscopedepth 4
+                                                      maxscopedepth 5
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                         debugline 211
+                                                         getlocal0
+                                                         pushscope
+                                                         pushnull
+                                                         coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                                                         setlocal1
+                                                         pushnull
+                                                         coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                         setlocal2
+                                                         debug 1, "bmp", 0, 213
+                                                         debug 1, "intruder", 1, 217
+                                                         debugline 213
+                                                         pushbyte 0
+                                                         setlocal3
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                                                         coerce_a
+                                                         setlocal 4
+                                                         jump ofs0040
+                                                ofs002f:
+                                                         label
+                                                         getlocal 4
+                                                         getlocal3
+                                                         nextvalue
+                                                         coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                                                         setlocal1
+                                                         debugline 214
+                                                         getlocal0
+                                                         getlocal1
+                                                         callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"recycleBitmap"), 1
+                                                ofs0040:
+                                                         debugline 213
+                                                         hasnext2 4, 3
+                                                         iftrue ofs002f
+                                                         kill 4
+                                                         kill 3
+                                                         debugline 215
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_usingBitmaps")
+                                                         pushbyte 0
+                                                         setproperty QName(PackageNamespace(""),"length")
+                                                         debugline 217
+                                                         pushbyte 0
+                                                         setlocal3
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                                         coerce_a
+                                                         setlocal 4
+                                                         jump ofs0083
+                                                ofs006b:
+                                                         label
+                                                         getlocal 4
+                                                         getlocal3
+                                                         nextvalue
+                                                         coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                         setlocal2
+                                                         debugline 219
+                                                         getlocal2
+                                                         pushfalse
+                                                         setproperty QName(PackageNamespace(""),"visible")
+                                                         debugline 220
+                                                         getlocal2
+                                                         callpropvoid QName(PackageNamespace(""),"a_3432"), 0
+                                                ofs0083:
+                                                         debugline 217
+                                                         hasnext2 4, 3
+                                                         iftrue ofs006b
+                                                         kill 4
+                                                         kill 3
+                                                         debugline 222
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider:MouseScareHandler"),"_scaredOutMice")
+                                                         pushbyte 0
+                                                         setproperty QName(PackageNamespace(""),"length")
+                                                         debugline 223
+                                                         returnvoid
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                          }
+                                       }
+                                       
+                                       method
+                                          name ""
+                                          returns null
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 1
+                                             initscopedepth 1
+                                             maxscopedepth 3
+                                             
+                                             code
+                                                getlocal0
+                                                pushscope
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                debugline 12
+                                                findpropstrict Multiname("MouseScareHandler",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider")])
+                                                getlex QName(PackageNamespace(""),"Object")
+                                                pushscope
+                                                getlex QName(PackageNamespace(""),"Object")
+                                                newclass 36
+                                                popscope
+                                                initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.HorseYear.windrider"),"MouseScareHandler")
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\HorseYear\\windrider;MouseScareHandler.as"
+                                                debugline 1
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                       
