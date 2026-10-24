@@ -39,6 +39,33 @@ for (var i = 0; i < 4; i++)
         {
             if (ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)) != undefined)
             {
+                var _gid_d1 = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
+                var _goods_d1 = ds_map_find_value(global.gods_goods_map, _gid_d1);
+                if (variable_struct_exists(_goods_d1, "recipe_id"))
+                {
+                    // 融合卡本体格卖的是「本体食谱」道具：只画食谱图标（不垫卡底）。
+                    // 格子里的「阳光消耗」是卡才有的，食谱没有 → 不画；神谕石价格在下面的购买按钮上
+                    var _rs1 = _goods_d1.spr;
+                    var _rsub1 = variable_struct_exists(_goods_d1, "spr_sub") ? _goods_d1.spr_sub : 0;
+                    // 图标大小对齐左边的卡片格（卡底 89x118）→ 取最长边 90
+                    var _rsc1 = 90 / max(sprite_get_width(_rs1), sprite_get_height(_rs1));
+                    var _rx1 = ((x - 618) + (411 * j)) - 122;
+                    var _ry1 = (y - 248) + (165 * i);
+                    draw_sprite_ext(_rs1, _rsub1,
+                        _rx1 + (sprite_get_xoffset(_rs1) - sprite_get_width(_rs1) * 0.5) * _rsc1,
+                        _ry1 + (sprite_get_yoffset(_rs1) - sprite_get_height(_rs1) * 0.5) * _rsc1,
+                        _rsc1, _rsc1, 0, c_white, 1);
+                    if (has_fusion_recipe(_goods_d1.unlock_item_id, 0))
+                    {
+                        draw_set_color(c_black);
+                        draw_set_alpha(0.5);
+                        draw_rectangle(((x - 618) + (411 * j)) - 205, ((y - 248) + (165 * i)) - 82, (x - 618) + (411 * j) + 205, (y - 248) + (165 * i) + 82, false);
+                        draw_set_alpha(1);
+                        draw_sprite_ext(spr_sold_out, 0, (x - 618) + (411 * j), (y - 248) + (165 * i), 1.8, 1.8, 0, c_white, 1);
+                        draw_set_color(c_white);
+                    }
+                    continue;
+                }
                 var card_data = deck_get_card_data(ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id, 0);
             if (card_data != noone && ds_exists(card_data, ds_type_map))
             {
@@ -83,18 +110,40 @@ for (var i = 0; i < 4; i++)
                 var goods_info = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)));
                 var goods_spr = goods_info.spr;
                 var target_card_id = goods_info.unlock_item_id;
-                draw_sprite_ext(goods_spr, 0, ((x - 618) + (411 * j)) - 122, (y - 273) + (165 * i) + 25, 1.5, 1.5, 0, c_white, 1);
-                var card_info_simple = get_card_info_simple(target_card_id);
-                
-                if (card_info_simple != false)
+                var _gsub = variable_struct_exists(goods_info, "spr_sub") ? goods_info.spr_sub : 0;
+                var _gsc = 1.5;
+                // 原点不一样（食谱图是 0,0，凭证是中心 4）→ 统一按「中心对齐」摆
+                draw_sprite_ext(goods_spr, _gsub,
+                    (((x - 618) + (411 * j)) - 122) + (sprite_get_xoffset(goods_spr) - sprite_get_width(goods_spr) * 0.5) * _gsc,
+                    ((y - 273) + (165 * i) + 25) + (sprite_get_yoffset(goods_spr) - sprite_get_height(goods_spr) * 0.5) * _gsc,
+                    _gsc, _gsc, 0, c_white, 1);
+
+                if (variable_struct_exists(goods_info, "recipe_id"))
                 {
-                    if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape)
+                    // 食谱道具：形态已经练到了 → 售罄
+                    if (has_fusion_recipe(target_card_id, goods_info.target_shape))
                     {
                         draw_set_color(c_black);
                         draw_set_alpha(0.5);
                         draw_rectangle(((x - 618) + (411 * j)) - 205, ((y - 248) + (165 * i)) - 82, (x - 618) + (411 * j) + 205, (y - 248) + (165 * i) + 82, false);
                         draw_set_alpha(1);
                         draw_sprite_ext(spr_sold_out, 0, (x - 618) + (411 * j), (y - 248) + (165 * i), 1.8, 1.8, 0, c_white, 1);
+                    }
+                }
+                else
+                {
+                    var card_info_simple = get_card_info_simple(target_card_id);
+
+                    if (card_info_simple != false)
+                    {
+                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape)
+                        {
+                            draw_set_color(c_black);
+                            draw_set_alpha(0.5);
+                            draw_rectangle(((x - 618) + (411 * j)) - 205, ((y - 248) + (165 * i)) - 82, (x - 618) + (411 * j) + 205, (y - 248) + (165 * i) + 82, false);
+                            draw_set_alpha(1);
+                            draw_sprite_ext(spr_sold_out, 0, (x - 618) + (411 * j), (y - 248) + (165 * i), 1.8, 1.8, 0, c_white, 1);
+                        }
                     }
                 }
             }

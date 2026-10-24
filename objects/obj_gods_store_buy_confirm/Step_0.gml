@@ -38,6 +38,12 @@ for (var i = 0; i < array_length(buttons); i++)
                             add_material_amount("oracle_stone", -cost);
                             upgrade_card_shape(target_item, target_shape);
                         }
+                        else if (btn_type == "recipe")
+                        {
+                            // 食谱道具：只进背包（融合页用它当「融合菜谱」，用掉扣 1 本）
+                            add_material_amount("oracle_stone", -cost);
+                            add_material_amount(recipe_id, 1);
+                        }
                     }
                     
                     with (obj_gods_store_bg)

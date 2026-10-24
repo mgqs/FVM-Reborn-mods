@@ -28,11 +28,13 @@ if (reward != noone) {
         title_text = "随机获得武器";
     } else if (reward_type == "gem") {
         title_text = "随机获得宝石";
+    } else if (reward_type == "recipe") {
+        title_text = "随机获得融合菜谱";
     }
     draw_set_color(c_black);
     draw_text(cx, cy - 180, title_text);
 
-    // 卡槽外框（保持原大小）
+    // 卡槽外框（保持原大小）：食谱也垫卡框，跟卡片同构（2026-10-24 用户定）
     draw_sprite_ext(spr_slot, 0, cx, cy - 20, 1.2, 1.2, 0, c_white, 1);
 
     if (reward_type == "card") {
@@ -67,6 +69,25 @@ if (reward != noone) {
         // 形态
         draw_set_color(c_lime);
         draw_text(cx, cy + 150, "形态：" + string(reward_shape));
+    } else if (reward_type == "recipe") {
+        // === 融合菜谱奖励 ===
+        // 图标按最长边 150 居中，中心放在卡框上部（跟卡面同层次）。
+        // ⚠️ spr_fusion_recipe0 原点在左上、spr_voucher_* 原点在中心，两种都要换算
+        var _rspr = fusion_recipe_sprite(reward_id, reward_shape);
+        var _rsw = sprite_get_width(_rspr[0]);
+        var _rsh = sprite_get_height(_rspr[0]);
+        var _rsc = 150 / max(_rsw, _rsh);
+        draw_sprite_ext(_rspr[0], _rspr[1],
+            cx + (sprite_get_xoffset(_rspr[0]) - _rsw * 0.5) * _rsc,
+            (cy - 60) + (sprite_get_yoffset(_rspr[0]) - _rsh * 0.5) * _rsc,
+            _rsc, _rsc, 0, c_white, 1);
+
+        // 名字拆两行：卡名 + 档位（原来是一长串「深度融合菜谱（火影怪味鱿鱼）」再写一遍「融合菜谱」）
+        draw_set_color(c_green);
+        draw_text(cx, cy + 120, fusion_recipe_card_name(reward_id, reward_shape));
+
+        draw_set_color(c_red);
+        draw_text(cx, cy + 150, fusion_recipe_grade_name(reward_shape));
     } else if (reward_type == "weapon") {
         // === 武器奖励 ===
         var weapon_icon = gacha_get_weapon_icon(reward_id);

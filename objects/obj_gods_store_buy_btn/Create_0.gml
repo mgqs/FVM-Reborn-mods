@@ -9,5 +9,6 @@ is_disabled = false;
 tooltip = false;
 cost = 0;
 target_shape = 0;
+recipe_id = "";
 meet_requirements = true;
 requirement_notice = "";

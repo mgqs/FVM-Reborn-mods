@@ -27,7 +27,7 @@
   ],
   "name":"spr_mixian_effect",
   "nineSlice":null,
-  "origin":7,
+  "origin":4,
   "parent":{
     "name":"mixian",
     "path":"folders/精灵/mod/Cards/Assistant/mixian.yy",
@@ -92,7 +92,8 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":30,
-    "yorigin":67,
+    "yorigin":33,
+
   },
   "swatchColours":null,
   "swfPrecision":0.5,
