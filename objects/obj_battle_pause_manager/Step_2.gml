@@ -279,6 +279,10 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         } else if (reward_type == "gem") {
                             unlock_gem(reward_id);
                             show_notice("获得新宝石：" + gacha_get_gem_name(reward_id), 120);
+                        } else if (reward_type == "recipe") {
+                            // 融合菜谱道具：进背包
+                            add_material_amount(fusion_recipe_id(reward_id, target_shape), 1);
+                            show_notice("获得" + fusion_recipe_display_name(reward_id, target_shape), 120);
                         }
                         
                         global.gacha_reward.received = true;

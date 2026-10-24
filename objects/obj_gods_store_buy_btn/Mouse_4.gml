@@ -50,4 +50,18 @@ if (!obj_gods_store_bg.is_submenu_opened && !is_disabled)
             show_notice("卡片未解锁或未达到可转职等级，无法兑换凭证！", 60);
         }
     }
+    else if (btn_type == "recipe")
+    {
+        // 融合卡的食谱道具：买到手进背包，不直接解锁卡 / 不直接升形态
+        if (amt >= cost || global.debug)
+        {
+            var inst = instance_create_depth(room_width / 2, room_height / 2, depth - 3, obj_gods_store_buy_confirm);
+            inst.banding_buy_btn = id;
+            obj_gods_store_bg.is_submenu_opened = true;
+        }
+        else
+        {
+            show_notice("神谕之石不足", 60);
+        }
+    }
 }

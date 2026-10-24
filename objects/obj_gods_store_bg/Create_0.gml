@@ -32,13 +32,15 @@ function gods_shop_list_recharge()
     {
         var _gid1 = map_array[_i1];
         var _g1 = ds_map_find_value(global.gods_goods_map, _gid1);
+        // 融合卡卖的是「食谱道具」(type recipe)：本体食谱进本体页，深度/灵魂食谱进转职页
+        var _is_recipe1 = (_g1.type == "recipe");
         if (shop_button_select == 1)
         {
-            if (_g1.type == "card") array_push(_picked, _gid1);
+            if (_g1.type == "card" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
         }
         else if (shop_button_select == 2)
         {
-            if (_g1.type == "shape") array_push(_picked, _gid1);
+            if (_g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
         }
     }
 
@@ -110,77 +112,103 @@ function gods_shop_list_recharge()
         {
             if (shop_button_select == 1)
             {
-                if (ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)) != undefined)
+                var _gid_b1 = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
+                if (_gid_b1 != undefined)
                 {
-                    var is_unlocked = false;
-                    
-                    for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
-                    {
-                        if (global.save_data.unlocked_cards[k].id == ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id)
-                        {
-                            is_unlocked = true;
-                            break;
-                        }
-                    }
-                    
+                    var _goods_b1 = ds_map_find_value(global.gods_goods_map, _gid_b1);
+                    // 融合卡的本体格卖的是「本体食谱」道具（type 仍是 card，见 gods_shop_init 注释）
+                    var _is_recipe_b1 = variable_struct_exists(_goods_b1, "recipe_id");
+
                     var inst = instance_create_depth((x - 615) + (411 * j) + 77, (y - 251) + (165 * i) + 60, depth - 1, obj_gods_store_buy_btn);
-                    inst.target_item = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id;
-                    inst.cost = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).cost;
-                    inst.goods_name = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).display_name;
-                    inst.tooltip_text = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).description;
-                    inst.btn_type = "card";
-                    
-                    if (is_unlocked)
-                        inst.is_disabled = true;
-                    else if (!fusion_prereq_met(inst.target_item, 2))
+                    inst.target_item = _goods_b1.unlock_item_id;
+                    inst.cost = _goods_b1.cost;
+                    inst.goods_name = (_is_recipe_b1 && variable_struct_exists(_goods_b1, "recipe_name")) ? _goods_b1.recipe_name : _goods_b1.display_name;
+                    inst.tooltip_text = _goods_b1.description;
+                    inst.recipe_id = _is_recipe_b1 ? _goods_b1.recipe_id : "";
+                    inst.btn_type = _is_recipe_b1 ? "recipe" : "card";
+
+                    if (_is_recipe_b1)
                     {
-                        // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
-                        // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
-                        // 例外①：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
-                        // 例外②：前置全是「没有二转」的卡（幻幻鸡 / 蓝莓塔）时不写「二转」
-                        var _need_txt = (prereq_body_only(inst.target_item) || !fusion_prereq_any_upgradable(inst.target_item)) ? "" : "二转";
-                        inst.meet_requirements = false;
-                        inst.requirement_notice = "需先拥有[" + fusion_prereq_name(inst.target_item) + "]" + _need_txt + "才能兑换！";
+                        // 只看背包里还有没有这本食谱：用掉了就能再买（哪怕卡已经练上去了）
+                        if (has_fusion_recipe(_goods_b1.unlock_item_id, 0)) inst.is_disabled = true;
+                    }
+                    else
+                    {
+                        var is_unlocked = false;
+
+                        for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
+                        {
+                            if (global.save_data.unlocked_cards[k].id == _goods_b1.unlock_item_id)
+                            {
+                                is_unlocked = true;
+                                break;
+                            }
+                        }
+
+                        if (is_unlocked)
+                            inst.is_disabled = true;
+                        else if (!fusion_prereq_met(inst.target_item, 2))
+                        {
+                            // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
+                            // 例外①：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
+                            // 例外②：前置全是「没有二转」的卡（幻幻鸡 / 蓝莓塔）时不写「二转」
+                            var _need_txt = (prereq_body_only(inst.target_item) || !fusion_prereq_any_upgradable(inst.target_item)) ? "" : "二转";
+                            inst.meet_requirements = false;
+                            inst.requirement_notice = "需先拥有[" + fusion_prereq_name(inst.target_item) + "]" + _need_txt + "才能兑换！";
+                        }
                     }
                 }
             }
             else if (shop_button_select == 2)
             {
-                if (ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)) != undefined)
+                var _gid_b2 = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
+                if (_gid_b2 != undefined)
                 {
-                    var goods_info = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)));
-                    var card_unlocked = false;
-                    var shape_unlocked = false;
-                    var shape_too_small = false;
-                    
-                    for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
-                    {
-                        if (global.save_data.unlocked_cards[k].id == goods_info.unlock_item_id)
-                        {
-                            card_unlocked = true;
-                            var current_card_shape = get_card_info_simple(goods_info.unlock_item_id).max_shape;
-                            
-                            if (current_card_shape >= goods_info.target_shape)
-                                shape_unlocked = true;
-                            else if (current_card_shape < (goods_info.target_shape - 1))
-                                shape_too_small = true;
-                            
-                            break;
-                        }
-                    }
-                    
+                    var goods_info = ds_map_find_value(global.gods_goods_map, _gid_b2);
+                    // 融合卡的深度融合 / 灵魂融合卖的是「食谱道具」（type recipe）
+                    var _is_recipe_b2 = variable_struct_exists(goods_info, "recipe_id");
+
                     var inst = instance_create_depth((x - 615) + (411 * j) + 77, (y - 251) + (165 * i) + 60, depth - 1, obj_gods_store_buy_btn);
                     inst.target_item = goods_info.unlock_item_id;
                     inst.target_shape = goods_info.target_shape;
                     inst.cost = goods_info.cost;
                     inst.goods_name = goods_info.display_name;
                     inst.tooltip_text = goods_info.description;
-                    inst.btn_type = "shape";
-                    
-                    if (shape_unlocked)
-                        inst.is_disabled = true;
-                    else if (!card_unlocked || shape_too_small)
-                        inst.meet_requirements = false;
+                    inst.recipe_id = _is_recipe_b2 ? goods_info.recipe_id : "";
+                    inst.btn_type = _is_recipe_b2 ? "recipe" : "shape";
+
+                    if (_is_recipe_b2)
+                    {
+                        // 同上：只看背包里还有没有这本食谱（灵融之后还能回头再买初融 / 深融食谱）
+                        if (has_fusion_recipe(goods_info.unlock_item_id, goods_info.target_shape)) inst.is_disabled = true;
+                    }
+                    else
+                    {
+                        var card_unlocked = false;
+                        var shape_unlocked = false;
+                        var shape_too_small = false;
+
+                        for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
+                        {
+                            if (global.save_data.unlocked_cards[k].id == goods_info.unlock_item_id)
+                            {
+                                card_unlocked = true;
+                                var current_card_shape = get_card_info_simple(goods_info.unlock_item_id).max_shape;
+
+                                if (current_card_shape >= goods_info.target_shape)
+                                    shape_unlocked = true;
+                                else if (current_card_shape < (goods_info.target_shape - 1))
+                                    shape_too_small = true;
+
+                                break;
+                            }
+                        }
+
+                        if (shape_unlocked)
+                            inst.is_disabled = true;
+                        else if (!card_unlocked || shape_too_small)
+                            inst.meet_requirements = false;
+                    }
                 }
             }
         }

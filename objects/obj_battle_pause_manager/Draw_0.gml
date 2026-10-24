@@ -89,13 +89,18 @@ if (global.is_paused)
 						title_text = "随机获得武器";
 					} else if (reward_type == "gem") {
 						title_text = "随机获得宝石";
+					} else if (reward_type == "recipe") {
+						title_text = "随机获得融合菜谱";
 					}
 					draw_text(cx, cy - 140, title_text);
 					
 					// 卡槽外框
 					var slot_spr = spr_slot;
 					var slot_scale = 1.2;
-					draw_sprite_ext(slot_spr, 0, cx, cy - 20, slot_scale, slot_scale, 0, c_white, 1);
+					// 食谱是道具，不垫卡框
+					if (reward_type != "recipe") {
+						draw_sprite_ext(slot_spr, 0, cx, cy - 20, slot_scale, slot_scale, 0, c_white, 1);
+					}
 					
 					if (reward_type == "card") {
 						// === 卡片奖励 ===
@@ -129,6 +134,20 @@ if (global.is_paused)
 						// 形态
 						draw_set_color(c_lime);
 						draw_text(cx, cy + 150, "形态：" + string(reward_shape));
+					} else if (reward_type == "recipe") {
+						// === 融合菜谱奖励 ===
+						var _rspr = fusion_recipe_sprite(reward_id, reward_shape);
+						var _rsc = 110 / max(sprite_get_width(_rspr[0]), sprite_get_height(_rspr[0]));
+						draw_sprite_ext(_rspr[0], _rspr[1],
+							cx + (sprite_get_xoffset(_rspr[0]) - sprite_get_width(_rspr[0]) * 0.5) * _rsc,
+							(cy - 20) + (sprite_get_yoffset(_rspr[0]) - sprite_get_height(_rspr[0]) * 0.5) * _rsc,
+							_rsc, _rsc, 0, c_white, 1);
+
+						draw_set_color(c_green);
+						draw_text(cx, cy + 120, fusion_recipe_display_name(reward_id, reward_shape));
+
+						draw_set_color(c_lime);
+						draw_text(cx, cy + 150, "融合菜谱");
 					} else if (reward_type == "weapon") {
 						// === 武器奖励 ===
 						var weapon_icon = gacha_get_weapon_icon(reward_id);

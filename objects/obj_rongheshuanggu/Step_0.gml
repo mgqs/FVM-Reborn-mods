@@ -11,18 +11,23 @@ if is_slowdown{
 	current_flash_speed *= 2
 }
 
-// ===== 索敌：本行右侧，分别统计「对陆」与「对空」两路有没有人 =====
+// ===== 索敌：分别统计「对陆」与「对空」两路有没有人 =====
+//  对陆：只看本行右侧。
+//  对空：0/1 转只看本行右侧；**灵融（2 转）是全屏索敌** —— 跟糖葫芦同口径（`can_target_on(...) && y > 0 && hp > 0`，
+//        不限行列）。子弹那侧本来就是全屏找最靠前的空军，卡这边不放开的话本行没空军就永远不开火。
 has_land = false
 has_air = false
 with(obj_enemy_parent){
-	if (grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type,target_type)){
-		if (target_type == "air"){
-			other.has_air = true
+	if ((target_type == "air" && other.shape >= 2) || (grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1))){
+		if (can_target_on(other.target_type, target_type)){
+			if (target_type == "air"){
+				other.has_air = true
+			}
+			else{
+				other.has_land = true
+			}
+			if (other.has_land && other.has_air) break
 		}
-		else{
-			other.has_land = true
-		}
-		if (other.has_land && other.has_air) break
 	}
 }
 

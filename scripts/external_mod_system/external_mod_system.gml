@@ -191,7 +191,7 @@ function external_mod_validate(folder) {
             sh.feature_type = external_mod_field(sh, "feature_type", "normal");
             sh.target_card = external_mod_field(sh, "target_card", "none");
             sh.target_type = external_mod_field(sh, "target_type", "normal");
-            if (array_get_index(["normal", "air", "air_only", "throw", "track", "pierce", "rotate", "d_fruit", "all"], sh.target_type) < 0) throw "卡片 target_type 无效：" + string(sh.target_type);
+            if (array_get_index(["normal", "air", "air_only", "throw", "track", "pierce", "pierce_air", "rotate", "d_fruit", "all"], sh.target_type) < 0) throw "卡片 target_type 无效：" + string(sh.target_type);
             sh.behavior_params = external_mod_field(sh, "behavior_params", external_mod_field(d, "behavior_params", {}));
             sh.icon = external_mod_field(sh, "icon", external_mod_field(d, "icon", external_mod_field(d, "sprite", "card.png")));
             var icon_path = external_mod_path(d.root, sh.icon);

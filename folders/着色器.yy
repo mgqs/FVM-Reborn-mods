@@ -12,6 +12,7 @@
   "folders":[],
   "listItems":[
     {"name":"hit_effect","path":"shaders/hit_effect/hit_effect.yy",},
-    {"name":"hit_effect_2","path":"shaders/hit_effect_2/hit_effect_2.yy",}
+    {"name":"hit_effect_2","path":"shaders/hit_effect_2/hit_effect_2.yy",},
+    {"name":"sh_fusion_gray","path":"shaders/sh_fusion_gray/sh_fusion_gray.yy",}
   ],
 }
