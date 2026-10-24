@@ -32,8 +32,6 @@
 #macro LONGZHU_PROTECT_TIME             900   // 「保护」效果持续（帧）——对齐星穹马一转 zodiac_guard_duration
 #macro LONGZHU_PROTECT_HITS             1     // 「保护」可抵挡次数——对齐星穹马一转
 #macro LONGZHU_GREEDY_LIMIT             1000  // 存在未封印贪婪龙柱时的火苗上限基数
-#macro LONGZHU_GREEDY_SEALED_BONUS      20000 // ≥4 根贪婪龙柱被封印时，上限的额外增量
-#macro LONGZHU_GREEDY_SEALED_NEED       4     // 触发上限提升所需的被封印贪婪龙柱数量
 #macro LONGZHU_GREEDY_RETURN_RATIO      0.5   // 贪婪返还能量比例（按 3x3 内卡片耗能计算）
 #macro LONGZHU_RED_APPLE_DAMAGE         2000  // 红苹果子弹伤害
 #macro LONGZHU_RED_APPLE_SPEED          5     // 红苹果子弹速度
@@ -320,8 +318,8 @@ function longzhu_flame_cap_refresh() {
 		if (longzhu_sealed) _sealed++; else _unsealed++;
 	}
 	var _total = _unsealed + _sealed;
-	if (_total > 0) _cap = _sealed == _total ? 10000 : LONGZHU_GREEDY_LIMIT + 500 * _sealed;
-	if (_sealed >= LONGZHU_GREEDY_SEALED_NEED) _cap += LONGZHU_GREEDY_SEALED_BONUS;
+	// 全体贪婪龙柱被封印后，火苗上限提升至基础值（15000）
+	if (_total > 0) _cap = _sealed == _total ? global.flame_cap_base : LONGZHU_GREEDY_LIMIT + 500 * _sealed;
 	global.flame_cap = _cap;
 	return _cap;
 }
@@ -410,6 +408,29 @@ function longzhu_heal_mouse(_mouse, _amount) {
 	with (_mouse) {
 		var _cap = variable_instance_exists(id, "maxhp") ? maxhp : hp + _amount;
 		hp = min(_cap, hp + _amount);
+	}
+}
+
+/// 米线净化瞬间立即施加一次本柱效果（松露大厅=清醒，百味关=保护，贪婪=返还火苗）
+/// 净化发生在米线 Step 中，此时 longzhu_sealed 可能尚未由龙柱 Step 更新，
+/// 因此这里直接按「已封印」分支处理，避免误触发未封印效果。
+function longzhu_purify_effect(_pillar) {
+	if (!instance_exists(_pillar)) return;
+	with (_pillar) {
+		var _cards = longzhu_cards_in_3x3(col, row);
+		var _n = array_length(_cards);
+		switch (longzhu_kind) {
+			case "cheng":
+				for (var _i = 0; _i < _n; ++_i) longzhu_awake_card(_cards[_i]);
+				break;
+			case "lv":
+				for (var _i = 0; _i < _n; ++_i) longzhu_protect_card(_cards[_i]);
+				break;
+			case "huang":
+				longzhu_greedy_return_flame(_cards);
+				break;
+		}
+		longzhu_effect_timer = 0;
 	}
 }
 

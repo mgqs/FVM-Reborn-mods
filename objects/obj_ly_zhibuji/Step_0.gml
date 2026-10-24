@@ -52,7 +52,7 @@ target_plant = longyuan_find_plant(false);
 
 if (instance_exists(target_plant)) {
     // 织布机鼠不再做啃咬动作，遇到卡片直接将其摧毁后继续前进。
-    longyuan_destroy_card(target_plant);
+    longyuan_destroy_card(target_plant, true);
     target_plant = noone;
 }
 ly_mode = "walk";

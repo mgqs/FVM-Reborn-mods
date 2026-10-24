@@ -40,6 +40,14 @@ function mod_shop_init()
         description: "蓝莓信号塔塔：为本行投掷卡片增加攻击力",
         display_name: "蓝莓信号塔塔"
     });
+    register_goods("zhuzhujiaqiang", 
+    {
+        type: "card",
+        cost: "150000",
+        unlock_item_id: "zhuzhujiaqiang",
+        description: "猪猪加强器：为本行投掷类卡片增加攻击力",
+        display_name: "猪猪加强器"
+    });
     register_goods("donut", 
     {
         type: "card",

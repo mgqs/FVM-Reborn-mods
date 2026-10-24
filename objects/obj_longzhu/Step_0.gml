@@ -15,6 +15,8 @@ var _now_sealed = longzhu_force_sealed || longzhu_bridge_touch;
 if (_now_sealed != longzhu_sealed) {
 	longzhu_sealed = _now_sealed;
 	longzhu_effect_timer = 0;
+	// 封印状态变化后立即重算火苗上限（全体贪婪龙柱封印 → 15000）
+	longzhu_flame_cap_refresh();
 	if (_now_sealed) {
 		longzhu_clip_set(id, "插入地面", true);
 	} else {

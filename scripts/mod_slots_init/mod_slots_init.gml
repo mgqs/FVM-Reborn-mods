@@ -35,6 +35,11 @@ function mod_slots_init()
     { shape: 0, sprite: spr_guiyuanma, cost: 375, cooldown: 900, description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma },
     { shape: 1, sprite: spr_guiyuanma_1, cost: 375, cooldown: 900, description: "时空归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_1 },
     { shape: 2, sprite: spr_guiyuanma_2, cost: 375, cooldown: 900, description: "幻境归元马：将前方5行范围内2只距离最近的普通老鼠送回起点并初始还原，斩杀中等血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_2 }]);
+    // 灯影花糕：固定轨迹类，召唤魂虫向左右两侧飞出攻击上中下三行陆军（松露大厅（夜）首通奖励本体）
+    register_card("huagao", obj_huagao, [
+    { shape: 0, sprite: spr_huagao, cost: 300, cooldown: 900, description: "灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路2次、上下各1次；命中魂系老鼠使其现形", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao },
+    { shape: 1, sprite: spr_huagao_1, cost: 300, cooldown: 900, description: "初见灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军；场上≥10张时，攻击力最高的1张每5秒召唤1枚竖向魂虫攻击第8~9列", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_1 },
+    { shape: 2, sprite: spr_huagao_2, cost: 300, cooldown: 900, description: "梦境灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路4次、上下各2次；攻击力大幅提高，横向魂虫+1", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_2 }]);
     register_card("yanhuangma", obj_yanhuangma, [
     { shape: 0, sprite: spr_yanhuangma, cost: 320, cooldown: 900, description: "炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma },
     { shape: 1, sprite: spr_yanhuangma_1, cost: 320, cooldown: 900, description: "白炽炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军，卡片数量≥7时，额外增加1条轨迹", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_1 },
@@ -43,6 +48,11 @@ function mod_slots_init()
     { shape: 0, sprite: spr_yinhema, cost: 320, cooldown: 2700, description: "音盒马：为3*3范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema },
     { shape: 1, sprite: spr_yinhema_1, cost: 320, cooldown: 2700, description: "叮咚音盒马：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_1 },
     { shape: 2, sprite: spr_yinhema_2, cost: 320, cooldown: 2700, description: "玲珑音盒马：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_2 }]);
+    // 浮生茶：固定轨迹类范围增幅（本体为松露大厅（夜）首通奖励）
+    register_card("fushengcha", obj_fushengcha, [
+    { shape: 0, sprite: spr_fushengcha, cost: 265, cooldown: 3000, description: "浮生茶：为3*3范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fushengcha },
+    { shape: 1, sprite: spr_fushengcha_1, cost: 265, cooldown: 3000, description: "清心浮生茶：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fushengcha_1 },
+    { shape: 2, sprite: spr_fushengcha_2, cost: 265, cooldown: 3000, description: "忘忧浮生茶：为5*5范围内固定轨迹类卡片大幅提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fushengcha_2 }]);
     register_card("xiandima", obj_xiandima, [
     { shape: 0, sprite: spr_xiandima_icon, cost: 335, cooldown: 900, description: "仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
     { shape: 1, sprite: spr_xiandima_icon1, cost: 335, cooldown: 900, description: "悠扬仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
@@ -1863,6 +1873,40 @@ function mod_slots_init()
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
+    }]);
+    register_card("zhuzhujiaqiang", obj_zhuzhujiaqiang, [
+    {
+        shape: 0,
+        sprite: spr_zhuzhujiaqiang,
+        cost: 175,
+        cooldown: 2100,
+        description: "猪猪加强器：为本行投掷类卡片增加攻击力",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuzhujiaqiang
+    },
+    {
+        shape: 1,
+        sprite: spr_zhuzhujiaqiang_1,
+        cost: 175,
+        cooldown: 2100,
+        description: "猪猪信号塔：为本行投掷类卡片增加攻击力，体力翻倍",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuzhujiaqiang_1
+    },
+    {
+        shape: 2,
+        sprite: spr_zhuzhujiaqiang_2,
+        cost: 175,
+        cooldown: 2100,
+        description: "猪猪发射站：为本行投掷类卡片大幅增加攻击力",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuzhujiaqiang_2
     }]);
     register_card("donut", obj_donut, [
     {

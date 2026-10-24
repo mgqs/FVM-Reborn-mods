@@ -55,10 +55,8 @@ if (variable_global_exists("enemy_by_type"))
             {
                 has_hit = true;
 
-                // 魂系 = 幽灵类老鼠（invisible）或带 is_soul 标记的敌人，1.3 倍伤害
-                var _is_soul = (_key == "invisible");
-                if (variable_instance_exists(_e, "is_soul") && _e.is_soul)
-                    _is_soul = true;
+                // 魂系 = 幽灵类老鼠（invisible）或魂系标记的敌人（含符咒鼠/符咒魂鼠/执念鼠魂体），1.3 倍伤害
+                var _is_soul = (_key == "invisible") || longyuan_is_soul_enemy(_e);
 
                 var _dmg = damage;
                 if (_is_soul)

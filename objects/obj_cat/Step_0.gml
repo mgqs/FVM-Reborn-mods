@@ -22,12 +22,16 @@ with obj_enemy_parent{
 	if (object_index == obj_ly_boss_parent || object_is_ancestor(object_index, obj_ly_boss_parent)) continue;
 	// 马面技能三召唤的食灵不触发第 0 列的猫
 	if (object_index == obj_ly_hengha_spirit) continue;
+	// 符咒鼠的符咒转化产生的符咒魂鼠不触发猫
+	if (object_index == obj_ly_fuzhou_minion) continue;
 	if abs(x - other.x) <= 120{
 		if other.state == "idle" && other.row == grid_row && hp > 0 && (array_get_index(other.ignore_list,mouse_id) == -1)&& (array_get_index(other.target_ignore,mouse_id) == -1){
 			other.state = "awake"
 			other.timer = 0
 		}
 		if other.state != "idle" && other.row == grid_row && hp > 0  && (array_get_index(other.ignore_list,mouse_id) == -1){
+			// 爆炸/冲撞类（金牛烟花等 can_loss=false 的猫）无法秒杀魂系或防爆敌人
+			if (!other.can_loss && (longyuan_is_soul_enemy(id) || (variable_instance_exists(id, "immune_to_ash") && immune_to_ash))) continue;
 			
 			var inst = instance_create_depth(x,y,depth,obj_knock_back_effect)
 			inst.sprite_index = sprite_index

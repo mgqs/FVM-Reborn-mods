@@ -261,7 +261,15 @@ else
                 global.zodiac_query_card = self.id;
                 with (obj_yinhema) event_user(0);
                 var zodiac_mult = global.zodiac_music_mult;
-                self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * zodiac_mult;
+
+                // 浮生茶：固定轨迹类范围增幅。与音盒马同属「固定轨迹增幅」，同类取最高、不叠乘。
+                global.fushengcha_mult = 1;
+                global.fushengcha_query_card = self.id;
+                with (obj_fushengcha) event_user(0);
+                var fushengcha_mult = global.fushengcha_mult;
+
+                var track_buff_mult = max(zodiac_mult, fushengcha_mult);
+                self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * track_buff_mult;
 
                 self.buff_applied_id = global.buff_apply_id;
             }

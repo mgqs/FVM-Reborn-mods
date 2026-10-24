@@ -22,7 +22,6 @@ function cross_server_shop_init()
         niuyouguo_1: {cost: "480", shop: "gold"}, niuyouguo_2: {cost: "970", shop: "gold"},
         chunsun: {cost: "1000", shop: "silver"},
         chunsun_1: {cost: "230", shop: "gold"}, chunsun_2: {cost: "470", shop: "gold"},
-        mixian_1: {cost: "230", shop: "gold"}, mixian_2: {cost: "470", shop: "gold"},
         master_shield: {cost: "900", shop: "silver"}, hades_scythe: {cost: "900", shop: "silver"}, zeus_bolt: {cost: "900", shop: "silver"},
         divine_blessing_gem: {cost: "900", shop: "silver"}, divine_protect_gem: {cost: "900", shop: "silver"}, divine_holy_gem: {cost: "900", shop: "silver"}, divine_shenji_gem: {cost: "900", shop: "silver"},
         ghost_strike_gem: {cost: "900", shop: "silver"}, ghost_spark_gem: {cost: "900", shop: "silver"}, ghost_pact_gem: {cost: "900", shop: "silver"}, ghost_caijue_gem: {cost: "900", shop: "silver"},
@@ -34,14 +33,12 @@ function cross_server_shop_init()
     };
 
     // 新生肖 / 泡椒春笋仅在跨服商店兑换，三个形态的价格取自 _cross_server_prices（没写自己价目的回落战旗马那一档）。
-    // 米线本体为松露大厅首通奖励，这里只上架一转/二转。
+    // 米线本体为松露大厅首通奖励，一转 / 二转改为魔塔关卡首通奖励（1-1 给一转、13-1 给二转），跨服商店不再上架。
     // 名称与描述直接读取 mod_cards_init 已注册的形态数据（本初始化在 mod_cards_init 之后执行）。
-    var _cross_server_card_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe","chunsun","mixian"];
+    var _cross_server_card_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe","chunsun"];
     for (var _z = 0; _z < array_length(_cross_server_card_ids); _z++) {
         var _zid = _cross_server_card_ids[_z];
         for (var _shape = 0; _shape < 3; _shape++) {
-            // 米线本体只在松露大厅首通结算发放，跨服商店仅出售一转/二转
-            if (_zid == "mixian" && _shape == 0) continue;
             var _suffix = _shape == 0 ? "" : "_" + string(_shape);
             var _price_id = _zid + _suffix;
             var _template = variable_struct_exists(_cross_server_prices, _price_id) ? _cross_server_prices[$ _price_id] : _cross_server_prices[$ "zhanqima" + _suffix];

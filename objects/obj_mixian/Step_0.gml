@@ -70,6 +70,12 @@ if (!mixian_link_broken) {
 			with (obj_longzhu) {
 				if (col < 0 || row < 0) continue;
 				if (abs(col - other.grid_col) > 2 || abs(row - other.grid_row) > 2) continue;
+				// 同一龙柱已被 2 条米线连接时，不再接受其他米线链接
+				var _links = 0;
+				with (obj_mixian) {
+					if (!mixian_dying && mixian_pillar == other.id) _links++;
+				}
+				if (_links >= 2) continue;
 				var _d = point_distance(x, y, other.x, other.y);
 				if (_d < _best_d) {
 					_best = id;
@@ -130,6 +136,8 @@ if (!mixian_link_broken) {
 				_fx.fx_rate = 5;
 				_fx.image_xscale = 2;
 				_fx.image_yscale = 2;
+				// 净化发光的同时立即施加一次龙柱效果（清醒/保护/返还火苗）
+				longzhu_purify_effect(mixian_pillar);
 			}
 		} else {
 			mixian_pillar.longzhu_purify_played = false;
@@ -149,9 +157,10 @@ if (mixian_attack_phase == 0) {
 	if (!is_frozen && state != CARD_STATE.SLEEP && mixian_attack_timer <= 0) {
 		var _targets = [];
 		with (obj_enemy_parent) {
-			// 地面范围攻击：命中陆鼠、非主流鼠、地鼠与未显形幽灵，不含飞行
+			// 地面范围攻击：命中陆鼠、非主流鼠、地鼠与未显形幽灵，不含飞行；高跷鼠（空军单位）不受伤
 			if (hp > 0
 				&& (target_type == "normal" || target_type == "dance" || target_type == "underground" || target_type == "invisible")
+				&& !(variable_instance_exists(id, "mouse_id") && mouse_id == "longyuan_gaoqiao")
 				&& abs(grid_col - other.grid_col) <= 2
 				&& abs(grid_row - other.grid_row) <= 2) {
 				array_push(_targets, id);

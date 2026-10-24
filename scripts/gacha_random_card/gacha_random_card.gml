@@ -139,7 +139,9 @@ function gacha_get_excluded_cards() {
         "soda_bubble",        // 苏打气泡
         "tang_hu_lu",         // 糖葫芦炮弹
         "double_water_pipe",  // 双向水管
-        "mixian"              // 米线（松露大厅首通奖励）
+        "mixian",             // 米线（松露大厅首通奖励）
+        "huagao",             // 灯影花糕（松露大厅（夜）首通奖励）
+        "fushengcha"          // 浮生茶（松露大厅（夜）首通奖励）
     ];
 }
 
