@@ -286,4 +286,68 @@ function mod_enemy_init()
         spr: spr_infected_bingzha_fire_skill_1,
         feature: "land"
     });
+	register_enemy("landuo_longzhu", 
+    {
+        name: "懒惰龙柱",
+        _obj: obj_longzhu,
+        hp: "无限",
+        shield: 0,
+        description: "未封印时，每 15s对自身 3×3 范围卡片施加催眠。\n已封印时，每 15s对自身 3×3 范围卡片施加清醒效果",
+        speed: 0,
+        atk: 0,
+        cycle: 15,
+        range: 90,
+        ash_proof: true,
+        spr: spr_longzhu_cheng_icon,
+		index:10,
+        feature: "land"
+    });
+	register_enemy("baoshi_longzhu", 
+    {
+        name: "暴食龙柱",
+        _obj: obj_longzhu,
+        hp: "无限",
+        shield: 0,
+        description: "未封印时，每 15s摧毁自身 3×3 范围卡片。\n已封印时，每 15s给自身 3×3 范围卡片施加保护",
+        speed: 0,
+        atk: 0,
+        cycle: 15,
+        range: 90,
+        ash_proof: true,
+        spr: spr_longzhu_lv_icon,
+		index:10,
+        feature: "land"
+    });
+	register_enemy("tanlan_longzhu", 
+    {
+        name: "贪婪龙柱",
+        _obj: obj_longzhu,
+        hp: "无限",
+        shield: 0,
+        description: "未封印时，若场上n根龙柱有m<n根被封印，\n则将火苗最大上限限制为 1000+500m。m=n时上限恢复至1w。\n且解除封印瞬间，立即把当前火苗扣减到新的上限\n已封印时，每15s返回3×3范围内卡片耗能的50%。\n全体黄色龙柱处于封印状态时，火苗上限增加额外容量为15000",
+        speed: 0,
+        atk: 0,
+        cycle: 15,
+        range: 90,
+        ash_proof: true,
+        spr: spr_longzhu_huang_icon,
+		index:10,
+        feature: "land"
+    });
+	register_enemy("aoman_longzhu", 
+    {
+        name: "傲慢龙柱",
+        _obj: obj_longzhu,
+        hp: "无限",
+        shield: 0,
+        description: "未封印时，周期性将 3×3 范围内的攻击类卡片感染为青苹果。\n青苹果生命值200w,免疫爆炸、冲撞、吞噬，可被碾压，出现40s后消失，\n所在格子无法放卡，老鼠可以消耗苹果恢复生命1w点\n已封印时，发射3×3 范围内攻击类卡片数量的红苹果追踪弹，\n追踪场上最近敌人，命中后造成2000点伤害并消失。",
+        speed: 0,
+        atk: 0,
+        cycle: 15,
+        range: 90,
+        ash_proof: true,
+        spr: spr_longzhu_lv2_icon,
+		index:10,
+        feature: "land"
+    });
 }

@@ -15,8 +15,8 @@ function longyuan_enemy_init() {
  // ===== 龙渊（长渊）关卡 BOSS（mouse_id 与对象 Create 中的 mouse_id 一致）=====
  register_enemy("ly_diting", {name: "谛听鼠", _obj: obj_ly_boss_diting, hp: 200000, shield: 0, description: "谛听鼠：遁地移动并发动3×3突袭；音波周期性伤害本行卡片；钟可被攻击，受音波或钻出攻击后3秒自毁并生成魂系开路鼠", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_diting_idel, feature: "land"});
  // 哼哈将军：牛头与马面共用一个 ID 与一条生命值，出场时由 _peer_obj 同时生成副体
- register_enemy("ly_hengha", {name: "哼哈将军", _obj: obj_ly_boss_hengha_horseface, _peer_obj: obj_ly_boss_hengha_oxhead, hp: 150000, shield: 0, description: "哼哈将军：牛头与马面共享15万生命值，马面战略转移、掷铃和召唤8个食灵，牛头十字砸击、敲钟和吸收魂体", speed: 0.4, atk: 4000, cycle: 60, range: 90, ash_proof: false, spr: spr_ly_hengha_mamian_bell_idel, feature: "land"});
- register_enemy("ly_mengpo", {name: "孟婆鼠", _obj: obj_ly_boss_mengpo, hp: 300000, shield: 0, description: "孟婆鼠：茶树、降雨、风眼与茶壶浇水", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: true, spr: spr_mengpo, feature: "land"});
- register_enemy("ly_wuchang", {name: "无常鼠", _obj: obj_ly_boss_wuchang, hp: 250000, shield: 0, description: "无常鼠：黑链、白锭、黑钩与白魂幡，黑白形态轮替", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: true, spr: spr_wuchang, feature: "land"});
+ register_enemy("ly_hengha", {name: "哼哈将军", _obj: obj_ly_boss_hengha_horseface, _peer_obj: obj_ly_boss_hengha_oxhead, hp: 150000, shield: 0, description: "哼哈将军：牛头与马面共享15万生命值，马面战略转移、掷铃和召唤8个食灵，牛头十字砸击、敲钟和吸收魂体", speed: 0.4, atk: 4000, cycle: 60, range: 90, ash_proof: false, spr: spr_hengha_icon1, feature: "land"});
+ register_enemy("ly_mengpo", {name: "孟婆鼠", _obj: obj_ly_boss_mengpo, hp: 300000, shield: 0, description: "孟婆鼠：茶树、降雨、风眼与茶壶浇水", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: true, spr: spr_ly_mengpo_idel, feature: "land"});
+ register_enemy("ly_wuchang", {name: "无常鼠", _obj: obj_ly_boss_wuchang, hp: 250000, shield: 0, description: "无常鼠：拘魂锁链封格锁冷却、献宝元宝牵引玩家并封印武器、勾魂火轮绕场一周、招魂法杖唤出符咒魂鼠，按1-2-3-4技能循环黑白形态轮替", speed: 0.4, atk: 5000, cycle: 60, range: 90, ash_proof: true, spr: spr_wuchang_icon1, feature: "land"});
  register_enemy("ly_youshen", {name: "游神鼠", _obj: obj_ly_boss_youshen, hp: 100000, shield: 0, description: "游神鼠：符箓毒雾、催眠迷阵与纵列冲撞", speed: 0.4, atk: 6000, cycle: 60, range: 90, ash_proof: true, spr: spr_ly_youshen_idel, feature: "land"});
 }

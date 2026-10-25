@@ -26,6 +26,20 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     if (variable_global_exists("longyuan_web_cells") && global.longyuan_web_cells[row * global.grid_cols + col]) {
         return false;
     }
+    // 傲慢龙柱的青苹果封格：该格有 obj_longzhu_green_apple 存活时无法放置卡片
+    var _target_col = col;
+    var _target_row = row;
+    var _green_apple_block = false;
+    var _apple_n = instance_number(obj_longzhu_green_apple);
+    for (var _ai = 0; _ai < _apple_n; ++_ai) {
+        var _apple = instance_find(obj_longzhu_green_apple, _ai);
+        if (!instance_exists(_apple)) continue;
+        if (_apple.hp > 0 && _apple.col == _target_col && _apple.row == _target_row) {
+            _green_apple_block = true;
+            break;
+        }
+    }
+    if (_green_apple_block) return false;
 	//调试相关
 	if global.debug{
 		return true

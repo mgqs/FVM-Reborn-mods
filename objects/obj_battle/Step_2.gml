@@ -1,5 +1,4 @@
-longzhu_update_level_pillars(current_wave);
-longyuan_bridge_update(current_wave);
+longyuan_bridge_update(current_wave, level_stage);
 obj_pool_prewarm_tick();
 
 for (var _i = 0; _i < array_length(global._move_instance_pre_arr); _i++) {

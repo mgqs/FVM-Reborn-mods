@@ -38,7 +38,6 @@ global.grid_cell_size_y = 116
 global.grid_offset_y = 228
 global.grid_cols = global.level_file.map_cols
 global.grid_rows = global.level_file.map_rows
-global.longzhu_level_pillars_setup = false;
 global.longyuan_bridge_red_active = false;
 global.longyuan_bridge_yellow_active = false;
 global.longyuan_bridge_lava_cells = array_create(global.grid_cols * global.grid_rows, false);
@@ -192,6 +191,16 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 				var new_obj = instance_create_depth(new_x, new_y, -1200,map_obj);
 				new_obj.row = i
 				new_obj.col = j
+				// 龙柱：按注册的 longzhu_kind 重新初始化种类与动画
+				if (variable_struct_exists(map_obj_data, "longzhu_kind")) {
+					longzhu_setup(new_obj, map_obj_data.longzhu_kind);
+				}
+				// 奶盖桥岩浆轨道·陆地：初始时该格地形视为 normal（可放卡），
+				// 触发后由 obj_ludi.Destroy 切换回 obstacle 并生成 obj_lava。
+				if (variable_struct_exists(map_obj_data, "ludi_track")) {
+					new_obj.ludi_track = map_obj_data.ludi_track;
+					global.grid_terrains[i][j].type = "normal";
+				}
 			}
 
 		}
@@ -208,8 +217,6 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 		cat_inst.attack_anim = 9
 	}
 }
-
-longzhu_setup_level_pillars();
 
 current_wave = 0
 current_subwave = 0

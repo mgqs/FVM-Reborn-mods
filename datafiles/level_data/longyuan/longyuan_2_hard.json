@@ -95,9 +95,9 @@
       },
       {
         "object": [
-          "longzhu"
+          "ly_longzhu_1"
         ],
-        "type": "normal",
+        "type": "obstacle",
         "plant": []
       },
       {
@@ -171,7 +171,7 @@
       },
       {
         "object": [
-          "longzhu"
+          "ly_longzhu_1"
         ],
         "type": "obstacle",
         "plant": []
@@ -287,7 +287,7 @@
       },
       {
         "object": [
-          "longzhu"
+          "ly_longzhu_1"
         ],
         "type": "obstacle",
         "plant": []

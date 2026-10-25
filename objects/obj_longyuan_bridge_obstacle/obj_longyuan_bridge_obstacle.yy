@@ -4,13 +4,19 @@
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":10,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",}
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":10,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_longyuan_bridge_obstacle",
   "overriddenProperties":[],
-  "parent":{"name":"Enemy","path":"folders/物体/Enemy.yy",},
-  "parentObjectId":{"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",},
+  "parent":{
+    "name":"Enemy",
+    "path":"folders/物体/Enemy.yy",
+  },
+  "parentObjectId":{
+    "name":"obj_enemy_parent",
+    "path":"objects/obj_enemy_parent/obj_enemy_parent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -28,7 +34,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{"name":"spr_longyuan_bridge_barrier","path":"sprites/spr_longyuan_bridge_barrier/spr_longyuan_bridge_barrier.yy",},
+  "spriteId":{
+    "name":"spr_zhangaiwu_idel",
+    "path":"sprites/spr_zhangaiwu_idel/spr_zhangaiwu_idel.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

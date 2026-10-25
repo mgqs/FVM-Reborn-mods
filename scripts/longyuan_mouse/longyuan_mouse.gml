@@ -61,6 +61,11 @@
 #macro LY_YOUSHEN_MIST_LIFE 600    // 毒雾持续 10 秒
 #macro LY_YOUSHEN_SLEEP_DUR 900    // 催眠持续 15 秒
 
+// 12. 无常鼠
+#macro LY_WUCHANG_CHAIN_HP 10000      // 拘魂锁链基础血量
+#macro LY_WUCHANG_YUANBAO_WAIT 120    // 元宝落地到爆炸 2 秒
+#macro LY_WUCHANG_SEAL_DUR 1500       // 献宝封印（禁用武器宝石/吸火苗）持续 25 秒
+
 /// 每个动作使用SWF标签对应的闭区间，不依赖move_anim等固定偏移。
 function longyuan_play(_action, _once = false) {
     if (ly_action == _action) return;
@@ -473,34 +478,15 @@ function longyuan_bridge_clear_cell(_col, _row) {
     }
 }
 
-function longyuan_bridge_activate_lava_track(_track_id) {
-    var _path = _track_id == "red"
-        ? [[6, 1], [6, 2], [6, 3], [5, 3], [4, 3], [4, 4], [4, 5], [4, 6], [4, 7]]
-        : [[2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5]];
-    for (var _i = 0; _i < array_length(_path); ++_i) {
-        var _col = _path[_i][0] - 1;
-        var _row = _path[_i][1] - 1;
-        var _cell_index = _row * global.grid_cols + _col;
-        if (!global.longyuan_bridge_lava_cells[_cell_index]) {
-            var _pos = get_world_position_from_grid(_col, _row);
-            var _lava = instance_create_depth(_pos.x, _pos.y - 35, -1200, obj_lava);
-            _lava.row = _row;
-            _lava.col = _col;
-            _lava.depth = calculate_plant_depth(_col, _row, "coffee");
-            global.longyuan_bridge_lava_cells[_cell_index] = true;
-        }
-    }
-}
-
-function longyuan_bridge_update(_wave) {
+function longyuan_bridge_update(_wave, _stage) {
     if (global.level_id != "longyuan_6") return;
+    // 轨道 1：小兵波第 3 波（0-based wave == 2）触发
     if (_wave >= 2 && !global.longyuan_bridge_red_active) {
         global.longyuan_bridge_red_active = true;
-        longyuan_bridge_activate_lava_track("red");
     }
-    if (_wave >= 4 && !global.longyuan_bridge_yellow_active) {
+    // 轨道 2：首次进入 BOSS 波触发（obj_ludi.Step 检测标记后统一下沉）
+    if (_stage == "boss" && !global.longyuan_bridge_yellow_active) {
         global.longyuan_bridge_yellow_active = true;
-        longyuan_bridge_activate_lava_track("yellow");
     }
 
     var _tracks = ["red", "yellow"];
@@ -513,9 +499,10 @@ function longyuan_bridge_update(_wave) {
         if (instance_exists(global[$ _obstacle_key])) continue;
         global[$ _timer_key]++;
         if (global[$ _timer_key] < 1200) continue;
+        // 障碍物移动路径（0-based [col,row]，从轨迹起点 (1,6)/(1,2) 出发依次经过每格）
         var _path = _track == "red"
             ? [[5, 0], [5, 1], [5, 2], [4, 2], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6]]
-            : [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4], [6, 4], [7, 4]];
+            : [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [2, 4], [3, 4], [4, 4], [5, 4], [6, 4], [7, 4], [7, 5], [7, 6]];
         var _first = _path[0];
         var _start = get_world_position_from_grid(_first[0], _first[1]);
         var _inst = instance_create_depth(_start.x, _start.y - 35, -1300, obj_longyuan_bridge_obstacle);

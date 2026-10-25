@@ -7,7 +7,6 @@ longzhu_owner = noone;
 hp = LONGZHU_GREEN_APPLE_HP;
 max_hp = hp;
 longzhu_life = 0;
-longzhu_heal_timer = 0;
 
 longzhu_anims = longzhu_green_apple_anims();
 longzhu_action = "";

@@ -10,7 +10,7 @@ var _x = x;
 				into_act()
 			}
 			else{
-				if (immune_to_ash && hp>other.damage) {
+				if (is_boss || (immune_to_ash && hp>other.damage)) { // BOSS 只吃伤害，绝不进入秒杀分支
 			            // 对免疫灰烬的敌人只造成伤害，并通过受伤事件计入测试统计
 			            damage_amount = other.damage;
 			            damage_type = "ash";

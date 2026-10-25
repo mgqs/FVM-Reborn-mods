@@ -49,64 +49,11 @@ function longzhu_anim_rate() {
 	return max(1, game_get_speed(gamespeed_fps) / 10);
 }
 
-/// 龙渊关卡的龙柱颜色；global.longzhu_kind 可用于特殊关卡手动覆盖。
-function longzhu_kind_for_level() {
-	var _level = variable_global_exists("level_id") ? string(global.level_id) : "";
-	switch (_level) {
-		case "longyuan_1":
-		case "longyuan_2": return "cheng";
-		case "longyuan_3": return "lv";
-		case "longyuan_4":
-		case "longyuan_5": return "huang";
-		case "longyuan_6": return "lv2";
-	}
+/// 龙柱种类默认值；JSON 中应通过 ly_longzhu_1/2/3/4 显式指定 kind，
+/// 该默认值仅作为 Create 事件中的兜底。
+function longzhu_default_kind() {
 	if (variable_global_exists("longzhu_kind") && global.longzhu_kind != "") return global.longzhu_kind;
 	return "cheng";
-}
-
-function longzhu_setup_level_pillars() {
-	if (global.longzhu_level_pillars_setup) return;
-	global.longzhu_level_pillars_setup = true;
-	var _level = string(global.level_id);
-	var _kind = longzhu_kind_for_level();
-	var _positions = [];
-	switch (_level) {
-		case "longyuan_1": _positions = [[6, 1], [6, 5]]; break;
-		case "longyuan_2": _positions = [[6, 1], [2, 3], [6, 5]]; break;
-		case "longyuan_3": _positions = [[1, 3], [7, 3]]; break;
-		case "longyuan_4": _positions = [[2, 1], [6, 2], [4, 5]]; break;
-		case "longyuan_5": _positions = [[3, 1], [6, 1], [3, 5], [6, 5]]; break;
-		case "longyuan_6": _positions = [[2, 1], [6, 1], [2, 5], [6, 5]]; break;
-		default: return;
-	}
-	var _first = instance_find(obj_longzhu, 0);
-	if (_level == "longyuan_1" || _level == "longyuan_2") {
-		with (obj_longzhu) instance_destroy();
-		global.longzhu_orange_wave1_done = false;
-		global.longzhu_orange_wave2_done = false;
-		return;
-	}
-	if (instance_exists(_first)) {
-		_first.col = _positions[0][0]; _first.row = _positions[0][1];
-		var _pos = get_world_position_from_grid(_first.col, _first.row);
-		_first.x = _pos.x; _first.y = _pos.y;
-		longzhu_setup(_first, _kind);
-	} else longzhu_spawn(_kind, _positions[0][0], _positions[0][1]);
-	for (var _i = 1; _i < array_length(_positions); ++_i) longzhu_spawn(_kind, _positions[_i][0], _positions[_i][1]);
-}
-
-function longzhu_update_level_pillars(_wave) {
-	var _level = string(global.level_id);
-	if ((_level == "longyuan_1" || _level == "longyuan_2") && _wave >= 0 && !global.longzhu_orange_wave1_done) {
-		global.longzhu_orange_wave1_done = true;
-		var _kind = longzhu_kind_for_level();
-		longzhu_spawn(_kind, 6, 1);
-		longzhu_spawn(_kind, _level == "longyuan_1" ? 6 : 2, _level == "longyuan_1" ? 5 : 3);
-	}
-	if (_level == "longyuan_2" && _wave >= 1 && !global.longzhu_orange_wave2_done) {
-		global.longzhu_orange_wave2_done = true;
-		longzhu_spawn(longzhu_kind_for_level(), 6, 5);
-	}
 }
 
 /// ---------- 生成 ----------
@@ -230,7 +177,10 @@ function longzhu_cards_in_3x3(_col, _row) {
 			var _n = ds_list_size(_list);
 			for (var _i = 0; _i < _n; ++_i) {
 				var _inst = _list[| _i];
-				if (instance_exists(_inst) && _inst.hp > 0) array_push(_out, _inst);
+				if (!instance_exists(_inst) || _inst.hp <= 0) continue;
+				// 玩家角色也注册在网格里，但不是卡片，不能参与卡片效果
+				if (variable_instance_exists(_inst, "plant_id") && _inst.plant_id == "player") continue;
+				array_push(_out, _inst);
 			}
 		}
 	}
@@ -342,6 +292,7 @@ function longzhu_greedy_return_flame(_cards) {
 	for (var _i = 0; _i < array_length(_cards); ++_i) {
 		var _c = _cards[_i];
 		if (!instance_exists(_c) || _c.hp <= 0) continue;
+		if (!variable_instance_exists(_c, "cost")) continue;
 		_gain += max(0, _c.cost) * LONGZHU_GREEDY_RETURN_RATIO;
 	}
 	if (_gain <= 0) return 0;
@@ -461,7 +412,7 @@ function longzhu_apply_effect() {
 			if (longzhu_sealed) longzhu_greedy_return_flame(_cards);
 			break;
 
-		// 傲慢（青绿）：未封印 → 感染成青苹果；已封印 → 按攻击卡数量发射红苹果
+		// 傲慢（青绿）：未封印 → 3x3 内攻击类卡片感染成青苹果；已封印 → 按攻击卡数量发射红苹果
 		case "lv2":
 			if (!longzhu_sealed) {
 				for (_i = 0; _i < _n; ++_i) {

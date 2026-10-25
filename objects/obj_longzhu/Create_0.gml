@@ -3,7 +3,7 @@
 col = -1;
 row = -1;
 
-longzhu_kind = longzhu_kind_for_level();
+longzhu_kind = longzhu_default_kind();
 longzhu_anims = longzhu_pillar_anims(spr_longzhu_cheng);
 longzhu_action = "";
 longzhu_frame = 0;

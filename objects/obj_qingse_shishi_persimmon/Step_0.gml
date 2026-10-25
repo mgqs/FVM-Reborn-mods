@@ -41,6 +41,14 @@ if !has_dealt_damage{
 			}
 		}
 
+		// 傲慢龙柱的青苹果：可被碾压秒杀（触发自苹果的「消失」动画）
+		var _hit_r = hit_radius;
+		with (obj_longzhu_green_apple) {
+			if (hp > 0 && abs(col - _center_col) <= _hit_r && abs(row - _center_row) <= _hit_r) {
+				hp = 0;
+			}
+		}
+
 		// 播放命中音效（暂用面粉袋攻击音效）
 		audio_play_sound(snd_flour_sack, 0, false)
 

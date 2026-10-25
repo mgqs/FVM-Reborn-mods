@@ -38,12 +38,25 @@ if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
 }
 if cooldown_timer < cooldown{
-	cooldown_timer ++
-
+	// 无常鼠拘魂锁链：场上存在与本卡同种且所在格被锁链罩住的卡片时，冷却冻结
+	var _cd_locked = false;
+	with (obj_ly_wuchang_chain) {
+		if (_cd_locked) break;
+		if (hp > 0 && ly_mode == "idle" && chain_col >= 0) {
+			var _l = ds_grid_get(global.grid_plants, chain_col, chain_row);
+			for (var _i = 0; _i < ds_list_size(_l); _i++) {
+				var _p = _l[| _i];
+				if (instance_exists(_p) && variable_instance_exists(_p, "plant_id") && _p.plant_id == other.card_id) { _cd_locked = true; break; }
+			}
+		}
+	}
+	if (!_cd_locked) {
+		cooldown_timer ++
+	    cooling_alpha = min(cooling_alpha + 0.05, 0.7); // 淡入冷却效果
+	}
 
     // 冷却中状态
     is_ready = false;
-    cooling_alpha = min(cooling_alpha + 0.05, 0.7); // 淡入冷却效果
 } else {
     // 冷却完成状态
     cooling_alpha = max(cooling_alpha - 0.05, 0); // 淡出冷却效果
