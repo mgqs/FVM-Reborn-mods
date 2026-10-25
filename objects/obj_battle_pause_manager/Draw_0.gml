@@ -94,13 +94,10 @@ if (global.is_paused)
 					}
 					draw_text(cx, cy - 140, title_text);
 					
-					// 卡槽外框
+					// 卡槽外框（食谱也垫，跟卡片同构 —— 2026-10-24 用户定）
 					var slot_spr = spr_slot;
 					var slot_scale = 1.2;
-					// 食谱是道具，不垫卡框
-					if (reward_type != "recipe") {
-						draw_sprite_ext(slot_spr, 0, cx, cy - 20, slot_scale, slot_scale, 0, c_white, 1);
-					}
+					draw_sprite_ext(slot_spr, 0, cx, cy - 20, slot_scale, slot_scale, 0, c_white, 1);
 					
 					if (reward_type == "card") {
 						// === 卡片奖励 ===
@@ -135,19 +132,29 @@ if (global.is_paused)
 						draw_set_color(c_lime);
 						draw_text(cx, cy + 150, "形态：" + string(reward_shape));
 					} else if (reward_type == "recipe") {
-						// === 融合菜谱奖励 ===
+						// === 融合菜谱奖励 ===（与抽卡弹窗同一套：卡框 + 图标 150 + 卡名/档位两行）
 						var _rspr = fusion_recipe_sprite(reward_id, reward_shape);
-						var _rsc = 110 / max(sprite_get_width(_rspr[0]), sprite_get_height(_rspr[0]));
+						var _rsw = sprite_get_width(_rspr[0]);
+						var _rsh = sprite_get_height(_rspr[0]);
+						var _rsc = 150 / max(_rsw, _rsh);
 						draw_sprite_ext(_rspr[0], _rspr[1],
-							cx + (sprite_get_xoffset(_rspr[0]) - sprite_get_width(_rspr[0]) * 0.5) * _rsc,
-							(cy - 20) + (sprite_get_yoffset(_rspr[0]) - sprite_get_height(_rspr[0]) * 0.5) * _rsc,
+							cx + (sprite_get_xoffset(_rspr[0]) - _rsw * 0.5) * _rsc,
+							(cy - 60) + (sprite_get_yoffset(_rspr[0]) - _rsh * 0.5) * _rsc,
 							_rsc, _rsc, 0, c_white, 1);
 
+						// 名字拆两行：卡名（按目标形态取）+ 档位
 						draw_set_color(c_green);
-						draw_text(cx, cy + 120, fusion_recipe_display_name(reward_id, reward_shape));
+						draw_text(cx, cy + 120, fusion_recipe_card_name(reward_id, reward_shape));
 
-						draw_set_color(c_lime);
-						draw_text(cx, cy + 150, "融合菜谱");
+						draw_set_color(c_red);
+						draw_text(cx, cy + 150, fusion_recipe_grade_name(reward_shape));
+
+						// 2026-10-25：附赠提示（前置卡本体 / 提升至一转 / 二转；满转时不显示）
+						var _gift_pv = gacha_recipe_gift_preview(reward_id, reward_shape);
+						if (_gift_pv >= 0) {
+							draw_set_color(c_aqua);
+							draw_text(cx, cy + 180, gacha_recipe_gift_text(_gift_pv, gacha_recipe_gift_target(reward_id, reward_shape)));
+						}
 					} else if (reward_type == "weapon") {
 						// === 武器奖励 ===
 						var weapon_icon = gacha_get_weapon_icon(reward_id);

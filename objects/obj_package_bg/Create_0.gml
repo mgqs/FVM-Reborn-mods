@@ -29,6 +29,13 @@ var btn5 = instance_create_depth(x+160,y-455,depth-1,obj_packageselect_btn)
 btn5.type = "Package"
 btn5.button_index = 3
 btn5.sprite_index = spr_packageselect_btn_5
+// 第 4 页签「凭证」：sprite 为 81×31 窄版（左右边框不压扁），1.8 缩放 = 146×56，高度与前三个一致
+var btn7 = instance_create_depth(x+347,y-455,depth-1,obj_packageselect_btn)
+btn7.type = "Package"
+btn7.button_index = 4
+btn7.sprite_index = spr_packageselect_btn_7
+btn7.image_xscale = 1.8
+btn7.image_yscale = 1.8
 var btn3 = instance_create_depth(x-1170,y-454,depth-1,obj_packageselect_btn)
 btn3.type = "Player Info"
 btn3.button_index = 1
@@ -47,6 +54,7 @@ deck_sort_order = [] // 卡片排序映射（普通卡在前 → 融合卡居中
 hover_weapon_index = -1
 hover_gem_index = -1
 hover_material_index = -1
+hover_transfer_index = -1
 view_max_shapes = 0
 
 panel_anim_init(id, 0.28, 0.18, 260, 1);

@@ -704,6 +704,71 @@ else if package_button_select == 3{
         }
     }
 }
+// 转职凭证页（第 4 页签）
+else if package_button_select == 4{
+	if surface_exists(package_surface){
+		surface_set_target(package_surface)
+		draw_clear_alpha(c_black,0)
+	}
+	// 只列背包里持有（数量 > 0）的凭证，不遍历 material_pool
+	var _tc_list = transfer_credit_owned_ids()
+	var _tc_n = array_length(_tc_list)
+	var _tc_rows = max(1, ceil(_tc_n / package_cols))
+	if (_tc_rows < package_rows) _tc_rows = package_rows
+	max_y_offset_4 = max(0, (_tc_rows - 9) * 88)
+	if (y_offset > max_y_offset_4) y_offset = max_y_offset_4
+	if (y_offset < 0) y_offset = 0
+
+	// 格子底
+	for (var i = 0; i < package_cols; i++) {
+		for (var j = 0; j < _tc_rows; j++) {
+			draw_sprite_ext(spr_package_slot_bg, 1, 42+i*84, 44 + 88*j - y_offset, 0.9, 0.9, 0, c_white, 1)
+		}
+	}
+
+	hover_transfer_index = -1
+	for (var i = 0; i < _tc_n; i++) {
+		var _tid = _tc_list[i]
+		var _col = i mod package_cols
+		var _row = i div package_cols
+		var _tx = 42 + _col * 84
+		var _ty = 44 + _row * 88 - y_offset
+		if (_ty > -100 && _ty < 875) {
+			// 88 = 格子宽度，凭证按 2 倍放大；卡面内部按包围盒等比 fit
+			transfer_credit_draw_id(_tx, _ty, _tid, 88)
+
+			draw_set_halign(fa_right)
+			draw_set_valign(fa_bottom)
+			draw_set_colour(c_white)
+			draw_set_font(font_number)
+			var _amt = get_material_amount(_tid)
+			if _amt < 10000 draw_text(_tx + 40, _ty + 42, string(_amt))
+			else draw_text(_tx + 40, _ty + 42, string(floor(_amt / 10000)) + "w")
+
+			var _hx = x - 354 + _col * 84
+			var _hy = y - 368 + _row * 88 - y_offset
+			if (point_in_rectangle(mouse_x, mouse_y, _hx - 42, _hy - 44, _hx + 42, _hy + 44))
+			&& mouse_y > y-405 && mouse_y < y + 385{
+				hover_transfer_index = i
+			}
+		}
+	}
+	surface_reset_target()
+	draw_surface_ext(package_surface, x - 354 - 42, y - 368 - 44, 1, 1, 0, c_white, _pg_alpha_r)
+
+	// 悬停提示
+	if (hover_transfer_index != -1 && hover_transfer_index < _tc_n) {
+		var _hid = _tc_list[hover_transfer_index]
+		var _hp = transfer_credit_parse(_hid)
+		if (!is_undefined(_hp)) {
+			var _tt = transfer_credit_name(_hp.card_id, _hp.shape) + "\n"
+				+ "转职凭证：在合成屋「卡片转职」中使用\n"
+				+ "数量：" + string(get_material_amount(_hid))
+			draw_set_font(font_yuan)
+			tooltip_set(mouse_x - 15, mouse_y - 15, _tt, -1)
+		}
+	}
+}
 
 // 重置绘制设置
 draw_set_halign(fa_left);
@@ -722,6 +787,8 @@ if (package_button_select == 1) {
 	_sb_max = variable_instance_exists(id, "max_y_offset_1") ? max_y_offset_1 : max(0, (package_rows - 8) * 96);
 } else if (package_button_select == 2) {
 	_sb_max = variable_instance_exists(id, "max_y_offset_2") ? max_y_offset_2 : max(0, (package_rows - 9) * 88);
+} else if (package_button_select == 4) {
+	_sb_max = variable_instance_exists(id, "max_y_offset_4") ? max_y_offset_4 : max(0, (package_rows - 9) * 88);
 } else {
 	_sb_max = variable_instance_exists(id, "max_y_offset_3") ? max_y_offset_3 : max(0, (package_rows - 9) * 88);
 }

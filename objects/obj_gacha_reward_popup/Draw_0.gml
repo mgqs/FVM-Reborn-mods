@@ -88,6 +88,13 @@ if (reward != noone) {
 
         draw_set_color(c_red);
         draw_text(cx, cy + 150, fusion_recipe_grade_name(reward_shape));
+
+        // 2026-10-25：附赠提示（前置卡本体 / 提升至一转 / 二转；满转时不显示）
+        var _gift_pv = gacha_recipe_gift_preview(reward_id, reward_shape);
+        if (_gift_pv >= 0) {
+            draw_set_color(c_aqua);
+            draw_text(cx, cy + 180, gacha_recipe_gift_text(_gift_pv, gacha_recipe_gift_target(reward_id, reward_shape)));
+        }
     } else if (reward_type == "weapon") {
         // === 武器奖励 ===
         var weapon_icon = gacha_get_weapon_icon(reward_id);

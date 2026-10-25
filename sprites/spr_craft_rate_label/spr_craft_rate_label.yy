@@ -26,7 +26,7 @@
   "origin":3,
   "parent":{
     "name":"Craft",
-    "path":"folders/精灵/UI/Craft.yy",
+    "path":"folders/精灵/mod/Craft.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

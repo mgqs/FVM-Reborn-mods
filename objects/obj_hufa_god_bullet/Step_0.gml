@@ -18,16 +18,26 @@ if (timer > max_life || x > 2200 || y > 1200 || x < 0 || y < 0)
 
 if (!has_hit)
 {
-    if (instance_exists(target_id) && target_id.hp > 0)
+    if (homing_target_ok(target_id))
     {
         var _dx = target_id.x - x;
         var _dy = target_id.y - y;
         var _len = point_distance(0, 0, _dx, _dy);
-        if (_len > 0)
+        if (_len > move_speed * 2)
         {
             move_x = (_dx / _len) * move_speed;
             move_y = (_dy / _len) * move_speed;
         }
+        else
+        {
+            // 已经贴到目标身上 → 放弃追踪，保持当前方向穿过去（不再来回折返抽搐）
+            target_id = noone;
+        }
+    }
+    else
+    {
+        // 目标消失 / 无敌 / 隐身 → 永久脱离，直线飞出地图为止
+        target_id = noone;
     }
     image_angle = point_direction(0, 0, move_x, move_y);
 }

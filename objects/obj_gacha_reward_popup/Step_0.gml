@@ -61,6 +61,10 @@ if (mouse_check_button_pressed(mb_left)) {
             } else if (reward_type == "recipe") {
                 // 融合菜谱道具：进背包，融合页拿它当「融合菜谱」
                 add_material_amount(fusion_recipe_id(reward_id, target_shape), 1);
+                // 2026-10-25：抽到菜谱附赠**前置卡（融合主卡）**的本体 / 转职一次，不是送融合卡
+                var _gift = gacha_recipe_gift(reward_id, target_shape);
+                show_notice("获得" + fusion_recipe_display_name(reward_id, target_shape)
+                    + ((_gift >= 0) ? "，" + gacha_recipe_gift_text(_gift, gacha_recipe_gift_target(reward_id, target_shape)) : ""), 150);
             }
 
             received = true;

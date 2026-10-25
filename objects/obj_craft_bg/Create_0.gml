@@ -499,42 +499,43 @@ function fusion_owned_max_shape(_id){
 //    数据来源：官方「防御卡查询」的【融合路径】截图（素材\新普卡-融合卡\*\米苏.jpg、10.21…\spr-dapao-ronghe\米苏.jpg）
 //    路径读法： [主卡] + [副卡] → [结果]
 //    🔴 每条写成 { id:"卡id", need:N }，N = **这道食谱要求的形态**：0 本体 / 1 一转 / 2 二转
-//       —— 没有「一律二转」的硬规则（2026-10-24 用户口径），要求多少就写多少；
+//    🔴 2026-10-25 用户口径：**副卡全部 0 转（只要本体）**，唯一例外是德芙面包（chocolate_bread，need 1）。
+//       下面注释里的「XX二转」是这张卡的**二转形态名**（用来认卡），不是当前要求；要求一律看 need。
 //       need 超过这张卡自己的形态上限时按它的上限算（见 fusion_need_shape，卡本身没二转也不会卡死）
 //    ⚠️ 工程里没有的卡先留空（下面注释写了官方要求的那张），别瞎填
 fusion_sub_cards = [
 	{   // ① 初级
-		ronghedapao:    { id: "chocolate_pult",    need: 2 },   // 脆心巧克力投手（巧克力投手二转）
-		ronghehaixing:  { id: "melon_shield",      need: 2 },   // 锋芒瓜皮护罩（官方「仙人掌花刺身」的顶替：瓜皮系二转）
-		youyu_god:      { id: "coal_starfish",     need: 2 },   // 芥末海星刺身（炭烧海星二转；0 转融合鱿鱼是 8 向齐射 → 取多方向卡）
-		lizi_god:       { id: "spicy_pot",         need: 2 },   // 酱香鱿鱼锅（麻辣香锅二转）
-		ronghedan_god:  { id: "ice_egg_boiler_pult", need: 2 },  // 冰河煮蛋器（冰煮蛋器二转；0 转煮蛋器是投掷溅射+定身 → 取冰系投手）
-		ronghehuopen:   { id: "sugar_roxburghii",  need: 2 },   // 生腌酸刺梨（糖渍刺梨二转）
-		ronghesanxian:  { id: "wine_bottle_bomb",  need: 2 },   // 子母酒瓶弹（酒瓶炸弹二转）
-		rongheshuanggu: { id: "hotdog_cannon",     need: 2 },   // 热狗榴弹炮（热狗大炮二转）
-		ronghekafei:    { id: "gatlin_long_bao",   need: 2 }    // 格林机枪笼包
+		ronghedapao:    { id: "chocolate_pult",    need: 0 },   // 脆心巧克力投手（巧克力投手二转形态名）
+		ronghehaixing:  { id: "melon_shield",      need: 0 },   // 锋芒瓜皮护罩（官方「仙人掌花刺身」的顶替：瓜皮系）
+		youyu_god:      { id: "coal_starfish",     need: 0 },   // 芥末海星刺身（炭烧海星；0 转融合鱿鱼是 8 向齐射 → 取多方向卡）
+		lizi_god:       { id: "spicy_pot",         need: 0 },   // 酱香鱿鱼锅（麻辣香锅二转形态名）
+		ronghedan_god:  { id: "ice_egg_boiler_pult", need: 0 },  // 冰河煮蛋器（冰煮蛋器；0 转煮蛋器是投掷溅射+定身 → 取冰系投手）
+		ronghehuopen:   { id: "sugar_roxburghii",  need: 0 },   // 生腌酸刺梨（糖渍刺梨二转形态名）
+		ronghesanxian:  { id: "wine_bottle_bomb",  need: 0 },   // 子母酒瓶弹（酒瓶炸弹二转形态名）
+		rongheshuanggu: { id: "hotdog_cannon",     need: 0 },   // 热狗榴弹炮（热狗大炮二转形态名）
+		ronghekafei:    { id: "gatlin_long_bao",   need: 0 }    // 格林机枪笼包
 	},
 	{   // ② 深度
-		ronghedapao:    { id: "lightning_baguette", need: 2 },   // 雷电长棍面包（官方「霸王美味电鳗」的顶替：电系）
-		ronghehaixing:  { id: "chocolate_bread",   need: 1 },   // 德芙面包（官方「8周年红丝绒」的顶替）⚠ 巧克力面包只有本体+1转，最高只能 1
-		youyu_god:      { id: "double_water_pipe", need: 2 },   // 合金水管（双向水管二转）
-		lizi_god:       { id: "coke_bomb",         need: 2 },   // 燃烧可乐弹（可乐炸弹二转）
-		ronghedan_god:  { id: "stinky_tofu_pult",  need: 2 },   // 铁板臭豆腐投手（臭豆腐投手二转）
-		ronghehuopen:   { id: "durian",            need: 2 },   // 冰河世纪榴莲（榴莲二转）
-		ronghesanxian:  { id: "sheshou",           need: 2 },   // 射手座星宿（射手座精灵二转；1 转三线是「三行各 3 发」→ 取三行多发卡）
-		rongheshuanggu: { id: "coffee_pot",        need: 2 },   // 红温咖啡喷壶（咖啡喷壶二转）
-		ronghekafei:    { id: "coffee_pot",        need: 2 }    // 红温咖啡喷壶（咖啡喷壶二转）
+		ronghedapao:    { id: "lightning_baguette", need: 0 },   // 雷电长棍面包（官方「霸王美味电鳗」的顶替：电系）
+		ronghehaixing:  { id: "chocolate_bread",   need: 1 },   // 德芙面包（官方「8周年红丝绒」的顶替）⚠ 唯一例外：巧克力面包只有本体+1转，最高只能 1
+		youyu_god:      { id: "double_water_pipe", need: 0 },   // 合金水管（双向水管二转形态名）
+		lizi_god:       { id: "coke_bomb",         need: 0 },   // 燃烧可乐弹（可乐炸弹二转形态名）
+		ronghedan_god:  { id: "stinky_tofu_pult",  need: 0 },   // 铁板臭豆腐投手（臭豆腐投手二转形态名）
+		ronghehuopen:   { id: "durian",            need: 0 },   // 冰河世纪榴莲（榴莲二转形态名）
+		ronghesanxian:  { id: "sheshou",           need: 0 },   // 射手座星宿（射手座精灵二转形态名；1 转三线是「三行各 3 发」→ 取三行多发卡）
+		rongheshuanggu: { id: "coffee_pot",        need: 0 },   // 红温咖啡喷壶（咖啡喷壶二转形态名）
+		ronghekafei:    { id: "coffee_pot",        need: 0 }    // 红温咖啡喷壶（咖啡喷壶二转形态名）
 	},
 	{   // ③ 灵魂
-		ronghedapao:    { id: "flour_sack",        need: 2 },   // 乾坤分身袋（面粉袋二转）
-		ronghehaixing:  { id: "sugar_ball_pult",   need: 2 },   // 可可糖全能投手（官方「王冠蜜糖陷阱」的顶替：灵融＝变追踪）
-		youyu_god:      { id: "nut_frier",         need: 2 },   // 松塔爆破机（坚果爆炒机二转）
-		lizi_god:       { id: "qingse_shishi",     need: 2 },   // 柿柿如意（青涩柿柿二转）
-		ronghedan_god:  { id: "triple_wine_rack",  need: 2 },   // 终结者酒架（三线酒架二转）
-		ronghehuopen:   { id: "ice_bucket_bomb",   need: 2 },   // 杂果冰桶炸弹（冰桶炸弹二转）
-		ronghesanxian:  { id: "oden_pot",          need: 2 },   // 海鲜关东煮喷锅（关东煮喷锅二转；2 转三线「三行 3 发可穿透」→ 取三行穿透卡）
-		rongheshuanggu: { id: "tang_hu_lu",        need: 2 },   // 七彩糖葫芦弹（糖葫芦炮弹二转）
-		ronghekafei:    { id: "coffee_cup",        need: 2 }    // 骨瓷咖啡杯（咖啡杯二转）
+		ronghedapao:    { id: "flour_sack",        need: 0 },   // 乾坤分身袋（面粉袋二转形态名）
+		ronghehaixing:  { id: "sugar_ball_pult",   need: 0 },   // 可可糖全能投手（官方「王冠蜜糖陷阱」的顶替：灵融＝变追踪）
+		youyu_god:      { id: "nut_frier",         need: 0 },   // 松塔爆破机（坚果爆炒机二转形态名）
+		lizi_god:       { id: "qingse_shishi",     need: 0 },   // 柿柿如意（青涩柿柿二转形态名）
+		ronghedan_god:  { id: "triple_wine_rack",  need: 0 },   // 终结者酒架（三线酒架二转形态名）
+		ronghehuopen:   { id: "ice_bucket_bomb",   need: 0 },   // 杂果冰桶炸弹（冰桶炸弹二转形态名）
+		ronghesanxian:  { id: "oden_pot",          need: 0 },   // 海鲜关东煮喷锅（关东煮喷锅二转形态名；2 转三线「三行 3 发可穿透」→ 取三行穿透卡）
+		rongheshuanggu: { id: "tang_hu_lu",        need: 0 },   // 七彩糖葫芦弹（糖葫芦炮弹二转形态名）
+		ronghekafei:    { id: "coffee_cup",        need: 0 }    // 骨瓷咖啡杯（咖啡杯二转形态名）
 	}
 ];
 

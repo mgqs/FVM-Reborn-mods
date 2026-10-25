@@ -479,6 +479,69 @@ function gacha_make_card_reward(_id, _shape) {
     return { reward_type: "card", id: _id, shape: _shape };
 }
 
+/// @function gacha_recipe_gift_target(card_id, shape)
+/// @desc 菜谱附赠的**目标卡** = 这张融合卡的**融合主卡（前置卡）**，如 融合栗子 ← 生煎锅。
+///       2026-10-25 用户口径：**不管抽到哪种菜谱（初融/深融/灵融）都给这张主卡**，
+///       没本体给本体、有本体就 +1 转 → 3 次菜谱刚好把主卡推到二转。
+///       ⚠️ 不是送融合卡本身（那等于跳过融合过程）；shape 参数保留只为调用处统一，不参与判断
+function gacha_recipe_gift_target(_card_id, _shape) {
+    var _table = fusion_get_prerequisites();
+    if (variable_struct_exists(_table, _card_id)) {
+        var _list = _table[$ _card_id];
+        if (array_length(_list) > 0) return _list[0];
+    }
+    return _card_id;
+}
+
+/// @function gacha_recipe_gift_card_name(card_id)
+function gacha_recipe_gift_card_name(_id) {
+    var _d = deck_get_card_data(_id, 0);
+    if (_d != noone && ds_exists(_d, ds_type_map) && ds_map_exists(_d, "name")) {
+        return _d[? "name"];
+    }
+    return string(_id);
+}
+
+/// @function gacha_recipe_gift_preview(card_id, shape)
+/// @desc 抽到融合菜谱时附赠什么（作用在 gacha_recipe_gift_target 上）：
+///       没本体 → 0（给本体）；已有本体且没满转 → 下一形态序号（1/2）；已满转 → -1（什么都不给）
+///       只读，用于奖励弹窗「附赠：…」提示行（发放前先预览）
+function gacha_recipe_gift_preview(_card_id, _shape) {
+    var _tid = gacha_recipe_gift_target(_card_id, _shape);
+    var _max = card_max_available_shape(_tid);
+    if (!is_card_unlocked(_tid)) return 0;
+    var _info = get_card_info_simple(_tid);
+    if (!is_struct(_info)) return -1;
+    if (_info.max_shape >= _max) return -1;
+    return _info.max_shape + 1;
+}
+
+/// @function gacha_recipe_gift_text(_gift, target_id)
+/// @desc 附赠提示文案（带目标卡名）；_gift < 0 返回空串（不写这行）
+function gacha_recipe_gift_text(_gift, _target_id) {
+    if (_gift < 0) return "";
+    var _nm = gacha_recipe_gift_card_name(_target_id);
+    if (_gift == 0) return "附赠：" + _nm + "本体";
+    if (_gift == 1) return "附赠：" + _nm + "提升至一转";
+    return "附赠：" + _nm + "提升至二转";
+}
+
+/// @function gacha_recipe_gift(card_id, shape)
+/// @desc 抽到菜谱时真发放附赠（作用在目标卡上 = 初融送前置卡 / 深融灵融送融合卡）：
+///       没本体解锁本体；有本体就 +1 转（到这张卡自己的上限为止）
+/// @return 同 gacha_recipe_gift_preview（实际发放结果）
+function gacha_recipe_gift(_card_id, _shape) {
+    var _tid = gacha_recipe_gift_target(_card_id, _shape);
+    var _gift = gacha_recipe_gift_preview(_card_id, _shape);
+    if (_gift < 0) return -1;
+    if (_gift == 0) {
+        unlock_card(_tid, 0, 0, global.save_data.unlocked_items.max_skill_level);
+    } else {
+        upgrade_card_shape(_tid, _gift);
+    }
+    return _gift;
+}
+
 /// @function fusion_recipe_sprite(card_id, shape)
 /// @desc 食谱图标 = [精灵, 帧]：形态 0 用 spr_fusion_recipe0（帧号按 fusion_demo 顺序），1/2 用诸神那套 spr_voucher_*
 function fusion_recipe_sprite(card_id, shape) {
@@ -599,12 +662,13 @@ function fusion_prereq_any_upgradable(card_id) {
 }
 
 /// @function gacha_resolve_prereq_reward(_cand)
-/// @desc 抽到「需前置的卡（融合卡 / 神灵卡）」时，若前置没满足，就把这次的奖励换成前置卡：
-///       ① 先补缺的**本体**（表里按顺序，双前置优先补没拿到的那张）
-///       ② 前置都有本体后，按表顺序把第一张没到二转的推到下一形态（0→1、1→2）
-///       ③ 前置全部二转 → 照常给目标卡本体
-///       命运女神（prereq_body_only）例外：前置只要有本体就算满足，不推到二转。
-///       只在抽「本体」（shape 0）时替换；已拥有本体、在抽转职的不干预。
+/// @desc 抽到「需前置的卡（融合卡 / 神灵卡）」时的发放规则（2026-10-24 放宽）：
+///       ① **任意一张前置有本体** → 直接给目标卡本体（不再要求把前置推到一转 / 二转）
+///       ② 一张前置本体都没有 → **随机挑一张前置**，给它的本体（前置本身是融合卡时由
+///          gacha_make_card_reward() 统一转成菜谱）
+///       命运女神（prereq_body_only）例外：前置没本体时**根本不进池**（见候选池判断），
+///       所以走到这里说明已经有创造神本体 → 不替换。
+///       只在抽「本体」（shape 0）时判定；已有本体、在抽转职的不干预。
 /// @param {struct} _cand gacha_pick_random_reward 选出来的候选
 /// @return {struct} 实际发放的奖励
 function gacha_resolve_prereq_reward(_cand) {
@@ -612,40 +676,27 @@ function gacha_resolve_prereq_reward(_cand) {
     if (_cand.reward_type != "card") return _cand;
     if (_cand.shape != 0) return _cand;
 
+    // 欧皇抽卡：前置系统不参与（2026-10-25 用户口径）
+    if (is_lucky_gacha_mode()) return _cand;
+
     var _table = fusion_get_prerequisites();
     if (!variable_struct_exists(_table, _cand.id)) return _cand;
 
     var _list = _table[$ _cand.id];
-    // 命运这类「只要本体」的卡：**不做替换**（前置未满足时它根本不进池，见候选池判断）
+
+    // 命运这类「只要本体」的卡：前置没本体时压根不进池，进池即已满足 → 不替换
     if (prereq_body_only(_cand.id)) return _cand;
 
-    var _need_max = 2;   // 其余卡：前置要推到二转
-
-    // ① 先补缺的本体（前置本身可能就是融合卡 → 由 gacha_make_card_reward 统一转成菜谱）
+    // ① 前置**全部**有本体（只要本体，不要二转）→ 给目标卡本体
+    //    2026-10-25 用户口径：从「任一前置」改成「都需要」——双前置的金卡要出满 2 张前置才会给本体
+    var _missing = [];
     for (var _i = 0; _i < array_length(_list); _i++) {
-        if (!is_card_unlocked(_list[_i])) {
-            return gacha_make_card_reward(_list[_i], 0);
-        }
+        if (!is_card_unlocked(_list[_i])) array_push(_missing, _list[_i]);
     }
+    if (array_length(_missing) == 0) return _cand;
 
-    // ② 再按顺序把前置推到二转；**卡本身没有二转时按它自己的最大形态算**
-    //    （蓝莓塔 blueberry_tower / 幻幻鸡 magic_chicken 只有 0 转，直接视为已满足，
-    //      否则会 continue 跳过、最后误发目标卡本体）
-    for (var _j = 0; _j < array_length(_list); _j++) {
-        var _info = get_card_info_simple(_list[_j]);
-        if (!is_struct(_info)) continue;
-        var _cur = max(_info.max_shape, _info.shape);   // 取大值：降转不算退回
-        var _avail = card_max_available_shape(_list[_j]);
-        var _target = (_avail >= 0) ? min(_need_max, _avail) : _need_max;
-        if (_cur < _target) {
-            var _next = _cur + 1;
-            if (get_plant_shape_data(_list[_j], _next) == undefined) continue;
-            return gacha_make_card_reward(_list[_j], _next);   // 前置是融合卡时同样只发菜谱
-        }
-    }
-
-    // ③ 前置都满足 → 给目标卡本体
-    return _cand;
+    // ② 还缺前置 → 随机给一张**缺的**前置本体（已拥有的不再重复给）
+    return gacha_make_card_reward(_missing[irandom(array_length(_missing) - 1)], 0);
 }
 
 /// @function gacha_pick_random_reward()
@@ -725,8 +776,10 @@ function gacha_pick_random_reward() {
 
         // 硬前置的卡（目前只有命运：「只要创造神本体」）：前置没本体就不进池。
         // 这类卡不参与「抽到后换前置」的替换，所以必须在池子里就拦住。
-        // 其余需前置的卡（融合 / 其它神灵）照常进池，抽到后由 gacha_resolve_prereq_reward 换成前置卡。
-        if (target_shape == 0 && prereq_body_only(card_id) && !fusion_prereq_met(card_id)) {
+        // 欧皇抽卡不拦（前置系统不参与，2026-10-25 用户口径）。
+        // 其余需前置的卡（融合 / 其它神灵）照常进池；抽到后由 gacha_resolve_prereq_reward 判定：
+        // **全部**前置都有本体才发目标卡；否则随机补一张「缺的」前置本体。
+        if (!is_lucky_gacha_mode() && target_shape == 0 && prereq_body_only(card_id) && !fusion_prereq_met(card_id)) {
             continue;
         }
 
@@ -788,18 +841,19 @@ function gacha_pick_random_reward() {
 
     // === 按权重选择类别 ===
     // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
-    //   星际抽卡（难度6）：融合卡20 / 金卡5 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5  → 融合菜谱 ≈16.7%
-    //   欧皇抽卡（难度7）：融合卡55 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5  → 融合菜谱 ≈35.5%
-    //   2026-10-24 融合卡权重由 15 提到 20（欧皇 55 不变）；这是**权重**不是概率，别按百分比去反算
-    var fusion_weight = 20;
-    var gold_weight = 5;
+    //   星际抽卡（难度6）：融合卡15 / 金卡8 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5
+    //   欧皇抽卡（难度7）：融合卡40 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5
+    //   2026-10-25 用户口径：星际菜谱 20→15、金卡 5→8；欧皇菜谱 55→40（欧皇金卡保持 50）
+    //   这是**权重**不是概率，别按百分比去反算
+    var fusion_weight = 15;
+    var gold_weight = 8;
     var zodiac_weight = 20;
     var normal_weight = 74;
     var weapon_weight = 0.5;
     var gem_weight = 0.5;
 
     if (is_lucky_gacha_mode()) {
-        fusion_weight = 55;
+        fusion_weight = 40;
         gold_weight = 50;
         zodiac_weight = 25;
         normal_weight = 20;

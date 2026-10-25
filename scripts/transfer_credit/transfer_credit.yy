@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"transfer_credit",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"transfer_credit",
+  "parent":{
+    "name":"Craft",
+    "path":"folders/脚本/mod/Craft.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
