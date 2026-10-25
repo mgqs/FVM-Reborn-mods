@@ -138,6 +138,34 @@ for(var i = 0 ; i< 4; i++){
 				
 			}
 		}
+		//绘制转职凭证（凭证/兑换项）
+		else if shop_button_select == 6{
+			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
+				var _cg = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)]
+				var _cgx = x-618+411*j
+				var _cgy = y-190+165*i
+				if (_cg.credit_shape > 0){
+					// 凭证：底板 + 实时形态卡面，画在格子左侧图标区（跟道具页 icon 同一位置：格子中心左移 122）
+					// 尺寸 110（2026-10-25 用户改：原来 150 顶满格子太大）
+					var _cp = transfer_credit_parse(_cg.unlock_item_id)
+					var _csz = 110
+					transfer_credit_draw(_cgx-122-_csz*0.5, _cgy-_csz*0.5, _cp.card_id, _cp.shape, _csz, 0, 1)
+					// 只有「永久锁」（形态不存在 / 已持有 / 已转职）才盖黑影 + 售完；
+					// 爬塔门槛和余额不足不盖，点购买时才弹提示（2026-10-26 用户定）
+					if (transfer_credit_buyable_locked(_cp.card_id, _cp.shape)) {
+						draw_set_color(c_black)
+						draw_set_alpha(0.5)
+						draw_rectangle(_cgx-205, _cgy-82, _cgx+205, _cgy+82, false)
+						draw_set_alpha(1)
+						draw_sprite_ext(spr_sold_out, 0, _cgx, _cgy, 1.8, 1.8, 0, c_white, 1)
+					}
+				}
+				else{
+					// 兑换项：威望图标
+					draw_sprite_ext(spr_prestige_icon, 0, _cgx-122, _cgy, 2.8, 2.8, 0, c_white, 1)
+				}
+			}
+		}
 		//绘制时装类型商品
 		if shop_button_select == 4{
 			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
@@ -193,5 +221,37 @@ for(var i = 0 ; i< 4; i++){
 		}
 	}
 }
+
+// ── 转职凭证页：左上角分类页签（一转 / 二转 / 全部）＋ 威望余额 ──
+// 位置（2026-10-25 改）：从「压在面板上沿」上移到**面板上方那条蓝带**里
+//   —— 顶部页签行底边 y-332.5、内面板顶边 y-286.5，标签中心 y-307（高 34）正好坐进去，
+//      既不压面板边框、也不压第一排商品格；三个标签等距排列
+if (shop_button_select == 6) {
+	var _ct_scl = 1.6
+	var _ct_y = y - 307
+	// 顺序：一转(1) / 二转(2) / 全部(0)
+	// 🔴 frame 0 = 金色 = 选中、frame 1 = 蓝色 = 未选中（2026-10-25 修正：原来写反了）
+	var _ct_spr = [spr_shop_credit_tab_1, spr_shop_credit_tab_2, spr_shop_credit_tab_all]
+	var _ct_val = [1, 2, 0]
+	var _ct_cx = [x - 740, x - 616, x - 517]
+	for (var _ct = 0; _ct < 3; _ct++) {
+		draw_sprite_ext(_ct_spr[_ct], (credit_tab == _ct_val[_ct]) ? 0 : 1,
+			_ct_cx[_ct], _ct_y, _ct_scl, _ct_scl, 0, c_white, 1)
+	}
+
+	// 威望余额（2026-10-25 二次调整：从底部余额条挪到**分类标签右边同一条带**，一眼能看见）
+	//   图标中心 x-455（全部标签右边缘 x-487 往右留 ~16px）、0.75 倍 ≈ 33px，与标签同高
+	//   数字描 1px 黑影：这条带是浅蓝底，纯黄字不吃边不好认
+	var _pfx = x - 455
+	draw_sprite_ext(spr_prestige_icon, 0, _pfx, _ct_y, 0.75, 0.75, 0, c_white, 1)
+	draw_set_font(font_number)
+	draw_set_halign(fa_left)
+	draw_set_valign(fa_middle)
+	draw_set_color(c_black)
+	draw_text(_pfx + 22 + 1, _ct_y + 1, string(get_material_amount("prestige")))
+	draw_set_color(c_yellow)
+	draw_text(_pfx + 22, _ct_y, string(get_material_amount("prestige")))
+}
+
 draw_set_alpha(1)
 panel_anim_end_slide(id, 260)

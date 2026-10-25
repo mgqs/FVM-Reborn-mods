@@ -17,6 +17,191 @@ draw_sprite_ext(spr_craft_bg_bar,   0, x, y, image_xscale, image_yscale, 0, c_wh
 draw_sprite_ext(spr_craft_tab_cardgem, craft_top_tab == 0 ? 0 : 1, tab_cardgem_x, tab_cardgem_y, craft_tab_scale, craft_tab_scale, 0, c_white, 1)
 draw_sprite_ext(spr_craft_tab_fusion,  craft_top_tab == 1 ? 0 : 1, tab_fusion_x,  tab_fusion_y,  craft_tab_scale, craft_tab_scale, 0, c_white, 1)
 
+// ── 卡片转职页（craft_top_tab == 2，2026-10-25）──
+// 几何/状态全来自 Create_0 的 tg_*，这里只管画
+if (craft_top_tab == 2) {
+	// 列表滚动平滑（跟强化页一个手感）
+	if (ui_anim_on(1)) {
+		tg_scroll += (tg_scroll_target - tg_scroll) * 0.28;
+		if (abs(tg_scroll_target - tg_scroll) < 0.5) tg_scroll = tg_scroll_target;
+	} else {
+		tg_scroll = tg_scroll_target;
+	}
+	// 列表 + 卡元数据：**只在变化时重建**（2026-10-26 性能修，原来每帧重建 → 卡成幻灯片）
+	if (tg_list_dirty) tg_rebuild();
+	var _n = array_length(tg_list);
+
+	var _shape = (tg_card == "") ? 0 : tg_target_shape(tg_card);
+	var _full = (tg_card != "" && _shape > transfer_credit_card_shapes_max(tg_card));
+	var _chk = tg_check();
+
+	// ① 三个凭证槽：屏幕顺序 左A / 中C / 右B（底板 slot 参数 A=0 / C=2 / B=1）
+	//    有凭证 → 亮；没凭证 → sh_fusion_gray 灰（去色，不用 alpha 压暗）；不适用（一转时的中槽、满转、空卡）→ 只画槽名
+	var _slot_bg = [0, 2, 1];
+	var _slot_lab = [spr_transfer_slot_a, spr_transfer_slot_c, spr_transfer_slot_b];
+	for (var _i = 0; _i < 3; _i++) {
+		var _cx = tg_slot_x[_i];
+		draw_sprite_ext(spr_craft_material_bg, 0, _cx, tg_slot_y, 1.8, 1.8, 0, c_white, 1);
+		var _use = (tg_card != "") && !_full && !((_shape == 1) && _i == 1);
+		if (_use) {
+			// 未持有 = 跟融合页「未拥有」**同款灰**（sh_fusion_gray：去色 + 轻压暗）
+			// 不要用 alpha 0.45 —— 那等于在深色面板上盖一层黑，八芒星底板会整片看不见（用户 2026-10-25）
+			var _has = transfer_credit_has(tg_card, _shape);
+			if (!_has) shader_set(sh_fusion_gray);
+			transfer_credit_draw(_cx - 37, tg_slot_y - 37, tg_card, _shape, 74, _slot_bg[_i], 1);
+			if (!_has) shader_reset();
+		} else {
+			draw_sprite_ext(_slot_lab[_i], 0, _cx, tg_slot_y, 1.8, 1.8, 0, c_white, 1);
+		}
+	}
+
+	// ② 主卡槽：空 → 槽底 +「主卡」小字；有卡 → 一整格卡（卡底 0.25 + 卡面 0.7 + 星级 + 造价）
+	draw_sprite_ext(spr_craft_slot_bg, 0, tg_main_x + 2, tg_main_y - 3, 1.8, 1.8, 0, c_white, 1);
+	if (tg_card == "") {
+		draw_sprite_ext(spr_craft_slot_text, 0, tg_main_x + 2, tg_main_y - 3, 1.8, 1.8, 0, c_white, 1);
+	} else {
+		// 主卡槽那张卡：直接查元数据（不再每帧扫 unlocked_cards + deck_get_card_data）
+		var _m = tg_meta_get(tg_card);
+		if (!is_undefined(_m)) {
+			var _lv = _m.level;
+			var _base = _m.is_gold ? spr_slot_1 : spr_slot;
+			draw_sprite_ext(_base, 0, tg_main_x, tg_main_y - 3, 0.25, 0.25, 0, c_white, 1);
+			if (_m.sprite != -1) draw_sprite_ext(_m.sprite, 0, tg_main_x, tg_main_y + 15, 0.7, 0.7, 0, c_white, 1);
+			draw_set_color(c_black);
+			draw_set_halign(fa_center);
+			draw_set_valign(fa_bottom);
+			draw_set_font(font_pixel);
+			draw_text(tg_main_x, tg_main_y + 37, _m.cost);
+			if (_lv > 0) draw_sprite_ext(spr_star_slot, _lv - 1, tg_main_x - 25, tg_main_y - 35, 0.7, 0.7, 0, c_white, 1);
+		}
+	}
+
+	// ③ 保险金：徽章 +「金币」+ 价格 + 勾选框（与强化页同一处几何，开关是独立的 tg_assure）
+	//    文案口径照强化页：黑字偏 +1/+26 打底、橙色 (255,150,60) 为主色、fa_middle
+	var _ac = tg_assure_cost(_shape > 0 ? _shape : 1);
+	draw_sprite_ext(spr_craft_insure_badge, 0, assure_badge_cx, assure_badge_cy, 1.5, 1.5, 0, c_white, 1);
+	draw_set_font(font_yuan);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_colour(c_black);
+	draw_text(assure_badge_cx + 1, assure_badge_cy + 26, "金币");
+	draw_set_colour(make_colour_rgb(255, 150, 60));
+	draw_text(assure_badge_cx, assure_badge_cy + 25, "金币");
+	// 价格：白字 + 四向深色描边（跟强化页保险金同一个口径）
+	draw_set_font(font_number);
+	draw_set_valign(fa_middle);
+	var _atxt = string(_ac);
+	draw_set_colour(c_black);
+	draw_text(assure_badge_cx - 1, assure_badge_cy + 3, _atxt);
+	draw_text(assure_badge_cx + 1, assure_badge_cy + 3, _atxt);
+	draw_text(assure_badge_cx - 1, assure_badge_cy + 5, _atxt);
+	draw_text(assure_badge_cx + 1, assure_badge_cy + 5, _atxt);
+	draw_set_colour(c_yellow);
+	draw_text(assure_badge_cx, assure_badge_cy + 4, _atxt);
+	draw_sprite_ext(spr_craft_rate_check, tg_assure ? 1 : 0, assure_toggle_x, assure_toggle_y, 1.4, 1.4, 0, c_white, 1);
+
+	// ④ 需金币条（左）＋ 成功率条（右）
+	//    需金币数字：**照强化页原样**（`font_number` + `c_yellow` + `fa_left`，落点 (x-460, y+300)）
+	//    —— 强化页是 `draw_text(x-460,y+300,string(craft_rule.gold_amount))`，转职页原来画在条右端-61，位置不对
+	draw_sprite_ext(spr_craft_gold_require_bg, 0, tg_gold_x, tg_bar_y, 1.8, 1.8, 0, c_white, 1);
+	draw_sprite_ext(spr_craft_rate_bar, 0, tg_rate_x, tg_bar_y, 1.8, 1.8, 0, c_white, 1);
+	draw_set_font(font_number);
+	draw_set_valign(fa_middle);
+	draw_set_halign(fa_left);
+	draw_set_colour(c_yellow);
+	draw_text(x - 460, y + 300, string(_chk.gold));
+
+	// 成功率数字：与强化页同一个口径（四向深色描边，中心 = 条右端 - 61）
+	var _rtxt = string(_chk.rate) + "%";
+	draw_set_halign(fa_center);
+	var _tx2 = tg_rate_x - 61;
+	draw_set_colour(c_black);
+	draw_text(_tx2 - 1, tg_bar_y - 1, _rtxt);
+	draw_text(_tx2 + 1, tg_bar_y - 1, _rtxt);
+	draw_text(_tx2 - 1, tg_bar_y + 1, _rtxt);
+	draw_text(_tx2 + 1, tg_bar_y + 1, _rtxt);
+	draw_set_colour(c_white);
+	draw_text(_tx2, tg_bar_y, _rtxt);
+
+	// ⑤ 转职按钮（素材只有一帧：按下缩 0.96 做手感）
+	//    不做「不可转就变灰」的暗色滤镜（用户 2026-10-25：看着怪怪的）——
+	//    永远按原色画，条件不满足时点它由 tg_do() 弹 reason 提示
+	//    按钮下方**不再写「转职成功/失败」飘字**（用户 2026-10-26：结果只走屏幕中上的 show_notice）；
+	//    tg_result / tg_result_t 两个状态保留着（以后接演出动画要用），只是不在这里画字
+	var _bsc = 1.8 * ((tg_btn_press > 0) ? 0.96 : 1);
+	draw_sprite_ext(spr_transfer_btn, 0, tg_btn_x, tg_btn_y, _bsc, _bsc, 0, c_white, 1);
+
+	// ⑥ 右侧卡列表：跟强化页同一套格子（0.9 倍 / 84×96 / 7 列），直接画、不走 surface
+	var _rows = max(1, ceil(_n / tg_gcols));
+	tg_rows_max = max(0, _rows - tg_grows);
+	tg_scroll_target = clamp(tg_scroll_target, 0, tg_rows_max);
+	tg_hover_card = -1;
+	var _off = floor(tg_scroll);
+	for (var _r = 0; _r < tg_grows; _r++) {
+		for (var _c = 0; _c < tg_gcols; _c++) {
+			var _ci = (_r + _off) * tg_gcols + _c;
+			var _gx = tg_list_x + _c * tg_gpx;
+			var _gy = tg_list_y + _r * tg_gpy;
+			draw_sprite_ext(spr_package_slot_bg, 0, _gx, _gy, 0.9, 0.9, 0, c_white, 1);
+			if (_ci >= _n) continue;
+			var _cid = tg_list[_ci];
+			// 已放进主卡槽的那张：列表里**原位留空**（用户 2026-10-25：卡进槽后右边那张消失、格子空着）
+			// 旧做法是原位画卡 + 盖 35% 黑罩，现在整格不画（只留空槽底）
+			if (_cid == tg_card) continue;
+			// 格子内容直接查元数据（2026-10-26 性能修：原来每格都扫一遍 unlocked_cards
+			// 再 deck_get_card_data（内部线性扫 player_deck），56 格 × 188 张 = 每帧上万次）
+			var _m2 = tg_meta_get(_cid);
+			if (!is_undefined(_m2)) {
+				var _b2 = _m2.is_gold ? spr_slot_1 : spr_slot;
+				draw_sprite_ext(_b2, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
+				if (_m2.sprite != -1) draw_sprite_ext(_m2.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
+				draw_set_color(c_black);
+				draw_set_halign(fa_center);
+				draw_set_valign(fa_bottom);
+				draw_set_font(font_pixel);
+				draw_text(_gx, _gy + 37, _m2.cost);
+				if (_m2.level > 0) draw_sprite_ext(spr_star_slot, _m2.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, c_white, 1);
+			}
+			if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) tg_hover_card = _ci;
+		}
+	}
+	if (tg_hover_card != -1) {
+		draw_set_font(font_yuan);
+		tooltip_set(mouse_x - 15, mouse_y - 15, "点击放入转职槽", -1);
+	}
+
+	// ⑦ 余额：只画金币（右下角，跟强化页同一位置）
+	//    威望不画 —— 用户 2026-10-26：转职界面右下角不需要显示威望
+	draw_set_font(font_number);
+	draw_set_halign(fa_right);
+	draw_set_valign(fa_middle);
+	draw_set_colour(c_yellow);
+	draw_text(x + 758, y + 473, string(global.save_data.player.gold));
+
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_set_colour(c_white);
+
+	// ── 转职成功特效（2026-10-26）：tg_fx_frames 帧逐帧播，**卡片框包在主卡槽外一圈** ──
+	//    对齐原理：素材 287×196 里「卡片框」的中心在 (tg_fx_card_cx, tg_fx_card_cy)，
+	//    把这一点钉到 (tg_fx_ox, tg_fx_oy)（主卡槽卡面中心）→ 框就正好套在卡上。
+	//    ⚠️ 不要再用「画布中心对齐」—— 素材上方留了放光效的空间，按画布居中会整体偏上（用户 2026-10-26 报的错位）
+	if (tg_fx) {
+		var _fxfr = clamp(floor(tg_fx_t), 0, tg_fx_frames - 1);
+		draw_sprite_ext(spr_transfer_success_fx, _fxfr,
+			x + tg_fx_ox - tg_fx_card_cx * tg_fx_scale,
+			y + tg_fx_oy - tg_fx_card_cy * tg_fx_scale,
+			tg_fx_scale, tg_fx_scale, 0, c_white, 1);
+	}
+
+	tooltip_draw();
+	panel_anim_end_parts(id, craft_parts, 260);
+	// 确认窗画在 panel_anim_end_parts 之后 = 盖在面板最上层（跟融合页同一写法）
+	if (tg_confirm) tg_confirm_draw();
+	exit;
+}
+
+
 if (craft_top_tab == 1) {
 	// ── 食灵融合页：官方整窗底图（928 921x582）+ 左侧场景拉满左区 + 右侧两块卡槽列表 ──
 	// 几何全部来自 Create_0 的 fusion_* 实例变量（Draw / Step 共用一套，别各算一份）
@@ -162,14 +347,16 @@ if (craft_top_tab == 1) {
 	// ── 演出：三档各自的官方融合特效（25 帧铺在 62 帧的演出时长上）──
 	if (fusion_phase == 1) {
 		var _fxspr = fusion_fx_sprites[fusion_level - 1];
-		var _fxfr  = clamp(floor(fusion_t * fusion_fx_frames / 51), 0, fusion_fx_frames - 1);   // 25 帧铺在 t=0~50（≈30fps，正好在白闪前收尾）
+		// 速度：fusion_fx_speed = 0.5 时，25 帧铺到 t=0~100（原来 t=0~50）；_ft 是折算回「原速」的 tick
+		var _ft   = fusion_t * fusion_fx_speed;
+		var _fxfr = clamp(floor(_ft * fusion_fx_frames / 51), 0, fusion_fx_frames - 1);
 		// 落位：整张特效画布当成「四格面板的覆盖层」—— 水平居中（面板 528 宽）、顶部对齐面板上沿。
 		// 实测这样才对：闪电正好罩住四槽、爆点落在结果槽上（按「画布中心对结果槽」放会整体掉到成功率条下面）
 		var _fxx = fusion_ppx + (528 - sprite_get_width(_fxspr)) * 0.5 * fusion_ssx;
 		var _fxy = fusion_ppy;
 		draw_sprite_ext(_fxspr, _fxfr, _fxx, _fxy, fusion_ssx, fusion_ssy, 0, c_white, 1);
-		if (fusion_t >= 50) {
-			draw_set_alpha((fusion_t - 50) / 10 * 0.75);
+		if (_ft >= 50) {
+			draw_set_alpha((_ft - 50) / 10 * 0.75);
 			draw_set_colour(c_white);
 			draw_rectangle(fusion_lx, fusion_ly, fusion_lx + fusion_lw, fusion_ly + fusion_lh, false);
 			draw_set_alpha(1);

@@ -13,6 +13,10 @@ btn1.text_spr = spr_craft_card_text
 var btn2 = instance_create_depth(x-661,y+100,depth-1,obj_craft_select_btn)
 btn2.button_index = 1
 btn2.text_spr = spr_craft_gem_text
+// 第 3 个按钮：卡片转职（2026-10-25，竖排字 837；点它把 craft_top_tab 切到 2）
+var btn3 = instance_create_depth(x-661,y+250,depth-1,obj_craft_select_btn)
+btn3.button_index = 2
+btn3.text_spr = spr_transfer_tab_text
 
 card_material_id_list = ["natural_spices","secret_spices","royal_spices","clover_1","clover_2","clover_3","clover_4"]
 gem_material_id_list = ["less_crystal","middle_crystal","advanced_crystal"]
@@ -411,6 +415,10 @@ fusion_result_out = false
 // 官方素材，按 fusion_level 取；落位 = 面板内水平居中 + 顶部对齐面板上沿（见 Draw_0 的演出块）
 fusion_fx_sprites = [spr_fusion_fx_chu, spr_fusion_fx_shen, spr_fusion_fx_ling];
 fusion_fx_frames  = 25;
+// 演出速度：1.0 = 原速（25 帧铺在 t=0~50，整段 62 tick ≈ 1s）
+//   0.5 = 半速（25 帧铺到 t=0~100，整段 124 tick ≈ 2s，2026-10-26 用户要求跟转职特效一样放慢）
+//   改这一个数即可：Draw 的取帧 / 白闪起点、Step 的演出结束判定都按它换算
+fusion_fx_speed   = 0.5;
 
 // ── 融合确认弹窗（系统提示）：点「融合」先问一句，点确定才开演 ──
 // 内联画在本对象里（不新建对象），面板复用 spr_battle_escape_menu、按钮复用 spr_common_button
@@ -694,6 +702,288 @@ clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
 crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
 
 // 整块面板的进出场过渡（实现在 scripts/GuiStack/GuiStack.gml）
+// ─────────────────────────────────────────────────────────────
+// 卡片转职页（craft_top_tab == 2）—— 2026-10-25
+// 几何 / 状态 / 判定函数全部集中在这里，Draw 与 Step 共用同一套（别各算一份）
+// 消耗入口 = 左侧第 3 个按钮；凭证来自商店；数值挂点见 tg_gold_cost / tg_assure_cost / tg_rate
+// ─────────────────────────────────────────────────────────────
+tg_slot_x = [x - 455, x - 305, x - 155]      // 屏幕顺序：左 A / 中 C / 右 B
+tg_slot_y = y - 20
+tg_main_x = x - 307                           // 与强化页主卡槽同一点（卡底 0.25 / 卡面 0.7）
+tg_main_y = y + 103
+tg_btn_x  = x - 305
+tg_btn_y  = y + 220
+tg_gold_x = x - 350                           // 需金币条（origin 在右端）
+tg_rate_x = x - 45                            // 成功率条（origin 在右端）
+tg_bar_y  = y + 300
+tg_list_x = x + 196                           // 右侧列表首格中心（跟强化页同一套 84×96 / 7 列）
+tg_list_y = y - 321
+tg_gpx = 84
+tg_gpy = 96
+tg_gcols = 7
+tg_grows = 8
+tg_scroll = 0
+tg_scroll_target = 0
+tg_rows_max = 0
+tg_list = []
+tg_list_dirty = true                          // 列表 + 卡元数据要不要重建（进页 / 转职后置 true）
+tg_meta = {}                                  // id → { shape, level, is_gold, sprite, cost }
+tg_card = ""                                  // 主卡槽里的卡 id，"" = 空
+tg_assure = false                             // 保险金开关（独立于强化页那个）
+tg_hover_card = -1
+tg_btn_hover = false
+tg_btn_press = 0
+tg_result = 0                                 // 0 无 / 1 成功 / 2 失败（状态位，按钮下的飘字已去掉）
+tg_result_t = 0
+
+// ── 转职确认窗 + 成功特效（2026-10-26 用户定流程）──
+// 点「转职」→ 先弹确认窗（文案见 tg_confirm_draw）→ 确定后掷骰：
+//   失败 = 直接弹提示；成功 = **播完 tg_fx_frames 帧特效** 才提示 + 卡回列表
+tg_confirm = false                            // 确认窗开着
+tg_confirm_hover = -1                         // -1 无 / 0 确定 / 1 取消
+tg_fx = false                                 // 成功特效播放中（此期间锁住其它交互）
+tg_fx_t = 0                                   // 已播帧数（浮点，按 tg_fx_speed 递增）
+tg_fx_frames = 28                             // spr_transfer_success_fx 的帧数（2026-10-26 用户定 28 帧：
+                                              //   原 75 帧 → 46 帧 → 28 帧，后面全是白框空闪，删掉）
+tg_fx_speed = 0.25                             // 每 tick 推进几帧：1.0 = 原速
+                                              //   0.1 = 1/10 速（测试值）；0.25 = 1/4 速（28 帧 ≈ 1.9s）
+tg_fx_scale = 1.6                             // 显示倍数：素材卡片框 61×75 → ×1.6 ≈ 98×120
+                                              //   主卡槽底板 48×61 @1.8 = 86×110 → 框**包在槽外一圈**（左右各 6px）
+tg_fx_pending = undefined                     // 成功但动画还没播完时的待生效数据（见 tg_do / Step_0）
+// 落点：素材里的「卡片框」中心（287×196 画布坐标，离线实测 140.5 / 119.5）
+//      —— 对齐到**主卡槽中心**（不是卡面中心，2026-10-26 用户口径：框对准槽就行）
+tg_fx_ox = -305                               // 主卡槽中心 x（相对面板；= tg_main_x + 2 - x）
+tg_fx_oy = 100                                // 主卡槽中心 y（相对面板；= tg_main_y - 3 - y）
+tg_fx_card_cx = 140.5                         // 素材内卡片框中心 x（实测，别乱改）
+tg_fx_card_cy = 119.5                         // 素材内卡片框中心 y（实测，别乱改）
+
+/// @func tg_confirm_rect(i) 确认窗按钮矩形（0 = 确定 / 1 = 取消）：Draw 与 Step 共用
+function tg_confirm_rect(_i){
+    var _bx = room_width * 0.5 + ((_i == 0) ? -80 : 80);
+    var _by = room_height * 0.5 + 70;
+    var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;   // 0.75 与 obj_shop_buy_confirm 同一手感
+    var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
+    return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
+}
+
+/// @func tg_confirm_draw() 转职确认窗：面板复用 spr_battle_escape_menu、按钮复用 spr_common_button
+///      （跟融合页的「系统提示」同一套观感；在 panel_anim_end_parts 之后调用 = 盖在最上层）
+function tg_confirm_draw(){
+    var _px = room_width * 0.5, _py = room_height * 0.5;
+    draw_set_alpha(0.55);
+    draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
+    draw_set_alpha(1);
+    draw_sprite_ext(spr_battle_escape_menu, 0, _px, _py, 1.5, 1.5, 0, c_white, 1);
+    draw_set_font(font_yuan);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_white);
+    draw_text(_px, _py - 112, "系统提示");
+    draw_text(_px, _py - 20, "转职后凭证将消失，您确定");
+    draw_text(_px, _py + 12, "要进行卡片转职吗？");
+    var _lbl = ["确定", "取消"];
+    for (var _i = 0; _i < 2; _i++){
+        var _r  = tg_confirm_rect(_i);
+        var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
+        var _fr = (tg_confirm_hover == _i) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
+        draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+        draw_set_colour(c_white);
+        draw_text(_bx, _by, _lbl[_i]);
+    }
+    draw_set_colour(c_white);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+}
+
+/// @func tg_target_shape(id) 目标档位 = 练到过的最高形态 + 1（没拥有按 0 算 → 1）
+function tg_target_shape(_id){
+    var _ms = transfer_credit_card_max_shape(_id);
+    if (_ms < 0) _ms = 0;
+    return _ms + 1;
+}
+
+/// @func tg_gold_cost(shape) 转职金币
+/// 🔴 **占位值 5000 / 全档统一**（2026-10-26 用户：金额待定，先全改 5k 方便测试）
+///    真数值定了只改这里；原版锚点是一转 80000 / 二转 200000
+function tg_gold_cost(_shape){
+    return 5000;
+}
+
+/// @func tg_assure_cost(shape) 保险金
+/// 🔴 **占位值 5000 / 全档统一**（2026-10-26 用户：金额待定，先全改 5k 方便测试）
+///    真数值定了只改这里；原版点券锚点 500 / 5000 / 7500（之前试过 ×100、×10，都已作废）
+function tg_assure_cost(_shape){
+    return 5000;
+}
+
+function tg_rate(_shape){
+    if (_shape == 1 || _shape == 3) return 30;
+    return 20;
+}
+
+/// @func tg_rank(id) 列表排序权重：普卡 0 / 金卡 1 / 融合卡 2（与强化页同口径）
+///       ⚠️ 2026-10-26 起**没有调用点**：tg_rebuild() 改成「普卡桶 + 金卡桶」直接拼，
+///          不再走排序（融合卡本来就过滤）。留着是为了说明排序口径，别的页面要复用可以调。
+function tg_rank(_id){
+    if (is_fusion_card(_id)) return 2;
+    var _d = deck_get_card_data(_id, 0);
+    if (_d != noone && ds_exists(_d, ds_type_map) && ds_map_exists(_d, "is_gold")){
+        if (_d[? "is_gold"] == 1) return 1;
+    }
+    return 0;
+}
+
+/// @func tg_meta_get(id) 取卡的元数据（shape / level / is_gold / sprite / cost）；没建过 → undefined
+function tg_meta_get(_id){
+    if (variable_struct_exists(tg_meta, _id)) return tg_meta[$ _id];
+    return undefined;
+}
+
+/// @func tg_rebuild() 重建右侧列表 + 卡元数据 —— **只在 tg_list_dirty 时调，不要每帧调**
+///       2026-10-26 性能修（用户：卡多了转职页特别卡）：
+///         旧版每帧调 tg_card_list() → 插入排序，每次比较都走 tg_rank() → is_fusion_card()
+///         + deck_get_card_data()（后者是**线性扫 global.player_deck**）。188 张卡时约
+///         3~7 百万次 ds_list 访问/帧，所以整页卡成幻灯片。
+///       新版：
+///         ① 每张卡只查一次 deck_get_card_data（O(n) 而不是 O(n²)）；
+///         ② 排序 = 普卡桶 + 金卡桶直接拼（融合卡本来就过滤掉，只剩 2 档，不必排序）；
+///         ③ 列表和元数据都缓存，绘制时 O(1) 取，不再扫 unlocked_cards / player_deck。
+function tg_rebuild(){
+    var _uc = global.save_data.unlocked_cards;
+    var _meta = {};
+    var _norm = [];                              // 普卡（组内保持存档顺序，跟旧版一致）
+    var _gold = [];                              // 金卡
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        var _id = _uc[_i].id;
+        var _sh = _uc[_i].shape;
+        var _d  = deck_get_card_data(_id, _sh);  // 每张卡只查这一次
+        if (_d != noone && ds_map_find_value(_d, "is_fusion") == 1) continue;   // 融合卡不进列表
+        if (_d != noone){
+            // 缺键给安全默认值（sprite = -1 → 绘制端跳过；cost = 0），避免个别卡把绘制搞崩
+            _meta[$ _id] = {
+                shape:   _sh,
+                level:   _uc[_i].max_level,
+                is_gold: (ds_map_find_value(_d, "is_gold") == 1),
+                sprite:  ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                cost:    ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+            };
+        }
+        // 没有 deck 数据的老卡也留在列表里（格子空着，跟旧版一致）
+        if (_d != noone && ds_map_find_value(_d, "is_gold") == 1) array_push(_gold, _id);
+        else array_push(_norm, _id);
+    }
+    var _out = [];
+    for (var _a = 0; _a < array_length(_norm); _a++) array_push(_out, _norm[_a]);
+    for (var _b = 0; _b < array_length(_gold); _b++) array_push(_out, _gold[_b]);
+
+    tg_meta = _meta;
+    tg_list = _out;
+    tg_list_dirty = false;
+}
+
+/// @func tg_notice(text) 转职页专用提示：**先清掉已有提示**再显示。
+///       全局 show_notice 是往 global.notice_list 里 push，连点两下就会两条字叠在一起
+///       （2026-10-25 用户：金币不足 和 此卡已无法转职 叠着显示）。转职页只留最后一条。
+function tg_notice(_text){
+    if (variable_global_exists("notice_list")) global.notice_list = [];
+    show_notice(_text, 70);
+}
+
+/// @func tg_check() 能不能转 → { ok, reason, shape, gold, rate, assure, has_credit }
+///        提示优先级（用户 2026-10-25）：① 没选卡 ② **能不能转职**（形态）③ 缺凭证 ④ 金币不足
+///        —— 一次只返回一个 reason，配 tg_notice 保证屏幕上不会有第二条
+function tg_check(){
+    var _r = { ok:false, reason:"", shape:0, gold:0, rate:0, assure:0, has_credit:false };
+    _r.assure = tg_assure ? tg_assure_cost(1) : 0;
+    if (tg_card == ""){ _r.reason = "先选一张卡"; return _r; }
+
+    var _shape = tg_target_shape(tg_card);            // 只能按顺序：目标档 = max_shape + 1
+    _r.shape = _shape;
+    _r.rate = tg_rate(_shape);
+    _r.gold = tg_gold_cost(_shape);
+    _r.assure = tg_assure ? tg_assure_cost(_shape) : 0;
+
+    // 上限走 transfer_credit_card_shapes_max（player_deck 形态表 ∪ plant_registry），
+    // 只读 card_max_available_shape 会把「注册表里只有 0 转」的卡全部误报成已转满
+    if (_shape > transfer_credit_card_shapes_max(tg_card)){ _r.reason = "此卡已无法转职"; return _r; }
+
+    _r.has_credit = transfer_credit_has(tg_card, _shape);
+    if (!_r.has_credit){ _r.reason = "缺少" + transfer_credit_tier_name(_shape); return _r; }
+
+    if (!global.debug && global.save_data.player.gold < _r.gold + _r.assure){ _r.reason = "金币不足"; return _r; }
+    _r.ok = true;
+    return _r;
+}
+
+/// @func tg_do() 真转一次：掷骰 → **成功只登记待结算**（动画播完才扣钱/扣凭证/提形态）/ 失败立刻结算
+///       ⚠️ 2026-10-26 用户口径：动画期间「凭证和卡都不变」，播完才 清槽 + 提示 + 卡回列表。
+///          所以成功分支里**一样都不能改**（存档、形态、凭证、金币），全部塞进 tg_fx_pending，
+///          由 Step_0 在特效收尾时调 tg_fx_commit() 一次做完。
+function tg_do(){
+    var _r = tg_check();
+    if (!_r.ok){
+        tg_notice(_r.reason);
+        return;
+    }
+    var _id = tg_card;
+    var _shape = _r.shape;
+
+    var _win = (irandom(99) < _r.rate);               // 40% / 20%（tg_rate）
+
+    if (_win){
+        // 保留原来的 level / skill，只把形态提上去（unlock_card 内部取 max，不会降）
+        var _lev = 0;
+        var _skl = 0;
+        var _uc = global.save_data.unlocked_cards;
+        for (var _i = 0; _i < array_length(_uc); _i++){
+            if (_uc[_i].id == _id){
+                _lev = _uc[_i].level;
+                _skl = _uc[_i].skill;
+                break;
+            }
+        }
+        // 不在此时落账：动画期间显示必须保持原样（2026-10-26）
+        tg_fx_pending = {
+            id:        _id,
+            shape:     _shape,
+            lev:       _lev,
+            skl:       _skl,
+            gold:      _r.gold,
+            assure:    _r.assure,
+            keep_credit: false                            // 成功必扣凭证（保险金只在失败时生效）
+        };
+        tg_fx = true;
+        tg_fx_t = 0;
+        tg_result = 1;
+    }
+    else{
+        // 失败是即时的（没有动画）：钱照扣；保险金开着则凭证保住，没开就连凭证一起扣
+        global.save_data.player.gold -= _r.gold + _r.assure;
+        if (!tg_assure) add_material_amount(transfer_credit_id(_id, _shape), -1);
+        tg_result = 2;
+        tg_notice("不够好运，转职失败");
+        save_file(global.save_slot);
+    }
+    tg_result_t = 150;
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @func tg_fx_commit() 特效播完才真正生效：扣钱 → 扣凭证 → 提形态 → 清主卡槽
+///       只由 Step_0 的特效收尾调用；没有待结算数据就直接返回（防御）
+function tg_fx_commit(){
+    var _p = tg_fx_pending;
+    tg_fx_pending = undefined;
+    if (is_undefined(_p)) return;
+
+    global.save_data.player.gold -= _p.gold + _p.assure;
+    if (!_p.keep_credit) add_material_amount(transfer_credit_id(_p.id, _p.shape), -1);
+    unlock_card(_p.id, _p.lev, _p.shape, _p.skl);
+
+    tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
+    tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
+    save_file(global.save_slot);
+}
+
 panel_anim_init(id, 0.28, 0.18, 260)
 panel_anim_kids(id, [obj_closecraft_btn, obj_craft_select_btn, obj_craft_confirm_btn])
 

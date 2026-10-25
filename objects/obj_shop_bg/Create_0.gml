@@ -6,6 +6,8 @@ shop_button_select = 1
 shop_screen_select = 1
 current_page = 1
 current_max_page = 1
+// 转职凭证页的分类页签：0=全部 / 1=一转 / 2=二转
+credit_tab = 0
 
 goods_list = ds_list_create()
 
@@ -47,6 +49,14 @@ btn4.sprite_index = spr_shop_select_btn_4
 var btn5 = instance_create_depth(x-11,y-363,depth-1,obj_shop_select_btn)
 btn5.button_index = 5
 btn5.sprite_index = spr_shop_select_btn_5
+// 第 6 页签：转职凭证（素材 159×37，比前 5 个宽，按高度对齐缩到 1.654；前面 5 个一律不动）
+//   横向再收到 1.45（263 → 231 宽，2026-10-25 用户要求「不协调的大，适当横向缩小」）
+//   位置 x+196：左边缘正好贴住第 5 个页签（美容）右边缘 x+81，不再留缝
+var btn6 = instance_create_depth(x+196,y-363,depth-1,obj_shop_select_btn)
+btn6.button_index = 6
+btn6.sprite_index = spr_shop_select_btn_6
+btn6.btn_scale = 1.654
+btn6.btn_scale_x = 1.45
 
 var prev_btn = instance_create_depth(x+285,y+435,depth-1,obj_shop_page_btn)
 prev_btn.btn_type = "prev"
@@ -172,8 +182,40 @@ function shop_list_recharge(){
 					ds_list_add(goods_list,map_array[i])
 				}
 			}
+			//获取转职凭证（type = "credit"；按分类页签过滤，兑换项永远显示）
+			else if shop_button_select == 6{
+				var _cgoods = global.goods_map[? map_array[i]]
+				if (_cgoods.type == "credit"){
+					if (credit_tab == 0 || _cgoods.credit_shape == 0 || _cgoods.credit_shape == credit_tab){
+						ds_list_add(goods_list,map_array[i])
+					}
+				}
+			}
 		}
 	}
+	// 凭证页排序（用户 2026-10-26 定）：**先一转 → 后二转 → 兑换项垫底**
+	//   主键 = credit_shape（0 的兑换项按 99 算 = 排最后）；同档再按商品 id（credit_<卡id>_<档>）字母序，
+	//   保证每次打开顺序都一样（goods_map 的遍历顺序是散列序，不排就每次不同）
+	if (shop_button_select == 6){
+		var _sn = ds_list_size(goods_list);
+		for (var _sa = 1; _sa < _sn; _sa++){
+			var _cur = ds_list_find_value(goods_list, _sa);
+			var _cg = global.goods_map[? _cur];
+			var _crank = (variable_struct_exists(_cg, "credit_shape") && _cg.credit_shape > 0) ? _cg.credit_shape : 99;
+			var _sb = _sa - 1;
+			while (_sb >= 0){
+				var _prev = ds_list_find_value(goods_list, _sb);
+				var _pg = global.goods_map[? _prev];
+				var _prank = (variable_struct_exists(_pg, "credit_shape") && _pg.credit_shape > 0) ? _pg.credit_shape : 99;
+				if (_prank < _crank) break;
+				if (_prank == _crank && string(_prev) <= string(_cur)) break;
+				ds_list_replace(goods_list, _sb + 1, _prev);
+				_sb -= 1;
+			}
+			ds_list_replace(goods_list, _sb + 1, _cur);
+		}
+	}
+
 	//每页显示 16 个商品，页数随当前分类动态计算
 	current_max_page = max(1, ceil(ds_list_size(goods_list) / 16))
 	current_page = clamp(current_page, 1, current_max_page)
@@ -266,6 +308,31 @@ function shop_list_recharge(){
 					inst.is_attire_equipped = inst.is_attire_owned && get_attire_state(_attire_id) == "equipped"
 					inst.is_disabled = inst.is_attire_equipped || (shop_button_select == 4 && is_attire_unlocked(_attire_id))
 					
+				}
+			}
+			//转职凭证页
+			else if shop_button_select == 6{
+				if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
+					var _ci = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)]
+					var inst = instance_create_depth(x-618+411*j+77, y-190+165*i+60,depth-1,obj_shop_buy_btn)
+					inst.target_item = _ci.unlock_item_id
+					inst.cost = _ci.cost
+					inst.coin_type = variable_struct_exists(_ci, "coin_type") ? _ci.coin_type : "gold"
+					inst.reward_prestige = variable_struct_exists(_ci, "reward_prestige") ? _ci.reward_prestige : 0
+					inst.btn_type = "credit"
+					// 凭证名按卡名表实时算（注册时机早于卡名表也不会退化成卡 id）
+					inst.goods_name = (_ci.credit_shape > 0) ? transfer_credit_name_from_id(_ci.unlock_item_id) : _ci.display_name
+					inst.tooltip_text = _ci.description
+					// 已购 / 已转上去 / 形态不存在 → 置灰＋点不动（兑换项 credit_shape = 0 永远可买）
+					// 爬塔门槛 / 余额不足不在这里置灰：它们是「临时不满足」，点购买时再弹提示（2026-10-26 用户定）
+					inst.credit_block = ""
+					if (_ci.credit_shape > 0) {
+						var _cp = transfer_credit_parse(_ci.unlock_item_id)
+						if (!is_undefined(_cp)) {
+							inst.credit_block = transfer_credit_buyable(_cp.card_id, _cp.shape)
+							if (transfer_credit_buyable_locked(_cp.card_id, _cp.shape)) inst.is_disabled = true
+						}
+					}
 				}
 			}
 		}

@@ -584,4 +584,5 @@ function mod_shop_init()
     register_goods("niuyouguo", { type: "card", cost: "2030", unlock_item_id: "niuyouguo", description: "邪恶牛油果：向前方三个方向各发射1发穿透飞镖", display_name: "邪恶牛油果" });
     register_goods("niuyouguo_1", { type: "card", card_id: "niuyouguo", card_shape: 1, cost: "480", unlock_item_id: "niuyouguo", required_card_shape: 0, description: "沙沙牛油果：解锁一转", display_name: "沙沙牛油果" });
     register_goods("niuyouguo_2", { type: "card", card_id: "niuyouguo", card_shape: 2, cost: "970", unlock_item_id: "niuyouguo", required_card_shape: 1, description: "桑巴牛油果：解锁二转", display_name: "桑巴牛油果" });
+
 }
