@@ -5443,6 +5443,7 @@
     {"id":{"name":"spr_trumpeter_mouse_perform","path":"sprites/spr_trumpeter_mouse_perform/spr_trumpeter_mouse_perform.yy",},},
     {"id":{"name":"spr_trumpeter_mouse","path":"sprites/spr_trumpeter_mouse/spr_trumpeter_mouse.yy",},},
     {"id":{"name":"spr_tuna_current","path":"sprites/spr_tuna_current/spr_tuna_current.yy",},},
+    {"id":{"name":"spr_ui_prestige_tag","path":"sprites/spr_ui_prestige_tag/spr_ui_prestige_tag.yy",},},
     {"id":{"name":"spr_undersea_can_mouse_drop","path":"sprites/spr_undersea_can_mouse_drop/spr_undersea_can_mouse_drop.yy",},},
     {"id":{"name":"spr_undersea_can_mouse_with_can","path":"sprites/spr_undersea_can_mouse_with_can/spr_undersea_can_mouse_with_can.yy",},},
     {"id":{"name":"spr_undersea_can_mouse","path":"sprites/spr_undersea_can_mouse/spr_undersea_can_mouse.yy",},},

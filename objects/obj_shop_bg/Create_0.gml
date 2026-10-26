@@ -193,22 +193,20 @@ function shop_list_recharge(){
 			}
 		}
 	}
-	// 凭证页排序（用户 2026-10-26 定）：**先一转 → 后二转 → 兑换项垫底**
-	//   主键 = credit_shape（0 的兑换项按 99 算 = 排最后）；同档再按商品 id（credit_<卡id>_<档>）字母序，
-	//   保证每次打开顺序都一样（goods_map 的遍历顺序是散列序，不排就每次不同）
+
+	// 凭证页排序（2026-10-26 用户口径，第二版）
+	//   取消的是「全局先一转、后二转」；现在要求：**同一张卡的凭证挨在一起，卡内先一转后二转**
+	//   —— goods_map 是散列遍历序，不排会出现「小火炉二转 / 冰煮蛋器二转 / 机枪一转…」这种乱序
+	//   排序键见 credit_shop_sort_key() = 「卡id|档位」，兑换项（威望 x1000）垫底；插入排序，量小无所谓
 	if (shop_button_select == 6){
 		var _sn = ds_list_size(goods_list);
 		for (var _sa = 1; _sa < _sn; _sa++){
 			var _cur = ds_list_find_value(goods_list, _sa);
-			var _cg = global.goods_map[? _cur];
-			var _crank = (variable_struct_exists(_cg, "credit_shape") && _cg.credit_shape > 0) ? _cg.credit_shape : 99;
-			var _sb = _sa - 1;
+			var _ck  = credit_shop_sort_key(_cur);
+			var _sb  = _sa - 1;
 			while (_sb >= 0){
 				var _prev = ds_list_find_value(goods_list, _sb);
-				var _pg = global.goods_map[? _prev];
-				var _prank = (variable_struct_exists(_pg, "credit_shape") && _pg.credit_shape > 0) ? _pg.credit_shape : 99;
-				if (_prank < _crank) break;
-				if (_prank == _crank && string(_prev) <= string(_cur)) break;
+				if (credit_shop_sort_key(_prev) <= _ck) break;
 				ds_list_replace(goods_list, _sb + 1, _prev);
 				_sb -= 1;
 			}

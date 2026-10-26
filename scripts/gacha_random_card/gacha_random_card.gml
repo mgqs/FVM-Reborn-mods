@@ -494,12 +494,13 @@ function gacha_recipe_gift_target(_card_id, _shape) {
 }
 
 /// @function gacha_recipe_gift_card_name(card_id)
+/// @desc 附赠提示里的卡名。**走 transfer_credit_card_name()**（植物注册表 `plant_registry` 的 name 优先，
+///       player_deck 兜底，最后才回退卡 id）。
+///       🐞 2026-10-26 修：原来只查 `deck_get_card_data(id,0)` 的 "name" 键 —— 而 `register_card`
+///          写进 player_deck 的形态数据**根本没有 name 字段**，于是永远走兜底、弹窗里显示成卡 id
+///          （如「附赠：shengjian_guo本体」）。卡名正源在植物注册表里，别再只查 deck。
 function gacha_recipe_gift_card_name(_id) {
-    var _d = deck_get_card_data(_id, 0);
-    if (_d != noone && ds_exists(_d, ds_type_map) && ds_map_exists(_d, "name")) {
-        return _d[? "name"];
-    }
-    return string(_id);
+    return transfer_credit_card_name(_id);
 }
 
 /// @function gacha_recipe_gift_preview(card_id, shape)

@@ -453,3 +453,43 @@ function transfer_credit_buyable(_card_id, _shape) {
 
     return "";
 }
+// ─────────────────────────────────────────────────────────────────────────────
+// 「威望」标签绘制（2026-10-26）
+//   素材：原版 SWF 导出 转职系统素材\images\567.png（32x18，深蓝底已抠成透明）。
+//   ⚠️ 只用于**底部余额条**（原版写法「[威望]1573」）。
+//      商店凭证价格行**不用**它 —— 用户 2026-10-26 定：价格和「威望」两字自写、同色（见
+//      obj_shop_buy_btn/Draw_0 的 `draw_text(x, y-62, string(cost) + "威望")`）。
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// @function ui_prestige_tag_w(scale)
+/// @desc 「威望」标签宽
+function ui_prestige_tag_w(_scale) {
+    return sprite_get_width(spr_ui_prestige_tag) * _scale;
+}
+
+/// @function ui_prestige_tag_h(scale)
+/// @desc 「威望」标签高
+function ui_prestige_tag_h(_scale) {
+    return sprite_get_height(spr_ui_prestige_tag) * _scale;
+}
+
+/// @function ui_prestige_tag_draw(x, cy, scale)
+/// @desc 画「威望」标签：x = 左端、cy = 垂直中心
+function ui_prestige_tag_draw(_x, _cy, _scale) {
+    draw_sprite_ext(spr_ui_prestige_tag, 0, _x, _cy - ui_prestige_tag_h(_scale) * 0.5,
+        _scale, _scale, 0, c_white, 1);
+}
+/// @function credit_shop_sort_key(goods_id)
+/// @desc 凭证页列表的排序键（2026-10-26 用户口径）：
+///       ① **同一张卡的凭证必须挨在一起**；② 卡内**先一转后二转**；③ 不做全局「先所有一转再所有二转」。
+///       所以键 = 「卡id|档位」，按字符串升序即可（档位是单字符，1 一定在 2 前面）。
+///       兑换项（`credit_shape == 0`，如「威望 x1000」）没有卡 → 键前缀用 `~`（ASCII 126，排在所有字母后）→ 垫底。
+function credit_shop_sort_key(_gid) {
+    var _g = global.goods_map[? _gid];
+    if (!variable_struct_exists(_g, "credit_shape") || _g.credit_shape <= 0) {
+        return "~|" + string(_gid);                       // 兑换项：排最后，内部按 id
+    }
+    var _p = transfer_credit_parse(_g.unlock_item_id);
+    var _cid = is_undefined(_p) ? string(_gid) : string(_p.card_id);
+    return _cid + "|" + string(_g.credit_shape);
+}
