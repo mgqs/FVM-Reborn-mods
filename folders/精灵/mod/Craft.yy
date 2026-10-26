@@ -59,5 +59,8 @@
     {"name":"ad013342-285b-4d21-b909-da482aa6858c","path":"sprites/spr_evo_left_on/spr_evo_left_on.yy",},
     {"name":"80caf66e-7938-4d1a-89c2-807a2bb8d4f3","path":"sprites/spr_evo_fx/spr_evo_fx.yy",},
     {"name":"f6ffcaad-e468-43da-b626-6eabc22e5345","path":"sprites/spr_evo_credit_bg/spr_evo_credit_bg.yy",},
+    {"name":"0671133e-b111-4022-89c9-cece52cef0d4","path":"sprites/spr_evo_label_star/spr_evo_label_star.yy",},
+    {"name":"fb076050-502a-48ed-aa5e-4e18fe406029","path":"sprites/spr_evo_label_normal/spr_evo_label_normal.yy",},
+    {"name":"9b71092f-bb5e-40b6-8bea-42eab0048970","path":"sprites/spr_evo_label_credit/spr_evo_label_credit.yy",},
   ],
 }

@@ -25,7 +25,7 @@ if (craft_top_tab == 3) {
 	// ① 左侧「金卡进化」竖排按钮（神级进化页目前只有这一个子页）
 	draw_sprite_ext(spr_evo_left_on, 0, evo_left_x, evo_left_y, 1.8, 1.8, 0, c_white, 1);
 
-	// ② 三个槽：卡1 / 卡2 / 进化凭证
+	// ② 三个槽：星座卡 / 普通卡 / 进化凭证（空槽用官方「二转·星座卡 / 二转·普通卡 / 进化·凭证」文字）
 	for (var _i = 0; _i < 3; _i++) {
 		var _cx = evo_slot_x[_i];
 		var _cy = evo_slot_y;
@@ -33,31 +33,38 @@ if (craft_top_tab == 3) {
 			draw_sprite_ext(spr_evo_slot_card, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 1);
 			var _cid = evo_cards[_i];
 			if (_cid != "") {
-				var _m = evo_meta[$ _cid];
 				if (variable_struct_exists(evo_meta, _cid)) {
-					var _ok = (_m.shape >= evo_need_shape);
+					var _m = evo_meta[$ _cid];
+					// 灰态按「练到过的最高形态」判，跟 evo_check / 诸神商店同一口径（降转会变灰是旧 bug）
+					var _ok = (_m.max_shape >= evo_need_shape);
+					// 卡底照「卡片强化」页 0.25；卡面 0.7，原生立绘超大的卡等比缩进框内（66x84）
 					if (!_ok) shader_set(sh_fusion_gray);
-					draw_sprite_ext(spr_slot, 0, _cx, _cy - 3, 0.25 * 1.8, 0.25 * 1.8, 0, c_white, 1);
-					if (_m.sprite != -1) draw_sprite_ext(_m.sprite, 0, _cx, _cy + 24, 0.7 * 1.8, 0.7 * 1.8, 0, c_white, 1);
+					draw_sprite_ext(spr_slot, 0, _cx, _cy - 3, 0.25, 0.25, 0, c_white, 1);
+					if (_m.sprite != -1) {
+						var _fs = evo_face_scale(_m.sprite, 66, 84, 0.7);
+						draw_sprite_ext(_m.sprite, 0, _cx, _cy + 15, _fs, _fs, 0, c_white, 1);
+					}
 					if (!_ok) shader_reset();
-					if (_m.level > 0) draw_sprite_ext(spr_star_slot, _m.level - 1, _cx - 42, _cy - 57, 1.1, 1.1, 0, c_white, 1);
+					if (_m.level > 0) draw_sprite_ext(spr_star_slot, _m.level - 1, _cx - 25, _cy - 35, 0.7, 0.7, 0, c_white, 1);
 				}
 			} else {
-				draw_sprite_ext(spr_craft_slot_text, 0, _cx, _cy - 3, 1.5, 1.5, 0, c_white, 0.75);
+				var _lab = (_i == 0) ? spr_evo_label_star : spr_evo_label_normal;
+				draw_sprite_ext(_lab, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 0.9);
 			}
 		} else {
-			// 进化凭证槽
-			draw_sprite_ext(spr_evo_slot_prop, 0, _cx, _cy + 5, 1.8, 1.8, 0, c_white, 1);
+			// 进化凭证槽：跟另外两个槽同一条水平线（原来整体 +5 偏下，2026-10-27 修）
+			draw_sprite_ext(spr_evo_slot_prop, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 1);
 			if (evo_target != "") {
 				var _has = evo_has_credit(evo_target);
-				if (!_has) shader_set(sh_fusion_gray);
-				// 统一走「底板 + 卡面」绘制（2026-10-26 用户：不用按卡注册的单张凭证图标）
-				draw_sprite_ext(spr_evo_credit_bg, 0, _cx, _cy + 5, 74 / 44, 74 / 44, 0, c_white, 1);
+				// 底板填满槽内窗（槽 58 原生、内窗 ≈38/58 → 38*1.8 ≈ 68）
+				fusion_draw_center(spr_evo_credit_bg, 0, _cx, _cy, 68, !_has);
 				var _m2 = deck_get_card_data(evo_target, 0);
 				if (_m2 != noone && ds_map_exists(_m2, "sprite")) {
-					draw_sprite_ext(_m2[? "sprite"], 0, _cx, _cy + 12, 0.42 * (74 / 44), 0.42 * (74 / 44), 0, c_white, 1);
+					// 卡面缩进底板中央（46）。旧写法 0.36*(64/44) 会把 338x381 的立绘放大到 177px，盖满整格
+					fusion_draw_center(_m2[? "sprite"], 0, _cx, _cy, 46, !_has);
 				}
-				if (!_has) shader_reset();
+			} else {
+				draw_sprite_ext(spr_evo_label_credit, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 0.9);
 			}
 		}
 	}
@@ -68,23 +75,22 @@ if (craft_top_tab == 3) {
 	// ④ 结果槽：有目标 → 直接画能进化成的金卡；没有 → 问号
 	draw_sprite_ext(spr_evo_slot_result, 0, evo_res_x, evo_res_y, 1.8, 1.8, 0, c_white, 1);
 	if (evo_target != "") {
-		draw_sprite_ext(spr_slot_1, 0, evo_res_x, evo_res_y - 3, 0.25 * 1.8, 0.25 * 1.8, 0, c_white, 1);
+		// 结果槽也照「卡片强化」页比例：卡底 0.25 / 卡面 0.7
+		draw_sprite_ext(spr_slot_1, 0, evo_res_x, evo_res_y - 3, 0.25, 0.25, 0, c_white, 1);
 		var _mt = deck_get_card_data(evo_target, 0);
 		if (_mt != noone && ds_map_exists(_mt, "sprite")) {
-			draw_sprite_ext(_mt[? "sprite"], 0, evo_res_x, evo_res_y + 24, 0.7 * 1.8, 0.7 * 1.8, 0, c_white, 1);
+			var _mts = evo_face_scale(_mt[? "sprite"], 66, 84, 0.7);
+			draw_sprite_ext(_mt[? "sprite"], 0, evo_res_x, evo_res_y + 15, _mts, _mts, 0, c_white, 1);
 		}
 	} else {
 		draw_sprite_ext(spr_evo_question, 0, evo_res_x, evo_res_y, 2.2, 2.2, 0, c_white, 1);
 	}
 
-	// ⑤ 进化按钮 + 星级说明
+	// ⑤ 进化按钮（2026-10-27 用户：按钮下面那句「星级继承…」说明不要了，已删）
+	// 按钮三态：0 = 常态 / 1 = 悬停 / 2 = 按下（素材 DefineButton2_813）
 	var _bs = 1.8 * ((evo_btn_press > 0) ? 0.96 : 1);
-	draw_sprite_ext(spr_evo_btn, 0, evo_btn_x, evo_btn_y, _bs, _bs, 0, c_white, 1);
-	draw_set_font(font_yuan);
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	draw_set_colour(c_white);
-	draw_text(evo_btn_x, evo_btn_y + 52, "金卡星级继承两张一转卡中的最高星级");
+	var _bframe = (evo_btn_press > 0) ? 2 : (point_in_rectangle(mouse_x, mouse_y, evo_btn_x - 73, evo_btn_y - 36, evo_btn_x + 73, evo_btn_y + 36) ? 1 : 0);
+	draw_sprite_ext(spr_evo_btn, _bframe, evo_btn_x, evo_btn_y, _bs, _bs, 0, c_white, 1);
 
 	// ⑥ 右侧防御卡列表（只列可进化系列里已拥有的卡）
 	var _n = array_length(evo_list);
@@ -100,11 +106,12 @@ if (craft_top_tab == 3) {
 			if (_cid2 == evo_cards[0] || _cid2 == evo_cards[1]) continue;   // 进槽的原位留空
 			var _m3 = evo_meta[$ _cid2];
 			if (variable_struct_exists(evo_meta, _cid2)) {
-				var _ready = (_m3.shape >= evo_need_shape);
-				if (!_ready) shader_set(sh_fusion_gray);
+				// 右侧列表不套灰（用户 2026-10-26：变灰只发生在槽位里，列表照常显示）
 				draw_sprite_ext(spr_slot, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
-				if (_m3.sprite != -1) draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
-				if (!_ready) shader_reset();
+				if (_m3.sprite != -1) {
+					var _fs3 = evo_face_scale(_m3.sprite, 66, 84, 0.7);
+					draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, _fs3, _fs3, 0, c_white, 1);
+				}
 				draw_set_font(font_pixel);
 				draw_set_colour(c_black);
 				draw_set_halign(fa_center);

@@ -243,9 +243,17 @@ if (craft_top_tab == 3) {
 				if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) {
 					var _cid = evo_list[_ci];
 					if (_cid == evo_cards[0] || _cid == evo_cards[1]) break;
-					if (evo_cards[0] == "") evo_cards[0] = _cid;
-					else if (evo_cards[1] == "") evo_cards[1] = _cid;
-					else evo_cards[1] = _cid;        // 两槽都满 → 顶掉第二张
+					var _slot = 0;
+					if (evo_cards[0] == "") _slot = 0;
+					else if (evo_cards[1] == "") _slot = 1;
+					else _slot = 1;                  // 两槽都满 → 顶掉第二张
+					evo_cards[_slot] = _cid;
+					// 自动补位：把这张卡的「搭档」放进另一个空槽（用户 2026-10-27 要的效果）
+					var _other = 1 - _slot;
+					if (evo_cards[_other] == "") {
+						var _pn = evo_partner_of(_cid);
+						if (_pn != "" && _pn != _cid) evo_cards[_other] = _pn;
+					}
 					evo_refresh();
 					audio_play_sound(snd_button, 0, 0);
 					exit;
@@ -271,7 +279,9 @@ if (craft_top_tab == 3) {
 			exit;
 		}
 	}
-	exit;
+	// 🔴 2026-10-27 修：这里原来有一句 exit（在 if 块内、非点击分支之后），
+	//    会把事件尾部「close_timer → panel_anim_close」整段跳过 → 在神级进化页点右上角 X 关不掉窗口。
+	//    exit 只保留在上面的各个点击分支里。
 }
 
 

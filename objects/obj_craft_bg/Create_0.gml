@@ -1014,7 +1014,10 @@ function evo_prereq_table(){
     var _names = variable_struct_get_names(_t);
     for (var _i = 0; _i < array_length(_names); _i++){
         var _v = _t[$ _names[_i]];
-        if (is_array(_v) && array_length(_v) > 0) _out[$ _names[_i]] = _v;
+        if (!is_array(_v) || array_length(_v) <= 0) continue;
+        // 只算「gold 金卡」：诸神商店里的融合卡（lizi_god / youyu_god…）不算可进化目标
+        if (is_fusion_card(_names[_i])) continue;
+        _out[$ _names[_i]] = _v;
     }
     evo_table = _out;
     return _out;
@@ -1034,7 +1037,7 @@ function evo_find_target(_a, _b){
     return "";
 }
 
-/// @func evo_find_target_one(a) 只有一张前置的金卡（表里有些条目只配 1 张）
+/// @func evo_find_target_one(a) 只有 1 张前置的金卡（表里有 17 条这种），单卡就能认目标
 function evo_find_target_one(_a){
     if (_a == "") return "";
     var _t = evo_prereq_table();
@@ -1047,8 +1050,38 @@ function evo_find_target_one(_a){
     return "";
 }
 
+/// @func evo_partner_of(card_id) 这张卡的「搭档」——同一张金卡前置里的另一张（2026-10-27 用户要的自动补位）
+///       只返回**玩家已拥有**的搭档，且优先选「金卡还没拿到」的那组；找不到返回 ""
+function evo_partner_of(_card_id){
+    var _t = evo_prereq_table();
+    var _names = variable_struct_get_names(_t);
+    var _owned = "";
+    for (var _i = 0; _i < array_length(_names); _i++){
+        var _k = _names[_i];
+        var _arr = _t[$ _k];
+        if (array_length(_arr) != 2) continue;
+        var _p = "";
+        if (_arr[0] == _card_id) _p = _arr[1];
+        else if (_arr[1] == _card_id) _p = _arr[0];
+        if (_p == "") continue;
+        if (!is_card_unlocked(_p)) continue;
+        if (!is_card_unlocked(_k)) return _p;      // 最优：能成全一张还没有的金卡
+        if (_owned == "") _owned = _p;
+    }
+    return _owned;
+}
+
 /// @func evo_credit_id(target) 进化凭证的材质 id（一张金卡一种）
 function evo_credit_id(_target){ return "evo_credit_" + string(_target); }
+
+/// @func evo_face_scale(spr, bw, bh, base) 卡面缩放：正常卡照旧用 base（0.7），
+///     只有「原生立绘特别大」的卡（如 338x381 的金卡）才等比缩到框内，避免撑出槽位
+function evo_face_scale(_spr, _bw, _bh, _base){
+    if (_spr == -1 || _spr == noone) return _base;
+    var _w = sprite_get_width(_spr), _h = sprite_get_height(_spr);
+    if (_w <= 0 || _h <= 0) return _base;
+    return min(_base, min(_bw / _w, _bh / _h));
+}
 
 /// @func evo_has_credit(target) 有没有这张金卡的进化凭证（debug 模式视为有，方便测试）
 function evo_has_credit(_target){
@@ -1069,7 +1102,7 @@ function evo_refresh(){
     evo_target = "";
     if (evo_cards[0] == "") return;
     if (evo_cards[1] != "") evo_target = evo_find_target(evo_cards[0], evo_cards[1]);
-    else evo_target = evo_find_target_one(evo_cards[0]);
+    else evo_target = evo_find_target_one(evo_cards[0]);      // 只有 1 张前置的金卡（17 张）
 }
 
 /// @func evo_check() 能不能进化 → { ok, reason, target }
@@ -1110,15 +1143,9 @@ function evo_commit(){
     evo_fx_pending = undefined;
     if (is_undefined(_p)) return;
     var _lvl = global.save_data.unlocked_items.max_skill_level;
-    // 星级继承：取两张前置卡里更高的 max_level（原版说明「金卡星级继承两张一转卡中的最高星级」）
-    var _star = 0;
-    for (var _i = 0; _i < 2; _i++){
-        var _c = (_i == 0) ? _p.a : _p.b;
-        if (_c == "") continue;
-        if (is_card_unlocked(_c)) _star = max(_star, get_card_info_simple(_c).max_level);
-    }
+    // 🔴 星级继承已取消（2026-10-27 用户：说明文字和这个效果都不要）→ 进化出来的金卡星级一律从 0 起
     if (!global.debug) add_material_amount(evo_credit_id(_p.target), -1);
-    unlock_card(_p.target, _star, 0, _lvl);
+    unlock_card(_p.target, 0, 0, _lvl);
     evo_cards = ["", ""];
     evo_target = "";
     evo_list_dirty = true;
@@ -1133,22 +1160,27 @@ function evo_rebuild(){
     var _out = [];
     var _uc = global.save_data.unlocked_cards;
     var _t = evo_prereq_table();
-    var _series = {};
+    // 🔴 2026-10-27 用户：右侧只列「还需要的前置卡」——
+    //    某张金卡已经拥有了 → 它的前置卡不再出现在列表里；金卡本身若还是别的金卡的前置，照常列出
+    var _need = {};
     var _names = variable_struct_get_names(_t);
     for (var _i = 0; _i < array_length(_names); _i++){
-        var _arr = _t[$ _names[_i]];
-        for (var _j = 0; _j < array_length(_arr); _j++) _series[$ _arr[_j]] = true;
+        var _k = _names[_i];
+        if (is_card_unlocked(_k)) continue;                  // 这张金卡已有 → 前置不用再列
+        var _arr = _t[$ _k];
+        for (var _j = 0; _j < array_length(_arr); _j++) _need[$ _arr[_j]] = true;
     }
     for (var _i = 0; _i < array_length(_uc); _i++){
         var _id = _uc[_i].id;
-        if (!variable_struct_exists(_series, _id)) continue;
+        if (!variable_struct_exists(_need, _id)) continue;
         var _d = deck_get_card_data(_id, _uc[_i].shape);
         if (_d != noone){
             evo_meta[$ _id] = {
-                shape:  _uc[_i].shape,
-                level:  _uc[_i].max_level,
-                sprite: ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
-                cost:   ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+                shape:     _uc[_i].shape,
+                max_shape: _uc[_i].max_shape,
+                level:     _uc[_i].max_level,
+                sprite:    ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                cost:      ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
             };
         }
         array_push(_out, _id);
