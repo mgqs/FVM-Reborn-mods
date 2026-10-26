@@ -18,11 +18,25 @@ if (config_key == "play_mode_gift" && state) {
         if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky") state = false;
     }
 }
+// 海克斯模式与其它三种玩法互斥（v0.5：海克斯玩法只在该模式存在）
+if (config_key == "play_mode_hex" && state) {
+    with (obj_setting_toggle) {
+        if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky" || config_key == "play_mode_gift") state = false;
+    }
+}
 // 保存到配置文件
 if (config_key != "") {
     ini_open("config.ini");
-    if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky" || config_key == "play_mode_gift") {
-        ini_write_real("settings", "play_mode", state ? (config_key == "play_mode_gacha" ? 1 : (config_key == "play_mode_lucky" ? 2 : 3)) : 0);
+    if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky" || config_key == "play_mode_gift" || config_key == "play_mode_hex") {
+        // 模式号：抽卡 1 / 欧皇 2 / 礼盒 3 / 海克斯 4，关掉写 0
+        var _mode_num = 0;
+        if (config_key == "play_mode_gacha") _mode_num = 1;
+        else if (config_key == "play_mode_lucky") _mode_num = 2;
+        else if (config_key == "play_mode_gift") _mode_num = 3;
+        else if (config_key == "play_mode_hex") _mode_num = 4;
+
+        if (state) ini_write_real("settings", "play_mode", _mode_num);
+        else ini_write_real("settings", "play_mode", 0);
     } else {
         ini_write_real("settings", config_key, state);
     }
@@ -66,6 +80,11 @@ else if (config_key == "play_mode_lucky"){
 }
 else if (config_key == "play_mode_gift"){
     global.play_mode = state ? 3 : 0;
+}
+else if (config_key == "play_mode_hex"){
+    // 进出海克斯模式：本局词条一律作废（docs 1.2.2）
+    global.play_mode = state ? 4 : 0;
+    hex_reset_run();
 }
 if (config_key == "play_mode_gift" || config_key == "play_mode_gacha" || config_key == "play_mode_lucky") {
     random_gift_sync_unlock();

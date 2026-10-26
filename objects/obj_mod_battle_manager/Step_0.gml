@@ -271,6 +271,25 @@ else
                 var track_buff_mult = max(zodiac_mult, fushengcha_mult);
                 self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * track_buff_mult;
 
+                // ══ 海克斯：乘在全部既有乘区之后（增幅/星级/地形/技能都不改） ══
+                // hex_* 系列在非海克斯模式恒返回 1.0，所以这里不需要 if 包住 atk
+                self.atk *= hex_atk_mult_for_card(self.plant_id);
+
+                if (hex_enabled())
+                {
+                    // 恒以 base_cycle 为底重算，避免多次刷新之间互相叠乘
+                    var _hex_cyc = hex_cycle_mult_for_card(self.plant_id);
+                    self.cycle = self.base_cycle * _hex_cyc;
+
+                    if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
+                    var _hex_hp = hex_hp_mult_for_card(self.plant_id);
+                    if (_hex_hp != 1.0)
+                    {
+                        self.max_hp = self.base_max_hp * _hex_hp;
+                        if (self.hp > self.max_hp) self.hp = self.max_hp;
+                    }
+                }
+
                 self.buff_applied_id = global.buff_apply_id;
             }
         }

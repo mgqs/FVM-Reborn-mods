@@ -121,27 +121,35 @@ function draw_games_page(){
 		btn32.image_xscale = -0.9
 	    array_push(setting_buttons, btn32);
 
-		// 玩法模式（互斥）：抽卡版 / 欧皇版 / 随机礼盒。标签靠悬停提示
-		var gacha_btn = instance_create_depth(x + 300, y + 60, depth-1, obj_setting_toggle);
+		// 玩法模式（互斥）：抽卡版 / 欧皇版 / 随机礼盒 / 海克斯。标签靠悬停提示
+		var gacha_btn = instance_create_depth(x + 300, y + 20, depth-1, obj_setting_toggle);
 		gacha_btn.config_key = "play_mode_gacha";
 		gacha_btn.state = (global.play_mode == 1);
 		gacha_btn.tooltip_text = "启用抽卡版：卡片和形态通过礼盒随机获得，难度与奖励跟随基础难度";
 		array_push(setting_buttons, gacha_btn);
 
-		var lucky_btn = instance_create_depth(x + 300, y + 140, depth-1, obj_setting_toggle);
+		var lucky_btn = instance_create_depth(x + 300, y + 100, depth-1, obj_setting_toggle);
 		lucky_btn.config_key = "play_mode_lucky";
 		lucky_btn.state = (global.play_mode == 2);
 		lucky_btn.tooltip_text = "启用欧皇版：使用欧皇抽卡权重，难度与奖励跟随基础难度";
 		array_push(setting_buttons, lucky_btn);
 
-		var gift_btn = instance_create_depth(x + 300, y + 220, depth-1, obj_setting_toggle);
+		var gift_btn = instance_create_depth(x + 300, y + 180, depth-1, obj_setting_toggle);
 		gift_btn.config_key = "play_mode_gift";
 		gift_btn.state = (global.play_mode == 3);
 		gift_btn.tooltip_text = "启用随机礼盒：开局只有礼盒，通关特殊卡可正常获得";
 		array_push(setting_buttons, gift_btn);
 
-		// Mod 管理入口（合并时被删掉，加回来）
-		var mod_btn = instance_create_depth(x + 300, y + 285, depth-1, obj_mod_open_button);
+		// 海克斯模式（第五档玩法）：与其它玩法互斥
+		var hex_btn = instance_create_depth(x + 300, y + 260, depth-1, obj_setting_toggle);
+		hex_btn.config_key = "play_mode_hex";
+		hex_btn.state = (global.play_mode == 4);
+		hex_btn.tooltip_text = "启用海克斯模式：每局可三选一拿构筑词条，敌人也会随压迫指数变强\n词条、共鸣、压迫指数均只在开启本模式后生效";
+		array_push(setting_buttons, hex_btn);
+
+		// 已解锁词条入口只在对局内 ESC 面板提供，设置页不再重复放
+		// Mod 管理入口
+		var mod_btn = instance_create_depth(x + 300, y + 325, depth-1, obj_mod_open_button);
 		array_push(setting_buttons, mod_btn);
 		
 		// 创建失焦暂停开关

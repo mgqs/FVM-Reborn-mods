@@ -495,6 +495,10 @@ switch(state) {
 
 // 死亡处理
 if (hp <= 0 && state != ENEMY_STATE.DEAD) {
+    // 海克斯：击杀结算（概率火苗 / 击杀叠攻击）→ 掉率触发选卡
+    // 必须在这里（instance_destroy 之前，且能拿到死亡坐标）
+    hex_on_kill(x, y);
+    hex_try_drop(x, y);
     timer = 0;
     state = ENEMY_STATE.DEAD;
     target_plant = noone;  // 清除攻击目标

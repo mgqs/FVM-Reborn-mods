@@ -11,6 +11,7 @@ tooltip_text = ""
 if (config_key == "play_mode_gacha") state = (global.play_mode == 1);
 if (config_key == "play_mode_lucky") state = (global.play_mode == 2);
 if (config_key == "play_mode_gift") state = (global.play_mode == 3);
+if (config_key == "play_mode_hex")  state = (global.play_mode == 4);
 
 bounce_t = -1
 bounce_frames = 10

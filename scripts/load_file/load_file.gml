@@ -297,7 +297,9 @@ function reset_file(file_slot){
 			],
 			"completed_tasks":[],
 			"attires":[],
-			"equipped_cookbook":[[],[],[]]
+			"equipped_cookbook":[[],[],[]],
+			"hex_unlocked":[],
+			"hex_stats":{"runs_cleared":0,"runs_abandoned":0,"best_pi":0}
         };
 	save_file(file_slot)
 }

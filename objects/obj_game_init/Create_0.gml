@@ -45,7 +45,7 @@ global.level_data = {}
 global.ui_anim = 1
 global.debug = 0
 global.laboretory_room = false
-global.game_version = "3.0.1.7"
+global.game_version = "3.0.1.8"
 global.tower_level_click = false
 global.tower_cake_page = 1
 global.cross_server_return_page = -1
@@ -133,26 +133,34 @@ global.replace_placement = ini_read_bool("settings", "replace_placement", false)
 global.card_hpbar = ini_read_bool("settings", "card_hpbar", false);
 global.enemy_hpbar = ini_read_bool("settings", "enemy_hpbar", false);
 global.tex_fliter = ini_read_bool("settings", "tex_fliter", true);
-// 难度与玩法模式分开保存。旧版 6/7 难度在这里迁移。
+// 难度与玩法模式分开保存。旧版 6/7 是"难度+玩法"合并编号：
+//   6 = 星际级 + 抽卡版，7 = 不朽级 + 欧皇版
+// 无论 play_mode 键是否存在，都先把难度归一到实际基础难度，
+// 这样奖励倍率（difficulty_get_reward_multiplier）永远按真实难度算，不会被 clamp 到错误档位。
 var _difficulty_text = ini_read_string("settings", "difficulty", "1");
 global.difficulty = real(_difficulty_text);
 global.play_mode = 0;
+
+var _legacy_play_mode = -1;          // 旧编号隐含的玩法模式，-1 = 没有
+if (global.difficulty == 6) {
+    global.difficulty = 3;           // 星际级
+    _legacy_play_mode = 1;
+} else if (global.difficulty == 7) {
+    global.difficulty = 5;           // 不朽级
+    _legacy_play_mode = 2;
+}
+
 var _play_mode_text = ini_read_string("settings", "play_mode", "");
 if (_play_mode_text == "") {
-    if (global.difficulty == 6) {
-        global.difficulty = 3;
-        global.play_mode = 1;
-    } else if (global.difficulty == 7) {
-        global.difficulty = 5;
-        global.play_mode = 2;
-    }
-    ini_write_real("settings", "difficulty", global.difficulty);
+    // 全新配置或极老版本：玩法模式取旧编号里隐含的那个
+    if (_legacy_play_mode != -1) global.play_mode = _legacy_play_mode;
     ini_write_real("settings", "play_mode", global.play_mode);
 } else {
     global.play_mode = real(_play_mode_text);
 }
+if (_legacy_play_mode != -1) ini_write_real("settings", "difficulty", global.difficulty);
 global.difficulty = clamp(global.difficulty, 0, 5);
-global.play_mode = clamp(global.play_mode, 0, 3);
+global.play_mode = clamp(global.play_mode, 0, 4);   // 4 = 海克斯模式
 global.borderless_window = ini_read_bool("settings", "borderless_window", true);
 global.save_slot = ini_read_real("settings", "save_slot", 0)
 global.lose_focus_pause = ini_read_bool("settings", "lose_focus_pause", true);

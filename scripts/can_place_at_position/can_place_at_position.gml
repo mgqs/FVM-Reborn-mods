@@ -7,6 +7,8 @@
 /// @param {string} target_card 底座卡片
 /// @param {string} card_id 正在放置的卡牌 ID（可选）
 function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id = "") {
+    // 海克斯模式：开局首抽（选一张或直接放弃）处理完之前，任何卡都不能落位
+    if (hex_place_locked()) return false;
     if (card_id == "kuileima" && !global.replace_placement) {
         for (var p = 0; p < instance_number(obj_kuileima); p++) {
             var existing = instance_find(obj_kuileima,p);
@@ -50,6 +52,18 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
 		return false
 	}
     
+    // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格，可以直接叠在已有卡片上
+    // 反向（普通卡叠到已经放了增幅/辅助的格子上）由放置完成后把 plant_type 改成 gridless 来保证
+    if (card_id != "" && hex_gridless_for_card(card_id) && !global.replace_placement) {
+        var _gl_list = ds_grid_get(global.grid_plants, col, row);
+        for (var _gi = 0; _gi < ds_list_size(_gl_list); _gi++) {
+            var _gp = _gl_list[| _gi];
+            if (instance_exists(_gp) && variable_instance_exists(_gp, "plant_id")
+                && _gp.plant_id == card_id) return false;
+        }
+        return true;
+    }
+
     // 获取该网格的植物列表
     var plant_list = ds_grid_get(global.grid_plants, col, row);
 

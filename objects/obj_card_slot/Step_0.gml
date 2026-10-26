@@ -33,6 +33,8 @@ if card_id != "magic_chicken"{
 		current_cost = 500;
 		cooldown = 1800;
 	}
+	// 海克斯「卡片费用」：在所有加法修正之后再乘（非海克斯模式恒 1.0）
+	current_cost = round(current_cost * hex_cost_mult());
 }
 if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
@@ -62,7 +64,7 @@ if cooldown_timer < cooldown{
     cooling_alpha = max(cooling_alpha - 0.05, 0); // 淡出冷却效果
     
     // 检查阳光是否足够
-    if (global.flame >= current_cost) {
+    if ((global.flame >= current_cost) || hex_free_place_ready()) {
         is_ready = true;
     } else {
         is_ready = false;
@@ -256,7 +258,7 @@ if (is_selected) {
             }
         }
         
-        if (can_plant && global.flame >= current_cost) {
+        if (can_plant && (global.flame >= current_cost || hex_free_place_ready())) {
             // 创建植物实例
 			var plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
 			var target_card_id = card_data[? "target_card"];
@@ -306,6 +308,8 @@ if (is_selected) {
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);
 				new_plant.depth = depth_value
+				// 海克斯「悬浮厨房」：增幅类 / 辅助类不占格（借用既有 gridless 规则）
+				if (hex_gridless_for_card(card_id)) new_plant.plant_type = "gridless";
 				// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
 				if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
 					new_plant.platform_grid_lock = true;
@@ -319,8 +323,8 @@ if (is_selected) {
 				inst.sprite_index = spr_enter_water_effect
 			}
             
-            // 扣除阳光
-            global.flame -= current_cost;
+            // 扣除阳光（海克斯「每波首次放置免费」会拦下这一笔）
+            if (!hex_consume_free_place()) global.flame -= current_cost;
 			
             
             // 重置冷却计时器

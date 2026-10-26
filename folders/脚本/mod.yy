@@ -37,6 +37,11 @@
     {"name":"mod_weapons_init","path":"scripts/mod_weapons_init/mod_weapons_init.yy",},
     {"name":"zhiyumiao_config","path":"scripts/zhiyumiao_config/zhiyumiao_config.yy",},
     {"name":"precise_bbox_collision","path":"scripts/precise_bbox_collision/precise_bbox_collision.yy",},
-    {"name":"ronghehuopen_pass_fire","path":"scripts/ronghehuopen_pass_fire/ronghehuopen_pass_fire.yy",}
+    {"name":"ronghehuopen_pass_fire","path":"scripts/ronghehuopen_pass_fire/ronghehuopen_pass_fire.yy",},
+    {"name":"hex_core","path":"scripts/hex_core/hex_core.yy",},
+    {"name":"hex_hooks","path":"scripts/hex_hooks/hex_hooks.yy",},
+    {"name":"hex_persist","path":"scripts/hex_persist/hex_persist.yy",},
+    {"name":"hex_registry","path":"scripts/hex_registry/hex_registry.yy",},
+    {"name":"hex_roll","path":"scripts/hex_roll/hex_roll.yy",},
   ],
 }

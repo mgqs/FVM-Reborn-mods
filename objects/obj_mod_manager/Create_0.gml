@@ -18,6 +18,23 @@ cross_server_shop_init();
 // 卡片分类模块是增幅分组的数据源，必须在 mod_buff_init 之前建立
 card_category_init();
 mod_buff_init();
+// 海克斯词条库依赖 card_category_map，必须在其后
+hex_registry_init();
+hex_ensure_save_fields();
+// 三乘区 / PI 出口先落默认值：任何模式下都必须存在且为 1.0。
+// undefined 参与乘法在 GML 里会静默变成 0，比报错更难查（docs 1.2.1）
+global.hex_mult       = { atk: 1.0, cycle: 1.0, hp: 1.0 };
+global.pi_enemy_mult  = 1.0;
+global.pi_elite_extra = 0;
+global.pi_boss_escort = false;
+global.bond_mult      = 1.0;
+global.bond_count     = {};
+global.bond_tier      = {};
+// 本关是否"通关离场"（CleanUp 用来区分中途退出）
+global.hex_level_cleared = false;
+// 三选一面板是否打开 / 当前正在累计的序列图（魔塔等）
+global.hex_pick_open     = false;
+global.hex_series_active = "";
 zhiyumiao_config_init();
 
 // 所有卡牌（原版 slots_init + mod mod_slots_init）均已注册进 player_deck 后，清理存档中已不存在的孤儿卡

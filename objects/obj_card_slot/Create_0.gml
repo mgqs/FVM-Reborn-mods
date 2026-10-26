@@ -150,7 +150,7 @@ function try_place_once(){
             can_plant = can_plant && !_gift_pending;
         }
         
-        if (can_plant && global.flame >= current_cost) {
+        if (can_plant && (global.flame >= current_cost || hex_free_place_ready())) {
             // 创建植物实例
 			var plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
 			var target_card_id = card_data[? "target_card"];
@@ -204,6 +204,8 @@ function try_place_once(){
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);
 				new_plant.depth = depth_value
+				// 海克斯「悬浮厨房」：增幅类 / 辅助类不占格（借用既有 gridless 规则）
+				if (hex_gridless_for_card(card_id)) new_plant.plant_type = "gridless";
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y,-2,obj_place_effect)
@@ -213,8 +215,8 @@ function try_place_once(){
 				inst.sprite_index = spr_enter_water_effect
 			}
             
-            // 扣除阳光
-            global.flame -= current_cost;
+            // 扣除阳光（海克斯「每波首次放置免费」会拦下这一笔）
+            if (!hex_consume_free_place()) global.flame -= current_cost;
             
             // 重置冷却计时器
             cooldown_timer = 0;
