@@ -133,6 +133,6 @@ function hex_note_pick_form(_form) {
 /// @desc 面板用：这张牌会让 PI 变成多少
 function hex_offer_preview_pi(_id) {
     var _d = hex_get(_id);
-    if (is_undefined(_d)) return global.hex_state.pi;
-    return global.hex_state.pi + _d.tier + 1;
+    if (is_undefined(_d)) return global.hex_state.pi_value;
+    return global.hex_state.pi_value + _d.tier + 1;
 }

@@ -103,21 +103,46 @@ function hex_on_wave_start() {
 }
 
 /// @function hex_enemy_scale(_inst)
-/// @desc 把 PI 与词条的老鼠侧倍率乘到刚生成的敌人身上。必须在 instance_create 之后立刻调用
+/// @desc 把 PI 与词条的老鼠侧倍率乘到刚生成的普通敌人身上。必须在 instance_create 之后、
+///       关卡难度系数之后立刻调用。自动按 is_boss 判断口径（漏传也不会变强得离谱）。
 function hex_enemy_scale(_inst) {
+    var _is_boss = false;
+    if (instance_exists(_inst) && variable_instance_exists(_inst, "is_boss")) {
+        _is_boss = _inst.is_boss;
+    }
+    return hex_enemy_scale_apply(_inst, _is_boss);
+}
+
+/// @function hex_enemy_scale_boss(_inst)
+/// @desc BOSS 专用入口（BOSS 由 obj_battle/Step_2 单独生成，必须显式调用）。
+///       BOSS 只吃血量与攻击，不吃移速：位移全是状态机按坐标硬推的
+///       （遁地、瞬移、跳跃、绕场），改 move_speed 会与技能落点错位。
+function hex_enemy_scale_boss(_inst) {
+    return hex_enemy_scale_apply(_inst, true);
+}
+
+/// @function hex_enemy_scale_apply(_inst, _boss)
+/// @desc 实际的倍率落点。两个入口共用，保证口径只有一份。
+function hex_enemy_scale_apply(_inst, _boss) {
     if (!hex_enabled()) return _inst;
     if (!instance_exists(_inst)) return _inst;
 
     var _hp  = hex_enemy_mult("hp");
     var _atk = hex_enemy_mult("atk");
-    var _spd = hex_enemy_mult("spd");
+    var _spd = _boss ? 1.0 : hex_enemy_mult("spd");
 
-    if (_hp != 1.0) {
+    // 血量按比例缩放：BOSS 有的会带护盾/分身，hp 不一定等于 maxhp，直接拉满会白送血
+    if (_hp != 1.0 && variable_instance_exists(_inst, "maxhp") && _inst.maxhp > 0) {
+        var _ratio = clamp(_inst.hp / _inst.maxhp, 0, 1);
         _inst.maxhp = max(1, round(_inst.maxhp * _hp));
-        _inst.hp    = _inst.maxhp;
+        _inst.hp    = max(1, round(_inst.maxhp * _ratio));
     }
-    if (_atk != 1.0) _inst.atk = _inst.atk * _atk;
-    if (_spd != 1.0) _inst.move_speed = _inst.move_speed * _spd;
+    if (_atk != 1.0 && variable_instance_exists(_inst, "atk")) {
+        _inst.atk = _inst.atk * _atk;
+    }
+    if (_spd != 1.0 && variable_instance_exists(_inst, "move_speed")) {
+        _inst.move_speed = _inst.move_speed * _spd;
+    }
 
     return _inst;
 }

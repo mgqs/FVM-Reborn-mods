@@ -54,13 +54,25 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     
     // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格，可以直接叠在已有卡片上
     // 反向（普通卡叠到已经放了增幅/辅助的格子上）由放置完成后把 plant_type 改成 gridless 来保证
+    // 注意「不占格」只放宽占格这一条，不一并放宽其它规则：
+    //   - 同一格不能重复放同一张卡
+    //   - 需要底座（target_card）的卡仍然必须踩到底座，否则放置流程里的 upgrade 分支销毁不到底座，
+    //     卡会凭空叠在空地上，之后这一格的底座关系就乱了
+    //   - 玩家角色所在的格子仍然不能放卡
     if (card_id != "" && hex_gridless_for_card(card_id) && !global.replace_placement) {
         var _gl_list = ds_grid_get(global.grid_plants, col, row);
+        var _need_base = is_string(target_card) && target_card != "" && target_card != "none";
+        var _has_self = false;
+        var _has_base = false;
         for (var _gi = 0; _gi < ds_list_size(_gl_list); _gi++) {
             var _gp = _gl_list[| _gi];
-            if (instance_exists(_gp) && variable_instance_exists(_gp, "plant_id")
-                && _gp.plant_id == card_id) return false;
+            if (!instance_exists(_gp) || !variable_instance_exists(_gp, "plant_id")) continue;
+            if (_gp.plant_id == "player") return false;
+            if (_gp.plant_id == card_id) _has_self = true;
+            if (_need_base && _gp.plant_id == target_card) _has_base = true;
         }
+        if (_has_self) return false;
+        if (_need_base && !_has_base) return false;
         return true;
     }
 

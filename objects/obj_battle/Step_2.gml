@@ -128,15 +128,21 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 	var _boss_id = wave_data.boss
 	if _boss_id != "" && ds_map_exists(global.enemy_map, _boss_id){
 		var _boss_data = global.enemy_map[? _boss_id]
+		var _has_ver = is_real(global.level_file.version)
 		for (var bm = 0; bm < boss_spawn_mult; bm++){
 			var enemy_row = irandom_range(0,global.grid_rows-1)
 			var enemy_pos = get_world_position_from_grid(10,enemy_row)
 			var boss_inst = instance_create_depth(enemy_pos.x-80,enemy_pos.y+30,-200,_boss_data._obj)
 			boss_count ++
-			if is_real(global.level_file.version){
+			// 关卡难度系数先乘，海克斯的老鼠侧增幅后乘（顺序铁律：PI 必须在难度系数之后）
+			if _has_ver {
 				boss_inst.hp *= wave_data.boss_1_hp_modify
 				boss_inst.maxhp *= wave_data.boss_1_hp_modify
+			}
+			hex_enemy_scale_boss(boss_inst);
+			if _has_ver {
 				// 连体 BOSS（哼哈将军）：同一 ID 的副体共用血量，不计入 boss_count
+				// 副体在缩放之后创建，直接复制已缩放的血量，避免本体/副体倍率不一致
 				if (variable_struct_exists(_boss_data, "_peer_obj")) {
 					var _peer_row = irandom_range(0,global.grid_rows-1)
 					var _peer_pos = get_world_position_from_grid(10,_peer_row)
@@ -154,6 +160,7 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 					var boss_2_inst = instance_create_depth(enemy_pos_2.x-80,enemy_pos_2.y+30,-200,global.enemy_map[? _boss2_id]._obj)
 					boss_2_inst.hp *= wave_data.boss_2_hp_modify
 					boss_2_inst.maxhp *= wave_data.boss_2_hp_modify
+					hex_enemy_scale_boss(boss_2_inst);
 					boss_count ++
 				}
 			}

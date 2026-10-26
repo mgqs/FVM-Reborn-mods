@@ -39,11 +39,11 @@ draw_set_alpha(1);
 // ══════════ 压迫 PI ══════════
 var _pct = round((global.pi_enemy_mult - 1) * 100);
 var _thr = 999;
-if (_s.pi < 10)      { _thr = 10; }
-else if (_s.pi < 18) { _thr = 18; }
-else if (_s.pi < 26) { _thr = 26; }
-else if (_s.pi < 32) { _thr = 32; }
-var _near_threshold = (_s.pi >= _thr - 2);
+if (_s.pi_value < 10)      { _thr = 10; }
+else if (_s.pi_value < 18) { _thr = 18; }
+else if (_s.pi_value < 26) { _thr = 26; }
+else if (_s.pi_value < 32) { _thr = 32; }
+var _near_threshold = (_s.pi_value >= _thr - 2);
 
 var _c = _near_threshold ? make_color_rgb(255, 150, 120) : make_color_rgb(150, 255, 170);
 if (_near_threshold && (current_time div 400) mod 2 == 0) {
@@ -54,7 +54,7 @@ draw_set_font(font_yuan);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
-hex_hud_text(_px, _py, "压迫 PI " + string(_s.pi), _c);
+hex_hud_text(_px, _py, "压迫 PI " + string(_s.pi_value), _c);
 hex_hud_text(_px, _py + 24, "老鼠全属性 +" + string(_pct) + "%",
              make_color_rgb(255, 226, 160));
 
@@ -71,10 +71,10 @@ if (global.pi_boss_escort) {
 // 距离下一档的进度条
 if (_thr < 900) {
     var _w = 190;
-    var _yy = (_s.pi >= 26) ? _py + 92 : _py + 92;
+    var _yy = (_s.pi_value >= 26) ? _py + 92 : _py + 92;
     draw_set_color(make_color_rgb(26, 40, 30));
     draw_rectangle(_px, _yy, _px + _w, _yy + 7, false);
-    var _ratio = clamp(_s.pi / _thr, 0, 1);
+    var _ratio = clamp(_s.pi_value / _thr, 0, 1);
     draw_set_color(_c);
     draw_rectangle(_px, _yy, _px + _w * _ratio, _yy + 7, false);
 }

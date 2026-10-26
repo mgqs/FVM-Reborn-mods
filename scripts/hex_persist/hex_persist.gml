@@ -143,7 +143,7 @@ function hex_commit_run(_level_id) {
     global.hex_state.committed = true;
     global.save_data.hex_stats.runs_cleared += 1;
     global.save_data.hex_stats.best_pi =
-        max(global.save_data.hex_stats.best_pi, global.hex_state.pi);
+        max(global.save_data.hex_stats.best_pi, global.hex_state.pi_value);
 
     return true;   // 真正的 save_file 由调用方统一做
 }

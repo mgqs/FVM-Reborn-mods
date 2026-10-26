@@ -49,6 +49,10 @@ function hex_place_locked() {
     if (!variable_struct_exists(global.hex_state, "first_done")) return false;
     if (global.hex_state.first_done) return false;
     if (hex_level_repeat()) return false;
+    // 只有「首抽面板确实还开着、玩家还没做出选择」时才该锁。
+    // 面板已经不在了（关掉了 / 被销毁 / 压根没弹出来），就没有理由再锁整局：
+    // 任何一条把面板提前关掉、却漏设 first_done 的路径，都会让玩家整局一张卡都放不下去。
+    if (!instance_exists(obj_hex_panel)) return false;
     return true;
 }
 
@@ -77,7 +81,7 @@ function hex_state_init() {
         picks:           0,
         rerolls:         0,
         giveups:         0,
-        pi:              0,
+        pi_value:        0,       // 压迫指数（不能叫 pi：与 GML 内置常量 pi 冲突，赋值会报 GM1031）
         free_reroll:     0,
         c_streak:        0,       // 连续全 C 的次数（保底用）
         first_done:      false,   // 开局首抽是否已经处理过（选过或放弃过）
@@ -188,16 +192,16 @@ function hex_sync_globals() {
         cycle: clamp(_s.cycle, 0.30, 3.0),
         hp:    clamp(_s.hp,    0.25, 5.0)
     };
-    global.pi_enemy_mult  = min(1 + _s.pi * hex_cfg().pi_rate, 1 + hex_cfg().pi_cap);
+    global.pi_enemy_mult  = min(1 + _s.pi_value * hex_cfg().pi_rate, 1 + hex_cfg().pi_cap);
 
     // 鼠潮阶梯：10 / 18 / 26 点各加 1/2/3 只精英。写成顺序覆盖，避免链式三元
     var _elite = 0;
-    if (_s.pi >= 10) _elite = 1;
-    if (_s.pi >= 18) _elite = 2;
-    if (_s.pi >= 26) _elite = 3;
+    if (_s.pi_value >= 10) _elite = 1;
+    if (_s.pi_value >= 18) _elite = 2;
+    if (_s.pi_value >= 26) _elite = 3;
     global.pi_elite_extra = _elite;
 
-    global.pi_boss_escort = (_s.pi >= 32);
+    global.pi_boss_escort = (_s.pi_value >= 32);
 }
 
 /// @function hex_pi_recalc()
@@ -214,7 +218,7 @@ function hex_pi_recalc() {
     for (var j = 0; j < array_length(_s.persist); j++) {
         _p += (_s.persist[j].tier + 1) * _s.persist[j].stack;
     }
-    _s.pi = _p;
+    _s.pi_value = _p;
     hex_sync_globals();
 }
 

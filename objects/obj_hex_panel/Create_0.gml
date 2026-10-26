@@ -61,6 +61,11 @@ function hex_panel_pick(_i) {
     if (hex_taken(_id) >= _d.stack) {
         msg_text  = "这条已经拿到上限了";
         msg_timer = 60;
+        // 玩家已经对首抽做出选择动作了，标记处理完：
+        // 否则这条死牌一直占着牌面、面板关不掉，hex_place_locked() 会把整局的放置锁死
+        if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
+            global.hex_state.first_done = true;
+        }
         return;
     }
     hex_note_pick_form(_d.form);

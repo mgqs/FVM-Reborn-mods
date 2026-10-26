@@ -1,3 +1,11 @@
+// 战斗已经结束 / 已经换关：面板不该继续存在。
+// 它每帧会把 is_paused 按回 true，残留到下一关就是"开局直接暂停、什么都干不了"
+if (!instance_exists(obj_battle)) {
+    global.hex_pick_open = false;
+    instance_destroy();
+    exit;
+}
+
 t += 1;
 if (msg_timer > 0) msg_timer -= 1;
 
@@ -14,6 +22,11 @@ if (closing > 0) {
 }
 
 // ── 悬停 ──
+// 面板存在期间强制暂停：暂停菜单、拾取面板等外部逻辑都可能把 is_paused 改回 false，
+// 那样玩家在还没选牌时就能操作卡槽 —— 而 hex_place_locked() 仍然为真，
+// 表现就是「卡槽能选中、鼠标跟出虚影，但点地面怎么都放不下去」。
+if (!global.is_paused) global.is_paused = true;
+
 hover_idx = -1;
 for (var i = 0; i < array_length(offer); i++) {
     var _r = hex_panel_card_rect(i);
