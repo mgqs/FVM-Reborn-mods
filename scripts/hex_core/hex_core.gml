@@ -72,7 +72,8 @@ function hex_cfg() {
 /// @desc 建局内状态。只在海克斯模式进入关卡时调用
 function hex_state_init() {
     global.hex_state = {
-        picked:          [],      // [{ id, stack, tier, form }]
+        picked:          [],      // 本局抽到的词条 [{ id, stack, tier, form }]
+        persist:         [],      // 存档里已解锁、永久生效的词条（每次建局重新并入）
         picks:           0,
         rerolls:         0,
         giveups:         0,
@@ -141,6 +142,9 @@ function hex_state_init() {
     global.bond_count = {};
     global.bond_tier  = {};
     hex_sync_globals();
+
+    // 已解锁的词条永久生效：每次建局都按存档重新并入（测试关卡 hex_active 为假，不会带进去）
+    hex_load_collection();
 }
 
 /// @function hex_reset_run()
@@ -153,6 +157,9 @@ function hex_reset_run() {
     global.hex_pick_open     = false;
     // 退出战斗后重进必须重新抽取（docs 1.2：只有通关才留档，中途退出不留）
     global.hex_series_active = "";
+
+    // 本局作废后把「火苗上限 +X」的加成同步回永久词条的水平（永久词条的火苗上限仍然保留）
+    hex_sync_flame_cap();
 }
 
 /// @function hex_ensure_state()
@@ -199,18 +206,22 @@ function hex_pi_recalc() {
     if (!hex_ensure_state()) return;
     var _s = global.hex_state;
     var _p = _s.giveups * hex_cfg().giveup_pi;
+    // 银 1 / 金 2 / 彩 3，按叠层次数累计（拿两遍双叠的金牌就是 4 点）
     for (var i = 0; i < array_length(_s.picked); i++) {
-        // 银 1 / 金 2 / 彩 3，按叠层次数累计（拿两遍双叠的金牌就是 4 点）
         _p += (_s.picked[i].tier + 1) * _s.picked[i].stack;
+    }
+    // 永久词条同样施加压迫：否则收藏越多越白嫖，老鼠完全追不上
+    for (var j = 0; j < array_length(_s.persist); j++) {
+        _p += (_s.persist[j].tier + 1) * _s.persist[j].stack;
     }
     _s.pi = _p;
     hex_sync_globals();
 }
 
-/// @function hex_apply(_id)
-/// @desc 把一条词条的效果并入本局状态。重复拿同一条按叠层上限判断由调用方负责
-function hex_apply(_id) {
-    if (!hex_ensure_state()) return false;
+/// @function hex_apply_core(_id)
+/// @desc 把一条词条按「1 层」并入本局数值。只做数值，不记账、不重算 PI：
+///       单局抽取（hex_apply）和永久收藏（hex_load_collection）都调它
+function hex_apply_core(_id) {
     var _d = hex_get(_id);
     if (is_undefined(_d)) return false;
     if (!_d.impl) return false;
@@ -291,6 +302,20 @@ function hex_apply(_id) {
     if (variable_struct_exists(_d.en, "e_atk"))   _s.e_atk   *= (1 + _d.en.e_atk);
     if (variable_struct_exists(_d.en, "e_count")) _s.e_count *= (1 + _d.en.e_count);
 
+    return true;
+}
+
+/// @function hex_apply(_id)
+/// @desc 本局抽到一条：并入数值 + 记进 picked + 重算 PI。
+///       重复拿同一条按叠层上限判断由调用方负责
+function hex_apply(_id) {
+    if (!hex_ensure_state()) return false;
+    var _d = hex_get(_id);
+    if (is_undefined(_d)) return false;
+    if (!hex_apply_core(_id)) return false;
+
+    var _s = global.hex_state;
+
     // ---- 记账 ----
     var _found = false;
     for (var k = 0; k < array_length(_s.picked); k++) {
@@ -306,27 +331,55 @@ function hex_apply(_id) {
     _s.picks += 1;
 
     hex_pi_recalc();
+    hex_sync_flame_cap();     // 「火苗上限 +X」当场生效，不必等下一关
     // 让所有卡片下一帧重算 atk/cycle：buff_apply_id 是既有系统唯一的重算脏标记
     if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
     return true;
 }
 
 /// @function hex_taken(_id)
-/// @desc 已持有层数（0 表示未持有）
+/// @desc 当前总层数（永久收藏 + 本局抽取），用于叠层上限判断
 function hex_taken(_id) {
     if (!hex_ensure_state()) return 0;
     var _s = global.hex_state;
-    for (var i = 0; i < array_length(_s.picked); i++) {
-        if (_s.picked[i].id == _id) return _s.picked[i].stack;
+    var _n = 0;
+    for (var i = 0; i < array_length(_s.persist); i++) {
+        if (_s.persist[i].id == _id) _n += _s.persist[i].stack;
     }
-    return 0;
+    for (var k = 0; k < array_length(_s.picked); k++) {
+        if (_s.picked[k].id == _id) _n += _s.picked[k].stack;
+    }
+    return _n;
 }
 
 /// @function hex_taken_count()
+/// @desc 本局抽到的条数（不含永久收藏，永久的不占 16 条名额）
 function hex_taken_count() {
     if (!hex_enabled()) return 0;
     if (!variable_global_exists("hex_state")) return 0;
+    if (!is_struct(global.hex_state)) return 0;
     return array_length(global.hex_state.picked);
+}
+
+/// @function hex_persist_count()
+/// @desc 永久生效的词条种数（已解锁且本次建局已并入的）
+function hex_persist_count() {
+    if (!hex_active()) return 0;
+    if (!variable_global_exists("hex_state")) return 0;
+    if (!is_struct(global.hex_state)) return 0;
+    if (!variable_struct_exists(global.hex_state, "persist")) return 0;
+    return array_length(global.hex_state.persist);
+}
+
+/// @function hex_persist_total_stack()
+/// @desc 永久生效的总层数（含叠层），HUD 用
+function hex_persist_total_stack() {
+    if (hex_persist_count() == 0) return 0;
+    var _n = 0;
+    for (var i = 0; i < array_length(global.hex_state.persist); i++) {
+        _n += global.hex_state.persist[i].stack;
+    }
+    return _n;
 }
 
 /// @function hex_taken_c()
@@ -496,16 +549,18 @@ function hex_hp_mult_for_card(_plant_id) {
 
 /// @function hex_enemy_mult(_kind)
 /// @desc 老鼠属性倍率。_kind = "hp" / "spd" / "atk"
+///       永久词条会一层层累加，这里必须夹逼：老鼠侧没有别的兜底，
+///       一旦叠到几十倍，卡片侧 8 倍攻击的夹逼就完全追不上
 function hex_enemy_mult(_kind) {
     if (!hex_enabled()) return 1.0;
     if (!variable_global_exists("hex_state")) return 1.0;
     var _s = global.hex_state;
     var _v = 1.0;
     switch (_kind) {
-        case "hp":  _v = _s.e_hp;  break;
-        case "spd": _v = _s.e_spd; break;
-        case "atk": _v = _s.e_atk; break;
-        default:    _v = 1.0;      break;
+        case "hp":  _v = clamp(_s.e_hp,  0.30, 4.0); break;
+        case "spd": _v = clamp(_s.e_spd, 0.40, 2.5); break;
+        case "atk": _v = clamp(_s.e_atk, 0.30, 3.0); break;
+        default:    _v = 1.0;                        break;
     }
     return _v * global.pi_enemy_mult;
 }
@@ -516,6 +571,26 @@ function hex_flame_growth() {
     if (!hex_enabled()) return 1.0;
     if (!variable_global_exists("hex_state")) return 1.0;
     return global.hex_state.flame_growth;
+}
+
+/// @function hex_sync_flame_cap()
+/// @desc 把「火苗上限 +X」写进 flame_cap_base。
+///       必须用差值：永久词条每局都会重新并入，直接累加会让上限每进一关涨一次
+function hex_sync_flame_cap() {
+    if (!variable_global_exists("hex_flame_cap_applied")) global.hex_flame_cap_applied = 0;
+
+    // 目标值：海克斯模式取状态里的 flame_cap，其它模式一律 0（= 把加成退回原样）
+    var _want = 0;
+    if (hex_enabled() && variable_global_exists("hex_state") && is_struct(global.hex_state)
+        && variable_struct_exists(global.hex_state, "flame_cap")) {
+        _want = global.hex_state.flame_cap;
+    }
+
+    var _d = _want - global.hex_flame_cap_applied;
+    if (abs(_d) < 0.001) return;
+    if (!variable_global_exists("flame_cap_base")) global.flame_cap_base = 15000;
+    global.flame_cap_base = max(2000, global.flame_cap_base + _d);
+    global.hex_flame_cap_applied = _want;
 }
 
 /// @function hex_enemy_skip_chance()
@@ -864,6 +939,10 @@ function hex_selfcheck() {
         }
         if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) {
             array_push(_err, "hex_state 未建立");
+        } else if (!variable_struct_exists(global.hex_state, "persist")) {
+            array_push(_err, "hex_state 缺少 persist 字段（已解锁词条不会永久生效）");
+        } else if (hex_unlocked_total() > 0 && array_length(global.hex_state.persist) == 0) {
+            array_push(_err, "存档有 " + string(hex_unlocked_total()) + " 条已解锁，本局却一条永久词条都没并入");
         }
         if (hex_taken_count() > hex_cfg().max_hex) {
             array_push(_err, "本局词条数超过上限 " + string(hex_cfg().max_hex));

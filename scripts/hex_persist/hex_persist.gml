@@ -175,3 +175,47 @@ function hex_unlocked_total() {
     if (!variable_struct_exists(global.save_data, "hex_unlocked")) return 0;
     return array_length(global.save_data.hex_unlocked);
 }
+
+/// @function hex_load_collection()
+/// @desc 把存档里「已解锁」的词条并进本局状态，让它们**永久生效**。
+///       每条按 min(取得次数, 词条自带的叠层上限) 叠层，与单局内的叠层规则一致。
+///       不写进 picked：永久条目不占本局 16 条名额、不参与本局记账，单独放 persist。
+///       由 hex_state_init() 在建局时调用，所以每次开局都会重新并入一遍（幂等）。
+/// @return int 实际并入的层数
+function hex_load_collection() {
+    if (!hex_active()) return 0;              // 非海克斯模式 / 测试关卡：一条都不并入
+    if (!variable_global_exists("hex_state")) return 0;
+    if (!is_struct(global.hex_state)) return 0;
+    if (!variable_global_exists("save_data")) return 0;
+
+    hex_ensure_save_fields();
+    var _s = global.hex_state;
+    _s.persist = [];                          // 重建，避免重复并入
+
+    var _n = 0;
+    for (var i = 0; i < array_length(global.save_data.hex_unlocked); i++) {
+        var _e = global.save_data.hex_unlocked[i];
+        if (!is_struct(_e)) continue;
+        if (!variable_struct_exists(_e, "id")) continue;
+        if (!is_string(_e.id)) continue;        // 存档被改坏时不炸
+
+        var _d = hex_get(_e.id);
+        if (is_undefined(_d)) continue;        // 词条已被删掉，老存档里可能还留着
+        if (!_d.impl) continue;
+
+        var _cap = variable_struct_exists(_d, "stack") ? max(1, _d.stack) : 1;
+        var _times = variable_struct_exists(_e, "count") ? _e.count : 1;
+        if (!is_real(_times)) _times = 1;
+        var _stack = min(max(0, floor(_times)), _cap);
+        if (_stack <= 0) continue;
+
+        for (var k = 0; k < _stack; k++) hex_apply_core(_e.id);
+        array_push(_s.persist, { id: _e.id, stack: _stack, tier: _d.tier, form: _d.form });
+        _n += _stack;
+    }
+
+    // 永久层同样施加压迫，否则收藏越多越白嫖
+    hex_pi_recalc();
+    if (_n > 0 && variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
+    return _n;
+}

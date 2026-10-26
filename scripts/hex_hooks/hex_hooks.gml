@@ -55,10 +55,8 @@ function hex_battle_init() {
     // 开局火苗 / 火苗上限（火苗上限走 flame_cap_base，避免被 longzhu 每帧重算覆盖）
     var _s = global.hex_state;
     if (variable_global_exists("flame")) global.flame += _s.flame_start;
-    if (_s.flame_cap != 0) {
-        if (!variable_global_exists("flame_cap_base")) global.flame_cap_base = 15000;
-        global.flame_cap_base = max(2000, global.flame_cap_base + _s.flame_cap);
-    }
+    // 火苗上限用「差值同步」：永久词条每局都会并进来，直接累加会越进关卡越涨
+    hex_sync_flame_cap();
 
     if (!instance_exists(obj_hex_hud)) instance_create_depth(0, 0, -2900, obj_hex_hud);
 

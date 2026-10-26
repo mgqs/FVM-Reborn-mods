@@ -41,6 +41,11 @@ if (tab == 1) {
     draw_set_color(#7E93A8);
     draw_set_halign(fa_left);
     draw_text(tab_x1 + tab_w + 44, (tab_y0 + tab_y1) / 2, "通关后加入[已解锁]");
+} else {
+    draw_set_font(font_hei);
+    draw_set_color(#7E93A8);
+    draw_set_halign(fa_left);
+    draw_text(tab_x1 + tab_w + 44, (tab_y0 + tab_y1) / 2, "已解锁的词条永久生效");
 }
 
 // 视口背景
@@ -106,11 +111,14 @@ if (surface_exists(view_surf)) {
         draw_text(view_w - 18, _ry + 56, _row.enemy_desc);
         draw_set_halign(fa_left);
 
-        // 右侧次数
-        if (_row.times > 0) {
+        // 右侧标记：永久生效 / 本局叠层数
+        var _tag = "";
+        if (variable_struct_exists(_row, "persist") && _row.persist) _tag = "永久";
+        else if (_row.times > 0) _tag = "x" + string(_row.times);
+        if (_tag != "") {
             draw_set_color(#9BB3C9);
             draw_set_halign(fa_right);
-            draw_text(view_w - 16, _ry + 24, "x" + string(_row.times));
+            draw_text(view_w - 16, _ry + 24, _tag);
             draw_set_halign(fa_left);
         }
     }

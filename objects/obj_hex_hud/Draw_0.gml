@@ -86,7 +86,10 @@ var _by = bond_by;
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(font_yuan);
-hex_hud_text(_bx, _by - 26, "共鸣", make_color_rgb(170, 255, 190));
+var _bond_head = "共鸣";
+var _pn = hex_persist_count();
+if (_pn > 0) _bond_head += "    永久 " + string(_pn) + " 种";
+hex_hud_text(_bx, _by - 26, _bond_head, make_color_rgb(170, 255, 190));
 
 for (var i = 0; i < array_length(bond_rows); i++) {
     var _row = bond_rows[i];

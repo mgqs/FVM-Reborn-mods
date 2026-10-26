@@ -60,6 +60,20 @@ function hex_list_build() {
         }
     } else {
         if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
+            // 先列永久生效的（来自存档「已解锁」），再列本局新抽到的
+            if (variable_struct_exists(global.hex_state, "persist")) {
+                for (var q = 0; q < array_length(global.hex_state.persist); q++) {
+                    var _pq = global.hex_state.persist[q];
+                    var _dq = hex_get(_pq.id);
+                    if (is_undefined(_dq)) continue;
+                    array_push(rows, {
+                        id: _pq.id, name: _dq.name, tier: _dq.tier, form: _dq.form,
+                        card_desc: _dq.card_desc, enemy_desc: _dq.enemy_desc,
+                        unlocked: true, times: _pq.stack, persist: true, impl: _dq.impl,
+                        approx: (variable_struct_exists(_dq, "approx") && _dq.approx)
+                    });
+                }
+            }
             for (var j = 0; j < array_length(global.hex_state.picked); j++) {
                 var _p = global.hex_state.picked[j];
                 var _d2 = hex_get(_p.id);
