@@ -773,9 +773,9 @@ else if package_button_select == 4{
 		var _hid = _tc_list[hover_transfer_index]
 		var _hp = transfer_credit_parse(_hid)
 		if (!is_undefined(_hp)) {
+			// 不写「数量」：凭证上限按最大持有 1（2026-10-26 用户），格子里右下角已经有数字
 			var _tt = transfer_credit_name(_hp.card_id, _hp.shape) + "\n"
-				+ "转职凭证：在合成屋-卡片转职中使用\n"
-				+ "数量：" + string(get_material_amount(_hid))
+				+ "转职凭证：在合成屋-卡片转职中使用"
 			draw_set_font(font_yuan)
 			tooltip_set(mouse_x - 15, mouse_y - 15, _tt, -1)
 		}

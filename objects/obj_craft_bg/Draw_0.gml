@@ -12,10 +12,138 @@ draw_sprite_ext(spr_craft_bg_left,  0, x, y, image_xscale, image_yscale, 0, c_wh
 draw_sprite_ext(spr_craft_bg_right, 0, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
 draw_sprite_ext(spr_craft_bg_bar,   0, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
 
-// 顶部页签：卡片宝石 / 食灵融合（2026-10-23 加，素材来自合成屋素材包 S964 / S979）
-// 精灵 2 帧：0 = 亮（选中），1 = 暗（未选中）
+// 顶部页签：卡片宝石 / 神级进化 / 食灵融合（精灵 2 帧：0 = 亮（选中）/ 1 = 暗）
 draw_sprite_ext(spr_craft_tab_cardgem, craft_top_tab == 0 ? 0 : 1, tab_cardgem_x, tab_cardgem_y, craft_tab_scale, craft_tab_scale, 0, c_white, 1)
+draw_sprite_ext(spr_craft_tab_evo,     craft_top_tab == 3 ? 0 : 1, tab_evo_x,     tab_evo_y,     craft_tab_scale, craft_tab_scale, 0, c_white, 1)
 draw_sprite_ext(spr_craft_tab_fusion,  craft_top_tab == 1 ? 0 : 1, tab_fusion_x,  tab_fusion_y,  craft_tab_scale, craft_tab_scale, 0, c_white, 1)
+
+// ── 神级进化页（craft_top_tab == 3，2026-10-26）──
+if (craft_top_tab == 3) {
+	if (evo_list_dirty) evo_rebuild();
+	var _chk_e = evo_check();
+
+	// ① 左侧「金卡进化」竖排按钮（神级进化页目前只有这一个子页）
+	draw_sprite_ext(spr_evo_left_on, 0, evo_left_x, evo_left_y, 1.8, 1.8, 0, c_white, 1);
+
+	// ② 三个槽：卡1 / 卡2 / 进化凭证
+	for (var _i = 0; _i < 3; _i++) {
+		var _cx = evo_slot_x[_i];
+		var _cy = evo_slot_y;
+		if (_i < 2) {
+			draw_sprite_ext(spr_evo_slot_card, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 1);
+			var _cid = evo_cards[_i];
+			if (_cid != "") {
+				var _m = evo_meta[$ _cid];
+				if (variable_struct_exists(evo_meta, _cid)) {
+					var _ok = (_m.shape >= evo_need_shape);
+					if (!_ok) shader_set(sh_fusion_gray);
+					draw_sprite_ext(spr_slot, 0, _cx, _cy - 3, 0.25 * 1.8, 0.25 * 1.8, 0, c_white, 1);
+					if (_m.sprite != -1) draw_sprite_ext(_m.sprite, 0, _cx, _cy + 24, 0.7 * 1.8, 0.7 * 1.8, 0, c_white, 1);
+					if (!_ok) shader_reset();
+					if (_m.level > 0) draw_sprite_ext(spr_star_slot, _m.level - 1, _cx - 42, _cy - 57, 1.1, 1.1, 0, c_white, 1);
+				}
+			} else {
+				draw_sprite_ext(spr_craft_slot_text, 0, _cx, _cy - 3, 1.5, 1.5, 0, c_white, 0.75);
+			}
+		} else {
+			// 进化凭证槽
+			draw_sprite_ext(spr_evo_slot_prop, 0, _cx, _cy + 5, 1.8, 1.8, 0, c_white, 1);
+			if (evo_target != "") {
+				var _has = evo_has_credit(evo_target);
+				if (!_has) shader_set(sh_fusion_gray);
+				// 统一走「底板 + 卡面」绘制（2026-10-26 用户：不用按卡注册的单张凭证图标）
+				draw_sprite_ext(spr_evo_credit_bg, 0, _cx, _cy + 5, 74 / 44, 74 / 44, 0, c_white, 1);
+				var _m2 = deck_get_card_data(evo_target, 0);
+				if (_m2 != noone && ds_map_exists(_m2, "sprite")) {
+					draw_sprite_ext(_m2[? "sprite"], 0, _cx, _cy + 12, 0.42 * (74 / 44), 0.42 * (74 / 44), 0, c_white, 1);
+				}
+				if (!_has) shader_reset();
+			}
+		}
+	}
+
+	// ③ 下箭头
+	draw_sprite_ext(spr_evo_arrow, 0, evo_arrow_x, evo_arrow_y, 1.8, 1.8, 0, c_white, 1);
+
+	// ④ 结果槽：有目标 → 直接画能进化成的金卡；没有 → 问号
+	draw_sprite_ext(spr_evo_slot_result, 0, evo_res_x, evo_res_y, 1.8, 1.8, 0, c_white, 1);
+	if (evo_target != "") {
+		draw_sprite_ext(spr_slot_1, 0, evo_res_x, evo_res_y - 3, 0.25 * 1.8, 0.25 * 1.8, 0, c_white, 1);
+		var _mt = deck_get_card_data(evo_target, 0);
+		if (_mt != noone && ds_map_exists(_mt, "sprite")) {
+			draw_sprite_ext(_mt[? "sprite"], 0, evo_res_x, evo_res_y + 24, 0.7 * 1.8, 0.7 * 1.8, 0, c_white, 1);
+		}
+	} else {
+		draw_sprite_ext(spr_evo_question, 0, evo_res_x, evo_res_y, 2.2, 2.2, 0, c_white, 1);
+	}
+
+	// ⑤ 进化按钮 + 星级说明
+	var _bs = 1.8 * ((evo_btn_press > 0) ? 0.96 : 1);
+	draw_sprite_ext(spr_evo_btn, 0, evo_btn_x, evo_btn_y, _bs, _bs, 0, c_white, 1);
+	draw_set_font(font_yuan);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_colour(c_white);
+	draw_text(evo_btn_x, evo_btn_y + 52, "金卡星级继承两张一转卡中的最高星级");
+
+	// ⑥ 右侧防御卡列表（只列可进化系列里已拥有的卡）
+	var _n = array_length(evo_list);
+	evo_hover_card = -1;
+	for (var _r = 0; _r < 8; _r++) {
+		for (var _c = 0; _c < 7; _c++) {
+			var _ci = _r * 7 + _c;
+			var _gx = evo_list_x + _c * 84;
+			var _gy = evo_list_y + _r * 96;
+			draw_sprite_ext(spr_package_slot_bg, 0, _gx, _gy, 0.9, 0.9, 0, c_white, 1);
+			if (_ci >= _n) continue;
+			var _cid2 = evo_list[_ci];
+			if (_cid2 == evo_cards[0] || _cid2 == evo_cards[1]) continue;   // 进槽的原位留空
+			var _m3 = evo_meta[$ _cid2];
+			if (variable_struct_exists(evo_meta, _cid2)) {
+				var _ready = (_m3.shape >= evo_need_shape);
+				if (!_ready) shader_set(sh_fusion_gray);
+				draw_sprite_ext(spr_slot, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
+				if (_m3.sprite != -1) draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
+				if (!_ready) shader_reset();
+				draw_set_font(font_pixel);
+				draw_set_colour(c_black);
+				draw_set_halign(fa_center);
+				draw_set_valign(fa_bottom);
+				draw_text(_gx, _gy + 37, _m3.cost);
+				if (_m3.level > 0) draw_sprite_ext(spr_star_slot, _m3.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, c_white, 1);
+			}
+			if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) evo_hover_card = _ci;
+		}
+	}
+	if (evo_hover_card != -1) {
+		draw_set_font(font_yuan);
+		tooltip_set(mouse_x - 15, mouse_y - 15, "点击放入进化槽", -1);
+	}
+
+	// ⑦ 余额（金币，与转职页同一位置）
+	draw_set_font(font_number);
+	draw_set_halign(fa_right);
+	draw_set_valign(fa_middle);
+	draw_set_colour(c_yellow);
+	draw_text(x + 758, y + 473, string(global.save_data.player.gold));
+
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_set_colour(c_white);
+
+	// ⑧ 进化特效（55 帧，逐帧播；素材原点左上角，按画布中心对齐结果槽）
+	if (evo_fx) {
+		var _ff = clamp(floor(evo_fx_t), 0, evo_fx_frames - 1);
+		var _fw = sprite_get_width(spr_evo_fx) * 1.8;
+		var _fh = sprite_get_height(spr_evo_fx) * 1.8;
+		draw_sprite_ext(spr_evo_fx, _ff, evo_res_x - _fw * 0.5, evo_res_y - _fh * 0.5,
+			1.8, 1.8, 0, c_white, 1);
+	}
+
+	tooltip_draw();
+	panel_anim_end_parts(id, craft_parts, 260);
+	exit;
+}
 
 // ── 卡片转职页（craft_top_tab == 2，2026-10-25）──
 // 几何/状态全来自 Create_0 的 tg_*，这里只管画
@@ -127,7 +255,7 @@ if (craft_top_tab == 2) {
 	//    不做「不可转就变灰」的暗色滤镜（用户 2026-10-25：看着怪怪的）——
 	//    永远按原色画，条件不满足时点它由 tg_do() 弹 reason 提示
 	//    按钮下方**不再写「转职成功/失败」飘字**（用户 2026-10-26：结果只走屏幕中上的 show_notice）；
-	//    tg_result / tg_result_t 两个状态保留着（以后接演出动画要用），只是不在这里画字
+	//    结果只走屏幕中上的 show_notice（2026-10-26 已清掉按钮下的飘字状态）
 	var _bsc = 1.8 * ((tg_btn_press > 0) ? 0.96 : 1);
 	draw_sprite_ext(spr_transfer_btn, 0, tg_btn_x, tg_btn_y, _bsc, _bsc, 0, c_white, 1);
 
@@ -565,6 +693,7 @@ if (craft_top_tab == 1) {
 
 	// 顶部页签：补在最上层，免得被整窗底图挡掉（0 = 亮 / 1 = 暗）
 	draw_sprite_ext(spr_craft_tab_cardgem, 1, tab_cardgem_x, tab_cardgem_y, craft_tab_scale, craft_tab_scale, 0, c_white, 1);
+	draw_sprite_ext(spr_craft_tab_evo,     1, tab_evo_x,     tab_evo_y,     craft_tab_scale, craft_tab_scale, 0, c_white, 1);
 	draw_sprite_ext(spr_craft_tab_fusion, 0, tab_fusion_x, tab_fusion_y, craft_tab_scale, craft_tab_scale, 0, c_white, 1);
 
 	if (!fusion_confirm) tooltip_draw();

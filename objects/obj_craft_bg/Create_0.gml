@@ -42,11 +42,15 @@ craft_sort_order = []
 // 位置按 928 整窗空间算（左上角 = (x-829, y-524)，1.8 倍）：
 //   整窗上沿那条蓝色空带是 y28~51（「合成屋」横幅左边那段），页签就坐在这条带子里，
 //   高度 1.35 倍（119x31 → 161x42）正好等于带高，右侧让开横幅（928 x288 起）
+// 顶部页签（2026-10-26 改成 3 个，顺序 = 卡片宝石 / 神级进化 / 食灵融合）
+// 值：0 = 卡片宝石（强化面板），1 = 食灵融合，2 = 卡片转职（左侧按钮进），3 = 神级进化（金卡进化）
 craft_top_tab = 0
 craft_tab_scale = 1.35
 tab_cardgem_x = x - 829 + 16 * 1.8
 tab_cardgem_y = y - 524 + 28 * 1.8
-tab_fusion_x = tab_cardgem_x + 119 * craft_tab_scale + 10
+tab_evo_x = tab_cardgem_x + 119 * craft_tab_scale + 10
+tab_evo_y = tab_cardgem_y
+tab_fusion_x = tab_evo_x + 119 * craft_tab_scale + 10
 tab_fusion_y = tab_cardgem_y
 craft_tab_hover = -1
 
@@ -733,8 +737,6 @@ tg_assure = false                             // 保险金开关（独立于强�
 tg_hover_card = -1
 tg_btn_hover = false
 tg_btn_press = 0
-tg_result = 0                                 // 0 无 / 1 成功 / 2 失败（状态位，按钮下的飘字已去掉）
-tg_result_t = 0
 
 // ── 转职确认窗 + 成功特效（2026-10-26 用户定流程）──
 // 点「转职」→ 先弹确认窗（文案见 tg_confirm_draw）→ 确定后掷骰：
@@ -803,34 +805,24 @@ function tg_target_shape(_id){
 }
 
 /// @func tg_gold_cost(shape) 转职金币
-/// 🔴 **占位值 5000 / 全档统一**（2026-10-26 用户：金额待定，先全改 5k 方便测试）
-///    真数值定了只改这里；原版锚点是一转 80000 / 二转 200000
+/// 🔴 2026-10-26 用户定价：一转 3,000 / 二转 15,000
+///    金卡三/四/终转本期没有凭证可拿（§15-D2），暂按「三转=一转价、四转/终转=二转价」占位，等用户给值
 function tg_gold_cost(_shape){
-    return 5000;
+    if (_shape == 1 || _shape == 3) return 3000;
+    return 15000;
 }
 
 /// @func tg_assure_cost(shape) 保险金
-/// 🔴 **占位值 5000 / 全档统一**（2026-10-26 用户：金额待定，先全改 5k 方便测试）
-///    真数值定了只改这里；原版点券锚点 500 / 5000 / 7500（之前试过 ×100、×10，都已作废）
+/// 🔴 2026-10-26 用户定价：一转 7,500 / 二转 50,000（货币 = 金币）
+///    金卡档同上，暂按一/二转价占位
 function tg_assure_cost(_shape){
-    return 5000;
+    if (_shape == 1 || _shape == 3) return 7500;
+    return 50000;
 }
 
 function tg_rate(_shape){
     if (_shape == 1 || _shape == 3) return 30;
     return 20;
-}
-
-/// @func tg_rank(id) 列表排序权重：普卡 0 / 金卡 1 / 融合卡 2（与强化页同口径）
-///       ⚠️ 2026-10-26 起**没有调用点**：tg_rebuild() 改成「普卡桶 + 金卡桶」直接拼，
-///          不再走排序（融合卡本来就过滤）。留着是为了说明排序口径，别的页面要复用可以调。
-function tg_rank(_id){
-    if (is_fusion_card(_id)) return 2;
-    var _d = deck_get_card_data(_id, 0);
-    if (_d != noone && ds_exists(_d, ds_type_map) && ds_map_exists(_d, "is_gold")){
-        if (_d[? "is_gold"] == 1) return 1;
-    }
-    return 0;
 }
 
 /// @func tg_meta_get(id) 取卡的元数据（shape / level / is_gold / sprite / cost）；没建过 → undefined
@@ -841,7 +833,7 @@ function tg_meta_get(_id){
 
 /// @func tg_rebuild() 重建右侧列表 + 卡元数据 —— **只在 tg_list_dirty 时调，不要每帧调**
 ///       2026-10-26 性能修（用户：卡多了转职页特别卡）：
-///         旧版每帧调 tg_card_list() → 插入排序，每次比较都走 tg_rank() → is_fusion_card()
+///         旧版每帧重建列表并做插入排序，每次比较都要查 is_fusion_card()
 ///         + deck_get_card_data()（后者是**线性扫 global.player_deck**）。188 张卡时约
 ///         3~7 百万次 ds_list 访问/帧，所以整页卡成幻灯片。
 ///       新版：
@@ -954,17 +946,14 @@ function tg_do(){
         };
         tg_fx = true;
         tg_fx_t = 0;
-        tg_result = 1;
-    }
+        }
     else{
         // 失败是即时的（没有动画）：钱照扣；保险金开着则凭证保住，没开就连凭证一起扣
         global.save_data.player.gold -= _r.gold + _r.assure;
         if (!tg_assure) add_material_amount(transfer_credit_id(_id, _shape), -1);
-        tg_result = 2;
         tg_notice("不够好运，转职失败");
         save_file(global.save_slot);
     }
-    tg_result_t = 150;
     audio_play_sound(snd_button, 0, 0);
 }
 
@@ -982,6 +971,190 @@ function tg_fx_commit(){
     tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
     tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
     save_file(global.save_slot);
+}
+
+// ─────────────────────────────────────────────────────────────
+// 神级进化页（craft_top_tab == 3）：金卡进化 2026-10-26
+//   布局照原版截图：三槽（前置卡1 / 前置卡2 / 进化凭证）→ ▼ → 结果槽 → 进化按钮
+//   数据：可进化关系 = fusion_get_prerequisites() 里「有前置」的金卡条目（不另建表）
+//   结果槽：**不管有没有进化都提前画出能进化成的金卡**（用户 2026-10-26 口径）
+// ─────────────────────────────────────────────────────────────
+evo_slot_x  = [x - 455, x - 305, x - 155]      // 卡1 / 卡2 / 进化凭证
+evo_slot_y  = y - 40
+evo_arrow_x = x - 305
+evo_arrow_y = y + 34
+evo_res_x   = x - 305
+evo_res_y   = y + 118
+evo_btn_x   = x - 305
+evo_btn_y   = y + 216
+evo_left_x  = x - 662                          // 左侧「金卡进化」竖排按钮
+evo_left_y  = y - 30
+evo_list_x  = x + 196                          // 右侧防御卡列表（与强化页同一套 84×96 / 7 列）
+evo_list_y  = y - 321
+evo_cards   = ["", ""]                         // 两个前置卡槽
+evo_target  = ""                               // 当前能进化成的金卡
+evo_hover_card = -1
+evo_btn_press  = 0
+evo_fx      = false
+evo_fx_t    = 0
+evo_fx_frames = 55                             // spr_evo_fx 共 55 帧
+evo_fx_speed  = 0.5
+evo_fx_pending = undefined
+evo_list    = []
+evo_meta    = {}
+evo_list_dirty = true
+evo_need_shape = 1        // 前置卡最低形态：原版「两张一转卡」（要改成 2 就与诸神商店前置一致）
+
+/// @func evo_prereq_table() 可进化关系表 {金卡id: [前置卡id, …]}（直接取诸神商店/抽卡那张前置表）
+///     ⚠️ 每帧会查好几次 → 第一次算完缓存到 evo_table，之后直接读（切页签/进化后不用刷，算的是注册表不是存档）
+function evo_prereq_table(){
+    if (variable_instance_exists(id, "evo_table")) return evo_table;
+    var _t = fusion_get_prerequisites();
+    var _out = {};
+    var _names = variable_struct_get_names(_t);
+    for (var _i = 0; _i < array_length(_names); _i++){
+        var _v = _t[$ _names[_i]];
+        if (is_array(_v) && array_length(_v) > 0) _out[$ _names[_i]] = _v;
+    }
+    evo_table = _out;
+    return _out;
+}
+
+/// @func evo_find_target(a, b) 两张前置卡 → 对应的金卡 id（查不到返回 ""）
+function evo_find_target(_a, _b){
+    if (_a == "" || _b == "" || _a == _b) return "";
+    var _t = evo_prereq_table();
+    var _names = variable_struct_get_names(_t);
+    for (var _i = 0; _i < array_length(_names); _i++){
+        var _k = _names[_i];
+        var _arr = _t[$ _k];
+        if (array_length(_arr) != 2) continue;
+        if ((_arr[0] == _a && _arr[1] == _b) || (_arr[0] == _b && _arr[1] == _a)) return _k;
+    }
+    return "";
+}
+
+/// @func evo_find_target_one(a) 只有一张前置的金卡（表里有些条目只配 1 张）
+function evo_find_target_one(_a){
+    if (_a == "") return "";
+    var _t = evo_prereq_table();
+    var _names = variable_struct_get_names(_t);
+    for (var _i = 0; _i < array_length(_names); _i++){
+        var _k = _names[_i];
+        var _arr = _t[$ _k];
+        if (array_length(_arr) == 1 && _arr[0] == _a) return _k;
+    }
+    return "";
+}
+
+/// @func evo_credit_id(target) 进化凭证的材质 id（一张金卡一种）
+function evo_credit_id(_target){ return "evo_credit_" + string(_target); }
+
+/// @func evo_has_credit(target) 有没有这张金卡的进化凭证（debug 模式视为有，方便测试）
+function evo_has_credit(_target){
+    if (_target == "") return false;
+    if (global.debug) return true;
+    return get_material_amount(evo_credit_id(_target)) > 0;
+}
+
+/// @func evo_card_ready(id) 前置卡是否达到要求形态（默认一转）
+function evo_card_ready(_id){
+    if (_id == "") return false;
+    if (!is_card_unlocked(_id)) return false;
+    return get_card_info_simple(_id).max_shape >= evo_need_shape;
+}
+
+/// @func evo_refresh() 重算 evo_target（两槽都空 / 只有一张 都算一遍）
+function evo_refresh(){
+    evo_target = "";
+    if (evo_cards[0] == "") return;
+    if (evo_cards[1] != "") evo_target = evo_find_target(evo_cards[0], evo_cards[1]);
+    else evo_target = evo_find_target_one(evo_cards[0]);
+}
+
+/// @func evo_check() 能不能进化 → { ok, reason, target }
+function evo_check(){
+    var _r = { ok:false, reason:"", target:"" };
+    evo_refresh();
+    _r.target = evo_target;
+    if (evo_cards[0] == ""){ _r.reason = "先选一张卡"; return _r; }
+    if (evo_target == ""){ _r.reason = "这两张卡无法进化"; return _r; }
+    for (var _i = 0; _i < 2; _i++){
+        var _c = evo_cards[_i];
+        if (_c == "") continue;
+        if (is_card_unlocked(evo_target)){ _r.reason = "已经拥有这张金卡"; return _r; }
+        if (!is_card_unlocked(_c)){ _r.reason = "没有这张卡"; return _r; }
+        if (get_card_info_simple(_c).max_shape < evo_need_shape){
+            _r.reason = "前置卡形态不足"; return _r;
+        }
+    }
+    if (!evo_has_credit(evo_target)){ _r.reason = "缺少进化凭证"; return _r; }
+    _r.ok = true;
+    return _r;
+}
+
+/// @func evo_do() 进化：成功 → 播 55 帧特效，播完才落账（与转职同一套「延迟结算」）
+function evo_do(){
+    var _r = evo_check();
+    if (!_r.ok){ show_notice(_r.reason, 70); return; }
+    evo_fx_pending = { target: _r.target, a: evo_cards[0], b: evo_cards[1] };
+    evo_fx = true;
+    evo_fx_t = 0;
+    evo_btn_press = 8;
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @func evo_commit() 特效播完：扣凭证 → 解锁金卡 → 清槽
+function evo_commit(){
+    var _p = evo_fx_pending;
+    evo_fx_pending = undefined;
+    if (is_undefined(_p)) return;
+    var _lvl = global.save_data.unlocked_items.max_skill_level;
+    // 星级继承：取两张前置卡里更高的 max_level（原版说明「金卡星级继承两张一转卡中的最高星级」）
+    var _star = 0;
+    for (var _i = 0; _i < 2; _i++){
+        var _c = (_i == 0) ? _p.a : _p.b;
+        if (_c == "") continue;
+        if (is_card_unlocked(_c)) _star = max(_star, get_card_info_simple(_c).max_level);
+    }
+    if (!global.debug) add_material_amount(evo_credit_id(_p.target), -1);
+    unlock_card(_p.target, _star, 0, _lvl);
+    evo_cards = ["", ""];
+    evo_target = "";
+    evo_list_dirty = true;
+    if (variable_global_exists("notice_list")) global.notice_list = [];
+    show_notice("进化成功！", 80);
+    save_file(global.save_slot);
+}
+
+/// @func evo_rebuild() 右侧列表：只列「可进化系列」里已拥有的卡（不在系列里的不画）
+function evo_rebuild(){
+    evo_meta = {};
+    var _out = [];
+    var _uc = global.save_data.unlocked_cards;
+    var _t = evo_prereq_table();
+    var _series = {};
+    var _names = variable_struct_get_names(_t);
+    for (var _i = 0; _i < array_length(_names); _i++){
+        var _arr = _t[$ _names[_i]];
+        for (var _j = 0; _j < array_length(_arr); _j++) _series[$ _arr[_j]] = true;
+    }
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        var _id = _uc[_i].id;
+        if (!variable_struct_exists(_series, _id)) continue;
+        var _d = deck_get_card_data(_id, _uc[_i].shape);
+        if (_d != noone){
+            evo_meta[$ _id] = {
+                shape:  _uc[_i].shape,
+                level:  _uc[_i].max_level,
+                sprite: ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                cost:   ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+            };
+        }
+        array_push(_out, _id);
+    }
+    evo_list = _out;
+    evo_list_dirty = false;
 }
 
 panel_anim_init(id, 0.28, 0.18, 260)

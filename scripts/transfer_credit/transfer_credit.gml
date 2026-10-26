@@ -104,13 +104,6 @@ function transfer_credit_name_from_id(_id) {
     return transfer_credit_name(_p.card_id, _p.shape);
 }
 
-/// @function transfer_credit_description(card_id, shape)
-function transfer_credit_description(_card_id, _shape) {
-    return transfer_credit_name(_card_id, _shape) + "\n"
-        + "转职凭证：在合成屋-卡片转职中使用。\n"
-        + "持有数量：" + string(get_material_amount(transfer_credit_id(_card_id, _shape)));
-}
-
 /// @function transfer_credit_bg_sprite(shape, slot)
 /// @desc slot: 0/A = A 底板，1/B = B 底板，2/C = C 底板（一转只有 A/B）
 function transfer_credit_bg_sprite(_shape, _slot) {

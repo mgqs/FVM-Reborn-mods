@@ -9,8 +9,6 @@ if instance_exists(obj_craft_bg){
 		if (obj_craft_bg.craft_top_tab != 2){
 			obj_craft_bg.craft_top_tab = 2
 			obj_craft_bg.tg_card = ""
-			obj_craft_bg.tg_result = 0
-			obj_craft_bg.tg_result_t = 0
 			global.audio.play(snd_button,0,0)
 		}
 		exit
@@ -19,8 +17,6 @@ if instance_exists(obj_craft_bg){
 	if (obj_craft_bg.craft_top_tab != 0){
 		obj_craft_bg.craft_top_tab = 0
 		obj_craft_bg.tg_card = ""
-		obj_craft_bg.tg_result = 0
-		obj_craft_bg.tg_result_t = 0
 	}
 	if obj_craft_bg.button_select != button_index{
 		obj_craft_bg.button_select = button_index
