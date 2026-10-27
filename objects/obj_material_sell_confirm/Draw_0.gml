@@ -11,12 +11,20 @@ draw_set_font(font_yuan)
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 draw_set_color(c_white)
-draw_text(x, y + layout_title_y, "出售材料")
+var _words = credit_trade_ui_words(mode, trade_credit_id != "")
+draw_text(x, y + layout_title_y, _words.title)
 
-// ===== 材料图标 =====
-var _mat_spr = sell_material_spr
-var _mat_idx = sell_material_icon
-draw_sprite_ext(_mat_spr, _mat_idx, x + layout_icon_x, y + layout_icon_y, layout_icon_scale, layout_icon_scale, 0, c_white, 1)
+// ===== 图标 =====
+if (trade_credit_id != "") {
+    // 转职凭证：底板 + 卡面，跟背包 / 商店 / 转职槽同一套画法（吃左上角 + 边长）
+    var _csz = 64
+    transfer_credit_draw_id(x + layout_icon_x - _csz * 0.5, y + layout_icon_y - _csz * 0.5,
+        trade_credit_id, _csz, 0, 1)
+} else {
+    var _mat_spr = sell_material_spr
+    var _mat_idx = sell_material_icon
+    draw_sprite_ext(_mat_spr, _mat_idx, x + layout_icon_x, y + layout_icon_y, layout_icon_scale, layout_icon_scale, 0, c_white, 1)
+}
 
 // ===== 材料信息 =====
 draw_set_halign(fa_left)
@@ -26,21 +34,42 @@ draw_set_valign(fa_middle)
 draw_set_color(c_white)
 draw_text(x + layout_text_x, y + layout_name_y, sell_material_name)
 
-// 持有数量
+// 持有数量（购买时 max_amount 是「买得起几个」，持有数另算 → held_amount）
 draw_set_color(c_yellow)
-draw_text(x + layout_text_x, y + layout_amount_y, "持有：" + string(max_amount))
+var _held = (held_amount >= 0) ? held_amount : max_amount
+draw_text(x + layout_text_x, y + layout_amount_y, "持有：" + string(_held))
 
 // 单价
-draw_set_color(c_yellow)
-draw_text(x + layout_text_x, y + layout_price_y, "单价：" + string(unit_price) + "G")
+//   凭证（购买 / 回收）：跟商店价格行同款「白字 + 黑描边 + 模拟加粗」
+//   卖材料：保持原来的黄字 + G
+if (trade_credit_id != "") {
+    var _ptxt = "单价：" + string(unit_price) + unit_suffix
+    var _pfs  = 1.0
+    draw_set_font(font_yuan)
+    draw_set_halign(fa_left)
+    draw_set_valign(fa_middle)
+    draw_set_colour(c_black)
+    for (var _oy = -1; _oy <= 1; _oy++) {
+        for (var _ox = -1; _ox <= 1; _ox++) {
+            if (_ox == 0 && _oy == 0) continue
+            draw_text_transformed(x + layout_text_x + _ox, y + layout_price_y + _oy, _ptxt, _pfs, _pfs, 0)
+        }
+    }
+    draw_set_colour(c_white)
+    draw_text_transformed(x + layout_text_x, y + layout_price_y, _ptxt, _pfs, _pfs, 0)
+    draw_text_transformed(x + layout_text_x + 0.7, y + layout_price_y, _ptxt, _pfs, _pfs, 0)
+} else {
+    draw_set_color(c_yellow)
+    draw_text(x + layout_text_x, y + layout_price_y, "单价：" + string(unit_price) + unit_suffix)
+}
 
-// ===== 出售数量输入区 =====
-// 标签在输入框左侧
+// ===== 数量输入区 =====
+// 标签在输入框左侧（文案来自 credit_trade_ui_words）
 draw_set_halign(fa_right)
 draw_set_valign(fa_middle)
 draw_set_color(c_white)
 draw_set_font(font_yuan)
-draw_text(x - layout_input_w / 2 - 8, y + layout_input_y, "出售数量")
+draw_text(x - layout_input_w / 2 - 8, y + layout_input_y, _words.qty)
 
 // 输入框背景
 var _input_x = x - layout_input_w / 2
@@ -66,7 +95,7 @@ draw_text(x, y + layout_input_y, _display_text + _cursor)
 draw_set_font(font_yuan)
 draw_set_color(c_yellow)
 var _total = input_quantity * unit_price
-draw_text(x, y + layout_total_y, "总计：" + string(_total) + "G")
+draw_text(x, y + layout_total_y, "总计：" + string(_total) + unit_suffix)
 
 // ===== 按钮 =====
 for (var i = 0; i < array_length(buttons); i++) {

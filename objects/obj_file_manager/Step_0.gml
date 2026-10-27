@@ -27,6 +27,12 @@ var _ime_typing_count = 0;
 with (obj_text_input) {
     if (active) _ime_typing_count += 1;
 }
+// 通用输入框 SearchBox 也算「正在输入」（2026-10-27 加：合成屋商店的凭证搜索用它）
+//   不加这条的话，本对象每 60 帧会把 IME 重新禁掉 → 搜索框打不出中文，
+//   而凭证名全是中文，等于搜索功能废掉
+with (SearchBox) {
+    if (visible && state.focused) _ime_typing_count += 1;
+}
 var _ime_typing = (_ime_typing_count > 0);
 
 if (_ime_typing != ime_was_typing) {

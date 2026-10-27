@@ -20,8 +20,8 @@ else if shape == 2{
 //   14 .. 19  原地起跳
 //   20        落地撞击（结算帧）
 //   21 .. 26  冲击水花 → 回到待机姿态（13 帧 = 攻击段总长）
-idle_anim = 13;
-attack_anim = 13;
+idle_anim = 10;
+attack_anim = 16;
 flash_speed = 6;
 
 // ========== 椰子果机制 ==========

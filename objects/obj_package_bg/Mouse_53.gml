@@ -76,3 +76,26 @@ else if package_button_select == 3{
 		}
 	}
 }
+
+// 凭证页（第 4 页签）：点凭证格子 → 回收（2026-10-27；统一 500 威望/个）
+//   单价 / 规则 / 窗字段全在 scripts/transfer_credit：credit_trade_open_recycle + transfer_credit_recycle
+//   这里只负责「点到哪个凭证」；进化凭证（evo）不是转职凭证，不回收
+else if package_button_select == 4{
+	if not is_submenu_opened{
+		if hover_transfer_index != -1{
+			var _tab_it = transfer_credit_tab_collect()
+			var _items_it = _tab_it.items
+			if hover_transfer_index < array_length(_items_it){
+				var _it = _items_it[hover_transfer_index]
+				if _it.kind == "transfer"{
+					global.audio.play(snd_button,0,0)
+					credit_trade_open_recycle(_it.id, _it.amount, depth-5)
+					is_submenu_opened = true
+				}
+				else{
+					show_notice("进化凭证不能回收", 60)
+				}
+			}
+		}
+	}
+}

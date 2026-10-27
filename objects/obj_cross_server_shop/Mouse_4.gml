@@ -1,6 +1,22 @@
 // Close button at bottom-right.
 if (is_closing) exit;
 
+// 购买确认窗开着 → 只处理它的两个按钮，其它交互全锁（2026-10-28）
+if (confirm_id != ""){
+    if (mouse_check_button_pressed(mb_left)){
+        var _r0 = cross_shop_confirm_rect(0);
+        var _r1 = cross_shop_confirm_rect(1);
+        if (point_in_rectangle(mouse_x, mouse_y, _r0[0], _r0[1], _r0[2], _r0[3])){
+            cross_shop_buy_do();                      // 确定：扣勋章 + 发货
+        }
+        else if (point_in_rectangle(mouse_x, mouse_y, _r1[0], _r1[1], _r1[2], _r1[3])){
+            confirm_id = "";                          // 取消
+            audio_play_sound(snd_button, 0, 0);
+        }
+    }
+    exit;
+}
+
 if (point_in_rectangle(mouse_x, mouse_y, x + 680, y + 430, x + 800, y + 550)) {
     audio_play_sound(snd_button, 0, 0);
     // Defer teardown until this mouse event has finished dispatching. This
@@ -53,13 +69,16 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _prerequisite_met = true;
     var _required_gem_id = "";
 
-    // 抽卡模式/欧皇模式/随机礼盒模式：禁止购买跨服商店商品
-    if (is_eternal_gacha_mode() || is_random_gift_mode()) {
-        if (is_random_gift_mode()) {
-            show_notice("随机礼盒模式无法使用跨服商店", 60);
-        } else {
-            show_notice("抽卡模式无法使用跨服商店", 60);
-        }
+    // 抽卡 / 欧皇模式：**一转·二转凭证照常可买**，其余（卡本体 / 武器 / 宝石）仍禁买；
+    //   随机礼盒模式整店禁买（2026-10-28 用户口径）
+    //   跨服黄金页的一/二转卖的就是转职凭证（card_shape > 0），跟威望商店、诸神的凭证一致
+    var _is_credit = (_goods_type == "card" && _card_shape > 0);
+    if (is_random_gift_mode()) {
+        show_notice("随机礼盒模式无法使用跨服商店", 60);
+        exit;
+    }
+    if (is_eternal_gacha_mode() && !_is_credit) {
+        show_notice("抽卡模式只能购买转职凭证", 60);
         exit;
     }
 
@@ -70,7 +89,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
             var _owned_shape = variable_struct_exists(_owned_card, "max_shape") ? _owned_card.max_shape : _owned_card.shape;
             if (_owned_card.id == _card_id && _owned_shape >= _card_shape) { _owned = true; break; }
         }
-        if (variable_struct_exists(_goods, "required_card_shape")) {
+        // 一 / 二转凭证（card_shape > 0）：**不看前置**（不要求本体、不要求前一档），
+        //   与威望商店一致；只保留「已有对应形态 → 已兑换」这一条（上面的 _owned）
+        //   2026-10-28 用户口径
+        if (_card_shape == 0 && variable_struct_exists(_goods, "required_card_shape")) {
             _prerequisite_met = false;
             for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
                 var _required_card = global.save_data.unlocked_cards[_k];
@@ -106,18 +128,8 @@ for (var _slot = 0; _slot < 16; _slot++) {
     }
     else if (_balance < _medals && !global.debug) show_notice(shop_type == 0 ? "金色勋章不足" : "白银勋章不足", 60);
     else {
-        add_material_amount(_medal_id, -_medals);
-
-        if (_goods_type == "card") {
-            unlock_card(_card_id, 0, _card_shape, global.save_data.unlocked_items.max_skill_level);
-        } else if (_goods_type == "weapon") {
-            unlock_weapon(_id);
-        } else if (_goods_type == "gem") {
-            unlock_gem(_id);
-        }
-
-        save_file(global.save_slot);
-        audio_play_sound(snd_button, 0, 0);
+        // 2026-10-28：不再一点就买 —— 弹确认窗，确定后才扣勋章发货（见 cross_shop_buy_do）
+        cross_shop_confirm_open(_id);
     }
     exit;
 }

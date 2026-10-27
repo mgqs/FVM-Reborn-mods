@@ -14,7 +14,7 @@ if (reward_kind != ""){
 	// ③ 首通 / 次通：原来「点击领取」那一行
 	draw_set_font(font_yuan)
 	draw_set_colour(c_white)
-	draw_text(x, y+83, (reward_kind == "first") ? "首通" : "次通");
+	draw_text(x, y+83, (reward_kind == "first") ? "首通" : "重复通关");
 
 	if (dimmed){
 		draw_set_alpha(0.5)

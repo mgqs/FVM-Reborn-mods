@@ -53,6 +53,12 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 	// 神级进化页也清槽（含缺卡占位，否则切回来会留着上组留下的灰卡）
 	evo_clear()
 	evo_list_dirty = true
+	// 转职页的两个弹窗一起关掉（切页签后弹窗不再绘制，留着状态会在切回来时突然冒出来）
+	tg_confirm = false
+	tg_confirm_mode = 0
+	// 切换界面 = 保底归零（2026-10-28 用户口径：换卡 / 切换界面 / 退出合成屋 三个重置点之一）
+	tg_pity = 0
+	tg_pity_card = ""
 	audio_play_sound(snd_button,0,0)
 }
 // 页签切到融合时把「卡片强化 / 宝石强化」两个按钮和强化按钮藏起来，免得点到
@@ -288,7 +294,7 @@ if (craft_top_tab == 2) {
 	if (tg_list_dirty) tg_rebuild();
 	if (tg_btn_press > 0) tg_btn_press -= 1;
 
-	// ① 确认窗开着 → 只处理确认窗（其它交互全锁）
+	// ① 转职确认窗开着 → 只处理确认窗（其它交互全锁；mode 1 = 缺凭证「补全并转职」）
 	if (tg_confirm) {
 		tg_confirm_hover = -1;
 		for (var _ci2 = 0; _ci2 < 2; _ci2++) {
@@ -297,13 +303,16 @@ if (craft_top_tab == 2) {
 		}
 		if (mouse_check_button_pressed(mb_left)) {
 			if (tg_confirm_hover == 0) {
+				var _fill_mode = (tg_confirm_mode == 1);
 				tg_confirm = false;
 				tg_confirm_hover = -1;
 				audio_play_sound(snd_button, 0, 0);
-				tg_do();                                  // 确定 → 真转（成功切特效，失败直接弹提示）
+				if (_fill_mode) tg_fill_do();              // 补凭证：扣钱发凭证后立刻转一次
+				else            tg_do();                   // 普通确认：真转（成功切特效，失败直接弹提示）
 			}
 			else if (tg_confirm_hover == 1) {
 				tg_confirm = false;
+				tg_confirm_mode = 0;
 				tg_confirm_hover = -1;
 				audio_play_sound(snd_button, 0, 0);
 			}
@@ -324,18 +333,18 @@ if (craft_top_tab == 2) {
 	}
 	// ③ 正常交互
 	else if (mouse_check_button_pressed(mb_left)) {
-		// ① 右侧列表选卡 → 进主卡槽（**换卡 = 保底归零**，2026-10-27 用户口径）
+		// ① 右侧列表选卡 → 进主卡槽（**只有换到另一张卡才清保底**，2026-10-28 用户口径）
+		//    转职成功后槽会自动清空，再放回同一张卡不算换卡 → 保底接着累计
 		if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
-			if (tg_card != tg_list[tg_hover_card]) { tg_pity = 0; tg_pity_card = ""; }
-			tg_card = tg_list[tg_hover_card];
+			var _pick = tg_list[tg_hover_card];
+			if (tg_pity_card != "" && tg_pity_card != _pick) { tg_pity = 0; tg_pity_card = ""; }
+			tg_card = _pick;
 			audio_play_sound(snd_button, 0, 0);
 		}
-		// ② 点主卡槽 = 卸下（卸下也算换卡，保底归零；再放回来从头数）
+		// ② 点主卡槽 = 卸下（**不清保底**：取下来再放回同一张卡时计数保留）
 		else if (point_in_rectangle(mouse_x, mouse_y, tg_main_x - 44, tg_main_y - 44, tg_main_x + 44, tg_main_y + 44)) {
 			if (tg_card != "") {
 				tg_card = "";
-				tg_pity = 0;
-				tg_pity_card = "";
 				audio_play_sound(snd_button, 0, 0);
 			}
 		}
@@ -346,17 +355,22 @@ if (craft_top_tab == 2) {
 			audio_play_sound(snd_button, 0, 0);
 			tg_notice(tg_assure ? "保险金已开启：失败不消耗凭证" : "保险金已关闭");
 		}
-		// ④ 转职按钮 → 先判定，能转才弹确认窗（转职后凭证会消失，必须问一句）
+		// ④ 转职按钮（2026-10-28 改）：能转 → 普通确认窗；**只差凭证** → 「补全并转职」确认窗；其它 → 提示原因
 		else if (point_in_rectangle(mouse_x, mouse_y, tg_btn_x - 73, tg_btn_y - 40, tg_btn_x + 73, tg_btn_y + 40)) {
 			tg_btn_press = 8;
 			var _chk0 = tg_check();
-			if (!_chk0.ok) {
-				tg_notice(_chk0.reason);                  // 不满足条件直接给原因，别让人点了确认才发现转不了
-			}
-			else {
+			if (_chk0.ok) {
 				tg_confirm = true;
+				tg_confirm_mode = 0;
 				tg_confirm_hover = -1;
 				audio_play_sound(snd_button, 0, 0);
+			}
+			else if (string_pos("缺少", _chk0.reason) == 1) {
+				// 缺凭证 → 当场补（价格读威望商店 / 诸神 / 跨服；补不了 tg_fill_open 里会提示原因）
+				if (tg_fill_open()) audio_play_sound(snd_button, 0, 0);
+			}
+			else {
+				tg_notice(_chk0.reason);                  // 不满足条件直接给原因，别让人点了确认才发现转不了
 			}
 		}
 	}

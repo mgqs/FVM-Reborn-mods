@@ -73,9 +73,8 @@ for (var i = 0; i < 4; i++)
                     var _ecx = ((x - 618) + (411 * j)) - 122;
                     var _ecy = (y - 248) + (165 * i);
                     mod_evo_draw_credit(_goods_d1.unlock_item_id, _ecx, _ecy, true, 96, 70);
-                    // 售罄口径与 Create_0 的 is_disabled 一致：背包里已有这张凭证，或已拥有这张金卡
-                    if (get_material_amount(mod_evo_credit_id(_goods_d1.unlock_item_id)) > 0
-                        || is_card_unlocked(_goods_d1.unlock_item_id))
+                    // 售罄口径与 Create_0 的 is_disabled 走同一个判定：已有凭证 / 已拥有这张金卡
+                    if (mod_evo_buyable_locked(_goods_d1.unlock_item_id))
                     {
                         draw_set_color(c_black);
                         draw_set_alpha(0.5);
@@ -169,9 +168,9 @@ for (var i = 0; i < 4; i++)
 
                     if (card_info_simple != false)
                     {
-                        // 已经转上去 / 背包里已经有这张凭证 → 盖售罄
-                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape
-                            || get_material_amount(transfer_credit_id(target_card_id, goods_info.target_shape)) > 0)
+                        // 已经转上去 → 盖售罄
+                        // （2026-10-27 用户口径：凭证不限量，「背包里已有一张」不再算售罄）
+                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape)
                         {
                             draw_set_color(c_black);
                             draw_set_alpha(0.5);

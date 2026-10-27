@@ -748,13 +748,8 @@ else if package_button_select == 4{
 			//    74 而不是铺满的 88：四周留 ~5px 边，跟道具页图标（79）同尺寸感
 			transfer_credit_tab_draw(_it, _tx - 37, _ty - 37, 74)
 
-			draw_set_halign(fa_right)
-			draw_set_valign(fa_bottom)
-			draw_set_colour(c_white)
-			draw_set_font(font_number)
-			var _amt = _it.amount
-			if _amt < 10000 draw_text(_tx + 40, _ty + 42, string(_amt))
-			else draw_text(_tx + 40, _ty + 42, string(floor(_amt / 10000)) + "w")
+			// 右下角的持有数量（口径在 transfer_credit_draw_count：白字 / 右底对齐 / 1万以上 Nw）
+			transfer_credit_draw_count(_tx + 40, _ty + 42, _it.amount)
 
 			var _hx = x - 354 + _col * 84
 			var _hy = y - 368 + _row * 88 - y_offset

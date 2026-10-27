@@ -51,7 +51,8 @@ for (var _slot = 0; _slot < 16; _slot++) {
             var _owned_shape = variable_struct_exists(_owned_card, "max_shape") ? _owned_card.max_shape : _owned_card.shape;
             if (_owned_card.id == _card_id && _owned_shape >= _card_shape) { _owned = true; break; }
         }
-        if (variable_struct_exists(_goods, "required_card_shape")) {
+        // 一 / 二转凭证不看前置（与 Mouse_4 同一口径，2026-10-28）
+        if (_card_shape == 0 && variable_struct_exists(_goods, "required_card_shape")) {
             _prerequisite_met = false;
             for (var _k = 0; _k < array_length(global.save_data.unlocked_cards); _k++) {
                 var _required_card = global.save_data.unlocked_cards[_k];
@@ -106,15 +107,20 @@ for (var _slot = 0; _slot < 16; _slot++) {
         _hover_desc = variable_struct_exists(_goods, "description") ? _goods.description : "";
     }
 
-    // 抽卡模式/欧皇模式/随机礼盒模式：购买按钮变灰
-    var _gacha_disabled = is_eternal_gacha_mode() || is_random_gift_mode();
+    // 抽卡 / 欧皇模式：只有**转职凭证（一转·二转，card_shape > 0）**能买，其余置灰；
+    //   随机礼盒模式整店置灰（2026-10-28 用户口径，与 Mouse_4 的判定保持一致）
+    var _is_credit = (_goods_type == "card" && _card_shape > 0);
+    var _gacha_disabled = is_random_gift_mode() || (is_eternal_gacha_mode() && !_is_credit);
 
     draw_sprite_ext(spr_shop_buy_btn, 0, _gx + 77, _gy + 60, 1.8, 1.8, 0, (_gacha_disabled || !_prerequisite_met) ? c_gray : c_white, 1);
     draw_set_font(font_yuan);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_color(c_black);
-    draw_text(_gx + 77, _gy - 46, _goods.display_name);
+    // 一转 / 二转卖的是凭证 → 名字写「卡名（一转凭证）」，跟背包 / 商店同一套叫法
+    var _show_name = _goods.display_name;
+    if (_goods_type == "card" && _card_shape > 0) _show_name = transfer_credit_name(_card_id, _card_shape);
+    draw_text(_gx + 77, _gy - 46, _show_name);
     draw_set_font(font_number);
     draw_set_color(c_yellow);
     draw_text(_gx + 69, _gy + 2, string(_medals));
@@ -156,13 +162,18 @@ draw_sprite_ext(spr_closemenu_btn, 0, x + 740, y + 490, 1.8, 1.8, 0, c_white, 1)
 // 悬停提示：显示商品简要介绍（与金币商店一致）
 if (_hover_desc != "") {
     draw_set_font(font_yuan);
-    var _tw = string_width(_hover_desc);
-    var _th = string_height(_hover_desc);
+    // 说明现在直接取**情报岛**原文（技能描述较长，还会带换行）→ 按 420px 折行，
+    //   否则长句会横穿整个屏幕（2026-10-28）
+    var _wrap = 420;
+    var _lh   = string_height("Ag");
+    var _tw = string_width_ext(_hover_desc, _lh, _wrap);
+    var _th = string_height_ext(_hover_desc, _lh, _wrap);
     var _tx = mouse_x + 15;
     var _ty = mouse_y + 15;
     if (_tx + _tw > room_width) {
         _tx = mouse_x - 15 - _tw;
     }
+    _tx = clamp(_tx, 4, room_width - _tw - 4);          // 别顶出屏幕（长文案时左边会溢出）
     if (_ty + _th > room_height) {
         _ty = mouse_y - 15 - _th;
     }
@@ -173,6 +184,43 @@ if (_hover_desc != "") {
     draw_set_color(c_white);
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
-    draw_text(_tx, _ty, _hover_desc);
+    draw_text_ext(_tx, _ty, _hover_desc, _lh, _wrap);
+    draw_set_valign(fa_top);
+}
+
+// ── 购买确认窗（2026-10-28）：画在最上层，跟转职页/融合页的「系统提示」同一套观感 ──
+if (confirm_id != ""){
+    draw_set_alpha(0.55);
+    draw_set_color(c_black);
+    draw_rectangle(0, 0, room_width, room_height, false);
+    draw_set_alpha(1);
+
+    draw_sprite_ext(spr_battle_escape_menu, 0, x, y, 1.5, 1.5, 0, c_white, 1);
+    draw_set_font(font_yuan);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_color(c_white);
+    draw_text(x, y - 112, "兑换确认");
+    draw_text(x, y - 44, "是否消耗 " + string(confirm_cost) + " " + confirm_medal_name);
+
+    // 商品名可能长（卡名（二转凭证）），按宽度压一下
+    var _nsc = 1;
+    var _nw = string_width("兑换 " + confirm_name + "？");
+    if (_nw > 300) _nsc = 300 / _nw;
+    draw_text_transformed(x, y - 10, "兑换 " + confirm_name + "？", _nsc, _nsc, 0);
+
+    var _lbl = ["确定", "取消"];
+    for (var _b = 0; _b < 2; _b++){
+        var _r  = cross_shop_confirm_rect(_b);
+        var _bx = (_r[0] + _r[2]) * 0.5;
+        var _by = (_r[1] + _r[3]) * 0.5;
+        var _hit = point_in_rectangle(mouse_x, mouse_y, _r[0], _r[1], _r[2], _r[3]);
+        var _fr = _hit ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
+        draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+        draw_set_color(c_white);
+        draw_text(_bx, _by, _lbl[_b]);
+    }
+    draw_set_color(c_white);
+    draw_set_halign(fa_left);
     draw_set_valign(fa_top);
 }

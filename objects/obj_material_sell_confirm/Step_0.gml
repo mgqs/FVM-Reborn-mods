@@ -21,6 +21,12 @@ if (_filtered == "") {
     input_quantity = real(_filtered)
 }
 
+// 购买模式：上限 = 当前买得起几个（每帧重算，怕期间钱花掉了）
+//   debug 跟商店其它购买同一口径：不拦余额
+if (mode == "buy" && unit_price > 0) {
+    max_amount = global.debug ? 99 : max(0, floor(credit_trade_balance(pay_kind) / unit_price))
+}
+
 // 限制数量上限
 if (input_quantity > max_amount) {
     input_quantity = max_amount
@@ -42,10 +48,19 @@ if (_filtered != _raw) {
 cursor_blink += 1
 if (cursor_blink > 60) cursor_blink = 0
 
+// 「确定」的具体动作在 Create_0 的 trade_confirm()（买 / 回收 / 卖材料三种共用）
+
 // ===== 按钮交互 =====
 selected_button = -1
 var mx = device_mouse_x_to_gui(0)
 var my = device_mouse_y_to_gui(0)
+
+// 开窗头 2 帧不响应点击：这个窗是被「鼠标按下」打开的，
+// 若「松开」正好落在确定按钮上（格子就在面板中间）会当场买/卖出去
+if (input_lock > 0) {
+    input_lock -= 1
+    exit
+}
 
 for (var i = 0; i < array_length(buttons); i++) {
     var btn = buttons[i]
@@ -69,22 +84,12 @@ for (var i = 0; i < array_length(buttons); i++) {
                     keyboard_string = string(max_amount)
                     break
                 case 1:
-                    // 确定出售
-                    if (input_quantity > 0 && input_quantity <= max_amount && max_amount > 0) {
-                        var _total = input_quantity * unit_price
-                        global.save_data.player.gold += _total
-                        add_material_amount(sell_material_id, -input_quantity)
-                        if (instance_exists(obj_package_bg)) {
-                            obj_package_bg.is_submenu_opened = false
-                        }
-                        instance_destroy()
-                    }
+                    // 确定
+                    trade_confirm()
                     break
                 case 2:
                     // 取消
-                    if (instance_exists(obj_package_bg)) {
-                        obj_package_bg.is_submenu_opened = false
-                    }
+                    trade_close()
                     instance_destroy()
                     break
             }
@@ -94,24 +99,16 @@ for (var i = 0; i < array_length(buttons); i++) {
 }
 
 // ===== 键盘快捷键 =====
-// 回车键确认出售
+// 回车键确认
 if (keyboard_check_pressed(vk_enter)) {
     if (input_quantity > 0 && input_quantity <= max_amount && max_amount > 0) {
         audio_play_sound(snd_button, 0, 0)
-        var _total = input_quantity * unit_price
-        global.save_data.player.gold += _total
-        add_material_amount(sell_material_id, -input_quantity)
-        if (instance_exists(obj_package_bg)) {
-            obj_package_bg.is_submenu_opened = false
-        }
-        instance_destroy()
+        trade_confirm()
     }
 }
 
 // ESC键取消
 if (keyboard_check_pressed(vk_escape)) {
-        if (instance_exists(obj_package_bg)) {
-            obj_package_bg.is_submenu_opened = false
-        }
-        instance_destroy()
-    }
+    trade_close()
+    instance_destroy()
+}

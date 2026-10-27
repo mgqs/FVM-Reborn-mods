@@ -63,6 +63,12 @@ prev_btn.btn_type = "prev"
 var next_btn = instance_create_depth(x+485,y+435,depth-1,obj_shop_page_btn)
 next_btn.btn_type = "next"
 
+// ── 转职凭证页的搜索框（2026-10-27 用户要求，放右上角）──
+//   位置 / 配色 / 提示语 / 回调都在 scripts/transfer_credit 的 credit_shop_search_box_spawn()
+//   这里只留「我要一个搜索框」+ 可见性（在 shop_list_recharge 里按页签切）
+shop_search_text = ""
+shop_search_box = credit_shop_search_box_spawn(x, y, depth-1)
+
 shop_list_recharge()
 
 //刷新商品列表的函数
@@ -194,6 +200,19 @@ function shop_list_recharge(){
 		}
 	}
 
+	// 搜索过滤（2026-10-27，只在凭证页）：口径 / 名字来源见 transfer_credit 的 credit_shop_filter_search
+	//   过滤完再排序 / 分页，所以页码、售罄遮罩、购买按钮全都自动跟着走
+	if (shop_button_select == 6){
+		// 搜索框只在凭证页可见（SearchBox 的 visible 不会被 should_correspond 自动关掉绘制）
+		if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)){
+			shop_search_box.visible = true;
+		}
+		credit_shop_filter_search(goods_list, shop_search_text);
+	}
+	else if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)){
+		shop_search_box.visible = false;
+	}
+
 	// 凭证页排序（2026-10-26 用户口径，第二版）
 	//   取消的是「全局先一转、后二转」；现在要求：**同一张卡的凭证挨在一起，卡内先一转后二转**
 	//   —— goods_map 是散列遍历序，不排会出现「小火炉二转 / 冰煮蛋器二转 / 机枪一转…」这种乱序
@@ -318,8 +337,10 @@ function shop_list_recharge(){
 					inst.coin_type = variable_struct_exists(_ci, "coin_type") ? _ci.coin_type : "gold"
 					inst.reward_prestige = variable_struct_exists(_ci, "reward_prestige") ? _ci.reward_prestige : 0
 					inst.btn_type = "credit"
-					// 凭证名按卡名表实时算（注册时机早于卡名表也不会退化成卡 id）
-					inst.goods_name = (_ci.credit_shape > 0) ? transfer_credit_name_from_id(_ci.unlock_item_id) : _ci.display_name
+					// 凭证名按卡名表实时算；兑换项读 display_name（缺字段兜「威望」）——都在 credit_shop_goods_name()
+					//   ⚠️ 兑换项缺名字会让整页建按钮时崩（就是「第 13 页打不开」那个 bug）
+					inst.goods_name = credit_shop_goods_name(_ci)
+					inst.credit_shape = _ci.credit_shape
 					inst.tooltip_text = _ci.description
 					// 已购 / 已转上去 / 形态不存在 → 置灰＋点不动（兑换项 credit_shape = 0 永远可买）
 					// 爬塔门槛 / 余额不足不在这里置灰：它们是「临时不满足」，点购买时再弹提示（2026-10-26 用户定）

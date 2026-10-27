@@ -6,7 +6,6 @@ btn_type = "";
 goods_name = "";
 tooltip_text = "";
 is_disabled = false;
-tooltip = false;
 cost = 0;
 target_shape = 0;
 recipe_id = "";

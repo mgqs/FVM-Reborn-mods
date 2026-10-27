@@ -5136,6 +5136,7 @@
     {"id":{"name":"spr_shop_credit_tab_all","path":"sprites/spr_shop_credit_tab_all/spr_shop_credit_tab_all.yy",},},
     {"id":{"name":"spr_shop_goods_bg","path":"sprites/spr_shop_goods_bg/spr_shop_goods_bg.yy",},},
     {"id":{"name":"spr_shop_page_btn","path":"sprites/spr_shop_page_btn/spr_shop_page_btn.yy",},},
+    {"id":{"name":"spr_shop_price_arrow","path":"sprites/spr_shop_price_arrow/spr_shop_price_arrow.yy",},},
     {"id":{"name":"spr_shop_select_btn_1","path":"sprites/spr_shop_select_btn_1/spr_shop_select_btn_1.yy",},},
     {"id":{"name":"spr_shop_select_btn_2","path":"sprites/spr_shop_select_btn_2/spr_shop_select_btn_2.yy",},},
     {"id":{"name":"spr_shop_select_btn_3","path":"sprites/spr_shop_select_btn_3/spr_shop_select_btn_3.yy",},},
