@@ -17,3 +17,22 @@ function mod_material_init()
         });
     }
 }
+
+/// @func tower_prestige_reward(level_id, is_first)
+/// @desc 这一关通关该给多少**基础**威望（未乘难度倍率）；0 = 不是魔塔关 / 没配
+///       数据源就是 maps_init 里塔关的 rewards：[{prestige,kind:"first"},{prestige,kind:"repeat"}]
+///       ⚠️ 数值全部来自用户 2026-10-27 的「魔塔价格奖励建议表.xlsx」，改数只改 maps_init
+function tower_prestige_reward(_level_id, _is_first){
+    if (!variable_global_exists("maps_map")) return 0;
+    if (!ds_map_exists(global.maps_map, "tower_cake")) return 0;
+    var _ls = global.maps_map[? "tower_cake"].levels_data;
+    for (var _i = 0; _i < array_length(_ls); _i++){
+        if (_ls[_i].id != _level_id) continue;
+        var _rs = _ls[_i].rewards;
+        var _k  = _is_first ? 0 : 1;                 // 0 = 首通 / 1 = 次通
+        if (array_length(_rs) <= _k) return 0;
+        if (!variable_struct_exists(_rs[_k], "prestige")) return 0;
+        return _rs[_k].prestige;
+    }
+    return 0;
+}

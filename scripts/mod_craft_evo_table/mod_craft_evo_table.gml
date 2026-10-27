@@ -161,50 +161,53 @@ function mod_evo_selfcheck(){
 ///      直接按画布比例画会又小又偏，所以按内容包围盒缩放 + 用内容中心对位
 ///   ⚠️ 加新金卡 / 换立绘后要重新量：把新精灵的 alpha 包围盒量出来填一行即可
 ///   ⚠️ 表里没有的卡会自动回落到「画布 0.5236 居中」的老画法
+///   ⚠️ 2026-10-27 起**只是兜底**：金卡立绘是运行时 sprite_add 出来的，绘制优先用精灵自己的
+///      运行时包围盒（见 mod_evo_draw_credit），只有 bbox 像「整张画布」时才查这张表
 function mod_evo_credit_face(){
     // 绘制时每帧都会查 → 第一次建好就缓存到全局，后面直接读
     if (variable_global_exists("mod_evo_face_tbl")) return global.mod_evo_face_tbl;
     var _t = {
 
-    sheng_huo:             [12, 35, 71, 88],   // spr_sh
-    hufa_god:              [1, 0, 110, 107],   // spr_hufa_god
-    gongjiang_god:         [13, 6, 82, 82],   // spr_gongjiang_god
-    brahma:                [60, 63, 73, 66],   // spr_brahma_icon
-    guangming_god:         [19, 32, 93, 85],   // spr_light_god
-    shennong_god:          [26, 40, 78, 93],   // spr_shennong_god
-    haiyang_god:           [11, 0, 107, 110],   // spr_haiyang_god
-    fengrao_god:           [0, 3, 88, 86],   // spr_fengrao_god
-    clotho:                [36, 65, 64, 83],   // spr_clotho_icon
-    chongsheng_god:        [4, 29, 91, 77],   // spr_chongsheng_god
-    sun_god:               [2, 13, 70, 108],   // spr_sun_god
-    heian_god:             [119, 159, 77, 58],   // spr_dark_god
-    aurora:                [2, 14, 54, 88],   // spr_aurora_icon
-    houyi_god:             [15, 4, 100, 88],   // spr_houyi_god
-    joker:                 [12, 49, 74, 89],   // spr_joker_icon
-    time_god:              [28, 88, 173, 128],   // spr_time_god
-    xiangshui_god:         [11, 10, 91, 79],   // spr_xiangshui_god
-    war_god:               [1, 10, 84, 97],   // spr_war_god
-    thor:                  [23, 37, 97, 89],   // spr_thor_icon
-    fire_god:              [0, 0, 70, 50],   // spr_fire_god
-    moon_god:              [15, 1, 82, 88],   // spr_moon_god
-    power_god:             [12, 8, 78, 81],   // spr_power_god
-    gaia:                  [4, 116, 75, 55],   // spr_gaia
-    zhurong:               [22, 9, 68, 87],   // spr_zhurong
-    rig:                   [39, 55, 118, 94],   // spr_rig
-    ymir:                  [30, 12, 84, 82],   // spr_ymir_icon
-    save_god:              [44, 63, 89, 89],   // spr_save_god_0
-    poseidon:              [115, 122, 103, 105],   // spr_poseidon
-    ghost_god:             [10, 4, 65, 85],   // spr_ghost_god
-    odin:                  [29, 27, 92, 69],   // spr_odin
-    water_god:             [1, 16, 71, 68],   // spr_water_god
-    hundun_god:            [130, 83, 78, 68],   // spr_hundun_god
-    firework_dragon_real:  [49, 95, 73, 72],   // spr_firework_dragon
-    hera:                  [0, 2, 100, 46],   // spr_hera_icon_1
-    ice_god:               [0, 65, 92, 88],   // spr_ice_god
-    zeus:                  [62, 511, 75, 69],   // spr_zeus
-    love_god:              [4, 0, 90, 89],   // spr_love_god
-    panduola_god:          [13, 5, 200, 195],   // spr_panduola_god
-    lingrong_god:          [15, 10, 63, 61]   // spr_lingrong_god
+    // ⚠️ 圣火 spr_sh_b 是「三张并排」的大图，机械量不准 → 保留手量值
+    sheng_huo: [10, 38, 77, 86],
+    hufa_god: [4, 33, 85, 83],
+    gongjiang_god: [13, 6, 82, 82],
+    brahma: [60, 63, 72, 66],
+    guangming_god: [19, 33, 93, 85],
+    shennong_god: [33, 39, 70, 98],
+    haiyang_god: [21, 1, 81, 86],
+    fengrao_god: [0, 3, 88, 86],
+    clotho: [36, 65, 63, 83],
+    chongsheng_god: [4, 25, 93, 81],
+    sun_god: [2, 14, 70, 107],
+    heian_god: [121, 158, 74, 59],
+    aurora: [2, 14, 54, 88],
+    houyi_god: [15, 4, 100, 88],
+    joker: [12, 49, 74, 89],
+    time_god: [85, 104, 72, 92],
+    xiangshui_god: [20, 10, 89, 79],
+    war_god: [0, 14, 84, 93],
+    thor: [23, 37, 97, 89],
+    fire_god: [0, 2, 70, 48],
+    moon_god: [15, 1, 82, 88],
+    power_god: [16, 3, 73, 88],
+    gaia: [4, 95, 75, 76],
+    zhurong: [22, 11, 68, 85],
+    rig: [48, 74, 79, 53],
+    ymir: [30, 12, 84, 82],
+    save_god: [50, 73, 70, 91],
+    poseidon: [121, 143, 79, 84],
+    ghost_god: [10, 4, 64, 85],
+    odin: [30, 27, 93, 69],
+    water_god: [3, 18, 67, 68],
+    hundun_god: [108, 104, 80, 62],
+    firework_dragon_real: [49, 95, 73, 72],
+    hera: [0, 2, 100, 46],
+    ice_god: [2, 63, 89, 88],
+    zeus: [62, 511, 75, 69],
+    love_god: [18, 0, 93, 88],
+    panduola_god: [80, 73, 59, 55],
+    lingrong_god: [0, 0, 92, 75]
     };
     global.mod_evo_face_tbl = _t;
     return _t;
@@ -332,6 +335,9 @@ function mod_evo_draw_credit(_target, _cx, _cy, _has, _box = 68, _face_box = 50)
     if (_md != noone && ds_map_exists(_md, "sprite")) {
         var _face = _md[? "sprite"];
         var _fsc = 0.5236, _fox = 0, _foy = 0;       // 表里没有 → 老画法兜底
+        // 卡面**只查静态表**（2026-10-27 晚：运行时 sprite_get_bbox_* 在开了 autocrop 的
+        //   纹理组上不可信 —— 量出来的宽高远大于画面，会缩成指甲盖 / 直接飞出框外。
+        //   表值是按「游戏真正画的那个精灵」的 PNG 第 0 帧量的，见 mod_evo_credit_face()）
         var _tbl = mod_evo_credit_face();
         if (variable_struct_exists(_tbl, _target)) {
             var _f = _tbl[$ _target];                // [左, 上, 宽, 高]

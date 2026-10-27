@@ -123,12 +123,13 @@ function gods_shop_list_recharge()
                     var inst = instance_create_depth((x - 615) + (411 * j) + 77, (y - 251) + (165 * i) + 60, depth - 1, obj_gods_store_buy_btn);
                     inst.target_item = _goods_b1.unlock_item_id;
                     inst.cost = _goods_b1.cost;
-                    inst.goods_name = (_is_recipe_b1 && variable_struct_exists(_goods_b1, "recipe_name")) ? _goods_b1.recipe_name : _goods_b1.display_name;
+                    // 名字统一走 gods_goods_name()：evo = 卡名（进化凭证）/ tvoucher = 卡名（X转凭证）
+                    //   绝对不要再直接读 _goods_b1.display_name —— 那字段 2026-10-27 已从 evo/tvoucher 里删掉
+                    inst.goods_name = gods_goods_name(_goods_b1);
                     inst.tooltip_text = _goods_b1.description;
                     inst.recipe_id = _is_recipe_b1 ? _goods_b1.recipe_id : "";
                     // 2026-10-27：第一页的「金卡」已换成进化凭证（type "evo"），买的是道具不是卡
                     var _is_evo_b1 = (_goods_b1.type == "evo");
-                    if (_is_evo_b1) inst.goods_name = _goods_b1.display_name + "·进化凭证";
                     inst.btn_type = _is_recipe_b1 ? "recipe" : (_is_evo_b1 ? "evo" : "card");
 
                     if (_is_recipe_b1)
@@ -176,7 +177,8 @@ function gods_shop_list_recharge()
                     inst.target_item = goods_info.unlock_item_id;
                     inst.target_shape = goods_info.target_shape;
                     inst.cost = goods_info.cost;
-                    inst.goods_name = goods_info.display_name;
+                    // 名字统一走 gods_goods_name()（不读 display_name，tvoucher 那类已经没这个字段了）
+                    inst.goods_name = gods_goods_name(goods_info);
                     inst.tooltip_text = goods_info.description;
                     inst.recipe_id = _is_recipe_b2 ? goods_info.recipe_id : "";
                     // 三/四/终转凭证现在是「买道具」（type "tvoucher"），不再直接升形态

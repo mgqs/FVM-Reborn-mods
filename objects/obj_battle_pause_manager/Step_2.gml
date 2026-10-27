@@ -230,6 +230,11 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         }
                     }
                     
+                    // 魔塔威望（2026-10-27）：首通 / 次通两档，数值见 maps_init 的塔关 rewards
+                    //   放在「精英首次通关」之前 = 两支（首通/非首通）都已结算完，值仍有效
+                    var _tp1 = tower_prestige_reward(global.level_data.id, is_first_normal);
+                    if (_tp1 > 0) add_material_amount("prestige", _tp1 * reward_multiplier);
+
                     // 精英模式首次通关：记录到精英通关列表
                     if (is_first_elite) {
                         array_push(global.save_data.completed_elite_levels, global.level_data.id)
@@ -351,6 +356,8 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 							with obj_task_manager{
 								refresh_task_progress()
 							}
+							// 魔塔威望：先记首通标记（下一句 complete_level 会立刻把本关写进 completed_levels）
+							var _tp_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
 							if array_get_index(global.save_data.completed_levels,global.level_data.id) == -1{
 								complete_level(global.level_data.id)
 								first_complete = true
@@ -426,6 +433,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									var gem_id = gem_unlock_id_list[i]
 									unlock_gem(gem_id)
 								}
+								// 魔塔威望（首通档）
+								var _tpv1 = tower_prestige_reward(global.level_data.id, _tp_first);
+								if (_tpv1 > 0) add_material_amount("prestige", _tpv1 * reward_multiplier);
 								save_file(global.save_slot)
 							}
 							else{
@@ -449,6 +459,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									var item_id = item_list[i].id
 									add_material_amount(item_id,item_list[i].amount * reward_multiplier)
 								}
+								// 魔塔威望（次通档）
+								var _tpv2 = tower_prestige_reward(global.level_data.id, _tp_first);
+								if (_tpv2 > 0) add_material_amount("prestige", _tpv2 * reward_multiplier);
 								save_file(global.save_slot)
 							}
 						}

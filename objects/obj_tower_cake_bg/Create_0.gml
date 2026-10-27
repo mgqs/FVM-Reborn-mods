@@ -83,49 +83,21 @@ function refresh_reward_button(){
 	instance_destroy(obj_tower_cake_card_reward)
 	var level_list = global.maps_map[? "tower_cake"].levels_data
 	var c_level_data = level_list[real_level_index]
+	// 2026-10-27：奖励格改画「威望」——每条 rewards 一格（0 = 首通 / 1 = 次通），布局一行没动
+	var _cleared = (array_get_index(global.save_data.completed_levels, c_level_data.id) != -1)
 	for(var i = 0 ; i < array_length(c_level_data.rewards);i++){
+		var _r = c_level_data.rewards[i]
+		if (!variable_struct_exists(_r, "prestige")) continue
 		var inst = instance_create_depth(x+472+136*i,y-280,depth-i-1,obj_tower_cake_card_reward)
-		inst.target_card_id = c_level_data.rewards[i].card_id
-		inst.target_shape = c_level_data.rewards[i].target_shape
+		inst.prestige_amount = _r.prestige
+		inst.reward_kind = ((i == 0) ? "first" : "repeat")
 		inst.btn_index = i + 1
-		
-		if (array_get_index(global.save_data.completed_levels,c_level_data.id) != -1){
-			inst.unlocked = true
-		}
+		// 已通关 → 首通那格盖灰（首通只发一次）；次通格一直亮（能反复刷）
+		inst.dimmed = (_cleared && i == 0)
 	}
 }
 
-var level_list = global.maps_map[? "tower_cake"].levels_data
-has_card = false
-for(var __index__ = 0 ; __index__ < array_length(level_list) ; __index__++){
-	var c_level_data = level_list[__index__]
-	for(var i = 0 ; i < array_length(c_level_data.rewards);i++){
-		var inst = {}
-		inst.target_card_id = c_level_data.rewards[i].card_id
-		inst.target_shape = c_level_data.rewards[i].target_shape
-		inst.unlocked = false
-		
-		if (array_get_index(global.save_data.completed_levels,c_level_data.id) != -1){
-			inst.unlocked = true
-		}
-		if is_card_unlocked(inst.target_card_id){
-			if get_card_info_simple(inst.target_card_id).max_shape >= inst.target_shape{
-				inst.unlocked = false
-			}
-		}
-		if !is_card_unlocked(inst.target_card_id){
-			inst.unlocked = false
-		}
-		// 抽卡模式：跳过自动领取形态奖励
-		if (is_eternal_gacha_mode()) {
-			inst.unlocked = false;
-		}
-		if inst.unlocked{
-			upgrade_card_shape(inst.target_card_id,inst.target_shape)
-			has_card = true
-		}
-	}
-}
-if has_card{
-	show_notice("未领取的转职奖励已自动领取",60)
-}
+// 2026-10-27：原来这里会把「已通关关卡 + 卡已拥有 + 形态没到」的卡片奖励**自动补形态**，
+//   并弹「未领取的转职奖励已自动领取」。魔塔奖励改成威望后这段整块删掉：
+//   ① 塔关 rewards 里已经没有 card_id ② 威望在通关结算里直接发（obj_battle_pause_manager/Step_2），
+//   不需要也不允许在进界面时补发。
