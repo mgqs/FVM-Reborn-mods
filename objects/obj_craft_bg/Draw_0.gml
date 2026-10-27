@@ -20,6 +20,13 @@ draw_sprite_ext(spr_craft_tab_fusion,  craft_top_tab == 1 ? 0 : 1, tab_fusion_x,
 // ── 神级进化页（craft_top_tab == 3，2026-10-26）──
 if (craft_top_tab == 3) {
 	if (evo_list_dirty) evo_rebuild();
+	// 列表滚动平滑（跟转职页 / 强化页一个手感）
+	if (ui_anim_on(1)) {
+		evo_scroll += (evo_scroll_target - evo_scroll) * 0.28;
+		if (abs(evo_scroll_target - evo_scroll) < 0.5) evo_scroll = evo_scroll_target;
+	} else {
+		evo_scroll = evo_scroll_target;
+	}
 	var _chk_e = evo_check();
 
 	// ① 左侧「金卡进化」竖排按钮（神级进化页目前只有这一个子页）
@@ -89,14 +96,25 @@ if (craft_top_tab == 3) {
 	var _bframe = (evo_btn_press > 0) ? 2 : (point_in_rectangle(mouse_x, mouse_y, evo_btn_x - 73, evo_btn_y - 36, evo_btn_x + 73, evo_btn_y + 36) ? 1 : 0);
 	draw_sprite_ext(spr_evo_btn, _bframe, evo_btn_x, evo_btn_y, _bs, _bs, 0, c_white, 1);
 
-	// ⑥ 右侧防御卡列表（只列可进化系列里已拥有的卡）
+	// ⑥ 右列表「防御卡」栏头（2026-10-27 用户：跟融合页一样补一个）
+	//    同一张 spr_fusion_panel_title（第 1 帧 = 防御卡），位置口径也照融合页：
+	//    横向 = 格子左边缘 + 33*1.8；纵向 = 格子顶边往上 21*1.8（融合页那块同一套数）
+	draw_sprite_ext(spr_fusion_panel_title, 1,
+		evo_list_x - 44 + 33 * 1.8, evo_list_y - 52 - 21 * 1.8, 1.8, 1.8, 0, c_white, 1);
+
+	// ⑥' 右侧防御卡列表（只列可进化系列里已拥有的卡）
+	//    滚动口径跟转职页 / 强化页一致：整行滚、0.28 平滑；卡数不超过 8 行时 evo_rows_max = 0（滚不动）
 	var _n = array_length(evo_list);
+	var _rows = max(1, ceil(_n / evo_gcols));
+	evo_rows_max = max(0, _rows - evo_grows);
+	evo_scroll_target = clamp(evo_scroll_target, 0, evo_rows_max);
 	evo_hover_card = -1;
-	for (var _r = 0; _r < 8; _r++) {
-		for (var _c = 0; _c < 7; _c++) {
-			var _ci = _r * 7 + _c;
-			var _gx = evo_list_x + _c * 84;
-			var _gy = evo_list_y + _r * 96;
+	var _off = floor(evo_scroll);
+	for (var _r = 0; _r < evo_grows; _r++) {
+		for (var _c = 0; _c < evo_gcols; _c++) {
+			var _ci = (_r + _off) * evo_gcols + _c;
+			var _gx = evo_list_x + _c * evo_gpx;
+			var _gy = evo_list_y + _r * evo_gpy;
 			draw_sprite_ext(spr_package_slot_bg, 0, _gx, _gy, 0.9, 0.9, 0, c_white, 1);
 			if (_ci >= _n) continue;
 			var _cid2 = evo_list[_ci];

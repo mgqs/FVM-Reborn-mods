@@ -156,17 +156,10 @@ function gods_shop_list_recharge()
                             }
                         }
 
+                        // 2026-10-27 用户口径：前置体系只属于「金卡进化 / 食灵融合」，
+                        //   诸神商店不再校验任何前置 —— 卡类商品只保留「已拥有就不再卖」
                         if (is_unlocked)
                             inst.is_disabled = true;
-                        else if (!fusion_prereq_met(inst.target_item, 2))
-                        {
-                            // 前置表在 mod_craft_evo_table；诸神商店口径 = 前置卡要练到二转
-                            // 例外①：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
-                            // 例外②：前置全是「没有二转」的卡（幻幻鸡 / 蓝莓塔）时不写「二转」
-                            var _need_txt = (prereq_body_only(inst.target_item) || !fusion_prereq_any_upgradable(inst.target_item)) ? "" : "二转";
-                            inst.meet_requirements = false;
-                            inst.requirement_notice = "需先拥有[" + fusion_prereq_name(inst.target_item) + "]" + _need_txt + "才能兑换！";
-                        }
                     }
                 }
             }
@@ -197,13 +190,10 @@ function gods_shop_list_recharge()
                     }
                     else if (_is_tv_b2)
                     {
-                        // 转职凭证道具：卡得有 → 这一档还没转上去 → 背包里还没这张凭证
-                        if (!is_card_unlocked(goods_info.unlock_item_id))
-                        {
-                            inst.meet_requirements = false;
-                            inst.requirement_notice = "还没拥有这张卡，无法兑换凭证！";
-                        }
-                        else if (get_card_info_simple(goods_info.unlock_item_id).max_shape >= goods_info.target_shape)
+                        // 2026-10-27 用户口径：凭证购买**任意** —— 不再要求「先拥有这张卡」，
+                        //   只保留重复购买拦截：这一档已经转上去 / 背包里已经有一张同样的凭证
+                        var _tv_info = get_card_info_simple(goods_info.unlock_item_id);
+                        if (is_struct(_tv_info) && _tv_info.max_shape >= goods_info.target_shape)
                             inst.is_disabled = true;
                         else if (get_material_amount(transfer_credit_id(goods_info.unlock_item_id, goods_info.target_shape)) > 0)
                             inst.is_disabled = true;

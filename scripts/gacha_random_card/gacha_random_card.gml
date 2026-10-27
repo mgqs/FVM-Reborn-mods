@@ -349,28 +349,11 @@ function gacha_get_gem_weapons(gem_id) {
     return [];
 }
 
-/// @function fusion_get_prerequisites()
-/// @desc 卡牌前置表（老形状 {目标卡: [前置卡 id, …]}）
-///       2026-10-27 数据已外置到 scripts/mod_craft_evo_table（mod/craft 分组），
-///       这里只做转发，抽卡 / 诸神商店 / 融合页不用改调用方式。
-///       ⚠️ 新代码请直接用 mod_evo_table()（带 slot / need），别再用这个扁平版
-/// @return {struct}
-function fusion_get_prerequisites() {
-    return mod_evo_flat();
-}
-
-/// @function prereq_body_only(card_id)
-/// @desc 「硬前置」卡：前置**必须有本体**，但不要求二转，也不参与「抽到后换前置」的替换。
-///       两处消费：
-///         ① 抽卡候选池 —— 前置没本体就不进池（所以抽到就是它本身，不存在"换成前置"）；
-///         ② 诸神商店 —— 门槛降为「有本体即可」（其余卡要二转）。
-///       目前只有命运女神：它的前置创造神本身要从诸神商店买，要求二转会卡成死循环。
-///       注意它**不是无前置**，只是门槛低。
-/// @param {string} card_id
-/// @return {bool}
-function prereq_body_only(card_id) {
-    return (card_id == "clotho");
-}
+// 2026-10-27 用户口径：**前置体系已整体撤除** —— 现在前置只属于「金卡进化」和「食灵融合」，
+//   抽卡 / 诸神商店一概不再校验前置（不需要先拥有前置卡、也不需要前置练到几转）。
+//   因此 fusion_get_prerequisites() / prereq_body_only() / fusion_prereq_met() /
+//   fusion_prereq_name() / fusion_prereq_any_upgradable() 已删除（要看旧实现翻 git 历史）。
+//   金卡进化表：scripts/mod_craft_evo_table；融合主卡/副卡表：scripts/mod_craft_fusion_table
 
 /// @function card_max_available_shape(card_id)
 /// @desc 这张卡**注册了**的最大形态序号（0 起算）；查不到返回 -1。
@@ -519,71 +502,6 @@ function card_owned_shape(card_id) {
         if (deck_get_card_data(card_id, _i) != noone) _cur = _i;
     }
     return _cur;
-}
-
-/// @function fusion_prereq_met(card_id, _need_shape)
-/// @desc 前置是否达成。前置表里的卡**全部**满足才算达成。
-/// @param {string} card_id 目标卡 id
-/// @param {real} _need_shape 0 = 拥有本体即可；2 = 前置卡需练到二转（诸神商店口径）
-///        ⚠️ 抽卡已不再校验前置（2026-10-27），现在只剩诸神商店「金卡本体」类商品会调它
-///        用 max_shape 判定（当前 shape 可被调低，max_shape 才是「曾经练到过」），
-///        与营地商店「降转后不能重买转职」同一个坑。
-///        卡本身形态数不够时按它自己的最大形态算（见 card_max_available_shape）。
-/// @return {bool} 表里没有的卡恒为 true
-function fusion_prereq_met(card_id, _need_shape = 0) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return true;
-
-    if (prereq_body_only(card_id)) _need_shape = 0;
-
-    var _list = _prereqs[$ card_id];
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        var _info = get_card_info_simple(_list[_i]);
-        if (!is_struct(_info)) return false;                 // 连本体都没有
-        if (_need_shape > 0) {
-            var _avail = card_max_available_shape(_list[_i]);
-            var _required = (_avail >= 0) ? min(_need_shape, _avail) : _need_shape;
-            if (_info.max_shape < _required) return false;
-        }
-    }
-    return true;
-}
-
-/// @function fusion_prereq_name(card_id)
-/// @desc 前置卡本体（0 转）形态名，多张用「][」串起来（用于提示文案；
-///       注意别用 「」——游戏字体没有这两个字形的映射，会渲成豆腐块，统一用半角方括号）
-/// @param {string} card_id 目标卡 id
-/// @return {string} 未配置前置 / 查不到名字时返回空串
-function fusion_prereq_name(card_id) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return "";
-
-    var _list = _prereqs[$ card_id];
-    var _out = "";
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        var _shape_data = get_plant_shape_data(_list[_i], 0);
-        if (_shape_data == undefined) continue;
-        if (_out != "") _out += "][";
-        _out += _shape_data[? "name"];
-    }
-    return _out;
-}
-
-/// @function fusion_prereq_any_upgradable(card_id)
-/// @desc 前置表里是否**至少有一张**卡能练到二转（自身形态 >= 2）。
-///       全是只有 0 转的卡时（幻幻鸡 `magic_chicken` / 蓝莓塔 `blueberry_tower`），
-///       诸神商店的提示不该写「二转」，否则玩家会一直找一张根本不存在的二转形态。
-/// @param {string} card_id 目标卡 id
-/// @return {bool} 表里没有这张卡时返回 false
-function fusion_prereq_any_upgradable(card_id) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return false;
-
-    var _list = _prereqs[$ card_id];
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        if (card_max_available_shape(_list[_i]) >= 2) return true;
-    }
-    return false;
 }
 
 // 前置系统已不再参与抽卡（2026-10-27 用户：抽卡不需要前置，前置只属于食灵融合 / 金卡进化）

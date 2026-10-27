@@ -2065,6 +2065,7 @@
     {"id":{"name":"mod_clotho_get_random_level","path":"scripts/mod_clotho_get_random_level/mod_clotho_get_random_level.yy",},},
     {"id":{"name":"mod_craft_evo_table","path":"scripts/mod_craft_evo_table/mod_craft_evo_table.yy",},},
     {"id":{"name":"mod_craft_fusion_table","path":"scripts/mod_craft_fusion_table/mod_craft_fusion_table.yy",},},
+    {"id":{"name":"mod_craft_transfer_table","path":"scripts/mod_craft_transfer_table/mod_craft_transfer_table.yy",},},
     {"id":{"name":"mod_enemy_init","path":"scripts/mod_enemy_init/mod_enemy_init.yy",},},
     {"id":{"name":"mod_enum_init","path":"scripts/mod_enum_init/mod_enum_init.yy",},},
     {"id":{"name":"mod_get_buff_type","path":"scripts/mod_get_buff_type/mod_get_buff_type.yy",},},

@@ -659,6 +659,16 @@ tg_list_dirty = true                          // 列表 + 卡元数据要不要�
 tg_meta = {}                                  // id → { shape, level, is_gold, sprite, cost }
 tg_card = ""                                  // 主卡槽里的卡 id，"" = 空
 tg_assure = false                             // 保险金开关（独立于强化页那个）
+
+// ── 转职保底（2026-10-27 用户定）──
+//   口径：**只在保险金开着时累计**，同一张卡、同一次打开合成屋，连转第 15 次必成（不至于连炸过多）
+//         **保险金开关本身不影响次数**（开着关着来回点，已累计的照旧；只有开着的那几次才 +1）
+//   归零的三种情况：① 换成别的卡（含点主卡槽取回）② 转职成功 ③ 退出合成屋
+//     ③ 是天然的：obj_craft_bg 每次进合成屋都是新实例（obj_player_menu_btn 里 instance_create_depth），
+//        关面板 panel_anim_close() 会 instance_destroy()，实例变量跟着一起没
+tg_pity      = 0                              // 本次已累计的转职次数（不区分成没成，成功即清零）
+// 「第几次必成」= mod_tg_pity_max()（在 scripts/mod_craft_transfer_table，现在是 15）
+tg_pity_card = ""                             // 累计期间绑的那张卡，换卡就归零
 tg_hover_card = -1
 tg_btn_hover = false
 tg_btn_press = 0
@@ -684,71 +694,15 @@ tg_fx_oy = 100                                // 主卡槽中心 y（相对面�
 tg_fx_card_cx = 140.5                         // 素材内卡片框中心 x（实测，别乱改）
 tg_fx_card_cy = 119.5                         // 素材内卡片框中心 y（实测，别乱改）
 
-/// @func tg_confirm_rect(i) 确认窗按钮矩形（0 = 确定 / 1 = 取消）：Draw 与 Step 共用
-function tg_confirm_rect(_i){
-    var _bx = room_width * 0.5 + ((_i == 0) ? -80 : 80);
-    var _by = room_height * 0.5 + 70;
-    var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;   // 0.75 与 obj_shop_buy_confirm 同一手感
-    var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
-    return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
-}
-
-/// @func tg_confirm_draw() 转职确认窗：面板复用 spr_battle_escape_menu、按钮复用 spr_common_button
-///      （跟融合页的「系统提示」同一套观感；在 panel_anim_end_parts 之后调用 = 盖在最上层）
-function tg_confirm_draw(){
-    var _px = room_width * 0.5, _py = room_height * 0.5;
-    draw_set_alpha(0.55);
-    draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
-    draw_set_alpha(1);
-    draw_sprite_ext(spr_battle_escape_menu, 0, _px, _py, 1.5, 1.5, 0, c_white, 1);
-    draw_set_font(font_yuan);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
-    draw_set_colour(c_white);
-    draw_text(_px, _py - 112, "系统提示");
-    draw_text(_px, _py - 20, "转职后凭证将消失，您确定");
-    draw_text(_px, _py + 12, "要进行卡片转职吗？");
-    var _lbl = ["确定", "取消"];
-    for (var _i = 0; _i < 2; _i++){
-        var _r  = tg_confirm_rect(_i);
-        var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
-        var _fr = (tg_confirm_hover == _i) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
-        draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
-        draw_set_colour(c_white);
-        draw_text(_bx, _by, _lbl[_i]);
-    }
-    draw_set_colour(c_white);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
-}
-
-/// @func tg_target_shape(id) 目标档位 = 练到过的最高形态 + 1（没拥有按 0 算 → 1）
-function tg_target_shape(_id){
-    var _ms = transfer_credit_card_max_shape(_id);
-    if (_ms < 0) _ms = 0;
-    return _ms + 1;
-}
-
-/// @func tg_gold_cost(tier) 转职金币（tier = 凭证档位 1~5，不是卡形态）
-/// 🔴 用户定价：一转 3,000 / 二转 15,000
-///    三/四/终转还没有定价，先按「三转=一转价、四转/终转=二转价」占位
-function tg_gold_cost(_tier){
-    if (_tier == 1 || _tier == 3) return 3000;
-    return 15000;
-}
-
-/// @func tg_assure_cost(tier) 保险金（货币 = 金币；tier = 凭证档位 1~5）
-/// 🔴 用户定价：一转 7,500 / 二转 50,000；三/四/终转先按一/二转价占位
-function tg_assure_cost(_tier){
-    if (_tier == 1 || _tier == 3) return 7500;
-    return 50000;
-}
-
-/// @func tg_rate(tier) 成功率（%）：一转 / 三转 30，其余 20
-function tg_rate(_tier){
-    if (_tier == 1 || _tier == 3) return 30;
-    return 20;
-}
+// ── 转职的**数值 / 判定 / 确认窗绘制**都在 scripts/mod_craft_transfer_table（2026-10-27 拆出）──
+//    这里只留同名薄包装，Draw / Step 的调用点一行都不用改
+//    要改价格 / 成功率 / 保底次数 / 提示文案 → 去那个脚本，别在对象里加第二份
+function tg_confirm_rect(_i){ return mod_tg_confirm_rect(_i); }
+function tg_confirm_draw(){ mod_tg_confirm_draw(tg_confirm_hover); }
+function tg_target_shape(_id){ return mod_tg_target_shape(_id); }
+function tg_gold_cost(_tier){ return mod_tg_gold(_tier); }
+function tg_assure_cost(_tier){ return mod_tg_assure(_tier); }
+function tg_rate(_tier){ return mod_tg_rate(_tier); }
 
 /// @func tg_meta_get(id) 取卡的元数据（shape / level / is_gold / sprite / cost）；没建过 → undefined
 function tg_meta_get(_id){
@@ -802,31 +756,9 @@ function tg_notice(_text){
     show_notice(_text, 70);
 }
 
-/// @func tg_check() 能不能转 → { ok, reason, shape, gold, rate, assure, has_credit }
-///        提示优先级（用户 2026-10-25）：① 没选卡 ② **能不能转职**（形态）③ 缺凭证 ④ 金币不足
-///        —— 一次只返回一个 reason，配 tg_notice 保证屏幕上不会有第二条
+/// @func tg_check() 能不能转 —— 判定在 mod_tg_check（数值 / 提示优先级都在表里），这里只喂界面状态
 function tg_check(){
-    var _r = { ok:false, reason:"", shape:0, gold:0, rate:0, assure:0, has_credit:false };
-    _r.assure = tg_assure ? tg_assure_cost(1) : 0;
-    if (tg_card == ""){ _r.reason = "先选一张卡"; return _r; }
-
-    var _shape = tg_target_shape(tg_card);            // 只能按顺序：目标形态 = max_shape + 1
-    var _tier  = transfer_credit_tier(tg_card, _shape);   // 档位：普卡 1/2，金卡 3/4/5
-    _r.shape = _shape;
-    _r.rate = tg_rate(_tier);
-    _r.gold = tg_gold_cost(_tier);
-    _r.assure = tg_assure ? tg_assure_cost(_tier) : 0;
-
-    // 上限走 transfer_credit_card_shapes_max（player_deck 形态表 ∪ plant_registry），
-    // 只读 card_max_available_shape 会把「注册表里只有 0 转」的卡全部误报成已转满
-    if (_shape > transfer_credit_card_shapes_max(tg_card)){ _r.reason = "此卡已无法转职"; return _r; }
-
-    _r.has_credit = transfer_credit_has(tg_card, _shape);
-    if (!_r.has_credit){ _r.reason = "缺少" + transfer_credit_tier_name(_tier); return _r; }
-
-    if (!global.debug && global.save_data.player.gold < _r.gold + _r.assure){ _r.reason = "金币不足"; return _r; }
-    _r.ok = true;
-    return _r;
+    return mod_tg_check(tg_card, tg_assure, global.save_data.player.gold, global.debug);
 }
 
 /// @func tg_do() 真转一次：掷骰 → **成功只登记待结算**（动画播完才扣钱/扣凭证/提形态）/ 失败立刻结算
@@ -842,7 +774,14 @@ function tg_do(){
     var _id = tg_card;
     var _shape = _r.shape;
 
-    var _win = (irandom(99) < _r.rate);               // 概率见 tg_rate：一转 30% / 二转起 20%
+    // ── 转职保底：累计次数由对象存（换卡要清零），掷骰与「第 N 次必成」在 mod_tg_roll ──
+    if (tg_card != tg_pity_card){
+        tg_pity = 0;
+        tg_pity_card = tg_card;
+    }
+    var _roll = mod_tg_roll(_r.rate, tg_pity, mod_tg_pity_max(), tg_assure);
+    tg_pity  = _roll.pity;
+    var _win = _roll.win;
 
     if (_win){
         // 保留原来的 level / skill，只把形态提上去（unlock_card 内部取 max，不会降）
@@ -892,6 +831,8 @@ function tg_fx_commit(){
 
     tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
     tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
+    tg_pity = 0;                                       // 保底：转成功了就重新数
+    tg_pity_card = "";
     save_file(global.save_slot);
 }
 
@@ -927,6 +868,15 @@ evo_fx_pending = undefined
 evo_list    = []
 evo_meta    = {}
 evo_list_dirty = true
+
+// 右侧列表的滚动（跟转职页 / 强化页同一套：7 列 × 8 行、84×96、整行滚、Draw 里 0.28 平滑）
+evo_gcols = 7
+evo_grows = 8
+evo_gpx   = 84
+evo_gpy   = 96
+evo_scroll        = 0      // 平滑后的滚动行（Draw 用 floor 取值）
+evo_scroll_target = 0      // 滚轮改这个（Mouse_60/61）
+evo_rows_max      = 0      // Draw 每帧按卡数算（ceil(n/列) - 8），Step 只读
 
 /// 前置关系一律走 mod/craft 的表（scripts/mod_craft_evo_table）
 ///   slot 0 = 第 1 槽（星座卡）/ slot 1 = 第 2 槽（普通卡）/ need = 该前置卡要求的形态

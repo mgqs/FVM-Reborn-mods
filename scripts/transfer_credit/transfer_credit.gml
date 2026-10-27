@@ -464,7 +464,7 @@ function transfer_credit_tab_slots(_items, _starts, _cols){
     var _slots = [];
     var _next = 0;
     var _s = 0;
-    for (var _i = 0; i < array_length(_items); i++){
+    for (var _i = 0; _i < array_length(_items); _i++){
         if (_s < array_length(_starts) && _i == _starts[_s]){
             _next = ceil(_next / _cols) * _cols;
             _s++;

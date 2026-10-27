@@ -13,5 +13,6 @@
   "listItems":[
     {"name":"mod_craft_evo_table","path":"scripts/mod_craft_evo_table/mod_craft_evo_table.yy",},
     {"name":"mod_craft_fusion_table","path":"scripts/mod_craft_fusion_table/mod_craft_fusion_table.yy",},
+    {"name":"mod_craft_transfer_table","path":"scripts/mod_craft_transfer_table/mod_craft_transfer_table.yy",},
   ],
 }

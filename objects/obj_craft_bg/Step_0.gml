@@ -233,12 +233,13 @@ if (craft_top_tab == 3) {
 		// ① 右侧列表：点卡 → 整组落槽（进哪个槽由表里的 slot 决定；另一张自动补齐或画灰占位）
 		evo_hover_card = -1;
 		var _n = array_length(evo_list);
-		for (var _r = 0; _r < 8; _r++) {
-			for (var _c = 0; _c < 7; _c++) {
-				var _ci = _r * 7 + _c;
+		var _off = floor(evo_scroll);                 // 热区要跟着滚动一起偏移，否则点到的和看到的不一致
+		for (var _r = 0; _r < evo_grows; _r++) {
+			for (var _c = 0; _c < evo_gcols; _c++) {
+				var _ci = (_r + _off) * evo_gcols + _c;
 				if (_ci >= _n) break;
-				var _gx = evo_list_x + _c * 84;
-				var _gy = evo_list_y + _r * 96;
+				var _gx = evo_list_x + _c * evo_gpx;
+				var _gy = evo_list_y + _r * evo_gpy;
 				if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) {
 					var _cid = evo_list[_ci];
 					if (evo_pick(_cid)) {
@@ -323,19 +324,23 @@ if (craft_top_tab == 2) {
 	}
 	// ③ 正常交互
 	else if (mouse_check_button_pressed(mb_left)) {
-		// ① 右侧列表选卡 → 进主卡槽
+		// ① 右侧列表选卡 → 进主卡槽（**换卡 = 保底归零**，2026-10-27 用户口径）
 		if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
+			if (tg_card != tg_list[tg_hover_card]) { tg_pity = 0; tg_pity_card = ""; }
 			tg_card = tg_list[tg_hover_card];
 			audio_play_sound(snd_button, 0, 0);
 		}
-		// ② 点主卡槽 = 卸下
+		// ② 点主卡槽 = 卸下（卸下也算换卡，保底归零；再放回来从头数）
 		else if (point_in_rectangle(mouse_x, mouse_y, tg_main_x - 44, tg_main_y - 44, tg_main_x + 44, tg_main_y + 44)) {
 			if (tg_card != "") {
 				tg_card = "";
+				tg_pity = 0;
+				tg_pity_card = "";
 				audio_play_sound(snd_button, 0, 0);
 			}
 		}
 		// ③ 保险金：点徽章或勾选框都算（独立开关，不动强化页那个配置）
+		//    ⚠️ 开关**不影响保底次数**（用户 2026-10-27 明确）：开着关着来回点，已累计的次数照旧
 		else if (point_in_rectangle(mouse_x, mouse_y, assure_badge_cx - 33, assure_badge_cy - 36, assure_badge_cx + 33, assure_toggle_y + 18)) {
 			tg_assure = !tg_assure;
 			audio_play_sound(snd_button, 0, 0);
