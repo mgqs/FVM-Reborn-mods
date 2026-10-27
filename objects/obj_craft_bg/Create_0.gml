@@ -13,6 +13,10 @@ btn1.text_spr = spr_craft_card_text
 var btn2 = instance_create_depth(x-661,y+100,depth-1,obj_craft_select_btn)
 btn2.button_index = 1
 btn2.text_spr = spr_craft_gem_text
+// 第 3 个按钮：卡片转职（2026-10-25，竖排字 837；点它把 craft_top_tab 切到 2）
+var btn3 = instance_create_depth(x-661,y+250,depth-1,obj_craft_select_btn)
+btn3.button_index = 2
+btn3.text_spr = spr_transfer_tab_text
 
 card_material_id_list = ["natural_spices","secret_spices","royal_spices","clover_1","clover_2","clover_3","clover_4"]
 gem_material_id_list = ["less_crystal","middle_crystal","advanced_crystal"]
@@ -38,11 +42,15 @@ craft_sort_order = []
 // 位置按 928 整窗空间算（左上角 = (x-829, y-524)，1.8 倍）：
 //   整窗上沿那条蓝色空带是 y28~51（「合成屋」横幅左边那段），页签就坐在这条带子里，
 //   高度 1.35 倍（119x31 → 161x42）正好等于带高，右侧让开横幅（928 x288 起）
+// 顶部页签（2026-10-26 改成 3 个，顺序 = 卡片宝石 / 神级进化 / 食灵融合）
+// 值：0 = 卡片宝石（强化面板），1 = 食灵融合，2 = 卡片转职（左侧按钮进），3 = 神级进化（金卡进化）
 craft_top_tab = 0
 craft_tab_scale = 1.35
 tab_cardgem_x = x - 829 + 16 * 1.8
 tab_cardgem_y = y - 524 + 28 * 1.8
-tab_fusion_x = tab_cardgem_x + 119 * craft_tab_scale + 10
+tab_evo_x = tab_cardgem_x + 119 * craft_tab_scale + 10
+tab_evo_y = tab_cardgem_y
+tab_fusion_x = tab_evo_x + 119 * craft_tab_scale + 10
 tab_fusion_y = tab_cardgem_y
 craft_tab_hover = -1
 
@@ -198,7 +206,7 @@ function fusion_recipe_tip(_id){
 	// ② 主卡 / 副卡：**要几转由食谱决定**（need 已按卡的可用形态兜底），不再一律写二转
 	var _main_id = (_shape == 0) ? fusion_pre_card(_id) : _id;
 	var _main_nd = (_shape == 0) ? fusion_main_need_of(_main_id) : (_shape - 1);
-	var _main_sh = fusion_need_shape(_main_id, _main_nd);
+	var _main_sh = mod_fusion_need_shape(_main_id, _main_nd);
 	var _tip = _title + "\n主卡：" + fusion_shape_name(_main_id, _main_sh) + fusion_shape_tag(_main_sh);
 	var _sq = fusion_sub_card(_id);
 	if (_sq.id != "") _tip += "\n副卡：" + fusion_shape_name(_sq.id, _sq.need) + fusion_shape_tag(_sq.need);
@@ -277,21 +285,13 @@ fusion_card_base_s = 0.25;    // 卡底缩放（跟强化页/列表一口径）
 fusion_card_face_s = 0.7;     // 卡面缩放
 
 // ── 三档配置：需金币 / 融合剂（秘制 → 四叶草 → 皇室）──
-fusion_levels = [
-	{ name: "初级", shape: 0, gold: 150000, mat: "secret_spices", mat_n: 1000 },
-	{ name: "深度", shape: 1, gold: 320000, mat: "clover_4",      mat_n: 15   },
-	{ name: "灵魂", shape: 2, gold: 560000, mat: "royal_spices",  mat_n: 1000 }
-];
+fusion_levels = mod_fusion_levels();          // 三档配置（名字/形态/金币/材料）走 mod/craft 表
 // 初融「主卡」要求的形态：0 = 拥有本体即可 / 1 = 一转 / 2 = 二转（**默认值，不是硬规则**）
 // 2026-10-24 用户口径：现有食谱的主卡/副卡一律要二转 → 默认值设 2（数据，不是代码硬编码）
 // 单张融合卡想另配主卡要求 → 写进下面的 fusion_main_needs（卡 id → need），没写的才用这个默认
 // （深度/灵魂 的主卡结构上就是上一形态，不用配；副卡要求全在副卡表里逐条写 need）
-fusion_main_need = 2;
-
-// 初融主卡的**逐条覆盖表**：主卡 id → 要求的形态（0/1/2）
-// 例：把「融合双菇」的主卡（蚝油双菇）改成只要一转 → rongheshuanggu 的主卡是 shuanggu，写 shuanggu: 1
-// 表里没写的卡 → 用 fusion_main_need
-fusion_main_needs = {};
+fusion_main_need   = mod_fusion_main_need();    // 「初融」档主卡默认要求形态（表里配）
+fusion_main_needs  = mod_fusion_main_needs();   // 逐卡覆盖（表里配）
 
 /// @func fusion_recipe_item_id(id, shape) 食谱道具在背包里的 id（诸神商店卖的就是这个）
 function fusion_recipe_item_id(_id, _shape){
@@ -340,7 +340,7 @@ function fusion_card_list(_lv){
 	if (_lv == 1){
 		for (var _i = 0; _i < array_length(fusion_pre_cards); _i++){
 			var _id = fusion_pre_cards[_i];
-			var _mneed = fusion_need_shape(_id, fusion_main_need_of(_id));
+			var _mneed = mod_fusion_need_shape(_id, fusion_main_need_of(_id));
 			if (fusion_owned_max_shape(_id) < _mneed) continue;     // 没练到食谱要求的形态就先不列（槽里会画灰）
 			if (array_get_index(_seen, _id) != -1) continue;
 			array_push(_seen, _id);
@@ -411,6 +411,10 @@ fusion_result_out = false
 // 官方素材，按 fusion_level 取；落位 = 面板内水平居中 + 顶部对齐面板上沿（见 Draw_0 的演出块）
 fusion_fx_sprites = [spr_fusion_fx_chu, spr_fusion_fx_shen, spr_fusion_fx_ling];
 fusion_fx_frames  = 25;
+// 演出速度：1.0 = 原速（25 帧铺在 t=0~50，整段 62 tick ≈ 1s）
+//   0.5 = 半速（25 帧铺到 t=0~100，整段 124 tick ≈ 2s，2026-10-26 用户要求跟转职特效一样放慢）
+//   改这一个数即可：Draw 的取帧 / 白闪起点、Step 的演出结束判定都按它换算
+fusion_fx_speed   = 0.5;
 
 // ── 融合确认弹窗（系统提示）：点「融合」先问一句，点确定才开演 ──
 // 内联画在本对象里（不新建对象），面板复用 spr_battle_escape_menu、按钮复用 spr_common_button
@@ -455,27 +459,7 @@ function fusion_confirm_draw(){
 	draw_set_alpha(1);
 }
 
-// 右侧「防御卡」列表的数据表：**顺序 = spr_fusion_recipe0 的帧号**（`gods_goods_registry.fusion_recipe0_frame()`
-// 也按这个顺序算），加卡只能往后接、别插队。前置卡 pre 在下面从 fusion_get_prerequisites() 反查后补进去
-var _pre_tbl = fusion_get_prerequisites();
-
-fusion_demo = [
-	{ id: "ronghedapao"    },   // 融合巧克力炮
-	{ id: "ronghehaixing"  },   // 融合海星
-	{ id: "youyu_god"      },   // 融合鱿鱼
-	{ id: "lizi_god"       },   // 融合栗子
-	{ id: "ronghedan_god"  },   // 融合煮蛋器
-	{ id: "ronghehuopen"   },   // 融合火盆
-	{ id: "ronghesanxian"  },   // 融合三线
-	{ id: "rongheshuanggu" },   // 融合双菇
-	{ id: "ronghekafei"    }    // 融合咖啡杯
-]
-
-// 每张融合卡的「前置卡」直接从 fusion_get_prerequisites() 取，避免手写错
-for (var _di = 0; _di < array_length(fusion_demo); _di++){
-	var _dp = _pre_tbl[$ fusion_demo[_di].id];
-	fusion_demo[_di].pre = (array_length(_dp) > 0) ? _dp[0] : "";
-}
+fusion_demo = mod_fusion_card_order();   // 9 张融合卡的收集顺序 + 前置主卡（表在 mod/craft）
 
 // ── 融合页列表：整行滚动（不做半行）──
 fusion_recipe_scroll = 0;   // 菜谱列表当前行（实际值，Draw 里向目标值插值）
@@ -495,57 +479,10 @@ function fusion_owned_max_shape(_id){
 	return -1;
 }
 
-// ── 各档「副卡」表：[1]=初级 / [2]=深度 / [3]=灵魂；"" = 这道食谱没有副卡（或卡还没进工程）──
-//    数据来源：官方「防御卡查询」的【融合路径】截图（素材\新普卡-融合卡\*\米苏.jpg、10.21…\spr-dapao-ronghe\米苏.jpg）
-//    路径读法： [主卡] + [副卡] → [结果]
-//    🔴 每条写成 { id:"卡id", need:N }，N = **这道食谱要求的形态**：0 本体 / 1 一转 / 2 二转
-//    🔴 2026-10-25 用户口径：**副卡全部 0 转（只要本体）**，唯一例外是德芙面包（chocolate_bread，need 1）。
-//       下面注释里的「XX二转」是这张卡的**二转形态名**（用来认卡），不是当前要求；要求一律看 need。
-//       need 超过这张卡自己的形态上限时按它的上限算（见 fusion_need_shape，卡本身没二转也不会卡死）
-//    ⚠️ 工程里没有的卡先留空（下面注释写了官方要求的那张），别瞎填
-fusion_sub_cards = [
-	{   // ① 初级
-		ronghedapao:    { id: "chocolate_pult",    need: 0 },   // 脆心巧克力投手（巧克力投手二转形态名）
-		ronghehaixing:  { id: "melon_shield",      need: 0 },   // 锋芒瓜皮护罩（官方「仙人掌花刺身」的顶替：瓜皮系）
-		youyu_god:      { id: "coal_starfish",     need: 0 },   // 芥末海星刺身（炭烧海星；0 转融合鱿鱼是 8 向齐射 → 取多方向卡）
-		lizi_god:       { id: "spicy_pot",         need: 0 },   // 酱香鱿鱼锅（麻辣香锅二转形态名）
-		ronghedan_god:  { id: "ice_egg_boiler_pult", need: 0 },  // 冰河煮蛋器（冰煮蛋器；0 转煮蛋器是投掷溅射+定身 → 取冰系投手）
-		ronghehuopen:   { id: "sugar_roxburghii",  need: 0 },   // 生腌酸刺梨（糖渍刺梨二转形态名）
-		ronghesanxian:  { id: "wine_bottle_bomb",  need: 0 },   // 子母酒瓶弹（酒瓶炸弹二转形态名）
-		rongheshuanggu: { id: "hotdog_cannon",     need: 0 },   // 热狗榴弹炮（热狗大炮二转形态名）
-		ronghekafei:    { id: "gatlin_long_bao",   need: 0 }    // 格林机枪笼包
-	},
-	{   // ② 深度
-		ronghedapao:    { id: "lightning_baguette", need: 0 },   // 雷电长棍面包（官方「霸王美味电鳗」的顶替：电系）
-		ronghehaixing:  { id: "chocolate_bread",   need: 1 },   // 德芙面包（官方「8周年红丝绒」的顶替）⚠ 唯一例外：巧克力面包只有本体+1转，最高只能 1
-		youyu_god:      { id: "double_water_pipe", need: 0 },   // 合金水管（双向水管二转形态名）
-		lizi_god:       { id: "coke_bomb",         need: 0 },   // 燃烧可乐弹（可乐炸弹二转形态名）
-		ronghedan_god:  { id: "stinky_tofu_pult",  need: 0 },   // 铁板臭豆腐投手（臭豆腐投手二转形态名）
-		ronghehuopen:   { id: "durian",            need: 0 },   // 冰河世纪榴莲（榴莲二转形态名）
-		ronghesanxian:  { id: "sheshou",           need: 0 },   // 射手座星宿（射手座精灵二转形态名；1 转三线是「三行各 3 发」→ 取三行多发卡）
-		rongheshuanggu: { id: "coffee_pot",        need: 0 },   // 红温咖啡喷壶（咖啡喷壶二转形态名）
-		ronghekafei:    { id: "coffee_pot",        need: 0 }    // 红温咖啡喷壶（咖啡喷壶二转形态名）
-	},
-	{   // ③ 灵魂
-		ronghedapao:    { id: "flour_sack",        need: 0 },   // 乾坤分身袋（面粉袋二转形态名）
-		ronghehaixing:  { id: "sugar_ball_pult",   need: 0 },   // 可可糖全能投手（官方「王冠蜜糖陷阱」的顶替：灵融＝变追踪）
-		youyu_god:      { id: "nut_frier",         need: 0 },   // 松塔爆破机（坚果爆炒机二转形态名）
-		lizi_god:       { id: "qingse_shishi",     need: 0 },   // 柿柿如意（青涩柿柿二转形态名）
-		ronghedan_god:  { id: "triple_wine_rack",  need: 0 },   // 终结者酒架（三线酒架二转形态名）
-		ronghehuopen:   { id: "ice_bucket_bomb",   need: 0 },   // 杂果冰桶炸弹（冰桶炸弹二转形态名）
-		ronghesanxian:  { id: "oden_pot",          need: 0 },   // 海鲜关东煮喷锅（关东煮喷锅二转形态名；2 转三线「三行 3 发可穿透」→ 取三行穿透卡）
-		rongheshuanggu: { id: "tang_hu_lu",        need: 0 },   // 七彩糖葫芦弹（糖葫芦炮弹二转形态名）
-		ronghekafei:    { id: "coffee_cup",        need: 0 }    // 骨瓷咖啡杯（咖啡杯二转形态名）
-	}
-];
-
-/// @func fusion_need_shape(id, need) 「要的形态」按这张卡自己的上限兜底（0 起）
-/// 例：need 2 但卡只有 0/1 转（card_max_available_shape = 1）→ 按 1 转算，不会永远凑不齐
-function fusion_need_shape(_id, _need){
-	var _max = card_max_available_shape(_id);
-	if (_max < 0) return _need;          // 查不到这张卡：原样返回，别把要求抹成 0
-	return min(_need, _max);
-}
+// ── 三档副卡表：数据在 scripts/mod_craft_fusion_table（mod/craft 分组），这里只引用 ──
+//    每条写成 { id:"卡id", need:N }，N = 这道食谱要求的形态（0 本体 / 1 一转 / 2 二转）
+//    改数据请改 mod_fusion_sub_cards()，别在这里加表
+fusion_sub_cards = mod_fusion_sub_cards();
 
 /// @func fusion_sub_card(id) 当前档位这张融合卡要的副卡 → { id, need }（没有副卡 = { id:"", need:0 }）
 /// need 已经按卡的可用形态兜底过，调用方直接用，不要自己再判「是不是二转」
@@ -561,7 +498,7 @@ function fusion_sub_card_at(_lv, _id){
 	// 表里统一写 { id:"卡id", need:N }；老写法 "卡id" 仍兼容（= 拥有本体即可）
 	if (is_struct(_v)){
 		if (_v.id == "") return { id: "", need: 0 };
-		return { id: _v.id, need: fusion_need_shape(_v.id, _v.need) };
+		return { id: _v.id, need: mod_fusion_need_shape(_v.id, _v.need) };
 	}
 	if (_v == "") return { id: "", need: 0 };
 	return { id: _v, need: 0 };
@@ -582,16 +519,16 @@ function fusion_main_req(){
 	if (_cfg.shape == 0){
 		var _pid = fusion_main_card_id();
 		if (_pid == "") return { id: "", need: 0 };
-		return { id: _pid, need: fusion_need_shape(_pid, fusion_main_need_of(_pid)) };
+		return { id: _pid, need: mod_fusion_need_shape(_pid, fusion_main_need_of(_pid)) };
 	}
 	var _nd = _cfg.shape - 1;
-	return { id: fusion_loaded_id, need: fusion_need_shape(fusion_loaded_id, _nd) };
+	return { id: fusion_loaded_id, need: mod_fusion_need_shape(fusion_loaded_id, _nd) };
 }
 
 /// @func fusion_card_enough(id, need) 这张卡够不够融合用（need 0 = 拥有本体即可）
 function fusion_card_enough(_id, _need){
 	if (_id == "") return false;
-	return fusion_owned_max_shape(_id) >= fusion_need_shape(_id, _need);
+	return fusion_owned_max_shape(_id) >= mod_fusion_need_shape(_id, _need);
 }
 
 /// @func fusion_check() 融合前置统一判定：Draw 的按钮亮暗、Step 的点击提示都走这一份，
@@ -694,6 +631,339 @@ clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
 crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
 
 // 整块面板的进出场过渡（实现在 scripts/GuiStack/GuiStack.gml）
+// ─────────────────────────────────────────────────────────────
+// 卡片转职页（craft_top_tab == 2）—— 2026-10-25
+// 几何 / 状态 / 判定函数全部集中在这里，Draw 与 Step 共用同一套（别各算一份）
+// 消耗入口 = 左侧第 3 个按钮；凭证来自商店；数值挂点见 tg_gold_cost / tg_assure_cost / tg_rate
+// ─────────────────────────────────────────────────────────────
+tg_slot_x = [x - 455, x - 305, x - 155]      // 屏幕顺序：左 A / 中 C / 右 B
+tg_slot_y = y - 20
+tg_main_x = x - 307                           // 与强化页主卡槽同一点（卡底 0.25 / 卡面 0.7）
+tg_main_y = y + 103
+tg_btn_x  = x - 305
+tg_btn_y  = y + 220
+tg_gold_x = x - 350                           // 需金币条（origin 在右端）
+tg_rate_x = x - 45                            // 成功率条（origin 在右端）
+tg_bar_y  = y + 300
+tg_list_x = x + 196                           // 右侧列表首格中心（跟强化页同一套 84×96 / 7 列）
+tg_list_y = y - 321
+tg_gpx = 84
+tg_gpy = 96
+tg_gcols = 7
+tg_grows = 8
+tg_scroll = 0
+tg_scroll_target = 0
+tg_rows_max = 0
+tg_list = []
+tg_list_dirty = true                          // 列表 + 卡元数据要不要重建（进页 / 转职后置 true）
+tg_meta = {}                                  // id → { shape, level, is_gold, sprite, cost }
+tg_card = ""                                  // 主卡槽里的卡 id，"" = 空
+tg_assure = false                             // 保险金开关（独立于强化页那个）
+
+// ── 转职保底（2026-10-27 用户定）──
+//   口径：**只在保险金开着时累计**，同一张卡、同一次打开合成屋，连转第 15 次必成（不至于连炸过多）
+//         **保险金开关本身不影响次数**（开着关着来回点，已累计的照旧；只有开着的那几次才 +1）
+//   归零的三种情况：① 换成别的卡（含点主卡槽取回）② 转职成功 ③ 退出合成屋
+//     ③ 是天然的：obj_craft_bg 每次进合成屋都是新实例（obj_player_menu_btn 里 instance_create_depth），
+//        关面板 panel_anim_close() 会 instance_destroy()，实例变量跟着一起没
+tg_pity      = 0                              // 本次已累计的转职次数（不区分成没成，成功即清零）
+// 「第几次必成」= mod_tg_pity_max()（在 scripts/mod_craft_transfer_table，现在是 15）
+tg_pity_card = ""                             // 累计期间绑的那张卡，换卡就归零
+tg_hover_card = -1
+tg_btn_hover = false
+tg_btn_press = 0
+
+// ── 转职确认窗 + 成功特效（2026-10-26 用户定流程）──
+// 点「转职」→ 先弹确认窗（文案见 tg_confirm_draw）→ 确定后掷骰：
+//   失败 = 直接弹提示；成功 = **播完 tg_fx_frames 帧特效** 才提示 + 卡回列表
+tg_confirm = false                            // 确认窗开着
+tg_confirm_hover = -1                         // -1 无 / 0 确定 / 1 取消
+tg_fx = false                                 // 成功特效播放中（此期间锁住其它交互）
+tg_fx_t = 0                                   // 已播帧数（浮点，按 tg_fx_speed 递增）
+tg_fx_frames = 28                             // spr_transfer_success_fx 的帧数（2026-10-26 用户定 28 帧：
+                                              //   原 75 帧 → 46 帧 → 28 帧，后面全是白框空闪，删掉）
+tg_fx_speed = 0.25                             // 每 tick 推进几帧：1.0 = 原速
+                                              //   0.1 = 1/10 速（测试值）；0.25 = 1/4 速（28 帧 ≈ 1.9s）
+tg_fx_scale = 1.6                             // 显示倍数：素材卡片框 61×75 → ×1.6 ≈ 98×120
+                                              //   主卡槽底板 48×61 @1.8 = 86×110 → 框**包在槽外一圈**（左右各 6px）
+tg_fx_pending = undefined                     // 成功但动画还没播完时的待生效数据（见 tg_do / Step_0）
+// 落点：素材里的「卡片框」中心（287×196 画布坐标，离线实测 140.5 / 119.5）
+//      —— 对齐到**主卡槽中心**（不是卡面中心，2026-10-26 用户口径：框对准槽就行）
+tg_fx_ox = -305                               // 主卡槽中心 x（相对面板；= tg_main_x + 2 - x）
+tg_fx_oy = 100                                // 主卡槽中心 y（相对面板；= tg_main_y - 3 - y）
+tg_fx_card_cx = 140.5                         // 素材内卡片框中心 x（实测，别乱改）
+tg_fx_card_cy = 119.5                         // 素材内卡片框中心 y（实测，别乱改）
+
+// ── 转职的**数值 / 判定 / 确认窗绘制**都在 scripts/mod_craft_transfer_table（2026-10-27 拆出）──
+//    这里只留同名薄包装，Draw / Step 的调用点一行都不用改
+//    要改价格 / 成功率 / 保底次数 / 提示文案 → 去那个脚本，别在对象里加第二份
+function tg_confirm_rect(_i){ return mod_tg_confirm_rect(_i); }
+function tg_confirm_draw(){ mod_tg_confirm_draw(tg_confirm_hover); }
+function tg_target_shape(_id){ return mod_tg_target_shape(_id); }
+function tg_gold_cost(_tier){ return mod_tg_gold(_tier); }
+function tg_assure_cost(_tier){ return mod_tg_assure(_tier); }
+function tg_rate(_tier){ return mod_tg_rate(_tier); }
+
+/// @func tg_meta_get(id) 取卡的元数据（shape / level / is_gold / sprite / cost）；没建过 → undefined
+function tg_meta_get(_id){
+    if (variable_struct_exists(tg_meta, _id)) return tg_meta[$ _id];
+    return undefined;
+}
+
+/// @func tg_rebuild() 重建右侧列表 + 卡元数据 —— **只在 tg_list_dirty 时调，别每帧调**
+///       性能口径（2026-10-26 修：188 张卡时整页卡成幻灯片）：
+///         ① 每张卡只查一次 deck_get_card_data（它是线性扫 global.player_deck）→ O(n)
+///         ② 不排序：普卡桶 + 金卡桶直接拼（融合卡已过滤，只剩 2 档）
+///         ③ 列表和元数据都缓存，绘制 O(1) 取，不再扫 unlocked_cards / player_deck
+function tg_rebuild(){
+    var _uc = global.save_data.unlocked_cards;
+    var _meta = {};
+    var _norm = [];                              // 普卡（保持存档顺序）
+    var _gold = [];                              // 金卡
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        var _id = _uc[_i].id;
+        var _sh = _uc[_i].shape;
+        var _d  = deck_get_card_data(_id, _sh);  // 每张卡只查这一次
+        if (_d != noone && ds_map_find_value(_d, "is_fusion") == 1) continue;   // 融合卡不进列表
+        if (_d != noone){
+            // 缺键给安全默认值（sprite = -1 → 绘制端跳过；cost = 0），避免个别卡把绘制搞崩
+            _meta[$ _id] = {
+                shape:   _sh,
+                level:   _uc[_i].max_level,
+                is_gold: (ds_map_find_value(_d, "is_gold") == 1),
+                sprite:  ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                cost:    ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+            };
+        }
+        // 没有 deck 数据的老卡也留在列表里（格子空着，至少能点）
+        if (_d != noone && ds_map_find_value(_d, "is_gold") == 1) array_push(_gold, _id);
+        else array_push(_norm, _id);
+    }
+    var _out = [];
+    for (var _a = 0; _a < array_length(_norm); _a++) array_push(_out, _norm[_a]);
+    for (var _b = 0; _b < array_length(_gold); _b++) array_push(_out, _gold[_b]);
+
+    tg_meta = _meta;
+    tg_list = _out;
+    tg_list_dirty = false;
+}
+
+/// @func tg_notice(text) 转职页专用提示：**先清掉已有提示**再显示。
+///       全局 show_notice 是往 global.notice_list 里 push，连点两下就会两条字叠在一起
+///       （2026-10-25 用户：金币不足 和 此卡已无法转职 叠着显示）。转职页只留最后一条。
+function tg_notice(_text){
+    if (variable_global_exists("notice_list")) global.notice_list = [];
+    show_notice(_text, 70);
+}
+
+/// @func tg_check() 能不能转 —— 判定在 mod_tg_check（数值 / 提示优先级都在表里），这里只喂界面状态
+function tg_check(){
+    return mod_tg_check(tg_card, tg_assure, global.save_data.player.gold, global.debug);
+}
+
+/// @func tg_do() 真转一次：掷骰 → **成功只登记待结算**（动画播完才扣钱/扣凭证/提形态）/ 失败立刻结算
+///       ⚠️ 2026-10-26 用户口径：动画期间「凭证和卡都不变」，播完才 清槽 + 提示 + 卡回列表。
+///          所以成功分支里**一样都不能改**（存档、形态、凭证、金币），全部塞进 tg_fx_pending，
+///          由 Step_0 在特效收尾时调 tg_fx_commit() 一次做完。
+function tg_do(){
+    var _r = tg_check();
+    if (!_r.ok){
+        tg_notice(_r.reason);
+        return;
+    }
+    var _id = tg_card;
+    var _shape = _r.shape;
+
+    // ── 转职保底：累计次数由对象存（换卡要清零），掷骰与「第 N 次必成」在 mod_tg_roll ──
+    if (tg_card != tg_pity_card){
+        tg_pity = 0;
+        tg_pity_card = tg_card;
+    }
+    var _roll = mod_tg_roll(_r.rate, tg_pity, mod_tg_pity_max(), tg_assure);
+    tg_pity  = _roll.pity;
+    var _win = _roll.win;
+
+    if (_win){
+        // 保留原来的 level / skill，只把形态提上去（unlock_card 内部取 max，不会降）
+        var _lev = 0;
+        var _skl = 0;
+        var _uc = global.save_data.unlocked_cards;
+        for (var _i = 0; _i < array_length(_uc); _i++){
+            if (_uc[_i].id == _id){
+                _lev = _uc[_i].level;
+                _skl = _uc[_i].skill;
+                break;
+            }
+        }
+        // 不在此时落账：动画期间显示必须保持原样（2026-10-26）
+        tg_fx_pending = {
+            id:        _id,
+            shape:     _shape,
+            lev:       _lev,
+            skl:       _skl,
+            gold:      _r.gold,
+            assure:    _r.assure,
+            keep_credit: false                            // 成功必扣凭证（保险金只在失败时生效）
+        };
+        tg_fx = true;
+        tg_fx_t = 0;
+        }
+    else{
+        // 失败是即时的（没有动画）：钱照扣；保险金开着则凭证保住，没开就连凭证一起扣
+        global.save_data.player.gold -= _r.gold + _r.assure;
+        if (!tg_assure) add_material_amount(transfer_credit_id(_id, _shape), -1);
+        tg_notice("不够好运，转职失败");
+        save_file(global.save_slot);
+    }
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @func tg_fx_commit() 特效播完才真正生效：扣钱 → 扣凭证 → 提形态 → 清主卡槽
+///       只由 Step_0 的特效收尾调用；没有待结算数据就直接返回（防御）
+function tg_fx_commit(){
+    var _p = tg_fx_pending;
+    tg_fx_pending = undefined;
+    if (is_undefined(_p)) return;
+
+    global.save_data.player.gold -= _p.gold + _p.assure;
+    if (!_p.keep_credit) add_material_amount(transfer_credit_id(_p.id, _p.shape), -1);
+    unlock_card(_p.id, _p.lev, _p.shape, _p.skl);
+
+    tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
+    tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
+    tg_pity = 0;                                       // 保底：转成功了就重新数
+    tg_pity_card = "";
+    save_file(global.save_slot);
+}
+
+// ─────────────────────────────────────────────────────────────
+// 神级进化页（craft_top_tab == 3）：金卡进化
+//   布局照原版截图：三槽（第 1 槽·星座卡 / 第 2 槽·普通卡 / 进化凭证）→ ▼ → 结果槽 → 进化按钮
+//   🔴 数据全在 mod/craft：scripts/mod_craft_evo_table（前置表 / 槽位 / 形态要求 / 凭证绘制）
+//      这个对象只留「界面状态 + 交互状态机」：evo_cards / evo_miss / evo_target → evo_pick / evo_check / evo_do
+//   结果槽：不管能不能进化，都提前画出能进化成的金卡（用户口径）
+// ─────────────────────────────────────────────────────────────
+evo_slot_x  = [x - 455, x - 305, x - 155]      // 卡1 / 卡2 / 进化凭证
+evo_slot_y  = y - 40
+evo_arrow_x = x - 305
+evo_arrow_y = y + 34
+evo_res_x   = x - 305
+evo_res_y   = y + 118
+evo_btn_x   = x - 305
+evo_btn_y   = y + 216
+evo_left_x  = x - 662                          // 左侧「金卡进化」竖排按钮
+evo_left_y  = y - 30
+evo_list_x  = x + 196                          // 右侧防御卡列表（与强化页同一套 84×96 / 7 列）
+evo_list_y  = y - 321
+evo_cards   = ["", ""]                         // 两个前置卡槽（0 = 星座槽 / 1 = 普通槽，进哪个槽由表决定）
+evo_miss    = ["", ""]                         // 槽里「表要求、但玩家没有」的卡 → 画需求形态 + 灰滤镜、不可点
+evo_target  = ""                               // 当前能进化成的金卡
+evo_hover_card = -1
+evo_btn_press  = 0
+evo_fx      = false
+evo_fx_t    = 0
+evo_fx_frames = 55                             // spr_evo_fx 共 55 帧
+evo_fx_speed  = 0.5
+evo_fx_pending = undefined
+evo_list    = []
+evo_meta    = {}
+evo_list_dirty = true
+
+// 右侧列表的滚动（跟转职页 / 强化页同一套：7 列 × 8 行、84×96、整行滚、Draw 里 0.28 平滑）
+evo_gcols = 7
+evo_grows = 8
+evo_gpx   = 84
+evo_gpy   = 96
+evo_scroll        = 0      // 平滑后的滚动行（Draw 用 floor 取值）
+evo_scroll_target = 0      // 滚轮改这个（Mouse_60/61）
+evo_rows_max      = 0      // Draw 每帧按卡数算（ceil(n/列) - 8），Step 只读
+
+/// 前置关系一律走 mod/craft 的表（scripts/mod_craft_evo_table）
+///   slot 0 = 第 1 槽（星座卡）/ slot 1 = 第 2 槽（普通卡）/ need = 该前置卡要求的形态
+///   这里只做「拿表 + 拼界面状态」，不再自己存一份关系表
+
+/// @func evo_clear() 两个槽 + 缺卡占位一起清空
+function evo_clear(){
+    evo_cards = ["", ""];
+    evo_miss  = ["", ""];
+    evo_target = "";
+}
+
+/// @func evo_apply(target, slot, card_id) 落槽：规则（进哪槽 / 另一槽补谁）在 mod_evo_resolve，这里只存状态
+function evo_apply(_target, _slot, _card_id){
+    var _r = mod_evo_resolve(_target, _slot, _card_id);
+    evo_cards  = _r.cards;
+    evo_miss   = _r.miss;
+    evo_target = _r.target;
+}
+
+/// @func evo_pick(card_id) 点右侧列表的卡 → 整组落槽（找哪个目标 / 进哪一槽的规则在 mod_evo_pick_target）
+/// @return bool 是否进场成功
+function evo_pick(_card_id){
+    var _p = mod_evo_pick_target(_card_id);
+    if (is_undefined(_p)) return false;
+    evo_apply(_p.target, _p.slot, _card_id);
+    return true;
+}
+
+/// @func evo_check() 能不能进化（判定规则在 mod_evo_check，这里只把状态喂进去）
+/// @return { ok, reason, target }
+function evo_check(){
+    var _r = mod_evo_check(evo_target, evo_cards, evo_miss);
+    return { ok: _r.ok, reason: _r.reason, target: evo_target };
+}
+
+/// @func evo_do() 进化：成功 → 播 55 帧特效，播完才落账（与转职同一套「延迟结算」）
+function evo_do(){
+    var _r = evo_check();
+    if (!_r.ok){ show_notice(_r.reason, 70); return; }
+    evo_fx_pending = { target: _r.target, a: evo_cards[0], b: evo_cards[1] };
+    evo_fx = true;
+    evo_fx_t = 0;
+    evo_btn_press = 8;
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @func evo_commit() 特效播完：扣凭证 → 解锁金卡 → 清槽
+function evo_commit(){
+    var _p = evo_fx_pending;
+    evo_fx_pending = undefined;
+    if (is_undefined(_p)) return;
+    // 扣凭证 + 解锁金卡（星级从 0 起）都在 mod_evo_reward 里
+    mod_evo_reward(_p.target);
+    evo_clear();
+    evo_list_dirty = true;
+    if (variable_global_exists("notice_list")) global.notice_list = [];
+    show_notice("进化成功！", 80);
+    save_file(global.save_slot);
+}
+
+/// @func evo_rebuild() 右侧列表：只列 mod_evo_needed_cards() 说的那批「现在还需要的前置卡」里已拥有的
+///   （哪张金卡已拥有 → 它的前置不再列；前置本身是金卡/融合卡，只要还被需要就照常列）
+function evo_rebuild(){
+    evo_meta = {};
+    var _out = [];
+    var _uc  = global.save_data.unlocked_cards;
+    var _need = mod_evo_needed_cards();
+    var _set = {};
+    for (var _i = 0; _i < array_length(_need); _i++) _set[$ _need[_i]] = true;
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        var _id = _uc[_i].id;
+        if (!variable_struct_exists(_set, _id)) continue;
+        var _d = deck_get_card_data(_id, _uc[_i].shape);
+        if (_d != noone){
+            evo_meta[$ _id] = {
+                sprite: ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                level:  _uc[_i].max_level,          // 星级（画左上角星星）
+                cost:   ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+            };
+        }
+        array_push(_out, _id);
+    }
+    evo_list = _out;
+    evo_list_dirty = false;
+}
+
 panel_anim_init(id, 0.28, 0.18, 260)
 panel_anim_kids(id, [obj_closecraft_btn, obj_craft_select_btn, obj_craft_confirm_btn])
 

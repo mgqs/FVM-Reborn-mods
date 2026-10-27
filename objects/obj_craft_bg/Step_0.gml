@@ -25,12 +25,20 @@ if (fusion_confirm){
 	exit;
 }
 
-// ── 顶部页签切换：卡片宝石 / 食灵融合（2026-10-23）──
+// ── 顶部页签切换：卡片宝石 / 神级进化 / 食灵融合（2026-10-26 由 2 个改 3 个）──
+//   craft_tab_hover 存的是**页签值**（0 / 3 / 1），不是位置序号
 craft_tab_hover = -1
-if point_in_rectangle(mouse_x, mouse_y, tab_cardgem_x, tab_cardgem_y, tab_cardgem_x + sprite_get_width(spr_craft_tab_cardgem)*craft_tab_scale, tab_cardgem_y + sprite_get_height(spr_craft_tab_cardgem)*craft_tab_scale)
-	craft_tab_hover = 0
-else if point_in_rectangle(mouse_x, mouse_y, tab_fusion_x, tab_fusion_y, tab_fusion_x + sprite_get_width(spr_craft_tab_fusion)*craft_tab_scale, tab_fusion_y + sprite_get_height(spr_craft_tab_fusion)*craft_tab_scale)
-	craft_tab_hover = 1
+var _tab_ids = [0, 3, 1];
+var _tab_xs  = [tab_cardgem_x, tab_evo_x, tab_fusion_x];
+var _tab_ys  = [tab_cardgem_y, tab_evo_y, tab_fusion_y];
+var _tab_spr = [spr_craft_tab_cardgem, spr_craft_tab_evo, spr_craft_tab_fusion];
+for (var _ti = 0; _ti < 3; _ti++){
+	if (point_in_rectangle(mouse_x, mouse_y, _tab_xs[_ti], _tab_ys[_ti],
+		_tab_xs[_ti] + sprite_get_width(_tab_spr[_ti]) * craft_tab_scale,
+		_tab_ys[_ti] + sprite_get_height(_tab_spr[_ti]) * craft_tab_scale)){
+		craft_tab_hover = _tab_ids[_ti];
+	}
+}
 if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_hover != craft_top_tab){
 	craft_top_tab = craft_tab_hover
 	current_uprade_target_id = ""
@@ -42,11 +50,14 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 	fusion_fly_hold = 0
 	fusion_fly_t = 0
 	fusion_result_out = false
+	// 神级进化页也清槽（含缺卡占位，否则切回来会留着上组留下的灰卡）
+	evo_clear()
+	evo_list_dirty = true
 	audio_play_sound(snd_button,0,0)
 }
 // 页签切到融合时把「卡片强化 / 宝石强化」两个按钮和强化按钮藏起来，免得点到
 // ⚠️ with 里要用 other. 取本实例的变量，直接写 craft_top_tab 会被解析成目标实例的变量 → 报 not set
-with (obj_craft_select_btn) visible = (other.craft_top_tab == 0)
+with (obj_craft_select_btn) visible = (other.craft_top_tab != 1 && other.craft_top_tab != 3)   // 转职页要显示，神级进化页不显示（那页只画「金卡进化」一个按钮）
 with (obj_craft_confirm_btn) visible = (other.craft_top_tab == 0)
 with (obj_closecraft_btn) visible = true     // 弹窗关掉后恢复（弹窗分支里会被隐藏）
 
@@ -154,7 +165,8 @@ if (craft_top_tab == 1){
 	// ── 演出计时 → 出结果 ──
 	if fusion_phase == 1{
 		fusion_t += 1
-		if fusion_t >= 62{
+		// 结束判定按 fusion_fx_speed 换算：0.5 = 半速 → 124 tick 才结束（原来 62）
+		if (fusion_t * fusion_fx_speed >= 62){
 			fusion_phase = 0
 			fusion_t = 0
 			fusion_stage = 2
@@ -199,6 +211,155 @@ else{
 	fusion_t = 0
 	fusion_btn_hover = false
 	fusion_up_hover = false
+}
+
+// ── 神级进化页（craft_top_tab == 3，2026-10-26）：金卡进化交互 ──
+if (craft_top_tab == 3) {
+	if (evo_list_dirty) evo_rebuild();
+	if (evo_btn_press > 0) evo_btn_press -= 1;
+
+	// 特效播放中：只推进帧，播完才落账（与转职同一套延迟结算）
+	if (evo_fx) {
+		evo_fx_t += evo_fx_speed;
+		if (evo_fx_t >= evo_fx_frames) {
+			evo_fx = false;
+			evo_fx_t = 0;
+			evo_commit();
+		}
+		exit;                                   // 演出期间锁住其它交互
+	}
+
+	if (mouse_check_button_pressed(mb_left)) {
+		// ① 右侧列表：点卡 → 整组落槽（进哪个槽由表里的 slot 决定；另一张自动补齐或画灰占位）
+		evo_hover_card = -1;
+		var _n = array_length(evo_list);
+		var _off = floor(evo_scroll);                 // 热区要跟着滚动一起偏移，否则点到的和看到的不一致
+		for (var _r = 0; _r < evo_grows; _r++) {
+			for (var _c = 0; _c < evo_gcols; _c++) {
+				var _ci = (_r + _off) * evo_gcols + _c;
+				if (_ci >= _n) break;
+				var _gx = evo_list_x + _c * evo_gpx;
+				var _gy = evo_list_y + _r * evo_gpy;
+				if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) {
+					var _cid = evo_list[_ci];
+					if (evo_pick(_cid)) {
+						audio_play_sound(snd_button, 0, 0);
+					}
+					exit;
+				}
+			}
+		}
+
+		// ② 点卡槽 → 整组下卡（一组两张，不单独留一张）。灰占位（未拥有）不可点
+		//    ⚠️ 绿色箭头在下面，且 x 与第 2 槽重合 —— 点在箭头区不算点槽（原来会误当成取回）
+		var _on_arrow = point_in_rectangle(mouse_x, mouse_y, evo_arrow_x - 32, evo_arrow_y - 32,
+			evo_arrow_x + 32, evo_arrow_y + 32);
+		for (var _i = 0; _i < 2; _i++) {
+			if (_on_arrow) break;
+			if (point_in_rectangle(mouse_x, mouse_y, evo_slot_x[_i] - 40, evo_slot_y - 45,
+				evo_slot_x[_i] + 40, evo_slot_y + 45)) {
+				if (evo_cards[_i] != "") {
+					evo_clear();
+					audio_play_sound(snd_button, 0, 0);
+				}
+				exit;
+			}
+		}
+		// ③ 进化按钮
+		if (point_in_rectangle(mouse_x, mouse_y, evo_btn_x - 73, evo_btn_y - 36,
+			evo_btn_x + 73, evo_btn_y + 36)) {
+			evo_do();
+			exit;
+		}
+	}
+	// 🔴 2026-10-27 修：这里原来有一句 exit（在 if 块内、非点击分支之后），
+	//    会把事件尾部「close_timer → panel_anim_close」整段跳过 → 在神级进化页点右上角 X 关不掉窗口。
+	//    exit 只保留在上面的各个点击分支里。
+}
+
+
+// 不写 exit：末尾 close_timer 还要跑；强化/宝石那几段现在都有 craft_top_tab == 0 守卫
+// ── 卡片转职页（craft_top_tab == 2，2026-10-25）：交互全在这里 ──
+if (craft_top_tab == 2) {
+	// 清掉强化页的悬停索引，免得残留值被下面的点击逻辑误用
+	hover_card_index = -1;
+	hover_gem_index = -1;
+	// 列表还没重建过（切进这一页的第一帧 / 刚转职完）→ 先建，避免点到空列表
+	if (tg_list_dirty) tg_rebuild();
+	if (tg_btn_press > 0) tg_btn_press -= 1;
+
+	// ① 确认窗开着 → 只处理确认窗（其它交互全锁）
+	if (tg_confirm) {
+		tg_confirm_hover = -1;
+		for (var _ci2 = 0; _ci2 < 2; _ci2++) {
+			var _cr = tg_confirm_rect(_ci2);
+			if (point_in_rectangle(mouse_x, mouse_y, _cr[0], _cr[1], _cr[2], _cr[3])) tg_confirm_hover = _ci2;
+		}
+		if (mouse_check_button_pressed(mb_left)) {
+			if (tg_confirm_hover == 0) {
+				tg_confirm = false;
+				tg_confirm_hover = -1;
+				audio_play_sound(snd_button, 0, 0);
+				tg_do();                                  // 确定 → 真转（成功切特效，失败直接弹提示）
+			}
+			else if (tg_confirm_hover == 1) {
+				tg_confirm = false;
+				tg_confirm_hover = -1;
+				audio_play_sound(snd_button, 0, 0);
+			}
+		}
+	}
+	// ② 特效播放中 → 只推进帧；**播完才结算**（扣钱/扣凭证/提形态 + 清槽 + 提示）
+	//    帧推进按 tg_fx_speed（Create_0）：0.25 = 1/4 速（28 帧 ≈ 1.9s@60fps）
+	//    ⚠️ 动画期间凭证槽和主卡槽都保持**转职前**的样子（用户 2026-10-26 要求），
+	//       所以真正的存档改动全在 tg_fx_commit() 里，这里只负责在正确时机调它。
+	else if (tg_fx) {
+		tg_fx_t += tg_fx_speed;
+		if (tg_fx_t >= tg_fx_frames) {
+			tg_fx = false;
+			tg_fx_t = 0;
+			tg_fx_commit();                               // 形态/金币/凭证在这里才生效，同时清空主卡槽
+			tg_notice("卡片转职成功！");                    // 提示也等播完
+		}
+	}
+	// ③ 正常交互
+	else if (mouse_check_button_pressed(mb_left)) {
+		// ① 右侧列表选卡 → 进主卡槽（**换卡 = 保底归零**，2026-10-27 用户口径）
+		if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
+			if (tg_card != tg_list[tg_hover_card]) { tg_pity = 0; tg_pity_card = ""; }
+			tg_card = tg_list[tg_hover_card];
+			audio_play_sound(snd_button, 0, 0);
+		}
+		// ② 点主卡槽 = 卸下（卸下也算换卡，保底归零；再放回来从头数）
+		else if (point_in_rectangle(mouse_x, mouse_y, tg_main_x - 44, tg_main_y - 44, tg_main_x + 44, tg_main_y + 44)) {
+			if (tg_card != "") {
+				tg_card = "";
+				tg_pity = 0;
+				tg_pity_card = "";
+				audio_play_sound(snd_button, 0, 0);
+			}
+		}
+		// ③ 保险金：点徽章或勾选框都算（独立开关，不动强化页那个配置）
+		//    ⚠️ 开关**不影响保底次数**（用户 2026-10-27 明确）：开着关着来回点，已累计的次数照旧
+		else if (point_in_rectangle(mouse_x, mouse_y, assure_badge_cx - 33, assure_badge_cy - 36, assure_badge_cx + 33, assure_toggle_y + 18)) {
+			tg_assure = !tg_assure;
+			audio_play_sound(snd_button, 0, 0);
+			tg_notice(tg_assure ? "保险金已开启：失败不消耗凭证" : "保险金已关闭");
+		}
+		// ④ 转职按钮 → 先判定，能转才弹确认窗（转职后凭证会消失，必须问一句）
+		else if (point_in_rectangle(mouse_x, mouse_y, tg_btn_x - 73, tg_btn_y - 40, tg_btn_x + 73, tg_btn_y + 40)) {
+			tg_btn_press = 8;
+			var _chk0 = tg_check();
+			if (!_chk0.ok) {
+				tg_notice(_chk0.reason);                  // 不满足条件直接给原因，别让人点了确认才发现转不了
+			}
+			else {
+				tg_confirm = true;
+				tg_confirm_hover = -1;
+				audio_play_sound(snd_button, 0, 0);
+			}
+		}
+	}
 }
 
 // 概率强化 = 总开关：关掉时「保险金」一并关掉

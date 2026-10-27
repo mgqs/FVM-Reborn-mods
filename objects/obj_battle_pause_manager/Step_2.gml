@@ -230,6 +230,11 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         }
                     }
                     
+                    // 魔塔威望（2026-10-27）：首通 / 次通两档，数值见 maps_init 的塔关 rewards
+                    //   放在「精英首次通关」之前 = 两支（首通/非首通）都已结算完，值仍有效
+                    var _tp1 = tower_prestige_reward(global.level_data.id, is_first_normal);
+                    if (_tp1 > 0) add_material_amount("prestige", _tp1 * reward_multiplier);
+
                     // 精英模式首次通关：记录到精英通关列表
                     if (is_first_elite) {
                         array_push(global.save_data.completed_elite_levels, global.level_data.id)
@@ -279,13 +284,21 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         } else if (reward_type == "gem") {
                             unlock_gem(reward_id);
                             show_notice("获得新宝石：" + gacha_get_gem_name(reward_id), 120);
+                        } else if (reward_type == "evo_credit") {
+                            // 进化凭证：进背包（合成屋-金卡进化用）
+                            add_material_amount(mod_evo_credit_id(reward_id), 1);
+                            var _gift_txt = gacha_gift_text(global.gacha_reward);
+                            if (_gift_txt != "") gacha_gift_apply(global.gacha_reward);
+                            show_notice("获得" + transfer_credit_card_name(reward_id) + "进化凭证"
+                                + ((_gift_txt != "") ? "，" + _gift_txt : ""), 150);
                         } else if (reward_type == "recipe") {
                             // 融合菜谱道具：进背包
                             add_material_amount(fusion_recipe_id(reward_id, target_shape), 1);
-                            // 2026-10-25：抽到菜谱附赠**前置卡（融合主卡）**的本体 / 转职一次，不是送融合卡
-                            var _gift = gacha_recipe_gift(reward_id, target_shape);
+                            // 附赠一次「前置主卡」本体（融合主卡 = 前置那张，不是融合卡本身；只给本体，不提升转职）
+                            var _gift_txt2 = gacha_gift_text(global.gacha_reward);
+                            if (_gift_txt2 != "") gacha_gift_apply(global.gacha_reward);
                             show_notice("获得" + fusion_recipe_display_name(reward_id, target_shape)
-                                + ((_gift >= 0) ? "，" + gacha_recipe_gift_text(_gift, gacha_recipe_gift_target(reward_id, target_shape)) : ""), 150);
+                                + ((_gift_txt2 != "") ? "，" + _gift_txt2 : ""), 150);
                         }
                         
                         global.gacha_reward.received = true;
@@ -343,6 +356,8 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 							with obj_task_manager{
 								refresh_task_progress()
 							}
+							// 魔塔威望：先记首通标记（下一句 complete_level 会立刻把本关写进 completed_levels）
+							var _tp_first = array_get_index(global.save_data.completed_levels, global.level_data.id) == -1;
 							if array_get_index(global.save_data.completed_levels,global.level_data.id) == -1{
 								complete_level(global.level_data.id)
 								first_complete = true
@@ -418,6 +433,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									var gem_id = gem_unlock_id_list[i]
 									unlock_gem(gem_id)
 								}
+								// 魔塔威望（首通档）
+								var _tpv1 = tower_prestige_reward(global.level_data.id, _tp_first);
+								if (_tpv1 > 0) add_material_amount("prestige", _tpv1 * reward_multiplier);
 								save_file(global.save_slot)
 							}
 							else{
@@ -441,6 +459,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									var item_id = item_list[i].id
 									add_material_amount(item_id,item_list[i].amount * reward_multiplier)
 								}
+								// 魔塔威望（次通档）
+								var _tpv2 = tower_prestige_reward(global.level_data.id, _tp_first);
+								if (_tpv2 > 0) add_material_amount("prestige", _tpv2 * reward_multiplier);
 								save_file(global.save_slot)
 							}
 						}

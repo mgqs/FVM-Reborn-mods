@@ -66,6 +66,26 @@ for (var i = 0; i < 4; i++)
                     }
                     continue;
                 }
+                // 2026-10-27：进化凭证（type "evo"）不画卡图 —— 改画「金色底板 + 该金卡立绘」，
+                //   跟背包 / 金卡进化页 / 抽卡弹窗同一套 mod_evo_draw_credit；凭证没有阳光消耗，卡底和造价都不画
+                if (_goods_d1.type == "evo")
+                {
+                    var _ecx = ((x - 618) + (411 * j)) - 122;
+                    var _ecy = (y - 248) + (165 * i);
+                    mod_evo_draw_credit(_goods_d1.unlock_item_id, _ecx, _ecy, true, 96, 70);
+                    // 售罄口径与 Create_0 的 is_disabled 一致：背包里已有这张凭证，或已拥有这张金卡
+                    if (get_material_amount(mod_evo_credit_id(_goods_d1.unlock_item_id)) > 0
+                        || is_card_unlocked(_goods_d1.unlock_item_id))
+                    {
+                        draw_set_color(c_black);
+                        draw_set_alpha(0.5);
+                        draw_rectangle(((x - 618) + (411 * j)) - 205, ((y - 248) + (165 * i)) - 82, (x - 618) + (411 * j) + 205, (y - 248) + (165 * i) + 82, false);
+                        draw_set_alpha(1);
+                        draw_sprite_ext(spr_sold_out, 0, (x - 618) + (411 * j), (y - 248) + (165 * i), 1.8, 1.8, 0, c_white, 1);
+                        draw_set_color(c_white);
+                    }
+                    continue;
+                }
                 var card_data = deck_get_card_data(ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16))).unlock_item_id, 0);
             if (card_data != noone && ds_exists(card_data, ds_type_map))
             {
@@ -112,11 +132,24 @@ for (var i = 0; i < 4; i++)
                 var target_card_id = goods_info.unlock_item_id;
                 var _gsub = variable_struct_exists(goods_info, "spr_sub") ? goods_info.spr_sub : 0;
                 var _gsc = 1.5;
-                // 原点不一样（食谱图是 0,0，凭证是中心 4）→ 统一按「中心对齐」摆
-                draw_sprite_ext(goods_spr, _gsub,
-                    (((x - 618) + (411 * j)) - 122) + (sprite_get_xoffset(goods_spr) - sprite_get_width(goods_spr) * 0.5) * _gsc,
-                    ((y - 273) + (165 * i) + 25) + (sprite_get_yoffset(goods_spr) - sprite_get_height(goods_spr) * 0.5) * _gsc,
-                    _gsc, _gsc, 0, c_white, 1);
+                if (goods_info.type == "tvoucher")
+                {
+                    // 2026-10-27（用户要求）：转职凭证**不再用成品图**（spr_voucher_*），一律走通用绘制
+                    //   transfer_credit_draw = 底板（按档位）+ 该卡立绘现拼，跟转职页 / 背包同一套口径；
+                    //   哪个卡的卡面画歪了、顶框了、太小了，进商店一眼就能看出来
+                    //   105 = 原来 70×70 成品图 × 1.5 的等大尺寸；x,y 传**左上角**（跟转职页一致）
+                    var _tcx = ((x - 618) + (411 * j)) - 122;
+                    var _tcy = ((y - 273) + (165 * i) + 25);
+                    transfer_credit_draw(_tcx - 52.5, _tcy - 52.5, goods_info.unlock_item_id, goods_info.target_shape, 105, 0, 1);
+                }
+                else
+                {
+                    // 原点不一样（食谱图是 0,0，凭证是中心 4）→ 统一按「中心对齐」摆
+                    draw_sprite_ext(goods_spr, _gsub,
+                        (((x - 618) + (411 * j)) - 122) + (sprite_get_xoffset(goods_spr) - sprite_get_width(goods_spr) * 0.5) * _gsc,
+                        ((y - 273) + (165 * i) + 25) + (sprite_get_yoffset(goods_spr) - sprite_get_height(goods_spr) * 0.5) * _gsc,
+                        _gsc, _gsc, 0, c_white, 1);
+                }
 
                 if (variable_struct_exists(goods_info, "recipe_id"))
                 {
@@ -136,7 +169,9 @@ for (var i = 0; i < 4; i++)
 
                     if (card_info_simple != false)
                     {
-                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape)
+                        // 已经转上去 / 背包里已经有这张凭证 → 盖售罄
+                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape
+                            || get_material_amount(transfer_credit_id(target_card_id, goods_info.target_shape)) > 0)
                         {
                             draw_set_color(c_black);
                             draw_set_alpha(0.5);

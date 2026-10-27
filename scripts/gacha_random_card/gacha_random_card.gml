@@ -176,26 +176,13 @@ function gacha_is_current_level_reward_card(card_id) {
 }
 
 /// @function gacha_is_gold_card(card_id)
-/// @desc 判断是否为金卡（形态0有 is_gold 标记，或诸神商店中的卡片）
-/// @param {string} card_id
-/// @return {bool}
+/// @desc 是不是金卡：**只看卡注册数据里的 is_gold**（2026-10-27 用户：不要用「在不在诸神商店」判断）
+///       融合卡同理看 is_fusion，两者互斥
 function gacha_is_gold_card(card_id) {
-    // 方式1：形态0有 is_gold 标记
     var shape_data = deck_get_card_data(card_id, 0);
-    if (shape_data != noone) {
-        if (ds_map_exists(shape_data, "is_gold")) {
-            if (shape_data[? "is_gold"] == 1) return true;
-        }
+    if (shape_data != noone && ds_map_exists(shape_data, "is_gold")) {
+        return (shape_data[? "is_gold"] == 1);
     }
-
-    // 方式2：诸神商店中的卡片
-    if (ds_map_exists(global.gods_goods_map, card_id)) {
-        var gods_data = global.gods_goods_map[? card_id];
-        if (variable_struct_exists(gods_data, "type") && gods_data[$ "type"] == "card") {
-            return true;
-        }
-    }
-
     return false;
 }
 
@@ -364,85 +351,11 @@ function gacha_get_gem_weapons(gem_id) {
     return [];
 }
 
-/// @function fusion_get_prerequisites()
-/// @desc 卡牌前置表：卡 id → 需要的其它卡 id **数组**（单张也写成数组）
-///       融合卡 7 条（原「二转」口径，2026-10-19 已放宽为拥有本体）
-///       神灵卡 17 条（2026-10-21 加）
-///       抽卡（gacha_pick_random_reward）与诸神商店（obj_gods_store_bg）共用同一份表，
-///       区别只在门槛：抽卡要本体、诸神要二转（见 fusion_prereq_met 的第二参）
-/// @return {struct}
-function fusion_get_prerequisites() {
-    return {
-        // ---- 融合卡 ----
-        lizi_god:       ["pan_fried_bun"],      // 融合栗子   ← 生煎锅
-        youyu_god:      ["takoyaki"],           // 融合鱿鱼   ← 章鱼烧
-        ronghehaixing:  ["coal_starfish"],      // 融合海星   ← 炭烧海星
-        ronghedan_god:  ["egg_boiler_pult"],    // 融合煮蛋器 ← 煮蛋器投手
-        ronghehuopen:   ["brazier"],            // 融合火盆   ← 火盆
-        ronghesanxian:  ["triple_wine_rack"],   // 融合三线   ← 三线酒架
-        rongheshuanggu: ["shuanggu"],           // 融合双菇   ← 蚝油双菇
-        ronghedapao:    ["chocolate_cannon"],   // 融合巧克力炮 ← 死神大炮
-        ronghekafei:    ["coffee_cup"],         // 融合咖啡杯   ← 骨瓷咖啡杯
-
-        // ---- 神灵卡 ----
-        sheng_huo:      ["beef_hotpot", "spicy_pot"],        // 圣火 ← 肥牛火锅 + 麻辣香锅（2026-10-23 补双前置）
-        hufa_god:       ["hongliukaochuan", "double_blade_snake"], // 护法 ← 烤串机 + 双刃蛇（同为穿透/斩杀，2026-10-23 补双前置）
-        gongjiang_god:  ["laipishe", "pizza_oven"],          // 工匠 ← 赖皮蛇 + 披萨炉
-        brahma:         ["magic_chicken", "baibianshe"],     // 创造神 ← 幻幻鸡 + 百变蛇（幻幻鸡没有二转，放前面让「二转」只落在百变蛇上）
-        guangming_god:  ["dragon_fruit"],                    // 光明神 ← 火龙果
-        shennong_god:   ["yanhuangma"],                      // 炎帝 ← 炎凰马
-        haiyang_god:    ["hspeed_juicer", "mozhang"],        // 海洋 ← 榨汁机 + 魔杖蛇
-        fengrao_god:    ["zhanqima"],                        // 丰饶神 ← 战旗马
-        clotho:         ["brahma"],                          // 命运 ← 创造神（本体即可，见 prereq_body_only）
-        chongsheng_god: ["xingqiongma", "anranxiaohunfan"],  // 重生神 ← 星穹马 + 天妇罗盖饭
-        sun_god:        ["small_fire", "shuangzi"],          // 太阳神 ← 小火炉 + 双子座精灵
-        heian_god:      ["durian"],                          // 黑暗神 ← 榴莲
-        aurora:         ["blueberry_tower"],                  // 曙光女神 ← 蓝莓信号塔塔（水果塔是未实装卡，2026-10-22 从前置里去掉）
-        houyi_god:      ["ronghesanxian"],                   // 宗布神 ← 融合三线
-        joker:          ["donut", "cat_box"],                // 恶作剧神 ← 多拿滋 + 猫猫盒（猫猫盒只有 0 转，按形态上限兜底＝拥有本体即可）
-        time_god:       ["ice_cream"],                       // 时间神 ← 冰激凌
-        xiangshui_god:  ["berry_dessert"],                   // 宴飨女神 ← 莓果点心
-
-        // ---- 2026-10-22 补全：原版 26 神里此前没登记前置的 15 张 ----
-        war_god:        ["double_water_pipe", "tiancheng"],       // 战神 ← 双向水管 + 天秤座精灵
-        thor:           ["egg_boiler_pult", "shuangyu"],          // 雷神 ← 煮蛋器投手 + 双鱼座精灵
-        fire_god:       ["brazier", "jinniu"],                    // 火神 ← 火盆 + 金牛座精灵
-        moon_god:       ["takoyaki", "juxie"],                    // 月神 ← 章鱼烧 + 巨蟹座精灵
-        power_god:      ["tang_hu_lu"],                           // 大力神 ← 糖葫芦炮弹
-        gaia:           ["chocolate_cannon"],                     // 大地女神 ← 巧克力大炮
-        zhurong:        ["pan_fried_bun", "lizi_god"],            // 赤帝 ← 生煎锅 + 融合栗子
-        rig:            ["starrabbit", "nut_frier"],              // 守护神 ← 星星兔 + 坚果爆炒机
-        ymir:           ["grilled_lizard_pult", "spoon_rabbit"],  // 巨神 ← 烤蜥蜴投手 + 勺勺兔（原灵融煮蛋，2026-10-23 换）
-        save_god:       ["bull_firework", "baiyang"],             // 救世神 ← 金牛烟花 + 白羊座精灵
-        poseidon:       ["rotating_coffee_pot", "shizi"],         // 海神 ← 旋转咖啡喷壶 + 狮子座精灵
-        ghost_god:      ["coal_starfish"],                        // 冥神 ← 炭烧海星
-        odin:           ["tar_sprayer"],                          // 主神 ← 焦油喷壶
-        water_god:      ["cherry_pudding"],                       // 水神 ← 樱桃反弹布丁
-        hundun_god:     ["hamburger"],                            // 混沌神使 ← 汉堡包
-
-        // ---- 2026-10-23 补最后 7 张（用户给定前置，诸神一律要求二转）----
-        firework_dragon_real: ["firework_dragon", "shegengbao"],  // 真·花火龙 ← 花火龙 + 蛇羹煲
-        hera:           ["melon_shield", "chunv"],                // 天后 ← 瓜皮护罩 + 处女座精灵
-        ice_god:        ["cold_drew"],                            // 冰神 ← 冰块冷萃机
-        zeus:           ["athena", "curry_lobster_cannon"],       // 宙斯 ← 雅典娜守护 + 咖喱龙虾炮
-        love_god:       ["sheshou", "triple_wine_rack"],          // 爱神 ← 射手座精灵 + 三线酒架
-        panduola_god:   ["coke_bomb", "pufferfish"],              // 潘多拉 ← 可乐炸弹 + 爆辣河豚（玉兔灯笼，2026-10-23 换）
-        lingrong_god:   ["cotton_candy"]                          // 魔导士软糖 ← 棉花糖
-    };
-}
-
-/// @function prereq_body_only(card_id)
-/// @desc 「硬前置」卡：前置**必须有本体**，但不要求二转，也不参与「抽到后换前置」的替换。
-///       两处消费：
-///         ① 抽卡候选池 —— 前置没本体就不进池（所以抽到就是它本身，不存在"换成前置"）；
-///         ② 诸神商店 —— 门槛降为「有本体即可」（其余卡要二转）。
-///       目前只有命运女神：它的前置创造神本身要从诸神商店买，要求二转会卡成死循环。
-///       注意它**不是无前置**，只是门槛低。
-/// @param {string} card_id
-/// @return {bool}
-function prereq_body_only(card_id) {
-    return (card_id == "clotho");
-}
+// 2026-10-27 用户口径：**前置体系已整体撤除** —— 现在前置只属于「金卡进化」和「食灵融合」，
+//   抽卡 / 诸神商店一概不再校验前置（不需要先拥有前置卡、也不需要前置练到几转）。
+//   因此 fusion_get_prerequisites() / prereq_body_only() / fusion_prereq_met() /
+//   fusion_prereq_name() / fusion_prereq_any_upgradable() 已删除（要看旧实现翻 git 历史）。
+//   金卡进化表：scripts/mod_craft_evo_table；融合主卡/副卡表：scripts/mod_craft_fusion_table
 
 /// @function card_max_available_shape(card_id)
 /// @desc 这张卡**注册了**的最大形态序号（0 起算）；查不到返回 -1。
@@ -476,73 +389,67 @@ function has_fusion_recipe(card_id, shape) {
 ///       那两条 return 原来手写 {reward_type:"card"}，绕过了候选池里的 recipe 转换，直接把融合卡发出去了
 function gacha_make_card_reward(_id, _shape) {
     if (is_fusion_card(_id)) {
-        return { reward_type: "recipe", id: _id, shape: _shape, recipe_id: fusion_recipe_id(_id, _shape) };
+        return { reward_type: "recipe", id: _id, shape: _shape,
+                 recipe_id: fusion_recipe_id(_id, _shape), gift_id: gacha_gift_id("recipe", _id) };
+    }
+    if (gacha_is_gold_card(_id)) {
+        // 金卡不作为卡直接发：改成「进化凭证」（拿凭证去合成屋-金卡进化）
+        return { reward_type: "evo_credit", id: _id, shape: 0, gift_id: gacha_gift_id("evo_credit", _id) };
     }
     return { reward_type: "card", id: _id, shape: _shape };
 }
 
-/// @function gacha_recipe_gift_target(card_id, shape)
-/// @desc 菜谱附赠的**目标卡** = 这张融合卡的**融合主卡（前置卡）**，如 融合栗子 ← 生煎锅。
-///       2026-10-25 用户口径：**不管抽到哪种菜谱（初融/深融/灵融）都给这张主卡**，
-///       没本体给本体、有本体就 +1 转 → 3 次菜谱刚好把主卡推到二转。
-///       ⚠️ 不是送融合卡本身（那等于跳过融合过程）；shape 参数保留只为调用处统一，不参与判断
-function gacha_recipe_gift_target(_card_id, _shape) {
-    var _table = fusion_get_prerequisites();
-    if (variable_struct_exists(_table, _card_id)) {
-        var _list = _table[$ _card_id];
-        if (array_length(_list) > 0) return _list[0];
+/// @function gacha_gift_id(reward_type, id) 抽到这张奖励时「附赠一次本体」的卡
+///   进化凭证 → 该金卡前置表 slot 0 的那张（第 1 槽）；没有 slot 0 就取第一条
+///   融合菜谱 → 它的**前置主卡**（mod_fusion_main_prereq；不分初级/深度/灵魂都送这一张）
+///   🔴 只送**普通卡**：目标是金卡（进化拿）或融合卡（融合页拿）时一律不送 ——
+///      否则会绕过进化 / 融合系统，直接把金卡本体或融合卡本体发出去
+/// @return 卡 id；不附赠返回 ""
+function gacha_gift_id(_type, _id) {
+    var _pick = "";
+    if (_type == "evo_credit") {
+        var _cs = mod_evo_cards(_id);
+        for (var _i = 0; _i < array_length(_cs); _i++) {
+            if (_cs[_i].slot == 0) { _pick = _cs[_i].id; break; }
+        }
+        if (_pick == "" && array_length(_cs) > 0) _pick = _cs[0].id;
+    } else if (_type == "recipe") {
+        _pick = mod_fusion_main_prereq(_id);
     }
-    return _card_id;
+    if (_pick == "") return "";
+    if (gacha_is_gold_card(_pick) || is_fusion_card(_pick)) return "";
+    return _pick;
 }
 
-/// @function gacha_recipe_gift_card_name(card_id)
-function gacha_recipe_gift_card_name(_id) {
-    var _d = deck_get_card_data(_id, 0);
-    if (_d != noone && ds_exists(_d, ds_type_map) && ds_map_exists(_d, "name")) {
-        return _d[? "name"];
-    }
-    return string(_id);
+/// @function gacha_gift_preview(reward) 这次奖励会附赠哪张卡（不附赠返回 ""）
+///   只在「玩家还没有这张卡本体」时附赠一次；已经拥有就不给（也不会提升转职）
+function gacha_gift_preview(_reward) {
+    if (!is_struct(_reward)) return "";
+    if (!variable_struct_exists(_reward, "gift_id")) return "";
+    var _gid = _reward.gift_id;
+    if (_gid == "" || _gid == _reward.id) return "";
+    if (is_card_unlocked(_gid)) return "";
+    return _gid;
 }
 
-/// @function gacha_recipe_gift_preview(card_id, shape)
-/// @desc 抽到融合菜谱时附赠什么（作用在 gacha_recipe_gift_target 上）：
-///       没本体 → 0（给本体）；已有本体且没满转 → 下一形态序号（1/2）；已满转 → -1（什么都不给）
-///       只读，用于奖励弹窗「附赠：…」提示行（发放前先预览）
-function gacha_recipe_gift_preview(_card_id, _shape) {
-    var _tid = gacha_recipe_gift_target(_card_id, _shape);
-    var _max = card_max_available_shape(_tid);
-    if (!is_card_unlocked(_tid)) return 0;
-    var _info = get_card_info_simple(_tid);
-    if (!is_struct(_info)) return -1;
-    if (_info.max_shape >= _max) return -1;
-    return _info.max_shape + 1;
+/// @function gacha_gift_apply(reward) 真发放附赠：只给本体（0 形态），不提升转职
+/// @return 实际发放的卡 id（没发返回 ""）
+function gacha_gift_apply(_reward) {
+    var _gid = gacha_gift_preview(_reward);
+    if (_gid == "") return "";
+    unlock_card(_gid, 0, 0, global.save_data.unlocked_items.max_skill_level);
+    return _gid;
 }
 
-/// @function gacha_recipe_gift_text(_gift, target_id)
-/// @desc 附赠提示文案（带目标卡名）；_gift < 0 返回空串（不写这行）
-function gacha_recipe_gift_text(_gift, _target_id) {
-    if (_gift < 0) return "";
-    var _nm = gacha_recipe_gift_card_name(_target_id);
-    if (_gift == 0) return "附赠：" + _nm + "本体";
-    if (_gift == 1) return "附赠：" + _nm + "提升至一转";
-    return "附赠：" + _nm + "提升至二转";
+/// @function gacha_gift_text(reward) 附赠提示文案（用卡名，不出现 id；不附赠返回 ""）
+function gacha_gift_text(_reward) {
+    var _gid = gacha_gift_preview(_reward);
+    if (_gid == "") return "";
+    return "附赠：" + transfer_credit_card_name(_gid) + "本体";
 }
 
-/// @function gacha_recipe_gift(card_id, shape)
-/// @desc 抽到菜谱时真发放附赠（作用在目标卡上 = 初融送前置卡 / 深融灵融送融合卡）：
-///       没本体解锁本体；有本体就 +1 转（到这张卡自己的上限为止）
-/// @return 同 gacha_recipe_gift_preview（实际发放结果）
-function gacha_recipe_gift(_card_id, _shape) {
-    var _tid = gacha_recipe_gift_target(_card_id, _shape);
-    var _gift = gacha_recipe_gift_preview(_card_id, _shape);
-    if (_gift < 0) return -1;
-    if (_gift == 0) {
-        unlock_card(_tid, 0, 0, global.save_data.unlocked_items.max_skill_level);
-    } else {
-        upgrade_card_shape(_tid, _gift);
-    }
-    return _gift;
-}
+// 附赠统一走 gacha_gift_id / preview / apply / text（2026-10-27 改：只附赠本体，不再提升转职）
+//   旧的 gacha_recipe_gift_target / preview / text / gift 已删除
 
 /// @function fusion_recipe_sprite(card_id, shape)
 /// @desc 食谱图标 = [精灵, 帧]：形态 0 用 spr_fusion_recipe0（帧号按 fusion_demo 顺序），1/2 用诸神那套 spr_voucher_*
@@ -599,118 +506,18 @@ function card_owned_shape(card_id) {
     return _cur;
 }
 
-/// @function fusion_prereq_met(card_id, _need_shape)
-/// @desc 前置是否达成。前置表里的卡**全部**满足才算达成。
-/// @param {string} card_id 目标卡 id
-/// @param {real} _need_shape 0 = 拥有本体即可（抽卡）；2 = 前置卡需练到二转（诸神商店）
-///        用 max_shape 判定（当前 shape 可被调低，max_shape 才是「曾经练到过」），
-///        与营地商店「降转后不能重买转职」同一个坑。
-///        卡本身形态数不够时按它自己的最大形态算（见 card_max_available_shape）。
-/// @return {bool} 表里没有的卡恒为 true
-function fusion_prereq_met(card_id, _need_shape = 0) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return true;
-
-    if (prereq_body_only(card_id)) _need_shape = 0;
-
-    var _list = _prereqs[$ card_id];
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        var _info = get_card_info_simple(_list[_i]);
-        if (!is_struct(_info)) return false;                 // 连本体都没有
-        if (_need_shape > 0) {
-            var _avail = card_max_available_shape(_list[_i]);
-            var _required = (_avail >= 0) ? min(_need_shape, _avail) : _need_shape;
-            if (_info.max_shape < _required) return false;
-        }
-    }
-    return true;
-}
-
-/// @function fusion_prereq_name(card_id)
-/// @desc 前置卡本体（0 转）形态名，多张用「][」串起来（用于提示文案；
-///       注意别用 「」——游戏字体没有这两个字形的映射，会渲成豆腐块，统一用半角方括号）
-/// @param {string} card_id 目标卡 id
-/// @return {string} 未配置前置 / 查不到名字时返回空串
-function fusion_prereq_name(card_id) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return "";
-
-    var _list = _prereqs[$ card_id];
-    var _out = "";
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        var _shape_data = get_plant_shape_data(_list[_i], 0);
-        if (_shape_data == undefined) continue;
-        if (_out != "") _out += "][";
-        _out += _shape_data[? "name"];
-    }
-    return _out;
-}
-
-/// @function fusion_prereq_any_upgradable(card_id)
-/// @desc 前置表里是否**至少有一张**卡能练到二转（自身形态 >= 2）。
-///       全是只有 0 转的卡时（幻幻鸡 `magic_chicken` / 蓝莓塔 `blueberry_tower`），
-///       诸神商店的提示不该写「二转」，否则玩家会一直找一张根本不存在的二转形态。
-/// @param {string} card_id 目标卡 id
-/// @return {bool} 表里没有这张卡时返回 false
-function fusion_prereq_any_upgradable(card_id) {
-    var _prereqs = fusion_get_prerequisites();
-    if (!variable_struct_exists(_prereqs, card_id)) return false;
-
-    var _list = _prereqs[$ card_id];
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        if (card_max_available_shape(_list[_i]) >= 2) return true;
-    }
-    return false;
-}
-
-/// @function gacha_resolve_prereq_reward(_cand)
-/// @desc 抽到「需前置的卡（融合卡 / 神灵卡）」时的发放规则（2026-10-24 放宽）：
-///       ① **任意一张前置有本体** → 直接给目标卡本体（不再要求把前置推到一转 / 二转）
-///       ② 一张前置本体都没有 → **随机挑一张前置**，给它的本体（前置本身是融合卡时由
-///          gacha_make_card_reward() 统一转成菜谱）
-///       命运女神（prereq_body_only）例外：前置没本体时**根本不进池**（见候选池判断），
-///       所以走到这里说明已经有创造神本体 → 不替换。
-///       只在抽「本体」（shape 0）时判定；已有本体、在抽转职的不干预。
-/// @param {struct} _cand gacha_pick_random_reward 选出来的候选
-/// @return {struct} 实际发放的奖励
-function gacha_resolve_prereq_reward(_cand) {
-    if (!is_struct(_cand)) return _cand;
-    if (_cand.reward_type != "card") return _cand;
-    if (_cand.shape != 0) return _cand;
-
-    // 欧皇抽卡：前置系统不参与（2026-10-25 用户口径）
-    if (is_lucky_gacha_mode()) return _cand;
-
-    var _table = fusion_get_prerequisites();
-    if (!variable_struct_exists(_table, _cand.id)) return _cand;
-
-    var _list = _table[$ _cand.id];
-
-    // 命运这类「只要本体」的卡：前置没本体时压根不进池，进池即已满足 → 不替换
-    if (prereq_body_only(_cand.id)) return _cand;
-
-    // ① 前置**全部**有本体（只要本体，不要二转）→ 给目标卡本体
-    //    2026-10-25 用户口径：从「任一前置」改成「都需要」——双前置的金卡要出满 2 张前置才会给本体
-    var _missing = [];
-    for (var _i = 0; _i < array_length(_list); _i++) {
-        if (!is_card_unlocked(_list[_i])) array_push(_missing, _list[_i]);
-    }
-    if (array_length(_missing) == 0) return _cand;
-
-    // ② 还缺前置 → 随机给一张**缺的**前置本体（已拥有的不再重复给）
-    return gacha_make_card_reward(_missing[irandom(array_length(_missing) - 1)], 0);
-}
+// 前置系统已不再参与抽卡（2026-10-27 用户：抽卡不需要前置，前置只属于食灵融合 / 金卡进化）
+//   旧的 gacha_resolve_prereq_reward 已删除
 
 /// @function gacha_pick_random_reward()
-/// @desc 按类别权重随机抽取一个奖励（卡片/武器/宝石）
-/// 类别权重（见下方权重段）：融合卡 / 金卡 / 生肖卡 / 普通卡 / MOD武器 / 宝石
-///   融合卡单列一档（星际 20 / 欧皇 55）
-/// 抽取规则：
-/// 1. 卡片：未拥有时抽0形态，已拥有时抽下一形态，满形态不进候选池
-///    融合卡抽 0 形态（本体）前，需先拥有其前置卡的二转形态（见 fusion_get_prerequisites）
-/// 2. 武器：仅MOD武器，未拥有时可抽，已拥有不进候选池
-/// 3. 宝石：仅MOD宝石，拥有对应武器时可抽，已拥有不进候选池
-/// @return {struct} 包含 reward_type、id、shape 的结构体
+/// @desc 按类别权重随机抽一个奖励（卡片 / 武器 / 宝石）
+/// 抽取规则（2026-10-27 口径，**不校验任何前置**）：
+/// 1. 普通 / 生肖卡：只发本体（shape 0）；已拥有 → 不进池
+/// 2. 金卡：发 1 张进化凭证（金卡本体只能靠合成屋-金卡进化）；已有金卡或有凭证 → 不进池
+/// 3. 融合卡：发菜谱（随机一个「没拥有、也没这道菜谱」的形态），附赠前置主卡本体
+/// 4. 武器 / 宝石：未拥有才进池；宝石还要求先有对应武器
+/// 权重见下方权重段（是权重不是百分比）
+/// @return {struct} { reward_type, id, shape, [recipe_id], [gift_id] }
 function gacha_pick_random_reward() {
     var fusion_candidates = [];
     var gold_candidates = [];
@@ -724,13 +531,11 @@ function gacha_pick_random_reward() {
         var card_id = global.player_deck[| i];
 		if (card_id == "lihe") continue;
 
-        // 本体仅关卡奖励的特殊卡只抽转职；已获得本体后，在任意关卡都可以抽转职。
+        // 本体仅关卡奖励的特殊卡：未拥有且不是本关奖励 → 不进池（原逻辑保留）
         if (gacha_is_excluded_card(card_id) && !is_card_unlocked(card_id)
             && !gacha_is_current_level_reward_card(card_id)) continue;
 
-        // ── 融合卡：只发菜谱，形态**随机**挑一个「还没拥有、也还没菜谱」的 ──
-        //   2026-10-24 用户口径：不再固定「拥有形态 + 1」，改成在没锁的形态里随机；
-        //   已经拥有的形态、背包里已有该形态菜谱的都排除；一个都没得发 → 整张卡不进池
+        // ── 融合卡：只发菜谱（随机一个「还没拥有、也还没这道菜谱」的形态）──
         if (is_fusion_card(card_id)) {
             var _fowned = -1;
             if (is_card_unlocked(card_id)) {
@@ -749,56 +554,23 @@ function gacha_pick_random_reward() {
             continue;
         }
 
-        var current_shape = -1;
-        var target_shape = 0;
-
-        var is_level_reward_card = gacha_is_current_level_reward_card(card_id);
-        if (is_card_unlocked(card_id) || is_level_reward_card) {
-            var info = get_card_info_simple(card_id);
-            // 当前关卡的基础卡片会作为正常奖励发放，因此抽卡从1形态开始。
-            if (is_level_reward_card && !is_card_unlocked(card_id)) {
-                current_shape = 0;
-                target_shape = 1;
-            } else {
-                // shape 是当前使用形态，max_shape 才是已经拥有的最高形态。
-                // 调低当前形态不应让已拥有的转职重新进入抽奖池。
-                current_shape = max(info.max_shape, info.shape);
-                target_shape = current_shape + 1;
-            }
-        }
-
-        if (get_plant_shape_data(card_id, target_shape) == undefined) {
-            continue;
-        }
-
-        // 已经有「这个形态的食谱道具」→ 同样不进池（形态靠融合页融出来，不再重复抽同一形态）
-        if (has_fusion_recipe(card_id, target_shape)) {
-            continue;
-        }
-
-        // 硬前置的卡（目前只有命运：「只要创造神本体」）：前置没本体就不进池。
-        // 这类卡不参与「抽到后换前置」的替换，所以必须在池子里就拦住。
-        // 欧皇抽卡不拦（前置系统不参与，2026-10-25 用户口径）。
-        // 其余需前置的卡（融合 / 其它神灵）照常进池；抽到后由 gacha_resolve_prereq_reward 判定：
-        // **全部**前置都有本体才发目标卡；否则随机补一张「缺的」前置本体。
-        if (!is_lucky_gacha_mode() && target_shape == 0 && prereq_body_only(card_id) && !fusion_prereq_met(card_id)) {
-            continue;
-        }
-
-        var candidate = {
-            reward_type: "card",
-            id: card_id,
-            shape: target_shape
-        };
-
-        // 融合卡已经在上面单独处理并 continue，走到这里只剩普通 / 金卡 / 生肖
+        // ── 金卡：发「进化凭证」（金卡本体只能靠合成屋-金卡进化拿）
+        //    已拥有这张金卡 / 背包里已经有它的进化凭证 → 不进池
         if (gacha_is_gold_card(card_id)) {
-            array_push(gold_candidates, candidate);
-        } else if (gacha_is_zodiac_card(card_id)) {
-            array_push(zodiac_candidates, candidate);
-        } else {
-            array_push(normal_candidates, candidate);
+            if (is_card_unlocked(card_id)) continue;
+            if (get_material_amount(mod_evo_credit_id(card_id)) > 0) continue;
+            array_push(gold_candidates, gacha_make_card_reward(card_id, 0));
+            continue;
         }
+
+        // ── 普通 / 生肖：**只给本体**（2026-10-27 用户：抽卡不再给转职）
+        //    已拥有就不进池（以前是「已拥有 → 给下一形态」，那个口径作废）
+        if (is_card_unlocked(card_id)) continue;
+        if (get_plant_shape_data(card_id, 0) == undefined) continue;
+
+        var candidate = { reward_type: "card", id: card_id, shape: 0 };
+        if (gacha_is_zodiac_card(card_id)) array_push(zodiac_candidates, candidate);
+        else array_push(normal_candidates, candidate);
     }
 
     // === MOD武器候选池 ===
@@ -932,9 +704,7 @@ function gacha_pick_random_reward() {
         return gacha_pick_fallback_reward();
     }
 
-    var _picked = selected_pool[irandom(array_length(selected_pool) - 1)];
-    // 前置没满足时，把这次奖励换成前置卡（缺本体给本体，有本体给一转 / 二转）
-    return gacha_resolve_prereq_reward(_picked);
+    return selected_pool[irandom(array_length(selected_pool) - 1)];
 }
 
 /// @function gacha_pick_fallback_reward()

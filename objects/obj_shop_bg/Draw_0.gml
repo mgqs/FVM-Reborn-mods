@@ -19,6 +19,29 @@ draw_set_color(c_yellow);
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 draw_text(x - 485, y + 447, string(global.save_data.player.gold));
+
+// ── 底条右侧接一段写「威望」（2026-10-26 用户要求，参考原版「余额：金币 X 威望 Y」）──
+//   底条本身是烘焙在 spr_shop_bg 里的**单格条**：外框 /「余额：」/ 金币图标 / G 全在图里，
+//   只有金币数字是代码画的 → 条内没有第二格的位置。
+//   做法：从条右端（sprite x=452 → 屏幕 x-440）用同底色 (3,43,80) 向右延伸一段，
+//        里面按原版写法放「威望标签 + 数字」；数字沿用金币那套 font_number 黄字，两边一致。
+//   条的几何（sprite → 屏幕，缩放 0.9）：y 998..1052 → y+410..y+459，中心 y+434.5
+var _pv   = get_material_amount("prestige");
+var _ptag = 1.6;                                    // 标签 32x18 → 51.2x28.8（用户 2026-10-26 自调到 1.6；1.4 ≈ 45x25 才是与烘焙「金币」同高）
+var _ptw  = ui_prestige_tag_w(_ptag);
+draw_set_font(font_number);
+var _pnw  = string_width(string(_pv));
+var _px0  = x - 428;                               // 标签左端（条右端在 x-440 → 现在留 12px；用户 2026-10-26 自调）
+var _prt  = _px0 + _ptw + 6 + _pnw + 14;            // 延伸段右端
+draw_set_colour(make_colour_rgb(3, 43, 80));
+draw_roundrect_ext(x - 452, y + 410, _prt, y + 459, 8, 8, false);
+ui_prestige_tag_draw(_px0, y + 434.5, _ptag);
+draw_set_font(font_number);
+draw_set_colour(c_yellow);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_text(_px0 + _ptw + 6, y + 434.5, string(_pv));
+draw_set_colour(c_white);
 //绘制页码
 draw_set_color(c_white);
 draw_set_halign(fa_center);
@@ -138,6 +161,35 @@ for(var i = 0 ; i< 4; i++){
 				
 			}
 		}
+		//绘制转职凭证（凭证/兑换项）
+		else if shop_button_select == 6{
+			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
+				var _cg = global.goods_map[? ds_list_find_value(goods_list,i*4+j+(current_page-1)*16)]
+				var _cgx = x-618+411*j
+				var _cgy = y-190+165*i
+				if (_cg.credit_shape > 0){
+					// 凭证：底板 + 实时形态卡面，画在格子左侧图标区（跟道具页 icon 同一位置：格子中心左移 122）
+					// 尺寸 110 → 96、中心上移 12（2026-10-26 用户：给底下那行「通过X-X层可买」腾位置，
+					//   否则字会压在凭证上、还被格子底边裁掉）
+					var _cp = transfer_credit_parse(_cg.unlock_item_id)
+					var _csz = 96
+					transfer_credit_draw(_cgx-122-_csz*0.5, _cgy-12-_csz*0.5, _cp.card_id, _cp.shape, _csz, 0, 1)
+					// 只有「永久锁」（形态不存在 / 已持有 / 已转职）才盖黑影 + 售完；
+					// 爬塔门槛和余额不足不盖，点购买时才弹提示（2026-10-26 用户定）
+					if (transfer_credit_buyable_locked(_cp.card_id, _cp.shape)) {
+						draw_set_color(c_black)
+						draw_set_alpha(0.5)
+						draw_rectangle(_cgx-205, _cgy-82, _cgx+205, _cgy+82, false)
+						draw_set_alpha(1)
+						draw_sprite_ext(spr_sold_out, 0, _cgx, _cgy, 1.8, 1.8, 0, c_white, 1)
+					}
+				}
+				else{
+					// 兑换项：威望图标
+					draw_sprite_ext(spr_prestige_icon, 0, _cgx-122, _cgy, 2.8, 2.8, 0, c_white, 1)
+				}
+			}
+		}
 		//绘制时装类型商品
 		if shop_button_select == 4{
 			if ds_list_find_value(goods_list,i*4+j+(current_page-1)*16) != undefined{
@@ -193,5 +245,26 @@ for(var i = 0 ; i< 4; i++){
 		}
 	}
 }
+
+// ── 转职凭证页：左上角分类页签（一转 / 二转 / 全部）──
+// 位置（2026-10-25 改）：从「压在面板上沿」上移到**面板上方那条蓝带**里
+//   —— 顶部页签行底边 y-332.5、内面板顶边 y-286.5，标签中心 y-307（高 34）正好坐进去，
+//      既不压面板边框、也不压第一排商品格；三个标签等距排列
+// ⚠️ 原来这条带右边还有个「威望图标 + 数字」，2026-10-26 用户要求撤掉 ——
+//    威望已经写进底部余额条（见本文件开头那段延伸条），顶栏不再重复显示
+if (shop_button_select == 6) {
+	var _ct_scl = 1.6
+	var _ct_y = y - 307
+	// 顺序：一转(1) / 二转(2) / 全部(0)
+	// 🔴 frame 0 = 金色 = 选中、frame 1 = 蓝色 = 未选中（2026-10-25 修正：原来写反了）
+	var _ct_spr = [spr_shop_credit_tab_1, spr_shop_credit_tab_2, spr_shop_credit_tab_all]
+	var _ct_val = [1, 2, 0]
+	var _ct_cx = [x - 740, x - 616, x - 517]
+	for (var _ct = 0; _ct < 3; _ct++) {
+		draw_sprite_ext(_ct_spr[_ct], (credit_tab == _ct_val[_ct]) ? 0 : 1,
+			_ct_cx[_ct], _ct_y, _ct_scl, _ct_scl, 0, c_white, 1)
+	}
+}
+
 draw_set_alpha(1)
 panel_anim_end_slide(id, 260)

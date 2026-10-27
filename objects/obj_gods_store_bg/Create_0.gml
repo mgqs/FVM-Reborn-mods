@@ -36,11 +36,12 @@ function gods_shop_list_recharge()
         var _is_recipe1 = (_g1.type == "recipe");
         if (shop_button_select == 1)
         {
-            if (_g1.type == "card" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
+            if (_g1.type == "card" || _g1.type == "evo" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
         }
         else if (shop_button_select == 2)
         {
-            if (_g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
+            // 三/四/终转凭证（type "tvoucher"）与食谱都进这一页
+            if (_g1.type == "tvoucher" || _g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
         }
     }
 
@@ -122,18 +123,29 @@ function gods_shop_list_recharge()
                     var inst = instance_create_depth((x - 615) + (411 * j) + 77, (y - 251) + (165 * i) + 60, depth - 1, obj_gods_store_buy_btn);
                     inst.target_item = _goods_b1.unlock_item_id;
                     inst.cost = _goods_b1.cost;
-                    inst.goods_name = (_is_recipe_b1 && variable_struct_exists(_goods_b1, "recipe_name")) ? _goods_b1.recipe_name : _goods_b1.display_name;
+                    // 名字统一走 gods_goods_name()：evo = 卡名（进化凭证）/ tvoucher = 卡名（X转凭证）
+                    //   绝对不要再直接读 _goods_b1.display_name —— 那字段 2026-10-27 已从 evo/tvoucher 里删掉
+                    inst.goods_name = gods_goods_name(_goods_b1);
                     inst.tooltip_text = _goods_b1.description;
                     inst.recipe_id = _is_recipe_b1 ? _goods_b1.recipe_id : "";
-                    inst.btn_type = _is_recipe_b1 ? "recipe" : "card";
+                    // 2026-10-27：第一页的「金卡」已换成进化凭证（type "evo"），买的是道具不是卡
+                    var _is_evo_b1 = (_goods_b1.type == "evo");
+                    inst.btn_type = _is_recipe_b1 ? "recipe" : (_is_evo_b1 ? "evo" : "card");
 
                     if (_is_recipe_b1)
                     {
                         // 只看背包里还有没有这本食谱：用掉了就能再买（哪怕卡已经练上去了）
                         if (has_fusion_recipe(_goods_b1.unlock_item_id, 0)) inst.is_disabled = true;
                     }
+                    else if (_is_evo_b1)
+                    {
+                        // 进化凭证：已经持有一张就置灰（买来就是拿去进化的，不囤）
+                        if (get_material_amount(mod_evo_credit_id(_goods_b1.unlock_item_id)) > 0) inst.is_disabled = true;
+                    }
                     else
                     {
+                        // 金卡本体（当前没有 type:"card" 商品 —— 金卡全改成 evo 凭证了；
+                        // 这段留着给以后真要直接上架卡本体的商品）
                         var is_unlocked = false;
 
                         for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
@@ -145,17 +157,10 @@ function gods_shop_list_recharge()
                             }
                         }
 
+                        // 2026-10-27 用户口径：前置体系只属于「金卡进化 / 食灵融合」，
+                        //   诸神商店不再校验任何前置 —— 卡类商品只保留「已拥有就不再卖」
                         if (is_unlocked)
                             inst.is_disabled = true;
-                        else if (!fusion_prereq_met(inst.target_item, 2))
-                        {
-                            // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
-                            // 例外①：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
-                            // 例外②：前置全是「没有二转」的卡（幻幻鸡 / 蓝莓塔）时不写「二转」
-                            var _need_txt = (prereq_body_only(inst.target_item) || !fusion_prereq_any_upgradable(inst.target_item)) ? "" : "二转";
-                            inst.meet_requirements = false;
-                            inst.requirement_notice = "需先拥有[" + fusion_prereq_name(inst.target_item) + "]" + _need_txt + "才能兑换！";
-                        }
                     }
                 }
             }
@@ -172,15 +177,28 @@ function gods_shop_list_recharge()
                     inst.target_item = goods_info.unlock_item_id;
                     inst.target_shape = goods_info.target_shape;
                     inst.cost = goods_info.cost;
-                    inst.goods_name = goods_info.display_name;
+                    // 名字统一走 gods_goods_name()（不读 display_name，tvoucher 那类已经没这个字段了）
+                    inst.goods_name = gods_goods_name(goods_info);
                     inst.tooltip_text = goods_info.description;
                     inst.recipe_id = _is_recipe_b2 ? goods_info.recipe_id : "";
-                    inst.btn_type = _is_recipe_b2 ? "recipe" : "shape";
+                    // 三/四/终转凭证现在是「买道具」（type "tvoucher"），不再直接升形态
+                    var _is_tv_b2 = (goods_info.type == "tvoucher");
+                    inst.btn_type = _is_recipe_b2 ? "recipe" : (_is_tv_b2 ? "tvoucher" : "shape");
 
                     if (_is_recipe_b2)
                     {
                         // 同上：只看背包里还有没有这本食谱（灵融之后还能回头再买初融 / 深融食谱）
                         if (has_fusion_recipe(goods_info.unlock_item_id, goods_info.target_shape)) inst.is_disabled = true;
+                    }
+                    else if (_is_tv_b2)
+                    {
+                        // 2026-10-27 用户口径：凭证购买**任意** —— 不再要求「先拥有这张卡」，
+                        //   只保留重复购买拦截：这一档已经转上去 / 背包里已经有一张同样的凭证
+                        var _tv_info = get_card_info_simple(goods_info.unlock_item_id);
+                        if (is_struct(_tv_info) && _tv_info.max_shape >= goods_info.target_shape)
+                            inst.is_disabled = true;
+                        else if (get_material_amount(transfer_credit_id(goods_info.unlock_item_id, goods_info.target_shape)) > 0)
+                            inst.is_disabled = true;
                     }
                     else
                     {

@@ -1,4 +1,8 @@
-if (is_disabled)
+// 抽卡模式（含欧皇）：卡片类（进化凭证、菜谱、金卡）不能买，只有转职凭证（shape）能买
+//   随机礼盒模式不在此列（用户 2026-10-27：随机礼盒照原逻辑）
+var _gacha_block = ((btn_type == "evo" || btn_type == "card" || btn_type == "recipe")
+    && is_eternal_gacha_mode());
+if (is_disabled || _gacha_block)
     image_blend = c_gray;
 
 draw_self();
@@ -18,7 +22,7 @@ else
     draw_text_ext_transformed(x, y - 106, goods_name, 25, 1920, _nsc, _nsc, 0);
 }
 
-if (!is_disabled)
+if (!is_disabled && !_gacha_block)
 {
     draw_set_color(c_white);
     draw_text(x - 8, y - 58, "消耗" + string(cost) + "个");

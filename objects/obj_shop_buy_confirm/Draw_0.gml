@@ -22,7 +22,12 @@ draw_set_alpha(_a)
 draw_text(x, y - 112 * pop_s, "购买确认")
 var _buy_nm = instance_exists(banding_buy_btn) ? banding_buy_btn.goods_name : buy_goods_name;
 var _buy_cost = instance_exists(banding_buy_btn) ? banding_buy_btn.cost : 0;
-draw_text(x, y - 10 * pop_s, "确定以"+string(_buy_cost)+"G购买"+_buy_nm+"吗？");
+// 转职凭证页用威望结算的，文案换成「威望」而不是 G
+var _coin_txt = "G";
+if (instance_exists(banding_buy_btn) && banding_buy_btn.btn_type == "credit" && banding_buy_btn.coin_type == "prestige") {
+	_coin_txt = "威望";
+}
+draw_text(x, y - 10 * pop_s, "确定以"+string(_buy_cost)+_coin_txt+"购买"+_buy_nm+"吗？");
 if obj_shop_bg.shop_button_select == 4{
 	draw_set_color(c_yellow)
 		draw_text(x, y + 15 * pop_s, "你需要在背包中切换卡片时装。");

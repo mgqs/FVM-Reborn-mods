@@ -634,6 +634,10 @@ else if package_button_select == 3{
                     draw_sprite_ext(spr_mod_cs_xunzhang, 0, material_x, material_y, 0.9, 0.9, 0, c_white, 1);
                 } else if (material_id == "cross_server_silver_medal") {
                     draw_sprite_ext(spr_mod_cs_silver_medal, 0, material_x, material_y, 0.9, 0.9, 0, c_white, 1);
+                } else if (material_id == "prestige") {
+                    // 威望（转职凭证货币）：独立 44×44 图标，1.8 缩放≈79px，
+                    // 跟其它道具（spr_craft_material 88×88 @0.9）视觉尺寸对齐
+                    draw_sprite_ext(spr_prestige_icon, 0, material_x, material_y, 1.8, 1.8, 0, c_white, 1);
                 } else {
                     var _mat_spr = (material_id == "oracle_stone") ? spr_oriacle_stone :spr_craft_material ;
                     var _mat_idx = (material_id == "oracle_stone") ? 0 : material_data.icon;
@@ -710,10 +714,15 @@ else if package_button_select == 4{
 		surface_set_target(package_surface)
 		draw_clear_alpha(c_black,0)
 	}
-	// 只列背包里持有（数量 > 0）的凭证，不遍历 material_pool
-	var _tc_list = transfer_credit_owned_ids()
-	var _tc_n = array_length(_tc_list)
-	var _tc_rows = max(1, ceil(_tc_n / package_cols))
+	// 分段 / 顺序 / 换行规则在 transfer_credit 脚本里（transfer_credit_tab_*），背包只调表
+	//   分段：一 / 二 / 进化 / 三 / 四 / 终，段与段之间强制换行（不空行）
+	//   注：三/四/终 目前没有道具产出口（诸神商店的三四终是 shape 商品，买完直接转职），先占位等着
+	var _tab    = transfer_credit_tab_collect()
+	var _items  = _tab.items
+	var _starts = _tab.starts
+	var _tc_n   = array_length(_items)
+	var _slots  = transfer_credit_tab_slots(_items, _starts, package_cols)
+	var _tc_rows = transfer_credit_tab_rows(_items, _starts, package_cols)
 	if (_tc_rows < package_rows) _tc_rows = package_rows
 	max_y_offset_4 = max(0, (_tc_rows - 9) * 88)
 	if (y_offset > max_y_offset_4) y_offset = max_y_offset_4
@@ -728,20 +737,22 @@ else if package_button_select == 4{
 
 	hover_transfer_index = -1
 	for (var i = 0; i < _tc_n; i++) {
-		var _tid = _tc_list[i]
-		var _col = i mod package_cols
-		var _row = i div package_cols
+		var _it = _items[i]
+		var _slot_i = _slots[i]
+		var _col = _slot_i mod package_cols
+		var _row = _slot_i div package_cols
 		var _tx = 42 + _col * 84
 		var _ty = 44 + _row * 88 - y_offset
 		if (_ty > -100 && _ty < 875) {
-			// 88 = 格子宽度，凭证按 2 倍放大；卡面内部按包围盒等比 fit
-			transfer_credit_draw_id(_tx, _ty, _tid, 88)
+			// ⚠️ _tx/_ty 是**格子中心**；绘制函数吃左上角 → 中心减半格（74/2=37）
+			//    74 而不是铺满的 88：四周留 ~5px 边，跟道具页图标（79）同尺寸感
+			transfer_credit_tab_draw(_it, _tx - 37, _ty - 37, 74)
 
 			draw_set_halign(fa_right)
 			draw_set_valign(fa_bottom)
 			draw_set_colour(c_white)
 			draw_set_font(font_number)
-			var _amt = get_material_amount(_tid)
+			var _amt = _it.amount
 			if _amt < 10000 draw_text(_tx + 40, _ty + 42, string(_amt))
 			else draw_text(_tx + 40, _ty + 42, string(floor(_amt / 10000)) + "w")
 
@@ -756,17 +767,10 @@ else if package_button_select == 4{
 	surface_reset_target()
 	draw_surface_ext(package_surface, x - 354 - 42, y - 368 - 44, 1, 1, 0, c_white, _pg_alpha_r)
 
-	// 悬停提示
+	// 悬停提示（文案也在分段表里，不写数量：凭证上限按持有 1）
 	if (hover_transfer_index != -1 && hover_transfer_index < _tc_n) {
-		var _hid = _tc_list[hover_transfer_index]
-		var _hp = transfer_credit_parse(_hid)
-		if (!is_undefined(_hp)) {
-			var _tt = transfer_credit_name(_hp.card_id, _hp.shape) + "\n"
-				+ "转职凭证：在合成屋「卡片转职」中使用\n"
-				+ "数量：" + string(get_material_amount(_hid))
-			draw_set_font(font_yuan)
-			tooltip_set(mouse_x - 15, mouse_y - 15, _tt, -1)
-		}
+		draw_set_font(font_yuan)
+		tooltip_set(mouse_x - 15, mouse_y - 15, transfer_credit_tab_tip(_items[hover_transfer_index]), -1)
 	}
 }
 

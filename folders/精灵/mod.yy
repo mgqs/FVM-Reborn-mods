@@ -10,6 +10,7 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"Craft","path":"folders/精灵/mod/Craft.yy",},
     {"name":"Gods Shop","path":"folders/精灵/mod/Gods Shop.yy",},
     {"name":"shengxiaocard","path":"folders/精灵/mod/shengxiaocard.yy",},
     {"name":"Cards","path":"folders/精灵/mod/Cards.yy",},

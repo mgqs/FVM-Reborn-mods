@@ -29,6 +29,19 @@ for (var i = 0; i < array_length(buttons); i++) {
                 case 0: // 确定
                     // 购买逻辑
 					obj_shop_bg.is_submenu_opened = false
+
+					// 兜底：转职凭证可能已经不可买（连点 / 界面状态过期）→ 提示并关窗，不扣钱
+					if (banding_buy_btn != noone && instance_exists(banding_buy_btn) && banding_buy_btn.btn_type == "credit") {
+						var _bp = transfer_credit_parse(banding_buy_btn.target_item)
+						if (!is_undefined(_bp)) {
+							var _blk = transfer_credit_buyable(_bp.card_id, _bp.shape)
+							if (_blk != "") {
+								show_notice(_blk, 60)
+								instance_destroy()
+								exit
+							}
+						}
+					}
 					
 					// 先判断是否是神秘礼盒（特殊处理，避免with作用域问题）
 					var _is_gacha_box = false;
@@ -97,6 +110,14 @@ for (var i = 0; i < array_length(buttons); i++) {
 								else if target_item == "card_slot_21" && global.save_data.unlocked_items.max_slot == 20{
 									global.save_data.unlocked_items.max_slot += 1
 								}
+								save_file(global.save_slot)
+							}
+							// 转职凭证页：威望结算 / 凭证或兑换奖励
+							else if btn_type == "credit"{
+								if (coin_type == "prestige") add_material_amount("prestige", -cost)
+								else global.save_data.player.gold -= cost
+								if (reward_prestige > 0) add_material_amount("prestige", reward_prestige)
+								else add_material_amount(target_item, 1)
 								save_file(global.save_slot)
 							}
 						}

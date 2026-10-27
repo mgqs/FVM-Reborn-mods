@@ -13,6 +13,10 @@ gods_shop_init();
 
 mod_boss_init();
 mod_cards_init();
+// 转职系统道具（威望）：注册进 material_pool，背包「道具」页才会显示
+mod_material_init();
+// 转职凭证商店（商店新增「转职凭证」页的商品表）
+credit_shop_init();
 // 跨服商店的生肖卡名称/描述直接读取 mod_cards_init 注册的卡片形态数据，必须在其后执行
 cross_server_shop_init();
 // 卡片分类模块是增幅分组的数据源，必须在 mod_buff_init 之前建立

@@ -259,11 +259,13 @@ function cookbook_init(){
 			"rank":1,
 			"title":"巧克力雪球",
 			"tiny_desc":"加强巧克力大炮",
-			"desc":"巧克力大炮冷却时间减少5秒，攻击间隔减少1秒\n巧克力投手冷却时间减少3秒",
+			"desc":"巧克力大炮、脆心死神大炮冷却时间减少5秒，攻击间隔减少1秒\n巧克力投手冷却时间减少3秒",
 			"icon":12,
 			"modif":[
 				{
-					"card_id":["chocolate_cannon"],
+					// 2026-10-26 补：融合大炮（ronghedapao）也是灰烬类·轰炸类、且前置就是巧克力大炮，
+					// 原来不在名单里 → 食神谱这条对它完全不生效（用户：融合大炮不吃巧克力炮效果）
+					"card_id":["chocolate_cannon", "ronghedapao"],
 					"modif_type":"cooldown",
 					"modif_calc":"plus",
 					"amount":-5*60
@@ -275,7 +277,7 @@ function cookbook_init(){
 					"amount":-3*60
 				},
 				{
-					"card_id":["chocolate_cannon"],
+					"card_id":["chocolate_cannon", "ronghedapao"],
 					"modif_type":"cycle",
 					"modif_calc":"plus",
 					"amount":-1*60
