@@ -13,14 +13,14 @@ function cross_server_shop_init()
     var _cross_server_prices = {
         baibianshe: {cost: "1510", shop: "silver"}, double_blade_snake: {cost: "1320", shop: "silver"}, laipishe: {cost: "1320", shop: "silver"},
         spoon_rabbit: {cost: "1130", shop: "silver"}, magic_chicken: {cost: "1130", shop: "silver"}, xuanfengniu: {cost: "1020", shop: "silver"},
-        zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "450", shop: "gold"}, zhanqima_2: {cost: "910", shop: "gold"},
-        hongliukaochuan_1: {cost: "780", shop: "gold"}, hongliukaochuan_2: {cost: "1460", shop: "gold"},
+        zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "225", shop: "gold"}, zhanqima_2: {cost: "228", shop: "gold"},
+        hongliukaochuan_1: {cost: "390", shop: "gold"}, hongliukaochuan_2: {cost: "365", shop: "gold"},
         yeziguo: {cost: "1130", shop: "silver"},
-        yeziguo_1: {cost: "260", shop: "gold"}, yeziguo_2: {cost: "530", shop: "gold"},
+        yeziguo_1: {cost: "130", shop: "gold"}, yeziguo_2: {cost: "133", shop: "gold"},
         niuyouguo: {cost: "2030", shop: "silver"},
-        niuyouguo_1: {cost: "480", shop: "gold"}, niuyouguo_2: {cost: "970", shop: "gold"},
+        niuyouguo_1: {cost: "240", shop: "gold"}, niuyouguo_2: {cost: "243", shop: "gold"},
         chunsun: {cost: "1000", shop: "silver"},
-        chunsun_1: {cost: "230", shop: "gold"}, chunsun_2: {cost: "470", shop: "gold"},
+        chunsun_1: {cost: "115", shop: "gold"}, chunsun_2: {cost: "118", shop: "gold"},
         master_shield: {cost: "900", shop: "silver"}, hades_scythe: {cost: "900", shop: "silver"}, zeus_bolt: {cost: "900", shop: "silver"},
         divine_blessing_gem: {cost: "900", shop: "silver"}, divine_protect_gem: {cost: "900", shop: "silver"}, divine_holy_gem: {cost: "900", shop: "silver"}, divine_shenji_gem: {cost: "900", shop: "silver"},
         ghost_strike_gem: {cost: "900", shop: "silver"}, ghost_spark_gem: {cost: "900", shop: "silver"}, ghost_pact_gem: {cost: "900", shop: "silver"}, ghost_caijue_gem: {cost: "900", shop: "silver"},
@@ -28,7 +28,7 @@ function cross_server_shop_init()
         star_wand: {cost: "500", shop: "gold"}, star_wand_gem_1: {cost: "500", shop: "gold"}, star_wand_gem_2: {cost: "750", shop: "gold"}, star_wand_gem_3: {cost: "500", shop: "gold"}, star_wand_gem_4: {cost: "500", shop: "gold"}, star_wand_gem_5: {cost: "500", shop: "gold"},
         rose_shield: {cost: "500", shop: "gold"}, rose_shield_gem_1: {cost: "500", shop: "gold"}, rose_shield_gem_2: {cost: "500", shop: "gold"}, rose_shield_gem_3: {cost: "500", shop: "gold"}, rose_shield_gem_4: {cost: "500", shop: "gold"}, rose_shield_gem_5: {cost: "750", shop: "gold"},
         aladdin_lamp: {cost: "500", shop: "gold"}, aladdin_lamp_gem_1: {cost: "500", shop: "gold"}, aladdin_lamp_gem_2: {cost: "750", shop: "gold"}, aladdin_lamp_gem_3: {cost: "500", shop: "gold"}, aladdin_lamp_gem_4: {cost: "500", shop: "gold"}, aladdin_lamp_gem_5: {cost: "500", shop: "gold"},
-        yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, guiyuanma: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, xingqiongma: {cost: "1900", shop: "silver"}, yanyantu_1: {cost: "450", shop: "gold"}, yanyantu_2: {cost: "910", shop: "gold"}, wugushe_1: {cost: "450", shop: "gold"}, wugushe_2: {cost: "910", shop: "gold"}, kuileima_1: {cost: "450", shop: "gold"}, kuileima_2: {cost: "910", shop: "gold"}, yufengma_1: {cost: "450", shop: "gold"}, yufengma_2: {cost: "910", shop: "gold"}, fenjima_1: {cost: "450", shop: "gold"}, fenjima_2: {cost: "910", shop: "gold"}, guiyuanma_1: {cost: "450", shop: "gold"}, guiyuanma_2: {cost: "910", shop: "gold"}, yanhuangma_1: {cost: "450", shop: "gold"}, yanhuangma_2: {cost: "910", shop: "gold"}, yinhema_1: {cost: "450", shop: "gold"}, yinhema_2: {cost: "910", shop: "gold"}, xiandima_1: {cost: "450", shop: "gold"}, xiandima_2: {cost: "910", shop: "gold"}, xingqiongma_1: {cost: "450", shop: "gold"}, xingqiongma_2: {cost: "910", shop: "gold"}
+        yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, guiyuanma: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, xingqiongma: {cost: "1900", shop: "silver"}, yanyantu_1: {cost: "225", shop: "gold"}, yanyantu_2: {cost: "228", shop: "gold"}, wugushe_1: {cost: "225", shop: "gold"}, wugushe_2: {cost: "228", shop: "gold"}, kuileima_1: {cost: "225", shop: "gold"}, kuileima_2: {cost: "228", shop: "gold"}, yufengma_1: {cost: "225", shop: "gold"}, yufengma_2: {cost: "228", shop: "gold"}, fenjima_1: {cost: "225", shop: "gold"}, fenjima_2: {cost: "228", shop: "gold"}, guiyuanma_1: {cost: "225", shop: "gold"}, guiyuanma_2: {cost: "228", shop: "gold"}, yanhuangma_1: {cost: "225", shop: "gold"}, yanhuangma_2: {cost: "228", shop: "gold"}, yinhema_1: {cost: "225", shop: "gold"}, yinhema_2: {cost: "228", shop: "gold"}, xiandima_1: {cost: "225", shop: "gold"}, xiandima_2: {cost: "228", shop: "gold"}, xingqiongma_1: {cost: "225", shop: "gold"}, xingqiongma_2: {cost: "228", shop: "gold"}
     };
 
     // 新生肖 / 泡椒春笋仅在跨服商店兑换，三个形态的价格取自 _cross_server_prices（没写自己价目的回落战旗马那一档）。

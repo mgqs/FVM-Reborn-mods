@@ -74,10 +74,21 @@ for (var _slot = 0; _slot < 16; _slot++) {
 
     // 绘制商品图标
     if (_goods_type == "card") {
-        var _card = deck_get_card_data(_card_id, _card_shape);
-        if (_card != noone && ds_exists(_card, ds_type_map)) {
-            draw_sprite_ext(spr_slot, 0, _gx - 122, _gy, 0.33, 0.33, 0, c_white, 1);
-            draw_sprite_ext(_card[? "sprite"], 0, _gx - 122, _gy + 25, 1, 1, 0, c_white, 1);
+        if (_card_shape > 0) {
+            // 一转 / 二转 = 转职凭证：走 transfer_credit_draw（按档位选底板 + 该形态立绘现拼），
+            // 与转职商店（obj_shop_bg 凭证页）/ 诸神商店 / 合成屋同一套口径（2026-10-27）。
+            //   ① 不再画 spr_slot 卡槽：凭证自带底板，叠一起会露两层框
+            //   ② 96 是金币商店凭证页的实测尺寸；中心对齐图标位（格子中心左移 122）
+            //   ③ 档位由 transfer_credit_tier 算：普卡 1/2 → 一转/二转，金卡 1/2 → 三/四转
+            var _credit_size = 96;
+            transfer_credit_draw(_gx - 122 - _credit_size * 0.5, _gy - _credit_size * 0.5,
+                _card_id, _card_shape, _credit_size, 0, 1);
+        } else {
+            var _card = deck_get_card_data(_card_id, _card_shape);
+            if (_card != noone && ds_exists(_card, ds_type_map)) {
+                draw_sprite_ext(spr_slot, 0, _gx - 122, _gy, 0.33, 0.33, 0, c_white, 1);
+                draw_sprite_ext(_card[? "sprite"], 0, _gx - 122, _gy + 25, 1, 1, 0, c_white, 1);
+            }
         }
     } else if (_goods_type == "weapon") {
         var _weapon_info = get_weapon_info(_id);
