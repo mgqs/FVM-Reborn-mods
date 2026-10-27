@@ -1,4 +1,4 @@
-﻿/// 转职凭证商店注册（2026-10-25 建；2026-10-27 按用户「魔塔价格奖励建议表.xlsx」**全量重写**）
+/// 转职凭证商店注册（2026-10-25 建；2026-10-27 按用户「魔塔价格奖励建议表.xlsx」**全量重写**）
 /// 商品 type = "credit"：只进商店新增的「转职凭证」页，不会出现在道具页/其它页
 /// 字段：
 ///   coin_type     "prestige" = 花威望 / "gold" = 花金币
@@ -21,7 +21,7 @@ function credit_shop_init()
         coin_type: "gold",
         credit_shape: 0,
         unlock_item_id: "prestige",
-        description: "用 10000000 金币兑换 100000 威望\n（测试期临时项，正式版会移除）",
+        description: "用 10000000 金币兑换 100000 威望",
         reward_prestige: 100000
     });
 
@@ -84,7 +84,7 @@ function credit_shop_init()
 
     register_goods("credit_small_fire_1", {
         type: "credit", cost: "1900", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "5-1",
+        tower_floor: "1-1",
         unlock_item_id: transfer_credit_id("small_fire", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
@@ -777,7 +777,7 @@ function credit_shop_init()
 
     register_goods("credit_small_fire_2", {
         type: "credit", cost: "11700", coin_type: "prestige", credit_shape: 2,
-        tower_floor: "25-2",
+        tower_floor: "15-1",
         unlock_item_id: transfer_credit_id("small_fire", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
