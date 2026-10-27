@@ -32,41 +32,7 @@ if (!variable_struct_exists(global.save_data.player, "pity_count"))
 
 function gods_hall_get_random_reward()
 {
-    // 抽卡模式：不出神谕之石
-    if (is_eternal_gacha_mode()) {
-        var r = irandom(999);
-        if (r < 244)
-            return ["金币", 1000];
-        else if (r < 334)
-            return ["金币", 5000];
-        else if (r < 374)
-            return ["金币", 10000];
-        else if (r < 516)
-            return ["天然香料", 25];
-        else if (r < 556)
-            return ["天然香料", 50];
-        else if (r < 566)
-            return ["天然香料", 200];
-        else if (r < 656)
-            return ["秘制香料", 25];
-        else if (r < 676)
-            return ["秘制香料", 50];
-        else if (r < 686)
-            return ["秘制香料", 200];
-        else if (r < 786)
-            return ["初级强化水晶", 25];
-        else if (r < 826)
-            return ["初级强化水晶", 50];
-        else if (r < 896)
-            return ["中级强化水晶", 25];
-        else if (r < 926)
-            return ["中级强化水晶", 50];
-        else if (r < 956)
-            return ["4级四叶草", 20];
-        else
-            return ["高级强化水晶", 20];
-    }
-
+    // 2026-10-27：抽卡模式（星际/欧皇抽卡）与普通模式同池，不再剔除神谕之石
     var r = irandom(999);
 
     if (r < 244)
@@ -102,22 +68,14 @@ function gods_hall_get_random_reward()
     else if (r < 920)
         return ["中级强化水晶", 50];
     else if (r < 950)
-        return ["4级四叶草", 20];
+        return ["4级四叶草", 5];
     else
-        return ["高级强化水晶", 20];
+        return ["高级强化水晶", 50];
 }
 
 function gods_hall_get_guarantee_reward()
 {
-    // 抽卡模式：保底只出四级四叶草和高级强化水晶
-    if (is_eternal_gacha_mode()) {
-        var r = irandom(99);
-        if (r < 50)
-            return ["4级四叶草", 25];
-        else
-            return ["高级强化水晶", 25];
-    }
-
+    // 2026-10-27：抽卡模式与普通模式同一套保底，不再单独走「只出四叶草/水晶」分支
     if (global.save_data.player.pity_count % 2 == 0)
     {
         var r = irandom(99);

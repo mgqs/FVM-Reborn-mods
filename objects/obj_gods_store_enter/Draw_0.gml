@@ -1,4 +1,2 @@
-if (is_eternal_gacha_mode()) {
-    image_blend = c_gray;
-}
+// 2026-10-27：抽卡模式不再把诸神商店入口置灰（与普通模式一致）
 draw_self();

@@ -292,7 +292,7 @@ function mod_enemy_init()
         _obj: obj_longzhu,
         hp: "无限",
         shield: 0,
-        description: "未封印时，每 15s对自身 3×3 范围卡片施加催眠。\n已封印时，每 15s对自身 3×3 范围卡片施加清醒效果",
+        description: "未封印时，每15s对自身 3×3 范围卡片施加催眠。\n已封印时，每 15s对自身 3×3 范围卡片施加清醒效果",
         speed: 0,
         atk: 0,
         cycle: 15,
