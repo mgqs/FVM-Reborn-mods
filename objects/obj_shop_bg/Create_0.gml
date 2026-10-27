@@ -324,12 +324,19 @@ function shop_list_recharge(){
 					// 已购 / 已转上去 / 形态不存在 → 置灰＋点不动（兑换项 credit_shape = 0 永远可买）
 					// 爬塔门槛 / 余额不足不在这里置灰：它们是「临时不满足」，点购买时再弹提示（2026-10-26 用户定）
 					inst.credit_block = ""
+					// 爬塔门槛 key：凭证和兑换项都算好（Draw 用它画「通过X-X层可买」，
+					//   规则见 transfer_credit 的 credit_shop_tower_defaults()：一转 1-1 / 二转 13-1 / 兑换项 35-1）
+					inst.credit_floor_key = credit_shop_floor_key(_ci)
 					if (_ci.credit_shape > 0) {
 						var _cp = transfer_credit_parse(_ci.unlock_item_id)
 						if (!is_undefined(_cp)) {
 							inst.credit_block = transfer_credit_buyable(_cp.card_id, _cp.shape)
 							if (transfer_credit_buyable_locked(_cp.card_id, _cp.shape)) inst.is_disabled = true
 						}
+					}
+					else {
+						// 兑换项（威望）：默认要通魔塔最大层才可买；不置灰，点购买时弹提示
+						inst.credit_block = credit_shop_floor_reason(_ci)
 					}
 				}
 			}

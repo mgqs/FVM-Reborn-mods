@@ -48,8 +48,8 @@ function mod_evo_table(){
                                         {id:"huagao", slot:1, need:2} ] },  // 神农氏神使 ← 焚天炎凰马 + 梦境灯影花糕
         haiyang_god:             { cards:[ {id:"mozhang", slot:0, need:2},
                                         {id:"hspeed_juicer", slot:1, need:2} ] },  // 塔拉萨神使 ← 凤羽魔杖蛇 + 大菠萝榨汁机
-        fengrao_god:             { cards:[ {id:"zhanqima", slot:1, need:2} ] },  // 弗雷神使 ← 燎原战旗马
-        clotho:                  { cards:[ {id:"brahma", slot:1, need:0} ] },  // 克洛托神使 ← 梵天神使（**本体即可**，用户 2026-10-27 明确）
+        fengrao_god:             { cards:[ {id:"zhanqima", slot:0, need:2} ] },  // 弗雷神使 ← 燎原战旗马
+        clotho:                  { cards:[ {id:"brahma", slot:0, need:0} ] },  // 克洛托神使 ← 梵天神使（**本体即可**，用户 2026-10-27 明确）
         chongsheng_god:          { cards:[ {id:"xingqiongma", slot:0, need:2},
                                         {id:"anranxiaohunfan", slot:1, need:2} ] },  // 奥西里斯神使 ← 浩瀚星穹马 + 天妇罗盖饭
         sun_god:                 { cards:[ {id:"shuangzi", slot:0, need:2},
@@ -60,10 +60,10 @@ function mod_evo_table(){
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
         houyi_god:               { cards:[ {id:"double_blade_snake", slot:0, need:2},
                                         {id:"ronghesanxian", slot:1, need:2} ] },  // 后羿神使 ← 游侠双刃蛇 + 烤灯笼鱼酒架
-        joker:                   { cards:[ {id:"donut", slot:1, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
+        joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
         time_god:                { cards:[ {id:"ice_cream", slot:0, need:2},
                                         {id:"magic_chicken", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 极寒冰沙 + 幻幻鸡
-        xiangshui_god:           { cards:[ {id:"berry_dessert", slot:1, need:2} ] },  // 塔利亚神使 ← 流心莓果点心
+        xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2} ] },  // 塔利亚神使 ← 流心莓果点心
         war_god:                 { cards:[ {id:"tiancheng", slot:0, need:2},
                                         {id:"double_water_pipe", slot:1, need:2} ] },  // 阿瑞斯神使 ← 天秤座星宿 + 合金水管
         thor:                    { cards:[ {id:"shuangyu", slot:0, need:2},
@@ -86,10 +86,10 @@ function mod_evo_table(){
                                         {id:"bull_firework", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 白羊座星宿 + 璀璨金牛烟花
         poseidon:                { cards:[ {id:"shizi", slot:0, need:2},
                                         {id:"rotating_coffee_pot", slot:1, need:2} ] },  // 波塞冬神使 ← 狮子座星宿 + 原子咖啡壶
-        ghost_god:               { cards:[ {id:"coal_starfish", slot:1, need:2} ] },  // 哈迪斯神使 ← 芥末海星刺身
-        odin:                    { cards:[ {id:"double_blade_snake", slot:1, need:2} ] },  // 奥丁神使 ← 游侠双刃蛇
-        water_god:               { cards:[ {id:"cherry_pudding", slot:1, need:2} ] },  // 忒提丝神使 ← 节能反弹布丁
-        hundun_god:              { cards:[ {id:"hamburger", slot:1, need:2} ] },  // 混沌神使 ← 牛肉双黑汉堡
+        ghost_god:               { cards:[ {id:"coal_starfish", slot:0, need:2} ] },  // 哈迪斯神使 ← 芥末海星刺身
+        odin:                    { cards:[ {id:"double_blade_snake", slot:0, need:2} ] },  // 奥丁神使 ← 游侠双刃蛇
+        water_god:               { cards:[ {id:"cherry_pudding", slot:0, need:2} ] },  // 忒提丝神使 ← 节能反弹布丁
+        hundun_god:              { cards:[ {id:"hamburger", slot:0, need:2} ] },  // 混沌神使 ← 牛肉双黑汉堡
         // ⚠️ 下面 4 张不在用户给的配方表里（图上没有），沿用旧前置，等补表再改
         firework_dragon_real:    { cards:[ {id:"firework_dragon", slot:0, need:2},
                                         {id:"shegengbao", slot:1, need:2} ] },  // 真·花火龙 ← 花火龙 + 蛇羹煲

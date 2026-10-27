@@ -4,9 +4,12 @@
 ///   coin_type     "prestige" = 花威望 / "gold" = 花金币
 ///   credit_shape  0 = 兑换项（不是凭证）/ 1 = 一转 / 2 = 二转（分类页签按它过滤）
 ///   reward_prestige  兑换项专用：买完加多少威望
-///   tower_floor   爬塔门槛（现在全没写 = 不限制；用户 2026-10-26：本轮只做价格，门槛后续再填）
-///                  写法：`"12-2"` = 需通关魔塔 12-2（层-小关）/ `12` = 该层第一小关 / 不写 = 不限
-///                  判定分两层：置灰只看 transfer_credit_buyable_locked()（形态不存在/已持有/已转职）；
+///   tower_floor   爬塔门槛（2026-10-27 起有**默认值**，不再需要逐条写）
+///                  默认表在 `transfer_credit.gml` 的 `credit_shop_tower_defaults()`：
+///                    credit_shape 1（一转凭证）→ 1-1 ／ 2（二转凭证）→ 13-1 ／ 0（兑换项·威望）→ 35-1（魔塔最大层）
+///                  单条商品想覆盖 → 这一条里写 `tower_floor`：`"12-2"` = 通关 12-2 / `12` = 12-1 / `0` = 该商品不限
+///                  写法详见 transfer_credit_tower_key_from()；判定分两层：置灰只看
+///                  transfer_credit_buyable_locked()（形态不存在/已持有/已转职）；
 ///                  爬塔门槛与余额不足只在点购买时弹提示，不置灰
 /// 🔴 **不开 display_name**：商店对凭证是用 transfer_credit_name_from_id(unlock_item_id) 实时取名，
 ///    这字段对 credit_shape > 0 的商品根本不读；兑换项才用它。

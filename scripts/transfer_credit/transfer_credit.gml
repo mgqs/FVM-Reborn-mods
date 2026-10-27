@@ -643,9 +643,49 @@ function transfer_credit_tower_key_from(_v) {
     return 0;
 }
 
+/// @function credit_shop_tower_defaults() 威望商店的**默认爬塔门槛表**（🔴 要调门槛就改这里，只此一处）
+///   键 = 商品的 `credit_shape`：0 = 兑换项（威望）/ 1 = 一转凭证 / 2 = 二转凭证
+///   值 = 魔塔门槛：数字 = 该层第一小关（1 = 1-1），也可写 "13-2"，0 / "" = 不限制
+///   单条商品想覆盖 → 在 `credit_shop_init` 的那条商品里写 `tower_floor`（写 0 = 该商品显式不限）
+function credit_shop_tower_defaults() {
+    return {
+        "0": "35-1",     // 兑换项（威望）：固定「通魔塔最大层」才可买
+        "1": "1-1",      // 一转凭证：通关 1-1
+        "2": "13-1"      // 二转凭证：通关 13-1
+    };
+}
+
+/// @function credit_shop_tower_default(credit_shape) 某个 credit_shape 的默认门槛 key（0 = 不限）
+function credit_shop_tower_default(_credit_shape) {
+    var _t = credit_shop_tower_defaults();
+    var _k = string(floor(_credit_shape));
+    if (!variable_struct_exists(_t, _k)) return 0;
+    return transfer_credit_tower_key_from(_t[$ _k]);
+}
+
+/// @function credit_shop_floor_key(goods) 一条商店商品要求的爬塔门槛 key（0 = 不限）
+///   ① 商品自己写了 `tower_floor` → 以它为准（0 / "" = 显式不限制）
+///   ② 没写 → 取默认表 `credit_shop_tower_defaults()` 里对应 credit_shape 的值
+function credit_shop_floor_key(_g) {
+    if (!is_struct(_g)) return 0;
+    if (variable_struct_exists(_g, "tower_floor")) return transfer_credit_tower_key_from(_g.tower_floor);
+    var _cs = variable_struct_exists(_g, "credit_shape") ? _g.credit_shape : 0;
+    return credit_shop_tower_default(_cs);
+}
+
+/// @function credit_shop_floor_reason(goods) 按门槛判能不能买 → "" = 可买 / 否则返回原因文案
+///   凭证与兑换项共用；余额不足另判（不在这里）
+function credit_shop_floor_reason(_g) {
+    var _need = credit_shop_floor_key(_g);
+    if (_need > 0 && transfer_credit_tower_done_key() < _need) return "魔塔通关层数不足";
+    return "";
+}
+
 /// @function transfer_credit_tower_floor_req(card_id, shape)
 /// @desc 该档凭证在**商店注册表**里的爬塔门槛，返回 key（层×100+小关）；0 = 不限制。
-///       懒扫 `global.goods_map` 里 `type == "credit"` 且带 `tower_floor` 的商品，缓存到 `global._tc_tower_req`。
+///       懒扫 `global.goods_map` 里 `type == "credit"` 且有 `credit_shape > 0` 的商品，
+///       门槛值走 `credit_shop_floor_key()`（商品写了 tower_floor 就以商品为准，否则用默认表），
+///       缓存到 `global._tc_tower_req`。
 function transfer_credit_tower_floor_req(_card_id, _shape) {
     if (!variable_global_exists("_tc_tower_req")) {
         var _map = {};
@@ -654,9 +694,8 @@ function transfer_credit_tower_floor_req(_card_id, _shape) {
             while (!is_undefined(_key)) {
                 var _g = global.goods_map[? _key];
                 if (variable_struct_exists(_g, "type") && _g.type == "credit"
-                    && variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0
-                    && variable_struct_exists(_g, "tower_floor")) {
-                    var _tk = transfer_credit_tower_key_from(_g.tower_floor);
+                    && variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0) {
+                    var _tk = credit_shop_floor_key(_g);
                     if (_tk > 0) {
                         var _p = transfer_credit_parse(_g.unlock_item_id);
                         if (!is_undefined(_p)) {
