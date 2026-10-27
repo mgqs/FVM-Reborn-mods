@@ -1,5 +1,5 @@
-// 被锁住的凭证：点一下要说明原因（需通关魔塔 N 层 / 已持有 / 已转职 / 需先买前一档），
-// 否则点了完全没反应（2026-10-26 加爬塔门槛时补的）。credit_block 只有凭证按钮才有。
+// 被锁住的凭证：点一下要说明原因（不满足购买条件 = 已持有 / 已转职；或魔塔层数不足），
+// 否则点了完全没反应。credit_block 只有凭证按钮才有，「置灰」本身由 obj_shop_bg 判。
 if not obj_shop_bg.is_submenu_opened and is_disabled
    and variable_instance_exists(id, "credit_block") and credit_block != ""{
 	show_notice(credit_block, 80)

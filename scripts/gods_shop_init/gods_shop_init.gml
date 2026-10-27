@@ -2,7 +2,7 @@ function gods_shop_init()
 {
     register_gods_goods("gaia",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "gaia",
         description: "盖亚神使：双连发射3*3范围爆炸的毁灭巨石",
@@ -10,7 +10,7 @@ function gods_shop_init()
     });
     register_gods_goods("aurora",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "aurora",
         description: "欧若拉神使：为本行投掷类卡片增伤",
@@ -18,7 +18,7 @@ function gods_shop_init()
     });
     register_gods_goods("zhurong",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "zhurong",
         description: "祝融神使：点燃前方3x3区域，持续灼烧敌人",
@@ -26,7 +26,7 @@ function gods_shop_init()
     });
     register_gods_goods("rig",
     {
-        type: "card",
+        type: "evo",
         cost: "30",
         unlock_item_id: "rig",
         description: "里格神使：前方5方向发射穿透子弹",
@@ -34,7 +34,7 @@ function gods_shop_init()
     });
     register_gods_goods("brahma",
     {
-        type: "card",
+        type: "evo",
         cost: "30",
         unlock_item_id: "brahma",
         description: "梵天神使：变身出多个上一次种下的卡片",
@@ -42,7 +42,7 @@ function gods_shop_init()
     });
     register_gods_goods("clotho",
     {
-        type: "card",
+        type: "evo",
         cost: "30",
         unlock_item_id: "clotho",
         description: "克洛托神使：随机改变范围内卡片星级，一段时间后恢复",
@@ -50,7 +50,7 @@ function gods_shop_init()
     });
     register_gods_goods("time_god",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "time_god",
         description: "柯罗诺斯神使：持续给范围内卡片缩短冷却时间",
@@ -58,7 +58,7 @@ function gods_shop_init()
     });
     register_gods_goods("firework_dragon_real",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "firework_dragon_real",
         description: "真·花火龙：释放产生大量火苗的烟花",
@@ -66,7 +66,7 @@ function gods_shop_init()
     });
     register_gods_goods("fire_god",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "fire_god",
         description: "洛基神使：子弹穿过后威力加强",
@@ -74,7 +74,7 @@ function gods_shop_init()
     });
     register_gods_goods("thor",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "thor",
         description: "索尔神使：连续发出2发冰锤",
@@ -82,7 +82,7 @@ function gods_shop_init()
     });
     register_gods_goods("war_god",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "war_god",
         description: "阿瑞斯神使：向前后两个方向发射子弹",
@@ -90,7 +90,7 @@ function gods_shop_init()
     });
     register_gods_goods("odin",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "odin",
         description: "奥丁神使：连续发出2发穿透短矛子弹",
@@ -98,7 +98,7 @@ function gods_shop_init()
     });
     register_gods_goods("moon_god",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "moon_god",
         description: "狄安娜神使：甩出六发追踪子弹",
@@ -106,7 +106,7 @@ function gods_shop_init()
     });
     register_gods_goods("ymir",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "ymir",
         description: "尤弥尔神使：向前方三行投出共6发巨锤",
@@ -114,7 +114,7 @@ function gods_shop_init()
     });
     register_gods_goods("hera",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "hera",
         description: "赫拉神使：保护被罩住的卡片",
@@ -122,7 +122,7 @@ function gods_shop_init()
     });
     register_gods_goods("sun_god",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "sun_god",
         description: "阿波罗神使：一次生产六朵火苗",
@@ -130,7 +130,7 @@ function gods_shop_init()
     });
     register_gods_goods("poseidon",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "poseidon",
         description: "波塞冬神使：5*5范围攻击",
@@ -138,7 +138,7 @@ function gods_shop_init()
     });
     register_gods_goods("ice_god",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "ice_god",
         description: "典伊神使：召唤8颗冰晶轰击敌人",
@@ -146,7 +146,7 @@ function gods_shop_init()
     });
     register_gods_goods("ghost_god",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "ghost_god",
         description: "哈迪斯神使：发射五向子弹",
@@ -154,7 +154,7 @@ function gods_shop_init()
     });
     register_gods_goods("zeus",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "zeus",
         description: "宙斯神使：全屏轰击，造成3×3范围伤害",
@@ -162,7 +162,7 @@ function gods_shop_init()
     });
     register_gods_goods("love_god",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "love_god",
         description: "丘比特神使：向前方三行射出6发强力子弹",
@@ -170,7 +170,7 @@ function gods_shop_init()
     });
     register_gods_goods("water_god",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "water_god",
         description: "忒提丝神使：反弹子弹并附加伤害",
@@ -178,7 +178,7 @@ function gods_shop_init()
     });
     register_gods_goods("power_god",
     {
-        type: "card",
+        type: "evo",
         cost: "10",
         unlock_item_id: "power_god",
         description: "赫丘利神使：发射两发强力子弹追踪攻击空中鼠军",
@@ -186,7 +186,7 @@ function gods_shop_init()
     });
     register_gods_goods("sheng_huo",
     {
-        type: "card",
+        type: "evo",
         cost: "30",
         unlock_item_id: "sheng_huo",
         description: "赫斯提亚神使：施展火焰术，向前方3行释放神圣穿透型火焰，灼烧沿途鼠军",
@@ -194,7 +194,7 @@ function gods_shop_init()
     });
     register_gods_goods("save_god",
     {
-        type: "card",
+        type: "evo",
         cost: "25",
         unlock_item_id: "save_god",
         description: "灵鱼摩羯神使：化身为4条灵鱼，冲撞沿途遇到的老鼠",
@@ -202,7 +202,7 @@ function gods_shop_init()
     });
     register_gods_goods("joker",
     {
-        type: "card",
+        type: "evo",
         cost: "20",
         unlock_item_id: "joker",
         description: "埃罗斯神使：连续发射3发带有溅射效果的子弹，先后攻击本行空、地、水陆老鼠",
@@ -981,7 +981,7 @@ function gods_shop_init()
 
 register_gods_goods("xiangshui_god",
 {
-    type: "card",
+    type: "evo",
     cost: "25",
     unlock_item_id: "xiangshui_god",
     description: "塔利亚神使：为周围绿地追踪卡片提升大幅攻击力，同类卡片效果不叠加",
@@ -1023,7 +1023,7 @@ register_gods_goods("xiangshui_god_3",
 
 register_gods_goods("fengrao_god",
 {
-    type: "card",
+    type: "evo",
     cost: "25",
     unlock_item_id: "fengrao_god",
     description: "弗雷神使：为5*5范围内五向类卡片增加攻击力，同类卡片效果不叠加",
@@ -1065,7 +1065,7 @@ register_gods_goods("fengrao_god_3",
 
 register_gods_goods("panduola_god",
 {
-    type: "card",
+    type: "evo",
     cost: "10",
     unlock_item_id: "panduola_god",
     description: "潘多拉：放下立即产生3x3灰烬爆炸，并在本行留下3次毒气伤害",
@@ -1107,7 +1107,7 @@ register_gods_goods("panduola_god_3",
 
 register_gods_goods("houyi_god",
 {
-    type: "card",
+    type: "evo",
     cost: "30",
     unlock_item_id: "houyi_god",
     description: "后羿神使：向前方3路共发射9发穿透箭矢，几率产生三昧真火灼烧鼠军",
@@ -1149,7 +1149,7 @@ register_gods_goods("houyi_god_3",
 
 register_gods_goods("gongjiang_god",
 {
-    type: "card",
+    type: "evo",
     cost: "30",
     unlock_item_id: "gongjiang_god",
     description: "鲁班神使：发射1发河豚子弹（4倍伤害）沿固定轨迹往返，可攻击地下/陆地/飞行老鼠",
@@ -1207,7 +1207,7 @@ register_gods_goods("heian_god_3",{"type":"shape","cost":"35","unlock_item_id":"
 
 register_gods_goods("hundun_god",
 {
-    type: "card",
+    type: "evo",
     cost: "20",
     unlock_item_id: "hundun_god",
     description: "混沌神使：吞噬5*5范围内的普通敌人，对精英敌人造成4500伤害，死亡时产生3*3灰烬爆炸",
@@ -1249,7 +1249,7 @@ register_gods_goods("hundun_god_3",
 
 register_gods_goods("lingrong_god",
 {
-    type: "card",
+    type: "evo",
     cost: "10",
     unlock_item_id: "lingrong_god",
     description: "魔导士软糖：三合一承载卡片，在水上、空中和岩浆上承载卡片并填补空洞",
@@ -1280,7 +1280,7 @@ register_gods_goods("lingrong_god_2",
 
 register_gods_goods("shennong_god",
 {
-    type: "card",
+    type: "evo",
     cost: "10",
     unlock_item_id: "shennong_god",
     description: "神农氏神使：召唤固定轨迹穿透神焰攻击敌人，可攻击空中单位，击杀产生灰烬",
@@ -1311,7 +1311,7 @@ register_gods_goods("shennong_god_2",
 
 register_gods_goods("chongsheng_god",
 {
-    type: "card",
+    type: "evo",
     cost: "20",
     unlock_item_id: "chongsheng_god",
     description: "奥西里斯神使：5*5范围内监听卡片死亡并复活，首次触发时施加减伤BUFF",
@@ -1353,7 +1353,7 @@ register_gods_goods("chongsheng_god_3",
 
 register_gods_goods("hufa_god",
 {
-    type: "card",
+    type: "evo",
     cost: "30",
     unlock_item_id: "hufa_god",
     description: "俱吠罗神使：全屏索敌追踪穿透弹，秒杀不防爆鼠，15%概率定身1.5秒",
@@ -1395,7 +1395,7 @@ register_gods_goods("hufa_god_3",
 
 register_gods_goods("haiyang_god",
 {
-    type: "card",
+    type: "evo",
     cost: "25",
     unlock_item_id: "haiyang_god",
     description: "塔拉萨神使：为5×5范围喷壶类、5×1范围附加类、本行咖啡喷壶类卡片增伤",

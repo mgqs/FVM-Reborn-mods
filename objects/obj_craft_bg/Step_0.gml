@@ -50,9 +50,8 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 	fusion_fly_hold = 0
 	fusion_fly_t = 0
 	fusion_result_out = false
-	// 神级进化页也清槽
-	evo_cards = ["", ""]
-	evo_target = ""
+	// 神级进化页也清槽（含缺卡占位，否则切回来会留着上组留下的灰卡）
+	evo_clear()
 	evo_list_dirty = true
 	audio_play_sound(snd_button,0,0)
 }

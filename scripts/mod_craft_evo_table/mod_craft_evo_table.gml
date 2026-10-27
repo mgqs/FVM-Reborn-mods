@@ -1,19 +1,21 @@
 /// =============================================================================
-///  mod/craft · 金卡表（金卡进化 / 抽卡 / 诸神商店 共用）
-///  这个文件 = 进化相关的**全部数据 + 全部规则 + 凭证绘制**，obj_craft_bg 只调它
+///  mod/craft · 金卡表（只放金卡；融合卡在 mod_craft_fusion_table）
+///  这个文件 = 金卡进化相关的**全部数据 + 全部规则 + 凭证绘制**，obj_craft_bg 只调它
+///  金卡 / 融合卡怎么区分：卡注册数据里的 is_gold / is_fusion（**不看诸神商店卖什么**）
 ///
 ///  一、数据（要改就改这里）
-///    mod_evo_table()          前置总表：目标卡 → cards[{ id, slot, need }]
-///        kind      "fusion" = 融合卡（只给抽卡/诸神用，不进金卡进化）；不写 = 金卡
+///    mod_evo_table()          金卡前置表：金卡 → cards[{ id, slot, need }]
 ///        slot      金卡进化页的槽位：0 = 第 1 槽（星座卡）/ 1 = 第 2 槽（普通卡）
 ///                  只有 1 张前置的条目，按它自己是星座还是普通来定
 ///        need      该前置卡要求的形态：0 本体 / 1 一转 / 2 二转
 ///                  ⚠️ 一律按这张卡自己的形态上限兜底（蓝莓塔只有 0 转 → need 1 实际按 0 算）
-///                  抽卡（mode 0）/ 诸神商店（mode 2）不看 need，仍按各自口径判
+///                  ⚠️ need **只给金卡进化用**：抽卡只发凭证/本体，诸神商店也只判「有没有这张凭证」
 ///    mod_evo_credit_face()    进化凭证里那张立绘的可见区域（[左,上,宽,高]）
 ///
 ///  二、取数 API（对象层用）
-///    mod_evo_cards / mod_evo_is_fusion / mod_evo_need_of / mod_evo_flat（老形状转发）
+///    mod_evo_cards / mod_evo_need_of / mod_evo_slot_need
+///    mod_evo_flat  扁平老形状，只被 gacha_random_card.fusion_get_prerequisites() 转发
+///                  （诸神商店「金卡本体」类商品的前置门槛还读它，当前没有这类商品）
 ///
 ///  三、规则（判定都在这里，对象只存状态）
 ///    mod_evo_needed_cards()   右侧列表该有哪些卡（还没拥有的金卡所缺的前置）
@@ -31,17 +33,6 @@
 /// @func mod_evo_table() 前置总表
 function mod_evo_table(){
     return {
-        // ─────────────── 融合卡（9 张，抽卡 / 诸神商店用） ───────────────
-        lizi_god:                { kind:"fusion", cards:[ {id:"pan_fried_bun", slot:1, need:0} ] },  // 融合栗子   ← 生煎锅
-        youyu_god:               { kind:"fusion", cards:[ {id:"takoyaki", slot:1, need:0} ] },  // 融合鱿鱼   ← 章鱼烧
-        ronghehaixing:           { kind:"fusion", cards:[ {id:"coal_starfish", slot:1, need:0} ] },  // 融合海星   ← 炭烧海星
-        ronghedan_god:           { kind:"fusion", cards:[ {id:"egg_boiler_pult", slot:1, need:0} ] },  // 融合煮蛋器 ← 煮蛋器投手
-        ronghehuopen:            { kind:"fusion", cards:[ {id:"brazier", slot:1, need:0} ] },  // 融合火盆   ← 火盆
-        ronghesanxian:           { kind:"fusion", cards:[ {id:"triple_wine_rack", slot:1, need:0} ] },  // 融合三线   ← 三线酒架
-        rongheshuanggu:          { kind:"fusion", cards:[ {id:"shuanggu", slot:1, need:0} ] },  // 融合双菇   ← 蚝油双菇
-        ronghedapao:             { kind:"fusion", cards:[ {id:"chocolate_cannon", slot:1, need:0} ] },  // 融合巧克力炮 ← 死神大炮
-        ronghekafei:             { kind:"fusion", cards:[ {id:"coffee_cup", slot:1, need:0} ] }  // 融合咖啡杯   ← 骨瓷咖啡杯
-
         // ─────────────── 金卡（39 张，金卡进化用；slot 0 = 星座槽 / 1 = 普通槽） ───────────────
         sheng_huo:               { cards:[ {id:"beef_hotpot", slot:0, need:1},
                                         {id:"spicy_pot", slot:1, need:1} ] },  // 圣火 ← 肥牛火锅 + 麻辣香锅（2026-10-23 补双前置）
@@ -107,7 +98,7 @@ function mod_evo_table(){
     };
 }
 
-/// @func mod_evo_flat() 老格式 {目标卡: [前置卡 id, …]}（抽卡 / 诸神商店 / 融合页还在用这个形状）
+/// @func mod_evo_flat() 老格式 {目标卡: [前置卡 id, …]}，只剩 fusion_get_prerequisites() 转发在用
 ///      ⚠️ 新代码别再用；金卡进化一律走 mod_evo_cards()
 function mod_evo_flat(){
     var _t = mod_evo_table();
@@ -127,14 +118,6 @@ function mod_evo_cards(_target){
     var _t = mod_evo_table();
     if (!variable_struct_exists(_t, _target)) return [];
     return _t[$ _target].cards;
-}
-
-/// @func mod_evo_is_fusion(target) 这张目标卡是不是融合卡（融合卡不进金卡进化）
-function mod_evo_is_fusion(_target){
-    var _t = mod_evo_table();
-    if (!variable_struct_exists(_t, _target)) return false;
-    var _e = _t[$ _target];
-    return (variable_struct_exists(_e, "kind") && _e.kind == "fusion");
 }
 
 /// @func mod_evo_need_of(card_id, need) 要求形态按这张卡自己的上限兜底
@@ -238,7 +221,6 @@ function mod_evo_needed_cards(){
     var _out = [], _seen = {};
     for (var _i = 0; _i < array_length(_names); _i++){
         var _k = _names[_i];
-        if (mod_evo_is_fusion(_k)) continue;
         if (is_card_unlocked(_k)) continue;
         var _cs = mod_evo_cards(_k);
         for (var _j = 0; _j < array_length(_cs); _j++){
@@ -330,11 +312,12 @@ function mod_evo_slot_need(_target, _slot){
     return -1;
 }
 
-/// @func mod_evo_draw_credit(target, cx, cy, has, box) 画进化凭证槽里的图标
-///   底板：填满槽内窗（默认 68）；卡面：按内容包围盒缩到 50 框 + 内容中心对位
-/// @param has  false → 整组套 sh_fusion_gray（未拥有凭证）
-/// @param box  底板边长，不传按 68
-function mod_evo_draw_credit(_target, _cx, _cy, _has, _box = 68){
+/// @func mod_evo_draw_credit(target, cx, cy, has, box, face_box) 画进化凭证图标
+///   底板：等比缩放到 box 居中；卡面：按内容包围盒缩到 face_box + 内容中心对位
+/// @param has       false → 整组套 sh_fusion_gray（未拥有凭证）
+/// @param box       底板边长，不传按 68（进化页槽位用 68，背包格子用 74 左右）
+/// @param face_box  卡面框边长，不传按 50（= 68 * 0.735，跟底板保持同一比例）
+function mod_evo_draw_credit(_target, _cx, _cy, _has, _box = 68, _face_box = 50){
     // ① 金色底板（等比缩放到 box，按原点居中）
     var _bg = spr_evo_credit_bg;
     var _bw = sprite_get_width(_bg), _bh = sprite_get_height(_bg);
@@ -353,7 +336,7 @@ function mod_evo_draw_credit(_target, _cx, _cy, _has, _box = 68){
         var _tbl = mod_evo_credit_face();
         if (variable_struct_exists(_tbl, _target)) {
             var _f = _tbl[$ _target];                // [左, 上, 宽, 高]
-            _fsc = min(50 / _f[2], 50 / _f[3]);
+            _fsc = min(_face_box / _f[2], _face_box / _f[3]);
             _fox = (_f[0] + _f[2] * 0.5 - sprite_get_xoffset(_face)) * _fsc;
             _foy = (_f[1] + _f[3] * 0.5 - sprite_get_yoffset(_face)) * _fsc;
         }
@@ -371,7 +354,6 @@ function mod_evo_pick_target(_card_id){
     var _best = "", _best_slot = -1, _best_ready = false;
     for (var _i = 0; _i < array_length(_names); _i++){
         var _k = _names[_i];
-        if (mod_evo_is_fusion(_k)) continue;         // 融合卡不算可进化目标
         if (is_card_unlocked(_k)) continue;          // 金卡已经有了 → 不再收前置
         var _cs = mod_evo_cards(_k);
         var _my_slot = -1;

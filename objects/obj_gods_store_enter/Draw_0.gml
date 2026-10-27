@@ -1,4 +1,2 @@
-if (is_eternal_gacha_mode()) {
-    image_blend = c_gray;
-}
+// 2026-10-27 用户：抽卡模式不再限制打开兑换商店（只是里面不让买凭证/菜谱）
 draw_self();

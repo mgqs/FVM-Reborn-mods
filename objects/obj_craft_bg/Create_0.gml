@@ -290,7 +290,7 @@ fusion_levels = mod_fusion_levels();          // 三档配置（名字/形态/�
 // 2026-10-24 用户口径：现有食谱的主卡/副卡一律要二转 → 默认值设 2（数据，不是代码硬编码）
 // 单张融合卡想另配主卡要求 → 写进下面的 fusion_main_needs（卡 id → need），没写的才用这个默认
 // （深度/灵魂 的主卡结构上就是上一形态，不用配；副卡要求全在副卡表里逐条写 need）
-fusion_main_need   = mod_fusion_main_need();    // 初融主卡默认要求形态（表里配）
+fusion_main_need   = mod_fusion_main_need();    // 「初融」档主卡默认要求形态（表里配）
 fusion_main_needs  = mod_fusion_main_needs();   // 逐卡覆盖（表里配）
 
 /// @func fusion_recipe_item_id(id, shape) 食谱道具在背包里的 id（诸神商店卖的就是这个）
@@ -459,7 +459,7 @@ function fusion_confirm_draw(){
 	draw_set_alpha(1);
 }
 
-fusion_demo = mod_fusion_card_order();   // 9 张融合卡的收集顺序 + 初融前置卡（表在 mod/craft）
+fusion_demo = mod_fusion_card_order();   // 9 张融合卡的收集顺序 + 前置主卡（表在 mod/craft）
 
 // ── 融合页列表：整行滚动（不做半行）──
 fusion_recipe_scroll = 0;   // 菜谱列表当前行（实际值，Draw 里向目标值插值）
@@ -730,21 +730,21 @@ function tg_target_shape(_id){
 }
 
 /// @func tg_gold_cost(shape) 转职金币
-/// 🔴 2026-10-26 用户定价：一转 3,000 / 二转 15,000
-///    金卡三/四/终转本期没有凭证可拿（§15-D2），暂按「三转=一转价、四转/终转=二转价」占位，等用户给值
+/// 🔴 用户定价：一转 3,000 / 二转 15,000
+///    金卡三/四/终转还没有凭证（威望商店只到二转），先按「三转=一转价、四转/终转=二转价」占位
 function tg_gold_cost(_shape){
     if (_shape == 1 || _shape == 3) return 3000;
     return 15000;
 }
 
-/// @func tg_assure_cost(shape) 保险金
-/// 🔴 2026-10-26 用户定价：一转 7,500 / 二转 50,000（货币 = 金币）
-///    金卡档同上，暂按一/二转价占位
+/// @func tg_assure_cost(shape) 保险金（货币 = 金币）
+/// 🔴 用户定价：一转 7,500 / 二转 50,000；金卡三/四/终转先按一/二转价占位
 function tg_assure_cost(_shape){
     if (_shape == 1 || _shape == 3) return 7500;
     return 50000;
 }
 
+/// @func tg_rate(shape) 成功率（%）：一转 30，二转及以后 20
 function tg_rate(_shape){
     if (_shape == 1 || _shape == 3) return 30;
     return 20;
@@ -756,19 +756,15 @@ function tg_meta_get(_id){
     return undefined;
 }
 
-/// @func tg_rebuild() 重建右侧列表 + 卡元数据 —— **只在 tg_list_dirty 时调，不要每帧调**
-///       2026-10-26 性能修（用户：卡多了转职页特别卡）：
-///         旧版每帧重建列表并做插入排序，每次比较都要查 is_fusion_card()
-///         + deck_get_card_data()（后者是**线性扫 global.player_deck**）。188 张卡时约
-///         3~7 百万次 ds_list 访问/帧，所以整页卡成幻灯片。
-///       新版：
-///         ① 每张卡只查一次 deck_get_card_data（O(n) 而不是 O(n²)）；
-///         ② 排序 = 普卡桶 + 金卡桶直接拼（融合卡本来就过滤掉，只剩 2 档，不必排序）；
-///         ③ 列表和元数据都缓存，绘制时 O(1) 取，不再扫 unlocked_cards / player_deck。
+/// @func tg_rebuild() 重建右侧列表 + 卡元数据 —— **只在 tg_list_dirty 时调，别每帧调**
+///       性能口径（2026-10-26 修：188 张卡时整页卡成幻灯片）：
+///         ① 每张卡只查一次 deck_get_card_data（它是线性扫 global.player_deck）→ O(n)
+///         ② 不排序：普卡桶 + 金卡桶直接拼（融合卡已过滤，只剩 2 档）
+///         ③ 列表和元数据都缓存，绘制 O(1) 取，不再扫 unlocked_cards / player_deck
 function tg_rebuild(){
     var _uc = global.save_data.unlocked_cards;
     var _meta = {};
-    var _norm = [];                              // 普卡（组内保持存档顺序，跟旧版一致）
+    var _norm = [];                              // 普卡（保持存档顺序）
     var _gold = [];                              // 金卡
     for (var _i = 0; _i < array_length(_uc); _i++){
         var _id = _uc[_i].id;
@@ -785,7 +781,7 @@ function tg_rebuild(){
                 cost:    ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
             };
         }
-        // 没有 deck 数据的老卡也留在列表里（格子空着，跟旧版一致）
+        // 没有 deck 数据的老卡也留在列表里（格子空着，至少能点）
         if (_d != noone && ds_map_find_value(_d, "is_gold") == 1) array_push(_gold, _id);
         else array_push(_norm, _id);
     }
@@ -845,7 +841,7 @@ function tg_do(){
     var _id = tg_card;
     var _shape = _r.shape;
 
-    var _win = (irandom(99) < _r.rate);               // 40% / 20%（tg_rate）
+    var _win = (irandom(99) < _r.rate);               // 概率见 tg_rate：一转 30% / 二转起 20%
 
     if (_win){
         // 保留原来的 level / skill，只把形态提上去（unlock_card 内部取 max，不会降）

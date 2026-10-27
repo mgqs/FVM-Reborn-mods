@@ -28,7 +28,13 @@ for (var i = 0; i < array_length(buttons); i++)
                     
                     with (banding_buy_btn)
                     {
-                        if (btn_type == "card")
+                        if (btn_type == "evo")
+                        {
+                            // 进化凭证：只进背包（合成屋-金卡进化用），不顺带解锁金卡
+                            add_material_amount("oracle_stone", -cost);
+                            add_material_amount(mod_evo_credit_id(target_item), 1);
+                        }
+                        else if (btn_type == "card")
                         {
                             add_material_amount("oracle_stone", -cost);
                             unlock_card(target_item, 0, 0, global.save_data.unlocked_items.max_skill_level);

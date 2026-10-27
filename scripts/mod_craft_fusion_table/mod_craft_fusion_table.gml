@@ -4,8 +4,8 @@
 ///  obj_craft_bg 只引用，不再自己存表
 ///
 ///    mod_fusion_levels()       三档配置（名字 / 产物形态 / 金币 / 融合剂 + 数量）
-///    mod_fusion_main_need()    初融主卡默认要求形态（0 本体 / 1 一转 / 2 二转）
-///    mod_fusion_main_needs()   初融主卡的逐卡覆盖（卡 id → need）
+///    mod_fusion_main_need()    「初融」这一档主卡默认要求形态（0 本体 / 1 一转 / 2 二转）
+///    mod_fusion_main_needs()   「初融」档主卡的逐卡覆盖（卡 id → need）
 ///    mod_fusion_sub_cards()    各档副卡表：[1]=初级 / [2]=深度 / [3]=灵魂
 ///    mod_fusion_card_order()   「防御卡」列表的收集顺序（= spr_fusion_recipe0 帧号，只能往后接）
 ///    mod_fusion_need_shape()   兜底：need 超过卡自己的形态上限 → 按上限算
@@ -25,7 +25,7 @@ function mod_fusion_main_need(){
     return 2;
 }
 
-/// @func mod_fusion_main_needs() 初融主卡的逐卡覆盖表（卡 id → need）；没写的才用默认值
+/// @func mod_fusion_main_needs() 「初融」档主卡的逐卡覆盖表（卡 id → need）；没写的才用默认值
 function mod_fusion_main_needs(){
     return {};
 }
@@ -79,7 +79,7 @@ function mod_fusion_need_shape(_id, _need){
 
 /// @func mod_fusion_card_order() 融合页「防御卡」列表的收集顺序
 ///   ⚠️ 顺序 = spr_fusion_recipe0 的帧号，**只能往后接、不能插队**
-///   返回 [{id, pre}]：id = 融合卡；pre = 它的初融前置卡（从进化表反查，避免手写错）
+///   返回 [{id, pre}]：id = 融合卡；pre = 它的**前置主卡**（mod_fusion_main_prereq_map，别手写）
 function mod_fusion_card_order(){
     var _ids = [
         "ronghedapao",      // 融合巧克力炮
@@ -92,15 +92,34 @@ function mod_fusion_card_order(){
         "rongheshuanggu",   // 融合双菇
         "ronghekafei"       // 融合咖啡杯
     ];
-    var _flat = mod_evo_flat();
     var _out = [];
     for (var _i = 0; _i < array_length(_ids); _i++){
-        var _pre = "";
-        if (variable_struct_exists(_flat, _ids[_i])){
-            var _arr = _flat[$ _ids[_i]];
-            if (array_length(_arr) > 0) _pre = _arr[0];
-        }
-        array_push(_out, { id: _ids[_i], pre: _pre });
+        array_push(_out, { id: _ids[_i], pre: mod_fusion_main_prereq(_ids[_i]) });
     }
     return _out;
+}
+
+/// @func mod_fusion_main_prereq_map() 融合卡 → **前置主卡** id（例：融合栗子 ← 生煎锅）
+///   ⚠️ 这里的「主卡」是**融合主卡 = 前置主卡**，不是融合档位里的「初融」（初级/深度/灵魂）：
+///      不管抽到的是初级 / 深度 / 灵魂哪一档菜谱，附赠的永远是这张前置主卡
+///   融合页「防御卡」列表的 pre 列、抽到菜谱时的附赠，都读这张；与金卡表无关（靠 is_fusion 区分）
+function mod_fusion_main_prereq_map(){
+    return {
+        ronghedapao:    "chocolate_cannon",     // 融合巧克力炮 ← 死神大炮
+        ronghehaixing:  "coal_starfish",        // 融合海星   ← 炭烧海星
+        youyu_god:      "takoyaki",             // 融合鱿鱼   ← 章鱼烧
+        lizi_god:       "pan_fried_bun",        // 融合栗子   ← 生煎锅
+        ronghedan_god:  "egg_boiler_pult",      // 融合煮蛋器 ← 煮蛋器投手
+        ronghehuopen:   "brazier",              // 融合火盆   ← 火盆
+        ronghesanxian:  "triple_wine_rack",     // 融合三线   ← 三线酒架
+        rongheshuanggu: "shuanggu",             // 融合双菇   ← 蚝油双菇
+        ronghekafei:    "coffee_cup"            // 融合咖啡杯 ← 骨瓷咖啡杯
+    };
+}
+
+/// @func mod_fusion_main_prereq(fusion_id) 这张融合卡的前置主卡（查不到返回 ""）
+function mod_fusion_main_prereq(_id){
+    var _m = mod_fusion_main_prereq_map();
+    if (variable_struct_exists(_m, _id)) return _m[$ _id];
+    return "";
 }

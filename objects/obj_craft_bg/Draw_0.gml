@@ -83,8 +83,8 @@ if (craft_top_tab == 3) {
 		draw_sprite_ext(spr_evo_question, 0, evo_res_x, evo_res_y, 2.2, 2.2, 0, c_white, 1);
 	}
 
-	// ⑤ 进化按钮（2026-10-27 用户：按钮下面那句「星级继承…」说明不要了，已删）
-	// 按钮三态：0 = 常态 / 1 = 悬停 / 2 = 按下（素材 DefineButton2_813）
+	// ⑤ 进化按钮：三态 0 = 常态 / 1 = 悬停 / 2 = 按下（素材 DefineButton2_813）
+	//    按钮下方不放任何说明文字（用户明确要求）
 	var _bs = 1.8 * ((evo_btn_press > 0) ? 0.96 : 1);
 	var _bframe = (evo_btn_press > 0) ? 2 : (point_in_rectangle(mouse_x, mouse_y, evo_btn_x - 73, evo_btn_y - 36, evo_btn_x + 73, evo_btn_y + 36) ? 1 : 0);
 	draw_sprite_ext(spr_evo_btn, _bframe, evo_btn_x, evo_btn_y, _bs, _bs, 0, c_white, 1);

@@ -279,13 +279,21 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         } else if (reward_type == "gem") {
                             unlock_gem(reward_id);
                             show_notice("获得新宝石：" + gacha_get_gem_name(reward_id), 120);
+                        } else if (reward_type == "evo_credit") {
+                            // 进化凭证：进背包（合成屋-金卡进化用）
+                            add_material_amount(mod_evo_credit_id(reward_id), 1);
+                            var _gift_txt = gacha_gift_text(global.gacha_reward);
+                            if (_gift_txt != "") gacha_gift_apply(global.gacha_reward);
+                            show_notice("获得" + transfer_credit_card_name(reward_id) + "进化凭证"
+                                + ((_gift_txt != "") ? "，" + _gift_txt : ""), 150);
                         } else if (reward_type == "recipe") {
                             // 融合菜谱道具：进背包
                             add_material_amount(fusion_recipe_id(reward_id, target_shape), 1);
-                            // 2026-10-25：抽到菜谱附赠**前置卡（融合主卡）**的本体 / 转职一次，不是送融合卡
-                            var _gift = gacha_recipe_gift(reward_id, target_shape);
+                            // 附赠一次「前置主卡」本体（融合主卡 = 前置那张，不是融合卡本身；只给本体，不提升转职）
+                            var _gift_txt2 = gacha_gift_text(global.gacha_reward);
+                            if (_gift_txt2 != "") gacha_gift_apply(global.gacha_reward);
                             show_notice("获得" + fusion_recipe_display_name(reward_id, target_shape)
-                                + ((_gift >= 0) ? "，" + gacha_recipe_gift_text(_gift, gacha_recipe_gift_target(reward_id, target_shape)) : ""), 150);
+                                + ((_gift_txt2 != "") ? "，" + _gift_txt2 : ""), 150);
                         }
                         
                         global.gacha_reward.received = true;

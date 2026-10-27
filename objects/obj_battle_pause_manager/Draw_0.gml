@@ -91,6 +91,8 @@ if (global.is_paused)
 						title_text = "随机获得宝石";
 					} else if (reward_type == "recipe") {
 						title_text = "随机获得融合菜谱";
+					} else if (reward_type == "evo_credit") {
+						title_text = "随机获得进化凭证";
 					}
 					draw_text(cx, cy - 140, title_text);
 					
@@ -150,10 +152,25 @@ if (global.is_paused)
 						draw_text(cx, cy + 150, fusion_recipe_grade_name(reward_shape));
 
 						// 2026-10-25：附赠提示（前置卡本体 / 提升至一转 / 二转；满转时不显示）
-						var _gift_pv = gacha_recipe_gift_preview(reward_id, reward_shape);
-						if (_gift_pv >= 0) {
+						var _gift_txt = gacha_gift_text(global.gacha_reward);
+						if (_gift_txt != "") {
 							draw_set_color(c_aqua);
-							draw_text(cx, cy + 180, gacha_recipe_gift_text(_gift_pv, gacha_recipe_gift_target(reward_id, reward_shape)));
+							draw_text(cx, cy + 180, _gift_txt);
+						}
+					} else if (reward_type == "evo_credit") {
+						// === 进化凭证（底板 + 金卡立绘）===
+						mod_evo_draw_credit(reward_id, cx, cy - 20, true, 150 * 0.92, 150 * 0.68);
+
+						draw_set_color(c_yellow);
+						draw_text(cx, cy + 120, transfer_credit_card_name(reward_id));
+
+						draw_set_color(c_lime);
+						draw_text(cx, cy + 150, "进化凭证");
+
+						var _gift_txt2 = gacha_gift_text(global.gacha_reward);
+						if (_gift_txt2 != "") {
+							draw_set_color(c_aqua);
+							draw_text(cx, cy + 180, _gift_txt2);
 						}
 					} else if (reward_type == "weapon") {
 						// === 武器奖励 ===

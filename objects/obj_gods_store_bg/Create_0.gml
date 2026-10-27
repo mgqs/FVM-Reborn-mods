@@ -36,7 +36,7 @@ function gods_shop_list_recharge()
         var _is_recipe1 = (_g1.type == "recipe");
         if (shop_button_select == 1)
         {
-            if (_g1.type == "card" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
+            if (_g1.type == "card" || _g1.type == "evo" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
         }
         else if (shop_button_select == 2)
         {
@@ -125,15 +125,25 @@ function gods_shop_list_recharge()
                     inst.goods_name = (_is_recipe_b1 && variable_struct_exists(_goods_b1, "recipe_name")) ? _goods_b1.recipe_name : _goods_b1.display_name;
                     inst.tooltip_text = _goods_b1.description;
                     inst.recipe_id = _is_recipe_b1 ? _goods_b1.recipe_id : "";
-                    inst.btn_type = _is_recipe_b1 ? "recipe" : "card";
+                    // 2026-10-27：第一页的「金卡」已换成进化凭证（type "evo"），买的是道具不是卡
+                    var _is_evo_b1 = (_goods_b1.type == "evo");
+                    if (_is_evo_b1) inst.goods_name = _goods_b1.display_name + "·进化凭证";
+                    inst.btn_type = _is_recipe_b1 ? "recipe" : (_is_evo_b1 ? "evo" : "card");
 
                     if (_is_recipe_b1)
                     {
                         // 只看背包里还有没有这本食谱：用掉了就能再买（哪怕卡已经练上去了）
                         if (has_fusion_recipe(_goods_b1.unlock_item_id, 0)) inst.is_disabled = true;
                     }
+                    else if (_is_evo_b1)
+                    {
+                        // 进化凭证：已经持有一张就置灰（买来就是拿去进化的，不囤）
+                        if (get_material_amount(mod_evo_credit_id(_goods_b1.unlock_item_id)) > 0) inst.is_disabled = true;
+                    }
                     else
                     {
+                        // 金卡本体（当前没有 type:"card" 商品 —— 金卡全改成 evo 凭证了；
+                        // 这段留着给以后真要直接上架卡本体的商品）
                         var is_unlocked = false;
 
                         for (var k = 0; k < array_length(global.save_data.unlocked_cards); k++)
@@ -149,7 +159,7 @@ function gods_shop_list_recharge()
                             inst.is_disabled = true;
                         else if (!fusion_prereq_met(inst.target_item, 2))
                         {
-                            // 诸神商店口径：前置卡要练到二转（与抽卡共用同一份前置表，只是门槛不同）
+                            // 前置表在 mod_craft_evo_table；诸神商店口径 = 前置卡要练到二转
                             // 例外①：命运女神只要创造神本体（prereq_body_only），提示里就不带「二转」
                             // 例外②：前置全是「没有二转」的卡（幻幻鸡 / 蓝莓塔）时不写「二转」
                             var _need_txt = (prereq_body_only(inst.target_item) || !fusion_prereq_any_upgradable(inst.target_item)) ? "" : "二转";

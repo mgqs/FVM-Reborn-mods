@@ -1,10 +1,15 @@
 /// 转职凭证（transfer credit）数据层
-/// 2026-10-25 建立：只做「凭证本体」——id 规则、名字、底板/卡面绘制、持有列表
-/// 详细方案见 桌面\fvm的ai\转职系统方案.md
+/// id 规则：transfer_<card_id>_<shape>，shape 1=一转 2=二转 3=三转 4=四转 5=终转
+/// 数量走 global.save_data.inventory（add_material_amount / get_material_amount），
+/// **不注册进 global.material_pool** —— 否则道具页会被上百个空格子塞满。
 ///
-/// id 规则：transfer_<card_id>_<shape>，shape 1=一转 / 2=二转（本期只做普卡 1/2）
-/// 数量存在 global.save_data.inventory 里（复用 add_material_amount / get_material_amount），
-/// 但**不注册进 global.material_pool** —— 否则道具页会被上百个空格子塞满。
+/// 本文件包含：
+///   ① 凭证 id / 名字 / 档位名：transfer_credit_id / _parse / _name / _tier_name
+///   ② 底板 + 卡面绘制：transfer_credit_draw / _draw_id（底板目前只有一/二转 5 张）
+///   ③ 购买判据：_buyable / _buyable_locked / 爬塔门槛 / 商店排序键（威望商店用）
+///   ④ 背包「凭证」页的分段 / 换行 / 绘制：transfer_credit_tab_*
+///   ⑤ 「威望」标签：ui_prestige_tag_*
+/// 详细方案：桌面\fvm的ai\转职系统方案.md
 
 /// @function transfer_credit_id(card_id, shape)
 function transfer_credit_id(_card_id, _shape) {
@@ -78,10 +83,8 @@ function transfer_credit_card_name(_card_id) {
 }
 
 /// @function transfer_credit_shape_name(card_id, shape)
-/// @desc 某张卡**某一档**的名字（0 = 本体名，1 = 一转名……）。
-///       ⚠️ 2026-10-26 起**没有调用点**：转职成功提示后来统一成「卡片转职成功！」（用户口径），
-///          不再区分名字。函数留着备用（图鉴/任务/播报之类要按档位显示名字时能直接用）。
-///       查不到该档名 → 退回本体名，再退回卡 id。
+/// @desc 某张卡某一档的名字（0 = 本体名，1 = 一转名……）；查不到退回本体名。
+/// ⚠️ 当前**没有调用点**（转职提示统一是「卡片转职成功！」）。留着给以后按档位显示名字的界面用。
 function transfer_credit_shape_name(_card_id, _shape) {
     var _meta = get_plant_shape_data(_card_id, _shape);
     if (_meta != undefined) {
@@ -106,6 +109,9 @@ function transfer_credit_name_from_id(_id) {
 
 /// @function transfer_credit_bg_sprite(shape, slot)
 /// @desc slot: 0/A = A 底板，1/B = B 底板，2/C = C 底板（一转只有 A/B）
+/// ⚠️ 只有一/二转 5 张底板（spr_transfer_bg_1a/1b/2a/2b/2c）；shape 3~5 会回落到二转那套。
+///    三四终凭证要接进本系统，得先补 spr_transfer_bg_3a…5c（素材在
+///    美食大战老鼠资源\转职系统素材\06_凭证底板，三/四/终 已出图但还没导入成精灵）。
 function transfer_credit_bg_sprite(_shape, _slot) {
     if (_shape <= 1) {
         if (_slot == 1) return spr_transfer_bg_1b;
@@ -201,47 +207,123 @@ function transfer_credit_draw_id(_x, _y, _id, _size, _slot = 0, _alpha = 1) {
     transfer_credit_draw(_x, _y, _p.card_id, _p.shape, _size, _slot, _alpha);
 }
 
-/// @function transfer_credit_owned_ids()
-/// @desc 背包里持有的凭证 id 列表（数量 > 0）
-///       排序（2026-10-25 用户定，方案 B）：
-///         ① 先「一转及以下」一段、再「二转及以上」一段；
-///         ② 段内按**获取顺序** —— inventory 是数组，新道具走 array_push 追加到末尾，
-///            所以数组下标就是「第一次获得」的先后，遍历一遍天然有序，不用再排字母序。
-///            同一份凭证后来再获得只加数量、位置不变。
-///         ③ 两段之间**强制换行**（不空行）：绘制端用 transfer_credit_split_index() 算断点。
-function transfer_credit_owned_ids() {
-    var _one = [];
-    var _two = [];
-    var _inv = global.save_data.inventory;
-    var _n = array_length(_inv);
-    for (var _i = 0; _i < _n; _i++) {
-        var _id = _inv[_i].id;
-        if (!transfer_credit_is(_id)) continue;
-        if (_inv[_i].amount <= 0) continue;
-        var _p = transfer_credit_parse(_id);
-        if (_p.shape <= 1) array_push(_one, _id);
-        else array_push(_two, _id);
-    }
-    var _out = [];
-    var _n1 = array_length(_one);
-    for (var _a = 0; _a < _n1; _a++) array_push(_out, _one[_a]);
-    var _n2 = array_length(_two);
-    for (var _b = 0; _b < _n2; _b++) array_push(_out, _two[_b]);
-    return _out;
+// ─────────────────────────────────────────────────────────────
+// 背包「凭证」页：分段 / 顺序 / 换行（2026-10-27 收进本脚本，不再单开表脚本）
+//   两种凭证 id：transfer_<卡id>_<形态 1~5> / evo_credit_<金卡id>
+//   改分段顺序只动 transfer_credit_tab_groups()，背包那边只调这几个函数
+// ─────────────────────────────────────────────────────────────
+
+/// @func transfer_credit_tab_groups() 背包凭证页的分段表（**数组顺序 = 显示顺序**）
+///   kind = "transfer" → 按 shape 认；kind = "evo" → 认 evo_credit_ 前缀
+///   title 目前只用于注释/调试；段与段之间**强制换行**（不空行）
+function transfer_credit_tab_groups(){
+    return [
+        { key:"t1",  title:"一转凭证", kind:"transfer", shape:1 },   // 一
+        { key:"t2",  title:"二转凭证", kind:"transfer", shape:2 },   // 二
+        { key:"evo", title:"进化凭证", kind:"evo"              },   // 进化
+        { key:"t3",  title:"三转凭证", kind:"transfer", shape:3 },   // 三
+        { key:"t4",  title:"四转凭证", kind:"transfer", shape:4 },   // 四
+        { key:"t5",  title:"终转凭证", kind:"transfer", shape:5 }    // 终
+    ];
 }
 
-/// @function transfer_credit_split_index(list)
-/// @desc 列表里「第一段（一转及以下）」的条目数；二转段从这一格之后**换行**开始画
-///       （方案 B：分两段但不空行）
-function transfer_credit_split_index(_list) {
-    var _c = 0;
-    var _n = array_length(_list);
-    for (var _i = 0; _i < _n; _i++) {
-        var _p = transfer_credit_parse(_list[_i]);
-        if (!is_undefined(_p) && _p.shape <= 1) _c += 1;
+/// @func transfer_credit_tab_collect() 收集背包里持有的凭证（数量 > 0），按分段表分桶后拼起来
+/// @return { struct } items[] / starts[]
+///   items  每项 { id, kind, shape, card_id, group, amount }
+///   starts 每段的起止小标（items 的下标）→ 绘制端用它做强制换行
+///   段内顺序 = inventory 数组顺序（= 第一次获得的先后），不另外排序
+function transfer_credit_tab_collect(){
+    var _groups = transfer_credit_tab_groups();
+    var _gn = array_length(_groups);
+    var _buckets = [];
+    for (var _g = 0; _g < _gn; _g++) array_push(_buckets, []);
+
+    var _inv = global.save_data.inventory;
+    var _n = array_length(_inv);
+    for (var _i = 0; _i < _n; _i++){
+        var _id  = _inv[_i].id;
+        var _amt = _inv[_i].amount;
+        if (_amt <= 0) continue;
+
+        if (transfer_credit_is(_id)){
+            var _p = transfer_credit_parse(_id);
+            for (var _g = 0; _g < _gn; _g++){
+                var _gr = _groups[_g];
+                if (_gr.kind != "transfer" || _gr.shape != _p.shape) continue;
+                array_push(_buckets[_g], { id:_id, kind:"transfer", shape:_p.shape,
+                    card_id:_p.card_id, group:_g, amount:_amt });
+                break;
+            }
+            continue;
+        }
+
+        if (string_pos("evo_credit_", _id) == 1){
+            for (var _g = 0; _g < _gn; _g++){
+                if (_groups[_g].kind != "evo") continue;
+                array_push(_buckets[_g], { id:_id, kind:"evo", shape:0,
+                    card_id:string_delete(_id, 1, 11), group:_g, amount:_amt });
+                break;
+            }
+        }
     }
-    return _c;
+
+    var _items = [], _starts = [];
+    for (var _g = 0; _g < _gn; _g++){
+        if (array_length(_buckets[_g]) == 0) continue;
+        array_push(_starts, array_length(_items));
+        for (var _k = 0; _k < array_length(_buckets[_g]); _k++) array_push(_items, _buckets[_g][_k]);
+    }
+    return { items:_items, starts:_starts };
 }
+
+/// @func transfer_credit_tab_slots(items, starts, cols) 每项落在第几格（0 起算的格位下标）
+///   每段的第一个必然从「新的一行第一格」开始 —— 这就是「段间强制换行、但不空行」
+function transfer_credit_tab_slots(_items, _starts, _cols){
+    var _slots = [];
+    var _next = 0;
+    var _s = 0;
+    for (var _i = 0; i < array_length(_items); i++){
+        if (_s < array_length(_starts) && _i == _starts[_s]){
+            _next = ceil(_next / _cols) * _cols;
+            _s++;
+        }
+        array_push(_slots, _next);
+        _next++;
+    }
+    return _slots;
+}
+
+/// @func transfer_credit_tab_rows(items, starts, cols) 这套凭证要占几行（至少 1 行）
+function transfer_credit_tab_rows(_items, _starts, _cols){
+    var _slots = transfer_credit_tab_slots(_items, _starts, _cols);
+    if (array_length(_slots) == 0) return 1;
+    return max(1, ceil((_slots[array_length(_slots) - 1] + 1) / _cols));
+}
+
+/// @func transfer_credit_tab_name(item) 凭证名（背包格子悬停、商店等处共用）
+function transfer_credit_tab_name(_it){
+    if (_it.kind == "evo") return transfer_credit_card_name(_it.card_id) + "（进化凭证）";
+    return transfer_credit_name(_it.card_id, _it.shape);
+}
+
+/// @func transfer_credit_tab_tip(item) 悬停说明（不写数量：凭证上限按持有 1）
+function transfer_credit_tab_tip(_it){
+    if (_it.kind == "evo") return transfer_credit_tab_name(_it) + "\n进化凭证：在合成屋-金卡进化中使用";
+    return transfer_credit_tab_name(_it) + "\n转职凭证：在合成屋-卡片转职中使用";
+}
+
+/// @func transfer_credit_tab_draw(item, x, y, size) 画一个凭证格子
+///   @param x,y  格子**左上角**；size 格子边长
+function transfer_credit_tab_draw(_it, _x, _y, _size){
+    if (_it.kind == "evo"){
+        // 进化凭证没有单独图标：底板 + 该金卡的 0 形态立绘（跟进化页第 3 槽同一套画法）
+        mod_evo_draw_credit(_it.card_id, _x + _size * 0.5, _y + _size * 0.5, true,
+            _size * 0.92, _size * 0.68);
+    } else {
+        transfer_credit_draw_id(_x, _y, _it.id, _size);
+    }
+}
+
 
 // ─────────────────────────────────────────────────────────────
 // 购买 / 获取资格判据（2026-10-25 待办 #29）
@@ -297,10 +379,9 @@ function transfer_credit_has(_card_id, _shape) {
 }
 
 /// @function transfer_credit_progress(card_id)
-/// @desc 这张卡的「进度」= max(练到的形态, 背包里持有的最高档凭证)，最低 0。
-///       拿凭证不转职也算进度 —— 防止「囤着凭证导致还能再买一次同一档」
-///       ⚠️ 2026-10-26 起商店**没有调用点**了（跳档限制按用户要求去掉）；
-///          留着给抽卡「按进度发凭证」(#28) 和以后的门槛/CD 用。
+/// @desc 这张卡的进度 = max(练到的形态, 背包里持有的最高档凭证)，最低 0。
+///       「拿了凭证没转职也算进度」是它的本意（防止重复买同一档）。
+/// ⚠️ 当前**没有调用点**：商店的跳档限制已按用户要求去掉。留着给以后的门槛 / 冷却用。
 function transfer_credit_progress(_card_id) {
     var _p = max(0, transfer_credit_card_max_shape(_card_id));
     for (var _s = 1; _s <= 5; _s++) {
