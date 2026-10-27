@@ -78,6 +78,12 @@ function mod_tg_check(_card_id, _assure_on, _gold, _debug = false){
     _r.assure = _assure_on ? mod_tg_assure(1) : 0;          // 还没选卡时先按一档价显示
     if (_card_id == ""){ _r.reason = "先选一张卡"; return _r; }
 
+    // 🔴 2026-10-27：卡还没拥有 → 直接拒绝。
+    //    没拥有的卡 max_shape = -1，目标形态会被算成 1，于是「一张一转凭证 + 金币」就能
+    //    凭空解锁一张从没拥有过的卡。转职列表本来就只从 unlocked_cards 建（走不到这里），
+    //    这句是兜底，别把这扇后门留着。
+    if (transfer_credit_card_max_shape(_card_id) < 0){ _r.reason = "还没拥有这张卡"; return _r; }
+
     var _shape = mod_tg_target_shape(_card_id);              // 只能按顺序：目标形态 = max_shape + 1
     var _tier  = transfer_credit_tier(_card_id, _shape);     // 档位：普卡 1/2，金卡 3/4/5
     _r.shape  = _shape;
