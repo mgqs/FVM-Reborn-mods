@@ -196,6 +196,8 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 
 		}
 	}
+	// 海克斯「食材升级」的老鼠侧代价：禁用猫
+	if (hex_enemy_no_cat()) continue;
 	var new_x = global.grid_offset_x -1 * global.grid_cell_size_x
 	var new_y = global.grid_offset_y + i * global.grid_cell_size_y
 	var grid_pos = get_grid_position_from_world(new_x,new_y)
@@ -258,6 +260,12 @@ function enemy_subwave_summon(){
 			}
 		}
 	}
+
+	// 海克斯第二批：「全息制冷」等出怪间隔词条。这里的 wave_timer 同时是
+	// 下一波小怪的间隔与整波时长，按倍率缩放即可得到「出怪更密」的效果。
+	// 只在海克斯模式重算：旧模式一律走原值，避免 round 把小数时长截断。
+	// 下限 1 帧，否则倍率叠到很低时 wave_timer 会被 round 成 0 → 同一帧刷满全场。
+	if (hex_enabled()) wave_timer = max(1, round(wave_timer * hex_batch2_spawn_interval()));
 
 	current_wave_max_time = wave_timer
 

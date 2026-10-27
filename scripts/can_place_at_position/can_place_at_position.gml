@@ -9,12 +9,22 @@
 function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id = "") {
     // 海克斯模式：开局首抽（选一张或直接放弃）处理完之前，任何卡都不能落位
     if (hex_place_locked()) return false;
+    // 海克斯「牢大的祝福」：除咖啡杯系以外的攻击类卡片一律不许落位
+    if (hex_batch2_coffee_block(card_id)) return false;
     if (card_id == "kuileima" && !global.replace_placement) {
         for (var p = 0; p < instance_number(obj_kuileima); p++) {
             var existing = instance_find(obj_kuileima,p);
             if (instance_exists(existing) && existing.hp > 0) return false;
         }
     }
+    // 海克斯「大火爆炒」：场上美食数量不能超过上限（0 = 不限制）
+    var _max_cards = hex_enemy_max_cards();
+    if (_max_cards > 0) {
+        var _on_field = 0;
+        with (obj_card_parent) { if (self.plant_id != "player") _on_field += 1; }
+        if (_on_field >= _max_cards) return false;
+    }
+
     // 获取网格位置
     var grid_pos = get_grid_position_from_world(x, y);
     var col = grid_pos.col;
@@ -42,40 +52,35 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
         }
     }
     if (_green_apple_block) return false;
+
+    // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格。
+    // 做法照抄海洋女神四转 / 战旗马一转 —— 把 plant_type 折算成 "gridless"，
+    // 交给下面 switch 里既有的 case "gridless" 统一放行，不再另开一条并行分支
+    //（并行分支会漏掉深度排序、底座、玩家占格这些既有约定）。
+    // 这里只补两条 gridless 通用规则没覆盖的硬约束：
+    //   1) 玩家角色所在的格子不能放卡
+    //   2) 同一格不能重复放同一张卡，否则同格能叠十张增幅卡
+    if (card_id != "" && hex_gridless_for_card(card_id)) {
+        var _hg_list = ds_grid_get(global.grid_plants, col, row);
+        for (var _hgi = 0; _hgi < ds_list_size(_hg_list); _hgi++) {
+            var _hgp = _hg_list[| _hgi];
+            if (!instance_exists(_hgp) || !variable_instance_exists(_hgp, "plant_id")) continue;
+            if (_hgp.plant_id == "player") return false;
+            if (_hgp.plant_id == card_id) return false;
+        }
+        plant_type = "gridless";
+    }
+
 	//调试相关
 	if global.debug{
 		return true
 	}
 	// 检查是否有障碍
 	// 海洋女神所有形态可放置在障碍地形上，仍继续检查占格和底座规则。
-	if global.grid_terrains[row][col].type == "obstacle" && plant_type != "coffee" && feature_type != "haiyang_obstacle"{
+	if !hex_terrain_free() && global.grid_terrains[row][col].type == "obstacle" && plant_type != "coffee" && feature_type != "haiyang_obstacle"{
 		return false
 	}
     
-    // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格，可以直接叠在已有卡片上
-    // 反向（普通卡叠到已经放了增幅/辅助的格子上）由放置完成后把 plant_type 改成 gridless 来保证
-    // 注意「不占格」只放宽占格这一条，不一并放宽其它规则：
-    //   - 同一格不能重复放同一张卡
-    //   - 需要底座（target_card）的卡仍然必须踩到底座，否则放置流程里的 upgrade 分支销毁不到底座，
-    //     卡会凭空叠在空地上，之后这一格的底座关系就乱了
-    //   - 玩家角色所在的格子仍然不能放卡
-    if (card_id != "" && hex_gridless_for_card(card_id) && !global.replace_placement) {
-        var _gl_list = ds_grid_get(global.grid_plants, col, row);
-        var _need_base = is_string(target_card) && target_card != "" && target_card != "none";
-        var _has_self = false;
-        var _has_base = false;
-        for (var _gi = 0; _gi < ds_list_size(_gl_list); _gi++) {
-            var _gp = _gl_list[| _gi];
-            if (!instance_exists(_gp) || !variable_instance_exists(_gp, "plant_id")) continue;
-            if (_gp.plant_id == "player") return false;
-            if (_gp.plant_id == card_id) _has_self = true;
-            if (_need_base && _gp.plant_id == target_card) _has_base = true;
-        }
-        if (_has_self) return false;
-        if (_need_base && !_has_base) return false;
-        return true;
-    }
-
     // 获取该网格的植物列表
     var plant_list = ds_grid_get(global.grid_plants, col, row);
 
@@ -147,6 +152,18 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
 	    }
 		return false
 	}
+    // 海克斯「万物皆可炸」：任意地形可放置。
+    // 放在底座规则之后短路，保证「需要底座」的卡仍然必须先满足底座关系；
+    // 唯一保留的硬约束是玩家角色所在的格子不能放卡。
+    if (hex_terrain_free() && !global.replace_placement) {
+        for (var _tfi = 0; _tfi < ds_list_size(plant_list); _tfi++) {
+            var _tfp = ds_list_find_value(plant_list, _tfi);
+            if (!instance_exists(_tfp)) continue;
+            if (variable_instance_exists(_tfp, "plant_id") && _tfp.plant_id == "player") return false;
+        }
+        return true;
+    }
+
     switch (plant_type) {
         case "lilypad":
             // 莲叶花盆只能种在水上且该网格必须为空

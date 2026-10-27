@@ -58,7 +58,15 @@ function hex_battle_init() {
     // 火苗上限用「差值同步」：永久词条每局都会并进来，直接累加会越进关卡越涨
     hex_sync_flame_cap();
 
+    // 一关只掉一次：本关已经掉过就不再掷骰（「两个旗子里只给一次」）
+    global.hex_drop_used = false;
+
     if (!instance_exists(obj_hex_hud)) instance_create_depth(0, 0, -2900, obj_hex_hud);
+
+    // 「食材升级」：禁用猫（含开局已经生成的那一排）
+    if (hex_enemy_no_cat()) {
+        with (obj_cat) instance_destroy();
+    }
 
     // 重复通关的关卡没有开局抽取机会：先把"首抽已处理"补上，否则放不了卡
     if (hex_level_repeat()) hex_mark_first_done();
@@ -74,10 +82,16 @@ function hex_on_wave_start() {
     if (!variable_global_exists("hex_state")) return;
     var _s = global.hex_state;
 
+    // ── 上一波收尾（本次是新一波开始，说明上一波刚结束）──
+    var _prev_wave = -1;
+    if (instance_exists(obj_battle)) _prev_wave = obj_battle.current_wave - 1;
+    hex_wave_settle(_prev_wave);
+
     if (variable_global_exists("flame")) {
         global.flame += _s.flame_wave;
         if (_s.wave_flame_pct > 0) {
-            global.flame += min(200, floor(global.flame * _s.wave_flame_pct));
+            var _cap = (_s.wave_flame_cap > 0) ? _s.wave_flame_cap : 200;
+            global.flame += min(_cap, floor(global.flame * _s.wave_flame_pct));
         }
         if (variable_global_exists("flame_cap")) global.flame = min(global.flame, global.flame_cap);
     }
@@ -100,6 +114,51 @@ function hex_on_wave_start() {
 
     // 「双厨狂喜」：每波重置免费放置名额
     _s.free_place_used = false;
+    _s.same_card_used  = false;
+    _s.same_card_last  = "";
+    // 本波卡片损失标记清零（「一锅端」按波结算）
+    _s.wave_card_lost  = false;
+}
+
+/// @function hex_wave_settle(_prev_wave)
+/// @desc 上一波结算：「一锅端」（整波零损）与「灶台主宰」（击破精英加层）。
+///       在 hex_on_wave_start 里、火苗加成之前调用，保证加成算进本波开局火苗
+function hex_wave_settle(_prev_wave) {
+    if (!hex_enabled()) return;
+    if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return;
+    var _s = global.hex_state;
+    if (_prev_wave < 0) return;
+
+    // ── 一锅端：整波没有卡片阵亡 ──
+    if (_s.wave_clear_flame > 0 || _s.wave_clear_atk > 0) {
+        if (!_s.wave_card_lost) {
+            if (variable_global_exists("flame")) {
+                global.flame += _s.wave_clear_flame;
+                if (variable_global_exists("flame_cap")) global.flame = min(global.flame, global.flame_cap);
+            }
+            if (_s.wave_clear_cap > 0 && _s.wave_clear_stacks < _s.wave_clear_cap) {
+                _s.wave_clear_stacks += 1;
+                if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
+            }
+        }
+        _s.wave_card_lost = false;
+    }
+
+    // ── 灶台主宰：每击破一个精英阶段 +1 层 ──
+    if (_s.elite_atk > 0 && _s.elite_cap > 0) {
+        var _ew = -1;
+        if (variable_global_exists("level_file") && is_struct(global.level_file)
+            && variable_struct_exists(global.level_file, "elite_wave")) {
+            _ew = global.level_file.elite_wave;
+        }
+        if (_ew >= 0 && _prev_wave >= _ew && _s.elite_seen_wave != _prev_wave) {
+            _s.elite_seen_wave = _prev_wave;
+            if (_s.elite_stacks < _s.elite_cap) {
+                _s.elite_stacks += 1;
+                if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
+            }
+        }
+    }
 }
 
 /// @function hex_enemy_scale(_inst)
@@ -127,7 +186,7 @@ function hex_enemy_scale_apply(_inst, _boss) {
     if (!hex_enabled()) return _inst;
     if (!instance_exists(_inst)) return _inst;
 
-    var _hp  = hex_enemy_mult("hp");
+    var _hp  = hex_enemy_hp_mult_for(_inst);
     var _atk = hex_enemy_mult("atk");
     var _spd = _boss ? 1.0 : hex_enemy_mult("spd");
 
@@ -142,6 +201,29 @@ function hex_enemy_scale_apply(_inst, _boss) {
     }
     if (_spd != 1.0 && variable_instance_exists(_inst, "move_speed")) {
         _inst.move_speed = _inst.move_speed * _spd;
+    }
+
+    // ── 第二批：出生瞬间的机制标记（只在对应词条生效时挂）──
+    if (hex_batch2_ensure()) {
+        var _bs = global.hex_state;
+
+        // 「均值」：出生时生命额外加上当前火苗数值
+        if (_bs.b2_e_hp_flame && variable_instance_exists(_inst, "maxhp")
+            && variable_global_exists("flame")) {
+            var _fb = floor(max(0, global.flame));
+            if (_fb > 0) {
+                _inst.maxhp += _fb;
+                _inst.hp    += _fb;
+            }
+        }
+
+        // 「轻装伏击」：没啃咬过之前不可被攻击
+        if (_bs.b2_e_hit_after) _inst.b2_can_be_hit = false;
+
+        // 「3秒真美鼠」：出场无敌（表里按帧写，转成毫秒再比较）
+        if (_bs.b2_e_invuln > 0) {
+            _inst.b2_guard_until = current_time + hex_batch2_frames_to_ms(_bs.b2_e_invuln);
+        }
     }
 
     return _inst;
@@ -220,8 +302,86 @@ function hex_try_drop(_x, _y) {
     if (global.hex_pick_open) return false;                 // 已经在选，别叠面板
     if (instance_exists(obj_hex_panel)) return false;
     if (hex_taken_count() >= hex_cfg().max_hex) return false;
+    // 一关最多掉一次：开局首抽已经把这一关的那一次用掉了，掉落只是小概率的额外惊喜，
+    // 但同一关里不该连着弹出第二个面板把强度顶飞
+    if (!variable_global_exists("hex_drop_used")) global.hex_drop_used = false;
+    if (global.hex_drop_used) return false;
     if (random(1) >= hex_cfg().drop_rate) return false;
 
+    global.hex_drop_used = true;
     instance_create_depth(0, 0, -9000, obj_hex_panel);
     return true;
+}
+
+/// @function hex_on_card_destroyed(_card)
+/// @desc 卡片阵亡结算（在 obj_card_parent/Destroy_0 里、实例仍存在时调用）：
+///       以牙还牙（全场反击）/ 火锅底料（灰烬 3x3 爆炸）/ 清汤锅（灰烬全场爆炸）/
+///       大锅饭（3x3 内美食被反噬）/ 一锅端的"本波是否损失卡片"标记
+function hex_on_card_destroyed(_card) {
+    if (!hex_enabled()) return;
+    if (!instance_exists(_card)) return;
+    if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return;
+    var _s = global.hex_state;
+
+    var _pid = "";
+    if (variable_instance_exists(_card, "plant_id")) _pid = _card.plant_id;
+    if (_pid == "player" || _pid == "") return;      // 玩家本体不参与卡片结算
+
+    // 一锅端：本波已经损失过卡片，本波不再给奖励
+    _s.wave_card_lost = true;
+
+    var _atk  = variable_instance_exists(_card, "atk") ? _card.atk : 0;
+    var _mhp  = variable_instance_exists(_card, "max_hp") ? _card.max_hp : 0;
+    var _col  = variable_instance_exists(_card, "grid_col") ? _card.grid_col : -99;
+    var _row  = variable_instance_exists(_card, "grid_row") ? _card.grid_row : -99;
+    var _is_ash = false;
+    var _cat = card_get_category(_pid);
+    if (!is_undefined(_cat) && _cat.major == "灰烬类") _is_ash = true;
+
+    // ── 以牙还牙：卡片被摧毁时对全场老鼠反击 ──
+    if (_s.card_death_pct > 0 && _atk > 0) {
+        var _d = max(1, round(_atk * _s.card_death_pct));
+        with (obj_enemy_parent) {
+            if (hp > 0) {
+                damage_amount = _d;
+                damage_type   = "normal";
+                event_user(10);
+            }
+        }
+    }
+
+    // ── 火锅底料：灰烬阵亡时 3x3 爆炸 ──
+    if (_is_ash && _s.ash_explode && _atk > 0) {
+        var _d2 = max(1, round(_atk * 1.5));
+        with (obj_enemy_parent) {
+            if (hp > 0 && abs(other.grid_col - _col) <= 1 && abs(other.grid_row - _row) <= 1) {
+                damage_amount = _d2;
+                damage_type   = "normal";
+                event_user(10);
+            }
+        }
+    }
+
+    // ── 清汤锅：灰烬阵亡时对全场老鼠爆炸 ──
+    if (_is_ash && _s.ash_blast > 0 && _atk > 0) {
+        var _d3 = max(1, round(_atk * _s.ash_blast));
+        with (obj_enemy_parent) {
+            if (hp > 0) {
+                damage_amount = _d3;
+                damage_type   = "normal";
+                event_user(10);
+            }
+        }
+    }
+
+    // ── 大锅饭：阵亡时把自身血量倾泻到 3x3 内的其他美食身上 ──
+    if (_s.e_card_blast && _mhp > 0) {
+        with (obj_card_parent) {
+            if (self.id != _card && self.plant_id != "player"
+                && abs(other.grid_col - _col) <= 1 && abs(other.grid_row - _row) <= 1) {
+                self.hp -= hex_card_incoming_damage(_mhp);
+                event_user(2);
+            }
+        }
+    }
 }

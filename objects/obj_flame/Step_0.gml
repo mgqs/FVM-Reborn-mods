@@ -94,7 +94,8 @@ if !is_capture{
     
     if (collect_timer >= collect_duration) {
         // 海克斯「火苗自然增长」：只放大拾取量，不改既有产火逻辑
-        global.flame += value * hex_flame_growth();
+        // 海克斯第二批「熠熠生辉」：每个火苗固定 +N，再走火苗获取倍率
+        global.flame += (value + hex_batch2_flame_flat()) * hex_flame_growth();
 	        //var fx = instance_create_layer(target_x, target_y, "Effects", obj_sun_fx);
 	       // fx.value = value;
 	        instance_destroy();

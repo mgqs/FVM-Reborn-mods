@@ -11,8 +11,9 @@ menu_y = room_height / 2;
 // 索引固定：0 继续 / 1 设置 / 2 退出 / 3 重新开始 / 4 词条
 buttons = [];
 if (hex_active()) {
-    array_push(buttons, [0, "继续游戏", 110, 40, 0]);
-    array_push(buttons, [-160, "设置", 110, 40, 0]);
+    // 海克斯模式第一排四格：设置 / 继续游戏 / 词条 / 效果
+    array_push(buttons, [-80, "继续游戏", 110, 40, 0]);
+    array_push(buttons, [-240, "设置", 110, 40, 0]);
 } else {
     // 非海克斯模式第一排只有两个，保持原来的居中间距
     array_push(buttons, [75, "继续游戏", 110, 40, 0]);
@@ -22,9 +23,10 @@ array_push(buttons, [-75, "退出游戏", 110, 40, -50]);
 array_push(buttons, [75, "重新开始", 110, 40, -50]);
 
 // 海克斯模式专属：对局内查看当前已持有的词条（docs 5.5.1）
-// 追加到第一排最右侧（第 3 个）
+// 词条 = 逐条清单，效果 = 汇总后的两栏数值
 if (hex_active()) {
-    array_push(buttons, [160, "词条", 110, 40, 0]);
+    array_push(buttons, [80, "词条", 110, 40, 0]);
+    array_push(buttons, [240, "效果", 110, 40, 0]);
 }
 
 // 当前选中的按钮索引

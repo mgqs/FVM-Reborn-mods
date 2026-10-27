@@ -2,6 +2,9 @@ if hp < max_hp && !invincible{
 	obj_task_manager.card_loss ++
 }
 
+// 海克斯：以牙还牙 / 灰烬爆炸 / 大锅饭反噬 / 一锅端标记（实例还活着，能读到坐标与攻击）
+if (hex_enabled()) hex_on_card_destroyed(id);
+
 var _was_shoveled = variable_instance_exists(id, "is_shoveled") && is_shoveled;
 var _no_revive_record = variable_instance_exists(id, "no_revive_record") && no_revive_record;
 

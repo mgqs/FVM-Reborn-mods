@@ -34,7 +34,8 @@ if card_id != "magic_chicken"{
 		cooldown = 1800;
 	}
 	// 海克斯「卡片费用」：在所有加法修正之后再乘（非海克斯模式恒 1.0）
-	current_cost = round(current_cost * hex_cost_mult());
+	// 第二批的「均值」「指定卡折扣」也在这里合并，出口只有 hex_batch2_cost 一个
+	current_cost = round(hex_batch2_cost(card_id, current_cost));
 }
 if global.debug || global.level_id == "test_level"{
 	cooldown_timer = cooldown
@@ -230,7 +231,7 @@ if (is_selected) {
         
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
-        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"],card_id));
+        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, hex_effective_plant_type(card_id, card_data[? "plant_type"]),card_data[? "feature_type"],card_data[? "target_card"],card_id));
         if (is_random_gift_mode() && card_id == "lihe") {
             // The pending effect is not in grid_plants yet, so check it explicitly.
             var _gift_pending = false;
@@ -304,12 +305,12 @@ if (is_selected) {
 				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, shape, clevel, cskill);
 			}
 			if (!gift_queued) {
+				// 海克斯「悬浮厨房」：先定 plant_type 再算深度，否则深度按 normal 算，卡会画在底座后面
+				if (hex_gridless_for_card(card_id)) new_plant.plant_type = "gridless";
 				// 计算深度值
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);
 				new_plant.depth = depth_value
-				// 海克斯「悬浮厨房」：增幅类 / 辅助类不占格（借用既有 gridless 规则）
-				if (hex_gridless_for_card(card_id)) new_plant.plant_type = "gridless";
 				// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
 				if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
 					new_plant.platform_grid_lock = true;
@@ -323,8 +324,22 @@ if (is_selected) {
 				inst.sprite_index = spr_enter_water_effect
 			}
             
-            // 扣除阳光（海克斯「每波首次放置免费」会拦下这一笔）
-            if (!hex_consume_free_place()) global.flame -= current_cost;
+            // 扣除阳光（海克斯：每波首次放置免费 / 双厨狂喜 / 赌徒的锅铲全额返还 / 火候观察烧火苗）
+            var _hex_paid = false;
+            if (!hex_consume_free_place() && !hex_same_card_free_try(card_id)) {
+                global.flame -= current_cost;
+                _hex_paid = true;
+            }
+            if (_hex_paid) {
+                // 赌徒的锅铲：每次放置按概率把这一笔全额退回来
+                var _rc = hex_placement_refund_chance();
+                if (_rc > 0 && random(1) < _rc) global.flame += current_cost;
+            }
+            // 火候观察：0 冷却的代价是每次使用后损失当前火苗的一部分
+            var _zl = hex_zero_cd_flame_loss();
+            if (_zl > 0 && variable_global_exists("flame")) {
+                global.flame = max(0, global.flame - floor(global.flame * _zl));
+            }
 			
             
             // 重置冷却计时器

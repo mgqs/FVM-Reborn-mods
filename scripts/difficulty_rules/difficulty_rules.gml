@@ -93,8 +93,10 @@ function difficulty_get_reward_multiplier_for(_difficulty) {
 
 /// @function difficulty_get_reward_multiplier()
 /// @desc 当前难度的奖励倍率（只读 global.difficulty，不看 global.play_mode）
+///       海克斯的「达摩克里斯之剑（×10）」「搏一搏（翻倍/减半）」也在这里并入，
+///       这样结算界面显示的数字与实际入账完全同源
 function difficulty_get_reward_multiplier() {
-    return difficulty_get_reward_multiplier_for(global.difficulty);
+    return difficulty_get_reward_multiplier_for(global.difficulty) * hex_batch2_reward_mult();
 }
 
 /// @function difficulty_grant_immortal_start_cards()

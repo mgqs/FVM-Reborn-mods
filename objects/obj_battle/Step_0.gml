@@ -1,6 +1,9 @@
 // ══════════ 海克斯：每关只在开局给一次抽取（重复通关的关卡不给）══════════
 // 非海克斯模式下整块跳过；hex_battle_init 负责"这是一局新的还是序列续关"的判定
 // 测试关卡（test_level）整套关闭：不抽卡、不建 HUD、倍率回 1.0
+// 海克斯周期效果：回血 / 火海 / 灶神附体。非海克斯模式与测试关卡一律不进
+if (hex_enabled() && !hex_level_excluded()) hex_periodic_run();
+
 if (hex_enabled() && hex_level_excluded())
 {
     if (!variable_instance_exists(id, "hex_excluded_inited"))
@@ -261,6 +264,9 @@ if global.debug{
 //计时器逻辑
 if global.level_file.time_limit != 0 && time_limit == -1{
 	time_limit = global.level_file.time_limit * 60
+	// 海克斯「暂缓时光」：限时额外 +N 秒（帧数换算，与结算口径一致）
+	var _hex_time_add = hex_batch2_time_add();
+	if (_hex_time_add > 0) time_limit += round(_hex_time_add * 60);
 }
 if time_limit > 0{
 	if !timer_pause{

@@ -38,7 +38,9 @@ for (var i = 0; i < array_length(offer); i++) {
     if (_a <= 0) continue;
     var _ease = 1 - (1 - _a) * (1 - _a);
 
+    var _sel  = (sel_idx == i);
     var _lift = (hover_idx == i) ? -10 : 0;
+    if (_sel) _lift = -14;
 
     // 底色
     var _bg;
@@ -82,6 +84,13 @@ for (var i = 0; i < array_length(offer); i++) {
         draw_roundrect(_r.x1 + 2, _r.y1 + 2 + _lift, _r.x2 - 2, _r.y2 - 2 + _lift, true);
     }
 
+    // 选中：双圈金边（提示"这张只是选中了，还没生效"）
+    if (_sel) {
+        draw_set_color(#FFD479);
+        draw_roundrect(_r.x1 - 3, _r.y1 - 3 + _lift, _r.x2 + 3, _r.y2 + 3 + _lift, true);
+        draw_roundrect(_r.x1 - 5, _r.y1 - 5 + _lift, _r.x2 + 5, _r.y2 + 5 + _lift, true);
+    }
+
     // 形态竖色条：加码绿 / 减码红
     var _fc = (_d.form == "C") ? #FF6E6E : #7CE38B;
     draw_set_color(_fc);
@@ -119,7 +128,24 @@ for (var i = 0; i < array_length(offer); i++) {
     }
 }
 
-// ── 底部按钮 ──
+// ── 底部按钮：放弃 / 选择 / 重随 ──
+// 「选择」是唯一确认入口，点牌只算选中
+var _sel_name = "请先点选词条";
+if (sel_idx >= 0 && sel_idx < array_length(offer)) {
+    var _sd = hex_get(offer[sel_idx]);
+    if (!is_undefined(_sd)) _sel_name = _sd.name;
+}
+draw_set_color(select_hover ? #8A6F33 : #5A4722);
+draw_roundrect(select_x - btn_w / 2, btn_y - btn_h / 2, select_x + btn_w / 2, btn_y + btn_h / 2, false);
+draw_set_color(select_hover ? #FFD479 : #C9A24E);
+draw_roundrect(select_x - btn_w / 2, btn_y - btn_h / 2, select_x + btn_w / 2, btn_y + btn_h / 2, true);
+draw_set_color(#FFF6E0);
+draw_text(select_x, btn_y - 9, "选择");
+draw_set_font(font_hei);
+draw_set_color(#E0CFA4);
+draw_text(select_x, btn_y + 14, _sel_name);
+draw_set_font(font_yuan);
+
 var _rr_text = "重随";
 var _rr_sub;
 if (_s.free_reroll > 0) {
