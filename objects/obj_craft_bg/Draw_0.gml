@@ -309,7 +309,7 @@ if (craft_top_tab == 1) {
 
 	// ── 底部道具栏（自绘圆角格 + 7 种材料）──
 	var _bar_x = fusion_wx + 20*fusion_ws;
-	var _bar_y = fusion_wy + 522*fusion_ws;
+	var _tbar_y = fusion_wy + 522*fusion_ws;
 	var _bar_w = 504*fusion_ws;
 	var _bar_h = fusion_cell_h*fusion_ws;      // 84px @1.8：跟强化页 spr_package_slot_bg 0.9 倍格子等高
 	var _bar_pitch = _bar_w / 10;
@@ -318,9 +318,9 @@ if (craft_top_tab == 1) {
 		var _bx1 = _bar_x + _bi * _bar_pitch;
 		draw_set_alpha(1);
 		draw_set_colour(make_colour_rgb(9, 58, 102));
-		draw_roundrect_ext(_bx1, _bar_y, _bx1 + _cell_w, _bar_y + _bar_h, 4*fusion_ws, 4*fusion_ws, false);
+		draw_roundrect_ext(_bx1, _tbar_y, _bx1 + _cell_w, _tbar_y + _bar_h, 4*fusion_ws, 4*fusion_ws, false);
 		draw_set_colour(make_colour_rgb(0, 26, 52));
-		draw_roundrect_ext(_bx1, _bar_y, _bx1 + _cell_w, _bar_y + _bar_h, 4*fusion_ws, 4*fusion_ws, true);
+		draw_roundrect_ext(_bx1, _tbar_y, _bx1 + _cell_w, _tbar_y + _bar_h, 4*fusion_ws, 4*fusion_ws, true);
 	}
 	// 🔴 spr_craft_material 的原点是「正中心」，不能走 fusion_draw_center（那个按左上角原点减半宽高）
 	// 缩放倍率跟强化页底部道具栏一致（那里就是 0.9）；原来按「缩到 32*ws」算，图标比强化页小一圈
@@ -329,16 +329,16 @@ if (craft_top_tab == 1) {
 		var _mid = card_material_id_list[_mj];
 		var _ccx = _bar_x + _mj*_bar_pitch + _cell_w*0.5;
 		draw_sprite_ext(spr_craft_material, get_material_info(_mid).icon,
-			_ccx, _bar_y + _bar_h*0.47, _ic_scl, _ic_scl, 0, c_white, 1);
+			_ccx, _tbar_y + _bar_h*0.47, _ic_scl, _ic_scl, 0, c_white, 1);
 		var _mamt = get_material_amount(_mid);
 		var _mamt_txt = (_mamt < 10000) ? string(_mamt) : string(floor(_mamt/10000)) + "w";
 		draw_set_font(font_number);
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_middle);
 		draw_set_colour(c_black);
-		draw_text_transformed(_ccx + _cell_w*0.5 - 3 + 1, _bar_y + _bar_h - 9 + 1, _mamt_txt, 1, 1, 0);
+		draw_text_transformed(_ccx + _cell_w*0.5 - 3 + 1, _tbar_y + _bar_h - 9 + 1, _mamt_txt, 1, 1, 0);
 		draw_set_colour(c_white);
-		draw_text_transformed(_ccx + _cell_w*0.5 - 3, _bar_y + _bar_h - 9, _mamt_txt, 1, 1, 0);
+		draw_text_transformed(_ccx + _cell_w*0.5 - 3, _tbar_y + _bar_h - 9, _mamt_txt, 1, 1, 0);
 	}
 
 	// ── 融合剂槽（第 4 槽）内贴底：「当前/需求」

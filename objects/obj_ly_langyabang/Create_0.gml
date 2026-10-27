@@ -19,7 +19,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_langyabang";
 ly_anims = longyuan_animation_table("langyabang");
-hp = 2340; maxhp = 2340; ly_original_hp = 2340;
+hp = 6000; maxhp = 6000; ly_original_hp = 6000;
 move_speed = 0.27; atk = 900; atk_cycle = 108;
 giant_type = true; immune_to_ash = true; attack_range = 120;
 longyuan_move_action = function() { return longyuan_variant("正常行走", "受伤行走"); };

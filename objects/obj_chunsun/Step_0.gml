@@ -40,6 +40,11 @@ function chunsun_spawn_spikes() {
 			_fx.sprite_index = spike_sprite;
 			_fx.image_xscale = image_xscale;
 			_fx.image_yscale = image_yscale;
+
+			// 傲慢龙柱的青苹果：春笋的穿刺同样可以直接秒杀（触发苹果的「消失」动画）
+			with (obj_longzhu_green_apple) {
+				if (hp > 0 && col == _cc && row == _rr) hp = 0;
+			}
 		}
 	}
 }

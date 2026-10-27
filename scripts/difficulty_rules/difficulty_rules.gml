@@ -106,8 +106,9 @@ function difficulty_grant_immortal_start_cards() {
     if (variable_struct_exists(global.save_data, "immortal_start_cards_given")) return false;
     if (array_length(global.save_data.completed_levels) != 0) return false;
 
+    // 烤串机本体改为百味关首通奖励，不再计入不朽开局随机白板；按玩家要求换成邪恶牛油果。
     var _card_pool = [
-        "spoon_rabbit", "yanhuangma", "guiyuanma", "double_blade_snake", "hongliukaochuan",
+        "spoon_rabbit", "yanhuangma", "guiyuanma", "double_blade_snake", "niuyouguo",
         "yufengma", "fenjima", "xiandima", "laipishe", "starrabbit"
     ];
     unlock_card("yanyantu", 0, 0, 0);

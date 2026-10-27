@@ -210,10 +210,18 @@ for (var i = 0; i < array_length(enemies); i++) {
                     damage_type = "pierce";
                     event_user(0);
                 }
-                if (!gy_returned && instance_exists(e) && e.hp > 0 && !e.is_boss) {
+                // 送回目标必须有真实可用的网格行：空中单位（target_type=="air"）常常飞在场地网格上方，
+                // grid_row 会算成 -1；刚创建、本帧还没跑过 Step 的敌人 grid_row 是占位值 99。
+                // 这两种值直接拿去当 grid_terrains 下标会越界崩溃（Variable Index [-1] out of range [7]），
+                // 因此空中单位只结算伤害不做送回收容。
+                var rm_row = e.grid_row;
+                var rm_col = global.grid_cols-1;
+                var rm_rows_n = array_length(global.grid_terrains);
+                var rm_row_ok = (rm_rows_n > 0) && (rm_row >= 0) && (rm_row < rm_rows_n);
+                if (rm_row_ok) rm_row_ok = (rm_col >= 0) && (rm_col < array_length(global.grid_terrains[rm_row]));
+                if (!gy_returned && rm_row_ok && e.target_type == "normal"
+                    && instance_exists(e) && e.hp > 0 && !e.is_boss) {
                     // 送回第9列变为归元马呆呆鼠：仅非BOSS敌人才会变身，能力同平民鼠，继承原老鼠50%最大生命，动画由专属对象接管
-                    var rm_row = e.grid_row;
-                    var rm_col = global.grid_cols-1;
                     var rm_pos = get_world_position_from_grid(rm_col,rm_row);
                     var rm_spr = spr_guiyuanma_effect_land;
                     if (shape == 1) rm_spr = spr_guiyuanma_effect_land_1;

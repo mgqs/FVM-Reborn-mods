@@ -79,6 +79,7 @@ if (image_alpha <= 0 && state == BOSS_STATE.DEATH) {
 // 网格位置与深度更新（照 obj_arno Step 第 210-220 行）
 var zombie_grid = get_grid_position_from_world(x, y);
 var base_depth = -10 - (zombie_grid.row * 45) - (zombie_grid.col * 5);
-depth = base_depth - 4.5;
+// 比龙柱（同格卡片深度 - 8）再往前 4，保证龙柱「在卡片之上、BOSS 之下」的层次
+depth = base_depth - 12;
 grid_col = zombie_grid.col;
 grid_row = zombie_grid.row;

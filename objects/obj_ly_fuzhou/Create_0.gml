@@ -24,7 +24,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_fuzhou";
 ly_anims = longyuan_animation_table("fuzhou");
-hp = 1200; maxhp = 1200; ly_original_hp = 1200;
+hp = 3000; maxhp = 3000; ly_original_hp = 3000;
 move_speed = 0.3; atk = 10; atk_cycle = 48;
 is_soul = false; ly_fire = 3; ly_cooldown = 0;
 longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };

@@ -65,20 +65,26 @@ if (variable_global_exists("enemy_by_type"))
             {
                 has_hit = true;
 
-                // 魂系 = 幽灵类老鼠（invisible）或魂系标记的敌人（含符咒鼠/符咒魂鼠/执念鼠魂体），1.3 倍伤害
-                var _is_soul = (_key == "invisible") || longyuan_is_soul_enemy(_e);
+                // 魂系 = 幽灵类老鼠（invisible）或魂系标记的敌人（含符咒鼠/符咒魂鼠/执念鼠魂体），
+                // 药罐鼠也按魂系口径吃增伤。倍率统一取自 longyuan_soul_bonus_mult()。
+                var _is_soul = (_key == "invisible") || longyuan_is_soul_bonus_target(_e);
 
                 var _dmg = damage;
                 if (_is_soul)
-                    _dmg = floor(damage * 1.3);
+                    _dmg = floor(damage * longyuan_soul_bonus_mult(obj_hongliukaochuan));
 
                 with (_e)
                 {
                     audio_play_sound(hit_sound, 0, 0);
                     damage_amount = _dmg;
                     damage_type = other.damage_type;
+                    // 标记来源：魂系敌人据此豁免 90% 魂体减伤 / 魂火减伤（双通道，见 longyuan_hit_pierces_soul_reduction）
+                    damage_source_object = obj_hongliukaochuan;
+                    damage_source_card_id = "hongliukaochuan";
                     if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                     event_user(0);
+                    // 用完即清：同一帧内其它卡片再命中同一目标时不会误吃到这次豁免
+                    damage_source_card_id = "";
                 }
 
                 ds_list_add(hitted_enemy, _e.id);

@@ -61,9 +61,13 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
-            // underground 只对本关钻地中的地精鼠开放
-            if (_key == "underground" && !(variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
-                && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig")) continue;
+            // underground：四转（shape >= 3）起追加地鼠目标（obj_mole 等）；
+            // 钻地中的地精鼠沿用既有放行规则（任何形态都能打）。终转同样享受四转的地鼠目标。
+            if (_key == "underground") {
+                var _is_dig_dijing = (variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
+                    && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig");
+                if (!_is_dig_dijing && shape < 3) continue;
+            }
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
                 && precise_bbox_collision(id, _e))
@@ -95,7 +99,8 @@ if (variable_global_exists("enemy_by_type"))
                     _is_boss = true;
                 }
                 var _immune_to_ash = _e.immune_to_ash;
-                var _is_soul = longyuan_is_soul_enemy(_e);
+                // 魂系口径：魂系敌人 + 药罐鼠（药罐鼠本体不算魂系，但按要求吃 1.8 倍增伤）
+                var _is_soul = longyuan_is_soul_bonus_target(_e);
                 var _is_submarine = (string_pos("submarine", object_get_name(_e.object_index)) > 0);
 
                 var _dmg = damage;
@@ -111,7 +116,7 @@ if (variable_global_exists("enemy_by_type"))
                 }
                 else if (_is_soul)
                 {
-                    _dmg = floor(damage * 1.8);
+                    _dmg = floor(damage * longyuan_soul_bonus_mult(obj_hufa_god));
                 }
                 else if (_immune_to_ash)
                 {
@@ -136,8 +141,12 @@ if (variable_global_exists("enemy_by_type"))
                     audio_play_sound(hit_sound, 0, 0);
                     damage_amount = _dmg;
                     damage_type = other.damage_type;
+                    // 标记来源：魂系敌人据此豁免 90% 魂体减伤（双通道）
+                    damage_source_object = obj_hufa_god;
+                    damage_source_card_id = "hufa_god";
                     if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                     event_user(0);
+                    damage_source_card_id = "";
                 }
 
                 if (instance_exists(_e)

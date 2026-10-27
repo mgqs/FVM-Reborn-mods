@@ -249,7 +249,7 @@ function hex_state_init() {
         e_mole_no_stun:  false,   // 地鼠出土立即行动
         e_slow_resist:   0,       // 减速抗性
         e_no_cat:        false,   // 禁用猫
-        heal_tick_frame: 0        // 定时回血计时（帧）
+        heal_tick_frame: 0,       // 定时回血计时（帧）
 
         // 羁绊
         bond_count:      {},      // 分类名 -> 不同 card_id 计数

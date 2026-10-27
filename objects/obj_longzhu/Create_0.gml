@@ -14,6 +14,7 @@ longzhu_sealed = false;         // 当前是否处于封印（插地）态
 longzhu_force_sealed = false;   // 可被米线/关卡强制封印
 longzhu_ready = false;          // 出生动画播完后才开始周期效果
 longzhu_effect_timer = 0;
+longzhu_greedy_timer = 0;       // 贪婪柱独立的返还火苗计时（不依赖动画状态）
 
 longzhu_bridge_touch = false;   // 本步是否被米线触碰
 longzhu_bridge_owner = noone;   // 触碰它的米线拥有者

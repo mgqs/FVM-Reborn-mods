@@ -22,6 +22,16 @@ if (ly_mode == "dead") {
 }
 if (is_frozen || is_stun || is_scare) exit;
 
+// 朝向：地精有两套朝向相反的美术，不能统一翻转。
+//   spr_dijing（走路 / 吃东西 / 眩晕 / 倒地）原图朝右；
+//   spr_dijing_dig（挖地）/ spr_dijing_apper（出土）是专门朝左画的贴图。
+// 只有「美术朝向 ≠ 实际前进方向」时才翻转，否则会把本来就朝左的挖地 /
+// 出土贴图翻成朝右（表现为出土瞬间脸朝右）。
+// 前进方向看 move_speed：Step 里一律 x -= speed，所以 speed > 0 就是向左。
+// 翻转时乘以基类基准缩放（1.8），不能直接写 ±1，否则贴图会缩回原尺寸。
+var _flip     = ((move_speed > 0) != (ly_action == "挖地" || ly_action == "出土")) ? -1 : 1;
+image_xscale = _flip * ly_base_xscale;
+
 var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (ly_mode == "dig") {
     var _surface_card = longyuan_dijing_food_ahead();
@@ -31,12 +41,16 @@ if (ly_mode == "dig") {
         longyuan_damage_plant(_surface_card, 50);
         ly_mode = "appear";
         target_type = "normal";
+        // 提前出土后下一步是向左走：立刻把攻击朝向切成向左。
+        // 出土贴图本身朝左，不要在这里翻转 xscale（上面每帧会按需处理）。
+        attack_range = 90;
         longyuan_play("出土", true);
         exit;
     }
     var _dig_speed = move_speed / (is_slowdown ? 2 : 1);
     x -= _dig_speed;
     longyuan_play("挖地");
+    image_xscale = ly_base_xscale;   // 挖地贴图本身朝左，钻地也是向左，不需要翻转
     longyuan_animate();
     if (x <= global.grid_offset_x - 20) {
         ly_mode = "appear";
@@ -49,7 +63,11 @@ if (ly_mode == "appear") {
     longyuan_animate();
     if (ly_done) {
         ly_mode = "stunned";
-        ly_cooldown = 180;
+        // 出土后只做极短的愣神（原 180 帧 = 3 秒，表现为「出土后僵在原地卡顿」）。
+        ly_cooldown = 40;
+        // 出土动画一结束就把前进方向定下来：眩晕贴图朝右，只有提前出土（向左走）
+        // 才需要翻转，否则会出现「眩晕朝左、下一步走路朝右」的抽一下。
+        move_speed = ly_food_surface ? 0.3 : -0.3;
         longyuan_play("眩晕", true);
     }
     exit;

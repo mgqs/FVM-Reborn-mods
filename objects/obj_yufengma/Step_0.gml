@@ -7,6 +7,16 @@ zodiac_age++;
 if (is_frozen || state == CARD_STATE.SLEEP) exit;
 
 zodiac_timer++;
+
+// 出风后播放一次攻击动画（12~24 帧），播完自动回待机
+if (yf_atk_timer > 0) {
+    yf_atk_timer--;
+    if (yf_atk_timer <= 0) {
+        yf_atk_timer = 0;
+        state = CARD_STATE.IDLE;
+    }
+}
+
 if (zodiac_timer >= cycle) {
     zodiac_timer = 0;
     // 场上存在排风扇、9周年幸运草扇或旋风牛时改为3行大风，可受宴会女神增幅
@@ -64,5 +74,8 @@ if (zodiac_timer >= cycle) {
             b.image_yscale = 3*global.grid_cell_size_y/sprite_get_height(spr);
             b.y = y - 1.5*global.grid_cell_size_y + sprite_get_yoffset(spr)*b.image_yscale;
         }
+        // 出风即播放攻击动画
+        state = CARD_STATE.ATTACK;
+        yf_atk_timer = attack_anim * flash_speed;
     }
 }

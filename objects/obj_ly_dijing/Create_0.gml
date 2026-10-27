@@ -1,4 +1,8 @@
 event_inherited();
+// 敌人基类 Create 会把贴图放大到 1.8 倍（obj_enemy_parent: image_xscale/yscale = 1.8）。
+// 朝向翻转必须在这个基准上翻，直接赋 ±1 会把地精缩到原图的 55% 大小。
+ly_base_xscale = abs(image_xscale);
+ly_base_yscale = abs(image_yscale);
 ly_kind = "dijing";
 ly_anims = {};
 ly_action = "";
@@ -32,7 +36,13 @@ ly_food_target = noone;
 // 参照 obj_mole：只有能命中 underground 目标的攻击类型（rotate / d_fruit / all）可以打到钻地状态。
 ly_dig_hittable = false;
 ly_anims[$ "挖地"] = [spr_dijing_dig, 1, 6];
-ly_anims[$ "出土"] = [spr_dijing_apper, 1, 29];
+// spr_dijing_apper 共 29 帧，但贴图本身把「出土」画了两遍：
+//   1-9   从洞里钻出并站好
+//   10-17 站立（中间多余的一段）
+//   18-26 又从洞里钻出第二遍
+// 27-29 站立
+// 只取第一段，否则一次出土会看到两次冒头（与贴图美术无关，纯帧范围问题）。
+ly_anims[$ "出土"] = [spr_dijing_apper, 1, 9];
 ly_anims[$ "眩晕"] = [spr_dijing_stun, 1, 4];
 longyuan_move_action = function() { return longyuan_variant("正常走路", "受伤走路"); };
 longyuan_attack_action = function() { return longyuan_variant("正常吃东西", "受伤吃东西"); };
@@ -43,7 +53,9 @@ longyuan_dijing_food_ahead = function() {
     var _found = noone;
     with (obj_card_parent) {
         if (hp > 0 && grid_row == other.grid_row && abs(x - other.x) <= 50
-            && (plant_id == "mixian" || plant_id == "hongliukaochuan")) _found = id;
+            && longyuan_dijing_is_food_card(plant_id)) _found = id;
     }
-    return _found;
+    // 被外部保护卡（瓜皮护罩 / 赫拉 / 处女座）罩住时，伤害与后续啃咬都落到保护卡上。
+    if (instance_exists(_found)) return longyuan_outer_card_of(_found);
+    return noone;
 };

@@ -41,15 +41,20 @@ if (variable_global_exists("enemy_by_type"))
                 && precise_bbox_collision(id, _e))
             {
                 var _prev_hp = _e.hp;
-                // 炎帝对魂系敌人（符咒鼠/符咒魂鼠/执念鼠魂体等）造成 2 倍基础伤害
-                var _dmg = longyuan_is_soul_enemy(_e) ? floor(damage * 2) : damage;
+                // 炎帝对魂系（符咒鼠/符咒魂鼠/执念鼠魂体/开路鼠魂体）与药罐鼠造成 2 倍基础伤害。
+                // 倍率统一取自 longyuan_soul_bonus_mult()，不要在此另写数字。
+                var _dmg = longyuan_is_soul_bonus_target(_e) ? floor(damage * longyuan_soul_bonus_mult(obj_shennong_god)) : damage;
 
                 with (_e)
                 {
                     audio_play_sound(hit_sound, 0, 0);
                     damage_amount = _dmg;
                     damage_type = other.damage_type;
+                    // 标记来源：魂系敌人据此豁免 90% 魂体减伤（双通道）
+                    damage_source_object = obj_shennong_god;
+                    damage_source_card_id = "shennong_god";
                     event_user(0);
+                    damage_source_card_id = "";
                 }
 
                 ds_list_add(hitted_enemy, _e.id);

@@ -206,3 +206,31 @@ function bullet_sap_type_list(_inst, _key, _y_margin = 0, _key2 = "") {
     }
     return _out;
 }
+
+/// @function obstacle_should_block(_bullet, _obs)
+/// @description 障碍物（obj_obstacle）是否应该拦下这枚子弹。全工程唯一判定口径。
+///   几何上：障碍遮罩已在 Create 里夹到「恰好一格」，所以 bbox 相交 = 子弹贴着/进了这一格。
+///   逻辑上：**以子弹的 row 为准**（卡片发射的子弹 row = 发射卡所在行，与命中敌人同口径）。
+///     · 很多卡的炮口很高（双向水管 y-75、坚果炸锅 y-95 …），子弹中心其实已经出了本行上边界、
+///       悬到上一格的下缘；若只看几何，站在障碍物下面那格的水管会被上面那格的障碍物吃掉子弹。
+///     · row 不一致 → 不算被挡。
+///     · row == 0 视为「该子弹不维护行」（纵向弹 / 散射弹在 Create 里 row = 0 后从不更新），
+///       这类退回纯几何判定，保持原有行为。
+/// @param {instance} _bullet 子弹实例
+/// @param {instance} _obs 障碍物实例
+function obstacle_should_block(_bullet, _obs) {
+    if (is_undefined(_bullet) || is_undefined(_obs)) return false;
+    if (_bullet == noone || _obs == noone) return false;
+    if (!instance_exists(_bullet) || !instance_exists(_obs)) return false;
+
+    // 几何相交（bbox 已含 image_xscale/image_yscale，即实际精灵图像大小）
+    if (_bullet.bbox_right < _obs.bbox_left || _bullet.bbox_left > _obs.bbox_right) return false;
+    if (_bullet.bbox_bottom < _obs.bbox_top || _bullet.bbox_top > _obs.bbox_bottom) return false;
+
+    // 逻辑行门禁
+    if (variable_instance_exists(_bullet, "row") && variable_instance_exists(_obs, "row")) {
+        var _br = _bullet.row;
+        if (_br > 0 && _br != _obs.row) return false;
+    }
+    return true;
+}

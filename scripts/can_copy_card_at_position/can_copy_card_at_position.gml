@@ -7,10 +7,8 @@
 /// @param {string} card_id Plant ID of the card being copied (for dedup check)
 /// @param {string} base_target_card Target card (base requirement) of the card being copied
 function can_copy_card_at_position(_x, _y, _plant_type, _feature_type, _card_id, _base_target_card) {
-    // Normalize base target: undefined becomes "none" for non-upgrade cards
-    var _actual_base = _base_target_card;
-    if (_actual_base == undefined)
-        _actual_base = "none";
+    // Normalize base target: undefined 缺省值统一成 "none"（nullish 合并一步到位）
+    var _actual_base = _base_target_card ?? "none";
 
     // 复制仙笛马时，目标格已有仙笛马则跳过。
     if (_card_id == "xiandima" && !global.replace_placement) {

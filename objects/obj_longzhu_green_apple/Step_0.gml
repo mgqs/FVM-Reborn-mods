@@ -3,6 +3,11 @@ if (global.is_paused) exit;
 
 longzhu_life++;
 
+// 目标接口同步：卡片子弹按 grid_row / grid_col 判定命中，必须每步跟随 col / row
+grid_col = col;
+grid_row = row;
+if (longzhu_hit_flash > 0) longzhu_hit_flash--;
+
 // ---------- 状态 → 动画 ----------
 if (hp <= 0 || longzhu_life >= LONGZHU_GREEN_APPLE_LIFE) {
 	if (longzhu_action != "消失") longzhu_clip_set(id, "消失", true);

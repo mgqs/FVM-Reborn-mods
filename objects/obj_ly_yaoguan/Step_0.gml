@@ -26,9 +26,10 @@ var _speed = move_speed * move_speed_modify / (is_slowdown ? 2 : 1);
 if (ly_mode == "heal") {
     longyuan_animate();
     if (ly_done) {
-        // 回血仅给自己，播放完才回；动画期间 hp 掉 0 会被下方 dead 分支拦截，自然阻断
+        // 播放完才回血；回血范围是场上全体魂系鼠（开路鼠魂体 / 执念鼠魂体 / 符咒鼠 / 符咒随从 / 药罐鼠自己）。
+        // 动画期间 hp 掉 0 会被下方 dead 分支拦截，自然阻断。
         ly_heal_charges = max(0, ly_heal_charges - 1);
-        hp = min(maxhp, hp + maxhp * LY_YAOGUAN_HEAL_RATIO);
+        longyuan_heal_soul_pack(LY_YAOGUAN_HEAL_RATIO);
         move_speed = LY_YAOGUAN_HEAL_DONE_SPEED;
         ly_mode = "walk"; ly_action = "";
     }

@@ -61,6 +61,7 @@ grid_row = 99
 damage_amount = 0
 damage_type = ""
 damage_source_object = noone
+damage_source_card_id = ""
 damage_source_card_shape = -1
 
 hit_sound = snd_hit1

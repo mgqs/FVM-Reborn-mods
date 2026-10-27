@@ -20,6 +20,9 @@ ly_dodge_start = 0;    // 本次闪避动作的起始帧（保留字段兼容，
 ly_dodge_playing = false;
 ly_retreat = false;    // 遇高架物后退中
 ly_obstacle_near = false;
+ly_retreat_target_x = 0;     // 后退目标坐标（触发时的 x + 2 格）
+ly_retreat_playing = false;  // 后退舞步是否已开始
+ly_retreat_cooldown = 0;     // 后撤结束后的冷却，避免贴着长线段反复触发
 
 // 东风鼠扇风生效时，高跷鼠（舞步形态）移动速度同样 ×2（基类据此给加速乘区）
 ly_air_speed_bonus = true;

@@ -30,6 +30,6 @@ longzhu_clip_frame(id);
 if (longzhu_clip_done(id)) {
 	switch (longzhu_action) {
 		case "旋转待机": longzhu_clip_set(id, "正常待机"); break;
-		case "消失":     instance_destroy(); exit; break;
+		case "消失":     instance_destroy(); exit;
 	}
 }
