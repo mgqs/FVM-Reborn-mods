@@ -33,11 +33,17 @@ card_gap = 50;
 base_x = room_width / 2 - (card_w * 3 + card_gap * 2) / 2;
 base_y = room_height / 2 - card_h / 2 - 40;
 
-btn_w = 200;
+// 底部三键：放弃 / 选择 / 重随
+// 「选择」是唯一能拿到词条的入口 —— 点卡只算选中，其余任何操作都不会确认
+btn_w = 176;
 btn_h = 56;
-reroll_x = room_width / 2 + 130;
-giveup_x = room_width / 2 - 130;
+select_x = room_width / 2;
+giveup_x = room_width / 2 - 214;
+reroll_x = room_width / 2 + 214;
 btn_y    = base_y + card_h + 46;
+
+sel_idx      = -1;      // 当前选中的牌索引（-1 = 没选）
+select_hover = false;
 
 var _cfg = hex_cfg();
 reroll_cost_now = (_cfg.reroll_cost[min(global.hex_state.rerolls, 2)]);
@@ -74,7 +80,35 @@ function hex_panel_pick(_i) {
     closing   = 10;
     // 首抽到这里算处理完：解锁放置
     if (variable_global_exists("hex_state")) global.hex_state.first_done = true;
-    audio_play_sound(snd_win, 0, 0);
+}
+
+/// @function hex_panel_select(_i)
+/// @desc 只把第 i 张牌设为「已选中」，不生效。
+///       真正拿到词条必须再点一次「选择」按钮 —— 防止手滑点错一张就锁死整局
+function hex_panel_select(_i) {
+    if (_i < 0 || _i >= array_length(offer)) return;
+    var _id = offer[_i];
+    var _d  = hex_get(_id);
+    if (is_undefined(_d)) return;
+    if (hex_taken(_id) >= _d.stack) {
+        msg_text  = "这条已经拿到上限了";
+        msg_timer = 60;
+        sel_idx   = -1;
+        return;
+    }
+    sel_idx = _i;
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @function hex_panel_confirm()
+/// @desc 唯一确认入口
+function hex_panel_confirm() {
+    if (sel_idx < 0) {
+        msg_text  = "请先点选一条词条";
+        msg_timer = 60;
+        return;
+    }
+    hex_panel_pick(sel_idx);
 }
 
 /// @function hex_panel_reroll()
@@ -95,6 +129,7 @@ function hex_panel_reroll() {
     }
     offer = hex_roll_offer();
     hover_idx = -1;
+    sel_idx   = -1;      // 新牌面，之前的选中作废
     audio_play_sound(snd_button, 0, 0);
 }
 

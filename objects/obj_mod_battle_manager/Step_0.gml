@@ -256,6 +256,13 @@ else
                     ? max(buff_multiplier, ocean_mult)
                     : buff_multiplier * ocean_mult;
 
+                // 海克斯「增幅类卡片倍率」：只放大「增幅给出的那一部分」，本体 1.0 不放大
+                if (hex_enabled()) {
+                    var _bg = hex_buff_grant_mult();
+                    if (_bg != 1.0 && combined_buff_multiplier > 1)
+                        combined_buff_multiplier = 1 + (combined_buff_multiplier - 1) * _bg;
+                }
+
                 var _shield_gem_mult = get_shield_gem_atk_mult(self.grid_col, self.grid_row, self.plant_id);
                 global.zodiac_music_mult = 1;
                 global.zodiac_query_card = self.id;
@@ -277,9 +284,24 @@ else
 
                 if (hex_enabled())
                 {
+                    // 「双灶并行」：每行最左侧卡片额外攻击（需要坐标，不能放进 hex_dyn_atk_bonus）
+                    if (global.hex_state.first_col_atk > 0 && self.grid_col == 0)
+                        self.atk *= (1 + global.hex_state.first_col_atk);
+
+                    // 「稳住锅气」：攻击力不低于基础值的 X%
+                    var _fl = hex_card_atk_floor(self.base_atk);
+                    if (_fl > 0) self.atk = max(self.atk, _fl);
+                }
+
+                if (hex_enabled())
+                {
                     // 恒以 base_cycle 为底重算，避免多次刷新之间互相叠乘
                     var _hex_cyc = hex_cycle_mult_for_card(self.plant_id);
-                    self.cycle = self.base_cycle * _hex_cyc;
+                    // 「逆火」：敌人逼近到前方 N 格内时该行卡片加速
+                    if (global.hex_state.near_cycle_on
+                        && hex_near_cycle_hit(self.grid_col, self.grid_row, global.hex_state.near_cycle_range))
+                        _hex_cyc *= (1 + global.hex_state.near_cycle_add);
+                    self.cycle = self.base_cycle * clamp(_hex_cyc, 0.05, 4.0);
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
                     var _hex_hp = hex_hp_mult_for_card(self.plant_id);
@@ -287,6 +309,22 @@ else
                     {
                         self.max_hp = self.base_max_hp * _hex_hp;
                         if (self.hp > self.max_hp) self.hp = self.max_hp;
+                    }
+
+                    // 「熊熊烈火」：指定卡片生命值固定（火盆类固定 10 点）
+                    var _hp_fix = hex_batch2_id_hp_fix(self.plant_id);
+                    if (_hp_fix > 0)
+                    {
+                        self.max_hp = _hp_fix;
+                        if (self.hp > self.max_hp) self.hp = self.max_hp;
+                    }
+
+                    // 「取长补短」：攻击与生命取两者中较高的那个
+                    if (hex_batch2_equalize_on())
+                    {
+                        var _hi = max(self.atk, self.max_hp);
+                        self.atk = _hi;
+                        self.max_hp = _hi;
                     }
                 }
 

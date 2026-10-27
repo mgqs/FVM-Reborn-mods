@@ -504,7 +504,7 @@ function mod_cards_init()
         cost: array_create(17, 225),
         atk: [40, 48, 56, 64, 72, 80, 100, 120, 140, 170, 200, 230, 330, 430, 530, 630, 730],
         range: array_create(17, 10),
-        cooldown: array_create(17, 1800),
+        cooldown: array_create(17, 420),
         cycle: array_create(17, 78)
     },
     {
@@ -515,7 +515,7 @@ function mod_cards_init()
         cost: array_create(17, 225),
         atk: [40, 48, 56, 64, 72, 80, 100, 120, 140, 170, 200, 230, 330, 430, 530, 630, 730],
         range: array_create(17, 10),
-        cooldown: array_create(17, 1800),
+        cooldown: array_create(17, 420),
         cycle: array_create(17, 78)
     },
     {
@@ -526,7 +526,7 @@ function mod_cards_init()
         cost: array_create(17, 225),
         atk: [40, 48, 56, 64, 72, 80, 100, 120, 140, 170, 200, 230, 330, 430, 530, 630, 730],
         range: array_create(17, 10),
-        cooldown: array_create(17, 1800),
+        cooldown: array_create(17, 420),
         cycle: array_create(17, 78)
     }], false);
 

@@ -7,6 +7,8 @@ with (obj_enemy_parent)
     {
         damage_amount = other.atk;
         damage_type = "true";
+        // 5×5 穿透打击属无类型伤害：放行钻地中的地精鼠（否则钻地期间完全免疫，表现为「打不到」）。
+        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
         event_user(0);
         audio_play_sound(snd_hit1, 0, 0);
     }

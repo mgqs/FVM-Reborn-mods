@@ -32,15 +32,20 @@ for (var i = 0; i < array_length(offer); i++) {
     var _r = hex_panel_card_rect(i);
     if (point_in_rectangle(mouse_x, mouse_y, _r.x1, _r.y1, _r.x2, _r.y2)) hover_idx = i;
 }
+select_hover = point_in_rectangle(mouse_x, mouse_y, select_x - btn_w / 2, btn_y - btn_h / 2,
+                                  select_x + btn_w / 2, btn_y + btn_h / 2);
 reroll_hover = point_in_rectangle(mouse_x, mouse_y, reroll_x - btn_w / 2, btn_y - btn_h / 2,
                                   reroll_x + btn_w / 2, btn_y + btn_h / 2);
 giveup_hover = point_in_rectangle(mouse_x, mouse_y, giveup_x - btn_w / 2, btn_y - btn_h / 2,
                                   giveup_x + btn_w / 2, btn_y + btn_h / 2);
 
 // ── 鼠标 ──
+// 点牌只算「选中」，不会生效；确认只有「选择」按钮（或回车/空格）
 if (mouse_check_button_pressed(mb_left)) {
     if (hover_idx >= 0) {
-        hex_panel_pick(hover_idx);
+        hex_panel_select(hover_idx);
+    } else if (select_hover) {
+        hex_panel_confirm();
     } else if (reroll_hover) {
         hex_panel_reroll();
     } else if (giveup_hover) {
@@ -48,9 +53,10 @@ if (mouse_check_button_pressed(mb_left)) {
     }
 }
 
-// ── 键盘：1/2/3 选卡，R 重随，Esc 放弃 ──
-if (keyboard_check_pressed(ord("1"))) hex_panel_pick(0);
-if (keyboard_check_pressed(ord("2"))) hex_panel_pick(1);
-if (keyboard_check_pressed(ord("3"))) hex_panel_pick(2);
+// ── 键盘：1/2/3 选中，回车/空格确认，R 重随，Esc 放弃 ──
+if (keyboard_check_pressed(ord("1"))) hex_panel_select(0);
+if (keyboard_check_pressed(ord("2"))) hex_panel_select(1);
+if (keyboard_check_pressed(ord("3"))) hex_panel_select(2);
+if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) hex_panel_confirm();
 if (keyboard_check_pressed(ord("R"))) hex_panel_reroll();
 if (keyboard_check_pressed(vk_escape)) hex_panel_giveup();

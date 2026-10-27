@@ -45,6 +45,12 @@ function ronghehuopen_pass_fire(_bullet, _pit) {
 
 	if (_ignite) {
 		_bullet.damage = round(_bullet.damage * _pit.atk);
+		// 焚寂马（kind == "fire"）的分裂冲击波是按 base_damage 生成的，
+		// 不同步增幅就会出现「直击被强化、分裂波还是原伤害」的观感（与 obj_brazier / 火神 / 金牛同口径）。
+		if (variable_instance_exists(_bullet, "kind") && _bullet.kind == "fire"
+			&& variable_instance_exists(_bullet, "base_damage")) {
+			_bullet.base_damage = round(_bullet.base_damage * _pit.atk);
+		}
 		if (_pit.shape >= 2) {
 			// 灵魂融合（2 转）：过火子弹变冰弹 —— brazier_list 里插哨兵 -9999 作标记，
 			// 贴图锁定 / 命中减速 / 冰冻命中特效 / 碎冰死亡统一交给独立控制器 obj_ronghehuopen_ice_ctrl

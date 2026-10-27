@@ -2,7 +2,10 @@ if (hp <= 0 || ly_mode == "dead") exit;
 if (invincible) exit;
 
 // 魂火减伤：每团魂火提供 20% 减伤，三团封顶 60%。
-if (ly_fire > 0) damage_amount *= 1 - min(LY_YAOGUAN_FIRE_RED_MAX, ly_fire * LY_YAOGUAN_FIRE_RED_PER);
+// 烤串机 / 护法神 / 灯影花糕 / 炎帝 不受魂火减伤（这四张卡另有对魂系的额外倍率）。
+// 判定统一走 longyuan_hit_pierces_soul_reduction()：对象通道 + 卡片 id 通道。
+var _pierce = longyuan_hit_pierces_soul_reduction();
+if (ly_fire > 0 && !_pierce) damage_amount *= 1 - min(LY_YAOGUAN_FIRE_RED_MAX, ly_fire * LY_YAOGUAN_FIRE_RED_PER);
 
 var _hp_before = hp;
 event_inherited();

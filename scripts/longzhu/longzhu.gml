@@ -28,9 +28,9 @@
 
 /// ---------- 可调常量 ----------
 #macro LONGZHU_INTERVAL                 900   // 效果触发周期（帧）
-#macro LONGZHU_AWAKE_TIME               1800  // 「清醒」+「不可催眠」持续（帧）：覆盖完整施法周期，解封时立即清除
+#macro LONGZHU_AWAKE_TIME               1800  // 「清醒」+「不可催眠」持续（帧）：封印期间每帧刷新，此值只决定离开 3x3 后的余量
 #macro LONGZHU_PROTECT_TIME             900   // 「保护」效果持续（帧）——对齐星穹马一转 zodiac_guard_duration
-#macro LONGZHU_PROTECT_HITS             1     // 「保护」可抵挡次数——对齐星穹马一转
+#macro LONGZHU_PROTECT_HITS             3     // 「保护」可抵挡次数（用户要求：减少三次受到的伤害）
 #macro LONGZHU_GREEDY_LIMIT             1000  // 存在未封印贪婪龙柱时的火苗上限基数
 #macro LONGZHU_GREEDY_RETURN_RATIO      0.5   // 贪婪返还能量比例（按 3x3 内卡片耗能计算）
 #macro LONGZHU_RED_APPLE_DAMAGE         2000  // 红苹果子弹伤害
@@ -160,10 +160,53 @@ function longzhu_attack_card_ids() {
 	return global.longzhu_attack_id_list;
 }
 
+/// 不算「攻击类」的大分类（玩家口径：除这些之外全部按攻击类处理）
+/// 产能类 / 辅助类 / 增幅类 是玩家原话点名的三类；
+/// 防御类（面包类 + 护罩类）额外排除——护罩是保护卡，被转成青苹果会让阵容直接裸奔。
+function longzhu_non_attack_majors() {
+	return ["产能类", "辅助类", "增幅类", "防御类"];
+}
+
 /// 卡片是否为「攻击类」
+/// 判定以 card_buff_category 的大分类为准：产能类 / 辅助类 / 增幅类之外一律算攻击类，
+/// 这样融合大炮、灯影花糕这类没进老白名单的卡也能被傲慢龙柱正确感染。
+/// 分类表缺项（未注册 / 模块未初始化）时回落到白名单，避免误伤。
 function longzhu_is_attack_card(_card) {
 	if (!instance_exists(_card) || _card.hp <= 0) return false;
-	return array_get_index(longzhu_attack_card_ids(), _card.plant_id) != -1;
+	if (!variable_instance_exists(_card, "plant_id")) return false;
+	var _pid = _card.plant_id;
+	if (_pid == "player") return false;
+	var _major = card_get_major(_pid);
+	if (_major != "") return array_get_index(longzhu_non_attack_majors(), _major) == -1;
+	return array_get_index(longzhu_attack_card_ids(), _pid) != -1;
+}
+
+/// 青苹果的目标接口：挂进 normal 目标表，卡片子弹 / 追踪类 / 黄道弹的命中扫描
+/// 就会把青苹果当成一个正常可攻击目标（表现为「青苹果吸引卡片进攻」）。
+function longzhu_apple_enemy_register(_apple) {
+	if (!instance_exists(_apple)) return;
+	if (!variable_global_exists("enemy_by_type")) global.enemy_by_type = {};
+	if (!variable_struct_exists(global.enemy_by_type, "normal")) {
+		global.enemy_by_type[$ "normal"] = [];
+	}
+	var _list = global.enemy_by_type[$ "normal"];
+	if (!is_array(_list)) _list = [];
+	if (array_get_index(_list, _apple) != -1) return;
+	array_push(_list, _apple);
+	// GML 数组写时复制：必须写回全局结构，否则只是改了局部副本
+	global.enemy_by_type[$ "normal"] = _list;
+}
+
+/// 青苹果被销毁时从 normal 目标表移除
+function longzhu_apple_enemy_unregister(_apple) {
+	if (!variable_global_exists("enemy_by_type")) return;
+	if (!variable_struct_exists(global.enemy_by_type, "normal")) return;
+	var _list = global.enemy_by_type[$ "normal"];
+	if (!is_array(_list)) return;
+	var _idx = array_get_index(_list, _apple);
+	if (_idx == -1) return;
+	array_delete(_list, _idx, 1);
+	global.enemy_by_type[$ "normal"] = _list;
 }
 
 /// 收集以 (_col,_row) 为中心的 3x3 范围内所有存活卡片（含中心格），返回实例数组
@@ -199,18 +242,33 @@ function longzhu_sleep_card(_card) {
 
 /// 清醒：写入清醒计时器，期间卡片会自行脱离睡眠且不会被再次催眠
 /// 封印期间每 15s 在 3x3 内每张卡片右上角播放一次 spr_mixian_effect2
+/// （计时本身由 obj_longzhu/Step_0 每帧调 longzhu_awake_touch 维持，这里只额外播特效）
 function longzhu_awake_card(_card) {
+	if (!instance_exists(_card) || _card.hp <= 0) return;
+	if (_card.plant_id == "player") return;
+	longzhu_awake_touch(_card);
+
+	// 清醒印记特效：图标小而短（5 帧），放慢到 ~1 秒才看得见，且一定要压在卡片上面。
+	with (_card) {
+		var _fx = instance_create_depth(x + 34, y - 62, depth - 50, obj_mixian_fx);
+		_fx.fx_sprite = spr_mixian_effect2;
+		_fx.fx_frames = sprite_get_number(spr_mixian_effect2);
+		_fx.fx_rate = 12;
+		_fx.image_xscale = 1.6;
+		_fx.image_yscale = 1.6;
+	}
+}
+
+/// 清醒（无特效版）：只刷新计时与来源。
+/// 封印期间由 obj_longzhu/Step_0 每帧调用，保证「清醒」在整段封印持续时间内一直存在，
+/// 不依赖 15s 一次的施法刷新，也让刚放进 3x3 的卡片立刻生效。
+function longzhu_awake_touch(_card) {
 	if (!instance_exists(_card) || _card.hp <= 0) return;
 	if (_card.plant_id == "player") return;
 	var _pillar_id = id;
 	with (_card) {
 		awake_buff_timer = max(awake_buff_timer, LONGZHU_AWAKE_TIME);
 		mixian_awake_source = _pillar_id;
-
-		var _fx = instance_create_depth(x + 34, y - 62, depth - 1, obj_mixian_fx);
-		_fx.fx_sprite = spr_mixian_effect2;
-		_fx.fx_frames = sprite_get_number(spr_mixian_effect2);
-		_fx.fx_rate = 5;
 	}
 }
 
@@ -235,10 +293,10 @@ function longzhu_destroy_card(_card) {
 /// 保护：复用星穹马一转的「减伤」机制（卡片自身字段，无需独立对象）
 /// —— 写入 zodiac_guard_time / zodiac_guard_hits / zodiac_guard_hp，
 ///    由 obj_card_parent/Step_0.gml 与 Other_12.gml 每步自动回补血量、抵挡伤害（含致命伤）。
-function longzhu_protect_card(_card) {
+function longzhu_protect_card(_card, _force = false) {
 	if (!instance_exists(_card) || _card.hp <= 0) return;
-	// 已在保护中（例如星穹马已施加）则不再重复覆盖
-	if (variable_instance_exists(_card, "zodiac_guard_time") && _card.zodiac_guard_time > 0) return;
+	// 已在保护中（例如星穹马已施加）则不再重复覆盖；净化瞬间用 _force 强制刷新为三层
+	if (!_force && variable_instance_exists(_card, "zodiac_guard_time") && _card.zodiac_guard_time > 0) return;
 	variable_instance_set(_card, "zodiac_guard_time", LONGZHU_PROTECT_TIME);
 	variable_instance_set(_card, "zodiac_guard_hits", LONGZHU_PROTECT_HITS);
 	variable_instance_set(_card, "zodiac_guard_hp", _card.hp);
@@ -293,7 +351,10 @@ function longzhu_greedy_return_flame(_cards) {
 		var _c = _cards[_i];
 		if (!instance_exists(_c) || _c.hp <= 0) continue;
 		if (!variable_instance_exists(_c, "cost")) continue;
-		_gain += max(0, _c.cost) * LONGZHU_GREEDY_RETURN_RATIO;
+		var _cost = _c.cost;
+		// 容错：cost 若被写成字符串（商店价目表就是字符串）不能直接参与运算
+		if (!is_real(_cost)) _cost = is_string(_cost) ? real(_cost) : 0;
+		_gain += max(0, _cost) * LONGZHU_GREEDY_RETURN_RATIO;
 	}
 	if (_gain <= 0) return 0;
 	var _cap = longzhu_flame_cap();
@@ -375,7 +436,8 @@ function longzhu_purify_effect(_pillar) {
 				for (var _i = 0; _i < _n; ++_i) longzhu_awake_card(_cards[_i]);
 				break;
 			case "lv":
-				for (var _i = 0; _i < _n; ++_i) longzhu_protect_card(_cards[_i]);
+				// 净化瞬间强制刷新为「三层保护」，不吃「已在保护中」的早退
+				for (var _i = 0; _i < _n; ++_i) longzhu_protect_card(_cards[_i], true);
 				break;
 			case "huang":
 				longzhu_greedy_return_flame(_cards);
@@ -407,9 +469,9 @@ function longzhu_apply_effect() {
 			}
 			break;
 
-		// 贪婪（黄）：已封印 → 返还火苗（未封印时的上限限制由 longzhu_flame_cap_refresh 持续生效）
+		// 贪婪（黄）：已封印 → 返还火苗。实际计时在 obj_longzhu/Step_0 的独立计数器里，
+		// 这里只负责播施法动画，避免与「地面待机」动画门禁耦合导致机制停摆。
 		case "huang":
-			if (longzhu_sealed) longzhu_greedy_return_flame(_cards);
 			break;
 
 		// 傲慢（青绿）：未封印 → 3x3 内攻击类卡片感染成青苹果；已封印 → 按攻击卡数量发射红苹果

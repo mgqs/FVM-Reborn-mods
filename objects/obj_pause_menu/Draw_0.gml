@@ -29,7 +29,7 @@ var second = floor(obj_battle.battle_time/60 - minute * 60)
 draw_text(menu_x, menu_y - 35, "耗时："+string(minute)+"分"+string(second)+"秒");
 draw_text(menu_x, menu_y - 5, "卡片损失："+string(obj_task_manager.card_loss));
 draw_set_color(c_white)
-// 绘制按钮
+// 绘制按钮（2 行 × 3 列，y 偏移越大越靠下）
 for (var i = 0; i < array_length(buttons); i++) {
     var btn = buttons[i];
     var btn_x = menu_x + btn[0];
@@ -41,8 +41,8 @@ for (var i = 0; i < array_length(buttons); i++) {
         frame = (mouse_check_button_pressed(mb_left)) ? button_pressed : button_hover;
     }
     
-    // 绘制按钮
-    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, 0.75, 0.75,  0,  c_white,  _ui_alpha);
+    // 绘制按钮（等比缩放，宽度贴合文字，避免 4 字文案溢出底图）
+    draw_sprite_ext(spr_common_button,  frame,  btn_x,  btn_y, btn_draw_scale, btn_draw_scale,  0,  c_white,  _ui_alpha);
     
     // 绘制按钮文本
     draw_set_font(font_yuan);

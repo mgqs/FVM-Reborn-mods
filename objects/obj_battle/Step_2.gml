@@ -140,6 +140,8 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 				boss_inst.maxhp *= wave_data.boss_1_hp_modify
 			}
 			hex_enemy_scale_boss(boss_inst);
+			// 海克斯「渎神」：BOSS 入场加火苗，本局首个 BOSS 额外给全队攻击
+			hex_batch2_on_boss_enter(boss_inst);
 			if _has_ver {
 				// 连体 BOSS（哼哈将军）：同一 ID 的副体共用血量，不计入 boss_count
 				// 副体在缩放之后创建，直接复制已缩放的血量，避免本体/副体倍率不一致

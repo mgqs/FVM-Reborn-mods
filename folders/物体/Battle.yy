@@ -27,6 +27,7 @@
     {"name":"obj_map_change_effect","path":"objects/obj_map_change_effect/obj_map_change_effect.yy",},
     {"name":"obj_hex_hud","path":"objects/obj_hex_hud/obj_hex_hud.yy",},
     {"name":"obj_hex_list","path":"objects/obj_hex_list/obj_hex_list.yy",},
+    {"name":"obj_hex_effect","path":"objects/obj_hex_effect/obj_hex_effect.yy",},
     {"name":"obj_hex_list_btn","path":"objects/obj_hex_list_btn/obj_hex_list_btn.yy",},
     {"name":"obj_hex_panel","path":"objects/obj_hex_panel/obj_hex_panel.yy",}
   ],

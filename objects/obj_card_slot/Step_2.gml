@@ -51,8 +51,8 @@ if card_id == "magic_chicken"{
 					}
 				}
 			}
-			// 海克斯「卡片费用」
-			current_cost = round(current_cost * hex_cost_mult());
+			// 海克斯「卡片费用」（含第二批的均值 / 指定卡折扣）
+			current_cost = round(hex_batch2_cost(card_id, current_cost));
 		}
 	}
 }

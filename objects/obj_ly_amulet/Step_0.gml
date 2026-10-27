@@ -27,7 +27,11 @@ if (mode == "fly") {
 else if (mode == "transform") {
     if (ly_done) {
         if (instance_exists(target) && target.hp > 0 && !target.invincible) {
-            var _pos = {x: target.x, y: target.y};
+            // 生成点 = 被转化卡片所在格的「右一列」：符咒转化的通常是最左（第一列）卡片，
+            // 魂鼠因此在第二列出现，而不是站在卡片原来的格子里。
+            var _col = min(target.grid_col + 1, global.grid_cols - 1);
+            var _cell = get_world_position_from_grid(_col, target.grid_row);
+            var _pos = {x: _cell.x, y: target.y};
             var _owner = owner;
             with (target) { no_revive_record = true; is_shoveled = true; instance_destroy(); }
             instance_create_depth(_pos.x, _pos.y, depth, obj_ly_fuzhou_minion, {ly_owner: _owner});

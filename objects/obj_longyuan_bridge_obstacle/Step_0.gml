@@ -1,5 +1,10 @@
 if (global.is_paused) exit;
 
+// ---------- 血量主控：一次灰烬固定 -50%，卡片侧的额外扣血一律还原 ----------
+// （面粉袋 / 椰子 / 春笋这类实现会在 event_user(0) 之前先 hp -= atk，
+//  不还原的话「一次灰烬 = 半血」的口径会被打乱）
+if (zhangaiwu_state != "dead" && hp != ly_hp_lock) hp = ly_hp_lock;
+
 // ---------- 死亡状态：播完 dead 动画后销毁 ----------
 if (zhangaiwu_state == "dead") {
 	if (sprite_index != spr_zhangaiwu_dead) {

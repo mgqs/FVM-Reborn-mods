@@ -14,7 +14,7 @@ is_vehicle = false;
 // 防爆：炸弹等秒杀效果只造成伤害。
 immune_to_ash = true;
 ly_fire = LY_YAOGUAN_FIRE_COUNT;  // 减伤用魂火数（3团 → 60% 减伤）
-ly_heal_charges = 1;              // 回血次数（用户要求仅触发一次）
+ly_heal_charges = 3;              // 回血次数（用户要求：前三次血量降到 30% 各能触发一次）
 ly_dodge_cooldown = 0;
 ly_original_hp = 100;
 can_use_ladder = false;
@@ -23,7 +23,7 @@ state = ENEMY_STATE.ACTING;
 // 本对象的属性、动作和专属状态。
 mouse_id = "longyuan_yaoguan";
 ly_anims = longyuan_animation_table("yaoguan");
-hp = 1960; maxhp = 1960; ly_original_hp = 1960;
+hp = 2500; maxhp = 2500; ly_original_hp = 2500;
 move_speed = 0.6; atk = 10; atk_cycle = 48;
 is_soul = false;
 longyuan_move_action = function() { return longyuan_variant("正常前进", "破损前进"); };

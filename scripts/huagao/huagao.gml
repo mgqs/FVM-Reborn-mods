@@ -35,9 +35,14 @@ function huagao_fushengcha_mult() {
 function huagao_hit_enemy(_e, _damage, _owner) {
     if (!instance_exists(_e) || _e.hp <= 0) return;
 
-    if (longyuan_is_soul_enemy(_e)) {
+    // 魂系口径：魂系敌人 + 药罐鼠（药罐鼠本体不算魂系，但按要求吃 1.5 倍增伤）
+    var _is_soul = longyuan_is_soul_bonus_target(_e);
+    if (_is_soul) {
         _e.huagao_reveal = true;
         _e.image_alpha = 1;
+        // 灯影花糕对魂系：不吃 90% 魂体减伤 / 魂火减伤，额外增伤。
+        // 倍率统一取自 longyuan_soul_bonus_mult()，不要在此另写数字。
+        _damage = floor(_damage * longyuan_soul_bonus_mult(obj_huagao));
     }
 
     var _owner_obj = instance_exists(_owner) ? _owner.object_index : obj_huagao;
@@ -47,6 +52,7 @@ function huagao_hit_enemy(_e, _damage, _owner) {
         damage_source_object = _owner_obj;
         damage_source_card_id = "huagao";
         event_user(0);
+        damage_source_card_id = "";
 
         // 鬼火：15 次命中破 1 团（其它卡片每次命中即破，灯影花糕刻意更慢）
         if (hp > 0 && _damage > 0 && variable_instance_exists(id, "ly_fire") && ly_fire > 0) {

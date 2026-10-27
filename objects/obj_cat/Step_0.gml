@@ -22,8 +22,7 @@ with obj_enemy_parent{
 	if (object_index == obj_ly_boss_parent || object_is_ancestor(object_index, obj_ly_boss_parent)) continue;
 	// 马面技能三召唤的食灵不触发第 0 列的猫
 	if (object_index == obj_ly_hengha_spirit) continue;
-	// 符咒鼠的符咒转化产生的符咒魂鼠不触发猫
-	if (object_index == obj_ly_fuzhou_minion) continue;
+	// 符咒魂鼠（符咒转化的随从）现在正常触发猫（2026-10-27 按需求解除豁免）。
 	if abs(x - other.x) <= 120{
 		if other.state == "idle" && other.row == grid_row && hp > 0 && (array_get_index(other.ignore_list,mouse_id) == -1)&& (array_get_index(other.target_ignore,mouse_id) == -1){
 			other.state = "awake"

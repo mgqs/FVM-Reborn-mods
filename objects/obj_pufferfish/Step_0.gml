@@ -18,12 +18,15 @@ if (timer >= flash_speed) {
             // 前段播完 → 判定走哪个爆炸特效，并**立即结算**
             var _need = (shape == 2) ? 2 : 3;   // 0转/1转：每 3 次；2转：每 2 次
             puffer_is_blast = (puffer_place_index mod _need == 0);
+            // 海克斯「剧毒美食I」：爆炸段完全随机（固定节奏被打破）
+            var _hex_puff = hex_batch2_puffer();
+            if (_hex_puff[0] > 0) puffer_is_blast = (random(1) < _hex_puff[0]);
 
             if (puffer_is_blast) {
                 // ---- 蓝色爆炸：全屏 900 灰烬伤害（只造成伤害，不额外秒杀）----
                 with (obj_enemy_parent) {
                     if (hp > 0) {
-                        damage_amount = 900;
+                        damage_amount = round(900 * hex_batch2_puffer()[1]);
                         damage_type = "ash";
                         event_user(0);
                     }

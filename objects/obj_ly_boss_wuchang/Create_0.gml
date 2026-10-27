@@ -169,7 +169,8 @@ ly_boss_step = function() {
         }
         case BOSS_STATE.SKILL3: { // 白无常勾魂：扔出魂勾顺时针绕最外圈一周，随后在(1,9)回收
             if (ly_phase == 0) {
-                _act = "技能3";
+                // 环绕场地的飞钩用的是 skill4_begin 的投掷动作（skill3 实际是鸡毛掸子那套）
+                _act = "技能4开始";
                 if (ly_action != _act) longyuan_clip_set(_act);
                 longyuan_clip_frame(timer, ly_anim_rate, false);
                 if (!ly_hit && ly_frame >= 13) { // 扔出魂勾
@@ -217,7 +218,8 @@ ly_boss_step = function() {
         }
         case BOSS_STATE.SKILL4: { // 黑无常招魂：沿对角线扔出鸡毛掸子法杖
             if (ly_phase == 0) {
-                _act = "技能4开始";
+                // 鸡毛掸子的投掷动作 = spr_ly_wuchang_skill3
+                _act = "技能3";
                 if (ly_action != _act) longyuan_clip_set(_act);
                 longyuan_clip_frame(timer, ly_anim_rate, false);
                 if (!ly_hit && ly_frame >= 13) { // 扔出法杖
@@ -228,7 +230,8 @@ ly_boss_step = function() {
                     _fx.fx_kind = "wuchang_soul_banner_live";
                     _fx.fx_target_x = _tp.x; _fx.fx_target_y = _tp.y;
                     _fx.fx_speed = 9; _fx.fx_last_cell = "";
-                    _fx.image_angle = point_direction(x, y - 60, _tp.x, _tp.y); // 法杖沿对角线倾斜
+                    // 鸡毛掸子贴图与飞行方向相反：旋转 180 让尖端朝前（实际飞行方向本身是对的）
+                    _fx.image_angle = point_direction(x, y - 60, _tp.x, _tp.y) + 180;
                 }
                 if (longyuan_clip_done(timer, ly_anim_rate)) { ly_phase = 1; timer = 0; }
             }

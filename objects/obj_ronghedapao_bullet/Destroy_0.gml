@@ -13,6 +13,12 @@ with (obj_enemy_parent) {
 		if (array_get_index(other.can_mouse_list, mouse_id) != -1 && !can_dropped) {
 			into_act();
 		}
+		// 奶盖桥岩浆障碍物：不接受「碾压直接销毁」，只按 50% 血量结算
+		else if (mouse_id == "longyuan_bridge_obstacle") {
+			damage_amount = other.damage;
+			damage_type = "ash";
+			event_user(0)
+		}
 		else {
 			// 防爆鼠 / BOSS：只吃一份伤害
 			if (immune_to_ash && hp > other.damage) {
@@ -37,5 +43,12 @@ with (obj_enemy_parent) {
 				instance_destroy();
 			}
 		}
+	}
+}
+
+// 傲慢龙柱的青苹果：灵魂融合大炮的碾压可直接秒杀（触发苹果的「消失」动画）
+with (obj_longzhu_green_apple) {
+	if (hp > 0 && abs(row - _row) <= other.blast_row_half && abs(col - _col) <= other.blast_col_half) {
+		hp = 0;
 	}
 }

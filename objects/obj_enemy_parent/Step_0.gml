@@ -78,6 +78,15 @@ else{
 	current_move_speed = move_speed
 	current_atk_cycle = atk_cycle
 }
+// 海克斯「老鼠啃咬速度」：乘在攻击间隔上（非海克斯模式恒 1.0）
+if (hex_enabled()) {
+	current_atk_cycle *= hex_enemy_bite_mult();
+	// 「醋溜」的老鼠减速抗性：把减速带来的间隔惩罚按抗性折掉
+	if (is_slowdown) {
+		var _sr = hex_enemy_slow_resist();
+		if (_sr > 0) current_atk_cycle *= (1 - _sr * 0.5);
+	}
+}
 if (target_type == "air" || (variable_instance_exists(id, "ly_air_speed_bonus") && ly_air_speed_bonus)) {
 	current_move_speed *= longyuan_air_speed_multiplier();
 }
@@ -449,7 +458,16 @@ switch(state) {
             // 对目标植物造成伤害
             with (target_plant) {
 				if !invincible{
-					hp -= other.atk;
+					// 海克斯第二批：反伤 / 防御类击退 / 火苗护盾 / 炼金龙魂抗性 统一走这里
+					hex_batch2_card_take_hit(id, other.id, hex_card_incoming_damage(other.atk));
+					// 「现炒现卖」：受伤后再流失一部分最大生命，但不低于基础生命的 40%
+					var _dr = hex_card_drain_pct();
+					if (_dr > 0 && hp > 0) {
+						var _base = variable_instance_exists(id, "base_max_hp") ? base_max_hp : max_hp;
+						var _floor = _base * 0.4;
+						var _loss = max_hp * _dr;
+						if (hp - _loss > _floor) hp -= _loss;
+					}
 				}
                 event_user(2)
                 // 播放受击效果
@@ -458,6 +476,8 @@ switch(state) {
                 }
             }
 			
+            // 海克斯：啃咬过一次 → 解除「轻装伏击」的不可攻击状态
+            hex_batch2_on_bite(id);
             //播放音效
 			var a = irandom_range(0,2)
 			global.audio.play(ds_list_find_value(obj_battle.chomp_sound_list,a),0,0)
@@ -495,6 +515,8 @@ switch(state) {
 
 // 死亡处理
 if (hp <= 0 && state != ENEMY_STATE.DEAD) {
+    // 海克斯第二批：塔之诅咒的死亡爆炸（要在坐标还在、实例还没销毁时算）
+    hex_batch2_on_enemy_death(id);
     // 海克斯：击杀结算（概率火苗 / 击杀叠攻击）→ 掉率触发选卡
     // 必须在这里（instance_destroy 之前，且能拿到死亡坐标）
     hex_on_kill(x, y);

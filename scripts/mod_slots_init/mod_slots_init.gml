@@ -62,9 +62,9 @@ function mod_slots_init()
     { shape: 1, sprite: spr_xingqiongma_1, cost: 350, cooldown: 3600, description: "璀璨星穹马：复活5*5范围内1张死亡的卡片，并为范围内卡牌施加减伤", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_1 },
     { shape: 2, sprite: spr_xingqiongma_2, cost: 350, cooldown: 3600, description: "浩瀚星穹马：复活5*5范围内至多3张死亡的卡片，并为范围内卡牌施加减伤", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_2 }]);
     register_card("starrabbit", obj_starrabbit, [
-    { shape: 0, sprite: spr_starrabbit, cost: 225, cooldown: 1800, description: "星星兔：向前方5方向各发射1个星星子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit },
-    { shape: 1, sprite: spr_starrabbit_1, cost: 225, cooldown: 1800, description: "科技星星兔：五个方向各发射1发星弹，伤害提升至2倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_1 },
-    { shape: 2, sprite: spr_starrabbit_2, cost: 225, cooldown: 1800, description: "宇宙星星兔：五个方向各发射1发星弹，伤害提升至3倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_2 }]);
+    { shape: 0, sprite: spr_starrabbit, cost: 225, cooldown: 420, description: "星星兔：向前方5方向各发射1个星星子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit },
+    { shape: 1, sprite: spr_starrabbit_1, cost: 225, cooldown: 420, description: "科技星星兔：五个方向各发射1发星弹，伤害提升至2倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_1 },
+    { shape: 2, sprite: spr_starrabbit_2, cost: 225, cooldown: 420, description: "宇宙星星兔：五个方向各发射1发星弹，伤害提升至3倍。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_starrabbit_2 }]);
     register_card("yinghuoshe", obj_yinghuoshe, [
     { shape: 0, sprite: sp_yinghuoshe, cost: 75, cooldown: 1800, description: "萤火蛇：产火并照亮全场，伤害3*3范围内老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: sp_yinghuoshe },
     { shape: 1, sprite: sp_yinghuoshe_1, cost: 75, cooldown: 1800, description: "星辉萤火蛇：产火并照亮全场，伤害3*3范围内老鼠。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: sp_yinghuoshe_1 },

@@ -119,9 +119,67 @@ function longyuan_is_night() {
     return false;
 }
 
+// ------------------------------------------------------------
+// 四张「无视魂体减伤」的卡片：烤串机 / 护法神 / 灯影花糕 / 炎帝（神农氏）
+// 对魂系（符咒鼠、符咒随从鼠、开路鼠魂体、执念鼠魂体）+ 药罐鼠：
+//   1) 完全不吃 90% 魂体减伤，也不吃药罐鼠的魂火减伤；
+//   2) 按下面的倍率额外增伤。
+// 倍率只有这一处出处，卡片侧不要另写数字。
+// ------------------------------------------------------------
+#macro LY_SOUL_BONUS_KAOCHUAN 1.3  // 烤串机
+#macro LY_SOUL_BONUS_HUFA     1.8  // 护法神
+#macro LY_SOUL_BONUS_HUAGAO   1.5  // 灯影花糕
+#macro LY_SOUL_BONUS_SHENNONG 2.0  // 炎帝
+
+/// 卡片对象 → 魂系额外倍率（不是这四张卡返回 1.0）
+function longyuan_soul_bonus_mult(_src) {
+	if (_src == obj_hongliukaochuan) return LY_SOUL_BONUS_KAOCHUAN;
+	if (_src == obj_hufa_god)        return LY_SOUL_BONUS_HUFA;
+	if (_src == obj_huagao)          return LY_SOUL_BONUS_HUAGAO;
+	if (_src == obj_shennong_god)    return LY_SOUL_BONUS_SHENNONG;
+	return 1.0;
+}
+
+/// 卡片 id（字符串）→ 魂系额外倍率（不是这四张卡返回 1.0）
+function longyuan_soul_bonus_mult_id(_id) {
+	if (!is_string(_id)) return 1.0;
+	if (_id == "hongliukaochuan") return LY_SOUL_BONUS_KAOCHUAN;
+	if (_id == "hufa_god")        return LY_SOUL_BONUS_HUFA;
+	if (_id == "huagao")          return LY_SOUL_BONUS_HUAGAO;
+	if (_id == "shennong_god")    return LY_SOUL_BONUS_SHENNONG;
+	return 1.0;
+}
+
+/// 该来源（对象索引或卡片 id 字符串）是否属于「无视魂体减伤」的四张卡
+function longyuan_soul_pierce_source(_src) {
+	if (_src == obj_hongliukaochuan || _src == obj_hufa_god
+	 || _src == obj_huagao         || _src == obj_shennong_god) return true;
+	return (longyuan_soul_bonus_mult_id(_src) > 1.0);
+}
+
+/// 当前这次命中是否由「无视魂体减伤」的卡片造成。
+/// 两条独立通道任一成立即算：damage_source_object（对象）/ damage_source_card_id（卡片 id）。
+function longyuan_hit_pierces_soul_reduction() {
+	if (variable_instance_exists(id, "damage_source_object")
+		&& longyuan_soul_pierce_source(damage_source_object)) return true;
+	if (variable_instance_exists(id, "damage_source_card_id")
+		&& is_string(damage_source_card_id)
+		&& longyuan_soul_bonus_mult_id(damage_source_card_id) > 1.0) return true;
+	return false;
+}
+
+/// 这四张卡的「魂系目标」范围：魂系敌人 + 药罐鼠（药罐鼠本体不是魂系，但按魂系口径吃增伤）
+function longyuan_is_soul_bonus_target(_e) {
+	if (!instance_exists(_e)) return false;
+	if (longyuan_is_soul_enemy(_e)) return true;
+	return (variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_yaoguan");
+}
+
 function longyuan_apply_soul_damage_reduction(_factor = 0.1) {
 	// 被灯影花糕的魂虫命中后「现形」：等效已显形，不再吃魂体减伤。
 	if (variable_instance_exists(id, "huagao_reveal") && huagao_reveal) return;
+	// 烤串机 / 护法神 / 灯影花糕 / 炎帝：对魂系不减伤（额外倍率已在攻击侧结算）。
+	if (longyuan_hit_pierces_soul_reduction()) return;
 	damage_amount *= _factor;
 }
 
@@ -306,6 +364,49 @@ function longyuan_is_soul_enemy(_e) {
         if (_id == "longyuan_fuzhou" || _id == "longyuan_fuzhou_minion") return true;
     }
     return false;
+}
+
+/// 药罐鼠回血的受益范围：全体魂系鼠
+/// （魂系状态的开路鼠、执念鼠魂体、符咒鼠、药罐鼠自身、符咒随从鼠）。
+/// 药罐鼠本体不在 longyuan_is_soul_enemy 的判定里，单独按 mouse_id 收进来。
+function longyuan_is_soul_pack_member(_e) {
+    if (!instance_exists(_e)) return false;
+    if (variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_yaoguan") return true;
+    return longyuan_is_soul_enemy(_e);
+}
+
+/// 按各自身最大生命的 _ratio 给场上全体魂系鼠回血（药罐鼠回血技能专用）
+/// 注意：龙渊的鼠全部直接继承 obj_enemy_parent，obj_ly_mouse_parent 下没有任何子对象，
+/// 遍历它等于空转（药罐鼠自己都回不到）。必须遍历 obj_enemy_parent，再用成员判定过滤。
+function longyuan_heal_soul_pack(_ratio) {
+    with (obj_enemy_parent) {
+        if (hp <= 0 || hp >= maxhp) continue;
+        if (!longyuan_is_soul_pack_member(id)) continue;
+        hp = min(maxhp, hp + maxhp * _ratio);
+        if (variable_instance_exists(id, "image_alpha")) image_alpha = 1;
+    }
+}
+
+/// 地精鼠「提前出土」判定用的龙渊卡片集合：烤串机 / 浮生茶 / 桥头米线 / 灯影花糕 / 泡椒春笋。
+function longyuan_dijing_is_food_card(_plant_id) {
+    return (_plant_id == "hongliukaochuan" || _plant_id == "fushengcha" || _plant_id == "mixian"
+         || _plant_id == "huagao"         || _plant_id == "chunsun");
+}
+
+/// 取指定卡片所在格最外层的可伤害卡：被瓜皮护罩 / 赫拉 / 处女座罩住时优先返回保护卡本体。
+function longyuan_outer_card_of(_card) {
+    if (!instance_exists(_card)) return noone;
+    var _r = _card.grid_row;
+    var _c = _card.grid_col;
+    var _best = _card, _best_layer = 0;
+    with (obj_card_parent) {
+        if (hp <= 0 || plant_id == "player" || grid_row != _r || grid_col != _c) continue;
+        var _layer = 0;
+        if (plant_type == "shield_outer") _layer = 2;
+        else if (plant_type == "shield") _layer = 1;
+        if (_layer > _best_layer) { _best = id; _best_layer = _layer; }
+    }
+    return _best;
 }
 
 function longyuan_damage_plant_piercing(_plant, _damage) {

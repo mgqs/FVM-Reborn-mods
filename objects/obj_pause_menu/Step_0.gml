@@ -2,7 +2,7 @@
 panel_anim_step(id);
 if (!instance_exists(id)) exit;
 // 检查是否有子菜单打开
-submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_mod_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm) || instance_exists(obj_hex_list);
+submenu_open = instance_exists(obj_config_menu) || instance_exists(obj_mod_menu) || instance_exists(obj_quit_confirm) || instance_exists(obj_restart_confirm) || instance_exists(obj_hex_list) || instance_exists(obj_hex_effect);
 if (variable_instance_exists(id, "pnl_closing") && pnl_closing) exit;
 
 // 如果没有子菜单打开，则处理按钮交互
@@ -48,6 +48,10 @@ if (!submenu_open) {
 
                     case 4: // 词条（仅海克斯模式会有这一项）
                         instance_create_depth(menu_x, menu_y, depth-1, obj_hex_list);
+                        break;
+
+                    case 5: // 效果：对卡片 / 对老鼠 两栏汇总
+                        instance_create_depth(menu_x, menu_y, depth-1, obj_hex_effect);
                         break;
                 }
 				global.audio.play(snd_button,0,0)
