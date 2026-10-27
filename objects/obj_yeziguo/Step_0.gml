@@ -139,6 +139,13 @@ if (yyz_phase == 1) {
 			}
 		}
 
+		// 傲慢龙柱的青苹果：可被碾压秒杀（触发自苹果的「消失」动画）
+		with (obj_longzhu_green_apple) {
+			if (hp > 0 && abs(row - _crow) <= _aoe && abs(col - _ccol) <= _aoe) {
+				hp = 0;
+			}
+		}
+
 		// (2) 落点格成为它新的「所在格」：把占格登记从旧格搬到落点格
 		var _cell_ok = (variable_global_exists("grid_plants")
 			&& ds_exists(global.grid_plants, ds_type_grid)

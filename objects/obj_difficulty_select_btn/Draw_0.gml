@@ -6,27 +6,27 @@ if config_key == "difficulty"{
 	switch state{
 		case 0:
 			//draw_text(x,y,"美味级")
-			tooltip_text = "初始火苗增加150\n敌人血量降低20%"
+			tooltip_text = "初始火苗增加150\n敌人血量降低20%\n胜利奖励 1 倍"
 			break
 		case 1:
 			//draw_text(x,y,"火山级")
-			tooltip_text = "标准的游戏体验"
+			tooltip_text = "标准的游戏体验\n胜利奖励 1 倍"
 			break
 		case 2:
 			//draw_text(x,y,"浮空级")
-			tooltip_text = "重新设计的关卡，难度较高"
+			tooltip_text = "重新设计的关卡，难度较高\n胜利奖励 2 倍"
 			break
 		case 3:
 			//draw_text(x,y,"星际级")
-			tooltip_text = "在浮空级的基础上，所有敌人血量增加20%，出怪间隔减半。\n祝你好运！"
+			tooltip_text = "在浮空级的基础上，所有敌人血量增加20%，出怪间隔减半。\n祝你好运！\n胜利奖励 3 倍"
 			break
 		case 4:
 			//draw_text(x,y,"永恒级")
-			tooltip_text = "在星际级基础上，所有敌人血量再增加80%。\n而且你的空格被抠了！祝你好运？？？"
+			tooltip_text = "在星际级基础上，所有敌人血量再增加80%。\n而且你的空格被抠了！祝你好运？？？\n胜利奖励 4 倍"
 			break
 		case 5:
 			//draw_text(x,y,"不朽级")
-			tooltip_text = "敌人生成倍率×2，胜利奖励5倍"
+			tooltip_text = "敌人生成倍率×2\n胜利奖励 7 倍"
 			break
 	}
 	

@@ -7,7 +7,7 @@ var _x = x;
 		
 		if (point_distance(x, y, _x, _y) < _range && grid_row >= other.target_row-1&&grid_row <= other.target_row+1) {
 			
-		    if (immune_to_ash && hp>other.damage) {
+		    if (is_boss || (immune_to_ash && hp>other.damage)) { // BOSS 只吃伤害，绝不进入秒杀分支
 		        // 对免疫灰烬的敌人只造成伤害
 		        damage_type = "track"
 				damage_amount = other.damage

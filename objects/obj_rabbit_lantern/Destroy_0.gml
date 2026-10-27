@@ -35,7 +35,7 @@ if explode_timer <= 0{
 			
 		}
 		else{
-		        if (immune_to_ash && hp>other.atk) {
+		        if (is_boss || (immune_to_ash && hp>other.atk)) { // BOSS 只吃伤害，绝不进入秒杀分支
 		            // 对免疫灰烬的敌人只造成伤害
 		            hp -= other.atk;
 					event_user(0)

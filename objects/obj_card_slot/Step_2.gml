@@ -51,6 +51,8 @@ if card_id == "magic_chicken"{
 					}
 				}
 			}
+			// 海克斯「卡片费用」
+			current_cost = round(current_cost * hex_cost_mult());
 		}
 	}
 }

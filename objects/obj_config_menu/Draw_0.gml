@@ -141,9 +141,10 @@ switch (button_select) {
 		draw_set_color(c_white);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(x + 340, y + 60,  "抽卡模式");
-		draw_text(x + 340, y + 140, "欧皇模式");
-		draw_text(x + 340, y + 220, "随机礼盒模式");
+		draw_text(x + 340, y + 20,  "抽卡模式");
+		draw_text(x + 340, y + 100, "欧皇模式");
+		draw_text(x + 340, y + 180, "随机礼盒模式");
+		draw_text(x + 340, y + 260, "海克斯模式");
 		draw_set_valign(fa_top);
 		break
     

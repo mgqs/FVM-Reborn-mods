@@ -23,6 +23,8 @@ with (obj_battle)
             var inst = instance_create_depth(room_width / 2, room_height / 2, -3001, obj_game_over);
             inst.sprite_index = spr_win;
             audio_play_sound(snd_win, 0, 0);
+            // 海克斯：胜利瞬间结算本局词条（重复通关也要记，所以不放在 complete_level 里）
+            hex_on_win();
         }
         else
         {

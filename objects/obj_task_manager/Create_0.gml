@@ -5,7 +5,8 @@ not_equip_weapon = false
 not_use_designated_card = false
 
 card_group = {
-	"bomb":["coke_bomb","kettle_bomb","flour_sack","pufferfish","yeziguo","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"]
+	"bomb":["coke_bomb","kettle_bomb","flour_sack","pufferfish","yeziguo","steel_wool","mouse_clip","wine_bottle_bomb","skewer_bomb","whisky_bomb","aquarius_elve","chili_powder"],
+	"fishbone":["fishbone","iron_fishbone"]
 }
 
 function reset_task_state(){
@@ -101,6 +102,8 @@ function refresh_task_progress(){
 				//不携带特定种类卡片类任务
 				if task_data.requirements[j].type == "card_type_limit"{
 					var limit_card_list = struct_get(card_group,task_data.requirements[j].limit_card_type)
+					// 分组未配置时按空列表处理，避免 array_get_index 收到 undefined 导致结算报错
+					if !is_array(limit_card_list) limit_card_list = []
 					//遍历卡组，如果没找到相关卡片，则没有携带
 					not_use_designated_card = true
 					for(var k = 0 ; k < ds_list_size(global.selected_deck) ; k++){

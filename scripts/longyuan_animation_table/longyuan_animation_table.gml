@@ -92,10 +92,10 @@ function longyuan_animation_table(_kind) {
   case "hengha_food_spirit": return {"出生": [spr_ly_hengha_food_apper, 1, 7], "待机": [spr_ly_hengha_food_idel, 1, 12], "死亡": [spr_ly_hengha_food_dead, 1, 8]};
   case "hengha_bell": return {"飞行": [spr_ly_hengha_bell_fly, 1, 6], "变大": [spr_ly_hengha_bell_big, 1, 10], "待机": [spr_ly_hengha_bell_idel, 1, 6], "待机2": [spr_ly_hengha_bell_idel2, 1, 7], "攻击待机": [spr_ly_hengha_bell_attackidel, 1, 6], "飞走": [spr_ly_hengha_bell_disapper, 1, 9]};
   // ===== 龙渊 BOSS：孟婆鼠 =====
-  case "mengpo": return {"出生": [spr_ly_mengpo_boss, 1, 36], "正常待机": [spr_ly_mengpo_boss, 37, 48], "正常闪出": [spr_ly_mengpo_boss, 49, 56], "正常闪进": [spr_ly_mengpo_boss, 57, 63], "正常技能1": [spr_ly_mengpo_boss, 64, 91], "正常技能2": [spr_ly_mengpo_boss, 92, 119], "正常技能3": [spr_ly_mengpo_boss, 120, 127], "正常技能3罐子循环": [spr_ly_mengpo_boss, 128, 139], "正常技能3收茶叶": [spr_ly_mengpo_boss, 140, 156], "正常技能3控制倒水": [spr_ly_mengpo_boss, 157, 164], "正常技能3结束": [spr_ly_mengpo_boss, 165, 173], "死亡": [spr_ly_mengpo_boss, 174, 194]};
-  case "mengpo_tea_tree": return {"生长出树枝": [spr_ly_mengpo_tea_tree, 1, 9], "树枝待机": [spr_ly_mengpo_tea_tree, 10, 16], "生出绿叶": [spr_ly_mengpo_tea_tree, 17, 25], "绿叶待机": [spr_ly_mengpo_tea_tree, 26, 32], "boss采茶": [spr_ly_mengpo_tea_tree, 33, 44], "死亡": [spr_ly_mengpo_tea_tree, 45, 55]};
+  case "mengpo": return {"出生": [spr_ly_mengpo_apper, 1, 36], "正常待机": [spr_ly_mengpo_idel, 1, 12], "正常闪出": [spr_ly_mengpo_shanchu, 1, 8], "正常闪进": [spr_ly_mengpo_shanru, 1, 7], "正常技能1": [spr_ly_mengpo_skill1, 1, 28], "正常技能2": [spr_ly_mengpo_skill2, 1, 28], "正常技能3": [spr_ly_mengpo_skill3, 1, 8], "正常技能3罐子循环": [spr_ly_mengpo_skill3_xunhuan, 1, 12], "正常技能3收茶叶": [spr_ly_mengpo_skill3_shouchaye, 1, 17], "正常技能3控制倒水": [spr_ly_mengpo_skill3_daoshui, 1, 8], "正常技能3结束": [spr_ly_mengpo_skill3_jieshu, 1, 9], "死亡": [spr_ly_mengpo_dead, 1, 21]};
+  case "mengpo_tea_tree": return {"生长出树枝": [spr_chashu_shuzhi_apper, 1, 9], "树枝待机": [spr_chashu_shuzhi_idel, 1, 7], "生出绿叶": [spr_chashu_shuzhi_lvye, 1, 9], "绿叶待机": [spr_chashu_shuzhi_lvye_idel, 1, 1], "boss采茶": [spr_chashu_caizhai, 1, 12], "死亡": [spr_chashu_dead, 1, 11]};
   case "mengpo_rain": return {"下雨": [spr_ly_mengpo_rain, 1, 30]};
-  case "mengpo_mushroom": return {"出生": [spr_ly_mengpo_mushroom, 1, 8], "待机": [spr_ly_mengpo_mushroom, 9, 15]};
+  case "mengpo_mushroom": return {"出生": [spr_mogu_apper, 1, 8], "待机": [spr_mogu_idel, 1, 1]};
   case "mengpo_wind_mist": return {"待机": [spr_ly_mengpo_wind_mist, 1, 13]};
   case "mengpo_strong_wind": return {"待机": [spr_ly_mengpo_strong_wind, 1, 6]};
   case "mengpo_wind_hit": return {"待机": [spr_ly_mengpo_wind_hit, 1, 6]};
@@ -103,12 +103,11 @@ function longyuan_animation_table(_kind) {
   case "mengpo_wind_right": return {"待机": [spr_ly_mengpo_wind_right, 1, 4]};
   case "mengpo_wind_down": return {"待机": [spr_ly_mengpo_wind_down, 1, 4]};
   case "mengpo_wind_up": return {"待机": [spr_ly_mengpo_wind_up, 1, 4]};
-  // ===== 龙渊 BOSS：无常鼠 =====
-  case "wuchang": return {"出生": [spr_ly_wuchang_boss, 1, 38], "正常白待机": [spr_ly_wuchang_boss, 39, 50], "正常白闪出": [spr_ly_wuchang_boss, 51, 60], "正常白闪进": [spr_ly_wuchang_boss, 61, 69], "正常黑待机": [spr_ly_wuchang_boss, 70, 81], "正常黑闪出": [spr_ly_wuchang_boss, 82, 88], "正常黑闪进": [spr_ly_wuchang_boss, 89, 93], "正常技能1": [spr_ly_wuchang_boss, 94, 120], "正常技能2": [spr_ly_wuchang_boss, 121, 143], "正常技能3": [spr_ly_wuchang_boss, 144, 170], "正常技能4开始": [spr_ly_wuchang_boss, 171, 196], "正常技能4结束": [spr_ly_wuchang_boss, 197, 207], "破损白待机": [spr_ly_wuchang_boss, 208, 219], "破损白闪出": [spr_ly_wuchang_boss, 220, 229], "破损白闪进": [spr_ly_wuchang_boss, 230, 238], "破损黑待机": [spr_ly_wuchang_boss, 239, 250], "破损黑闪出": [spr_ly_wuchang_boss, 251, 257], "破损黑闪进": [spr_ly_wuchang_boss, 258, 262], "破损技能1": [spr_ly_wuchang_boss, 263, 289], "破损技能2": [spr_ly_wuchang_boss, 290, 312], "破损技能3": [spr_ly_wuchang_boss, 313, 339], "破损技能4开始": [spr_ly_wuchang_boss, 340, 365], "破损技能4结束": [spr_ly_wuchang_boss, 366, 376], "死亡": [spr_ly_wuchang_boss, 377, 399]};
-  case "wuchang_fuzhou": return {"出生": [spr_ly_wuchang_fuzhou, 1, 8], "正常前进": [spr_ly_wuchang_fuzhou, 9, 20], "正常啃咬": [spr_ly_wuchang_fuzhou, 21, 27], "破损前进": [spr_ly_wuchang_fuzhou, 28, 39], "破损啃咬": [spr_ly_wuchang_fuzhou, 40, 46], "死亡": [spr_ly_wuchang_fuzhou, 47, 57]};
-  case "wuchang_gold_ingot": return {"旋转": [spr_ly_wuchang_gold_ingot, 1, 6], "待机": [spr_ly_wuchang_gold_ingot, 7, 20], "爆炸": [spr_ly_wuchang_gold_ingot, 21, 33], "金币待机": [spr_ly_wuchang_gold_ingot, 34, 41], "消失": [spr_ly_wuchang_gold_ingot, 42, 42]};
+  // ===== 龙渊 BOSS：无常鼠（独立动作精灵）=====
+  case "wuchang": return {"出生": [spr_ly_wuchang_apper, 1, 38], "白待机": [spr_ly_wuchang_bai_idel, 1, 12], "黑待机": [spr_ly_wuchang_hei_idel, 1, 12], "白闪出": [spr_ly_wuchang_bai_shanchu, 1, 10], "白闪入": [spr_ly_wuchang_bai_shanru, 1, 9], "黑闪出": [spr_ly_wuchang_hei_shanchu, 1, 7], "黑闪入": [spr_ly_wuchang_hei_shanru, 1, 5], "技能1": [spr_ly_wuchang_skill1, 1, 27], "技能2": [spr_ly_wuchang_skill2, 1, 23], "技能3": [spr_ly_wuchang_skill3, 1, 27], "技能4开始": [spr_ly_wuchang_skill4_begin, 1, 26], "技能4结束": [spr_ly_wuchang_skill4_jieshu, 1, 11], "死亡": [spr_ly_wuchang_dead, 1, 23]};
+  case "wuchang_yuanbao": return {"飞行": [spr_yuanbao_fly, 1, 6], "待机": [spr_yuanbao_idel, 1, 14], "爆炸": [spr_yuanbao_baozha, 1, 13]};
   case "wuchang_chain": return {"待机": [spr_ly_wuchang_chain, 1, 11], "死亡": [spr_ly_wuchang_chain, 12, 12]};
-  case "wuchang_chain2_blue": return {"开始1": [spr_ly_wuchang_chain2_blue, 1, 3], "循环1": [spr_ly_wuchang_chain2_blue, 4, 8], "结束1": [spr_ly_wuchang_chain2_blue, 9, 11], "开始2": [spr_ly_wuchang_chain2_blue, 12, 14], "循环2": [spr_ly_wuchang_chain2_blue, 15, 19], "结束2": [spr_ly_wuchang_chain2_blue, 20, 22]};
+  case "wuchang_chain2_red": return {"开始": [spr_ly_wuchang_chain2_red, 1, 3], "循环": [spr_ly_wuchang_chain2_red, 4, 8], "结束": [spr_ly_wuchang_chain2_red, 9, 11]};
   case "wuchang_chain1_blue": return {"待机": [spr_ly_wuchang_chain1_blue, 1, 2]};
   case "wuchang_chain1_red": return {"动画": [spr_ly_wuchang_chain1_red, 1, 2]};
   case "wuchang_fire_wheel": return {"旋转": [spr_ly_wuchang_fire_wheel, 1, 6]};

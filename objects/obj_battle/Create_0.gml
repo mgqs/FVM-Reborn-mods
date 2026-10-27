@@ -38,7 +38,6 @@ global.grid_cell_size_y = 116
 global.grid_offset_y = 228
 global.grid_cols = global.level_file.map_cols
 global.grid_rows = global.level_file.map_rows
-global.longzhu_level_pillars_setup = false;
 global.longyuan_bridge_red_active = false;
 global.longyuan_bridge_yellow_active = false;
 global.longyuan_bridge_lava_cells = array_create(global.grid_cols * global.grid_rows, false);
@@ -183,6 +182,16 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 				var new_obj = instance_create_depth(new_x, new_y, -1200,map_obj);
 				new_obj.row = i
 				new_obj.col = j
+				// 龙柱：按注册的 longzhu_kind 重新初始化种类与动画
+				if (variable_struct_exists(map_obj_data, "longzhu_kind")) {
+					longzhu_setup(new_obj, map_obj_data.longzhu_kind);
+				}
+				// 奶盖桥岩浆轨道·陆地：初始时该格地形视为 normal（可放卡），
+				// 触发后由 obj_ludi.Destroy 切换回 obstacle 并生成 obj_lava。
+				if (variable_struct_exists(map_obj_data, "ludi_track")) {
+					new_obj.ludi_track = map_obj_data.ludi_track;
+					global.grid_terrains[i][j].type = "normal";
+				}
 			}
 
 		}
@@ -199,8 +208,6 @@ for(var i = 0 ; i < global.grid_rows ; i++){
 		cat_inst.attack_anim = 9
 	}
 }
-
-longzhu_setup_level_pillars();
 
 current_wave = 0
 current_subwave = 0
@@ -364,6 +371,11 @@ function enemy_subwave_summon(){
                 rows_used[row_index] = true;
             }
 
+            // 海克斯：「老鼠数量 −X%」按概率不刷这一只
+            // 注意：非海克斯模式概率为 0，此时连 random() 都不能调，否则会打乱其它模式的随机序列
+            var _hex_skip = hex_enemy_skip_chance();
+            if (_hex_skip > 0 && random(1) < _hex_skip) continue;
+
             var enemy_obj = global.enemy_map[? _enemy_type]._obj;
 
             var new_x = global.grid_offset_x + (9 + x_offset) * global.grid_cell_size_x;
@@ -371,6 +383,17 @@ function enemy_subwave_summon(){
 
             var grid_pos = get_grid_position_from_world(new_x, new_y);
             var new_enemy = instance_create_depth(grid_pos.x+30, grid_pos.y + 38, 0, enemy_obj);
+            // 生成后立刻乘 PI / 词条的老鼠侧倍率（顺序铁律：在关卡难度系数之后）
+            hex_enemy_scale(new_enemy);
+
+            // 海克斯：「老鼠数量 +X%」按概率多刷一只（与上面的 −X% 跳过对称）
+            var _hex_extra = hex_enemy_extra_chance();
+            if (_hex_extra > 0 && random(1) < _hex_extra) {
+                var _dup = instance_create_depth(grid_pos.x + 30 + irandom_range(-14, 14),
+                                                 grid_pos.y + 38, 0, enemy_obj);
+                hex_enemy_scale(_dup);
+                current_total_hp += global.enemy_map[? _enemy_type].hp;
+            }
 
             
             // 更新统计信息
@@ -381,5 +404,8 @@ function enemy_subwave_summon(){
         }
     }
     }
+
+    // 鼠潮：按 PI 阈值往本波尾部追加精英（不计击杀，但算掉落）
+    hex_spawn_flood(enemy_list);
 
 }

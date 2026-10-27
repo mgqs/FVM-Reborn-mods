@@ -1,8 +1,7 @@
-/// 青苹果：待机动画 + 周期性为同格老鼠回复体力
+/// 青苹果：待机动画 + 接触老鼠立即被吃掉（为其恢复 1w 体力）
 if (global.is_paused) exit;
 
 longzhu_life++;
-longzhu_heal_timer++;
 
 // ---------- 状态 → 动画 ----------
 if (hp <= 0 || longzhu_life >= LONGZHU_GREEN_APPLE_LIFE) {
@@ -23,12 +22,17 @@ if (longzhu_clip_done(id)) {
 	}
 }
 
-// ---------- 提升接触老鼠的体力 ----------
-if (longzhu_heal_timer >= LONGZHU_GREEN_APPLE_HEAL_INTERVAL) {
-	longzhu_heal_timer = 0;
+// ---------- 老鼠接触立即吃掉：恢复 1w 体力，苹果消失 ----------
+if (hp > 0 && longzhu_action != "消失") {
+	var _eater = noone;
 	with (obj_enemy_parent) {
+		if (_eater != noone) break;
 		if (hp > 0 && grid_col == other.col && grid_row == other.row) {
-			longzhu_heal_mouse(id, LONGZHU_GREEN_APPLE_HEAL);
+			_eater = id;
 		}
+	}
+	if (_eater != noone) {
+		longzhu_heal_mouse(_eater, LONGZHU_GREEN_APPLE_HEAL);
+		hp = 0; // 触发上方的「消失」动画分支
 	}
 }

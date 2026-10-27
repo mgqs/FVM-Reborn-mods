@@ -110,12 +110,16 @@ if ((is_selected && mouse_check_button_pressed(mb_left)) or (is_selected && glob
             // 播放移除动画
             var shovel_effect = instance_create_depth(x+10, y-55, depth, obj_shovel);
 			shovel_effect.sprite_index = other.shovel_spr
-			if other.flame_rate > 0{
+			// 海克斯「铲除返还」：基础返还率为 0（没升级铲子）时也给 10% 底子，再乘海克斯倍率
+			if other.flame_rate > 0 || hex_refund_mult() > 1{
 				var _plant_data = get_plant_data_with_skill(plant_id,shape,current_level,skill)
 				if (_plant_data != undefined && ds_exists(_plant_data, ds_type_map) && ds_map_exists(_plant_data, "cost")){
 					var flame_cost = _plant_data[? "cost"]
+					var _rate = other.flame_rate
+					if (_rate <= 0) _rate = 0.1
+					var _final_rate = min(_rate * hex_refund_mult(), 1)
 					var flame_inst = instance_create_depth(x,y-30,-2000,obj_flame)
-					flame_inst.value = round(flame_cost * other.flame_rate)
+					flame_inst.value = round(flame_cost * _final_rate)
 				}
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{

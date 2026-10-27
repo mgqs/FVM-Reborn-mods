@@ -7,6 +7,10 @@ ly_anims = longyuan_animation_table("hengha_oxhead");
 mouse_id = "ly_hengha";
 hp = 150000; maxhp = 150000;
 
+// 对象无默认精灵：创建当帧先把 sprite_index 设为出生动作，避免 Draw 时精灵为 -1
+ly_action = "";
+longyuan_play("正常出生");
+
 // ===== 数值 =====
 wait_time = 300;       // 待机 5 秒
 ly_move_speed = 2;     // 闪现/滑入速度

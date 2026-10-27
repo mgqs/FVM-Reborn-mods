@@ -7,6 +7,8 @@
 /// @param {string} target_card 底座卡片
 /// @param {string} card_id 正在放置的卡牌 ID（可选）
 function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id = "") {
+    // 海克斯模式：开局首抽（选一张或直接放弃）处理完之前，任何卡都不能落位
+    if (hex_place_locked()) return false;
     if (card_id == "kuileima" && !global.replace_placement) {
         for (var p = 0; p < instance_number(obj_kuileima); p++) {
             var existing = instance_find(obj_kuileima,p);
@@ -26,6 +28,20 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     if (variable_global_exists("longyuan_web_cells") && global.longyuan_web_cells[row * global.grid_cols + col]) {
         return false;
     }
+    // 傲慢龙柱的青苹果封格：该格有 obj_longzhu_green_apple 存活时无法放置卡片
+    var _target_col = col;
+    var _target_row = row;
+    var _green_apple_block = false;
+    var _apple_n = instance_number(obj_longzhu_green_apple);
+    for (var _ai = 0; _ai < _apple_n; ++_ai) {
+        var _apple = instance_find(obj_longzhu_green_apple, _ai);
+        if (!instance_exists(_apple)) continue;
+        if (_apple.hp > 0 && _apple.col == _target_col && _apple.row == _target_row) {
+            _green_apple_block = true;
+            break;
+        }
+    }
+    if (_green_apple_block) return false;
 	//调试相关
 	if global.debug{
 		return true
@@ -36,6 +52,30 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
 		return false
 	}
     
+    // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格，可以直接叠在已有卡片上
+    // 反向（普通卡叠到已经放了增幅/辅助的格子上）由放置完成后把 plant_type 改成 gridless 来保证
+    // 注意「不占格」只放宽占格这一条，不一并放宽其它规则：
+    //   - 同一格不能重复放同一张卡
+    //   - 需要底座（target_card）的卡仍然必须踩到底座，否则放置流程里的 upgrade 分支销毁不到底座，
+    //     卡会凭空叠在空地上，之后这一格的底座关系就乱了
+    //   - 玩家角色所在的格子仍然不能放卡
+    if (card_id != "" && hex_gridless_for_card(card_id) && !global.replace_placement) {
+        var _gl_list = ds_grid_get(global.grid_plants, col, row);
+        var _need_base = is_string(target_card) && target_card != "" && target_card != "none";
+        var _has_self = false;
+        var _has_base = false;
+        for (var _gi = 0; _gi < ds_list_size(_gl_list); _gi++) {
+            var _gp = _gl_list[| _gi];
+            if (!instance_exists(_gp) || !variable_instance_exists(_gp, "plant_id")) continue;
+            if (_gp.plant_id == "player") return false;
+            if (_gp.plant_id == card_id) _has_self = true;
+            if (_need_base && _gp.plant_id == target_card) _has_base = true;
+        }
+        if (_has_self) return false;
+        if (_need_base && !_has_base) return false;
+        return true;
+    }
+
     // 获取该网格的植物列表
     var plant_list = ds_grid_get(global.grid_plants, col, row);
 

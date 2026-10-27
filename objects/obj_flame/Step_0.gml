@@ -92,8 +92,9 @@ if !is_capture{
     
     
     
-	    if (collect_timer >= collect_duration) {
-	        global.flame += value;
+    if (collect_timer >= collect_duration) {
+        // 海克斯「火苗自然增长」：只放大拾取量，不改既有产火逻辑
+        global.flame += value * hex_flame_growth();
 	        //var fx = instance_create_layer(target_x, target_y, "Effects", obj_sun_fx);
 	       // fx.value = value;
 	        instance_destroy();

@@ -19,7 +19,7 @@
 				into_act()
 			}
 			else{
-		        if (immune_to_ash && hp>900) {
+		        if (is_boss || (immune_to_ash && hp>900)) { // BOSS 只吃伤害，绝不进入秒杀分支
 		            // 对免疫灰烬的敌人只造成伤害
 		            hp -= 900;
 					event_user(0)

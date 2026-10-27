@@ -1,5 +1,50 @@
+// ══════════ 海克斯：每关只在开局给一次抽取（重复通关的关卡不给）══════════
+// 非海克斯模式下整块跳过；hex_battle_init 负责"这是一局新的还是序列续关"的判定
+// 测试关卡（test_level）整套关闭：不抽卡、不建 HUD、倍率回 1.0
+if (hex_enabled() && hex_level_excluded())
+{
+    if (!variable_instance_exists(id, "hex_excluded_inited"))
+    {
+        hex_excluded_inited = true;
+        hex_test_cleanup();
+    }
+}
+else if (hex_enabled())
+{
+    if (!variable_instance_exists(id, "hex_inited"))
+    {
+        hex_inited    = true;
+        hex_battle_init();
+        hex_last_wave = current_wave;
+        hex_on_wave_start();
+        // 同一关卡只有一次抽取机会：之前通关过的关卡重玩不再弹面板
+        if (hex_taken_count() == 0 && !global.hex_pick_open
+            && !hex_level_repeat() && !instance_exists(obj_hex_panel))
+        {
+            instance_create_depth(0, 0, -9000, obj_hex_panel);
+        }
+        else if (!instance_exists(obj_hex_panel))
+        {
+            // 本关没有开局抽取（重复通关的关卡 / 序列续关已有词条）：
+            // 必须补上"首抽已处理"，否则 hex_place_locked() 会锁住整局的放置
+            hex_mark_first_done();
+        }
+    }
+    else if (current_wave != hex_last_wave)
+    {
+        hex_last_wave = current_wave;
+        hex_on_wave_start();
+    }
+}
+
 if (global.level_id == "test_level")
 {
+    // F9：海克斯隔离自检（docs 8 验收）。四个旧模式里应当"零海克斯"
+    if (keyboard_check_pressed(vk_f9))
+    {
+        hex_selfcheck_report();
+    }
+
     // F2 打开情报岛敌人页。
     if (!instance_exists(obj_info_island_bg) && keyboard_check_pressed(vk_f2))
     {

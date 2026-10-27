@@ -34,7 +34,7 @@
   ],
   "name":"spr_ly_wuchang_chain",
   "nineSlice":null,
-  "origin":4,
+  "origin":9,
   "parent":{
     "name":"wuchang",
     "path":"folders/精灵/Enemy/longyuan/BOSS/wuchang.yy",
@@ -120,7 +120,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":35,
-    "yorigin":36,
+    "yorigin":65,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

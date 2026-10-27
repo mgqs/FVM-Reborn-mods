@@ -143,17 +143,23 @@ function get_card_level(card_id) {
 /// @desc 标记关卡为已完成并保存存档
 /// @param {string} level_id 关卡ID
 function complete_level(level_id) {
-    // 检查关卡是否已完成
-    for (var i = 0; i < array_length(global.save_data.completed_levels); i++) {
-        if (global.save_data.completed_levels[i] == level_id) {
-            // 关卡已完成，无需重复添加
-            return true;
-        }
+    var _is_new = (array_get_index(global.save_data.completed_levels, level_id) == -1);
+
+    // 海克斯记账：必须在判重之前，否则"重复通关"永远累计不到次数。
+    // 内部自己判 hex_enabled / 序列末关 / 空手通关。
+    var _hex_wrote = hex_commit_run(level_id);
+
+    // 本关是"通关"离场，而不是中途退出：CleanUp 靠这个标记区分（见 obj_battle/CleanUp_0）
+    global.hex_level_cleared = true;
+    // 一局已经走到结算点，序列标记作废，下次进同一张序列图从零开始
+    if (_hex_wrote) global.hex_series_active = "";
+
+    if (_is_new) {
+        array_push(global.save_data.completed_levels, level_id);
     }
-    
-    // 添加新完成的关卡
-    array_push(global.save_data.completed_levels, level_id);
-    save_file(global.save_slot); // 立即保存
+    if (_is_new || _hex_wrote) {
+        save_file(global.save_slot);   // 统一保存，避免两条路径漏存
+    }
     return true;
 }
 

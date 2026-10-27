@@ -60,4 +60,11 @@ function level_info_island_init(){
 	register_level_info_island("ice_beer_bar_night",{"name":"冰啤酒吧（夜）","icon":spr_levelselect_button_camp,"spr":spr_ice_beer_bar_night,"description":"需要快速处理饮料贩卖机扔出的酒瓶，否则对阵型破坏性大。","spr_index":3})
 	register_level_info_island("nut_platform_daytime",{"name":"坚果高台（日）","icon":spr_levelselect_button_camp,"spr":spr_nut_platform_daytime,"description":"当人面曲奇开始吸收火苗时，铲除将要产出火苗的产火卡可以有效避免繁殖。","spr_index":4})
 	register_level_info_island("nut_platform_night",{"name":"坚果高台（夜）","icon":spr_levelselect_button_camp,"spr":spr_nut_platform_night,"description":"本关障碍较多，会连续出现两个BOSS，需要灵活组织阵型。","spr_index":5})
+	register_level_info_island("songludating_daytime",{"name":"松露大厅（日）","icon":spr_levelselect_button_longyuan,"spr":spr_songludating_ri,"description":"探秘龙渊前的集合点，先锋鼠军最薄弱的关卡，但也不能掉以轻心。\n使用两个桥头米线可以封印镇龙柱，获得免疫睡眠的卡","spr_index":0})
+	register_level_info_island("songludating_night",{"name":"松露大厅（夜）","icon":spr_levelselect_button_longyuan,"spr":spr_songludating_ye,"description":"夜晚的大厅出现了更多待封印的镇龙柱，需要合理安排米线的位置。\n部分老鼠会在夜晚变身，红柳烤串机和灯影花糕可以击败它。","spr_index":1})
+	register_level_info_island("baiweiguan_night",{"name":"百味关（夜）","icon":spr_levelselect_button_longyuan,"spr":spr_baiweiguan,"description":"百味关的河流穿过了战斗区域，别忘了带上木盘子。\n桥头米线封印镇龙柱后可以得到免除伤害的卡片增益。小心东风鼠使空军加速","spr_index":2})
+	register_level_info_island("chixiadu_daytime",{"name":"赤霞渡（日）","icon":spr_levelselect_button_longyuan,"spr":spr_chixiadu_ri,"description":"镇龙柱会减少火苗上限，使用桥头米线将其封印就能恢复。\n织布机鼠会射出织布针破坏线，火盆可以将其烧毁","spr_index":3})
+	register_level_info_island("chixiadu_night",{"name":"赤霞渡（夜））","icon":spr_levelselect_button_longyuan,"spr":spr_chixiadu_ye,"description":"符咒鼠出没在赤霞渡夜晚，多多携带对空卡片。\n药罐鼠会持续提供大量体力，灯影花糕等可击破其魂火","spr_index":4})
+	register_level_info_island("naigaiqiao_night",{"name":"奶盖桥（夜））","icon":spr_levelselect_button_longyuan,"spr":spr_naigaiqiao,"description":"观察外观不同的浮块，在安全的位置安排卡片阵容。\n记得携带高体型卡片阻挡高跷鼠。","spr_index":5})
+		
 }

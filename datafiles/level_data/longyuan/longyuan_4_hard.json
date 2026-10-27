@@ -78,7 +78,9 @@
         "plant": []
       },
       {
-        "object": [],
+        "object": [
+          "ly_longzhu_3"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -151,63 +153,8 @@
         "plant": []
       },
       {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
         "object": [
-          "lava"
-        ],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      }
-    ],
-    [
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [
-          "lava"
-        ],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [
-          "longzhu"
-        ],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [
-          "lava"
-        ],
-        "type": "normal",
-        "plant": []
-      },
-      {
-        "object": [
-          "lava"
+          "ly_longzhu_3"
         ],
         "type": "normal",
         "plant": []
@@ -249,6 +196,63 @@
         "plant": []
       },
       {
+        "object": [
+          "ly_longzhu_3"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      }
+    ],
+    [
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [
+          "lava"
+        ],
+        "type": "normal",
+        "plant": []
+      },
+      {
+        "object": [],
+        "type": "normal",
+        "plant": []
+      },
+      {
         "object": [],
         "type": "normal",
         "plant": []
@@ -300,7 +304,9 @@
         "plant": []
       },
       {
-        "object": [],
+        "object": [
+          "ly_longzhu_3"
+        ],
         "type": "normal",
         "plant": []
       },
@@ -383,275 +389,3816 @@
   ],
   "waves": [
     {
+      "boss_wave": false,
       "wave_index": 1,
       "boss": "",
-      "boss_1_hp_modify": 0,
+      "boss_1_hp_modify": 1,
       "boss2": "",
       "boss_2_hp_modify": 1,
-      "boss_wave": false,
       "subwaves": [
         {
-          "subwave_index": 1,
-          "local_min_wave_time": -1,
+          "subwave_index": 0,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 1,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
             }
           ]
         },
         {
           "subwave_index": 2,
-          "local_min_wave_time": -1,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dijing"
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dijing"
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dijing"
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 3,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 4,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 5,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 6,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 7,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 8,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 9,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
             }
           ]
         }
       ]
     },
     {
+      "boss_wave": false,
       "wave_index": 2,
       "boss": "",
-      "boss_1_hp_modify": 0,
+      "boss_1_hp_modify": 1,
       "boss2": "",
       "boss_2_hp_modify": 1,
-      "boss_wave": false,
       "subwaves": [
         {
-          "subwave_index": 1,
-          "local_min_wave_time": -1,
+          "subwave_index": 0,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_gaoqiao"
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_gaoqiao"
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 1,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
             }
           ]
         },
         {
           "subwave_index": 2,
-          "local_min_wave_time": -1,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_gaoqiao"
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_zhinian"
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_zhinian"
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 3,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 4,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 5,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 6,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 7,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 8,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 9,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
             }
           ]
         }
       ]
     },
     {
+      "boss_wave": false,
       "wave_index": 3,
       "boss": "",
-      "boss_1_hp_modify": 0,
+      "boss_1_hp_modify": 1,
       "boss2": "",
       "boss_2_hp_modify": 1,
-      "boss_wave": false,
       "subwaves": [
         {
-          "subwave_index": 1,
-          "local_min_wave_time": -1,
+          "subwave_index": 0,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_kailu"
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_kailu"
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_yaoguan"
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_yaoguan"
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 1,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
             }
           ]
         },
         {
           "subwave_index": 2,
-          "local_min_wave_time": -1,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dongfeng"
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dongfeng"
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_dongfeng"
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 3,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 4,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 5,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 6,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 7,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 8,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 9,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
             }
           ]
         }
       ]
     },
     {
+      "boss_wave": false,
       "wave_index": 4,
       "boss": "",
-      "boss_1_hp_modify": 0,
+      "boss_1_hp_modify": 1,
       "boss2": "",
       "boss_2_hp_modify": 1,
-      "boss_wave": false,
       "subwaves": [
         {
-          "subwave_index": 1,
-          "local_min_wave_time": -1,
+          "subwave_index": 0,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_zhibuji"
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_zhibuji"
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_longmu"
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_longmu"
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "special_armour_mouse",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 1,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
             }
           ]
         },
         {
           "subwave_index": 2,
-          "local_min_wave_time": -1,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_fuzhou"
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_fuzhou"
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
             },
             {
-              "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_langyabang"
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 3,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 4,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 5,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 6,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 7,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_pingmin",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_pingmin",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 8,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 9,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_kailu",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 6,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 7,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 2,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 3,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 4,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": 5,
+              "prosperity": 0
             }
           ]
         }
       ]
     },
     {
+      "boss_wave": true,
       "wave_index": 5,
-      "boss": "ly_hengha",
-      "boss_1_hp_modify": 1.5,
+      "boss": "ly_mengpo",
+      "boss_1_hp_modify": 1,
       "boss2": "",
       "boss_2_hp_modify": 1,
-      "boss3": "",
-      "boss_3_hp_modify": 1,
-      "boss_wave": true,
       "subwaves": [
         {
-          "subwave_index": 1,
-          "local_min_wave_time": -1,
+          "subwave_index": 0,
           "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
           "enemy_list": [
             {
+              "type": "longyuan_pingmin",
               "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "prosperity": 0
             },
             {
+              "type": "longyuan_pingmin",
               "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "prosperity": 0
             },
             {
+              "type": "longyuan_pingmin",
               "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "prosperity": 0
             },
             {
+              "type": "longyuan_longmu",
               "row": -1,
-              "prosperity": 0,
-              "type": "longyuan_pingmin"
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_longmu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": -1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 1,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            }
+          ]
+        },
+        {
+          "subwave_index": 2,
+          "local_max_wave_time": -1,
+          "local_min_wave_time": -1,
+          "enemy_list": [
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dijing",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_kailu",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_zhinian",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_langyabang",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
+            },
+            {
+              "type": "longyuan_dongfeng",
+              "row": -1,
+              "prosperity": 0
             }
           ]
         }

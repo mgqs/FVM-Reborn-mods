@@ -9,7 +9,7 @@ var _range = 1.5*global.grid_cell_size_x;
 with (obj_enemy_parent) {
 		
 	if (target_type=="air" && point_distance(x, y, _x, _y) < _range && grid_row == other.grid_row) {
-		if (immune_to_ash && hp>other.atk) {
+		if (is_boss || (immune_to_ash && hp>other.atk)) { // BOSS 只吃伤害，绝不进入秒杀分支
 		    // 对免疫灰烬的敌人只造成伤害
 		    hp -= other.atk;
 			event_user(0)
