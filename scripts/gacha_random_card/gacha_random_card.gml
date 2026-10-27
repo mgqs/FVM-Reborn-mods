@@ -363,70 +363,13 @@ function gacha_get_gem_weapons(gem_id) {
 }
 
 /// @function fusion_get_prerequisites()
-/// @desc 卡牌前置表：卡 id → 需要的其它卡 id **数组**（单张也写成数组）
-///       融合卡 7 条（原「二转」口径，2026-10-19 已放宽为拥有本体）
-///       神灵卡 17 条（2026-10-21 加）
-///       抽卡（gacha_pick_random_reward）与诸神商店（obj_gods_store_bg）共用同一份表，
-///       区别只在门槛：抽卡要本体、诸神要二转（见 fusion_prereq_met 的第二参）
+/// @desc 卡牌前置表（老形状 {目标卡: [前置卡 id, …]}）
+///       2026-10-27 数据已外置到 scripts/mod_craft_evo_table（mod/craft 分组），
+///       这里只做转发，抽卡 / 诸神商店 / 融合页不用改调用方式。
+///       ⚠️ 新代码请直接用 mod_evo_table()（带 slot / need），别再用这个扁平版
 /// @return {struct}
 function fusion_get_prerequisites() {
-    return {
-        // ---- 融合卡 ----
-        lizi_god:       ["pan_fried_bun"],      // 融合栗子   ← 生煎锅
-        youyu_god:      ["takoyaki"],           // 融合鱿鱼   ← 章鱼烧
-        ronghehaixing:  ["coal_starfish"],      // 融合海星   ← 炭烧海星
-        ronghedan_god:  ["egg_boiler_pult"],    // 融合煮蛋器 ← 煮蛋器投手
-        ronghehuopen:   ["brazier"],            // 融合火盆   ← 火盆
-        ronghesanxian:  ["triple_wine_rack"],   // 融合三线   ← 三线酒架
-        rongheshuanggu: ["shuanggu"],           // 融合双菇   ← 蚝油双菇
-        ronghedapao:    ["chocolate_cannon"],   // 融合巧克力炮 ← 死神大炮
-        ronghekafei:    ["coffee_cup"],         // 融合咖啡杯   ← 骨瓷咖啡杯
-
-        // ---- 神灵卡 ----
-        sheng_huo:      ["beef_hotpot", "spicy_pot"],        // 圣火 ← 肥牛火锅 + 麻辣香锅（2026-10-23 补双前置）
-        hufa_god:       ["hongliukaochuan", "double_blade_snake"], // 护法 ← 烤串机 + 双刃蛇（同为穿透/斩杀，2026-10-23 补双前置）
-        gongjiang_god:  ["laipishe", "pizza_oven"],          // 工匠 ← 赖皮蛇 + 披萨炉
-        brahma:         ["magic_chicken", "baibianshe"],     // 创造神 ← 幻幻鸡 + 百变蛇（幻幻鸡没有二转，放前面让「二转」只落在百变蛇上）
-        guangming_god:  ["dragon_fruit"],                    // 光明神 ← 火龙果
-        shennong_god:   ["yanhuangma"],                      // 炎帝 ← 炎凰马
-        haiyang_god:    ["hspeed_juicer", "mozhang"],        // 海洋 ← 榨汁机 + 魔杖蛇
-        fengrao_god:    ["zhanqima"],                        // 丰饶神 ← 战旗马
-        clotho:         ["brahma"],                          // 命运 ← 创造神（本体即可，见 prereq_body_only）
-        chongsheng_god: ["xingqiongma", "anranxiaohunfan"],  // 重生神 ← 星穹马 + 天妇罗盖饭
-        sun_god:        ["small_fire", "shuangzi"],          // 太阳神 ← 小火炉 + 双子座精灵
-        heian_god:      ["durian"],                          // 黑暗神 ← 榴莲
-        aurora:         ["blueberry_tower"],                  // 曙光女神 ← 蓝莓信号塔塔（水果塔是未实装卡，2026-10-22 从前置里去掉）
-        houyi_god:      ["ronghesanxian"],                   // 宗布神 ← 融合三线
-        joker:          ["donut", "cat_box"],                // 恶作剧神 ← 多拿滋 + 猫猫盒（猫猫盒只有 0 转，按形态上限兜底＝拥有本体即可）
-        time_god:       ["ice_cream"],                       // 时间神 ← 冰激凌
-        xiangshui_god:  ["berry_dessert"],                   // 宴飨女神 ← 莓果点心
-
-        // ---- 2026-10-22 补全：原版 26 神里此前没登记前置的 15 张 ----
-        war_god:        ["double_water_pipe", "tiancheng"],       // 战神 ← 双向水管 + 天秤座精灵
-        thor:           ["egg_boiler_pult", "shuangyu"],          // 雷神 ← 煮蛋器投手 + 双鱼座精灵
-        fire_god:       ["brazier", "jinniu"],                    // 火神 ← 火盆 + 金牛座精灵
-        moon_god:       ["takoyaki", "juxie"],                    // 月神 ← 章鱼烧 + 巨蟹座精灵
-        power_god:      ["tang_hu_lu"],                           // 大力神 ← 糖葫芦炮弹
-        gaia:           ["chocolate_cannon"],                     // 大地女神 ← 巧克力大炮
-        zhurong:        ["pan_fried_bun", "lizi_god"],            // 赤帝 ← 生煎锅 + 融合栗子
-        rig:            ["starrabbit", "nut_frier"],              // 守护神 ← 星星兔 + 坚果爆炒机
-        ymir:           ["grilled_lizard_pult", "spoon_rabbit"],  // 巨神 ← 烤蜥蜴投手 + 勺勺兔（原灵融煮蛋，2026-10-23 换）
-        save_god:       ["bull_firework", "baiyang"],             // 救世神 ← 金牛烟花 + 白羊座精灵
-        poseidon:       ["rotating_coffee_pot", "shizi"],         // 海神 ← 旋转咖啡喷壶 + 狮子座精灵
-        ghost_god:      ["coal_starfish"],                        // 冥神 ← 炭烧海星
-        odin:           ["tar_sprayer"],                          // 主神 ← 焦油喷壶
-        water_god:      ["cherry_pudding"],                       // 水神 ← 樱桃反弹布丁
-        hundun_god:     ["hamburger"],                            // 混沌神使 ← 汉堡包
-
-        // ---- 2026-10-23 补最后 7 张（用户给定前置，诸神一律要求二转）----
-        firework_dragon_real: ["firework_dragon", "shegengbao"],  // 真·花火龙 ← 花火龙 + 蛇羹煲
-        hera:           ["melon_shield", "chunv"],                // 天后 ← 瓜皮护罩 + 处女座精灵
-        ice_god:        ["cold_drew"],                            // 冰神 ← 冰块冷萃机
-        zeus:           ["athena", "curry_lobster_cannon"],       // 宙斯 ← 雅典娜守护 + 咖喱龙虾炮
-        love_god:       ["sheshou", "triple_wine_rack"],          // 爱神 ← 射手座精灵 + 三线酒架
-        panduola_god:   ["coke_bomb", "pufferfish"],              // 潘多拉 ← 可乐炸弹 + 爆辣河豚（玉兔灯笼，2026-10-23 换）
-        lingrong_god:   ["cotton_candy"]                          // 魔导士软糖 ← 棉花糖
-    };
+    return mod_evo_flat();
 }
 
 /// @function prereq_body_only(card_id)

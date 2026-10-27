@@ -231,7 +231,7 @@ if (craft_top_tab == 3) {
 	}
 
 	if (mouse_check_button_pressed(mb_left)) {
-		// ① 右侧列表：点卡 → 放进第一个空槽（已经在槽里的卡不再进）
+		// ① 右侧列表：点卡 → 整组落槽（进哪个槽由表里的 slot 决定；另一张自动补齐或画灰占位）
 		evo_hover_card = -1;
 		var _n = array_length(evo_list);
 		for (var _r = 0; _r < 8; _r++) {
@@ -242,34 +242,27 @@ if (craft_top_tab == 3) {
 				var _gy = evo_list_y + _r * 96;
 				if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) {
 					var _cid = evo_list[_ci];
-					if (_cid == evo_cards[0] || _cid == evo_cards[1]) break;
-					var _slot = 0;
-					if (evo_cards[0] == "") _slot = 0;
-					else if (evo_cards[1] == "") _slot = 1;
-					else _slot = 1;                  // 两槽都满 → 顶掉第二张
-					evo_cards[_slot] = _cid;
-					// 自动补位：把这张卡的「搭档」放进另一个空槽（用户 2026-10-27 要的效果）
-					var _other = 1 - _slot;
-					if (evo_cards[_other] == "") {
-						var _pn = evo_partner_of(_cid);
-						if (_pn != "" && _pn != _cid) evo_cards[_other] = _pn;
+					if (evo_pick(_cid)) {
+						audio_play_sound(snd_button, 0, 0);
 					}
-					evo_refresh();
-					audio_play_sound(snd_button, 0, 0);
 					exit;
 				}
 			}
 		}
-		// ② 点卡槽 → 取回（凭证槽不响应）
+
+		// ② 点卡槽 → 整组下卡（一组两张，不单独留一张）。灰占位（未拥有）不可点
+		//    ⚠️ 绿色箭头在下面，且 x 与第 2 槽重合 —— 点在箭头区不算点槽（原来会误当成取回）
+		var _on_arrow = point_in_rectangle(mouse_x, mouse_y, evo_arrow_x - 32, evo_arrow_y - 32,
+			evo_arrow_x + 32, evo_arrow_y + 32);
 		for (var _i = 0; _i < 2; _i++) {
+			if (_on_arrow) break;
 			if (point_in_rectangle(mouse_x, mouse_y, evo_slot_x[_i] - 40, evo_slot_y - 45,
 				evo_slot_x[_i] + 40, evo_slot_y + 45)) {
 				if (evo_cards[_i] != "") {
-					evo_cards[_i] = "";
-					evo_refresh();
+					evo_clear();
 					audio_play_sound(snd_button, 0, 0);
-					exit;
 				}
+				exit;
 			}
 		}
 		// ③ 进化按钮

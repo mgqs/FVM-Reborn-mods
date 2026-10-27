@@ -35,18 +35,22 @@ if (craft_top_tab == 3) {
 			if (_cid != "") {
 				if (variable_struct_exists(evo_meta, _cid)) {
 					var _m = evo_meta[$ _cid];
-					// 灰态按「练到过的最高形态」判，跟 evo_check / 诸神商店同一口径（降转会变灰是旧 bug）
-					var _ok = (_m.max_shape >= evo_need_shape);
-					// 卡底照「卡片强化」页 0.25；卡面 0.7，原生立绘超大的卡等比缩进框内（66x84）
-					if (!_ok) shader_set(sh_fusion_gray);
+					// 用户口径（2026-10-27）：只有「未拥有」才上灰 —— 未达转职不灰，卡照常彩色
 					draw_sprite_ext(spr_slot, 0, _cx, _cy - 3, 0.25, 0.25, 0, c_white, 1);
-					if (_m.sprite != -1) {
-						var _fs = evo_face_scale(_m.sprite, 66, 84, 0.7);
-						draw_sprite_ext(_m.sprite, 0, _cx, _cy + 15, _fs, _fs, 0, c_white, 1);
-					}
-					if (!_ok) shader_reset();
+					if (_m.sprite != -1) draw_sprite_ext(_m.sprite, 0, _cx, _cy + 15, 0.7, 0.7, 0, c_white, 1);
 					if (_m.level > 0) draw_sprite_ext(spr_star_slot, _m.level - 1, _cx - 25, _cy - 35, 0.7, 0.7, 0, c_white, 1);
 				}
+			} else if (evo_miss[_i] != "") {
+				// 缺卡占位（照融合页做法）：画「表要求的那一形态」的卡 + 灰滤镜，不可点
+				var _mid   = evo_miss[_i];
+				var _mneed = mod_evo_slot_need(evo_target, _i);
+				var _md    = deck_get_card_data(_mid, (_mneed >= 0) ? _mneed : 0);
+				shader_set(sh_fusion_gray);
+				draw_sprite_ext(spr_slot, 0, _cx, _cy - 3, 0.25, 0.25, 0, c_white, 1);
+				if (_md != noone && ds_map_exists(_md, "sprite")) {
+					draw_sprite_ext(_md[? "sprite"], 0, _cx, _cy + 15, 0.7, 0.7, 0, c_white, 1);
+				}
+				shader_reset();
 			} else {
 				var _lab = (_i == 0) ? spr_evo_label_star : spr_evo_label_normal;
 				draw_sprite_ext(_lab, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 0.9);
@@ -55,14 +59,8 @@ if (craft_top_tab == 3) {
 			// 进化凭证槽：跟另外两个槽同一条水平线（原来整体 +5 偏下，2026-10-27 修）
 			draw_sprite_ext(spr_evo_slot_prop, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 1);
 			if (evo_target != "") {
-				var _has = evo_has_credit(evo_target);
-				// 底板填满槽内窗（槽 58 原生、内窗 ≈38/58 → 38*1.8 ≈ 68）
-				fusion_draw_center(spr_evo_credit_bg, 0, _cx, _cy, 68, !_has);
-				var _m2 = deck_get_card_data(evo_target, 0);
-				if (_m2 != noone && ds_map_exists(_m2, "sprite")) {
-					// 卡面缩进底板中央（46）。旧写法 0.36*(64/44) 会把 338x381 的立绘放大到 177px，盖满整格
-					fusion_draw_center(_m2[? "sprite"], 0, _cx, _cy, 46, !_has);
-				}
+				// 凭证图标 = 金色底板 + 该金卡立绘（绘制细节在 mod/craft 的金卡表里）
+				mod_evo_draw_credit(evo_target, _cx, _cy, mod_evo_has_credit(evo_target));
 			} else {
 				draw_sprite_ext(spr_evo_label_credit, 0, _cx, _cy, 1.8, 1.8, 0, c_white, 0.9);
 			}
@@ -79,8 +77,7 @@ if (craft_top_tab == 3) {
 		draw_sprite_ext(spr_slot_1, 0, evo_res_x, evo_res_y - 3, 0.25, 0.25, 0, c_white, 1);
 		var _mt = deck_get_card_data(evo_target, 0);
 		if (_mt != noone && ds_map_exists(_mt, "sprite")) {
-			var _mts = evo_face_scale(_mt[? "sprite"], 66, 84, 0.7);
-			draw_sprite_ext(_mt[? "sprite"], 0, evo_res_x, evo_res_y + 15, _mts, _mts, 0, c_white, 1);
+			draw_sprite_ext(_mt[? "sprite"], 0, evo_res_x, evo_res_y + 15, 0.7, 0.7, 0, c_white, 1);
 		}
 	} else {
 		draw_sprite_ext(spr_evo_question, 0, evo_res_x, evo_res_y, 2.2, 2.2, 0, c_white, 1);
@@ -108,10 +105,7 @@ if (craft_top_tab == 3) {
 			if (variable_struct_exists(evo_meta, _cid2)) {
 				// 右侧列表不套灰（用户 2026-10-26：变灰只发生在槽位里，列表照常显示）
 				draw_sprite_ext(spr_slot, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
-				if (_m3.sprite != -1) {
-					var _fs3 = evo_face_scale(_m3.sprite, 66, 84, 0.7);
-					draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, _fs3, _fs3, 0, c_white, 1);
-				}
+				if (_m3.sprite != -1) draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
 				draw_set_font(font_pixel);
 				draw_set_colour(c_black);
 				draw_set_halign(fa_center);

@@ -206,7 +206,7 @@ function fusion_recipe_tip(_id){
 	// ② 主卡 / 副卡：**要几转由食谱决定**（need 已按卡的可用形态兜底），不再一律写二转
 	var _main_id = (_shape == 0) ? fusion_pre_card(_id) : _id;
 	var _main_nd = (_shape == 0) ? fusion_main_need_of(_main_id) : (_shape - 1);
-	var _main_sh = fusion_need_shape(_main_id, _main_nd);
+	var _main_sh = mod_fusion_need_shape(_main_id, _main_nd);
 	var _tip = _title + "\n主卡：" + fusion_shape_name(_main_id, _main_sh) + fusion_shape_tag(_main_sh);
 	var _sq = fusion_sub_card(_id);
 	if (_sq.id != "") _tip += "\n副卡：" + fusion_shape_name(_sq.id, _sq.need) + fusion_shape_tag(_sq.need);
@@ -285,21 +285,13 @@ fusion_card_base_s = 0.25;    // 卡底缩放（跟强化页/列表一口径）
 fusion_card_face_s = 0.7;     // 卡面缩放
 
 // ── 三档配置：需金币 / 融合剂（秘制 → 四叶草 → 皇室）──
-fusion_levels = [
-	{ name: "初级", shape: 0, gold: 150000, mat: "secret_spices", mat_n: 1000 },
-	{ name: "深度", shape: 1, gold: 320000, mat: "clover_4",      mat_n: 15   },
-	{ name: "灵魂", shape: 2, gold: 560000, mat: "royal_spices",  mat_n: 1000 }
-];
+fusion_levels = mod_fusion_levels();          // 三档配置（名字/形态/金币/材料）走 mod/craft 表
 // 初融「主卡」要求的形态：0 = 拥有本体即可 / 1 = 一转 / 2 = 二转（**默认值，不是硬规则**）
 // 2026-10-24 用户口径：现有食谱的主卡/副卡一律要二转 → 默认值设 2（数据，不是代码硬编码）
 // 单张融合卡想另配主卡要求 → 写进下面的 fusion_main_needs（卡 id → need），没写的才用这个默认
 // （深度/灵魂 的主卡结构上就是上一形态，不用配；副卡要求全在副卡表里逐条写 need）
-fusion_main_need = 2;
-
-// 初融主卡的**逐条覆盖表**：主卡 id → 要求的形态（0/1/2）
-// 例：把「融合双菇」的主卡（蚝油双菇）改成只要一转 → rongheshuanggu 的主卡是 shuanggu，写 shuanggu: 1
-// 表里没写的卡 → 用 fusion_main_need
-fusion_main_needs = {};
+fusion_main_need   = mod_fusion_main_need();    // 初融主卡默认要求形态（表里配）
+fusion_main_needs  = mod_fusion_main_needs();   // 逐卡覆盖（表里配）
 
 /// @func fusion_recipe_item_id(id, shape) 食谱道具在背包里的 id（诸神商店卖的就是这个）
 function fusion_recipe_item_id(_id, _shape){
@@ -348,7 +340,7 @@ function fusion_card_list(_lv){
 	if (_lv == 1){
 		for (var _i = 0; _i < array_length(fusion_pre_cards); _i++){
 			var _id = fusion_pre_cards[_i];
-			var _mneed = fusion_need_shape(_id, fusion_main_need_of(_id));
+			var _mneed = mod_fusion_need_shape(_id, fusion_main_need_of(_id));
 			if (fusion_owned_max_shape(_id) < _mneed) continue;     // 没练到食谱要求的形态就先不列（槽里会画灰）
 			if (array_get_index(_seen, _id) != -1) continue;
 			array_push(_seen, _id);
@@ -467,27 +459,7 @@ function fusion_confirm_draw(){
 	draw_set_alpha(1);
 }
 
-// 右侧「防御卡」列表的数据表：**顺序 = spr_fusion_recipe0 的帧号**（`gods_goods_registry.fusion_recipe0_frame()`
-// 也按这个顺序算），加卡只能往后接、别插队。前置卡 pre 在下面从 fusion_get_prerequisites() 反查后补进去
-var _pre_tbl = fusion_get_prerequisites();
-
-fusion_demo = [
-	{ id: "ronghedapao"    },   // 融合巧克力炮
-	{ id: "ronghehaixing"  },   // 融合海星
-	{ id: "youyu_god"      },   // 融合鱿鱼
-	{ id: "lizi_god"       },   // 融合栗子
-	{ id: "ronghedan_god"  },   // 融合煮蛋器
-	{ id: "ronghehuopen"   },   // 融合火盆
-	{ id: "ronghesanxian"  },   // 融合三线
-	{ id: "rongheshuanggu" },   // 融合双菇
-	{ id: "ronghekafei"    }    // 融合咖啡杯
-]
-
-// 每张融合卡的「前置卡」直接从 fusion_get_prerequisites() 取，避免手写错
-for (var _di = 0; _di < array_length(fusion_demo); _di++){
-	var _dp = _pre_tbl[$ fusion_demo[_di].id];
-	fusion_demo[_di].pre = (array_length(_dp) > 0) ? _dp[0] : "";
-}
+fusion_demo = mod_fusion_card_order();   // 9 张融合卡的收集顺序 + 初融前置卡（表在 mod/craft）
 
 // ── 融合页列表：整行滚动（不做半行）──
 fusion_recipe_scroll = 0;   // 菜谱列表当前行（实际值，Draw 里向目标值插值）
@@ -507,57 +479,10 @@ function fusion_owned_max_shape(_id){
 	return -1;
 }
 
-// ── 各档「副卡」表：[1]=初级 / [2]=深度 / [3]=灵魂；"" = 这道食谱没有副卡（或卡还没进工程）──
-//    数据来源：官方「防御卡查询」的【融合路径】截图（素材\新普卡-融合卡\*\米苏.jpg、10.21…\spr-dapao-ronghe\米苏.jpg）
-//    路径读法： [主卡] + [副卡] → [结果]
-//    🔴 每条写成 { id:"卡id", need:N }，N = **这道食谱要求的形态**：0 本体 / 1 一转 / 2 二转
-//    🔴 2026-10-25 用户口径：**副卡全部 0 转（只要本体）**，唯一例外是德芙面包（chocolate_bread，need 1）。
-//       下面注释里的「XX二转」是这张卡的**二转形态名**（用来认卡），不是当前要求；要求一律看 need。
-//       need 超过这张卡自己的形态上限时按它的上限算（见 fusion_need_shape，卡本身没二转也不会卡死）
-//    ⚠️ 工程里没有的卡先留空（下面注释写了官方要求的那张），别瞎填
-fusion_sub_cards = [
-	{   // ① 初级
-		ronghedapao:    { id: "chocolate_pult",    need: 0 },   // 脆心巧克力投手（巧克力投手二转形态名）
-		ronghehaixing:  { id: "melon_shield",      need: 0 },   // 锋芒瓜皮护罩（官方「仙人掌花刺身」的顶替：瓜皮系）
-		youyu_god:      { id: "coal_starfish",     need: 0 },   // 芥末海星刺身（炭烧海星；0 转融合鱿鱼是 8 向齐射 → 取多方向卡）
-		lizi_god:       { id: "spicy_pot",         need: 0 },   // 酱香鱿鱼锅（麻辣香锅二转形态名）
-		ronghedan_god:  { id: "ice_egg_boiler_pult", need: 0 },  // 冰河煮蛋器（冰煮蛋器；0 转煮蛋器是投掷溅射+定身 → 取冰系投手）
-		ronghehuopen:   { id: "sugar_roxburghii",  need: 0 },   // 生腌酸刺梨（糖渍刺梨二转形态名）
-		ronghesanxian:  { id: "wine_bottle_bomb",  need: 0 },   // 子母酒瓶弹（酒瓶炸弹二转形态名）
-		rongheshuanggu: { id: "hotdog_cannon",     need: 0 },   // 热狗榴弹炮（热狗大炮二转形态名）
-		ronghekafei:    { id: "gatlin_long_bao",   need: 0 }    // 格林机枪笼包
-	},
-	{   // ② 深度
-		ronghedapao:    { id: "lightning_baguette", need: 0 },   // 雷电长棍面包（官方「霸王美味电鳗」的顶替：电系）
-		ronghehaixing:  { id: "chocolate_bread",   need: 1 },   // 德芙面包（官方「8周年红丝绒」的顶替）⚠ 唯一例外：巧克力面包只有本体+1转，最高只能 1
-		youyu_god:      { id: "double_water_pipe", need: 0 },   // 合金水管（双向水管二转形态名）
-		lizi_god:       { id: "coke_bomb",         need: 0 },   // 燃烧可乐弹（可乐炸弹二转形态名）
-		ronghedan_god:  { id: "stinky_tofu_pult",  need: 0 },   // 铁板臭豆腐投手（臭豆腐投手二转形态名）
-		ronghehuopen:   { id: "durian",            need: 0 },   // 冰河世纪榴莲（榴莲二转形态名）
-		ronghesanxian:  { id: "sheshou",           need: 0 },   // 射手座星宿（射手座精灵二转形态名；1 转三线是「三行各 3 发」→ 取三行多发卡）
-		rongheshuanggu: { id: "coffee_pot",        need: 0 },   // 红温咖啡喷壶（咖啡喷壶二转形态名）
-		ronghekafei:    { id: "coffee_pot",        need: 0 }    // 红温咖啡喷壶（咖啡喷壶二转形态名）
-	},
-	{   // ③ 灵魂
-		ronghedapao:    { id: "flour_sack",        need: 0 },   // 乾坤分身袋（面粉袋二转形态名）
-		ronghehaixing:  { id: "sugar_ball_pult",   need: 0 },   // 可可糖全能投手（官方「王冠蜜糖陷阱」的顶替：灵融＝变追踪）
-		youyu_god:      { id: "nut_frier",         need: 0 },   // 松塔爆破机（坚果爆炒机二转形态名）
-		lizi_god:       { id: "qingse_shishi",     need: 0 },   // 柿柿如意（青涩柿柿二转形态名）
-		ronghedan_god:  { id: "triple_wine_rack",  need: 0 },   // 终结者酒架（三线酒架二转形态名）
-		ronghehuopen:   { id: "ice_bucket_bomb",   need: 0 },   // 杂果冰桶炸弹（冰桶炸弹二转形态名）
-		ronghesanxian:  { id: "oden_pot",          need: 0 },   // 海鲜关东煮喷锅（关东煮喷锅二转形态名；2 转三线「三行 3 发可穿透」→ 取三行穿透卡）
-		rongheshuanggu: { id: "tang_hu_lu",        need: 0 },   // 七彩糖葫芦弹（糖葫芦炮弹二转形态名）
-		ronghekafei:    { id: "coffee_cup",        need: 0 }    // 骨瓷咖啡杯（咖啡杯二转形态名）
-	}
-];
-
-/// @func fusion_need_shape(id, need) 「要的形态」按这张卡自己的上限兜底（0 起）
-/// 例：need 2 但卡只有 0/1 转（card_max_available_shape = 1）→ 按 1 转算，不会永远凑不齐
-function fusion_need_shape(_id, _need){
-	var _max = card_max_available_shape(_id);
-	if (_max < 0) return _need;          // 查不到这张卡：原样返回，别把要求抹成 0
-	return min(_need, _max);
-}
+// ── 三档副卡表：数据在 scripts/mod_craft_fusion_table（mod/craft 分组），这里只引用 ──
+//    每条写成 { id:"卡id", need:N }，N = 这道食谱要求的形态（0 本体 / 1 一转 / 2 二转）
+//    改数据请改 mod_fusion_sub_cards()，别在这里加表
+fusion_sub_cards = mod_fusion_sub_cards();
 
 /// @func fusion_sub_card(id) 当前档位这张融合卡要的副卡 → { id, need }（没有副卡 = { id:"", need:0 }）
 /// need 已经按卡的可用形态兜底过，调用方直接用，不要自己再判「是不是二转」
@@ -573,7 +498,7 @@ function fusion_sub_card_at(_lv, _id){
 	// 表里统一写 { id:"卡id", need:N }；老写法 "卡id" 仍兼容（= 拥有本体即可）
 	if (is_struct(_v)){
 		if (_v.id == "") return { id: "", need: 0 };
-		return { id: _v.id, need: fusion_need_shape(_v.id, _v.need) };
+		return { id: _v.id, need: mod_fusion_need_shape(_v.id, _v.need) };
 	}
 	if (_v == "") return { id: "", need: 0 };
 	return { id: _v, need: 0 };
@@ -594,16 +519,16 @@ function fusion_main_req(){
 	if (_cfg.shape == 0){
 		var _pid = fusion_main_card_id();
 		if (_pid == "") return { id: "", need: 0 };
-		return { id: _pid, need: fusion_need_shape(_pid, fusion_main_need_of(_pid)) };
+		return { id: _pid, need: mod_fusion_need_shape(_pid, fusion_main_need_of(_pid)) };
 	}
 	var _nd = _cfg.shape - 1;
-	return { id: fusion_loaded_id, need: fusion_need_shape(fusion_loaded_id, _nd) };
+	return { id: fusion_loaded_id, need: mod_fusion_need_shape(fusion_loaded_id, _nd) };
 }
 
 /// @func fusion_card_enough(id, need) 这张卡够不够融合用（need 0 = 拥有本体即可）
 function fusion_card_enough(_id, _need){
 	if (_id == "") return false;
-	return fusion_owned_max_shape(_id) >= fusion_need_shape(_id, _need);
+	return fusion_owned_max_shape(_id) >= mod_fusion_need_shape(_id, _need);
 }
 
 /// @func fusion_check() 融合前置统一判定：Draw 的按钮亮暗、Step 的点击提示都走这一份，
@@ -974,10 +899,11 @@ function tg_fx_commit(){
 }
 
 // ─────────────────────────────────────────────────────────────
-// 神级进化页（craft_top_tab == 3）：金卡进化 2026-10-26
-//   布局照原版截图：三槽（前置卡1 / 前置卡2 / 进化凭证）→ ▼ → 结果槽 → 进化按钮
-//   数据：可进化关系 = fusion_get_prerequisites() 里「有前置」的金卡条目（不另建表）
-//   结果槽：**不管有没有进化都提前画出能进化成的金卡**（用户 2026-10-26 口径）
+// 神级进化页（craft_top_tab == 3）：金卡进化
+//   布局照原版截图：三槽（第 1 槽·星座卡 / 第 2 槽·普通卡 / 进化凭证）→ ▼ → 结果槽 → 进化按钮
+//   🔴 数据全在 mod/craft：scripts/mod_craft_evo_table（前置表 / 槽位 / 形态要求 / 凭证绘制）
+//      这个对象只留「界面状态 + 交互状态机」：evo_cards / evo_miss / evo_target → evo_pick / evo_check / evo_do
+//   结果槽：不管能不能进化，都提前画出能进化成的金卡（用户口径）
 // ─────────────────────────────────────────────────────────────
 evo_slot_x  = [x - 455, x - 305, x - 155]      // 卡1 / 卡2 / 进化凭证
 evo_slot_y  = y - 40
@@ -991,7 +917,8 @@ evo_left_x  = x - 662                          // 左侧「金卡进化」竖排
 evo_left_y  = y - 30
 evo_list_x  = x + 196                          // 右侧防御卡列表（与强化页同一套 84×96 / 7 列）
 evo_list_y  = y - 321
-evo_cards   = ["", ""]                         // 两个前置卡槽
+evo_cards   = ["", ""]                         // 两个前置卡槽（0 = 星座槽 / 1 = 普通槽，进哪个槽由表决定）
+evo_miss    = ["", ""]                         // 槽里「表要求、但玩家没有」的卡 → 画需求形态 + 灰滤镜、不可点
 evo_target  = ""                               // 当前能进化成的金卡
 evo_hover_card = -1
 evo_btn_press  = 0
@@ -1003,127 +930,40 @@ evo_fx_pending = undefined
 evo_list    = []
 evo_meta    = {}
 evo_list_dirty = true
-evo_need_shape = 1        // 前置卡最低形态：原版「两张一转卡」（要改成 2 就与诸神商店前置一致）
 
-/// @func evo_prereq_table() 可进化关系表 {金卡id: [前置卡id, …]}（直接取诸神商店/抽卡那张前置表）
-///     ⚠️ 每帧会查好几次 → 第一次算完缓存到 evo_table，之后直接读（切页签/进化后不用刷，算的是注册表不是存档）
-function evo_prereq_table(){
-    if (variable_instance_exists(id, "evo_table")) return evo_table;
-    var _t = fusion_get_prerequisites();
-    var _out = {};
-    var _names = variable_struct_get_names(_t);
-    for (var _i = 0; _i < array_length(_names); _i++){
-        var _v = _t[$ _names[_i]];
-        if (!is_array(_v) || array_length(_v) <= 0) continue;
-        // 只算「gold 金卡」：诸神商店里的融合卡（lizi_god / youyu_god…）不算可进化目标
-        if (is_fusion_card(_names[_i])) continue;
-        _out[$ _names[_i]] = _v;
-    }
-    evo_table = _out;
-    return _out;
-}
+/// 前置关系一律走 mod/craft 的表（scripts/mod_craft_evo_table）
+///   slot 0 = 第 1 槽（星座卡）/ slot 1 = 第 2 槽（普通卡）/ need = 该前置卡要求的形态
+///   这里只做「拿表 + 拼界面状态」，不再自己存一份关系表
 
-/// @func evo_find_target(a, b) 两张前置卡 → 对应的金卡 id（查不到返回 ""）
-function evo_find_target(_a, _b){
-    if (_a == "" || _b == "" || _a == _b) return "";
-    var _t = evo_prereq_table();
-    var _names = variable_struct_get_names(_t);
-    for (var _i = 0; _i < array_length(_names); _i++){
-        var _k = _names[_i];
-        var _arr = _t[$ _k];
-        if (array_length(_arr) != 2) continue;
-        if ((_arr[0] == _a && _arr[1] == _b) || (_arr[0] == _b && _arr[1] == _a)) return _k;
-    }
-    return "";
-}
-
-/// @func evo_find_target_one(a) 只有 1 张前置的金卡（表里有 17 条这种），单卡就能认目标
-function evo_find_target_one(_a){
-    if (_a == "") return "";
-    var _t = evo_prereq_table();
-    var _names = variable_struct_get_names(_t);
-    for (var _i = 0; _i < array_length(_names); _i++){
-        var _k = _names[_i];
-        var _arr = _t[$ _k];
-        if (array_length(_arr) == 1 && _arr[0] == _a) return _k;
-    }
-    return "";
-}
-
-/// @func evo_partner_of(card_id) 这张卡的「搭档」——同一张金卡前置里的另一张（2026-10-27 用户要的自动补位）
-///       只返回**玩家已拥有**的搭档，且优先选「金卡还没拿到」的那组；找不到返回 ""
-function evo_partner_of(_card_id){
-    var _t = evo_prereq_table();
-    var _names = variable_struct_get_names(_t);
-    var _owned = "";
-    for (var _i = 0; _i < array_length(_names); _i++){
-        var _k = _names[_i];
-        var _arr = _t[$ _k];
-        if (array_length(_arr) != 2) continue;
-        var _p = "";
-        if (_arr[0] == _card_id) _p = _arr[1];
-        else if (_arr[1] == _card_id) _p = _arr[0];
-        if (_p == "") continue;
-        if (!is_card_unlocked(_p)) continue;
-        if (!is_card_unlocked(_k)) return _p;      // 最优：能成全一张还没有的金卡
-        if (_owned == "") _owned = _p;
-    }
-    return _owned;
-}
-
-/// @func evo_credit_id(target) 进化凭证的材质 id（一张金卡一种）
-function evo_credit_id(_target){ return "evo_credit_" + string(_target); }
-
-/// @func evo_face_scale(spr, bw, bh, base) 卡面缩放：正常卡照旧用 base（0.7），
-///     只有「原生立绘特别大」的卡（如 338x381 的金卡）才等比缩到框内，避免撑出槽位
-function evo_face_scale(_spr, _bw, _bh, _base){
-    if (_spr == -1 || _spr == noone) return _base;
-    var _w = sprite_get_width(_spr), _h = sprite_get_height(_spr);
-    if (_w <= 0 || _h <= 0) return _base;
-    return min(_base, min(_bw / _w, _bh / _h));
-}
-
-/// @func evo_has_credit(target) 有没有这张金卡的进化凭证（debug 模式视为有，方便测试）
-function evo_has_credit(_target){
-    if (_target == "") return false;
-    if (global.debug) return true;
-    return get_material_amount(evo_credit_id(_target)) > 0;
-}
-
-/// @func evo_card_ready(id) 前置卡是否达到要求形态（默认一转）
-function evo_card_ready(_id){
-    if (_id == "") return false;
-    if (!is_card_unlocked(_id)) return false;
-    return get_card_info_simple(_id).max_shape >= evo_need_shape;
-}
-
-/// @func evo_refresh() 重算 evo_target（两槽都空 / 只有一张 都算一遍）
-function evo_refresh(){
+/// @func evo_clear() 两个槽 + 缺卡占位一起清空
+function evo_clear(){
+    evo_cards = ["", ""];
+    evo_miss  = ["", ""];
     evo_target = "";
-    if (evo_cards[0] == "") return;
-    if (evo_cards[1] != "") evo_target = evo_find_target(evo_cards[0], evo_cards[1]);
-    else evo_target = evo_find_target_one(evo_cards[0]);      // 只有 1 张前置的金卡（17 张）
 }
 
-/// @func evo_check() 能不能进化 → { ok, reason, target }
+/// @func evo_apply(target, slot, card_id) 落槽：规则（进哪槽 / 另一槽补谁）在 mod_evo_resolve，这里只存状态
+function evo_apply(_target, _slot, _card_id){
+    var _r = mod_evo_resolve(_target, _slot, _card_id);
+    evo_cards  = _r.cards;
+    evo_miss   = _r.miss;
+    evo_target = _r.target;
+}
+
+/// @func evo_pick(card_id) 点右侧列表的卡 → 整组落槽（找哪个目标 / 进哪一槽的规则在 mod_evo_pick_target）
+/// @return bool 是否进场成功
+function evo_pick(_card_id){
+    var _p = mod_evo_pick_target(_card_id);
+    if (is_undefined(_p)) return false;
+    evo_apply(_p.target, _p.slot, _card_id);
+    return true;
+}
+
+/// @func evo_check() 能不能进化（判定规则在 mod_evo_check，这里只把状态喂进去）
+/// @return { ok, reason, target }
 function evo_check(){
-    var _r = { ok:false, reason:"", target:"" };
-    evo_refresh();
-    _r.target = evo_target;
-    if (evo_cards[0] == ""){ _r.reason = "先选一张卡"; return _r; }
-    if (evo_target == ""){ _r.reason = "这两张卡无法进化"; return _r; }
-    for (var _i = 0; _i < 2; _i++){
-        var _c = evo_cards[_i];
-        if (_c == "") continue;
-        if (is_card_unlocked(evo_target)){ _r.reason = "已经拥有这张金卡"; return _r; }
-        if (!is_card_unlocked(_c)){ _r.reason = "没有这张卡"; return _r; }
-        if (get_card_info_simple(_c).max_shape < evo_need_shape){
-            _r.reason = "前置卡形态不足"; return _r;
-        }
-    }
-    if (!evo_has_credit(evo_target)){ _r.reason = "缺少进化凭证"; return _r; }
-    _r.ok = true;
-    return _r;
+    var _r = mod_evo_check(evo_target, evo_cards, evo_miss);
+    return { ok: _r.ok, reason: _r.reason, target: evo_target };
 }
 
 /// @func evo_do() 进化：成功 → 播 55 帧特效，播完才落账（与转职同一套「延迟结算」）
@@ -1142,45 +982,33 @@ function evo_commit(){
     var _p = evo_fx_pending;
     evo_fx_pending = undefined;
     if (is_undefined(_p)) return;
-    var _lvl = global.save_data.unlocked_items.max_skill_level;
-    // 🔴 星级继承已取消（2026-10-27 用户：说明文字和这个效果都不要）→ 进化出来的金卡星级一律从 0 起
-    if (!global.debug) add_material_amount(evo_credit_id(_p.target), -1);
-    unlock_card(_p.target, 0, 0, _lvl);
-    evo_cards = ["", ""];
-    evo_target = "";
+    // 扣凭证 + 解锁金卡（星级从 0 起）都在 mod_evo_reward 里
+    mod_evo_reward(_p.target);
+    evo_clear();
     evo_list_dirty = true;
     if (variable_global_exists("notice_list")) global.notice_list = [];
     show_notice("进化成功！", 80);
     save_file(global.save_slot);
 }
 
-/// @func evo_rebuild() 右侧列表：只列「可进化系列」里已拥有的卡（不在系列里的不画）
+/// @func evo_rebuild() 右侧列表：只列 mod_evo_needed_cards() 说的那批「现在还需要的前置卡」里已拥有的
+///   （哪张金卡已拥有 → 它的前置不再列；前置本身是金卡/融合卡，只要还被需要就照常列）
 function evo_rebuild(){
     evo_meta = {};
     var _out = [];
-    var _uc = global.save_data.unlocked_cards;
-    var _t = evo_prereq_table();
-    // 🔴 2026-10-27 用户：右侧只列「还需要的前置卡」——
-    //    某张金卡已经拥有了 → 它的前置卡不再出现在列表里；金卡本身若还是别的金卡的前置，照常列出
-    var _need = {};
-    var _names = variable_struct_get_names(_t);
-    for (var _i = 0; _i < array_length(_names); _i++){
-        var _k = _names[_i];
-        if (is_card_unlocked(_k)) continue;                  // 这张金卡已有 → 前置不用再列
-        var _arr = _t[$ _k];
-        for (var _j = 0; _j < array_length(_arr); _j++) _need[$ _arr[_j]] = true;
-    }
+    var _uc  = global.save_data.unlocked_cards;
+    var _need = mod_evo_needed_cards();
+    var _set = {};
+    for (var _i = 0; _i < array_length(_need); _i++) _set[$ _need[_i]] = true;
     for (var _i = 0; _i < array_length(_uc); _i++){
         var _id = _uc[_i].id;
-        if (!variable_struct_exists(_need, _id)) continue;
+        if (!variable_struct_exists(_set, _id)) continue;
         var _d = deck_get_card_data(_id, _uc[_i].shape);
         if (_d != noone){
             evo_meta[$ _id] = {
-                shape:     _uc[_i].shape,
-                max_shape: _uc[_i].max_shape,
-                level:     _uc[_i].max_level,
-                sprite:    ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
-                cost:      ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
+                sprite: ds_map_exists(_d, "sprite") ? _d[? "sprite"] : -1,
+                level:  _uc[_i].max_level,          // 星级（画左上角星星）
+                cost:   ds_map_exists(_d, "cost")   ? _d[? "cost"]   : 0
             };
         }
         array_push(_out, _id);

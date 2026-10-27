@@ -9,7 +9,9 @@
   "resourceVersion":"2.0",
   "viewLocked":false,
   "visible":true,
-  "folders":[],
+  "folders":[
+    {"name":"Craft","path":"folders/脚本/mod/Craft.yy",},
+  ],
   "listItems":[
     {"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},
     {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},

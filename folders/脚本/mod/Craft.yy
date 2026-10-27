@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"Craft",
+  "folderPath":"folders/脚本/mod/Craft.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Craft",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"mod_craft_evo_table","path":"scripts/mod_craft_evo_table/mod_craft_evo_table.yy",},
+    {"name":"mod_craft_fusion_table","path":"scripts/mod_craft_fusion_table/mod_craft_fusion_table.yy",},
+  ],
+}
