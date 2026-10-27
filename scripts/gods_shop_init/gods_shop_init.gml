@@ -210,7 +210,7 @@ function gods_shop_init()
     });
     register_gods_goods("gaia_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "gaia",
         target_shape: 1,
@@ -220,7 +220,7 @@ function gods_shop_init()
     });
     register_gods_goods("aurora_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "aurora",
         target_shape: 1,
@@ -230,7 +230,7 @@ function gods_shop_init()
     });
     register_gods_goods("zhurong_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "zhurong",
         target_shape: 1,
@@ -240,7 +240,7 @@ function gods_shop_init()
     });
     register_gods_goods("rig_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "rig",
         target_shape: 1,
@@ -250,7 +250,7 @@ function gods_shop_init()
     });
     register_gods_goods("brahma_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "brahma",
         target_shape: 1,
@@ -260,7 +260,7 @@ function gods_shop_init()
     });
     register_gods_goods("clotho_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "clotho",
         target_shape: 1,
@@ -270,7 +270,7 @@ function gods_shop_init()
     });
     register_gods_goods("time_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "time_god",
         target_shape: 1,
@@ -280,7 +280,7 @@ function gods_shop_init()
     });
     register_gods_goods("fire_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "fire_god",
         target_shape: 1,
@@ -290,17 +290,17 @@ function gods_shop_init()
     });
     register_gods_goods("firework_dragon_real_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "firework_dragon_real",
         target_shape: 1,
         description: "真·灼灼花火龙：放下后立刻返还种植消耗的火苗",
-        display_name: "一转凭证（真·花火龙）",
+        display_name: "三转凭证（真·花火龙）",
         spr: spr_voucher_firework_dragon
     });
     register_gods_goods("thor_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "thor",
         target_shape: 1,
@@ -310,7 +310,7 @@ function gods_shop_init()
     });
     register_gods_goods("war_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "war_god",
         target_shape: 1,
@@ -320,7 +320,7 @@ function gods_shop_init()
     });
     register_gods_goods("odin_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "odin",
         target_shape: 1,
@@ -330,7 +330,7 @@ function gods_shop_init()
     });
     register_gods_goods("moon_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "moon_god",
         target_shape: 1,
@@ -340,7 +340,7 @@ function gods_shop_init()
     });
     register_gods_goods("ymir_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "ymir",
         target_shape: 1,
@@ -350,7 +350,7 @@ function gods_shop_init()
     });
     register_gods_goods("hera_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "hera",
         target_shape: 1,
@@ -360,7 +360,7 @@ function gods_shop_init()
     });
     register_gods_goods("sun_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "sun_god",
         target_shape: 1,
@@ -370,7 +370,7 @@ function gods_shop_init()
     });
     register_gods_goods("poseidon_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "poseidon",
         target_shape: 1,
@@ -380,7 +380,7 @@ function gods_shop_init()
     });
     register_gods_goods("ice_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "ice_god",
         target_shape: 1,
@@ -390,7 +390,7 @@ function gods_shop_init()
     });
     register_gods_goods("ghost_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "ghost_god",
         target_shape: 1,
@@ -400,7 +400,7 @@ function gods_shop_init()
     });
     register_gods_goods("zeus_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "zeus",
         target_shape: 1,
@@ -410,7 +410,7 @@ function gods_shop_init()
     });
     register_gods_goods("love_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "love_god",
         target_shape: 1,
@@ -420,7 +420,7 @@ function gods_shop_init()
     });
     register_gods_goods("water_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "water_god",
         target_shape: 1,
@@ -430,7 +430,7 @@ function gods_shop_init()
     });
     register_gods_goods("power_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "15",
         unlock_item_id: "power_god",
         target_shape: 1,
@@ -440,7 +440,7 @@ function gods_shop_init()
     });
     register_gods_goods("sheng_huo_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "sheng_huo",
         target_shape: 1,
@@ -450,7 +450,7 @@ function gods_shop_init()
     });
     register_gods_goods("save_god_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "save_god",
         target_shape: 1,
@@ -460,7 +460,7 @@ function gods_shop_init()
     });
     register_gods_goods("joker_1",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "joker",
         target_shape: 1,
@@ -470,7 +470,7 @@ function gods_shop_init()
     });
     register_gods_goods("gaia_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "gaia",
         target_shape: 2,
@@ -480,7 +480,7 @@ function gods_shop_init()
     });
     register_gods_goods("aurora_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "aurora",
         target_shape: 2,
@@ -490,7 +490,7 @@ function gods_shop_init()
     });
     register_gods_goods("zhurong_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "zhurong",
         target_shape: 2,
@@ -500,7 +500,7 @@ function gods_shop_init()
     });
     register_gods_goods("rig_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "rig",
         target_shape: 2,
@@ -510,7 +510,7 @@ function gods_shop_init()
     });
     register_gods_goods("brahma_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "brahma",
         target_shape: 2,
@@ -520,7 +520,7 @@ function gods_shop_init()
     });
     register_gods_goods("clotho_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "clotho",
         target_shape: 2,
@@ -530,7 +530,7 @@ function gods_shop_init()
     });
     register_gods_goods("time_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "time_god",
         target_shape: 2,
@@ -540,7 +540,7 @@ function gods_shop_init()
     });
     register_gods_goods("fire_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "fire_god",
         target_shape: 2,
@@ -550,17 +550,17 @@ function gods_shop_init()
     });
     register_gods_goods("firework_dragon_real_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "firework_dragon_real",
         target_shape: 2,
         description: "真·炽焰花火龙：额外产出6朵火苗",
-        display_name: "二转凭证（真·花火龙）",
+        display_name: "四转凭证（真·花火龙）",
         spr: spr_voucher_firework_dragon_1
     });
     register_gods_goods("thor_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "thor",
         target_shape: 2,
@@ -570,7 +570,7 @@ function gods_shop_init()
     });
     register_gods_goods("war_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "war_god",
         target_shape: 2,
@@ -580,7 +580,7 @@ function gods_shop_init()
     });
     register_gods_goods("odin_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "odin",
         target_shape: 2,
@@ -590,7 +590,7 @@ function gods_shop_init()
     });
     register_gods_goods("moon_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "moon_god",
         target_shape: 2,
@@ -600,7 +600,7 @@ function gods_shop_init()
     });
     register_gods_goods("ymir_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "ymir",
         target_shape: 2,
@@ -610,7 +610,7 @@ function gods_shop_init()
     });
     register_gods_goods("hera_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "hera",
         target_shape: 2,
@@ -620,7 +620,7 @@ function gods_shop_init()
     });
     register_gods_goods("sun_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "sun_god",
         target_shape: 2,
@@ -630,7 +630,7 @@ function gods_shop_init()
     });
     register_gods_goods("poseidon_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "poseidon",
         target_shape: 2,
@@ -640,7 +640,7 @@ function gods_shop_init()
     });
     register_gods_goods("ice_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "ice_god",
         target_shape: 2,
@@ -650,7 +650,7 @@ function gods_shop_init()
     });
     register_gods_goods("ghost_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "ghost_god",
         target_shape: 2,
@@ -660,7 +660,7 @@ function gods_shop_init()
     });
     register_gods_goods("zeus_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "zeus",
         target_shape: 2,
@@ -670,7 +670,7 @@ function gods_shop_init()
     });
     register_gods_goods("love_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "love_god",
         target_shape: 2,
@@ -680,7 +680,7 @@ function gods_shop_init()
     });
     register_gods_goods("water_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "water_god",
         target_shape: 2,
@@ -690,7 +690,7 @@ function gods_shop_init()
     });
     register_gods_goods("power_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "25",
         unlock_item_id: "power_god",
         target_shape: 2,
@@ -700,7 +700,7 @@ function gods_shop_init()
     });
     register_gods_goods("sheng_huo_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "sheng_huo",
         target_shape: 2,
@@ -710,7 +710,7 @@ function gods_shop_init()
     });
     register_gods_goods("save_god_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "save_god",
         target_shape: 2,
@@ -720,7 +720,7 @@ function gods_shop_init()
     });
     register_gods_goods("joker_2",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "30",
         unlock_item_id: "joker",
         target_shape: 2,
@@ -730,7 +730,7 @@ function gods_shop_init()
     });
     register_gods_goods("gaia_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "gaia",
         target_shape: 3,
@@ -740,7 +740,7 @@ function gods_shop_init()
     });
     register_gods_goods("aurora_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "aurora",
         target_shape: 3,
@@ -750,7 +750,7 @@ function gods_shop_init()
     });
     register_gods_goods("zhurong_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "zhurong",
         target_shape: 3,
@@ -760,7 +760,7 @@ function gods_shop_init()
     });
     register_gods_goods("rig_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "65",
         unlock_item_id: "rig",
         target_shape: 3,
@@ -770,7 +770,7 @@ function gods_shop_init()
     });
     register_gods_goods("clotho_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "65",
         unlock_item_id: "clotho",
         target_shape: 3,
@@ -780,7 +780,7 @@ function gods_shop_init()
     });
     register_gods_goods("brahma_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "65",
         unlock_item_id: "brahma",
         target_shape: 3,
@@ -790,7 +790,7 @@ function gods_shop_init()
     });
     register_gods_goods("time_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "time_god",
         target_shape: 3,
@@ -800,7 +800,7 @@ function gods_shop_init()
     });
     register_gods_goods("fire_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "fire_god",
         target_shape: 3,
@@ -810,7 +810,7 @@ function gods_shop_init()
     });
     register_gods_goods("thor_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "thor",
         target_shape: 3,
@@ -820,7 +820,7 @@ function gods_shop_init()
     });
     register_gods_goods("war_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "war_god",
         target_shape: 3,
@@ -830,7 +830,7 @@ function gods_shop_init()
     });
     register_gods_goods("odin_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "odin",
         target_shape: 3,
@@ -840,7 +840,7 @@ function gods_shop_init()
     });
     register_gods_goods("moon_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "moon_god",
         target_shape: 3,
@@ -850,7 +850,7 @@ function gods_shop_init()
     });
     register_gods_goods("ymir_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "ymir",
         target_shape: 3,
@@ -860,7 +860,7 @@ function gods_shop_init()
     });
     register_gods_goods("hera_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "hera",
         target_shape: 3,
@@ -870,7 +870,7 @@ function gods_shop_init()
     });
     register_gods_goods("sun_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "sun_god",
         target_shape: 3,
@@ -880,7 +880,7 @@ function gods_shop_init()
     });
     register_gods_goods("poseidon_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "poseidon",
         target_shape: 3,
@@ -890,7 +890,7 @@ function gods_shop_init()
     });
     register_gods_goods("ice_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "ice_god",
         target_shape: 3,
@@ -900,7 +900,7 @@ function gods_shop_init()
     });
     register_gods_goods("ghost_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "ghost_god",
         target_shape: 3,
@@ -910,7 +910,7 @@ function gods_shop_init()
     });
     register_gods_goods("zeus_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "zeus",
         target_shape: 3,
@@ -920,7 +920,7 @@ function gods_shop_init()
     });
     register_gods_goods("love_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "love_god",
         target_shape: 3,
@@ -930,7 +930,7 @@ function gods_shop_init()
     });
     register_gods_goods("water_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "water_god",
         target_shape: 3,
@@ -940,7 +940,7 @@ function gods_shop_init()
     });
     register_gods_goods("power_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "35",
         unlock_item_id: "power_god",
         target_shape: 3,
@@ -950,7 +950,7 @@ function gods_shop_init()
     });
     register_gods_goods("sheng_huo_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "65",
         unlock_item_id: "sheng_huo",
         target_shape: 3,
@@ -960,7 +960,7 @@ function gods_shop_init()
     });
     register_gods_goods("save_god_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "50",
         unlock_item_id: "save_god",
         target_shape: 3,
@@ -970,7 +970,7 @@ function gods_shop_init()
     });
     register_gods_goods("joker_3",
     {
-        type: "shape",
+        type: "tvoucher",
         cost: "40",
         unlock_item_id: "joker",
         target_shape: 3,
@@ -990,7 +990,7 @@ register_gods_goods("xiangshui_god",
 
 register_gods_goods("xiangshui_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "30",
     unlock_item_id: "xiangshui_god",
     target_shape: 1,
@@ -1001,7 +1001,7 @@ register_gods_goods("xiangshui_god_1",
 
 register_gods_goods("xiangshui_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "xiangshui_god",
     target_shape: 2,
@@ -1012,7 +1012,7 @@ register_gods_goods("xiangshui_god_2",
 
 register_gods_goods("xiangshui_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "xiangshui_god",
     target_shape: 3,
@@ -1032,7 +1032,7 @@ register_gods_goods("fengrao_god",
 
 register_gods_goods("fengrao_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "30",
     unlock_item_id: "fengrao_god",
     target_shape: 1,
@@ -1043,7 +1043,7 @@ register_gods_goods("fengrao_god_1",
 
 register_gods_goods("fengrao_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "fengrao_god",
     target_shape: 2,
@@ -1054,7 +1054,7 @@ register_gods_goods("fengrao_god_2",
 
 register_gods_goods("fengrao_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "fengrao_god",
     target_shape: 3,
@@ -1074,7 +1074,7 @@ register_gods_goods("panduola_god",
 
 register_gods_goods("panduola_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "15",
     unlock_item_id: "panduola_god",
     target_shape: 1,
@@ -1085,7 +1085,7 @@ register_gods_goods("panduola_god_1",
 
 register_gods_goods("panduola_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "25",
     unlock_item_id: "panduola_god",
     target_shape: 2,
@@ -1096,7 +1096,7 @@ register_gods_goods("panduola_god_2",
 
 register_gods_goods("panduola_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "35",
     unlock_item_id: "panduola_god",
     target_shape: 3,
@@ -1116,7 +1116,7 @@ register_gods_goods("houyi_god",
 
 register_gods_goods("houyi_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "35",
     unlock_item_id: "houyi_god",
     target_shape: 1,
@@ -1127,7 +1127,7 @@ register_gods_goods("houyi_god_1",
 
 register_gods_goods("houyi_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "houyi_god",
     target_shape: 2,
@@ -1138,7 +1138,7 @@ register_gods_goods("houyi_god_2",
 
 register_gods_goods("houyi_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "65",
     unlock_item_id: "houyi_god",
     target_shape: 3,
@@ -1158,7 +1158,7 @@ register_gods_goods("gongjiang_god",
 
 register_gods_goods("gongjiang_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "35",
     unlock_item_id: "gongjiang_god",
     target_shape: 1,
@@ -1169,7 +1169,7 @@ register_gods_goods("gongjiang_god_1",
 
 register_gods_goods("gongjiang_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "gongjiang_god",
     target_shape: 2,
@@ -1180,7 +1180,7 @@ register_gods_goods("gongjiang_god_2",
 
 register_gods_goods("gongjiang_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "65",
     unlock_item_id: "gongjiang_god",
     target_shape: 3,
@@ -1216,7 +1216,7 @@ register_gods_goods("hundun_god",
 
 register_gods_goods("hundun_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "25",
     unlock_item_id: "hundun_god",
     target_shape: 1,
@@ -1227,7 +1227,7 @@ register_gods_goods("hundun_god_1",
 
 register_gods_goods("hundun_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "30",
     unlock_item_id: "hundun_god",
     target_shape: 2,
@@ -1238,7 +1238,7 @@ register_gods_goods("hundun_god_2",
 
 register_gods_goods("hundun_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "hundun_god",
     target_shape: 3,
@@ -1258,7 +1258,7 @@ register_gods_goods("lingrong_god",
 
 register_gods_goods("lingrong_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "20",
     unlock_item_id: "lingrong_god",
     target_shape: 1,
@@ -1269,7 +1269,7 @@ register_gods_goods("lingrong_god_1",
 
 register_gods_goods("lingrong_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "lingrong_god",
     target_shape: 2,
@@ -1289,7 +1289,7 @@ register_gods_goods("shennong_god",
 
 register_gods_goods("shennong_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "15",
     unlock_item_id: "shennong_god",
     target_shape: 1,
@@ -1300,7 +1300,7 @@ register_gods_goods("shennong_god_1",
 
 register_gods_goods("shennong_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "25",
     unlock_item_id: "shennong_god",
     target_shape: 2,
@@ -1320,7 +1320,7 @@ register_gods_goods("chongsheng_god",
 
 register_gods_goods("chongsheng_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "25",
     unlock_item_id: "chongsheng_god",
     target_shape: 1,
@@ -1331,7 +1331,7 @@ register_gods_goods("chongsheng_god_1",
 
 register_gods_goods("chongsheng_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "30",
     unlock_item_id: "chongsheng_god",
     target_shape: 2,
@@ -1342,7 +1342,7 @@ register_gods_goods("chongsheng_god_2",
 
 register_gods_goods("chongsheng_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "chongsheng_god",
     target_shape: 3,
@@ -1362,7 +1362,7 @@ register_gods_goods("hufa_god",
 
 register_gods_goods("hufa_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "35",
     unlock_item_id: "hufa_god",
     target_shape: 1,
@@ -1373,7 +1373,7 @@ register_gods_goods("hufa_god_1",
 
 register_gods_goods("hufa_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "hufa_god",
     target_shape: 2,
@@ -1384,7 +1384,7 @@ register_gods_goods("hufa_god_2",
 
 register_gods_goods("hufa_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "65",
     unlock_item_id: "hufa_god",
     target_shape: 3,
@@ -1404,7 +1404,7 @@ register_gods_goods("haiyang_god",
 
 register_gods_goods("haiyang_god_1",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "30",
     unlock_item_id: "haiyang_god",
     target_shape: 1,
@@ -1415,7 +1415,7 @@ register_gods_goods("haiyang_god_1",
 
 register_gods_goods("haiyang_god_2",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "40",
     unlock_item_id: "haiyang_god",
     target_shape: 2,
@@ -1426,7 +1426,7 @@ register_gods_goods("haiyang_god_2",
 
 register_gods_goods("haiyang_god_3",
 {
-    type: "shape",
+    type: "tvoucher",
     cost: "50",
     unlock_item_id: "haiyang_god",
     target_shape: 3,

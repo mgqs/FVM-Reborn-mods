@@ -40,7 +40,8 @@ function gods_shop_list_recharge()
         }
         else if (shop_button_select == 2)
         {
-            if (_g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
+            // 三/四/终转凭证（type "tvoucher"）与食谱都进这一页
+            if (_g1.type == "tvoucher" || _g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
         }
     }
 
@@ -185,12 +186,27 @@ function gods_shop_list_recharge()
                     inst.goods_name = goods_info.display_name;
                     inst.tooltip_text = goods_info.description;
                     inst.recipe_id = _is_recipe_b2 ? goods_info.recipe_id : "";
-                    inst.btn_type = _is_recipe_b2 ? "recipe" : "shape";
+                    // 三/四/终转凭证现在是「买道具」（type "tvoucher"），不再直接升形态
+                    var _is_tv_b2 = (goods_info.type == "tvoucher");
+                    inst.btn_type = _is_recipe_b2 ? "recipe" : (_is_tv_b2 ? "tvoucher" : "shape");
 
                     if (_is_recipe_b2)
                     {
                         // 同上：只看背包里还有没有这本食谱（灵融之后还能回头再买初融 / 深融食谱）
                         if (has_fusion_recipe(goods_info.unlock_item_id, goods_info.target_shape)) inst.is_disabled = true;
+                    }
+                    else if (_is_tv_b2)
+                    {
+                        // 转职凭证道具：卡得有 → 这一档还没转上去 → 背包里还没这张凭证
+                        if (!is_card_unlocked(goods_info.unlock_item_id))
+                        {
+                            inst.meet_requirements = false;
+                            inst.requirement_notice = "还没拥有这张卡，无法兑换凭证！";
+                        }
+                        else if (get_card_info_simple(goods_info.unlock_item_id).max_shape >= goods_info.target_shape)
+                            inst.is_disabled = true;
+                        else if (get_material_amount(transfer_credit_id(goods_info.unlock_item_id, goods_info.target_shape)) > 0)
+                            inst.is_disabled = true;
                     }
                     else
                     {

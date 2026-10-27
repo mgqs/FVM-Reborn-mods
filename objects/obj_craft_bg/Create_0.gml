@@ -729,24 +729,24 @@ function tg_target_shape(_id){
     return _ms + 1;
 }
 
-/// @func tg_gold_cost(shape) 转职金币
+/// @func tg_gold_cost(tier) 转职金币（tier = 凭证档位 1~5，不是卡形态）
 /// 🔴 用户定价：一转 3,000 / 二转 15,000
-///    金卡三/四/终转还没有凭证（威望商店只到二转），先按「三转=一转价、四转/终转=二转价」占位
-function tg_gold_cost(_shape){
-    if (_shape == 1 || _shape == 3) return 3000;
+///    三/四/终转还没有定价，先按「三转=一转价、四转/终转=二转价」占位
+function tg_gold_cost(_tier){
+    if (_tier == 1 || _tier == 3) return 3000;
     return 15000;
 }
 
-/// @func tg_assure_cost(shape) 保险金（货币 = 金币）
-/// 🔴 用户定价：一转 7,500 / 二转 50,000；金卡三/四/终转先按一/二转价占位
-function tg_assure_cost(_shape){
-    if (_shape == 1 || _shape == 3) return 7500;
+/// @func tg_assure_cost(tier) 保险金（货币 = 金币；tier = 凭证档位 1~5）
+/// 🔴 用户定价：一转 7,500 / 二转 50,000；三/四/终转先按一/二转价占位
+function tg_assure_cost(_tier){
+    if (_tier == 1 || _tier == 3) return 7500;
     return 50000;
 }
 
-/// @func tg_rate(shape) 成功率（%）：一转 30，二转及以后 20
-function tg_rate(_shape){
-    if (_shape == 1 || _shape == 3) return 30;
+/// @func tg_rate(tier) 成功率（%）：一转 / 三转 30，其余 20
+function tg_rate(_tier){
+    if (_tier == 1 || _tier == 3) return 30;
     return 20;
 }
 
@@ -810,18 +810,19 @@ function tg_check(){
     _r.assure = tg_assure ? tg_assure_cost(1) : 0;
     if (tg_card == ""){ _r.reason = "先选一张卡"; return _r; }
 
-    var _shape = tg_target_shape(tg_card);            // 只能按顺序：目标档 = max_shape + 1
+    var _shape = tg_target_shape(tg_card);            // 只能按顺序：目标形态 = max_shape + 1
+    var _tier  = transfer_credit_tier(tg_card, _shape);   // 档位：普卡 1/2，金卡 3/4/5
     _r.shape = _shape;
-    _r.rate = tg_rate(_shape);
-    _r.gold = tg_gold_cost(_shape);
-    _r.assure = tg_assure ? tg_assure_cost(_shape) : 0;
+    _r.rate = tg_rate(_tier);
+    _r.gold = tg_gold_cost(_tier);
+    _r.assure = tg_assure ? tg_assure_cost(_tier) : 0;
 
     // 上限走 transfer_credit_card_shapes_max（player_deck 形态表 ∪ plant_registry），
     // 只读 card_max_available_shape 会把「注册表里只有 0 转」的卡全部误报成已转满
     if (_shape > transfer_credit_card_shapes_max(tg_card)){ _r.reason = "此卡已无法转职"; return _r; }
 
     _r.has_credit = transfer_credit_has(tg_card, _shape);
-    if (!_r.has_credit){ _r.reason = "缺少" + transfer_credit_tier_name(_shape); return _r; }
+    if (!_r.has_credit){ _r.reason = "缺少" + transfer_credit_tier_name(_tier); return _r; }
 
     if (!global.debug && global.save_data.player.gold < _r.gold + _r.assure){ _r.reason = "金币不足"; return _r; }
     _r.ok = true;

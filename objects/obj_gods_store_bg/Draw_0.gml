@@ -136,7 +136,9 @@ for (var i = 0; i < 4; i++)
 
                     if (card_info_simple != false)
                     {
-                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape)
+                        // 已经转上去 / 背包里已经有这张凭证 → 盖售罄
+                        if (get_card_info_simple(target_card_id).max_shape >= goods_info.target_shape
+                            || get_material_amount(transfer_credit_id(target_card_id, goods_info.target_shape)) > 0)
                         {
                             draw_set_color(c_black);
                             draw_set_alpha(0.5);

@@ -161,17 +161,19 @@ if (craft_top_tab == 2) {
 	var _n = array_length(tg_list);
 
 	var _shape = (tg_card == "") ? 0 : tg_target_shape(tg_card);
+	var _tier = (tg_card == "") ? 0 : transfer_credit_tier(tg_card, _shape);   // 普卡 1/2，金卡 3/4/5
 	var _full = (tg_card != "" && _shape > transfer_credit_card_shapes_max(tg_card));
 	var _chk = tg_check();
 
 	// ① 三个凭证槽：屏幕顺序 左A / 中C / 右B（底板 slot 参数 A=0 / C=2 / B=1）
 	//    有凭证 → 亮；没凭证 → sh_fusion_gray 灰（去色，不用 alpha 压暗）；不适用（一转时的中槽、满转、空卡）→ 只画槽名
+	//    中槽只有「一转」不显示（一转只有 A/B 两张底板），二转起 / 金卡三转起都是三张
 	var _slot_bg = [0, 2, 1];
 	var _slot_lab = [spr_transfer_slot_a, spr_transfer_slot_c, spr_transfer_slot_b];
 	for (var _i = 0; _i < 3; _i++) {
 		var _cx = tg_slot_x[_i];
 		draw_sprite_ext(spr_craft_material_bg, 0, _cx, tg_slot_y, 1.8, 1.8, 0, c_white, 1);
-		var _use = (tg_card != "") && !_full && !((_shape == 1) && _i == 1);
+		var _use = (tg_card != "") && !_full && !((_tier == 1) && _i == 1);
 		if (_use) {
 			// 未持有 = 跟融合页「未拥有」**同款灰**（sh_fusion_gray：去色 + 轻压暗）
 			// 不要用 alpha 0.45 —— 那等于在深色面板上盖一层黑，八芒星底板会整片看不见（用户 2026-10-25）
@@ -207,7 +209,7 @@ if (craft_top_tab == 2) {
 
 	// ③ 保险金：徽章 +「金币」+ 价格 + 勾选框（与强化页同一处几何，开关是独立的 tg_assure）
 	//    文案口径照强化页：黑字偏 +1/+26 打底、橙色 (255,150,60) 为主色、fa_middle
-	var _ac = tg_assure_cost(_shape > 0 ? _shape : 1);
+	var _ac = tg_assure_cost(_tier > 0 ? _tier : 1);
 	draw_sprite_ext(spr_craft_insure_badge, 0, assure_badge_cx, assure_badge_cy, 1.5, 1.5, 0, c_white, 1);
 	draw_set_font(font_yuan);
 	draw_set_halign(fa_center);
