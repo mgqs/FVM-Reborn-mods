@@ -695,7 +695,10 @@ function hex_batch2_tick() {
                         self.b2_hp_stack = min(_cap, self.b2_hp_stack + _step);
                         var _base = self.max_hp;
                         if (variable_instance_exists(self.id, "base_max_hp")) _base = self.base_max_hp;
+                        var _old_max = self.max_hp;
                         self.max_hp = _base * hex_hp_mult_for_card(self.plant_id) * (1 + self.b2_hp_stack);
+                        if (_old_max > 0 && self.max_hp != _old_max && self.hp > 0)
+                            self.hp = min(self.max_hp, self.hp * (self.max_hp / _old_max));
                         if (self.hp > self.max_hp) self.hp = self.max_hp;
                     }
                 }

@@ -387,6 +387,17 @@ function longyuan_heal_soul_pack(_ratio) {
     }
 }
 
+/// 冲撞类效果（猫眼宝石 / 金牛烟花 / 救世神灵鱼 / 白羊座）的秒杀豁免判定：
+/// true = 冲撞撞不死，只吃伤害。判据**只有** BOSS 与魂系鼠
+/// （魂系开路、魂系执念、符咒、符咒随从、药罐鼠），其余敌人一律被撞死。
+/// 不能用 `immune_to_ash` 当判据：那是「防爆/灰烬免疫」的标记，龙渊里一大片鼠都带着，
+/// 会把几乎所有敌人变成「冲撞只吃伤害」，表现为冲撞卡秒杀集体失效。
+function crash_immune_enemy(_e) {
+    if (!instance_exists(_e)) return true;
+    if (variable_instance_exists(_e, "is_boss") && _e.is_boss) return true;
+    return longyuan_is_soul_pack_member(_e);
+}
+
 /// 地精鼠「提前出土」判定用的龙渊卡片集合：烤串机 / 浮生茶 / 桥头米线 / 灯影花糕 / 泡椒春笋。
 function longyuan_dijing_is_food_card(_plant_id) {
     return (_plant_id == "hongliukaochuan" || _plant_id == "fushengcha" || _plant_id == "mixian"

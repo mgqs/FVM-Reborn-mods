@@ -1,4 +1,4 @@
-/// hex_registry —— 海克斯词条库（111 条，v0.11 全表重写）
+/// hex_registry —— 海克斯词条库（110 条：v0.11 全表 111 条，v0.13 删除「悬浮厨房」）
 ///
 /// 铁律：**描述即实现**。每一条的 card_desc / enemy_desc 必须和 ex / en 里的数值一一对应。
 /// 表里凡是引擎当前无法表达的机制（穿透数、溅射范围、灼烧持续、星级随机、选卡时间……），
@@ -15,7 +15,6 @@
 ///  机制类：
 ///     refund        铲除返还倍率增量        hex_refund_mult
 ///     cost          卡片费用倍率增量        hex_cost_mult
-///     gridless      增幅/辅助不占格         hex_gridless_for_card
 ///     free_place    每波首次放置免费        hex_free_place_ready
 ///     wave_reset    每波开始卡槽冷却清零    hex_on_wave_start
 ///     bond_power    共鸣强度增量            hex_bond_mult_for_card
@@ -776,12 +775,6 @@ function hex_register_builtin() {
         card_desc: "全队攻击 +10%，每波开始火苗 +200", enemy_desc: "老鼠生命 +20%",
         stack: 1, impl: true,
         ex: { atk: 0.10, flame_wave: 200 }, en: { e_hp: 0.20 }
-    });
-    hex_register("hex_110", {
-        tier: 2, form: "A", name: "悬浮厨房",
-        card_desc: "所有增幅类与辅助类卡片不占用格子", enemy_desc: "老鼠生命 +25%",
-        stack: 1, impl: true,
-        ex: { gridless: true }, en: { e_hp: 0.25 }
     });
     hex_register("hex_111", {
         tier: 2, form: "A", name: "灶台主宰",

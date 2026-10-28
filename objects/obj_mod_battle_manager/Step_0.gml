@@ -307,7 +307,12 @@ else
                     var _hex_hp = hex_hp_mult_for_card(self.plant_id);
                     if (_hex_hp != 1.0)
                     {
+                        // 「我真没胖」这类生命上限词条：上限涨了，当前血量必须按同一比例跟上。
+                        // 只改 max_hp 不改 hp 的话，卡片实际多撑的伤害约等于 0（表现就是「没生效」）。
+                        var _old_max = self.max_hp;
                         self.max_hp = self.base_max_hp * _hex_hp;
+                        if (_old_max > 0 && self.max_hp != _old_max && self.hp > 0)
+                            self.hp = min(self.max_hp, self.hp * (self.max_hp / _old_max));
                         if (self.hp > self.max_hp) self.hp = self.max_hp;
                     }
 

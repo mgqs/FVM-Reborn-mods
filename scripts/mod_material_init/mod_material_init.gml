@@ -18,6 +18,15 @@ function mod_material_init()
     }
 }
 
+/// @func tower_prestige_grant_mult()
+/// @desc 魔塔威望入账时的倍率（2026-10-28：威望不再吃难度奖励倍率）
+///       只保留海克斯的「关卡奖励倍率」（×10 / 搏一搏），difficulty_get_reward_multiplier 里的难度部分被剔除
+///       非海克斯模式恒 1.0
+function tower_prestige_grant_mult(){
+    if (!hex_enabled()) return 1.0;
+    return hex_batch2_reward_mult();
+}
+
 /// @func tower_prestige_reward(level_id, is_first)
 /// @desc 这一关通关该给多少**基础**威望（未乘难度倍率）；0 = 不是魔塔关 / 没配
 ///       数据源就是 maps_init 里塔关的 rewards：[{prestige,kind:"first"},{prestige,kind:"repeat"}]

@@ -66,8 +66,17 @@ function after_texture_load() {
     
     // 字体缺失字符适配：将导出字体中的全部字形合并到各主字体。
     // 情报岛文案覆盖面很大，手工维护少数字符会持续产生方框。
-    var _target_fonts = ["font_yuan", "font_hei", "font_song", "font_song2"];
-    var _source_fonts = ["font_yuan", "font_pixel", "font_song", "font_song2"];
+    //
+    // 只有 font_yuan / font_hei 需要补字：它们是全游戏主字体。
+    // font_song 仅被 obj_card_slot/Draw_0 用来画快捷键名（keyboard_get_string 只返回 ASCII，
+    //   而 font_song 自带的 2136 字里 ASCII 95/95 全覆盖），font_song2 全工程无绘制引用。
+    // 若把它们也列进目标，每局会白灌约 8000 个永远画不出来的汉字；而
+    // __scribble_glyph_duplicate 每补一个字都要 ds_grid_resize 把整张字形表加宽一列，
+    // 成本接近 O(N²)，是开场「加载完成」卡顿的主要来源。
+    var _target_fonts = ["font_yuan", "font_hei"];
+    // 源只留两个主汉字字体：font_song / font_song2 对它们唯一「独有」的字形是 U+007F(DEL)，
+    // 是永远不会上屏的控制符，留在源里只会白白多遍历 4442 次。
+    var _source_fonts = ["font_yuan", "font_pixel"];
 
     for (var _fi = 0; _fi < array_length(_target_fonts); _fi++) {
         var _tfont = _target_fonts[_fi];

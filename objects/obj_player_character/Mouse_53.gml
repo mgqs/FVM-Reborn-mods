@@ -54,7 +54,23 @@ if not is_placed{
 			_transformation_effect.center_screen = true;
 			_transformation_effect.flash_speed = 6;
 			if (_transformation_sprite != spr_bianshen2) {
-				_transformation_effect.scale_multiplier = 2;
+				// 两种「星之耀」变身立绘（妖化 / 幻之耀）统一铺满屏幕左半边：
+				// 不再叠 scale_multiplier=2、也不再居中铺全屏。内容框 = 立绘稳定帧的可见区实测值
+				// （画布都是 1811x2044，只有中间这一块有像素）；缩放与裁剪在
+				// obj_12yinliao_effect/Draw_0 里算，这里只给框。
+				_transformation_effect.left_half = true;
+				if (_transformation_sprite == spr_huan_bianshen2) {
+					_transformation_effect.half_src_x = 685;
+					_transformation_effect.half_src_y = 679;
+					_transformation_effect.half_src_w = 518;
+					_transformation_effect.half_src_h = 604;
+				}
+				else {
+					_transformation_effect.half_src_x = 684;
+					_transformation_effect.half_src_y = 679;
+					_transformation_effect.half_src_w = 519;
+					_transformation_effect.half_src_h = 604;
+				}
 				var _entrance_effect = instance_create_depth(x, y, depth - 2, obj_place_effect);
 				_entrance_effect.sprite_index = spr_ruchang;
 				_entrance_effect.image_xscale = image_xscale;

@@ -77,7 +77,7 @@ switch state{
 		break
 	
 	case BOSS_STATE.SKILL1:
-		sprite_index = spr_abyss_pharaoh_skill_3
+		sprite_index = spr_infected_pharaoh_skill_3
 		if hp > maxhp * hurt_rate{
 			image_index = floor(timer/5) mod 17
 		}
@@ -145,13 +145,9 @@ switch state{
 		
 	case BOSS_STATE.SKILL2:
 		
-			sprite_index = spr_abyss_pharaoh_skill_2
-			if hp > maxhp * hurt_rate{
-				image_index = floor(timer/5) mod 12
-			}
-			else{
-				image_index = floor(timer/5) mod 12 + 12
-			}
+			// 感染法老的召唤动画只有 19 帧（没有受伤变体），整段循环播放
+			sprite_index = spr_infected_pharaoh_skill_2
+			image_index = floor(timer/5) mod 19
 		
 		
 		if timer == 1{
@@ -215,7 +211,7 @@ switch state{
 		
 	case BOSS_STATE.SKILL3:
 		
-		sprite_index = spr_abyss_pharaoh_skill_1
+		sprite_index = spr_infected_pharaoh_skill_1
 		if hp > maxhp * hurt_rate{
 			image_index = floor(timer/5) mod 12
 		}

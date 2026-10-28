@@ -414,6 +414,6 @@ function enemy_subwave_summon(){
     }
 
     // 鼠潮：按 PI 阈值往本波尾部追加精英（不计击杀，但算掉落）
-    hex_spawn_flood(enemy_list);
+    hex_spawn_flood(enemy_list, rows_used);
 
 }

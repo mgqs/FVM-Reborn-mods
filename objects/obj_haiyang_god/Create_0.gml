@@ -13,7 +13,7 @@ else if (shape == 3)
     sprite_index = spr_haiyang_god_3;
 
 attack_anim = 0;
-idle_anim = 12;
+idle_anim = 13;
 flash_speed = 5;
 is_slowdown = false;
 

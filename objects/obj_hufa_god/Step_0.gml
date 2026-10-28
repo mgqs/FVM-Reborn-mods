@@ -40,24 +40,48 @@ if (variable_global_exists("enemy_by_type"))
     }
 }
 
-if (has_enemy)
+// ── 攻击循环：1-12 待机 / 13-29 攻击，第 19 帧发射 ──────────────────
+if (state != CARD_STATE.ATTACK)
 {
-    attack_timer++;
-
-    if (attack_timer == (cycle - (3 * current_flash_speed)))
+    if (has_enemy)
     {
-        event_user(1);
-        state = 1;
-    }
+        attack_timer++;
 
-    if (attack_timer > cycle)
+        // cycle 不足以播完整套攻击动画时，按 cycle 压缩每帧时钟，保证发射帧一定播得到；
+        // 攻击窗口 = attack_anim * _spd，总周期仍是 cycle（不改变 DPS）
+        var _spd = min(current_flash_speed, max(1, floor(cycle / max(1, attack_anim))));
+        var _window = attack_anim * _spd;
+
+        if (attack_timer >= cycle - _window)
+        {
+            attack_timer = 0;
+            state = CARD_STATE.ATTACK;
+            image_index = idle_anim + 1;
+            hufa_fired = false;
+            flash_speed = is_slowdown ? max(1, _spd * 0.5) : _spd;
+        }
+    }
+    else
     {
         attack_timer = 0;
-        state = 0;
+        state = CARD_STATE.IDLE;
     }
 }
 else
 {
-    attack_timer = 0;
-    state = 0;
+    // 攻击动画播到第 19 帧 → 发射
+    if (!hufa_fired && image_index >= hufa_shoot_frame)
+    {
+        event_user(1);
+        hufa_fired = true;
+    }
+
+    // 攻击动画播完 → 回待机
+    if (image_index >= idle_anim + attack_anim)
+    {
+        state = CARD_STATE.IDLE;
+        image_index = 0;
+        attack_timer = 0;
+        flash_speed = flash_speed_base;
+    }
 }

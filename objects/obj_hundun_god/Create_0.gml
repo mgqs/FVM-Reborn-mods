@@ -31,39 +31,23 @@ plant_type = "normal";
 is_slowdown = false;
 image_speed = 0;
 
-if (shape == 0)
-{
-	f_idle_end = 9;
-	f_attack_start = 9;
-	f_attack_end = 24;
-	f_eat = 25;
-	f_digest_end = 45;
-	f_recover_end = 55;
-	f_suction_start = -1;
-	f_suction_end = -1;
-}
-else if (shape == 1)
-{
-	f_idle_end = 9;
-	f_suction_start = 10;
-	f_suction_end = 22;
-	f_attack_start = 23;
-	f_attack_end = 31;
-	f_eat = 31;
-	f_digest_end = 56;
-	f_recover_end = 56;
-}
-else
-{
-	f_idle_end = 9;
-	f_suction_start = 10;
-	f_suction_end = 21;
-	f_attack_start = 22;
-	f_attack_end = 34;
-	f_eat = 34;
-	f_digest_end = 57;
-	f_recover_end = 57;
-}
+// 帧布局（2026-10-28 用户，四种形态共用同一套动作长度）：
+//   1-8 待机 / 9-19 吸食 / 20-29 食用 / 30-41 咀嚼 / 42-49 吞下
+//   第 24 帧（0 起算 23）发射子弹
+// 精灵帧数 55/56/57/53，均 ≥ 49，多余帧不播
+f_idle_end = 7;             // 待机 0..7
+f_suction_start = 8;        // 吸食 8..18
+f_suction_end = 18;
+f_eat = 19;                 // 食用 19..28
+f_eat_end = 28;
+f_chew_start = 29;          // 咀嚼 29..40（消化中循环）
+f_chew_end = 40;
+f_swallow_start = 41;       // 吞下 41..48
+f_recover_end = 48;         // 播完回待机
+f_shoot = 23;               // 第 24 帧发射
+f_attack_start = f_suction_start;
+f_attack_end = f_eat_end;
+f_digest_end = f_chew_end;
 
 // 消化时间 (digestion time) per star level, in frames (at 60fps)
 // 35,34,33,32,31,30,28,26,24,22,20,18,16,13,10,7,4,3,2 seconds

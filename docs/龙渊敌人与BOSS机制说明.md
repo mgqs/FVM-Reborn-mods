@@ -54,6 +54,17 @@
   - 倍率只有一处出处 `longyuan_soul_bonus_mult()`（对象）/ `longyuan_soul_bonus_mult_id()`（卡片 id），宏为 `LY_SOUL_BONUS_*`；卡片侧不要另写数字。
 - 豁免判定 `longyuan_hit_pierces_soul_reduction()` 走两条独立通道：`damage_source_object`（对象索引）与 `damage_source_card_id`（卡片 id 字符串）。四张卡的命中都会同时写这两条，并在 `event_user(0)` 返回后立刻清空 `damage_source_card_id`，避免同一帧内其它卡片命中同一目标时误吃豁免。
 
+### 1.6 冲撞类秒杀豁免
+
+冲撞类（`baiyang` 白羊座、`bull_firework` 金牛烟花、`save_god` 救世神灵鱼、猫眼宝石）撞到敌人时默认**直接秒杀**（生成击退特效并销毁敌人），只有两类挡得住：
+
+- **BOSS**（`is_boss`，跨服 BOSS 另有原有分支）；
+- **魂系鼠**：魂系开路、魂系执念、符咒鼠、符咒随从鼠、药罐鼠（即 `longyuan_is_soul_pack_member`）。
+
+判定只有一处出处 `crash_immune_enemy(_e)`（`scripts/longyuan_mouse`），四个挂钩点：`obj_cat/Step_0`（`can_loss == false` 的猫，猫眼宝石与金牛都走这里）、`obj_save_god01_e/Step_0`、`obj_save_god23_e2/Step_0`、`obj_baiyang_effect/Step_0`。
+
+**不要用 `immune_to_ash` 当判据**：它是「防爆 / 灰烬免疫」标记，龙渊里一大片鼠都带（地精、东风、狼牙棒等），拿它做冲撞豁免会让几乎所有敌人变成「只吃伤害」，表现为冲撞卡秒杀集体失效。灰烬/爆炸类卡片的秒杀仍按各自 `immune_to_ash` 判定，两者口径不同。
+
 ## 二、普通敌人
 
 ### 2.1 龙渊平民鼠

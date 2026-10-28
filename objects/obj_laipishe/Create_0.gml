@@ -10,9 +10,13 @@ if (shape == 1)
 else if (shape == 2)
     sprite_index = spr_laipishe_2;
 
-attack_anim = 8;
-idle_anim = sprite_get_number(sprite_index);
+// 帧布局（2026-10-28 用户）：1-14 待机 / 15-26 攻击，第 22 帧发射子弹
+idle_anim = 13;
+attack_anim = 12;
 flash_speed = 5;
+flash_speed_base = 5;
+laipishe_shoot_frame = 21;      // 第 22 帧（0 起算）
+laipishe_fired = false;
 plant_type = "normal";
 is_slowdown = false;
 attack_type = ATTACK_TYPE.SHOOTER;

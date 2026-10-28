@@ -32,7 +32,7 @@ function create_battle_slots() {
 		}
         
         inst.cost = card_data[? "cost"];
-        inst.cooldown = hex_card_cooldown(card_data[? "cooldown"]);
+        inst.cooldown = hex_card_cooldown(card_data[? "cooldown"], deck_entry[? "card_id"]);
         inst.card_obj = card_data[? "obj"]; 
         inst.card_spr = card_data[? "sprite"];
 		inst.place_preview = card_data[? "place_preview"]

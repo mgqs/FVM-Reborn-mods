@@ -25,10 +25,16 @@ function refresh_task_progress(){
 		not_equip_weapon = true
 	}
 	//检查猫损失量
-	cat_loss = global.grid_rows
-	with obj_cat{
-		if can_loss{
-			other.cat_loss--
+	//海克斯「禁用猫」词条下，猫根本放不出来，"不得失去任何猫" 类要求不能按剩余猫位数算，
+	//否则永远停在 grid_rows（几行就记几次损失），完美挑战直接判负。
+	if (hex_enemy_no_cat()) {
+		cat_loss = 0
+	} else {
+		cat_loss = global.grid_rows
+		with obj_cat{
+			if can_loss{
+				other.cat_loss--
+			}
 		}
 	}
 	for(var i = 0 ; i < array_length(global.save_data.tasks) ; i++){
