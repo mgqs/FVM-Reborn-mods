@@ -48,7 +48,8 @@ function mod_evo_table(){
                                         {id:"huagao", slot:1, need:2} ] },  // 神农氏神使 ← 焚天炎凰马 + 梦境灯影花糕
         haiyang_god:             { cards:[ {id:"mozhang", slot:0, need:2},
                                         {id:"hspeed_juicer", slot:1, need:2} ] },  // 塔拉萨神使 ← 凤羽魔杖蛇 + 大菠萝榨汁机
-        fengrao_god:             { cards:[ {id:"zhanqima", slot:0, need:2} ] },  // 弗雷神使 ← 燎原战旗马
+        fengrao_god:             { cards:[ {id:"zhanqima", slot:0, need:2},
+                                        {id:"wuxingshe", slot:1, need:2} ] },  // 弗雷神使 ← 燎原战旗马 + 泰斗五行蛇
         clotho:                  { cards:[ {id:"brahma", slot:0, need:0} ] },  // 克洛托神使 ← 梵天神使（**本体即可**，用户 2026-10-27 明确）
         chongsheng_god:          { cards:[ {id:"xingqiongma", slot:0, need:2},
                                         {id:"anranxiaohunfan", slot:1, need:2} ] },  // 奥西里斯神使 ← 浩瀚星穹马 + 天妇罗盖饭

@@ -17,6 +17,14 @@ if (kind == "star" && variable_global_exists("enemy_sx_n") && variable_global_ex
     exit;
 }
 if (timer > (kind == "star" ? 300 : 600)) {instance_destroy();exit;}
+// 过火表现：烧起来的星弹换火焰弹贴图（与炭烧海星 / 融合鱿鱼等子弹同口径）
+//   火焰弹贴图只有 41×14，按 1.8 倍画（= 融合火盆「点燃放大一圈」的同一口径），观感才跟星弹接近
+//   ⚠️ 融合火盆 2 转会把子弹改成冰弹贴图，那种情况别覆盖（别写成无条件赋值）
+if (kind == "star" && burnt >= 1 && sprite_index != spr_ronghehuopen_ice_bullet) {
+    sprite_index = spr_fire_bullet;
+    image_xscale = 1.8;
+    image_yscale = 1.8;
+}
 var old_x = x, old_y = y;
 if (kind == "return" || kind == "flute") {
     if (!instance_exists(target_id) || target_id.hp <= 0) {
@@ -98,6 +106,8 @@ for (var i = 0; i < array_length(enemies); i++) {
     if (array_contains(hit_ids,e.id)) continue;
     if (kind == "return" && e.object_index == obj_kuileima_decoy) continue; // 归元马忽略傀儡马，绝不攻击傀儡马代理
     if (e.target_type != "normal" && e.target_type != "air") continue;
+    // 星弹只打地面：五星弹是扇形发出去的，原逻辑会顺路打空军（卡片本身不对空）
+    if (kind == "star" && e.target_type != "normal") continue;
     var collision = false;
     if (kind == "phoenix") {
         // 炎凰马只命中已显形陆军，不能命中幽灵、非主流、地下鼠或障碍物
@@ -142,7 +152,13 @@ for (var i = 0; i < array_length(enemies); i++) {
                     damage_type = "pierce";
                     event_user(0);
                 }
-                if (!e.is_boss) e.x += global.grid_cell_size_x*0.5;
+                // 击退（0.5 格）：**临时障碍物不吃** —— 洞君的管道（含变异版）虽然挂在
+                // obj_enemy_parent 下、target_type 也是 normal，但它是钉在格子里不动的建筑，
+                // 被推半格就会脱位（还会连带把传送落点带偏）。伤害照扣，只跳过位移。
+                // 以后再加同类「建筑型敌人」就往这个判断里加一条。
+                var _e_oi = e.object_index;
+                var _static_structure = (_e_oi == obj_mario_pipeline || _e_oi == obj_infected_mario_pipeline);
+                if (!e.is_boss && !_static_structure) e.x += global.grid_cell_size_x*0.5;
             }
             break;
         case "fire":

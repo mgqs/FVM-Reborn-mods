@@ -17,7 +17,7 @@ flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
 
-buffer_type = "five_dir";
+buffer_type = "multi_dir";
 
 // 五向增幅只对应「多向类」（分类驱动），不再挂载 multi_dir 第二类型。
 buff_stacking = (shape >= 3);

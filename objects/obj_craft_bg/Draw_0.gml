@@ -211,6 +211,14 @@ if (craft_top_tab == 2) {
 		}
 	}
 
+	// ①' 「转职说明」按钮（2026-10-28）：面板米色区左上角空白处（凭证 A 槽左上方）
+	//     悬停 → 第 1 帧（亮）；按住 → 缩 0.96；点开的是星级要求弹窗（见 ⑧）
+	var _hb_hover = point_in_rectangle(mouse_x, mouse_y,
+		tg_help_x - tg_help_w * 0.5, tg_help_y - tg_help_h * 0.5,
+		tg_help_x + tg_help_w * 0.5, tg_help_y + tg_help_h * 0.5);
+	var _hb_s = tg_help_s * ((_hb_hover && mouse_check_button(mb_left)) ? 0.96 : 1);
+	draw_sprite_ext(spr_transfer_help, _hb_hover ? 1 : 0, tg_help_x, tg_help_y, _hb_s, _hb_s, 0, c_white, 1);
+
 	// ② 主卡槽：空 → 槽底 +「主卡」小字；有卡 → 一整格卡（卡底 0.25 + 卡面 0.7 + 星级 + 造价）
 	draw_sprite_ext(spr_craft_slot_bg, 0, tg_main_x + 2, tg_main_y - 3, 1.8, 1.8, 0, c_white, 1);
 	if (tg_card == "") {
@@ -360,6 +368,8 @@ if (craft_top_tab == 2) {
 	// 确认窗画在 panel_anim_end_parts 之后 = 盖在面板最上层（跟融合页同一写法）
 	//   mode 0 = 普通转职 / mode 1 = 缺凭证补全并转职，两种文案都在 tg_confirm_draw 里分流
 	if (tg_confirm) tg_confirm_draw();
+	// ⑧ 「转职说明」弹窗（2026-10-28）：同样画在最上层；开着时 Step 里锁住其它交互
+	if (tg_help) tg_help_draw();
 	exit;
 }
 

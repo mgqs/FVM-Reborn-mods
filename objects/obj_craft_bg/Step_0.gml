@@ -39,7 +39,7 @@ for (var _ti = 0; _ti < 3; _ti++){
 		craft_tab_hover = _tab_ids[_ti];
 	}
 }
-if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_hover != craft_top_tab){
+if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_hover != craft_top_tab && !tg_help){
 	craft_top_tab = craft_tab_hover
 	current_uprade_target_id = ""
 	// 切页签 = 融合页重开：装填状态和「刚融出来的临时结果卡」一起清掉
@@ -286,6 +286,8 @@ if (craft_top_tab == 3) {
 
 // 不写 exit：末尾 close_timer 还要跑；强化/宝石那几段现在都有 craft_top_tab == 0 守卫
 // ── 卡片转职页（craft_top_tab == 2，2026-10-25）：交互全在这里 ──
+// 说明弹窗只属于转职页：切到别的页就关掉（否则切回来会莫名其妙又弹出来）
+if (craft_top_tab != 2) tg_help = false;
 if (craft_top_tab == 2) {
 	// 清掉强化页的悬停索引，免得残留值被下面的点击逻辑误用
 	hover_card_index = -1;
@@ -294,8 +296,20 @@ if (craft_top_tab == 2) {
 	if (tg_list_dirty) tg_rebuild();
 	if (tg_btn_press > 0) tg_btn_press -= 1;
 
+	// ⓪ 「转职说明」弹窗开着 → 模态：只处理「确定」，底下页签 / 卡格 / 转职按钮一概点不到
+	//    （跟融合页「系统提示」同一口径：顺便把合成屋的 X 藏起来，免得点着 X 关窗）
+	if (tg_help) {
+		with (obj_closecraft_btn) visible = false;
+		var _hr = tg_help_rect();
+		tg_help_hover = point_in_rectangle(mouse_x, mouse_y, _hr[0], _hr[1], _hr[2], _hr[3]);
+		if (mouse_check_button_pressed(mb_left) && tg_help_hover) {
+			tg_help = false;
+			tg_help_hover = false;
+			audio_play_sound(snd_button, 0, 0);
+		}
+	}
 	// ① 转职确认窗开着 → 只处理确认窗（其它交互全锁；mode 1 = 缺凭证「补全并转职」）
-	if (tg_confirm) {
+	else if (tg_confirm) {
 		tg_confirm_hover = -1;
 		for (var _ci2 = 0; _ci2 < 2; _ci2++) {
 			var _cr = tg_confirm_rect(_ci2);
@@ -333,9 +347,17 @@ if (craft_top_tab == 2) {
 	}
 	// ③ 正常交互
 	else if (mouse_check_button_pressed(mb_left)) {
+		// ⓪ 「转职说明」按钮（面板左上角空白处）→ 打开星级要求弹窗
+		if (point_in_rectangle(mouse_x, mouse_y,
+			tg_help_x - tg_help_w * 0.5, tg_help_y - tg_help_h * 0.5,
+			tg_help_x + tg_help_w * 0.5, tg_help_y + tg_help_h * 0.5)) {
+			tg_help = true;
+			tg_help_hover = false;
+			audio_play_sound(snd_button, 0, 0);
+		}
 		// ① 右侧列表选卡 → 进主卡槽（**只有换到另一张卡才清保底**，2026-10-28 用户口径）
 		//    转职成功后槽会自动清空，再放回同一张卡不算换卡 → 保底接着累计
-		if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
+		else if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
 			var _pick = tg_list[tg_hover_card];
 			if (tg_pity_card != "" && tg_pity_card != _pick) { tg_pity = 0; tg_pity_card = ""; }
 			tg_card = _pick;

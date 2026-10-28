@@ -27,6 +27,13 @@
 ///    mod_tg_confirm_rect(i)          按钮矩形（0 = 确定 / 1 = 取消），Draw 与 Step 共用
 ///    mod_tg_modal_draw(hover, lines, tip, tip_bottom)  通用两按钮弹窗（转职确认 / 补凭证确认共用）
 ///    mod_tg_confirm_draw(hover, assure_on)  转职确认窗（调 mod_tg_modal_draw）
+///    mod_tg_help_rect() / mod_tg_help_draw(hover)  「转职说明」弹窗（单个确定按钮）
+///
+///  四、星级门槛（2026-10-28 用户定）
+///    mod_tg_star_need(tier)  一转 6 / 二转 10 / 三转 13 / 四转 14 / 终转 16（星）
+///    mod_tg_check 里在「此卡已无法转职」之后、「缺凭证」之前判 —— 不够就返回「一转需要达到6星」
+///    mod_tg_fill_check 里也判一次（星级不够就不让先买凭证再转）
+///    面板左上角「转职说明」按钮的弹窗**直接读这两个函数**（「X转：X星」），改数只改一处
 /// =============================================================================
 
 /// @func mod_tg_gold(tier) 转职金币（tier = 凭证档位 1~5，不是卡形态）
@@ -35,9 +42,9 @@ function mod_tg_gold(_tier){
     switch (_tier){
         case 1: return 3000;      // 一转
         case 2: return 15000;     // 二转
-        case 3: return 5000;      // 三转（金卡）
-        case 4: return 20000;     // 四转（金卡）
-        case 5: return 50000;     // 终转（金卡）
+        case 3: return 50000;      // 三转（金卡）
+        case 4: return 75000;     // 四转（金卡）
+        case 5: return 100000;     // 终转（金卡）
     }
     return 15000;
 }
@@ -48,16 +55,16 @@ function mod_tg_assure(_tier){
     switch (_tier){
         case 1: return 7500;      // 一转
         case 2: return 50000;     // 二转
-        case 3: return 7500;      // 三转（金卡）
-        case 4: return 50000;     // 四转（金卡）
-        case 5: return 50000;     // 终转（金卡）
+        case 3: return 75000;      // 三转（金卡）
+        case 4: return 100000;     // 四转（金卡）
+        case 5: return 150000;     // 终转（金卡）
     }
     return 50000;
 }
 
 /// @func mod_tg_rate(tier) 成功率（%）：一转 / 三转 30，其余 20
 function mod_tg_rate(_tier){
-    if (_tier == 1 || _tier == 3) return 30;
+    if (_tier == 1) return 30;
     return 20;
 }
 
@@ -71,6 +78,34 @@ function mod_tg_pity_max(_tier){
         case 2: return 12;
     }
     return 15;
+}
+
+/// @func mod_tg_tier_short(tier) 档位简称：「一转 / 二转 / 三转 / 四转 / 终转」（不带「凭证」两字）
+///   提示文案用（transfer_credit_tier_name 带「凭证」后缀，是给道具名用的）
+function mod_tg_tier_short(_tier){
+    switch (_tier){
+        case 1: return "一转";
+        case 2: return "二转";
+        case 3: return "三转";
+        case 4: return "四转";
+        case 5: return "终转";
+    }
+    return "转职";
+}
+
+/// @func mod_tg_star_need(tier) 该档转职要求的**星级**（0 = 不要求）
+///   🔴 2026-10-28 用户定：**一转 67星 / 二转 10 星 / 三转 13 星 / 四转 14 星 / 终转 16 星**
+///      （三·四·终转 = 金卡的 1/2/3 形态；16 星是星级上限）
+///      面板左上角的「转职说明」按钮直接遍历这 5 档显示「X转：X星」，改数不用改弹窗
+function mod_tg_star_need(_tier){
+    switch (_tier){
+        case 1: return 7;      // 一转
+        case 2: return 10;     // 二转
+        case 3: return 13;     // 三转（金卡）
+        case 4: return 14;     // 四转（金卡）
+        case 5: return 16;     // 终转（金卡）
+    }
+    return 0;
 }
 
 /// @func mod_tg_target_shape(card_id) 目标形态 = 练到过的最高形态 + 1（没拥有按 0 算 → 1）
@@ -109,6 +144,17 @@ function mod_tg_check(_card_id, _assure_on, _gold, _debug = false){
     // 上限走 transfer_credit_card_shapes_max（player_deck 形态表 ∪ plant_registry）；
     // 只读 card_max_available_shape 会把「注册表里只有 0 转」的卡全部误报成已转满
     if (_shape > transfer_credit_card_shapes_max(_card_id)){ _r.reason = "此卡已无法转职"; return _r; }
+
+    // 星级门槛（🔴 2026-10-28 用户定）：一转 6 星 / 二转 10 星，不够就不让转
+    //   放在「缺凭证」之前：这是卡本身的条件，跟有没有凭证无关
+    var _need_star = mod_tg_star_need(_tier);
+    if (_need_star > 0){
+        var _lv = transfer_credit_card_level(_card_id);
+        if (_lv < _need_star){
+            _r.reason = mod_tg_tier_short(_tier) + "需要达到" + string(_need_star) + "星";
+            return _r;
+        }
+    }
 
     _r.has_credit = transfer_credit_has(_card_id, _shape);
     if (!_r.has_credit){ _r.reason = "缺少" + transfer_credit_tier_name(_tier); return _r; }
@@ -167,6 +213,14 @@ function mod_tg_fill_check(_card_id, _assure_on, _debug = false){
     if (_shape > transfer_credit_card_shapes_max(_card_id)){ _r.reason = "此卡已无法转职"; return _r; }
     if (transfer_credit_has(_card_id, _shape)){ _r.reason = "凭证已在背包"; return _r; }
 
+    // 星级不够就别让人先花钱买凭证（买了也转不了，见 mod_tg_check 的同一道门槛）
+    var _tier_f = transfer_credit_tier(_card_id, _shape);
+    var _need_star = mod_tg_star_need(_tier_f);
+    if (_need_star > 0 && transfer_credit_card_level(_card_id) < _need_star){
+        _r.reason = mod_tg_tier_short(_tier_f) + "需要达到" + string(_need_star) + "星";
+        return _r;
+    }
+
     var _pi = transfer_credit_price_info(_card_id, _shape);
     // 文案（2026-10-28 用户口径）：说人话，别把内部判定名抛给玩家
     if (_pi.price <= 0){ _r.reason = "该凭证无法快速补齐"; return _r; }
@@ -184,8 +238,7 @@ function mod_tg_fill_check(_card_id, _assure_on, _debug = false){
     if (!_debug){
         // ① 买凭证的钱 ② 这次转职本身要的金币（含保险金）—— 两笔都够才让点确定
         if (mod_tg_balance(_pi.currency) < _pi.price){ _r.reason = _pi.name + "不足"; return _r; }
-        var _tier = transfer_credit_tier(_card_id, _shape);
-        var _gold = mod_tg_gold(_tier) + (_assure_on ? mod_tg_assure(_tier) : 0);
+        var _gold = mod_tg_gold(_tier_f) + (_assure_on ? mod_tg_assure(_tier_f) : 0);
         if (global.save_data.player.gold < _gold){ _r.reason = "金币不足"; return _r; }
     }
     _r.ok = true;
@@ -286,4 +339,55 @@ function mod_tg_confirm_draw(_hover, _assure_on = true){
     ];
     // 提醒画在**按钮下方**（2026-10-28 用户要求），红字放大
     mod_tg_modal_draw(_hover, _lines, mod_tg_assure_tip(_assure_on), true);
+}
+
+// ── 「转职说明」按钮 + 星级要求弹窗（2026-10-28 新增）──
+//   按钮素材：桌面\美食大战老鼠资源\转职说明按钮\36|38|40.jpg（88×33，抠掉四角蓝底后导入
+//   spr_transfer_help：frame 0 = 常态 / 1 = 悬停 / 2 = 备用暗色）
+//   按钮位置在 obj_craft_bg 的 tg_help_*（面板左上角空白处），这里只负责弹窗
+
+/// @func mod_tg_help_rect() 「转职说明」弹窗的确定按钮矩形（**单个按钮，居中**）
+///   与 mod_tg_confirm_rect 同尺寸同手感（0.75 倍 spr_common_button），只是不在左右各一个
+function mod_tg_help_rect(){
+    var _bx = room_width * 0.5;
+    var _by = room_height * 0.5 + 70;
+    var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;
+    var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
+    return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
+}
+
+/// @func mod_tg_help_draw(hover) 「转职说明」弹窗：卡片转职的星级要求
+///   面板 / 按钮素材与 mod_tg_modal_draw 同一套（保持观感一致），只是只有一个「确定」
+/// @param hover 确定按钮是否悬停
+function mod_tg_help_draw(_hover){
+    var _px = room_width * 0.5, _py = room_height * 0.5;
+    draw_set_alpha(0.55);
+    draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
+    draw_set_alpha(1);
+    draw_sprite_ext(spr_battle_escape_menu, 0, _px, _py, 1.5, 1.5, 0, c_white, 1);
+
+    draw_set_font(font_yuan);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_white);
+    draw_text(_px, _py - 112, "转职星级限制说明");
+
+    // 正文（2026-10-28 用户改）：只写「X转：X星」，一行一档，行距 25
+    //   数值直接调 mod_tg_star_need() —— **改星数只改那一个函数，这里不用再动**
+    var _sy = _py - 76;
+    for (var _i = 1; _i <= 5; _i++){
+        draw_text(_px, _sy, mod_tg_tier_short(_i) + "：" + string(mod_tg_star_need(_i)) + "星");
+        _sy += 25;
+    }
+
+    var _r  = mod_tg_help_rect();
+    var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
+    var _fr = _hover ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
+    draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+    draw_set_colour(c_white);
+    draw_text(_bx, _by, "确定");
+
+    draw_set_colour(c_white);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
 }

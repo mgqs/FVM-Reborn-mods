@@ -96,5 +96,5 @@ function mod_skill_init()
     register_card_skill("niuyouguo", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
     register_card_skill("ronghedapao", "cooldown", [1500, 1410, 1320, 1230, 1140, 1050, 960, 870, 780]);
     register_card_skill("ronghekafei", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
-
+    register_card_skill("wuxingshe", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
 }
