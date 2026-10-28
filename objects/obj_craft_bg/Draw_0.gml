@@ -139,6 +139,11 @@ if (craft_top_tab == 3) {
 		tooltip_set(mouse_x - 15, mouse_y - 15, "点击放入进化槽", -1);
 	}
 
+	// ⑥'-b 右侧列表滑块（2026-10-27 补，与转职页同一套）
+	var _esb = craft_list_sb(evo_list_y - 48, evo_grows * evo_gpy, evo_rows_max, evo_scroll, evo_scroll_target, evo_sb);
+	evo_scroll        = _esb.cur;
+	evo_scroll_target = _esb.target;
+
 	// ⑦ 余额（金币，与转职页同一位置）
 	draw_set_font(font_number);
 	draw_set_halign(fa_right);
@@ -195,10 +200,12 @@ if (craft_top_tab == 2) {
 		if (_use) {
 			// 未持有 = 跟融合页「未拥有」**同款灰**（sh_fusion_gray：去色 + 轻压暗）
 			// 不要用 alpha 0.45 —— 那等于在深色面板上盖一层黑，八芒星底板会整片看不见（用户 2026-10-25）
-			var _has = transfer_credit_has(tg_card, _shape);
-			if (!_has) shader_set(sh_fusion_gray);
+			// 2026-10-27：凭证不限量了，槽里要能看出自己有几张 → 右下角数字（与背包凭证页同一口径）
+			var _amt = get_material_amount(transfer_credit_id(tg_card, _shape));
+			if (_amt <= 0) shader_set(sh_fusion_gray);
 			transfer_credit_draw(_cx - 37, tg_slot_y - 37, tg_card, _shape, 74, _slot_bg[_i], 1);
-			if (!_has) shader_reset();
+			if (_amt <= 0) shader_reset();
+			transfer_credit_draw_count(_cx + 38, tg_slot_y + 40, _amt, true);
 		} else {
 			draw_sprite_ext(_slot_lab[_i], 0, _cx, tg_slot_y, 1.8, 1.8, 0, c_white, 1);
 		}
@@ -319,6 +326,11 @@ if (craft_top_tab == 2) {
 		tooltip_set(mouse_x - 15, mouse_y - 15, "点击放入转职槽", -1);
 	}
 
+	// ⑥' 右侧列表滑块（2026-10-27 补；几何/拖动都走 Create_0 的 craft_list_sb）
+	var _tsb = craft_list_sb(tg_list_y - 48, tg_grows * tg_gpy, tg_rows_max, tg_scroll, tg_scroll_target, tg_sb);
+	tg_scroll        = _tsb.cur;
+	tg_scroll_target = _tsb.target;
+
 	// ⑦ 余额：只画金币（右下角，跟强化页同一位置）
 	//    威望不画 —— 用户 2026-10-26：转职界面右下角不需要显示威望
 	draw_set_font(font_number);
@@ -346,6 +358,7 @@ if (craft_top_tab == 2) {
 	tooltip_draw();
 	panel_anim_end_parts(id, craft_parts, 260);
 	// 确认窗画在 panel_anim_end_parts 之后 = 盖在面板最上层（跟融合页同一写法）
+	//   mode 0 = 普通转职 / mode 1 = 缺凭证补全并转职，两种文案都在 tg_confirm_draw 里分流
 	if (tg_confirm) tg_confirm_draw();
 	exit;
 }

@@ -645,6 +645,47 @@ tg_btn_y  = y + 220
 tg_gold_x = x - 350                           // 需金币条（origin 在右端）
 tg_rate_x = x - 45                            // 成功率条（origin 在右端）
 tg_bar_y  = y + 300
+
+// ── 缺凭证时「当场补全并转职」（2026-10-28 用户要求；原「凭证槽左侧购买」按钮已删）──
+//   点转职 → 缺凭证 → 按各商店价格弹窗（威望 / 神石 / 跨服勋章）→ 确定：扣钱 + 发凭证 + 立刻转一次
+//   🔴 判定 / 读价 / 落账 全在 scripts/mod_craft_transfer_table 的 mod_tg_fill_*（下面只是薄包装）
+tg_confirm_mode  = 0                           // 0 = 普通转职确认；1 = 缺凭证「补全并转职」确认
+tg_fill_price    = 0                           // 补凭证要花多少
+tg_fill_currency = ""                          // 货币 material id（金币为 "gold"）
+tg_fill_cur_name = ""                          // 货币中文名（威望 / 神石 / 跨服勋章）
+tg_fill_credit   = ""                          // 要发的凭证 id
+tg_fill_name     = ""                          // 凭证名（卡名（X转凭证））
+
+/// @func tg_fill_open() 点转职但缺凭证：表里算 → 能补就弹「补全并转职」窗，不能就提示原因
+/// @return 是否弹出了窗（Step 侧据此决定要不要播放按钮音）
+function tg_fill_open(){
+    var _r = mod_tg_fill_check(tg_card, tg_assure, global.debug);
+    if (!_r.ok){ tg_notice(_r.reason); return false; }
+    tg_fill_price    = _r.price;
+    tg_fill_currency = _r.currency;
+    tg_fill_cur_name = _r.currency_name;
+    tg_fill_credit   = _r.credit_id;
+    tg_fill_name     = _r.credit_name;
+    tg_confirm_mode  = 1;
+    tg_confirm       = true;
+    tg_confirm_hover = -1;
+    return true;
+}
+
+/// @func tg_fill_do() 确认补全：扣货币 + 发 1 张凭证 → 立刻走一次转职（tg_do 会重新判定）
+function tg_fill_do(){
+    if (tg_fill_credit == ""){
+        tg_confirm = false;
+        tg_confirm_mode = 0;
+        return;
+    }
+    mod_tg_fill_apply(tg_fill_price, tg_fill_currency, tg_fill_credit, global.debug);
+    tg_confirm = false;
+    tg_confirm_mode = 0;
+    tg_confirm_hover = -1;
+    tg_do();
+}
+
 tg_list_x = x + 196                           // 右侧列表首格中心（跟强化页同一套 84×96 / 7 列）
 tg_list_y = y - 321
 tg_gpx = 84
@@ -666,8 +707,8 @@ tg_assure = false                             // 保险金开关（独立于强�
 //   归零的三种情况：① 换成别的卡（含点主卡槽取回）② 转职成功 ③ 退出合成屋
 //     ③ 是天然的：obj_craft_bg 每次进合成屋都是新实例（obj_player_menu_btn 里 instance_create_depth），
 //        关面板 panel_anim_close() 会 instance_destroy()，实例变量跟着一起没
-tg_pity      = 0                              // 本次已累计的转职次数（不区分成没成，成功即清零）
-// 「第几次必成」= mod_tg_pity_max()（在 scripts/mod_craft_transfer_table，现在是 15）
+tg_pity      = 0                              // 本次已累计的转职次数（每次转都 +1；只有换卡/切页/退出才清零）
+// 「第几次必成」= mod_tg_pity_max(tier)（一转 6 / 二转 12 / 三·四·终转 15，与保险金无关）
 tg_pity_card = ""                             // 累计期间绑的那张卡，换卡就归零
 tg_hover_card = -1
 tg_btn_hover = false
@@ -698,7 +739,13 @@ tg_fx_card_cy = 119.5                         // 素材内卡片框中心 y（�
 //    这里只留同名薄包装，Draw / Step 的调用点一行都不用改
 //    要改价格 / 成功率 / 保底次数 / 提示文案 → 去那个脚本，别在对象里加第二份
 function tg_confirm_rect(_i){ return mod_tg_confirm_rect(_i); }
-function tg_confirm_draw(){ mod_tg_confirm_draw(tg_confirm_hover); }
+function tg_confirm_draw(){
+    if (tg_confirm_mode == 1){
+        mod_tg_fill_confirm_draw(tg_confirm_hover, tg_fill_price, tg_fill_cur_name, tg_fill_name, tg_assure, tg_fill_currency);
+        return;
+    }
+    mod_tg_confirm_draw(tg_confirm_hover, tg_assure);
+}
 function tg_target_shape(_id){ return mod_tg_target_shape(_id); }
 function tg_gold_cost(_tier){ return mod_tg_gold(_tier); }
 function tg_assure_cost(_tier){ return mod_tg_assure(_tier); }
@@ -725,6 +772,10 @@ function tg_rebuild(){
         var _sh = _uc[_i].shape;
         var _d  = deck_get_card_data(_id, _sh);  // 每张卡只查这一次
         if (_d != noone && ds_map_find_value(_d, "is_fusion") == 1) continue;   // 融合卡不进列表
+        // 已转满的卡不进列表（2026-10-28 用户口径：只看**形态**，不看背包里有没有凭证）
+        //   next = 练到过的最高形态 + 1；超过这张卡注册的最高形态 = 没有下一档可转
+        var _next = max(0, transfer_credit_card_max_shape(_id)) + 1;
+        if (_next > transfer_credit_card_shapes_max(_id)) continue;
         if (_d != noone){
             // 缺键给安全默认值（sprite = -1 → 绘制端跳过；cost = 0），避免个别卡把绘制搞崩
             _meta[$ _id] = {
@@ -774,12 +825,13 @@ function tg_do(){
     var _id = tg_card;
     var _shape = _r.shape;
 
-    // ── 转职保底：累计次数由对象存（换卡要清零），掷骰与「第 N 次必成」在 mod_tg_roll ──
-    if (tg_card != tg_pity_card){
+    // ── 转职保底（2026-10-28）：每次转都累计，跟保险金开不开无关；到档位上限那一次必成 ──
+    //    清零只在「换卡 / 切换界面 / 退出合成屋」，转职成功不清（由 tg_fx_commit / Step 负责）
+    if (tg_pity_card == ""){
         tg_pity = 0;
         tg_pity_card = tg_card;
     }
-    var _roll = mod_tg_roll(_r.rate, tg_pity, mod_tg_pity_max(), tg_assure);
+    var _roll = mod_tg_roll(_r.rate, tg_pity, mod_tg_pity_max(transfer_credit_tier(tg_card, _shape)));
     tg_pity  = _roll.pity;
     var _win = _roll.win;
 
@@ -831,8 +883,10 @@ function tg_fx_commit(){
 
     tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
     tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
-    tg_pity = 0;                                       // 保底：转成功了就重新数
+    tg_pity = 0;
     tg_pity_card = "";
+    // 保底清零（2026-10-28 用户确认）：**转职成功也清零**，重新从 0 数
+    //   另外三个重置点：换卡 / 切换界面 / 退出合成屋
     save_file(global.save_slot);
 }
 
@@ -877,6 +931,53 @@ evo_gpy   = 96
 evo_scroll        = 0      // 平滑后的滚动行（Draw 用 floor 取值）
 evo_scroll_target = 0      // 滚轮改这个（Mouse_60/61）
 evo_rows_max      = 0      // Draw 每帧按卡数算（ceil(n/列) - 8），Step 只读
+
+// ── 右侧卡列表滚动条（转职页 / 神级进化页共用，2026-10-27 补）─────────────────
+//   强化页那条滑块是画在 card_surface 里的手写块，转职 / 进化两页直接画（不走 surface），
+//   一直没有滑块 → 卡数超过 8 行时滚轮能滚、但看不出「还有多少 / 现在在哪」。
+//   这里补一个和强化页完全同一位置、同一精灵的滑块，并支持拖滑块 / 点轨道跳转。
+//   状态各存一份（tg_sb / evo_sb），别共用 → 两页互不影响。
+tg_sb  = { on:false, y:0, off:0 }
+evo_sb = { on:false, y:0, off:0 }
+
+/// @func craft_list_sb(top, h, max_row, cur, tgt, st) 画右侧列表滑块并处理拖动
+/// @param top,h   列表可视区（= 800 格的顶边 / 高）
+/// @param max_row 滚动上限（行）
+/// @param cur     当前滚动行（0.28 平滑后的值，用于滑块位置）
+/// @param tgt     目标滚动行（滚轮 / 点轨道 / 拖动都改它）
+/// @param st      该列表的拖动状态 { on, y, off }
+/// @return {struct} cur / target —— 调用方写回自己的 tg_scroll / evo_scroll
+/// ⚠️ 点判定放在 Draw 里是照抄强化页的既有写法（Step 先跑、且滑块 x 在卡格外，不会抢卡格点击）
+function craft_list_sb(_top, _h, _max_row, _cur, _tgt, _st){
+    var _scl = 2.2;
+    var _sw  = sprite_get_width(spr_info_island_scroll_bar)  * _scl;
+    var _sh  = sprite_get_height(spr_info_island_scroll_bar) * _scl;
+    // 与强化页同一条竖线：卡片区（x+154 起、600 宽）右侧；精灵原点左上角 → x 补半个身位到凹槽中线
+    var _sx  = (x + 196 - 42) + 600 - _sw + 28 + _sw * 0.5;
+    if (_max_row <= 0 || _h <= _sh) return { cur:_cur, target:_tgt };
+
+    var _travel = _h - _sh;
+    var _sy = _top + clamp(_cur / _max_row, 0, 1) * _travel;
+    draw_sprite_ext(spr_info_island_scroll_bar, 0, _sx, _sy, _scl, _scl, 0, c_white, 1);
+
+    if (mouse_check_button_pressed(mb_left)){
+        if (point_in_rectangle(mouse_x, mouse_y, _sx, _sy, _sx + _sw, _sy + _sh)){
+            _st.on  = true;
+            _st.y   = mouse_y;
+            _st.off = _cur;
+        }
+        else if (point_in_rectangle(mouse_x, mouse_y, _sx, _top, _sx + _sw, _top + _h)){
+            _tgt = clamp((mouse_y - _top - _sh * 0.5) / _travel * _max_row, 0, _max_row);
+            _cur = _tgt;
+        }
+    }
+    if (_st.on && mouse_check_button(mb_left)){
+        _cur = clamp(_st.off + (mouse_y - _st.y) * (_max_row / _travel), 0, _max_row);
+        _tgt = _cur;
+    }
+    if (mouse_check_button_released(mb_left)) _st.on = false;
+    return { cur:_cur, target:_tgt };
+}
 
 /// 前置关系一律走 mod/craft 的表（scripts/mod_craft_evo_table）
 ///   slot 0 = 第 1 槽（星座卡）/ slot 1 = 第 2 槽（普通卡）/ need = 该前置卡要求的形态

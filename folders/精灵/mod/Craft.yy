@@ -35,6 +35,7 @@
     {"name":"1cbdac3a-642e-45d1-9dc9-05aef3d3aaa1","path":"sprites/spr_packageselect_btn_7/spr_packageselect_btn_7.yy",},
     {"name":"860bbba3-6322-4ef4-b9f6-d6a404755eae","path":"sprites/spr_prestige_icon/spr_prestige_icon.yy",},
     {"name":"80afed8b-82ac-4158-9db6-e6bf1ffa1d81","path":"sprites/spr_shop_credit_tab_1/spr_shop_credit_tab_1.yy",},
+    {"name":"2f39c3d2-3c5e-4c57-96d4-341a0c040a12","path":"sprites/spr_shop_price_arrow/spr_shop_price_arrow.yy",},
     {"name":"d3bd5d67-156b-4a92-a662-c445b9ccdc5a","path":"sprites/spr_shop_credit_tab_2/spr_shop_credit_tab_2.yy",},
     {"name":"63a253a5-c7a3-4d02-8eab-3b14a09d5b81","path":"sprites/spr_shop_credit_tab_all/spr_shop_credit_tab_all.yy",},
     {"name":"3f26716f-2764-4fb5-a0e4-5891fdff3924","path":"sprites/spr_shop_select_btn_6/spr_shop_select_btn_6.yy",},

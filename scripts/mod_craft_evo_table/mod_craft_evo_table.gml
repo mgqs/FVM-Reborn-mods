@@ -58,11 +58,11 @@ function mod_evo_table(){
                                         {id:"durian", slot:1, need:2} ] },  // 黑暗神使 ← 摩羯座战将（星座槽）+ 冰河世纪榴莲
         aurora:                  { cards:[ {id:"zhuzhujiaqiang", slot:0, need:2},
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
-        houyi_god:               { cards:[ {id:"double_blade_snake", slot:0, need:2},
-                                        {id:"ronghesanxian", slot:1, need:2} ] },  // 后羿神使 ← 游侠双刃蛇 + 烤灯笼鱼酒架
+        houyi_god:               { cards:[ {id:"sheshou", slot:0, need:2},
+                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← 射手座星宿（星座槽）+ 游侠双刃蛇（2026-10-28：融合三线→射手座，并对调槽位）
         joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
-        time_god:                { cards:[ {id:"ice_cream", slot:0, need:2},
-                                        {id:"magic_chicken", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 极寒冰沙 + 幻幻鸡
+        time_god:                { cards:[ {id:"magic_chicken", slot:0, need:2},
+                                        {id:"ice_cream", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 幻幻鸡 + 极寒冰沙（2026-10-28 对调）
         xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2} ] },  // 塔利亚神使 ← 流心莓果点心
         war_god:                 { cards:[ {id:"tiancheng", slot:0, need:2},
                                         {id:"double_water_pipe", slot:1, need:2} ] },  // 阿瑞斯神使 ← 天秤座星宿 + 合金水管
@@ -76,8 +76,8 @@ function mod_evo_table(){
                                         {id:"tang_hu_lu", slot:1, need:2} ] },  // 赫丘利神使 ← 热狗榴弹炮 + 七彩糖葫芦弹
         gaia:                    { cards:[ {id:"curry_lobster_cannon", slot:0, need:2},
                                         {id:"chocolate_cannon", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 死神大炮
-        zhurong:                 { cards:[ {id:"lizi_god", slot:0, need:2},
-                                        {id:"pan_fried_bun", slot:1, need:2} ] },  // 祝融神使 ← 酱香锅烤栗子 + 驴肉火烧锅
+        zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
+                                        {id:"stinky_tofu_pult", slot:1, need:2} ] },  // 祝融神使 ← 臭豆腐投手 + 生煎锅
         rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
                                         {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
@@ -97,12 +97,11 @@ function mod_evo_table(){
                                         {id:"melon_shield", slot:1, need:2} ] },  // 天后 ← 处女座精灵 + 瓜皮护罩
         ice_god:                 { cards:[ {id:"cold_drew", slot:0, need:2},
                                         {id:"ice_bucket_bomb", slot:1, need:2} ] },  // 典伊神使 ← 迅捷冷萃机 + 杂果冰桶炸弹
-        zeus:                    { cards:[ {id:"athena", slot:0, need:2},
-                                        {id:"curry_lobster_cannon", slot:1, need:2} ] },  // 宙斯神使 ← 雅典娜光辉 + 咖喱龙虾炮
+        zeus:                    { cards:[ {id:"athena", slot:0, need:2} ] },  // 宙斯神使 ← 雅典娜守护（2026-10-28：取消第 2 槽咖喱龙虾炮，只需一张）
         love_god:                { cards:[ {id:"sheshou", slot:0, need:2},
                                         {id:"triple_wine_rack", slot:1, need:2} ] },  // 丘比特神使 ← 射手座星宿 + 终结者酒架
-        panduola_god:            { cards:[ {id:"pufferfish", slot:0, need:2},
-                                        {id:"coke_bomb", slot:1, need:2} ] },  // 潘多拉 ← 爆辣河豚（星座槽）+ 可乐炸弹
+        panduola_god:            { cards:[ {id:"aquarius_elve", slot:0, need:2},
+                                        {id:"pufferfish", slot:1, need:2} ] },  // 潘多拉 ← 水瓶座精灵（星座槽）+ 爆辣河豚（2026-10-28 改）
         lingrong_god:            { cards:[ {id:"cotton_candy", slot:0, need:2} ] }  // 魔导士软糖 ← 棉花糖（星座槽）
     };
 }
@@ -287,11 +286,44 @@ function mod_evo_has_credit(_target){
     return get_material_amount(mod_evo_credit_id(_target)) > 0;
 }
 
+/// @func mod_evo_buyable_locked(target) 商店里这张进化凭证是不是「售完」
+///   （置灰 + 盖售罄罩 + 点不动；诸神商店 Create 与 Draw 只准调这一个，别再各写一份）
+///   两条就够：① 背包里已经有一张（进化凭证只能持有 1 张）② 这张金卡已经进化出来了
+///   ⚠️ 不走 mod_evo_has_credit()：它 debug 下恒真，会把整页商店置灰
+function mod_evo_buyable_locked(_target){
+    if (_target == "") return true;
+    if (get_material_amount(mod_evo_credit_id(_target)) > 0) return true;
+    if (is_card_unlocked(_target)) return true;
+    return false;
+}
+
 /// @func mod_evo_card_name(card_id) 卡的本体形态名（提示文案用；查不到就用 id）
 function mod_evo_card_name(_id){
     var _d = get_plant_shape_data(_id, 0);
     if (_d != undefined && ds_map_exists(_d, "name")) return _d[? "name"];
     return _id;
+}
+
+/// @func mod_evo_route_text(target) 进化路线：「卡1 + 卡2」（单前置就是卡名）
+function mod_evo_route_text(_target){
+    var _cs = mod_evo_cards(_target);
+    var _out = "";
+    for (var _i = 0; _i < array_length(_cs); _i++){
+        _out += ((_i == 0) ? "" : " + ") + mod_evo_card_name(_cs[_i].id);
+    }
+    return _out;
+}
+
+/// @func mod_evo_tooltip(target, desc) 进化凭证的**悬停提示**（诸神商店 / 背包共用一套字）
+///   2026-10-28 用户口径：进化路线写在提示里，不画在图标上
+/// @param desc 可选补充（商店传商品 description）
+function mod_evo_tooltip(_target, _desc = ""){
+    var _out = mod_evo_card_name(_target) + "（进化凭证）";
+    var _route = mod_evo_route_text(_target);
+    if (_route != "") _out += "\n进化路线：" + _route;
+    if (_desc != "") _out += "\n" + _desc;
+    _out += "\n在合成屋-金卡进化中使用";
+    return _out;
 }
 
 /// @func mod_evo_shape_word(n) 1 → "一转" / 2 → "二转" …
@@ -348,6 +380,7 @@ function mod_evo_draw_credit(_target, _cx, _cy, _has, _box = 68, _face_box = 50)
         draw_sprite_ext(_face, 0, _cx - _fox, _cy - _foy, _fsc, _fsc, 0, c_white, 1);
     }
     if (!_has) shader_reset();
+
 }
 
 /// @func mod_evo_pick_target(card_id) 这张卡该进哪张金卡的槽 → { target, slot }（没有可用目标返回 undefined）

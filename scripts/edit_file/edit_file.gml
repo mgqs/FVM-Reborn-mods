@@ -103,9 +103,12 @@ function upgrade_card(card_id, levels) {
 function upgrade_card_shape(card_id, shapes) {
     for (var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
         if (global.save_data.unlocked_cards[i].id == card_id) {
-            // 找到卡片，升级等级
-            global.save_data.unlocked_cards[i].max_shape = shapes;
-			global.save_data.unlocked_cards[i].shape = shapes;
+            // 找到卡片，升级形态
+            // 🔴 2026-10-27：改成「只升不降」，跟 unlock_card 同一口径。
+            //    原来是直接赋值，传一个比当前小的形态就会把卡降级（这个函数是唯一能改形态的旧入口，
+            //    现在只剩魔塔奖励格那条已废弃的路在调，兜住它别哪天传个 0 把卡洗回去）
+            global.save_data.unlocked_cards[i].max_shape = max(global.save_data.unlocked_cards[i].max_shape, shapes);
+			global.save_data.unlocked_cards[i].shape = max(global.save_data.unlocked_cards[i].shape, shapes);
             save_file(global.save_slot); // 立即保存
             return true;
         }

@@ -68,6 +68,24 @@ function cross_server_shop_init()
         }
     }
 
+    // 卡类商品（含黄金页的一/二转凭证）的**说明文字**改用「情报岛」那一档的原文
+    //   原来这些商品在 mod_shop_init 里写的是「金丝椰子果：解锁二转」这种一句话，
+    //   情报岛才有真正的技能说明（如「金丝椰子果：跳起连续碾压3次前方3*3范围鼠军」）
+    //   2026-10-28 用户要求：跨服商店的悬停说明与情报岛一致
+    var _ck = ds_map_find_first(global.goods_map);
+    while (!is_undefined(_ck)) {
+        var _cg = global.goods_map[? _ck];
+        if (is_struct(_cg) && variable_struct_exists(_cg, "cross_server_shop")
+            && variable_struct_exists(_cg, "card_id") && variable_struct_exists(_cg, "card_shape")) {
+            var _csd = get_plant_shape_data(_cg.card_id, _cg.card_shape);
+            if (_csd != undefined && ds_map_exists(_csd, "description")) {
+                var _cdesc = _csd[? "description"];
+                if (is_string(_cdesc) && _cdesc != "") _cg.description = _cdesc;
+            }
+        }
+        _ck = ds_map_find_next(global.goods_map, _ck);
+    }
+
     // 后置宝石必须先兑换对应的前置宝石。
     var _gem_prerequisites = {
         star_wand_gem_5: "star_wand_gem_1",

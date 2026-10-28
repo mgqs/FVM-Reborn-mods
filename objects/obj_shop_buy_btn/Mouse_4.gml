@@ -89,8 +89,20 @@ if not obj_shop_bg.is_submenu_opened and not is_disabled{
 		}
 		var _bal = (coin_type == "prestige") ? get_material_amount("prestige") : global.save_data.player.gold
 		if (_bal >= cost || global.debug){
-			var inst = instance_create_depth(room_width/2,room_height/2,depth-3,obj_shop_buy_confirm)
-			inst.banding_buy_btn = id
+			// 凭证：**点价格右边的小箭头**才走「自定义购买数量」窗（2026-10-27 用户改）
+			//   点按钮本体 = 买 1 个，仍走老确认框；箭头位置/热区由 transfer_credit 统一算
+			if (variable_instance_exists(id, "credit_shape") && credit_shape > 0
+				&& credit_price_arrow_hit(mouse_x, mouse_y, x, y - 62, credit_price_label(cost, coin_type))){
+				credit_trade_open_buy(target_item,
+					is_string(cost) ? real(cost) : cost,
+					coin_type,
+					(coin_type == "prestige") ? "威望" : "G",
+					depth - 3)
+			}
+			else{
+				var inst = instance_create_depth(room_width/2,room_height/2,depth-3,obj_shop_buy_confirm)
+				inst.banding_buy_btn = id
+			}
 			obj_shop_bg.is_submenu_opened = true
 		}
 		else{

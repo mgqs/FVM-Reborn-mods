@@ -399,6 +399,31 @@ function transfer_credit_draw_id(_x, _y, _id, _size, _slot = 0, _alpha = 1) {
     transfer_credit_draw(_x, _y, _p.card_id, _p.shape, _size, _slot, _alpha);
 }
 
+/// @func transfer_credit_draw_count(x, y, amount, outline) 凭证格子**右下角的数量数字**
+///   口径照背包道具页那套：`font_number` 白字、右对齐 + 底对齐，落点 (x,y) 是数字的右下角
+///   1 万以上缩成「Nw」；amount <= 0 不画（灰槽 / 没持有）
+///   outline = true 时给白字加 1px 黑描边（合成屋的凭证槽底板是金色描边，纯白字看不清）
+///   背包凭证页与合成屋-卡片转职的三个凭证槽共用这一处（2026-10-27 凭证不限量后要有这个）
+function transfer_credit_draw_count(_x, _y, _amount, _outline = false) {
+    if (_amount <= 0) return;
+    draw_set_halign(fa_right);
+    draw_set_valign(fa_bottom);
+    draw_set_font(font_number);
+    var _txt = (_amount < 10000) ? string(_amount) : (string(floor(_amount / 10000)) + "w");
+
+    if (_outline) {
+        draw_set_colour(c_black);
+        for (var _oy = -1; _oy <= 1; _oy++) {
+            for (var _ox = -1; _ox <= 1; _ox++) {
+                if (_ox == 0 && _oy == 0) continue;
+                draw_text(_x + _ox, _y + _oy, _txt);
+            }
+        }
+    }
+    draw_set_colour(c_white);
+    draw_text(_x, _y, _txt);
+}
+
 // ─────────────────────────────────────────────────────────────
 // 背包「凭证」页：分段 / 顺序 / 换行（2026-10-27 收进本脚本，不再单开表脚本）
 //   两种凭证 id：transfer_<卡id>_<形态 1~5> / evo_credit_<金卡id>
@@ -498,10 +523,17 @@ function transfer_credit_tab_name(_it){
     return transfer_credit_name(_it.card_id, _it.shape);
 }
 
-/// @func transfer_credit_tab_tip(item) 悬停说明（不写数量：凭证上限按持有 1）
+/// @func transfer_credit_tab_tip(item) 悬停说明：名字 / **持有数量** / 用途（转职凭证再写回收价）
+///   2026-10-28 用户要求把持有数量加回来（凭证不限量后，格子里的小数字看不清时以 tip 为准）
 function transfer_credit_tab_tip(_it){
-    if (_it.kind == "evo") return transfer_credit_tab_name(_it) + "\n进化凭证：在合成屋-金卡进化中使用";
-    return transfer_credit_tab_name(_it) + "\n转职凭证：在合成屋-卡片转职中使用";
+    var _head = transfer_credit_tab_name(_it) + "\n持有：" + string(_it.amount);
+    if (_it.kind == "evo"){
+        // 进化路线写进提示（与诸神商店共用 mod_evo_route_text，2026-10-28）
+        return _head + "\n进化路线：" + mod_evo_route_text(_it.card_id)
+            + "\n进化凭证：在合成屋-金卡进化中使用";
+    }
+    return _head + "\n转职凭证：在合成屋-卡片转职中使用"
+        + "\n左键点击回收（" + string(transfer_credit_recycle_price()) + "威望/个）";
 }
 
 /// @func transfer_credit_tab_draw(item, x, y, size) 画一个凭证格子
@@ -728,13 +760,14 @@ function transfer_credit_tower_floor_req(_card_id, _shape) {
 }
 
 /// @function transfer_credit_buyable_locked(card_id, shape)
-/// @desc 是不是「**永久锁**」（置灰 + 售完罩 + 点不动）——只有这三条：
-///       ① 形态不存在 ② 背包已持有该档凭证 ③ 已经转职到该形态。
+/// @desc 是不是「**永久锁**」（置灰 + 售完罩 + 点不动）——只有这两条：
+///       ① 形态不存在 ② 已经转职到该形态（或更高）。
+///       🔴 2026-10-27 用户改口径：**凭证不限量**，背包里已经有一张同款凭证**照样能买**
+///          （原来「已持有该档凭证 → 置灰」那条已删；重复买来堆着没意义是玩家的选择）
 ///       爬塔门槛、余额不足属于「临时不满足」：**不置灰、不盖售完**，点购买时才弹提示拦住
 ///       （用户 2026-10-26 定：这些点一下会变，不该看起来像“卖完了”）
 function transfer_credit_buyable_locked(_card_id, _shape) {
     if (_shape > transfer_credit_card_shapes_max(_card_id)) return true;
-    if (transfer_credit_has(_card_id, _shape)) return true;
     if (transfer_credit_card_max_shape(_card_id) >= _shape) return true;
     return false;
 }
@@ -743,16 +776,15 @@ function transfer_credit_buyable_locked(_card_id, _shape) {
 /// @desc 商店能不能买这一档 → 返回 "" = 可买；否则返回**不可买原因**（直接拿去 show_notice）
 ///       2026-10-26 用户改口径：
 ///         ① 形态不存在 → 「该形态不存在」
-///         ② 已持有该档凭证 / 已转职到该形态 → 统一「不满足购买条件」（不告诉玩家是哪种）
+///         ② 已转职到该形态 → 「不满足购买条件」（不告诉玩家是哪种）
 ///         ③ **「只能买下一档」已去掉** —— 任何档位都能直接买，不要求先有前一档
 ///         ④ 爬塔门槛 → 「魔塔通关层数不足」
+///       2026-10-27 再改：**不限量** —— 「已持有该档凭证」不再拦（见 buyable_locked 注释）
 function transfer_credit_buyable(_card_id, _shape) {
     // 形态是否存在：走 transfer_credit_card_shapes_max()，别用 get_plant_shape_data ——
     // 只注册 shape 0 的那批卡会被判「该形态不存在」，一转/二转凭证全部买不了（2026-10-25 待办 #30 C）
     if (_shape > transfer_credit_card_shapes_max(_card_id)) return "该形态不存在";
 
-    // 已持有 / 已转职：合并成一句
-    if (transfer_credit_has(_card_id, _shape)) return "不满足购买条件";
     if (transfer_credit_card_max_shape(_card_id) >= _shape) return "不满足购买条件";
 
     // 爬塔门槛（商品级 tower_floor；不写 / 0 = 不限制）
@@ -761,6 +793,286 @@ function transfer_credit_buyable(_card_id, _shape) {
 
     return "";
 }
+
+// ─────────────────────────────────────────────────────────────
+// 凭证回收（2026-10-27）：背包-凭证页点格子当场回收，**统一 500 威望/个**
+//   钱和货都由 transfer_credit_recycle() 一处改，别在界面里直接 add_material_amount
+// ─────────────────────────────────────────────────────────────
+
+/// @func transfer_credit_recycle_price() 回收单价（威望/个）—— 要调价只改这里
+function transfer_credit_recycle_price(){
+    return 500;
+}
+
+/// @func transfer_credit_recycle(id, amount) 回收 amount 张凭证
+/// @return {struct} ok / amount（实际回收数）/ gain（实际到账威望）/ reason
+///   只认转职凭证（transfer_<卡>_<档位>）；进化凭证 / 别的道具一律拒绝
+function transfer_credit_recycle(_id, _amount){
+    var _r = { ok:false, amount:0, gain:0, reason:"" };
+    if (!transfer_credit_is(_id)){ _r.reason = "这件道具不能回收"; return _r; }
+
+    var _have = get_material_amount(_id);
+    if (_have <= 0){ _r.reason = "没有可回收的凭证"; return _r; }
+
+    var _n = clamp(floor(_amount), 1, _have);
+    var _gain = _n * transfer_credit_recycle_price();
+    add_material_amount(_id, -_n);
+    add_material_amount("prestige", _gain);
+
+    _r.ok = true;
+    _r.amount = _n;
+    _r.gain = _gain;
+    return _r;
+}
+
+/// @func transfer_credit_price_scan_map(map, out)
+/// @desc 扫一张商品表，把「凭证 id → 价格 + 货币」写进 out（先到先得，已有键不覆盖）
+///       ⚠️ 两张表都要扫：普通/跨服商品在 global.goods_map，**诸神商品在独立的 global.gods_goods_map**
+///          （2026-10-28 修：只扫 goods_map 时金卡三/四/终转永远查不到价 → 补凭证提示「不在商店出售」）
+function transfer_credit_price_scan_map(_map, _out){
+    if (!ds_exists(_map, ds_type_map)) return;
+    var _key = ds_map_find_first(_map);
+    while (!is_undefined(_key)) {
+        var _g = _map[? _key];
+        if (is_struct(_g) && variable_struct_exists(_g, "unlock_item_id") && variable_struct_exists(_g, "cost")) {
+            var _vid  = "";
+            var _cur  = "";
+            var _cur_name = "";
+            var _shop = "";
+            var _type = variable_struct_exists(_g, "type") ? _g.type : "";
+
+            if (_type == "credit" && variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0) {
+                _vid  = _g.unlock_item_id;                       // 已是凭证 id
+                var _coin = variable_struct_exists(_g, "coin_type") ? _g.coin_type : "prestige";
+                _cur  = (_coin == "gold") ? "gold" : "prestige";
+                _cur_name = (_coin == "gold") ? "金币" : "威望";
+                _shop = "credit";
+            }
+            else if (_type == "tvoucher" && variable_struct_exists(_g, "target_shape")) {
+                _vid  = transfer_credit_id(_g.unlock_item_id, _g.target_shape);
+                _cur  = "oracle_stone";
+                _cur_name = "神石";
+                _shop = "gods";
+            }
+            else if (variable_struct_exists(_g, "cross_server_shop")
+                && (_type == "credit" || _type == "tvoucher")) {
+                // 跨服商店的凭证（当前只卖卡，接口先留着：以后上架凭证不用改这里）
+                _vid  = (_type == "tvoucher")
+                      ? transfer_credit_id(_g.unlock_item_id, _g.target_shape)
+                      : _g.unlock_item_id;
+                var _cs = _g.cross_server_shop;
+                _cur  = (_cs == "gold") ? "cross_server_gold_medal" : "cross_server_silver_medal";
+                _cur_name = (_cs == "gold") ? "跨服金勋章" : "跨服银勋章";
+                _shop = "cross";
+            }
+
+            if (_vid != "" && !variable_struct_exists(_out, _vid)) {
+                _out[$ _vid] = {
+                    price: is_string(_g.cost) ? real(_g.cost) : _g.cost,
+                    currency: _cur, name: _cur_name, shop: _shop
+                };
+            }
+        }
+        _key = ds_map_find_next(_map, _key);
+    }
+}
+
+/// @func transfer_credit_price_info(card_id, shape)
+/// @desc 这一档凭证**在任意一家商店**的售价与货币（转职时缺凭证要当场补，2026-10-28 用户要求）
+///       两张商品表都扫：`global.goods_map`（威望商店 / 跨服）+ `global.gods_goods_map`（诸神）
+/// @return { struct } price / currency（material id；金币为 "gold"）/ name（中文）/ shop；查不到 price = -1
+function transfer_credit_price_info(_card_id, _shape){
+    if (!variable_global_exists("_tc_price_info")) {
+        var _m = {};
+        if (variable_global_exists("goods_map"))       transfer_credit_price_scan_map(global.goods_map, _m);
+        if (variable_global_exists("gods_goods_map"))  transfer_credit_price_scan_map(global.gods_goods_map, _m);
+        global._tc_price_info = _m;
+    }
+
+    var _id = transfer_credit_id(_card_id, _shape);
+    if (!variable_struct_exists(global._tc_price_info, _id)) {
+        return { price: -1, currency: "", name: "", shop: "" };
+    }
+    return global._tc_price_info[$ _id];
+}
+
+// ─────────────────────────────────────────────────────────────
+// 凭证交易（2026-10-27）：商店列表口径 / 搜索 / 买卖窗 / 数量窗的「数据与规则」全在这里
+//   对象那边只留：画框、数字输入框、按钮命中判定（这些不好拆）
+//   要改文案 / 单价 / 货币 / 上限口径 → 改这一节，别去对象里改
+// ─────────────────────────────────────────────────────────────
+
+/// @func credit_shop_goods_name(goods) 凭证页商品的显示名（商店列表、搜索、购买窗共用一处）
+///   凭证 = 按卡名表实时生成（transfer_credit_name_from_id）
+///   兑换项（credit_shape = 0）= 注册时写的 display_name，缺字段兜「威望」
+///   🔴 兑换项必须有名字：它是唯一一条 credit_shape == 0 的商品，缺键会让整页建按钮时崩
+function credit_shop_goods_name(_g){
+    if (!is_struct(_g)) return "";
+    if (variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0){
+        return transfer_credit_name_from_id(_g.unlock_item_id);
+    }
+    if (variable_struct_exists(_g, "display_name")) return _g.display_name;
+    return "威望";
+}
+
+/// @func credit_shop_filter_search(list, query) 凭证页搜索：就地过滤商品 id 列表
+///   口径 = 商品显示名子串匹配、不区分大小写（中英文都能搜，中文靠调用方的 IME）
+///   在 shop_list_recharge 里「过滤 → 排序 → 分页」的顺序不要换，页码才会跟着搜索结果走
+function credit_shop_filter_search(_list, _query){
+    if (!is_string(_query) || _query == "") return;
+    var _q = string_lower(_query);
+    var _keep = ds_list_create();
+    for (var _i = 0; _i < ds_list_size(_list); _i++){
+        var _gid = ds_list_find_value(_list, _i);
+        if (string_pos(_q, string_lower(credit_shop_goods_name(global.goods_map[? _gid]))) > 0){
+            ds_list_add(_keep, _gid);
+        }
+    }
+    ds_list_clear(_list);
+    for (var _j = 0; _j < ds_list_size(_keep); _j++) ds_list_add(_list, ds_list_find_value(_keep, _j));
+    ds_list_destroy(_keep);
+}
+
+/// @func credit_shop_search_box_spawn(bg_x, bg_y, depth) 创建凭证页搜索框（obj_shop_bg 调一句）
+///   用工程通用的 SearchBox（自带 IME，能打中文）；位置 = 顶部蓝带右半段（左半段是三个分类页签）
+///   只在「转职凭证」页签显示 + 生效：visible 由 shop_list_recharge 管，should_correspond 在这里判
+///   ⚠️ 这个函数专门服务 obj_shop_bg（回调里直接写它的变量名），别给别的界面复用
+function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
+    var _sb = instance_create_depth(_bg_x + 615, _bg_y - 307, _depth, SearchBox);
+    _sb.set_position(_bg_x + 440, _bg_y - 327)
+        .set_size(350, 40)
+        .set_placeholder("搜索凭证名")
+        .set_theme({
+            bg:           make_colour_rgb(3, 43, 80),
+            bg_focus:     make_colour_rgb(8, 62, 112),
+            border:       make_colour_rgb(120, 190, 240),
+            border_focus: make_colour_rgb(200, 240, 255),
+            text:         c_white,
+            placeholder:  make_colour_rgb(150, 195, 230)
+        })
+        .set_on_change(method({ bg: id }, function(_t) {
+            with (bg) {
+                shop_search_text = _t;
+                current_page = 1;
+                shop_list_recharge();
+            }
+        }))
+        .set_should_correspond(method({ bg: id }, function() {
+            return (bg.shop_button_select == 6 && !bg.is_submenu_opened);
+        }));
+    return _sb;
+}
+
+/// @func credit_trade_balance(pay_kind) 该货币的余额（"gold" / "prestige" / "oracle"）
+function credit_trade_balance(_pay_kind){
+    if (_pay_kind == "prestige") return get_material_amount("prestige");
+    if (_pay_kind == "oracle")   return get_material_amount("oracle_stone");
+    return global.save_data.player.gold;
+}
+
+/// @func credit_trade_ui_words(mode, is_credit) 交易窗上的字：{ title, qty }
+///   mode = "buy" 买 / "sell" 卖；is_credit = 是不是在交易凭证（决定「回收」还是「出售材料」）
+function credit_trade_ui_words(_mode, _is_credit){
+    if (_mode == "buy") return { title: "购买凭证", qty: "购买数量" };
+    if (_is_credit)     return { title: "回收凭证", qty: "回收数量" };
+    return { title: "出售材料", qty: "出售数量" };
+}
+
+/// @func credit_trade_open_buy(credit_id, price, pay_kind, suffix, depth) 开「购买凭证」数量窗
+///   @return 窗实例（商店那边要拿它做 is_submenu_opened 之类的收尾，可以不接）
+///   名字 / 持有 / 单价 / 货币 / 单位全在这里填好，调用方只给 id + 价 + 货币
+function credit_trade_open_buy(_credit_id, _price, _pay_kind, _suffix, _depth){
+    var _inst = instance_create_depth(room_width * 0.5, room_height * 0.5, _depth, obj_material_sell_confirm);
+    _inst.mode            = "buy";
+    _inst.trade_credit_id = _credit_id;
+    _inst.sell_material_name = transfer_credit_name_from_id(_credit_id);
+    _inst.held_amount     = get_material_amount(_credit_id);
+    _inst.unit_price      = _price;
+    _inst.pay_kind        = _pay_kind;
+    _inst.unit_suffix     = _suffix;
+    return _inst;
+}
+
+/// @func credit_trade_open_recycle(credit_id, amount, depth) 开「回收凭证」数量窗（单价 = 统一回收价）
+function credit_trade_open_recycle(_credit_id, _amount, _depth){
+    var _inst = instance_create_depth(room_width * 0.5, room_height * 0.5, _depth, obj_material_sell_confirm);
+    _inst.mode            = "sell";
+    _inst.trade_credit_id = _credit_id;
+    _inst.sell_material_name = transfer_credit_name_from_id(_credit_id);
+    _inst.max_amount      = _amount;
+    _inst.unit_price      = transfer_credit_recycle_price();
+    _inst.pay_kind        = "prestige";
+    _inst.unit_suffix     = "威望";
+    return _inst;
+}
+
+/// @func credit_trade_buy(credit_id, price, pay_kind, amount) 真买：扣货币 → 凭证入库 → 存档
+///   上限 / 余额判定在调用方（数量窗按余额算 max_amount）；这里只落账
+function credit_trade_buy(_credit_id, _price, _pay_kind, _amount){
+    if (_credit_id == "" || _amount <= 0) return false;
+    var _total = _price * _amount;
+    if (_pay_kind == "prestige")      add_material_amount("prestige", -_total);
+    else if (_pay_kind == "oracle")   add_material_amount("oracle_stone", -_total);
+    else                              global.save_data.player.gold -= _total;
+    add_material_amount(_credit_id, _amount);
+    save_file(global.save_slot);
+    return true;
+}
+
+// ─────────────────────────────────────────────────────────────
+// 凭证价格行右边的小箭头（2026-10-27）：点它开「自定义购买数量」窗
+//   素材 spr_shop_price_arrow（原版商品格里那个黄箭头，18×13，蓝底已抠成透明）
+//   位置 / 大小 / 热区 / 价格文案全在这一节：Draw 与点击判定共用，别在对象里各写一份
+// ─────────────────────────────────────────────────────────────
+
+/// @func credit_price_text_scale() 价格字号（与 obj_shop_buy_btn/Draw_0 的价格行一致）
+function credit_price_text_scale(){ return 1.15; }
+
+/// @func credit_price_arrow_scale() 箭头显示倍数（18×13 → 25×18）
+function credit_price_arrow_scale(){ return 1.4; }
+
+/// @func credit_price_label(cost, coin_type) 价格行的字：「N威望」/「NG」（Draw 与点击判定共用）
+function credit_price_label(_cost, _coin_type){
+    return string(_cost) + ((_coin_type == "prestige") ? "威望" : "G");
+}
+
+/// @func credit_price_arrow_at(cx, cy, label) 箭头中心点 = 价格字右端再留 8px
+///   内部临时把字体设成 font_yuan 量宽（Draw 里调用前本来就是它，无副作用）
+function credit_price_arrow_at(_cx, _cy, _label){
+    draw_set_font(font_yuan);
+    var _pw = string_width(_label) * credit_price_text_scale();
+    var _aw = sprite_get_width(spr_shop_price_arrow) * credit_price_arrow_scale();
+    return { x: _cx + _pw * 0.5 + 8 + _aw * 0.5, y: _cy };
+}
+
+/// @func credit_price_arrow_draw_at(x, y) 画箭头（x,y = 中心）
+function credit_price_arrow_draw_at(_x, _y){
+    var _s = credit_price_arrow_scale();
+    draw_sprite_ext(spr_shop_price_arrow, 0, _x, _y, _s, _s, 0, c_white, 1);
+}
+
+/// @func credit_price_arrow_draw(cx, cy, label) 按价格字自动定位并画箭头（Draw 里用这个，不建临时结构体）
+function credit_price_arrow_draw(_cx, _cy, _label){
+    draw_set_font(font_yuan);
+    var _pw = string_width(_label) * credit_price_text_scale();
+    var _aw = sprite_get_width(spr_shop_price_arrow) * credit_price_arrow_scale();
+    credit_price_arrow_draw_at(_cx + _pw * 0.5 + 8 + _aw * 0.5, _cy);
+}
+
+/// @func credit_price_arrow_hit_at(mx, my, x, y) 点没点中箭头（热区比视觉大一圈，好点）
+function credit_price_arrow_hit_at(_mx, _my, _x, _y){
+    var _s  = credit_price_arrow_scale();
+    var _hw = sprite_get_width(spr_shop_price_arrow)  * _s * 0.5 + 4;
+    var _hh = sprite_get_height(spr_shop_price_arrow) * _s * 0.5 + 4;
+    return point_in_rectangle(_mx, _my, _x - _hw, _y - _hh, _x + _hw, _y + _hh);
+}
+
+/// @func credit_price_arrow_hit(mx, my, cx, cy, label) 同上，位置按价格字自动算
+function credit_price_arrow_hit(_mx, _my, _cx, _cy, _label){
+    var _p = credit_price_arrow_at(_cx, _cy, _label);
+    return credit_price_arrow_hit_at(_mx, _my, _p.x, _p.y);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 「威望」标签绘制（2026-10-26）
 //   素材：原版 SWF 导出 转职系统素材\images\567.png（32x18，深蓝底已抠成透明）。

@@ -33,8 +33,8 @@ if not is_disabled && not is_attire_owned{
 		//   工程里没有 bold 字体（font_yuan/所有字体 bold=false），所以：
 		//   ① 加粗 = 白字右移 0.7px 再画一遍；② 描边 = 先按 8 方向各偏移 1px 画黑字
 		//   一行写「100威望」，数字和「威望」同色（用户要求）
-		var _ptxt = string(cost) + "威望"
-		var _pts = 1.15                      // 字号：价格槽高 43px（sprite 24×1.8），16×1.15 ≈ 18.4 正好
+		var _ptxt = credit_price_label(cost, coin_type)
+		var _pts = credit_price_text_scale()  // 字号：价格槽高 43px（sprite 24×1.8），16×1.15 ≈ 18.4 正好
 		draw_set_font(font_yuan)
 		draw_set_halign(fa_center)
 		draw_set_valign(fa_middle)
@@ -48,6 +48,9 @@ if not is_disabled && not is_attire_owned{
 		draw_set_colour(c_white)
 		draw_text_transformed(x, y - 62, _ptxt, _pts, _pts, 0)
 		draw_text_transformed(x + 0.7, y - 62, _ptxt, _pts, _pts, 0)   // 模拟加粗
+		// 价格右边的小箭头 = 「自定义购买数量」的入口（2026-10-27；位置/大小在 transfer_credit）
+		//   兑换项（coin_type = gold）不走这里 → 它没有数量窗，所以也没箭头
+		credit_price_arrow_draw(x, y - 62, _ptxt)
 	}
 	else{
 		draw_text(x,y-62,string(cost)+"G")

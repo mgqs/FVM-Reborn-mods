@@ -461,9 +461,10 @@ function fusion_recipe_sprite(card_id, shape) {
 }
 
 /// @function fusion_recipe_display_name(card_id, shape)
-/// @desc 食谱道具的显示名（口径与诸神商店一致：融合菜谱 / 深度融合菜谱 / 灵魂融合菜谱（卡名））
+/// @desc 食谱道具的显示名（2026-10-28 改口径，与凭证一致）：**卡名（档位菜谱）**
+///       例：酱香锅烤栗子（初级融合菜谱）/ 可乐香烤栗子（深度融合菜谱）
 function fusion_recipe_display_name(card_id, shape) {
-    return fusion_recipe_grade_name(shape) + "（" + fusion_recipe_card_name(card_id, shape) + "）";
+    return fusion_recipe_card_name(card_id, shape) + "（" + fusion_recipe_grade_name(shape) + "）";
 }
 
 /// @function fusion_recipe_grade_name(shape)
@@ -514,7 +515,7 @@ function card_owned_shape(card_id) {
 /// 抽取规则（2026-10-27 口径，**不校验任何前置**）：
 /// 1. 普通 / 生肖卡：只发本体（shape 0）；已拥有 → 不进池
 /// 2. 金卡：发 1 张进化凭证（金卡本体只能靠合成屋-金卡进化）；已有金卡或有凭证 → 不进池
-/// 3. 融合卡：发菜谱（随机一个「没拥有、也没这道菜谱」的形态），附赠前置主卡本体
+/// 3. 融合卡：只发**初融菜谱**（形态 0）；深/灵菜谱与各类凭证一律去商店买
 /// 4. 武器 / 宝石：未拥有才进池；宝石还要求先有对应武器
 /// 权重见下方权重段（是权重不是百分比）
 /// @return {struct} { reward_type, id, shape, [recipe_id], [gift_id] }
@@ -535,22 +536,13 @@ function gacha_pick_random_reward() {
         if (gacha_is_excluded_card(card_id) && !is_card_unlocked(card_id)
             && !gacha_is_current_level_reward_card(card_id)) continue;
 
-        // ── 融合卡：只发菜谱（随机一个「还没拥有、也还没这道菜谱」的形态）──
+        // ── 融合卡：**只发初融菜谱**（形态 0，2026-10-27 用户口径）──
+        //    深度 / 灵魂菜谱不再从抽卡出，改去「诸神商店」按需买（那里本来就有 18 条 recipe）
+        //    已经有本体（初融菜谱用不上了）/ 背包里已经有一本初融菜谱 → 不进池
         if (is_fusion_card(card_id)) {
-            var _fowned = -1;
-            if (is_card_unlocked(card_id)) {
-                var _finfo = get_card_info_simple(card_id);
-                _fowned = max(_finfo.max_shape, _finfo.shape);
-            }
-            var _fcands = [];
-            for (var _fs = 0; _fs <= 3; _fs++) {
-                if (get_plant_shape_data(card_id, _fs) == undefined) break;   // 形态到头了
-                if (_fs <= _fowned) continue;                                 // 这个形态已经拥有
-                if (has_fusion_recipe(card_id, _fs)) continue;                // 这个形态的菜谱已经到手
-                array_push(_fcands, _fs);
-            }
-            if (array_length(_fcands) == 0) continue;                         // 全都有了，不进池
-            array_push(fusion_candidates, gacha_make_card_reward(card_id, _fcands[irandom(array_length(_fcands) - 1)]));
+            if (is_card_unlocked(card_id)) continue;
+            if (has_fusion_recipe(card_id, 0)) continue;
+            array_push(fusion_candidates, gacha_make_card_reward(card_id, 0));
             continue;
         }
 
@@ -615,19 +607,19 @@ function gacha_pick_random_reward() {
 
     // === 按权重选择类别 ===
     // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
-    //   星际抽卡（难度6）：融合卡15 / 金卡8 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5
-    //   欧皇抽卡（难度7）：融合卡40 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5
-    //   2026-10-25 用户口径：星际菜谱 20→15、金卡 5→8；欧皇菜谱 55→40（欧皇金卡保持 50）
+    //   抽卡（难度6）：融合菜谱20 / 金卡15 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5   → 合计 130
+    //   欧皇（难度7）：融合菜谱30 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5   → 合计 130
+    //   2026-10-28 用户口径：普通金卡 8→15、菜谱 15→20；欧皇菜谱 40→30（金卡保持 50）
     //   这是**权重**不是概率，别按百分比去反算
-    var fusion_weight = 15;
-    var gold_weight = 8;
+    var fusion_weight = 20;
+    var gold_weight = 15;
     var zodiac_weight = 20;
     var normal_weight = 74;
     var weapon_weight = 0.5;
     var gem_weight = 0.5;
 
     if (is_lucky_gacha_mode()) {
-        fusion_weight = 40;
+        fusion_weight = 30;
         gold_weight = 50;
         zodiac_weight = 25;
         normal_weight = 20;
@@ -700,11 +692,27 @@ function gacha_pick_random_reward() {
     else if (selected_type == "gem") selected_pool = gem_candidates;
 
     // 从选中的池中随机抽取
+    // 出口统一过 gacha_normalize_reward：用户 2026-10-28 口径 —— 抽卡**只能**出
+    // 「卡本体 / 进化凭证 / 初融菜谱」，任何分支（含兜底）都不许吐带形态的卡
     if (array_length(selected_pool) == 0) {
-        return gacha_pick_fallback_reward();
+        return gacha_normalize_reward(gacha_pick_fallback_reward());
     }
 
-    return selected_pool[irandom(array_length(selected_pool) - 1)];
+    return gacha_normalize_reward(selected_pool[irandom(array_length(selected_pool) - 1)]);
+}
+
+/// @function gacha_normalize_reward(reward)
+/// @desc 抽卡奖励**总闸**（2026-10-28）：卡类奖励一律降成 shape 0，并转成对应形态的获取物
+///       金卡 → 进化凭证；融合卡 → 初融菜谱；其它 → 本体（shape 0）
+///       为什么要有这道闸：兜底奖励 `gacha_pick_fallback_reward()` 会拿「已拥有的卡 + 当前形态」原样返回，
+///       金卡练到形态 3 时就会吐出「形态 3 的金卡」，绕过 gacha_make_card_reward 的金卡转换
+///       （2026-10-28 用户实测抽到形态 3 金卡，就是这个口子）
+function gacha_normalize_reward(_r) {
+    if (!is_struct(_r)) return _r;
+    if (!variable_struct_exists(_r, "reward_type") || _r.reward_type != "card") return _r;
+    var _n = gacha_make_card_reward(_r.id, 0);
+    if (variable_struct_exists(_r, "fallback")) _n.fallback = _r.fallback;
+    return _n;
 }
 
 /// @function gacha_pick_fallback_reward()
@@ -715,14 +723,16 @@ function gacha_pick_fallback_reward() {
     for (var i = 0; i < ds_list_size(global.player_deck); i += 2) {
         var card_id = global.player_deck[| i];
         if (is_card_unlocked(card_id)) {
-            // 兜底是「满形态时随机一张提等级」，融合卡不参与 —— 它只能靠融合页拿，别在这里把本体发出去
+            // 兜底是「满形态时随机一张提等级」，融合卡 / 金卡都不参与：
+            //   融合卡只能靠融合页拿（别在这里把本体发出去）；
+            //   金卡走进化凭证，且已经拥有的金卡再发凭证没有意义（2026-10-28）
             if (is_fusion_card(card_id)) continue;
-            var info = get_card_info_simple(card_id);
+            if (gacha_is_gold_card(card_id)) continue;
             array_push(all_cards, {
                 reward_type: "card",
                 id: card_id,
-                // 兜底只提升等级；展示当前使用形态，避免误显示成重复转职。
-                shape: info.shape
+                // 兜底只提升等级；形态一律 0（别把当前形态带出去，2026-10-28）
+                shape: 0
             });
         }
     }

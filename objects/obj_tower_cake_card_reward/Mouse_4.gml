@@ -6,19 +6,3 @@ if (reward_kind != "" && !obj_tower_cake_bg.is_submenu_opened){
 	else       show_notice("通关后自动发放威望", 60);
 	exit;
 }
-
-// 旧卡片奖励兜底（塔关已经不再有卡奖励）
-if (!dimmed && target_card_id != "" && !obj_tower_cake_bg.is_submenu_opened){
-	if (is_eternal_gacha_mode()) {
-		show_notice("抽卡模式通过随机奖励获取卡片形态", 60);
-		exit;
-	}
-	if is_card_unlocked(target_card_id){
-		upgrade_card_shape(target_card_id,target_shape)
-		global.audio.play(snd_button,0,0)
-		show_notice("卡片转职已获取",60)
-	}
-	else{
-		show_notice("该卡片未解锁，无法领取",60)
-	}
-}

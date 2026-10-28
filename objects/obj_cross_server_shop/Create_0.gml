@@ -84,3 +84,66 @@ for (var _list_index = 0; _list_index < array_length(_shop_lists); _list_index++
 // 动态计算总页数（每页16个商品）
 var _cards = shop_type == 0 ? exchange_cards : silver_cards;
 total_pages = max(1, ceil(array_length(_cards) / 16));
+
+// ── 购买确认窗（2026-10-28 用户要求）────────────────────────────────────────
+//   点商品先弹「是否消耗 N 金/银勋章兑换 XX？」→ 确定才扣钱。
+//   一转/二转凭证就是普通商品，一次买 1 张，**不需要自定义数量窗**
+//   （数量窗只属于威望商店里那种可批量囤的凭证，跨服这里按原版手感走确认框）
+confirm_id         = "";      // 非空 = 确认窗开着（存商品 key）
+confirm_name       = "";
+confirm_cost       = 0;
+confirm_medal      = "";
+confirm_medal_name = "";
+
+/// @func cross_shop_confirm_rect(i) 确认窗按钮矩形（0 = 确定 / 1 = 取消）
+function cross_shop_confirm_rect(_i){
+    var _bx = x + ((_i == 0) ? -95 : 95);
+    return [_bx - 62, y + 58, _bx + 62, y + 112];
+}
+
+/// @func cross_shop_confirm_open(id) 打开确认窗（只记录，不扣钱）
+function cross_shop_confirm_open(_id){
+    var _g = global.goods_map[? _id];
+    if (!is_struct(_g)) return;
+    confirm_id = _id;
+    // 一转/二转凭证与商店、背包同一套叫法「卡名（X转凭证）」
+    if (variable_struct_exists(_g, "card_id") && variable_struct_exists(_g, "card_shape") && _g.card_shape > 0)
+        confirm_name = transfer_credit_name(_g.card_id, _g.card_shape);
+    else
+        confirm_name = variable_struct_exists(_g, "display_name") ? _g.display_name : _id;
+    confirm_cost       = real(_g.cost);
+    confirm_medal      = (shop_type == 0) ? "cross_server_gold_medal" : "cross_server_silver_medal";
+    confirm_medal_name = (shop_type == 0) ? "金色勋章" : "白银勋章";
+    audio_play_sound(snd_button, 0, 0);
+}
+
+/// @func cross_shop_buy_do() 确定：再查一次余额 → 扣勋章 → 发货
+function cross_shop_buy_do(){
+    var _id = confirm_id;
+    confirm_id = "";
+    if (_id == "" || !ds_map_exists(global.goods_map, _id)) return;
+    var _g = global.goods_map[? _id];
+    if (get_material_amount(confirm_medal) < confirm_cost && !global.debug){
+        show_notice(confirm_medal_name + "不足", 60);
+        return;
+    }
+    add_material_amount(confirm_medal, -confirm_cost);
+
+    var _type    = _g.type;
+    var _card_id = variable_struct_exists(_g, "card_id") ? _g.card_id : _id;
+    var _shape   = variable_struct_exists(_g, "card_shape") ? _g.card_shape : 0;
+    if (_type == "card"){
+        if (_shape > 0){
+            // 一 / 二转：发转职凭证（不去动形态，转职去合成屋）
+            add_material_amount(transfer_credit_id(_card_id, _shape), 1);
+        } else {
+            unlock_card(_card_id, 0, _shape, global.save_data.unlocked_items.max_skill_level);
+        }
+    } else if (_type == "weapon"){
+        unlock_weapon(_id);
+    } else if (_type == "gem"){
+        unlock_gem(_id);
+    }
+    save_file(global.save_slot);
+    audio_play_sound(snd_button, 0, 0);
+}
