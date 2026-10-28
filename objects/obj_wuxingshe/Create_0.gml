@@ -38,7 +38,8 @@ global.buff_dirty = true;
 // 常驻法阵光环：0/1 转八角框按 3*3 精确铺满，2 转太极圆环按 1.65× 放大到 5*5
 wuxingshe_age = 0;
 wuxingshe_effects = [];
-var _e = instance_create_depth(x, y, -3000, obj_zodiac_effect);
+// 光环画在卡片**下层**（depth 比卡片大 = 更靠后），别盖住蛇本体
+var _e = instance_create_depth(x, y, depth + 10, obj_zodiac_effect);
 _e.sprite_index = spr_wuxingshe_effect;
 if (shape == 1) _e.sprite_index = spr_wuxingshe_effect_1;
 else if (shape >= 2) _e.sprite_index = spr_wuxingshe_effect_2;

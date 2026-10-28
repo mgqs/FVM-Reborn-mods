@@ -28,7 +28,11 @@ else if (grid_col != last_buff_col || grid_row != last_buff_row)
 // 光环跟随（被木板/铲子挪动时也要跟着走）
 for (var i = 0; i < array_length(wuxingshe_effects); i++) {
     var _e = wuxingshe_effects[i];
-    if (instance_exists(_e)) { _e.x = x; _e.y = y; }
+    if (instance_exists(_e)) {
+        _e.x = x;
+        _e.y = y;
+        _e.depth = depth + 10;     // 始终压在卡片下层（卡片 depth 由 calculate_plant_depth 决定）
+    }
 }
 
 wuxingshe_age++;

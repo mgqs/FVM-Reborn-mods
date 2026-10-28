@@ -31,7 +31,7 @@ function credit_shop_init()
         reward_prestige: 100000
     });
 
-    // ── 一转凭证（102 条）─────────────────────────────────────────
+    // ── 一转凭证（103 条）─────────────────────────────────────────
     register_goods("credit_wooden_plate_1", {
         type: "credit", cost: "900", coin_type: "prestige", credit_shape: 1,
         tower_floor: "1-1",
@@ -749,7 +749,15 @@ function credit_shop_init()
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
 
-    // ── 二转凭证（98 条）─────────────────────────────────────────
+    // 美食烟花（delicacy_firework）：价同水瓶座精灵，门槛按用户指定 11-1 / 20-2
+    register_goods("credit_delicacy_firework_1", {
+        type: "credit", cost: "7000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "11-1",
+        unlock_item_id: transfer_credit_id("delicacy_firework", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+
+    // ── 二转凭证（99 条）─────────────────────────────────────────
     register_goods("credit_wooden_plate_2", {
         type: "credit", cost: "11400", coin_type: "prestige", credit_shape: 2,
         tower_floor: "12-1",
@@ -1432,6 +1440,12 @@ function credit_shop_init()
         type: "credit", cost: "36000", coin_type: "prestige", credit_shape: 2,
         tower_floor: "29-2",
         unlock_item_id: transfer_credit_id("wuxingshe", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_delicacy_firework_2", {
+        type: "credit", cost: "29700", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "20-2",
+        unlock_item_id: transfer_credit_id("delicacy_firework", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
 }
