@@ -12,15 +12,41 @@ if is_frozen{
 }
 
 // 赖皮蛇：无论是否有敌人都按间隔发射子弹
-if (attack_timer <= cycle - attack_anim * flash_speed) {
+// 帧布局（2026-10-28 用户）：1-14 待机 / 15-26 攻击，第 22 帧发射
+if (state != CARD_STATE.ATTACK)
+{
     attack_timer++;
-} else if (attack_timer <= cycle) {
-    attack_timer++;
-    state = CARD_STATE.ATTACK;
-} else {
-    event_user(1); // 发射海胆子弹
-    attack_timer = 0;
-    state = CARD_STATE.IDLE;
+
+    // cycle 不足以播完整套攻击动画时按 cycle 压缩每帧时钟（总周期仍是 cycle）
+    var _cs = is_slowdown ? flash_speed_base * 2 : flash_speed_base;
+    var _spd = min(_cs, max(1, floor(cycle / max(1, attack_anim))));
+    var _window = attack_anim * _spd;
+
+    if (attack_timer >= cycle - _window)
+    {
+        attack_timer = 0;
+        state = CARD_STATE.ATTACK;
+        image_index = idle_anim + 1;
+        laipishe_fired = false;
+        flash_speed = is_slowdown ? max(1, _spd * 0.5) : _spd;
+    }
+}
+else
+{
+    // 攻击动画播到第 22 帧 → 发射海胆子弹
+    if (!laipishe_fired && image_index >= laipishe_shoot_frame)
+    {
+        event_user(1);
+        laipishe_fired = true;
+    }
+
+    if (image_index >= idle_anim + attack_anim)
+    {
+        state = CARD_STATE.IDLE;
+        image_index = 0;
+        attack_timer = 0;
+        flash_speed = flash_speed_base;
+    }
 }
 
 // 清理已失效的子弹引用

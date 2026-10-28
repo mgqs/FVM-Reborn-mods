@@ -235,6 +235,7 @@ if info_button_select == 1 {
 		if _shape_data != undefined{
 			name = _shape_data[? "name"]
 		}
+		// 出处 / 前置卡片已直接写进 register_card_info_island 的文案（2026-10-28）
 		var info_text = global.info_island[? card_id]
 		
 		//绘制文本

@@ -229,9 +229,39 @@ function hex_enemy_scale_apply(_inst, _boss) {
     return _inst;
 }
 
-/// @function hex_spawn_flood(_enemy_list)
-/// @desc 鼠潮：按 PI 阈值往本波尾部追加精英鼠（复用本波已有的敌人类型）
-function hex_spawn_flood(_enemy_list) {
+/// @function hex_flood_pick_row(_feature, _used, _enforce)
+/// @desc 鼠潮选行：与关卡正常出怪同一套地形约束（陆地鼠只落在陆地行、水路鼠只落在水路行）。
+///       行号是 1 基；_used 里为 true 的行优先跳过，实在没有空行再复用。
+function hex_flood_pick_row(_feature, _used = undefined, _enforce = true) {
+    var _rows = [];
+    var _free = [];
+    for (var r = 0; r < global.grid_rows; r++) {
+        var _rt = "land";
+        if (variable_global_exists("row_feature") && is_array(global.row_feature)) _rt = global.row_feature[r];
+
+        var _match = true;
+        if (_enforce) {
+            if (_feature == "land")       _match = (_rt == "land");
+            else if (_feature == "water") _match = (_rt == "water");
+        }
+        if (!_match) continue;
+
+        array_push(_rows, r + 1);
+        var _is_used = false;
+        if (is_array(_used) && r < array_length(_used)) _is_used = _used[r];
+        if (!_is_used) array_push(_free, r + 1);
+    }
+    if (array_length(_free) > 0) return _free[irandom(array_length(_free) - 1)];
+    if (array_length(_rows) > 0) return _rows[irandom(array_length(_rows) - 1)];
+    // 本波确实没有匹配行（例如整关都是水路却刷了陆地鼠）才退回随机行
+    return irandom(global.grid_rows - 1) + 1;
+}
+
+/// @function hex_spawn_flood(_enemy_list, _used)
+/// @desc 鼠潮：按 PI 阈值往本波尾部追加精英鼠（复用本波已有的敌人类型）。
+///       出怪行必须按敌人 feature 与 global.row_feature 匹配，不能纯随机 ——
+///       否则会出现「陆地鼠站在水路上、水路鼠站在陆地上」的错位。
+function hex_spawn_flood(_enemy_list, _used = undefined) {
     if (!hex_enabled()) return 0;
     if (!variable_global_exists("pi_elite_extra")) return 0;
     var _n = global.pi_elite_extra;
@@ -245,10 +275,20 @@ function hex_spawn_flood(_enemy_list) {
     }
     if (array_length(_types) == 0) return 0;
 
+    // 与 obj_battle/Create_0 的正常出怪同口径：塔蛋糕的螃蟹/猫只是行装饰，不参与地形校验
+    var _enforce = (global.map_id != "tower_cake");
+    var _used_now = is_array(_used) ? _used : array_create(global.grid_rows, false);
+
     var _spawned = 0;
     for (var k = 0; k < _n; k++) {
         var _type = _types[irandom(array_length(_types) - 1)];
-        var _row  = irandom(global.grid_rows - 1) + 1;
+        var _feature = "land";
+        if (variable_struct_exists(global.enemy_map[? _type], "feature"))
+            _feature = global.enemy_map[? _type].feature;
+
+        var _row = hex_flood_pick_row(_feature, _used_now, _enforce);
+        if (is_array(_used_now) && _row - 1 >= 0 && _row - 1 < array_length(_used_now)) _used_now[_row - 1] = true;
+
         var _wx   = global.grid_offset_x + 9 * global.grid_cell_size_x;
         var _wy   = global.grid_offset_y + (_row - 1) * global.grid_cell_size_y;
         var _gp   = get_grid_position_from_world(_wx, _wy);

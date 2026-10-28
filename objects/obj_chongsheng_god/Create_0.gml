@@ -17,8 +17,11 @@ plant_type = "normal";
 is_slowdown = false;
 image_speed = 0;
 
-idle_anim = 16;
-attack_anim = 17;
+// 帧布局（2026-10-28 用户）：1-12 待机 / 13-34 攻击，第 20 帧触发复活波
+idle_anim = 11;
+attack_anim = 22;
+chongsheng_trigger_frame = 19;      // 第 20 帧（0 起算）
+chongsheng_end_frame = 33;          // 第 34 帧（攻击末帧，播完自毁）
 
 revive_count = 0;
 revive_triggered = false;

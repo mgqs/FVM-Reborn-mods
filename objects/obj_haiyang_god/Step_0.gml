@@ -27,10 +27,6 @@ else if (grid_col != ocean_last_col || grid_row != ocean_last_row || shape != oc
         plant_type = "gridless";
     else
         plant_type = "normal";
-
-    // 海克斯「悬浮厨房」：海洋女神属于增幅类，不能被上面的形态判断改回 normal 占格
-    if (plant_type != "gridless" && hex_gridless_for_card("haiyang_god"))
-        plant_type = "gridless";
     
     refresh_ocean_buff_cells();
     global.ocean_buff_dirty = true;

@@ -1,11 +1,11 @@
 if (global.is_paused) exit;
 
-if (state == CARD_STATE.ATTACK && image_index >= 33 && timer >= flash_speed - 1) {
+if (state == CARD_STATE.ATTACK && image_index >= chongsheng_end_frame && timer >= flash_speed - 1) {
     instance_destroy();
     exit;
 }
 
-if (state == CARD_STATE.ATTACK && !revive_triggered && image_index >= 25) {
+if (state == CARD_STATE.ATTACK && !revive_triggered && image_index >= chongsheng_trigger_frame) {
     revive_triggered = true;
 
     var _eff1_spr = spr_chongsheng_god_effect_0_1;

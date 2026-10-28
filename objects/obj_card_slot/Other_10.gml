@@ -16,7 +16,7 @@ if (plant_data != undefined) {
     var upgrade_data = get_plant_data_with_skill(card_id, cshape,clevel,cskill);
     if (upgrade_data != undefined) {
         cost = upgrade_data[? "cost"];
-        cooldown = upgrade_data[? "cooldown"];
+        cooldown = hex_card_cooldown(upgrade_data[? "cooldown"], card_id);
     }
 	//检查食谱
 	var cookbook_list = global.save_data.equipped_cookbook

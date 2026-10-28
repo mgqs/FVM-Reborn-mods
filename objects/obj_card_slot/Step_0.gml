@@ -231,7 +231,7 @@ if (is_selected) {
         
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
-        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, hex_effective_plant_type(card_id, card_data[? "plant_type"]),card_data[? "feature_type"],card_data[? "target_card"],card_id));
+        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"],card_id));
         if (is_random_gift_mode() && card_id == "lihe") {
             // The pending effect is not in grid_plants yet, so check it explicitly.
             var _gift_pending = false;
@@ -305,8 +305,6 @@ if (is_selected) {
 				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, shape, clevel, cskill);
 			}
 			if (!gift_queued) {
-				// 海克斯「悬浮厨房」：先定 plant_type 再算深度，否则深度按 normal 算，卡会画在底座后面
-				if (hex_gridless_for_card(card_id)) new_plant.plant_type = "gridless";
 				// 计算深度值
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);

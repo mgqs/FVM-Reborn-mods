@@ -64,23 +64,24 @@ else if (state == CARD_STATE.ATTACK)
 	if (is_digesting)
 	{
 		digest_timer -= 1;
-		var _digest_range = f_digest_end - f_eat;
+		// 消化期间循环播「咀嚼」段（29..40），吞下段（41..48）在结束后播
+		var _digest_range = f_chew_end - f_chew_start + 1;
 		if (_digest_range > 0)
 		{
 			var _elapsed = digest_timer_max - digest_timer;
 		var _frame_offset = floor(_elapsed / current_flash_speed) mod _digest_range;
-		image_index = f_eat + _frame_offset;
+		image_index = f_chew_start + _frame_offset;
 		}
 		else
 		{
-			image_index = f_eat;
+			image_index = f_chew_start;
 		}
 
 		if (digest_timer <= 0)
 		{
 			is_digesting = false;
-			anim_frame = f_digest_end * current_flash_speed;
-			image_index = f_digest_end;
+			anim_frame = f_swallow_start * current_flash_speed;
+			image_index = f_swallow_start;
 		}
 	}
 	else
@@ -115,12 +116,12 @@ else if (state == CARD_STATE.ATTACK)
 		}
 	}
 
-	if (_frame >= f_eat && !enemy_hitted)
+	if (_frame >= f_shoot && !enemy_hitted)
 	{
 		event_user(1);
 	}
 
-	if (enemy_hitted && !is_digesting && _frame >= f_eat && _frame < f_digest_end)
+	if (enemy_hitted && !is_digesting && _frame >= f_shoot && _frame <= f_chew_end)
 	{
 		is_digesting = true;
 		var _base_digest = origin_digest_time;

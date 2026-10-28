@@ -53,24 +53,6 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     }
     if (_green_apple_block) return false;
 
-    // 海克斯「悬浮厨房」：增幅类 / 辅助类不占格。
-    // 做法照抄海洋女神四转 / 战旗马一转 —— 把 plant_type 折算成 "gridless"，
-    // 交给下面 switch 里既有的 case "gridless" 统一放行，不再另开一条并行分支
-    //（并行分支会漏掉深度排序、底座、玩家占格这些既有约定）。
-    // 这里只补两条 gridless 通用规则没覆盖的硬约束：
-    //   1) 玩家角色所在的格子不能放卡
-    //   2) 同一格不能重复放同一张卡，否则同格能叠十张增幅卡
-    if (card_id != "" && hex_gridless_for_card(card_id)) {
-        var _hg_list = ds_grid_get(global.grid_plants, col, row);
-        for (var _hgi = 0; _hgi < ds_list_size(_hg_list); _hgi++) {
-            var _hgp = _hg_list[| _hgi];
-            if (!instance_exists(_hgp) || !variable_instance_exists(_hgp, "plant_id")) continue;
-            if (_hgp.plant_id == "player") return false;
-            if (_hgp.plant_id == card_id) return false;
-        }
-        plant_type = "gridless";
-    }
-
 	//调试相关
 	if global.debug{
 		return true

@@ -114,7 +114,6 @@ function hex_state_init() {
         // ── 机制通道（不是纯数值，需要外部系统配合读取）──
         refund:          1.0,     // 铲除返还倍率
         cost:            1.0,     // 卡片费用倍率
-        gridless:        false,   // 增幅类 / 辅助类不占格
         free_place:      false,   // 每波首次放置免费
         free_place_used: false,
         wave_reset:      false,   // 每波开始卡槽冷却清零
@@ -367,7 +366,6 @@ function hex_apply_core(_id) {
     // ── 机制通道：这些值不是倍率，由各自的读取函数消费 ──
     if (variable_struct_exists(_d.ex, "refund"))         _s.refund += _d.ex.refund;
     if (variable_struct_exists(_d.ex, "cost"))           _s.cost *= (1 + _d.ex.cost);
-    if (variable_struct_exists(_d.ex, "gridless"))       _s.gridless = true;
     if (variable_struct_exists(_d.ex, "free_place"))     _s.free_place = true;
     if (variable_struct_exists(_d.ex, "wave_reset"))     _s.wave_reset = true;
     if (variable_struct_exists(_d.ex, "bond_power"))     _s.bond_power *= (1 + _d.ex.bond_power);
@@ -983,30 +981,6 @@ function hex_cost_mult() {
     return clamp(_c, 0.1, 12.0);
 }
 
-/// @function hex_gridless_for_card(_card_id)
-/// @desc 该卡是否因为海克斯而不占格（增幅类 / 辅助类）
-function hex_gridless_for_card(_card_id) {
-    if (!hex_enabled()) return false;
-    if (!variable_global_exists("hex_state")) return false;
-    if (!is_struct(global.hex_state)) return false;
-    if (!variable_struct_exists(global.hex_state, "gridless")) return false;
-    if (!global.hex_state.gridless) return false;
-    var _c = card_get_category(_card_id);
-    if (is_undefined(_c)) return false;
-    return (_c.major == "增幅类" || _c.major == "辅助类");
-}
-
-/// @function hex_effective_plant_type(_card_id, _base_type)
-/// @desc 海克斯「悬浮厨房」：增幅类 / 辅助类按「不占格」处理。
-///       做法与海洋女神四转（shape>=1）、战旗马一转完全一致 —— 直接把 plant_type
-///       折算成 "gridless"，交给 can_place_at_position 里既有的 case "gridless" 统一放行，
-///       不再另开一条并行分支（并行分支会漏掉底座、玩家占格、深度排序这些既有约定）。
-function hex_effective_plant_type(_card_id, _base_type) {
-    if (_base_type == "gridless") return _base_type;
-    if (hex_gridless_for_card(_card_id)) return "gridless";
-    return _base_type;
-}
-
 /// @function hex_fmt_pct(_v)
 /// @desc 把倍率格式化成 +12% / -8%（v 是乘数，不是增量）
 function hex_fmt_pct(_v) {
@@ -1521,7 +1495,6 @@ function hex_effect_rows() {
     // 放置与经济
     if (_s.refund != 1.0) array_push(_card, { label: "铲除返还", value: string(round(_s.refund * 100)) + "%", tag: "经济" });
     if (_s.cost   != 1.0) array_push(_card, { label: "卡片费用", value: hex_fmt_pct(_s.cost), tag: "经济" });
-    if (_s.gridless)      array_push(_card, { label: "增幅/辅助不占格", value: "生效", tag: "放置" });
     if (_s.free_place)    array_push(_card, { label: "每波首次放置免费", value: "生效", tag: "放置" });
     if (_s.wave_reset)    array_push(_card, { label: "每波卡槽冷却清零", value: "生效", tag: "放置" });
 
@@ -1835,12 +1808,18 @@ function hex_buff_grant_mult() {
     return max(1.0, global.hex_state.buff_grant);
 }
 
-/// @function hex_card_cooldown(_base)
-/// @desc 卡片冷却（火候观察：0 冷却）
-function hex_card_cooldown(_base) {
+/// @function hex_card_cooldown(_base, _card_id)
+/// @desc 卡槽冷却（不是攻击间隔）：火候观察的 0 冷却 + 指定卡的冷却倍率。
+///       爆爆鸡 / 旋风牛这类一次性卡片，"冷却" 就是卡槽冷却，只改 cycle 是没用的，
+///       所以「爱打洞的老鼠」的 -75% 必须在这里落地，_card_id 缺省时只处理 0 冷却。
+function hex_card_cooldown(_base, _card_id = "") {
     if (!hex_enabled()) return _base;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return _base;
     if (global.hex_state.zero_cd) return 0;
+    if (_card_id != "") {
+        var _m = hex_batch2_id_cycle(_card_id);
+        if (_m != 1.0) return max(1, round(_base * _m));
+    }
     return _base;
 }
 

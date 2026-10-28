@@ -90,8 +90,6 @@ var card_data = deck_get_card_data(plant_id,card_shape)
 plant_type = card_data[? "plant_type"]
 feature_type = card_data[? "feature_type"]
 target_card = card_data[? "target_card"]
-// 海克斯「悬浮厨房」：任何一次「按卡面数据重刷」都不能把不占格状态改回 normal
-if (plant_type != "gridless" && plant_id != "" && hex_gridless_for_card(plant_id)) plant_type = "gridless";
 
 //检查食谱
 var cookbook_list = global.save_data.equipped_cookbook

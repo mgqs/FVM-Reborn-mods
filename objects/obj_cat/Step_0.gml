@@ -29,8 +29,9 @@ with obj_enemy_parent{
 			other.timer = 0
 		}
 		if other.state != "idle" && other.row == grid_row && hp > 0  && (array_get_index(other.ignore_list,mouse_id) == -1){
-			// 爆炸/冲撞类（金牛烟花等 can_loss=false 的猫）无法秒杀魂系或防爆敌人
-			if (!other.can_loss && (longyuan_is_soul_enemy(id) || (variable_instance_exists(id, "immune_to_ash") && immune_to_ash))) continue;
+			// 爆炸/冲撞类（金牛烟花、猫眼宝石等 can_loss=false 的猫）：
+			// 只有魂系鼠与 BOSS 挡得住冲撞，其余敌人一律撞死（判据统一走 crash_immune_enemy）
+			if (!other.can_loss && crash_immune_enemy(id)) continue;
 			
 			var inst = instance_create_depth(x,y,depth,obj_knock_back_effect)
 			inst.sprite_index = sprite_index

@@ -232,8 +232,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                     
                     // 魔塔威望（2026-10-27）：首通 / 次通两档，数值见 maps_init 的塔关 rewards
                     //   放在「精英首次通关」之前 = 两支（首通/非首通）都已结算完，值仍有效
+                    //   威望不吃难度奖励倍率（2026-10-28）：只保留海克斯的关卡奖励倍率
                     var _tp1 = tower_prestige_reward(global.level_data.id, is_first_normal);
-                    if (_tp1 > 0) add_material_amount("prestige", _tp1 * reward_multiplier);
+                    if (_tp1 > 0) add_material_amount("prestige", round(_tp1 * tower_prestige_grant_mult()));
 
                     // 精英模式首次通关：记录到精英通关列表
                     if (is_first_elite) {
@@ -433,9 +434,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 									var gem_id = gem_unlock_id_list[i]
 									unlock_gem(gem_id)
 								}
-								// 魔塔威望（首通档）
+								// 魔塔威望（首通档）——不吃难度奖励倍率
 								var _tpv1 = tower_prestige_reward(global.level_data.id, _tp_first);
-								if (_tpv1 > 0) add_material_amount("prestige", _tpv1 * reward_multiplier);
+								if (_tpv1 > 0) add_material_amount("prestige", round(_tpv1 * tower_prestige_grant_mult()));
 								save_file(global.save_slot)
 							}
 							else{
@@ -461,7 +462,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 								}
 								// 魔塔威望（次通档）
 								var _tpv2 = tower_prestige_reward(global.level_data.id, _tp_first);
-								if (_tpv2 > 0) add_material_amount("prestige", _tpv2 * reward_multiplier);
+								if (_tpv2 > 0) add_material_amount("prestige", round(_tpv2 * tower_prestige_grant_mult()));
 								save_file(global.save_slot)
 							}
 						}
