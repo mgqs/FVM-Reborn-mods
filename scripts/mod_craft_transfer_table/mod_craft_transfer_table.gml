@@ -41,10 +41,10 @@
 function mod_tg_gold(_tier){
     switch (_tier){
         case 1: return 3000;      // 一转
-        case 2: return 15000;     // 二转
-        case 3: return 50000;      // 三转（金卡）
-        case 4: return 75000;     // 四转（金卡）
-        case 5: return 100000;     // 终转（金卡）
+        case 2: return 20000;     // 二转
+        case 3: return 75000;      // 三转（金卡）
+        case 4: return 100000;     // 四转（金卡）
+        case 5: return 200000;     // 终转（金卡）
     }
     return 15000;
 }
@@ -54,10 +54,10 @@ function mod_tg_gold(_tier){
 function mod_tg_assure(_tier){
     switch (_tier){
         case 1: return 7500;      // 一转
-        case 2: return 50000;     // 二转
-        case 3: return 75000;      // 三转（金卡）
-        case 4: return 100000;     // 四转（金卡）
-        case 5: return 150000;     // 终转（金卡）
+        case 2: return 80000;     // 二转
+        case 3: return 300000;      // 三转（金卡）
+        case 4: return 400000;     // 四转（金卡）
+        case 5: return 500000;     // 终转（金卡）
     }
     return 50000;
 }

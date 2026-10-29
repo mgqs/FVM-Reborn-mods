@@ -87,6 +87,15 @@ if not obj_shop_bg.is_submenu_opened and not is_disabled{
 				exit
 			}
 		}
+		// 兑换项（target_item = "prestige"，解析不出凭证 id）：爬塔门槛要**真的拦**
+		//   2026-10-29 用户确认：以前只在按钮上写小字、买的时候不判，等于无限制；现在补上
+		//   门槛 key 建按钮时已算在 credit_floor_key（兑换项 = credit_shop_tower_defaults 的 "0"）
+		else if (variable_instance_exists(id, "credit_shape") && credit_shape == 0
+			&& variable_instance_exists(id, "credit_floor_key") && credit_floor_key > 0
+			&& transfer_credit_tower_done_key() < credit_floor_key){
+			show_notice("魔塔通关层数不足", 80)
+			exit
+		}
 		var _bal = (coin_type == "prestige") ? get_material_amount("prestige") : global.save_data.player.gold
 		if (_bal >= cost || global.debug){
 			// 凭证：**点价格右边的小箭头**才走「自定义购买数量」窗（2026-10-27 用户改）

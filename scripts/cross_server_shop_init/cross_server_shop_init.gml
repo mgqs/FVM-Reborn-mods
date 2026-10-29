@@ -2,7 +2,7 @@ function cross_server_shop_init()
 {
     var _cross_server_goods = [
         "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
-        "zhanqima", "zhanqima_1", "zhanqima_2", "hongliukaochuan_1", "hongliukaochuan_2", "yeziguo", "yeziguo_1", "yeziguo_2", "niuyouguo", "niuyouguo_1", "niuyouguo_2", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
+        "zhanqima", "zhanqima_1", "zhanqima_2", "yeziguo", "niuyouguo", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
         "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem", "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
@@ -14,13 +14,8 @@ function cross_server_shop_init()
         baibianshe: {cost: "1510", shop: "silver"}, double_blade_snake: {cost: "1320", shop: "silver"}, laipishe: {cost: "1320", shop: "silver"},
         spoon_rabbit: {cost: "1130", shop: "silver"}, magic_chicken: {cost: "1130", shop: "silver"}, xuanfengniu: {cost: "1020", shop: "silver"},
         zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "225", shop: "gold"}, zhanqima_2: {cost: "228", shop: "gold"},
-        hongliukaochuan_1: {cost: "390", shop: "gold"}, hongliukaochuan_2: {cost: "365", shop: "gold"},
         yeziguo: {cost: "1130", shop: "silver"},
-        yeziguo_1: {cost: "130", shop: "gold"}, yeziguo_2: {cost: "133", shop: "gold"},
         niuyouguo: {cost: "2030", shop: "silver"},
-        niuyouguo_1: {cost: "240", shop: "gold"}, niuyouguo_2: {cost: "243", shop: "gold"},
-        chunsun: {cost: "1000", shop: "silver"},
-        chunsun_1: {cost: "115", shop: "gold"}, chunsun_2: {cost: "118", shop: "gold"},
         master_shield: {cost: "900", shop: "silver"}, hades_scythe: {cost: "900", shop: "silver"}, zeus_bolt: {cost: "900", shop: "silver"},
         divine_blessing_gem: {cost: "900", shop: "silver"}, divine_protect_gem: {cost: "900", shop: "silver"}, divine_holy_gem: {cost: "900", shop: "silver"}, divine_shenji_gem: {cost: "900", shop: "silver"},
         ghost_strike_gem: {cost: "900", shop: "silver"}, ghost_spark_gem: {cost: "900", shop: "silver"}, ghost_pact_gem: {cost: "900", shop: "silver"}, ghost_caijue_gem: {cost: "900", shop: "silver"},
@@ -36,7 +31,7 @@ function cross_server_shop_init()
     // 米线本体为松露大厅首通奖励，一转 / 二转改为魔塔关卡首通奖励（1-1 给一转、13-1 给二转），跨服商店不再上架。
     // 烤串机本体为百味关首通奖励、泡椒春笋本体为赤霞渡（日）首通奖励（2026-10-27），
     // 两者本体从跨服商店下架，只保留一转 / 二转在黄金页签兑换。
-    var _cross_server_card_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe","chunsun"];
+    var _cross_server_card_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe"];
     var _base_form_level_reward = ["chunsun"];
     for (var _z = 0; _z < array_length(_cross_server_card_ids); _z++) {
         var _zid = _cross_server_card_ids[_z];

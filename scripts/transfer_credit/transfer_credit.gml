@@ -661,6 +661,9 @@ function transfer_credit_tower_done_key() {
             var _s_s = string_delete(_rest, 1, _dash);
             if (!is_real(real(_f_s)) || !is_real(real(_s_s))) continue;
             var _key = floor(real(_f_s)) * 100 + floor(real(_s_s));
+            // 2026-10-29 用户口径：魔塔最后一关「35层-巅峰」(tower_cake_35_3) 实际就是 **36-1**
+            //   → 一律按 3601 计，门槛才写得出 36-1（关卡本身不改名、id 不动）
+            if (_id == "tower_cake_35_3") _key = 3601;
             if (_key > _best) _best = _key;
         }
     }
@@ -708,10 +711,12 @@ function transfer_credit_tower_key_from(_v) {
 ///   值 = 魔塔门槛：数字 = 该层第一小关（1 = 1-1），也可写 "13-2"，0 / "" = 不限制
 ///   单条商品想覆盖 → 在 `credit_shop_init` 的那条商品里写 `tower_floor`（写 0 = 该商品显式不限）
 ///   ⚠️ 2026-10-27 按用户「魔塔价格奖励建议表.xlsx」表头改：一转默认 1-1 / 二转默认 **15-1**；
-///      兑换项跟着「魔塔最大层」走，表里已经有 35-3（巅峰）→ 改 35-3
+///      兑换项跟着「魔塔最大层」走
+///   ⚠️ 2026-10-29 用户纠正：魔塔里那关「35层-巅峰」实际是 **36-1** → 兑换项门槛写 "36-1"；
+///      关卡本身没改名（id 仍是 tower_cake_35_3），判定侧由 transfer_credit_tower_done_key() 把它折算成 3601
 function credit_shop_tower_defaults() {
     return {
-        "0": "35-3",     // 兑换项（威望）：固定「通魔塔最大层」才可买
+        "0": "36-1",     // 兑换项（威望）：固定「通魔塔最大层」才可买（= 35层-巅峰那关，实为 36-1）
         "1": "1-1",      // 一转凭证：通关 1-1
         "2": "15-1"      // 二转凭证：通关 15-1
     };
