@@ -12,6 +12,7 @@
   "folders":[],
   "listItems":[
     {"name":"array_deep_copy","path":"scripts/array_deep_copy/array_deep_copy.yy",},
+    {"name":"auth_client","path":"scripts/auth_client/auth_client.yy",},
     {"name":"can_place_at_position","path":"scripts/can_place_at_position/can_place_at_position.yy",},
     {"name":"can_copy_card_at_position","path":"scripts/can_copy_card_at_position/can_copy_card_at_position.yy",},
     {"name":"can_target_on","path":"scripts/can_target_on/can_target_on.yy",},

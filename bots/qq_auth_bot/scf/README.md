@@ -1,0 +1,269 @@
+# 云函数版（Webhook）部署说明
+
+不需要开着电脑，也不需要买服务器。腾讯把「有人 @ 机器人」直接推到一个
+HTTPS 地址上，这个地址是你的云函数；有人领码它才跑几百毫秒，没人领码它
+不存在。
+
+## 和 WebSocket 版的关系
+
+**二选一，不能同时开。**
+
+| | WebSocket 版（`bot.py`） | Webhook 版（本目录） |
+|---|---|---|
+| 怎么收消息 | 机器人主动连长连接 | 腾讯 POST 过来 |
+| 需要什么 | 一台常开的机器 | 一个 HTTPS 地址 |
+| 关电脑后 | 玩家领不到码 | 照常发码 |
+| 账本 | `tools/qq_auth.db` | COS 上的 JSON |
+| 适合 | 本地调试、测试改动 | 正式给玩家用 |
+
+两边同时开会把同一条消息处理两遍（玩家收到两条一样的回复，账本被写两次）。
+切过去之后本地就别再跑 `start_bot.bat` / `python bot.py` 了。
+
+---
+
+## 一、准备（约 15 分钟，只做一次）
+
+### 1. 注册腾讯云
+
+<https://cloud.tencent.com> 注册并完成**实名认证**。不实名开不了云函数。
+
+### 2. 建一个对象存储桶（放账本）
+
+控制台 → 对象存储 COS → 存储桶列表 → 创建存储桶：
+
+| 项 | 填什么 |
+|---|---|
+| 名称 | 随便，如 `fvm-auth` |
+| 地域 | 选离你近的，如 `ap-guangzhou`（**后面环境变量要填一致**） |
+| 访问权限 | **私有读写**（默认就是，别改成公有） |
+
+创建完记下**完整桶名**，形如 `fvm-auth-1250000000`，末尾那串是你的 APPID，
+不能省略。
+
+然后到这里拿密钥：控制台 → 访问管理 → API 密钥管理 → 新建密钥。
+会得到 `SecretId` 和 `SecretKey`（`SecretKey` 只显示一次）。
+
+> 建议单独建一个子账号，只给这个桶的读写权限，别直接用主账号密钥。
+> 密钥泄露等于别人能改你的账本。
+
+---
+
+## 二、打包
+
+```bash
+cd bots/qq_auth_bot/scf
+python build.py
+```
+
+产出 `bots/qq_auth_bot/scf-qqauth.zip`（约 37 KB）。
+
+这个包**不含** `app_secret` 和 `auth_secret.txt`——密钥走环境变量，
+免得留在代码包的构建历史里。
+
+---
+
+## 三、建云函数
+
+控制台 → 云函数 SCF → 函数服务 → 新建：
+
+| 项 | 填什么 |
+|---|---|
+| 创建方式 | 从头开始 |
+| 函数类型 | **事件函数**（不要选 Web 函数） |
+| 函数名称 | `qqauth-bot` |
+| 运行环境 | **Python 3.9** 或 3.10 |
+| 提交方法 | 本地上传 zip 包 → 选刚生成的 zip |
+| 执行方法 | `main.main_handler` |
+| 内存 | 128 MB 够用 |
+| 超时时间 | **10 秒**（默认 3 秒偏紧，改大一点） |
+
+### 环境变量（函数配置 → 环境变量）
+
+| 变量 | 值 | 必填 |
+|---|---|---|
+| `QQ_APP_ID` | `1906122973` | ✅ |
+| `QQ_APP_SECRET` | 开放平台的 AppSecret | ✅ |
+| `AUTH_SECRET` | `tools/auth_secret.txt` 里的那 40 位 | ✅ |
+| `COS_SECRET_ID` | 上面拿的 SecretId | ✅ |
+| `COS_SECRET_KEY` | 上面拿的 SecretKey | ✅ |
+| `COS_REGION` | `ap-guangzhou`（和你建桶时选的一致） | ✅ |
+| `COS_BUCKET` | `fvm-auth-1250000000`（**带 APPID 后缀**） | ✅ |
+| `COS_KEY` | `qqauth/ledger.json` | 可省 |
+| `MAX_DEVICES` | `2` | 可省 |
+
+`AUTH_SECRET` 的值可以直接这样取：
+
+```bash
+cat tools/auth_secret.txt
+```
+
+**填错的后果**：能正常保存回调地址、能收到消息，但发出去的码游戏端
+一律验不过。启动日志里会看到「授权密钥指纹」，和 `--check` 打出来的对一下
+就知道有没有填错。
+
+### 开一个公网 HTTPS 地址
+
+函数详情页 → **函数 URL**（有的控制台叫「触发器 → 函数 URL」）→ 启用：
+
+- 鉴权方式：**免鉴权**（必须！否则腾讯的请求会被 SCF 自己挡下来，返回 401）
+- 记下生成的地址，形如 `https://xxx.ap-guangzhou.tencentscf.com`
+
+**这个地址就是回调地址，整串填到开放平台，不要加路径、不要加斜杠。**
+
+---
+
+## 四、切到 Webhook
+
+QQ 开放平台 → 你的机器人 → 开发设置 → **事件订阅与回调地址**：
+
+1. 连接方式选 **Webhook**
+2. 请求地址填上面那个函数 URL
+3. 事件订阅里**勾上「群聊 @ 机器人消息」和「单聊消息」**（不勾就收不到）
+4. 保存
+
+保存时平台会立刻发一次 `op=13` 校验请求。此时：
+
+- 云函数日志里应出现 `[scf] 握手校验已应答`
+- 开放平台页面提示保存成功
+
+如果提示「签名校验不通过」，几乎一定是 `QQ_APP_SECRET` 填错或没生效
+（改完环境变量要点「保存」，函数要重新部署一次才生效）。
+
+---
+
+## 五、验证
+
+### 先在云上自检
+
+云函数控制台 → 函数代码 → 在线测试，或者本地配好同样的环境变量跑：
+
+```bash
+cd bots/qq_auth_bot/scf
+python main.py --check
+```
+
+会依次检查：Ed25519 实现、AppID/AppSecret、授权密钥、码池、COS 连通性
+与写权限。全绿才继续。
+
+### 再发一条真消息
+
+群里（或私聊）发：
+
+```
+/授权 CF8A-EFFE
+```
+
+正常会立刻回码。云函数日志里能看到：
+
+```
+[scf] 群@ 5D253F99xx group=8A3B2C1Dxx ' /授权 CF8A-EFFE'
+[scf] 发码 uid=... hwid=CF8AEFFE new=True code=FVM4-...
+[scf] 群回复 status=200
+```
+
+---
+
+## 六、排错
+
+| 现象 | 原因 | 怎么办 |
+|---|---|---|
+| **浏览器打开函数 URL 报 `ERR_INVALID_RESPONSE`**，但 curl 正常 | 响应里出现**重复的 Content-Type**：函数 URL 的「参数兼容模式」网关会自己补一个，代码再设一个就是两个。curl 容忍，Chrome 严格拒绝 | 两件事都做：① 函数 URL 编辑里**取消勾选「参数兼容」**；② 代码里不要手写 `headers.Content-Type`（`main.py` 的 `_resp()` 已经去掉了） |
+| 保存回调地址提示「签名校验不通过」 | AppSecret 错 / 环境变量没生效 | 改环境变量后重新部署；核对 `QQ_APP_SECRET` |
+| 保存成功，但 @ 之后毫无反应 | 事件没勾选 | 开放平台里把「群聊@消息」「单聊消息」勾上 |
+| 保存成功，但函数日志里一条请求都没有 | 函数 URL 鉴权没设成「免鉴权」 | 改成免鉴权，或检查 URL 是否填错 |
+| 日志里出现「验签失败诊断」且 body 带中文乱码 | body 被中间层用错字符集解码过 | `_raw_candidates()` 会依次试 utf-8 / latin-1 / base64。三种都失败说明 AppSecret 真的不对，不是编码问题 |
+| 回复 401/403 | 群未授权 / 机器人未上线 | 检查服务范围、群是否已添加 |
+| 回「机器人还没配置好」 | `AUTH_SECRET` 没配 | 填上，重新部署 |
+| 回「发码出错了」 | COS 读写失败 | 看日志里的具体报错，多数是桶名少了 APPID 后缀或 region 不一致 |
+| 每个玩家每次都拿到新码、能无限领 | 账本没持久化 | 说明还在用本地文件，检查 `COS_*` 四项是否都配了 |
+| 玩家收到**两条**一样的回复 | 本地 `bot.py` 还开着 | 关掉本地的 WS 版，只能留一个 |
+
+> **用浏览器验证函数 URL 的预期结果**：应看到一行纯文本
+> `FVM auth bot is running. QQ platform POSTs signed events here.`
+> 这只是健康检查。如果你用 curl 发 POST 但没带签名，会得到 401 `{"error":"invalid signature"}`——两种都说明函数是活的。
+
+---
+
+## 七、成本
+
+| 项 | 免费额度 | 实际用量 |
+|---|---|---|
+| 云函数调用 | 每月百万次量级 | 几十人一天几十次 |
+| 云函数资源 | 每月几十万 GBs | 128MB × 1 秒 × 几十次 |
+| COS 存储 | 新用户有免费额度，之后约 0.118 元/GB/月 | 账本几 KB，一年几分钱 |
+| COS 请求 | 按万次计费 | 一天几十次 |
+
+结论：**几十人的规模，一年成本在几毛到几块钱量级**，基本等于免费。
+
+---
+
+## 八、管理侧操作
+
+账本现在是 COS 上的一个 JSON。查看：
+
+控制台 → 对象存储 → 你的桶 → `qqauth/ledger.json` → 下载查看。
+
+或者用命令行（本地配好 `COS_*` 四项环境变量后）：
+
+```bash
+cd bots/qq_auth_bot/scf
+python - <<'EOF'
+import store, json
+led = store.ledger_from_env()
+rows = led.all()
+print("共 %d 条" % len(rows))
+for hwid, uid, code_id, code, ts in rows:
+    print("%-10s %-24s %s" % (hwid, uid[:20], code))
+EOF
+```
+
+解绑某台机器（玩家换机后卡在上限时用，机器人不会告诉玩家这个）：
+
+```bash
+python - <<'EOF'
+import store
+led = store.ledger_from_env()
+print("已解绑 %d 台" % led.drop_hwid("CF8AEFFE"))
+led.close()
+EOF
+```
+
+### 加码（池子发完时）
+
+码池 `codes_pool.txt` 是**打进 zip 的快照**，云端直接读包内那份。所以本地 `poolgen` 加码后，**必须重新打包并上传部署**，否则云端仍按旧的包发，发完就回「授权码暂时发完了」。
+
+```bash
+cd bots/qq_auth_bot/scf
+python ../../../tools/qq_auth.py poolgen 2000   # 追加 2000 个，自动避开已有 ID
+python build.py                                 # 重新打包 ../scf-qqauth.zip
+```
+
+然后：云函数 → 函数代码 → 上传本地 zip → **点部署**。
+
+两点放心：
+
+- `poolgen` 是**追加**且会排除已有 ID，不会覆盖或重复，已发出去的码不受影响；
+- 编号空间是 32⁸ ≈ **1.1 万亿**，加码只是改文件，不存在真正耗尽。
+
+代价：换机器 / 重装系统 / 改计算机名都会消耗一个码（本机识别码变了就得发新码），所以码的消耗速度看**机器台数**，不是人数。
+
+---
+
+## 九、文件说明
+
+| 文件 | 作用 |
+|---|---|
+| `main.py` | SCF 入口，解析 event 还原原始 body 后交给 webhook |
+| `webhook.py` | 验签、op=13 握手、事件分发、发消息 |
+| `ed25519_ref.py` | 纯标准库 Ed25519（含 RFC 8032 向量自检） |
+| `store.py` | COS 账本 + 手写 COS 签名（不依赖 cos-python-sdk） |
+| `build.py` | 打 zip |
+| `selftest.py` | 端到端自检，模拟腾讯真实请求 |
+
+三个自检入口：
+
+```bash
+python selftest.py        # 全链路（不联网）
+python main.py --check    # 配置 + COS 连通性
+python main.py --simulate # 模拟一条群 @ 消息
+```

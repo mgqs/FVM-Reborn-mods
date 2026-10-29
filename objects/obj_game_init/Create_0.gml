@@ -212,3 +212,18 @@ show_debug_message(working_directory)
 if (global.ime_block && native_disable_ime != undefined) {
     native_disable_ime(window_handle());
 }
+
+// 授权状态：恢复 %LOCALAPPDATA%\FVM_Reborn_makk\auth.dat
+// 必须放在 global.native_util 初始化之后（auth_file_path() 依赖它）
+auth_init();
+
+// ── 未授权：启动就弹授权窗，且不给关 ──
+// 授权只做一次：auth.dat 里有记录就直接放行，下面这段不会触发。
+// 强制模式靠 global 传参——instance_create 之后 Create 是同步执行的，
+// 在外面拿到实例再赋值已经晚了（那时按钮位置都算完了）。
+// obj_auth_gate 自己会置 persistent，所以这个窗能跨 room_init → room_menu 活下来。
+global.auth_gate_force = true;
+if (!auth_ok() && !instance_exists(obj_auth_gate)) {
+    instance_create_depth(0, 0, -9500, obj_auth_gate);
+}
+global.auth_gate_force = false;

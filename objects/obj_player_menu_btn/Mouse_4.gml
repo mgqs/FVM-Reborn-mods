@@ -1,4 +1,9 @@
 
+// 授权窗口是模态的，开着的时候别让底层按钮响应点击
+if (variable_global_exists("auth_gate_open") && global.auth_gate_open) {
+	exit;
+}
+
 if obj_player_info_ui.menu_type == 0{
 	global.audio.play(snd_button,0,0)
 	texture_prefetch("cards")

@@ -1,3 +1,8 @@
+// 授权窗是模态的：没授权之前不许开地图（地图是进关卡的另一个入口）
+if (variable_global_exists("auth_gate_open") && global.auth_gate_open) {
+	exit;
+}
+
 if global.menu_screen{
 	if world_map == 0 && !instance_exists(obj_world_map_menu) {
 		if instance_exists(obj_player_info_ui){

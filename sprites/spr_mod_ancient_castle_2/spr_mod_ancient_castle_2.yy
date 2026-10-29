@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Cross Server",
-    "path":"folders/精灵/mod/Cross Server.yy",
+    "name":"ancient_castle",
+    "path":"folders/精灵/mod/Cross Server/ancient_castle.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

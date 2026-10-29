@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"auth_client",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"auth_client",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

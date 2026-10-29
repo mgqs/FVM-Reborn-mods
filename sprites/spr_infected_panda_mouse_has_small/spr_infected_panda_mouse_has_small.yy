@@ -124,8 +124,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"mouse",
-    "path":"folders/精灵/mod/Cross Server/mouse.yy",
+    "name":"gubao",
+    "path":"folders/精灵/mod/Cross Server/mouse/gubao.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

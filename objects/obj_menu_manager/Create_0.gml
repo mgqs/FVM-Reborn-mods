@@ -26,6 +26,9 @@ if not instance_exists(obj_menu_music_controller){
 if not instance_exists(obj_world_map_button){
 	instance_create_depth(1670,80,0,obj_world_map_button)
 }
+// 授权入口已移除：授权窗只在启动时未授权才弹出（obj_game_init），
+// 授权一次后永久不再出现，所以菜单里不再需要入口按钮。
+// obj_auth_button 资源保留但不再创建实例，删不删都不影响运行。
 instance_create_depth(room_width-210,room_height,-1,obj_player_menu_bg)
 timer = 0
 

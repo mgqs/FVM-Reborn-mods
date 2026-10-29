@@ -1,0 +1,7 @@
+{
+  "app_id": "1906122973",
+  "app_secret": "在这里填开放平台生成的 AppSecret",
+  "sandbox": false,
+  "auth_command": "#授权",
+  "allow_group_issue": true
+}
