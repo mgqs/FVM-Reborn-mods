@@ -35,7 +35,7 @@
   "origin":4,
   "parent":{
     "name":"wuxingshe",
-    "path":"folders/精灵/mod/Cards/Assistant/wuxingshe.yy",
+    "path":"folders/精灵/mod/Cards/wuxingshe.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
