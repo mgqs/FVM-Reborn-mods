@@ -103,6 +103,7 @@ function card_category_data()
         ["berry_dessert", "增幅类", "名单类增幅", "追踪增幅"],
         ["xiangshui_god", "增幅类", "名单类增幅", "追踪增幅"],
         ["fengrao_god", "增幅类", "名单类增幅", "五向增幅"],
+        ["wuxingshe", "增幅类", "名单类增幅", "五向增幅"],
         ["hspeed_juicer", "增幅类", "名单类增幅", "喷壶增幅"],
         ["mozhang", "增幅类", "名单类增幅", "喷壶增幅"],
         ["haiyang_god", "增幅类", "名单类增幅", "喷壶增幅"],
@@ -305,6 +306,7 @@ function card_category_buff_group_name(_group)
         case "thrower":  return "投掷类";
         case "tracker":  return "追踪类";
         case "five_dir": return "多向类";
+        case "multi_dir": return "多向类";
         case "sprayer":  return "喷壶类";
     }
 
@@ -320,7 +322,9 @@ function mod_apply_category_buff_map()
     if (!variable_global_exists("card_category_index"))
         return 0;
 
-    var _groups = ["thrower", "tracker", "five_dir", "sprayer"];
+    // multi_dir 排在 five_dir 前面：两者名单重叠时「后写的覆盖」，
+    //   五向卡最终落在 five_dir（主类型 = 五行蛇），再由下面的副类型补 multi_dir（丰饶神）
+    var _groups = ["thrower", "tracker", "multi_dir", "five_dir", "sprayer"];
     var _total = 0;
 
     for (var g = 0; g < array_length(_groups); g++)
@@ -339,8 +343,10 @@ function mod_apply_category_buff_map()
             {
                 case "thrower": _allowed = card_in_category(_card_id, "投掷类") || _card_id == "gaia"; break;
                 case "tracker": _allowed = _card_id == "guiyuanma" || _card_id == "takoyaki" || _card_id == "juxie" || _card_id == "moon_god" || _card_id == "yufengma" || _card_id == "gaia"; break;
-                // niuyouguo（邪恶牛油果）：分类上是多向类，但不吃多向类拐 —— 只吃战旗马这类全体增幅
-                case "five_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo"; break;
+                // niuyouguo（邪恶牛油果）：分类上是多向类，只属三向，两个增幅都不吃 —— 只吃战旗马这类全体增幅
+                // youyu_god（怪味鱿鱼）：吃多向增幅（multi_dir）但不吃五向增幅 —— 在本行被剔除，主类型落 multi_dir
+                case "five_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo" && _card_id != "youyu_god"; break;
+                case "multi_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo"; break;
                 case "sprayer": _allowed = card_in_category(_card_id, "旋转喷壶类") || card_in_category(_card_id, "直线喷壶类") || _card_id == "hongliukaochuan" || _card_id == "hufa_god"; break;
             }
             if (_allowed)
@@ -348,6 +354,18 @@ function mod_apply_category_buff_map()
                 ds_map_set(global.plant_buff_map, _card_id, _group);
                 _total++;
             }
+        }
+    }
+
+    // 五向类同时吃多向增幅（丰饶神）：副类型写 multi_dir，结算时与主类型 five_dir 取较高值
+    var _five_list = get_cards_in_category("多向类");
+    if (_five_list != undefined)
+    {
+        for (var _fi = 0; _fi < ds_list_size(_five_list); _fi++)
+        {
+            var _fid = ds_list_find_value(_five_list, _fi);
+            if (_fid == "niuyouguo" || _fid == "youyu_god") continue;
+            ds_map_set(global.plant_buff_map_2, _fid, "multi_dir");
         }
     }
 

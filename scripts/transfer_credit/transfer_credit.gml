@@ -568,6 +568,24 @@ function transfer_credit_card_max_shape(_card_id) {
     return -1;
 }
 
+/// @function transfer_credit_card_level(card_id)
+/// @desc 这张卡的**星级**（练到过的最高星级 = 存档 unlocked_cards 的 max_level）；没拥有返回 -1
+///       ⚠️ 用 max_level 不是 level：界面上的星星画的就是 max_level（合成屋/背包/转职槽都读它），
+///          两张表口径必须一致，否则会出现「看着 6 星却提示星级不足」
+///       转职的星级门槛（一转 6 星 / 二转 10 星，见 mod_craft_transfer_table 的 mod_tg_star_need）
+///       就是拿它比 —— 别在别处另扫一遍 unlocked_cards
+function transfer_credit_card_level(_card_id) {
+    var _uc = global.save_data.unlocked_cards;
+    var _n = array_length(_uc);
+    for (var _i = 0; _i < _n; _i++) {
+        if (_uc[_i].id != _card_id) continue;
+        if (variable_struct_exists(_uc[_i], "max_level")) return _uc[_i].max_level;
+        if (variable_struct_exists(_uc[_i], "level")) return _uc[_i].level;
+        return 0;
+    }
+    return -1;
+}
+
 /// @function transfer_credit_card_shapes_max(card_id)
 /// @desc 这张卡**注册了**的最高形态序号（0 起算），查不到返回 -1。
 ///       ⚠️ 不能只用 card_max_available_shape()：它只读 plant_registry（get_plant_shape_data），
@@ -825,11 +843,14 @@ function transfer_credit_recycle(_id, _amount){
     return _r;
 }
 
-/// @func transfer_credit_price_scan_map(map, out)
+/// @func transfer_credit_price_scan_map(map, out, phase)
 /// @desc 扫一张商品表，把「凭证 id → 价格 + 货币」写进 out（先到先得，已有键不覆盖）
 ///       ⚠️ 两张表都要扫：普通/跨服商品在 global.goods_map，**诸神商品在独立的 global.gods_goods_map**
 ///          （2026-10-28 修：只扫 goods_map 时金卡三/四/终转永远查不到价 → 补凭证提示「不在商店出售」）
-function transfer_credit_price_scan_map(_map, _out){
+///       phase 0 = 凭证类商品（威望 / 诸神）；phase 1 = 跨服商店的「一转/二转卡」
+///          （跨服那批 type 是 "card"，买下去发的其实是转职凭证，见 cross_shop_buy_do）
+///          分两轮扫是为了让威望/神石优先，跨服只在没有其它渠道时兜底
+function transfer_credit_price_scan_map(_map, _out, _phase = 0){
     if (!ds_exists(_map, ds_type_map)) return;
     var _key = ds_map_find_first(_map);
     while (!is_undefined(_key)) {
@@ -841,29 +862,43 @@ function transfer_credit_price_scan_map(_map, _out){
             var _shop = "";
             var _type = variable_struct_exists(_g, "type") ? _g.type : "";
 
-            if (_type == "credit" && variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0) {
-                _vid  = _g.unlock_item_id;                       // 已是凭证 id
-                var _coin = variable_struct_exists(_g, "coin_type") ? _g.coin_type : "prestige";
-                _cur  = (_coin == "gold") ? "gold" : "prestige";
-                _cur_name = (_coin == "gold") ? "金币" : "威望";
-                _shop = "credit";
+            if (_phase == 0) {
+                if (_type == "credit" && variable_struct_exists(_g, "credit_shape") && _g.credit_shape > 0) {
+                    _vid  = _g.unlock_item_id;                       // 已是凭证 id
+                    var _coin = variable_struct_exists(_g, "coin_type") ? _g.coin_type : "prestige";
+                    _cur  = (_coin == "gold") ? "gold" : "prestige";
+                    _cur_name = (_coin == "gold") ? "金币" : "威望";
+                    _shop = "credit";
+                }
+                else if (_type == "tvoucher" && variable_struct_exists(_g, "target_shape")) {
+                    _vid  = transfer_credit_id(_g.unlock_item_id, _g.target_shape);
+                    _cur  = "oracle_stone";
+                    _cur_name = "神石";
+                    _shop = "gods";
+                }
+                else if (variable_struct_exists(_g, "cross_server_shop")
+                    && (_type == "credit" || _type == "tvoucher")) {
+                    // 跨服商店的凭证（当前只卖卡，接口先留着：以后上架凭证不用改这里）
+                    _vid  = (_type == "tvoucher")
+                          ? transfer_credit_id(_g.unlock_item_id, _g.target_shape)
+                          : _g.unlock_item_id;
+                    var _cs = _g.cross_server_shop;
+                    _cur  = (_cs == "gold") ? "cross_server_gold_medal" : "cross_server_silver_medal";
+                    _cur_name = (_cs == "gold") ? "跨服金勋章" : "跨服银勋章";
+                    _shop = "cross";
+                }
             }
-            else if (_type == "tvoucher" && variable_struct_exists(_g, "target_shape")) {
-                _vid  = transfer_credit_id(_g.unlock_item_id, _g.target_shape);
-                _cur  = "oracle_stone";
-                _cur_name = "神石";
-                _shop = "gods";
-            }
-            else if (variable_struct_exists(_g, "cross_server_shop")
-                && (_type == "credit" || _type == "tvoucher")) {
-                // 跨服商店的凭证（当前只卖卡，接口先留着：以后上架凭证不用改这里）
-                _vid  = (_type == "tvoucher")
-                      ? transfer_credit_id(_g.unlock_item_id, _g.target_shape)
-                      : _g.unlock_item_id;
-                var _cs = _g.cross_server_shop;
-                _cur  = (_cs == "gold") ? "cross_server_gold_medal" : "cross_server_silver_medal";
-                _cur_name = (_cs == "gold") ? "跨服金勋章" : "跨服银勋章";
-                _shop = "cross";
+            else {
+                // 跨服商店的「一转 / 二转卡」：买下去发的是凭证（cross_shop_buy_do 里 add_material_amount 那张）
+                if (_type == "card" && variable_struct_exists(_g, "cross_server_shop")
+                    && variable_struct_exists(_g, "card_id") && variable_struct_exists(_g, "card_shape")
+                    && _g.card_shape > 0) {
+                    _vid  = transfer_credit_id(_g.card_id, _g.card_shape);
+                    var _cs2 = _g.cross_server_shop;
+                    _cur  = (_cs2 == "gold") ? "cross_server_gold_medal" : "cross_server_silver_medal";
+                    _cur_name = (_cs2 == "gold") ? "金色勋章" : "白银勋章";
+                    _shop = "cross";
+                }
             }
 
             if (_vid != "" && !variable_struct_exists(_out, _vid)) {
@@ -884,8 +919,10 @@ function transfer_credit_price_scan_map(_map, _out){
 function transfer_credit_price_info(_card_id, _shape){
     if (!variable_global_exists("_tc_price_info")) {
         var _m = {};
-        if (variable_global_exists("goods_map"))       transfer_credit_price_scan_map(global.goods_map, _m);
-        if (variable_global_exists("gods_goods_map"))  transfer_credit_price_scan_map(global.gods_goods_map, _m);
+        // 第一轮：威望 / 诸神凭证（优先），第二轮：跨服商店的一转二转卡（兜底）
+        if (variable_global_exists("goods_map"))       transfer_credit_price_scan_map(global.goods_map, _m, 0);
+        if (variable_global_exists("gods_goods_map"))  transfer_credit_price_scan_map(global.gods_goods_map, _m, 0);
+        if (variable_global_exists("goods_map"))       transfer_credit_price_scan_map(global.goods_map, _m, 1);
         global._tc_price_info = _m;
     }
 

@@ -3,8 +3,8 @@ function material_sell_init(){
 	global.material_sell_prices[$ "clover_1"] = 2000
 	global.material_sell_prices[$ "clover_2"] = 3000
 	global.material_sell_prices[$ "clover_3"] = 4000
-	global.material_sell_prices[$ "clover_4"] = 8000
-	global.material_sell_prices[$ "advanced_crystal"] = 3000
+	global.material_sell_prices[$ "clover_4"] = 200
+	global.material_sell_prices[$ "advanced_crystal"] = 200
 	global.material_sell_prices[$ "natural_spices"] = 30
 	global.material_sell_prices[$ "secret_spices"] = 60
 	global.material_sell_prices[$ "royal_spices"] = 90

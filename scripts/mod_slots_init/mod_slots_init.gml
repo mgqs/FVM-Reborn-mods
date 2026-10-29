@@ -3086,4 +3086,8 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     {shape:1,sprite:spr_niuyouguo_1,cost:210,cooldown:1800,description: "沙沙牛油果：向前方三个方向各发射1发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_1},
     {shape:2,sprite:spr_niuyouguo_2,cost:210,cooldown:1800,description: "桑巴牛油果：向前方三个方向各发射2发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_2}
     ]);
+    register_card("wuxingshe", obj_wuxingshe, [
+    { shape: 0, sprite: spr_wuxingshe, cost: 280, cooldown: 2400, description: "五行蛇：为3*3范围内5方向卡片增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe },
+    { shape: 1, sprite: spr_wuxingshe_1, cost: 280, cooldown: 2400, description: "通灵五行蛇：为3*3范围内5方向卡片增加攻击力，攻击力提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_1 },
+    { shape: 2, sprite: spr_wuxingshe_2, cost: 280, cooldown: 2400, description: "泰斗五行蛇：为5*5范围内5方向卡片增加攻击力，攻击力大幅提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_2 }]);
 }

@@ -18,8 +18,15 @@ function ronghehuopen_pass_fire(_bullet, _pit) {
 	if (variable_instance_exists(_bullet, "disabled") && _bullet.disabled) return;
 
 	// 同排判定：普通子弹按行，竖排子弹按列（与旧卡片侧扫描同口径，避免跨行误点燃）
-	var _same_line = (variable_instance_exists(_bullet, "row") && _bullet.row == _pit.grid_row)
-	              || (variable_instance_exists(_bullet, "col") && _bullet.col == _pit.grid_col);
+	//   星弹（星星兔）没有行/列 —— 它的 row 恒为 0，直接用会「火盆只要在 0 行就全场点燃」，
+	//   所以改看 center_row，并且只让水平那一发吃增幅（与 obj_brazier / 火神 / 金牛同口径）
+	var _same_line;
+	if (variable_instance_exists(_bullet, "kind") && _bullet.kind == "star") {
+		_same_line = (abs(_bullet.move_y) < 0.001) && (_bullet.center_row == _pit.grid_row);
+	} else {
+		_same_line = (variable_instance_exists(_bullet, "row") && _bullet.row == _pit.grid_row)
+		          || (variable_instance_exists(_bullet, "col") && _bullet.col == _pit.grid_col);
+	}
 	if (!_same_line) return;
 
 	// 一颗子弹对同一座火盆只记一次（brazier_list 由子弹 Create 重建，池复用天然复位）

@@ -150,9 +150,7 @@ else
                             break;
 
                         case "five_dir":
-                            // 2026-10-22：删掉旧的「youyu_god 且 shape < 3 就倍率 = 1」限制 ——
-                            // 融合卡只有 0/1/2 转，shape 永远 < 3，等于融合鱿鱼恒吃不到五向增幅。
-                            // 现在与融合海星同口径：多向类都吃丰饶神的五向增幅。
+                            // 五向增幅（五行蛇）：只给五向类；鱿鱼不在名单里（它的主类型是 multi_dir）
                             var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
                             var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
                             var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
@@ -161,6 +159,7 @@ else
                             break;
 
                         case "multi_dir":
+                            // 多向增幅（丰饶神）：多向类全体，含鱿鱼神
                             var grid_multi_dir = ds_map_find_value(global.buff_grid, "multi_dir");
                             var stack_multi_dir = ds_map_find_value(global.buff_stack_grid, "multi_dir");
                             var md_normal = grid_multi_dir[self.grid_col][self.grid_row];
@@ -224,7 +223,7 @@ else
                             break;
 
                         case "five_dir":
-                            // 第二类型分支：同第一类型，删掉 youyu_god 的旧限制（融合卡只有 0/1/2 转，恒 < 3）
+                            // 第二类型分支：五向卡的主类型是 five_dir、副类型是 multi_dir（丰饶神），两边取较高值
                             var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
                             var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
                             var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];

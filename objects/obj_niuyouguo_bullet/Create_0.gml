@@ -6,7 +6,7 @@ move_speed = 0
 travel_dir = 0        // 飞行角度：0 = 正右（朝老鼠来向），±fan_angle = 扇形上下
 row = 0
 damage_type = "normal"
-target_type = "normal"
+target_type = "pierce_air"   // 与卡片同口径：normal + air + obstacle（无 dance/invisible）
 hittable_types = get_hittable_enemy_types(target_type)
 timer = 0
 life = 160

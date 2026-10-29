@@ -425,6 +425,7 @@ function mod_cards_init()
         cycle: array_create(17, 60)
     }], false);
 
+
     mod_register_plant_lite("xiandima", [
     {
         name: "仙笛马",
@@ -3852,7 +3853,7 @@ mod_register_plant_lite("xuanfengniu", [
             cost: array_create(17, 210),
             atk: [80, 90, 100, 120, 140, 160, 190, 220, 260, 310, 400, 500, 650, 800, 950, 1100, 1250],
             range: array_create(17, 10),
-            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cooldown: array_create(17,420),
             cycle: [90, 87, 84, 81, 78, 75, 72, 66, 60, 60, 60, 60, 60, 60, 60, 60, 60]},
         {name: "沙沙牛油果",
         shape: 1,
@@ -3861,7 +3862,7 @@ mod_register_plant_lite("xuanfengniu", [
             cost: array_create(17, 210),
             atk: [80, 90, 100, 120, 140, 160, 190, 220, 260, 310, 400, 500, 650, 800, 950, 1100, 1250],
             range: array_create(17, 10),
-            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cooldown: array_create(17,420),
             cycle: [90, 87, 84, 81, 78, 75, 72, 66, 60, 60, 60, 60, 60, 60, 60, 60, 60]},
         {name: "桑巴牛油果",
         shape: 2,
@@ -3870,7 +3871,7 @@ mod_register_plant_lite("xuanfengniu", [
             cost: array_create(17, 210),
             atk: [80, 90, 100, 120, 140, 160, 190, 220, 260, 310, 400, 500, 650, 800, 950, 1100, 1250],
             range: array_create(17, 10),
-            cooldown: [1800, 1740, 1680, 1620, 1560, 1500, 1440, 1320, 1200, 1080, 960, 840, 720, 600, 540, 480, 420],
+            cooldown: array_create(17,420),
             cycle: [90, 87, 84, 81, 78, 75, 72, 66, 60, 60, 60, 60, 60, 60, 60, 60, 60]}
     ], false);
 
@@ -3896,4 +3897,38 @@ mod_register_plant_lite("xuanfengniu", [
         shape: 2,
         description: "糖葫芦蚝油双菇：对空子弹变为全屏追踪，对地穿透不变", hp:array_create(17,90), cost:array_create(17,255), atk:[28,75,89,103,117,131,145,159,173,193,213,233,256,294,344,399,494], range:array_create(17,10), cooldown:array_create(17,420), cycle:array_create(17,150)}
     ], false);
+    mod_register_plant_lite("wuxingshe", [
+    {
+        name: "五行蛇",
+        shape: 0,
+        description: "五行蛇：为3*3范围内5方向卡片增加攻击力",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [104.5, 106, 107.5, 109, 112, 115, 118, 121, 124, 127, 130, 145, 175, 205, 235, 270, 316],
+        range: array_create(17, 1.5),
+        cooldown: array_create(17, 2400),
+        cycle: array_create(17, 60)
+    },
+    {
+        name: "通灵五行蛇",
+        shape: 1,
+        description: "通灵五行蛇：为3*3范围内5方向卡片增加攻击力，攻击力提升",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [139.5, 141, 142.5, 144, 147, 150, 153, 156, 159, 162, 165, 180, 210, 240, 270, 305, 351],
+        range: array_create(17, 1.5),
+        cooldown: array_create(17, 2400),
+        cycle: array_create(17, 60)
+    },
+    {
+        name: "泰斗五行蛇",
+        shape: 2,
+        description: "泰斗五行蛇：为5*5范围内5方向卡片增加攻击力，攻击力大幅提升",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [189.5, 191, 192.5, 194, 197, 200, 203, 206, 209, 212, 215, 230, 260, 290, 320, 355, 401],
+        range: array_create(17, 2.5),
+        cooldown: array_create(17, 2400),
+        cycle: array_create(17, 60)
+    }], false);
 }

@@ -66,6 +66,10 @@ if (state == CARD_STATE.ATTACK) {
             b.move_y = lengthdir_y(8,angles[i]);
             b.image_angle = angles[i];
             b.sprite_index = sr_spr;
+            // 对象池复用：星弹过火会被放大到 1.8，池里捞出来的实例可能还带着上一发的缩放，
+            // 这里只复位星弹自己的显示变量（不动 obj_zodiac_projectile 的 Create，免得影响其它星座马）
+            b.image_xscale = 1;
+            b.image_yscale = 1;
             b.can_dandantu_store = false;
             b.damage_type = "pierce";
             b.center_row = grid_row;

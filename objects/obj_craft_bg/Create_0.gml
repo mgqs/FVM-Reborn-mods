@@ -656,6 +656,18 @@ tg_fill_cur_name = ""                          // 货币中文名（威望 / 神
 tg_fill_credit   = ""                          // 要发的凭证 id
 tg_fill_name     = ""                          // 凭证名（卡名（X转凭证））
 
+// ── 「转职说明」按钮（2026-10-28 新增）──
+//   位置 = 面板米色区左上角的空白处（用户圈的位置：凭证 A 槽左上方）
+//   素材 spr_transfer_help 88×33，三帧（0 常态 / 1 悬停 / 2 备用），按下缩 0.96 做手感
+//   点它 → 「转职说明」弹窗：一转 6 星 / 二转 10 星（星级门槛的实装在 mod_tg_star_need）
+tg_help_x     = x - 550                        // 按钮中心 X（面板坐标；贴米色区左边缘，离边框约 10px）
+tg_help_y     = y - 110                        // 按钮中心 Y（凭证槽在 y-20，槽顶在 y-67）
+tg_help_s     = 1.3                            // 显示倍数（88×33 → 114×43）
+tg_help_w     = sprite_get_width(spr_transfer_help) * tg_help_s
+tg_help_h     = sprite_get_height(spr_transfer_help) * tg_help_s
+tg_help       = false                          // 说明弹窗开着
+tg_help_hover = false                          // 弹窗里「确定」是否悬停（按钮自身的悬停每帧在 Draw 里算）
+
 /// @func tg_fill_open() 点转职但缺凭证：表里算 → 能补就弹「补全并转职」窗，不能就提示原因
 /// @return 是否弹出了窗（Step 侧据此决定要不要播放按钮音）
 function tg_fill_open(){
@@ -746,6 +758,9 @@ function tg_confirm_draw(){
     }
     mod_tg_confirm_draw(tg_confirm_hover, tg_assure);
 }
+// 「转职说明」弹窗（2026-10-28）：矩形判定与绘制都在表脚本里
+function tg_help_rect(){ return mod_tg_help_rect(); }
+function tg_help_draw(){ mod_tg_help_draw(tg_help_hover); }
 function tg_target_shape(_id){ return mod_tg_target_shape(_id); }
 function tg_gold_cost(_tier){ return mod_tg_gold(_tier); }
 function tg_assure_cost(_tier){ return mod_tg_assure(_tier); }

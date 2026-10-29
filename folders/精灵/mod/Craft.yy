@@ -72,5 +72,6 @@
     {"name":"spr_transfer_bg_5a","path":"sprites/spr_transfer_bg_5a/spr_transfer_bg_5a.yy",},
     {"name":"spr_transfer_bg_5b","path":"sprites/spr_transfer_bg_5b/spr_transfer_bg_5b.yy",},
     {"name":"spr_transfer_bg_5c","path":"sprites/spr_transfer_bg_5c/spr_transfer_bg_5c.yy",},
+    {"name":"spr_transfer_help","path":"sprites/spr_transfer_help/spr_transfer_help.yy",},
   ],
 }
