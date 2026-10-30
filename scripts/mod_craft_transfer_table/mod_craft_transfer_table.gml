@@ -370,13 +370,14 @@ function mod_tg_help_draw(_hover){
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_colour(c_white);
-    draw_text(_px, _py - 112, "转职星级限制说明");
+    draw_text(_px, _py - 112, "转职星级/保底详情");
 
-    // 正文（2026-10-28 用户改）：只写「X转：X星」，一行一档，行距 25
-    //   数值直接调 mod_tg_star_need() —— **改星数只改那一个函数，这里不用再动**
+    // 正文（2026-10-30 用户改）：一行一档，「X转：X星/第N次必成」，行距 25
+    //   星级调 mod_tg_star_need()、保底次数调 mod_tg_pity_max() —— **改数只改那两个函数，这里不用动**
     var _sy = _py - 76;
     for (var _i = 1; _i <= 5; _i++){
-        draw_text(_px, _sy, mod_tg_tier_short(_i) + "：" + string(mod_tg_star_need(_i)) + "星");
+        draw_text(_px, _sy, mod_tg_tier_short(_i) + "：" + string(mod_tg_star_need(_i)) + "星/第"
+            + string(mod_tg_pity_max(_i)) + "次必成");
         _sy += 25;
     }
 

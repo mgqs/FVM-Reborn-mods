@@ -126,7 +126,7 @@ function credit_shop_init()
 
     register_goods("credit_triple_wine_rack_1", {
         type: "credit", cost: "1900", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "3-2",
+        tower_floor: "1-2",
         unlock_item_id: transfer_credit_id("triple_wine_rack", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
