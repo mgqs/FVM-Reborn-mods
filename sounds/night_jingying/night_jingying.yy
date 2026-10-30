@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"night_jingying",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"music",
+    "path":"audiogroups/music",
   },
   "bitDepth":1,
   "channelFormat":0,

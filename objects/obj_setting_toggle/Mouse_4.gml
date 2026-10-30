@@ -2,44 +2,31 @@
 state = !state;
 global.audio.play(snd_button,0,0)
 
-// 抽卡版和欧皇版互斥，并统一保存为 play_mode。
-if (config_key == "play_mode_gacha" && state) {
-    with (obj_setting_toggle) {
-        if (config_key == "play_mode_lucky" || config_key == "play_mode_gift") state = false;
+// ══════════ 玩法模式（抽卡 / 欧皇 / 随机礼盒 / 海克斯）：四选一，严格互斥 ══════════
+// 任一模式被打开时，其余三个开关一律关掉；关掉当前模式则回到 0（普通）。
+// 全局只有一个 global.play_mode，所有读写都走 play_mode_apply()，不会再出现
+// 「两个开关同时亮、只有后点的那个生效」的情况。
+var _mode_num = play_mode_of_key(config_key);
+if (_mode_num > 0) {
+    if (state) {
+        with (obj_setting_toggle) {
+            if (id != other.id && play_mode_of_key(config_key) > 0) state = false;
+        }
+        play_mode_apply(_mode_num);
+    } else {
+        // 关掉当前模式 = 回到普通玩法；顺手把可能残留亮着的同类开关一起关掉
+        with (obj_setting_toggle) {
+            if (play_mode_of_key(config_key) > 0) state = false;
+        }
+        play_mode_apply(0);
     }
+    exit;   // 玩法键到此结束，后面的通用开关逻辑不适用
 }
-if (config_key == "play_mode_lucky" && state) {
-    with (obj_setting_toggle) {
-        if (config_key == "play_mode_gacha" || config_key == "play_mode_gift") state = false;
-    }
-}
-if (config_key == "play_mode_gift" && state) {
-    with (obj_setting_toggle) {
-        if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky") state = false;
-    }
-}
-// 海克斯模式与其它三种玩法互斥（v0.5：海克斯玩法只在该模式存在）
-if (config_key == "play_mode_hex" && state) {
-    with (obj_setting_toggle) {
-        if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky" || config_key == "play_mode_gift") state = false;
-    }
-}
-// 保存到配置文件
+
+// 保存到配置文件（非玩法开关）
 if (config_key != "") {
     ini_open("config.ini");
-    if (config_key == "play_mode_gacha" || config_key == "play_mode_lucky" || config_key == "play_mode_gift" || config_key == "play_mode_hex") {
-        // 模式号：抽卡 1 / 欧皇 2 / 礼盒 3 / 海克斯 4，关掉写 0
-        var _mode_num = 0;
-        if (config_key == "play_mode_gacha") _mode_num = 1;
-        else if (config_key == "play_mode_lucky") _mode_num = 2;
-        else if (config_key == "play_mode_gift") _mode_num = 3;
-        else if (config_key == "play_mode_hex") _mode_num = 4;
-
-        if (state) ini_write_real("settings", "play_mode", _mode_num);
-        else ini_write_real("settings", "play_mode", 0);
-    } else {
-        ini_write_real("settings", config_key, state);
-    }
+    ini_write_real("settings", config_key, state);
     ini_close();
 }
 
@@ -71,27 +58,6 @@ else if (config_key == "tex_fliter"){
 }
 else if (config_key == "difficulty"){
 	global.difficulty = state
-}
-else if (config_key == "play_mode_gacha"){
-    global.play_mode = state ? 1 : 0;
-}
-else if (config_key == "play_mode_lucky"){
-    global.play_mode = state ? 2 : 0;
-}
-else if (config_key == "play_mode_gift"){
-    global.play_mode = state ? 3 : 0;
-}
-else if (config_key == "play_mode_hex"){
-    // 进出海克斯模式：本局词条一律作废（docs 1.2.2）
-    global.play_mode = state ? 4 : 0;
-    hex_reset_run();
-}
-if (config_key == "play_mode_gift" || config_key == "play_mode_gacha" || config_key == "play_mode_lucky") {
-    random_gift_sync_unlock();
-    // 切换玩法模式后同步整理卡组（确保礼盒卡的增减立即生效）
-    if (variable_global_exists("selected_deck") && ds_exists(global.selected_deck, ds_type_list)) {
-        random_gift_prepare_selected_deck();
-    }
 }
 else if (config_key == "borderless_window"){
 	global.borderless_window = state

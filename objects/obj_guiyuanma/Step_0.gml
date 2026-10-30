@@ -18,9 +18,11 @@ if (zodiac_timer >= cycle) {
     }
     var gy_rows = shape == 2 ? 2 : 1;
     var t = noone, gy_dist = 2147483647;
+    // 索敌：整行，不限卡片左右。第 0~8 列与第 10 列及以后的老鼠都要打，
+    // 只按行带（gy_rows）与目标类型筛选；追踪弹自己会转向，不需要方向前置条件。
     for (var gy_i = 0; gy_i < array_length(gy_list); gy_i++) {
         var gy_te = gy_list[gy_i];
-        if (gy_te.x < x || abs(gy_te.grid_row-grid_row) > gy_rows
+        if (abs(gy_te.grid_row-grid_row) > gy_rows
             || gy_te.target_type == "underground" || gy_te.target_type == "invisible") continue;
         var gy_td = point_distance(x,y,gy_te.x,gy_te.y);
         if (gy_td < gy_dist) {gy_dist = gy_td; t = gy_te;}

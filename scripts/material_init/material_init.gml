@@ -94,3 +94,64 @@ function material_init(){
 										"pos_x":1,
 										"pos_y":4})
 }
+
+// ══════════════════════════════════════════════════════════════════════
+// 道具「最低获取方式」（背包道具页悬停提示用）
+//   只登记有明确产出的养成材料；顺序按关卡推进顺序排，不要随手重排
+//   —— 玩家看到的第一项就是最早能刷到的关卡。
+//   未登记的道具返回空数组，提示框不追加这一段。
+// ══════════════════════════════════════════════════════════════════════
+
+/// @function material_min_source_list(_material_id)
+/// @desc 该道具最早可获取的关卡名数组（空数组 = 未登记）
+function material_min_source_list(_material_id) {
+	switch (_material_id) {
+		case "natural_spices":    return ["曲奇岛"];
+		case "secret_spices":     return ["芥末小屋", "勇士神殿", "松露大厅", "金枪鱼洋流", "戚风营地"];
+		case "royal_spices":      return ["月桂天空", "勇士港口", "坚果高台", "天妇罗漩涡", "黑提丛林"];
+		case "clover_1":          return ["深渊", "金枪鱼洋流", "戚风营地", "松露大厅"];
+		case "clover_2":          return ["雪顶火山", "勇士神殿", "海葵洋流", "坚果高台"];
+		case "clover_3":          return ["十三香中心岛", "勇士火山", "勇士天妇罗"];
+		case "clover_4":          return ["诸神宝殿"];
+		case "less_crystal":      return ["神殿"];
+		case "middle_crystal":    return ["勇士神殿", "芥末小屋", "戚风营地", "金枪鱼洋流", "松露大厅"];
+		case "advanced_crystal":  return ["诸神宝殿"];
+	}
+	return [];
+}
+
+/// @function material_min_source_text(_material_id[, _max_chars])
+/// @desc 拼成提示框用的多行文本（未登记返回 ""）；每行最多 _max_chars 个字，
+///       默认 18，超出就换行——tooltip 不做自动折行，太长会横向拉爆
+///       注意：GML 少传实参会报 GM1020（多传不报），所以第二个参数必须靠
+///       argument[1] 读取，不能写在形参列表里，否则单参调用编译不过
+function material_min_source_text(_material_id) {
+	var _list = material_min_source_list(_material_id);
+	var _n = array_length(_list);
+	if (_n <= 0) return "";
+	var _max = (argument_count >= 2) ? argument[1] : 18;
+
+	var _lines = [];
+	var _cur = "";
+	for (var i = 0; i < _n; i++) {
+		var _item = _list[i];
+		if (_cur == "") {
+			_cur = _item;
+			continue;
+		}
+		var _cand = _cur + "，" + _item;
+		if (string_length(_cand) > _max) {
+			array_push(_lines, _cur);
+			_cur = _item;
+		} else {
+			_cur = _cand;
+		}
+	}
+	if (_cur != "") array_push(_lines, _cur);
+
+	var _txt = "最低获取方式：";
+	for (var j = 0; j < array_length(_lines); j++) {
+		_txt += "\n" + _lines[j];
+	}
+	return _txt;
+}

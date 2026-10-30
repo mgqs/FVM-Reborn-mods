@@ -34,7 +34,8 @@ if shape == 3 {
             var world_y = start_pos_y + i * global.grid_cell_size_y + global.grid_cell_size_y/2
             var grid_pos = get_grid_position_from_world(world_x, world_y)
 
-            if grid_pos.row >= 0 && grid_pos.row < global.grid_rows && grid_pos.col >= 0 && grid_pos.col < global.grid_cols {
+            // 战斗域上界（含第 10 列）：老鼠出生就在场外那一列，按 9 列裁剪会漏掉
+            if combat_cell_in(grid_pos.col,grid_pos.row) {
                 var inst = instance_create_depth(world_x, world_y, 0, obj_light_atk_invisible)
                 inst.damage = atk* damage_multiplier
                 inst.max_time = 60
@@ -61,7 +62,8 @@ else {
             var world_y = start_pos_y + i * global.grid_cell_size_y + global.grid_cell_size_y/2
             var grid_pos = get_grid_position_from_world(world_x, world_y)
 
-            if grid_pos.row >= 0 && grid_pos.row < global.grid_rows && grid_pos.col >= 0 && grid_pos.col < global.grid_cols {
+            // 战斗域上界（含第 10 列）：老鼠出生就在场外那一列，按 9 列裁剪会漏掉
+            if combat_cell_in(grid_pos.col,grid_pos.row) {
                 var inst = instance_create_depth(world_x, world_y, 0, obj_light_atk_invisible)
                 inst.damage = atk* damage_multiplier
                 inst.max_time = 60

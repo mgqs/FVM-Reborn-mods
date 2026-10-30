@@ -192,7 +192,49 @@ class Ledger(object):
         self.autosave = autosave
         with self._lock:
             self._data = store.load()
+        # 老账本只有 entries，这两个字段是后加的，必须补默认值，
+        # 否则第一次调用 is_admin() 会 KeyError。
+        if not isinstance(self._data.get("admins"), list):
+            self._data["admins"] = []
+        if not isinstance(self._data.get("audit"), list):
+            self._data["audit"] = []
         self._dirty = False
+
+    # ── 管理员 / 审计 ──
+    def admins(self):
+        return [a["uid"] for a in self._data["admins"]]
+
+    def is_admin(self, uid):
+        return str(uid) in self.admins()
+
+    def admin_add(self, uid, label=""):
+        """加入管理员白名单。返回 True 表示新增。"""
+        uid = str(uid or "").strip()
+        if not uid or self.is_admin(uid):
+            return False
+        self._data["admins"].append({
+            "uid": uid,
+            "label": str(label or ""),
+            "ts": int(time.time()),
+        })
+        self._dirty = True
+        return True
+
+    def audit_append(self, action, actor, target, detail=""):
+        """留痕。只保留最近 200 条，别让账本无限膨胀。"""
+        self._data["audit"].append({
+            "ts": int(time.time()),
+            "action": str(action),
+            "actor": str(actor),
+            "target": str(target),
+            "detail": str(detail)[:200],
+        })
+        if len(self._data["audit"]) > 200:
+            del self._data["audit"][:-200]
+        self._dirty = True
+
+    def audit_tail(self, n=10):
+        return self._data["audit"][-int(n):]
 
     # ── 读 ──
     def get_by_hwid(self, hwid):
@@ -220,6 +262,20 @@ class Ledger(object):
         rows = list(self._data["entries"].values())
         rows.sort(key=lambda r: r["ts"])
         return [(r["hwid"], r["uid"], r["id"], r["code"], r["ts"]) for r in rows]
+
+    def get_by_code_id(self, code_id):
+        """按码 ID 反查。
+
+        管理员解绑时，玩家报过来的可能是授权码而不是识别码，
+        所以两种都要认。
+        """
+        cid = str(code_id or "").strip().upper()
+        if not cid:
+            return None
+        for r in self._data["entries"].values():
+            if str(r["id"]).upper() == cid:
+                return (r["hwid"], r["uid"], r["id"], r["code"], r["ts"])
+        return None
 
     # ── 写 ──
     def put(self, uid, hwid, code_id, code):

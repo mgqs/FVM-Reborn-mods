@@ -40,6 +40,8 @@ if (plant_data != undefined) {
     if (upgrade_data != undefined) {
         hp = upgrade_data[? "hp"];
 		max_hp = hp
+		// 海克斯词条的生命倍率以这里为基准；不同步的话，转职/重建后上限会被拉回旧基准
+		base_max_hp = hp
         cost = upgrade_data[? "cost"];
         atk = upgrade_data[? "atk"];
         range = upgrade_data[? "range"];
@@ -107,6 +109,7 @@ for(var i = 0 ; i < array_length(cookbook_list) ; i++){
 						variable_instance_set(self,modifs[k].modif_type,variable_instance_get(self,modifs[k].modif_type)*modifs[k].amount)
 					}
 					max_hp = hp
+					base_max_hp = hp
 				}
 			}
 		}

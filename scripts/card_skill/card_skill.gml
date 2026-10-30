@@ -168,3 +168,30 @@ function create_plant_with_skill(plant_id, shape, upgrade_level, skill_level, x,
     
     return plant;
 }
+
+// ══════════════════════════════════════════════════════════════════════
+// 技能等级解锁来源（背包「解锁信息」页展示用）
+//   1 级技能在曲奇岛首通就解锁，往后依次推进。表按关卡推进顺序硬编码，
+//   与关卡 JSON 的 rewards[1].skill_level 对齐：
+//     cookie_island=1 / salad_island_water=2 / champagne_island_land=3 /
+//     temple=4 / cocoa_island_daytime=5 / cheese_castle=6 /
+//     macchiato_port=7 / spice_airship=8
+//   ⚠️ 改关卡技能奖励时同步改这张表，下标 = 技能等级 - 1。
+// ══════════════════════════════════════════════════════════════════════
+
+/// @function skill_unlock_source_list()
+/// @desc 技能 1~8 级各自的解锁关卡名，返回长度 8 的数组（下标 = 等级 - 1）
+function skill_unlock_source_list() {
+    return ["曲奇岛", "色拉岛（水）", "香槟岛（陆）", "神殿",
+            "可可岛（日）", "芝士城堡", "玛奇朵港", "香料飞船"];
+}
+
+/// @function skill_unlock_source(_level)
+/// @desc 指定技能等级的解锁关卡名；越界返回 ""
+function skill_unlock_source(_level) {
+    var _list = skill_unlock_source_list();
+    var _idx = _level - 1;
+    if (_idx < 0 || _idx >= array_length(_list)) return "";
+    return _list[_idx];
+}
+

@@ -13,7 +13,8 @@ function chunsun_targets_in_range(_self) {
 		if (!instance_exists(_e) || _e.hp <= 0) continue;
 		if (_e.target_type != "normal" && _e.target_type != "dance" && _e.target_type != "underground" && _e.target_type != "invisible") continue;
 		var _g = get_grid_position_from_world(_e.x, _e.y);
-		if (_g.col < 0 || _g.col >= global.grid_cols || _g.row < 0 || _g.row >= global.grid_rows) continue;
+		// 索敌用战斗域上界（含第 10 列），老鼠出生就在场外那一列
+		if (!combat_cell_in(_g.col,_g.row)) continue;
 		if (abs(_g.col - _self.grid_col) <= _self.range_col && abs(_g.row - _self.grid_row) <= _self.range_row) array_push(_out, _e);
 	}
 	// 傀儡马代理（千里马）同样吃笋
@@ -21,7 +22,7 @@ function chunsun_targets_in_range(_self) {
 		var _d = instance_find(obj_kuileima_decoy, _j);
 		if (!instance_exists(_d) || _d.hp <= 0 || array_contains(_out, _d)) continue;
 		var _g2 = get_grid_position_from_world(_d.x, _d.y);
-		if (_g2.col < 0 || _g2.col >= global.grid_cols || _g2.row < 0 || _g2.row >= global.grid_rows) continue;
+		if (!combat_cell_in(_g2.col,_g2.row)) continue;
 		if (abs(_g2.col - _self.grid_col) <= _self.range_col && abs(_g2.row - _self.grid_row) <= _self.range_row) array_push(_out, _d);
 	}
 	return _out;
@@ -34,7 +35,8 @@ function chunsun_spawn_spikes() {
 		for (var _r = -range_row; _r <= range_row; _r++) {
 			var _cc = grid_col + _c;
 			var _rr = grid_row + _r;
-			if (_cc < 0 || _cc >= global.grid_cols || _rr < 0 || _rr >= global.grid_rows) continue;
+			// 刺也要铺到第 10 列，否则索敌到了却没有表现
+			if (!combat_cell_in(_cc,_rr)) continue;
 			var _wp = get_world_position_from_grid(_cc, _rr);
 			var _fx = instance_create_depth(_wp.x, _wp.y, calculate_plant_depth(_cc, _rr, "gridless"), obj_chunsun_spike);
 			_fx.sprite_index = spike_sprite;

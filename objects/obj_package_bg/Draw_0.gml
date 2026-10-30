@@ -95,8 +95,14 @@ else if info_button_select == 2{
 	draw_set_color(c_white);
 	draw_text(x - 1220, y - 380, "等级："+string(global.save_data.player.level));
 	draw_text(x - 1220, y - 320, "最大技能等级："+string(global.save_data.unlocked_items.max_skill_level));
-	draw_text(x - 1220, y - 260, "卡槽数："+string(global.save_data.unlocked_items.max_slot));
-	draw_text(x - 1220, y - 200, "铲子："+string(global.save_data.unlocked_items.shovel));
+	// 技能 1~8 级各自在哪个关卡解锁（表在 scripts/card_skill 的 skill_unlock_source_list）
+	// 放在「最大技能等级」正下方：玩家看到上限是几级，顺手就知道下一级要打哪
+	var _sk_src = skill_unlock_source_list();
+	for (var _si = 0; _si < array_length(_sk_src); _si++){
+		draw_text(x - 1196, y - 276 + _si * 32, string(_si + 1)+"级技能：通过"+_sk_src[_si]+"解锁");
+	}
+	draw_text(x - 1220, y + 16, "卡槽数："+string(global.save_data.unlocked_items.max_slot));
+	draw_text(x - 1220, y + 76, "铲子："+string(global.save_data.unlocked_items.shovel));
 	draw_set_color(c_white);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_bottom);
@@ -693,6 +699,10 @@ else if package_button_select == 3{
 
 			var _tooltip_amount = get_material_amount(material_id);
 			tooltip_text = material_data.description + "\n数量："+string(_tooltip_amount)
+			// 最低获取方式（表在 scripts/material_init 的 material_min_source_list）
+			// 只给登记过的养成材料追加，其它道具原样不变
+			var _src_text = material_min_source_text(material_id);
+			if (_src_text != "") tooltip_text += "\n" + _src_text;
 			// 获取出售价格
 			var _sell_price = get_material_sell_price(material_id)
 			if _sell_price > 0 && _tooltip_amount > 0{

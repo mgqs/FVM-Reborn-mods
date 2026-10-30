@@ -156,9 +156,12 @@ for (var i = 0; i < array_length(enemies); i++) {
                 // obj_enemy_parent 下、target_type 也是 normal，但它是钉在格子里不动的建筑，
                 // 被推半格就会脱位（还会连带把传送落点带偏）。伤害照扣，只跳过位移。
                 // 以后再加同类「建筑型敌人」就往这个判断里加一条。
+                // 御风马口径：只有前 9 列（地图可放置区）的老鼠吃击退；
+                // 站在第 10 列（场外、刚出生）的老鼠只扣血、不位移 —— 否则会被推进场，
+                // 相当于凭空多送一格距离。该列判定走 combat_map_col_in。
                 var _e_oi = e.object_index;
                 var _static_structure = (_e_oi == obj_mario_pipeline || _e_oi == obj_infected_mario_pipeline);
-                if (!e.is_boss && !_static_structure) e.x += global.grid_cell_size_x*0.5;
+                if (!e.is_boss && !_static_structure && combat_map_col_in(e.grid_col)) e.x += global.grid_cell_size_x*0.5;
             }
             break;
         case "fire":
@@ -334,8 +337,9 @@ for (var i = 0; i < array_length(enemies); i++) {
     }
 }
 if (kind == "phoenix") {
-    var field_left = global.grid_offset_x;
-    var field_right = field_left + global.grid_cols * global.grid_cell_size_x;
+    // 存活边界用战斗域右沿（含第 10 列），地图右沿只到第 9 列
+    var field_left = combat_left_x();
+    var field_right = combat_right_x();
     var field_top = global.grid_offset_y;
     var field_bottom = field_top + global.grid_rows * global.grid_cell_size_y;
     if ((vertical && y > field_bottom + 0.25*global.grid_cell_size_y)
@@ -345,5 +349,6 @@ if (kind == "phoenix") {
     }
 }
 var margin = 80;
-if (x < global.grid_offset_x-margin || x > global.grid_offset_x+global.grid_cols*global.grid_cell_size_x+margin
+// 右边界放宽到第 10 列右沿，否则刚进场 / 刚出生的老鼠（在 col 9）超出地图右沿就被回收
+if (x < combat_left_x()-margin || x > combat_right_x()+margin
     || y < global.grid_offset_y-margin || y > global.grid_offset_y+global.grid_rows*global.grid_cell_size_y+margin) instance_destroy();

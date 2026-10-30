@@ -183,7 +183,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         var item_list = global.level_file.rewards[1].items
                         for (var i = 0; i < array_length(item_list); i++) {
                             var item_id = item_list[i].id
-                            add_material_amount(item_id, real(item_list[i].amount) * reward_multiplier)
+                            add_material_amount(item_id, difficulty_reward_item_amount(item_id, real(item_list[i].amount), reward_multiplier))
                         }
                         
                         // 两种抽卡模式仅正常发放指定八张卡片的0形态。
@@ -226,7 +226,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         var item_list = global.level_file.rewards[0].items
                         for (var i = 0; i < array_length(item_list); i++) {
                             var item_id = item_list[i].id
-                            add_material_amount(item_id, item_list[i].amount * reward_multiplier)
+                            add_material_amount(item_id, difficulty_reward_item_amount(item_id, real(item_list[i].amount), reward_multiplier))
                         }
                     }
                     
@@ -411,7 +411,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 							var item_list = global.level_file.rewards[1].items
 								for(var i = 0 ; i < array_length(item_list) ; i++){
 									var item_id = item_list[i].id
-									add_material_amount(item_id,real(item_list[i].amount) * reward_multiplier)
+									add_material_amount(item_id, difficulty_reward_item_amount(item_id, real(item_list[i].amount), reward_multiplier))
 								}
 						
 								var card_unlock_id_list = global.level_file.rewards[1].card_unlock
@@ -458,7 +458,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 								var item_list = global.level_file.rewards[0].items
 								for(var i = 0 ; i < array_length(item_list) ; i++){
 									var item_id = item_list[i].id
-									add_material_amount(item_id,item_list[i].amount * reward_multiplier)
+									add_material_amount(item_id, difficulty_reward_item_amount(item_id, real(item_list[i].amount), reward_multiplier))
 								}
 								// 魔塔威望（次通档）
 								var _tpv2 = tower_prestige_reward(global.level_data.id, _tp_first);

@@ -37,8 +37,9 @@ for (var _i = 0; _i < instance_number(obj_enemy_parent); _i++) {
 }
 
 // ---------- 出界回收 ----------
-var _field_left = global.grid_offset_x;
-var _field_right = _field_left + global.grid_cols * global.grid_cell_size_x;
+// 右边界用战斗域右沿（含第 10 列），否则向左飞的魂虫飞不到场外那一列
+var _field_left = combat_left_x();
+var _field_right = combat_right_x();
 var _field_bottom = global.grid_offset_y + global.grid_rows * global.grid_cell_size_y;
 if (vertical) {
     if (y > _field_bottom + 60) { instance_destroy(); exit; }

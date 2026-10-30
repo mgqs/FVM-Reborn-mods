@@ -195,7 +195,7 @@ function on_draw() {
 	draw_set_valign(fa_middle)
 	draw_set_halign(fa_center)
 	draw_set_colour(c_yellow)
-	draw_text(_x1+self.total_progress_bar_width/2, _y1 - 80, "本游戏为免费开源游戏，任何付费获取方式均为诈骗\n游戏作者B站名称：Spring曙光");
+	draw_text(_x1+self.total_progress_bar_width/2, _y1 - 80, "本游戏为免费开源游戏，任何付费获取方式均为诈骗\n游戏作者B站名称：Spring曙光\nDLC作者:Makk;落玖;泽等广大群友");
     draw_set_alpha(1)
 }
 

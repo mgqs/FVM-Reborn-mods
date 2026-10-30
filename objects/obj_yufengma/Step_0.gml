@@ -40,9 +40,11 @@ if (zodiac_timer >= cycle) {
     }
     var yf_rows = big ? 1 : 0;
     var t = noone, yf_dist = 2147483647;
+    // 索敌：整行，不限卡片左右。第 0~8 列与第 10 列及以后的老鼠都要打，
+    // 只按行带（yf_rows）与目标类型筛选；出风方向随后按目标在哪一侧决定。
     for (var yf_i = 0; yf_i < array_length(yf_list); yf_i++) {
         var yf_te = yf_list[yf_i];
-        if (yf_te.x < x || abs(yf_te.grid_row-grid_row) > yf_rows
+        if (abs(yf_te.grid_row-grid_row) > yf_rows
             || yf_te.target_type == "underground" || yf_te.target_type == "invisible") continue;
         var yf_td = point_distance(x,y,yf_te.x,yf_te.y);
         if (yf_td < yf_dist) {yf_dist = yf_td; t = yf_te;}
@@ -62,9 +64,13 @@ if (zodiac_timer >= cycle) {
         b.base_damage = atk;
         b.shape = shape;
         b.target_id = noone;
-        b.move_x = lengthdir_x(8,0);
-        b.move_y = lengthdir_y(8,0);
+        // 龙卷风横向贯穿本行，朝目标所在的一侧吹：目标在左侧时贴图水平翻转。
+        // 原来固定向右，导致卡片放在中间/右侧时索敌到左侧老鼠却永远空放。
+        var _wind_dir = (t.x < x) ? -1 : 1;
+        b.move_x = _wind_dir * 8;
+        b.move_y = 0;
         b.image_angle = 0;
+        if (_wind_dir < 0) b.image_xscale = -1;
         b.sprite_index = spr;
         b.can_dandantu_store = false;
         b.rows = big ? 1 : 0;

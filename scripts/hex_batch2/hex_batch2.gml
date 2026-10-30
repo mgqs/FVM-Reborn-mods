@@ -695,8 +695,14 @@ function hex_batch2_tick() {
                         self.b2_hp_stack = min(_cap, self.b2_hp_stack + _step);
                         var _base = self.max_hp;
                         if (variable_instance_exists(self.id, "base_max_hp")) _base = self.base_max_hp;
+                        // 公式必须与 obj_mod_battle_manager 的「纯上限」完全一致，
+                        // 否则这边每秒把 max_hp 设回不含取长补短 / 固定生命的旧值，血条会抖一下
+                        var _nm = _base * hex_hp_mult_for_card(self.plant_id) * (1 + self.b2_hp_stack);
+                        var _fx = hex_batch2_id_hp_fix(self.plant_id);
+                        if (_fx > 0) _nm = _fx;
+                        if (hex_batch2_equalize_on()) _nm = max(self.atk, _nm);
                         var _old_max = self.max_hp;
-                        self.max_hp = _base * hex_hp_mult_for_card(self.plant_id) * (1 + self.b2_hp_stack);
+                        self.max_hp = _nm;
                         if (_old_max > 0 && self.max_hp != _old_max && self.hp > 0)
                             self.hp = min(self.max_hp, self.hp * (self.max_hp / _old_max));
                         if (self.hp > self.max_hp) self.hp = self.max_hp;

@@ -28,6 +28,8 @@ for _cand in (os.path.join(_HERE, "..", "..", "..", "tools"),
 # 用假的 AppSecret 跑，别拿真密钥做测试
 os.environ["QQ_APP_ID"] = "100000000"
 os.environ["QQ_APP_SECRET"] = "TestSecretForSelftest0123456789ab"
+# 管理员认领口令也要在 import bot 之前设好（bot 在 import 期读环境变量）
+os.environ["AUTH_ADMIN_TOKEN"] = "TESTADMINTOKEN0123456789"
 
 import ed25519_ref as ed25519  # noqa: E402
 import qq_auth  # noqa: E402
@@ -256,6 +258,83 @@ def main():
     resp = scf_main.main_handler(ev)
     check(resp["statusCode"] == 200, "body 被 latin-1 串码后仍能验签",
           "body 串码后验签失败（玩家会看到「授权出错了」）")
+
+    print("\n⑫ 管理员解绑（仅白名单 + 仅私聊）")
+    # 这一节盯住四件事：
+    #   · 非管理员发 /解绑 必须一句都不回（回了就等于告诉全群有这条路）
+    #   · 认领口令错必须拒绝，对了一次之后白名单永久锁死（不能被顶号）
+    #   · 管理员解绑后，玩家能重新领码
+    #   · 管理命令只能在私聊用，群里发一律忽略（/绑定列表 会泄露别人 openid）
+    admin_mem = store.MemoryStore()
+    ah = make_handler(admin_mem)
+
+    def c2c(uid, text, mid):
+        sent.clear()
+        msg = {"op": 0, "t": "C2C_MESSAGE_CREATE",
+               "d": {"id": mid, "content": text,
+                     "author": {"user_openid": uid}}}
+        headers, body = signed_request(ah, msg)
+        ah.handle(headers, body)
+        return sent[0][2] if sent else ""
+
+    def grp(uid, text, mid):
+        sent.clear()
+        msg = {"op": 0, "t": "GROUP_AT_MESSAGE_CREATE",
+               "d": {"id": mid, "content": text, "group_openid": "GRP1",
+                     "author": {"member_openid": uid}}}
+        headers, body = signed_request(ah, msg)
+        ah.handle(headers, body)
+        return sent[0][2] if sent else ""
+
+    # 先让一个普通玩家占满两台
+    for i, h in enumerate(("AAAAAAAA", "BBBBBBBB", "CCCCCCCC")):
+        grp("UID_PLAYER", "/授权 " + h, "AD%d" % i)
+    check(store.Ledger(admin_mem).count_by_uid("UID_PLAYER") == 2,
+          "前置：普通玩家已绑 2 台", "前置条件不成立")
+
+    check(c2c("UID_RANDOM", "/解绑 AAAAAAAA", "AE1") == "",
+          "非管理员发 /解绑 一句话都不回", "非管理员发 /解绑 居然收到回复（暴露了命令）")
+
+    out = c2c("UID_RANDOM", "/管理绑定 WRONGTOKEN", "AE2")
+    check("口令不对" in out, "认领口令错误被拒", "错口令也放行了：%r" % out[:40])
+    check(not store.Ledger(admin_mem).admins(), "口令错时白名单没有变化",
+          "错口令竟然写进了白名单")
+
+    out = c2c("UID_ADMIN", "/管理绑定 " + os.environ["AUTH_ADMIN_TOKEN"], "AE3")
+    check("唯一管理员" in out, "口令正确 → 成为管理员", "认领失败：%r" % out[:60])
+    check(store.Ledger(admin_mem).is_admin("UID_ADMIN"), "管理员已落盘",
+          "管理员没落盘（重启就丢）")
+
+    check(c2c("UID_OTHER", "/管理绑定 " + os.environ["AUTH_ADMIN_TOKEN"], "AE4") == "",
+          "白名单已满后再次认领被静默拒绝", "第二个人也能认领（管理员可被顶号）")
+
+    check(grp("UID_ADMIN", "/绑定列表", "AE5") == "",
+          "群里发 /绑定列表 被忽略（不泄露 openid）", "群里居然回了绑定列表")
+
+    out = c2c("UID_ADMIN", "/解绑 AAAAAAAA", "AE6")
+    check("已解绑" in out and "AAAAAAAA" in out, "管理员解绑指定机器",
+          "解绑失败：%r" % out[:60])
+    check(store.Ledger(admin_mem).count_by_uid("UID_PLAYER") == 1,
+          "账本里该账号只剩 1 台", "解绑没有真的删掉记录")
+
+    out = c2c("UID_PLAYER", "/授权 CCCCCCCC", "AE7")
+    check("FVM4-" in out, "解绑后玩家能重新领码", "解绑后仍领不到：%r" % out[:40])
+
+    rows = store.Ledger(admin_mem).all()
+    cid = rows[0][2] if rows else ""
+    out = c2c("UID_ADMIN", "/解绑 " + cid, "AE8")
+    check("已解绑" in out, "用码 ID 也能解绑", "按码 ID 解绑失败：%r" % out[:50])
+
+    out = c2c("UID_ADMIN", "/解绑 FFFFFFFF", "AE9")
+    check("没有" in out, "解绑不存在的机器会明确说找不到",
+          "不存在的机器没有提示：%r" % out[:40])
+
+    audits = store.Ledger(admin_mem).audit_tail(10)
+    check(len(audits) >= 3 and all(a["actor"] == "UID_ADMIN" for a in audits[1:]),
+          "解绑操作全部留痕（审计记录）", "审计记录缺失或 actor 不对")
+
+    check(c2c("UID_ADMIN", "/我是谁", "AEA").strip() != "", "管理员能查自己的 openid",
+          "/我是谁 没回")
 
     print("\n" + ("=" * 50))
     if FAILS:

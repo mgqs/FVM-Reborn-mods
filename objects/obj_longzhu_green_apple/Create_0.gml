@@ -56,5 +56,22 @@ damage_amount = 0;
 damage_type = "normal";
 damage_source_object = noone;
 damage_source_card_id = "";
+damage_source_card_shape = 0;
 longzhu_hit_flash = 0;
+
+// 下面这批是「命中流程会直接读、但青苹果用不到」的字段，缺一个就会当场崩
+// 「Variable obj_longzhu_green_apple.xxx not set before reading it」（hit_sound 已实证：
+// obj_rose_shield_bullet 等 77 处子弹会 with (_e) { audio_play_sound(hit_sound, 0, 0); }）。
+hit_sound = snd_hit1;
+atk = 0;
+helmet_hp = 0;
+helmet_max_hp = 0;
+shield_max_hp = 0;
+flash_value = 0;
+flash_speed = 0;
+hp_modified = false;
+timer = 0;
+birth_x = x;
+birth_y = y;
+
 longzhu_apple_enemy_register(id);

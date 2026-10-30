@@ -23,7 +23,8 @@ for (var ht_i = 0; ht_i < array_length(ht_enemies); ht_i++) {
     var ht_e = ht_enemies[ht_i];
     if (!is_digging_dijing(ht_e) && ht_e.target_type != "normal" && ht_e.target_type != "air") continue;
     var ht_g = get_grid_position_from_world(ht_e.x,ht_e.y);
-    if (ht_g.col >= 0 && ht_g.col < global.grid_cols && ht_g.row >= 0 && ht_g.row < global.grid_rows
+    // 战斗域上界（含第 10 列，敌人出生就在那一列），不是地图的 9 列
+    if (combat_cell_in(ht_g.col,ht_g.row)
         && abs(ht_g.col-grid_col) <= ht_radius && abs(ht_g.row-grid_row) <= ht_radius) {has_target = true; break;}
 }
 if (!has_target) {
@@ -73,7 +74,7 @@ if (state == CARD_STATE.ATTACK) {
                 && variable_instance_exists(po_e, "ly_mode") && po_e.ly_mode == "dig");
             if (!po_e_dig_dijing && po_e.target_type != "normal" && po_e.target_type != "air") continue;
             var po_g = get_grid_position_from_world(po_e.x,po_e.y);
-            if (po_g.col < 0 || po_g.col >= global.grid_cols || po_g.row < 0 || po_g.row >= global.grid_rows) continue;
+            if (!combat_cell_in(po_g.col,po_g.row)) continue;
             if (abs(po_g.col-grid_col) <= po_radius && abs(po_g.row-grid_row) <= po_radius) array_push(po_targets,po_e);
         }
         for (var po_i = 0; po_i < array_length(po_targets); po_i++) {

@@ -23,6 +23,8 @@
     COS_BUCKET        如 fvm-auth-1250000000
     COS_KEY           账本对象路径，默认 qqauth/ledger.json
     MAX_DEVICES       每个 QQ 最多绑几台机器，默认 2
+    AUTH_ADMIN_TOKEN  管理员认领口令（可选）。不填就无法 /解绑，也就没人能解绑
+    ADMIN_QQ          仅用于提示文案里的 QQ 号，**不参与鉴权**（事件里没有 QQ 号）
 
 本地自检
 --------
@@ -104,6 +106,10 @@ def build_handler():
     else:
         print(" ⚠️  账本走本地文件（没配 COS_*），云上这样会丢数据，仅限本地调试")
     print(" 每号上限: %d 台机器" % qq_auth.MAX_DEVICES_PER_UID)
+    if bot.ADMIN_TOKEN:
+        print(" 管理员认领: 已配置口令（目标 QQ %s），一次性认领后永久锁定" % bot.ADMIN_QQ)
+    else:
+        print(" ⚠️  管理员口令没配（AUTH_ADMIN_TOKEN），/管理绑定 不可用、也就没人能解绑。")
     if qq_auth.SECRET.startswith("CHANGE_ME"):
         print(" ⚠️  授权签名密钥是占位符！发出去的码游戏端 100% 验不过。")
         print("    到「函数配置 → 环境变量」加 AUTH_SECRET，值是 tools/auth_secret.txt 的内容。")
@@ -223,6 +229,8 @@ def main_handler(event, context=None):
                              else "LOCAL FILE -- COS_* not set, data will be lost"),
             "secret : %s" % ("ok" if secret_ok
                              else "PLACEHOLDER -- issued codes will never verify"),
+            "admin  : %s" % ("token set (claim once in private chat)"
+                             if bot.ADMIN_TOKEN else "no AUTH_ADMIN_TOKEN -- unbind disabled"),
         ]
         return _resp_text(200, "\n".join(lines))
 

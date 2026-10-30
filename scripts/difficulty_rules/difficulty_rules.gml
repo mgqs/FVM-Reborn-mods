@@ -10,6 +10,45 @@ function is_random_gift_mode() {
     return global.play_mode == 3;
 }
 
+/// @function play_mode_of_key(_key)
+/// @desc 设置页开关的 config_key -> 玩法模式号。0 = 不是玩法开关
+///       模式号：1 抽卡 / 2 欧皇 / 3 随机礼盒 / 4 海克斯
+function play_mode_of_key(_key) {
+    if (_key == "play_mode_gacha") return 1;
+    if (_key == "play_mode_lucky") return 2;
+    if (_key == "play_mode_gift")  return 3;
+    if (_key == "play_mode_hex")   return 4;
+    return 0;
+}
+
+/// @function play_mode_apply(_mode)
+/// @desc 玩法模式唯一写入口：同时写 global.play_mode 与 config.ini（下次启动由
+///       obj_game_init 读回），并处理「进出海克斯本局作废」与礼盒卡组同步。
+///       四种玩法互斥是靠「play_mode 只有一个数」保证的，所以任何地方改玩法都必须走这里。
+function play_mode_apply(_mode) {
+    _mode = clamp(round(_mode), 0, 4);
+    var _old = variable_global_exists("play_mode") ? global.play_mode : 0;
+    global.play_mode = _mode;
+
+    ini_open("config.ini");
+    ini_write_real("settings", "play_mode", _mode);
+    ini_close();
+
+    if (_old == _mode) return _mode;
+
+    // 进出海克斯模式：本局词条一律作废（docs 1.2.2）
+    if (_old == 4 || _mode == 4) hex_reset_run();
+
+    // 抽卡 / 欧皇 / 随机礼盒：同步礼盒卡的解锁状态与卡组
+    if (_old == 1 || _old == 2 || _old == 3 || _mode == 1 || _mode == 2 || _mode == 3) {
+        random_gift_sync_unlock();
+        if (variable_global_exists("selected_deck") && ds_exists(global.selected_deck, ds_type_list)) {
+            random_gift_prepare_selected_deck();
+        }
+    }
+    return _mode;
+}
+
 /// @function random_gift_sync_unlock()
 /// @desc 根据当前玩法同步随机礼盒的存档解锁状态。
 function random_gift_sync_unlock() {
@@ -97,6 +136,30 @@ function difficulty_get_reward_multiplier_for(_difficulty) {
 ///       这样结算界面显示的数字与实际入账完全同源
 function difficulty_get_reward_multiplier() {
     return difficulty_get_reward_multiplier_for(global.difficulty) * hex_batch2_reward_mult();
+}
+
+/// @function difficulty_reward_item_fixed(_item_id)
+/// @desc 不吃难度奖励倍率的专项养成材料（2026-10-30 用户口径：遗迹与营地的
+///       食谱碎片 / 探险币按 JSON 基础值固定发放，不随难度放大）。
+///       只登记「靠关卡独有产出、且会直接换养成进度」的物品，通用资源
+///       （金币 / 香料 / 水晶 / 四叶草）仍然照常吃倍率。
+function difficulty_reward_item_fixed(_item_id) {
+    var _fixed = [
+        "copper_cookbook_fragment",     // 铜食谱碎片（火山遗迹）
+        "silver_cookbook_fragment",     // 银食谱碎片（火山遗迹）
+        "gold_cookbook_fragment",       // 金食谱碎片（火山遗迹）
+        "less_camp_coin",               // 补给币（探险营地关卡掉落）
+        "camp_coin"                     // 营地金币（探险营地支线任务）
+    ];
+    return array_get_index(_fixed, _item_id) != -1;
+}
+
+/// @function difficulty_reward_item_amount(_item_id, _base_amount, _multiplier)
+/// @desc 关卡结算发放口径的唯一出口：白名单物品保持基础值，其余乘难度奖励倍率。
+///       任何发奖循环都必须走这里，不要在调用点各写一遍 `* reward_multiplier`。
+function difficulty_reward_item_amount(_item_id, _base_amount, _multiplier) {
+    if (difficulty_reward_item_fixed(_item_id)) return _base_amount;
+    return _base_amount * _multiplier;
 }
 
 /// @function difficulty_grant_immortal_start_cards()

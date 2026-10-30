@@ -24,7 +24,8 @@ if (state == CARD_STATE.ATTACK) {
         var yh_spr = spr_yanhuangma_bullet;
         if (shape == 1) yh_spr = spr_yanhuangma_bullet_1;
         else if (shape >= 2) yh_spr = spr_yanhuangma_bullet_2;
-        var area_left = global.grid_offset_x, area_right = area_left+global.grid_cols*global.grid_cell_size_x;
+        // 发射起点用战斗域边界：右端要退到第 10 列右沿之外，否则站在场外那一列的老鼠永远打不到
+        var area_left = combat_left_x(), area_right = combat_right_x();
         var upper_gap = clamp(grid_row,1,global.grid_rows-1);
         var lower_gap = clamp(grid_row+1,1,global.grid_rows-1);
         var yh_gaps = [upper_gap,upper_gap,lower_gap,lower_gap];

@@ -3,5 +3,7 @@
   "app_secret": "在这里填开放平台生成的 AppSecret",
   "sandbox": false,
   "auth_command": "#授权",
-  "allow_group_issue": true
+  "allow_group_issue": true,
+  "admin_qq": "1017443780",
+  "admin_token": "在这里填一串随机口令，只私下发给管理员本人，别发群里"
 }

@@ -104,6 +104,28 @@ def _cmd_variants(configured, word):
 AUTH_CMDS = _cmd_variants(AUTH_COMMAND, "授权")
 LOOKUP_CMDS = _cmd_variants(LOOKUP_COMMAND, "查码")
 
+
+# ────────────────────────── 管理员解绑 ──────────────────────────
+# 官方 QQ 机器人**只给 openid，拿不到真实 QQ 号**（平台设计，无接口可换），
+# 所以「必须是 QQ 1017443780 本人」这件事没法直接校验 —— 事件里根本没有 QQ 号。
+#
+# 落地方式：一次性口令认领
+#   1. 你把 AUTH_ADMIN_TOKEN 私下发给管理员本人（别发群里）
+#   2. 他私聊机器人发一次：  /管理绑定 <口令>
+#   3. 机器人把他的 openid 写进账本白名单，口令当场作废
+#   4. 白名单一旦非空，任何人的再次认领都会被静默拒绝 → 永久锁死在这一个人
+#   5. 之后只有这个 openid 能 /解绑，其他人发同样的命令**得不到任何回复**
+#
+# ADMIN_QQ 只用于文案提示和人工核对，**不参与鉴权**。
+ADMIN_TOKEN = _conf("AUTH_ADMIN_TOKEN", "admin_token", "")
+ADMIN_QQ = _conf("ADMIN_QQ", "admin_qq", "1017443780")
+
+ADMIN_CLAIM_CMDS = _cmd_variants("管理绑定", "管理绑定")
+UNBIND_UID_CMDS = _cmd_variants("解绑账号", "解绑账号")   # 必须排在 UNBIND_CMDS 前面解析
+UNBIND_CMDS = _cmd_variants("解绑", "解绑")
+LIST_CMDS = _cmd_variants("绑定列表", "绑定列表")
+WHOAMI_CMDS = _cmd_variants("我是谁", "我是谁")
+
 # 群里是否直接发码。码已经和机器码绑定，群发也拿不走，
 # 所以默认允许（1）；想只走私聊就设 0。
 ALLOW_GROUP_ISSUE = _flag("ALLOW_GROUP_ISSUE", "allow_group_issue", "1")
@@ -135,7 +157,7 @@ MSG_CODE = (
 MSG_NEED_HWID = (
     "领码需要你的「本机识别码」，这样码只在你机器上有效。\n"
     "\n"
-    "获取方式：打开游戏 → 右上角授权按钮 → 点窗口里的识别码即可复制\n"
+    "获取方式：打开游戏，启动时弹出的授权窗口里会显示识别码，点一下即可复制\n"
     "然后这样发给我：\n"
     "{cmd} XXXX-XXXX"
 )
@@ -148,12 +170,12 @@ MSG_BAD_HWID = (
 MSG_GREETING = (
     "发送 {cmd} 加你的本机识别码即可领取授权码。\n"
     "例：{cmd} 1A2B-3C4D\n"
-    "（识别码在游戏右上角授权窗口里，点一下就能复制）"
+    "（识别码在游戏启动时弹出的授权窗口里，点一下就能复制）"
 )
 
 MSG_GROUP_HINT = (
     "领码请带上本机识别码：{cmd} XXXX-XXXX\n"
-    "（识别码在游戏右上角授权窗口里点一下就能复制）"
+    "（识别码在游戏启动时弹出的授权窗口里点一下就能复制）"
 )
 
 MSG_POOL_EMPTY = "授权码暂时发完了，请联系管理加码后再领。"
@@ -163,6 +185,54 @@ MSG_TOO_MANY = (
     "授权码一发出就和机器绑定，不能转移也不能重领。"
 )
 MSG_ERROR = "发码出错了，请联系管理。"
+
+# ── 管理员文案（只有管理员本人会看到）──
+MSG_WHOAMI = "你的 openid：\n{uid}\n（只发给你自己，别人看不到）"
+
+MSG_ADMIN_NO_TOKEN = "管理员口令还没配置，先让维护者设 AUTH_ADMIN_TOKEN。"
+
+MSG_ADMIN_BAD_TOKEN = "口令不对。"
+
+MSG_ADMIN_CLAIMED = (
+    "已把当前账号设为唯一管理员（对应 QQ {qq}）。\n"
+    "口令已作废，之后只有这个账号能解绑。\n"
+    "\n"
+    "可用命令：\n"
+    "/解绑 <识别码或码ID>   解绑单台机器\n"
+    "/解绑账号 <openid前缀> 解绑某人名下全部机器\n"
+    "/绑定列表              看当前所有绑定"
+)
+
+MSG_ADMIN_UNBIND_USAGE = (
+    "用法：/解绑 CF8A-EFFE   或   /解绑 ACEF3YL5\n"
+    "（识别码 8 位十六进制，码 ID 在授权码第一段）"
+)
+
+MSG_ADMIN_NOT_FOUND = "账本里没有 {x}，检查一下有没有抄错。"
+
+MSG_ADMIN_UNBOUND = (
+    "已解绑。\n"
+    "识别码：{hwid}\n"
+    "码 ID：{code_id}\n"
+    "原账号：{owner}…\n"
+    "\n"
+    "对方现在可以重新领码（占一个名额）。\n"
+    "注意：他旧机器上的游戏仍然是已授权状态，除非删掉那边的 auth.dat。"
+)
+
+MSG_ADMIN_UID_USAGE = "用法：/解绑账号 5D253F99（openid 前 8 位就够）"
+
+MSG_ADMIN_UID_AMBIGUOUS = "匹配到 {n} 个账号，多发几位 openid。"
+
+MSG_ADMIN_UID_EMPTY = "没有这个账号：{x}"
+
+MSG_ADMIN_UID_DONE = (
+    "已解绑该账号名下 {n} 台机器。\n"
+    "{hwids}\n"
+    "对方现在可以重新领码。"
+)
+
+MSG_ADMIN_LIST_HEAD = "绑定记录：共 {n} 台"
 
 
 # ────────────────────────────── 发码 ──────────────────────────────
@@ -305,8 +375,143 @@ def parse_command(text):
     return None
 
 
-def handle_message(uid, text):
-    """返回要回的内容（None 表示不理）。"""
+def parse_admin_command(text):
+    """解析管理员命令。返回 (kind, arg) 或 None。
+
+    和 parse_command 一样，命令后面必须跟空白，避免 '/解绑账号' 被当成 '/解绑'。
+    长的先试（解绑账号 在 解绑 之前）。
+    """
+    plain = strip_mention(text)
+    table = (
+        (ADMIN_CLAIM_CMDS, "claim"),
+        (UNBIND_UID_CMDS, "unbind_uid"),
+        (UNBIND_CMDS, "unbind"),
+        (LIST_CMDS, "list"),
+        (WHOAMI_CMDS, "whoami"),
+    )
+    for cmds, kind in table:
+        for cmd in cmds:
+            if plain == cmd:
+                return (kind, "")
+            if plain.startswith(cmd) and len(plain) > len(cmd) and plain[len(cmd)] in (" ", "\u3000"):
+                return (kind, plain[len(cmd):].strip())
+    return None
+
+
+def _hwid_like(s):
+    return (len(s) == qq_auth.HWID_LEN
+            and all(c in qq_auth.HWID_CHARS for c in s))
+
+
+def handle_admin(uid, kind, arg, ledger):
+    """管理员命令。返回要回的内容，None = 不回。
+
+    ledger 必须是带 admins/is_admin/admin_add/drop_hwid/drop_uid/audit_append
+    的那套（scf/store.py）。本地 SQLite 版没有这些，会被 handle_message 挡在前面。
+    """
+    uid = str(uid or "").strip()
+
+    # 谁都可以问自己的 openid：只说给他自己，用来确认认领的是哪个身份
+    if kind == "whoami":
+        return MSG_WHOAMI.format(uid=uid)
+
+    if kind == "claim":
+        if not ADMIN_TOKEN:
+            return MSG_ADMIN_NO_TOKEN
+        if ledger.admins():
+            # 已经有管理员 = 认领通道永久关闭，防止后来者顶掉
+            print("  [管理] 拒绝重复认领 uid=%s（已有 %d 名管理员）"
+                  % (uid[:12], len(ledger.admins())))
+            return None
+        if str(arg or "").strip().upper() != ADMIN_TOKEN.upper():
+            print("  [管理] 口令错误 uid=%s" % uid[:12])
+            return MSG_ADMIN_BAD_TOKEN
+        ledger.admin_add(uid, ADMIN_QQ)
+        ledger.audit_append("admin_claim", uid, uid, "首批管理员 QQ=%s" % ADMIN_QQ)
+        print("  [管理] 已设为管理员 uid=%s" % uid[:12])
+        return MSG_ADMIN_CLAIMED.format(qq=ADMIN_QQ)
+
+    # ── 以下只给管理员；非管理员静默丢弃，不暴露这些命令存在 ──
+    if not ledger.is_admin(uid):
+        print("  [管理] 非管理员尝试 %s uid=%s（已忽略）" % (kind, uid[:12]))
+        return None
+
+    if kind == "list":
+        rows = ledger.all()
+        if not rows:
+            return MSG_ADMIN_LIST_HEAD.format(n=0)
+        rows = rows[::-1][:30]
+        lines = [MSG_ADMIN_LIST_HEAD.format(n=ledger.count()), ""]
+        for i, (hwid, owner, code_id, _code, ts) in enumerate(rows, 1):
+            lines.append("%d. %s  %s  %s  %s"
+                         % (i, hwid, str(owner)[:8], code_id,
+                            time.strftime("%m-%d %H:%M", time.localtime(ts))))
+        if ledger.count() > len(rows):
+            lines.append("（只显示最近 30 条）")
+        return "\n".join(lines)
+
+    if kind == "unbind":
+        raw = str(arg or "").replace("-", "").replace(" ", "").upper()
+        if not raw:
+            return MSG_ADMIN_UNBIND_USAGE
+        row = None
+        if _hwid_like(raw):
+            row = ledger.get_by_hwid(raw)
+        if row is None:
+            # 也可能报的是码 ID（授权码第一段），一起认
+            row = ledger.get_by_code_id(raw)
+        if row is None:
+            return MSG_ADMIN_NOT_FOUND.format(x=raw)
+        hwid, owner, code_id = row[0], row[1], row[2]
+        ledger.drop_hwid(hwid)
+        ledger.audit_append("unbind", uid, hwid, "code=%s owner=%s" % (code_id, str(owner)[:12]))
+        print("  [解绑] %s -> hwid=%s owner=%s code=%s"
+              % (uid[:12], hwid, str(owner)[:12], code_id))
+        return MSG_ADMIN_UNBOUND.format(hwid=hwid, code_id=code_id,
+                                        owner=str(owner)[:8])
+
+    if kind == "unbind_uid":
+        pref = str(arg or "").strip()
+        if not pref:
+            return MSG_ADMIN_UID_USAGE
+        owners = {}
+        for r in ledger.all():
+            owners.setdefault(r[1], []).append(r[0])
+        hits = [o for o in owners if o == pref or o.startswith(pref)]
+        if not hits:
+            return MSG_ADMIN_UID_EMPTY.format(x=pref)
+        if len(hits) > 1:
+            return MSG_ADMIN_UID_AMBIGUOUS.format(n=len(hits))
+        victim = hits[0]
+        hwids = owners[victim]
+        n = ledger.drop_uid(victim)
+        ledger.audit_append("unbind_uid", uid, victim, "count=%d" % n)
+        print("  [解绑] %s -> uid=%s 共 %d 台" % (uid[:12], victim[:12], n))
+        return MSG_ADMIN_UID_DONE.format(n=n, hwids="、".join(hwids))
+
+    return None
+
+
+def handle_message(uid, text, ledger=None):
+    """返回要回的内容（None 表示不理）。
+
+    ledger 传进来的话就用它（云端 COS 账本），不传就开本地 SQLite。
+    管理员命令只有带 admins/is_admin 的账本才支持。
+    """
+    adm = parse_admin_command(text)
+    if adm is not None:
+        if ledger is not None:
+            return handle_admin(uid, adm[0], adm[1], ledger)
+        if hasattr(qq_auth.Ledger, "is_admin"):
+            own = qq_auth.Ledger(qq_auth.DB_PATH)
+            try:
+                return handle_admin(uid, adm[0], adm[1], own)
+            finally:
+                own.close()
+        # 本地 SQLite 账本没有管理员功能（云端才是生产环境）
+        print("  [管理] 本地账本不支持管理员命令，请用云端 Webhook")
+        return None
+
     parsed = parse_command(text)
     if parsed is None:
         return MSG_GREETING.format(cmd=AUTH_COMMAND) if strip_mention(text) == "" else None

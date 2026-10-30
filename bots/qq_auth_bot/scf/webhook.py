@@ -129,7 +129,7 @@ class WebhookHandler(object):
             text = data.get("content", "")
             msg_id = data.get("id", "")
             self._log("私聊 %s %r" % (uid[:12], text[:30]))
-            out = self._handle_text(uid, text)
+            out = self._handle_text(uid, text, allow_admin=True)
             if out:
                 self._send_c2c(uid, out, msg_id)
             return
@@ -159,9 +159,32 @@ class WebhookHandler(object):
 
         self._log("事件 %s 不处理" % name)
 
-    def _handle_text(self, uid, text):
-        """把发码这件事接到 COS 账本上，其余逻辑全用 bot.py 的。"""
+    def _handle_text(self, uid, text, allow_admin=False):
+        """把发码这件事接到 COS 账本上，其余逻辑全用 bot.py 的。
+
+        allow_admin：管理员命令只在私聊生效。群里 @ 一律不给 ——
+        /绑定列表 会把别人的 openid 贴到群里，那是泄露。
+        """
         bot = self.bot
+
+        # 管理员命令要先于发码判断，而且**不走 secret_ok 那道闸**：
+        # 认领管理员、解绑设备都不涉及签名密钥，密钥没配好也得能解绑。
+        adm = bot.parse_admin_command(text)
+        if adm is not None:
+            if not allow_admin:
+                self._log("群里收到管理命令 %s，已忽略（仅私聊可用）" % adm[0])
+                return None
+            if adm[0] == "whoami":
+                return bot.handle_admin(uid, adm[0], adm[1], None)
+            ledger = self.ledger_factory()
+            try:
+                out = bot.handle_admin(uid, adm[0], adm[1], ledger)
+            finally:
+                ledger.close()   # close() 里带 flush，解绑/白名单都靠它落盘
+            self._log("管理员命令 %s uid=%s -> %s"
+                      % (adm[0], str(uid)[:10], "已回复" if out else "静默忽略"))
+            return out
+
         parsed = bot.parse_command(text)
         if parsed is None:
             return (bot.MSG_GREETING.format(cmd=bot.AUTH_COMMAND)

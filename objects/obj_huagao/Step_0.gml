@@ -29,8 +29,9 @@ if (state == CARD_STATE.ATTACK) {
         // 每条缝隙左右两端各 1 只，共 4 只；每只覆盖相邻两行，
         // 两条缝隙合计正好覆盖 上 / 中 / 下 3 行，且每行各 2 只（左上、右上、左下、右下）。
         // 二转：每条缝隙的左右各再加 1 只（共 8 只），用 y 偏移错开避免完全重叠。
-        var _field_l = global.grid_offset_x;
-        var _field_r = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x;
+        var _field_l = combat_left_x();
+        // 右端用战斗域右沿（第 10 列右沿）：魂虫从那里向左飞，才能扫到刚进场的老鼠
+        var _field_r = combat_right_x();
         var _tag = huagao_next_attack_tag();
 
         var _gap_up = clamp(grid_row, 1, global.grid_rows - 1);

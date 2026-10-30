@@ -51,6 +51,10 @@ def build_config():
     if cfg.pop("app_secret", None):
         print("  · 已从 config.json 移除 app_secret（改由环境变量 QQ_APP_SECRET 提供）")
     cfg.pop("sandbox", None)
+    # 管理员口令绝不能进包：包一旦被转发/贴出去，谁拿到口令谁就能认领管理员。
+    # 云端一律走环境变量 AUTH_ADMIN_TOKEN。
+    if cfg.pop("admin_token", None):
+        print("  · 已从 config.json 移除 admin_token（改由环境变量 AUTH_ADMIN_TOKEN 提供）")
     return cfg
 
 
@@ -99,6 +103,7 @@ def main():
   1. 腾讯云 → 云函数 SCF → 新建函数（Python 3.9+，选「事件函数」）
   2. 上传这个 zip，执行方法填 main.main_handler
   3. 函数配置 → 环境变量，填 QQ_APP_ID / QQ_APP_SECRET / AUTH_SECRET / COS_*
+     （想用 /解绑 就再加 AUTH_ADMIN_TOKEN，值见 bots/qq_auth_bot/config.json 的 admin_token）
   4. 函数配置 → 触发器/函数 URL，开一个公网 HTTPS 地址
   5. 开放平台 → 开发设置 → 事件订阅与回调地址 → 切到 Webhook，填上面那个地址
   6. 到云函数「日志」里应看到「握手校验已应答」，页面提示保存成功

@@ -4,6 +4,14 @@ if (instance_exists(obj_cross_server_shop)) exit;
 
 if (!is_disabled)
 {
+    // 星级门槛：castle-0 需要背包里有 8 星卡，castle-1 起每关 +1（到 castle-7 为 15 星）。
+    // 判据是 unlocked_cards 里的最高星级，不达标只提示、不进关。
+    if (!cross_server_star_gate(level_index))
+    {
+        show_notice(cross_server_star_gate_text(level_index), 60);
+        exit;
+    }
+
     audio_play_sound(snd_button, 0, 0);
     var level_list = ds_map_find_value(global.maps_map, cross_server_map_id).levels_data;
     global.level_data = level_list[level_index];

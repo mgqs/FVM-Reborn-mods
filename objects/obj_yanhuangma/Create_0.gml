@@ -11,8 +11,8 @@ else if (shape >= 2) sprite_index = spr_yanhuangma_2;
 image_xscale = 1.8;
 image_yscale = 1.8;
 // 0-13待机 14-20攻击，所有形态均在第18帧召唤炎凰
-idle_anim = 12;
-attack_anim = 7;
+idle_anim = 10;
+attack_anim = 11;
 flash_speed = 5;
 zodiac_timer = 0;
 zodiac_age = 0;

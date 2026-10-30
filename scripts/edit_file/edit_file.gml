@@ -146,6 +146,10 @@ function get_card_level(card_id) {
 /// @desc 标记关卡为已完成并保存存档
 /// @param {string} level_id 关卡ID
 function complete_level(level_id) {
+    // 测试关卡是沙盒，永远不写通关记录：既不该出现在 completed_levels 里，
+    // 也不该触发首通奖励 / 解锁判定（所有玩法模式一致）
+    if (level_id == "test_level") return false;
+
     var _is_new = (array_get_index(global.save_data.completed_levels, level_id) == -1);
 
     // 海克斯记账：必须在判重之前，否则"重复通关"永远累计不到次数。

@@ -91,6 +91,12 @@ if (instance_exists(ly_food_target) && ly_food_target.hp > 0) {
 else {
     target_plant = longyuan_find_plant(false);
 }
+// 外层优先：目标被瓜皮护罩 / 赫拉 / 处女座罩住时，先啃保护卡本体，破罩后下一帧才轮到内层。
+// 已经是护罩本身时跳过，避免每帧白遍历一遍全部卡片。
+if (instance_exists(target_plant) && target_plant.plant_type != "shield_outer") {
+    var _outer = longyuan_outer_card_of(target_plant);
+    if (instance_exists(_outer)) target_plant = _outer;
+}
 if (instance_exists(target_plant)) {
     ly_mode = "attack";
     longyuan_play(longyuan_attack_action());

@@ -49,13 +49,16 @@ longyuan_attack_action = function() { return longyuan_variant("正常吃东西",
 longyuan_begin_death = function() { ly_mode = "dead"; target_plant = noone; ly_action = ""; longyuan_play("倒地", true); };
 longyuan_dijing_food_ahead = function() {
     var _bridge = longyuan_bridge_contact(x - 24, y, x + 24, y, grid_row);
-    if (instance_exists(_bridge)) return _bridge;
+    // 桥（桥头米线）外面也可能套着护罩，统一走外层解析，避免隔着护罩直接打桥。
+    if (instance_exists(_bridge)) return longyuan_outer_card_of(_bridge);
     var _found = noone;
     with (obj_card_parent) {
-        if (hp > 0 && grid_row == other.grid_row && abs(x - other.x) <= 50
-            && longyuan_dijing_is_food_card(plant_id)) _found = id;
+        if (hp <= 0 || grid_row != other.grid_row || abs(x - other.x) > 50) continue;
+        // 能引诱出土的：5 种食物卡，以及外层护罩本身（瓜皮 / 赫拉 / 处女座）。
+        // 后者不能漏：护罩罩住的若不是食物卡，只认食物卡会让地精鼠从护罩底下整个穿过去。
+        if (longyuan_dijing_is_food_card(plant_id) || plant_type == "shield_outer") _found = id;
     }
-    // 被外部保护卡（瓜皮护罩 / 赫拉 / 处女座）罩住时，伤害与后续啃咬都落到保护卡上。
+    // 被外部保护卡罩住时，出土撞击与后续啃咬都先落到保护卡上，破罩后才轮到内层。
     if (instance_exists(_found)) return longyuan_outer_card_of(_found);
     return noone;
 };

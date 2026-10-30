@@ -90,6 +90,8 @@ python build.py
 | `COS_BUCKET` | `fvm-auth-1250000000`（**带 APPID 后缀**） | ✅ |
 | `COS_KEY` | `qqauth/ledger.json` | 可省 |
 | `MAX_DEVICES` | `2` | 可省 |
+| `AUTH_ADMIN_TOKEN` | `bots/qq_auth_bot/config.json` 里的 `admin_token` | 想要 `/解绑` 就必填 |
+| `ADMIN_QQ` | `1017443780` | 可省，仅用于文案 |
 
 `AUTH_SECRET` 的值可以直接这样取：
 
@@ -199,34 +201,76 @@ python main.py --check
 
 ## 八、管理侧操作
 
-账本现在是 COS 上的一个 JSON。查看：
+### 8.1 先认清一个限制：拿不到 QQ 号
 
-控制台 → 对象存储 → 你的桶 → `qqauth/ledger.json` → 下载查看。
+QQ 官方机器人事件里**只有 `openid`，没有 QQ 号**，也没有任何接口能把 openid 换回 QQ 号。
+所以「只有 QQ 1017443780 能解绑」这件事，没法直接用 QQ 号做判断。
 
-或者用命令行（本地配好 `COS_*` 四项环境变量后）：
+用**一次性口令认领**落地，效果等价：
+
+```
+你（维护者）                管理员本人（QQ 1017443780）
+     │                             │
+     │  私下把口令发给他             │
+     │ ──────────────────────────> │
+     │                             │ 私聊机器人： /管理绑定 <口令>
+     │                             │
+     │      机器人把他的 openid 写进白名单，口令当场作废
+     │                             │
+     │      白名单非空后，任何人再发 /管理绑定 都被静默拒绝
+     │                             │  ← 从此锁死在这一个账号上
+```
+
+口令在 `bots/qq_auth_bot/config.json` 的 `admin_token`（已生成好），
+云端从环境变量 `AUTH_ADMIN_TOKEN` 读。**打包时会被剔除，不会进 zip。**
+
+### 8.2 命令表（全部只在私聊生效）
+
+| 命令 | 谁能用 | 作用 |
+|---|---|---|
+| `/我是谁` | 任何人 | 回自己的 openid，用来核对认领的是哪个身份 |
+| `/管理绑定 <口令>` | 口令正确且尚无管理员 | 认领成为唯一管理员 |
+| `/解绑 CF8A-EFFE` | 仅管理员 | 解绑单台机器（识别码） |
+| `/解绑 ACEF3YL5` | 仅管理员 | 解绑单台机器（按码 ID，玩家报码时用） |
+| `/解绑账号 5D253F99` | 仅管理员 | 解绑该 openid 名下全部机器（前缀匹配，需唯一） |
+| `/绑定列表` | 仅管理员 | 列出全部绑定（最新 30 条） |
+
+**非管理员发这些命令，机器人一句话都不回。** 不是「无权限」，是完全静默 ——
+回了就等于告诉全群有这条路。
+
+**群里 @ 发这些命令一律忽略**，因为 `/绑定列表` 会把别人的 openid 贴到群里。
+
+每次解绑都会写进账本的 `audit` 字段（操作者 openid、目标、时间，保留最近 200 条）。
+
+### 8.3 解绑之后会发生什么
+
+- 该机器在账本里被删掉，**该账号的名额 -1**，可以重新领码；
+- 但**他旧机器上的游戏仍然是已授权状态** —— 游戏端是纯离线验签，不会回连账本。
+  真要彻底作废，得让他删掉 `%LOCALAPPDATA%\FVM_Reborn_makk\auth.dat`，或者换机。
+
+### 8.4 兜底：直接改 COS（机器人不可用时）
+
+控制台 → 对象存储 → 你的桶 → `qqauth/ledger.json` → 下载 → 删掉
+`entries` 里对应 `hwid` 的那一条 → 上传覆盖。
+
+或者本地配好 `COS_*` 后跑：
 
 ```bash
 cd bots/qq_auth_bot/scf
 python - <<'EOF'
-import store, json
+import store
 led = store.ledger_from_env()
 rows = led.all()
 print("共 %d 条" % len(rows))
 for hwid, uid, code_id, code, ts in rows:
-    print("%-10s %-24s %s" % (hwid, uid[:20], code))
-EOF
-```
-
-解绑某台机器（玩家换机后卡在上限时用，机器人不会告诉玩家这个）：
-
-```bash
-python - <<'EOF'
-import store
-led = store.ledger_from_env()
+    print("%-10s %-24s %s" % (hwid, uid[:20], code_id))
 print("已解绑 %d 台" % led.drop_hwid("CF8AEFFE"))
 led.close()
 EOF
 ```
+
+⚠️ 改 `ledger.json` 时不要把 `admins` 字段删掉，那是管理员白名单，
+删了等于把认领通道重新打开（口令还在，谁拿到口令谁就能认领）。
 
 ### 加码（池子发完时）
 

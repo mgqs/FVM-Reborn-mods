@@ -303,32 +303,39 @@ else
                     self.cycle = self.base_cycle * clamp(_hex_cyc, 0.05, 4.0);
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
-                    var _hex_hp = hex_hp_mult_for_card(self.plant_id);
-                    if (_hex_hp != 1.0)
+
+                    // ══ 生命上限：先算「纯上限」（卡面基准 × 生命词条，或被词条固定）══
+                    // 这个值必须是「不含取长补短」的干净上限，否则下一次重算会拿被抬高的值当基准，
+                    // 按比例把当前血量削掉 —— 就是「莫名掉血」的来源。
+                    var _hex_hp   = hex_hp_mult_for_card(self.plant_id);
+                    var _hp_fix   = hex_batch2_id_hp_fix(self.plant_id);   // 「熊熊烈火」：火盆类固定 10 点
+                    var _eq_on    = hex_batch2_equalize_on();              // 「取长补短」
+                    var _pure_max = self.base_max_hp * _hex_hp;
+                    // 「山脉龙魂」每秒叠生命上限，公式必须和 hex_batch2 的 tick 段完全一致，
+                    // 否则两边各自重设 max_hp 会互相抹掉对方那一截
+                    if (variable_instance_exists(self.id, "b2_hp_stack"))
+                        _pure_max *= (1 + self.b2_hp_stack);
+                    if (_hp_fix > 0) _pure_max = _hp_fix;
+
+                    // 「取长补短」：上限与攻击一起取「纯上限 / 攻击力」中较高者
+                    var _new_max = _pure_max;
+                    if (_eq_on)
                     {
-                        // 「我真没胖」这类生命上限词条：上限涨了，当前血量必须按同一比例跟上。
-                        // 只改 max_hp 不改 hp 的话，卡片实际多撑的伤害约等于 0（表现就是「没生效」）。
-                        var _old_max = self.max_hp;
-                        self.max_hp = self.base_max_hp * _hex_hp;
-                        if (_old_max > 0 && self.max_hp != _old_max && self.hp > 0)
-                            self.hp = min(self.max_hp, self.hp * (self.max_hp / _old_max));
-                        if (self.hp > self.max_hp) self.hp = self.max_hp;
+                        _new_max = max(self.atk, _pure_max);
+                        self.atk = _new_max;
                     }
 
-                    // 「熊熊烈火」：指定卡片生命值固定（火盆类固定 10 点）
-                    var _hp_fix = hex_batch2_id_hp_fix(self.plant_id);
-                    if (_hp_fix > 0)
+                    // 只有这三类词条会动上限时才重设，别把别的系统临时改过的 max_hp 拉回基准
+                    if (_hex_hp != 1.0 || _hp_fix > 0 || _eq_on)
                     {
-                        self.max_hp = _hp_fix;
+                        // 一次算到底：从「当帧旧上限」直接换算到「新上限」。
+                        // 上限涨多少当前血涨多少、跌多少血跌多少。
+                        // 之前「只改上限不改血」会让涨的时候血不动，等增幅消失上限回落时血才跟着掉，一来一回净亏一截。
+                        if (abs(_new_max - self.max_hp) > 0.001 && self.max_hp > 0 && self.hp > 0)
+                            self.hp = self.hp * (_new_max / self.max_hp);
+                        self.max_hp = _new_max;
                         if (self.hp > self.max_hp) self.hp = self.max_hp;
-                    }
-
-                    // 「取长补短」：攻击与生命取两者中较高的那个
-                    if (hex_batch2_equalize_on())
-                    {
-                        var _hi = max(self.atk, self.max_hp);
-                        self.atk = _hi;
-                        self.max_hp = _hi;
+                        if (self.hp > 0 && self.hp < 1) self.hp = 1;   // 别把还活着的卡按比例缩成 0
                     }
                 }
 

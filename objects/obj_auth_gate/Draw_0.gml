@@ -106,7 +106,7 @@ if (!mandatory) {
 draw_set_font(font_yuan);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-var _pre = "获取授权码请加群：";
+var _pre = "本游戏完全免费!!!获取授权码请加群：";
 var _num = "887959479";
 var _pre_w = string_width(_pre);
 var _num_w = string_width(_num);
