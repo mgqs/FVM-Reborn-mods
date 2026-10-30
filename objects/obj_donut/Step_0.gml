@@ -19,6 +19,9 @@ if (cooldown > 0)
 
 if (!attacking)
 {
+    // 优先对空（2026-10-30）：**必须单独扫一遍本行空军**
+    //   原来「空军判定」和「打地面」写在同一个 with 循环里，实例遍历顺序不保证：
+    //   先扫到地面敌人就 attacking = true + break，空军永远轮不到 → 描述里的「优先空军」实际不生效
     with (obj_enemy_parent)
     {
         if (target_type == "air" && grid_row == other.grid_row && hp > 0)
@@ -27,11 +30,17 @@ if (!attacking)
             other.attacking = true;
             break;
         }
-        
-        if (can_target_on(other.target_type, target_type) && grid_row == other.grid_row && hp > 0)
+    }
+
+    if (!attacking)
+    {
+        with (obj_enemy_parent)
         {
-            other.attacking = true;
-            break;
+            if (can_target_on(other.target_type, target_type) && grid_row == other.grid_row && hp > 0)
+            {
+                other.attacking = true;
+                break;
+            }
         }
     }
 }

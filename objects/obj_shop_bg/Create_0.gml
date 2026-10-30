@@ -28,7 +28,10 @@ cross_server_exchange_ids = [
     "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2",
     "zhanqima", "zhanqima_1", "zhanqima_2",
     // 椰子果（0转银牌商店 / 1、2转金牌商店）
-    "yeziguo", "yeziguo_1", "yeziguo_2"
+    "yeziguo", "yeziguo_1", "yeziguo_2",
+    // 牛油果（0转银牌商店；1、2转凭证改在威望商店，普通商店一律不显示）、五行蛇（0转银牌商店）
+    //   2026-10-30 补：这两张一直漏在名单外，普通商店会按金币重复显示（同一个 goods 结构体被跨服覆写过 cost）
+    "niuyouguo", "niuyouguo_1", "niuyouguo_2", "wuxingshe"
 ]
 
 instance_create_depth(x+800,y-430,depth-1,obj_closeshop_btn)
@@ -342,11 +345,12 @@ function shop_list_recharge(){
 					inst.goods_name = credit_shop_goods_name(_ci)
 					inst.credit_shape = _ci.credit_shape
 					inst.tooltip_text = _ci.description
-					// 已购 / 已转上去 / 形态不存在 → 置灰＋点不动（兑换项 credit_shape = 0 永远可买）
+					// 已购 / 已转上去 / 形态不存在 → 置灰＋点不动（兑换项 credit_shape = 0 不置灰）
 					// 爬塔门槛 / 余额不足不在这里置灰：它们是「临时不满足」，点购买时再弹提示（2026-10-26 用户定）
 					inst.credit_block = ""
 					// 爬塔门槛 key：凭证和兑换项都算好（Draw 用它画「通过X-X层可买」，
-					//   规则见 transfer_credit 的 credit_shop_tower_defaults()：一转 1-1 / 二转 13-1 / 兑换项 35-1）
+					//   规则见 transfer_credit 的 credit_shop_tower_defaults()：一转 1-1 / 二转 15-1 / 兑换项 36-1）
+					// 2026-10-29：兑换项的这道门槛改由 Mouse_4 在购买时真的拦（原来只画小字、实际无限制）
 					inst.credit_floor_key = credit_shop_floor_key(_ci)
 					if (_ci.credit_shape > 0) {
 						var _cp = transfer_credit_parse(_ci.unlock_item_id)

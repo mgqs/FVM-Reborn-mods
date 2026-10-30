@@ -8,7 +8,7 @@
 ///   reward_prestige  兑换项专用：买完加多少威望
 ///   tower_floor   爬塔门槛（**表里逐卡给了值就写在这里**；没写的走 transfer_credit.gml 的默认表）
 ///                  写法：`"12-2"` = 需通关魔塔 12-2 / `12` = 该层第一小关
-///                  默认表 `credit_shop_tower_defaults()`：一转 1-1 / 二转 15-1 / 兑换项 35-3
+///                  默认表 `credit_shop_tower_defaults()`：一转 1-1 / 二转 15-1 / 兑换项 36-1（= 魔塔「35层-巅峰」，实为 36-1，2026-10-29 用户口径）
 ///                  判定分两层：置灰只看 transfer_credit_buyable_locked()（形态不存在/已转职；**不限量**）；
 ///                  爬塔门槛与余额不足只在点购买时弹提示，不置灰
 /// 🔴 **不开 display_name**：商店对凭证是用 transfer_credit_name_from_id(unlock_item_id) 实时取名，
@@ -27,11 +27,12 @@ function credit_shop_init()
         //    商店建按钮时走 `_ci.display_name` 分支（凭证走实时取名）→ 缺这个键直接崩，
         //    而且它被排序键垫到最后一页（第 13 页），所以表现为「商店第 13 页打不开」
         display_name: "威望",
+		tower_floor: "36-1",
         description: "用 10000000 金币兑换 100000 威望",
         reward_prestige: 100000
     });
 
-    // ── 一转凭证（103 条）─────────────────────────────────────────
+    // ── 一转凭证（105 条）─────────────────────────────────────────
     register_goods("credit_wooden_plate_1", {
         type: "credit", cost: "900", coin_type: "prestige", credit_shape: 1,
         tower_floor: "1-1",
@@ -118,14 +119,14 @@ function credit_shop_init()
 
     register_goods("credit_chocolate_pult_1", {
         type: "credit", cost: "1900", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "6-2",
+        tower_floor: "7-2",
         unlock_item_id: transfer_credit_id("chocolate_pult", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
 
     register_goods("credit_triple_wine_rack_1", {
         type: "credit", cost: "1900", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "3-2",
+        tower_floor: "1-2",
         unlock_item_id: transfer_credit_id("triple_wine_rack", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
@@ -713,8 +714,8 @@ function credit_shop_init()
     });
 
     register_goods("credit_hongliukaochuan_1", {
-        type: "credit", cost: "7000", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "15-2",
+        type: "credit", cost: "11000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "16-2",
         unlock_item_id: transfer_credit_id("hongliukaochuan", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
@@ -757,7 +758,21 @@ function credit_shop_init()
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
 
-    // ── 二转凭证（99 条）─────────────────────────────────────────
+    // 椰子果（yeziguo）/ 牛油果（niuyouguo）：2026-10-30 从跨服一/二转下架，改威望商店
+    register_goods("credit_yeziguo_1", {
+        type: "credit", cost: "3500", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "6-1",
+        unlock_item_id: transfer_credit_id("yeziguo", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_niuyouguo_1", {
+        type: "credit", cost: "8100", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "15-2",
+        unlock_item_id: transfer_credit_id("niuyouguo", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+
+    // ── 二转凭证（101 条）─────────────────────────────────────────
     register_goods("credit_wooden_plate_2", {
         type: "credit", cost: "11400", coin_type: "prestige", credit_shape: 2,
         tower_floor: "12-1",
@@ -1410,7 +1425,7 @@ function credit_shop_init()
     });
 
     register_goods("credit_hongliukaochuan_2", {
-        type: "credit", cost: "24000", coin_type: "prestige", credit_shape: 2,
+        type: "credit", cost: "31500", coin_type: "prestige", credit_shape: 2,
         tower_floor: "33-2",
         unlock_item_id: transfer_credit_id("hongliukaochuan", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
@@ -1446,6 +1461,18 @@ function credit_shop_init()
         type: "credit", cost: "29700", coin_type: "prestige", credit_shape: 2,
         tower_floor: "20-2",
         unlock_item_id: transfer_credit_id("delicacy_firework", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_yeziguo_2", {
+        type: "credit", cost: "25800", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "22-2",
+        unlock_item_id: transfer_credit_id("yeziguo", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_niuyouguo_2", {
+        type: "credit", cost: "28000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "29-1",
+        unlock_item_id: transfer_credit_id("niuyouguo", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
 }

@@ -37,7 +37,7 @@ function mod_evo_table(){
         sheng_huo:               { cards:[ {id:"beef_hotpot", slot:0, need:2},
                                         {id:"spicy_pot", slot:1, need:2} ] },  // 赫斯提亚神使 ← 海鲜肥牛锅 + 酱香鱿鱼锅
         hufa_god:                { cards:[ {id:"hongliukaochuan", slot:0, need:2},
-                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 游侠双刃蛇
+                                        {id:"guiyuanma", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 幻境归元马（2026-10-30 用户指定）
         gongjiang_god:           { cards:[ {id:"laipishe", slot:0, need:2},
                                         {id:"pizza_oven", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
         brahma:                  { cards:[ {id:"magic_chicken", slot:0, need:2},
@@ -59,11 +59,11 @@ function mod_evo_table(){
                                         {id:"durian", slot:1, need:2} ] },  // 黑暗神使 ← 摩羯座战将（星座槽）+ 冰河世纪榴莲
         aurora:                  { cards:[ {id:"zhuzhujiaqiang", slot:0, need:2},
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
-        houyi_god:               { cards:[ {id:"sheshou", slot:0, need:2},
-                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← 射手座星宿（星座槽）+ 游侠双刃蛇（2026-10-28：融合三线→射手座，并对调槽位）
+        houyi_god:               { cards:[ {id:"corn_shooter", slot:0, need:2},
+                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← 玉蜀黍 + 游侠双刃蛇（2026-10-29：射手座星宿与丘比特共用，slot0 换成玉蜀黍）
         joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
-        time_god:                { cards:[ {id:"magic_chicken", slot:0, need:2},
-                                        {id:"ice_cream", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 幻幻鸡 + 极寒冰沙（2026-10-28 对调）
+        time_god:                { cards:[ {id:"ice_cream", slot:0, need:2},
+                                        {id:"zhiyumiao", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 极寒冰沙 + 全能治愈喵（2026-10-30 用户要求两槽对调）
         xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2} ] },  // 塔利亚神使 ← 流心莓果点心
         war_god:                 { cards:[ {id:"tiancheng", slot:0, need:2},
                                         {id:"double_water_pipe", slot:1, need:2} ] },  // 阿瑞斯神使 ← 天秤座星宿 + 合金水管
@@ -88,7 +88,7 @@ function mod_evo_table(){
         poseidon:                { cards:[ {id:"shizi", slot:0, need:2},
                                         {id:"rotating_coffee_pot", slot:1, need:2} ] },  // 波塞冬神使 ← 狮子座星宿 + 原子咖啡壶
         ghost_god:               { cards:[ {id:"coal_starfish", slot:0, need:2} ] },  // 哈迪斯神使 ← 芥末海星刺身
-        odin:                    { cards:[ {id:"double_blade_snake", slot:0, need:2} ] },  // 奥丁神使 ← 游侠双刃蛇
+        odin:                    { cards:[ {id:"tar_sprayer", slot:0, need:2} ] },  // 奥丁神使 ← 焦油喷壶（2026-10-29：原游侠双刃蛇被三张金卡共用，换成平射穿透类）
         water_god:               { cards:[ {id:"cherry_pudding", slot:0, need:2} ] },  // 忒提丝神使 ← 节能反弹布丁
         hundun_god:              { cards:[ {id:"hamburger", slot:0, need:2} ] },  // 混沌神使 ← 牛肉双黑汉堡
         // ⚠️ 下面 4 张不在用户给的配方表里（图上没有），沿用旧前置，等补表再改
