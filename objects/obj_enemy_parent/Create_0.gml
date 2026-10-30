@@ -90,5 +90,6 @@ climb_total_dist = 1   // 起点到落点的水平总距离（算弧线进度用
 climb_arc_h = 40       // 弧线最高上抬像素（远小于一格 116，不会跨行）
 climb_speed = 2        // 每帧移动像素（越障速度，越小越慢）
 climb_y = 0            // 越障期间的实际绘制高度（Step 算，Draw 用）
+climb_cooldown = 0     // 越障刚结束的冷却帧数：防止「翻过去之后目标还在 attack_range 内」被反复重触发（原地抽搐）
 
 attack_multiplier = 1;

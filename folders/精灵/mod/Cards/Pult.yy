@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Pult",
+  "folderPath":"folders/精灵/mod/Cards/Pult.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Pult",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"eightcake","path":"folders/精灵/mod/Cards/Pult/eightcake.yy",},
+  ],
+  "listItems":[],
+}

@@ -29,8 +29,8 @@ else if (grid_col != last_buff_col || grid_row != last_buff_row)
 for (var i = 0; i < array_length(wuxingshe_effects); i++) {
     var _e = wuxingshe_effects[i];
     if (instance_exists(_e)) {
-        _e.x = x;
-        _e.y = y;
+        _e.x = x + 6;              // 法阵往右 6px（与 Create 的 _fx_dx 保持一致）
+        _e.y = y - 20;             // 法阵往上 20px（与 Create 的 _fx_dy 保持一致）
         _e.depth = depth + 10;     // 始终压在卡片下层（卡片 depth 由 calculate_plant_depth 决定）
     }
 }

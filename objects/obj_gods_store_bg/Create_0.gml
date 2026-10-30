@@ -12,6 +12,11 @@ btn1.sprite_index = spr_gods_store_select_btn_1;
 var btn2 = instance_create_depth(x - 560, y - 363, depth - 1, obj_gods_store_select_btn);
 btn2.button_index = 2;
 btn2.sprite_index = spr_gods_store_select_btn_2;
+// 第 3 页签「配方材料」：融合菜谱（深度融合 / 灵魂融合）从转职凭证页单独拆出来卖
+//   贴图 = 桌面 shapes/328.png（未选中） / 330.png（选中），spr_gods_store_select_btn_3 三帧：0 常态 / 1 选中 / 2 悬停
+var btn3 = instance_create_depth(x - 377, y - 363, depth - 1, obj_gods_store_select_btn);
+btn3.button_index = 3;
+btn3.sprite_index = spr_gods_store_select_btn_3;
 var prev_btn = instance_create_depth(856, 912, depth - 1, obj_gods_store_page_btn);
 prev_btn.btn_type = "prev";
 var next_btn = instance_create_depth(1056, 912, depth - 1, obj_gods_store_page_btn);
@@ -32,16 +37,23 @@ function gods_shop_list_recharge()
     {
         var _gid1 = map_array[_i1];
         var _g1 = ds_map_find_value(global.gods_goods_map, _gid1);
-        // 融合卡卖的是「食谱道具」(type recipe)：本体食谱进本体页，深度/灵魂食谱进转职页
+        // 融合卡卖的是「食谱道具」：初融 = type "card" + sell_recipe（卖本体食谱），深/灵 = type "recipe"
         var _is_recipe1 = (_g1.type == "recipe");
+        var _is_base_recipe1 = (variable_struct_exists(_g1, "sell_recipe") && _g1.sell_recipe);
         if (shop_button_select == 1)
         {
-            if (_g1.type == "card" || _g1.type == "evo" || (_is_recipe1 && _g1.target_shape == 0)) array_push(_picked, _gid1);
+            // 防御卡：只放卡本体 + 进化凭证（**所有融合菜谱，含初融，都已挪到第 3 页「配方材料」**）
+            if ((_g1.type == "card" && !_is_base_recipe1) || _g1.type == "evo") array_push(_picked, _gid1);
         }
         else if (shop_button_select == 2)
         {
-            // 三/四/终转凭证（type "tvoucher"）与食谱都进这一页
-            if (_g1.type == "tvoucher" || _g1.type == "shape" || (_is_recipe1 && _g1.target_shape >= 1)) array_push(_picked, _gid1);
+            // 转职凭证：三/四/终转凭证（tvoucher）与 shape 商品，食谱不再混在这一页
+            if (_g1.type == "tvoucher" || _g1.type == "shape") array_push(_picked, _gid1);
+        }
+        else if (shop_button_select == 3)
+        {
+            // 配方材料：初融（本体食谱）+ 深度融合 + 灵魂融合，一条不落
+            if (_is_recipe1 || _is_base_recipe1) array_push(_picked, _gid1);
         }
     }
 
@@ -111,7 +123,18 @@ function gods_shop_list_recharge()
     {
         for (var j = 0; j < 4; j++)
         {
-            if (shop_button_select == 1)
+            // 第 3 页里「初融菜谱」是 type "card" + sell_recipe，按钮/售罄/工具提示都走第 1 页那套逻辑
+            var _use_card_layout = (shop_button_select == 1);
+            if (shop_button_select == 3)
+            {
+                var _gid_t = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
+                if (_gid_t != undefined)
+                {
+                    var _gd_t = ds_map_find_value(global.gods_goods_map, _gid_t);
+                    if (variable_struct_exists(_gd_t, "sell_recipe") && _gd_t.sell_recipe) _use_card_layout = true;
+                }
+            }
+            if (_use_card_layout)
             {
                 var _gid_b1 = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
                 if (_gid_b1 != undefined)
@@ -149,8 +172,11 @@ function gods_shop_list_recharge()
 
                     if (_is_recipe_b1)
                     {
-                        // 只看背包里还有没有这本食谱：用掉了就能再买（哪怕卡已经练上去了）
-                        if (has_fusion_recipe(_goods_b1.unlock_item_id, 0)) inst.is_disabled = true;
+                        // 🔴 2026-10-30 用户口径：**已经拥有对应形态就不能买**
+                        //   初融菜谱对应形态 0 → 只要这张融合卡已经拥有（max_shape >= 0）就售罄；
+                        //   背包里还留着一本同样的食谱也算售罄（旧口径保留，避免重复囤）
+                        var _own0 = transfer_credit_card_max_shape(_goods_b1.unlock_item_id);
+                        if (has_fusion_recipe(_goods_b1.unlock_item_id, 0) || _own0 >= 0) inst.is_disabled = true;
                     }
                     else if (_is_evo_b1)
                     {
@@ -180,7 +206,7 @@ function gods_shop_list_recharge()
                     }
                 }
             }
-            else if (shop_button_select == 2)
+            else if ((shop_button_select == 2 || shop_button_select == 3))
             {
                 var _gid_b2 = ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16));
                 if (_gid_b2 != undefined)
@@ -208,8 +234,14 @@ function gods_shop_list_recharge()
 
                     if (_is_recipe_b2)
                     {
-                        // 同上：只看背包里还有没有这本食谱（灵融之后还能回头再买初融 / 深融食谱）
-                        if (has_fusion_recipe(goods_info.unlock_item_id, goods_info.target_shape)) inst.is_disabled = true;
+                        // 🔴 2026-10-30 用户口径：**已经拥有对应形态就不能买**
+                        //   深度菜谱 target_shape 1 / 灵魂菜谱 2 → 卡的 max_shape >= 该档就售罄；
+                        //   背包里还留着一本同样的食谱也算售罄（旧口径保留）
+                        // ⚠️ 初融菜谱没有 target_shape 字段，缺字段按 0 处理，别直接点出来会崩
+                        var _rshape_b2 = variable_struct_exists(goods_info, "target_shape") ? goods_info.target_shape : 0;
+                        var _own_b2 = transfer_credit_card_max_shape(goods_info.unlock_item_id);
+                        if (has_fusion_recipe(goods_info.unlock_item_id, _rshape_b2) || _own_b2 >= _rshape_b2)
+                            inst.is_disabled = true;
                     }
                     else if (_is_tv_b2)
                     {

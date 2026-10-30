@@ -224,7 +224,9 @@ function card_category_data()
         ["horseshoe_crab_bread", "防御类", "面包类", ""],
         ["melon_shield", "防御类", "护罩类", ""],
         ["hera", "防御类", "护罩类", ""],
-        ["chunv", "防御类", "护罩类", ""]
+        ["chunv", "防御类", "护罩类", ""],
+        ["bbq", "直射类", "过火穿透类", ""],
+        ["eightcake", "投掷类", "单线投手", ""]
     ];
 }
 

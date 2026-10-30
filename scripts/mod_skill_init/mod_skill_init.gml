@@ -57,7 +57,9 @@ function mod_skill_init()
     register_card_skill("athena", "cycle", [360, 348, 336, 324, 312, 300, 288, 270, 240]);
     register_card_skill("odin", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("sun_god", "flame_produce", [25, 27, 29, 31, 34, 37, 40, 44, 48]);
-    register_card_skill("corn_shooter", "cooldown", [3000, 2700, 2460, 2220, 1920, 1620, 1320, 1020, 720]);
+    // 玉蜀黍：技能影响[攻击间隔]（2026-10-30 用户定，单位秒 → 帧：
+    //   1.3 / 1.25 / 1.2 / 1.15 / 1.1 / 1.05 / 1 / 0.95 / 0.9  × 60）
+    register_card_skill("corn_shooter", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
     register_card_skill("moon_god", "cycle", [180, 174, 168, 162, 153, 144, 132, 120, 102]);
     register_card_skill("war_god", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("hera", "cooldown", [1800, 1680, 1560, 1440, 1320, 1200, 1080, 900, 720]);
@@ -113,4 +115,6 @@ function mod_skill_init()
     // 桥头米线：星级影响[攻击力],技能影响[攻击间隔]。cycle 原为恒定 90 且无技能注册，
     // 导致技能等级完全无收益；基准 90，8 级降到 60（1 秒）。
     register_card_skill("mixian", "cycle", [90, 87, 84, 81, 78, 74, 70, 66, 60]);
+    register_card_skill("bbq", "cycle", [84, 81, 78, 75, 72, 69, 66, 60, 54]);
+    register_card_skill("eightcake", "cycle", [120, 117, 114, 111, 108, 105, 102, 99, 90]);
 }

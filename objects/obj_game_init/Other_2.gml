@@ -37,7 +37,11 @@ global.player_sprite = noone;
 load_file(global.save_slot)
 //reset_file(global.save_slot)
 
-difficulty_grant_immortal_start_cards()
+var _immortal_cards_now = difficulty_grant_immortal_start_cards()
+
+// 三选一没点确定就退出了（强关 / ESC / 切房间）→ 默认按第一张补发
+// 注意：刚在上一行发出暖暖鸡的那一次不结算（_immortal_cards_now = true），否则标记刚置上就被吃掉
+if (!_immortal_cards_now) immortal_pick_claim_default()
 
 // 不朽难度开局5w金币（仅新存档，一次性奖励）
 if global.difficulty == 5 && !variable_struct_exists(global.save_data, "immortal_bonus_given"){

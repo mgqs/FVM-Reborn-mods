@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"bbq",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/bbq.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"bbq",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"4285be13-9eca-4304-9a5a-4c9ff0d91e10","path":"sprites/spr_bbq/spr_bbq.yy",},
+    {"name":"23d9edfd-81e4-4adf-9542-a0fa1ee4a78b","path":"sprites/spr_bbq_1/spr_bbq_1.yy",},
+    {"name":"089f4aa4-59ec-4176-84dc-ee110b10008e","path":"sprites/spr_bbq_2/spr_bbq_2.yy",},
+    {"name":"97b0c583-c36b-402d-8730-8188f6a9b1c1","path":"sprites/spr_bbq_bullet/spr_bbq_bullet.yy",},
+    {"name":"cce53dbf-7152-4d36-9426-bdc7cf7efdc9","path":"sprites/spr_bbq_bullet_burn/spr_bbq_bullet_burn.yy",},
+    {"name":"6ff4961a-7976-4f98-be39-7149e7fc7c0d","path":"sprites/spr_bbq_burn_ground/spr_bbq_burn_ground.yy",},
+    {"name":"32728037-8dcd-42d7-91a7-290f6eda16c0","path":"sprites/spr_bbq_burn_mouse/spr_bbq_burn_mouse.yy",}
+],
+}

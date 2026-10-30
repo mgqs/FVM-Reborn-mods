@@ -1,3 +1,11 @@
+// ── 只在「卡片宝石」页（craft_top_tab == 0）生效 ──
+// 本按钮和转职页的「转职」按钮是**同一个坐标**（x-305, y+220，obj_craft_bg/Create_0 里两边都这么写），
+// 切到别的页只是 visible = false 藏起来。不在这里拦一道的话，点转职 / 进化 / 融合页同一位置的
+// 按钮会连带跑一次强化（强化槽里有卡时白扣材料 + 金币）。
+if (!instance_exists(obj_craft_bg) || obj_craft_bg.craft_top_tab != 0){
+	exit
+}
+
 global.audio.play(snd_button,0,0)
 
 var target_id = obj_craft_bg.current_uprade_target_id

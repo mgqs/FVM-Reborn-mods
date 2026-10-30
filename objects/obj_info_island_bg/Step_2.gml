@@ -29,3 +29,8 @@ for (var _i = 0; _i < array_length(anim_kids); _i++) {
 with (obj_info_island_edit_menu) { pnl_po = other.pnl_o; image_alpha = other.pnl_o }
 with (obj_info_island_edit_menu_btn) { pnl_po = other.pnl_o; image_alpha = other.pnl_o }
 with (obj_info_island_card_edit_select_btn) { pnl_po = other.pnl_o; image_alpha = other.pnl_o }
+
+// 搜索框跟着面板显隐（2026-10-31）：面板收起 / 动画中不显示
+if (variable_instance_exists(id, "info_search_box") && instance_exists(info_search_box)) {
+    info_search_box.visible = (pnl_o > 0.5);
+}

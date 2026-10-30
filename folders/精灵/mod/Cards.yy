@@ -20,7 +20,8 @@
     {"name":"mozhang","path":"folders/精灵/mod/Cards/mozhang.yy",},
     {"name":"time_god","path":"folders/精灵/mod/Cards/time_god.yy",},
     {"name":"houyi_god","path":"folders/精灵/mod/Cards/houyi_god.yy",},{"name":"zhanqima","path":"folders/精灵/mod/Cards/zhanqima.yy",},
-    {"name":"wuxingshe","path":"folders/精灵/mod/Cards/wuxingshe.yy",}
+    {"name":"wuxingshe","path":"folders/精灵/mod/Cards/wuxingshe.yy",},
+    {"name":"Pult","path":"folders/精灵/mod/Cards/Pult.yy",}
   ],
   "listItems":[
     {"name":"968adf00-d1a7-4d6a-9f10-063907ae108b","path":"sprites/spr_athena/spr_athena.yy",},

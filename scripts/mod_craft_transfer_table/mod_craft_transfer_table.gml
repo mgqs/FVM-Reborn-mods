@@ -7,7 +7,7 @@
 ///
 ///  一、数值（要改就改这里；参数是**凭证档位 1~5**，不是卡形态）
 ///    mod_tg_gold(tier)    3000 / 15000 / 5000 / 20000 / 50000
-///    mod_tg_assure(tier)  7500 / 50000 / 7500 / 50000 / 50000
+///    mod_tg_assure(tier)  5000 / 50000 / 100000 / 200000 / 300000
 ///    mod_tg_rate(tier)    30 / 20 / 30 / 20 / 20
 ///    mod_tg_pity_max(tier) 转职保底次数：一转 6 / 二转 12 / 三·四·终转 15（与保险金无关）
 ///
@@ -30,7 +30,7 @@
 ///    mod_tg_help_rect() / mod_tg_help_draw(hover)  「转职说明」弹窗（单个确定按钮）
 ///
 ///  四、星级门槛（2026-10-28 用户定）
-///    mod_tg_star_need(tier)  一转 7 / 二转 10 / 三转 13 / 四转 14 / 终转 16（星）
+///    mod_tg_star_need(tier)  一转 6 / 二转 10 / 三转 13 / 四转 14 / 终转 16（星）
 ///    mod_tg_check 里在「此卡已无法转职」之后、「缺凭证」之前判 —— 不够就返回「一转需要达到7星」
 ///    mod_tg_fill_check 里也判一次（星级不够就不让先买凭证再转）
 ///    面板左上角「转职说明」按钮的弹窗**直接读这两个函数**（「X转：X星」），改数只改一处
@@ -50,14 +50,14 @@ function mod_tg_gold(_tier){
 }
 
 /// @func mod_tg_assure(tier) 保险金（货币 = 金币；tier = 凭证档位 1~5）
-/// 🔴 用户定价（2026-10-27 定稿）：一转 7,500 / 二转 50,000 / 三转 7,500 / 四转 50,000 / 终转 50,000
+/// 🔴 用户定价（2026-10-30 调整）：一转 5,000 / 二转 50,000 / 三转 100,000 / 四转 200,000 / 终转 300,000
 function mod_tg_assure(_tier){
     switch (_tier){
-        case 1: return 7500;      // 一转
-        case 2: return 80000;     // 二转
-        case 3: return 300000;      // 三转（金卡）
-        case 4: return 400000;     // 四转（金卡）
-        case 5: return 500000;     // 终转（金卡）
+        case 1: return 5000;      // 一转
+        case 2: return 50000;     // 二转
+        case 3: return 100000;      // 三转（金卡）
+        case 4: return 200000;     // 四转（金卡）
+        case 5: return 300000;     // 终转（金卡）
     }
     return 50000;
 }
@@ -99,7 +99,7 @@ function mod_tg_tier_short(_tier){
 ///      面板左上角的「转职说明」按钮直接遍历这 5 档显示「X转：X星」，改数不用改弹窗
 function mod_tg_star_need(_tier){
     switch (_tier){
-        case 1: return 7;      // 一转
+        case 1: return 6;      // 一转（2026-10-30 由 7 降到 6）
         case 2: return 10;     // 二转
         case 3: return 13;     // 三转（金卡）
         case 4: return 14;     // 四转（金卡）
@@ -272,11 +272,24 @@ function mod_tg_fill_confirm_draw(_hover, _price, _currency_name, _credit_name, 
 }
 
 /// @func mod_tg_confirm_rect(i) 确认窗按钮矩形（0 = 确定 / 1 = 取消）：Draw 与 Step 共用
+/// @func mod_ui_common_btn_draw(frame, cx, cy, scale, alpha) 以「按钮中心」为锚点画 spr_common_button
+///   🔴 2026-10-30 实测结论：`spr_common_button` 是 **2× 贴图**（PNG 156×66，.yy 里声明 78×33，
+///      bbox 154×64，原点 78/32 = 贴图正中心）。所以**直接按中心 draw 就是居中的**，不能再补原点差
+///      （上一版按 (xoffset - w/2) 补偏移，反而把按钮推到右下 29/11 像素 → 用户看到「按钮错位」）。
+///      真正的毛病是**判定框只有按钮的一半大**（见 mod_tg_confirm_rect 的注释），已在那里改。
+function mod_ui_common_btn_draw(_frame, _cx, _cy, _scale, _alpha = 1){
+    draw_sprite_ext(spr_common_button, _frame, _cx, _cy, _scale, _scale, 0, c_white, _alpha);
+}
+
 function mod_tg_confirm_rect(_i){
     var _bx = room_width * 0.5 + ((_i == 0) ? -80 : 80);
     var _by = room_height * 0.5 + 70;
-    var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;   // 0.75 与 obj_shop_buy_confirm 同一手感
-    var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
+    // 🔴 spr_common_button 是 2× 贴图：0.75 倍下**实际画出来是 117×49.5**（78×33 的两倍），
+    //    旧写法 *0.75*0.5 只给了 58.5×24.75 的判定框 = 按钮的一半，
+    //    于是只有按钮正中间那行字能点中（2026-10-30 用户反馈「只能点在字上」）。
+    //    这里把半宽/半高改成「整宽 × 缩放」，判定框才和可见按钮一样大。
+    var _hw = sprite_get_width(spr_common_button) * 0.75;
+    var _hh = sprite_get_height(spr_common_button) * 0.75;
     return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
 }
 
@@ -322,7 +335,7 @@ function mod_tg_modal_draw(_hover, _lines, _tip = "", _tip_bottom = false){
         var _r  = mod_tg_confirm_rect(_b);
         var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
         var _fr = (_hover == _b) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
-        draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+        mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);
         draw_set_colour(c_white);
         draw_text(_bx, _by, _lbl[_b]);
     }
@@ -351,8 +364,8 @@ function mod_tg_confirm_draw(_hover, _assure_on = true){
 function mod_tg_help_rect(){
     var _bx = room_width * 0.5;
     var _by = room_height * 0.5 + 70;
-    var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;
-    var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
+    var _hw = sprite_get_width(spr_common_button) * 0.75;   // 同 mod_tg_confirm_rect：按钮是 2× 贴图
+    var _hh = sprite_get_height(spr_common_button) * 0.75;
     return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
 }
 
@@ -384,7 +397,7 @@ function mod_tg_help_draw(_hover){
     var _r  = mod_tg_help_rect();
     var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
     var _fr = _hover ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
-    draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+    mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);
     draw_set_colour(c_white);
     draw_text(_bx, _by, "确定");
 

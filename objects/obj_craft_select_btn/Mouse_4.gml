@@ -9,6 +9,8 @@ if instance_exists(obj_craft_bg){
 		if (obj_craft_bg.craft_top_tab != 2){
 			obj_craft_bg.craft_top_tab = 2
 			obj_craft_bg.tg_card = ""
+			// 转职列表/元数据要重建：中间可能去过强化页把卡升了星，星级/形态都变了（2026-10-30 修）
+			obj_craft_bg.tg_list_dirty = true
 			global.audio.play(snd_button,0,0)
 		}
 		exit
@@ -17,6 +19,7 @@ if instance_exists(obj_craft_bg){
 	if (obj_craft_bg.craft_top_tab != 0){
 		obj_craft_bg.craft_top_tab = 0
 		obj_craft_bg.tg_card = ""
+		obj_craft_bg.tg_list_dirty = true     // 回到强化页也置脏，下次进转职页自然是新的
 	}
 	if obj_craft_bg.button_select != button_index{
 		obj_craft_bg.button_select = button_index

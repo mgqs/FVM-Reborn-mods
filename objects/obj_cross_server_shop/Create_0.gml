@@ -18,6 +18,20 @@ for (var _i = 0; _i < array_length(_goods_ids); _i++) {
     else if (_goods.cross_server_shop == "silver") array_push(silver_cards, _id);
 }
 
+// 🔴 2026-10-30：下列 13 张卡的 一/二转凭证已挪进**威望商店**（credit_shop_init），
+//   所以从跨服黄金页剔除。只动这里的显示名单，**不改商品的 cross_server_shop 字段**——
+//   那个字段同时用于「金币商店是否隐藏该商品」，改掉会让这些卡以 30000 金币在本体商店冒出来。
+var _moved_to_prestige = [
+    "zhanqima_1", "zhanqima_2", "yanyantu_1", "yanyantu_2", "wugushe_1", "wugushe_2",
+    "kuileima_1", "kuileima_2", "yufengma_1", "yufengma_2", "fenjima_1", "fenjima_2",
+    "guiyuanma_1", "guiyuanma_2", "yanhuangma_1", "yanhuangma_2", "yinhema_1", "yinhema_2",
+    "xiandima_1", "xiandima_2", "xingqiongma_1", "xingqiongma_2",
+    "starrabbit_1", "starrabbit_2", "yinghuoshe_1", "yinghuoshe_2"
+];
+for (var _mi = array_length(exchange_cards) - 1; _mi >= 0; _mi--) {
+    if (array_get_index(_moved_to_prestige, exchange_cards[_mi]) != -1) array_delete(exchange_cards, _mi, 1);
+}
+
 // 分区排序（2026-10-22 定）：
 //   白银：卡片优先（融合卡 → 金卡 → 普卡），宝石武器一律排最后；
 //   黄金：1 转优先 → 2 转 → 宝石武器。
