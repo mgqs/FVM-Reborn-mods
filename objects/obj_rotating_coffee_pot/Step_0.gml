@@ -90,7 +90,7 @@ if state != CARD_STATE.SLEEP && state != CARD_STATE.AWAKE{
 	    }
 		if (attack_timer == cycle - 12 * current_flash_speed) && state == CARD_STATE.ATTACK{
         
-			audio_play_sound(snd_coffee_pot_attack,0,0)
+			global.audio.play(snd_coffee_pot_attack,0,0)
 	    }
 	} else {
 	    // 没有符合条件的敌人，重置状态

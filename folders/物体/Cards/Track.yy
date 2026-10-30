@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Track",
+  "folderPath":"folders/物体/Cards/Track.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Track",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_curry_lobster_cannon","path":"objects/obj_curry_lobster_cannon/obj_curry_lobster_cannon.yy",},
+    {"name":"obj_takoyaki","path":"objects/obj_takoyaki/obj_takoyaki.yy",},
+    {"name":"obj_tang_hu_lu","path":"objects/obj_tang_hu_lu/obj_tang_hu_lu.yy",}
+  ],
+}

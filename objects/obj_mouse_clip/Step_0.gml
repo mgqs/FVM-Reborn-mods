@@ -84,7 +84,7 @@ if state == CARD_STATE.IDLE{
 	if attack_timer == cycle{
 		state = CARD_STATE.READY
 		image_index = (idle_anim+1)
-		audio_play_sound(snd_mouse_clip_ready,0,0)
+		global.audio.play(snd_mouse_clip_ready,0,0)
 	}
 }
 if has_enemy and state == CARD_STATE.ATTACK{

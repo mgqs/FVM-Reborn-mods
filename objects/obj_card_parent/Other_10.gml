@@ -4,12 +4,32 @@
 // 使用注册数据初始化属性
 var plant_data = get_plant_data(plant_id);
 current_level = 0
+var _gift_context = undefined;
+var _spawn_context = variable_global_exists("_external_spawn_context") ? global._external_spawn_context : undefined;
+if (is_struct(_spawn_context)
+    && variable_struct_exists(_spawn_context, "external_spawn_id")
+    && _spawn_context.external_spawn_id == plant_id) {
+    _gift_context = {
+        level: external_mod_field(_spawn_context, "external_spawn_level", 0),
+        skill: external_mod_field(_spawn_context, "external_spawn_skill", 0),
+        shape: external_mod_field(_spawn_context, "external_spawn_shape", 0)
+    };
+}
+if (variable_global_exists("random_gift_spawn_context") && is_struct(global.random_gift_spawn_context)
+    && variable_struct_exists(global.random_gift_spawn_context, "card_id")
+    && global.random_gift_spawn_context.card_id == plant_id) {
+    _gift_context = global.random_gift_spawn_context;
+}
 if (plant_data != undefined) {
     name = plant_data[? "name"];
     description = plant_data[? "description"];
 	
 	var card_save_data = get_card_info(plant_id)
-	if card_save_data != false{
+	if (_gift_context != undefined) {
+		current_level = _gift_context.level;
+		skill = _gift_context.skill;
+		shape = _gift_context.shape;
+	} else if card_save_data != false{
 		current_level = card_save_data.level
 		skill = card_save_data.skill
 		shape = card_save_data.shape
@@ -20,6 +40,8 @@ if (plant_data != undefined) {
     if (upgrade_data != undefined) {
         hp = upgrade_data[? "hp"];
 		max_hp = hp
+		// 海克斯词条的生命倍率以这里为基准；不同步的话，转职/重建后上限会被拉回旧基准
+		base_max_hp = hp
         cost = upgrade_data[? "cost"];
         atk = upgrade_data[? "atk"];
         range = upgrade_data[? "range"];
@@ -30,9 +52,13 @@ if (plant_data != undefined) {
         if (ds_map_exists(upgrade_data, "flame_produce")) {
             flame_produce = upgrade_data[? "flame_produce"];
         }
+        if (ds_map_exists(upgrade_data, "first_produce_delay")) {
+            first_produce_delay = upgrade_data[? "first_produce_delay"];
+        }
     }
-	
 }
+
+_prev_hp = hp
 
 if current_level >= 4{ //绑定星级贴图
 	var inst = instance_create_depth(x,y-5,depth-1,obj_stars)
@@ -57,7 +83,7 @@ if current_level >= 4{ //绑定星级贴图
 	banding_star_obj = inst.id
 }
 
-var card_shape_data = get_card_info_simple(plant_id)
+	var card_shape_data = (_gift_context != undefined) ? {shape: _gift_context.shape} : get_card_info_simple(plant_id)
 var card_shape = 0
 if card_shape_data != false{
 	card_shape = card_shape_data.shape
@@ -83,6 +109,7 @@ for(var i = 0 ; i < array_length(cookbook_list) ; i++){
 						variable_instance_set(self,modifs[k].modif_type,variable_instance_get(self,modifs[k].modif_type)*modifs[k].amount)
 					}
 					max_hp = hp
+					base_max_hp = hp
 				}
 			}
 		}

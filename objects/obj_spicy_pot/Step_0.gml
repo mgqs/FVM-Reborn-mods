@@ -14,7 +14,7 @@ if is_slowdown{
 var has_enemy = false
 if shape < 1{	
 	with(obj_enemy_parent){
-		if (abs(grid_row - other.grid_row) <= 1 && grid_col >= other.grid_col && grid_col <= (other.grid_col + 4) && can_target_on(other.target_type,target_type)){
+		if (abs(grid_row - other.grid_row) <= 1 && grid_col >= other.grid_col && grid_col <= (other.grid_col + 4) && (can_target_on(other.target_type,target_type) || is_digging_dijing(id))){
 			has_enemy = true
 			break
 		}
@@ -22,7 +22,7 @@ if shape < 1{
 }
 else{
 	with(obj_enemy_parent){
-		if (abs(grid_row - other.grid_row) <= 1 && grid_col >= other.grid_col && grid_col <= (other.grid_col + 5) && can_target_on(other.target_type,target_type)){
+		if (abs(grid_row - other.grid_row) <= 1 && grid_col >= other.grid_col && grid_col <= (other.grid_col + 5) && (can_target_on(other.target_type,target_type) || is_digging_dijing(id))){
 			has_enemy = true
 			break
 		}

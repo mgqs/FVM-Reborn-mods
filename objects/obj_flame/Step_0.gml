@@ -5,6 +5,15 @@ if global.is_paused{
 	vspeed -= gravity
 	exit
 }
+
+// 烈火虎储能：场上所有火焰生成时按 value 比例充能（每火焰仅充一次）
+if (!storage_charged) {
+	storage_charged = true;
+	with (obj_liehuohu) {
+		liehuohu_storage_deposit(id, round(other.value * storage_ratio / 100));
+	}
+}
+
 if !is_capture{
 	// 只在落地后开始消失计时
 	if (is_landed && !is_collected) {
@@ -64,7 +73,7 @@ if !is_capture{
 	        collect_timer = 0;
 	        start_x = x;
 	        start_y = y;
-	        audio_play_sound(snd_flame_collect, 1, false);
+	        global.audio.play(snd_flame_collect, 1, false);
 	    }
 	}
 
@@ -83,8 +92,10 @@ if !is_capture{
     
     
     
-	    if (collect_timer >= collect_duration) {
-	        global.flame += value;
+    if (collect_timer >= collect_duration) {
+        // 海克斯「火苗自然增长」：只放大拾取量，不改既有产火逻辑
+        // 海克斯第二批「熠熠生辉」：每个火苗固定 +N，再走火苗获取倍率
+        global.flame += (value + hex_batch2_flame_flat()) * hex_flame_growth();
 	        //var fx = instance_create_layer(target_x, target_y, "Effects", obj_sun_fx);
 	       // fx.value = value;
 	        instance_destroy();

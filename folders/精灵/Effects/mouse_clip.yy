@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"mouse_clip",
+  "folderPath":"folders/精灵/Effects/mouse_clip.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mouse_clip",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"38312660-5189-4f22-96a6-5ee4c505b283","path":"sprites/spr_mouse_clip_explode/spr_mouse_clip_explode.yy",},
+    {"name":"6a92614e-8f6d-4f61-a684-13251ec02718","path":"sprites/spr_mouse_clip_explode_1/spr_mouse_clip_explode_1.yy",},
+    {"name":"b46110e4-0343-4bdf-b443-6b86ca1c6926","path":"sprites/spr_mouse_clip_explode_2/spr_mouse_clip_explode_2.yy",}
+  ],
+}

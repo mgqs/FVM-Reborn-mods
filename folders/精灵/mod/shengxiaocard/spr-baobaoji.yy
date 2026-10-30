@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"spr-baobaoji",
+  "folderPath":"folders/精灵/mod/shengxiaocard/spr-baobaoji.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"spr-baobaoji",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"44b34253-701f-4f6d-bb18-3941bde8289f","path":"sprites/spr_baobaoji/spr_baobaoji.yy",},
+    {"name":"7b51b187-dc34-4b01-9531-e4502d001cda","path":"sprites/spr_baobaoji_1/spr_baobaoji_1.yy",},
+    {"name":"130c5e93-92bd-443f-9d91-46cee08c8c89","path":"sprites/spr_baobaoji_2/spr_baobaoji_2.yy",}
+  ],
+}

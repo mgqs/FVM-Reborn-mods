@@ -44,8 +44,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"ymir",
+    "path":"folders/精灵/mod/Cards/Pult/ymir.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

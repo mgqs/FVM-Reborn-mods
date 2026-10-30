@@ -249,6 +249,16 @@ function weapons_init(){
 									"cooldown":60,
 									"star_amount":[2,3,4,5,6,7,8,9,10,12,14]
 		})
+		register_gem("holy_gem",{"name":"神圣宝石（主武器）",
+					"description":"神圣宝石：使全屏卡片锁定为满生命值\n需镶嵌于主武器槽位",
+					"icon":spr_holy_gem_icon,
+					"slot":"main_weapon",
+					"obj":obj_holy_gem,
+					"max_level":10,
+					"first_cooldown":30,
+					"cooldown":120,
+					"max_time":[2,3,4,5.5,7,8.5,10.5,12.5,14.5,17,19.5]
+		})
 		
 		
 		register_gem("gale_gem",{"name":"疾风宝石",
@@ -268,6 +278,13 @@ function weapons_init(){
 									"icon":spr_transform_gem_icon,
 									"slot":"super_weapon",
 									"value":[3,5,8,10,13,15,20,25,30,40,50,53,55,58,63,70],
+									"obj":noone
+		})
+		register_gem("ice_gem",{"name":"减速宝石（超级武器）",
+									"description":"减速宝石：对伤害到的老鼠造成减速\n需镶嵌于超级武器槽位",
+									"icon":spr_ice_gem_icon,
+									"slot":"super_weapon",
+									"ice_time":[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8],
 									"obj":noone
 		})
 		

@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"fog_julie",
+  "folderPath":"folders/精灵/Enemy/volcanic_island/BOSS/fog_julie.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fog_julie",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"e6aad882-048b-4aad-bf19-5ed525a29269","path":"sprites/spr_fog_julie_death/spr_fog_julie_death.yy",},
+    {"name":"306ff74b-637b-4c76-9d0e-9389739f0736","path":"sprites/spr_fog_julie_idle/spr_fog_julie_idle.yy",},
+    {"name":"606c33c7-7ffe-4061-8052-63db2737818e","path":"sprites/spr_fog_julie_skill_1/spr_fog_julie_skill_1.yy",},
+    {"name":"e38d79fa-fcad-4b85-94f3-916e60ee40e1","path":"sprites/spr_fog_julie_skill_2/spr_fog_julie_skill_2.yy",},
+    {"name":"eac76125-7f89-4061-bc64-3756f6f782f9","path":"sprites/spr_fog_julie_skill_2_idle/spr_fog_julie_skill_2_idle.yy",},
+    {"name":"1bd523e9-f8c9-4f37-a106-f67a4e5a5f55","path":"sprites/spr_fog_julie_skill_2_ready/spr_fog_julie_skill_2_ready.yy",},
+    {"name":"9a70cfc9-9c78-4eab-b563-8169193f272c","path":"sprites/spr_fog_julie_skill_2_return/spr_fog_julie_skill_2_return.yy",},
+    {"name":"83b7da07-4379-4977-b3b4-0ad6f4fe163a","path":"sprites/spr_fog_julie_skill_3/spr_fog_julie_skill_3.yy",},
+    {"name":"185c147b-4c17-4ed3-9999-4a54e4518b69","path":"sprites/spr_fog_julie_skill_4/spr_fog_julie_skill_4.yy",},
+    {"name":"8f10876c-45aa-4821-b3e7-83002cbb658e","path":"sprites/spr_julie_incendiary_bomb/spr_julie_incendiary_bomb.yy",},
+    {"name":"9499deb8-a163-44a6-b22b-d6bb80dfb382","path":"sprites/spr_julie_incendiary_bomb_effect/spr_julie_incendiary_bomb_effect.yy",}
+  ],
+}

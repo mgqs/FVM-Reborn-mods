@@ -1,0 +1,486 @@
+package com.aurora.protocol.hallserver
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2872 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iGameVipExpireTime:int;
+      
+      public var m_iGameVIPScore:int;
+      
+      public var m_iGameVIPLevel:int;
+      
+      public var m_iNextUpdateVIPLevelTime:int;
+      
+      public var m_szVIPTips:String;
+      
+      public var m_iGameVIPType:int;
+      
+      public function a_2872()
+      {
+         method
+            name "com.aurora.protocol.hallserver:CVipData/CVipData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                  debugline 17
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  constructsuper 0
+                  debugline 19
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.hallserver:CVipData/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.hallserver:CVipData"
+               paramname "com.aurora.protocol.hallserver:CVipData"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 21
+                     debug 1, "encode_length", 1, 21
+                     debugline 23
+                     pushfalse
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.hallserver:CVipData/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.hallserver:CVipData"
+                  paramname "com.aurora.protocol.hallserver:CVipData"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                        debugline 26
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 26
+                        debug 1, "decode_length", 1, 26
+                        debugline 30
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                        debugline 34
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function getVipLevel() : Number
+            {
+               trait method QName(PackageNamespace(""),"getVipLevel")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.hallserver:CVipData/getVipLevel"
+                     returns QName(PackageNamespace(""),"Number")
+                     
+                     body
+                        maxstack 3
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                           debugline 37
+                           getlocal0
+                           pushscope
+                           debug 1, "level", 0, 39
+                           debugline 39
+                           pushbyte 0
+                           convert_d
+                           setlocal1
+                           debugline 40
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 14000000
+                           ifnge ofs0028
+                           pushbyte 15
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs0028:
+                           debugline 41
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 9500000
+                           ifnge ofs004a
+                           pushbyte 14
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 9500000
+                           subtract
+                           pushint 4500000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs004a:
+                           debugline 42
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 6000000
+                           ifnge ofs006c
+                           pushbyte 13
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 6000000
+                           subtract
+                           pushint 3500000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs006c:
+                           debugline 43
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 3500000
+                           ifnge ofs008e
+                           pushbyte 12
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 3500000
+                           subtract
+                           pushint 2500000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs008e:
+                           debugline 44
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 2000000
+                           ifnge ofs00b0
+                           pushbyte 11
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 2000000
+                           subtract
+                           pushint 1500000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs00b0:
+                           debugline 45
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 1000000
+                           ifnge ofs00d2
+                           pushbyte 10
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 1000000
+                           subtract
+                           pushint 1000000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs00d2:
+                           debugline 46
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 500000
+                           ifnge ofs00f4
+                           pushbyte 9
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 500000
+                           subtract
+                           pushint 500000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs00f4:
+                           debugline 47
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 200000
+                           ifnge ofs0116
+                           pushbyte 8
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 200000
+                           subtract
+                           pushint 300000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs0116:
+                           debugline 48
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 100000
+                           ifnge ofs0138
+                           pushbyte 7
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 100000
+                           subtract
+                           pushint 100000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs0138:
+                           debugline 49
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 50000
+                           ifnge ofs015a
+                           pushbyte 6
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushint 50000
+                           subtract
+                           pushint 50000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs015a:
+                           debugline 50
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 20000
+                           ifnge ofs017f
+                           pushbyte 5
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 20000
+                           subtract
+                           pushshort 30000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs017f:
+                           debugline 51
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 10000
+                           ifnge ofs01a1
+                           pushbyte 4
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 10000
+                           subtract
+                           pushshort 10000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs01a1:
+                           debugline 52
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 5000
+                           ifnge ofs01c3
+                           pushbyte 3
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 5000
+                           subtract
+                           pushshort 5000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs01c3:
+                           debugline 53
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 2000
+                           ifnge ofs01e5
+                           pushbyte 2
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 2000
+                           subtract
+                           pushshort 3000
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs01e5:
+                           debugline 54
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 500
+                           ifnge ofs0207
+                           pushbyte 1
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 500
+                           subtract
+                           pushshort 1500
+                           divide
+                           add
+                           convert_d
+                           setlocal1
+                           jump ofs0213
+                  ofs0207:
+                           debugline 55
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_iGameVIPScore")
+                           pushshort 500
+                           divide
+                           convert_d
+                           setlocal1
+                  ofs0213:
+                           debugline 57
+                           getlocal1
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function dump() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"dump")
+                     dispid 0
+                     method
+                        name "com.aurora.protocol.hallserver:CVipData/dump"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                              debugline 60
+                              getlocal0
+                              pushscope
+                              debugline 62
+                              pushfalse
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+               }
+            }
+            
+            method
+               name ""
+               returns null
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 1
+                  maxscopedepth 3
+                  
+                  code
+                     getlocal0
+                     pushscope
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                     debugline 8
+                     findpropstrict Multiname("a_2872",[PackageNamespace("com.aurora.protocol.hallserver")])
+                     getlex QName(PackageNamespace(""),"Object")
+                     pushscope
+                     getlex QName(PackageNamespace(""),"Object")
+                     newclass 155
+                     popscope
+                     initproperty QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2872")
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CVipData.as"
+                     debugline 1
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+            

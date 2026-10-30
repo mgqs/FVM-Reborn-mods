@@ -1,0 +1,666 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.game.BattleLayerDefine;
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import com.aurora.ui.maogoutd.resource.gamemap.newMap.BaseGameMoveMap;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Timer;
+   
+   public class SpaceMarkEffect extends a_3909
+   {
+      
+      private static var ms_stSpaceMarkEffectVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stSpaceMarkEffectVector", 0, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"ms_stSpaceMarkEffectVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"ms_stSpaceMarkEffectVector")
+               debug 1, "a_1300", 1, 20
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),PackageNamespace(""),PrivateNamespace("SpaceMarkEffect.as$169"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1300")
+               debug 1, "a_1301", 2, 21
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),PackageNamespace(""),PrivateNamespace("SpaceMarkEffect.as$169"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1301")
+               debug 1, "a_1302", 3, 22
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffectMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffectMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stTiemr:Timer;
+      
+      private var m_iStartTime:int;
+      
+      private var a_1334:a_3491;
+      
+      private var m_iSleepTime:int;
+      
+      public function SpaceMarkEffect()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/SpaceMarkEffect"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                  debugline 39
+                  getlocal0
+                  pushscope
+                  debugline 41
+                  getlocal0
+                  constructsuper 0
+                  debugline 43
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  pushbyte 100
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                  debugline 44
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : SpaceMarkEffect
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffect")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                     debugline 27
+                     getlocal0
+                     pushscope
+                     debug 1, "stSpaceMarkEffect", 0, 29
+                     debugline 29
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"ms_stSpaceMarkEffectVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffect")
+                     setlocal1
+                     debugline 31
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 33
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffect")
+                     setlocal1
+            ofs002b:
+                     debugline 36
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean, grid:a_3491) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  paramname "flash.events"
+                  paramname "flash.events"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 4
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                        debugline 46
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 46
+                        debug 1, "grid", 1, 46
+                        debug 1, "map", 2, 63
+                        debugline 48
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 49
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                        getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                        getproperty QName(PackageNamespace(""),"TIMER")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_4003")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                        debugline 53
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 54
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 55
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"play"), 0
+                        debugline 57
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_iStartTime")
+                        debugline 59
+                        findproperty QName(PackageNamespace(""),"x")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        getproperty QName(PackageNamespace(""),"a_1080")
+                        multiply
+                        pushbyte 4
+                        add
+                        initproperty QName(PackageNamespace(""),"x")
+                        debugline 60
+                        findproperty QName(PackageNamespace(""),"y")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                        getproperty QName(PackageNamespace(""),"a_1081")
+                        multiply
+                        pushbyte 12
+                        add
+                        initproperty QName(PackageNamespace(""),"y")
+                        debugline 61
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleLayerDefine")
+                        getproperty QName(PackageNamespace(""),"EFFECT_LAYER_TRAY_BOTTOM_TYPE")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        callpropvoid QName(PackageNamespace(""),"AddToBattleView"), 3
+                        debugline 63
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap.newMap"),"BaseGameMoveMap")
+                        setlocal3
+                        debugline 64
+                        getlocal3
+                        pushnull
+                        ifeq ofs00d4
+                        debugline 66
+                        getlocal3
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        callpropvoid QName(PackageNamespace(""),"AddMoveDisplayObject"), 3
+               ofs00d4:
+                        debugline 68
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                        getlocal0
+                        setproperty QName(PackageNamespace(""),"m_stSpaceMarkEffect")
+                        debugline 70
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get a_3958() : int
+            {
+               trait getter QName(PackageNamespace(""),"a_3958")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/SleepTime/get"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                           debugline 78
+                           getlocal0
+                           pushscope
+                           debugline 80
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_iSleepTime")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function set a_3958(iSleepTime:int) : void
+               {
+                  trait setter QName(PackageNamespace(""),"a_3958")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/SleepTime/set"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "addEventListener"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                              debugline 82
+                              getlocal0
+                              pushscope
+                              debug 1, "iSleepTime", 0, 82
+                              debugline 84
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_iSleepTime")
+                              debugline 85
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3911() : Vector.<BitmapData>
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_3911")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/protected:GetFrameCacheVector"
+                           returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                 debugline 87
+                                 getlocal0
+                                 pushscope
+                                 debugline 89
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1300")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_3912() : Vector.<Point>
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_3912")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/protected:GetFrameCacheSkewingVector"
+                              returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                    debugline 92
+                                    getlocal0
+                                    pushscope
+                                    debugline 94
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1301")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override protected function a_3913() : MovieClip
+                        {
+                           trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_3913")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/protected:GetOriginalMovieClip"
+                                 returns QName(PackageNamespace("flash.display"),"MovieClip")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                       debugline 97
+                                       getlocal0
+                                       pushscope
+                                       debugline 99
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1302")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_3940() : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_3940")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/Realease"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 3
+                                       localcount 2
+                                       initscopedepth 10
+                                       maxscopedepth 11
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                          debugline 103
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "map", 0, 105
+                                          debugline 105
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.gamemap.newMap"),"BaseGameMoveMap")
+                                          setlocal1
+                                          debugline 106
+                                          getlocal1
+                                          pushnull
+                                          ifeq ofs002e
+                                          debugline 107
+                                          getlocal1
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"RemoveMoveDisplayObject"), 1
+                                 ofs002e:
+                                          debugline 109
+                                          getlocal0
+                                          pushnull
+                                          initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_1334")
+                                          debugline 110
+                                          getlocal0
+                                          pushfalse
+                                          setproperty QName(PackageNamespace(""),"visible")
+                                          debugline 111
+                                          findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                          pushbyte 1
+                                          callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          debugline 112
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                                          getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                                          getproperty QName(PackageNamespace(""),"TIMER")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_4003")
+                                          callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                          debugline 113
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                                          callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                          debugline 115
+                                          pushbyte -1
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"ms_stSpaceMarkEffectVector")
+                                          getlocal0
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          ifne ofs007e
+                                          debugline 117
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"ms_stSpaceMarkEffectVector")
+                                          getlocal0
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs007e:
+                                          debugline 120
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function play() : void
+                              {
+                                 trait method QName(PackageNamespace(""),"play")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/play"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 1
+                                          initscopedepth 10
+                                          maxscopedepth 11
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                             debugline 123
+                                             getlocal0
+                                             pushscope
+                                             debugline 125
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                                             callpropvoid QName(PackageNamespace(""),"start"), 0
+                                             debugline 126
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function stop() : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"stop")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/stop"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 1
+                                             initscopedepth 10
+                                             maxscopedepth 11
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                                debugline 128
+                                                getlocal0
+                                                pushscope
+                                                debugline 130
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_stTiemr")
+                                                callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                                debugline 131
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    private function a_4003(a_4730:Event) : void
+                                    {
+                                       trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"a_4003")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect/private:OnFrameTimerEvent"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("flash.events"),"Event")
+                                             paramname "addEventListener"
+                                             returns QName(PackageNamespace(""),"void")
+                                             
+                                             body
+                                                maxstack 2
+                                                localcount 4
+                                                initscopedepth 10
+                                                maxscopedepth 11
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                                   debugline 133
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "a_4730", 0, 133
+                                                   debugline 135
+                                                   findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                                   callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                                   debugline 137
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                                   getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                                   ifne ofs0032
+                                                   debugline 139
+                                                   findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                                   pushbyte 1
+                                                   callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          ofs0032:
+                                                   debugline 142
+                                                   getlocal0
+                                                   dup
+                                                   setlocal2
+                                                   getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_iStartTime")
+                                                   increment_i
+                                                   setlocal3
+                                                   getlocal2
+                                                   getlocal3
+                                                   setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:SpaceMarkEffect"),"m_iStartTime")
+                                                   kill 3
+                                                   kill 2
+                                                   debugline 148
+                                                   returnvoid
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                    }
+                                 }
+                                 
+                                 method
+                                    name ""
+                                    returns null
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 1
+                                       maxscopedepth 9
+                                       
+                                       code
+                                          getlocal0
+                                          pushscope
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                          debugline 15
+                                          findpropstrict Multiname("SpaceMarkEffect",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                                          getlex QName(PackageNamespace(""),"Object")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                          pushscope
+                                          getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          pushscope
+                                          getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                          newclass 289
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          popscope
+                                          initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"SpaceMarkEffect")
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;SpaceMarkEffect.as"
+                                          debugline 1
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                                 

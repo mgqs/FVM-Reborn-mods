@@ -1,0 +1,675 @@
+package com.aurora.protocol.hallserver
+{
+   import a_4716.a_1731;
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.game.CPlayerGameConfig;
+   import com.aurora.ui.maogoutd.mota.MiShiMacroConfig;
+   import flash.utils.ByteArray;
+   
+   public class a_2745
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_nGameID:int;
+      
+      public var m_iExperiencePoint:int;
+      
+      public var m_iAchievement:int;
+      
+      public var m_iPoint:Number;
+      
+      public var m_iWinRound:int;
+      
+      public var m_iLoseRound:int;
+      
+      public var m_iDrawRound:int;
+      
+      public var m_iEscapeRound:int;
+      
+      public var m_iOrgID:int;
+      
+      public var m_nPosition:int;
+      
+      public var m_uiTotalSecs:int;
+      
+      public var m_szLastDate:String;
+      
+      public var m_stGameConfig:CPlayerGameConfig;
+      
+      public var m_stExtGameInfo:a_2744;
+      
+      public var m_iHeroCount:int;
+      
+      public var m_oMiShi:Object;
+      
+      public var m_Reserved:int;
+      
+      public var m_iSeasonCount:int;
+      
+      public function a_2745()
+      {
+         method
+            name "com.aurora.protocol.hallserver:CDBGameData/CDBGameData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                  debugline 41
+                  getlocal0
+                  pushscope
+                  debugline 42
+                  getlocal0
+                  constructsuper 0
+                  debugline 44
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.hallserver:CDBGameData/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.hallserver:CDBGameData"
+               paramname "com.aurora.protocol.hallserver:CDBGameData"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 1
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                     debugline 46
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 46
+                     debug 1, "encode_length", 1, 46
+                     debugline 48
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int, iFlag:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.hallserver:CDBGameData/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.hallserver:CDBGameData"
+                  paramname "com.aurora.protocol.hallserver:CDBGameData"
+                  paramname "com.aurora.protocol.hallserver:CDBGameData"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                        debugline 51
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal 5
+                        debug 1, "byte_array", 0, 51
+                        debug 1, "decode_length", 1, 51
+                        debug 1, "iFlag", 2, 51
+                        debug 1, "size", 3, 53
+                        debugline 53
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        convert_i
+                        setlocal 4
+                        debugline 54
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int16"), 1
+                        initproperty QName(PackageNamespace(""),"m_nGameID")
+                        debugline 56
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_340")
+                        bitand
+                        iffalse ofs00a4
+                        debug 1, "value", 4, 62
+                        debugline 58
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iExperiencePoint")
+                        debugline 59
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iAchievement")
+                        debugline 60
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_uint64"), 1
+                        initproperty QName(PackageNamespace(""),"m_iPoint")
+                        debugline 62
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        convert_i
+                        setlocal 5
+                        debugline 63
+                        getlocal0
+                        getlocal 5
+                        pushbyte 16
+                        rshift
+                        pushint 65535
+                        bitand
+                        initproperty QName(PackageNamespace(""),"m_iSeasonCount")
+                        debugline 64
+                        getlocal0
+                        getlocal 5
+                        pushint 65535
+                        bitand
+                        initproperty QName(PackageNamespace(""),"m_iHeroCount")
+               ofs00a4:
+                        debugline 67
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_341")
+                        bitand
+                        iffalse ofs00ea
+                        debugline 69
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iWinRound")
+                        debugline 70
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iLoseRound")
+                        debugline 71
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iDrawRound")
+                        debugline 72
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iEscapeRound")
+               ofs00ea:
+                        debugline 75
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_342")
+                        bitand
+                        iffalse ofs017f
+                        debugline 77
+                        getlocal0
+                        newobject 0
+                        initproperty QName(PackageNamespace(""),"m_oMiShi")
+                        debugline 78
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iOrgID")
+                        debugline 79
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_nPosition")
+                        debugline 80
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_oMiShi")
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        setproperty Multiname("m_iLJSID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        debugline 81
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_oMiShi")
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        setproperty Multiname("m_iCJGID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        debugline 82
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_oMiShi")
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        setproperty Multiname("m_iWWWID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        debugline 83
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_oMiShi")
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        setproperty Multiname("m_iSJGID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        debugline 84
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_oMiShi")
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        setproperty Multiname("m_iMBKID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        debugline 85
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_Reserved")
+               ofs017f:
+                        debugline 88
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_343")
+                        bitand
+                        iffalse ofs019b
+                        debugline 90
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_uiTotalSecs")
+               ofs019b:
+                        debugline 93
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_344")
+                        bitand
+                        iffalse ofs01b9
+                        debugline 95
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        pushbyte 30
+                        callproperty QName(PackageNamespace(""),"decode_string"), 2
+                        initproperty QName(PackageNamespace(""),"m_szLastDate")
+               ofs01b9:
+                        debugline 98
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_345")
+                        bitand
+                        iffalse ofs01e0
+                        debugline 100
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2744")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2744"), 0
+                        initproperty QName(PackageNamespace(""),"m_stExtGameInfo")
+                        debugline 101
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stExtGameInfo")
+                        getlocal1
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+               ofs01e0:
+                        debugline 104
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_346")
+                        bitand
+                        iffalse ofs0207
+                        debugline 106
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.game"),"CPlayerGameConfig")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.game"),"CPlayerGameConfig"), 0
+                        initproperty QName(PackageNamespace(""),"m_stGameConfig")
+                        debugline 107
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stGameConfig")
+                        getlocal1
+                        getlocal2
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+               ofs0207:
+                        debugline 110
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_347")
+                        bitand
+                        iffalse ofs0215
+               ofs0215:
+                        debugline 114
+                        getlocal3
+                        getlex QName(PackageNamespace("a_4716"),"a_1731")
+                        getproperty QName(PackageNamespace(""),"a_348")
+                        bitand
+                        iffalse ofs0223
+               ofs0223:
+                        debugline 117
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function GetMiShiUseNum(iMiShiType:int) : Object
+            {
+               trait method QName(PackageNamespace(""),"GetMiShiUseNum")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.hallserver:CDBGameData/GetMiShiUseNum"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"int")
+                     paramname "m_szLastDate"
+                     returns QName(PackageNamespace(""),"Object")
+                     
+                     body
+                        maxstack 2
+                        localcount 4
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                           debugline 126
+                           getlocal0
+                           pushscope
+                           debug 1, "iMiShiType", 0, 126
+                           debug 1, "iInfo", 1, 128
+                           debugline 128
+                           pushbyte 0
+                           setlocal2
+                           jump ofs008e
+                  ofs001e:
+                           label
+                           debugline 132
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_oMiShi")
+                           getproperty Multiname("m_iLJSID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                           convert_i
+                           setlocal2
+                           debugline 133
+                           jump ofs011c
+                  ofs0032:
+                           label
+                           debugline 135
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_oMiShi")
+                           getproperty Multiname("m_iCJGID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                           convert_i
+                           setlocal2
+                           debugline 136
+                           jump ofs011c
+                  ofs0046:
+                           label
+                           debugline 138
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_oMiShi")
+                           getproperty Multiname("m_iWWWID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                           convert_i
+                           setlocal2
+                           debugline 139
+                           jump ofs011c
+                  ofs005a:
+                           label
+                           debugline 141
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_oMiShi")
+                           getproperty Multiname("m_iSJGID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                           convert_i
+                           setlocal2
+                           debugline 142
+                           jump ofs011c
+                  ofs006e:
+                           label
+                           debugline 144
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_oMiShi")
+                           getproperty Multiname("m_iMBKID",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                           convert_i
+                           setlocal2
+                           debugline 145
+                           jump ofs011c
+                  ofs0082:
+                           label
+                           debugline 147
+                           jump ofs011c
+                           jump ofs008e
+                  ofs008e:
+                           debugline 129
+                           getlocal1
+                           setlocal3
+                           debugline 131
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+                           getproperty QName(PackageNamespace(""),"MISHI_TYPE_LJS")
+                           getlocal3
+                           ifstrictne ofs00a7
+                           pushbyte 0
+                           jump ofs0103
+                  ofs00a7:
+                           debugline 134
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+                           getproperty QName(PackageNamespace(""),"MISHI_TYPE_CJG")
+                           getlocal3
+                           ifstrictne ofs00bb
+                           pushbyte 1
+                           jump ofs0103
+                  ofs00bb:
+                           debugline 137
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+                           getproperty QName(PackageNamespace(""),"MISHI_TYPE_WWW")
+                           getlocal3
+                           ifstrictne ofs00cf
+                           pushbyte 2
+                           jump ofs0103
+                  ofs00cf:
+                           debugline 140
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+                           getproperty QName(PackageNamespace(""),"MISHI_TYPE_SJG")
+                           getlocal3
+                           ifstrictne ofs00e3
+                           pushbyte 3
+                           jump ofs0103
+                  ofs00e3:
+                           debugline 143
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.mota"),"MiShiMacroConfig")
+                           getproperty QName(PackageNamespace(""),"MISHI_TYPE_MBK")
+                           getlocal3
+                           ifstrictne ofs00f7
+                           pushbyte 4
+                           jump ofs0103
+                  ofs00f7:
+                           jump ofs0101
+                           pushbyte 5
+                           jump ofs0101
+                  ofs0101:
+                           pushbyte 5
+                  ofs0103:
+                           kill 3
+                           lookupswitch ofs0082, [ofs001e, ofs0032, ofs0046, ofs005a, ofs006e, ofs0082]
+                  ofs011c:
+                           debugline 149
+                           getlocal0
+                           getlocal2
+                           callproperty QName(PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),"AnalyInfo"), 1
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function GetDepthSeaUseNum() : Object
+               {
+                  trait method QName(PackageNamespace(""),"GetDepthSeaUseNum")
+                     dispid 0
+                     method
+                        name "com.aurora.protocol.hallserver:CDBGameData/GetDepthSeaUseNum"
+                        returns QName(PackageNamespace(""),"Object")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                              debugline 152
+                              getlocal0
+                              pushscope
+                              debugline 154
+                              getlocal0
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_Reserved")
+                              callproperty QName(PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),"AnalyInfo"), 1
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  private function AnalyInfo(iInfo:int) : Object
+                  {
+                     trait method QName(PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),"AnalyInfo")
+                        dispid 0
+                        method
+                           name "com.aurora.protocol.hallserver:CDBGameData/private:AnalyInfo"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"int")
+                           paramname "m_szLastDate"
+                           returns QName(PackageNamespace(""),"Object")
+                           
+                           body
+                              maxstack 3
+                              localcount 3
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                                 debugline 157
+                                 getlocal0
+                                 pushscope
+                                 pushnull
+                                 coerce QName(PackageNamespace(""),"Object")
+                                 setlocal2
+                                 debug 1, "iInfo", 0, 157
+                                 debug 1, "oInfo", 1, 159
+                                 debugline 160
+                                 getlocal1
+                                 pushbyte 0
+                                 ifngt ofs0061
+                                 debugline 162
+                                 newobject 0
+                                 coerce QName(PackageNamespace(""),"Object")
+                                 setlocal2
+                                 debugline 163
+                                 getlocal2
+                                 getlocal1
+                                 pushbyte 24
+                                 rshift
+                                 setproperty Multiname("iTatalUseNum",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                                 debugline 164
+                                 getlocal2
+                                 getlocal1
+                                 pushint 16711680
+                                 bitand
+                                 pushbyte 16
+                                 rshift
+                                 setproperty Multiname("iBuyUseNum",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                                 debugline 165
+                                 getlocal2
+                                 getlocal1
+                                 pushint 65280
+                                 bitand
+                                 pushbyte 8
+                                 rshift
+                                 setproperty Multiname("iUsedUseNum",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                                 debugline 166
+                                 getlocal2
+                                 getlocal1
+                                 pushshort 255
+                                 bitand
+                                 setproperty Multiname("iLeftUseNum",[PrivateNamespace("com.aurora.protocol.hallserver:CDBGameData"),PackageNamespace(""),PrivateNamespace("CDBGameData.as$545"),PackageNamespace("com.aurora.protocol.hallserver"),PackageInternalNs("com.aurora.protocol.hallserver"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.hallserver:CDBGameData"),StaticProtectedNs("com.aurora.protocol.hallserver:CDBGameData")])
+                        ofs0061:
+                                 debugline 168
+                                 getlocal2
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                  }
+               }
+               
+               method
+                  name ""
+                  returns null
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 1
+                     maxscopedepth 3
+                     
+                     code
+                        getlocal0
+                        pushscope
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                        debugline 10
+                        findpropstrict Multiname("a_2745",[PackageNamespace("com.aurora.protocol.hallserver")])
+                        getlex QName(PackageNamespace(""),"Object")
+                        pushscope
+                        getlex QName(PackageNamespace(""),"Object")
+                        newclass 123
+                        popscope
+                        initproperty QName(PackageNamespace("com.aurora.protocol.hallserver"),"a_2745")
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\hallserver;CDBGameData.as"
+                        debugline 1
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+               

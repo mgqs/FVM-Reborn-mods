@@ -1,4 +1,4 @@
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 var card_id = global.player_deck[| obj_card_edit_menu.target_card_index*2];
 if btn_type == "plus"{
 	var max_value = 0

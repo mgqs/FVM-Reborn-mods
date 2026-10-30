@@ -1,0 +1,250 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CEntityStateChange implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_iGlobalID:int;
+      
+      public var m_iType:int;
+      
+      public var m_iTypeID:int;
+      
+      public var key:int;
+      
+      public var value:int;
+      
+      public function CEntityStateChange()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CEntityStateChange/CEntityStateChange"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                  debugline 16
+                  getlocal0
+                  pushscope
+                  debugline 17
+                  getlocal0
+                  constructsuper 0
+                  debugline 18
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CEntityStateChange/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "m_iGlobalID"
+               paramname "m_iGlobalID"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                     debugline 20
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 20
+                     debug 1, "encode_length", 1, 20
+                     debugline 22
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iGlobalID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 23
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iType")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 24
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_iTypeID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 25
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"key")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 26
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"value")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 28
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CEntityStateChange/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "m_iGlobalID"
+                  paramname "m_iGlobalID"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                        debugline 31
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 31
+                        debug 1, "decode_length", 1, 31
+                        debugline 33
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iGlobalID")
+                        debugline 34
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_iType")
+                        debugline 35
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"m_iTypeID")
+                        debugline 36
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"key")
+                        debugline 37
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int32"), 1
+                        initproperty QName(PackageNamespace(""),"value")
+                        debugline 39
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CEntityStateChange/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                           debugline 42
+                           getlocal0
+                           pushscope
+                           debugline 44
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                  debugline 8
+                  findpropstrict Multiname("CEntityStateChange",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 131
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CEntityStateChange.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

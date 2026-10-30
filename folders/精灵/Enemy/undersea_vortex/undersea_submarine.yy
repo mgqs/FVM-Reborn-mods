@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_submarine",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_submarine.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_submarine",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8aae7dcb-c329-4ceb-9ccc-dd8b4e9924cc","path":"sprites/spr_undersea_submarine/spr_undersea_submarine.yy",},
+    {"name":"c78f8ecc-1649-4f61-b6a7-c1e0c86c9135","path":"sprites/spr_undersea_submarine_release_1/spr_undersea_submarine_release_1.yy",},
+    {"name":"b73498c5-b24c-4ea0-af45-bced542abc7f","path":"sprites/spr_undersea_submarine_release_2/spr_undersea_submarine_release_2.yy",}
+  ],
+}

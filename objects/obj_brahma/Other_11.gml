@@ -7,7 +7,7 @@ with (obj_enemy_parent)
         
         var can_ash = !immune_to_ash;
         var _prev_hp = hp;
-        hp -= 900;
+        hp -= other.atk;
         event_user(0);
         
         if (can_ash)
@@ -16,14 +16,14 @@ with (obj_enemy_parent)
             {
                 if (special_ash)
                 {
-                    var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                    var inst = instance_create_depth_define(x, y - 20, depth, obj_mouse_ash_death);
                     inst.special_ash = true;
                     inst.sprite_index = sprite_index;
                     inst.image_index = image_index;
                 }
                 else
                 {
-                    instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                    instance_create_depth_define(x, y - 20, depth, obj_mouse_ash_death);
                 }
                 
                 instance_destroy();
@@ -31,5 +31,3 @@ with (obj_enemy_parent)
         }
     }
 }
-
-audio_play_sound(snd_coke_bomb_explode, 0, false);

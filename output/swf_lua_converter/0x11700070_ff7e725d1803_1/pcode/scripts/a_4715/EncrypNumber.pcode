@@ -1,0 +1,226 @@
+package a_4715
+{
+   public class EncrypNumber
+   {
+      
+      private static const CONST_NUMBER:int = 10000;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "CONST_NUMBER", 0, 12
+               findproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+               pushshort 10000
+               initproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iEncrypIntEx:EncrypIntEx;
+      
+      private var m_fNumber:Number = 0;
+      
+      private var m_strNumber:String;
+      
+      public function EncrypNumber(value:Number = 0)
+      {
+         method
+            name "com.aurora.commons:EncrypNumber/EncrypNumber"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"Number")
+            paramname null
+            optional Integer(0)
+            returns null
+            
+            body
+               maxstack 2
+               localcount 2
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypNumber.as"
+                  debugline 13
+                  getlocal0
+                  pushscope
+                  debug 1, "value", 0, 13
+                  debugline 9
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypIntEx")
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypIntEx"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_iEncrypIntEx")
+                  debugline 14
+                  getlocal0
+                  constructsuper 0
+                  debugline 15
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PackageNamespace(""),"Value")
+                  debugline 16
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function get Value() : Number
+      {
+         trait getter QName(PackageNamespace(""),"Value")
+            dispid 0
+            method
+               name "com.aurora.commons:EncrypNumber/Value/get"
+               returns QName(PackageNamespace(""),"Number")
+               
+               body
+                  maxstack 3
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypNumber.as"
+                     debugline 17
+                     getlocal0
+                     pushscope
+                     debugline 19
+                     pushnull
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_strNumber")
+                     ifeq ofs001e
+                     debugline 21
+                     findpropstrict QName(PackageNamespace(""),"Number")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_strNumber")
+                     callproperty QName(PackageNamespace(""),"Number"), 1
+                     returnvalue
+            ofs001e:
+                     debugline 25
+                     getlex QName(PackageNamespace(""),"Math")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_iEncrypIntEx")
+                     getproperty QName(PackageNamespace(""),"Value")
+                     getlex QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+                     divide
+                     getlex QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+                     multiply
+                     callproperty QName(PackageNamespace(""),"floor"), 1
+                     getlex QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+                     divide
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function set Value(value:Number) : void
+         {
+            trait setter QName(PackageNamespace(""),"Value")
+               dispid 0
+               method
+                  name "com.aurora.commons:EncrypNumber/Value/set"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Number")
+                  paramname "m_strNumber"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 4
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypNumber.as"
+                        debugline 28
+                        getlocal0
+                        pushscope
+                        debug 1, "value", 0, 28
+                        debugline 30
+                        getlocal1
+                        pushdouble 1e-7
+                        add
+                        convert_d
+                        setlocal1
+                        debugline 31
+                        getlocal1
+                        getlex QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+                        multiply
+                        getlex QName(PackageNamespace(""),"int")
+                        getproperty QName(PackageNamespace(""),"MAX_VALUE")
+                        ifngt ofs003e
+                        debugline 33
+                        getlocal0
+                        getlocal1
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_strNumber")
+                        debugline 34
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_iEncrypIntEx")
+                        pushbyte 0
+                        setproperty QName(PackageNamespace(""),"Value")
+                        debugline 35
+                        returnvoid
+               ofs003e:
+                        debugline 39
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_iEncrypIntEx")
+                        getlex QName(PackageNamespace(""),"Math")
+                        getlocal1
+                        getlex QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"CONST_NUMBER")
+                        multiply
+                        callproperty QName(PackageNamespace(""),"floor"), 1
+                        setproperty QName(PackageNamespace(""),"Value")
+                        debugline 40
+                        getlocal0
+                        pushnull
+                        initproperty QName(PrivateNamespace("com.aurora.commons:EncrypNumber"),"m_strNumber")
+                        debugline 42
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypNumber.as"
+               debugline 7
+               findpropstrict Multiname("EncrypNumber",[PackageNamespace("a_4715")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 3
+               popscope
+               initproperty QName(PackageNamespace("a_4715"),"EncrypNumber")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypNumber.as"
+               debugline 5
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

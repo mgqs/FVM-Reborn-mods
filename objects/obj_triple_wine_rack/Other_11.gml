@@ -60,4 +60,4 @@ if card_equipped_attire_id(plant_id) == "wine_rack_sagittarius"{
 	}
 }
 
-audio_play_sound(snd_shot, 0, 0);
+global.audio.play(snd_shot, 0, 0);

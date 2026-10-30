@@ -1,0 +1,28 @@
+{
+  "$GMFolder":"",
+  "%Name":"angelababy",
+  "folderPath":"folders/精灵/Enemy/floating_island/BOSS/angelababy.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"angelababy",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cba5da85-5aa8-445f-9143-4a297abc6c07","path":"sprites/spr_angelababy_appear/spr_angelababy_appear.yy",},
+    {"name":"cd1264f4-889e-4c4a-8051-cd57ee23dc39","path":"sprites/spr_angelababy_death/spr_angelababy_death.yy",},
+    {"name":"b9cabda8-2491-4443-9554-fca486f9c847","path":"sprites/spr_angelababy_diamond/spr_angelababy_diamond.yy",},
+    {"name":"ed06b1ae-fae1-4170-a454-8c96d18d8563","path":"sprites/spr_angelababy_idle/spr_angelababy_idle.yy",},
+    {"name":"ab9f3ed0-7ec9-4267-b3c2-b23827cb155d","path":"sprites/spr_angelababy_move_backward/spr_angelababy_move_backward.yy",},
+    {"name":"3570837d-c721-4d92-b409-44e08431ca39","path":"sprites/spr_angelababy_move_forward/spr_angelababy_move_forward.yy",},
+    {"name":"36e48ece-182a-4d99-b323-c804f93e57cb","path":"sprites/spr_angelababy_skill_1/spr_angelababy_skill_1.yy",},
+    {"name":"ccb10c15-3919-48b1-901b-59fdec7f4873","path":"sprites/spr_angelababy_skill_2/spr_angelababy_skill_2.yy",},
+    {"name":"f440653a-391b-4913-a5e0-ad90b363413c","path":"sprites/spr_angelababy_skill_3/spr_angelababy_skill_3.yy",},
+    {"name":"47e214e8-d758-43d4-a113-dbb9afb05b51","path":"sprites/spr_angelababy_skill_3_ready/spr_angelababy_skill_3_ready.yy",},
+    {"name":"d12b77c1-13ec-4d9e-b220-fbf2677b2d80","path":"sprites/spr_angelababy_star/spr_angelababy_star.yy",},
+    {"name":"c05e0f11-fb32-476d-8549-f6183378b05c","path":"sprites/spr_angelababy_summon/spr_angelababy_summon.yy",},
+    {"name":"d12cabb4-4161-4a59-88a5-6535db8d8cbc","path":"sprites/spr_angelababy_target/spr_angelababy_target.yy",}
+  ],
+}

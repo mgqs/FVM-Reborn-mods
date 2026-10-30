@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"kettle_bomb",
+  "folderPath":"folders/精灵/Effects/kettle_bomb.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kettle_bomb",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"09fd00c6-b570-45ce-9b12-2b558376fbe4","path":"sprites/spr_kettle_bomb_explode/spr_kettle_bomb_explode.yy",},
+    {"name":"405dfbce-ab5b-4b32-8fb5-0940b466483d","path":"sprites/spr_kettle_bomb_explode_1/spr_kettle_bomb_explode_1.yy",},
+    {"name":"09fd00c6-b570-45ce-9b12-2b558376fbe4","path":"sprites/spr_kettle_bomb_explode_2/spr_kettle_bomb_explode_2.yy",}
+  ],
+}

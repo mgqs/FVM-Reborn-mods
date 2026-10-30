@@ -1,0 +1,183 @@
+package a_4715
+{
+   public class EncrypBooleanEx
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iBoolean:EncrypIntEx;
+      
+      public function EncrypBooleanEx(value:Boolean = false)
+      {
+         method
+            name "com.aurora.commons:EncrypBooleanEx/EncrypBooleanEx"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"Boolean")
+            paramname null
+            optional False()
+            returns null
+            
+            body
+               maxstack 2
+               localcount 2
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypBooleanEx.as"
+                  debugline 6
+                  getlocal0
+                  pushscope
+                  debug 1, "value", 0, 6
+                  debugline 7
+                  getlocal0
+                  constructsuper 0
+                  debugline 8
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("a_4715"),"EncrypIntEx")
+                  constructprop QName(PackageNamespace("a_4715"),"EncrypIntEx"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.commons:EncrypBooleanEx"),"m_iBoolean")
+                  debugline 9
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PackageNamespace(""),"Value")
+                  debugline 10
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function get Value() : Boolean
+      {
+         trait getter QName(PackageNamespace(""),"Value")
+            dispid 0
+            method
+               name "com.aurora.commons:EncrypBooleanEx/Value/get"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypBooleanEx.as"
+                     debugline 12
+                     getlocal0
+                     pushscope
+                     debugline 14
+                     findpropstrict QName(PackageNamespace(""),"Boolean")
+                     pushbyte 0
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.commons:EncrypBooleanEx"),"m_iBoolean")
+                     getproperty QName(PackageNamespace(""),"Value")
+                     equals
+                     not
+                     callproperty QName(PackageNamespace(""),"Boolean"), 1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function set Value(value:Boolean) : void
+         {
+            trait setter QName(PackageNamespace(""),"Value")
+               dispid 0
+               method
+                  name "com.aurora.commons:EncrypBooleanEx/Value/set"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "m_iBoolean"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypBooleanEx.as"
+                        debugline 17
+                        getlocal0
+                        pushscope
+                        debug 1, "value", 0, 17
+                        debugline 19
+                        getlocal1
+                        iffalse ofs002f
+                        debugline 21
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypBooleanEx"),"m_iBoolean")
+                        getlex QName(PackageNamespace(""),"Math")
+                        callproperty QName(PackageNamespace(""),"random"), 0
+                        pushint 100000
+                        multiply
+                        pushbyte 1
+                        add
+                        setproperty QName(PackageNamespace(""),"Value")
+                        jump ofs003a
+               ofs002f:
+                        debugline 25
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.commons:EncrypBooleanEx"),"m_iBoolean")
+                        pushbyte 0
+                        setproperty QName(PackageNamespace(""),"Value")
+               ofs003a:
+                        debugline 27
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypBooleanEx.as"
+               debugline 3
+               findpropstrict Multiname("EncrypBooleanEx",[PackageNamespace("a_4715")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 2
+               popscope
+               initproperty QName(PackageNamespace("a_4715"),"EncrypBooleanEx")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\commons;EncrypBooleanEx.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

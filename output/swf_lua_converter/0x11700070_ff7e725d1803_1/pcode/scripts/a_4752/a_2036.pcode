@@ -1,0 +1,617 @@
+package a_4752
+{
+   import a_4715.EncrypBooleanEx;
+   import flash.utils.ByteArray;
+   
+   public class a_2036
+   {
+      
+      private static var instance:a_2036;
+      
+      private static var m_bIsChromeManufacturer:Boolean = false;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "instance", 0, 14
+               debug 1, "m_bIsChromeManufacturer", 1, 64
+               findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_bIsChromeManufacturer")
+               pushfalse
+               setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_bIsChromeManufacturer")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var a_783:String;
+      
+      public var m_iUin:int;
+      
+      public var m_bInBattleView:Boolean = false;
+      
+      private var m_isShowIntruderLife:Boolean = false;
+      
+      private var m_isGamReady:Boolean = false;
+      
+      private var m_isShowGrowTimes:Boolean = false;
+      
+      private var m_ConnectCloseType:int = 0;
+      
+      private var m_isFirstPlaceAvatarEx:EncrypBooleanEx;
+      
+      private var _tagCom:TagComponent;
+      
+      public function a_2036()
+      {
+         method
+            name "com.aurora.game.maogoutd.common:GlobalVariable/GlobalVariable"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                  debugline 74
+                  getlocal0
+                  pushscope
+                  debugline 75
+                  getlocal0
+                  constructsuper 0
+                  debugline 76
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2036
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+               returns QName(PackageNamespace("a_4752"),"a_2036")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                     debugline 65
+                     getlocal0
+                     pushscope
+                     debugline 67
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"instance")
+                     pushnull
+                     ifne ofs001c
+                     debugline 69
+                     findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"instance")
+            ofs001c:
+                     debugline 71
+                     getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function get isShowIntruderLife() : Boolean
+         {
+            trait getter QName(PackageNamespace(""),"isShowIntruderLife")
+               dispid 0
+               method
+                  name "com.aurora.game.maogoutd.common:GlobalVariable/isShowIntruderLife/get"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                        debugline 22
+                        getlocal0
+                        pushscope
+                        debugline 24
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isShowIntruderLife")
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function set isShowIntruderLife(value:Boolean) : void
+            {
+               trait setter QName(PackageNamespace(""),"isShowIntruderLife")
+                  dispid 0
+                  method
+                     name "com.aurora.game.maogoutd.common:GlobalVariable/isShowIntruderLife/set"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"Boolean")
+                     paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                           debugline 27
+                           getlocal0
+                           pushscope
+                           debug 1, "value", 0, 27
+                           debugline 29
+                           getlocal0
+                           getlocal1
+                           initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isShowIntruderLife")
+                           debugline 30
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function get isGamReady() : Boolean
+               {
+                  trait getter QName(PackageNamespace(""),"isGamReady")
+                     dispid 0
+                     method
+                        name "com.aurora.game.maogoutd.common:GlobalVariable/isGamReady/get"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                              debugline 32
+                              getlocal0
+                              pushscope
+                              debugline 34
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isGamReady")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function set isGamReady(value:Boolean) : void
+                  {
+                     trait setter QName(PackageNamespace(""),"isGamReady")
+                        dispid 0
+                        method
+                           name "com.aurora.game.maogoutd.common:GlobalVariable/isGamReady/set"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"Boolean")
+                           paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 2
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                 debugline 37
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "value", 0, 37
+                                 debugline 39
+                                 getlocal0
+                                 getlocal1
+                                 initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isGamReady")
+                                 debugline 40
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function get isShowGrowTimes() : Boolean
+                     {
+                        trait getter QName(PackageNamespace(""),"isShowGrowTimes")
+                           dispid 0
+                           method
+                              name "com.aurora.game.maogoutd.common:GlobalVariable/isShowGrowTimes/get"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                    debugline 42
+                                    getlocal0
+                                    pushscope
+                                    debugline 44
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isShowGrowTimes")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function set isShowGrowTimes(value:Boolean) : void
+                        {
+                           trait setter QName(PackageNamespace(""),"isShowGrowTimes")
+                              dispid 0
+                              method
+                                 name "com.aurora.game.maogoutd.common:GlobalVariable/isShowGrowTimes/set"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"Boolean")
+                                 paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                       debugline 47
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "value", 0, 47
+                                       debugline 49
+                                       getlocal0
+                                       getlocal1
+                                       initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isShowGrowTimes")
+                                       debugline 50
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function get ConnectCloseType() : int
+                           {
+                              trait getter QName(PackageNamespace(""),"ConnectCloseType")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.game.maogoutd.common:GlobalVariable/ConnectCloseType/get"
+                                    returns QName(PackageNamespace(""),"int")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 1
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                          debugline 52
+                                          getlocal0
+                                          pushscope
+                                          debugline 54
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_ConnectCloseType")
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function set ConnectCloseType(value:int) : void
+                              {
+                                 trait setter QName(PackageNamespace(""),"ConnectCloseType")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.game.maogoutd.common:GlobalVariable/ConnectCloseType/set"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"int")
+                                       paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                             debugline 57
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "value", 0, 57
+                                             debugline 59
+                                             getlocal0
+                                             getlocal1
+                                             initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_ConnectCloseType")
+                                             debugline 60
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function setSignature(signature:ByteArray) : void
+                                 {
+                                    trait method QName(PackageNamespace(""),"setSignature")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.game.maogoutd.common:GlobalVariable/setSignature"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                          paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 3
+                                             localcount 2
+                                             initscopedepth 4
+                                             maxscopedepth 5
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                debugline 79
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "signature", 0, 79
+                                                debugline 81
+                                                getlocal0
+                                                getlex QName(PackageNamespace("a_4752"),"Base64")
+                                                getlocal1
+                                                callproperty QName(PackageNamespace(""),"encode"), 1
+                                                initproperty QName(PackageNamespace(""),"a_783")
+                                                debugline 82
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function get isChromeManufacturer() : Boolean
+                                    {
+                                       trait getter QName(PackageNamespace(""),"isChromeManufacturer")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.game.maogoutd.common:GlobalVariable/isChromeManufacturer/get"
+                                             returns QName(PackageNamespace(""),"Boolean")
+                                             
+                                             body
+                                                maxstack 1
+                                                localcount 1
+                                                initscopedepth 4
+                                                maxscopedepth 5
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                   debugline 86
+                                                   getlocal0
+                                                   pushscope
+                                                   debugline 88
+                                                   getlex QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_bIsChromeManufacturer")
+                                                   returnvalue
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function set isChromeManufacturer(value:Boolean) : void
+                                       {
+                                          trait setter QName(PackageNamespace(""),"isChromeManufacturer")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.game.maogoutd.common:GlobalVariable/isChromeManufacturer/set"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace(""),"Boolean")
+                                                paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                                                returns QName(PackageNamespace(""),"void")
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 2
+                                                   initscopedepth 4
+                                                   maxscopedepth 5
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                      debugline 92
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "value", 0, 92
+                                                      debugline 94
+                                                      findproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_bIsChromeManufacturer")
+                                                      getlocal1
+                                                      setproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_bIsChromeManufacturer")
+                                                      debugline 95
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function get m_isFirstPlaceAvatar() : Boolean
+                                          {
+                                             trait getter QName(PackageNamespace(""),"m_isFirstPlaceAvatar")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.game.maogoutd.common:GlobalVariable/m_isFirstPlaceAvatar/get"
+                                                   returns QName(PackageNamespace(""),"Boolean")
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 1
+                                                      initscopedepth 4
+                                                      maxscopedepth 5
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                         debugline 99
+                                                         getlocal0
+                                                         pushscope
+                                                         debugline 101
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                         iftrue ofs001e
+                                                         debugline 103
+                                                         getlocal0
+                                                         findpropstrict QName(PackageNamespace("a_4715"),"EncrypBooleanEx")
+                                                         constructprop QName(PackageNamespace("a_4715"),"EncrypBooleanEx"), 0
+                                                         initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                ofs001e:
+                                                         debugline 105
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                         getproperty QName(PackageNamespace(""),"Value")
+                                                         returnvalue
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             public function set m_isFirstPlaceAvatar(value:Boolean) : void
+                                             {
+                                                trait setter QName(PackageNamespace(""),"m_isFirstPlaceAvatar")
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.game.maogoutd.common:GlobalVariable/m_isFirstPlaceAvatar/set"
+                                                      flag HAS_PARAM_NAMES
+                                                      param QName(PackageNamespace(""),"Boolean")
+                                                      paramname "com.aurora.game.maogoutd.common:GlobalVariable/getInstance"
+                                                      returns QName(PackageNamespace(""),"void")
+                                                      
+                                                      body
+                                                         maxstack 2
+                                                         localcount 2
+                                                         initscopedepth 4
+                                                         maxscopedepth 5
+                                                         
+                                                         code
+                                                            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                            debugline 108
+                                                            getlocal0
+                                                            pushscope
+                                                            debug 1, "value", 0, 108
+                                                            debugline 110
+                                                            getlocal0
+                                                            getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                            iftrue ofs0024
+                                                            debugline 112
+                                                            getlocal0
+                                                            findpropstrict QName(PackageNamespace("a_4715"),"EncrypBooleanEx")
+                                                            constructprop QName(PackageNamespace("a_4715"),"EncrypBooleanEx"), 0
+                                                            initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                   ofs0024:
+                                                            debugline 114
+                                                            getlocal0
+                                                            getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"m_isFirstPlaceAvatarEx")
+                                                            getlocal1
+                                                            setproperty QName(PackageNamespace(""),"Value")
+                                                            debugline 115
+                                                            returnvoid
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                                
+                                                public function get tagCom() : TagComponent
+                                                {
+                                                   trait getter QName(PackageNamespace(""),"tagCom")
+                                                      dispid 0
+                                                      method
+                                                         name "com.aurora.game.maogoutd.common:GlobalVariable/tagCom/get"
+                                                         returns QName(PackageNamespace("a_4752"),"TagComponent")
+                                                         
+                                                         body
+                                                            maxstack 2
+                                                            localcount 1
+                                                            initscopedepth 4
+                                                            maxscopedepth 5
+                                                            
+                                                            code
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                               debugline 119
+                                                               getlocal0
+                                                               pushscope
+                                                               debugline 121
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"_tagCom")
+                                                               pushnull
+                                                               ifne ofs001d
+                                                               debugline 123
+                                                               getlocal0
+                                                               findpropstrict QName(PackageNamespace("a_4752"),"TagComponent")
+                                                               constructprop QName(PackageNamespace("a_4752"),"TagComponent"), 0
+                                                               initproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"_tagCom")
+                                                      ofs001d:
+                                                               debugline 125
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.game.maogoutd.common:GlobalVariable"),"_tagCom")
+                                                               returnvalue
+                                                            end ; code
+                                                         end ; body
+                                                      end ; method
+                                                   }
+                                                }
+                                             }
+                                             
+                                             method
+                                                name ""
+                                                returns null
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 1
+                                                   initscopedepth 1
+                                                   maxscopedepth 3
+                                                   
+                                                   code
+                                                      getlocal0
+                                                      pushscope
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                      debugline 11
+                                                      findpropstrict Multiname("a_2036",[PackageNamespace("a_4752")])
+                                                      getlex QName(PackageNamespace(""),"Object")
+                                                      pushscope
+                                                      getlex QName(PackageNamespace(""),"Object")
+                                                      newclass 13
+                                                      popscope
+                                                      initproperty QName(PackageNamespace("a_4752"),"a_2036")
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\game\\maogoutd\\common;GlobalVariable.as"
+                                                      debugline 1
+                                                      returnvoid
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                             

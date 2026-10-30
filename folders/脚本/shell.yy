@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"shell",
+  "folderPath":"folders/脚本/shell.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"shell",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_pool","path":"scripts/obj_pool/obj_pool.yy",},
+    {"name":"obj_pool_deck","path":"scripts/obj_pool_deck/obj_pool_deck.yy",},
+    {"name":"src_hook_function","path":"scripts/src_hook_function/src_hook_function.yy",},
+    {"name":"obj_pool_holder","path":"objects/obj_pool_holder/obj_pool_holder.yy",}
+  ],
+}

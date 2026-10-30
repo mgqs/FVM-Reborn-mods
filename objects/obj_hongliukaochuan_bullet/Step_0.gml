@@ -1,0 +1,99 @@
+if (global.is_paused)
+{
+    image_speed = 0;
+    exit;
+}
+
+image_speed = 1;
+
+timer++;
+
+if (timer > max_life || x > 2200 || y > 1200 || x < 0 || y < 0)
+{
+    instance_destroy();
+    exit;
+}
+
+if (!has_hit)
+{
+    if (homing_target_ok(target_id))
+    {
+        // 瞄准点抬高：敌人精灵原点在脚底，瞄到身体（与 obj_hongliukaochuan/Other_11.gml 的 _aim_h 一致）
+        var _aim_h = 37;
+        var _dx = target_id.x - x;
+        var _dy = (target_id.y - _aim_h) - y;
+        var _len = point_distance(0, 0, _dx, _dy);
+        if (_len > move_speed * 2)
+        {
+            move_x = (_dx / _len) * move_speed;
+            move_y = (_dy / _len) * move_speed;
+        }
+        else
+        {
+            // 已经贴到目标身上 → 放弃追踪，保持当前方向穿过去（不再来回折返抽搐）
+            target_id = noone;
+        }
+    }
+    else
+    {
+        // 目标消失 / 无敌 / 隐身 → 永久脱离，直线飞出地图为止
+        target_id = noone;
+    }
+    image_angle = point_direction(0, 0, move_x, move_y);
+}
+
+x += move_x;
+y += move_y;
+
+if (variable_global_exists("enemy_by_type"))
+{
+    for (var _t = 0; _t < array_length(hittable_types); _t++)
+    {
+        var _key = hittable_types[_t];
+        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
+        var _list = global.enemy_by_type[$ _key];
+        for (var _i = 0; _i < array_length(_list); _i++)
+        {
+            var _e = _list[_i];
+            if (!instance_exists(_e)) continue;
+            // underground 只对本关钻地中的地精鼠开放
+            if (_key == "underground" && !(variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
+                && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig")) continue;
+            if (ds_list_find_index(hitted_enemy, _e.id) == -1
+                && _e.hp > 0
+                && precise_bbox_collision(id, _e))
+            {
+                has_hit = true;
+
+                // 魂系 = 幽灵类老鼠（invisible）或魂系标记的敌人（含符咒鼠/符咒魂鼠/执念鼠魂体），
+                // 药罐鼠也按魂系口径吃增伤。倍率统一取自 longyuan_soul_bonus_mult()。
+                var _is_soul = (_key == "invisible") || longyuan_is_soul_bonus_target(_e);
+
+                var _dmg = damage;
+                if (_is_soul)
+                    _dmg = floor(damage * longyuan_soul_bonus_mult(obj_hongliukaochuan));
+
+                with (_e)
+                {
+                    audio_play_sound(hit_sound, 0, 0);
+                    damage_amount = _dmg;
+                    damage_type = other.damage_type;
+                    // 标记来源：魂系敌人据此豁免 90% 魂体减伤 / 魂火减伤（双通道，见 longyuan_hit_pierces_soul_reduction）
+                    damage_source_object = obj_hongliukaochuan;
+                    damage_source_card_id = "hongliukaochuan";
+                    if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
+                    event_user(0);
+                    // 用完即清：同一帧内其它卡片再命中同一目标时不会误吃到这次豁免
+                    damage_source_card_id = "";
+                }
+
+                ds_list_add(hitted_enemy, _e.id);
+
+                // 命中特效：位置取子弹当前位置（=命中点），朝向与子弹一致；
+                // 不想要这个特效就把下面 3 行注掉即可
+               // var _fx = instance_create_depth(x, y, depth, obj_hongliukaochuan_bullet_effect);
+               // _fx.image_angle = image_angle;
+           }
+        }
+    }
+}

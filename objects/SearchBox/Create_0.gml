@@ -13,6 +13,15 @@ self.state = {
     on_change: undefined,
     /// @type {function ():Bool}
     should_correspond: function() { return true },
+    /// @type {Struct|undefined} 可选配色；undefined = 原来的米色（实验室 / 联机地图两处不变）
+    ///   { bg, bg_focus, border, border_focus, text, placeholder }
+    theme: undefined,
+}
+
+/// @func set_theme(theme) 换配色（不调它 = 原来的米色 + 描边字）
+function set_theme(_theme) {
+    self.state.theme = _theme
+    return self
 }
 
 function set_position(_left, _top) {
@@ -151,6 +160,36 @@ function on_draw() {
         exit
     }
     var _s = self.state
+
+    // ── 可选配色（商店凭证页那种深蓝底）：没设 theme 就走下面的原版米色 ──
+    if (!is_undefined(_s.theme)) {
+        var _th = _s.theme
+        draw_set_alpha(1)
+        draw_set_color(_s.focused ? _th.bg_focus : _th.bg)
+        draw_roundrect(_s.left, _s.top, _s.left + _s.width, _s.top + _s.height, false)
+        draw_set_color(_s.focused ? _th.border_focus : _th.border)
+        draw_roundrect(_s.left, _s.top, _s.left + _s.width, _s.top + _s.height, true)
+
+        draw_set_font(font_yuan)
+        draw_set_halign(fa_left)
+        draw_set_valign(fa_middle)
+        if (_s.text == "") {
+            draw_set_color(_th.placeholder)
+            draw_text(_s.left + 12, _s.top + _s.height * 0.5, _s.placeholder)
+        } else {
+            draw_set_color(_th.text)
+            draw_text(_s.left + 12, _s.top + _s.height * 0.5, _s.text)
+            if (_s.focused && _s.cursor_visible) {
+                var _tw2 = string_width(_s.text)
+                draw_line(_s.left + 14 + _tw2, _s.top + 8, _s.left + 14 + _tw2, _s.top + _s.height - 8)
+            }
+        }
+        draw_set_halign(fa_left)
+        draw_set_valign(fa_top)
+        draw_set_color(c_white)
+        exit
+    }
+
     draw_set_alpha(0.72)
     draw_set_color(_s.focused ? make_color_rgb(250, 246, 230) : make_color_rgb(236, 228, 208))
     draw_roundrect(_s.left, _s.top, _s.left + _s.width, _s.top + _s.height, false)

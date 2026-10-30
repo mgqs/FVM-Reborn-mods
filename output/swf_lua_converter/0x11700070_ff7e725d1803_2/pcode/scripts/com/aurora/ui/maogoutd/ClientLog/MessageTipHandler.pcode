@@ -1,0 +1,559 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   import a_4752.GameStringManager;
+   import a_4754.a_2155;
+   import a_4754.a_2161;
+   import com.aurora.ui.maogoutd.iface.ITDMessageTip;
+   import flash.display.DisplayObject;
+   import flash.display.Stage;
+   import flash.events.TimerEvent;
+   import flash.geom.Rectangle;
+   import flash.text.TextField;
+   import flash.utils.Timer;
+   import flash.utils.getTimer;
+   
+   public class MessageTipHandler
+   {
+      
+      private static var m_pInstance:MessageTipHandler;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "m_pInstance", 0, 18
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_pStage:Stage;
+      
+      private var m_stTip:ITDMessageTip;
+      
+      private var m_strItemList:String;
+      
+      private var m_stTextLog:TextField;
+      
+      private var m_index:int;
+      
+      private var m_stTimer:Timer;
+      
+      private var m_fCheckOnStageTime:Number;
+      
+      private var m_fOnStageX:Number;
+      
+      public function MessageTipHandler()
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/MessageTipHandler"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                  debugline 25
+                  getlocal0
+                  pushscope
+                  debugline 26
+                  getlocal0
+                  constructsuper 0
+                  debugline 27
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  pushshort 10000
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTimer")
+                  debugline 28
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTimer")
+                  getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                  getproperty QName(PackageNamespace(""),"TIMER")
+                  getlocal0
+                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"OnTimerHandler")
+                  callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                  debugline 29
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTimer")
+                  callpropvoid QName(PackageNamespace(""),"start"), 0
+                  debugline 30
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : MessageTipHandler
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"MessageTipHandler")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                     debugline 46
+                     getlocal0
+                     pushscope
+                     debugline 48
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pInstance")
+                     ifne ofs001c
+                     debugline 50
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pInstance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pInstance")
+            ofs001c:
+                     debugline 52
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pInstance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         protected function OnTimerHandler(e:TimerEvent) : void
+         {
+            trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"OnTimerHandler")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/protected:OnTimerHandler"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.events"),"TimerEvent")
+                  paramname "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/MessageTipHandler"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                        debugline 32
+                        getlocal0
+                        pushscope
+                        debug 1, "e", 0, 32
+                        debug 1, "fOnStageX", 1, 39
+                        debugline 34
+                        pushnull
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                        ifne ofs0021
+                        debugline 36
+                        returnvoid
+               ofs0021:
+                        debugline 39
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                        getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                        astypelate
+                        getproperty QName(PackageNamespace(""),"x")
+                        convert_d
+                        setlocal2
+                        debugline 40
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                        getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                        astypelate
+                        getproperty QName(PackageNamespace(""),"visible")
+                        convert_b
+                        dup
+                        iffalse ofs0048
+                        pop
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_fOnStageX")
+                        getlocal2
+                        equals
+               ofs0048:
+                        dup
+                        iffalse ofs005e
+                        pop
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_fCheckOnStageTime")
+                        subtract
+                        pushshort 10000
+                        greaterthan
+               ofs005e:
+                        iffalse ofs006f
+                        debugline 42
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                        getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                        astypelate
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"visible")
+               ofs006f:
+                        debugline 44
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function RegisterStage(pStage:Stage) : void
+            {
+               trait method QName(PackageNamespace(""),"RegisterStage")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/RegisterStage"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.display"),"Stage")
+                     paramname "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/MessageTipHandler"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                           debugline 54
+                           getlocal0
+                           pushscope
+                           debug 1, "pStage", 0, 54
+                           debugline 56
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pStage")
+                           iftrue ofs0032
+                           debugline 58
+                           getlocal0
+                           getlocal1
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pStage")
+                           debugline 59
+                           getlocal0
+                           getlex QName(PackageNamespace("a_4754"),"a_2155")
+                           getproperty QName(PackageNamespace(""),"e")
+                           callproperty QName(PackageNamespace(""),"GetMessageTip"), 0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.iface"),"ITDMessageTip")
+                           astypelate
+                           initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                  ofs0032:
+                           debugline 61
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3146(strMsg:String) : void
+               {
+                  trait method QName(PackageNamespace(""),"a_3146")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/ShowMessage"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"String")
+                        paramname "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/MessageTipHandler"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 4
+                           localcount 3
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                              debugline 70
+                              getlocal0
+                              pushscope
+                              debug 1, "strMsg", 0, 70
+                              debug 1, "stRect", 1, 76
+                              debugline 72
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                              iftrue ofs0020
+                              debugline 74
+                              returnvoid
+                     ofs0020:
+                              debugline 76
+                              findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                              constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                              coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                              setlocal2
+                              debugline 77
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_pStage")
+                              getlocal1
+                              findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                              constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                              callpropvoid QName(Namespace("com.aurora.ui.maogoutd.iface:ITDMessageTip"),"showTextTip"), 3
+                              debugline 78
+                              getlocal0
+                              findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                              callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_fCheckOnStageTime")
+                              debugline 79
+                              getlocal0
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_stTip")
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                              astypelate
+                              getproperty QName(PackageNamespace(""),"x")
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),"m_fOnStageX")
+                              debugline 80
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function ShowServerError(id:*) : Boolean
+                  {
+                     trait method QName(PackageNamespace(""),"ShowServerError")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/ShowServerError"
+                           flag HAS_PARAM_NAMES
+                           param null
+                           paramname "com.aurora.ui.maogoutd.iface"
+                           returns QName(PackageNamespace(""),"Boolean")
+                           
+                           body
+                              maxstack 3
+                              localcount 4
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                                 debugline 82
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "id", 0, 82
+                                 debug 1, "strID", 1, 84
+                                 debug 1, "strMsg", 2, 86
+                                 debugline 84
+                                 findpropstrict QName(PackageNamespace(""),"int")
+                                 pushint 100000
+                                 getlocal1
+                                 add
+                                 callproperty QName(PackageNamespace(""),"int"), 1
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toString"), 0
+                                 pushbyte 1
+                                 pushbyte 5
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"substr"), 2
+                                 coerce_s
+                                 setlocal2
+                                 debugline 85
+                                 findpropstrict QName(PackageNamespace(""),"int")
+                                 pushstring "0x9"
+                                 getlocal2
+                                 callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"concat"), 1
+                                 callproperty QName(PackageNamespace(""),"int"), 1
+                                 coerce_a
+                                 setlocal1
+                                 debugline 86
+                                 getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                 getlocal1
+                                 callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"GetServerCodeMessage"), 1
+                                 coerce_s
+                                 setlocal3
+                                 debugline 87
+                                 pushnull
+                                 getlocal3
+                                 equals
+                                 dup
+                                 iftrue ofs0066
+                                 pop
+                                 getlocal3
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 pushbyte 0
+                                 equals
+                        ofs0066:
+                                 iffalse ofs006e
+                                 debugline 89
+                                 pushfalse
+                                 returnvalue
+                        ofs006e:
+                                 debugline 91
+                                 getlocal0
+                                 getlocal3
+                                 callpropvoid QName(PackageNamespace(""),"a_3146"), 1
+                                 debugline 92
+                                 pushtrue
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function checkCoin(coin:int) : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"checkCoin")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/checkCoin"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              paramname "com.aurora.ui.maogoutd.iface"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 3
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                                    debugline 95
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "coin", 0, 95
+                                    debug 1, "playerCommon", 1, 97
+                                    debugline 97
+                                    getlex QName(PackageNamespace("a_4754"),"a_2161")
+                                    getproperty QName(PackageNamespace(""),"e")
+                                    callproperty QName(PackageNamespace(""),"GetPlayerCommon"), 0
+                                    coerce QName(PackageNamespace(""),"Object")
+                                    setlocal2
+                                    debugline 98
+                                    getlocal2
+                                    pushnull
+                                    ifeq ofs004e
+                                    debugline 100
+                                    getlocal2
+                                    getproperty Multiname("m_lHappyBean",[PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("MessageTipHandler.as$261"),PackageInternalNs("com.aurora.ui.maogoutd.ClientLog"),StaticProtectedNs("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler")])
+                                    getlocal1
+                                    ifnlt ofs004e
+                                    debugline 102
+                                    getlocal0
+                                    getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                    callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                    pushint 131339
+                                    callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                    callpropvoid QName(PackageNamespace(""),"a_3146"), 1
+                                    debugline 103
+                                    pushfalse
+                                    returnvalue
+                           ofs004e:
+                                    debugline 106
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function checkMoney(money:int) : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"checkMoney")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.ClientLog:MessageTipHandler/checkMoney"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "com.aurora.ui.maogoutd.iface"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 3
+                                    localcount 3
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                                       debugline 109
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "money", 0, 109
+                                       debug 1, "playerCommon", 1, 111
+                                       debugline 111
+                                       getlex QName(PackageNamespace("a_4754"),"a_2161")
+                                       getproperty QName(PackageNamespace(""),"e")
+                                       callproperty QName(PackageNamespace(""),"GetPlayerCommon"), 0
+                                       coerce QName(PackageNamespace(""),"Object")
+                                       setlocal2
+                                       debugline 112
+                                       getlocal2
+                                       pushnull
+                                       ifeq ofs004e
+                                       debugline 114
+                                       getlocal2
+                                       getproperty Multiname("m_iMoney",[PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler"),Namespace("http://adobe.com/AS3/2006/builtin"),PrivateNamespace("MessageTipHandler.as$261"),PackageInternalNs("com.aurora.ui.maogoutd.ClientLog"),StaticProtectedNs("com.aurora.ui.maogoutd.ClientLog:MessageTipHandler")])
+                                       getlocal1
+                                       ifnlt ofs004e
+                                       debugline 116
+                                       getlocal0
+                                       getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                       callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                       pushint 132402
+                                       callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                       callpropvoid QName(PackageNamespace(""),"a_3146"), 1
+                                       debugline 117
+                                       pushfalse
+                                       returnvalue
+                              ofs004e:
+                                       debugline 120
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                              debugline 16
+                              findpropstrict Multiname("MessageTipHandler",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 44
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"MessageTipHandler")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;MessageTipHandler.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

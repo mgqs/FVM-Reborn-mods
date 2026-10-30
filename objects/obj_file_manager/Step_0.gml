@@ -27,6 +27,12 @@ var _ime_typing_count = 0;
 with (obj_text_input) {
     if (active) _ime_typing_count += 1;
 }
+// 通用输入框 SearchBox 也算「正在输入」（2026-10-27 加：合成屋商店的凭证搜索用它）
+//   不加这条的话，本对象每 60 帧会把 IME 重新禁掉 → 搜索框打不出中文，
+//   而凭证名全是中文，等于搜索功能废掉
+with (SearchBox) {
+    if (visible && state.focused) _ime_typing_count += 1;
+}
 var _ime_typing = (_ime_typing_count > 0);
 
 if (_ime_typing != ime_was_typing) {
@@ -51,5 +57,36 @@ if (!_ime_typing && ime_tick >= 60) {
     ime_tick = 0;
     if (global.ime_block && native_disable_ime != undefined) {
         native_disable_ime(window_handle());
+    }
+}
+
+if (!variable_instance_exists(id, "ml_tick")) {
+    ml_tick = 10;
+    ml_on = false;
+    ml_focus_stable = false;
+    ml_focus_count = 0;
+    if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
+}
+ml_tick++;
+if (ml_tick >= 10) {
+    ml_tick = 0;
+    if (global.mouse_limit_hz > 0 && native_start_mouse_limit != undefined) {
+        var _ml_focus = window_has_focus();
+        if (_ml_focus != ml_focus_stable) {
+            ml_focus_count++;
+            if (ml_focus_count >= 3) {
+                ml_focus_stable = _ml_focus;
+                ml_focus_count = 0;
+            }
+        } else {
+            ml_focus_count = 0;
+        }
+        if (ml_focus_stable && !ml_on) {
+            native_start_mouse_limit(global.mouse_limit_hz, window_handle());
+            ml_on = true;
+        } else if (!ml_focus_stable && ml_on) {
+            native_stop_mouse_limit();
+            ml_on = false;
+        }
     }
 }

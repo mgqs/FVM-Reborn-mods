@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"machine_iron_pan_mouse",
+  "folderPath":"folders/精灵/Enemy/floating_island/machine_iron_pan_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"machine_iron_pan_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"eaecbcae-c676-4db3-9aff-1bfb61a4c9b7","path":"sprites/spr_machine_iron_pan_mouse/spr_machine_iron_pan_mouse.yy",},
+    {"name":"ca88a0f4-2b3f-458c-9388-639762bd4413","path":"sprites/spr_machine_iron_pan_mouse_helmet/spr_machine_iron_pan_mouse_helmet.yy",}
+  ],
+}

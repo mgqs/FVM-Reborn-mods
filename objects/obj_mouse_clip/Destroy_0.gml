@@ -28,7 +28,7 @@ if state != CARD_STATE.IDLE{
 			            //effect_create_above(effect_smoke, x, y, 1, c_gray);
 			        } else {
 			            // 直接摧毁非免疫敌人
-						if special_ash{
+						if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash){
 							var inst = instance_create_depth(x,y-20,depth,obj_mouse_ash_death)
 							inst.special_ash = true
 							inst.sprite_index = sprite_index
@@ -58,7 +58,7 @@ if state != CARD_STATE.IDLE{
 			            //effect_create_above(effect_smoke, x, y, 1, c_gray);
 			        } else {
 			            // 直接摧毁非免疫敌人
-						if special_ash{
+						if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash){
 							var inst = instance_create_depth(x,y-20,depth,obj_mouse_ash_death)
 							inst.special_ash = true
 							inst.sprite_index = sprite_index
@@ -80,7 +80,7 @@ if state != CARD_STATE.IDLE{
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	 audio_play_sound(snd_mouse_clip_explode, 0, false);
+	 global.audio.play(snd_mouse_clip_explode, 0, false);
 
 //创建爆炸效果	 
 var effect_inst = instance_create_depth(x,y,depth,obj_mouse_clip_explode)

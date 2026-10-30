@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"coffee_grounds",
+  "folderPath":"folders/精灵/Cards/Assistant/coffee_grounds.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"coffee_grounds",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"a75bf1a3-298a-49c7-9b90-edd83726c5cf","path":"sprites/spr_coffee_grounds/spr_coffee_grounds.yy",},
+    {"name":"c75efc6a-c8a9-4b03-8124-fffe320aa9c7","path":"sprites/spr_coffee_grounds_1/spr_coffee_grounds_1.yy",},
+    {"name":"310b941d-3cf4-482c-828a-f33d4bf48752","path":"sprites/spr_coffee_grounds_2/spr_coffee_grounds_2.yy",}
+  ],
+}

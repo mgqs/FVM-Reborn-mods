@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"niuyouguo",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/niuyouguo.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"niuyouguo",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"96fdbacb-a874-4ff3-8604-c3c60f64dfd6","path":"sprites/spr_niuyouguo/spr_niuyouguo.yy",},
+    {"name":"17498b4a-e684-4b14-95df-94cdcef44ee2","path":"sprites/spr_niuyouguo_1/spr_niuyouguo_1.yy",},
+    {"name":"228436fc-cf7e-4cd4-aeb0-596d463e27c7","path":"sprites/spr_niuyouguo_2/spr_niuyouguo_2.yy",},
+    {"name":"fd5b0a2c-15ad-4f69-8456-090742c54b78","path":"sprites/spr_niuyouguo_bullet/spr_niuyouguo_bullet.yy",},
+    {"name":"5ba3c267-a6cd-4230-b657-2c8aba441142","path":"sprites/spr_niuyouguo_bullet_1/spr_niuyouguo_bullet_1.yy",},
+    {"name":"fb9a21d4-2cb2-4099-8a4b-0bdbc918fed7","path":"sprites/spr_niuyouguo_bullet_2/spr_niuyouguo_bullet_2.yy",},
+  ],
+}

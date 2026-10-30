@@ -1,0 +1,1774 @@
+package com.aurora.ui.maogoutd.game
+{
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.bitmap.a_3939;
+   import com.aurora.ui.maogoutd.resource.defender.a_3953;
+   import com.aurora.ui.maogoutd.resource.defender.a_3959;
+   import com.aurora.ui.maogoutd.resource.defender.a_3960;
+   import com.aurora.ui.maogoutd.resource.defender.a_3962;
+   import com.aurora.ui.maogoutd.resource.defender.a_3971;
+   import com.aurora.ui.maogoutd.resource.defender.a_3975;
+   import com.aurora.ui.maogoutd.resource.defender.a_3977;
+   import com.aurora.ui.maogoutd.resource.tools.a_4408;
+   import com.aurora.ui.maogoutd.resource.tools.a_4409;
+   
+   public class a_3491
+   {
+      
+      public static var a_1080:int;
+      
+      public static var a_1081:int;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1080", 0, 17
+               debug 1, "a_1081", 1, 18
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_stCurrentBattbleFieldView:BattleFieldView;
+      
+      public var m_iXGridNo:int;
+      
+      public var m_iYGridNo:int;
+      
+      public var m_isNeedTray:Boolean = false;
+      
+      public var m_isExistMouseHole:Boolean = false;
+      
+      public var m_stProtector:a_3975;
+      
+      public var m_stAttackFighter:a_3953;
+      
+      public var m_stTrayDefense:a_3977;
+      
+      public var m_stBoomDefense:a_3960;
+      
+      public var m_stFlowerDefense:a_3971;
+      
+      public var m_stBaseAuxiliaryFighter:a_3959;
+      
+      public var m_stBaseLander:a_4409;
+      
+      public var m_stBaseFieldAlarm:a_4408;
+      
+      public var m_stRatEarthHole:a_3939;
+      
+      public var a_1511:Array;
+      
+      public var m_isOccupy:Boolean = false;
+      
+      public function a_3491(stBattleFieldView:BattleFieldView, iXGridNo:int, iYGridNo:int)
+      {
+         method
+            name "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"BattleFieldView")
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            paramname null
+            paramname null
+            returns null
+            
+            body
+               maxstack 2
+               localcount 4
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                  debugline 41
+                  getlocal0
+                  pushscope
+                  debug 1, "stBattleFieldView", 0, 41
+                  debug 1, "iXGridNo", 1, 41
+                  debug 1, "iYGridNo", 2, 41
+                  debugline 37
+                  getlocal0
+                  findpropstrict QName(PackageNamespace(""),"Array")
+                  constructprop QName(PackageNamespace(""),"Array"), 0
+                  initproperty QName(PackageNamespace(""),"a_1511")
+                  debugline 42
+                  getlocal0
+                  constructsuper 0
+                  debugline 43
+                  getlocal0
+                  getlocal1
+                  initproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                  debugline 44
+                  getlocal0
+                  getlocal2
+                  initproperty QName(PackageNamespace(""),"m_iXGridNo")
+                  debugline 45
+                  getlocal0
+                  getlocal3
+                  initproperty QName(PackageNamespace(""),"m_iYGridNo")
+                  debugline 46
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_3492() : Boolean
+      {
+         trait method QName(PackageNamespace(""),"a_3492")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.game:FieldGrid/IsExistDefense"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                     debugline 48
+                     getlocal0
+                     pushscope
+                     debugline 50
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stProtector")
+                     equals
+                     dup
+                     iffalse ofs0019
+                     pop
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                     equals
+            ofs0019:
+                     dup
+                     iffalse ofs0026
+                     pop
+                     debugline 51
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                     equals
+            ofs0026:
+                     dup
+                     iffalse ofs0031
+                     pop
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                     equals
+            ofs0031:
+                     dup
+                     iffalse ofs003e
+                     pop
+                     debugline 52
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                     equals
+            ofs003e:
+                     dup
+                     iffalse ofs0049
+                     pop
+                     pushnull
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                     equals
+            ofs0049:
+                     not
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_3494() : a_3962
+         {
+            trait method QName(PackageNamespace(""),"a_3494")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.game:FieldGrid/GetThiefDefense"
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                  
+                  body
+                     maxstack 1
+                     localcount 2
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                        debugline 55
+                        getlocal0
+                        pushscope
+                        debug 1, "stThiefDefense", 0, 57
+                        debugline 57
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        debugline 59
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                        iffalse ofs0028
+                        debugline 61
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        jump ofs008d
+               ofs0028:
+                        debugline 63
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                        iffalse ofs003d
+                        debugline 65
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        jump ofs008d
+               ofs003d:
+                        debugline 67
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                        iffalse ofs0052
+                        debugline 69
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        jump ofs008d
+               ofs0052:
+                        debugline 71
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                        iffalse ofs0067
+                        debugline 73
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        jump ofs008d
+               ofs0067:
+                        debugline 75
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stProtector")
+                        iffalse ofs007c
+                        debugline 77
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stProtector")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+                        jump ofs008d
+               ofs007c:
+                        debugline 79
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                        iffalse ofs008d
+                        debugline 81
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                        setlocal1
+               ofs008d:
+                        debugline 84
+                        getlocal1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_3495() : int
+            {
+               trait method QName(PackageNamespace(""),"a_3495")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.game:FieldGrid/GetFieldTopChildIndex"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 2
+                        localcount 3
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                           debugline 87
+                           getlocal0
+                           pushscope
+                           pushbyte 0
+                           setlocal2
+                           debug 1, "iTopIndex", 0, 89
+                           debug 1, "iTempIndex", 1, 90
+                           debugline 89
+                           pushbyte 0
+                           setlocal1
+                           debugline 98
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                           iffalse ofs0045
+                           debugline 100
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                           callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                           convert_i
+                           setlocal2
+                           debugline 102
+                           getlocal1
+                           getlocal2
+                           lessthan
+                           iffalse ofs0041
+                           getlocal2
+                           convert_i
+                           jump ofs0043
+                  ofs0041:
+                           getlocal1
+                           convert_i
+                  ofs0043:
+                           convert_i
+                           setlocal1
+                  ofs0045:
+                           debugline 104
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                           iffalse ofs006f
+                           debugline 106
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                           callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                           convert_i
+                           setlocal2
+                           debugline 108
+                           getlocal1
+                           getlocal2
+                           lessthan
+                           iffalse ofs006b
+                           getlocal2
+                           convert_i
+                           jump ofs006d
+                  ofs006b:
+                           getlocal1
+                           convert_i
+                  ofs006d:
+                           convert_i
+                           setlocal1
+                  ofs006f:
+                           debugline 110
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                           iffalse ofs0099
+                           debugline 112
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                           callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                           convert_i
+                           setlocal2
+                           debugline 114
+                           getlocal1
+                           getlocal2
+                           lessthan
+                           iffalse ofs0095
+                           getlocal2
+                           convert_i
+                           jump ofs0097
+                  ofs0095:
+                           getlocal1
+                           convert_i
+                  ofs0097:
+                           convert_i
+                           setlocal1
+                  ofs0099:
+                           debugline 116
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                           iffalse ofs00c3
+                           debugline 118
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                           callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                           convert_i
+                           setlocal2
+                           debugline 120
+                           getlocal1
+                           getlocal2
+                           lessthan
+                           iffalse ofs00bf
+                           getlocal2
+                           convert_i
+                           jump ofs00c1
+                  ofs00bf:
+                           getlocal1
+                           convert_i
+                  ofs00c1:
+                           convert_i
+                           setlocal1
+                  ofs00c3:
+                           debugline 122
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                           iffalse ofs00ed
+                           debugline 124
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                           callproperty QName(PackageNamespace(""),"getChildIndex"), 1
+                           convert_i
+                           setlocal2
+                           debugline 126
+                           getlocal1
+                           getlocal2
+                           lessthan
+                           iffalse ofs00e9
+                           getlocal2
+                           convert_i
+                           jump ofs00eb
+                  ofs00e9:
+                           getlocal1
+                           convert_i
+                  ofs00eb:
+                           convert_i
+                           setlocal1
+                  ofs00ed:
+                           debugline 129
+                           getlocal1
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function a_3442(baseProtector:a_3975) : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_3442")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.game:FieldGrid/AddProtector"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3975")
+                        paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                              debugline 132
+                              getlocal0
+                              pushscope
+                              debug 1, "baseProtector", 0, 132
+                              debugline 134
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                              convert_b
+                              dup
+                              iffalse ofs0021
+                              pop
+                              pushnull
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                              equals
+                     ofs0021:
+                              dup
+                              iftrue ofs002a
+                              pop
+                              pushnull
+                              getlocal1
+                              equals
+                     ofs002a:
+                              dup
+                              iftrue ofs0036
+                              pop
+                              pushnull
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_stProtector")
+                              equals
+                              not
+                     ofs0036:
+                              dup
+                              iftrue ofs0040
+                              pop
+                              getlocal0
+                              getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                              convert_b
+                     ofs0040:
+                              iffalse ofs0049
+                              debugline 136
+                              pushfalse
+                              returnvalue
+                     ofs0049:
+                              debugline 139
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PackageNamespace(""),"m_stProtector")
+                              debugline 141
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function a_3496(baseProtector:a_3975) : Boolean
+                  {
+                     trait method QName(PackageNamespace(""),"a_3496")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveProtector"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3975")
+                           paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                           returns QName(PackageNamespace(""),"Boolean")
+                           
+                           body
+                              maxstack 2
+                              localcount 2
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                 debugline 144
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "baseProtector", 0, 144
+                                 debugline 146
+                                 pushnull
+                                 getlocal1
+                                 equals
+                                 dup
+                                 iftrue ofs0020
+                                 pop
+                                 pushnull
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"m_stProtector")
+                                 equals
+                        ofs0020:
+                                 dup
+                                 iftrue ofs002c
+                                 pop
+                                 getlocal1
+                                 getlocal0
+                                 getproperty QName(PackageNamespace(""),"m_stProtector")
+                                 equals
+                                 not
+                        ofs002c:
+                                 iffalse ofs0035
+                                 debugline 148
+                                 pushfalse
+                                 returnvalue
+                        ofs0035:
+                                 debugline 151
+                                 getlocal0
+                                 pushnull
+                                 initproperty QName(PackageNamespace(""),"m_stProtector")
+                                 debugline 153
+                                 pushtrue
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_3443(attackFighter:a_3953) : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_3443")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.game:FieldGrid/AddAttackFighter"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                              paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                    debugline 156
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "attackFighter", 0, 156
+                                    debugline 158
+                                    pushnull
+                                    getlocal1
+                                    equals
+                                    dup
+                                    iftrue ofs0021
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                    equals
+                                    not
+                           ofs0021:
+                                    dup
+                                    iftrue ofs002d
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                    equals
+                                    not
+                           ofs002d:
+                                    dup
+                                    iftrue ofs003c
+                                    pop
+                                    debugline 159
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                    equals
+                                    not
+                           ofs003c:
+                                    dup
+                                    iftrue ofs0048
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                    equals
+                                    not
+                           ofs0048:
+                                    dup
+                                    iftrue ofs006b
+                                    pop
+                                    debugline 160
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"isCanInWater")
+                                    not
+                                    dup
+                                    iffalse ofs0060
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                    convert_b
+                           ofs0060:
+                                    dup
+                                    iffalse ofs006b
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                    equals
+                           ofs006b:
+                                    dup
+                                    iftrue ofs0099
+                                    pop
+                                    debugline 161
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"isCanInWater")
+                                    convert_b
+                                    dup
+                                    iffalse ofs0099
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                    not
+                                    dup
+                                    iftrue ofs0099
+                                    pop
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                    convert_b
+                                    dup
+                                    iffalse ofs0099
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                    equals
+                                    not
+                           ofs0099:
+                                    dup
+                                    iftrue ofs00b2
+                                    pop
+                                    debugline 162
+                                    getlocal1
+                                    getproperty QName(PackageNamespace(""),"isOnlyOnTray")
+                                    convert_b
+                                    dup
+                                    iffalse ofs00b2
+                                    pop
+                                    pushnull
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                    equals
+                           ofs00b2:
+                                    dup
+                                    iftrue ofs00bf
+                                    pop
+                                    debugline 163
+                                    getlocal0
+                                    getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                    convert_b
+                           ofs00bf:
+                                    iffalse ofs00c8
+                                    debugline 165
+                                    pushfalse
+                                    returnvalue
+                           ofs00c8:
+                                    debugline 168
+                                    getlocal0
+                                    getlocal1
+                                    initproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                    debugline 170
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function a_3497(attackFighter:a_3953) : Boolean
+                        {
+                           trait method QName(PackageNamespace(""),"a_3497")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveAttackFighter"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3953")
+                                 paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                 returns QName(PackageNamespace(""),"Boolean")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                       debugline 173
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "attackFighter", 0, 173
+                                       debugline 175
+                                       pushnull
+                                       getlocal1
+                                       equals
+                                       dup
+                                       iftrue ofs0020
+                                       pop
+                                       pushnull
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                       equals
+                              ofs0020:
+                                       dup
+                                       iftrue ofs002c
+                                       pop
+                                       getlocal1
+                                       getlocal0
+                                       getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                       equals
+                                       not
+                              ofs002c:
+                                       iffalse ofs0035
+                                       debugline 177
+                                       pushfalse
+                                       returnvalue
+                              ofs0035:
+                                       debugline 180
+                                       getlocal0
+                                       pushnull
+                                       initproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                       debugline 182
+                                       pushtrue
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_3444(stTrayDefense:a_3977) : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_3444")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.game:FieldGrid/AddTrayDefense"
+                                    flag HAS_PARAM_NAMES
+                                    param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3977")
+                                    paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 2
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                          debugline 185
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "stTrayDefense", 0, 185
+                                          debugline 187
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                          not
+                                          dup
+                                          iftrue ofs001f
+                                          pop
+                                          pushnull
+                                          getlocal1
+                                          equals
+                                 ofs001f:
+                                          dup
+                                          iftrue ofs002b
+                                          pop
+                                          pushnull
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                          equals
+                                          not
+                                 ofs002b:
+                                          dup
+                                          iftrue ofs0035
+                                          pop
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                          convert_b
+                                 ofs0035:
+                                          iffalse ofs003e
+                                          debugline 189
+                                          pushfalse
+                                          returnvalue
+                                 ofs003e:
+                                          debugline 192
+                                          getlocal0
+                                          getlocal1
+                                          initproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                          debugline 194
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function a_3498(stTrayDefense:a_3977) : Boolean
+                              {
+                                 trait method QName(PackageNamespace(""),"a_3498")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveTrayDefense"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3977")
+                                       paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                       returns QName(PackageNamespace(""),"Boolean")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 4
+                                          maxscopedepth 5
+                                          
+                                          code
+                                             debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                             debugline 197
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "stTrayDefense", 0, 197
+                                             debugline 199
+                                             pushnull
+                                             getlocal1
+                                             equals
+                                             dup
+                                             iftrue ofs0020
+                                             pop
+                                             pushnull
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                             equals
+                                    ofs0020:
+                                             dup
+                                             iftrue ofs002c
+                                             pop
+                                             getlocal1
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                             equals
+                                             not
+                                    ofs002c:
+                                             iffalse ofs0035
+                                             debugline 201
+                                             pushfalse
+                                             returnvalue
+                                    ofs0035:
+                                             debugline 204
+                                             getlocal0
+                                             pushnull
+                                             initproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                             debugline 206
+                                             pushtrue
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function a_3446(stBoomDefense:a_3960) : Boolean
+                                 {
+                                    trait method QName(PackageNamespace(""),"a_3446")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.game:FieldGrid/AddBoomDefense"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3960")
+                                          paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                          returns QName(PackageNamespace(""),"Boolean")
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 2
+                                             initscopedepth 4
+                                             maxscopedepth 5
+                                             
+                                             code
+                                                debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                debugline 209
+                                                getlocal0
+                                                pushscope
+                                                debug 1, "stBoomDefense", 0, 209
+                                                debugline 211
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                                convert_b
+                                                dup
+                                                iffalse ofs0021
+                                                pop
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                                equals
+                                       ofs0021:
+                                                dup
+                                                iftrue ofs002a
+                                                pop
+                                                pushnull
+                                                getlocal1
+                                                equals
+                                       ofs002a:
+                                                dup
+                                                iftrue ofs0036
+                                                pop
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                equals
+                                                not
+                                       ofs0036:
+                                                dup
+                                                iftrue ofs0042
+                                                pop
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                                equals
+                                                not
+                                       ofs0042:
+                                                dup
+                                                iftrue ofs0051
+                                                pop
+                                                debugline 212
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                equals
+                                                not
+                                       ofs0051:
+                                                dup
+                                                iftrue ofs005d
+                                                pop
+                                                pushnull
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                equals
+                                                not
+                                       ofs005d:
+                                                dup
+                                                iftrue ofs0067
+                                                pop
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                                convert_b
+                                       ofs0067:
+                                                iffalse ofs0070
+                                                debugline 214
+                                                pushfalse
+                                                returnvalue
+                                       ofs0070:
+                                                debugline 217
+                                                getlocal0
+                                                getlocal1
+                                                initproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                debugline 219
+                                                pushtrue
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function a_3499(stBoomDefense:a_3960) : Boolean
+                                    {
+                                       trait method QName(PackageNamespace(""),"a_3499")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveBoomDefense"
+                                             flag HAS_PARAM_NAMES
+                                             param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3960")
+                                             paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                             returns QName(PackageNamespace(""),"Boolean")
+                                             
+                                             body
+                                                maxstack 2
+                                                localcount 2
+                                                initscopedepth 4
+                                                maxscopedepth 5
+                                                
+                                                code
+                                                   debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                   debugline 222
+                                                   getlocal0
+                                                   pushscope
+                                                   debug 1, "stBoomDefense", 0, 222
+                                                   debugline 224
+                                                   pushnull
+                                                   getlocal1
+                                                   equals
+                                                   dup
+                                                   iftrue ofs0020
+                                                   pop
+                                                   pushnull
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                   equals
+                                          ofs0020:
+                                                   dup
+                                                   iftrue ofs002c
+                                                   pop
+                                                   getlocal1
+                                                   getlocal0
+                                                   getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                   equals
+                                                   not
+                                          ofs002c:
+                                                   iffalse ofs0035
+                                                   debugline 226
+                                                   pushfalse
+                                                   returnvalue
+                                          ofs0035:
+                                                   debugline 229
+                                                   getlocal0
+                                                   pushnull
+                                                   initproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                   debugline 231
+                                                   pushtrue
+                                                   returnvalue
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function a_3447(stFlowerDefense:a_3971) : Boolean
+                                       {
+                                          trait method QName(PackageNamespace(""),"a_3447")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.ui.maogoutd.game:FieldGrid/AddFlowerDefense"
+                                                flag HAS_PARAM_NAMES
+                                                param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3971")
+                                                paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                returns QName(PackageNamespace(""),"Boolean")
+                                                
+                                                body
+                                                   maxstack 2
+                                                   localcount 2
+                                                   initscopedepth 4
+                                                   maxscopedepth 5
+                                                   
+                                                   code
+                                                      debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                      debugline 234
+                                                      getlocal0
+                                                      pushscope
+                                                      debug 1, "stFlowerDefense", 0, 234
+                                                      debugline 236
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                                      convert_b
+                                                      dup
+                                                      iffalse ofs0021
+                                                      pop
+                                                      pushnull
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                                      equals
+                                             ofs0021:
+                                                      dup
+                                                      iftrue ofs002a
+                                                      pop
+                                                      pushnull
+                                                      getlocal1
+                                                      equals
+                                             ofs002a:
+                                                      dup
+                                                      iftrue ofs0036
+                                                      pop
+                                                      pushnull
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                      equals
+                                                      not
+                                             ofs0036:
+                                                      dup
+                                                      iftrue ofs0042
+                                                      pop
+                                                      pushnull
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                                      equals
+                                                      not
+                                             ofs0042:
+                                                      dup
+                                                      iftrue ofs0051
+                                                      pop
+                                                      debugline 237
+                                                      pushnull
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                      equals
+                                                      not
+                                             ofs0051:
+                                                      dup
+                                                      iftrue ofs005d
+                                                      pop
+                                                      pushnull
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                      equals
+                                                      not
+                                             ofs005d:
+                                                      dup
+                                                      iftrue ofs0067
+                                                      pop
+                                                      getlocal0
+                                                      getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                                      convert_b
+                                             ofs0067:
+                                                      iffalse ofs0070
+                                                      debugline 239
+                                                      pushfalse
+                                                      returnvalue
+                                             ofs0070:
+                                                      debugline 242
+                                                      getlocal0
+                                                      getlocal1
+                                                      initproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                      debugline 244
+                                                      pushtrue
+                                                      returnvalue
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function a_3500(stFlowerDefense:a_3971) : Boolean
+                                          {
+                                             trait method QName(PackageNamespace(""),"a_3500")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveFlowerDefense"
+                                                   flag HAS_PARAM_NAMES
+                                                   param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3971")
+                                                   paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                   returns QName(PackageNamespace(""),"Boolean")
+                                                   
+                                                   body
+                                                      maxstack 2
+                                                      localcount 2
+                                                      initscopedepth 4
+                                                      maxscopedepth 5
+                                                      
+                                                      code
+                                                         debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                         debugline 247
+                                                         getlocal0
+                                                         pushscope
+                                                         debug 1, "stFlowerDefense", 0, 247
+                                                         debugline 249
+                                                         pushnull
+                                                         getlocal1
+                                                         equals
+                                                         dup
+                                                         iftrue ofs0020
+                                                         pop
+                                                         pushnull
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                         equals
+                                                ofs0020:
+                                                         dup
+                                                         iftrue ofs002c
+                                                         pop
+                                                         getlocal1
+                                                         getlocal0
+                                                         getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                         equals
+                                                         not
+                                                ofs002c:
+                                                         iffalse ofs0035
+                                                         debugline 251
+                                                         pushfalse
+                                                         returnvalue
+                                                ofs0035:
+                                                         debugline 254
+                                                         getlocal0
+                                                         pushnull
+                                                         initproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                         debugline 256
+                                                         pushtrue
+                                                         returnvalue
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             public function a_3445(stAuxiliaryFighter:a_3959) : Boolean
+                                             {
+                                                trait method QName(PackageNamespace(""),"a_3445")
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.ui.maogoutd.game:FieldGrid/AddAuxiliaryFighter"
+                                                      flag HAS_PARAM_NAMES
+                                                      param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3959")
+                                                      paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                      returns QName(PackageNamespace(""),"Boolean")
+                                                      
+                                                      body
+                                                         maxstack 2
+                                                         localcount 2
+                                                         initscopedepth 4
+                                                         maxscopedepth 5
+                                                         
+                                                         code
+                                                            debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                            debugline 259
+                                                            getlocal0
+                                                            pushscope
+                                                            debug 1, "stAuxiliaryFighter", 0, 259
+                                                            debugline 261
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_isNeedTray")
+                                                            convert_b
+                                                            dup
+                                                            iffalse ofs0021
+                                                            pop
+                                                            pushnull
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                                            equals
+                                                   ofs0021:
+                                                            dup
+                                                            iftrue ofs002a
+                                                            pop
+                                                            pushnull
+                                                            getlocal1
+                                                            equals
+                                                   ofs002a:
+                                                            dup
+                                                            iftrue ofs0036
+                                                            pop
+                                                            pushnull
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                            equals
+                                                            not
+                                                   ofs0036:
+                                                            dup
+                                                            iftrue ofs0045
+                                                            pop
+                                                            debugline 262
+                                                            pushnull
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                                            equals
+                                                            not
+                                                   ofs0045:
+                                                            dup
+                                                            iftrue ofs0051
+                                                            pop
+                                                            pushnull
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                            equals
+                                                            not
+                                                   ofs0051:
+                                                            dup
+                                                            iftrue ofs005d
+                                                            pop
+                                                            pushnull
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                            equals
+                                                            not
+                                                   ofs005d:
+                                                            dup
+                                                            iftrue ofs0067
+                                                            pop
+                                                            getlocal0
+                                                            getproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                                            convert_b
+                                                   ofs0067:
+                                                            iffalse ofs0070
+                                                            debugline 264
+                                                            pushfalse
+                                                            returnvalue
+                                                   ofs0070:
+                                                            debugline 267
+                                                            getlocal0
+                                                            getlocal1
+                                                            initproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                            debugline 269
+                                                            pushtrue
+                                                            returnvalue
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                                
+                                                public function a_3501(stAuxiliaryFighter:a_3959) : Boolean
+                                                {
+                                                   trait method QName(PackageNamespace(""),"a_3501")
+                                                      dispid 0
+                                                      method
+                                                         name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveAuxiliaryFighter"
+                                                         flag HAS_PARAM_NAMES
+                                                         param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3959")
+                                                         paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                         returns QName(PackageNamespace(""),"Boolean")
+                                                         
+                                                         body
+                                                            maxstack 2
+                                                            localcount 2
+                                                            initscopedepth 4
+                                                            maxscopedepth 5
+                                                            
+                                                            code
+                                                               debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                               debugline 272
+                                                               getlocal0
+                                                               pushscope
+                                                               debug 1, "stAuxiliaryFighter", 0, 272
+                                                               debugline 274
+                                                               pushnull
+                                                               getlocal1
+                                                               equals
+                                                               dup
+                                                               iftrue ofs0020
+                                                               pop
+                                                               pushnull
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                               equals
+                                                      ofs0020:
+                                                               dup
+                                                               iftrue ofs002c
+                                                               pop
+                                                               getlocal1
+                                                               getlocal0
+                                                               getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                               equals
+                                                               not
+                                                      ofs002c:
+                                                               iffalse ofs0035
+                                                               debugline 276
+                                                               pushfalse
+                                                               returnvalue
+                                                      ofs0035:
+                                                               debugline 279
+                                                               getlocal0
+                                                               pushnull
+                                                               initproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                               debugline 281
+                                                               pushtrue
+                                                               returnvalue
+                                                            end ; code
+                                                         end ; body
+                                                      end ; method
+                                                   }
+                                                   
+                                                   public function a_3459(stMoveIntruder:a_4206) : Boolean
+                                                   {
+                                                      trait method QName(PackageNamespace(""),"a_3459")
+                                                         dispid 0
+                                                         method
+                                                            name "com.aurora.ui.maogoutd.game:FieldGrid/AddMoveIntruder"
+                                                            flag HAS_PARAM_NAMES
+                                                            param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                            paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                            returns QName(PackageNamespace(""),"Boolean")
+                                                            
+                                                            body
+                                                               maxstack 3
+                                                               localcount 2
+                                                               initscopedepth 4
+                                                               maxscopedepth 5
+                                                               
+                                                               code
+                                                                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                  debugline 284
+                                                                  getlocal0
+                                                                  pushscope
+                                                                  debug 1, "stMoveIntruder", 0, 284
+                                                                  debugline 286
+                                                                  pushnull
+                                                                  getlocal1
+                                                                  equals
+                                                                  dup
+                                                                  iftrue ofs0026
+                                                                  pop
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"a_1511")
+                                                                  getlocal1
+                                                                  callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                  pushbyte 0
+                                                                  greaterequals
+                                                         ofs0026:
+                                                                  iffalse ofs0041
+                                                                  debugline 288
+                                                                  findpropstrict QName(PackageNamespace(""),"trace")
+                                                                  pushstring "Error: AddMoveFighter failed, stMoveIntruder is null or stMoveIntruder exist in m_arrMoveIntruder for ID:"
+                                                                  getlocal1
+                                                                  getproperty QName(PackageNamespace(""),"globalMoveFighterID")
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                  debugline 290
+                                                                  pushfalse
+                                                                  returnvalue
+                                                         ofs0041:
+                                                                  debugline 293
+                                                                  pushnull
+                                                                  getlocal1
+                                                                  getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                                  ifeq ofs0058
+                                                                  debugline 295
+                                                                  getlocal1
+                                                                  getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                                  getlocal1
+                                                                  callpropvoid QName(PackageNamespace(""),"a_3457"), 1
+                                                         ofs0058:
+                                                                  debugline 298
+                                                                  getlocal0
+                                                                  getproperty QName(PackageNamespace(""),"a_1511")
+                                                                  getlocal1
+                                                                  callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                                                  debugline 299
+                                                                  getlocal0
+                                                                  pushtrue
+                                                                  initproperty QName(PackageNamespace(""),"m_isOccupy")
+                                                                  debugline 301
+                                                                  getlocal1
+                                                                  getlocal0
+                                                                  setproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                                                                  debugline 303
+                                                                  pushtrue
+                                                                  returnvalue
+                                                               end ; code
+                                                            end ; body
+                                                         end ; method
+                                                      }
+                                                      
+                                                      public function a_3457(stMoveIntruder:a_4206) : Boolean
+                                                      {
+                                                         trait method QName(PackageNamespace(""),"a_3457")
+                                                            dispid 0
+                                                            method
+                                                               name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveMoveIntruder"
+                                                               flag HAS_PARAM_NAMES
+                                                               param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                               paramname "com.aurora.ui.maogoutd.game:FieldGrid/FieldGrid"
+                                                               returns QName(PackageNamespace(""),"Boolean")
+                                                               
+                                                               body
+                                                                  maxstack 3
+                                                                  localcount 2
+                                                                  initscopedepth 4
+                                                                  maxscopedepth 5
+                                                                  
+                                                                  code
+                                                                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                     debugline 306
+                                                                     getlocal0
+                                                                     pushscope
+                                                                     debug 1, "stMoveIntruder", 0, 306
+                                                                     debugline 308
+                                                                     pushnull
+                                                                     getlocal1
+                                                                     ifne ofs002a
+                                                                     debugline 310
+                                                                     findpropstrict QName(PackageNamespace(""),"trace")
+                                                                     pushstring "Error: stMoveIntruder is null, RemoveMoveFighter failed"
+                                                                     callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                     debugline 312
+                                                                     pushfalse
+                                                                     returnvalue
+                                                            ofs002a:
+                                                                     debugline 315
+                                                                     pushbyte -1
+                                                                     getlocal0
+                                                                     getproperty QName(PackageNamespace(""),"a_1511")
+                                                                     getlocal1
+                                                                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                     ifeq ofs004f
+                                                                     debugline 317
+                                                                     getlocal0
+                                                                     getproperty QName(PackageNamespace(""),"a_1511")
+                                                                     getlocal0
+                                                                     getproperty QName(PackageNamespace(""),"a_1511")
+                                                                     getlocal1
+                                                                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                                                     pushbyte 1
+                                                                     callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                                            ofs004f:
+                                                                     debugline 320
+                                                                     pushbyte 0
+                                                                     getlocal0
+                                                                     getproperty QName(PackageNamespace(""),"a_1511")
+                                                                     getproperty QName(PackageNamespace(""),"length")
+                                                                     ifne ofs0065
+                                                                     debugline 322
+                                                                     getlocal0
+                                                                     pushfalse
+                                                                     initproperty QName(PackageNamespace(""),"m_isOccupy")
+                                                            ofs0065:
+                                                                     debugline 325
+                                                                     pushtrue
+                                                                     returnvalue
+                                                                  end ; code
+                                                               end ; body
+                                                            end ; method
+                                                         }
+                                                         
+                                                         public function a_3502() : void
+                                                         {
+                                                            trait method QName(PackageNamespace(""),"a_3502")
+                                                               dispid 0
+                                                               method
+                                                                  name "com.aurora.ui.maogoutd.game:FieldGrid/ClearFieldGridDefense"
+                                                                  returns QName(PackageNamespace(""),"void")
+                                                                  
+                                                                  body
+                                                                     maxstack 2
+                                                                     localcount 1
+                                                                     initscopedepth 4
+                                                                     maxscopedepth 5
+                                                                     
+                                                                     code
+                                                                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                        debugline 328
+                                                                        getlocal0
+                                                                        pushscope
+                                                                        debugline 330
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBaseLander")
+                                                                        pushnull
+                                                                        ifeq ofs0024
+                                                                        debugline 332
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBaseLander")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                                        debugline 333
+                                                                        getlocal0
+                                                                        pushnull
+                                                                        initproperty QName(PackageNamespace(""),"m_stBaseLander")
+                                                               ofs0024:
+                                                                        debugline 335
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stProtector")
+                                                                        ifeq ofs0039
+                                                                        debugline 337
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stProtector")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs0039:
+                                                                        debugline 339
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                                                        ifeq ofs004e
+                                                                        debugline 341
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs004e:
+                                                                        debugline 343
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                                        equals
+                                                                        not
+                                                                        dup
+                                                                        iffalse ofs0064
+                                                                        pop
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                                        getproperty QName(PackageNamespace(""),"isCanBeEaten")
+                                                                        convert_b
+                                                               ofs0064:
+                                                                        iffalse ofs0072
+                                                                        debugline 345
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs0072:
+                                                                        debugline 347
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                                        ifeq ofs0087
+                                                                        debugline 349
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs0087:
+                                                                        debugline 351
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                                        ifeq ofs009c
+                                                                        debugline 353
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs009c:
+                                                                        debugline 355
+                                                                        pushnull
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                                                        ifeq ofs00b1
+                                                                        debugline 357
+                                                                        getlocal0
+                                                                        getproperty QName(PackageNamespace(""),"m_stTrayDefense")
+                                                                        callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                               ofs00b1:
+                                                                        debugline 360
+                                                                        getlocal0
+                                                                        pushfalse
+                                                                        initproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                                                        debugline 361
+                                                                        returnvoid
+                                                                     end ; code
+                                                                  end ; body
+                                                               end ; method
+                                                            }
+                                                            
+                                                            public function a_3503() : Boolean
+                                                            {
+                                                               trait method QName(PackageNamespace(""),"a_3503")
+                                                                  dispid 0
+                                                                  method
+                                                                     name "com.aurora.ui.maogoutd.game:FieldGrid/RemoveMouseEarthHole"
+                                                                     returns QName(PackageNamespace(""),"Boolean")
+                                                                     
+                                                                     body
+                                                                        maxstack 2
+                                                                        localcount 1
+                                                                        initscopedepth 4
+                                                                        maxscopedepth 5
+                                                                        
+                                                                        code
+                                                                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                           debugline 363
+                                                                           getlocal0
+                                                                           pushscope
+                                                                           debugline 366
+                                                                           getlocal0
+                                                                           getproperty QName(PackageNamespace(""),"m_stRatEarthHole")
+                                                                           iffalse ofs0023
+                                                                           debugline 368
+                                                                           getlocal0
+                                                                           getproperty QName(PackageNamespace(""),"m_stRatEarthHole")
+                                                                           callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                                                           debugline 370
+                                                                           getlocal0
+                                                                           pushfalse
+                                                                           initproperty QName(PackageNamespace(""),"m_isExistMouseHole")
+                                                                  ofs0023:
+                                                                           debugline 373
+                                                                           pushtrue
+                                                                           returnvalue
+                                                                        end ; code
+                                                                     end ; body
+                                                                  end ; method
+                                                               }
+                                                            }
+                                                         }
+                                                         
+                                                         method
+                                                            name ""
+                                                            returns null
+                                                            
+                                                            body
+                                                               maxstack 2
+                                                               localcount 1
+                                                               initscopedepth 1
+                                                               maxscopedepth 3
+                                                               
+                                                               code
+                                                                  getlocal0
+                                                                  pushscope
+                                                                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                  debugline 15
+                                                                  findpropstrict Multiname("a_3491",[PackageNamespace("com.aurora.ui.maogoutd.game")])
+                                                                  getlex QName(PackageNamespace(""),"Object")
+                                                                  pushscope
+                                                                  getlex QName(PackageNamespace(""),"Object")
+                                                                  newclass 1
+                                                                  popscope
+                                                                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                                                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\game;FieldGrid.as"
+                                                                  debugline 1
+                                                                  returnvoid
+                                                               end ; code
+                                                            end ; body
+                                                         end ; method
+                                                         

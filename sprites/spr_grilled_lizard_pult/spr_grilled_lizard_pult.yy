@@ -43,8 +43,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Cards",
-    "path":"folders/精灵/mod/Cards.yy",
+    "name":"grilled_lizard_pult",
+    "path":"folders/精灵/mod/Cards/Pult/grilled_lizard_pult.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

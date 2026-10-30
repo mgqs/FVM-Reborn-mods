@@ -7,12 +7,12 @@ function unlock_card(card_id, level, shape, skill) {
     // 检查卡片是否已解锁
     for (var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
         if (global.save_data.unlocked_cards[i].id == card_id) {
-            // 卡片已存在，更新等级和转职
-            global.save_data.unlocked_cards[i].level = level;
-            global.save_data.unlocked_cards[i].shape = shape;
-			global.save_data.unlocked_cards[i].skill = skill;
-			global.save_data.unlocked_cards[i].max_shape = shape;
-			global.save_data.unlocked_cards[i].max_level = level;
+            // 卡片已存在，只升级不降级（取最大值）
+            global.save_data.unlocked_cards[i].level = max(global.save_data.unlocked_cards[i].level, level);
+            global.save_data.unlocked_cards[i].shape = max(global.save_data.unlocked_cards[i].shape, shape);
+			global.save_data.unlocked_cards[i].skill = max(global.save_data.unlocked_cards[i].skill, skill);
+			global.save_data.unlocked_cards[i].max_shape = max(global.save_data.unlocked_cards[i].max_shape, shape);
+			global.save_data.unlocked_cards[i].max_level = max(global.save_data.unlocked_cards[i].max_level, level);
             save_file(global.save_slot); // 立即保存
             return true;
         }
@@ -50,6 +50,33 @@ function remove_card(card_id) {
     return false;
 }
 
+/// @function cleanup_orphan_cards()
+/// @desc 移除已解锁但已不存在于卡池(player_deck)的孤儿卡，彻底消除强化界面中的空卡片
+function cleanup_orphan_cards() {
+    var removed = 0;
+    for (var i = array_length(global.save_data.unlocked_cards) - 1; i >= 0; i--) {
+        var entry = global.save_data.unlocked_cards[i];
+        var cid;
+        var cshape = 0;
+        if (is_struct(entry)) {
+            cid = entry.id;
+            cshape = entry.shape;
+        } else {
+            cid = entry;
+        }
+        if (deck_get_card_data(cid, cshape) == noone) {
+            // Disabled/uninstalled external packages retain the player's progress.
+            if (external_mod_known(cid)) continue;
+            show_debug_message("清理孤儿卡: " + string(cid));
+            array_delete(global.save_data.unlocked_cards, i, 1);
+            removed++;
+        }
+    }
+    if (removed > 0)
+        save_file(global.save_slot);
+    return removed;
+}
+
 /// @function upgrade_card(card_id, levels)
 /// @desc 升级卡片等级并保存存档
 /// @param {string} card_id 卡片ID
@@ -76,9 +103,12 @@ function upgrade_card(card_id, levels) {
 function upgrade_card_shape(card_id, shapes) {
     for (var i = 0; i < array_length(global.save_data.unlocked_cards); i++) {
         if (global.save_data.unlocked_cards[i].id == card_id) {
-            // 找到卡片，升级等级
-            global.save_data.unlocked_cards[i].max_shape = shapes;
-			global.save_data.unlocked_cards[i].shape = shapes;
+            // 找到卡片，升级形态
+            // 🔴 2026-10-27：改成「只升不降」，跟 unlock_card 同一口径。
+            //    原来是直接赋值，传一个比当前小的形态就会把卡降级（这个函数是唯一能改形态的旧入口，
+            //    现在只剩魔塔奖励格那条已废弃的路在调，兜住它别哪天传个 0 把卡洗回去）
+            global.save_data.unlocked_cards[i].max_shape = max(global.save_data.unlocked_cards[i].max_shape, shapes);
+			global.save_data.unlocked_cards[i].shape = max(global.save_data.unlocked_cards[i].shape, shapes);
             save_file(global.save_slot); // 立即保存
             return true;
         }
@@ -116,17 +146,27 @@ function get_card_level(card_id) {
 /// @desc 标记关卡为已完成并保存存档
 /// @param {string} level_id 关卡ID
 function complete_level(level_id) {
-    // 检查关卡是否已完成
-    for (var i = 0; i < array_length(global.save_data.completed_levels); i++) {
-        if (global.save_data.completed_levels[i] == level_id) {
-            // 关卡已完成，无需重复添加
-            return true;
-        }
+    // 测试关卡是沙盒，永远不写通关记录：既不该出现在 completed_levels 里，
+    // 也不该触发首通奖励 / 解锁判定（所有玩法模式一致）
+    if (level_id == "test_level") return false;
+
+    var _is_new = (array_get_index(global.save_data.completed_levels, level_id) == -1);
+
+    // 海克斯记账：必须在判重之前，否则"重复通关"永远累计不到次数。
+    // 内部自己判 hex_enabled / 序列末关 / 空手通关。
+    var _hex_wrote = hex_commit_run(level_id);
+
+    // 本关是"通关"离场，而不是中途退出：CleanUp 靠这个标记区分（见 obj_battle/CleanUp_0）
+    global.hex_level_cleared = true;
+    // 一局已经走到结算点，序列标记作废，下次进同一张序列图从零开始
+    if (_hex_wrote) global.hex_series_active = "";
+
+    if (_is_new) {
+        array_push(global.save_data.completed_levels, level_id);
     }
-    
-    // 添加新完成的关卡
-    array_push(global.save_data.completed_levels, level_id);
-    save_file(global.save_slot); // 立即保存
+    if (_is_new || _hex_wrote) {
+        save_file(global.save_slot);   // 统一保存，避免两条路径漏存
+    }
     return true;
 }
 
@@ -170,7 +210,8 @@ function get_completed_levels() {
 /// @param {string} weapon_id 武器ID
 function is_weapon_unlocked(weapon_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_weapons); i++) {
-        if (global.save_data.unlocked_weapons[i].id == weapon_id) {
+        var _w = global.save_data.unlocked_weapons[i];
+        if ((is_struct(_w) ? _w.id : _w) == weapon_id) {
             return true;
         }
     }
@@ -193,7 +234,8 @@ function unlock_weapon(weapon_id){
 /// @param {string} gem_id 宝石ID
 function is_gem_unlocked(gem_id) {
     for (var i = 0; i < array_length(global.save_data.unlocked_gems); i++) {
-        if (global.save_data.unlocked_gems[i].id == gem_id) {
+        var _g = global.save_data.unlocked_gems[i];
+        if ((is_struct(_g) ? _g.id : _g) == gem_id) {
             return true;
         }
     }
@@ -245,4 +287,101 @@ function edit_gem_max_level(gem_id,new_level){
 			global.save_data.unlocked_gems[i].max_level = new_level
 		}
 	}
+}
+
+function get_card_fail_streak(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_fail_streak(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_fail_streak(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_fail_streak")
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_fail_streak(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_fail_streak = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+// 强化失败累计的成功率加成（每次失败 +4~7 的随机值，成功清零；旧存档没这个字段就是 0）
+function get_card_craft_bonus(card_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			if variable_struct_exists(global.save_data.unlocked_cards[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_cards[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_card_craft_bonus(card_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_cards);i++){
+		if global.save_data.unlocked_cards[i].id == card_id{
+			global.save_data.unlocked_cards[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
+}
+
+function get_gem_craft_bonus(gem_id){
+	var _value = undefined
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			if variable_struct_exists(global.save_data.unlocked_gems[i],"craft_rate_bonus"){
+				_value = variable_struct_get(global.save_data.unlocked_gems[i],"craft_rate_bonus")
+			}
+			break
+		}
+	}
+	if is_undefined(_value) return 0
+	return _value
+}
+
+function set_gem_craft_bonus(gem_id,amount){
+	for(var i = 0;i < array_length(global.save_data.unlocked_gems);i++){
+		if global.save_data.unlocked_gems[i].id == gem_id{
+			global.save_data.unlocked_gems[i].craft_rate_bonus = amount
+			save_file(global.save_slot)
+			return true
+		}
+	}
+	return false
 }

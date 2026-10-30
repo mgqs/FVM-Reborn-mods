@@ -2,6 +2,25 @@ if global.is_paused{
 	exit
 }
 
+// Register to global enemy type registry
+if (!enemy_registered || enemy_registered_type != target_type) {
+	if (enemy_registered) {
+		var _old_list = global.enemy_by_type[$ enemy_registered_type];
+		var _old_idx = array_get_index(_old_list, id);
+		if (_old_idx != -1) array_delete(_old_list, _old_idx, 1);
+	}
+	if (!variable_global_exists("enemy_by_type")) {
+		global.enemy_by_type = {};
+	}
+	var _reg_key = target_type;
+	if (!variable_struct_exists(global.enemy_by_type, _reg_key)) {
+		global.enemy_by_type[$ _reg_key] = [];
+	}
+	array_push(global.enemy_by_type[$ _reg_key], id);
+	enemy_registered = true;
+	enemy_registered_type = target_type;
+}
+
 var grid_pos = get_grid_position_from_world(x,y)
 
 if flash_value > 0{
@@ -9,6 +28,17 @@ if flash_value > 0{
 }
 
 timer++
+
+if (is_diting_umbrella && hp <= 0) {
+	if (!ly_triggered) { ly_triggered = true; ly_trigger_timer = 0; invincible = true; hp = 1; }
+	ly_trigger_timer++;
+	if (ly_trigger_timer >= 3 * game_get_speed(gamespeed_fps)) {
+		var _soul = instance_create_depth(x, y, depth - 1, obj_ly_kailu);
+		if (instance_exists(_soul)) _soul.longyuan_change_soul();
+		instance_destroy();
+	}
+	exit;
+}
 
 if state == "appear"{
 	image_index = floor(timer/5) mod 8

@@ -33,6 +33,7 @@ function refresh_cookbook_list(){
 			array_push(current_cookbook_list,cookbook_list[i])
 			var inst = instance_create_depth(x-376,y-145+101*(array_length(current_cookbook_list)-1),depth-1,obj_cookbook_list_btn)
 			inst.btn_index = array_length(current_cookbook_list)-1
+			inst.wf_t = ui_anim_on(2) ? -(inst.btn_index * 2) : 18
 			inst.cookbook_title = cookbook_data.title
 			inst.spr_index = cookbook_data.icon
 			inst.desc = cookbook_data.tiny_desc
@@ -41,3 +42,6 @@ function refresh_cookbook_list(){
 		}
 	}
 }
+
+panel_anim_init(id, 0.28, 0.18, 260)
+panel_anim_kids(id, [obj_closecookbook_btn, obj_cookbook_list_btn, obj_cookbook_select_btn, obj_equipcookbook_btn])

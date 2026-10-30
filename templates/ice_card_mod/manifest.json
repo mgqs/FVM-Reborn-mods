@@ -1,0 +1,5 @@
+{
+  "api_version": 1,
+  "name": "冰弹卡片模板",
+  "cards": ["card.json"]
+}

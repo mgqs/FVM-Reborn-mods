@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"lilac_rainbow_platform_daytime",
+  "folderPath":"folders/精灵/Map Object/platform/lilac_rainbow_platform_daytime.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lilac_rainbow_platform_daytime",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"2632041d-17ca-4339-b5ca-f7b109ff1d8a","path":"sprites/spr_lilac_rainbow_platform_daytime_1/spr_lilac_rainbow_platform_daytime_1.yy",},
+    {"name":"d9a65082-7d29-4fd7-9607-cc00f1990562","path":"sprites/spr_lilac_rainbow_platform_daytime_2/spr_lilac_rainbow_platform_daytime_2.yy",},
+    {"name":"43ea24d0-6507-4a3d-afa5-57bd3a5f742f","path":"sprites/spr_lilac_rainbow_platform_daytime_3/spr_lilac_rainbow_platform_daytime_3.yy",},
+    {"name":"d7c39e9b-90b4-48eb-b81a-cd3c621171de","path":"sprites/spr_lilac_rainbow_platform_daytime_4/spr_lilac_rainbow_platform_daytime_4.yy",},
+    {"name":"cd45398f-fd34-4a55-b9f8-bcfe4e9c7db3","path":"sprites/spr_lilac_rainbow_platform_daytime_5/spr_lilac_rainbow_platform_daytime_5.yy",},
+    {"name":"3ab208b7-e624-4585-8531-5a338331acc5","path":"sprites/spr_lilac_rainbow_platform_daytime_6/spr_lilac_rainbow_platform_daytime_6.yy",},
+    {"name":"b54127b6-bdf8-4df8-8a41-587a484fd488","path":"sprites/spr_lilac_rainbow_platform_daytime_7/spr_lilac_rainbow_platform_daytime_7.yy",}
+  ],
+}

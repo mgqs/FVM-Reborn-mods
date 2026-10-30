@@ -32,7 +32,7 @@ if state == CARD_STATE.AWAKE{
 var has_enemy = false
 if shape < 2{	
 	with(obj_enemy_parent){
-		if (((grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (other.grid_col + 4)) || (abs(grid_row - other.grid_row)<=4&&abs(x - other.x) <= 100)) && can_target_on(other.target_type,target_type)){
+		if (((grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (other.grid_col + 4)) || (abs(grid_row - other.grid_row)<=4&&abs(x - other.x) <= 100)) && (can_target_on(other.target_type,target_type) || is_digging_dijing(id))){
 			has_enemy = true
 			break
 		}
@@ -40,7 +40,7 @@ if shape < 2{
 }
 else{
 	with(obj_enemy_parent){
-		if ((grid_row == other.grid_row || abs(x - other.x) <= 100) && can_target_on(other.target_type,target_type)){
+		if ((grid_row == other.grid_row || abs(x - other.x) <= 100) && (can_target_on(other.target_type,target_type) || is_digging_dijing(id))){
 			has_enemy = true
 			break
 		}

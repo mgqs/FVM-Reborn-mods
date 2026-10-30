@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"save_god",
+  "folderPath":"folders/物体/mod/Cards/save_god.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"save_god",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_save_god","path":"objects/obj_save_god/obj_save_god.yy",}
+  ],
+}

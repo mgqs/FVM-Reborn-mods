@@ -1,45 +1,48 @@
 timer++
 if keyboard_check_pressed(vk_escape){
-	if instance_exists(obj_config_menu){
-		instance_destroy(obj_config_menu)
+	if instance_exists(obj_mod_menu){
+		obj_mod_menu.close_panel()
+	}
+	else if instance_exists(obj_config_menu){
+		panel_anim_close(obj_config_menu)
 		obj_player_info_ui.menu_type = 0
 	}
 	else if instance_exists(obj_edit_menu){
-		instance_destroy(obj_edit_menu)
+		panel_anim_close(obj_edit_menu)
 		obj_player_info_ui.menu_type = 0
 	}
 	else if instance_exists(obj_world_map_menu){
-		instance_destroy(obj_world_map_menu)
+		panel_anim_close(obj_world_map_menu)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_package_bg){
-		instance_destroy(obj_package_bg)
+		panel_anim_close(obj_package_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_info_island_bg){
-		instance_destroy(obj_info_island_bg)
+		panel_anim_close(obj_info_island_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_shop_bg){
-		instance_destroy(obj_shop_bg)
+		panel_anim_close(obj_shop_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_task_bg){
-		instance_destroy(obj_task_bg)
+		panel_anim_close(obj_task_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_craft_bg){
-		instance_destroy(obj_craft_bg)
+		panel_anim_close(obj_craft_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
 	else if instance_exists(obj_cookbook_bg){
-		instance_destroy(obj_cookbook_bg)
+		panel_anim_close(obj_cookbook_bg)
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 	}
@@ -47,6 +50,25 @@ if keyboard_check_pressed(vk_escape){
 		obj_player_info_ui.menu_type = 0
 		obj_world_map_button.world_map = 0
 		global.gui_stack.pop()
+	}
+	else if instance_exists(obj_gods_store_bg){
+		if (!obj_gods_store_bg.is_submenu_opened){
+			instance_destroy(obj_gods_store_bg)
+		}
+	}
+	else if instance_exists(obj_gods_hall_bg){
+		if (!obj_gods_hall_bg.is_submenu_opened){
+			instance_destroy(obj_gods_hall_bg)
+			obj_player_info_ui.menu_type = 0
+			obj_world_map_button.world_map = 0
+		}
+	}
+	else if instance_exists(obj_cross_server_bg){
+		if (!obj_cross_server_bg.is_submenu_opened){
+			instance_destroy(obj_cross_server_bg)
+			obj_player_info_ui.menu_type = 0
+			obj_world_map_button.world_map = 0
+		}
 	}
 	else if instance_exists(obj_quit_confirm){
 		game_end()
@@ -57,3 +79,10 @@ if keyboard_check_pressed(vk_escape){
 }
 
 pre_load_texture()
+if (outro_t >= 0) {
+	if (!ui_anim_on(1)) outro_t = -1
+	else {
+		outro_t++
+		if (outro_t > outro_frames) outro_t = -1
+	}
+}

@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"hera",
+    "path":"folders/精灵/mod/Cards/defender/hera.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

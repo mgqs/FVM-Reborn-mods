@@ -66,6 +66,18 @@ function scribble_font_bake_shader(_source_font_name, _new_font_name, _shader, _
     var _src_glyph_grid = _src_font_data.__glyph_data_grid;
     var _glyph_count = ds_grid_width(_src_glyph_grid);
     
+    // [FVM] 自动扩容：中文字体字形数远超原版假设的容量时（font_hei 目前约 6000 字形），
+    // 2048x2048 会装不下并在下面直接 show_error 终止游戏。这里先用同一套行排布算法试算，
+    // 按 256 步长找到刚好装得下的边长（上限 8192），仍然不够才交回原逻辑报错。
+    var _fit_size = __scribble_bake_autosize(_src_glyph_grid, _glyph_count, _texture_size,
+                                              _outline, _l_pad, _t_pad, _r_pad, _b_pad);
+    if (_fit_size != _texture_size)
+    {
+        show_debug_message("[FVM] scribble bake \"" + _new_font_name + "\": texture size "
+                         + string(_texture_size) + " -> " + string(_fit_size));
+        _texture_size = _fit_size;
+    }
+    
     //Create a new font
     var _new_font_data = new __scribble_class_font(_new_font_name, _glyph_count, undefined, false, true);
     _new_font_data.__bilinear = _smooth;
@@ -265,4 +277,67 @@ function scribble_font_bake_shader(_source_font_name, _new_font_name, _shader, _
     
     //All texels are automatically valid
     ds_grid_set_region(_new_glyphs_grid, 0, SCRIBBLE_GLYPH.TEXELS_VALID, _glyph_count-1, SCRIBBLE_GLYPH.TEXELS_VALID, true);
+}
+
+/// [FVM] 选择一个能装下全部字形的烘焙边长（256 步长，最大 8192）。
+/// 完全复刻 scribble_font_bake_shader 内部的行排布算法，避免估算偏差。
+function __scribble_bake_autosize(_grid, _count, _start_size, _outline, _l_pad, _t_pad, _r_pad, _b_pad)
+{
+    var _max_size = 8192;
+    // 先试原尺寸：绝大多数字体一次就过，不做任何额外计算
+    if (__scribble_bake_fits(_grid, _count, _start_size, _outline, _l_pad, _t_pad, _r_pad, _b_pad))
+    {
+        return _start_size;
+    }
+
+    // 不够再按 256 递增（而不是直接翻倍），尽量少占显存
+    for (var _size = _start_size + 256; _size <= _max_size; _size += 256)
+    {
+        if (__scribble_bake_fits(_grid, _count, _size, _outline, _l_pad, _t_pad, _r_pad, _b_pad))
+        {
+            return _size;
+        }
+    }
+    // 连 8192 都装不下：交回原逻辑报错，至少错误信息是准确的
+    return _start_size;
+}
+
+/// [FVM] 试算给定边长能否排下全部字形（与烘焙循环判定条件保持一致）
+function __scribble_bake_fits(_grid, _count, _size, _outline, _l_pad, _t_pad, _r_pad, _b_pad)
+{
+    var _line_x = 0;
+    var _line_y = 0;
+    var _line_height = 0;
+    // 底部预留 64px：实际字形的宽高若比字体资源记录的大 1~2px，也不至于刚好压线越界
+    var _limit = _size - 64;
+    var _i = 0;
+    repeat (_count)
+    {
+        var _material = _grid[# _i, SCRIBBLE_GLYPH.MATERIAL];
+        var _texture = _material.__texture;
+        if (is_undefined(_texture))
+        {
+            ++_i;
+            continue;
+        }
+
+        var _w = _grid[# _i, SCRIBBLE_GLYPH.WIDTH ] + _outline + _l_pad + _r_pad;
+        var _h = _grid[# _i, SCRIBBLE_GLYPH.HEIGHT] + _outline + _t_pad + _b_pad;
+
+        // 与原版一致的越界判定，只是底部多留一点余量
+        if (_line_y + _h >= _limit) return false;
+
+        if (_line_x + _w >= _size)
+        {
+            _line_x = 0;
+            _line_y += _line_height;
+            _line_height = 0;
+        }
+
+        _line_x += _w;
+        _line_height = max(_line_height, _h);
+
+        ++_i;
+    }
+    return true;
 }

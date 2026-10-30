@@ -38,11 +38,13 @@ function add_to_deck(card_id, shape, slot_index = -1) {
 /// @function deck_slot_max()
 /// @desc 出战卡组槽位总数（= 已解锁的 max_slot；无存档兜底 21）
 function deck_slot_max() {
+    var _base = 21;
     if (variable_global_exists("save_data") && !is_undefined(global.save_data)
         && variable_struct_exists(global.save_data, "unlocked_items")) {
-        return global.save_data.unlocked_items.max_slot;
+        _base = global.save_data.unlocked_items.max_slot;
     }
-    return 21;
+    // 海克斯「卡组上限 +N」：只在海克斯模式下加，其它模式恒 +0
+    return _base + hex_deck_cap_bonus();
 }
 
 /// @function deck_empty_slot_ensure()

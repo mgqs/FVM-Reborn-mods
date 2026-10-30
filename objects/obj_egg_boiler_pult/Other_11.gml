@@ -3,7 +3,7 @@ var inst = instance_create_depth(x-40, y-125, depth-500, obj_eggboilerpult_bulle
 if shape >= 2{
 	inst.sprite_index = spr_eggboilerpult_bullet_2
 }
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk

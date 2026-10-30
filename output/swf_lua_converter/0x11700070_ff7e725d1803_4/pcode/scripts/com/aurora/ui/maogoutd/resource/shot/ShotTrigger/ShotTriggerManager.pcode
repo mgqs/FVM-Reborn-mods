@@ -1,0 +1,252 @@
+package com.aurora.ui.maogoutd.resource.shot.ShotTrigger
+{
+   public class ShotTriggerManager
+   {
+      
+      private static var _instance:ShotTriggerManager;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "_instance", 0, 6
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function ShotTriggerManager()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager/ShotTriggerManager"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;ShotTriggerManager.as"
+                  debugline 15
+                  getlocal0
+                  pushscope
+                  debugline 16
+                  getlocal0
+                  constructsuper 0
+                  debugline 17
+                  getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager"),"_instance")
+                  iffalse ofs0022
+                  debugline 18
+                  findpropstrict QName(PackageNamespace(""),"Error")
+                  pushstring "ShotTriggerManager is singleton!"
+                  constructprop QName(PackageNamespace(""),"Error"), 1
+                  throw
+         ofs0022:
+                  debugline 19
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function get Instance() : ShotTriggerManager
+      {
+         trait getter QName(PackageNamespace(""),"Instance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager/Instance/get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"ShotTriggerManager")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;ShotTriggerManager.as"
+                     debugline 8
+                     getlocal0
+                     pushscope
+                     debugline 10
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager"),"_instance")
+                     iftrue ofs001b
+                     debugline 11
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager"),"_instance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager"),"_instance")
+            ofs001b:
+                     debugline 12
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager"),"_instance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function CreateTrigger(type:int, probability:int = 100, seed:int = -1, param1:Number = 0, param2:Number = 0, param3:Number = 0) : BaseShotTrigger
+         {
+            trait method QName(PackageNamespace(""),"CreateTrigger")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:ShotTriggerManager/CreateTrigger"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"Number")
+                  param QName(PackageNamespace(""),"Number")
+                  param QName(PackageNamespace(""),"Number")
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  paramname "D:\workspace\git\msclient\src;com\aurora\ui\maogoutd\resource\shot\ShotTrigger;ShotTriggerManager.as"
+                  optional Integer(100)
+                  optional Integer(-1)
+                  optional Integer(0)
+                  optional Integer(0)
+                  optional Integer(0)
+                  returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                  
+                  body
+                     maxstack 5
+                     localcount 9
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;ShotTriggerManager.as"
+                        debugline 38
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                        setlocal 7
+                        debug 1, "type", 0, 38
+                        debug 1, "probability", 1, 38
+                        debug 1, "seed", 2, 38
+                        debug 1, "param1", 3, 38
+                        debug 1, "param2", 4, 38
+                        debug 1, "param3", 5, 38
+                        debug 1, "trigger", 6, 40
+                        jump ofs0082
+               ofs003a:
+                        label
+                        debugline 45
+                        findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BurnBuffTrigger")
+                        getlocal2
+                        getlocal3
+                        getlocal 4
+                        getlocal 5
+                        constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BurnBuffTrigger"), 4
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                        setlocal 7
+                        debugline 46
+                        jump ofs00cb
+               ofs0054:
+                        label
+                        debugline 48
+                        findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"PenetrateCountTrigger")
+                        getlocal2
+                        getlocal3
+                        getlocal 4
+                        getlocal 5
+                        constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"PenetrateCountTrigger"), 4
+                        coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                        setlocal 7
+                        debugline 49
+                        jump ofs00cb
+               ofs006e:
+                        label
+                        debugline 52
+                        findpropstrict QName(PackageNamespace(""),"Error")
+                        pushstring "找不到对应的触发器 type="
+                        getlocal1
+                        add
+                        constructprop QName(PackageNamespace(""),"Error"), 1
+                        throw
+                        jump ofs0082
+               ofs0082:
+                        debugline 42
+                        getlocal1
+                        setlocal 8
+                        debugline 44
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"ShotTriggerType")
+                        getproperty QName(PackageNamespace(""),"BURNBUFFTRIGGER")
+                        getlocal 8
+                        ifstrictne ofs009b
+                        pushbyte 0
+                        jump ofs00bb
+               ofs009b:
+                        debugline 47
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"ShotTriggerType")
+                        getproperty QName(PackageNamespace(""),"PENETRATECOUNTTRIGGER")
+                        getlocal 8
+                        ifstrictne ofs00af
+                        pushbyte 1
+                        jump ofs00bb
+               ofs00af:
+                        jump ofs00b9
+                        pushbyte 2
+                        jump ofs00b9
+               ofs00b9:
+                        pushbyte 2
+               ofs00bb:
+                        kill 8
+                        lookupswitch ofs006e, [ofs003a, ofs0054, ofs006e]
+               ofs00cb:
+                        debugline 55
+                        getlocal 7
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+         }
+      }
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 1
+            maxscopedepth 3
+            
+            code
+               getlocal0
+               pushscope
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;ShotTriggerManager.as"
+               debugline 4
+               findpropstrict Multiname("ShotTriggerManager",[PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger")])
+               getlex QName(PackageNamespace(""),"Object")
+               pushscope
+               getlex QName(PackageNamespace(""),"Object")
+               newclass 46
+               popscope
+               initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"ShotTriggerManager")
+               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;ShotTriggerManager.as"
+               debugline 1
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      

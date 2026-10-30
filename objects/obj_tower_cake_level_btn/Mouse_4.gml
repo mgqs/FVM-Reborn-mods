@@ -33,7 +33,7 @@ if not obj_tower_cake_bg.is_submenu_opened{
 	if obj_tower_cake_bg.level_select != btn_index{
 		obj_tower_cake_bg.level_select = btn_index
 		obj_tower_cake_bg.real_level_index = level_index
-		audio_play_sound(snd_button,0,0)
+		global.audio.play(snd_button,0,0)
 		with obj_tower_cake_bg{
 			refresh_reward_button()
 		}

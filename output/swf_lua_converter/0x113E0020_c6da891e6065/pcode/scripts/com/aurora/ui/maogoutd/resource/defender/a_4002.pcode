@@ -1,0 +1,549 @@
+package com.aurora.ui.maogoutd.resource.defender
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.events.TimerEvent;
+   import flash.geom.Point;
+   import flash.utils.Timer;
+   
+   public class a_4002 extends a_3976
+   {
+      
+      private static var a_1360:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 11
+            maxscopedepth 12
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_1360", 0, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1360")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1360")
+               debug 1, "a_1300", 1, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),PackageNamespace(""),PrivateNamespace("CoffeeWakeUpBeanDefense.as$41"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1300")
+               debug 1, "a_1301", 2, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),PackageNamespace(""),PrivateNamespace("CoffeeWakeUpBeanDefense.as$41"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseToolDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),StaticProtectedNs("Object"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1301")
+               debug 1, "a_1302", 3, 19
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"CoffeeWakeUpBeanDefenseMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"CoffeeWakeUpBeanDefenseMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stTiemr:Timer;
+      
+      public function a_4002()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/CoffeeWakeUpBeanDefense"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 12
+               maxscopedepth 13
+               
+               code
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                  debugline 33
+                  getlocal0
+                  pushscope
+                  debugline 35
+                  getlocal0
+                  constructsuper 0
+                  debugline 37
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1338")
+                  pushbyte -30
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1338")
+                  debugline 39
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"Timer")
+                  pushbyte 100
+                  constructprop QName(PackageNamespace("flash.utils"),"Timer"), 1
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                  debugline 40
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : a_4002
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4002")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 11
+                  maxscopedepth 12
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     debug 1, "stCoffeeWakeUpBeanDefense", 0, 23
+                     debugline 23
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1360")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4002")
+                     setlocal1
+                     debugline 25
+                     pushnull
+                     getlocal1
+                     ifne ofs0029
+                     debugline 27
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4002")
+                     setlocal1
+            ofs0029:
+                     debugline 30
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(stFieldGrid:a_3491) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/Initialize"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                  paramname "Point"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 2
+                     initscopedepth 12
+                     maxscopedepth 13
+                     
+                     code
+                        debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                        debugline 42
+                        getlocal0
+                        pushscope
+                        debug 1, "stFieldGrid", 0, 42
+                        debugline 45
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                        getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                        getproperty QName(PackageNamespace(""),"TIMER")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_4003")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                        debugline 47
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 48
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 49
+                        getlocal0
+                        callpropvoid QName(PackageNamespace(""),"play"), 0
+                        debugline 51
+                        getlocal0
+                        getlocal1
+                        callsuper QName(PackageNamespace(""),"a_1797"), 1
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 12
+                        maxscopedepth 13
+                        
+                        code
+                           debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                           debugline 54
+                           getlocal0
+                           pushscope
+                           debugline 56
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 12
+                           maxscopedepth 13
+                           
+                           code
+                              debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                              debugline 59
+                              getlocal0
+                              pushscope
+                              debugline 61
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 12
+                              maxscopedepth 13
+                              
+                              code
+                                 debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                 debugline 64
+                                 getlocal0
+                                 pushscope
+                                 debugline 66
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override public function a_3940() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_3940")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/Realease"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 12
+                                 maxscopedepth 13
+                                 
+                                 code
+                                    debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                    debugline 70
+                                    getlocal0
+                                    pushscope
+                                    debugline 73
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                                    getlex QName(PackageNamespace("flash.events"),"TimerEvent")
+                                    getproperty QName(PackageNamespace(""),"TIMER")
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_4003")
+                                    callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                                    debugline 74
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                                    callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                    debugline 76
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_1360")
+                                    getlocal0
+                                    callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                    debugline 78
+                                    getlocal0
+                                    callsuper QName(PackageNamespace(""),"a_3940"), 0
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function play() : void
+                        {
+                           trait method QName(PackageNamespace(""),"play")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/play"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 12
+                                    maxscopedepth 13
+                                    
+                                    code
+                                       debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                       debugline 81
+                                       getlocal0
+                                       pushscope
+                                       debugline 83
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                                       callpropvoid QName(PackageNamespace(""),"start"), 0
+                                       debugline 84
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function stop() : void
+                           {
+                              trait method QName(PackageNamespace(""),"stop")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/stop"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 1
+                                       initscopedepth 12
+                                       maxscopedepth 13
+                                       
+                                       code
+                                          debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                          debugline 86
+                                          getlocal0
+                                          pushscope
+                                          debugline 88
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"m_stTiemr")
+                                          callpropvoid QName(PackageNamespace(""),"stop"), 0
+                                          debugline 89
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              private function a_4003(a_4730:Event) : void
+                              {
+                                 trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense"),"a_4003")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender:CoffeeWakeUpBeanDefense/private:OnFrameTimerEvent"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("flash.events"),"Event")
+                                       paramname "flash.utils"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 12
+                                          maxscopedepth 13
+                                          
+                                          code
+                                             debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                             debugline 91
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "a_4730", 0, 91
+                                             debugline 93
+                                             findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                             callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                             debugline 95
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                             ifne ofs00c7
+                                             debugline 97
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stProtector")
+                                             iffalse ofs003c
+                                             debugline 99
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stProtector")
+                                             callpropvoid QName(PackageNamespace(""),"a_3970"), 0
+                                             jump ofs00a0
+                                    ofs003c:
+                                             debugline 102
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                             iffalse ofs0056
+                                             debugline 104
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stAttackFighter")
+                                             callpropvoid QName(PackageNamespace(""),"a_3970"), 0
+                                             jump ofs00a0
+                                    ofs0056:
+                                             debugline 107
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                             iffalse ofs0070
+                                             debugline 109
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stBaseAuxiliaryFighter")
+                                             callpropvoid QName(PackageNamespace(""),"a_3970"), 0
+                                             jump ofs00a0
+                                    ofs0070:
+                                             debugline 112
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                             iffalse ofs008a
+                                             debugline 114
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stFlowerDefense")
+                                             callpropvoid QName(PackageNamespace(""),"a_3970"), 0
+                                             jump ofs00a0
+                                    ofs008a:
+                                             debugline 116
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                             iffalse ofs00a0
+                                             debugline 118
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stBoomDefense")
+                                             callpropvoid QName(PackageNamespace(""),"a_3970"), 0
+                                    ofs00a0:
+                                             debugline 121
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                             getlocal0
+                                             callproperty QName(PackageNamespace(""),"contains"), 1
+                                             iffalse ofs00bc
+                                             debugline 123
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender:BaseDefense"),"a_1334")
+                                             getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                    ofs00bc:
+                                             debugline 126
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                             debugline 128
+                                             returnvoid
+                                    ofs00c7:
+                                             debugline 130
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                              }
+                           }
+                           
+                           method
+                              name ""
+                              returns null
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 1
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    getlocal0
+                                    pushscope
+                                    debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                    debugline 12
+                                    findpropstrict Multiname("a_4002",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender")])
+                                    getlex QName(PackageNamespace(""),"Object")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3962")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_3976")
+                                    newclass 70
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender"),"a_4002")
+                                    debugfile "F:\\FlashKenai\\src;com\\aurora\\ui\\maogoutd\\resource\\defender;CoffeeWakeUpBeanDefense.as"
+                                    debugline 1
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                           

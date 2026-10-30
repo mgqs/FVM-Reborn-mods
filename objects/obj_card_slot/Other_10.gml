@@ -1,19 +1,22 @@
-clevel = get_card_info_simple(card_id).level
-cshape = get_card_info_simple(card_id).shape
+var _base_info = get_card_info_simple(card_id)
+if _base_info != false{
+	clevel = _base_info.level
+	cshape = shape
+}
 //cskill = get_card_info_simple(card_id).skill
 var plant_data = get_plant_data(card_id);
 if (plant_data != undefined) {
 	
 	var card_save_data = get_card_info(card_id)
 	clevel = card_save_data.level
-	cshape = card_save_data.shape
 	cskill = card_save_data.skill
+	if (is_random_gift_mode() && card_id == "wanpilong") cshape = 2
     
     // 应用基础属性
     var upgrade_data = get_plant_data_with_skill(card_id, cshape,clevel,cskill);
     if (upgrade_data != undefined) {
         cost = upgrade_data[? "cost"];
-        cooldown = upgrade_data[? "cooldown"];
+        cooldown = hex_card_cooldown(upgrade_data[? "cooldown"], card_id);
     }
 	//检查食谱
 	var cookbook_list = global.save_data.equipped_cookbook
@@ -38,7 +41,16 @@ if (plant_data != undefined) {
 }
 
 var _card_data = deck_get_card_data(card_id, cshape);
-if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_find_value(_card_data, "is_gold") == 1) {
+// 卡槽简介优先使用形态注册表，避免 mod_cards_init 与 mod_slots_init 的描述脱节。
+var _shape_info = get_plant_shape_data(card_id, cshape);
+if (_shape_info != undefined && ds_exists(_shape_info, ds_type_map) && ds_map_exists(_shape_info, "description")) {
+    description = _shape_info[? "description"];
+} else if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_exists(_card_data, "description")) {
+    description = _card_data[? "description"];
+}
+if (is_fusion_card(card_id)) {
+    sprite_index = spr_slot_2;
+} else if (_card_data != noone && ds_exists(_card_data, ds_type_map) && ds_map_find_value(_card_data, "is_gold") == 1) {
     sprite_index = spr_slot_1;
 } else {
     sprite_index = spr_slot;

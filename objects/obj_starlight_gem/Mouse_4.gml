@@ -1,5 +1,5 @@
 if cooldown_timer <= 0{
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 	
 	var text = instance_create_depth(room_width/2+80,room_height/3-100,-500,obj_gem_text)
 	text.sprite_index = spr_starlight_gem_text

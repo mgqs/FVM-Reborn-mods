@@ -1,0 +1,52 @@
+package com.aurora.ui.maogoutd.resource.avatar
+{
+   import com.aurora.ui.maogoutd.resource.shot.a_4348;
+   
+   public interface IBattleAnim
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function a_4389(param1:int) : a_4348;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\avatar;IBattleAnim.as"
+         debugline 5
+         findpropstrict Multiname("IBattleAnim",[PackageNamespace("com.aurora.ui.maogoutd.resource.avatar")])
+         pushnull
+         newclass 72
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.avatar"),"IBattleAnim")
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

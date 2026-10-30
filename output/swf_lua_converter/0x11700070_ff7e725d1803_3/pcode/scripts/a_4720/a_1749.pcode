@@ -1,0 +1,117 @@
+package a_4720
+{
+   public class a_1749
+   {
+      
+      public static var enmGameRole_ShowCard:int = 1;
+      
+      public static var enmGameRole_NotShowCard:int = 2;
+      
+      public static var enmGameRole_ShowEntiret:int = 4;
+      
+      public static var enmGameRole_NotShowEntiret:int = 8;
+      
+      public static var enmGameRole_ShowAnotherEntiret:int = 16;
+      
+      public static var enmGameRole_NotShowAnotherEntiret:int = 32;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "enmGameRole_ShowCard", 0, 6
+               findproperty QName(PackageNamespace(""),"enmGameRole_ShowCard")
+               pushbyte 1
+               setproperty QName(PackageNamespace(""),"enmGameRole_ShowCard")
+               debug 1, "enmGameRole_NotShowCard", 1, 7
+               findproperty QName(PackageNamespace(""),"enmGameRole_NotShowCard")
+               pushbyte 2
+               setproperty QName(PackageNamespace(""),"enmGameRole_NotShowCard")
+               debug 1, "enmGameRole_ShowEntiret", 2, 8
+               findproperty QName(PackageNamespace(""),"enmGameRole_ShowEntiret")
+               pushbyte 4
+               setproperty QName(PackageNamespace(""),"enmGameRole_ShowEntiret")
+               debug 1, "enmGameRole_NotShowEntiret", 3, 9
+               findproperty QName(PackageNamespace(""),"enmGameRole_NotShowEntiret")
+               pushbyte 8
+               setproperty QName(PackageNamespace(""),"enmGameRole_NotShowEntiret")
+               debug 1, "enmGameRole_ShowAnotherEntiret", 4, 10
+               findproperty QName(PackageNamespace(""),"enmGameRole_ShowAnotherEntiret")
+               pushbyte 16
+               setproperty QName(PackageNamespace(""),"enmGameRole_ShowAnotherEntiret")
+               debug 1, "enmGameRole_NotShowAnotherEntiret", 5, 11
+               findproperty QName(PackageNamespace(""),"enmGameRole_NotShowAnotherEntiret")
+               pushbyte 32
+               setproperty QName(PackageNamespace(""),"enmGameRole_NotShowAnotherEntiret")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_1749()
+      {
+         method
+            name "com.aurora.constant.lobby:EnmGameRoleStauts/EnmGameRoleStauts"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\lobby;EnmGameRoleStauts.as"
+                  debugline 13
+                  getlocal0
+                  pushscope
+                  debugline 14
+                  getlocal0
+                  constructsuper 0
+                  debugline 15
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\lobby;EnmGameRoleStauts.as"
+         debugline 4
+         findpropstrict Multiname("a_1749",[PackageNamespace("a_4720")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 90
+         popscope
+         initproperty QName(PackageNamespace("a_4720"),"a_1749")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\constant\\lobby;EnmGameRoleStauts.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

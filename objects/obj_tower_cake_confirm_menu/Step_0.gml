@@ -1,4 +1,5 @@
 // obj_quit_confirm - Step Event
+if (variable_instance_exists(id, "pnl_closing") && pnl_closing) exit
 selected_button = -1;
 
 // 检测鼠标交互
@@ -7,8 +8,8 @@ var my = device_mouse_y_to_gui(0);
 
 for (var i = 0; i < array_length(buttons); i++) {
     var btn = buttons[i];
-    var btn_x = x + btn[0];
-    var btn_y = y + 70;
+    var btn_x = x + btn[0] * pop_s;
+    var btn_y = y + 70 * pop_s;
     var btn_width = btn[2];
     var btn_height = btn[3];
     
@@ -22,7 +23,7 @@ for (var i = 0; i < array_length(buttons); i++) {
             switch (i) {
                 case 1: // 取消
 					obj_tower_cake_bg.is_submenu_opened = false
-                    instance_destroy();
+					panel_anim_close(id);
                     break;
                     
                 case 0: // 确定
@@ -31,7 +32,7 @@ for (var i = 0; i < array_length(buttons); i++) {
 					global.gui_stack.to(room_ready)
                     break;
             }
-			audio_play_sound(snd_button,0,0)
+			global.audio.play(snd_button,0,0)
         }
         break;
     }
@@ -39,5 +40,7 @@ for (var i = 0; i < array_length(buttons); i++) {
 
 // ESC键关闭确认窗口
 if (keyboard_check_pressed(vk_escape)) {
-    instance_destroy();
+    panel_anim_close(id);
 }
+if (!instance_exists(id)) exit
+pop_anim_step(id)

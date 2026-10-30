@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"lilac_rainbow_platform_night",
+  "folderPath":"folders/精灵/Map Object/platform/lilac_rainbow_platform_night.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"lilac_rainbow_platform_night",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"dd46b03d-209e-403a-b1c5-943cdc60d819","path":"sprites/spr_lilac_rainbow_platform_night_1/spr_lilac_rainbow_platform_night_1.yy",},
+    {"name":"e309b798-cbfb-4cc0-942c-137c061998cd","path":"sprites/spr_lilac_rainbow_platform_night_2/spr_lilac_rainbow_platform_night_2.yy",},
+    {"name":"531e4588-bcce-4f61-a6ae-1c5aa96d99d3","path":"sprites/spr_lilac_rainbow_platform_night_3/spr_lilac_rainbow_platform_night_3.yy",},
+    {"name":"f943c115-d40b-4f91-8b05-09cbce79c4bb","path":"sprites/spr_lilac_rainbow_platform_night_4/spr_lilac_rainbow_platform_night_4.yy",},
+    {"name":"2777b5ac-134f-4ce9-8a11-37da359856d6","path":"sprites/spr_lilac_rainbow_platform_night_5/spr_lilac_rainbow_platform_night_5.yy",},
+    {"name":"be046fe7-3f53-49cd-a26e-6921352ab712","path":"sprites/spr_lilac_rainbow_platform_night_6/spr_lilac_rainbow_platform_night_6.yy",},
+    {"name":"b6c85a12-e4d4-4dc2-9692-edc1014632a9","path":"sprites/spr_lilac_rainbow_platform_night_7/spr_lilac_rainbow_platform_night_7.yy",}
+  ],
+}

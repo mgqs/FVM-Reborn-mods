@@ -1,0 +1,504 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class VolcanicFireEffect extends a_3909
+   {
+      
+      private static var ms_stVolcanicFireEffectVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stVolcanicFireEffectVector", 0, 13
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"ms_stVolcanicFireEffectVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"ms_stVolcanicFireEffectVector")
+               debug 1, "a_1300", 1, 14
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),PackageNamespace(""),PrivateNamespace("VolcanicFireEffect.as$239"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1300")
+               debug 1, "a_1301", 2, 15
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),PackageNamespace(""),PrivateNamespace("VolcanicFireEffect.as$239"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1301")
+               debug 1, "a_1302", 3, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffectMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffectMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_stCurrentFieldGrid:a_3491;
+      
+      public function VolcanicFireEffect()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/VolcanicFireEffect"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                  debugline 31
+                  getlocal0
+                  pushscope
+                  debugline 35
+                  getlocal0
+                  constructsuper 0
+                  debugline 37
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : VolcanicFireEffect
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffect")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                     debugline 19
+                     getlocal0
+                     pushscope
+                     debug 1, "stVolcanicFireEffect", 0, 21
+                     debugline 21
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"ms_stVolcanicFireEffectVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffect")
+                     setlocal1
+                     debugline 23
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 25
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffect")
+                     setlocal1
+            ofs002b:
+                     debugline 28
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean = false) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "flash.events:EventDispatcher"
+                  optional False()
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                        debugline 39
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 39
+                        debugline 41
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 43
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 44
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 46
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                           debugline 49
+                           getlocal0
+                           pushscope
+                           debugline 51
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                              debugline 54
+                              getlocal0
+                              pushscope
+                              debugline 56
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                 debugline 59
+                                 getlocal0
+                                 pushscope
+                                 debugline 61
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_3940() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_3940")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/Realease"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                    debugline 65
+                                    getlocal0
+                                    pushscope
+                                    debugline 67
+                                    getlex QName(PackageNamespace(""),"parent")
+                                    convert_b
+                                    dup
+                                    iffalse ofs001c
+                                    pop
+                                    getlex QName(PackageNamespace(""),"parent")
+                                    getlocal0
+                                    callproperty QName(PackageNamespace(""),"contains"), 1
+                                    convert_b
+                           ofs001c:
+                                    iffalse ofs002a
+                                    debugline 69
+                                    getlex QName(PackageNamespace(""),"parent")
+                                    getlocal0
+                                    callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                           ofs002a:
+                                    debugline 72
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                    pushnull
+                                    ifeq ofs003f
+                                    debugline 74
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                    pushfalse
+                                    setproperty QName(PackageNamespace(""),"m_hasFireEffect")
+                           ofs003f:
+                                    debugline 76
+                                    getlocal0
+                                    pushfalse
+                                    setproperty QName(PackageNamespace(""),"visible")
+                                    debugline 77
+                                    findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                    pushbyte 1
+                                    callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                    debugline 79
+                                    pushbyte -1
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"ms_stVolcanicFireEffectVector")
+                                    getlocal0
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                    ifne ofs006b
+                                    debugline 81
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"ms_stVolcanicFireEffectVector")
+                                    getlocal0
+                                    callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           ofs006b:
+                                    debugline 84
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function a_4003(a_4730:Event) : void
+                        {
+                           trait method QName(PackageNamespace(""),"a_4003")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/OnFrameTimerEvent"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace("flash.events"),"Event")
+                                 paramname "isReseaved"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                       debugline 87
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "a_4730", 0, 87
+                                       debugline 89
+                                       findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                       callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                       debugline 91
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                       getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                       ifne ofs002d
+                                       debugline 93
+                                       findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                       pushbyte 1
+                                       callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                              ofs002d:
+                                       debugline 95
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function get stCurrentFieldGrid() : a_3491
+                           {
+                              trait getter QName(PackageNamespace(""),"stCurrentFieldGrid")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/stCurrentFieldGrid/get"
+                                    returns QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 1
+                                       initscopedepth 10
+                                       maxscopedepth 11
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                          debugline 97
+                                          getlocal0
+                                          pushscope
+                                          debugline 99
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function set stCurrentFieldGrid(value:a_3491) : void
+                              {
+                                 trait setter QName(PackageNamespace(""),"stCurrentFieldGrid")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect/stCurrentFieldGrid/set"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace("com.aurora.ui.maogoutd.game"),"a_3491")
+                                       paramname "isReseaved"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 2
+                                          localcount 2
+                                          initscopedepth 10
+                                          maxscopedepth 11
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                             debugline 102
+                                             getlocal0
+                                             pushscope
+                                             debug 1, "value", 0, 102
+                                             debugline 104
+                                             getlocal0
+                                             getlocal1
+                                             initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                             debugline 105
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                             pushnull
+                                             ifeq ofs0029
+                                             debugline 107
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:VolcanicFireEffect"),"m_stCurrentFieldGrid")
+                                             pushtrue
+                                             setproperty QName(PackageNamespace(""),"m_hasFireEffect")
+                                    ofs0029:
+                                             debugline 109
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                              }
+                           }
+                           
+                           method
+                              name ""
+                              returns null
+                              
+                              body
+                                 maxstack 2
+                                 localcount 1
+                                 initscopedepth 1
+                                 maxscopedepth 9
+                                 
+                                 code
+                                    getlocal0
+                                    pushscope
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                    debugline 11
+                                    findpropstrict Multiname("VolcanicFireEffect",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                                    getlex QName(PackageNamespace(""),"Object")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                    pushscope
+                                    getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                    pushscope
+                                    getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                    newclass 306
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    popscope
+                                    initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"VolcanicFireEffect")
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;VolcanicFireEffect.as"
+                                    debugline 1
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                           

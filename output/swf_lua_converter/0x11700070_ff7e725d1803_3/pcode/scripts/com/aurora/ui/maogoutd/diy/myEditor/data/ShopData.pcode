@@ -1,0 +1,91 @@
+package com.aurora.ui.maogoutd.diy.myEditor.data
+{
+   public class ShopData
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var iShopID:int;
+      
+      public var iType:int;
+      
+      public var iRealID:int;
+      
+      public var iDIYPrice:int;
+      
+      public var iChallegePrice:int;
+      
+      public var iMaxNum:int;
+      
+      public function ShopData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.diy.myEditor.data:ShopData/ShopData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;ShopData.as"
+                  debugline 14
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 3
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;ShopData.as"
+         debugline 3
+         findpropstrict Multiname("ShopData",[PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data")])
+         getlex QName(PackageNamespace(""),"Object")
+         pushscope
+         getlex QName(PackageNamespace(""),"Object")
+         newclass 58
+         popscope
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.diy.myEditor.data"),"ShopData")
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\diy\\myEditor\\data;ShopData.as"
+         debugline 1
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

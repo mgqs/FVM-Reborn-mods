@@ -4,7 +4,7 @@ if card_equipped_attire_id(plant_id) == "ice_egg_pisces"{
 	inst.sprite_index = spr_ice_egg_pisces_bullet
 }
 
-audio_play_sound(snd_throw, 0, 0)
+global.audio.play(snd_throw, 0, 0)
 
 // 基本属性
 inst.damage = atk

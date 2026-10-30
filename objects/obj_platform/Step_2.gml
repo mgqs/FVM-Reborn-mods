@@ -218,7 +218,11 @@ else if (state == "moving") {
                         // depth从视觉位置计算，但不覆盖grid_col/grid_row（保持逻辑位置）
                         if (variable_instance_exists(plant, "plant_type")) {
                             var vis_grid_pos = get_grid_position_from_world(plant.x, plant.y);
-                            plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, plant.plant_type);
+                            var _ptype = plant.plant_type
+                            if (plant.object_index == obj_cotton_candy || plant.object_index == obj_lingrong_god) _ptype = "lilypad"
+                        // 海洋女神三转及以上是悬浮卡，始终保持在同格卡片前景。
+                        var _floating_depth = (plant.object_index == obj_haiyang_god && plant.shape >= 1) ? -400 : 0;
+                        plant.depth = calculate_plant_depth(vis_grid_pos.col, vis_grid_pos.row, _ptype) + _floating_depth + (plant.object_index == obj_lingrong_god ? 2 : 0);
                         }
                         
                         if (variable_instance_exists(plant, "banding_star_obj") && instance_exists(plant.banding_star_obj)) {
@@ -314,12 +318,14 @@ with (obj_card_parent) {
         grid_row = grid_pos.row
 		
         var _type = plant_type
-        if (object_index == obj_cotton_candy) _type = "lilypad"
+        if (object_index == obj_cotton_candy || object_index == obj_lingrong_god) _type = "lilypad"
 		if (object_index == obj_soda_bubble){
 			if(card_equipped_attire_id(plant_id) != "bubble_maltose")_type = "coffee"
 			else _type = "lilypad"
 		}
-        depth = calculate_plant_depth(grid_col, grid_row, _type)
+        // 平台统一刷新会覆盖卡片自身 Step 中的深度；悬浮形态需要保留前景层。
+        var _floating_depth = (object_index == obj_haiyang_god && shape >= 1) ? -400 : 0;
+        depth = calculate_plant_depth(grid_col, grid_row, _type) + _floating_depth
     }
 }
 
@@ -335,6 +341,12 @@ with (weapons[i]) {
 with (obj_melon_shield_inner) {
     if (instance_exists(parent_plant)) {
         depth = parent_plant.depth + 2
+    }
+}
+
+with (obj_shield_aura) {
+    if (variable_instance_exists(id, "parent_player") && instance_exists(parent_player)) {
+        depth = parent_player.depth + depth_offset;
     }
 }
 

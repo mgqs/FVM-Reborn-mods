@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"iron_man_mouse",
+  "folderPath":"folders/物体/Enemy/floating_island/BOSS/iron_man_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_man_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"obj_iron_man","path":"objects/obj_iron_man/obj_iron_man.yy",},
+    {"name":"obj_iron_man_bullet","path":"objects/obj_iron_man_bullet/obj_iron_man_bullet.yy",},
+    {"name":"obj_iron_man_mouse","path":"objects/obj_iron_man_mouse/obj_iron_man_mouse.yy",}
+  ],
+}

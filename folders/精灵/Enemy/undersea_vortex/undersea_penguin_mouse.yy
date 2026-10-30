@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"undersea_penguin_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/undersea_penguin_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"undersea_penguin_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"784a8029-24bd-419a-9d27-b162812124f9","path":"sprites/spr_undersea_penguin_mouse/spr_undersea_penguin_mouse.yy",},
+    {"name":"dc5708fd-709a-4409-a63a-0273a729d965","path":"sprites/spr_undersea_penguin_mouse_bomb/spr_undersea_penguin_mouse_bomb.yy",},
+    {"name":"043e2937-e0e5-403e-9540-50a1782806eb","path":"sprites/spr_undersea_penguin_mouse_ready/spr_undersea_penguin_mouse_ready.yy",},
+    {"name":"0681eb15-7d19-4195-9465-01daf3e0421e","path":"sprites/spr_undersea_penguin_mouse_throw/spr_undersea_penguin_mouse_throw.yy",}
+  ],
+}

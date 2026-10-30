@@ -17,21 +17,32 @@ else if (timer == 30)
     var _y = y;
     var _damage = atk;
     var _damage_type = damage_type;
-    
+
     with (obj_enemy_parent)
     {
         if (hp > 0 && abs(grid_row - other.grid_row) <= other._r && abs(x - other.x) <= other._range)
         {
-            if (hp > _damage)
+            damage_amount = _damage;
+            damage_type = _damage_type;
+            event_user(0);
+
+            if (hp <= 0)
             {
-                hp -= _damage;
-                event_user(0);
-            }
-            else
-            {
-                instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                if (special_ash)
+                {
+                    var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                    inst.special_ash = true;
+                    inst.sprite_index = sprite_index;
+                    inst.image_index = image_index;
+                }
+                else
+                {
+                    instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
+                }
                 instance_destroy();
             }
         }
     }
+
+    instance_destroy();
 }

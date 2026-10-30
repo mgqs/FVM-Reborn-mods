@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"ronghekafei",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/ronghekafei.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ronghekafei",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"fbfd5724-8e9b-4613-a456-2f2f5af9c3e6","path":"sprites/spr_ronghekafei/spr_ronghekafei.yy",},
+    {"name":"11bacd53-b1a5-4d69-8a51-5081d18c1f86","path":"sprites/spr_ronghekafei_1/spr_ronghekafei_1.yy",},
+    {"name":"9fee342a-0a3e-4221-a26f-abdb3a76d186","path":"sprites/spr_ronghekafei_2/spr_ronghekafei_2.yy",},
+    {"name":"a010196a-0860-4509-b283-48e4eb11c69d","path":"sprites/spr_ronghekafei_bullet/spr_ronghekafei_bullet.yy",},
+],
+}

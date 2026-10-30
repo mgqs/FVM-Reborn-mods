@@ -12,11 +12,13 @@ with (obj_enemy_parent)
 {
     if (hp > 0 && grid_row == other.grid_row && abs(x - other.x) <= 100)
     {
-        if (array_get_index(other.ignore_list, mouse_id) != -1)
+        // 冲撞秒杀豁免：只有魂系鼠与 BOSS，其余敌人一律撞死
+        if (crash_immune_enemy(id) || array_get_index(other.ignore_list, mouse_id) != -1)
         {
             if (array_get_index(other.hit_array, id) == -1)
             {
-                hp -= other.atk;
+                damage_amount = other.atk;
+                damage_type = other.damage_type;
                 event_user(0);
                 array_push(other.hit_array, id);
             }

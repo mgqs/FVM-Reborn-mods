@@ -1,3 +1,6 @@
+if (shape < 2)
+    exit;
+
 function find_priority_enemy()
 {
     var priority_enemy = -4;

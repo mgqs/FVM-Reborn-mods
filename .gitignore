@@ -72,3 +72,28 @@ sprites.info.json
 .vs/
 x64/
 *.user
+
+# GameMaker build output
+$out/.codex-tmp/
+.codex-tmp/
+.codex-tmp/
+
+# 授权发放账本（含玩家 QQ 号，严禁提交到公开仓库）
+tools/qq_ledger.db
+tools/*.db
+tools/*.sqlite
+tools/qq_export*.csv
+
+# 授权码池与密钥（公开仓库里绝不能有真值：池子 + 密钥同时泄露 = 人人可造码）
+tools/codes_pool.txt
+tools/auth_secret.txt
+
+# 机器人配置（含 AppSecret，绝不可提交）
+bots/qq_auth_bot/config.json
+bots/qq_auth_bot/config.local.json
+
+# 云函数打包产物（内含码池副本）与本地调试账本、日志
+bots/qq_auth_bot/scf-qqauth.zip
+bots/qq_auth_bot/scf/_ledger_debug.json
+bots/qq_auth_bot/bot.log
+__pycache__/

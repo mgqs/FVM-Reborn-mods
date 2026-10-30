@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Shovel",
+  "folderPath":"folders/脚本/Shovel.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Shovel",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

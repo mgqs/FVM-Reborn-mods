@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"coffee_pot",
+  "folderPath":"folders/精灵/Cards/Shooter/coffee_pot.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"coffee_pot",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"79533628-3bc6-40e0-85f8-805f2b1f36c9","path":"sprites/spr_coffee_pot/spr_coffee_pot.yy",},
+    {"name":"3d4c3ff9-6fb6-4022-bf0d-0bfca3b80880","path":"sprites/spr_coffee_pot_1/spr_coffee_pot_1.yy",},
+    {"name":"be27ba92-1c87-4703-a83a-51f1343ede65","path":"sprites/spr_coffee_pot_2/spr_coffee_pot_2.yy",},
+    {"name":"955bff41-65aa-4a50-9b99-3f9e6ae7da53","path":"sprites/spr_coffee_pot_sleep/spr_coffee_pot_sleep.yy",}
+  ],
+}

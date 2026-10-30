@@ -1,5 +1,8 @@
-draw_self()
-if flash_value >0{
+if(climb_stage==1){
+	y = climb_y
+}
+if (sprite_index != -1) draw_self()
+if flash_value >0 && sprite_index != -1{
 	
 	shader_set(shader_hit);
 	draw_sprite_ext(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,flash_color,flash_value/200);
@@ -40,4 +43,7 @@ if is_scare{
 }
 if is_stun{
 	draw_sprite_ext(stun_sprite,sprite_get_number(stun_sprite)-(floor(stun_timer/5) mod sprite_get_number(stun_sprite)),x-20,y-150,1.8,1.8,0,c_white,1)
+}
+if(climb_stage==1){
+	y = climb_base_y
 }

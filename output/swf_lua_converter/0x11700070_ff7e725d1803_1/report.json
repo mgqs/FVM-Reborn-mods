@@ -1,0 +1,13 @@
+{
+  "status": "blocked",
+  "source": "C:\\Users\\18203\\Desktop\\0x11700070.swf",
+  "errors": [
+    "未找到 P-code 导出文件。"
+  ],
+  "lua_emitted": false,
+  "as3_catalog_entries": 380,
+  "exported_sources": 380,
+  "total_methods": 3132,
+  "unsupported_sources": 380,
+  "tag_count": 302
+}

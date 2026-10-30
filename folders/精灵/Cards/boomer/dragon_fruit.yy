@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"dragon_fruit",
+  "folderPath":"folders/精灵/Cards/boomer/dragon_fruit.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dragon_fruit",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"87189352-6316-46be-b211-a2040b9473a4","path":"sprites/spr_dragon_fruit/spr_dragon_fruit.yy",},
+    {"name":"e2f2511a-ea4c-4f70-8fa8-9dc1c1f06b06","path":"sprites/spr_dragon_fruit_1/spr_dragon_fruit_1.yy",},
+    {"name":"0188796b-8e64-4d50-ad79-aa41bbd18405","path":"sprites/spr_dragon_fruit_2/spr_dragon_fruit_2.yy",}
+  ],
+}

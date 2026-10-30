@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"BOSS",
+  "folderPath":"folders/物体/Enemy/undersea_vortex/BOSS.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"BOSS",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"machine_shark_2","path":"folders/物体/Enemy/undersea_vortex/BOSS/machine_shark_2.yy",},
+    {"name":"mermaid_mary","path":"folders/物体/Enemy/undersea_vortex/BOSS/mermaid_mary.yy",},
+    {"name":"machine_shark_1","path":"folders/物体/Enemy/undersea_vortex/BOSS/machine_shark_1.yy",},
+    {"name":"lobster_knight","path":"folders/物体/Enemy/undersea_vortex/BOSS/lobster_knight.yy",},
+    {"name":"electric_jellyfish","path":"folders/物体/Enemy/undersea_vortex/BOSS/electric_jellyfish.yy",}
+  ],
+  "listItems":[],
+}

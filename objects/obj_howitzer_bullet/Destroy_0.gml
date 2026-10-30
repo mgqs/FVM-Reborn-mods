@@ -5,7 +5,7 @@
 	with (obj_enemy_parent) {
 		
 			if (point_distance(x, y, _x, _y) < _range && grid_row >= other.row-1&&grid_row <= other.row+1) {
-		        if (hp>other.damage) {
+		        if (is_boss || (immune_to_ash && hp>other.damage)) { // BOSS 只吃伤害，绝不进入秒杀分支
 		            // 对免疫灰烬的敌人只造成伤害
 		            hp -= other.damage;
 					event_user(0)
@@ -13,7 +13,7 @@
 		            //effect_create_above(effect_smoke, x, y, 1, c_gray);
 		        } else {
 		            // 直接摧毁非免疫敌人
-					if special_ash{
+					if ((is_boss || string_pos("infected_", mouse_id) == 1) && special_ash){
 						var inst = instance_create_depth(x,y-20,depth,obj_mouse_ash_death)
 						inst.special_ash = true
 						inst.sprite_index = sprite_index
@@ -34,7 +34,7 @@
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	 audio_play_sound(snd_bullet_explode, 0, false);
+	 global.audio.play(snd_bullet_explode, 0, false);
 	 
 var effect_inst = instance_create_depth(x,y,depth,obj_coke_bomb_explode)
 

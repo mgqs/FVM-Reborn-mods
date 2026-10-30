@@ -1,0 +1,288 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class a_2708 implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_uiTickCount:uint;
+      
+      public var m_uiGlobalID:uint;
+      
+      public var m_iDefenderTypeID:int;
+      
+      public var m_byYGridNo:int;
+      
+      public var m_byXGridNo:int;
+      
+      public var m_byExistOwnerSeatID:int;
+      
+      public var m_iExistDefenderTypeID:int;
+      
+      public var m_IsCaclueCoolDown:int;
+      
+      public var a_1094:int;
+      
+      public function a_2708()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/CNotifyRefusePlaceDefender"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                  debugline 19
+                  getlocal0
+                  pushscope
+                  debugline 20
+                  getlocal0
+                  constructsuper 0
+                  debugline 21
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/CNotifyRefusePlaceDefender"
+               paramname "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/CNotifyRefusePlaceDefender"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 10
+                  localcount 4
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                     debugline 23
+                     getlocal0
+                     pushscope
+                     debug 1, "byte_array", 0, 23
+                     debug 1, "encode_length", 1, 23
+                     debug 1, "propertyArray", 2, 25
+                     pushstring "m_uiTickCount"
+                     pushstring "uint32"
+                     debugline 26
+                     newarray 2
+                     pushstring "m_uiGlobalID"
+                     pushstring "uint32"
+                     debugline 27
+                     newarray 2
+                     pushstring "m_iDefenderTypeID"
+                     pushstring "int32"
+                     debugline 28
+                     newarray 2
+                     pushstring "m_byYGridNo"
+                     pushstring "int8"
+                     debugline 29
+                     newarray 2
+                     pushstring "m_byXGridNo"
+                     pushstring "int8"
+                     debugline 30
+                     newarray 2
+                     pushstring "m_byExistOwnerSeatID"
+                     pushstring "int8"
+                     debugline 31
+                     newarray 2
+                     pushstring "m_iExistDefenderTypeID"
+                     pushstring "int32"
+                     debugline 32
+                     newarray 2
+                     pushstring "m_IsCaclueCoolDown"
+                     pushstring "int8"
+                     debugline 33
+                     newarray 2
+                     pushstring "a_1094"
+                     pushstring "int8"
+                     debugline 34
+                     newarray 2
+                     newarray 9
+                     coerce QName(PackageNamespace(""),"Array")
+                     setlocal3
+                     debugline 37
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal0
+                     getlocal3
+                     getlocal1
+                     getlocal2
+                     callproperty QName(PackageNamespace(""),"a_2665"), 4
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/CNotifyRefusePlaceDefender"
+                  paramname "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/CNotifyRefusePlaceDefender"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 10
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                        debugline 40
+                        getlocal0
+                        pushscope
+                        debug 1, "byte_array", 0, 40
+                        debug 1, "decode_length", 1, 40
+                        debug 1, "propertyArray", 2, 42
+                        pushstring "m_uiTickCount"
+                        pushstring "uint32"
+                        debugline 43
+                        newarray 2
+                        pushstring "m_uiGlobalID"
+                        pushstring "uint32"
+                        debugline 44
+                        newarray 2
+                        pushstring "m_iDefenderTypeID"
+                        pushstring "int32"
+                        debugline 45
+                        newarray 2
+                        pushstring "m_byYGridNo"
+                        pushstring "int8"
+                        debugline 46
+                        newarray 2
+                        pushstring "m_byXGridNo"
+                        pushstring "int8"
+                        debugline 47
+                        newarray 2
+                        pushstring "m_byExistOwnerSeatID"
+                        pushstring "int8"
+                        debugline 48
+                        newarray 2
+                        pushstring "m_iExistDefenderTypeID"
+                        pushstring "int32"
+                        debugline 49
+                        newarray 2
+                        pushstring "m_IsCaclueCoolDown"
+                        pushstring "int8"
+                        debugline 50
+                        newarray 2
+                        pushstring "a_1094"
+                        pushstring "int8"
+                        debugline 51
+                        newarray 2
+                        newarray 9
+                        coerce QName(PackageNamespace(""),"Array")
+                        setlocal3
+                        debugline 54
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal0
+                        getlocal3
+                        getlocal1
+                        getlocal2
+                        callproperty QName(PackageNamespace(""),"a_2666"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyRefusePlaceDefender/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                           debugline 57
+                           getlocal0
+                           pushscope
+                           debugline 59
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                  debugline 8
+                  findpropstrict Multiname("a_2708",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 141
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"a_2708")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyRefusePlaceDefender.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

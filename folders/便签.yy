@@ -1,0 +1,14 @@
+{
+  "$GMFolder":"",
+  "%Name":"便签",
+  "folderPath":"folders/便签.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"便签",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

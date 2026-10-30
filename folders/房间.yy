@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"房间",
+  "folderPath":"folders/房间.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"房间",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"inst_66EA97A","path":"rooms/room_battle/room_battle.yy",},
+    {"name":"inst_46082EB4","path":"rooms/room_init/room_init.yy",},
+    {"name":"inst_62397886","path":"rooms/room_map/room_map.yy",},
+    {"name":"inst_646E7105","path":"rooms/room_menu/room_menu.yy",},
+    {"name":"inst_63C9667","path":"rooms/room_ready/room_ready.yy",},
+    {"name":"inst_494163C5","path":"rooms/room_tower_cake/room_tower_cake.yy",}
+  ],
+}

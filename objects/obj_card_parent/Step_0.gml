@@ -16,6 +16,37 @@ if frozen_timer > 0{
 else{
 	is_frozen = false
 }
+if chongsheng_buff_timer > 0 {
+	chongsheng_buff_timer--
+	if hp < _prev_hp && chongsheng_buff_reduction > 0 {
+		var _dmg = _prev_hp - hp
+		var _reduced = round(_dmg * chongsheng_buff_reduction)
+		hp += _reduced
+		if hp > max_hp hp = max_hp
+	}
+}
+
+if (longyuan_webbed && longyuan_web_shield_hp > 0 && hp < _prev_hp) {
+	var _web_damage = _prev_hp - hp;
+	var _web_absorbed = min(_web_damage, longyuan_web_shield_hp);
+	hp += _web_absorbed;
+	longyuan_web_shield_hp -= _web_absorbed;
+	if (longyuan_web_shield_hp <= 0) {
+		longyuan_webbed = false;
+		if (longyuan_webbed_sprite != -1) sprite_index = longyuan_webbed_sprite;
+		if (state == CARD_STATE.SLEEP) state = CARD_STATE.IDLE;
+	}
+}
+_prev_hp = hp
+if (variable_instance_exists(id,"zodiac_guard_time") && zodiac_guard_time > 0) {
+    zodiac_guard_time--;
+    if (hp < zodiac_guard_hp) {
+        hp = zodiac_guard_hp;
+        zodiac_guard_hits--;
+        if (zodiac_guard_hits <= 0) zodiac_guard_time = 0;
+    }
+    zodiac_guard_hp = hp;
+}
 if hp <= 0{
 	instance_destroy()
 }
@@ -58,8 +89,8 @@ if state != CARD_STATE.SLEEP && instance_exists(banding_sleep_obj){
 var grid_pos = get_grid_position_from_world(x,y)
 
 if !(variable_instance_exists(id, "platform_grid_lock") && platform_grid_lock) {
-    grid_col = grid_pos.col
-    grid_row = grid_pos.row
+    grid_col = clamp(grid_pos.col, 0, global.grid_cols - 1)
+    grid_row = clamp(grid_pos.row, 0, global.grid_rows - 1)
 }
 
 depth = calculate_plant_depth(grid_pos.col, grid_pos.row, plant_type)
@@ -111,4 +142,3 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
-

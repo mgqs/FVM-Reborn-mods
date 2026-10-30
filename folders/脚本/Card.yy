@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"Card",
+  "folderPath":"folders/脚本/Card.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Card",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cards_init","path":"scripts/cards_init/cards_init.yy",},
+    {"name":"card_created","path":"scripts/card_created/card_created.yy",},
+    {"name":"card_depth","path":"scripts/card_depth/card_depth.yy",},
+    {"name":"card_destroyed","path":"scripts/card_destroyed/card_destroyed.yy",},
+    {"name":"card_info_island_registry","path":"scripts/card_info_island_registry/card_info_island_registry.yy",},
+    {"name":"card_registry","path":"scripts/card_registry/card_registry.yy",},
+    {"name":"card_skill","path":"scripts/card_skill/card_skill.yy",},
+    {"name":"card_ungrade","path":"scripts/card_ungrade/card_ungrade.yy",},
+    {"name":"info_island_init","path":"scripts/info_island_init/info_island_init.yy",},
+    {"name":"skill_init","path":"scripts/skill_init/skill_init.yy",},
+    {"name":"update_card_depths","path":"scripts/update_card_depths/update_card_depths.yy",}
+  ],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"Initialization",
+  "folderPath":"folders/Scribble/(System - don't call these functions)/Initialization.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Initialization",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"__scribble_class_generator_state","path":"scripts/__scribble_class_generator_state/__scribble_class_generator_state.yy",},
+    {"name":"__scribble_glyph_data_initialize","path":"scripts/__scribble_glyph_data_initialize/__scribble_glyph_data_initialize.yy",},
+    {"name":"__scribble_krutidev_lookup_map_initialize","path":"scripts/__scribble_krutidev_lookup_map_initialize/__scribble_krutidev_lookup_map_initialize.yy",},
+    {"name":"__scribble_krutidev_matra_lookup_map_initialize","path":"scripts/__scribble_krutidev_matra_lookup_map_initialize/__scribble_krutidev_matra_lookup_map_initialize.yy",}
+  ],
+}

@@ -38,7 +38,7 @@ function GuiStack() constructor {
         if (!room_exists(_room)) {
             return new Result().fail(ErrorCode.GUI_INVALID_ROOM, "invalid room index: " + string(_room))
         }
-        room_goto(_room)
+        room_transition_start(_room)
         return new Result().success()
     }
 
@@ -97,3 +97,432 @@ function GuiStack() constructor {
 }
 
 
+///              值存 config.ini 的 [settings] ui_anim。
+function ui_anim_level(){
+    if (!variable_global_exists("ui_anim")) {
+        global.ui_anim = 1        // 还没读到设置时按「基础」，即保留现有表现
+    }
+    return global.ui_anim
+}
+
+/// @description 当前动效等级是否达到 _min（0/1/2）—— 每个动效入口调一次就够了
+function ui_anim_on(_min){
+    return (ui_anim_level() >= _min)
+}
+
+function ui_anim_dt(){
+    return min(delta_time / 1000000, 0.05)
+}
+
+/// @description 唯一缓动曲线（ease-out 幂函数）。传 0~1 进度，返回缓动后的 0~1
+///              _pow 越大「先快后慢」越明显：3 = 默认 cubic，5 = 前段明显更快
+function ui_anim_ease(_p, _pow = 3){
+    return 1 - power(1 - clamp(_p, 0, 1), _pow)
+}
+
+/// @description 某个实例当前的实际动效透明度（0~1）= 父级进度 × 自己的进度。
+///              没参与任何动效的实例返回 1。文字、贴图参数都能用
+function ui_anim_alpha(_inst){
+    var _a = 1
+    if (variable_instance_exists(_inst, "pnl_po")) { _a *= _inst.pnl_po }
+    if (variable_instance_exists(_inst, "pnl_o"))  { _a *= _inst.pnl_o }
+    return _a
+}
+
+/// @description 过渡里的文字透明度：文字不吃 image_alpha，只有 draw_set_alpha 管用。
+///              画完记得 draw_set_alpha(1) 复位（别把 alpha 漏给后面的绘制）
+function ui_anim_text_alpha(_inst){
+    draw_set_alpha(ui_anim_alpha(_inst))
+}
+
+// ===== 整块 UI 面板的进出场过渡（商城 / 食神谱 / 合成屋 / 任务 / 背包 / 强化 / 世界地图 共用）=====
+// 面板 Draw 里自己如果也有 surface_set_target/reset（成对出现），嵌套是安全的 —— GM 的表面目标是栈。
+
+/// @description 初始化动效状态（对象的 Create 里调一次）
+/// @param {Real} _slide 滑动距离（px）
+/// @param {Real} _mode  0 = 整块从下方滑入(end_slide)  1 = 左右分半滑入(end_split)
+///                      2 = 分区滑入(end_parts)        3 = 只做透明度（不录 surface、不位移）
+function panel_anim_init(_inst, _open_time, _close_time, _slide = 260, _mode = 0){
+    with (_inst) {
+        pnl_open_time  = _open_time
+        pnl_close_time = _close_time
+        pnl_slide      = _slide
+        pnl_mode       = _mode
+        pnl_dist       = _slide            // 当前实际滑动距离（end_XXX 每次会同步）
+        pnl_split      = 0                 // 分半模式下的接缝（end_split 每次会同步）—— 必须先给初值：
+                                           // panel_anim_step 在 Draw 第一行就读它，那时 end_split 还没跑过
+        pnl_drawer_dir = -1                // 抽屉模式（mode 4）的拉出方向：-1 = 自左侧，+1 = 自右侧
+        pnl_kid_types  = []                // 声明过的「跟着走」的对象（每帧补登记用）
+        pnl_t          = 0
+        pnl_o          = 0                 // 0 = 收起（全透明+偏移最大），1 = 完全展开
+        pnl_po         = 1                 // 父级进度：顶层恒 1，由父级 panel_anim_step 覆写
+        pnl_closing    = false
+        pnl_surf       = -1
+        pnl_recording  = false             // 这一帧是否走 surface 录制（静止时不录，直接画屏幕）
+        pnl_parts      = []                // 分区过渡用：[[x1,y1,x2,y2,dx,dy], ...]
+        pnl_kids       = ds_list_create()  // [实例, 基准x, 基准y, 基准alpha, 方向]
+    }
+}
+
+/// @description 登记「跟着一起动」的对象：_things 可以是数组（对象类型 / 实例 id 混放都行），
+///              也可以是单个。之后每帧自动补登记 —— 点选项卡才动态创建的子对象不会漏网。
+///              对象 Create 里调一次即可
+function panel_anim_kids(_inst, _things){
+    with (_inst) {
+        pnl_kid_types = is_array(_things) ? _things : [_things]
+        __panel_anim_collect_kids(id)
+    }
+}
+
+/// @description 内部：把一个「跟着走」的对象加进表（已登记过则跳过）
+function __panel_anim_add_kid(_inst, _kid, _dir = 0){
+    with (_inst) {
+        if (!variable_instance_exists(id, "pnl_kids")) { pnl_kids = ds_list_create() }
+        for (var i = 0; i < ds_list_size(pnl_kids); i += 5) {
+            if (pnl_kids[| i] == _kid) { return }        // 已经登记过，别重复加
+        }
+        // _dir 只在分半模式用：左half 的子对象传 -1，右half 传 +1；只滑不分的面板留 0
+        ds_list_add(pnl_kids, _kid, _kid.x, _kid.y, _kid.image_alpha, _dir)
+    }
+}
+
+/// @description 内部：把「当前活着的那几类对象」补进表（已登记的会跳过）
+function __panel_anim_collect_kids(_inst){
+    with (_inst) {
+        if (!variable_instance_exists(id, "pnl_kid_types")) { return }
+        for (var t = 0; t < array_length(pnl_kid_types); t++) {
+            var _ty = pnl_kid_types[t]
+            with (_ty) { __panel_anim_add_kid(_inst, id) }
+        }
+    }
+}
+
+/// @description 内部：点落在哪个分区里（_parts = [[x1,y1,x2,y2,dx,dy], ...]）；不在任何区返回 -1
+function __panel_anim_part_of(_parts, _x, _y){
+    if (!is_array(_parts)) { return -1 }
+    for (var i = 0; i < array_length(_parts); i++) {
+        var _p = _parts[i]
+        if (_x >= _p[0] && _x <= _p[2] && _y >= _p[1] && _y <= _p[3]) { return i }
+    }
+    return -1
+}
+
+/// @description 请求关闭：反向播完再销毁（等级 0 或没初始化过就直接销毁）
+function panel_anim_close(_inst){
+    with (_inst) {
+        if (!variable_instance_exists(id, "pnl_closing")) { instance_destroy(); exit }
+        if (!ui_anim_on(1)) { instance_destroy(); exit }   // 关闭动效：立刻销毁，不播收缩
+        pnl_closing = true
+        pnl_t = 0
+    }
+}
+
+/// @description 推进进度；关闭播完就销毁实例。Step / End Step 末尾调
+/// @param {Bool} _sync_kids false = 只推进进度，不接管子对象位置与透明度（自己管子对象时用）
+function panel_anim_step(_inst, _sync_kids = true){
+    with (_inst) {
+        if (!variable_instance_exists(id, "pnl_o")) { return }
+        if (_sync_kids) { __panel_anim_collect_kids(id) }   // 动态创建的子对象每帧自动补上
+        var _p = 1
+        if (!ui_anim_on(1)) {
+            pnl_o = 1                       // 关闭动效：不播过渡，永远当作「完全展开」
+            // pnl_t 必须记为本段时长而不是 0：等级从 0 切回 1/2 时，若进度被清零，
+            // 下一帧会重播一次进场动画
+            pnl_t = pnl_closing ? pnl_close_time : pnl_open_time
+        }
+        else {
+            var _dur = max(pnl_closing ? pnl_close_time : pnl_open_time, 0.0001)
+            pnl_t += ui_anim_dt()
+            _p = clamp(pnl_t / _dur, 0, 1)
+            pnl_o = pnl_closing ? 1 - ui_anim_ease(_p) : ui_anim_ease(_p)
+        }
+        // mode 3（只做透明度）：自身精灵跟着淡。父级进度也乘进来，和文字口径一致
+        if (pnl_mode == 3) { image_alpha = ui_anim_alpha(id) }
+        if (_sync_kids && variable_instance_exists(id, "pnl_kids")) {
+            var _n = ds_list_size(pnl_kids)
+            var _sh = (1 - pnl_o) * pnl_dist
+            var _dy = (pnl_mode == 0) ? _sh : 0
+            for (var i = 0; i < _n; i += 5) {
+                var _k = pnl_kids[| i]
+                if (instance_exists(_k)) {
+                    _k.pnl_po = pnl_o       // 子对象统一用 ui_anim_alpha() 读，任意层嵌套相乘
+                    // 只在过渡进行中接管子对象的位置与透明度；面板完全展开后不再写，
+                    // 否则会抹掉子对象自己的逻辑（滚动 y_offset、
+                    // 悬停 image_alpha、瀑布流位移）
+                    if (pnl_o < 0.999) {
+                        if (pnl_mode != 3) {
+                            var _bx = pnl_kids[| i+1]
+                            var _by = pnl_kids[| i+2]
+                            var _kx = _bx
+                            var _ky = _by + _dy
+                            if (pnl_mode == 1) {
+                                var _kd = pnl_kids[| i+4]
+                                if (_kd == 0) { _kd = (_bx < pnl_split) ? -1 : 1 }   // 没指定方向的按接缝哪边决定滑向
+                                _kx = _bx + _kd * _sh
+                            }
+                            else if (pnl_mode == 2) {
+                                // 分区过渡：子对象按自己的基准点落在哪个区，就跟那个区同向滑
+                                var _pt = __panel_anim_part_of(pnl_parts, _bx, _by)
+                                if (_pt >= 0) {
+                                    _kx = _bx + pnl_parts[_pt][4] * _sh
+                                    _ky = _by + pnl_parts[_pt][5] * _sh
+                                }
+                            }
+                            else if (pnl_mode == 4) {
+                                // 抽屉式：整块（含子对象）横向拉出
+                                _kx = _bx + pnl_drawer_dir * _sh
+                            }
+                            _k.x = _kx
+                            _k.y = _ky
+                        }
+                        _k.image_alpha = pnl_kids[| i+3] * pnl_o
+                    }
+                }
+            }
+        }
+        if (ui_anim_on(1) && pnl_closing && _p >= 1) { instance_destroy() }
+    }
+}
+
+/// @description 开始录制：面板的全部绘制进一张 surface（Draw 事件第一行之前调）
+function panel_anim_begin(_inst){
+    with (_inst) {
+        // 静止（pnl_o = 1）不录：直接画在屏幕上 —— 和「没有过渡」逐像素一致，也没有 surface 合成偏差。
+        // 只有正在动（0 <= pnl_o < 1）的那几帧才走 surface 录制 + 贴回。
+        pnl_recording = (pnl_o < 0.999)
+        if (!pnl_recording) { return }
+        if (!surface_exists(pnl_surf)) { pnl_surf = surface_create(room_width, room_height) }
+        surface_set_target(pnl_surf)
+        draw_clear_alpha(c_black, 0)
+    }
+}
+
+/// @description 结束录制：整块从下方滑入 + 淡入（Draw 事件最后一行调）
+function panel_anim_end_slide(_inst, _dist = undefined){
+    with (_inst) {
+        var _d = is_undefined(_dist) ? pnl_slide : _dist
+        pnl_mode = 0
+        pnl_dist = _d
+        if (!pnl_recording) { return }      // 静止帧：内容已经直接画在屏幕上了
+        surface_reset_target()
+        draw_surface_ext(pnl_surf, 0, (1 - pnl_o) * _d, 1, 1, 0, c_white, pnl_o)
+    }
+}
+
+/// @description 结束录制：整块横向拉出 + 淡入（抽屉式）。_dir = -1 自左侧拉出 / +1 自右侧
+function panel_anim_end_drawer(_inst, _dir = -1, _dist = undefined){
+    with (_inst) {
+        var _d = is_undefined(_dist) ? pnl_slide : _dist
+        pnl_mode       = 4
+        pnl_drawer_dir = _dir
+        pnl_dist       = _d
+        if (!pnl_recording) { return }      // 静止帧：内容已经直接画在屏幕上了
+        surface_reset_target()
+        draw_surface_ext(pnl_surf, _dir * (1 - pnl_o) * _d, 0, 1, 1, 0, c_white, pnl_o)
+    }
+}
+
+/// @description 结束录制：按素材量出的接缝分左右两半，各自从外侧滑入 + 一起淡入（背包用）
+function panel_anim_end_split(_inst, _split, _dist = undefined){
+    with (_inst) {
+        var _d = is_undefined(_dist) ? pnl_slide : _dist
+        pnl_mode = 1
+        pnl_dist = _d
+        pnl_split = _split
+        var _sh = (1 - pnl_o) * _d
+        if (!pnl_recording) { return }      // 静止帧：两块本来就画在原位，不需要贴回来
+        surface_reset_target()
+        // 左半：整体左移 _sh；右半：整体右移 _sh。只影响动画，静止时两块拼回去是完整的。
+        draw_surface_part_ext(pnl_surf, 0, 0, _split, room_height, -_sh, 0, 1, 1, c_white, pnl_o)
+        draw_surface_part_ext(pnl_surf, _split, 0, room_width - _split, room_height, _split + _sh, 0, 1, 1, c_white, pnl_o)
+    }
+}
+
+/// @description 结束录制：把面板切成几个矩形分区，每区朝各自方向滑入 + 一起淡入（合成屋用）
+///              _parts = [[x1,y1,x2,y2,dx,dy], ...]，dx/dy = 「从哪边来」(-1 / 0 / +1)
+function panel_anim_end_parts(_inst, _parts, _dist = undefined){
+    with (_inst) {
+        var _d = is_undefined(_dist) ? pnl_slide : _dist
+        pnl_mode = 2
+        pnl_dist = _d
+        pnl_parts = _parts
+        if (!pnl_recording) { return }      // 静止帧：内容已经直接画在屏幕上了
+        var _sh = (1 - pnl_o) * _d
+        surface_reset_target()
+        for (var i = 0; i < array_length(_parts); i++) {
+            var _p = _parts[i]
+            draw_surface_part_ext(pnl_surf, _p[0], _p[1], _p[2] - _p[0], _p[3] - _p[1],
+                                  _p[0] + _p[4] * _sh, _p[1] + _p[5] * _sh, 1, 1, c_white, pnl_o)
+        }
+    }
+}
+
+/// @description 释放 surface 与子对象表（面板 CleanUp_0 里调）
+function panel_anim_free(_inst){
+    with (_inst) {
+        if (variable_instance_exists(id, "pnl_surf") && surface_exists(pnl_surf)) { surface_free(pnl_surf) }
+        if (variable_instance_exists(id, "pnl_kids") && ds_exists(pnl_kids, ds_type_list)) { ds_list_destroy(pnl_kids) }
+    }
+}
+
+
+// ===== 二级小菜单"由小到大弹出" ===============================================
+// Draw 里把固定偏移乘 pop_s（例：draw_text(x, y - 165 * pop_s, "标题")）。
+// 本体缩放 image_xscale/yscale；子对象按相对本体的位置插值并同步缩放。
+
+/// @function pop_anim_init(_inst, _kids, _dur, _from)
+/// @param {Id.Instance} _inst 菜单本体
+/// @param {Array} _kids 要跟着一起缩放弹出的子对象类型数组
+/// @param {Real} _dur 时长（秒），默认 0.20
+/// @param {Real} _from 起始缩放，默认 0.84（略小 + 回弹）
+function pop_anim_init(_inst, _kids, _dur = 0.20, _from = 0.84){
+
+    var _arr = [];
+
+    for (var i = 0; i < array_length(_kids); i++) {
+
+        with (_kids[i]) { array_push(_arr, { inst: id, bx: x, by: y, sx: image_xscale }) }
+
+    }
+
+    with (_inst) {
+
+        pop_t = 0;
+        pop_dur = _dur;
+        pop_from = _from;
+        pop_s = _from;
+        pop_p = 0;
+        pop_mx = x;
+        pop_my = y;
+        pop_base_s = image_xscale;
+        pop_kids = _arr;
+        pop_back_t = 0;
+        pop_back_p = 0;
+
+    }
+
+}
+
+/// @function pop_anim_step(_inst)
+/// @description 推进弹出动画；关闭阶段反向缩回（出场是入场的逆过程），
+///              播完后不再写子对象属性，避免覆盖其自身逻辑
+function pop_anim_step(_inst){
+
+    with (_inst) {
+
+        var _closing = variable_instance_exists(id, "pnl_closing") && pnl_closing;
+
+        // 关闭：缩回起始缩放，之后仍由 panel_anim_step 负责淡出与销毁
+        if (_closing && pop_p >= 1) {
+
+            if (pop_back_p >= 1) { exit }
+
+            var _cd = variable_instance_exists(id, "pnl_close_time") ? max(pnl_close_time, 0.01) : 0.14;
+
+            pop_back_t += ui_anim_dt();
+            pop_back_p = clamp(pop_back_t / _cd, 0, 1);
+
+            pop_s = lerp(1, pop_from, power(pop_back_p, 2));    // ease-in：收得越来越快
+
+            image_xscale = pop_base_s * pop_s;
+            image_yscale = pop_base_s * pop_s;
+
+            for (var i = 0; i < array_length(pop_kids); i++) {
+
+                var _k = pop_kids[i];
+                if (!instance_exists(_k.inst)) { continue }
+                _k.inst.x = pop_mx + (_k.bx - pop_mx) * pop_s;
+                _k.inst.y = pop_my + (_k.by - pop_my) * pop_s;
+                _k.inst.image_xscale = _k.sx * pop_s;
+                _k.inst.image_yscale = _k.sx * pop_s;
+
+            }
+
+
+            exit;
+
+        }
+
+        if (pop_p >= 1) { exit }
+
+        // 动效等级 0：直接终态
+        if (!ui_anim_on(1)) {
+
+            pop_p = 1; pop_s = 1;
+            image_xscale = pop_base_s; image_yscale = pop_base_s;
+
+            for (var i = 0; i < array_length(pop_kids); i++) {
+
+                var _k2 = pop_kids[i];
+                if (!instance_exists(_k2.inst)) { continue }
+                _k2.inst.x = _k2.bx; _k2.inst.y = _k2.by;
+                _k2.inst.image_xscale = _k2.sx; _k2.inst.image_yscale = _k2.sx;
+
+            }
+
+            exit;
+
+        }
+
+        pop_t += ui_anim_dt();
+        pop_p = clamp(pop_t / pop_dur, 0, 1);
+
+        // ease-out back：略过 1 再回落，手感有回弹
+        var _c1 = 1.70158;
+        var _e = 1 + (_c1 + 1) * power(pop_p - 1, 3) + _c1 * power(pop_p - 1, 2);
+        pop_s = lerp(pop_from, 1, _e);
+
+        image_xscale = pop_base_s * pop_s;
+        image_yscale = pop_base_s * pop_s;
+
+            for (var i = 0; i < array_length(pop_kids); i++) {
+
+                var _k = pop_kids[i];
+                if (!instance_exists(_k.inst)) { continue }
+                _k.inst.x = pop_mx + (_k.bx - pop_mx) * pop_s;
+                _k.inst.y = pop_my + (_k.by - pop_my) * pop_s;
+                _k.inst.image_xscale = _k.sx * pop_s;
+                _k.inst.image_yscale = _k.sx * pop_s;
+
+            }
+
+
+    }
+
+}
+
+/// @function cell_reveal_alpha(_row, _col)
+/// @description 情报岛列表格子的浮现透明度（0..1）。在内容绘制时逐格套用，
+///   因此不存在"按格子切块贴回"时的分界线问题。页签切换按 Z 字顺序错峰，
+///   并从第一条可见行起算；滚动时每行各有计时器 sr_rowv，行内再按列错开
+function cell_reveal_alpha(_row, _col){
+
+    if (!ui_anim_on(2)) { return 1 }
+    if (!instance_exists(obj_info_island_bg)) { return 1 }
+
+    var _a = 1;
+
+    with (obj_info_island_bg) {
+
+        if (tab_fade_t >= 0 && y_offset < 1) {
+
+            var _i0 = max(0, floor((y_offset - 39.5) / 213));
+            var _n  = (_row - _i0) * info_cols + _col;
+            if (_n >= 0) { _a = ui_anim_ease(clamp((tab_fade_t - _n * 0.015) / 0.26, 0, 1), 3) }
+
+        }
+        else if (variable_instance_exists(id, "sr_rowv")) {
+
+            var _v = (_row < array_length(sr_rowv)) ? sr_rowv[_row] : -1;
+            // 未开始计时的行（sr_rowv = -1）按 0 处理：按 1 处理会让该行在刚进入视口那一帧整块露出，
+            // 下一帧计时器归零后又突然消失再淡入，表现为闪一下
+            if (_v < 0) { _v = 0 }
+            _a = ui_anim_ease(clamp(_v / 0.28, 0, 1), 3);   // 整排同时淡入，0.28s
+
+        }
+
+    }
+
+    return _a;
+
+}

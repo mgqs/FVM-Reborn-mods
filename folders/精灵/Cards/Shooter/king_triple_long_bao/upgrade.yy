@@ -1,0 +1,25 @@
+{
+  "$GMFolder":"",
+  "%Name":"upgrade",
+  "folderPath":"folders/精灵/Cards/Shooter/king_triple_long_bao/upgrade.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"upgrade",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"da01fe91-3873-4abe-8e3d-e9e019766b82","path":"sprites/spr_king_triple_long_bao_0_upgrade_1/spr_king_triple_long_bao_0_upgrade_1.yy",},
+    {"name":"63445e0c-fda4-461d-b98f-b5ba0e7d6f7f","path":"sprites/spr_king_triple_long_bao_0_upgrade_2/spr_king_triple_long_bao_0_upgrade_2.yy",},
+    {"name":"b7ece564-c905-4354-b7cd-da1de64e7ea4","path":"sprites/spr_king_triple_long_bao_1_upgrade_1/spr_king_triple_long_bao_1_upgrade_1.yy",},
+    {"name":"782d9115-05a0-4f60-aa35-0bdd3522c2ba","path":"sprites/spr_king_triple_long_bao_1_upgrade_2/spr_king_triple_long_bao_1_upgrade_2.yy",},
+    {"name":"3f58f289-a424-41f5-9082-9264adff9753","path":"sprites/spr_king_triple_long_bao_1_upgrade_3/spr_king_triple_long_bao_1_upgrade_3.yy",},
+    {"name":"76a7e4bf-17ec-48f7-9f28-e07fb5e8b7bf","path":"sprites/spr_king_triple_long_bao_2_upgrade_1/spr_king_triple_long_bao_2_upgrade_1.yy",},
+    {"name":"5fe8017d-7c9f-4b61-8b90-81aa7b1ef66d","path":"sprites/spr_king_triple_long_bao_2_upgrade_2/spr_king_triple_long_bao_2_upgrade_2.yy",},
+    {"name":"7736709b-11c7-43ad-b7d6-39523ec67dd1","path":"sprites/spr_king_triple_long_bao_2_upgrade_3/spr_king_triple_long_bao_2_upgrade_3.yy",},
+    {"name":"ff05589a-f834-4de2-bd1c-2a0c969d31a4","path":"sprites/spr_king_triple_long_bao_2_upgrade_4/spr_king_triple_long_bao_2_upgrade_4.yy",},
+    {"name":"5a62bce3-9041-488e-bce2-22696e8ee004","path":"sprites/spr_king_triple_long_bao_2_upgrade_5/spr_king_triple_long_bao_2_upgrade_5.yy",}
+  ],
+}

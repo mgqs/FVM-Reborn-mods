@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"card_buff_category",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"card_buff_category",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

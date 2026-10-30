@@ -1,0 +1,666 @@
+package com.aurora.ui.maogoutd.handbook.model
+{
+   public class HandbookConfigData
+   {
+      
+      private static var m_pInstance:HandbookConfigData;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "m_pInstance", 0, 5
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_vCardHandbook:Vector.<CardHandbookData>;
+      
+      public var m_vSuitHandbook:Vector.<SuitHandbookData>;
+      
+      public var m_vAward:Vector.<HandbookDataAward>;
+      
+      public function HandbookConfigData()
+      {
+         method
+            name "com.aurora.ui.maogoutd.handbook.model:HandbookConfigData/HandbookConfigData"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                  debugline 105
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : HandbookConfigData
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.handbook.model:HandbookConfigData/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookConfigData")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                     debugline 11
+                     getlocal0
+                     pushscope
+                     debugline 13
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),"m_pInstance")
+                     iftrue ofs001b
+                     debugline 15
+                     findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),"m_pInstance")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),"m_pInstance")
+            ofs001b:
+                     debugline 17
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),"m_pInstance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function AnalysisSex(iSex:int) : void
+         {
+            trait method QName(PackageNamespace(""),"AnalysisSex")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.handbook.model:HandbookConfigData/AnalysisSex"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"int")
+                  paramname "HandbookConfigData.as$476"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 4
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                        debugline 20
+                        getlocal0
+                        pushscope
+                        debug 1, "iSex", 0, 20
+                        debug 1, "m_vSuitHandbookTemp", 1, 22
+                        debug 1, "i", 2, 23
+                        debugline 22
+                        getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("__AS3__.vec")])
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")
+                        applytype 1
+                        construct 0
+                        coerce TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")>)
+                        setlocal2
+                        debugline 23
+                        pushbyte 0
+                        setlocal3
+                        jump ofs006d
+               ofs0032:
+                        label
+                        debugline 25
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                        getproperty QName(PackageNamespace(""),"iSex")
+                        pushbyte 0
+                        equals
+                        dup
+                        iftrue ofs0056
+                        pop
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                        getproperty QName(PackageNamespace(""),"iSex")
+                        getlocal1
+                        equals
+               ofs0056:
+                        iffalse ofs0069
+                        debugline 27
+                        getlocal2
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                        getlocal3
+                        getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                        callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+               ofs0069:
+                        debugline 23
+                        inclocal_i 3
+               ofs006d:
+                        getlocal3
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                        getproperty QName(PackageNamespace(""),"length")
+                        iflt ofs0032
+                        debugline 30
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                        debugline 31
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function a_2040(xml:XML) : void
+            {
+               trait method QName(PackageNamespace(""),"a_2040")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.handbook.model:HandbookConfigData/ParseXML"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"XML")
+                     paramname "HandbookConfigData.as$476"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 3
+                        localcount 8
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                           debugline 33
+                           getlocal0
+                           pushscope
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"CardHandbookData")
+                           setlocal3
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")
+                           setlocal 4
+                           pushnull
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward")
+                           setlocal 5
+                           debug 1, "xml", 0, 33
+                           debug 1, "data", 1, 37
+                           debugline 35
+                           getlocal1
+                           iftrue ofs002c
+                           returnvoid
+                  ofs002c:
+                           debugline 37
+                           pushnull
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           debugline 38
+                           getlocal0
+                           getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("__AS3__.vec")])
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"CardHandbookData")
+                           applytype 1
+                           construct 0
+                           initproperty QName(PackageNamespace(""),"m_vCardHandbook")
+                           debugline 39
+                           pushbyte 0
+                           setlocal 6
+                           getlocal1
+                           getproperty Multiname("cardhandbook",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           getproperty Multiname("item",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           coerce_a
+                           setlocal 7
+                           jump ofs018b
+                  ofs0056:
+                           label
+                           getlocal 7
+                           getlocal 6
+                           nextvalue
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           debug 1, "vCardHandbook", 2, 41
+                           debugline 41
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"CardHandbookData")
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"CardHandbookData"), 0
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"CardHandbookData")
+                           setlocal3
+                           debugline 42
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("id",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iID")
+                           debugline 43
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("itemid",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iItemID")
+                           debugline 44
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("itemname",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sItemName")
+                           debugline 45
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("type",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iType")
+                           debugline 46
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("classify",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iClassify")
+                           debugline 47
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("transid",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iTransID")
+                           debugline 48
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("transtype",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iTransType")
+                           debugline 49
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("neednum",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iNeedNum")
+                           debugline 50
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addtype",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddType")
+                           debugline 51
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"Number")
+                           getlocal2
+                           getproperty MultinameA("addvalue",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"Number"), 1
+                           setproperty QName(PackageNamespace(""),"iAddValue")
+                           debugline 52
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("typedesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sTypeDesc")
+                           debugline 53
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("energydesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sEnergyDesc")
+                           debugline 54
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("areadesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sAreaDesc")
+                           debugline 55
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("adddesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sAddDesc")
+                           debugline 56
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("abilitydesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sAbilityDesc")
+                           debugline 57
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("getwaydesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sGetwayDesc")
+                           debugline 58
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("transid_1",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iTransID_1")
+                           debugline 59
+                           getlocal3
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("transtype_1",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iTransType_1")
+                           debugline 60
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_vCardHandbook")
+                           getlocal3
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                  ofs018b:
+                           debugline 39
+                           hasnext2 7, 6
+                           iftrue ofs0056
+                           kill 7
+                           kill 6
+                           debugline 63
+                           getlocal0
+                           getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("__AS3__.vec")])
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")
+                           applytype 1
+                           construct 0
+                           initproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                           debugline 64
+                           pushbyte 0
+                           setlocal 6
+                           getlocal1
+                           getproperty Multiname("suithandbook",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           getproperty Multiname("item",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           coerce_a
+                           setlocal 7
+                           jump ofs02a5
+                  ofs01bc:
+                           label
+                           getlocal 7
+                           getlocal 6
+                           nextvalue
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           debug 1, "vSuitHandbook", 3, 66
+                           debugline 66
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData"), 0
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"SuitHandbookData")
+                           setlocal 4
+                           debugline 68
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("id",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iID")
+                           debugline 69
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("itemid",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iItemID")
+                           debugline 70
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("itemname",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sItemName")
+                           debugline 71
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("classify",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iClassify")
+                           debugline 72
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("neednum",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iNeedNum")
+                           debugline 73
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addtype",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddType")
+                           debugline 74
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addvalue",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddValue")
+                           debugline 75
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("sex",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iSex")
+                           debugline 76
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("hpdesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sHPDesc")
+                           debugline 77
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("uptimedesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sUptimeDesc")
+                           debugline 78
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("suitdesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sSuitDesc")
+                           debugline 79
+                           getlocal 4
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal2
+                           getproperty MultinameA("getwaydesc",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           setproperty QName(PackageNamespace(""),"sGetWayDesc")
+                           debugline 81
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_vSuitHandbook")
+                           getlocal 4
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                  ofs02a5:
+                           debugline 64
+                           hasnext2 7, 6
+                           iftrue ofs01bc
+                           kill 7
+                           kill 6
+                           debugline 84
+                           getlocal0
+                           getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("__AS3__.vec")])
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward")
+                           applytype 1
+                           construct 0
+                           initproperty QName(PackageNamespace(""),"m_vAward")
+                           debugline 85
+                           pushbyte 0
+                           setlocal 6
+                           getlocal1
+                           getproperty Multiname("award",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           getproperty Multiname("item",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           coerce_a
+                           setlocal 7
+                           jump ofs03af
+                  ofs02d6:
+                           label
+                           getlocal 7
+                           getlocal 6
+                           nextvalue
+                           coerce QName(PackageNamespace(""),"XML")
+                           setlocal2
+                           debug 1, "vAward", 4, 87
+                           debugline 87
+                           findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward")
+                           constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward"), 0
+                           coerce QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookDataAward")
+                           setlocal 5
+                           debugline 88
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("id",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iID")
+                           debugline 89
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("itemid",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iItemID")
+                           debugline 90
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("neednum",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iNeedNum")
+                           debugline 91
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("type",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iType")
+                           debugline 92
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("time",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iTime")
+                           debugline 93
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("isBind",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iIsBind")
+                           debugline 94
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addvalue",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddValue")
+                           debugline 95
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addpveexp",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddExp")
+                           debugline 96
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("adddroprate",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddDroprate")
+                           debugline 97
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addproficiency",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddProficiency")
+                           debugline 98
+                           getlocal 5
+                           findpropstrict QName(PackageNamespace(""),"int")
+                           getlocal2
+                           getproperty MultinameA("addpvpexp",[PrivateNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),PrivateNamespace("HandbookConfigData.as$476"),PackageNamespace(""),PackageInternalNs("com.aurora.ui.maogoutd.handbook.model"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData"),StaticProtectedNs("com.aurora.ui.maogoutd.handbook.model:HandbookConfigData")])
+                           callproperty QName(PackageNamespace(""),"int"), 1
+                           setproperty QName(PackageNamespace(""),"iAddPvPExp")
+                           debugline 99
+                           getlocal0
+                           getproperty QName(PackageNamespace(""),"m_vAward")
+                           getlocal 5
+                           callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                  ofs03af:
+                           debugline 85
+                           hasnext2 7, 6
+                           iftrue ofs02d6
+                           kill 7
+                           kill 6
+                           debugline 101
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                  debugline 3
+                  findpropstrict Multiname("HandbookConfigData",[PackageNamespace("com.aurora.ui.maogoutd.handbook.model")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 96
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.handbook.model"),"HandbookConfigData")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\handbook\\model;HandbookConfigData.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

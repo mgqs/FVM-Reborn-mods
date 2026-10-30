@@ -13,6 +13,11 @@ with obj_oil_lamp{
 		array_push(dis_list,dis)
 	}
 }
+with obj_yinghuoshe{
+	if hp > 0 && !is_frozen && state != CARD_STATE.SLEEP{
+		array_push(dis_list,0)
+	}
+}
 with obj_brazier{
 	var dis = abs(grid_row - other.grid_row) + abs(grid_col - other.grid_col)
 	if dis == 0{

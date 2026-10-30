@@ -1,7 +1,10 @@
-draw_set_alpha(0.5);
+panel_anim_step(id)
+if (!instance_exists(id)) { exit }
+draw_set_alpha(0.5 * ui_anim_alpha(id));
 // 绘制半透明遮罩
 draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
 draw_set_alpha(1);
+panel_anim_begin(id)
 draw_self()
 
 if target_task_index != -1{
@@ -16,7 +19,7 @@ if target_task_index != -1{
 	draw_set_valign(fa_top)
 	draw_text(x-50,y-310,current_task_info.desc)
 	for(var i = 0; i < array_length(current_task_info.requirements);i++){
-		draw_text(x-50,y-35+25*i,current_task_info.requirements[i].desc+"（"+string(current_task_save_data.progress[i])+"/"+string(current_task_info.requirements[i].require)+"）")
+		draw_text(x-50,y-35+25*i,current_task_info.requirements[i].desc+"（"+string(get_task_progress(current_task_save_data.id,i))+"/"+string(current_task_info.requirements[i].require)+"）")
 	}
 	for(var i = 0; i < array_length(current_task_info.rewards);i++){
 		if current_task_info.rewards[i].type == "item"{
@@ -35,7 +38,7 @@ if target_task_index != -1{
 		draw_set_colour(c_red)
 		draw_text(x+60,y-70,"!任务过程中如果中途退出或游戏失败则重置进度")
 	}
-}
+	}
 else{
 	draw_set_font(font_yuan)
 	draw_set_colour(c_black)
@@ -46,3 +49,4 @@ else{
 	draw_set_valign(fa_top)
 	draw_text(x-50,y-310,"点击左侧选项卡以查看任务。")
 }
+panel_anim_end_slide(id, 260)

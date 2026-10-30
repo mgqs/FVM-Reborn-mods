@@ -31,8 +31,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Effects",
-    "path":"folders/精灵/Effects.yy",
+    "name":"wine_bottle_bomb",
+    "path":"folders/精灵/Cards/boomer/wine_bottle_bomb.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

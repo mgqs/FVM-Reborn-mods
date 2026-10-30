@@ -29,6 +29,11 @@ image_speed = 0
 
 cooldown_ignore_list = ["ice_cream","magic_chicken"]
 
+// 兜底初始化：确保 plus_card_map 存在（plus_card_init 自身幂等）
+	if !variable_global_exists("plus_card_map"){
+		plus_card_init()
+	}
+
 //选择卡槽逻辑
 function select_slot(){
 	// 选中当前卡槽
@@ -44,22 +49,38 @@ function select_slot(){
             instance_destroy(global.selected_slot.selected_preview);
             global.selected_slot.selected_preview = noone;
         }
-        audio_play_sound(snd_card_lift,0,0)
+        global.audio.play(snd_card_lift,0,0)
         // 设置全局选中卡槽为当前卡槽
         global.selected_slot = id;
 }
 
 //尝试放置逻辑
 function try_place_once(){
+	if (is_random_gift_mode() && card_id == "lihe") {
+		current_cost = 50;
+		cooldown = 600;
+	}
+	if (is_random_gift_mode() && card_id == "wanpilong") {
+		current_cost = 500;
+		cooldown = 1800;
+	}
 	// 检查是否在可种植区域
 		
-		var card_shape = get_card_info_simple(card_id).shape
-		var card_data = deck_get_card_data(card_id,card_shape)
+		var card_data = noone
+		var _info = get_card_info_simple(card_id)
+		if _info != false{
+			card_data = deck_get_card_data(card_id,shape)
+		}
 		if card_id == "magic_chicken"{
-			if global.prev_place_id != ""{
-				card_shape = get_card_info_simple(global.prev_place_id).shape
-				card_data = deck_get_card_data(global.prev_place_id,card_shape)
+			if global.last_placed_card_id != ""{
+				var _info2 = get_card_info_simple(global.last_placed_card_id)
+				if _info2 != false{
+					card_data = deck_get_card_data(global.last_placed_card_id,_info2.shape)
+				}
 			}
+		}
+		if card_data == noone{
+			return
 		}
         
         var found_plat = noone;
@@ -114,9 +135,22 @@ function try_place_once(){
         
         var logical_world = get_world_position_from_grid(logical_col, logical_row);
 
-        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"]));
+        var can_plant = (can_place_at_position(logical_world.x, logical_world.y, card_data[? "plant_type"],card_data[? "feature_type"],card_data[? "target_card"],card_id));
+        if (is_random_gift_mode() && card_id == "lihe") {
+            // The pending effect is not in grid_plants yet, so check it explicitly.
+            var _gift_pending = false;
+            var _gift_count = instance_number(obj_random_gift_effect);
+            for (var _gift_i = 0; _gift_i < _gift_count; _gift_i++) {
+                var _gift_fx = instance_find(obj_random_gift_effect, _gift_i);
+                if (_gift_fx.spawn_col == logical_col && _gift_fx.spawn_row == logical_row) {
+                    _gift_pending = true;
+                    break;
+                }
+            }
+            can_plant = can_plant && !_gift_pending;
+        }
         
-        if (can_plant && global.flame >= current_cost) {
+        if (can_plant && (global.flame >= current_cost || hex_free_place_ready())) {
             // 创建植物实例
 			var plant_list = ds_grid_get(global.grid_plants, logical_col, logical_row);
 			var target_card_id = card_data[? "target_card"];
@@ -151,11 +185,26 @@ function try_place_once(){
 					}
 				}
 			}
-            var new_plant = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0,card_obj);
-			// 计算深度值
-			var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
-			card_created(new_plant, logical_col, logical_row);
-			new_plant.depth = depth_value
+			var gift_queued = false;
+			var new_plant = noone;
+			if (is_random_gift_mode() && card_id == "lihe") {
+				var gift_fx = instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, -2600, obj_random_gift_effect);
+				gift_fx.spawn_x = logical_world.x + platform_shift_x;
+				gift_fx.spawn_y = logical_world.y + platform_shift_y;
+				gift_fx.spawn_col = logical_col;
+				gift_fx.spawn_row = logical_row;
+				gift_fx.spawn_level = clevel;
+				gift_fx.spawn_platform = found_plat;
+				gift_queued = true;
+			} else {
+				new_plant = external_mod_spawn(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y, 0, card_id, shape, clevel, cskill);
+			}
+			if (!gift_queued) {
+				// 计算深度值
+				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
+				card_created(new_plant, logical_col, logical_row);
+				new_plant.depth = depth_value
+			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y,-2,obj_place_effect)
 			}
@@ -164,8 +213,22 @@ function try_place_once(){
 				inst.sprite_index = spr_enter_water_effect
 			}
             
-            // 扣除阳光
-            global.flame -= current_cost;
+            // 扣除阳光（海克斯：每波首次放置免费 / 双厨狂喜 / 赌徒的锅铲全额返还 / 火候观察烧火苗）
+            var _hex_paid = false;
+            if (!hex_consume_free_place() && !hex_same_card_free_try(card_id)) {
+                global.flame -= current_cost;
+                _hex_paid = true;
+            }
+            if (_hex_paid) {
+                // 赌徒的锅铲：每次放置按概率把这一笔全额退回来
+                var _rc = hex_placement_refund_chance();
+                if (_rc > 0 && random(1) < _rc) global.flame += current_cost;
+            }
+            // 火候观察：0 冷却的代价是每次使用后损失当前火苗的一部分
+            var _zl = hex_zero_cd_flame_loss();
+            if (_zl > 0 && variable_global_exists("flame")) {
+                global.flame = max(0, global.flame - floor(global.flame * _zl));
+            }
             
             // 重置冷却计时器
             cooldown_timer = 0;
@@ -176,10 +239,10 @@ function try_place_once(){
 			}
 			
             if global.grid_terrains[logical_row][logical_col].type == "normal"{
-				audio_play_sound(snd_place1,0,0)
+				global.audio.play(snd_place1,0,0)
 			}
 			else if global.grid_terrains[logical_row][logical_col].type == "water"{
-				audio_play_sound(snd_enter_water,0,0)
+				global.audio.play(snd_enter_water,0,0)
 			}
             // 取消选择
             is_selected = false;

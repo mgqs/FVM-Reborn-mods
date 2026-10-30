@@ -1,0 +1,320 @@
+package com.aurora.protocol.game.maogoutd
+{
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.common.CMessageBody;
+   import flash.utils.ByteArray;
+   
+   public class CNotifyEntityStateChange implements CMessageBody
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public var m_bySeatID:int;
+      
+      public var m_uiTickCount:uint;
+      
+      public var m_byTeamNo:int;
+      
+      public var m_byDefenderCount:int;
+      
+      public var m_arrChange:Array;
+      
+      public function CNotifyEntityStateChange()
+      {
+         method
+            name "com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange/CNotifyEntityStateChange"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                  debugline 17
+                  getlocal0
+                  pushscope
+                  debugline 18
+                  getlocal0
+                  constructsuper 0
+                  debugline 19
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function encode(byte_array:ByteArray, encode_length:int) : Boolean
+      {
+         trait method QName(PackageNamespace(""),"encode")
+            dispid 0
+            method
+               name "com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange/encode"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "com.aurora.protocol"
+               paramname "com.aurora.protocol"
+               returns QName(PackageNamespace(""),"Boolean")
+               
+               body
+                  maxstack 3
+                  localcount 6
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                     debugline 21
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     setlocal3
+                     pushnull
+                     coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                     setlocal 5
+                     debug 1, "byte_array", 0, 21
+                     debug 1, "encode_length", 1, 21
+                     debug 1, "iEncodeLen", 2, 27
+                     debug 1, "i", 3, 28
+                     debugline 23
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_bySeatID")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 24
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_uiTickCount")
+                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                     debugline 25
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byTeamNo")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 26
+                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                     getlocal1
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byDefenderCount")
+                     callpropvoid QName(PackageNamespace(""),"encode_int8"), 2
+                     debugline 28
+                     pushbyte 0
+                     convert_u
+                     setlocal 4
+                     jump ofs0094
+            ofs006b:
+                     label
+                     debug 1, "stEntityChanger", 4, 30
+                     debugline 30
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_arrChange")
+                     getlocal 4
+                     getproperty MultinameL([PrivateNamespace("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange"),PackageNamespace("com.aurora.protocol.game.maogoutd"),PackageNamespace(""),PrivateNamespace("CNotifyEntityStateChange.as$314"),PackageInternalNs("com.aurora.protocol.game.maogoutd"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange"),StaticProtectedNs("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange")])
+                     coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                     setlocal 5
+                     debugline 31
+                     getlocal 5
+                     getlocal1
+                     getlocal3
+                     callpropvoid QName(PackageNamespace(""),"encode"), 2
+                     debugline 28
+                     getlocal 4
+                     increment
+                     convert_u
+                     setlocal 4
+            ofs0094:
+                     getlocal 4
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"m_byDefenderCount")
+                     iflt ofs006b
+                     debugline 34
+                     pushtrue
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function decode(byte_array:ByteArray, decode_length:int) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"decode")
+               dispid 0
+               method
+                  name "com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange/decode"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace(""),"int")
+                  paramname "com.aurora.protocol"
+                  paramname "com.aurora.protocol"
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 3
+                     localcount 6
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                        debugline 37
+                        getlocal0
+                        pushscope
+                        pushbyte 0
+                        setlocal3
+                        pushnull
+                        coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                        setlocal 5
+                        debug 1, "byte_array", 0, 37
+                        debug 1, "decode_length", 1, 37
+                        debug 1, "iDecodeLen", 2, 45
+                        debug 1, "i", 3, 46
+                        debugline 39
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_bySeatID")
+                        debugline 40
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_uint32"), 1
+                        initproperty QName(PackageNamespace(""),"m_uiTickCount")
+                        debugline 41
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byTeamNo")
+                        debugline 42
+                        getlocal0
+                        getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                        getlocal1
+                        callproperty QName(PackageNamespace(""),"decode_int8"), 1
+                        initproperty QName(PackageNamespace(""),"m_byDefenderCount")
+                        debugline 44
+                        getlocal0
+                        newarray 0
+                        initproperty QName(PackageNamespace(""),"m_arrChange")
+                        debugline 46
+                        pushbyte 0
+                        convert_u
+                        setlocal 4
+                        jump ofs00a7
+               ofs0073:
+                        label
+                        debug 1, "stVanishDefender", 4, 48
+                        debugline 48
+                        findpropstrict QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                        constructprop QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange"), 0
+                        coerce QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CEntityStateChange")
+                        setlocal 5
+                        debugline 49
+                        getlocal 5
+                        getlocal1
+                        getlocal3
+                        callpropvoid QName(PackageNamespace(""),"decode"), 2
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_arrChange")
+                        getlocal 4
+                        getlocal 5
+                        setproperty MultinameL([PrivateNamespace("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange"),PackageNamespace("com.aurora.protocol.game.maogoutd"),PackageNamespace(""),PrivateNamespace("CNotifyEntityStateChange.as$314"),PackageInternalNs("com.aurora.protocol.game.maogoutd"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange"),StaticProtectedNs("com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange")])
+                        debugline 46
+                        getlocal 4
+                        increment
+                        convert_u
+                        setlocal 4
+               ofs00a7:
+                        getlocal 4
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_byDefenderCount")
+                        iflt ofs0073
+                        debugline 53
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function dump() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"dump")
+                  dispid 0
+                  method
+                     name "com.aurora.protocol.game.maogoutd:CNotifyEntityStateChange/dump"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                           debugline 57
+                           getlocal0
+                           pushscope
+                           debugline 59
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 3
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                  debugline 8
+                  findpropstrict Multiname("CNotifyEntityStateChange",[PackageNamespace("com.aurora.protocol.game.maogoutd")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace(""),"Object")
+                  newclass 136
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.protocol.game.maogoutd"),"CNotifyEntityStateChange")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\protocol\\game\\maogoutd;CNotifyEntityStateChange.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

@@ -1,0 +1,54 @@
+package com.aurora.ui.maogoutd.resource.defender.defenderSet
+{
+   public interface IDefenderSet
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 0
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 3
+            
+            code
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      function AddDefender(param1:int, param2:int) : Boolean;
+      
+      function IsFull() : Boolean;
+      
+      function IsUpgradeID(param1:int) : Boolean;
+   }
+}
+
+method
+   name ""
+   returns null
+   
+   body
+      maxstack 2
+      localcount 1
+      initscopedepth 1
+      maxscopedepth 2
+      
+      code
+         getlocal0
+         pushscope
+         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\defenderSet;IDefenderSet.as"
+         debugline 6
+         findpropstrict Multiname("IDefenderSet",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.defenderSet")])
+         pushnull
+         newclass 38
+         initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.defenderSet"),"IDefenderSet")
+         debugline 4
+         returnvoid
+      end ; code
+   end ; body
+end ; method
+

@@ -13,4 +13,5 @@ y_move_speed = 0
 
 special_ash = true
 immune_to_ash= true
-
+image_xscale = 1.8;
+image_yscale = 1.8;

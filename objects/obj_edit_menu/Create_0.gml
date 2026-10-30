@@ -61,3 +61,34 @@ var btn5 = instance_create_depth(x+420,y+90,depth-1,obj_player_attire_select_btn
 btn5.type = "next"
 
 var btn6 = instance_create_depth(x - 280, y +175 , depth-1, obj_update_checker_btn);
+
+sw_shown = selected_attire_index;
+sw_from = selected_attire_index;
+sw_t = -1;
+sw_frames = 18;
+sw_dir = 1;
+sw_pending_dir = 0;
+sw_surf = -1;
+sw_win_l = x - 174;
+sw_win_t = y - 16;
+sw_win_w = 548;
+sw_win_h = 224;
+
+panel_anim_init(id, 0.28, 0.18, 260);
+panel_anim_kids(id, [obj_edit_menu_button, obj_text_input, obj_save_slot_select_btn,
+                     obj_player_attire_select_btn, btn6]);
+
+function edit_attire_content_draw(_index, _dx, _dy) {
+	if (_index != -1) {
+		var _id = player_attire_id_list[_index];
+		var _data = get_attire_info(_id);
+		draw_sprite(_data.icon, 0, x + 100 + _dx, y + 95 + _dy);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(x + 100 + _dx, y + 180 + _dy, _data.name);
+	} else {
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(x - 75 + _dx, y + 100 + _dy, "无");
+	}
+}

@@ -28,11 +28,19 @@ if !global.is_paused{
 		}
 	}
 
+	// 傲慢龙柱的青苹果：可被碾压秒杀（触发自苹果的「消失」动画）
+	var _sack_row = grid_row;
+	with (obj_longzhu_green_apple) {
+		if (hp > 0 && row == _sack_row && point_distance(x, y, _x, _y) < _range) {
+			hp = 0;
+		}
+	}
+
 	// 播放倭瓜攻击效果
 	//effect_create_above(ef_explosion, x, y, 2, c_white);
 
 	// 播放攻击声音
-	audio_play_sound(snd_flour_sack, 0, false);
+	global.audio.play(snd_flour_sack, 0, false);
 }
 else{
 	alarm[0] = 1

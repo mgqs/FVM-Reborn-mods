@@ -1,4 +1,4 @@
-// obj_small_furnace 的 Create 事件
+// obj_pizza_oven 的 Create 事件
 // 唯一标识符
 event_inherited();  // 继承父对象属性
 plant_id = "pizza_oven"; 
@@ -20,7 +20,6 @@ idle_anim = 12
 flash_speed = 5
 plant_type = "normal"
 is_slowdown = false
-target_type = "air"
-target_instance = noone
+target_type = "pierce"
 
 b_count = 0

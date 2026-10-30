@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"iron_diver_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/iron_diver_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_diver_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"545fba55-983d-4494-8495-98f29dd1b9bf","path":"sprites/spr_iron_diver_helmet/spr_iron_diver_helmet.yy",},
+    {"name":"c6fb48c5-6ab2-4767-87ec-1384a7d30e7e","path":"sprites/spr_iron_diver_mouse/spr_iron_diver_mouse.yy",},
+    {"name":"c4a9b8f8-7ffe-4ca7-81f0-c8137c9e5bdd","path":"sprites/spr_iron_diver_mouse_helmet/spr_iron_diver_mouse_helmet.yy",}
+  ],
+}

@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"wuxingshe",
+  "folderPath":"folders/精灵/mod/Cards/wuxingshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wuxingshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_wuxingshe","path":"sprites/spr_wuxingshe/spr_wuxingshe.yy",},
+    {"name":"spr_wuxingshe_1","path":"sprites/spr_wuxingshe_1/spr_wuxingshe_1.yy",},
+    {"name":"spr_wuxingshe_2","path":"sprites/spr_wuxingshe_2/spr_wuxingshe_2.yy",},
+    {"name":"spr_wuxingshe_effect","path":"sprites/spr_wuxingshe_effect/spr_wuxingshe_effect.yy",},
+    {"name":"spr_wuxingshe_effect_1","path":"sprites/spr_wuxingshe_effect_1/spr_wuxingshe_effect_1.yy",},
+    {"name":"spr_wuxingshe_effect_2","path":"sprites/spr_wuxingshe_effect_2/spr_wuxingshe_effect_2.yy",}
+  ],
+}

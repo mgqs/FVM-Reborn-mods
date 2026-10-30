@@ -1,0 +1,698 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   import flash.display.Bitmap;
+   import flash.display.BitmapData;
+   import flash.display.Sprite;
+   import flash.events.Event;
+   import flash.geom.Rectangle;
+   import flash.system.System;
+   import flash.text.TextField;
+   import flash.text.TextFieldAutoSize;
+   import flash.text.TextFormat;
+   import flash.utils.getTimer;
+   
+   public class Fps extends Sprite
+   {
+      
+      private static const diagramHeight:uint = 40;
+      
+      private static const diagramWidth:uint = 60;
+      
+      private static const maxMemory:uint = 500000000;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 8
+            maxscopedepth 9
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "diagramHeight", 0, 26
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+               pushbyte 40
+               initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+               debug 1, "diagramWidth", 1, 27
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+               pushbyte 60
+               initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+               debug 1, "maxMemory", 2, 28
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"maxMemory")
+               pushint 500000000
+               initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"maxMemory")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var fps:TextField;
+      
+      private var mem:TextField;
+      
+      private var instance:Fps;
+      
+      private var bitmapdata:BitmapData;
+      
+      private var i:int = 0;
+      
+      private var n:int = 10;
+      
+      private var diagramTimer:int;
+      
+      private var tfTimer:int;
+      
+      private var skins:int = -1;
+      
+      private var skinsChanged:int = 0;
+      
+      public function Fps()
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:Fps/Fps"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 9
+               maxscopedepth 10
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                  debugline 29
+                  getlocal0
+                  pushscope
+                  debugline 30
+                  getlocal0
+                  constructsuper 0
+                  debugline 31
+                  getlocal0
+                  getlex QName(PackageNamespace("flash.events"),"Event")
+                  getproperty QName(PackageNamespace(""),"ADDED_TO_STAGE")
+                  getlocal0
+                  getproperty QName(PackageNamespace(""),"init")
+                  callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                  debugline 32
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function init(e:Event) : void
+      {
+         trait method QName(PackageNamespace(""),"init")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:Fps/init"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.events"),"Event")
+               paramname "MEM:"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 6
+                  localcount 3
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                     debugline 34
+                     getlocal0
+                     pushscope
+                     pushnull
+                     coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                     setlocal2
+                     debug 1, "e", 0, 34
+                     debug 1, "bitmap", 1, 36
+                     debugline 36
+                     pushnull
+                     coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                     setlocal2
+                     debugline 37
+                     getlocal0
+                     getlex QName(PackageNamespace("flash.events"),"Event")
+                     getproperty QName(PackageNamespace(""),"ADDED_TO_STAGE")
+                     getlocal0
+                     getproperty QName(PackageNamespace(""),"init")
+                     callpropvoid QName(PackageNamespace(""),"removeEventListener"), 2
+                     debugline 38
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.text"),"TextField")
+                     constructprop QName(PackageNamespace("flash.text"),"TextField"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     debugline 39
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.text"),"TextField")
+                     constructprop QName(PackageNamespace("flash.text"),"TextField"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     debugline 40
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"instance")
+                     pushnull
+                     ifne ofs018a
+                     debugline 41
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     findpropstrict QName(PackageNamespace("flash.text"),"TextFormat")
+                     pushstring "Tahoma"
+                     pushbyte 10
+                     pushint 16711680
+                     constructprop QName(PackageNamespace("flash.text"),"TextFormat"), 3
+                     setproperty QName(PackageNamespace(""),"defaultTextFormat")
+                     debugline 42
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     getlex QName(PackageNamespace("flash.text"),"TextFieldAutoSize")
+                     getproperty QName(PackageNamespace(""),"LEFT")
+                     setproperty QName(PackageNamespace(""),"autoSize")
+                     debugline 43
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     pushstring "FPS:"
+                     findpropstrict QName(PackageNamespace(""),"Number")
+                     getlex QName(PackageNamespace(""),"stage")
+                     getproperty QName(PackageNamespace(""),"frameRate")
+                     callproperty QName(PackageNamespace(""),"Number"), 1
+                     pushbyte 2
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                     add
+                     setproperty QName(PackageNamespace(""),"text")
+                     debugline 44
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+                     negate
+                     pushbyte 2
+                     subtract
+                     setproperty QName(PackageNamespace(""),"x")
+                     debugline 45
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 47
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     findpropstrict QName(PackageNamespace("flash.text"),"TextFormat")
+                     pushstring "Tahoma"
+                     pushbyte 10
+                     pushint 65280
+                     constructprop QName(PackageNamespace("flash.text"),"TextFormat"), 3
+                     setproperty QName(PackageNamespace(""),"defaultTextFormat")
+                     debugline 48
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     getlex QName(PackageNamespace("flash.text"),"TextFieldAutoSize")
+                     getproperty QName(PackageNamespace(""),"LEFT")
+                     setproperty QName(PackageNamespace(""),"autoSize")
+                     debugline 49
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     pushstring "MEM:"
+                     getlocal0
+                     getlex QName(PackageNamespace("flash.system"),"System")
+                     getproperty QName(PackageNamespace(""),"totalMemory")
+                     callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"byteToString"), 1
+                     add
+                     setproperty QName(PackageNamespace(""),"text")
+                     debugline 50
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+                     negate
+                     pushbyte 2
+                     subtract
+                     setproperty QName(PackageNamespace(""),"x")
+                     debugline 51
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                     getproperty QName(PackageNamespace(""),"y")
+                     pushbyte 10
+                     add
+                     setproperty QName(PackageNamespace(""),"y")
+                     debugline 52
+                     findpropstrict QName(PackageNamespace(""),"addChild")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                     callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     debugline 53
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.display"),"BitmapData")
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+                     pushtrue
+                     pushshort 255
+                     constructprop QName(PackageNamespace("flash.display"),"BitmapData"), 4
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                     debugline 54
+                     findpropstrict QName(PackageNamespace("flash.display"),"Bitmap")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                     constructprop QName(PackageNamespace("flash.display"),"Bitmap"), 1
+                     coerce QName(PackageNamespace("flash.display"),"Bitmap")
+                     setlocal2
+                     debugline 55
+                     getlocal2
+                     pushbyte 24
+                     setproperty QName(PackageNamespace(""),"y")
+                     debugline 56
+                     getlocal2
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramWidth")
+                     negate
+                     setproperty QName(PackageNamespace(""),"x")
+                     debugline 57
+                     findpropstrict QName(PackageNamespace(""),"addChildAt")
+                     getlocal2
+                     pushbyte 0
+                     callpropvoid QName(PackageNamespace(""),"addChildAt"), 2
+                     debugline 59
+                     findpropstrict QName(PackageNamespace(""),"addEventListener")
+                     getlex QName(PackageNamespace("flash.events"),"Event")
+                     getproperty QName(PackageNamespace(""),"ENTER_FRAME")
+                     getlocal0
+                     getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"onEnterFrame")
+                     callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+                     debugline 60
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                     callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramTimer")
+                     debugline 61
+                     getlocal0
+                     findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                     callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                     initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"tfTimer")
+            ofs018a:
+                     debugline 63
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         private function onEnterFrame(e:Event) : void
+         {
+            trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"onEnterFrame")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:Fps/private:onEnterFrame"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.events"),"Event")
+                  paramname "MEM:"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 6
+                     localcount 8
+                     initscopedepth 9
+                     maxscopedepth 10
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                        debugline 64
+                        getlocal0
+                        pushscope
+                        debug 1, "e", 0, 64
+                        debug 1, "_loc_2", 1, 76
+                        debug 1, "_loc_3", 2, 77
+                        debug 1, "ski", 3, 83
+                        debug 1, "meoryPer", 4, 85
+                        debugline 66
+                        getlocal0
+                        dup
+                        setlocal 6
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"i")
+                        increment_i
+                        setlocal 7
+                        getlocal 6
+                        getlocal 7
+                        setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"i")
+                        kill 7
+                        kill 6
+                        debugline 67
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"i")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"n")
+                        ifnge ofs008c
+                        debugline 68
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"i")
+                        debugline 69
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"fps")
+                        pushstring "FPS: "
+                        findpropstrict QName(PackageNamespace(""),"Number")
+                        pushshort 1000
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"n")
+                        multiply
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"tfTimer")
+                        subtract
+                        divide
+                        callproperty QName(PackageNamespace(""),"Number"), 1
+                        pushbyte 2
+                        callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                        add
+                        setproperty QName(PackageNamespace(""),"text")
+                        debugline 70
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"tfTimer")
+               ofs008c:
+                        debugline 72
+                        getlex QName(PackageNamespace(""),"stage")
+                        pushnull
+                        ifne ofs0099
+                        debugline 74
+                        returnvoid
+               ofs0099:
+                        debugline 76
+                        pushshort 1000
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramTimer")
+                        subtract
+                        divide
+                        coerce_a
+                        setlocal2
+                        debugline 77
+                        getlocal2
+                        getlex QName(PackageNamespace(""),"stage")
+                        getproperty QName(PackageNamespace(""),"frameRate")
+                        greaterthan
+                        iffalse ofs00c2
+                        pushbyte 1
+                        coerce_a
+                        jump ofs00cb
+               ofs00c2:
+                        getlocal2
+                        getlex QName(PackageNamespace(""),"stage")
+                        getproperty QName(PackageNamespace(""),"frameRate")
+                        divide
+                        coerce_a
+               ofs00cb:
+                        coerce_a
+                        setlocal3
+                        debugline 78
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramTimer")
+                        debugline 79
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        pushbyte 1
+                        pushbyte 0
+                        callpropvoid QName(PackageNamespace(""),"scroll"), 2
+                        debugline 80
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                        pushbyte 0
+                        dup
+                        pushbyte 1
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        getproperty QName(PackageNamespace(""),"height")
+                        constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 4
+                        pushdouble 2852126720
+                        callpropvoid QName(PackageNamespace(""),"fillRect"), 2
+                        debugline 81
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        pushbyte 0
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+                        pushbyte 1
+                        getlocal3
+                        subtract
+                        multiply
+                        pushdouble 4294901760
+                        callpropvoid QName(PackageNamespace(""),"setPixel32"), 3
+                        debugline 82
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"mem")
+                        pushstring "MEM: "
+                        getlocal0
+                        getlex QName(PackageNamespace("flash.system"),"System")
+                        getproperty QName(PackageNamespace(""),"totalMemory")
+                        callproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"byteToString"), 1
+                        add
+                        setproperty QName(PackageNamespace(""),"text")
+                        debugline 83
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"skins")
+                        pushbyte 0
+                        equals
+                        iffalse ofs0146
+                        pushbyte 0
+                        jump ofs0150
+               ofs0146:
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"skinsChanged")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"skins")
+                        divide
+                        convert_i
+               ofs0150:
+                        convert_i
+                        setlocal 4
+                        debugline 84
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        pushbyte 0
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+                        pushbyte 1
+                        getlocal 4
+                        subtract
+                        multiply
+                        pushdouble 4294967295
+                        callpropvoid QName(PackageNamespace(""),"setPixel32"), 3
+                        debugline 85
+                        getlex QName(PackageNamespace("flash.system"),"System")
+                        getproperty QName(PackageNamespace(""),"totalMemory")
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"maxMemory")
+                        divide
+                        convert_d
+                        setlocal 5
+                        debugline 86
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"bitmapdata")
+                        pushbyte 0
+                        getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"diagramHeight")
+                        pushbyte 1
+                        getlocal 5
+                        subtract
+                        multiply
+                        pushdouble 4278255360
+                        callpropvoid QName(PackageNamespace(""),"setPixel32"), 3
+                        debugline 87
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private function byteToString(byte:uint) : String
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:Fps"),"byteToString")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.ClientLog:Fps/private:byteToString"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace(""),"uint")
+                     paramname "onEnterFrame"
+                     returns QName(PackageNamespace(""),"String")
+                     
+                     body
+                        maxstack 3
+                        localcount 3
+                        initscopedepth 9
+                        maxscopedepth 10
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                           debugline 89
+                           getlocal0
+                           pushscope
+                           debug 1, "byte", 0, 89
+                           debug 1, "byteStr", 1, 91
+                           debugline 91
+                           pushnull
+                           coerce_s
+                           setlocal2
+                           debugline 92
+                           getlocal1
+                           pushshort 1024
+                           ifnlt ofs0033
+                           debugline 94
+                           findpropstrict QName(PackageNamespace(""),"String")
+                           getlocal1
+                           callproperty QName(PackageNamespace(""),"String"), 1
+                           pushstring "b"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs0033:
+                           debugline 95
+                           getlocal1
+                           pushshort 10240
+                           ifnlt ofs0058
+                           debugline 96
+                           findpropstrict QName(PackageNamespace(""),"Number")
+                           getlocal1
+                           pushshort 1024
+                           divide
+                           callproperty QName(PackageNamespace(""),"Number"), 1
+                           pushbyte 2
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                           pushstring "kb"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs0058:
+                           debugline 97
+                           getlocal1
+                           pushint 102400
+                           ifnlt ofs007d
+                           debugline 99
+                           findpropstrict QName(PackageNamespace(""),"Number")
+                           getlocal1
+                           pushshort 1024
+                           divide
+                           callproperty QName(PackageNamespace(""),"Number"), 1
+                           pushbyte 1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                           pushstring "kb"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs007d:
+                           debugline 101
+                           getlocal1
+                           pushint 1048576
+                           ifnlt ofs009e
+                           debugline 102
+                           getlex QName(PackageNamespace(""),"Math")
+                           getlocal1
+                           pushshort 1024
+                           divide
+                           callproperty QName(PackageNamespace(""),"round"), 1
+                           pushstring "kb"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs009e:
+                           debugline 104
+                           getlocal1
+                           pushint 10485760
+                           ifnlt ofs00c3
+                           debugline 106
+                           findpropstrict QName(PackageNamespace(""),"Number")
+                           getlocal1
+                           pushint 1048576
+                           divide
+                           callproperty QName(PackageNamespace(""),"Number"), 1
+                           pushbyte 2
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                           pushstring "mb"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs00c3:
+                           debugline 108
+                           getlocal1
+                           pushint 104857600
+                           ifnlt ofs00e8
+                           debugline 110
+                           findpropstrict QName(PackageNamespace(""),"Number")
+                           getlocal1
+                           pushint 1048576
+                           divide
+                           callproperty QName(PackageNamespace(""),"Number"), 1
+                           pushbyte 1
+                           callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toFixed"), 1
+                           pushstring "mb"
+                           add
+                           setlocal2
+                           jump ofs00fb
+                  ofs00e8:
+                           debugline 114
+                           getlex QName(PackageNamespace(""),"Math")
+                           getlocal1
+                           pushint 1048576
+                           divide
+                           callproperty QName(PackageNamespace(""),"round"), 1
+                           pushstring "mb"
+                           add
+                           setlocal2
+                  ofs00fb:
+                           debugline 116
+                           getlocal2
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+            }
+         }
+         
+         method
+            name ""
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 1
+               maxscopedepth 8
+               
+               code
+                  getlocal0
+                  pushscope
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                  debugline 14
+                  findpropstrict Multiname("Fps",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+                  getlex QName(PackageNamespace(""),"Object")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"Sprite")
+                  pushscope
+                  getlex QName(PackageNamespace("flash.display"),"Sprite")
+                  newclass 195
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  popscope
+                  initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"Fps")
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;Fps.as"
+                  debugline 1
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+         

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"eel_mouse",
+  "folderPath":"folders/精灵/Enemy/undersea_vortex/eel_mouse.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"eel_mouse",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"1af49d0c-26f0-473d-b77e-b350a98611f2","path":"sprites/spr_eel_mouse/spr_eel_mouse.yy",},
+    {"name":"6fb6b396-d2a6-4cfb-8f66-acaddb348c27","path":"sprites/spr_eel_mouse_bomb/spr_eel_mouse_bomb.yy",},
+    {"name":"6a3b9a71-1fe0-4cb1-ad06-bff2084ce6e6","path":"sprites/spr_eel_mouse_bullet/spr_eel_mouse_bullet.yy",}
+  ],
+}

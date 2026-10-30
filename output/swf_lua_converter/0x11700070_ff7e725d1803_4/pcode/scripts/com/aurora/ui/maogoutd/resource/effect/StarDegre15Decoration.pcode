@@ -1,0 +1,383 @@
+package com.aurora.ui.maogoutd.resource.effect
+{
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.geom.Point;
+   
+   public class StarDegre15Decoration extends a_4110
+   {
+      
+      private static var ms_stStarDegre15DecorationVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 10
+            maxscopedepth 11
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stStarDegre15DecorationVector", 0, 9
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"ms_stStarDegre15DecorationVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"ms_stStarDegre15DecorationVector")
+               debug 1, "a_1300", 1, 10
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),PackageNamespace(""),PrivateNamespace("StarDegre15Decoration.as$117"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseStartDegreeDecoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1300")
+               debug 1, "a_1301", 2, 11
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),PackageNamespace(""),PrivateNamespace("StarDegre15Decoration.as$117"),PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),PackageInternalNs("com.aurora.ui.maogoutd.resource.effect"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.effect:BaseStartDegreeDecoration"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 50
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1301")
+               debug 1, "a_1302", 3, 12
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15DecorationMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15DecorationMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function StarDegre15Decoration()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/StarDegre15Decoration"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 11
+               maxscopedepth 12
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                  debugline 26
+                  getlocal0
+                  pushscope
+                  debugline 29
+                  getlocal0
+                  constructsuper 0
+                  debugline 31
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : StarDegre15Decoration
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15Decoration")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 10
+                  maxscopedepth 11
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                     debugline 14
+                     getlocal0
+                     pushscope
+                     debug 1, "stStarDegre15Decoration", 0, 16
+                     debugline 16
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"ms_stStarDegre15DecorationVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15Decoration")
+                     setlocal1
+                     debugline 18
+                     pushnull
+                     getlocal1
+                     ifne ofs002b
+                     debugline 20
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15Decoration")
+                     setlocal1
+            ofs002b:
+                     debugline 23
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         override public function a_1797(isReseaved:Boolean = false) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               flag OVERRIDE
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  paramname "flash.display:DisplayObjectContainer"
+                  optional False()
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 2
+                     localcount 2
+                     initscopedepth 11
+                     maxscopedepth 12
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                        debugline 33
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 33
+                        debugline 35
+                        getlocal0
+                        getlocal1
+                        callsupervoid QName(PackageNamespace(""),"a_1797"), 1
+                        debugline 37
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            override protected function a_3911() : Vector.<BitmapData>
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_3911")
+                  flag OVERRIDE
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/protected:GetFrameCacheVector"
+                     returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 11
+                        maxscopedepth 12
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                           debugline 40
+                           getlocal0
+                           pushscope
+                           debugline 42
+                           getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1300")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               override protected function a_3912() : Vector.<Point>
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_3912")
+                     flag OVERRIDE
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/protected:GetFrameCacheSkewingVector"
+                        returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                        
+                        body
+                           maxstack 1
+                           localcount 1
+                           initscopedepth 11
+                           maxscopedepth 12
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                              debugline 45
+                              getlocal0
+                              pushscope
+                              debugline 47
+                              getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1301")
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3913() : MovieClip
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_3913")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/protected:GetOriginalMovieClip"
+                           returns QName(PackageNamespace("flash.display"),"MovieClip")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 11
+                              maxscopedepth 12
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                                 debugline 50
+                                 getlocal0
+                                 pushscope
+                                 debugline 52
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"a_1302")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override public function a_3940() : Boolean
+                     {
+                        trait method QName(PackageNamespace(""),"a_3940")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/Realease"
+                              returns QName(PackageNamespace(""),"Boolean")
+                              
+                              body
+                                 maxstack 3
+                                 localcount 1
+                                 initscopedepth 11
+                                 maxscopedepth 12
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                                    debugline 56
+                                    getlocal0
+                                    pushscope
+                                    debugline 58
+                                    getlocal0
+                                    callsupervoid QName(PackageNamespace(""),"a_3940"), 0
+                                    debugline 60
+                                    pushbyte -1
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"ms_stStarDegre15DecorationVector")
+                                    getlocal0
+                                    callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                    ifne ofs0028
+                                    debugline 62
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration"),"ms_stStarDegre15DecorationVector")
+                                    getlocal0
+                                    callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                           ofs0028:
+                                    debugline 65
+                                    pushtrue
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override public function a_3957(iTimeInterval:int) : void
+                        {
+                           trait method QName(PackageNamespace(""),"a_3957")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.effect:StarDegre15Decoration/ShowPlay"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "flash.geom"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 2
+                                    initscopedepth 11
+                                    maxscopedepth 12
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                                       debugline 68
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "iTimeInterval", 0, 68
+                                       debugline 70
+                                       getlocal0
+                                       getlocal1
+                                       callsupervoid QName(PackageNamespace(""),"a_3957"), 1
+                                       debugline 71
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 10
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                              debugline 7
+                              findpropstrict Multiname("StarDegre15Decoration",[PackageNamespace("com.aurora.ui.maogoutd.resource.effect")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                              pushscope
+                              getlex QName(PackageNamespace("flash.display"),"Sprite")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4110")
+                              pushscope
+                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"a_4110")
+                              newclass 355
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.effect"),"StarDegre15Decoration")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\effect;StarDegre15Decoration.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

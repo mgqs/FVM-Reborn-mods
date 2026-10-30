@@ -1,0 +1,539 @@
+package a_4771
+{
+   public class a_2648
+   {
+      
+      private static var serverManager:a_2648;
+      
+      protected static var mapTcpConnectionRoutine:Array;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "serverManager", 0, 7
+               debug 1, "mapTcpConnectionRoutine", 1, 8
+               findproperty QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function a_2648()
+      {
+         method
+            name "com.aurora.handler.network:ServerManager/ServerManager"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                  debugline 10
+                  getlocal0
+                  pushscope
+                  debugline 11
+                  getlocal0
+                  constructsuper 0
+                  debugline 12
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2648
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.handler.network:ServerManager/getInstance"
+               returns QName(PackageNamespace("a_4771"),"a_2648")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                     debugline 14
+                     getlocal0
+                     pushscope
+                     debugline 16
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.handler.network:ServerManager"),"serverManager")
+                     ifne ofs001c
+                     debugline 18
+                     findproperty QName(PrivateNamespace("com.aurora.handler.network:ServerManager"),"serverManager")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.handler.network:ServerManager"),"serverManager")
+            ofs001c:
+                     debugline 21
+                     getlex QName(PrivateNamespace("com.aurora.handler.network:ServerManager"),"serverManager")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function reBuild() : a_2648
+         {
+            trait method QName(PackageNamespace(""),"reBuild")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.handler.network:ServerManager/reBuild"
+                  returns QName(PackageNamespace("a_4771"),"a_2648")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                        debugline 24
+                        getlocal0
+                        pushscope
+                        debugline 26
+                        getlocal0
+                        construct 0
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function addServer(tcpConn:a_2650) : Boolean
+            {
+               trait method QName(PackageNamespace(""),"addServer")
+                  dispid 0
+                  method
+                     name "com.aurora.handler.network:ServerManager/addServer"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("a_4771"),"a_2650")
+                     paramname "com.aurora.handler.network:ServerManager/reBuild"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 4
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                           debugline 29
+                           getlocal0
+                           pushscope
+                           debug 1, "tcpConn", 0, 29
+                           debugline 31
+                           pushnull
+                           getlocal1
+                           equals
+                           dup
+                           iftrue ofs001d
+                           pop
+                           getlocal1
+                           getlex QName(PackageNamespace("a_4771"),"a_2650")
+                           istypelate
+                           not
+                  ofs001d:
+                           iffalse ofs0031
+                           debugline 33
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "addServer to ServerManager failed, tcpconn is null or not TcpConnection object"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 34
+                           pushfalse
+                           returnvalue
+                  ofs0031:
+                           debugline 36
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           pushbyte 0
+                           lessthan
+                           dup
+                           iftrue ofs0047
+                           pop
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           pushbyte 0
+                           lessequals
+                  ofs0047:
+                           iffalse ofs005b
+                           debugline 38
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "connection serverType or serverId  less than 0"
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 39
+                           pushfalse
+                           returnvalue
+                  ofs005b:
+                           debugline 41
+                           pushnull
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           equals
+                           not
+                           dup
+                           iffalse ofs0086
+                           pop
+                           debugline 42
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlex QName(PackageNamespace("a_4771"),"a_2650")
+                           istypelate
+                  ofs0086:
+                           iffalse ofs00ac
+                           debugline 44
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "mapTcpConnectionRoutine["
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           add
+                           pushstring "]["
+                           add
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           add
+                           pushstring "] is a tcpconnection already"
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 45
+                           pushfalse
+                           returnvalue
+                  ofs00ac:
+                           debugline 48
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlex QName(PackageNamespace(""),"Array")
+                           istypelate
+                           iffalse ofs00d7
+                           debugline 50
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           getlocal1
+                           setproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           jump ofs00fc
+                  ofs00d7:
+                           debugline 54
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           findpropstrict QName(PackageNamespace(""),"Array")
+                           constructprop QName(PackageNamespace(""),"Array"), 0
+                           setproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           debugline 55
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           getlocal1
+                           setproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                  ofs00fc:
+                           debugline 58
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "add server connection:"
+                           getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverType")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"serverId")
+                           getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 60
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function removeServer(tcpConn:a_2650) : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"removeServer")
+                     dispid 0
+                     method
+                        name "com.aurora.handler.network:ServerManager/removeServer"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("a_4771"),"a_2650")
+                        paramname "com.aurora.handler.network:ServerManager/reBuild"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 3
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                              debugline 63
+                              getlocal0
+                              pushscope
+                              debug 1, "tcpConn", 0, 63
+                              debugline 65
+                              pushnull
+                              getlocal1
+                              equals
+                              dup
+                              iftrue ofs001d
+                              pop
+                              getlocal1
+                              getlex QName(PackageNamespace("a_4771"),"a_2650")
+                              istypelate
+                              not
+                     ofs001d:
+                              iffalse ofs0031
+                              debugline 67
+                              findpropstrict QName(PackageNamespace(""),"trace")
+                              pushstring "remove Server failed, tcpconn is null or not TcpConnection object"
+                              callpropvoid QName(PackageNamespace(""),"trace"), 1
+                              debugline 68
+                              pushfalse
+                              returnvalue
+                     ofs0031:
+                              debugline 70
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverType")
+                              pushbyte 0
+                              lessthan
+                              dup
+                              iftrue ofs0047
+                              pop
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverId")
+                              pushbyte 0
+                              lessequals
+                     ofs0047:
+                              iffalse ofs005b
+                              debugline 72
+                              findpropstrict QName(PackageNamespace(""),"trace")
+                              pushstring "connection serverType or serverType  less than 1"
+                              callpropvoid QName(PackageNamespace(""),"trace"), 1
+                              debugline 73
+                              pushfalse
+                              returnvalue
+                     ofs005b:
+                              debugline 76
+                              pushnull
+                              getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverType")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                              equals
+                              not
+                              dup
+                              iffalse ofs0086
+                              pop
+                              debugline 77
+                              pushnull
+                              getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverType")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverId")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                              equals
+                              not
+                     ofs0086:
+                              iffalse ofs009e
+                              debugline 79
+                              getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverType")
+                              getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"serverId")
+                              pushnull
+                              setproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                     ofs009e:
+                              debugline 82
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function getTcpConnection(serverType:int, server_id:int) : a_2650
+                  {
+                     trait method QName(PackageNamespace(""),"getTcpConnection")
+                        dispid 0
+                        method
+                           name "com.aurora.handler.network:ServerManager/getTcpConnection"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"int")
+                           param QName(PackageNamespace(""),"int")
+                           paramname ""
+                           paramname ""
+                           returns QName(PackageNamespace("a_4771"),"a_2650")
+                           
+                           body
+                              maxstack 3
+                              localcount 3
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                                 debugline 85
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "serverType", 0, 85
+                                 debug 1, "server_id", 1, 85
+                                 debugline 87
+                                 getlocal1
+                                 pushbyte 0
+                                 lessthan
+                                 dup
+                                 iftrue ofs0023
+                                 pop
+                                 getlocal2
+                                 pushbyte 0
+                                 lessequals
+                        ofs0023:
+                                 dup
+                                 iftrue ofs0034
+                                 pop
+                                 debugline 88
+                                 pushnull
+                                 getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                 equals
+                        ofs0034:
+                                 dup
+                                 iftrue ofs004b
+                                 pop
+                                 debugline 89
+                                 getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                 getlocal2
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                 getlex QName(PackageNamespace("a_4771"),"a_2650")
+                                 istypelate
+                                 not
+                        ofs004b:
+                                 iffalse ofs0053
+                                 debugline 91
+                                 pushnull
+                                 returnvalue
+                        ofs0053:
+                                 debugline 94
+                                 getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                                 getlocal1
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                 getlocal2
+                                 getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function getTcpConnectionsByServerType(serverType:int) : Array
+                     {
+                        trait method QName(PackageNamespace(""),"getTcpConnectionsByServerType")
+                           dispid 0
+                           method
+                              name "com.aurora.handler.network:ServerManager/getTcpConnectionsByServerType"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"int")
+                              paramname "serverManager"
+                              returns QName(PackageNamespace(""),"Array")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                                    debugline 97
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "serverType", 0, 97
+                                    debugline 99
+                                    getlex QName(StaticProtectedNs("com.aurora.handler.network:ServerManager"),"mapTcpConnectionRoutine")
+                                    getlocal1
+                                    getproperty MultinameL([PrivateNamespace("com.aurora.handler.network:ServerManager"),StaticProtectedNs("com.aurora.handler.network:ServerManager"),PackageNamespace(""),PackageNamespace("a_4771"),PrivateNamespace("ServerManager.as$483"),PackageInternalNs("a_4771"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.handler.network:ServerManager")])
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                     }
+                  }
+                  
+                  method
+                     name ""
+                     returns null
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 1
+                        maxscopedepth 3
+                        
+                        code
+                           getlocal0
+                           pushscope
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                           debugline 5
+                           findpropstrict Multiname("a_2648",[PackageNamespace("a_4771")])
+                           getlex QName(PackageNamespace(""),"Object")
+                           pushscope
+                           getlex QName(PackageNamespace(""),"Object")
+                           newclass 98
+                           popscope
+                           initproperty QName(PackageNamespace("a_4771"),"a_2648")
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\network;ServerManager.as"
+                           debugline 1
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+                  

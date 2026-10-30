@@ -40,3 +40,22 @@ for(var i = 0 ; i< 3 ; i++){
 	btn6.target_card_index = target_card_index
 	btn6.view_max_shape = view_max_shape
 }
+
+panel_anim_init(id, 0.18, 0.14, 0, 3)
+panel_anim_kids(id, [obj_info_island_card_edit_select_btn, obj_info_island_edit_menu_btn])
+pop_t = 0
+pop_dur = 0.20
+pop_from = 0.84
+pop_s = pop_from
+pop_p = 0
+pop_base_s = image_xscale
+pop_mx = x
+pop_my = y
+pop_back_t = 0
+pop_back_p = 0
+with (obj_info_island_card_edit_select_btn) {
+	pop_bx = x; pop_by = y; pop_sx = image_xscale
+}
+with (obj_info_island_edit_menu_btn) {
+	pop_bx = x; pop_by = y; pop_sx = image_xscale
+}

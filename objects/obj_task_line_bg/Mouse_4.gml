@@ -4,5 +4,5 @@ if obj_task_bg.target_task_index != btn_index{
 		edit_task_state(task_id,"viewed")
 	}
 	obj_task_bg.target_task_index = btn_index
-	audio_play_sound(snd_button,0,0)
+	global.audio.play(snd_button,0,0)
 }

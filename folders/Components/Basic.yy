@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Basic",
+  "folderPath":"folders/Components/Basic.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Basic",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

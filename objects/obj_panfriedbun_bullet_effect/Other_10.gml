@@ -6,7 +6,7 @@ if shape < 1{
 	with (obj_enemy_parent) {	
 		if (hp > 0 && ((abs(x - other.x) <= 1.5 * global.grid_cell_size_x && grid_row == other.grid_row) || (abs(grid_row-other.grid_row) <= 1 && abs(x - other.x) <= 100)) and can_hit(other.target_type,target_type)) {
 			if hp > other.damage{
-				audio_play_sound(snd_fire_hit,0,0)
+				global.audio.play(snd_fire_hit,0,0)
 				damage_amount = other.damage
 				damage_type = other.damage_type
 				event_user(0)
@@ -30,7 +30,7 @@ else{
 	with (obj_enemy_parent) {	
 		if (hp > 0 && (abs(grid_row-other.grid_row) <= 1 && abs(x - other.x) <= 200) and can_hit(other.target_type,target_type)) {
 			if hp > other.damage{
-				audio_play_sound(snd_fire_hit,0,0)
+				global.audio.play(snd_fire_hit,0,0)
 				damage_amount = other.damage
 				damage_type = other.damage_type
 				event_user(0)

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"mod_craft_evo_table",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"mod_craft_evo_table",
+  "parent":{
+    "name":"Craft",
+    "path":"folders/脚本/mod/Craft.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

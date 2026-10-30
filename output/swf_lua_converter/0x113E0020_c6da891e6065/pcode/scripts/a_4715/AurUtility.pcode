@@ -1,0 +1,193 @@
+package a_4715
+{
+   import flash.net.getClassByAlias;
+   import flash.utils.getDefinitionByName;
+   
+   public class AurUtility
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function AurUtility()
+      {
+         method
+            name "com.aurora.commons:AurUtility/AurUtility"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "F:\\FlashKenai\\src;com\\aurora\\commons;AurUtility.as"
+                  debugline 32
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_1727(szClassName:String) : Class
+      {
+         trait method QName(PackageNamespace(""),"a_1727")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.commons:AurUtility/ClassForName"
+               flag HAS_PARAM_NAMES
+               flag NEED_ACTIVATION
+               param QName(PackageNamespace(""),"String")
+               paramname ""
+               returns QName(PackageNamespace(""),"Class")
+               
+               body
+                  maxstack 3
+                  localcount 5
+                  initscopedepth 4
+                  maxscopedepth 13
+                  trait slot QName(PackageInternalNs("a_4715"),"szClassName")
+                     slotid 1
+                     type QName(PackageNamespace(""),"String")
+                  end ; trait
+                  
+                  code
+                     debugfile "F:\\FlashKenai\\src;com\\aurora\\commons;AurUtility.as"
+                     debugline 8
+                     getlocal0
+                     pushscope
+                     newactivation
+                     dup
+                     setlocal2
+                     pushscope
+                     debug 1, "ClassForName$0", 1, 8
+                     getscopeobject 1
+                     getlocal1
+                     setslot 1
+                     debug 1, "szClassName", 0, 8
+            ofs001c:
+                     debugline 12
+                     findpropstrict QName(PackageNamespace("flash.utils"),"getDefinitionByName")
+                     getscopeobject 1
+                     getslot 1
+                     callproperty QName(PackageNamespace("flash.utils"),"getDefinitionByName"), 1
+                     getlex QName(PackageNamespace(""),"Class")
+                     astypelate
+                     returnvalue
+            ofs002d:
+                     debugline 14
+                     jump ofs0033
+            ofs0033:
+                     getlocal0
+                     pushscope
+                     getlocal2
+                     pushscope
+                     newcatch 0
+                     dup
+                     setlocal3
+                     dup
+                     pushscope
+                     swap
+                     setslot 1
+            ofs0040:
+                     debugline 18
+                     findpropstrict QName(PackageNamespace("flash.net"),"getClassByAlias")
+                     getscopeobject 1
+                     getslot 1
+                     callproperty QName(PackageNamespace("flash.net"),"getClassByAlias"), 1
+                     returnvalue
+            ofs004e:
+                     debugline 20
+                     jump ofs0054
+            ofs0054:
+                     getlocal0
+                     pushscope
+                     getlocal2
+                     pushscope
+                     getlocal3
+                     pushscope
+                     newcatch 1
+                     dup
+                     setlocal 4
+                     dup
+                     pushscope
+                     swap
+                     setslot 1
+                     debugline 23
+                     findpropstrict QName(PackageNamespace(""),"trace")
+                     pushstring "Class Not exist:<"
+                     getscopeobject 1
+                     getslot 1
+                     add
+                     pushstring ">."
+                     add
+                     callpropvoid QName(PackageNamespace(""),"trace"), 1
+                     debugline 24
+                     pushnull
+                     returnvalue
+                     popscope
+                     kill 4
+                     popscope
+                     kill 3
+                     debugline 28
+                     pushnull
+                     returnvalue
+                  end ; code
+                  try from ofs001c to ofs002d target ofs0033 type QName(PackageNamespace(""),"ReferenceError") name QName(PackageNamespace(""),"e") end
+                  try from ofs0040 to ofs004e target ofs0054 type QName(PackageNamespace(""),"ReferenceError") name QName(PackageNamespace(""),"e2") end
+               end ; body
+            end ; method
+         }
+      }
+   }
+   
+   method
+      name ""
+      returns null
+      
+      body
+         maxstack 2
+         localcount 1
+         initscopedepth 1
+         maxscopedepth 3
+         
+         code
+            getlocal0
+            pushscope
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\commons;AurUtility.as"
+            debugline 6
+            findpropstrict Multiname("AurUtility",[PackageNamespace("a_4715")])
+            getlex QName(PackageNamespace(""),"Object")
+            pushscope
+            getlex QName(PackageNamespace(""),"Object")
+            newclass 11
+            popscope
+            initproperty QName(PackageNamespace("a_4715"),"AurUtility")
+            debugfile "F:\\FlashKenai\\src;com\\aurora\\commons;AurUtility.as"
+            debugline 1
+            returnvoid
+         end ; code
+      end ; body
+   end ; method
+   

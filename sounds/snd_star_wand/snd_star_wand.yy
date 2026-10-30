@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_star_wand",
+  "audioGroupId":{
+    "name":"sound",
+    "path":"audiogroups/sound",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.0,
+  "exportDir":"",
+  "name":"snd_star_wand",
+  "parent":{
+    "name":"Sound Effect",
+    "path":"folders/声音/Sound Effect.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_star_wand.wav",
+  "volume":1.0,
+}

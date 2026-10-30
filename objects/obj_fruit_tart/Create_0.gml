@@ -21,3 +21,10 @@ is_slowdown = false
 
 card_id_list = ["egg_boiler_pult"]
 enhance_card_list = []
+buffer_type = "thrower";
+buff_value = atk / 100;
+buff_cells = [];
+var _left = (shape >= 2) ? 0 : grid_col - 1;
+for (var _col = _left; _col >= 0; _col--)
+    array_push(buff_cells, [_col, grid_row, buff_value]);
+buff_cells_refreshed = false;

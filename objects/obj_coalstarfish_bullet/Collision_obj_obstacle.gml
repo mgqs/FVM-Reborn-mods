@@ -1,4 +1,7 @@
-if target_type == "normal"{
+// 行门禁：只被「逻辑行 == 本障碍行」的子弹撞到才销毁（口径见 obstacle_should_block）
+if (!obstacle_should_block(id, other)) exit;
+
+if target_type == "normal" && precise_bbox_collision(id, other){
 	if burnt == 0{
 		//var inst = instance_create_depth(x,y,depth,obj_coke_bomb_explode)
 		//inst.sprite_index = spr_stargun_bullet

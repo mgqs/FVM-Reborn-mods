@@ -1,0 +1,15 @@
+image_index = 0;
+image_speed = 0;
+timer = 0;
+damage = 0;
+grid_row = 0;
+grid_col = 0;
+disabled = false;
+target_type = "throw";
+shape = 0;
+damage_type = "throw";
+image_xscale = 2.0;
+image_yscale = 2.0;
+deep_boom = false;
+deep_boom_damage = 0;
+deep_boom_done = false;

@@ -1,0 +1,837 @@
+package com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.a_3909;
+   import flash.display.BitmapData;
+   import flash.display.MovieClip;
+   import flash.geom.Point;
+   import flash.utils.getTimer;
+   
+   public class MageSnakePoisonBuff extends a_3909
+   {
+      
+      private static var ms_stMageSnakePoisonBuffVector:Array;
+      
+      private static var a_1300:Vector.<BitmapData>;
+      
+      private static var a_1301:Vector.<Point>;
+      
+      private static var a_1302:MovieClip;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 3
+            localcount 1
+            initscopedepth 9
+            maxscopedepth 10
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "ms_stMageSnakePoisonBuffVector", 0, 14
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"ms_stMageSnakePoisonBuffVector")
+               findpropstrict QName(PackageNamespace(""),"Array")
+               constructprop QName(PackageNamespace(""),"Array"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"ms_stMageSnakePoisonBuffVector")
+               debug 1, "a_1300", 1, 15
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1300")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.display"),"BitmapData")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1300")
+               debug 1, "a_1301", 2, 16
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1301")
+               getlex Multiname("Vector",[PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PackageNamespace("__AS3__.vec")])
+               getlex QName(PackageNamespace("flash.geom"),"Point")
+               applytype 1
+               pushbyte 100
+               construct 1
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1301")
+               debug 1, "a_1302", 3, 17
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1302")
+               findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuffMovie")
+               constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuffMovie"), 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1302")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_iStartTime:int;
+      
+      private var appearedTimes:int = 0;
+      
+      public var stTargetGrid:a_3491;
+      
+      private var m_iHurtCD:int;
+      
+      private var a_1579:Number;
+      
+      public var m_BuffAddTimes:int;
+      
+      private var m_TatalPower:Number;
+      
+      public var m_BuffDurations:Array;
+      
+      public var m_BuffPowers:Array;
+      
+      private var m_iWaitTime:int;
+      
+      public function MageSnakePoisonBuff()
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/MageSnakePoisonBuff"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 10
+               maxscopedepth 11
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                  debugline 41
+                  getlocal0
+                  pushscope
+                  debugline 28
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PackageNamespace(""),"m_BuffDurations")
+                  debugline 29
+                  getlocal0
+                  newarray 0
+                  initproperty QName(PackageNamespace(""),"m_BuffPowers")
+                  debugline 43
+                  getlocal0
+                  constructsuper 0
+                  debugline 44
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  pushbyte -38
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1279")
+                  debugline 45
+                  findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  pushbyte -35
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"m_iYDisplayCenterPos")
+                  debugline 46
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function a_3926() : MageSnakePoisonBuff
+      {
+         trait method QName(PackageNamespace(""),"a_3926")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/GetFreeInstance"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuff")
+               
+               body
+                  maxstack 2
+                  localcount 2
+                  initscopedepth 9
+                  maxscopedepth 10
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                     debugline 31
+                     getlocal0
+                     pushscope
+                     debug 1, "stMageSnakePoisonBuff", 0, 33
+                     debugline 33
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"ms_stMageSnakePoisonBuffVector")
+                     callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"pop"), 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuff")
+                     setlocal1
+                     debugline 34
+                     getlocal1
+                     pushnull
+                     ifne ofs002b
+                     debugline 36
+                     getlocal0
+                     construct 0
+                     coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuff")
+                     setlocal1
+            ofs002b:
+                     debugline 38
+                     getlocal1
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function a_1797(isReseaved:Boolean, iHurtCD:int = 1, iHurtPower:Number = 1) : Boolean
+         {
+            trait method QName(PackageNamespace(""),"a_1797")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/Initialize"
+                  flag HAS_OPTIONAL
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace(""),"Boolean")
+                  param QName(PackageNamespace(""),"int")
+                  param QName(PackageNamespace(""),"Number")
+                  paramname "m_iYDisplayCenterPos"
+                  paramname "m_iYDisplayCenterPos"
+                  paramname "m_iYDisplayCenterPos"
+                  optional Integer(1)
+                  optional Integer(1)
+                  returns QName(PackageNamespace(""),"Boolean")
+                  
+                  body
+                     maxstack 4
+                     localcount 4
+                     initscopedepth 10
+                     maxscopedepth 11
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                        debugline 54
+                        getlocal0
+                        pushscope
+                        debug 1, "isReseaved", 0, 54
+                        debug 1, "iHurtCD", 1, 54
+                        debug 1, "iHurtPower", 2, 54
+                        debugline 56
+                        findproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        getlocal1
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1283")
+                        debugline 57
+                        getlocal0
+                        getlocal2
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iHurtCD")
+                        debugline 59
+                        getlocal0
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"visible")
+                        debugline 60
+                        findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                        pushbyte 1
+                        callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                        debugline 62
+                        getlocal0
+                        pushbyte 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iStartTime")
+                        debugline 63
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                        callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"appearedTimes")
+                        debugline 64
+                        getlocal0
+                        pushbyte 1
+                        initproperty QName(PackageNamespace(""),"m_BuffAddTimes")
+                        debugline 65
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"m_BuffAddTimes")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1579")
+                        multiply
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_TatalPower")
+                        debugline 67
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"stTargetGrid")
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                        iffalse ofs0098
+                        debugline 69
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"stTargetGrid")
+                        getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                        callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                        getlocal0
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"stTargetGrid")
+                        getproperty QName(PackageNamespace(""),"m_iXGridNo")
+                        getlocal0
+                        getproperty QName(PackageNamespace(""),"stTargetGrid")
+                        getproperty QName(PackageNamespace(""),"m_iYGridNo")
+                        callpropvoid QName(PackageNamespace(""),"AddMoveDisplayObject"), 3
+               ofs0098:
+                        debugline 71
+                        pushtrue
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public function get WaitTime() : int
+            {
+               trait getter QName(PackageNamespace(""),"WaitTime")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/WaitTime/get"
+                     returns QName(PackageNamespace(""),"int")
+                     
+                     body
+                        maxstack 1
+                        localcount 1
+                        initscopedepth 10
+                        maxscopedepth 11
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                           debugline 79
+                           getlocal0
+                           pushscope
+                           debugline 81
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iWaitTime")
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function set WaitTime(iWaitTime:int) : void
+               {
+                  trait setter QName(PackageNamespace(""),"WaitTime")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/WaitTime/set"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace(""),"int")
+                        paramname "iHurtPower"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 10
+                           maxscopedepth 11
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                              debugline 84
+                              getlocal0
+                              pushscope
+                              debug 1, "iWaitTime", 0, 84
+                              debugline 86
+                              getlocal0
+                              getlocal1
+                              initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iWaitTime")
+                              debugline 87
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  override protected function a_3911() : Vector.<BitmapData>
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_3911")
+                        flag OVERRIDE
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/protected:GetFrameCacheVector"
+                           returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.display"),"BitmapData")>)
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 10
+                              maxscopedepth 11
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                 debugline 89
+                                 getlocal0
+                                 pushscope
+                                 debugline 91
+                                 getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1300")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     override protected function a_3912() : Vector.<Point>
+                     {
+                        trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_3912")
+                           flag OVERRIDE
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/protected:GetFrameCacheSkewingVector"
+                              returns TypeName(QName(PackageNamespace("__AS3__.vec"),"Vector")<QName(PackageNamespace("flash.geom"),"Point")>)
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 10
+                                 maxscopedepth 11
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                    debugline 94
+                                    getlocal0
+                                    pushscope
+                                    debugline 96
+                                    getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1301")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        override protected function a_3913() : MovieClip
+                        {
+                           trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_3913")
+                              flag OVERRIDE
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/protected:GetOriginalMovieClip"
+                                 returns QName(PackageNamespace("flash.display"),"MovieClip")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 10
+                                    maxscopedepth 11
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                       debugline 99
+                                       getlocal0
+                                       pushscope
+                                       debugline 101
+                                       getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_1302")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function a_3940() : Boolean
+                           {
+                              trait method QName(PackageNamespace(""),"a_3940")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/Realease"
+                                    returns QName(PackageNamespace(""),"Boolean")
+                                    
+                                    body
+                                       maxstack 2
+                                       localcount 1
+                                       initscopedepth 10
+                                       maxscopedepth 11
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                          debugline 105
+                                          getlocal0
+                                          pushscope
+                                          debugline 107
+                                          findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                          pushbyte 1
+                                          callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                          debugline 109
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                          pushnull
+                                          equals
+                                          not
+                                          dup
+                                          iffalse ofs002d
+                                          pop
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          convert_b
+                                 ofs002d:
+                                          iffalse ofs0043
+                                          debugline 111
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                          getproperty QName(PackageNamespace(""),"m_stCurrentBattbleFieldView")
+                                          callproperty QName(PackageNamespace(""),"GetGameMoveMap"), 0
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"RemoveMoveDisplayObject"), 1
+                                 ofs0043:
+                                          debugline 114
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                          pushnull
+                                          ifeq ofs005f
+                                          debugline 116
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                          pushnull
+                                          setproperty QName(PackageNamespace(""),"m_stMageSnakePoisonBuff")
+                                          debugline 117
+                                          getlocal0
+                                          pushnull
+                                          initproperty QName(PackageNamespace(""),"stTargetGrid")
+                                 ofs005f:
+                                          debugline 120
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"ms_stMageSnakePoisonBuffVector")
+                                          getlocal0
+                                          callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"indexOf"), 1
+                                          pushbyte -1
+                                          ifne ofs0079
+                                          debugline 122
+                                          getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"ms_stMageSnakePoisonBuffVector")
+                                          getlocal0
+                                          callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"push"), 1
+                                 ofs0079:
+                                          debugline 125
+                                          getlocal0
+                                          newarray 0
+                                          initproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                          debugline 126
+                                          getlocal0
+                                          newarray 0
+                                          initproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                          debugline 128
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          pushnull
+                                          ifeq ofs00a1
+                                          debugline 130
+                                          getlocal0
+                                          getproperty QName(PackageNamespace(""),"parent")
+                                          getlocal0
+                                          callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                                 ofs00a1:
+                                          debugline 132
+                                          pushtrue
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function a_3957(iCurrentTime:int) : void
+                              {
+                                 trait method QName(PackageNamespace(""),"a_3957")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/ShowPlay"
+                                       flag HAS_PARAM_NAMES
+                                       param QName(PackageNamespace(""),"int")
+                                       paramname "iHurtPower"
+                                       returns QName(PackageNamespace(""),"void")
+                                       
+                                       body
+                                          maxstack 7
+                                          localcount 10
+                                          initscopedepth 10
+                                          maxscopedepth 11
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                             debugline 135
+                                             getlocal0
+                                             pushscope
+                                             pushnan
+                                             setlocal 5
+                                             pushnan
+                                             setlocal 6
+                                             debug 1, "iCurrentTime", 0, 135
+                                             debug 1, "currentTime", 1, 143
+                                             debug 1, "elapsedTime", 2, 144
+                                             debug 1, "i", 3, 162
+                                             debugline 137
+                                             findpropstrict QName(PackageNamespace(""),"nextFrame")
+                                             callpropvoid QName(PackageNamespace(""),"nextFrame"), 0
+                                             debugline 139
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1273")
+                                             getlex QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),"a_1274")
+                                             ifne ofs004d
+                                             debugline 141
+                                             findpropstrict QName(PackageNamespace(""),"gotoAndStop")
+                                             pushbyte 1
+                                             callpropvoid QName(PackageNamespace(""),"gotoAndStop"), 1
+                                    ofs004d:
+                                             debugline 143
+                                             findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                                             callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                                             convert_i
+                                             setlocal2
+                                             debugline 144
+                                             getlocal2
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"appearedTimes")
+                                             subtract
+                                             convert_i
+                                             setlocal3
+                                             debugline 145
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iStartTime")
+                                             pushbyte 20
+                                             modulo
+                                             pushbyte 0
+                                             ifne ofs00d4
+                                             debugline 147
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                             pushnull
+                                             ifeq ofs00d4
+                                             debug 1, "totalPower", 4, 150
+                                             debug 1, "power", 5, 151
+                                             debugline 150
+                                             pushbyte 0
+                                             convert_d
+                                             setlocal 5
+                                             debugline 151
+                                             pushbyte 0
+                                             setlocal 7
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                             coerce_a
+                                             setlocal 8
+                                             jump ofs00bc
+                                    ofs00a8:
+                                             label
+                                             getlocal 8
+                                             getlocal 7
+                                             nextvalue
+                                             convert_d
+                                             setlocal 6
+                                             debugline 153
+                                             getlocal 5
+                                             getlocal 6
+                                             add
+                                             convert_d
+                                             setlocal 5
+                                    ofs00bc:
+                                             debugline 151
+                                             hasnext2 8, 7
+                                             iftrue ofs00a8
+                                             kill 8
+                                             kill 7
+                                             debugline 155
+                                             getlocal0
+                                             getlocal 5
+                                             callpropvoid QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_4352"), 1
+                                    ofs00d4:
+                                             debugline 159
+                                             getlocal0
+                                             dup
+                                             setlocal 7
+                                             getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iStartTime")
+                                             increment_i
+                                             setlocal 8
+                                             getlocal 7
+                                             getlocal 8
+                                             setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"m_iStartTime")
+                                             kill 8
+                                             kill 7
+                                             debugline 162
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                             getproperty QName(PackageNamespace(""),"length")
+                                             decrement
+                                             convert_i
+                                             setlocal 4
+                                             jump ofs015b
+                                    ofs00fe:
+                                             label
+                                             debugline 164
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                             dup
+                                             setlocal 7
+                                             getlocal 4
+                                             dup
+                                             setlocal 8
+                                             getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             decrement
+                                             setlocal 9
+                                             getlocal 7
+                                             getlocal 8
+                                             getlocal 9
+                                             setproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             kill 9
+                                             kill 7
+                                             kill 8
+                                             debugline 165
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                             getlocal 4
+                                             getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                             pushbyte 0
+                                             ifnle ofs0153
+                                             debugline 167
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                             getlocal 4
+                                             pushbyte 1
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                             debugline 168
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffPowers")
+                                             getlocal 4
+                                             pushbyte 1
+                                             callpropvoid QName(Namespace("http://adobe.com/AS3/2006/builtin"),"splice"), 2
+                                    ofs0153:
+                                             debugline 162
+                                             getlocal 4
+                                             decrement_i
+                                             setlocal 4
+                                    ofs015b:
+                                             getlocal 4
+                                             pushbyte 0
+                                             ifge ofs00fe
+                                             debugline 173
+                                             getlocal0
+                                             getproperty QName(PackageNamespace(""),"m_BuffDurations")
+                                             getproperty QName(PackageNamespace(""),"length")
+                                             pushbyte 0
+                                             ifne ofs017b
+                                             debugline 175
+                                             getlocal0
+                                             callpropvoid QName(PackageNamespace(""),"a_3940"), 0
+                                    ofs017b:
+                                             debugline 177
+                                             returnvoid
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 private function a_4352(totalPower:Number) : void
+                                 {
+                                    trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),"a_4352")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff/private:HitMoveIntruder"
+                                          flag HAS_PARAM_NAMES
+                                          param QName(PackageNamespace(""),"Number")
+                                          paramname "iHurtPower"
+                                          returns QName(PackageNamespace(""),"void")
+                                          
+                                          body
+                                             maxstack 2
+                                             localcount 4
+                                             initscopedepth 10
+                                             maxscopedepth 11
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                                debugline 178
+                                                getlocal0
+                                                pushscope
+                                                pushbyte 0
+                                                setlocal2
+                                                pushnull
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                setlocal3
+                                                debug 1, "totalPower", 0, 178
+                                                debugline 180
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                                pushnull
+                                                ifeq ofs008b
+                                                debug 1, "i", 1, 182
+                                                debugline 182
+                                                pushbyte 0
+                                                setlocal2
+                                                jump ofs007c
+                                       ofs0033:
+                                                label
+                                                debug 1, "stMoveIntruder", 2, 184
+                                                debugline 184
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                                getproperty QName(PackageNamespace(""),"a_1511")
+                                                getlocal2
+                                                getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),PackageNamespace(""),PrivateNamespace("MageSnakePoisonBuff.as$165"),PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),PackageInternalNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake:MageSnakePoisonBuff"),StaticProtectedNs("com.aurora.ui.maogoutd.resource:AurHighRenderMovieClip"),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher")])
+                                                coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+                                                setlocal3
+                                                debugline 185
+                                                getlocal3
+                                                getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                pushbyte 0
+                                                ifngt ofs0077
+                                                debugline 187
+                                                getlocal3
+                                                getlocal1
+                                                callpropvoid QName(PackageNamespace(""),"a_3969"), 1
+                                                debugline 189
+                                                getlocal3
+                                                getproperty QName(PackageNamespace(""),"iLifeValue")
+                                                pushbyte 0
+                                                ifngt ofs0077
+                                                debugline 191
+                                                getlocal3
+                                                callpropvoid QName(PackageNamespace(""),"AddSnakePoisonEffect"), 0
+                                       ofs0077:
+                                                debugline 182
+                                                inclocal_i 2
+                                       ofs007c:
+                                                getlocal2
+                                                getlocal0
+                                                getproperty QName(PackageNamespace(""),"stTargetGrid")
+                                                getproperty QName(PackageNamespace(""),"a_1511")
+                                                getproperty QName(PackageNamespace(""),"length")
+                                                iflt ofs0033
+                                       ofs008b:
+                                                debugline 197
+                                                returnvoid
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                 }
+                              }
+                              
+                              method
+                                 name ""
+                                 returns null
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 1
+                                    maxscopedepth 9
+                                    
+                                    code
+                                       getlocal0
+                                       pushscope
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                       debugline 12
+                                       findpropstrict Multiname("MageSnakePoisonBuff",[PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake")])
+                                       getlex QName(PackageNamespace(""),"Object")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"DisplayObject")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"InteractiveObject")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"DisplayObjectContainer")
+                                       pushscope
+                                       getlex QName(PackageNamespace("flash.display"),"Sprite")
+                                       pushscope
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                       pushscope
+                                       getlex QName(PackageNamespace("com.aurora.ui.maogoutd.resource"),"a_3909")
+                                       newclass 287
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       popscope
+                                       initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.defender.SnakeYear.mageSnake"),"MageSnakePoisonBuff")
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\defender\\SnakeYear\\mageSnake;MageSnakePoisonBuff.as"
+                                       debugline 1
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                              

@@ -1,5 +1,5 @@
 var inst = instance_create_depth(x+50,y-75,depth-500,obj_tarsprayer_bullet)
-audio_play_sound(snd_coffee_pot_attack,0,0)
+global.audio.play(snd_coffee_pot_attack,0,0)
 inst.damage = atk
 inst.move_speed = 8
 inst.shape = shape

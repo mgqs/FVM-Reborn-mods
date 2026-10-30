@@ -14,6 +14,6 @@ else{
 }
 if timer == 14*5{
 	var inst = instance_create_depth(x-50,y-75,-500,obj_freeze_gem_effect)
-	//audio_play_sound(snd_mouse_frozen,0,0)
+	//global.audio.play(snd_mouse_frozen,0,0)
 	inst.row = row
 }

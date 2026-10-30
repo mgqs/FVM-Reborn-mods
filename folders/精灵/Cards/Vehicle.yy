@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Vehicle",
+  "folderPath":"folders/精灵/Cards/Vehicle.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Vehicle",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"wooden_plate","path":"folders/精灵/Cards/Vehicle/wooden_plate.yy",},
+    {"name":"soda_bubble","path":"folders/精灵/Cards/Vehicle/soda_bubble.yy",},
+    {"name":"cotton_candy","path":"folders/精灵/Cards/Vehicle/cotton_candy.yy",}
+  ],
+  "listItems":[],
+}

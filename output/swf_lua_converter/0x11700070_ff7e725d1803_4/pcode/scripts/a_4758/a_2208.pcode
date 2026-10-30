@@ -1,0 +1,1851 @@
+package a_4758
+{
+   import a_4716.EnmAppTypeID;
+   import a_4716.b_154;
+   import a_4723.RegisterInfo;
+   import a_4727.b_164;
+   import a_4728.a_1778;
+   import a_4729.EventType;
+   import a_4729.a_1789;
+   import a_4752.GameStringManager;
+   import a_4752.a_2036;
+   import a_4757.a_2200;
+   import a_4759.b_166;
+   import a_4771.a_2650;
+   import a_4788.a_4648;
+   import com.adobe.crypto.MD5;
+   import com.aurora.protocol.a_2664;
+   import com.aurora.protocol.authen.a_2660;
+   import com.aurora.protocol.authen.a_2661;
+   import com.aurora.protocol.authen.a_2662;
+   import com.aurora.protocol.authen.a_2663;
+   import com.aurora.protocol.common.a_2667;
+   import com.aurora.protocol.hallserver.a_2751;
+   import com.aurora.protocol.profile.CUserBaseProfile;
+   import com.aurora.ui.maogoutd.doctor.GameDoctor;
+   import flash.events.Event;
+   import flash.utils.ByteArray;
+   import flash.utils.Endian;
+   import flash.utils.clearInterval;
+   import flash.utils.getTimer;
+   import flash.utils.setInterval;
+   
+   public class a_2208 extends b_166
+   {
+      
+      private static var intervalId:uint = 0;
+      
+      private static var a_776:a_2208;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 7
+            maxscopedepth 8
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "intervalId", 0, 36
+               findproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+               pushbyte 0
+               setproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+               debug 1, "a_776", 1, 37
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var a_777:String = "Authentic@51.COM";
+      
+      private var a_778:String = "51Auth";
+      
+      private var a_779:uint = 0;
+      
+      private var a_780:int = 0;
+      
+      private var a_781:ByteArray;
+      
+      private var m_iRawUin:int = -1;
+      
+      private var a_782:String = "";
+      
+      private var m_iMyUin:int = -1;
+      
+      private var m_szAccount:String = "";
+      
+      private var m_nUserType:int = 0;
+      
+      private var m_iUserSex:int = -1;
+      
+      private var m_szSessionKey:ByteArray;
+      
+      private var a_783:ByteArray;
+      
+      private var a_784:ByteArray;
+      
+      public var m_stUserBaseProfile:CUserBaseProfile;
+      
+      public var a_812:a_2751;
+      
+      private var currTime:int;
+      
+      public function a_2208()
+      {
+         method
+            name "com.aurora.handler.authenticate:AuthenticateHandler/AuthenticateHandler"
+            returns null
+            
+            body
+               maxstack 3
+               localcount 1
+               initscopedepth 8
+               maxscopedepth 9
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                  debugline 65
+                  getlocal0
+                  pushscope
+                  debugline 49
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                  constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szSessionKey")
+                  debugline 50
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                  constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                  debugline 51
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                  constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                  initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                  debugline 66
+                  getlocal0
+                  constructsuper 0
+                  debugline 67
+                  findpropstrict QName(PackageNamespace(""),"a_2247")
+                  getlex QName(PackageNamespace("a_4716"),"b_154")
+                  getproperty QName(PackageNamespace(""),"a_110")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_2214")
+                  callpropvoid QName(PackageNamespace(""),"a_2247"), 2
+                  debugline 68
+                  findpropstrict QName(PackageNamespace(""),"a_2247")
+                  getlex QName(PackageNamespace("a_4716"),"b_154")
+                  getproperty QName(PackageNamespace(""),"a_114")
+                  getlocal0
+                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_2215")
+                  callpropvoid QName(PackageNamespace(""),"a_2247"), 2
+                  debugline 69
+                  findpropstrict QName(PackageNamespace(""),"a_2246")
+                  getlex QName(PackageNamespace("a_4757"),"a_2200")
+                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                  callpropvoid QName(PackageNamespace(""),"a_2246"), 1
+                  debugline 70
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function getInstance() : a_2208
+      {
+         trait method QName(PackageNamespace(""),"getInstance")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.handler.authenticate:AuthenticateHandler/getInstance"
+               returns QName(PackageNamespace("a_4758"),"a_2208")
+               
+               body
+                  maxstack 2
+                  localcount 1
+                  initscopedepth 7
+                  maxscopedepth 8
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                     debugline 56
+                     getlocal0
+                     pushscope
+                     debugline 58
+                     pushnull
+                     getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_776")
+                     ifne ofs001c
+                     debugline 60
+                     findproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_776")
+                     getlocal0
+                     construct 0
+                     setproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_776")
+            ofs001c:
+                     debugline 62
+                     getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_776")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function a_2216() : void
+         {
+            trait method QName(PackageNamespace(""),"a_2216")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.handler.authenticate:AuthenticateHandler/TimeRenewAuthenticate"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 1
+                     localcount 1
+                     initscopedepth 7
+                     maxscopedepth 8
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                        debugline 376
+                        getlocal0
+                        pushscope
+                        debugline 378
+                        getlex QName(PackageNamespace("a_4758"),"a_2208")
+                        callproperty QName(PackageNamespace(""),"getInstance"), 0
+                        callpropvoid QName(PackageNamespace(""),"a_2211"), 0
+                        debugline 379
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public static function a_2217() : Boolean
+            {
+               trait method QName(PackageNamespace(""),"a_2217")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.handler.authenticate:AuthenticateHandler/Start"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 5
+                        localcount 1
+                        initscopedepth 7
+                        maxscopedepth 8
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                           debugline 381
+                           getlocal0
+                           pushscope
+                           debugline 383
+                           getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                           pushbyte 0
+                           ifne ofs0046
+                           debugline 385
+                           findproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                           findpropstrict QName(PackageNamespace("flash.utils"),"setInterval")
+                           getlex QName(PackageNamespace(""),"a_2216")
+                           pushbyte 10
+                           pushbyte 60
+                           multiply
+                           pushshort 1000
+                           multiply
+                           callproperty QName(PackageNamespace("flash.utils"),"setInterval"), 2
+                           setproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                           debugline 386
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "AuthenticateHandler renewAuthenticate started, intervalId:"
+                           getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 387
+                           pushtrue
+                           returnvalue
+                  ofs0046:
+                           debugline 389
+                           findpropstrict QName(PackageNamespace(""),"trace")
+                           pushstring "AuthenticateHandler renewAuthenticate has been started return failed, intervalId:"
+                           getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                           add
+                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                           debugline 390
+                           pushfalse
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public static function a_2218() : Boolean
+               {
+                  trait method QName(PackageNamespace(""),"a_2218")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.handler.authenticate:AuthenticateHandler/Stop"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 7
+                           maxscopedepth 8
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                              debugline 393
+                              getlocal0
+                              pushscope
+                              debugline 395
+                              getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                              pushbyte 0
+                              ifngt ofs002c
+                              debugline 397
+                              findpropstrict QName(PackageNamespace("flash.utils"),"clearInterval")
+                              getlex QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                              callpropvoid QName(PackageNamespace("flash.utils"),"clearInterval"), 1
+                              debugline 398
+                              findproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                              pushbyte 0
+                              setproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"intervalId")
+                     ofs002c:
+                              debugline 400
+                              pushtrue
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function getUin() : int
+                  {
+                     trait method QName(PackageNamespace(""),"getUin")
+                        dispid 0
+                        method
+                           name "com.aurora.handler.authenticate:AuthenticateHandler/getUin"
+                           returns QName(PackageNamespace(""),"int")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 8
+                              maxscopedepth 9
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                 debugline 72
+                                 getlocal0
+                                 pushscope
+                                 debugline 74
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iMyUin")
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function getRawUin() : int
+                     {
+                        trait method QName(PackageNamespace(""),"getRawUin")
+                           dispid 0
+                           method
+                              name "com.aurora.handler.authenticate:AuthenticateHandler/getRawUin"
+                              returns QName(PackageNamespace(""),"int")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 1
+                                 initscopedepth 8
+                                 maxscopedepth 9
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                    debugline 77
+                                    getlocal0
+                                    pushscope
+                                    debugline 79
+                                    getlocal0
+                                    getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iRawUin")
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function getAccount() : String
+                        {
+                           trait method QName(PackageNamespace(""),"getAccount")
+                              dispid 0
+                              method
+                                 name "com.aurora.handler.authenticate:AuthenticateHandler/getAccount"
+                                 returns QName(PackageNamespace(""),"String")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 1
+                                    initscopedepth 8
+                                    maxscopedepth 9
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                       debugline 82
+                                       getlocal0
+                                       pushscope
+                                       debugline 84
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function getRawAccount() : String
+                           {
+                              trait method QName(PackageNamespace(""),"getRawAccount")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.handler.authenticate:AuthenticateHandler/getRawAccount"
+                                    returns QName(PackageNamespace(""),"String")
+                                    
+                                    body
+                                       maxstack 1
+                                       localcount 1
+                                       initscopedepth 8
+                                       maxscopedepth 9
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                          debugline 87
+                                          getlocal0
+                                          pushscope
+                                          debugline 89
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_782")
+                                          returnvalue
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                              
+                              public function getGender() : int
+                              {
+                                 trait method QName(PackageNamespace(""),"getGender")
+                                    dispid 0
+                                    method
+                                       name "com.aurora.handler.authenticate:AuthenticateHandler/getGender"
+                                       returns QName(PackageNamespace(""),"int")
+                                       
+                                       body
+                                          maxstack 1
+                                          localcount 1
+                                          initscopedepth 8
+                                          maxscopedepth 9
+                                          
+                                          code
+                                             debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                             debugline 92
+                                             getlocal0
+                                             pushscope
+                                             debugline 94
+                                             getlocal0
+                                             getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iUserSex")
+                                             returnvalue
+                                          end ; code
+                                       end ; body
+                                    end ; method
+                                 }
+                                 
+                                 public function getLocalKey() : String
+                                 {
+                                    trait method QName(PackageNamespace(""),"getLocalKey")
+                                       dispid 0
+                                       method
+                                          name "com.aurora.handler.authenticate:AuthenticateHandler/getLocalKey"
+                                          returns QName(PackageNamespace(""),"String")
+                                          
+                                          body
+                                             maxstack 1
+                                             localcount 1
+                                             initscopedepth 8
+                                             maxscopedepth 9
+                                             
+                                             code
+                                                debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                debugline 97
+                                                getlocal0
+                                                pushscope
+                                                debugline 99
+                                                getlocal0
+                                                getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_777")
+                                                returnvalue
+                                             end ; code
+                                          end ; body
+                                       end ; method
+                                    }
+                                    
+                                    public function getAuthenKey() : ByteArray
+                                    {
+                                       trait method QName(PackageNamespace(""),"getAuthenKey")
+                                          dispid 0
+                                          method
+                                             name "com.aurora.handler.authenticate:AuthenticateHandler/getAuthenKey"
+                                             returns QName(PackageNamespace("flash.utils"),"ByteArray")
+                                             
+                                             body
+                                                maxstack 1
+                                                localcount 1
+                                                initscopedepth 8
+                                                maxscopedepth 9
+                                                
+                                                code
+                                                   debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                   debugline 102
+                                                   getlocal0
+                                                   pushscope
+                                                   debugline 105
+                                                   getlocal0
+                                                   getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szSessionKey")
+                                                   returnvalue
+                                                end ; code
+                                             end ; body
+                                          end ; method
+                                       }
+                                       
+                                       public function getSignature() : ByteArray
+                                       {
+                                          trait method QName(PackageNamespace(""),"getSignature")
+                                             dispid 0
+                                             method
+                                                name "com.aurora.handler.authenticate:AuthenticateHandler/getSignature"
+                                                returns QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                
+                                                body
+                                                   maxstack 1
+                                                   localcount 1
+                                                   initscopedepth 8
+                                                   maxscopedepth 9
+                                                   
+                                                   code
+                                                      debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                      debugline 108
+                                                      getlocal0
+                                                      pushscope
+                                                      debugline 110
+                                                      getlocal0
+                                                      getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                      returnvalue
+                                                   end ; code
+                                                end ; body
+                                             end ; method
+                                          }
+                                          
+                                          public function get passwordHash() : ByteArray
+                                          {
+                                             trait getter QName(PackageNamespace(""),"passwordHash")
+                                                dispid 0
+                                                method
+                                                   name "com.aurora.handler.authenticate:AuthenticateHandler/passwordHash/get"
+                                                   returns QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                   
+                                                   body
+                                                      maxstack 1
+                                                      localcount 1
+                                                      initscopedepth 8
+                                                      maxscopedepth 9
+                                                      
+                                                      code
+                                                         debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                         debugline 113
+                                                         getlocal0
+                                                         pushscope
+                                                         debugline 115
+                                                         getlocal0
+                                                         getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                         returnvalue
+                                                      end ; code
+                                                   end ; body
+                                                end ; method
+                                             }
+                                             
+                                             public function getNextSequence() : uint
+                                             {
+                                                trait method QName(PackageNamespace(""),"getNextSequence")
+                                                   dispid 0
+                                                   method
+                                                      name "com.aurora.handler.authenticate:AuthenticateHandler/getNextSequence"
+                                                      returns QName(PackageNamespace(""),"uint")
+                                                      
+                                                      body
+                                                         maxstack 3
+                                                         localcount 3
+                                                         initscopedepth 8
+                                                         maxscopedepth 9
+                                                         
+                                                         code
+                                                            debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                            debugline 118
+                                                            getlocal0
+                                                            pushscope
+                                                            debugline 120
+                                                            getlocal0
+                                                            dup
+                                                            setlocal1
+                                                            getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_780")
+                                                            dup
+                                                            increment_i
+                                                            setlocal2
+                                                            getlocal1
+                                                            getlocal2
+                                                            setproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_780")
+                                                            kill 2
+                                                            kill 1
+                                                            returnvalue
+                                                         end ; code
+                                                      end ; body
+                                                   end ; method
+                                                }
+                                                
+                                                public function a_2209(account:String, nUserType:uint, password:String, nSourceAppId:int = 0, szMemoryBuffer:ByteArray = null) : Boolean
+                                                {
+                                                   trait method QName(PackageNamespace(""),"a_2209")
+                                                      dispid 0
+                                                      method
+                                                         name "com.aurora.handler.authenticate:AuthenticateHandler/RequestAuthenticateByPasswordMD5"
+                                                         flag HAS_OPTIONAL
+                                                         flag HAS_PARAM_NAMES
+                                                         param QName(PackageNamespace(""),"String")
+                                                         param QName(PackageNamespace(""),"uint")
+                                                         param QName(PackageNamespace(""),"String")
+                                                         param QName(PackageNamespace(""),"int")
+                                                         param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                         paramname "a_2211"
+                                                         paramname "a_2211"
+                                                         paramname "a_2211"
+                                                         paramname "a_2211"
+                                                         paramname "a_2211"
+                                                         optional Integer(0)
+                                                         optional Null()
+                                                         returns QName(PackageNamespace(""),"Boolean")
+                                                         
+                                                         body
+                                                            maxstack 6
+                                                            localcount 11
+                                                            initscopedepth 8
+                                                            maxscopedepth 9
+                                                            
+                                                            code
+                                                               debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                               debugline 123
+                                                               getlocal0
+                                                               pushscope
+                                                               debug 1, "account", 0, 123
+                                                               debug 1, "nUserType", 1, 123
+                                                               debug 1, "password", 2, 123
+                                                               debug 1, "nSourceAppId", 3, 123
+                                                               debug 1, "szMemoryBuffer", 4, 123
+                                                               debug 1, "passwordMd5", 5, 138
+                                                               debug 1, "finalBuffer", 6, 162
+                                                               debug 1, "encode_lenght", 7, 164
+                                                               debug 1, "requestAuthen", 8, 165
+                                                               debug 1, "authenKey", 9, 176
+                                                               debugline 125
+                                                               getlocal1
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               pushbyte 1
+                                                               lessthan
+                                                               dup
+                                                               iftrue ofs005e
+                                                               pop
+                                                               getlocal1
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               pushbyte 32
+                                                               greaterthan
+                                                      ofs005e:
+                                                               iffalse ofs00b0
+                                                               debugline 127
+                                                               findpropstrict QName(PackageNamespace(""),"trace")
+                                                               pushstring "account lenght: "
+                                                               getlocal1
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               add
+                                                               pushstring " error"
+                                                               add
+                                                               callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                               debugline 128
+                                                               getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                               getproperty QName(PackageNamespace(""),"instance")
+                                                               pushstring "type"
+                                                               pushstring "ce"
+                                                               newobject 1
+                                                               getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               pushint 132613
+                                                               callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                               pushstring "account lenght: "
+                                                               getlocal1
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               add
+                                                               pushstring " error"
+                                                               add
+                                                               pushstring "cpShow"
+                                                               pushtrue
+                                                               newobject 1
+                                                               callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                               debugline 129
+                                                               pushfalse
+                                                               returnvalue
+                                                      ofs00b0:
+                                                               pushstring ""
+                                                               debugline 132
+                                                               getlocal3
+                                                               ifne ofs00f7
+                                                               debugline 134
+                                                               findpropstrict QName(PackageNamespace(""),"trace")
+                                                               pushstring "password can not null"
+                                                               callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                               debugline 135
+                                                               getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                               getproperty QName(PackageNamespace(""),"instance")
+                                                               pushstring "type"
+                                                               pushstring "ce"
+                                                               newobject 1
+                                                               getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               pushint 132614
+                                                               callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                               pushstring "password can not null"
+                                                               pushstring "cpShow"
+                                                               pushtrue
+                                                               newobject 1
+                                                               callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                               debugline 136
+                                                               pushfalse
+                                                               returnvalue
+                                                      ofs00f7:
+                                                               debugline 138
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getlocal3
+                                                               callproperty QName(PackageNamespace(""),"hash"), 1
+                                                               coerce_s
+                                                               setlocal 6
+                                                               debugline 139
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"position")
+                                                               debugline 140
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                                               getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                                                               setproperty QName(PackageNamespace(""),"endian")
+                                                               debugline 141
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getproperty QName(PackageNamespace(""),"digest")
+                                                               callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                                                               debugline 142
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getproperty QName(PackageNamespace(""),"digest")
+                                                               callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                                                               debugline 143
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getproperty QName(PackageNamespace(""),"digest")
+                                                               callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                                                               debugline 144
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getproperty QName(PackageNamespace(""),"digest")
+                                                               callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                                                               debugline 145
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"position")
+                                                               debugline 146
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                                               getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                                                               setproperty QName(PackageNamespace(""),"endian")
+                                                               debugline 147
+                                                               getlex QName(PackageNamespace("com.adobe.crypto"),"MD5")
+                                                               getproperty QName(PackageNamespace(""),"digest")
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"position")
+                                                               debugline 162
+                                                               findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                               coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               setlocal 7
+                                                               debugline 163
+                                                               getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                                               getlocal 7
+                                                               getlocal0
+                                                               callproperty QName(PackageNamespace(""),"getNextSequence"), 0
+                                                               callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                                                               debugline 164
+                                                               pushbyte 0
+                                                               setlocal 8
+                                                               debugline 165
+                                                               findpropstrict QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661")
+                                                               constructprop QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661"), 0
+                                                               coerce QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661")
+                                                               setlocal 9
+                                                               debugline 166
+                                                               getlocal 9
+                                                               getlocal1
+                                                               setproperty QName(PackageNamespace(""),"account")
+                                                               debugline 167
+                                                               getlocal 9
+                                                               getlocal2
+                                                               setproperty QName(PackageNamespace(""),"m_nUserType")
+                                                               debugline 168
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"position")
+                                                               debugline 169
+                                                               getlocal 9
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                               setproperty QName(PackageNamespace(""),"passwordMd5Key")
+                                                               debugline 170
+                                                               getlocal 9
+                                                               getlocal 4
+                                                               setproperty QName(PackageNamespace(""),"sourceAppID")
+                                                               debugline 171
+                                                               getlocal 9
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"targetAppID")
+                                                               debugline 172
+                                                               getlocal 9
+                                                               getlocal 5
+                                                               getlex QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               istypelate
+                                                               iffalse ofs0228
+                                                               getlocal 5
+                                                               getproperty QName(PackageNamespace(""),"length")
+                                                               convert_i
+                                                               jump ofs022a
+                                                      ofs0228:
+                                                               pushbyte 0
+                                                      ofs022a:
+                                                               setproperty QName(PackageNamespace(""),"m_nMemorySize")
+                                                               debugline 173
+                                                               getlocal 9
+                                                               getlocal 5
+                                                               setproperty QName(PackageNamespace(""),"m_szMemoryBuffer")
+                                                               debugline 174
+                                                               getlocal 9
+                                                               getlocal 7
+                                                               getlocal 8
+                                                               callpropvoid QName(PackageNamespace(""),"encode"), 2
+                                                               debugline 175
+                                                               getlocal 7
+                                                               pushbyte 0
+                                                               setproperty QName(PackageNamespace(""),"position")
+                                                               debugline 176
+                                                               findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                               coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               setlocal 10
+                                                               debugline 177
+                                                               getlocal 10
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_777")
+                                                               callpropvoid QName(PackageNamespace(""),"writeUTFBytes"), 1
+                                                               debugline 178
+                                                               getlocal0
+                                                               findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                               constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                               initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                               debugline 179
+                                                               getlex QName(PackageNamespace("a_4727"),"b_164")
+                                                               getlocal 7
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                               getlocal 10
+                                                               callpropvoid QName(PackageNamespace(""),"a_1772"), 3
+                                                               debugline 181
+                                                               getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                               pushstring "RequestAuthenticate.ip="
+                                                               getlex QName(PackageNamespace("a_4757"),"a_2200")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               getproperty QName(PackageNamespace(""),"authenConn")
+                                                               getproperty QName(PackageNamespace(""),"host")
+                                                               add
+                                                               pushstring ",account="
+                                                               add
+                                                               getlocal1
+                                                               add
+                                                               pushstring ",time="
+                                                               add
+                                                               findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                                                               callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                                                               add
+                                                               callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                               debugline 182
+                                                               getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                               getproperty QName(PackageNamespace(""),"instance")
+                                                               pushstring "type"
+                                                               pushstring "cc"
+                                                               newobject 1
+                                                               pushstring "<font color=\'#ee1111\'>"
+                                                               getlocal1
+                                                               add
+                                                               pushstring "</font>"
+                                                               add
+                                                               getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               pushint 132615
+                                                               callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                               add
+                                                               getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               pushint 132616
+                                                               callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                               getlex QName(PackageNamespace("a_4757"),"a_2200")
+                                                               callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                               getproperty QName(PackageNamespace(""),"authenConn")
+                                                               getproperty QName(PackageNamespace(""),"host")
+                                                               add
+                                                               newobject 0
+                                                               callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                               debugline 184
+                                                               getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"pBaseProtocol")
+                                                               pushnull
+                                                               getlex QName(PackageNamespace("a_4716"),"b_154")
+                                                               getproperty QName(PackageNamespace(""),"a_109")
+                                                               getlocal0
+                                                               getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                               callproperty QName(Namespace("com.aurora.handler.common:IBaseProtocal"),"a_2201"), 3
+                                                               returnvalue
+                                                            end ; code
+                                                         end ; body
+                                                      end ; method
+                                                   }
+                                                   
+                                                   public function a_2210() : Boolean
+                                                   {
+                                                      trait method QName(PackageNamespace(""),"a_2210")
+                                                         dispid 0
+                                                         method
+                                                            name "com.aurora.handler.authenticate:AuthenticateHandler/RefreshAuthenticate"
+                                                            returns QName(PackageNamespace(""),"Boolean")
+                                                            
+                                                            body
+                                                               maxstack 5
+                                                               localcount 1
+                                                               initscopedepth 8
+                                                               maxscopedepth 9
+                                                               
+                                                               code
+                                                                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                  debugline 187
+                                                                  getlocal0
+                                                                  pushscope
+                                                                  debugline 189
+                                                                  getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                                  pushstring "RefreshAuthenticate.account="
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                  add
+                                                                  pushstring ",time="
+                                                                  add
+                                                                  findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                                                                  callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                                  debugline 190
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                  getproperty QName(PackageNamespace(""),"instance")
+                                                                  pushstring "type"
+                                                                  pushstring "cc"
+                                                                  newobject 1
+                                                                  pushstring "<font color=\'#ee1111\'>"
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                  add
+                                                                  pushstring "</font>"
+                                                                  add
+                                                                  getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                  pushint 132618
+                                                                  callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                  add
+                                                                  pushstring ""
+                                                                  newobject 0
+                                                                  callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                  debugline 192
+                                                                  getlex QName(PackageNamespace("a_4757"),"a_2200")
+                                                                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                  getproperty QName(PackageNamespace(""),"authenConn")
+                                                                  callpropvoid QName(PackageNamespace(""),"close"), 0
+                                                                  debugline 193
+                                                                  findpropstrict QName(PackageNamespace(""),"trace")
+                                                                  pushstring "m_szFinalFinalBuffer:"
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                  add
+                                                                  pushstring "m_szFinalFinalBuffer.length:"
+                                                                  add
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                  getproperty QName(PackageNamespace(""),"length")
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                  debugline 195
+                                                                  pushnull
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                  equals
+                                                                  not
+                                                                  dup
+                                                                  iffalse ofs00a1
+                                                                  pop
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                  getproperty QName(PackageNamespace(""),"length")
+                                                                  pushbyte 0
+                                                                  greaterthan
+                                                         ofs00a1:
+                                                                  iffalse ofs00d4
+                                                                  debugline 197
+                                                                  findpropstrict QName(PackageNamespace(""),"trace")
+                                                                  pushstring "ReAuthenticate now:"
+                                                                  findpropstrict QName(PackageNamespace(""),"Date")
+                                                                  constructprop QName(PackageNamespace(""),"Date"), 0
+                                                                  callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toDateString"), 0
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                  debugline 198
+                                                                  getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"pBaseProtocol")
+                                                                  pushnull
+                                                                  getlex QName(PackageNamespace("a_4716"),"b_154")
+                                                                  getproperty QName(PackageNamespace(""),"a_109")
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                  callproperty QName(Namespace("com.aurora.handler.common:IBaseProtocal"),"a_2201"), 3
+                                                                  returnvalue
+                                                         ofs00d4:
+                                                                  debugline 200
+                                                                  getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                  getproperty QName(PackageNamespace(""),"instance")
+                                                                  pushstring "type"
+                                                                  pushstring "ce"
+                                                                  newobject 1
+                                                                  getlocal0
+                                                                  getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                  getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                  callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                  pushint 132619
+                                                                  callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                  add
+                                                                  pushstring ""
+                                                                  newobject 0
+                                                                  callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                  debugline 201
+                                                                  findpropstrict QName(PackageNamespace(""),"trace")
+                                                                  pushstring "ReAuthenticate Failed, m_szFinalFinalBuffer == null or length <=0  time:"
+                                                                  findpropstrict QName(PackageNamespace(""),"Date")
+                                                                  constructprop QName(PackageNamespace(""),"Date"), 0
+                                                                  callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"toDateString"), 0
+                                                                  add
+                                                                  callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                  debugline 202
+                                                                  pushfalse
+                                                                  returnvalue
+                                                               end ; code
+                                                            end ; body
+                                                         end ; method
+                                                      }
+                                                      
+                                                      public function a_2211() : Boolean
+                                                      {
+                                                         trait method QName(PackageNamespace(""),"a_2211")
+                                                            dispid 0
+                                                            method
+                                                               name "com.aurora.handler.authenticate:AuthenticateHandler/RenewAuthenticate"
+                                                               returns QName(PackageNamespace(""),"Boolean")
+                                                               
+                                                               body
+                                                                  maxstack 5
+                                                                  localcount 5
+                                                                  initscopedepth 8
+                                                                  maxscopedepth 9
+                                                                  
+                                                                  code
+                                                                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                     debugline 205
+                                                                     getlocal0
+                                                                     pushscope
+                                                                     debug 1, "finalBuffer", 0, 220
+                                                                     debug 1, "encode_lenght", 1, 222
+                                                                     debug 1, "requestAuthen", 2, 223
+                                                                     debug 1, "authenKey", 3, 234
+                                                                     debugline 218
+                                                                     getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                     getproperty QName(PackageNamespace(""),"instance")
+                                                                     pushstring "type"
+                                                                     pushstring "cc"
+                                                                     newobject 1
+                                                                     pushstring "<font color=\'#ee1111\'>"
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                     add
+                                                                     pushstring "</font>"
+                                                                     add
+                                                                     getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                     callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                     pushint 132618
+                                                                     callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                     add
+                                                                     pushstring ""
+                                                                     newobject 0
+                                                                     callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                     debugline 220
+                                                                     findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                     constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                     coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                     setlocal1
+                                                                     debugline 221
+                                                                     getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                                                     getlocal1
+                                                                     getlocal0
+                                                                     callproperty QName(PackageNamespace(""),"getNextSequence"), 0
+                                                                     callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                                                                     debugline 222
+                                                                     pushbyte 0
+                                                                     setlocal2
+                                                                     debugline 223
+                                                                     findpropstrict QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661")
+                                                                     constructprop QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661"), 0
+                                                                     coerce QName(PackageNamespace("com.aurora.protocol.authen"),"a_2661")
+                                                                     setlocal3
+                                                                     debugline 224
+                                                                     getlocal3
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_782")
+                                                                     setproperty QName(PackageNamespace(""),"account")
+                                                                     debugline 225
+                                                                     getlocal3
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_nUserType")
+                                                                     setproperty QName(PackageNamespace(""),"m_nUserType")
+                                                                     debugline 226
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                                     pushbyte 0
+                                                                     setproperty QName(PackageNamespace(""),"position")
+                                                                     debugline 227
+                                                                     getlocal3
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_784")
+                                                                     setproperty QName(PackageNamespace(""),"passwordMd5Key")
+                                                                     debugline 228
+                                                                     getlocal3
+                                                                     getlex QName(PackageNamespace("a_4716"),"EnmAppTypeID")
+                                                                     getproperty QName(PackageNamespace(""),"enm_apptype_game_normal")
+                                                                     setproperty QName(PackageNamespace(""),"sourceAppID")
+                                                                     debugline 229
+                                                                     getlocal3
+                                                                     getlex QName(PackageNamespace("a_4716"),"EnmAppTypeID")
+                                                                     getproperty QName(PackageNamespace(""),"enm_apptype_game_renew_signature")
+                                                                     setproperty QName(PackageNamespace(""),"targetAppID")
+                                                                     debugline 230
+                                                                     getlocal3
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                                     getproperty QName(PackageNamespace(""),"length")
+                                                                     setproperty QName(PackageNamespace(""),"m_nMemorySize")
+                                                                     debugline 231
+                                                                     getlocal3
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                                     setproperty QName(PackageNamespace(""),"m_szMemoryBuffer")
+                                                                     debugline 232
+                                                                     getlocal3
+                                                                     getlocal1
+                                                                     getlocal2
+                                                                     callpropvoid QName(PackageNamespace(""),"encode"), 2
+                                                                     debugline 233
+                                                                     getlocal1
+                                                                     pushbyte 0
+                                                                     setproperty QName(PackageNamespace(""),"position")
+                                                                     debugline 234
+                                                                     findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                     constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                     coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                     setlocal 4
+                                                                     debugline 235
+                                                                     getlocal 4
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_777")
+                                                                     callpropvoid QName(PackageNamespace(""),"writeUTFBytes"), 1
+                                                                     debugline 236
+                                                                     getlocal0
+                                                                     findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                     constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                     initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                     debugline 237
+                                                                     getlex QName(PackageNamespace("a_4727"),"b_164")
+                                                                     getlocal1
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                     getlocal 4
+                                                                     callpropvoid QName(PackageNamespace(""),"a_1772"), 3
+                                                                     debugline 238
+                                                                     getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"pBaseProtocol")
+                                                                     pushnull
+                                                                     getlex QName(PackageNamespace("a_4716"),"b_154")
+                                                                     getproperty QName(PackageNamespace(""),"a_109")
+                                                                     getlocal0
+                                                                     getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_781")
+                                                                     callproperty QName(Namespace("com.aurora.handler.common:IBaseProtocal"),"a_2201"), 3
+                                                                     returnvalue
+                                                                  end ; code
+                                                               end ; body
+                                                            end ; method
+                                                         }
+                                                         
+                                                         public function a_2212(iNewUin:int, szNewAccount:String, byGender:int) : Boolean
+                                                         {
+                                                            trait method QName(PackageNamespace(""),"a_2212")
+                                                               dispid 0
+                                                               method
+                                                                  name "com.aurora.handler.authenticate:AuthenticateHandler/ChangeAuthenticate"
+                                                                  flag HAS_PARAM_NAMES
+                                                                  param QName(PackageNamespace(""),"int")
+                                                                  param QName(PackageNamespace(""),"String")
+                                                                  param QName(PackageNamespace(""),"int")
+                                                                  paramname "a_2211"
+                                                                  paramname "a_2211"
+                                                                  paramname "a_2211"
+                                                                  returns QName(PackageNamespace(""),"Boolean")
+                                                                  
+                                                                  body
+                                                                     maxstack 2
+                                                                     localcount 4
+                                                                     initscopedepth 8
+                                                                     maxscopedepth 9
+                                                                     
+                                                                     code
+                                                                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                        debugline 241
+                                                                        getlocal0
+                                                                        pushscope
+                                                                        debug 1, "iNewUin", 0, 241
+                                                                        debug 1, "szNewAccount", 1, 241
+                                                                        debug 1, "byGender", 2, 241
+                                                                        debugline 243
+                                                                        getlocal1
+                                                                        pushbyte 0
+                                                                        lessequals
+                                                                        dup
+                                                                        iftrue ofs002e
+                                                                        pop
+                                                                        pushstring ""
+                                                                        getlocal2
+                                                                        equals
+                                                               ofs002e:
+                                                                        iffalse ofs0037
+                                                                        debugline 245
+                                                                        pushfalse
+                                                                        returnvalue
+                                                               ofs0037:
+                                                                        debugline 247
+                                                                        getlocal0
+                                                                        getlocal1
+                                                                        initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iMyUin")
+                                                                        debugline 248
+                                                                        getlocal0
+                                                                        getlocal2
+                                                                        initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                        debugline 249
+                                                                        getlocal0
+                                                                        getlocal3
+                                                                        initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iUserSex")
+                                                                        debugline 250
+                                                                        pushtrue
+                                                                        returnvalue
+                                                                     end ; code
+                                                                  end ; body
+                                                               end ; method
+                                                            }
+                                                            
+                                                            public function a_2213(registerInfo:RegisterInfo) : Boolean
+                                                            {
+                                                               trait method QName(PackageNamespace(""),"a_2213")
+                                                                  dispid 0
+                                                                  method
+                                                                     name "com.aurora.handler.authenticate:AuthenticateHandler/RequestAccountRegister"
+                                                                     flag HAS_PARAM_NAMES
+                                                                     param QName(PackageNamespace("a_4723"),"RegisterInfo")
+                                                                     paramname "a_2211"
+                                                                     returns QName(PackageNamespace(""),"Boolean")
+                                                                     
+                                                                     body
+                                                                        maxstack 4
+                                                                        localcount 7
+                                                                        initscopedepth 8
+                                                                        maxscopedepth 9
+                                                                        
+                                                                        code
+                                                                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                           debugline 253
+                                                                           getlocal0
+                                                                           pushscope
+                                                                           debug 1, "registerInfo", 0, 253
+                                                                           debug 1, "finalBuffer", 1, 272
+                                                                           debug 1, "encode_lenght", 2, 274
+                                                                           debug 1, "accountRegisterRequest", 3, 275
+                                                                           debug 1, "finalFinalBuffer", 4, 287
+                                                                           debug 1, "authenKey", 5, 288
+                                                                           debugline 255
+                                                                           pushnull
+                                                                           getlocal1
+                                                                           ifne ofs004d
+                                                                           debugline 257
+                                                                           findpropstrict QName(PackageNamespace(""),"trace")
+                                                                           pushstring "registerInfo is null error"
+                                                                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                           debugline 258
+                                                                           pushfalse
+                                                                           returnvalue
+                                                                  ofs004d:
+                                                                           debugline 261
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           pushnull
+                                                                           equals
+                                                                           dup
+                                                                           iftrue ofs0066
+                                                                           pop
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           getproperty QName(PackageNamespace(""),"length")
+                                                                           pushbyte 1
+                                                                           lessthan
+                                                                  ofs0066:
+                                                                           dup
+                                                                           iftrue ofs0076
+                                                                           pop
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           getproperty QName(PackageNamespace(""),"length")
+                                                                           pushbyte 32
+                                                                           greaterthan
+                                                                  ofs0076:
+                                                                           iffalse ofs0098
+                                                                           debugline 263
+                                                                           findpropstrict QName(PackageNamespace(""),"trace")
+                                                                           pushstring "registerInfo.m_szAccount is null, account lenght: "
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           getproperty QName(PackageNamespace(""),"length")
+                                                                           add
+                                                                           pushstring " error"
+                                                                           add
+                                                                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                           debugline 264
+                                                                           pushfalse
+                                                                           returnvalue
+                                                                  ofs0098:
+                                                                           pushstring ""
+                                                                           debugline 267
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szPassword")
+                                                                           ifne ofs00b7
+                                                                           debugline 269
+                                                                           findpropstrict QName(PackageNamespace(""),"trace")
+                                                                           pushstring "password can not null"
+                                                                           callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                           debugline 270
+                                                                           pushfalse
+                                                                           returnvalue
+                                                                  ofs00b7:
+                                                                           debugline 272
+                                                                           findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                           coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           setlocal2
+                                                                           debugline 273
+                                                                           getlex QName(PackageNamespace("com.aurora.protocol"),"a_2664")
+                                                                           getlocal2
+                                                                           getlocal0
+                                                                           callproperty QName(PackageNamespace(""),"getNextSequence"), 0
+                                                                           callpropvoid QName(PackageNamespace(""),"encode_int32"), 2
+                                                                           debugline 274
+                                                                           pushbyte 0
+                                                                           setlocal3
+                                                                           debugline 275
+                                                                           findpropstrict QName(PackageNamespace("com.aurora.protocol.authen"),"a_2660")
+                                                                           constructprop QName(PackageNamespace("com.aurora.protocol.authen"),"a_2660"), 0
+                                                                           coerce QName(PackageNamespace("com.aurora.protocol.authen"),"a_2660")
+                                                                           setlocal 4
+                                                                           debugline 276
+                                                                           getlocal 4
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           setproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                           debugline 277
+                                                                           getlocal 4
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szPassword")
+                                                                           setproperty QName(PackageNamespace(""),"m_szPassword")
+                                                                           debugline 278
+                                                                           getlocal 4
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_szNickName")
+                                                                           setproperty QName(PackageNamespace(""),"m_szNickName")
+                                                                           debugline 279
+                                                                           getlocal 4
+                                                                           getlocal1
+                                                                           getproperty QName(PackageNamespace(""),"m_bySex")
+                                                                           setproperty QName(PackageNamespace(""),"m_bySex")
+                                                                           debugline 280
+                                                                           getlocal 4
+                                                                           getlocal2
+                                                                           getlocal3
+                                                                           callpropvoid QName(PackageNamespace(""),"encode"), 2
+                                                                           debugline 281
+                                                                           getlocal2
+                                                                           pushbyte 0
+                                                                           setproperty QName(PackageNamespace(""),"position")
+                                                                           debugline 287
+                                                                           findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                           coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           setlocal 5
+                                                                           debugline 288
+                                                                           findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                                                           coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           setlocal 6
+                                                                           debugline 289
+                                                                           getlocal 6
+                                                                           getlocal0
+                                                                           getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_777")
+                                                                           callpropvoid QName(PackageNamespace(""),"writeUTFBytes"), 1
+                                                                           debugline 290
+                                                                           getlex QName(PackageNamespace("a_4727"),"b_164")
+                                                                           getlocal2
+                                                                           getlocal 5
+                                                                           getlocal 6
+                                                                           callpropvoid QName(PackageNamespace(""),"a_1772"), 3
+                                                                           debugline 291
+                                                                           getlocal 5
+                                                                           pushbyte 0
+                                                                           setproperty QName(PackageNamespace(""),"position")
+                                                                           debugline 305
+                                                                           getlex QName(ProtectedNamespace("com.aurora.handler.common:ProtocolBase"),"pBaseProtocol")
+                                                                           pushnull
+                                                                           getlex QName(PackageNamespace("a_4716"),"b_154")
+                                                                           getproperty QName(PackageNamespace(""),"a_114")
+                                                                           getlocal 5
+                                                                           callproperty QName(Namespace("com.aurora.handler.common:IBaseProtocal"),"a_2201"), 3
+                                                                           returnvalue
+                                                                        end ; code
+                                                                     end ; body
+                                                                  end ; method
+                                                               }
+                                                               
+                                                               private function a_2214(authenPackageHeader:a_2667, protocalBuffer:ByteArray) : void
+                                                               {
+                                                                  trait method QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_2214")
+                                                                     dispid 0
+                                                                     method
+                                                                        name "com.aurora.handler.authenticate:AuthenticateHandler/private:OnAuthenticateResponse"
+                                                                        flag HAS_PARAM_NAMES
+                                                                        param QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                                                                        param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                        paramname "com.aurora.handler.authenticate:AuthenticateHandler/getInstance"
+                                                                        paramname "com.aurora.handler.authenticate:AuthenticateHandler/getInstance"
+                                                                        returns QName(PackageNamespace(""),"void")
+                                                                        
+                                                                        body
+                                                                           maxstack 6
+                                                                           localcount 6
+                                                                           initscopedepth 8
+                                                                           maxscopedepth 9
+                                                                           
+                                                                           code
+                                                                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                              debugline 308
+                                                                              getlocal0
+                                                                              pushscope
+                                                                              pushbyte 0
+                                                                              setlocal3
+                                                                              debug 1, "authenPackageHeader", 0, 308
+                                                                              debug 1, "protocalBuffer", 1, 308
+                                                                              debug 1, "decode_length", 2, 311
+                                                                              debug 1, "authenResponse", 3, 312
+                                                                              debug 1, "authenConn", 4, 320
+                                                                              debugline 312
+                                                                              findpropstrict QName(PackageNamespace("com.aurora.protocol.authen"),"a_2663")
+                                                                              constructprop QName(PackageNamespace("com.aurora.protocol.authen"),"a_2663"), 0
+                                                                              coerce QName(PackageNamespace("com.aurora.protocol.authen"),"a_2663")
+                                                                              setlocal 4
+                                                                              debugline 314
+                                                                              getlocal 4
+                                                                              getlocal2
+                                                                              getlocal3
+                                                                              callproperty QName(PackageNamespace(""),"decode"), 2
+                                                                              iftrue ofs0087
+                                                                              debugline 316
+                                                                              findpropstrict QName(PackageNamespace(""),"trace")
+                                                                              pushstring "decode the Authenticate response failed!"
+                                                                              callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                              debugline 317
+                                                                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                              getproperty QName(PackageNamespace(""),"instance")
+                                                                              pushstring "type"
+                                                                              pushstring "ce"
+                                                                              newobject 1
+                                                                              getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              pushint 132620
+                                                                              callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                              pushstring ""
+                                                                              pushstring "cpShow"
+                                                                              pushtrue
+                                                                              newobject 1
+                                                                              callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                              debugline 318
+                                                                              returnvoid
+                                                                     ofs0087:
+                                                                              debugline 320
+                                                                              getlex QName(PackageNamespace("a_4757"),"a_2200")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              getproperty QName(PackageNamespace(""),"authenConn")
+                                                                              coerce QName(PackageNamespace("a_4771"),"a_2650")
+                                                                              setlocal 5
+                                                                              debugline 322
+                                                                              pushbyte 0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_nResultID")
+                                                                              ifne ofs01eb
+                                                                              debugline 324
+                                                                              getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                                              pushstring "OnAuthenticate.ip="
+                                                                              getlocal 5
+                                                                              getproperty QName(PackageNamespace(""),"host")
+                                                                              add
+                                                                              pushstring ",iUin="
+                                                                              add
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_iUIN")
+                                                                              add
+                                                                              pushstring ",time="
+                                                                              add
+                                                                              findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                                                                              callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                                                                              add
+                                                                              callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                                              debugline 325
+                                                                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                              getproperty QName(PackageNamespace(""),"instance")
+                                                                              pushstring "type"
+                                                                              pushstring "cc"
+                                                                              newobject 1
+                                                                              getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              pushint 132621
+                                                                              callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                              pushstring ""
+                                                                              newobject 0
+                                                                              callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                              debugline 327
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szSessionKey")
+                                                                              pushbyte 0
+                                                                              setproperty QName(PackageNamespace(""),"length")
+                                                                              debugline 328
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                                              pushbyte 0
+                                                                              setproperty QName(PackageNamespace(""),"length")
+                                                                              debugline 329
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szSessionKey")
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szSessionKey")
+                                                                              pushbyte 0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szSessionKey")
+                                                                              getproperty QName(PackageNamespace(""),"length")
+                                                                              callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                                                              debugline 330
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szPlayerSignature")
+                                                                              pushbyte 0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szPlayerSignature")
+                                                                              getproperty QName(PackageNamespace(""),"length")
+                                                                              callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                                                                              debugline 331
+                                                                              getlex QName(PackageNamespace("a_4752"),"a_2036")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_783")
+                                                                              callpropvoid QName(PackageNamespace(""),"setSignature"), 1
+                                                                              debugline 333
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iMyUin")
+                                                                              pushbyte 0
+                                                                              ifnlt ofs016a
+                                                                              debugline 335
+                                                                              getlocal0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_iUIN")
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iMyUin")
+                                                                     ofs016a:
+                                                                              debugline 337
+                                                                              getlocal0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_iUIN")
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_iRawUin")
+                                                                              debugline 338
+                                                                              getlex QName(PackageNamespace("a_4752"),"a_2036")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_iUIN")
+                                                                              setproperty QName(PackageNamespace(""),"m_iUin")
+                                                                              pushstring ""
+                                                                              debugline 340
+                                                                              getlocal0
+                                                                              getproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                              ifne ofs01a0
+                                                                              debugline 342
+                                                                              getlocal0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_szAccount")
+                                                                     ofs01a0:
+                                                                              debugline 344
+                                                                              getlocal0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szAccount")
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_782")
+                                                                              debugline 345
+                                                                              getlocal0
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_nUserType")
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"m_nUserType")
+                                                                              debugline 346
+                                                                              getlocal0
+                                                                              findpropstrict QName(PackageNamespace(""),"Date")
+                                                                              constructprop QName(PackageNamespace(""),"Date"), 0
+                                                                              callproperty QName(Namespace("http://adobe.com/AS3/2006/builtin"),"valueOf"), 0
+                                                                              pushshort 1000
+                                                                              divide
+                                                                              initproperty QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_779")
+                                                                              debugline 347
+                                                                              getlex QName(PackageNamespace("a_4729"),"a_1789")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              findpropstrict QName(PackageNamespace("flash.events"),"Event")
+                                                                              getlex QName(PackageNamespace("a_4729"),"EventType")
+                                                                              getproperty QName(PackageNamespace(""),"a_569")
+                                                                              constructprop QName(PackageNamespace("flash.events"),"Event"), 1
+                                                                              callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                                                              jump ofs026d
+                                                                     ofs01eb:
+                                                                              debugline 351
+                                                                              findpropstrict QName(PackageNamespace(""),"trace")
+                                                                              pushstring "request Authenticate by passwordhash failed:"
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szReasonMsg")
+                                                                              add
+                                                                              callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                              debugline 353
+                                                                              getlex QName(PackageNamespace("a_4788"),"a_4648")
+                                                                              pushstring "OnAuthenticate.ip="
+                                                                              getlocal 5
+                                                                              getproperty QName(PackageNamespace(""),"host")
+                                                                              add
+                                                                              pushstring ",Failed="
+                                                                              add
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_szReasonMsg")
+                                                                              add
+                                                                              pushstring ",time="
+                                                                              add
+                                                                              findpropstrict QName(PackageNamespace("flash.utils"),"getTimer")
+                                                                              callproperty QName(PackageNamespace("flash.utils"),"getTimer"), 0
+                                                                              add
+                                                                              callpropvoid QName(PackageNamespace(""),"a_4649"), 1
+                                                                              debugline 354
+                                                                              getlex QName(PackageNamespace("com.aurora.ui.maogoutd.doctor"),"GameDoctor")
+                                                                              getproperty QName(PackageNamespace(""),"instance")
+                                                                              pushstring "type"
+                                                                              pushstring "ce"
+                                                                              newobject 1
+                                                                              getlex QName(PackageNamespace("a_4752"),"GameStringManager")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              pushint 132622
+                                                                              callproperty QName(Namespace("com.aurora.game.maogoutd.common:IGameStringManager"),"getString"), 1
+                                                                              pushstring "ResultID:"
+                                                                              getlocal 4
+                                                                              getproperty QName(PackageNamespace(""),"m_nResultID")
+                                                                              add
+                                                                              newobject 0
+                                                                              callpropvoid QName(PackageNamespace(""),"pushInCache"), 4
+                                                                              debugline 355
+                                                                              getlex QName(PackageNamespace("a_4729"),"a_1789")
+                                                                              callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                              findpropstrict QName(PackageNamespace("flash.events"),"Event")
+                                                                              getlex QName(PackageNamespace("a_4729"),"EventType")
+                                                                              getproperty QName(PackageNamespace(""),"a_597")
+                                                                              constructprop QName(PackageNamespace("flash.events"),"Event"), 1
+                                                                              callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                                                     ofs026d:
+                                                                              debugline 357
+                                                                              returnvoid
+                                                                           end ; code
+                                                                        end ; body
+                                                                     end ; method
+                                                                  }
+                                                                  
+                                                                  private function a_2215(authenPackageHeader:a_2667, protocalBuffer:ByteArray) : void
+                                                                  {
+                                                                     trait method QName(PrivateNamespace("com.aurora.handler.authenticate:AuthenticateHandler"),"a_2215")
+                                                                        dispid 0
+                                                                        method
+                                                                           name "com.aurora.handler.authenticate:AuthenticateHandler/private:OnAccountRegisterResponse"
+                                                                           flag HAS_PARAM_NAMES
+                                                                           param QName(PackageNamespace("com.aurora.protocol.common"),"a_2667")
+                                                                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                                                                           paramname "com.aurora.handler.authenticate:AuthenticateHandler/getInstance"
+                                                                           paramname "com.aurora.handler.authenticate:AuthenticateHandler/getInstance"
+                                                                           returns QName(PackageNamespace(""),"void")
+                                                                           
+                                                                           body
+                                                                              maxstack 3
+                                                                              localcount 6
+                                                                              initscopedepth 8
+                                                                              maxscopedepth 9
+                                                                              
+                                                                              code
+                                                                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                                 debugline 359
+                                                                                 getlocal0
+                                                                                 pushscope
+                                                                                 pushbyte 0
+                                                                                 setlocal 4
+                                                                                 pushnull
+                                                                                 coerce QName(PackageNamespace("a_4728"),"a_1778")
+                                                                                 setlocal 5
+                                                                                 debug 1, "authenPackageHeader", 0, 359
+                                                                                 debug 1, "protocalBuffer", 1, 359
+                                                                                 debug 1, "accountRegisterResponse", 2, 363
+                                                                                 debug 1, "decode_length", 3, 364
+                                                                                 debugline 362
+                                                                                 getlocal1
+                                                                                 getproperty QName(PackageNamespace(""),"nPlayerID")
+                                                                                 pop
+                                                                                 debugline 363
+                                                                                 findpropstrict QName(PackageNamespace("com.aurora.protocol.authen"),"a_2662")
+                                                                                 constructprop QName(PackageNamespace("com.aurora.protocol.authen"),"a_2662"), 0
+                                                                                 coerce QName(PackageNamespace("com.aurora.protocol.authen"),"a_2662")
+                                                                                 setlocal3
+                                                                                 debugline 366
+                                                                                 getlocal3
+                                                                                 getlocal2
+                                                                                 getlocal 4
+                                                                                 callproperty QName(PackageNamespace(""),"decode"), 2
+                                                                                 iffalse ofs0092
+                                                                                 debug 1, "dataEvent", 4, 370
+                                                                                 debugline 368
+                                                                                 findpropstrict QName(PackageNamespace(""),"trace")
+                                                                                 getlocal3
+                                                                                 callpropvoid QName(PackageNamespace(""),"trace"), 1
+                                                                                 debugline 370
+                                                                                 findpropstrict QName(PackageNamespace("a_4728"),"a_1778")
+                                                                                 getlex QName(PackageNamespace("a_4729"),"EventType")
+                                                                                 getproperty QName(PackageNamespace(""),"a_573")
+                                                                                 constructprop QName(PackageNamespace("a_4728"),"a_1778"), 1
+                                                                                 coerce QName(PackageNamespace("a_4728"),"a_1778")
+                                                                                 setlocal 5
+                                                                                 debugline 371
+                                                                                 getlocal 5
+                                                                                 getlocal3
+                                                                                 getproperty QName(PackageNamespace(""),"m_nResultID")
+                                                                                 setproperty QName(PackageNamespace(""),"dataObject")
+                                                                                 debugline 372
+                                                                                 getlex QName(PackageNamespace("a_4729"),"a_1789")
+                                                                                 callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                                                                 getlocal 5
+                                                                                 callpropvoid QName(PackageNamespace(""),"dispatchEvent"), 1
+                                                                        ofs0092:
+                                                                                 debugline 374
+                                                                                 returnvoid
+                                                                              end ; code
+                                                                           end ; body
+                                                                        end ; method
+                                                                     }
+                                                                  }
+                                                               }
+                                                               
+                                                               method
+                                                                  name ""
+                                                                  returns null
+                                                                  
+                                                                  body
+                                                                     maxstack 2
+                                                                     localcount 1
+                                                                     initscopedepth 1
+                                                                     maxscopedepth 7
+                                                                     
+                                                                     code
+                                                                        getlocal0
+                                                                        pushscope
+                                                                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                        debugline 34
+                                                                        findpropstrict Multiname("a_2208",[PackageNamespace("a_4758")])
+                                                                        getlex QName(PackageNamespace(""),"Object")
+                                                                        pushscope
+                                                                        getlex QName(PackageNamespace("flash.events"),"EventDispatcher")
+                                                                        pushscope
+                                                                        getlex QName(PackageNamespace("a_4759"),"b_168")
+                                                                        pushscope
+                                                                        getlex QName(PackageNamespace("a_4759"),"b_167")
+                                                                        pushscope
+                                                                        getlex QName(PackageNamespace("a_4759"),"b_166")
+                                                                        pushscope
+                                                                        getlex QName(PackageNamespace("a_4759"),"b_166")
+                                                                        newclass 184
+                                                                        popscope
+                                                                        popscope
+                                                                        popscope
+                                                                        popscope
+                                                                        popscope
+                                                                        initproperty QName(PackageNamespace("a_4758"),"a_2208")
+                                                                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\handler\\authenticate;AuthenticateHandler.as"
+                                                                        debugline 1
+                                                                        returnvoid
+                                                                     end ; code
+                                                                  end ; body
+                                                               end ; method
+                                                               

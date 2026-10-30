@@ -1,0 +1,30 @@
+{
+  "$GMFolder":"",
+  "%Name":"king_long_bao",
+  "folderPath":"folders/精灵/Cards/Shooter/king_long_bao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"king_long_bao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"upgrade","path":"folders/精灵/Cards/Shooter/king_long_bao/upgrade.yy",}
+  ],
+  "listItems":[
+    {"name":"69f3a8a3-5fa0-42b7-b6ef-5646a51c40aa","path":"sprites/spr_king_long_bao_0_0/spr_king_long_bao_0_0.yy",},
+    {"name":"66119604-acd6-439f-94c6-b69399a1e729","path":"sprites/spr_king_long_bao_0_1/spr_king_long_bao_0_1.yy",},
+    {"name":"42498e65-6a86-4f7a-b54b-c5bc63870571","path":"sprites/spr_king_long_bao_0_2/spr_king_long_bao_0_2.yy",},
+    {"name":"0945dc51-0682-4352-bceb-8c5db449eef6","path":"sprites/spr_king_long_bao_1_0/spr_king_long_bao_1_0.yy",},
+    {"name":"b9da2790-1262-41ad-85f6-4defd1e47651","path":"sprites/spr_king_long_bao_1_1/spr_king_long_bao_1_1.yy",},
+    {"name":"a55c87de-004e-43a2-81a7-ac44fef2a7a6","path":"sprites/spr_king_long_bao_1_2/spr_king_long_bao_1_2.yy",},
+    {"name":"705c3e1d-83fd-4117-85f1-8e13a58ac8f5","path":"sprites/spr_king_long_bao_1_3/spr_king_long_bao_1_3.yy",},
+    {"name":"a25180c7-134c-4948-b379-1cb2496e47a9","path":"sprites/spr_king_long_bao_2_0/spr_king_long_bao_2_0.yy",},
+    {"name":"70167d37-611c-4ba4-b30c-61e780a69aa8","path":"sprites/spr_king_long_bao_2_1/spr_king_long_bao_2_1.yy",},
+    {"name":"4b09d824-430d-4f04-9ced-51e10fb82ce5","path":"sprites/spr_king_long_bao_2_2/spr_king_long_bao_2_2.yy",},
+    {"name":"d65ac6f2-f535-4f2b-ac43-e27a6e3d32e4","path":"sprites/spr_king_long_bao_2_3/spr_king_long_bao_2_3.yy",},
+    {"name":"ed3f077c-a843-411a-8a46-3363d6669d56","path":"sprites/spr_king_long_bao_2_4/spr_king_long_bao_2_4.yy",},
+    {"name":"7fabf0a3-0cf4-44eb-a0eb-6006ac9a0b9b","path":"sprites/spr_king_long_bao_2_5/spr_king_long_bao_2_5.yy",}
+  ],
+}

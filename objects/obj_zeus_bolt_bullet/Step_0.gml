@@ -9,8 +9,8 @@ timer++;
 
 if (instance_exists(target_enemy) && target_enemy.hp > 0)
 {
-    var target_x = target_enemy.x;
-    var target_y = target_enemy.y - 75;
+    var target_x = (target_enemy.bbox_left + target_enemy.bbox_right) * 0.5;
+    var target_y = (target_enemy.bbox_top + target_enemy.bbox_bottom) * 0.5;
     var dir = point_direction(x, y, target_x, target_y);
     x += lengthdir_x(move_speed, dir);
     y += lengthdir_y(move_speed, dir);
@@ -127,6 +127,26 @@ else
         var dir = point_direction(xstart, ystart, x, y);
         x += lengthdir_x(move_speed, dir);
         y += lengthdir_y(move_speed, dir);
+    }
+}
+
+// 追踪子弹碰撞检测
+if (target_enemy != -4 && instance_exists(target_enemy))
+{
+    var _e = target_enemy;
+    if (_e.hp > 0
+    && precise_bbox_collision(id, _e))
+    {
+        with (_e)
+        {
+            audio_play_sound(hit_sound, 0, 0);
+            damage_amount = other.damage;
+            damage_type = other.damage_type;
+            event_user(0);
+        }
+        instance_create_depth(x, y, depth, obj_zeus_bolt_bullet_effect);
+        instance_destroy();
+        exit;
     }
 }
 

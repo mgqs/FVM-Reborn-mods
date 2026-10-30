@@ -1,4 +1,4 @@
 if not obj_package_bg.is_submenu_opened{
-audio_play_sound(snd_button,0,0)
-instance_destroy(obj_package_bg)
+global.audio.play(snd_button,0,0)
+panel_anim_close(obj_package_bg)
 }

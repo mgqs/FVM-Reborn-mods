@@ -1,0 +1,445 @@
+package com.aurora.ui.maogoutd.resource.shot.ShotTrigger
+{
+   import a_4754.a_2161;
+   import com.adobe.utils.RandomSeed;
+   import com.aurora.ui.maogoutd.resource.Intruder.a_4206;
+   import com.aurora.ui.maogoutd.resource.shot.a_4348;
+   
+   public class BaseShotTrigger
+   {
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 1
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      protected var m_probability:int = 100;
+      
+      protected var m_random:RandomSeed;
+      
+      protected var m_seed:int;
+      
+      protected var m_caster:a_4348;
+      
+      protected var m_target:a_4206;
+      
+      protected var m_isTriggered:Boolean = false;
+      
+      public function BaseShotTrigger(probability:int = 100, seed:int = -1)
+      {
+         method
+            name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/BaseShotTrigger"
+            flag HAS_OPTIONAL
+            flag HAS_PARAM_NAMES
+            param QName(PackageNamespace(""),"int")
+            param QName(PackageNamespace(""),"int")
+            paramname null
+            paramname null
+            optional Integer(100)
+            optional Integer(-1)
+            returns null
+            
+            body
+               maxstack 3
+               localcount 4
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                  debugline 24
+                  getlocal0
+                  pushscope
+                  pushnull
+                  coerce QName(PackageNamespace(""),"Object")
+                  setlocal3
+                  debug 1, "probability", 0, 24
+                  debug 1, "seed", 1, 24
+                  debugline 25
+                  getlocal0
+                  constructsuper 0
+                  debugline 26
+                  getlocal0
+                  getlocal1
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_probability")
+                  debugline 28
+                  getlocal0
+                  getlocal2
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_seed")
+                  debugline 30
+                  getlocal0
+                  findpropstrict QName(PackageNamespace("com.adobe.utils"),"RandomSeed")
+                  constructprop QName(PackageNamespace("com.adobe.utils"),"RandomSeed"), 0
+                  initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_random")
+                  debugline 32
+                  getlocal2
+                  pushbyte 0
+                  ifngt ofs0067
+                  debug 1, "enterRoom", 2, 34
+                  debugline 34
+                  getlex QName(PackageNamespace("a_4754"),"a_2161")
+                  getproperty QName(PackageNamespace(""),"e")
+                  callproperty QName(PackageNamespace(""),"getEnterRoom"), 0
+                  coerce QName(PackageNamespace(""),"Object")
+                  setlocal3
+                  debugline 35
+                  getlocal0
+                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_random")
+                  getlocal3
+                  getproperty Multiname("m_RandomSeed",[PrivateNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),PackageNamespace(""),ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),PrivateNamespace("BaseShotTrigger.as$201"),PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),PackageInternalNs("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),Namespace("http://adobe.com/AS3/2006/builtin"),StaticProtectedNs("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger")])
+                  getlocal0
+                  getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_seed")
+                  callpropvoid QName(PackageNamespace(""),"setSeed"), 2
+         ofs0067:
+                  debugline 37
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public function a_3014(caster:a_4348, target:a_4206) : void
+      {
+         trait method QName(PackageNamespace(""),"a_3014")
+            dispid 0
+            method
+               name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/Init"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot"),"a_4348")
+               param QName(PackageNamespace("com.aurora.ui.maogoutd.resource.Intruder"),"a_4206")
+               paramname "e"
+               paramname "e"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 2
+                  localcount 3
+                  initscopedepth 4
+                  maxscopedepth 5
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                     debugline 41
+                     getlocal0
+                     pushscope
+                     debug 1, "caster", 0, 41
+                     debug 1, "target", 1, 41
+                     debugline 43
+                     getlocal0
+                     getlocal1
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                     debugline 44
+                     getlocal0
+                     getlocal2
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                     debugline 45
+                     getlocal0
+                     pushfalse
+                     initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_isTriggered")
+                     debugline 46
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function Execute() : void
+         {
+            trait method QName(PackageNamespace(""),"Execute")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/Execute"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 2
+                     localcount 1
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                        debugline 50
+                        getlocal0
+                        pushscope
+                        debugline 52
+                        getlocal0
+                        callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"CheckValid"), 0
+                        iftrue ofs0013
+                        returnvoid
+               ofs0013:
+                        debugline 54
+                        getlocal0
+                        callproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"RollProbability"), 0
+                        iffalse ofs002c
+                        debugline 56
+                        getlocal0
+                        pushtrue
+                        initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_isTriggered")
+                        debugline 57
+                        getlocal0
+                        callpropvoid QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"OnExecute"), 0
+               ofs002c:
+                        debugline 59
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            protected function CheckValid() : Boolean
+            {
+               trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"CheckValid")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/protected:CheckValid"
+                     returns QName(PackageNamespace(""),"Boolean")
+                     
+                     body
+                        maxstack 2
+                        localcount 1
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                           debugline 63
+                           getlocal0
+                           pushscope
+                           debugline 65
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                           iftrue ofs0013
+                           pushfalse
+                           returnvalue
+                  ofs0013:
+                           debugline 66
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                           getproperty QName(PackageNamespace(""),"iLifeValue")
+                           pushbyte 0
+                           ifnle ofs0024
+                           pushfalse
+                           returnvalue
+                  ofs0024:
+                           debugline 67
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                           getproperty QName(PackageNamespace(""),"visible")
+                           iftrue ofs0033
+                           pushfalse
+                           returnvalue
+                  ofs0033:
+                           debugline 68
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                           getproperty QName(PackageNamespace(""),"IsBossIntruder")
+                           iffalse ofs0042
+                           pushfalse
+                           returnvalue
+                  ofs0042:
+                           debugline 69
+                           getlocal0
+                           getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                           getproperty QName(PackageNamespace(""),"m_stCurrentFieldGrid")
+                           iftrue ofs0051
+                           pushfalse
+                           returnvalue
+                  ofs0051:
+                           debugline 71
+                           pushtrue
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               protected function RollProbability() : Boolean
+               {
+                  trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"RollProbability")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/protected:RollProbability"
+                        returns QName(PackageNamespace(""),"Boolean")
+                        
+                        body
+                           maxstack 2
+                           localcount 2
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                              debugline 76
+                              getlocal0
+                              pushscope
+                              debug 1, "random", 0, 80
+                              debugline 78
+                              getlocal0
+                              getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_probability")
+                              pushbyte 100
+                              ifnge ofs001b
+                              pushtrue
+                              returnvalue
+                     ofs001b:
+                              debugline 80
+                              getlocal0
+                              getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_random")
+                              pushbyte 101
+                              callproperty QName(PackageNamespace(""),"nextInt"), 1
+                              convert_i
+                              setlocal1
+                              debugline 81
+                              getlocal1
+                              getlocal0
+                              getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_probability")
+                              lessequals
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  protected function OnExecute() : void
+                  {
+                     trait method QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"OnExecute")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/protected:OnExecute"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 1
+                              localcount 1
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                                 debugline 86
+                                 getlocal0
+                                 pushscope
+                                 debugline 89
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function a_4451() : BaseShotTrigger
+                     {
+                        trait method QName(PackageNamespace(""),"a_4451")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/Clone"
+                              returns QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                                    debugline 91
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "copy", 0, 94
+                                    debugline 94
+                                    findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                                    getlocal0
+                                    getproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_probability")
+                                    constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger"), 1
+                                    coerce QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                                    setlocal1
+                                    debugline 96
+                                    getlocal1
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function Dispose() : void
+                        {
+                           trait method QName(PackageNamespace(""),"Dispose")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger/Dispose"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 2
+                                    localcount 1
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                                       debugline 101
+                                       getlocal0
+                                       pushscope
+                                       debugline 103
+                                       getlocal0
+                                       pushnull
+                                       initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_caster")
+                                       debugline 104
+                                       getlocal0
+                                       pushnull
+                                       initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_target")
+                                       debugline 105
+                                       getlocal0
+                                       pushnull
+                                       initproperty QName(ProtectedNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger:BaseShotTrigger"),"m_random")
+                                       debugline 106
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                              debugline 8
+                              findpropstrict Multiname("BaseShotTrigger",[PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 23
+                              popscope
+                              initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.resource.shot.ShotTrigger"),"BaseShotTrigger")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\resource\\shot\\ShotTrigger;BaseShotTrigger.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

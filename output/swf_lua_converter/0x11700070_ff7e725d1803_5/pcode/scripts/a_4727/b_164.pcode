@@ -1,0 +1,1510 @@
+package a_4727
+{
+   import flash.utils.ByteArray;
+   import flash.utils.Endian;
+   
+   public class b_164
+   {
+      
+      public static const a_542:int = 7;
+      
+      public static const a_543:int = 32;
+      
+      public static const a_544:int = -32;
+      
+      public static const a_545:int = 8;
+      
+      public static const a_546:int = 32767;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "a_542", 0, 8
+               findproperty QName(PackageNamespace(""),"a_542")
+               pushbyte 7
+               initproperty QName(PackageNamespace(""),"a_542")
+               debug 1, "a_543", 1, 9
+               findproperty QName(PackageNamespace(""),"a_543")
+               pushbyte 32
+               initproperty QName(PackageNamespace(""),"a_543")
+               debug 1, "a_544", 2, 10
+               findproperty QName(PackageNamespace(""),"a_544")
+               pushbyte -32
+               initproperty QName(PackageNamespace(""),"a_544")
+               debug 1, "a_545", 3, 11
+               findproperty QName(PackageNamespace(""),"a_545")
+               pushbyte 8
+               initproperty QName(PackageNamespace(""),"a_545")
+               debug 1, "a_546", 4, 13
+               findproperty QName(PackageNamespace(""),"a_546")
+               pushshort 32767
+               initproperty QName(PackageNamespace(""),"a_546")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      public function b_164()
+      {
+         method
+            name "com.aurora.encrypt:XTEA/XTEA"
+            returns null
+            
+            body
+               maxstack 1
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  getlocal0
+                  pushscope
+                  getlocal0
+                  constructsuper 0
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                  debugline 382
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function b_165(v:ByteArray, o:ByteArray, k:ByteArray, N:int) : void
+      {
+         trait method QName(PackageNamespace(""),"b_165")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.encrypt:XTEA/xtea"
+               flag HAS_PARAM_NAMES
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace("flash.utils"),"ByteArray")
+               param QName(PackageNamespace(""),"int")
+               paramname "y"
+               paramname "y"
+               paramname "y"
+               paramname "y"
+               returns QName(PackageNamespace(""),"void")
+               
+               body
+                  maxstack 4
+                  localcount 10
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                     debugline 15
+                     getlocal0
+                     pushscope
+                     pushbyte 0
+                     convert_u
+                     setlocal 8
+                     pushbyte 0
+                     convert_u
+                     setlocal 9
+                     debug 1, "v", 0, 15
+                     debug 1, "o", 1, 15
+                     debug 1, "k", 2, 15
+                     debug 1, "N", 3, 15
+                     debug 1, "y", 4, 24
+                     debug 1, "z", 5, 25
+                     debug 1, "DELTA", 6, 26
+                     debug 1, "sum", 7, 28
+                     debugline 20
+                     getlocal1
+                     getlex QName(PackageNamespace("flash.utils"),"Endian")
+                     getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                     setproperty QName(PackageNamespace(""),"endian")
+                     debugline 21
+                     getlocal2
+                     getlex QName(PackageNamespace("flash.utils"),"Endian")
+                     getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                     setproperty QName(PackageNamespace(""),"endian")
+                     debugline 22
+                     getlocal3
+                     getlex QName(PackageNamespace("flash.utils"),"Endian")
+                     getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                     setproperty QName(PackageNamespace(""),"endian")
+                     debugline 24
+                     getlocal1
+                     callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                     convert_u
+                     setlocal 5
+                     debugline 25
+                     getlocal1
+                     callproperty QName(PackageNamespace(""),"readUnsignedInt"), 0
+                     convert_u
+                     setlocal 6
+                     debugline 26
+                     pushdouble 2654435769
+                     convert_u
+                     setlocal 7
+                     debugline 30
+                     getlocal 4
+                     pushbyte 0
+                     ifngt ofs011b
+                     debug 1, "limit", 8, 33
+                     debugline 33
+                     getlocal 7
+                     getlocal 4
+                     multiply
+                     convert_u
+                     setlocal 9
+                     debugline 34
+                     pushbyte 0
+                     convert_u
+                     setlocal 8
+                     jump ofs010d
+            ofs00a5:
+                     label
+                     debugline 37
+                     getlocal3
+                     getlocal 8
+                     pushbyte 3
+                     bitand
+                     pushbyte 4
+                     multiply
+                     setproperty QName(PackageNamespace(""),"position")
+                     debugline 38
+                     getlocal 5
+                     getlocal 6
+                     pushbyte 4
+                     lshift
+                     getlocal 6
+                     pushbyte 5
+                     urshift
+                     bitxor
+                     getlocal 6
+                     add
+                     getlocal 8
+                     getlocal3
+                     callproperty QName(PackageNamespace(""),"readInt"), 0
+                     add
+                     bitxor
+                     add
+                     convert_u
+                     setlocal 5
+                     debugline 39
+                     getlocal 8
+                     getlocal 7
+                     add
+                     convert_u
+                     setlocal 8
+                     debugline 40
+                     getlocal3
+                     getlocal 8
+                     pushbyte 11
+                     urshift
+                     pushbyte 3
+                     bitand
+                     pushbyte 4
+                     multiply
+                     setproperty QName(PackageNamespace(""),"position")
+                     debugline 41
+                     getlocal 6
+                     getlocal 5
+                     pushbyte 4
+                     lshift
+                     getlocal 5
+                     pushbyte 5
+                     urshift
+                     bitxor
+                     getlocal 5
+                     add
+                     getlocal 8
+                     getlocal3
+                     callproperty QName(PackageNamespace(""),"readInt"), 0
+                     add
+                     bitxor
+                     add
+                     convert_u
+                     setlocal 6
+            ofs010d:
+                     debugline 35
+                     getlocal 8
+                     getlocal 9
+                     ifne ofs00a5
+                     jump ofs019a
+            ofs011b:
+                     debugline 47
+                     getlocal 7
+                     getlocal 4
+                     negate
+                     multiply
+                     convert_u
+                     setlocal 8
+                     jump ofs0192
+            ofs012a:
+                     label
+                     debugline 50
+                     getlocal3
+                     getlocal 8
+                     pushbyte 11
+                     urshift
+                     pushbyte 3
+                     bitand
+                     pushbyte 4
+                     multiply
+                     setproperty QName(PackageNamespace(""),"position")
+                     debugline 51
+                     getlocal 6
+                     getlocal 5
+                     pushbyte 4
+                     lshift
+                     getlocal 5
+                     pushbyte 5
+                     urshift
+                     bitxor
+                     getlocal 5
+                     add
+                     getlocal 8
+                     getlocal3
+                     callproperty QName(PackageNamespace(""),"readInt"), 0
+                     add
+                     bitxor
+                     subtract
+                     convert_u
+                     setlocal 6
+                     debugline 52
+                     getlocal 8
+                     getlocal 7
+                     subtract
+                     convert_u
+                     setlocal 8
+                     debugline 53
+                     getlocal3
+                     getlocal 8
+                     pushbyte 3
+                     bitand
+                     pushbyte 4
+                     multiply
+                     setproperty QName(PackageNamespace(""),"position")
+                     debugline 54
+                     getlocal 5
+                     getlocal 6
+                     pushbyte 4
+                     lshift
+                     getlocal 6
+                     pushbyte 5
+                     urshift
+                     bitxor
+                     getlocal 6
+                     add
+                     getlocal 8
+                     getlocal3
+                     callproperty QName(PackageNamespace(""),"readInt"), 0
+                     add
+                     bitxor
+                     subtract
+                     convert_u
+                     setlocal 5
+            ofs0192:
+                     debugline 48
+                     getlocal 8
+                     iftrue ofs012a
+            ofs019a:
+                     debugline 58
+                     getlocal2
+                     getlocal 5
+                     callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                     debugline 59
+                     getlocal2
+                     getlocal 6
+                     callpropvoid QName(PackageNamespace(""),"writeUnsignedInt"), 1
+                     debugline 60
+                     returnvoid
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public static function a_1772(pbyInBuffer:ByteArray, pbyOutBuffer:ByteArray, keyByteArray:ByteArray) : uint
+         {
+            trait method QName(PackageNamespace(""),"a_1772")
+               flag FINAL
+               dispid 4
+               method
+                  name "com.aurora.encrypt:XTEA/Encrypt"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  param QName(PackageNamespace("flash.utils"),"ByteArray")
+                  paramname "Endian"
+                  paramname "Endian"
+                  paramname "Endian"
+                  returns QName(PackageNamespace(""),"uint")
+                  
+                  body
+                     maxstack 5
+                     localcount 4
+                     initscopedepth 3
+                     maxscopedepth 4
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                        debugline 64
+                        getlocal0
+                        pushscope
+                        debug 1, "pbyInBuffer", 0, 64
+                        debug 1, "pbyOutBuffer", 1, 64
+                        debug 1, "keyByteArray", 2, 64
+                        debugline 66
+                        findpropstrict QName(PackageNamespace(""),"a_1774")
+                        getlocal1
+                        getlocal2
+                        getlocal3
+                        getlex QName(PackageNamespace(""),"a_543")
+                        callproperty QName(PackageNamespace(""),"a_1774"), 4
+                        returnvalue
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            public static function a_1773(pbyInBuffer:ByteArray, pbyOutBuffer:ByteArray, keyByteArray:ByteArray) : uint
+            {
+               trait method QName(PackageNamespace(""),"a_1773")
+                  flag FINAL
+                  dispid 5
+                  method
+                     name "com.aurora.encrypt:XTEA/Decrypt"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.utils"),"ByteArray")
+                     param QName(PackageNamespace("flash.utils"),"ByteArray")
+                     param QName(PackageNamespace("flash.utils"),"ByteArray")
+                     paramname "Endian"
+                     paramname "Endian"
+                     paramname "Endian"
+                     returns QName(PackageNamespace(""),"uint")
+                     
+                     body
+                        maxstack 5
+                        localcount 4
+                        initscopedepth 3
+                        maxscopedepth 4
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                           debugline 68
+                           getlocal0
+                           pushscope
+                           debug 1, "pbyInBuffer", 0, 68
+                           debug 1, "pbyOutBuffer", 1, 68
+                           debug 1, "keyByteArray", 2, 68
+                           debugline 70
+                           findpropstrict QName(PackageNamespace(""),"a_1775")
+                           getlocal1
+                           getlocal2
+                           getlocal3
+                           getlex QName(PackageNamespace(""),"a_544")
+                           callproperty QName(PackageNamespace(""),"a_1775"), 4
+                           returnvalue
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public static function a_1774(pbyInBuffer:ByteArray, pbyOutBuffer:ByteArray, keyByteArray:ByteArray, nRound:uint) : uint
+               {
+                  trait method QName(PackageNamespace(""),"a_1774")
+                     flag FINAL
+                     dispid 6
+                     method
+                        name "com.aurora.encrypt:XTEA/EncryptRoundN"
+                        flag HAS_PARAM_NAMES
+                        param QName(PackageNamespace("flash.utils"),"ByteArray")
+                        param QName(PackageNamespace("flash.utils"),"ByteArray")
+                        param QName(PackageNamespace("flash.utils"),"ByteArray")
+                        param QName(PackageNamespace(""),"uint")
+                        paramname "Endian"
+                        paramname "Endian"
+                        paramname "Endian"
+                        paramname "Endian"
+                        returns QName(PackageNamespace(""),"uint")
+                        
+                        body
+                           maxstack 6
+                           localcount 16
+                           initscopedepth 3
+                           maxscopedepth 4
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                              debugline 75
+                              getlocal0
+                              pushscope
+                              pushbyte 0
+                              setlocal 5
+                              pushbyte 0
+                              setlocal 6
+                              debug 1, "pbyInBuffer", 0, 75
+                              debug 1, "pbyOutBuffer", 1, 75
+                              debug 1, "keyByteArray", 2, 75
+                              debug 1, "nRound", 3, 75
+                              debug 1, "i", 4, 82
+                              debug 1, "outValue", 5, 83
+                              debug 1, "nPadDataZero", 6, 99
+                              debug 1, "nPadLength", 7, 100
+                              debug 1, "nTotalLength", 8, 107
+                              debug 1, "pbyInCursor", 9, 110
+                              debug 1, "pbyOutCurosr", 10, 111
+                              debug 1, "arrbyFirst8Bytes", 11, 113
+                              debug 1, "pbyLast8BytesPlainData", 12, 145
+                              debug 1, "arrbySrcBuffer", 13, 149
+                              debug 1, "arrbyLast8Bytes", 14, 187
+                              debugline 78
+                              getlocal1
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 79
+                              getlocal2
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 80
+                              getlocal3
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 85
+                              getlocal1
+                              pushnull
+                              equals
+                              dup
+                              iftrue ofs00a2
+                              pop
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"length")
+                              pushbyte 0
+                              lessequals
+                     ofs00a2:
+                              iffalse ofs00ab
+                              debugline 87
+                              pushbyte 0
+                              returnvalue
+                     ofs00ab:
+                              debugline 89
+                              getlocal1
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 91
+                              getlocal2
+                              pushnull
+                              ifne ofs00c0
+                              debugline 93
+                              pushbyte 0
+                              returnvalue
+                     ofs00c0:
+                              debugline 95
+                              getlocal2
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 96
+                              getlocal3
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 99
+                              pushbyte 1
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"length")
+                              add
+                              getlex QName(PackageNamespace(""),"a_542")
+                              add
+                              convert_u
+                              setlocal 7
+                              debugline 100
+                              getlocal 7
+                              getlex QName(PackageNamespace(""),"a_545")
+                              modulo
+                              convert_u
+                              setlocal 8
+                              debugline 102
+                              getlocal 8
+                              pushbyte 0
+                              ifeq ofs0100
+                              debugline 104
+                              getlex QName(PackageNamespace(""),"a_545")
+                              getlocal 8
+                              subtract
+                              convert_u
+                              setlocal 8
+                     ofs0100:
+                              debugline 107
+                              getlocal 7
+                              getlocal 8
+                              add
+                              convert_u
+                              setlocal 9
+                              debugline 110
+                              pushbyte 0
+                              convert_u
+                              setlocal 10
+                              debugline 111
+                              pushbyte 0
+                              convert_u
+                              setlocal 11
+                              debugline 113
+                              findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                              constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                              coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                              setlocal 12
+                              debugline 114
+                              getlocal 12
+                              getlex QName(PackageNamespace(""),"a_545")
+                              setproperty QName(PackageNamespace(""),"length")
+                              debugline 117
+                              getlocal 12
+                              findpropstrict QName(PackageNamespace(""),"uint")
+                              getlex QName(PackageNamespace(""),"Math")
+                              callproperty QName(PackageNamespace(""),"random"), 0
+                              getlex QName(PackageNamespace(""),"a_546")
+                              multiply
+                              callproperty QName(PackageNamespace(""),"uint"), 1
+                              pushshort 248
+                              bitand
+                              getlocal 8
+                              bitor
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 120
+                              pushbyte 1
+                              setlocal 5
+                              jump ofs0173
+                     ofs0156:
+                              label
+                              debugline 122
+                              getlocal 12
+                              findpropstrict QName(PackageNamespace(""),"uint")
+                              getlex QName(PackageNamespace(""),"Math")
+                              callproperty QName(PackageNamespace(""),"random"), 0
+                              getlex QName(PackageNamespace(""),"a_546")
+                              multiply
+                              callproperty QName(PackageNamespace(""),"uint"), 1
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 120
+                              inclocal_i 5
+                     ofs0173:
+                              getlocal 5
+                              getlocal 8
+                              ifle ofs0156
+                              debugline 126
+                              getlex QName(PackageNamespace(""),"a_545")
+                              pushbyte 1
+                              getlocal 8
+                              add
+                              subtract
+                              pushbyte 0
+                              ifngt ofs01a1
+                              debugline 128
+                              getlocal 12
+                              getlocal1
+                              pushbyte 0
+                              getlex QName(PackageNamespace(""),"a_545")
+                              pushbyte 1
+                              getlocal 8
+                              add
+                              subtract
+                              callpropvoid QName(PackageNamespace(""),"writeBytes"), 3
+                     ofs01a1:
+                              debugline 131
+                              getlocal1
+                              getlex QName(PackageNamespace(""),"a_545")
+                              pushbyte 1
+                              getlocal 8
+                              add
+                              subtract
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 132
+                              getlocal 10
+                              getlex QName(PackageNamespace(""),"a_545")
+                              pushbyte 1
+                              getlocal 8
+                              add
+                              subtract
+                              add
+                              convert_u
+                              setlocal 10
+                              debugline 137
+                              getlocal 12
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 138
+                              getlocal2
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 141
+                              findpropstrict QName(PackageNamespace(""),"b_165")
+                              getlocal 12
+                              getlocal2
+                              getlocal3
+                              getlocal 4
+                              callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                              debugline 143
+                              getlocal 11
+                              getlex QName(PackageNamespace(""),"a_545")
+                              add
+                              convert_u
+                              setlocal 11
+                              debugline 145
+                              getlocal 12
+                              coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                              setlocal 13
+                              debugline 146
+                              getlocal 13
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 149
+                              findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                              constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                              coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                              setlocal 14
+                              jump ofs0307
+                     ofs0215:
+                              label
+                              debugline 152
+                              getlocal1
+                              getlocal 10
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 153
+                              getlocal2
+                              getlocal 11
+                              getlex QName(PackageNamespace(""),"a_545")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 154
+                              getlocal 14
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 157
+                              pushbyte 0
+                              setlocal 5
+                              jump ofs025b
+                     ofs0241:
+                              label
+                              debugline 159
+                              getlocal 14
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              getlocal2
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              bitxor
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 157
+                              inclocal_i 5
+                     ofs025b:
+                              getlocal 5
+                              getlex QName(PackageNamespace(""),"a_545")
+                              iflt ofs0241
+                              debugline 161
+                              getlocal 14
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 162
+                              getlocal2
+                              getlocal 11
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 164
+                              findpropstrict QName(PackageNamespace(""),"b_165")
+                              getlocal 14
+                              getlocal2
+                              getlocal3
+                              getlocal 4
+                              callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                              debugline 166
+                              getlocal2
+                              getlocal 11
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 167
+                              getlocal1
+                              getlocal 10
+                              getlex QName(PackageNamespace(""),"a_545")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 169
+                              pushbyte 0
+                              setlocal 5
+                              jump ofs02d5
+                     ofs02a8:
+                              label
+                              debugline 171
+                              getlocal2
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              getlocal 13
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              bitxor
+                              setlocal 6
+                              debugline 172
+                              getlocal2
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"position")
+                              decrement
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 173
+                              getlocal2
+                              getlocal 6
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 169
+                              inclocal_i 5
+                     ofs02d5:
+                              getlocal 5
+                              getlex QName(PackageNamespace(""),"a_545")
+                              iflt ofs02a8
+                              debugline 176
+                              getlocal1
+                              coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                              setlocal 13
+                              debugline 178
+                              getlocal 11
+                              getlex QName(PackageNamespace(""),"a_545")
+                              add
+                              convert_u
+                              setlocal 11
+                              debugline 179
+                              getlocal 10
+                              getlex QName(PackageNamespace(""),"a_545")
+                              add
+                              convert_u
+                              setlocal 10
+                              debugline 181
+                              getlocal1
+                              getlocal 10
+                              setproperty QName(PackageNamespace(""),"position")
+                     ofs0307:
+                              debugline 150
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"bytesAvailable")
+                              pushbyte 1
+                              ifgt ofs0215
+                              debugline 185
+                              getlocal1
+                              getlocal 10
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 187
+                              findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                              constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                              coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                              setlocal 15
+                              debugline 188
+                              getlocal 15
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 189
+                              getlocal 15
+                              getlex QName(PackageNamespace(""),"a_545")
+                              setproperty QName(PackageNamespace(""),"length")
+                              debugline 192
+                              getlocal1
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"length")
+                              pushbyte 7
+                              add
+                              setproperty QName(PackageNamespace(""),"length")
+                              debugline 194
+                              getlocal1
+                              getlocal 10
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 195
+                              getlocal2
+                              getlocal 11
+                              getlex QName(PackageNamespace(""),"a_545")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 196
+                              getlocal 15
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 199
+                              pushbyte 0
+                              setlocal 5
+                              jump ofs0395
+                     ofs037b:
+                              label
+                              debugline 201
+                              getlocal 15
+                              getlocal1
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              getlocal2
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              bitxor
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 199
+                              inclocal_i 5
+                     ofs0395:
+                              getlocal 5
+                              getlex QName(PackageNamespace(""),"a_545")
+                              iflt ofs037b
+                              debugline 203
+                              getlocal 15
+                              pushbyte 0
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 204
+                              getlocal2
+                              getlocal 11
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 206
+                              findpropstrict QName(PackageNamespace(""),"b_165")
+                              getlocal 15
+                              getlocal2
+                              getlocal3
+                              getlocal 4
+                              callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                              debugline 208
+                              getlocal2
+                              getlocal 11
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 209
+                              getlocal1
+                              getlocal 10
+                              getlex QName(PackageNamespace(""),"a_545")
+                              subtract
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 211
+                              pushbyte 0
+                              setlocal 5
+                              jump ofs040f
+                     ofs03e2:
+                              label
+                              debugline 213
+                              getlocal2
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              getlocal 13
+                              callproperty QName(PackageNamespace(""),"readByte"), 0
+                              bitxor
+                              setlocal 6
+                              debugline 214
+                              getlocal2
+                              getlocal2
+                              getproperty QName(PackageNamespace(""),"position")
+                              decrement
+                              setproperty QName(PackageNamespace(""),"position")
+                              debugline 215
+                              getlocal2
+                              getlocal 6
+                              callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                              debugline 211
+                              inclocal_i 5
+                     ofs040f:
+                              getlocal 5
+                              getlex QName(PackageNamespace(""),"a_545")
+                              iflt ofs03e2
+                              debugline 219
+                              getlocal1
+                              getlocal1
+                              getproperty QName(PackageNamespace(""),"length")
+                              pushbyte 7
+                              subtract
+                              setproperty QName(PackageNamespace(""),"length")
+                              debugline 223
+                              getlocal1
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 224
+                              getlocal2
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 225
+                              getlocal3
+                              getlex QName(PackageNamespace("flash.utils"),"Endian")
+                              getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                              setproperty QName(PackageNamespace(""),"endian")
+                              debugline 227
+                              getlocal 9
+                              returnvalue
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public static function a_1775(pbyInBuffer:ByteArray, pbyOutBuffer:ByteArray, keyByteArray:ByteArray, nRound:uint) : uint
+                  {
+                     trait method QName(PackageNamespace(""),"a_1775")
+                        flag FINAL
+                        dispid 7
+                        method
+                           name "com.aurora.encrypt:XTEA/DecryptRoundN"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                           param QName(PackageNamespace("flash.utils"),"ByteArray")
+                           param QName(PackageNamespace(""),"uint")
+                           paramname "Endian"
+                           paramname "Endian"
+                           paramname "Endian"
+                           paramname "Endian"
+                           returns QName(PackageNamespace(""),"uint")
+                           
+                           body
+                              maxstack 5
+                              localcount 15
+                              initscopedepth 3
+                              maxscopedepth 4
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                                 debugline 230
+                                 getlocal0
+                                 pushscope
+                                 pushbyte 0
+                                 setlocal 5
+                                 pushbyte 0
+                                 setlocal 6
+                                 debug 1, "pbyInBuffer", 0, 230
+                                 debug 1, "pbyOutBuffer", 1, 230
+                                 debug 1, "keyByteArray", 2, 230
+                                 debug 1, "nRound", 3, 230
+                                 debug 1, "i", 4, 237
+                                 debug 1, "outValue", 5, 238
+                                 debug 1, "pbyInCursor", 6, 253
+                                 debug 1, "pbyOutCursor", 7, 254
+                                 debug 1, "arrbyFirst8Bytes", 8, 257
+                                 debug 1, "nPadLength", 9, 262
+                                 debug 1, "nPlainDataLength", 10, 265
+                                 debug 1, "pbyLast8BytesPlainData", 11, 286
+                                 debug 1, "arrbySrcBuffer", 12, 289
+                                 debug 1, "arrbyLast8Bytes", 13, 322
+                                 debugline 233
+                                 getlocal1
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 234
+                                 getlocal2
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 235
+                                 getlocal3
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"LITTLE_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 240
+                                 getlocal1
+                                 pushnull
+                                 equals
+                                 dup
+                                 iftrue ofs00ac
+                                 pop
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 pushbyte 0
+                                 lessequals
+                        ofs00ac:
+                                 iffalse ofs00b6
+                                 debugline 242
+                                 pushbyte 0
+                                 returnvalue
+                        ofs00b6:
+                                 debugline 244
+                                 getlocal1
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 247
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 pushbyte 8
+                                 lessequals
+                                 dup
+                                 iftrue ofs00d8
+                                 pop
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 modulo
+                                 convert_b
+                        ofs00d8:
+                                 iffalse ofs00e2
+                                 debugline 249
+                                 pushbyte 0
+                                 returnvalue
+                        ofs00e2:
+                                 debugline 253
+                                 pushbyte 0
+                                 convert_u
+                                 setlocal 7
+                                 debugline 254
+                                 pushbyte 0
+                                 convert_u
+                                 setlocal 8
+                                 debugline 257
+                                 findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 9
+                                 debugline 258
+                                 findpropstrict QName(PackageNamespace(""),"b_165")
+                                 getlocal1
+                                 getlocal 9
+                                 getlocal3
+                                 getlocal 4
+                                 callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                                 debugline 259
+                                 getlocal 7
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 add
+                                 convert_u
+                                 setlocal 7
+                                 debugline 261
+                                 getlocal 9
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 262
+                                 getlocal 9
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 pushbyte 7
+                                 bitand
+                                 setlocal 10
+                                 debugline 265
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 decrement
+                                 getlocal 10
+                                 subtract
+                                 getlex QName(PackageNamespace(""),"a_542")
+                                 subtract
+                                 convert_u
+                                 setlocal 11
+                                 debugline 266
+                                 getlocal 11
+                                 pushbyte 0
+                                 lessequals
+                                 dup
+                                 iftrue ofs0155
+                                 pop
+                                 getlocal2
+                                 pushnull
+                                 equals
+                        ofs0155:
+                                 iffalse ofs015f
+                                 debugline 268
+                                 pushbyte 0
+                                 returnvalue
+                        ofs015f:
+                                 debugline 275
+                                 getlocal2
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 276
+                                 getlocal 9
+                                 pushbyte 1
+                                 getlocal 10
+                                 add
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 278
+                                 pushbyte 0
+                                 setlocal 5
+                                 jump ofs0194
+                        ofs0180:
+                                 label
+                                 debugline 280
+                                 getlocal2
+                                 getlocal 9
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 278
+                                 inclocal_i 5
+                        ofs0194:
+                                 getlocal 5
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 decrement
+                                 getlocal 10
+                                 subtract
+                                 iflt ofs0180
+                                 debugline 282
+                                 getlocal 8
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 decrement
+                                 getlocal 10
+                                 subtract
+                                 add
+                                 convert_u
+                                 setlocal 8
+                                 debugline 286
+                                 getlocal 9
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 12
+                                 debugline 287
+                                 getlocal 12
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 289
+                                 findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 13
+                                 jump ofs02bd
+                        ofs01d4:
+                                 label
+                                 debugline 294
+                                 getlocal2
+                                 getlocal 8
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 295
+                                 getlocal1
+                                 getlocal 7
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 297
+                                 getlocal 13
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 298
+                                 pushbyte 0
+                                 setlocal 5
+                                 jump ofs021b
+                        ofs0200:
+                                 label
+                                 debugline 300
+                                 getlocal 13
+                                 getlocal1
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 getlocal 12
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 bitxor
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 298
+                                 inclocal_i 5
+                        ofs021b:
+                                 getlocal 5
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 iflt ofs0200
+                                 debugline 302
+                                 getlocal 13
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 303
+                                 getlocal2
+                                 getlocal 8
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 304
+                                 findpropstrict QName(PackageNamespace(""),"b_165")
+                                 getlocal 13
+                                 getlocal2
+                                 getlocal3
+                                 getlocal 4
+                                 callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                                 debugline 306
+                                 getlocal1
+                                 getlocal 7
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 307
+                                 getlocal2
+                                 getlocal 8
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 308
+                                 pushbyte 0
+                                 setlocal 5
+                                 jump ofs0294
+                        ofs0268:
+                                 label
+                                 debugline 310
+                                 getlocal2
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 getlocal1
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 bitxor
+                                 setlocal 6
+                                 debugline 311
+                                 getlocal2
+                                 getlocal2
+                                 getproperty QName(PackageNamespace(""),"position")
+                                 decrement
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 312
+                                 getlocal2
+                                 getlocal 6
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 308
+                                 inclocal_i 5
+                        ofs0294:
+                                 getlocal 5
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 iflt ofs0268
+                                 debugline 315
+                                 getlocal2
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 12
+                                 debugline 317
+                                 getlocal 7
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 add
+                                 convert_u
+                                 setlocal 7
+                                 debugline 318
+                                 getlocal 8
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 add
+                                 convert_u
+                                 setlocal 8
+                        ofs02bd:
+                                 debugline 291
+                                 getlocal 7
+                                 getlocal1
+                                 getproperty QName(PackageNamespace(""),"length")
+                                 pushbyte 8
+                                 subtract
+                                 iflt ofs01d4
+                                 debugline 322
+                                 findpropstrict QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 constructprop QName(PackageNamespace("flash.utils"),"ByteArray"), 0
+                                 coerce QName(PackageNamespace("flash.utils"),"ByteArray")
+                                 setlocal 14
+                                 debugline 324
+                                 getlocal2
+                                 getlocal 8
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 325
+                                 getlocal1
+                                 getlocal 7
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 327
+                                 getlocal 13
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 328
+                                 pushbyte 0
+                                 setlocal 5
+                                 jump ofs031f
+                        ofs0304:
+                                 label
+                                 debugline 330
+                                 getlocal 13
+                                 getlocal1
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 getlocal 12
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 bitxor
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 328
+                                 inclocal_i 5
+                        ofs031f:
+                                 getlocal 5
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 iflt ofs0304
+                                 debugline 333
+                                 getlocal 13
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 334
+                                 getlocal 14
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 335
+                                 findpropstrict QName(PackageNamespace(""),"b_165")
+                                 getlocal 13
+                                 getlocal 14
+                                 getlocal3
+                                 getlocal 4
+                                 callpropvoid QName(PackageNamespace(""),"b_165"), 4
+                                 debugline 337
+                                 getlocal1
+                                 getlocal 7
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 subtract
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 338
+                                 getlocal 14
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 340
+                                 pushbyte 0
+                                 setlocal 5
+                                 jump ofs039f
+                        ofs036f:
+                                 label
+                                 debugline 342
+                                 getlocal 14
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 getlocal1
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 bitxor
+                                 setlocal 6
+                                 debugline 343
+                                 getlocal 14
+                                 getlocal 14
+                                 getproperty QName(PackageNamespace(""),"position")
+                                 decrement
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 344
+                                 getlocal 14
+                                 getlocal 6
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 340
+                                 inclocal_i 5
+                        ofs039f:
+                                 getlocal 5
+                                 getlex QName(PackageNamespace(""),"a_545")
+                                 iflt ofs036f
+                                 debugline 348
+                                 getlocal 14
+                                 pushbyte 1
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 jump ofs03cc
+                        ofs03b6:
+                                 label
+                                 debugline 351
+                                 getlocal 14
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 pushbyte 0
+                                 ifeq ofs03cc
+                                 debugline 353
+                                 pushbyte 0
+                                 returnvalue
+                        ofs03cc:
+                                 debugline 349
+                                 getlocal 14
+                                 getproperty QName(PackageNamespace(""),"bytesAvailable")
+                                 pushbyte 0
+                                 ifgt ofs03b6
+                                 debugline 357
+                                 getlocal2
+                                 getlocal 8
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 358
+                                 getlocal 14
+                                 pushbyte 0
+                                 setproperty QName(PackageNamespace(""),"position")
+                                 debugline 359
+                                 getlocal2
+                                 getlocal 14
+                                 callproperty QName(PackageNamespace(""),"readByte"), 0
+                                 callpropvoid QName(PackageNamespace(""),"writeByte"), 1
+                                 debugline 362
+                                 getlocal1
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 363
+                                 getlocal2
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 364
+                                 getlocal3
+                                 getlex QName(PackageNamespace("flash.utils"),"Endian")
+                                 getproperty QName(PackageNamespace(""),"BIG_ENDIAN")
+                                 setproperty QName(PackageNamespace(""),"endian")
+                                 debugline 366
+                                 getlocal 11
+                                 returnvalue
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public static function a_1776(nInBufferLength:uint) : uint
+                     {
+                        trait method QName(PackageNamespace(""),"a_1776")
+                           flag FINAL
+                           dispid 8
+                           method
+                              name "com.aurora.encrypt:XTEA/GetSafeEncryptOutBufferLength"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"uint")
+                              paramname "Endian"
+                              returns QName(PackageNamespace(""),"uint")
+                              
+                              body
+                                 maxstack 2
+                                 localcount 2
+                                 initscopedepth 3
+                                 maxscopedepth 4
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                                    debugline 370
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "nInBufferLength", 0, 370
+                                    debugline 372
+                                    getlocal1
+                                    pushbyte 16
+                                    add
+                                    returnvalue
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public static function a_1777(nInBufferLength:uint) : uint
+                        {
+                           trait method QName(PackageNamespace(""),"a_1777")
+                              flag FINAL
+                              dispid 9
+                              method
+                                 name "com.aurora.encrypt:XTEA/GetSafeDecryptOutBufferLength"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"uint")
+                                 paramname "Endian"
+                                 returns QName(PackageNamespace(""),"uint")
+                                 
+                                 body
+                                    maxstack 1
+                                    localcount 2
+                                    initscopedepth 3
+                                    maxscopedepth 4
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                                       debugline 375
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "nInBufferLength", 0, 375
+                                       debugline 377
+                                       getlocal1
+                                       returnvalue
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                        }
+                     }
+                     
+                     method
+                        name ""
+                        returns null
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 1
+                           maxscopedepth 3
+                           
+                           code
+                              getlocal0
+                              pushscope
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                              debugline 6
+                              findpropstrict Multiname("b_164",[PackageNamespace("a_4727")])
+                              getlex QName(PackageNamespace(""),"Object")
+                              pushscope
+                              getlex QName(PackageNamespace(""),"Object")
+                              newclass 109
+                              popscope
+                              initproperty QName(PackageNamespace("a_4727"),"b_164")
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\encrypt;XTEA.as"
+                              debugline 1
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                     

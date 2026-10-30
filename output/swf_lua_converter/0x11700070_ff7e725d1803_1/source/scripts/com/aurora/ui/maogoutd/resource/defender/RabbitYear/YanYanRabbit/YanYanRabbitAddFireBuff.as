@@ -1,0 +1,90 @@
+package com.aurora.ui.maogoutd.resource.defender.RabbitYear.YanYanRabbit
+{
+   import com.aurora.ui.maogoutd.game.a_3491;
+   import com.aurora.ui.maogoutd.resource.effect.a_4108;
+   import flash.display.BitmapData;
+   import flash.display.FrameLabel;
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.geom.Point;
+   
+   public class YanYanRabbitAddFireBuff extends a_4108
+   {
+      
+      private static var ms_stYanYanRabbitAddFireBuffVector:Array = new Array();
+      
+      private static var a_1300:Vector.<BitmapData> = new Vector.<BitmapData>(50);
+      
+      private static var a_1301:Vector.<Point> = new Vector.<Point>(50);
+      
+      private static var a_1302:MovieClip = new YanYanRabbitAddFireBuffMovie();
+      
+      public var m_stTargetField:a_3491;
+      
+      public function YanYanRabbitAddFireBuff()
+      {
+         super();
+         a_1279 = 0;
+         m_iYDisplayCenterPos = 0;
+      }
+      
+      public static function a_3926() : YanYanRabbitAddFireBuff
+      {
+         var stYanYanRabbitAddFireBuff:YanYanRabbitAddFireBuff = ms_stYanYanRabbitAddFireBuffVector.pop();
+         if(null == stYanYanRabbitAddFireBuff)
+         {
+            stYanYanRabbitAddFireBuff = new YanYanRabbitAddFireBuff();
+         }
+         return stYanYanRabbitAddFireBuff;
+      }
+      
+      override public function a_1797(isReversed:Boolean) : Boolean
+      {
+         super.a_1797(isReversed);
+         return true;
+      }
+      
+      override protected function a_3911() : Vector.<BitmapData>
+      {
+         return a_1300;
+      }
+      
+      override protected function a_3912() : Vector.<Point>
+      {
+         return a_1301;
+      }
+      
+      override protected function a_3913() : MovieClip
+      {
+         return a_1302;
+      }
+      
+      override protected function a_4109(a_4730:Event) : void
+      {
+         nextFrame();
+         if(a_1278 != null || a_1273 == a_1274)
+         {
+            gotoAndStop((a_1276[a_1275] as FrameLabel).frame);
+         }
+      }
+      
+      override public function a_3940() : Boolean
+      {
+         super.a_3940();
+         if(this.m_stTargetField != null && Boolean(this.m_stTargetField.m_stCurrentBattbleFieldView.GetGameMoveMap()))
+         {
+            this.m_stTargetField.m_stCurrentBattbleFieldView.GetGameMoveMap().RemoveMoveDisplayObject(this);
+         }
+         if(null != this.parent)
+         {
+            this.parent.removeChild(this);
+         }
+         if(-1 == ms_stYanYanRabbitAddFireBuffVector.indexOf(this))
+         {
+            ms_stYanYanRabbitAddFireBuffVector.push(this);
+         }
+         return true;
+      }
+   }
+}
+

@@ -1,4 +1,4 @@
-audio_play_sound(snd_button,0,0)
+global.audio.play(snd_button,0,0)
 if btn_type == "confirm"{
 	var info_index = obj_gem_edit_menu.target_card_index
 	var egg = irandom_range(1,100)
@@ -44,4 +44,4 @@ else if btn_type == "apply"{
 	save_file(0)
 }
 obj_package_bg.is_submenu_opened = false
-instance_destroy(obj_gem_edit_menu)
+panel_anim_close(obj_gem_edit_menu)

@@ -1,0 +1,10 @@
+damage = 0
+move_speed = 18
+row = 0
+shape_bullet = 0
+hitted_enemy = ds_list_create()
+target_type = "normal"
+damage_type = "normal"
+hittable_types = get_hittable_enemy_types(target_type)
+hit_tick = 0;
+pooled = false

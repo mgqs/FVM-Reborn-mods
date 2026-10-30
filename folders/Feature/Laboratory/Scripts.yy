@@ -1,0 +1,14 @@
+﻿{
+  "$GMFolder":"",
+  "%Name":"Scripts",
+  "folderPath":"folders/Feature/Laboratory/Scripts.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Scripts",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[],
+}

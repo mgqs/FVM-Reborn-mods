@@ -1,0 +1,671 @@
+package com.aurora.ui.maogoutd.ClientLog
+{
+   import a_4752.a_2027;
+   import a_4752.a_2036;
+   import a_4754.a_2155;
+   import com.aurora.ui.maogoutd.component.a_3306;
+   import com.aurora.ui.maogoutd.iface.ITDMessageTip;
+   import flash.display.Stage;
+   import flash.events.KeyboardEvent;
+   import flash.geom.Rectangle;
+   import flash.text.TextField;
+   import flash.text.TextFieldAutoSize;
+   import flash.ui.Keyboard;
+   
+   public class a_4807
+   {
+      
+      private static var m_pInstance:a_4807;
+      
+      method
+         name ""
+         returns null
+         
+         body
+            maxstack 2
+            localcount 1
+            initscopedepth 3
+            maxscopedepth 4
+            
+            code
+               getlocal0
+               pushscope
+               debug 1, "m_pInstance", 0, 18
+               findproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pInstance")
+               getlocal0
+               construct 0
+               setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pInstance")
+               returnvoid
+            end ; code
+         end ; body
+      end ; method
+      
+      private var m_pStage:Stage;
+      
+      private var m_stTip:ITDMessageTip;
+      
+      private var m_strItemList:String;
+      
+      private var m_stTextLog:TextField;
+      
+      private var m_index:int;
+      
+      private var fps:Fps;
+      
+      public function a_4807()
+      {
+         method
+            name "com.aurora.ui.maogoutd.ClientLog:DebugLog/DebugLog"
+            returns null
+            
+            body
+               maxstack 2
+               localcount 1
+               initscopedepth 4
+               maxscopedepth 5
+               
+               code
+                  debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                  debugline 25
+                  getlocal0
+                  pushscope
+                  debugline 26
+                  getlocal0
+                  constructsuper 0
+                  debugline 27
+                  getlocal0
+                  pushstring ""
+                  initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_strItemList")
+                  debugline 28
+                  returnvoid
+               end ; code
+            end ; body
+         end ; method
+      }
+      
+      public static function Get() : a_4807
+      {
+         trait method QName(PackageNamespace(""),"Get")
+            flag FINAL
+            dispid 3
+            method
+               name "com.aurora.ui.maogoutd.ClientLog:DebugLog/Get"
+               returns QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"a_4807")
+               
+               body
+                  maxstack 1
+                  localcount 1
+                  initscopedepth 3
+                  maxscopedepth 4
+                  
+                  code
+                     debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                     debugline 30
+                     getlocal0
+                     pushscope
+                     debugline 32
+                     getlex QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pInstance")
+                     returnvalue
+                  end ; code
+               end ; body
+            end ; method
+         }
+         
+         public function RegisterStage(pStage:Stage) : void
+         {
+            trait method QName(PackageNamespace(""),"RegisterStage")
+               dispid 0
+               method
+                  name "com.aurora.ui.maogoutd.ClientLog:DebugLog/RegisterStage"
+                  flag HAS_PARAM_NAMES
+                  param QName(PackageNamespace("flash.display"),"Stage")
+                  paramname "backgroundColor"
+                  returns QName(PackageNamespace(""),"void")
+                  
+                  body
+                     maxstack 3
+                     localcount 3
+                     initscopedepth 4
+                     maxscopedepth 5
+                     
+                     code
+                        debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                        debugline 35
+                        getlocal0
+                        pushscope
+                        pushnull
+                        coerce_s
+                        setlocal2
+                        debug 1, "pStage", 0, 35
+                        debugline 37
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                        iftrue ofs013a
+                        debug 1, "siteType", 1, 40
+                        debugline 39
+                        getlocal0
+                        getlocal1
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                        debugline 40
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                        getproperty QName(PackageNamespace(""),"loaderInfo")
+                        getproperty QName(PackageNamespace(""),"parameters")
+                        getproperty Multiname("sitetype",[PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),PackageNamespace(""),PrivateNamespace("DebugLog.as$262"),PackageInternalNs("com.aurora.ui.maogoutd.ClientLog"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),StaticProtectedNs("com.aurora.ui.maogoutd.ClientLog:DebugLog")])
+                        coerce_s
+                        setlocal2
+                        debugline 42
+                        getlocal2
+                        pushstring "pps"
+                        equals
+                        dup
+                        iftrue ofs004a
+                        pop
+                        getlocal2
+                        pushstring "xiaowu"
+                        equals
+               ofs004a:
+                        dup
+                        iftrue ofs0055
+                        pop
+                        getlocal2
+                        pushstring "joyyou"
+                        equals
+               ofs0055:
+                        iffalse ofs006c
+                        debugline 44
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                        getlex QName(PackageNamespace("flash.events"),"KeyboardEvent")
+                        getproperty QName(PackageNamespace(""),"KEY_UP")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"OnOpenTextLogHandler")
+                        callpropvoid QName(PackageNamespace(""),"addEventListener"), 2
+               ofs006c:
+                        debugline 46
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("flash.text"),"TextField")
+                        constructprop QName(PackageNamespace("flash.text"),"TextField"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        debugline 47
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushshort 300
+                        setproperty QName(PackageNamespace(""),"width")
+                        debugline 48
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                        getproperty QName(PackageNamespace(""),"height")
+                        setproperty QName(PackageNamespace(""),"height")
+                        debugline 49
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        getlex QName(PackageNamespace("flash.text"),"TextFieldAutoSize")
+                        getproperty QName(PackageNamespace(""),"LEFT")
+                        setproperty QName(PackageNamespace(""),"autoSize")
+                        debugline 50
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"border")
+                        debugline 51
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushint 10066329
+                        setproperty QName(PackageNamespace(""),"borderColor")
+                        debugline 52
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"background")
+                        debugline 53
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushint 13421772
+                        setproperty QName(PackageNamespace(""),"backgroundColor")
+                        debugline 54
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushdouble 0.9
+                        setproperty QName(PackageNamespace(""),"alpha")
+                        debugline 55
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushfalse
+                        setproperty QName(PackageNamespace(""),"mouseEnabled")
+                        debugline 56
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"multiline")
+                        debugline 57
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                        pushtrue
+                        setproperty QName(PackageNamespace(""),"wordWrap")
+                        debugline 58
+                        getlocal0
+                        getlex QName(PackageNamespace("a_4754"),"a_2155")
+                        getproperty QName(PackageNamespace(""),"e")
+                        callproperty QName(PackageNamespace(""),"GetMessageTip"), 0
+                        getlex QName(PackageNamespace("com.aurora.ui.maogoutd.iface"),"ITDMessageTip")
+                        astypelate
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTip")
+                        debugline 60
+                        getlocal0
+                        findpropstrict QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"Fps")
+                        constructprop QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"Fps"), 0
+                        initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                        debugline 61
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                        pushstring "fbs"
+                        setproperty QName(PackageNamespace(""),"name")
+                        debugline 62
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                        pushbyte 62
+                        setproperty QName(PackageNamespace(""),"x")
+                        debugline 63
+                        getlocal0
+                        getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                        pushbyte 0
+                        setproperty QName(PackageNamespace(""),"y")
+               ofs013a:
+                        debugline 65
+                        returnvoid
+                     end ; code
+                  end ; body
+               end ; method
+            }
+            
+            private function OnOpenTextLogHandler(e:KeyboardEvent) : void
+            {
+               trait method QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"OnOpenTextLogHandler")
+                  dispid 0
+                  method
+                     name "com.aurora.ui.maogoutd.ClientLog:DebugLog/private:OnOpenTextLogHandler"
+                     flag HAS_PARAM_NAMES
+                     param QName(PackageNamespace("flash.events"),"KeyboardEvent")
+                     paramname "backgroundColor"
+                     returns QName(PackageNamespace(""),"void")
+                     
+                     body
+                        maxstack 2
+                        localcount 2
+                        initscopedepth 4
+                        maxscopedepth 5
+                        
+                        code
+                           debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                           debugline 67
+                           getlocal0
+                           pushscope
+                           debug 1, "e", 0, 67
+                           debugline 69
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"keyCode")
+                           getlex QName(PackageNamespace("flash.ui"),"Keyboard")
+                           getproperty QName(PackageNamespace(""),"NUMPAD_6")
+                           equals
+                           dup
+                           iffalse ofs0025
+                           pop
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"ctrlKey")
+                           convert_b
+                  ofs0025:
+                           iffalse ofs0044
+                           debugline 71
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                           callproperty QName(PackageNamespace(""),"Get"), 0
+                           getlex QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"CDebugPane")
+                           callproperty QName(PackageNamespace(""),"Get"), 0
+                           getproperty QName(PackageNamespace(""),"visible")
+                           not
+                           setproperty QName(PackageNamespace(""),"visible")
+                           jump ofs00fa
+                  ofs0044:
+                           debugline 73
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"keyCode")
+                           getlex QName(PackageNamespace("flash.ui"),"Keyboard")
+                           getproperty QName(PackageNamespace(""),"NUMPAD_7")
+                           equals
+                           dup
+                           iffalse ofs005c
+                           pop
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"ctrlKey")
+                           convert_b
+                  ofs005c:
+                           iffalse ofs0079
+                           debugline 75
+                           getlex QName(PackageNamespace("a_4752"),"a_2036")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getlex QName(PackageNamespace("a_4752"),"a_2036")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getproperty QName(PackageNamespace(""),"isShowGrowTimes")
+                           not
+                           setproperty QName(PackageNamespace(""),"isShowGrowTimes")
+                           jump ofs00fa
+                  ofs0079:
+                           debugline 77
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"keyCode")
+                           getlex QName(PackageNamespace("flash.ui"),"Keyboard")
+                           getproperty QName(PackageNamespace(""),"NUMPAD_8")
+                           equals
+                           dup
+                           iffalse ofs0091
+                           pop
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"ctrlKey")
+                           convert_b
+                  ofs0091:
+                           iffalse ofs00ae
+                           debugline 79
+                           getlex QName(PackageNamespace("a_4752"),"a_2036")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getlex QName(PackageNamespace("a_4752"),"a_2036")
+                           callproperty QName(PackageNamespace(""),"getInstance"), 0
+                           getproperty QName(PackageNamespace(""),"isShowIntruderLife")
+                           not
+                           setproperty QName(PackageNamespace(""),"isShowIntruderLife")
+                           jump ofs00fa
+                  ofs00ae:
+                           debugline 81
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"keyCode")
+                           getlex QName(PackageNamespace("flash.ui"),"Keyboard")
+                           getproperty QName(PackageNamespace(""),"NUMPAD_9")
+                           equals
+                           dup
+                           iffalse ofs00c6
+                           pop
+                           getlocal1
+                           getproperty QName(PackageNamespace(""),"ctrlKey")
+                           convert_b
+                  ofs00c6:
+                           iffalse ofs00fa
+                           debugline 83
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                           getproperty QName(PackageNamespace(""),"parent")
+                           iffalse ofs00ec
+                           debugline 85
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                           getproperty QName(PackageNamespace(""),"parent")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                           callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                           jump ofs00fa
+                  ofs00ec:
+                           debugline 89
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                           getlocal0
+                           getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                           callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                  ofs00fa:
+                           debugline 92
+                           returnvoid
+                        end ; code
+                     end ; body
+                  end ; method
+               }
+               
+               public function startGame() : void
+               {
+                  trait method QName(PackageNamespace(""),"startGame")
+                     dispid 0
+                     method
+                        name "com.aurora.ui.maogoutd.ClientLog:DebugLog/startGame"
+                        returns QName(PackageNamespace(""),"void")
+                        
+                        body
+                           maxstack 2
+                           localcount 1
+                           initscopedepth 4
+                           maxscopedepth 5
+                           
+                           code
+                              debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                              debugline 94
+                              getlocal0
+                              pushscope
+                              debugline 96
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                              getproperty QName(PackageNamespace(""),"parent")
+                              iffalse ofs0033
+                              debugline 98
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                              getproperty QName(PackageNamespace(""),"parent")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                              callpropvoid QName(PackageNamespace(""),"removeChild"), 1
+                              debugline 99
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                              getlocal0
+                              getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"fps")
+                              callpropvoid QName(PackageNamespace(""),"addChild"), 1
+                     ofs0033:
+                              debugline 101
+                              returnvoid
+                           end ; code
+                        end ; body
+                     end ; method
+                  }
+                  
+                  public function AppendText(strMsg:String) : void
+                  {
+                     trait method QName(PackageNamespace(""),"AppendText")
+                        dispid 0
+                        method
+                           name "com.aurora.ui.maogoutd.ClientLog:DebugLog/AppendText"
+                           flag HAS_PARAM_NAMES
+                           param QName(PackageNamespace(""),"String")
+                           paramname "backgroundColor"
+                           returns QName(PackageNamespace(""),"void")
+                           
+                           body
+                              maxstack 5
+                              localcount 4
+                              initscopedepth 4
+                              maxscopedepth 5
+                              
+                              code
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                 debugline 102
+                                 getlocal0
+                                 pushscope
+                                 debug 1, "strMsg", 0, 102
+                                 debugline 104
+                                 getlocal0
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTextLog")
+                                 pushstring "\n"
+                                 getlocal0
+                                 dup
+                                 setlocal2
+                                 getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_index")
+                                 dup
+                                 increment_i
+                                 setlocal3
+                                 getlocal2
+                                 getlocal3
+                                 setproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_index")
+                                 kill 3
+                                 kill 2
+                                 add
+                                 pushstring ":"
+                                 add
+                                 getlocal1
+                                 add
+                                 callpropvoid QName(PackageNamespace(""),"appendText"), 1
+                                 debugline 105
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                     }
+                     
+                     public function ShowLog(strMsg:String) : void
+                     {
+                        trait method QName(PackageNamespace(""),"ShowLog")
+                           dispid 0
+                           method
+                              name "com.aurora.ui.maogoutd.ClientLog:DebugLog/ShowLog"
+                              flag HAS_PARAM_NAMES
+                              param QName(PackageNamespace(""),"String")
+                              paramname "backgroundColor"
+                              returns QName(PackageNamespace(""),"void")
+                              
+                              body
+                                 maxstack 1
+                                 localcount 2
+                                 initscopedepth 4
+                                 maxscopedepth 5
+                                 
+                                 code
+                                    debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                    debugline 112
+                                    getlocal0
+                                    pushscope
+                                    debug 1, "strMsg", 0, 112
+                                    debugline 119
+                                    returnvoid
+                                 end ; code
+                              end ; body
+                           end ; method
+                        }
+                        
+                        public function AddItem(id:int) : void
+                        {
+                           trait method QName(PackageNamespace(""),"AddItem")
+                              dispid 0
+                              method
+                                 name "com.aurora.ui.maogoutd.ClientLog:DebugLog/AddItem"
+                                 flag HAS_PARAM_NAMES
+                                 param QName(PackageNamespace(""),"int")
+                                 paramname "backgroundColor"
+                                 returns QName(PackageNamespace(""),"void")
+                                 
+                                 body
+                                    maxstack 3
+                                    localcount 3
+                                    initscopedepth 4
+                                    maxscopedepth 5
+                                    
+                                    code
+                                       debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                       debugline 121
+                                       getlocal0
+                                       pushscope
+                                       debug 1, "id", 0, 121
+                                       debug 1, "stTipDesc", 1, 123
+                                       debugline 123
+                                       getlex QName(PackageNamespace("a_4752"),"a_2027")
+                                       callproperty QName(PackageNamespace(""),"getInstance"), 0
+                                       getproperty QName(PackageNamespace(""),"m_dictDesc")
+                                       getlocal1
+                                       getproperty MultinameL([PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),PackageNamespace(""),PrivateNamespace("DebugLog.as$262"),PackageInternalNs("com.aurora.ui.maogoutd.ClientLog"),Namespace("http://adobe.com/AS3/2006/builtin"),ProtectedNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),StaticProtectedNs("com.aurora.ui.maogoutd.ClientLog:DebugLog")])
+                                       coerce QName(PackageNamespace("com.aurora.ui.maogoutd.component"),"a_3306")
+                                       setlocal2
+                                       debugline 124
+                                       getlocal0
+                                       getlocal0
+                                       getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_strItemList")
+                                       getlocal2
+                                       getproperty QName(PackageNamespace(""),"Name")
+                                       add
+                                       initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_strItemList")
+                                       debugline 125
+                                       returnvoid
+                                    end ; code
+                                 end ; body
+                              end ; method
+                           }
+                           
+                           public function ShowItemList() : void
+                           {
+                              trait method QName(PackageNamespace(""),"ShowItemList")
+                                 dispid 0
+                                 method
+                                    name "com.aurora.ui.maogoutd.ClientLog:DebugLog/ShowItemList"
+                                    returns QName(PackageNamespace(""),"void")
+                                    
+                                    body
+                                       maxstack 4
+                                       localcount 2
+                                       initscopedepth 4
+                                       maxscopedepth 5
+                                       
+                                       code
+                                          debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                          debugline 127
+                                          getlocal0
+                                          pushscope
+                                          debug 1, "stRect", 0, 129
+                                          debugline 129
+                                          findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                                          constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                                          coerce QName(PackageNamespace("flash.geom"),"Rectangle")
+                                          setlocal1
+                                          debugline 130
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_stTip")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_pStage")
+                                          getlocal0
+                                          getproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_strItemList")
+                                          findpropstrict QName(PackageNamespace("flash.geom"),"Rectangle")
+                                          constructprop QName(PackageNamespace("flash.geom"),"Rectangle"), 0
+                                          callpropvoid QName(Namespace("com.aurora.ui.maogoutd.iface:ITDMessageTip"),"showTextTip"), 3
+                                          debugline 131
+                                          getlocal0
+                                          pushstring ""
+                                          initproperty QName(PrivateNamespace("com.aurora.ui.maogoutd.ClientLog:DebugLog"),"m_strItemList")
+                                          debugline 132
+                                          returnvoid
+                                       end ; code
+                                    end ; body
+                                 end ; method
+                              }
+                           }
+                        }
+                        
+                        method
+                           name ""
+                           returns null
+                           
+                           body
+                              maxstack 2
+                              localcount 1
+                              initscopedepth 1
+                              maxscopedepth 3
+                              
+                              code
+                                 getlocal0
+                                 pushscope
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                 debugline 16
+                                 findpropstrict Multiname("a_4807",[PackageNamespace("com.aurora.ui.maogoutd.ClientLog")])
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 pushscope
+                                 getlex QName(PackageNamespace(""),"Object")
+                                 newclass 45
+                                 popscope
+                                 initproperty QName(PackageNamespace("com.aurora.ui.maogoutd.ClientLog"),"a_4807")
+                                 debugfile "D:\\workspace\\git\\msclient\\src;com\\aurora\\ui\\maogoutd\\ClientLog;DebugLog.as"
+                                 debugline 1
+                                 returnvoid
+                              end ; code
+                           end ; body
+                        end ; method
+                        

@@ -41,8 +41,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Effect",
-    "path":"folders/精灵/mod/Effect.yy",
+    "name":"mojie",
+    "path":"folders/精灵/mod/Cards/defender/mojie.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

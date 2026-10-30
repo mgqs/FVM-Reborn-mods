@@ -1,5 +1,3 @@
-image_xscale = 1.8
-image_yscale = 1.8
 image_speed = 0
 timer = 0
 damage = 0
@@ -11,3 +9,5 @@ damage_type = "throw"
 shape = 0
 
 state = "appear"
+image_xscale = 1.8
+image_yscale = 1.8
