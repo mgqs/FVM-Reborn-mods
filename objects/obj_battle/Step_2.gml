@@ -201,7 +201,10 @@ if (variable_global_exists("enemy_by_type")) {
 		var _ebt_dead = 0;
 		for (var _ebt_i = 0; _ebt_i < _ebt_len; _ebt_i++) {
 			var _ebt_id = _ebt_list[_ebt_i];
-			if (!instance_exists(_ebt_id)) { _ebt_dead++; continue; }
+			// object_exists 命中的是「对象索引」被误登记进目标表：instance_exists 对它
+			// 只要有任意实例就为真，但下面读 .x / .bbox_left 会直接抛
+			// "Unable to find instance for object index"。按死数据处理，让表自愈。
+			if (!instance_exists(_ebt_id) || object_exists(_ebt_id)) { _ebt_dead++; continue; }
 			var _ebt_x = _ebt_id.x;
 			if (_ebt_x < -10000) { _ebt_dead++; continue; }
 			var _ebt_l = _ebt_id.bbox_left;
@@ -218,7 +221,7 @@ if (variable_global_exists("enemy_by_type")) {
 			var _ebt_keep = [];
 			for (var _ebt_i = 0; _ebt_i < _ebt_len; _ebt_i++) {
 				var _ebt_id = _ebt_list[_ebt_i];
-				if (!instance_exists(_ebt_id)) continue;
+				if (!instance_exists(_ebt_id) || object_exists(_ebt_id)) continue;
 				if (_ebt_id.x < -10000) continue;
 				array_push(_ebt_keep, _ebt_id);
 			}

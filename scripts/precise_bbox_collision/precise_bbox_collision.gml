@@ -69,6 +69,8 @@ function precise_bbox_collision(_inst_a, _inst_b) {
 function precise_bbox_prepare(_inst_a) {
     if (is_undefined(_inst_a) || _inst_a == noone) return false;
     if (!instance_exists(_inst_a)) return false;
+    // 同 bullet_sap_type_list：对象索引能骗过 instance_exists，但下面读 sprite_index 会崩
+    if (object_exists(_inst_a)) return false;
 
     var _spr = _inst_a.sprite_index;
     if (_spr < 0) return false;
@@ -144,6 +146,12 @@ function bullet_enemy_reachable(_inst) {
 }
 
 function bullet_sap_type_list(_inst, _key, _y_margin = 0, _key2 = "") {
+    // 必须是「存活实例」。注意 instance_exists(对象索引) 只要该对象还有任意实例就返回 true，
+    // 但紧接着的 _inst.object_index / _inst._sap_all 会当场报
+    // "Unable to find instance for object index"（obj_joker_bullet_3 实测踩过）。
+    // object_exists 只对对象索引为真，实例 id 恒 >= 100000，两条一起判才排得干净。
+    if (!instance_exists(_inst) || object_exists(_inst)) return [];
+
     if (_inst.object_index != obj_zodiac_projectile) {
         if (!variable_instance_exists(_inst, "_sap_all")) _inst._sap_all = [];
         if (!variable_instance_exists(_inst, "_sap_out")) _inst._sap_out = [];
@@ -184,7 +192,7 @@ function bullet_sap_type_list(_inst, _key, _y_margin = 0, _key2 = "") {
         for (var i = _last; i >= 0; i--) {
             if (_pm[i] < _ql) break;
             var _e = _sx[i];
-            if (!instance_exists(_e)) continue;
+            if (!instance_exists(_e) || object_exists(_e)) continue;
             if (_e.bbox_right < _ql) continue;
             if (_e.bbox_bottom < _qt || _e.bbox_top > _qb) continue;
             array_push(_all, _e);
@@ -199,6 +207,12 @@ function bullet_sap_type_list(_inst, _key, _y_margin = 0, _key2 = "") {
     var _cn = array_length(_cand);
     for (var i = 0; i < _cn; i++) {
         var _e = _cand[i];
+        if (object_exists(_e)) {
+            // 诊断：有「对象索引」被误登记进 global.enemy_by_type，正常不该出现。
+            // 打出来才知道是哪个对象，方便回源头修。
+            show_debug_message("[SAP] 目标表混入对象索引 " + object_get_name(_e) + "，key=" + string(_key));
+            continue;
+        }
         if (!instance_exists(_e)) continue;
         if (!variable_instance_exists(_e, "target_type")) continue;
         if (is_array(_key) ? !array_contains(_key,_e.target_type) : (_e.target_type != _key && (_key2 == "" || _e.target_type != _key2))) continue;
