@@ -4001,4 +4001,38 @@ mod_register_plant_lite("xuanfengniu", [
         cooldown: array_create(17, 420),
         cycle: [120, 117, 114, 111, 108, 105, 102, 99, 90, 90, 87, 87, 84, 84, 81, 81, 72]
     }], false);
+    mod_register_plant_lite("tangchaolizi", [
+    {
+        name: "糖炒栗子",
+        shape: 0,
+        description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）",
+        hp: array_create(17, 50),
+        cost: array_create(17, 160),
+        atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
+        range: array_create(17, 8),
+        cooldown: array_create(17, 420),
+        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+    },
+    {
+        name: "开口笑栗子",
+        shape: 1,
+        description: "开口笑栗子：灼烧范围扩大到 3×3",
+        hp: array_create(17, 50),
+        cost: array_create(17, 160),
+        atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
+        range: array_create(17, 8),
+        cooldown: array_create(17, 420),
+        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+    },
+    {
+        name: "焦香烤栗子",
+        shape: 2,
+        description: "焦香烤栗子：3×3 范围灼烧，伤害进一步提高",
+        hp: array_create(17, 50),
+        cost: array_create(17, 160),
+        atk: [7, 8, 9, 13, 15, 19, 22, 26, 31, 36, 42, 48, 56, 64, 73, 81, 90],
+        range: array_create(17, 8),
+        cooldown: array_create(17, 420),
+        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+    }], false);
 }

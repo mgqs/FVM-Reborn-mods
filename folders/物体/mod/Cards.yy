@@ -111,5 +111,8 @@
     {"name":"obj_eightcake_burn_bullet","path":"objects/obj_eightcake_burn_bullet/obj_eightcake_burn_bullet.yy",},
     {"name":"obj_eightcake_bomb","path":"objects/obj_eightcake_bomb/obj_eightcake_bomb.yy",},
     {"name":"obj_bbq_mouse_burn","path":"objects/obj_bbq_mouse_burn/obj_bbq_mouse_burn.yy",},
+    {"name":"obj_tangchaolizi","path":"objects/obj_tangchaolizi/obj_tangchaolizi.yy",},
+    {"name":"obj_tangchaolizi_bullet","path":"objects/obj_tangchaolizi_bullet/obj_tangchaolizi_bullet.yy",},
+    {"name":"obj_tangchaolizi_bullet_effect","path":"objects/obj_tangchaolizi_bullet_effect/obj_tangchaolizi_bullet_effect.yy",},
   ],
 }

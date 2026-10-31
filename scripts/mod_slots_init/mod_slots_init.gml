@@ -3100,4 +3100,8 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
     { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷威力更高的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
     { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹，有几率投出可乐炸弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
+    register_card("tangchaolizi", obj_tangchaolizi, [
+    { shape: 0, sprite: spr_tangchaolizi, cost: 160, cooldown: 420, description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi },
+    { shape: 1, sprite: spr_tangchaolizi_1, cost: 160, cooldown: 420, description: "开口笑栗子：灼烧范围扩大到 3×3", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_1 },
+    { shape: 2, sprite: spr_tangchaolizi_2, cost: 160, cooldown: 420, description: "焦香烤栗子：3×3 范围灼烧，伤害进一步提高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_2 }]);
 }

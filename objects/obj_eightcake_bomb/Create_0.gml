@@ -1,6 +1,7 @@
 // obj_eightcake_bomb（可乐炸弹）Create 事件
 // 素材 14 帧：0~6 可乐罐飞行、7~13 爆开的焦糖与碎块。
 // 落地对 3*3（本格 ±1 行 ±1 列）内所有老鼠造成固定 900 伤害，非 BOSS / 不免疫灰烬的直接灰烬化。
+// 缩放 1.5：和蛋糕块 / 蜡烛子弹同一口径；爆炸帧内容约 263×206，1.5 倍 ≈ 3 格宽，正好盖住 3×3。
 event_inherited();
 can_dandantu_store = false;
 
@@ -10,8 +11,8 @@ image_index = 0;
 image_angle = 0;
 image_alpha = 1;
 image_blend = c_white;
-image_xscale = 1;
-image_yscale = 1;
+image_xscale = 1.5;
+image_yscale = 1.5;
 
 damage = 900;
 row = 0;

@@ -110,7 +110,7 @@ function mod_fusion_main_prereq_map(){
         ronghedapao:    "chocolate_cannon",     // 融合巧克力炮 ← 死神大炮
         ronghehaixing:  "coal_starfish",        // 融合海星   ← 炭烧海星
         youyu_god:      "takoyaki",             // 融合鱿鱼   ← 章鱼烧
-        lizi_god:       "pan_fried_bun",        // 融合栗子   ← 生煎锅
+        lizi_god:       "tangchaolizi",         // 融合栗子   ← 糖炒栗子（2026-10-31 换成正式卡，去掉生煎锅这个顶替）
         ronghedan_god:  "egg_boiler_pult",      // 融合煮蛋器 ← 煮蛋器投手
         ronghehuopen:   "brazier",              // 融合火盆   ← 火盆
         ronghesanxian:  "triple_wine_rack",     // 融合三线   ← 三线酒架

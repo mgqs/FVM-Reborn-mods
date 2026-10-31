@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"tangchaolizi",
+  "folderPath":"folders/精灵/mod/Cards/Pult/tangchaolizi.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tangchaolizi",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"c174098b-d915-405e-b7c1-080f17dd87c1","path":"sprites/spr_tangchaolizi/spr_tangchaolizi.yy",},
+    {"name":"65ce32f9-abbd-4b3d-85a9-fdd2e6e8d859","path":"sprites/spr_tangchaolizi_1/spr_tangchaolizi_1.yy",},
+    {"name":"8d965c13-8d8e-4513-ba5f-69908ffc714b","path":"sprites/spr_tangchaolizi_2/spr_tangchaolizi_2.yy",},
+    {"name":"be637836-1996-4c00-bd0b-01187a17709c","path":"sprites/spr_tangchaolizi_bullet/spr_tangchaolizi_bullet.yy",},
+    {"name":"999925e2-e259-4746-9c77-6fcdde3070b9","path":"sprites/spr_tangchaolizi_bullet_1/spr_tangchaolizi_bullet_1.yy",},
+    {"name":"04c991b8-8e25-44d7-b6bb-600c8ade6ba9","path":"sprites/spr_tangchaolizi_bullet_2/spr_tangchaolizi_bullet_2.yy",},
+],
+}
