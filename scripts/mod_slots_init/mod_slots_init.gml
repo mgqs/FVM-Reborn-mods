@@ -2220,7 +2220,7 @@ register_card("hundun_god", obj_hundun_god, [
     shape: 0,
     sprite: spr_hundun_god,
     cost: 205,
-    cooldown: 1800,
+    cooldown: 2100,
     description: "混沌神使：吞噬自身右侧为中心5*5范围内的普通敌人，对精英造成大量伤害，死亡时产生3*3爆炸",
     plant_type: "normal",
     feature_type: "normal",
@@ -2232,7 +2232,7 @@ register_card("hundun_god", obj_hundun_god, [
     shape: 1,
     sprite: spr_hundun_god_1,
     cost: 205,
-    cooldown: 1800,
+    cooldown: 2100,
     description: "混沌圣神：吞噬自身右侧为中心5*5范围内的普通敌人，对精英造成大量伤害，死亡时产生5*5爆炸",
     plant_type: "normal",
     feature_type: "normal",
@@ -2244,7 +2244,7 @@ register_card("hundun_god", obj_hundun_god, [
     shape: 2,
     sprite: spr_hundun_god_2,
     cost: 205,
-    cooldown: 1800,
+    cooldown: 2100,
     description: "上古神·混沌：吞噬自身右侧为中心5*7范围内的普通敌人，对精英造成大量伤害，死亡时产生5*5爆炸",
     plant_type: "normal",
     feature_type: "normal",
@@ -2256,7 +2256,7 @@ register_card("hundun_god", obj_hundun_god, [
     shape: 3,
     sprite: spr_hundun_god_3,
     cost: 205,
-    cooldown: 1800,
+    cooldown: 2100,
     description: "至尊上古神：吞噬自身右侧为中心5*7范围内的普通敌人，对精英造成大量伤害，死亡时产生5*5爆炸",
     plant_type: "normal",
     feature_type: "normal",
@@ -2266,16 +2266,16 @@ register_card("hundun_god", obj_hundun_god, [
 }]);
 
 register_card("guangming_god",obj_guangming_god,[
-	    {"shape":0, "sprite":spr_light_god, "cost":395, "cooldown":60*60, "description":"巴德尔神使:巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
-	    {"shape":1, "sprite":spr_light_god_1, "cost":395, "cooldown":60*60, "description":"巴德尔圣神:巴德尔圣神：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
-		{"shape":2, "sprite":spr_light_god_2, "cost":395, "cooldown":60*60, "description":"光明神·巴德尔:光明神·巴德尔：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
-		{"shape":3, "sprite":spr_light_god_3, "cost":395, "cooldown":60*60, "description":"至尊光明神:至尊光明神：每隔一段时间在自身周围召唤5*7格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1}
+	    {"shape":0, "sprite":spr_light_god, "cost":395, "cooldown":21*60, "description":"巴德尔神使:巴德尔神使：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+	    {"shape":1, "sprite":spr_light_god_1, "cost":395, "cooldown":21*60, "description":"巴德尔圣神:巴德尔圣神：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":2, "sprite":spr_light_god_2, "cost":395, "cooldown":21*60, "description":"光明神·巴德尔:光明神·巴德尔：每隔一段时间在自身周围召唤5*5格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1},
+		{"shape":3, "sprite":spr_light_god_3, "cost":395, "cooldown":21*60, "description":"至尊光明神:至尊光明神：每隔一段时间在自身周围召唤5*7格圣光攻击范围内鼠军","plant_type":"normal","feature_type":"normal","target_card":"none","is_gold":1}
 	]);
 
 register_card("lingrong_god", obj_lingrong_god, [
 {
     shape: 0,
-    sprite: spr_lingrong_god,
+    sprite: spr_lingrong_god_nowater,
     cost: 25,
     cooldown: 420,
     description: "魔导士软糖：三合一承载卡片，可在海底、陆地、水面、岩浆上承载卡片并填补空洞",
@@ -2283,11 +2283,11 @@ register_card("lingrong_god", obj_lingrong_god, [
     feature_type: "normal",
     target_card: "none",
     is_gold: 1,
-    place_preview: spr_lingrong_god
+    place_preview: spr_lingrong_god_nowater
 },
 {
     shape: 1,
-    sprite: spr_lingrong_god_1,
+    sprite: spr_lingrong_god_1_nowater,
     cost: 0,
     cooldown: 420,
     description: "彩虹棉花软糖：竖向生成三张，三合一承载卡片",
@@ -2295,11 +2295,11 @@ register_card("lingrong_god", obj_lingrong_god, [
     feature_type: "normal",
     target_card: "none",
     is_gold: 1,
-    place_preview: spr_lingrong_god_1
+    place_preview: spr_lingrong_god_1_nowater
 },
 {
     shape: 2,
-    sprite: spr_lingrong_god_2,
+    sprite: spr_lingrong_god_2_nowater,
     cost: 0,
     cooldown: 420,
     description: "无敌猫猫软糖：直接生成九张，三合一承载卡片",
@@ -2307,7 +2307,7 @@ register_card("lingrong_god", obj_lingrong_god, [
     feature_type: "normal",
     target_card: "none",
     is_gold: 1,
-    place_preview: spr_lingrong_god_2
+    place_preview: spr_lingrong_god_2_nowater
 }]);
 
     register_card("panduola_god", obj_panduola_god, [
@@ -2315,7 +2315,7 @@ register_card("lingrong_god", obj_lingrong_god, [
     shape: 0,
     sprite: spr_panduola_god,
     cost: 255,
-    cooldown: 2400,
+    cooldown: 3000,
     description: "潘多拉：放下立即产生3*3范围爆炸，并在本行留下毒气",
     plant_type: "normal",
     feature_type: "normal",
@@ -2327,7 +2327,7 @@ register_card("lingrong_god", obj_lingrong_god, [
     shape: 1,
     sprite: spr_panduola_god_1,
     cost: 255,
-    cooldown: 2400,
+    cooldown: 3000,
     description: "潘多拉魔盒：放下立即产生3*3范围爆炸，并在本行留下毒气",
     plant_type: "normal",
     feature_type: "normal",
@@ -2339,7 +2339,7 @@ register_card("lingrong_god", obj_lingrong_god, [
     shape: 2,
     sprite: spr_panduola_god_2,
     cost: 255,
-    cooldown: 2400,
+    cooldown: 3000,
     description: "疫神·潘多拉：放下立即产生3*3范围爆炸，并在本行和本列留下毒气，在爆炸范围内留下鼠疫",
     plant_type: "normal",
     feature_type: "normal",
@@ -2351,7 +2351,7 @@ register_card("lingrong_god", obj_lingrong_god, [
     shape: 3,
     sprite: spr_panduola_god_3,
     cost: 255,
-    cooldown: 2400,
+    cooldown: 3000,
     description: "至尊疫神：放下立即产生全屏范围爆炸，并在本行和本列留下毒气，在爆炸范围内留下鼠疫",
     plant_type: "normal",
     feature_type: "normal",
@@ -2821,7 +2821,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         shape: 0,
         sprite: spr_chongsheng_god,
         cost: 400,
-        cooldown: 1800,
+        cooldown: 2100,
         description: "奥西里斯神使：持续复活5*5范围内至多4张死亡的卡片，首次触发时为范围内卡片施加减伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -2833,7 +2833,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         shape: 1,
         sprite: spr_chongsheng_god_1,
         cost: 400,
-        cooldown: 1800,
+        cooldown: 2100,
         description: "奥西里斯圣神：持续复活5*5范围内至多6张死亡的卡片，首次触发时为范围内卡片施加减伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -2845,7 +2845,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         shape: 2,
         sprite: spr_chongsheng_god_2,
         cost: 400,
-        cooldown: 1800,
+        cooldown: 2100,
         description: "重生神·奥西里斯：持续复活5*5范围内至多6张死亡的卡片，首次触发时为范围内卡片施加减伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -2857,7 +2857,7 @@ register_card("xuanfengniu", obj_xuanfengniu, [
         shape: 3,
         sprite: spr_chongsheng_god_3,
         cost: 400,
-        cooldown: 1800,
+        cooldown: 2100,
         description: "至尊重生神：持续复活5*7范围内至多12张死亡的卡片，首次触发时为范围内卡片施加减伤",
         plant_type: "normal",
         feature_type: "normal",

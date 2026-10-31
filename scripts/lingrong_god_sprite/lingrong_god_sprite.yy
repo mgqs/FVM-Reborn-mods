@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"lingrong_god_sprite",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"lingrong_god_sprite",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

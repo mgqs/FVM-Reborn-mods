@@ -17,6 +17,8 @@
     {"name":"can_copy_card_at_position","path":"scripts/can_copy_card_at_position/can_copy_card_at_position.yy",},
     {"name":"can_target_on","path":"scripts/can_target_on/can_target_on.yy",},
     {"name":"combat_bounds","path":"scripts/combat_bounds/combat_bounds.yy",},
+    {"name":"lingrong_god_sprite","path":"scripts/lingrong_god_sprite/lingrong_god_sprite.yy",},
+    {"name":"lingrong_spread","path":"scripts/lingrong_spread/lingrong_spread.yy",},
     {"name":"get_grid_position_from_world","path":"scripts/get_grid_position_from_world/get_grid_position_from_world.yy",},
     {"name":"get_nearest_grid_position","path":"scripts/get_nearest_grid_position/get_nearest_grid_position.yy",},
     {"name":"ini_bool_functions","path":"scripts/ini_bool_functions/ini_bool_functions.yy",},

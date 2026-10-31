@@ -12,13 +12,38 @@ if remove_timer == 1 {
     }
 }
 
-if grid_row >= 0 && grid_col >= 0 && grid_row < global.grid_rows && grid_col < global.grid_cols {
+// 地形决定精灵与帧布局：
+//   water   → *_water  ：1~5 变身（image_index 0~4）、6~14 待机循环（5~13），共 14 帧
+//   nowater → *_nowater：1~4 变身（0~3）、5~16 待机循环（4~15），共 16 帧
+// 地形变化时重播一次变身动画（两套精灵尺寸不同，硬切会跳）。
+var _in_water = false;
+if (grid_row >= 0 && grid_col >= 0 && grid_row < global.grid_rows && grid_col < global.grid_cols) {
     var terrain_type = global.grid_terrains[grid_row][grid_col].type
-    if terrain_type == "water" || on_lava {
+    _in_water = (terrain_type == "water") && !on_lava
+    if (terrain_type == "water" || on_lava) {
         plant_type = "lilypad"
     } else {
         plant_type = "coffee"
     }
+}
+
+var _want_spr = lingrong_god_sprite(_in_water, shape)
+if (_want_spr != sprite_index) {
+    sprite_index = _want_spr
+    if (_in_water) {
+        f_place_end  = 4
+        f_idle_start = 5
+        f_idle_end   = 13
+    } else {
+        f_place_end  = 3
+        f_idle_start = 4
+        f_idle_end   = 15
+    }
+    idle_anim   = f_idle_end
+    anim_frame  = 0
+    anim_timer  = 0
+    placed      = false
+    image_index = 0
 }
 
 event_inherited()
@@ -103,52 +128,31 @@ if !spawn_init && !is_clone {
         var current_replace = global.replace_placement
         global.replace_placement = false
 
-        var candidates = ds_priority_create()
-
-        for (var r = 0; r < global.grid_rows; r++) {
-            for (var c = 0; c < global.grid_cols; c++) {
-                if r == grid_row && c == grid_col continue
-
-                var check_x = global.grid_offset_x + (c * global.grid_cell_size_x) + (global.grid_cell_size_x / 2)
-                var check_y = global.grid_offset_y + (r * global.grid_cell_size_y) + (global.grid_cell_size_y / 2)
-
-                if can_place_at_position(check_x, check_y, "coffee", "normal", "none") {
-                    var _can_spawn = true
-                    var _plant_list = ds_grid_get(global.grid_plants, c, r)
-                    for (var _i = 0; _i < ds_list_size(_plant_list); _i++) {
-                        var _plant = ds_list_find_value(_plant_list, _i)
-                        if !instance_exists(_plant) continue
-                        if variable_instance_exists(_plant, "plant_id") && array_get_index(_blocked_ids, _plant.plant_id) != -1 {
-                            _can_spawn = false
-                            break
-                        }
-                    }
-                    if _can_spawn {
-                        var dist = abs(r - grid_row) + abs(c - grid_col)
-                        if c == grid_col && abs(r - grid_row) <= 1 {
-                            dist -= 0.5
-                        }
-                        ds_priority_add(candidates, [r, c], dist)
-                    }
-                }
+        // 以本体为中心展开 3×3（本体占中心格，另外 8 个方向各一张，合计 9 张）。
+        // 某个方向的相邻格若被越界 / 蛛网 / 青苹果封住，或该格已有 lingrong_god /
+        // cotton_candy / soda_bubble / wooden_plate 这四种卡片，就沿这个方向往外扩一格；
+        // 其余卡片一律放行（软糖与之同格叠放）。走到地图边界还没找到就放弃该方向。
+        // 这里不复用 can_place_at_position：它把「已有卡片的格子」也判成可放置
+        // （coffee 分支对非空格直接 return true），无法表达「有指定四卡就外扩」。
+        if (grid_col < 0 || grid_row < 0) {
+            // 正常不会发生（放置时 card_created 已写好坐标），防御性回退一帧
+            spawn_init = false
+        } else {
+            var _dirs = [[0,-1], [0,1], [-1,0], [1,0], [-1,-1], [1,-1], [-1,1], [1,1]];
+            for (var _d = 0; _d < array_length(_dirs); _d++) {
+                var _cell = lingrong_spread_cell(grid_col, grid_row, _dirs[_d][0], _dirs[_d][1]);
+                if (_cell == undefined) continue;
+                var _wp = get_world_position_from_grid(_cell[0], _cell[1]);
+                var clone = instance_create_depth(_wp.x, _wp.y, depth, obj_lingrong_god);
+                clone.is_clone = true;
+                clone.shape = 2;
+                clone.hp = hp;
+                clone.max_hp = max_hp;
+                clone.atk = atk;
+                card_created(clone, _cell[0], _cell[1]);
             }
         }
 
-        for (var i = 0; !ds_priority_empty(candidates) && i < 8; i++) {
-            var best_cell = ds_priority_delete_min(candidates)
-            var target_r = best_cell[0]
-            var target_c = best_cell[1]
-            var spawn_x = x + ((target_c - grid_col) * global.grid_cell_size_x)
-            var spawn_y = y + ((target_r - grid_row) * global.grid_cell_size_y)
-            var clone = instance_create_depth(spawn_x, spawn_y, depth, obj_lingrong_god)
-            clone.is_clone = true
-            clone.shape = 2
-            clone.hp = hp
-            clone.atk = atk
-            card_created(clone, target_c, target_r)
-        }
-
-        ds_priority_destroy(candidates)
         global.replace_placement = current_replace
     }
 }

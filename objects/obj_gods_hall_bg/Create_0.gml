@@ -70,7 +70,7 @@ function gods_hall_get_random_reward()
     else if (r < 950)
         return ["4级四叶草", 5];
     else
-        return ["高级强化水晶", 50];
+        return ["高级强化水晶", 100];
 }
 
 function gods_hall_get_guarantee_reward()
@@ -80,9 +80,9 @@ function gods_hall_get_guarantee_reward()
     {
         var r = irandom(99);
         if (r < 60)
-            return ["4级四叶草", 25];
+            return ["4级四叶草", 5];
         else if (r < 80)
-            return ["高级强化水晶", 25];
+            return ["高级强化水晶", 100];
         else
         {
             var r2 = irandom(99);

@@ -8,6 +8,16 @@ if (state == CARD_STATE.ATTACK && image_index >= chongsheng_end_frame && timer >
 if (state == CARD_STATE.ATTACK && !revive_triggered && image_index >= chongsheng_trigger_frame) {
     revive_triggered = true;
 
+    // 按出手时的星级/技能重算三个时长（Create 阶段 skill 可能还没写入）
+    var _ud = get_plant_data_with_skill(plant_id, shape, current_level, skill);
+    if (_ud != undefined) {
+        if (ds_map_exists(_ud, "chongsheng_duration")) buff_duration = _ud[? "chongsheng_duration"];
+        if (ds_map_exists(_ud, "chongsheng_reduction")) chongsheng_reduction = _ud[? "chongsheng_reduction"];
+    }
+    if (buff_duration <= 0) buff_duration = cycle;
+    // 无敌时长 = 攻击间隔（技能 2.5~3.5 秒），cycle 此时已经是本卡的最终值
+    chongsheng_invuln = cycle;
+
     var _eff1_spr = spr_chongsheng_god_effect_0_1;
     if (shape == 1) _eff1_spr = spr_chongsheng_god_effect_1_1;
     else if (shape == 2) _eff1_spr = spr_chongsheng_god_effect_2_1;
@@ -16,6 +26,10 @@ if (state == CARD_STATE.ATTACK && !revive_triggered && image_index >= chongsheng
     var _n = revive_apply_targets(grid_col, grid_row, grid_range_col, grid_range_row,
         revive_limit - revive_count, true, _eff1_spr);
     revive_count += _n;
+
+    // 复活瞬间给范围内卡片上一次性无敌（时长 = 攻击间隔，技能 2.5~3.5 秒）。
+    // 用 invuln_pending 传到下面的 buff 循环里落地一次，避免每帧续期变成永久无敌。
+    if (_n > 0) invuln_pending = chongsheng_invuln;
 
     if (_n > 0 && !buff_applied) {
         buff_applied = true;
@@ -39,6 +53,7 @@ if (buff_applied)
     var _my_id = id;
     var _bdur = buff_duration;
     var _red = chongsheng_reduction;
+    var _inv = invuln_pending;
     for (var _col = grid_col - grid_range_col; _col <= grid_col + grid_range_col; _col++) {
         for (var _row = grid_row - grid_range_row; _row <= grid_row + grid_range_row; _row++) {
             if (_col < 0 || _col >= global.grid_cols || _row < 0 || _row >= global.grid_rows) continue;
@@ -51,10 +66,14 @@ if (buff_applied)
                         _p.chongsheng_buff_timer = _bdur;
                         _p.chongsheng_buff_reduction = _red;
                     }
+                    if (_inv > 0 && variable_instance_exists(_p, "chongsheng_invuln_timer")) {
+                        _p.chongsheng_invuln_timer = max(_p.chongsheng_invuln_timer, _inv);
+                    }
                 }
             }
         }
     }
+    invuln_pending = 0;
 }
 
 if (flash_value > 0) flash_value -= 10;

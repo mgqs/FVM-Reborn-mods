@@ -203,7 +203,7 @@ function mod_shop_init()
     register_goods("shuangzi", 
     {
         type: "card",
-        cost: "10000",
+        cost: "20000",
         unlock_item_id: "shuangzi",
         description: "双子座精灵：一次性产出4朵火苗",
         display_name: "双子座精灵"
@@ -211,7 +211,7 @@ function mod_shop_init()
     register_goods("sheshou", 
     {
         type: "card",
-        cost: "10000",
+        cost: "20000",
         unlock_item_id: "sheshou",
         description: "射手座精灵：向前方三行射出4发强力子弹",
         display_name: "射手座精灵"
@@ -219,7 +219,7 @@ function mod_shop_init()
     register_goods("tiancheng", 
     {
         type: "card",
-        cost: "10000",
+        cost: "25000",
         unlock_item_id: "tiancheng",
         description: "天秤座精灵：向前后各射出3发比较强力的子弹",
         display_name: "天秤座精灵"
@@ -227,7 +227,7 @@ function mod_shop_init()
     register_goods("shuangyu", 
     {
         type: "card",
-        cost: "10000",
+        cost: "20000",
         unlock_item_id: "shuangyu",
         description: "双鱼座精灵：投掷两颗带有减速的冰鱼",
         display_name: "双鱼座精灵"
@@ -235,7 +235,7 @@ function mod_shop_init()
     register_goods("juxie", 
     {
         type: "card",
-        cost: "10000",
+        cost: "20000",
         unlock_item_id: "juxie",
         description: "巨蟹座精灵：发射4发强力钳子，全屏跟踪，海陆两栖",
         display_name: "巨蟹座精灵"
@@ -251,7 +251,7 @@ function mod_shop_init()
     register_goods("jinniu", 
     {
         type: "card",
-        cost: "10000",
+        cost: "50000",
         unlock_item_id: "jinniu",
         description: "金牛座精灵：点燃子弹",
         display_name: "金牛座精灵"
@@ -299,7 +299,7 @@ function mod_shop_init()
     register_goods("corn_shooter",
     {
         type: "card",
-        cost: "50000",
+        cost: "20000",
         unlock_item_id: "corn_shooter",
         description: "玉蜀黍：发射三颗玉米",
         display_name: "玉蜀黍"

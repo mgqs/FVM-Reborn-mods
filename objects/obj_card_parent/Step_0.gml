@@ -16,6 +16,14 @@ if frozen_timer > 0{
 else{
 	is_frozen = false
 }
+// 重生神复活瞬间的无敌：整帧回血（挡致命伤），先于减伤结算
+if chongsheng_invuln_timer > 0 {
+	chongsheng_invuln_timer--
+	if hp < _prev_hp {
+		hp = _prev_hp
+		if hp > max_hp hp = max_hp
+	}
+}
 if chongsheng_buff_timer > 0 {
 	chongsheng_buff_timer--
 	if hp < _prev_hp && chongsheng_buff_reduction > 0 {

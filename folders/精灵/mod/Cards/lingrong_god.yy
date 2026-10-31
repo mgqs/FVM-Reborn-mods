@@ -11,10 +11,13 @@
   "visible":true,
   "folders":[],
   "listItems":[
-    {"name":"76ecdd13-812e-455a-9dc6-4e0f66948b2c","path":"sprites/spr_lingrong_god/spr_lingrong_god.yy",},
-    {"name":"76a7d1fa-cb1f-4cdf-9fa0-0df1dc2c8110","path":"sprites/spr_lingrong_god_1/spr_lingrong_god_1.yy",},
-    {"name":"450be4c7-8e20-4ab4-ae41-c5fd2945abee","path":"sprites/spr_lingrong_god_2/spr_lingrong_god_2.yy",},
+    {"name":"3662d055-c309-4cbb-bc13-fe680b02cb2a","path":"sprites/spr_lingrong_god_nowater/spr_lingrong_god_nowater.yy",},
+    {"name":"27e48261-c5ad-4d95-8f4d-e16f104287a7","path":"sprites/spr_lingrong_god_water/spr_lingrong_god_water.yy",},
+    {"name":"7c2fba16-3121-453a-a2b8-61eecf8efc83","path":"sprites/spr_lingrong_god_1_nowater/spr_lingrong_god_1_nowater.yy",},
+    {"name":"baa1c038-3d44-475e-bdf1-623fccf92c7c","path":"sprites/spr_lingrong_god_1_water/spr_lingrong_god_1_water.yy",},
+    {"name":"546274d2-e88e-42c5-a5e6-fd9846e80630","path":"sprites/spr_lingrong_god_2_nowater/spr_lingrong_god_2_nowater.yy",},
+    {"name":"bab2c698-c94d-4ea5-9d59-6c0ffe9d5027","path":"sprites/spr_lingrong_god_2_water/spr_lingrong_god_2_water.yy",},
     {"name":"ee27196d-77be-48be-b22b-385ab700228b","path":"sprites/spr_lingrong_god_pin1/spr_lingrong_god_pin1.yy",},
-    {"name":"5504f665-ca49-41ca-bde9-b6b98afedd1d","path":"sprites/spr_lingrong_god_pin2/spr_lingrong_god_pin2.yy",}
+    {"name":"5504f665-ca49-41ca-bde9-b6b98afedd1d","path":"sprites/spr_lingrong_god_pin2/spr_lingrong_god_pin2.yy",},
   ],
 }

@@ -207,7 +207,7 @@ function mod_evo_credit_face(){
     zeus: [62, 511, 75, 69],
     love_god: [18, 0, 93, 88],
     panduola_god: [80, 73, 59, 55],
-    lingrong_god: [0, 0, 92, 75]
+    lingrong_god: [0, 0, 107, 92]
     };
     global.mod_evo_face_tbl = _t;
     return _t;
