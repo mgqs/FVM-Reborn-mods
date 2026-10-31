@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"nengliangmiao_pass_fire",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"nengliangmiao_pass_fire",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

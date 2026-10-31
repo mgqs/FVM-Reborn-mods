@@ -1,7 +1,6 @@
 // obj_immortal_pick（不朽开局奖励 · 自选一张）Create 事件
-// 🔴 2026-10-31（三改）：候选卡**回到 3 张**（生煎锅 / 披萨炉 / 玉蜀黍，麻辣香锅已去掉），
-//   难度与开局星级走 difficulty_rules 的 immortal_pick_info()：生煎锅 易·0星 / 披萨炉 中·2星 / 玉蜀黍 难·4星。
-//   星级画在卡框左上角（spr_star_slot 第 star-1 帧，0 星不画）。
+// 🔴 2026-11-01：候选卡 **生煎锅 / 披萨炉 / 焦油喷壶（tar_sprayer）**，三张一律 **0 星、不显示开局难度**，
+//   名单与星级走 difficulty_rules 的 immortal_pick_card_list() / immortal_pick_info()。
 //   Draw / Step 的卡位按 array_length(cards) 自动居中，spacing 不变（390 * 缩放）。
 // 🔴 2026-10-30 改：**从 Draw GUI 改成普通 Draw（房间坐标）**。
 //   工程里所有界面（含能正常显示的 obj_gacha_reward_popup）都是房间坐标绘制，

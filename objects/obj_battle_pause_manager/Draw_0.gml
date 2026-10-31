@@ -134,15 +134,8 @@ if (global.is_paused)
 						draw_set_color(c_lime);
 						draw_text(cx, cy + 150, "形态：" + string(reward_shape));
 					} else if (reward_type == "recipe") {
-						// === 融合菜谱奖励 ===（与抽卡弹窗同一套：卡框 + 图标 150 + 卡名/档位两行）
-						var _rspr = fusion_recipe_sprite(reward_id, reward_shape);
-						var _rsw = sprite_get_width(_rspr[0]);
-						var _rsh = sprite_get_height(_rspr[0]);
-						var _rsc = 150 / max(_rsw, _rsh);
-						draw_sprite_ext(_rspr[0], _rspr[1],
-							cx + (sprite_get_xoffset(_rspr[0]) - _rsw * 0.5) * _rsc,
-							(cy - 60) + (sprite_get_yoffset(_rspr[0]) - _rsh * 0.5) * _rsc,
-							_rsc, _rsc, 0, c_white, 1);
+						// === 融合菜谱奖励 ===（与抽卡弹窗同一套：底板 + 图案 150）
+						mod_fusion_draw_recipe(reward_id, reward_shape, cx, cy - 60, 150);
 
 						// 名字拆两行：卡名（按目标形态取）+ 档位
 						draw_set_color(c_green);

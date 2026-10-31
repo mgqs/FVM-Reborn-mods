@@ -34,20 +34,14 @@ ATK_HOLD_TICKS = 4;     // 攻击相位持续几个动画帧（4 帧 ≈ 0.33 �
 range_col = 1;
 range_row = (shape >= 2) ? 2 : 1;
 
-// 准备时间：技能表（秒×60 → 帧），未注册技能时按 6.5 秒
-prepare_time = 390;
-if (ds_map_exists(global.skill_registry, "chunsun")) {
-	var _entry = global.skill_registry[? "chunsun"];
-	if (is_array(_entry) && array_length(_entry) >= 2 && is_array(_entry[1])) {
-		var _tbl = _entry[1];
-		prepare_time = _tbl[clamp(skill, 0, array_length(_tbl) - 1)];
-	}
-}
+// 准备时间 = cycle（注册表 base 390 = 6.5 秒，技能表 register_card_skill("chunsun","cycle",…)
+//   会把它覆盖成 390→210）。不再单独存 prepare_time 变量，Step 里直接读 cycle。
 
 max_attack = 5;                                     // 最多攻击 5 次
 attack_count = 0;
 attack_timer = 0;
-life_time = (shape >= 1) ? 90 * 60 : 45 * 60;       // 准备结束后存在时间
+// 存在时间写死：0 转 45 秒，一·二转 90 秒（cycle 已被准备时间占用，不再兼这个）
+life_time = (shape >= 1) ? 90 * 60 : 45 * 60;
 alive_timer = 0;
 
 phase = 0;      // 0=准备 1=冒芽 2=待机 3=攻击

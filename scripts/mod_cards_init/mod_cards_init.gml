@@ -10,7 +10,7 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 120)
+        cycle: array_create(17, 390)
     },
     {
         name: "火辣泡椒笋",
@@ -21,7 +21,7 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 120)
+        cycle: array_create(17, 390)
     },
     {
         name: "望乡泡椒笋",
@@ -32,7 +32,7 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 120)
+        cycle: array_create(17, 390)
     }], false);
 
     mod_register_plant_lite("mixian", [
@@ -4005,7 +4005,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "糖炒栗子",
         shape: 0,
-        description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）",
+        description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子",
         hp: array_create(17, 50),
         cost: array_create(17, 160),
         atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
@@ -4016,7 +4016,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "开口笑栗子",
         shape: 1,
-        description: "开口笑栗子：灼烧范围扩大到 3×3",
+        description: "开口笑栗子：灼烧范围扩大到3*3",
         hp: array_create(17, 50),
         cost: array_create(17, 160),
         atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
@@ -4027,12 +4027,46 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "焦香烤栗子",
         shape: 2,
-        description: "焦香烤栗子：3×3 范围灼烧，伤害进一步提高",
+        description: "焦香烤栗子：十字范围伤害提高",
         hp: array_create(17, 50),
         cost: array_create(17, 160),
         atk: [7, 8, 9, 13, 15, 19, 22, 26, 31, 36, 42, 48, 56, 64, 73, 81, 90],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
         cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+    }], false);
+    mod_register_plant_lite("nengliangmiao", [
+    {
+        name: "能量喵",
+        shape: 0,
+        description: "能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 225),
+        atk: [220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 350, 370, 390, 410, 430],
+        range: array_create(17, 1.5),
+        cooldown: array_create(17, 720),
+        cycle: array_create(17, 60)
+    },
+    {
+        name: "蓝焰能量喵",
+        shape: 1,
+        description: "蓝焰能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，耗能降低",
+        hp: [60, 110, 160, 210, 260, 310, 360, 410, 460, 510, 560, 610, 660, 710, 760, 810, 860],
+        cost: array_create(17, 175),
+        atk: [220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 350, 370, 390, 410, 430],
+        range: array_create(17, 1.5),
+        cooldown: array_create(17, 720),
+        cycle: array_create(17, 60)
+    },
+    {
+        name: "樱红能量喵",
+        shape: 2,
+        description: "樱红能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，增幅提高15%",
+        hp: [60, 110, 160, 210, 260, 310, 360, 410, 460, 510, 560, 610, 660, 710, 760, 810, 860],
+        cost: array_create(17, 175),
+        atk: [253, 264.5, 276, 287.5, 299, 310.5, 322, 333.5, 345, 356.5, 368, 379.5, 402.5, 425.5, 448.5, 471.5, 494.5],
+        range: array_create(17, 1.5),
+        cooldown: array_create(17, 720),
+        cycle: array_create(17, 60)
     }], false);
 }

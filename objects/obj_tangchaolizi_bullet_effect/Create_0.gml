@@ -6,6 +6,7 @@ image_index = 0;
 timer = 0;
 
 damage = 0;
+damage_corner = 0;   // 四角格伤害；0 = 跟 damage 一样
 grid_row = 0;
 grid_col = 0;
 shape = 0;

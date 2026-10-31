@@ -25,11 +25,28 @@ attack_type = ATTACK_TYPE.SHOOTER;
 target_type = "throw";
 state = CARD_STATE.IDLE;
 
+// 🔴 只有二转（shape >= 2）才提升**十字 5 格**的伤害：3×3 的四个角格继续用 0 转（初融）同一级的 atk 表
+//   atk_base0 只在二转时才算，0·1 转它就是自己
+atk_base0 = atk;
+if (shape >= 2) {
+    var _d0 = get_plant_data_with_skill("tangchaolizi", 0, current_level, skill);
+    if (_d0 != undefined) atk_base0 = _d0[? "atk"];
+}
+
 // 本次挥锅是否已经出弹 / 动画计时
 tc_fired = false;
+tc_firing = false;      // 出弹令牌：置 true 才允许 Other_11 生成子弹（消费即失效，不回写 tc_fired）
 tc_anim_t = 0;
-// 本次攻击的落点目标（Other_11 取它的坐标）
+// 本次攻击的落点目标（Other_11 取它所在的**格子** tcol/trow）
 tc_target = noone;
+tc_tcol = -1;
+tc_trow = 0;
 
-// 落地直接进挥锅（attack_anim 9 帧 × flash 5 = 45 步，和 Step 里的窗口算法对齐）
-attack_timer = cycle - 45;
+// 🔴 节拍（Step_0 用这两个计数器，不再用 attack_timer / image_index）：
+//   tc_cd       距离上一轮攻击的冷却帧，到 cycle 开一轮
+//   tc_atk_t    本轮攻击已进行的帧数
+//   tc_shot_cd  距上一次真正出弹的帧数（硬门槛，防连投）
+tc_cd = 0;              // 从 0 起算：前面没老鼠就一直不出手（别放了就白丢一颗）
+tc_atk_t = 0;
+tc_shot_cd = 999;
+attack_timer = 0;       // 已不再使用，留着防止别处按旧写法读到怪值

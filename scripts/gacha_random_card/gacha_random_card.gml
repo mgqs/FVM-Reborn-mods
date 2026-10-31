@@ -401,9 +401,10 @@ function gacha_make_card_reward(_id, _shape) {
 
 /// @function gacha_gift_id(reward_type, id) 抽到这张奖励时「附赠一次本体」的卡
 ///   进化凭证 → 该金卡前置表 slot 0 的那张（第 1 槽）；没有 slot 0 就取第一条
-///   融合菜谱 → 它的**前置主卡**（mod_fusion_main_prereq；不分初级/深度/灵魂都送这一张）
+///   融合菜谱 → 它的**前置主卡**（mod_fusion_prereq；不分初级/深度/灵魂都送这一张）
 ///   🔴 只送**普通卡**：目标是金卡（进化拿）或融合卡（融合页拿）时一律不送 ——
 ///      否则会绕过进化 / 融合系统，直接把金卡本体或融合卡本体发出去
+///   另外「本体只能靠地图首通拿」的卡（gacha_get_excluded_cards）也不送，理由见函数末尾注释
 /// @return 卡 id；不附赠返回 ""
 function gacha_gift_id(_type, _id) {
     var _pick = "";
@@ -414,10 +415,13 @@ function gacha_gift_id(_type, _id) {
         }
         if (_pick == "" && array_length(_cs) > 0) _pick = _cs[0].id;
     } else if (_type == "recipe") {
-        _pick = mod_fusion_main_prereq(_id);
+        _pick = mod_fusion_prereq(_id);
     }
     if (_pick == "") return "";
     if (gacha_is_gold_card(_pick) || is_fusion_card(_pick)) return "";
+    // 地图必给的卡（gacha_get_excluded_cards）同样不附赠：抽卡本体本来就排除它们，
+    //   附赠再给一次 = 白送（2026-11-01 用户口径；当前只撞 棉花糖 / 红柳烤串机）
+    if (gacha_is_excluded_card(_pick)) return "";
     return _pick;
 }
 
@@ -450,15 +454,6 @@ function gacha_gift_text(_reward) {
 
 // 附赠统一走 gacha_gift_id / preview / apply / text（2026-10-27 改：只附赠本体，不再提升转职）
 //   旧的 gacha_recipe_gift_target / preview / text / gift 已删除
-
-/// @function fusion_recipe_sprite(card_id, shape)
-/// @desc 食谱图标 = [精灵, 帧]：形态 0 用 spr_fusion_recipe0（帧号按 fusion_demo 顺序），1/2 用诸神那套 spr_voucher_*
-function fusion_recipe_sprite(card_id, shape) {
-    if (shape <= 0) return [spr_fusion_recipe0, fusion_recipe0_frame(card_id)];
-    var _s = asset_get_index("spr_voucher_" + card_id + "_" + string(shape));
-    if (_s == -1) _s = spr_fusion_recipe0;
-    return [_s, 0];
-}
 
 /// @function fusion_recipe_display_name(card_id, shape)
 /// @desc 食谱道具的显示名（2026-10-28 改口径，与凭证一致）：**卡名（档位菜谱）**

@@ -92,6 +92,9 @@ else if package_button_select == 4{
 					credit_trade_open_recycle(_it.id, _it.amount, depth-5)
 					is_submenu_opened = true
 				}
+				else if _it.kind == "recipe"{
+					show_notice("融合菜谱不能回收", 60)
+				}
 				else{
 					show_notice("进化凭证不能回收", 60)
 				}

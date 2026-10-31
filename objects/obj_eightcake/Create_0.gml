@@ -36,16 +36,19 @@ eightcake_target_col = -1;
 eightcake_target = noone;
 // 攻击计数：第 3n 次换蜡烛子弹、第 10n 次（二转）改投可乐炸弹
 eightcake_shot_count = 0;
-// 本次攻击是否已经出弹（普通 25 / 蜡烛 60 / 炸弹 94 帧，见 Step_0）
-eightcake_fired = false;
 // 本轮丢什么：0 普通蛋糕块 / 1 蜡烛 / 2 可乐炸弹（挥勺期间锁定，见 Step_0）
 ec_round = 0;
 // 动画阶段：0 蛋糕块待机 / 1 装填蜡烛 / 2 蜡烛待机 / 3 补蛋糕块 / 4 装填炸弹 / 5 炸弹待机
 ec_phase = 0;
 ec_phase_t = 0;
+// 🔴 节拍（Step_0 用这两个计数器，别再用 attack_timer）：
+//   ec_cd     距离上一轮攻击开始的帧数，到 cycle 开新一轮
+//   ec_atk_t  本轮攻击已进行的帧数
+//   ec_firing 出弹守卫：置 true 后才允许 Other_11 生成子弹（一轮只投一件）
+ec_cd = cycle - 40;          // 开局快一点：第一轮比正常冷却短 40 帧
+ec_atk_t = 0;
+ec_firing = false;
 // 灼烧伤害倍率（击杀灰烬的那部分）
 eightcake_burn_ratio = 1.5;
 // 二转可乐炸弹
 eightcake_bomb_damage = 900;
-
-attack_timer = cycle - 40;

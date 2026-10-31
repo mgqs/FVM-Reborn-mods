@@ -4,6 +4,7 @@
 event_inherited();
 
 damage = 0;
+damage_corner = 0;      // 3×3 四角格用的伤害（二转时 = 0 转 atk）
 row = 0;
 col = 0;
 shape = 0;

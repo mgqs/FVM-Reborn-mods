@@ -30,7 +30,6 @@
     {"name":"9c551b5b-c319-4726-83a5-23a30a9a52d0","path":"sprites/spr_fusion_lv_soul/spr_fusion_lv_soul.yy",},
     {"name":"5a5d70c8-2e4a-47d0-a327-2f361526d2c2","path":"sprites/spr_fusion_lv_upgrade/spr_fusion_lv_upgrade.yy",},
     {"name":"3c321a83-8d77-4917-a44d-b67d1616ceae","path":"sprites/spr_fusion_panel_title/spr_fusion_panel_title.yy",},
-    {"name":"617ac279-b01b-41e9-992b-687214a43b90","path":"sprites/spr_fusion_recipe0/spr_fusion_recipe0.yy",},
     {"name":"acebe0c1-5313-4832-bd4e-596ca4b93330","path":"sprites/spr_fusion_slot_card/spr_fusion_slot_card.yy",},
     {"name":"3e711975-0ffe-43c5-a5bc-aa9d08d3728c","path":"sprites/spr_fusion_slot_label/spr_fusion_slot_label.yy",},
     {"name":"b58c9afd-2383-4735-8dca-f6809281ab28","path":"sprites/spr_fusion_slot_prop/spr_fusion_slot_prop.yy",},

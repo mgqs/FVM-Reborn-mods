@@ -1,31 +1,37 @@
 /// =============================================================================
-///  mod/craft · 金卡表（只放金卡；融合卡在 mod_craft_fusion_table）
-///  这个文件 = 金卡进化相关的**全部数据 + 全部规则 + 凭证绘制**，obj_craft_bg 只调它
-///  金卡 / 融合卡怎么区分：卡注册数据里的 is_gold / is_fusion（**不看诸神商店卖什么**）
+///  mod/craft · 金卡表（合成屋 · 金卡进化，craft_top_tab == 0；融合卡在 mod_craft_fusion_table）
+///  这个文件 = 金卡进化的**全部数据 + 全部规则 + 凭证绘制**，obj_craft_bg 只调它
+///  卡怎么分类：卡注册数据里的 is_gold / is_fusion（**不看诸神商店卖什么**）
 ///
 ///  一、数据（要改就改这里）
-///    mod_evo_table()          金卡前置表：金卡 → cards[{ id, slot, need }]
-///        slot      金卡进化页的槽位：0 = 第 1 槽（星座卡）/ 1 = 第 2 槽（普通卡）
-///                  只有 1 张前置的条目，按它自己是星座还是普通来定
-///        need      该前置卡要求的形态：0 本体 / 1 一转 / 2 二转
-///                  ⚠️ 一律按这张卡自己的形态上限兜底（蓝莓塔只有 0 转 → need 1 实际按 0 算）
-///                  ⚠️ need **只给金卡进化用**：抽卡只发凭证/本体，诸神商店也只判「有没有这张凭证」
-///    mod_evo_credit_face()    进化凭证里那张立绘的可见区域（[左,上,宽,高]）
+///    mod_evo_table()        金卡 → cards:[ { id, slot, need } ]
+///        slot   进化页的槽位：0 = 第 1 槽（星座卡）/ 1 = 第 2 槽（普通卡）
+///               只有一张前置的条目，按它自己是星座还是普通来定
+///        need   该前置要求的形态：0 本体 / 1 一转 / 2 二转
+///               ⚠️ 一律按这张卡自己的形态上限兜底（见 mod_evo_need_of；只注册到 0 转的卡写 2 也按 0 算）
+///               ⚠️ need 只给金卡进化用：抽卡只发凭证/本体，诸神商店也只判「有没有这张凭证」
+///    mod_evo_credit_face()  进化凭证里那张立绘的可见区域 [左, 上, 宽, 高]
 ///
-///  二、取数 API（对象层用）
-///    mod_evo_cards / mod_evo_need_of / mod_evo_slot_need
+///  二、取数 API（对象层用，别自己扫表）
+///    mod_evo_cards(target)            某张金卡的前置列表
+///    mod_evo_need_of(id, need)        need 按卡的形态上限兜底
+///    mod_evo_slot_need(target, slot)  该槽要求的形态（-1 = 没有这个槽）
+///    mod_evo_card_name(id)            卡的本体形态名（提示文案用）
+///    mod_evo_shape_word(n)            n → "一转" / "二转" …
 ///
-///  三、规则（判定都在这里，对象只存状态）
-///    mod_evo_needed_cards()   右侧列表该有哪些卡（还没拥有的金卡所缺的前置）
-///    mod_evo_pick_target()    这张卡该进哪张金卡的哪个槽
-///    mod_evo_resolve()        落槽后两槽应该是什么（缺的记成 miss）
-///    mod_evo_check()          能不能进化（缺卡 / 形态不足 / 凭证不足）
-///    mod_evo_reward()         成功落账：扣 1 张凭证 + 解锁金卡（星级从 0 起）
+///  三、规则（纯函数，状态由调用方传进来）
+///    mod_evo_needed_cards()           右侧列表该有哪些卡（还没拥有的金卡所缺的前置）
+///    mod_evo_pick_target(card_id)     这张卡该进哪张金卡的哪个槽
+///    mod_evo_resolve(target, slot, card_id)  落槽后两个槽应该是什么（缺的记 miss）
+///    mod_evo_check(target, cards, miss)      能不能进化（缺卡 / 形态不足 / 凭证不足）
+///    mod_evo_reward(target)           成功落账：扣 1 张凭证 + 解锁金卡（星级从 0 起）
+///    mod_evo_credit_id / mod_evo_has_credit / mod_evo_buyable_locked   凭证 id / 有没有 / 商店是否售完
 ///
-///  四、凭证绘制
-///    mod_evo_credit_id / mod_evo_has_credit / mod_evo_draw_credit
+///  四、绘制与文案
+///    mod_evo_draw_credit(target, cx, cy, has, box, face_box)   金色底板 + 卡面立绘
+///    mod_evo_tooltip(target, desc) / mod_evo_route_text(target)  凭证悬停提示 / 进化路线文本
 ///
-///  改完调 mod_evo_selfcheck() 自检（未注册卡 / 同槽 / 重复 / need 越界）
+///  改完调 mod_evo_selfcheck() 自检（空前置 / 超过两槽 / 重复 / 没注册 / need 越界 / 挤在同一个槽）
 /// =============================================================================
 
 /// @func mod_evo_table() 前置总表

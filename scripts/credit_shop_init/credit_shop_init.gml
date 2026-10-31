@@ -1138,7 +1138,7 @@ function credit_shop_init()
 
     register_goods("credit_pan_fried_bun_2", {
         type: "credit", cost: "30000", coin_type: "prestige", credit_shape: 2,
-        tower_floor: "28-1",
+        tower_floor: "25-2",
         unlock_item_id: transfer_credit_id("pan_fried_bun", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
@@ -1499,16 +1499,15 @@ function credit_shop_init()
         unlock_item_id: transfer_credit_id("eightcake", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
-    // 糖炒栗子：转职层数 / 威望按「近似生煎锅」（xlsx 291 行 G 列口径）
     register_goods("credit_tangchaolizi_1", {
-        type: "credit", cost: "8000", coin_type: "prestige", credit_shape: 1,
-        tower_floor: "10-1",
+        type: "credit", cost: "8500", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "11-2",
         unlock_item_id: transfer_credit_id("tangchaolizi", 1),
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
     register_goods("credit_tangchaolizi_2", {
-        type: "credit", cost: "30000", coin_type: "prestige", credit_shape: 2,
-        tower_floor: "28-1",
+        type: "credit", cost: "31000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "26-2",
         unlock_item_id: transfer_credit_id("tangchaolizi", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
@@ -1668,6 +1667,19 @@ function credit_shop_init()
         type: "credit", cost: "9000", coin_type: "prestige", credit_shape: 2,
         tower_floor: "16-2",
         unlock_item_id: transfer_credit_id("yinghuoshe", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+
+    register_goods("credit_nengliangmiao_1", {
+        type: "credit", cost: "10000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "9-2",
+        unlock_item_id: transfer_credit_id("nengliangmiao", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_nengliangmiao_2", {
+        type: "credit", cost: "36000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "28-2",
+        unlock_item_id: transfer_credit_id("nengliangmiao", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
 }

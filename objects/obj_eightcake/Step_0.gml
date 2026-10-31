@@ -5,8 +5,9 @@
 //   蜡烛轮(3n)    装填 32~34 / 待机 35~44 / 挥勺 56~66  （第 60 帧脱手）
 //   炸弹轮(10n)   装填 67~69 / 待机 70~79 / 挥勺 91~101 （第 94 帧脱手）—— 只有二转精灵有这段
 //   补蛋糕块      本体·一转 67~69，二转 102~104（二转的 67~101 整段是可乐炸弹专用段）
-// 🔴 待机段都是 **10 帧一个循环**（实测 0==10==20、35==45==55、70==80==90），
-//    循环尾部那几帧（56~59 / 91~93）是「抡勺起手」，不属于待机 —— 把它们放进循环会来回抽。
+// 🔴 节拍由 **ec_cd（冷却）** 驱动：有目标每帧 +1，到 cycle 开一轮攻击；攻击进度由 **ec_atk_t** 独立计。
+//    旧版用 attack_timer 同时管「进攻击 / 出弹 / 回待机」，状态一抖就会一轮里把蛋糕块 / 蜡烛 / 炸弹全丢出去。
+//    出弹带 **ec_firing 守卫**（Other_11 检查），保证一轮攻击最多只投一件。
 if (global.is_paused) exit;
 
 event_inherited();
@@ -15,8 +16,7 @@ if (is_frozen) exit;
 if (state == CARD_STATE.SLEEP) exit;
 
 var _step_frames = max(1, flash_speed * (is_slowdown ? 2 : 1));
-// 装填帧播快一倍：3 帧的「飞回来」如果也按 4 步/帧播，会变成三段位移，看着像在抽
-var _load_frames = max(1, _step_frames div 2);
+var _load_frames = max(1, _step_frames div 2);   // 装填帧播快一倍
 
 // ===== 索敌：整行，但只认**场内**（卡片右边 ~ 第 9 格右沿）=====
 var _max_x = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x;
@@ -57,7 +57,10 @@ if (_tgt_col != -1)
 }
 
 // ===== 轮次类型：0 普通蛋糕块 / 1 蜡烛 / 2 可乐炸弹 =====
-//   下一发（shot_count + 1）：二转每 10n 发炸弹；其余每 3n 发蜡烛（10 与 3 互质，不会撞）
+//   发数从 1 数起（_next_no = 已投发数 + 1）：
+//     二转第 10/20/30… 发 = 可乐 —— 10 的倍数**优先**，第 30 发撞上 3 的倍数也照样出可乐
+//     其余第 3/6/9/12… 发 = 蜡烛
+//     剩下全是蛋糕块。前 10 发实际是：蛋糕 蛋糕 蜡烛 蛋糕 蛋糕 蜡烛 蛋糕 蛋糕 蜡烛 **可乐**
 var _next_no = eightcake_shot_count + 1;
 var _next_type = 0;
 if (shape >= 2 && _next_no mod 10 == 0) _next_type = 2;
@@ -68,71 +71,51 @@ if (state != CARD_STATE.ATTACK) ec_round = _next_type;
 var _cur = ec_round;
 
 var _atk_start = (_cur == 2) ? 91 : ((_cur == 1) ? 56 : 21);
-var _atk_end   = (_cur == 2) ? 101 : ((_cur == 1) ? 66 : 31);
-var _release   = (_cur == 2) ? 94 : ((_cur == 1) ? 60 : 25);
-var _atk_len   = _atk_end - _atk_start + 1;
+var _atk_len   = 11;                                            // 三种挥勺都是 11 帧
+var _release_off = (_cur == 2) ? 3 : 4;                         // 94-91 / 60-56 / 25-21
 // 补蛋糕块的帧段：二转（110 帧）在 102~104，本体 / 一转在 67~69
 var _load_block_spr = (shape >= 2) ? 102 : 67;
 
-// ===== 攻击节拍 =====
-var _enter_load = false;
-
-if (_has_enemy)
+// ===== 节拍：冷却到点 → 开一轮攻击 =====
+if (state != CARD_STATE.ATTACK)
 {
-    attack_timer++;
-
-    if (state != CARD_STATE.ATTACK && attack_timer >= cycle - _atk_len * _step_frames)
+    if (_has_enemy) ec_cd++;                 // 没目标就冻结冷却（不清零，回来接着数）
+    if (ec_cd >= cycle)
     {
+        ec_cd = 0;
+        ec_atk_t = 0;
+        ec_firing = false;
         state = CARD_STATE.ATTACK;
-        eightcake_fired = false;
     }
-
-    // 挥完（含手臂收回那几帧）才回待机，然后按「下一发是什么」接对应装填
-    if (state == CARD_STATE.ATTACK && image_index >= _atk_end)
-    {
-        state = CARD_STATE.IDLE;
-        _enter_load = true;
-    }
-
-    if (attack_timer > cycle)
-    {
-        attack_timer = 0;
-        if (state == CARD_STATE.ATTACK)
-        {
-            state = CARD_STATE.IDLE;
-            _enter_load = true;
-        }
-    }
-}
-else
-{
-    attack_timer = 0;
-    eightcake_fired = false;
-    if (state == CARD_STATE.ATTACK)              // 挥到一半没目标了：照样走装填，别停在挥勺帧
-    {
-        state = CARD_STATE.IDLE;
-        _enter_load = true;
-    }
-}
-
-// 装填：下一发是蜡烛 → 32~34；是炸弹 → 67~69；否则补蛋糕块 67~69 / 102~104
-if (_enter_load)
-{
-    ec_phase = (_next_type == 1) ? 1 : ((_next_type == 2) ? 4 : 3);
-    ec_phase_t = 0;
 }
 
 // ===== 推帧（每个分支都给 image_index 赋值，否则父对象会插一帧进来 → 看着「抽」）=====
-ec_phase_t++;
-
 if (state == CARD_STATE.ATTACK)
 {
-    var _elapsed = attack_timer - (cycle - _atk_len * _step_frames);
-    var _fi = clamp(floor(_elapsed / _step_frames), 0, _atk_len - 1);
+    ec_atk_t++;
+    var _fi = min(ec_atk_t div _step_frames, _atk_len - 1);
     image_index = _atk_start + _fi;
+
+    // 挥到脱手帧才投出。ec_firing = 「本轮已投过」的**锁存位**：
+    //   这里置 true，只有下一轮攻击开始（上面那段）才复位；Other_11 只管消费、不回写。
+    if (!ec_firing && _fi >= _release_off)
+    {
+        ec_firing = true;
+        event_user(1);
+    }
+
+    // 挥完（含手臂收回）回待机，并按「下一发是什么」接对应装填
+    if (ec_atk_t >= _atk_len * _step_frames)
+    {
+        state = CARD_STATE.IDLE;
+        ec_phase = (_next_type == 1) ? 1 : ((_next_type == 2) ? 4 : 3);
+        ec_phase_t = 0;
+        ec_cd = ec_atk_t;        // 攻击占掉的帧数计入冷却 → 一轮攻击的间隔正好 = cycle
+    }
 }
 else
 {
+    ec_phase_t++;
     var _li = ec_phase_t div _load_frames;       // 装填帧序号 0/1/2
 
     switch (ec_phase)
@@ -156,7 +139,7 @@ else
             else { ec_phase = 5; ec_phase_t = 0; image_index = 70; }
             break;
 
-        case 5:                                  // 可乐炸弹待机（勺子托着罐子）：70~79（10 帧一循环）
+        case 5:                                  // 可乐炸弹待机（勺子托着罐子）：70~79
             image_index = 70 + ((ec_phase_t div _step_frames) mod 10);
             break;
 
@@ -164,11 +147,4 @@ else
             image_index = (ec_phase_t div _step_frames) mod 10;
             break;
     }
-}
-
-// ===== 出弹：挥到脱手帧才真正投出去 =====
-if (state == CARD_STATE.ATTACK && !eightcake_fired && image_index >= _release)
-{
-    eightcake_fired = true;
-    event_user(1);
 }

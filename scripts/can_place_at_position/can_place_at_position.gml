@@ -126,7 +126,7 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
 		for (var i = 0; i < ds_list_size(plant_list); i++) {
 	        var plant = ds_list_find_value(plant_list, i);
                     if (!instance_exists(plant)) continue;
-	        if (instance_exists(plant) && variable_instance_exists(plant, "plant_id") && plant.plant_id == target_card && !same) {
+	        if (instance_exists(plant) && variable_instance_exists(plant, "plant_id") && base_card_match(plant.plant_id, target_card) && !same) {
 				
 				return true;
 				
@@ -382,4 +382,19 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
             // 其他植物类型
             return ds_list_size(plant_list) == 0;
     }
+}
+
+
+/// @function base_card_match(plant_id, target_card)
+/// @description 底座匹配。target_card 支持用 | 分隔多张底座卡（如 "chocolate_pult|eightcake"）。
+/// @param {string} plant_id   场上植物自己的 plant_id
+/// @param {string} target_card 卡槽注册的底座要求（单个 id 或用 | 分隔的多个 id）
+function base_card_match(_plant_id, _target_card) {
+    if (!is_string(_target_card) || _target_card == "" || _target_card == "none") return false;
+    if (string_pos("|", _target_card) == 0) return (_plant_id == _target_card);
+    var _parts = string_split(_target_card, "|");
+    for (var _i = 0; _i < array_length(_parts); _i++) {
+        if (_parts[_i] == _plant_id) return true;
+    }
+    return false;
 }

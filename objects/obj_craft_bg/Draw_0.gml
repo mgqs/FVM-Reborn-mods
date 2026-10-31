@@ -433,11 +433,7 @@ if (craft_top_tab == 1) {
 			var _box = 46 * fusion_ssx;
 			var _icon_spr = -1, _icon_sub = 0, _base_cd = noone;
 			var _faded = false;      // true = 没练到「食谱要求的那一形态」→ 卡底 + 卡面一起套灰（只是提示，不阻止融合）
-			if (_si == 0){                                  // 菜谱：凭证图标
-				var _rs = fusion_recipe_spr(fusion_loaded_id, _shape);
-				_icon_spr = _rs[0]; _icon_sub = _rs[1];
-			}
-			else if (_si == 1){                             // 主卡：画「食谱要求的那一形态」（need 由食谱决定，0 = 本体）
+			if (_si == 1){                                  // 主卡：画「食谱要求的那一形态」（need 由食谱决定，0 = 本体）
 				var _mainq = fusion_main_req();
 				if (_mainq.id != ""){
 					var _cd = deck_get_card_data(_mainq.id, _mainq.need);
@@ -453,11 +449,17 @@ if (craft_top_tab == 1) {
 					_faded = (fusion_owned_max_shape(_subq.id) < _subq.need);
 				}
 			}
-			else{                                           // 融合剂
+			else if (_si != 0){                             // 融合剂（_si == 0 的菜谱槽在下面单独画）
 				_icon_spr = spr_craft_material;
 				_icon_sub = get_material_info(_lvcfg.mat).icon;
 			}
-			if (_icon_spr != -1){
+			if (_si == 0){
+				// 菜谱槽：底板 + 图案（跟列表 / 诸神商店 / 背包凭证同一套画法）
+				mod_fusion_draw_recipe(fusion_loaded_id, _shape,
+					_slx + fusion_slot_inner*fusion_ssx,
+					_sly + fusion_slot_inner*fusion_ssy, _box);
+			}
+			else if (_icon_spr != -1){
 				var _scx = _slx + fusion_slot_inner*fusion_ssx;
 				var _scy = _sly + (_is_prop ? fusion_slot_inner : fusion_card_inner)*fusion_ssy;
 				if (_base_cd != noone){
@@ -468,7 +470,7 @@ if (craft_top_tab == 1) {
 					fusion_card_block(_base_cd, _icon_spr, _icon_sub, _card_id, _scx, _scy + 3, _faded);
 				}
 				else{
-					// 道具槽（融合菜谱 / 融合剂）：图标按最大边缩到 box（第 4 槽缩到 40，给底下「当前/需求」让位）
+					// 道具槽（融合剂）：图标按最大边缩到 box（第 4 槽缩到 40，给底下「当前/需求」让位）
 					var _icon_box = (_si == 3) ? fusion_mat_icon * fusion_ssx : _box;
 					fusion_draw_center(_icon_spr, _icon_sub, _scx, _scy, _icon_box, _faded);
 				}
@@ -604,11 +606,8 @@ if (craft_top_tab == 1) {
 		if (fusion_stage >= 1 && _rid1 == fusion_loaded_id) continue;      // 已进槽 → 原位留空（不往前挪）
 		var _rcx1 = fusion_g1x + (_i1 mod fusion_gcols)*fusion_gpx;
 		var _rcy1 = fusion_g1y + (_i1 div fusion_gcols - _r_off)*fusion_gpy;
-		var _rs2 = fusion_recipe_spr(_rid1, _shape);
-		// 凭证图两种尺寸：形态 0 是 44x44（无边框、图案占满，box 70 就跟格子一样满），
-		// 形态 1/2 是 70x70 的金框凭证（四周有留白，按 70/82 都显得比初级小）→ 撑满到 88
-		var _rbox = (_shape == 0) ? 70 : 88;
-		fusion_draw_center(_rs2[0], _rs2[1], _rcx1, _rcy1 - 6, _rbox);
+		// 底板 + 图案（唯一画法）；底板边长统一按格子宽 84 —— 三档卡片一样大，不再「初融比别的档大一圈」
+		mod_fusion_draw_recipe(_rid1, _shape, _rcx1, _rcy1 - 6, 84);
 		// 悬停提示：融合菜谱（卡名）/ 主卡：xx（本体·一转·二转，看这道食谱的 need）/ 副卡：同上
 		if (point_in_rectangle(mouse_x, mouse_y, _rcx1 - fusion_gpx*0.5, _rcy1 - fusion_gpy*0.5,
 				_rcx1 + fusion_gpx*0.5, _rcy1 + fusion_gpy*0.5)){

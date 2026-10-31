@@ -121,6 +121,14 @@ function draw_games_page(){
 		btn32.image_xscale = -0.9
 	    array_push(setting_buttons, btn32);
 
+		// 当前难度是永恒/不朽、开局奖励还没领 → 打开设置页时补弹一次
+		if (!is_undefined(difficulty_start_reward_of(global.difficulty))
+			&& difficulty_start_reward_available(global.difficulty)
+			&& !instance_exists(obj_start_reward)) {
+			var _sr_btn = instance_create_depth(0, 0, -16000, obj_start_reward);
+			_sr_btn.sr_diff = global.difficulty;
+		}
+
 		// 玩法模式（互斥）：抽卡版 / 欧皇版 / 随机礼盒 / 海克斯。标签靠悬停提示
 		var gacha_btn = instance_create_depth(x + 300, y + 20, depth-1, obj_setting_toggle);
 		gacha_btn.config_key = "play_mode_gacha";
