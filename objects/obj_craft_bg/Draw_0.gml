@@ -972,12 +972,16 @@ if button_select == 0{
 		var hover_card_x = x + 196 + card_col*84
 		var hover_card_y = y - 321 + 96 * card_row - y_offset
 		
-		if mouse_y > y-321-48 && mouse_y < y + 450{
+		if (craft_top_tab == 0 && mouse_y > y-321-48 && mouse_y < y + 450){
                 
 	        if (point_in_rectangle(mouse_x, mouse_y, 
 	                                hover_card_x - spr_width/2, hover_card_y - spr_height/2,
 	                                hover_card_x + spr_width/2, hover_card_y + spr_height/2)) {
 	            hover_card_index = card_index;
+	            // 记下这一格的中心：Mouse_53 是全局左键，拿到的是**上一帧**的 hover，
+	            // 鼠标在同一帧里移到按钮上再点仍会命中这张卡 → 点卡时按这个中心复核一次
+	            hover_card_cx = hover_card_x;
+	            hover_card_cy = hover_card_y;
 	        }
 		}
 		card_index++
@@ -1157,10 +1161,13 @@ else if button_select == 1{
                 var spr_width = 84;
                 var spr_height = 88;
                 
-                if (point_in_rectangle(mouse_x, mouse_y, 
+                if (craft_top_tab == 0 && point_in_rectangle(mouse_x, mouse_y, 
                                       weapon_x - spr_width/2, weapon_y - spr_height/2,
                                       weapon_x + spr_width/2, weapon_y + spr_height/2)) {
                     hover_gem_index = i;
+                    // 同上：Mouse_53 点宝石时按这个中心复核
+                    hover_gem_cx = weapon_x;
+                    hover_gem_cy = weapon_y;
                 }
                 
                 gem_index++;

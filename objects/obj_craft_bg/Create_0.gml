@@ -24,6 +24,11 @@ gem_material_id_list = ["less_crystal","middle_crystal","advanced_crystal"]
 
 hover_card_index = -1
 hover_gem_index = -1
+// 悬停格子的中心坐标（Draw 里记下来，Mouse_53 点卡时按当前鼠标位置复核一次）
+hover_card_cx = 0
+hover_card_cy = 0
+hover_gem_cx = 0
+hover_gem_cy = 0
 close_timer = -1
 
 y_offset = 0
@@ -425,8 +430,8 @@ fusion_confirm_hover = -1;     // -1 没悬停 / 0 确定 / 1 取消
 function fusion_confirm_rect(_i){
 	var _bx = room_width * 0.5 + ((_i == 0) ? -80 : 80);
 	var _by = room_height * 0.5 + 70;
-	var _hw = sprite_get_width(spr_common_button) * 0.75 * 0.5;   // 0.75 跟 obj_shop_buy_confirm 同一手感，别放大（≥1 会左右挤在一起）
-	var _hh = sprite_get_height(spr_common_button) * 0.75 * 0.5;
+	var _hw = sprite_get_width(spr_common_button) * 0.75;   // 按钮是 2× 贴图，半宽按整宽算才盖得住（2026-10-30 修）
+	var _hh = sprite_get_height(spr_common_button) * 0.75;
 	return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
 }
 
@@ -449,7 +454,7 @@ function fusion_confirm_draw(){
 		var _r  = fusion_confirm_rect(_i);
 		var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
 		var _fr = (fusion_confirm_hover == _i) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
-		draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+		mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);   // 按钮原点是右下角，统一由该函数补正（见 mod_craft_transfer_table）
 		draw_set_colour(c_white);
 		draw_text(_bx, _by, _lbl[_i]);
 	}
@@ -659,7 +664,7 @@ tg_fill_name     = ""                          // 凭证名（卡名（X转凭�
 // ── 「转职说明」按钮（2026-10-28 新增）──
 //   位置 = 面板米色区左上角的空白处（用户圈的位置：凭证 A 槽左上方）
 //   素材 spr_transfer_help 88×33，三帧（0 常态 / 1 悬停 / 2 备用），按下缩 0.96 做手感
-//   点它 → 「转职说明」弹窗：一转 7 星 / 二转 10 星（星级门槛的实装在 mod_tg_star_need）
+//   点它 → 「转职说明」弹窗：一转 6 星 / 二转 10 星（星级门槛的实装在 mod_tg_star_need）
 tg_help_x     = x - 550                        // 按钮中心 X（面板坐标；贴米色区左边缘，离边框约 10px）
 tg_help_y     = y - 110                        // 按钮中心 Y（凭证槽在 y-20，槽顶在 y-67）
 tg_help_s     = 1.3                            // 显示倍数（88×33 → 114×43）
@@ -722,6 +727,12 @@ tg_assure = false                             // 保险金开关（独立于强�
 tg_pity      = 0                              // 本次已累计的转职次数（每次转都 +1；只有换卡/切页/退出才清零）
 // 「第几次必成」= mod_tg_pity_max(tier)（一转 6 / 二转 12 / 三·四·终转 15，与保险金无关）
 tg_pity_card = ""                             // 累计期间绑的那张卡，换卡就归零
+// ── 转职暗概率（2026-10-30 用户定）──
+//   每失败（炸）一次，下一次成功率**暗暗**加 5 个百分点（不显示给玩家），成功即归零。
+//   生命周期与保底完全一致：换卡 / 切换界面 / 退出合成屋 一并清零，不写存档 → 「退出即没」。
+//   掷骰时用它叠加：实际成功率 = min(100, mod_tg_rate(tier) + tg_hidden)
+tg_hidden    = 0
+tg_hidden_step = 5                            // 每次失败加的百分点
 tg_hover_card = -1
 tg_btn_hover = false
 tg_btn_press = 0
@@ -846,7 +857,9 @@ function tg_do(){
         tg_pity = 0;
         tg_pity_card = tg_card;
     }
-    var _roll = mod_tg_roll(_r.rate, tg_pity, mod_tg_pity_max(transfer_credit_tier(tg_card, _shape)));
+    // 实际成功率 = 基础成功率 + 暗概率加成（每次失败 +5%，成功归零）
+    var _eff_rate = min(100, _r.rate + tg_hidden);
+    var _roll = mod_tg_roll(_eff_rate, tg_pity, mod_tg_pity_max(transfer_credit_tier(tg_card, _shape)));
     tg_pity  = _roll.pity;
     var _win = _roll.win;
 
@@ -879,6 +892,8 @@ function tg_do(){
         // 失败是即时的（没有动画）：钱照扣；保险金开着则凭证保住，没开就连凭证一起扣
         global.save_data.player.gold -= _r.gold + _r.assure;
         if (!tg_assure) add_material_amount(transfer_credit_id(_id, _shape), -1);
+        // 炸一次 → 暗概率 +5 个百分点（上限 100），下次掷骰就吃到
+        tg_hidden = min(100, tg_hidden + tg_hidden_step);
         tg_notice("不够好运，转职失败");
         save_file(global.save_slot);
     }
@@ -902,6 +917,8 @@ function tg_fx_commit(){
     tg_pity_card = "";
     // 保底清零（2026-10-28 用户确认）：**转职成功也清零**，重新从 0 数
     //   另外三个重置点：换卡 / 切换界面 / 退出合成屋
+    // 暗概率同理：成功即归零（2026-10-30 用户确认）
+    tg_hidden = 0;
     save_file(global.save_slot);
 }
 

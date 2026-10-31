@@ -216,7 +216,7 @@ if (confirm_id != ""){
         var _by = (_r[1] + _r[3]) * 0.5;
         var _hit = point_in_rectangle(mouse_x, mouse_y, _r[0], _r[1], _r[2], _r[3]);
         var _fr = _hit ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
-        draw_sprite_ext(spr_common_button, _fr, _bx, _by, 0.75, 0.75, 0, c_white, 1);
+        mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);   // 补回按钮原点是右下角的偏移
         draw_set_color(c_white);
         draw_text(_bx, _by, _lbl[_b]);
     }

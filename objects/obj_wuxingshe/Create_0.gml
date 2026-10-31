@@ -39,7 +39,10 @@ global.buff_dirty = true;
 wuxingshe_age = 0;
 wuxingshe_effects = [];
 // 光环画在卡片**下层**（depth 比卡片大 = 更靠后），别盖住蛇本体
-var _e = instance_create_depth(x, y, depth + 10, obj_zodiac_effect);
+// 法阵素材本身画得偏低偏左，整体往右上轻推 (x+6, y-8) 才贴合蛇脚底（2026-10-30 用户定）
+var _fx_dx = 6;
+var _fx_dy = -20;
+var _e = instance_create_depth(x + _fx_dx, y + _fx_dy, depth + 10, obj_zodiac_effect);
 _e.sprite_index = spr_wuxingshe_effect;
 if (shape == 1) _e.sprite_index = spr_wuxingshe_effect_1;
 else if (shape >= 2) _e.sprite_index = spr_wuxingshe_effect_2;

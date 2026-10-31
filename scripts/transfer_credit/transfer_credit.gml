@@ -572,7 +572,7 @@ function transfer_credit_card_max_shape(_card_id) {
 /// @desc 这张卡的**星级**（练到过的最高星级 = 存档 unlocked_cards 的 max_level）；没拥有返回 -1
 ///       ⚠️ 用 max_level 不是 level：界面上的星星画的就是 max_level（合成屋/背包/转职槽都读它），
 ///          两张表口径必须一致，否则会出现「看着 6 星却提示星级不足」
-///       转职的星级门槛（一转 7 星 / 二转 10 星，见 mod_craft_transfer_table 的 mod_tg_star_need）
+///       转职的星级门槛（一转 6 星 / 二转 10 星，见 mod_craft_transfer_table 的 mod_tg_star_need）
 ///       就是拿它比 —— 别在别处另扫一遍 unlocked_cards
 function transfer_credit_card_level(_card_id) {
     var _uc = global.save_data.unlocked_cards;

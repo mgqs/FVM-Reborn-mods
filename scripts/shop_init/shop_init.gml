@@ -18,7 +18,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("bull_firework",{"type":"card","cost":"50000","unlock_item_id":"bull_firework","description":"金牛烟花：召唤1只烟花牛冲撞敌人","display_name":"金牛烟花"})
 	register_goods("rabbit_lantern",{"type":"card","cost":"50000","unlock_item_id":"rabbit_lantern","description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","display_name":"玉兔灯笼"})
 	register_goods("delicacy_firework",{"type":"card","cost":"80000","unlock_item_id":"delicacy_firework","description":"美食烟花：3*4范围爆炸，命中老鼠产生火苗","display_name":"美食烟花"})
-	register_goods("coal_starfish",{"type":"card","cost":"150000","unlock_item_id":"coal_starfish","description":"炭烧海星：向五个方向发射星星","display_name":"炭烧海星"})
+	//register_goods("coal_starfish",{"type":"card","cost":"150000","unlock_item_id":"coal_starfish","description":"炭烧海星：向五个方向发射星星","display_name":"炭烧海星"})
 
 	register_goods("card_slot_plus",{"type":"item","cost":"20000","unlock_item_id":"card_slot","description":"增加一格卡槽，仅可在卡槽数小于18时使用","display_name":"卡槽+1","spr":spr_slot_plus})
 	register_goods("card_slot_19",{"type":"item","cost":"50000","unlock_item_id":"card_slot_19","description":"解锁第19格卡槽","display_name":"卡槽第19格","spr":spr_slot_19})

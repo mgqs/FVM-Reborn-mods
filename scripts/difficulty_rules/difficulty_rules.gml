@@ -162,20 +162,108 @@ function difficulty_reward_item_amount(_item_id, _base_amount, _multiplier) {
     return _base_amount * _multiplier;
 }
 
+/// @function immortal_pick_card_list()
+/// @desc 不朽开局「自选一张」的候选卡
+///       2026-10-30 用户定：生煎锅 / 披萨炉 / 玉蜀黍
+///       2026-10-31 用户改：玉蜀黍 → 蚝油双菇（shuanggu）
+///       2026-10-31 二改：双菇改回玉蜀黍，并新增麻辣香锅（spicy_pot）→ 4 张
+///       2026-10-31 三改：**去掉麻辣香锅，改回三选一**（生煎锅 / 披萨炉 / 玉蜀黍）
+///       换卡 / 加卡只改这一行，UI 按 array_length 自动排布，兜底取第 1 张
+function immortal_pick_card_list() {
+    return ["pan_fried_bun", "pizza_oven", "corn_shooter"];
+}
+
+/// @function immortal_pick_info()
+/// @desc 每张候选卡的「开局难度 + 开局星级」，键 = 卡片 id（与 immortal_pick_card_list() 一一对应）
+///       2026-10-31 用户定稿：生煎锅 易 / 0 星、披萨炉 中 / 2 星、玉蜀黍 难 / 4 星
+///       改某张卡的难度或星级 = 改这里那一行；dif 只认「易 / 中 / 难」（颜色见 immortal_pick_difficulty_colour）
+///       star 是 `unlock_card` 的 level（1 起算的星数，0 = 无星，取数值表第 star 档）
+function immortal_pick_info() {
+    return {
+        pan_fried_bun: { dif: "易", star: 0 },
+        pizza_oven:    { dif: "中", star: 2 },
+        corn_shooter:  { dif: "难", star: 4 }
+    };
+}
+
+/// @function immortal_pick_info_of(_card_id)
+/// @desc 取某张候选卡的 {dif, star}；表里没有 → {dif:"", star:0}（不画难度、发无星）
+function immortal_pick_info_of(_card_id) {
+    var _t = immortal_pick_info();
+    if (variable_struct_exists(_t, _card_id)) return _t[$ _card_id];
+    return { dif: "", star: 0 };
+}
+
+/// @function immortal_pick_difficulty_colour(_label)
+/// @desc 难度标签配色：易 = 绿 / 中 = 蓝 / 难 = 红
+function immortal_pick_difficulty_colour(_label) {
+    switch (_label) {
+        case "易": return make_colour_rgb(88, 216, 118);
+        case "中": return make_colour_rgb(92, 168, 255);
+        case "难": return make_colour_rgb(246, 86, 86);
+    }
+    return c_white;
+}
+
+/// @function immortal_pick_face_h()
+/// @desc 弹窗卡面「可见内容」的高度（精灵像素，量自该卡 register_card 登记的 sprite 第 0 帧 PNG，
+///       alpha 包围盒阈值 16）。卡面画布下方普遍带一大截透明留白（如生煎锅 101x88 只有 y30~84 有内容），
+///       按画布居中会让图案整体偏上，所以这里按内容高算中心。
+///       这些精灵的原点惯例 = 内容底部中点（§2.2）→ 内容中心 = 原点 y - 内容高/2。
+///       🔴 新增候选卡：量一下它的第 0 帧内容高补进来；表里没有 → 回落「按画布居中」
+function immortal_pick_face_h() {
+    return {
+        pan_fried_bun: 54,   // spr_pan_fried_bun 101x88，内容 y 30~84
+        pizza_oven:    66,   // spr_pizza_oven     90x69，内容 y  2~68
+        corn_shooter:  77,   // spr_corn_shooter   76x84，内容 y  7~84
+        spicy_pot:     50    // spr_spicy_pot      88x85，内容 y 19~69
+    };
+}
+
+/// @function immortal_pick_pending()
+/// @desc 三选一还没结算（存档标记 immortal_pick_pending）
+function immortal_pick_pending() {
+    return variable_struct_exists(global.save_data, "immortal_pick_pending")
+        && global.save_data.immortal_pick_pending;
+}
+
+/// @function immortal_pick_commit(_card_id)
+/// @desc 结算自选：发卡（本体 + 该卡的**开局星级**）→ 清 pending → 存盘。卡片不在名单里返回 false
+///       星级 = immortal_pick_info() 的 star（`unlock_card` 的 level 是 1 起算的星数，0 = 无星）；
+///       2026-10-31 用户定：生煎锅 0 星 / 披萨炉 2 星 / 玉蜀黍 4 星（原来是全部 4 星）
+function immortal_pick_commit(_card_id) {
+    var _list = immortal_pick_card_list();
+    if (array_get_index(_list, _card_id) == -1) return false;
+    var _star = immortal_pick_info_of(_card_id).star;
+    unlock_card(_card_id, _star, 0, 0);
+    global.save_data.immortal_pick_pending = false;
+    global.save_data.immortal_pick_taken = _card_id;
+    save_file(global.save_slot);
+    return true;
+}
+
+/// @function immortal_pick_claim_default()
+/// @desc 异常兜底：选卡窗没点确定就被关掉（强关游戏 / ESC 关界面 / 切房间 / 弹窗被销毁）
+///       → 默认发第一张，保证奖励不丢
+function immortal_pick_claim_default() {
+    if (!immortal_pick_pending()) return false;
+    var _list = immortal_pick_card_list();
+    if (array_length(_list) == 0) return false;
+    return immortal_pick_commit(_list[0]);
+}
+
 /// @function difficulty_grant_immortal_start_cards()
-/// @desc 普通不朽难度的新存档解锁炎焱兔和一张随机白板卡
+/// @desc 普通不朽难度的新存档：只发暖暖鸡本体，并置「三选一待选」标记。
+///       2026-10-30 用户要求：原「炎焱兔 + 10 张池子随机 1 张」撤掉，改成点「不朽」时三选一。
+/// @return true = 这一次刚发（启动兜底据此跳过，避免刚置的标记被当场结算掉）
 function difficulty_grant_immortal_start_cards() {
     if (global.difficulty != 5 || global.play_mode != 0) return false;
     if (variable_struct_exists(global.save_data, "immortal_start_cards_given")) return false;
     if (array_length(global.save_data.completed_levels) != 0) return false;
 
-    // 烤串机本体改为百味关首通奖励，不再计入不朽开局随机白板；按玩家要求换成邪恶牛油果。
-    var _card_pool = [
-        "spoon_rabbit", "yanhuangma", "guiyuanma", "double_blade_snake", "niuyouguo",
-        "yufengma", "fenjima", "xiandima", "laipishe", "starrabbit"
-    ];
-    unlock_card("yanyantu", 0, 0, 0);
-    unlock_card(_card_pool[irandom(array_length(_card_pool) - 1)], 0, 0, 0);
+    unlock_card("warm_birds", 0, 0, 0);
+    global.save_data.immortal_pick_pending = true;
+    global.save_data.immortal_pick_taken = "";
     global.save_data.immortal_start_cards_given = true;
     save_file(global.save_slot);
     return true;

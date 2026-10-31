@@ -11,7 +11,7 @@ function mod_shop_init()
     register_goods("cold_drew",
     {
         type: "card",
-        cost: "60000",
+        cost: "90000",
         unlock_item_id: "cold_drew",
         description: "冰块冷萃机：对全屏敌人发射至多4颗追踪冰块",
         display_name: "冰块冷萃机"
@@ -35,7 +35,7 @@ function mod_shop_init()
     register_goods("blueberry_tower", 
     {
         type: "card",
-        cost: "70000",
+        cost: "80000",
         unlock_item_id: "blueberry_tower",
         description: "蓝莓信号塔塔：为本行投掷卡片增加攻击力",
         display_name: "蓝莓信号塔塔"
@@ -51,7 +51,7 @@ function mod_shop_init()
     register_goods("donut", 
     {
         type: "card",
-        cost: "70000",
+        cost: "100000",
         unlock_item_id: "donut",
         description: "梦幻多拿滋：连续攻击本行鼠军，优先空军",
         display_name: "梦幻多拿滋"
@@ -59,7 +59,7 @@ function mod_shop_init()
     register_goods("spoon_rabbit", 
     {
         type: "card",
-        cost: "80000",
+        cost: "90000",
         unlock_item_id: "spoon_rabbit",
         description: "勺勺兔：向前方3行投射子弹",
         display_name: "勺勺兔"
@@ -67,7 +67,7 @@ function mod_shop_init()
     register_goods("hspeed_juicer", 
     {
         type: "card",
-        cost: "70000",
+        cost: "80000",
         unlock_item_id: "hspeed_juicer",
         description: "加速榨汁机：为3x3范围内喷壶类卡片提供增伤",
         display_name: "加速榨汁机"
@@ -203,7 +203,7 @@ function mod_shop_init()
     register_goods("shuangzi", 
     {
         type: "card",
-        cost: "20000",
+        cost: "40000",
         unlock_item_id: "shuangzi",
         description: "双子座精灵：一次性产出4朵火苗",
         display_name: "双子座精灵"
@@ -211,7 +211,7 @@ function mod_shop_init()
     register_goods("sheshou", 
     {
         type: "card",
-        cost: "20000",
+        cost: "30000",
         unlock_item_id: "sheshou",
         description: "射手座精灵：向前方三行射出4发强力子弹",
         display_name: "射手座精灵"
@@ -219,7 +219,7 @@ function mod_shop_init()
     register_goods("tiancheng", 
     {
         type: "card",
-        cost: "25000",
+        cost: "30000",
         unlock_item_id: "tiancheng",
         description: "天秤座精灵：向前后各射出3发比较强力的子弹",
         display_name: "天秤座精灵"
@@ -227,7 +227,7 @@ function mod_shop_init()
     register_goods("shuangyu", 
     {
         type: "card",
-        cost: "20000",
+        cost: "40000",
         unlock_item_id: "shuangyu",
         description: "双鱼座精灵：投掷两颗带有减速的冰鱼",
         display_name: "双鱼座精灵"
@@ -235,7 +235,7 @@ function mod_shop_init()
     register_goods("juxie", 
     {
         type: "card",
-        cost: "20000",
+        cost: "30000",
         unlock_item_id: "juxie",
         description: "巨蟹座精灵：发射4发强力钳子，全屏跟踪，海陆两栖",
         display_name: "巨蟹座精灵"
@@ -243,7 +243,7 @@ function mod_shop_init()
     register_goods("shizi", 
     {
         type: "card",
-        cost: "10000",
+        cost: "30000",
         unlock_item_id: "shizi",
         description: "狮子座精灵：5×5范围穿透打击",
         display_name: "狮子座精灵"
@@ -251,23 +251,15 @@ function mod_shop_init()
     register_goods("jinniu", 
     {
         type: "card",
-        cost: "50000",
+        cost: "25000",
         unlock_item_id: "jinniu",
         description: "金牛座精灵：点燃子弹",
         display_name: "金牛座精灵"
     });
-    register_goods("sheshou", 
-    {
-        type: "card",
-        cost: "10000",
-        unlock_item_id: "sheshou",
-        description: "射手座精灵：向前方三行射出4发强力子弹",
-        display_name: "射手座精灵"
-    });
     register_goods("chunv", 
     {
         type: "card",
-        cost: "10000",
+        cost: "20000",
         unlock_item_id: "chunv",
         description: "处女座精灵：保护卡牌，并反弹伤害",
         display_name: "处女座精灵"
@@ -479,7 +471,7 @@ function mod_shop_init()
     register_goods("laipishe",
     {
         type: "card",
-        cost: "80000",
+        cost: "100000",
         unlock_item_id: "laipishe",
         description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠",
         display_name: "赖皮蛇"
@@ -586,5 +578,8 @@ function mod_shop_init()
     register_goods("niuyouguo_2", { type: "card", card_id: "niuyouguo", card_shape: 2, cost: "970", unlock_item_id: "niuyouguo", required_card_shape: 1, description: "桑巴牛油果：解锁二转", display_name: "桑巴牛油果" });
 
     register_goods("wuxingshe", { type: "card", cost: "1500", unlock_item_id: "wuxingshe", description: "五行蛇：为3*3范围内5方向卡片增加攻击力", display_name: "五行蛇" });
+
+    register_goods("bbq", { type: "card", cost: "70000", unlock_item_id: "bbq", description: "街头烤肉大师：沿本行发射穿透串串子弹", display_name: "街头烤肉大师" });
+    register_goods("eightcake", { type: "card", cost: "20000", unlock_item_id: "eightcake", description: "8周年蛋糕：投掷蛋糕子弹，每3次攻击附带灼烧", display_name: "8周年蛋糕" });
 
 }

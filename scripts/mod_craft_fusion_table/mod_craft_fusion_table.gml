@@ -31,7 +31,7 @@ function mod_fusion_main_needs(){
 }
 
 /// @func mod_fusion_sub_cards() 各档副卡表：[1]=初级 / [2]=深度 / [3]=灵魂；"" = 这道食谱没有副卡
-///   要求形态（2026-10-27 用户口径）：**能二转的副卡一律 need 2**；唯一例外德芙面包（只有 0/1 转）
+///   要求形态（2026-10-27 用户口径）：**能二转的副卡一律 need 2**；
 ///   写 need 2 也不会因为卡没二转而卡死 —— fusion_sub_card_at() 会走 mod_fusion_need_shape() 按卡上限钳
 function mod_fusion_sub_cards(){
     return [
@@ -48,7 +48,7 @@ function mod_fusion_sub_cards(){
     	},
     	{   // ② 深度
     		ronghedapao:    { id: "lightning_baguette", need: 2 },   // 雷电长棍面包（官方「霸王美味电鳗」的顶替：电系）
-    		ronghehaixing:  { id: "chocolate_bread",   need: 1 },   // 德芙面包（官方「8周年红丝绒」的顶替）⚠ 唯一例外：巧克力面包只有本体+1转，最高只能 1
+    		ronghehaixing:  { id: "eightcake",         need: 2 },   // 8周年红丝绒（2026-10-31 用户指定：二融海星副卡 = 8周年蛋糕，need 2 就是红丝绒那档）
     		youyu_god:      { id: "double_water_pipe", need: 2 },   // 合金水管（双向水管二转形态名）
     		lizi_god:       { id: "coke_bomb",         need: 2 },   // 燃烧可乐弹（可乐炸弹二转形态名）
     		ronghedan_god:  { id: "stinky_tofu_pult",  need: 2 },   // 铁板臭豆腐投手（臭豆腐投手二转形态名）

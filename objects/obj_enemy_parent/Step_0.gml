@@ -103,6 +103,7 @@ if is_frozen || is_scare || is_stun{
 }
 
 timer++;
+if (climb_cooldown > 0) climb_cooldown--;
 
 // 本实例的「能上梯 / 能翻障碍」标记；with 块内读不到 self 的实例变量，先取到局部变量备用
 var _can_use_ladder = can_use_ladder;
@@ -115,14 +116,18 @@ var _can_use_ladder = can_use_ladder;
 //     弧线高度远小于一格(116px)，grid_row 不会变 → 不会被上面那行的卡片打到
 //   - 越过恢复 NORMAL 继续向左走，此时已在下一格，不会回头啃本格植物
 if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTACK) && move_speed > 0 && can_use_ladder
-	&& target_type == "normal") {   // 只让普通行走型上梯：air / underground / diver / invisible / obstacle 一律不爬
+	&& target_type == "normal" && climb_cooldown <= 0) {   // 只让普通行走型上梯：air / underground / diver / invisible / obstacle 一律不爬
 	if(grid_row>=0&&grid_row<global.grid_rows&&grid_col>=0&&grid_col<global.grid_cols){
 		var _list = ds_grid_get(global.grid_plants, grid_col, grid_row);
 		for(var _item = 0; _item < ds_list_size(_list); _item++)
 		{
 			var plant_inst = ds_list_find_value(_list, _item);
 			if (!instance_exists(plant_inst)) continue;
-			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && x-plant_inst.x<=attack_range){
+			// 🔴 只翻「前方」的梯子（_pdx > 0）。原来只有 `x-plant.x <= attack_range` 这个上界，
+			//    翻过去之后梯子在身后（_pdx 变负）仍然满足条件 → 每帧重新触发越障、每帧把 state 打回 IDLE
+			//    并重置 timer（动画帧被反复归零）→ 表现为原地上下抽搐、老鼠卡住不走。
+			var _pdx1 = x - plant_inst.x;
+			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && _pdx1 > 0 && _pdx1 <= attack_range){
 
 				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
 				climb_base_y = y;
@@ -142,7 +147,9 @@ if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTAC
 		{
 			var plant_inst = ds_list_find_value(_list, _item);
 			if (!instance_exists(plant_inst)) continue;
-			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && x-plant_inst.x<=attack_range){
+			// 同上：加下界，只翻前方的，别让身后的梯子每帧把越障重新触发一遍
+			var _pdx2 = x - plant_inst.x;
+			if(variable_instance_exists(plant_inst,"have_loder") && plant_inst.have_loder && _pdx2 > 0 && _pdx2 <= attack_range){
 
 				climb_end_x = plant_inst.x - global.grid_cell_size_x * 0.5;
 				climb_base_y = y;
@@ -162,7 +169,7 @@ if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL|| state ==ENEMY_STATE.ATTAC
 //   ⚠ 门槛和上面那批一样（state / move_speed / can_use_ladder / target_type），否则车辆、飞行、
 //     鼹鼠之类也会来翻障碍物
 if (climb_stage == 0 && (state == ENEMY_STATE.NORMAL || state == ENEMY_STATE.ATTACK) && move_speed > 0 && can_use_ladder
-	&& target_type == "normal") {
+	&& target_type == "normal" && climb_cooldown <= 0) {
 	with (obj_obstacle) {
 		var _odx = other.x - x;                       // >0 = 障碍物在老鼠左边（前方）
 		if (row == other.grid_row && _odx > 0 && _odx <= 60) {
@@ -185,10 +192,12 @@ if (climb_stage == 1) {
 	var _dx = climb_end_x - x;
 	if (abs(_dx) <= climb_speed) {
 		x = climb_end_x;
-		//y = climb_base_y;             // 弧线收尾，落回本行
+		y = climb_base_y;             // 弧线收尾，落回本行
+		climb_y = climb_base_y;       // 别把最后一帧的弧高留给下一次越障
 		climb_stage = 0;
 		state = ENEMY_STATE.NORMAL;   // 恢复前进
 		timer = 0;
+		climb_cooldown = 8;           // 8 帧内不再触发越障：断掉「翻完立刻重触发」的抽搐
 	}
 	else {
 		x += sign(_dx) * climb_speed;

@@ -26,3 +26,6 @@ drown_timer = 0
 if shape >= 2{
 	attack_anim = 16
 }
+
+// 本次攻击是否已经出弹（出弹绑在动画第 22 帧，见 Step_0）
+fired_this_attack = false;

@@ -122,7 +122,7 @@ for (var i = 0; i < 4; i++)
             }
             }
         }
-        else if (shop_button_select == 2)
+        else if ((shop_button_select == 2 || shop_button_select == 3))
         {
             if (ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)) != undefined)
             {
@@ -153,7 +153,12 @@ for (var i = 0; i < 4; i++)
                 if (variable_struct_exists(goods_info, "recipe_id"))
                 {
                     // 食谱道具：形态已经练到了 → 售罄
-                    if (has_fusion_recipe(target_card_id, goods_info.target_shape))
+                    // ⚠️ 初融菜谱是 type "card" + sell_recipe，**没有 target_shape 字段**，直接读会崩 →
+                    //    第 3 页现在也会出现它们，所以缺字段时按 0（初融）处理
+                    var _rshape = variable_struct_exists(goods_info, "target_shape") ? goods_info.target_shape : 0;
+                    // 已经拥有对应形态 → 售罄（与 Create 里 is_disabled 的口径一致，2026-10-30）
+                    var _rown = transfer_credit_card_max_shape(target_card_id);
+                    if (has_fusion_recipe(target_card_id, _rshape) || _rown >= _rshape)
                     {
                         draw_set_color(c_black);
                         draw_set_alpha(0.5);

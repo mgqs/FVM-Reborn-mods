@@ -24,26 +24,26 @@ function mod_slots_init()
     { shape: 1, sprite: spr_kuileima_1, cost: 390, cooldown: 2700, description: "机关傀儡马：化作傀儡，将伤害按比例转移给场上血量最高的1只老鼠，傀儡消失产生5*5范围爆炸", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_kuileima_1 },
     { shape: 2, sprite: spr_kuileima_2, cost: 390, cooldown: 2700, description: "灵枢傀儡马：化作傀儡，将伤害按比例转移给场上血量最高的1只老鼠，傀儡消失产生5*5范围爆炸", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_kuileima_2 }]);
     register_card("yufengma", obj_yufengma, [
-    { shape: 0, sprite: spr_yufengma, cost: 280, cooldown: 900, description: "御风马：召唤1个贯穿攻击本行的龙卷风，可击退，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma },
-    { shape: 1, sprite: spr_yufengma_1, cost: 280, cooldown: 900, description: "净化御风马：召唤1个贯穿攻击本行的龙卷风，可击退和吹飞，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_1 },
-    { shape: 2, sprite: spr_yufengma_2, cost: 280, cooldown: 900, description: "菩提御风马：召唤2个贯穿攻击本行的龙卷风，可击退和吹飞，秒杀特定老鼠，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_2 }]);
+    { shape: 0, sprite: spr_yufengma, cost: 280, cooldown: 420, description: "御风马：召唤1个贯穿攻击本行的龙卷风，可击退，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma },
+    { shape: 1, sprite: spr_yufengma_1, cost: 280, cooldown: 420, description: "净化御风马：召唤1个贯穿攻击本行的龙卷风，可击退和吹飞，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_1 },
+    { shape: 2, sprite: spr_yufengma_2, cost: 280, cooldown: 420, description: "菩提御风马：召唤2个贯穿攻击本行的龙卷风，可击退和吹飞，秒杀特定老鼠，与扇类卡片联动", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yufengma_2 }]);
     register_card("fenjima", obj_fenjima, [
-    { shape: 0, sprite: spr_fenjima, cost: 320, cooldown: 900, description: "焚寂马：向前发射1发直线子弹，击中老鼠后分裂成3向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima },
-    { shape: 1, sprite: spr_fenjima_1, cost: 320, cooldown: 900, description: "星火焚寂马：向前发射1发直线子弹，击中老鼠后分裂成3向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_1 },
-    { shape: 2, sprite: spr_fenjima_2, cost: 320, cooldown: 900, description: "烈日焚寂马：向前发射1发直线子弹，击中老鼠后分裂成5向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_2 }]);
+    { shape: 0, sprite: spr_fenjima, cost: 320, cooldown: 420, description: "焚寂马：向前发射1发直线子弹，击中老鼠后分裂成3向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima },
+    { shape: 1, sprite: spr_fenjima_1, cost: 320, cooldown: 420, description: "星火焚寂马：向前发射1发直线子弹，击中老鼠后分裂成3向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_1 },
+    { shape: 2, sprite: spr_fenjima_2, cost: 320, cooldown: 420, description: "烈日焚寂马：向前发射1发直线子弹，击中老鼠后分裂成5向穿透冲击波", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fenjima_2 }]);
     register_card("guiyuanma", obj_guiyuanma, [
-    { shape: 0, sprite: spr_guiyuanma, cost: 375, cooldown: 900, description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma },
-    { shape: 1, sprite: spr_guiyuanma_1, cost: 375, cooldown: 900, description: "时空归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_1 },
-    { shape: 2, sprite: spr_guiyuanma_2, cost: 375, cooldown: 900, description: "幻境归元马：将前方5行范围内2只距离最近的普通老鼠送回起点并初始还原，斩杀中等血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_2 }]);
+    { shape: 0, sprite: spr_guiyuanma, cost: 375, cooldown: 420, description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma },
+    { shape: 1, sprite: spr_guiyuanma_1, cost: 375, cooldown: 420, description: "时空归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_1 },
+    { shape: 2, sprite: spr_guiyuanma_2, cost: 375, cooldown: 420, description: "幻境归元马：将前方5行范围内2只距离最近的普通老鼠送回起点并初始还原，斩杀中等血量百分比精英", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guiyuanma_2 }]);
     // 灯影花糕：固定轨迹类，召唤魂虫向左右两侧飞出攻击上中下三行陆军（松露大厅（夜）首通奖励本体）
     register_card("huagao", obj_huagao, [
-    { shape: 0, sprite: spr_huagao, cost: 300, cooldown: 900, description: "灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路2次、上下各1次；命中魂系老鼠使其现形", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao },
-    { shape: 1, sprite: spr_huagao_1, cost: 300, cooldown: 900, description: "初见灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军；场上≥10张时，攻击力最高的1张每5秒召唤1枚竖向魂虫攻击第8~9列", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_1 },
-    { shape: 2, sprite: spr_huagao_2, cost: 300, cooldown: 900, description: "梦境灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路4次、上下各2次；攻击力大幅提高，横向魂虫+1", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_2 }]);
+    { shape: 0, sprite: spr_huagao, cost: 300, cooldown: 420, description: "灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路2次、上下各1次；命中魂系老鼠使其现形", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao },
+    { shape: 1, sprite: spr_huagao_1, cost: 300, cooldown: 420, description: "初见灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军；场上≥10张时，攻击力最高的1张每5秒召唤1枚竖向魂虫攻击第8~9列", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_1 },
+    { shape: 2, sprite: spr_huagao_2, cost: 300, cooldown: 420, description: "梦境灯影花糕：召唤魂虫从场地两侧对向飞入，攻击沿途上中下3行陆军，中路4次、上下各2次；攻击力大幅提高，横向魂虫+1", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_huagao_2 }]);
     register_card("yanhuangma", obj_yanhuangma, [
-    { shape: 0, sprite: spr_yanhuangma, cost: 320, cooldown: 900, description: "炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma },
-    { shape: 1, sprite: spr_yanhuangma_1, cost: 320, cooldown: 900, description: "白炽炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军，卡片数量≥7时，额外增加1条轨迹", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_1 },
-    { shape: 2, sprite: spr_yanhuangma_2, cost: 320, cooldown: 900, description: "焚天炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军，卡片数量≥7时，额外增加1条轨迹", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_2 }]);
+    { shape: 0, sprite: spr_yanhuangma, cost: 320, cooldown: 420, description: "炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma },
+    { shape: 1, sprite: spr_yanhuangma_1, cost: 320, cooldown: 420, description: "白炽炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军，卡片数量≥7时，额外增加1条轨迹", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_1 },
+    { shape: 2, sprite: spr_yanhuangma_2, cost: 320, cooldown: 420, description: "焚天炎凰马：召唤2只火凤凰沿着交互式固定轨迹攻击沿途鼠军，卡片数量≥7时，额外增加1条轨迹", plant_type: "normal", feature_type: "lava", target_card: "none", is_gold: 0, place_preview: spr_yanhuangma_2 }]);
     register_card("yinhema", obj_yinhema, [
     { shape: 0, sprite: spr_yinhema, cost: 320, cooldown: 2700, description: "音盒马：为3*3范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema },
     { shape: 1, sprite: spr_yinhema_1, cost: 320, cooldown: 2700, description: "叮咚音盒马：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinhema_1 },
@@ -54,9 +54,9 @@ function mod_slots_init()
     { shape: 1, sprite: spr_fushengcha_1, cost: 265, cooldown: 3000, description: "清心浮生茶：为5*5范围内固定轨迹类卡片提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fushengcha_1 },
     { shape: 2, sprite: spr_fushengcha_2, cost: 265, cooldown: 3000, description: "忘忧浮生茶：为5*5范围内固定轨迹类卡片大幅提高攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fushengcha_2 }]);
     register_card("xiandima", obj_xiandima, [
-    { shape: 0, sprite: spr_xiandima_icon, cost: 335, cooldown: 900, description: "仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
-    { shape: 1, sprite: spr_xiandima_icon1, cost: 335, cooldown: 900, description: "悠扬仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
-    { shape: 2, sprite: spr_xiandima_icon2, cost: 335, cooldown: 900, description: "天籁仙笛马：不占格子，吹奏仙乐引导6只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_2 }]);
+    { shape: 0, sprite: spr_xiandima_icon, cost: 335, cooldown: 420, description: "仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima },
+    { shape: 1, sprite: spr_xiandima_icon1, cost: 335, cooldown: 420, description: "悠扬仙笛马：不占格子，吹奏仙乐引导3只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_1 },
+    { shape: 2, sprite: spr_xiandima_icon2, cost: 335, cooldown: 420, description: "天籁仙笛马：不占格子，吹奏仙乐引导6只小飞马攻击精英鼠军，对BOSS伤害增加", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiandima_2 }]);
     register_card("xingqiongma", obj_xingqiongma, [
     { shape: 0, sprite: spr_xingqiongma, cost: 350, cooldown: 3600, description: "星穹马：复活5*5范围内1张死亡的卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma },
     { shape: 1, sprite: spr_xingqiongma_1, cost: 350, cooldown: 3600, description: "璀璨星穹马：复活5*5范围内1张死亡的卡片，并为范围内卡牌施加减伤", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xingqiongma_1 },
@@ -1708,7 +1708,7 @@ function mod_slots_init()
         shape: 0,
         sprite: spr_corn_shooter,
         cost: 250,
-        cooldown: 3000,
+        cooldown: 420,
         description: "玉蜀黍：发射三颗玉米",
         plant_type: "normal",
         feature_type: "normal",
@@ -1718,7 +1718,7 @@ function mod_slots_init()
         shape: 1,
         sprite: spr_corn_shooter_1,
         cost: 250,
-        cooldown: 3000,
+        cooldown: 420,
         description: "奶油玉米机枪：发射六颗玉米",
         plant_type: "normal",
         feature_type: "normal",
@@ -1728,8 +1728,8 @@ function mod_slots_init()
         shape: 2,
         sprite: spr_corn_shooter_2,
         cost: 250,
-        cooldown: 3000,
-        description: "加农玉米机枪：发射六颗玉米",
+        cooldown: 420,
+        description: "加农玉米机枪：发射六颗威力增加的玉米",
         plant_type: "normal",
         feature_type: "normal",
         target_card: "none"
@@ -1739,7 +1739,7 @@ function mod_slots_init()
         shape: 0,
         sprite: spr_warm_birds,
         cost: 125,
-        cooldown: 1800,
+        cooldown: 1200,
         description: "暖暖鸡：一次生产3朵火苗",
         plant_type: "normal",
         feature_type: "normal",
@@ -1749,7 +1749,7 @@ function mod_slots_init()
         shape: 1,
         sprite: spr_warm_birds_1,
         cost: 125,
-        cooldown: 1800,
+        cooldown: 1200,
         description: "焰羽暖暖鸡：一次生产4朵火苗",
         plant_type: "normal",
         feature_type: "normal",
@@ -1759,7 +1759,7 @@ function mod_slots_init()
         shape: 2,
         sprite: spr_warm_birds_2,
         cost: 125,
-        cooldown: 900,
+        cooldown: 600,
         description: "日耀暖暖鸡：一次生产5朵火苗",
         plant_type: "normal",
         feature_type: "normal",
@@ -1806,7 +1806,7 @@ function mod_slots_init()
         shape: 0,
         sprite: spr_berry_dessert_icon,
         cost: 260,
-        cooldown: 2400,
+        cooldown: 420,
         description: "莓果点心：为3x3范围内追踪类卡片提供增伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -1816,7 +1816,7 @@ function mod_slots_init()
         shape: 1,
         sprite: spr_berry_dessert_icon_1,
         cost: 260,
-        cooldown: 2400,
+        cooldown: 420,
         description: "薄荷莓果点心：为5x5范围内追踪类卡片提供增伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -1826,7 +1826,7 @@ function mod_slots_init()
         shape: 2,
         sprite: spr_berry_dessert_icon_2,
         cost: 260,
-        cooldown: 2400,
+        cooldown: 420,
         description: "流心莓果点心：为5x5范围内追踪类卡片提供增伤",
         plant_type: "normal",
         feature_type: "normal",
@@ -2447,7 +2447,7 @@ register_card("lingrong_god", obj_lingrong_god, [
         shape: 0,
         sprite: spr_laipishe,
         cost: 365,
-        cooldown: 2100,
+        cooldown: 420,
         description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹攻击敌人",
         plant_type: "normal",
         feature_type: "normal",
@@ -2459,7 +2459,7 @@ register_card("lingrong_god", obj_lingrong_god, [
         shape: 1,
         sprite: spr_laipishe_1,
         cost: 365,
-        cooldown: 2100,
+        cooldown: 420,
         description: "宝石赖皮蛇：召唤沿固定轨迹飞行的海胆子弹攻击敌人",
         plant_type: "normal",
         feature_type: "normal",
@@ -2471,7 +2471,7 @@ register_card("lingrong_god", obj_lingrong_god, [
         shape: 2,
         sprite: spr_laipishe_2,
         cost: 365,
-        cooldown: 2100,
+        cooldown: 420,
         description: "大王赖皮蛇：召唤沿固定轨迹飞行的海胆子弹攻击敌人",
         plant_type: "normal",
         feature_type: "normal",
@@ -3090,4 +3090,14 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_wuxingshe, cost: 280, cooldown: 2400, description: "五行蛇：为3*3范围内5方向卡片增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe },
     { shape: 1, sprite: spr_wuxingshe_1, cost: 280, cooldown: 2400, description: "通灵五行蛇：为3*3范围内5方向卡片增加攻击力，攻击力提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_1 },
     { shape: 2, sprite: spr_wuxingshe_2, cost: 280, cooldown: 2400, description: "泰斗五行蛇：为5*5范围内5方向卡片增加攻击力，攻击力大幅提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_2 }]);
+
+    register_card("bbq", obj_bbq, [
+    { shape: 0, sprite: spr_bbq, cost: 350, cooldown: 420, description: "街头烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq },
+    { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
+    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
+
+    register_card("eightcake", obj_eightcake, [
+    { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
+    { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷威力更高的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
+    { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹，有几率投出可乐炸弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
 }

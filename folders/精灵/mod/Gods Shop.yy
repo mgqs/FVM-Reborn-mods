@@ -25,6 +25,7 @@
     {"name":"dd87a40d-2b8c-4b0b-b984-eedccc1a3279","path":"sprites/spr_gods_store_enter/spr_gods_store_enter.yy",},
     {"name":"c6c186bf-5eac-4216-a43b-494fe7c0db83","path":"sprites/spr_gods_store_select_btn_1/spr_gods_store_select_btn_1.yy",},
     {"name":"302301f3-3281-4c50-86be-eaa22b5f8c61","path":"sprites/spr_gods_store_select_btn_2/spr_gods_store_select_btn_2.yy",},
+    {"name":"spr_gods_store_select_btn_3","path":"sprites/spr_gods_store_select_btn_3/spr_gods_store_select_btn_3.yy",},
     {"name":"20b04b03-043a-42fd-9ad2-c7f9304240f0","path":"sprites/spr_oriacle_stone/spr_oriacle_stone.yy",}
   ],
 }

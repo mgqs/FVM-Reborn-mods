@@ -30,6 +30,14 @@ if (tab_shown != info_button_select) {
 	tab_fade = 0
 	tab_fade_t = 0
 	y_offset = y_offset_target
+	// 2026-10-31 用户要求：**切换页签不保留搜索内容** → 切页就把搜索框和过滤词一起清空
+	//   只 set_text("") 不够：SearchBox 每帧会从全局 keyboard_string 同步文字，
+	//   不清 keyboard_string 的话下一帧旧文字又会被写回来
+	info_search_text = ""
+	keyboard_string = ""
+	if (variable_instance_exists(id, "info_search_box") && instance_exists(info_search_box)) {
+		info_search_box.set_text("")
+	}
 	if (variable_instance_exists(id, "sr_rowv")) {
 		for (var _k = 0; _k < array_length(sr_rowv); _k++) sr_rowv[_k] = -1
 	}
@@ -50,20 +58,66 @@ for (var _sr_i = _sr_i0; _sr_i <= _sr_i1; _sr_i++) {
 	else if (sr_rowv[_sr_i] < 5) sr_rowv[_sr_i] += ui_anim_dt()
 }
 
-// 根据当前页签的实际条目数量计算行数，避免固定 40 行导致后续卡片不绘制。
-var _info_item_count = 0
+// ── 搜索过滤（2026-10-31）：先按当前页签建「可见条目」info_view，列表 / 悬停 / 点击 / 详情全用它 ──
+//   info_view 的含义：tab1 = global.player_deck 的下标（已排序）；tab2 = 敌人 id；tab3 = 关卡 id
+//   顺序不能换：排序 → 过滤 → 分页/行数，否则页码和滚动会跟结果对不上
+var _q = string_lower(info_search_text);
+info_view = [];
 if (info_button_select == 1) {
     if (ds_exists(global.player_deck, ds_type_list)) {
-        for (var _si = 0; _si < ds_list_size(global.player_deck); _si += 2) {
-            if (global.player_deck[| _si] == "lihe" && !is_random_gift_mode()) continue
-            _info_item_count++
+        // 排序：普通卡在前 → 融合卡居中 → 金卡集中放最后
+        deck_sort_order = [];
+        var _fusion_order = [];
+        var _gold_order = [];
+        for (var _osi = 0; _osi < ds_list_size(global.player_deck); _osi += 2) {
+            if (global.player_deck[| _osi] == "lihe" && !is_random_gift_mode()) continue;
+            var _oentry = global.player_deck[| _osi + 1];
+            var _oshapes = _oentry[? "shapes"];
+            var _odata = _oshapes[| 0];
+            if (is_fusion_card(global.player_deck[| _osi])) {
+                array_push(_fusion_order, _osi);
+            } else if (ds_map_find_value(_odata, "is_gold") == 1) {
+                array_push(_gold_order, _osi);
+            } else {
+                array_push(deck_sort_order, _osi);
+            }
+        }
+        for (var _fi = 0; _fi < array_length(_fusion_order); _fi++) array_push(deck_sort_order, _fusion_order[_fi]);
+        for (var _gi = 0; _gi < array_length(_gold_order); _gi++) array_push(deck_sort_order, _gold_order[_gi]);
+
+        for (var _vi = 0; _vi < array_length(deck_sort_order); _vi++) {
+            var _di = deck_sort_order[_vi];
+            if (_q != "") {
+                var _fcid = global.player_deck[| _di];
+                var _fsd = get_plant_shape_data(_fcid, 0);
+                var _fnm = (_fsd != undefined) ? string(_fsd[? "name"]) : _fcid;
+                if (string_pos(_q, string_lower(_fnm)) <= 0) continue;
+            }
+            array_push(info_view, _di);
         }
     }
 } else if (info_button_select == 2) {
-    _info_item_count = array_length(global.enemy_id_list)
+    var _eids = global.enemy_id_list;
+    for (var _vi = 0; _vi < array_length(_eids); _vi++) {
+        var _eid = _eids[_vi];
+        if (_q != "" && ds_map_exists(global.enemy_map, _eid)) {
+            var _enm = string(global.enemy_map[? _eid].name);
+            if (string_pos(_q, string_lower(_enm)) <= 0) continue;
+        }
+        array_push(info_view, _eid);
+    }
 } else if (info_button_select == 3) {
-    _info_item_count = array_length(global.level_id_list)
+    var _lids = global.level_id_list;
+    for (var _vi = 0; _vi < array_length(_lids); _vi++) {
+        var _lid = _lids[_vi];
+        if (_q != "" && ds_map_exists(global.level_info_island_map, _lid)) {
+            var _lnm = string(global.level_info_island_map[? _lid].name);
+            if (string_pos(_q, string_lower(_lnm)) <= 0) continue;
+        }
+        array_push(info_view, _lid);
+    }
 }
+var _info_item_count = array_length(info_view);
 info_rows = max(1, ceil(_info_item_count / info_cols))
 var _max_scroll = max(0, 142 * 1.5 * info_rows - surface_height)
 y_offset_target = clamp(y_offset_target, 0, _max_scroll)
@@ -89,32 +143,9 @@ if info_button_select == 1 {
     var card_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
 
-    // 计算排序索引：普通卡在前 → 融合卡居中 → 金卡集中放最后
-    deck_sort_order = []
-    var _fusion_order = []
-    var _gold_order = []
-    for(var si = 0; si < ds_list_size(global.player_deck); si += 2) {
-        if (global.player_deck[| si] == "lihe" && !is_random_gift_mode()) continue;
-        var _entry = global.player_deck[| si+1]
-        var _shapes = _entry[? "shapes"]
-        var _data = _shapes[| 0]
-        if (is_fusion_card(global.player_deck[| si])) {
-            array_push(_fusion_order, si)
-        } else if (ds_map_find_value(_data, "is_gold") == 1) {
-            array_push(_gold_order, si)
-        } else {
-            array_push(deck_sort_order, si)
-        }
-    }
-    for(var si = 0; si < array_length(_fusion_order); si++) {
-        array_push(deck_sort_order, _fusion_order[si])
-    }
-    for(var si = 0; si < array_length(_gold_order); si++) {
-        array_push(deck_sort_order, _gold_order[si])
-    }
-
-    for(var di = 0; di < array_length(deck_sort_order); di++) {
-        var i = deck_sort_order[di]
+    // 排序 + 搜索过滤已在事件开头算好（deck_sort_order / info_view），这里只按 info_view 依次画
+    for(var di = 0; di < array_length(info_view); di++) {
+        var i = info_view[di]
         var card_id = global.player_deck[| i];
         var deck_entry = global.player_deck[| i+1];
 		var card_data_shapes = deck_entry[? "shapes"]
@@ -196,10 +227,10 @@ if info_button_select == 1 {
         draw_set_color(c_white);
         draw_text(tooltip_x, tooltip_y, "点击查看情报");
     }
-	if select_card_index != -1{
+	if (select_card_index != -1 && select_card_index < array_length(info_view)){
 		//绘制右侧信息栏
-		var card_id = global.player_deck[| deck_sort_order[select_card_index]];
-	    var deck_entry = global.player_deck[| deck_sort_order[select_card_index]+1];
+		var card_id = global.player_deck[| info_view[select_card_index]];
+	    var deck_entry = global.player_deck[| info_view[select_card_index]+1];
 		var card_data_shapes = deck_entry[? "shapes"]
 		
 		
@@ -284,7 +315,7 @@ else if info_button_select == 2 {
     var enemy_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
     
-	var enemy_id_array = global.enemy_id_list
+	var enemy_id_array = info_view
     for(var i = 0; i < array_length(enemy_id_array); i += 1) {
         var enemy_id = enemy_id_array[i]
 		var enemy_data = global.enemy_map[? enemy_id];
@@ -359,9 +390,9 @@ else if info_button_select == 2 {
         draw_set_color(c_white);
         draw_text(tooltip_x, tooltip_y, "点击查看情报");
     }
-	if select_card_index != -1{
+	if (select_card_index != -1 && select_card_index < array_length(info_view)){
 		//绘制右侧信息栏
-		var enemy_id_array = global.enemy_id_list
+		var enemy_id_array = info_view
         var enemy_id = enemy_id_array[select_card_index]
 		var enemy_data = global.enemy_map[? enemy_id];
 		var info = global.enemy_info_island[? enemy_id]
@@ -409,7 +440,7 @@ else if info_button_select == 3 {
     var enemy_index = 0;
     hover_card_index = -1; // 重置悬停卡片索引
     
-	var enemy_id_array = global.level_id_list
+	var enemy_id_array = info_view
     for(var i = 0; i < array_length(enemy_id_array); i += 1) {
         var enemy_id = enemy_id_array[i]
 		var enemy_data = global.level_info_island_map[? enemy_id];
@@ -488,9 +519,9 @@ else if info_button_select == 3 {
         draw_set_color(c_white);
         draw_text(tooltip_x, tooltip_y, "点击查看情报");
     }
-	if select_card_index != -1{
+	if (select_card_index != -1 && select_card_index < array_length(info_view)){
 		//绘制右侧信息栏
-		var enemy_id_array = global.level_id_list
+		var enemy_id_array = info_view
         var enemy_id = enemy_id_array[select_card_index]
 		var enemy_data = global.level_info_island_map[? enemy_id];
 		var info = enemy_data.description

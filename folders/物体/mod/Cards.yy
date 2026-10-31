@@ -103,5 +103,13 @@
     {"name":"obj_niuyouguo","path":"objects/obj_niuyouguo/obj_niuyouguo.yy",},
     {"name":"obj_ronghekafei","path":"objects/obj_ronghekafei/obj_ronghekafei.yy",},
     {"name":"obj_wuxingshe","path":"objects/obj_wuxingshe/obj_wuxingshe.yy",},
+    {"name":"obj_bbq","path":"objects/obj_bbq/obj_bbq.yy",},
+    {"name":"obj_bbq_bullet","path":"objects/obj_bbq_bullet/obj_bbq_bullet.yy",},
+    {"name":"obj_burn_cell","path":"objects/obj_burn_cell/obj_burn_cell.yy",},
+    {"name":"obj_eightcake","path":"objects/obj_eightcake/obj_eightcake.yy",},
+    {"name":"obj_eightcake_bullet","path":"objects/obj_eightcake_bullet/obj_eightcake_bullet.yy",},
+    {"name":"obj_eightcake_burn_bullet","path":"objects/obj_eightcake_burn_bullet/obj_eightcake_burn_bullet.yy",},
+    {"name":"obj_eightcake_bomb","path":"objects/obj_eightcake_bomb/obj_eightcake_bomb.yy",},
+    {"name":"obj_bbq_mouse_burn","path":"objects/obj_bbq_mouse_burn/obj_bbq_mouse_burn.yy",},
   ],
 }

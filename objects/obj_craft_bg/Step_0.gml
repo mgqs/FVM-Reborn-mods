@@ -59,6 +59,11 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 	// 切换界面 = 保底归零（2026-10-28 用户口径：换卡 / 切换界面 / 退出合成屋 三个重置点之一）
 	tg_pity = 0
 	tg_pity_card = ""
+	tg_hidden = 0     // 暗概率跟着一起清（2026-10-30）
+	// 🔴 2026-10-30：转职列表/元数据（含星级、形态、卡图）必须重建。
+	//   否则「转职页 → 强化页把卡强化一下 → 回转职页」会一直显示旧的星级，
+	//   因为 tg_list 只在新建 / 转职成功时置脏，切页签这一侧原来漏了。
+	tg_list_dirty = true
 	audio_play_sound(snd_button,0,0)
 }
 // 页签切到融合时把「卡片强化 / 宝石强化」两个按钮和强化按钮藏起来，免得点到
@@ -359,7 +364,8 @@ if (craft_top_tab == 2) {
 		//    转职成功后槽会自动清空，再放回同一张卡不算换卡 → 保底接着累计
 		else if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
 			var _pick = tg_list[tg_hover_card];
-			if (tg_pity_card != "" && tg_pity_card != _pick) { tg_pity = 0; tg_pity_card = ""; }
+			// 换卡：保底与暗概率一起归零（2026-10-30）
+			if (tg_pity_card != "" && tg_pity_card != _pick) { tg_pity = 0; tg_pity_card = ""; tg_hidden = 0; }
 			tg_card = _pick;
 			audio_play_sound(snd_button, 0, 0);
 		}

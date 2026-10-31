@@ -14,7 +14,8 @@
     {"name":"rongheshuanggu","path":"folders/精灵/mod/Cards/Shooter/rongheshuanggu.yy",},
     {"name":"niuyouguo","path":"folders/精灵/mod/Cards/Shooter/niuyouguo.yy",},
     {"name":"ronghedapao","path":"folders/精灵/mod/Cards/Shooter/ronghedapao.yy",},
-    {"name":"ronghekafei","path":"folders/精灵/mod/Cards/Shooter/ronghekafei.yy",}
+    {"name":"ronghekafei","path":"folders/精灵/mod/Cards/Shooter/ronghekafei.yy",},
+    {"name":"bbq","path":"folders/精灵/mod/Cards/Shooter/bbq.yy",}
   ],
   "listItems":[],
 }

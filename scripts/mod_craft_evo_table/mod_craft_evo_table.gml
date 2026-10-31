@@ -59,8 +59,8 @@ function mod_evo_table(){
                                         {id:"durian", slot:1, need:2} ] },  // 黑暗神使 ← 摩羯座战将（星座槽）+ 冰河世纪榴莲
         aurora:                  { cards:[ {id:"zhuzhujiaqiang", slot:0, need:2},
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
-        houyi_god:               { cards:[ {id:"corn_shooter", slot:0, need:2},
-                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← 玉蜀黍 + 游侠双刃蛇（2026-10-29：射手座星宿与丘比特共用，slot0 换成玉蜀黍）
+        houyi_god:               { cards:[ {id:"bbq", slot:0, need:2},
+                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← BBQ烤肉大师 + 游侠双刃蛇（2026-10-30：第 1 槽由玉蜀黍换成 BBQ烤肉大师）
         joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
         time_god:                { cards:[ {id:"ice_cream", slot:0, need:2},
                                         {id:"zhiyumiao", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 极寒冰沙 + 全能治愈喵（2026-10-30 用户要求两槽对调）

@@ -74,6 +74,9 @@ function focus() {
         return
     }
     self.state.focused = true
+    // 2026-10-31：点进去立刻显示光标（不重置的话可能正好落在「灭」的相位，最多 0.5s 看不到竖线）
+    self.state.cursor_timer = 0
+    self.state.cursor_visible = true
     keyboard_string = self.state.text
     if (variable_global_exists("ime_block") && native_enable_ime != undefined) {
         native_enable_ime(window_handle())
@@ -173,16 +176,22 @@ function on_draw() {
         draw_set_font(font_yuan)
         draw_set_halign(fa_left)
         draw_set_valign(fa_middle)
+        // 光标位置：文字末端（空文本时 string_width("") = 0，正好落在左内边距 left+14）
+        var _caret_x = _s.left + 14 + string_width(_s.text)
         if (_s.text == "") {
-            draw_set_color(_th.placeholder)
-            draw_text(_s.left + 12, _s.top + _s.height * 0.5, _s.placeholder)
+            // 空且已聚焦时只留光标，别让占位字和竖线叠在一起
+            if (!_s.focused) {
+                draw_set_color(_th.placeholder)
+                draw_text(_s.left + 12, _s.top + _s.height * 0.5, _s.placeholder)
+            }
         } else {
             draw_set_color(_th.text)
             draw_text(_s.left + 12, _s.top + _s.height * 0.5, _s.text)
-            if (_s.focused && _s.cursor_visible) {
-                var _tw2 = string_width(_s.text)
-                draw_line(_s.left + 14 + _tw2, _s.top + 8, _s.left + 14 + _tw2, _s.top + _s.height - 8)
-            }
+        }
+        // 2026-10-31：光标移到 if/else 外面 —— 空输入框聚焦时也要有闪烁竖线（原来只写在 else 里，空框一根线都没有）
+        if (_s.focused && _s.cursor_visible) {
+            draw_set_color(_th.text)
+            draw_line(_caret_x, _s.top + 8, _caret_x, _s.top + _s.height - 8)
         }
         draw_set_halign(fa_left)
         draw_set_valign(fa_top)
@@ -199,22 +208,26 @@ function on_draw() {
 
     var _label = _s.text
     var _color_name = "font_hei_outline_4dir_black"
+    var _caret_x2 = _s.left + 14 + string_width(_label)     // 空文本时 = 左内边距
     if (_label == "") {
-        scribble(_s.placeholder)
-            .align(fa_left, fa_middle)
-            .starting_format(_color_name)
-            .blend(c_gray, 1)
-            .draw(_s.left + 12, _s.top + _s.height * 0.5)
+        // 空且已聚焦时只留光标，占位字不画（否则竖线会压在第 1 个字上）
+        if (!_s.focused) {
+            scribble(_s.placeholder)
+                .align(fa_left, fa_middle)
+                .starting_format(_color_name)
+                .blend(c_gray, 1)
+                .draw(_s.left + 12, _s.top + _s.height * 0.5)
+        }
     } else {
         scribble(_label)
             .align(fa_left, fa_middle)
             .starting_format(_color_name)
             .draw(_s.left + 12, _s.top + _s.height * 0.5)
-        if (_s.focused && _s.cursor_visible) {
-            var _tw = string_width(_label)
-            draw_set_color(c_black)
-            draw_line(_s.left + 14 + _tw, _s.top + 8, _s.left + 14 + _tw, _s.top + _s.height - 8)
-        }
+    }
+    // 2026-10-31：同深色分支，光标提到 if/else 外面，空输入框也闪
+    if (_s.focused && _s.cursor_visible) {
+        draw_set_color(c_black)
+        draw_line(_caret_x2, _s.top + 8, _caret_x2, _s.top + _s.height - 8)
     }
 }
 

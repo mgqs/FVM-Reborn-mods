@@ -26,7 +26,7 @@ if config_key == "difficulty"{
 			break
 		case 5:
 			//draw_text(x,y,"不朽级")
-			tooltip_text = "敌人生成倍率×2\n胜利奖励 7 倍"
+			tooltip_text = "敌人生成倍率×2\n胜利奖励 7 倍\n难度极高，不建议使用此难度开始游戏"
 			break
 	}
 	
