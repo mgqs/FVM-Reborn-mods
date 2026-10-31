@@ -97,3 +97,7 @@ if (shape >= 1)
 	explosion_range = 2.5 * global.grid_cell_size_x;
 
 double_hit = true;
+
+// 开局不要内置冷却：Step 里是「attack_timer 累到 cycle 才开吃」，
+// 预置成 cycle 就能在出现敌人的第一帧立刻张嘴（否则下卡后要干等一个攻击间隔）。
+attack_timer = cycle;

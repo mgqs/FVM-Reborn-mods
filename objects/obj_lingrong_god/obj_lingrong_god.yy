@@ -33,10 +33,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_lingrong_god",
-    "path":"sprites/spr_lingrong_god/spr_lingrong_god.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"lingrong_spread",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"lingrong_spread",
+  "parent":{
+    "name":"assistant",
+    "path":"folders/脚本/assistant.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

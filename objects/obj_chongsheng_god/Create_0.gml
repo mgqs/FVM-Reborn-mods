@@ -39,13 +39,13 @@ if (shape == 1) revive_limit = 6;
 else if (shape == 2) revive_limit = 6;
 else if (shape == 3) revive_limit = 9;
 
+// 默认值；真正的取值在 Step 触发复活时按当时的星级/技能重算（Create 阶段 skill 还可能是 0）
 chongsheng_reduction = 0.3;
-var _ud = get_plant_data_with_skill(plant_id, shape, current_level, skill);
-if (_ud != undefined && ds_map_exists(_ud, "chongsheng_reduction")) {
-    chongsheng_reduction = _ud[? "chongsheng_reduction"];
-}
+chongsheng_duration = cycle;        // 减伤BUFF持续（技能 15~20 秒）
+chongsheng_invuln = cycle;          // 复活瞬间无敌时长（=攻击间隔，技能 2.5~3.5 秒）
+invuln_pending = 0;
 
-buff_duration = cycle;
+buff_duration = chongsheng_duration;
 
 // 种下时释放 effect_2 特效
 var _eff2_spr = spr_chongsheng_god_effect_0_2;

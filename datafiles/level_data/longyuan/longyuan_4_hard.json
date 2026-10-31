@@ -391,16 +391,16 @@
       "gold": 8000,
       "items": [
         {
-          "id": "secret_spices",
-          "amount": 200
+          "id": "royal_spices",
+          "amount": 500
         },
         {
           "id": "middle_crystal",
-          "amount": 150
+          "amount": 400
         },
         {
-          "id": "clover_1",
-          "amount": 2
+          "id": "clover_2",
+          "amount": 1
         }
       ]
     },
@@ -409,12 +409,16 @@
       "gold": 8000,
       "items": [
         {
-          "id": "secret_spices",
-          "amount": 200
+          "id": "royal_spices",
+          "amount": 500
         },
         {
           "id": "middle_crystal",
-          "amount": 150
+          "amount": 400
+        },
+        {
+          "id": "clover_2",
+          "amount": 1
         }
       ],
       "card_unlock": [

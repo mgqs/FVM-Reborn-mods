@@ -291,7 +291,7 @@ function mod_shop_init()
     register_goods("corn_shooter",
     {
         type: "card",
-        cost: "50000",
+        cost: "20000",
         unlock_item_id: "corn_shooter",
         description: "玉蜀黍：发射三颗玉米",
         display_name: "玉蜀黍"

@@ -61,6 +61,7 @@ have_loder = false
 chongsheng_buff_timer = 0
 chongsheng_buff_reduction = 0
 chongsheng_buff_source = noone
+chongsheng_invuln_timer = 0   // 重生神复活瞬间的无敌剩余帧
 _prev_hp = hp
 longyuan_webbed = false
 longyuan_web_shield_hp = 0

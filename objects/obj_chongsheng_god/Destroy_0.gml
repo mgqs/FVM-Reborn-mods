@@ -1,9 +1,4 @@
-var _my_id = id;
-with (obj_card_parent) {
-    if (id != _my_id && variable_instance_exists(id, "chongsheng_buff_source") && chongsheng_buff_source == _my_id) {
-        chongsheng_buff_timer = 0;
-        chongsheng_buff_reduction = 0;
-        chongsheng_buff_source = noone;
-    }
-}
+// 重生神出手后立即自毁，但减伤 BUFF 必须按自己的时长（技能 15~20 秒）走完，
+// 不能跟着施法者一起消失 —— 否则「减伤时间 15~20 秒」永远只有半秒。
+// 所以这里不再清空 chongsheng_buff_timer / chongsheng_buff_reduction，让计时器自然归零。
 event_inherited();
