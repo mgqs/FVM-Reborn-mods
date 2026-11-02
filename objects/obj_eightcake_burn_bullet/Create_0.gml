@@ -27,5 +27,6 @@ landed = false;
 fly_end = 13;
 burn_start = 15;
 fly_anim_speed = 0.7;
+fire_scale = 1.15;          // 落地火焰大小：1 = 刚好铺满一格，调大就变大
 target_type = "throw";
 damage_type = "fire";

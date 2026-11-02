@@ -23,8 +23,9 @@ _b.sprite_index = sprite_index;   // 跟着形态走（本体 32 帧 / 一、二
 _b.frame_start = burn_start;      // 本体 15（14 是落地过渡）；一、二转 19（18 是落地过渡）
 _b.frame_end = sprite_get_number(sprite_index) - 2;   // 本体 30 / 一、二转 34（末尾是空帧）
 _b.damage = damage;
-// 火焰缩到一格：三形态火焰的内容框都是 136×158（画布 174×202），不缩会看着烧一大片、实际只判一格
-var _fire_s = min(global.grid_cell_size_x / 136, global.grid_cell_size_y / 158);
+// 缩放按「实心火」算：alpha≥128 的内容框三形态都是 72×87（整张 136×158 那圈是淡烟，按它算火会小一半）
+//   fire_scale = 1 → 实心火刚好铺满一格；调大就是变大（烟会溢到邻格，判定仍只在这一格）
+var _fire_s = min(global.grid_cell_size_x / 72, global.grid_cell_size_y / 87) * fire_scale;
 _b.image_xscale = _fire_s;
 _b.image_yscale = _fire_s;
 // 🔴 火格是按「格子底边」摆的，让它自己按坐标反算会算成下一行（用户报「直接投到下一行」），所以锁死格子
