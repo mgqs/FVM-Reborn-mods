@@ -1,3 +1,9 @@
-// obj_icelongbao_bullet · 能量喵过喵增幅（子弹侧碰撞，语义同火盆过火：一颗子弹只点燃一次）
-//   判定/增幅写在 scripts/nengliangmiao_pass_fire
-nengliangmiao_pass_fire(id, other);
+if (ds_list_find_index(brazier_list, other.id) == -1 && burnt == 0 && row == other.grid_row)
+{
+    burnt += 1;
+    damage = round(damage * other.atk / 100);
+    ds_list_add(brazier_list, other.id);
+    audio_play_sound(snd_bullet_burnt, 0, 0);
+    image_xscale = 1.8;
+    image_yscale = 1.8;
+}
