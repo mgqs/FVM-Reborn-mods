@@ -16,7 +16,7 @@ if (is_slowdown) current_flash_speed *= 2;
 
 // 二转照顾上下各一行
 var _rows = (shape >= 2) ? [grid_row - 1, grid_row, grid_row + 1] : [grid_row];
-var _hittable = ["normal", "air", "invisible"];
+var _hittable = get_hittable_enemy_types(target_type);
 
 var _has_enemy = false;
 if (variable_global_exists("enemy_by_type"))

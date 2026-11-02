@@ -33,6 +33,6 @@ can_burn = true;
 brazier_list = ds_list_create();
 
 hitted = ds_list_create();
-hittable_types = ["normal", "air", "invisible"];
+hittable_types = get_hittable_enemy_types(target_type);
 max_life = 300;
 life = 0;

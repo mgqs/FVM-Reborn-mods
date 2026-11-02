@@ -30,12 +30,9 @@ if (_target_col < 0 || _target_col >= global.grid_cols)
     _target_col = min(grid_col + eightcake_throw_dist, global.grid_cols - 1);
 var _cell = get_world_position_from_grid(_target_col, grid_row);
 
-// 落点：**最远只到场内第 9 格**（Step 索敌已经掐掉场外，这里再按格子收一次，
-//   老鼠顶在第 9 格右沿时也不会把东西丢到场外）
-var _last_col = global.grid_cols - 1;
-var _land_max_x = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x - 10;
-var _bcol = _has_tgt ? min(_tgt.grid_col, _last_col) : min(_target_col, _last_col);
-var _bx_t = _has_tgt ? min(_tgt.x, _land_max_x) : _cell.x;
+// 落点：目标在哪儿就丢哪儿（列上限交给 Step 索敌的「最后一列 + 1」，这里不再往场内收）
+var _bcol = _has_tgt ? _tgt.grid_col : _target_col;
+var _bx_t = _has_tgt ? _tgt.x : _cell.x;
 // 本行格子的**视觉中线** y：地图贴图画出来的格子缝比逻辑网格高 36px（同 bbq 的 _art_up），
 //   只按 grid 中线摆会整体偏低、看着烧到下一行
 var _row_y = get_world_position_from_grid(_bcol, grid_row).y - 36;

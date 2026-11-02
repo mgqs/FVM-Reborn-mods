@@ -1,10 +1,9 @@
-// obj_burn_cell（通用的「单格持续灼烧」）Create 事件
-// 谁的卡都能用：调用方传 sprite_index / frame_start / frame_end / damage / life。
-//   街头烤肉大师：spr_bbq_burn_ground 的 3~16 帧，**存在 2 秒（life 120）、每 60 帧一跳 100（共 200）**
-//   8周年蛋糕  ：spr_eightcake_burn_bullet 的第 14~31 帧（落地火），伤害 = 1.5 × 攻击力，老口径（每 6 帧一跳）
+// obj_burn_cell（单格持续灼烧，目前只有街头烤肉大师在用）Create 事件
+// 调用方传 sprite_index / frame_start / frame_end / damage / life（bbq：spr_bbq_burn_ground 的 3~16 帧、
+//   存在 2 秒 life 120、每 60 帧一跳 100，共 200）。
 // 判定口径：
 //   ① single_hit = true → 整个持续时间内每帧扫，格内**每只敌人只吃一次** damage（进 burned 名单）；
-//   ② single_hit = false（默认）→ 每 tick_interval 帧结算一跳（烤肉 60 帧 / 蛋糕 6 帧），每跳都结算。
+//   ② single_hit = false（默认）→ 每 tick_interval 帧结算一跳（烤肉 60 帧一跳），每跳都结算。
 //   命中只认「就是这一格」的敌人（grid_col / grid_row 严格相等，不做 bbox 兜底 ——
 //   老鼠贴图很高，相邻行老鼠的头顶会探进本格，用 bbox 会连带烧上下行）；
 //   命中类型由调用方给（bbq = 地面单位全烧，空军 / 钻地不烧）；多格可叠加（每个实例独立结算）。

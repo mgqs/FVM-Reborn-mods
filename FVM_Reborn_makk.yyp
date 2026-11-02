@@ -1181,6 +1181,7 @@
     {"id":{"name":"obj_eightcake_bomb","path":"objects/obj_eightcake_bomb/obj_eightcake_bomb.yy",},},
     {"id":{"name":"obj_eightcake_bullet","path":"objects/obj_eightcake_bullet/obj_eightcake_bullet.yy",},},
     {"id":{"name":"obj_eightcake_burn_bullet","path":"objects/obj_eightcake_burn_bullet/obj_eightcake_burn_bullet.yy",},},
+    {"id":{"name":"obj_eightcake_burn_cell","path":"objects/obj_eightcake_burn_cell/obj_eightcake_burn_cell.yy",},},
     {"id":{"name":"obj_eightcake","path":"objects/obj_eightcake/obj_eightcake.yy",},},
     {"id":{"name":"obj_electric_jellyfish_bullet","path":"objects/obj_electric_jellyfish_bullet/obj_electric_jellyfish_bullet.yy",},},
     {"id":{"name":"obj_electric_jellyfish","path":"objects/obj_electric_jellyfish/obj_electric_jellyfish.yy",},},

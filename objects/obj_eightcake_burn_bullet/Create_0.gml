@@ -1,6 +1,6 @@
 // obj_eightcake_burn_bullet（蜡烛子弹）Create 事件
 // 素材 32 帧：0~13 是蓝色 8 蜡烛飞行、14 是落地过渡、**15~30 是地上燃烧的火**（31 空帧）。
-// 飞行段自己推帧循环 0~13；落地生成 obj_burn_cell 播 15~30，做 0.5s 单格灼烧
+// 飞行段自己推帧循环 0~13；落地生成 obj_eightcake_burn_cell 播 15~30，做 0.5s 单格灼烧
 // （伤害 = 1.5 × 攻击力，击杀出灰烬；格子用 lock_grid 锁死，别按坐标反算）。
 event_inherited();
 can_dandantu_store = false;

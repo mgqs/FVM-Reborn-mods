@@ -17,12 +17,16 @@ if (t < T) exit;
 // ===== 落地：本格 0.5s 灼烧 =====
 landed = true;
 
-var _b = instance_create_depth(tx, ty, depth, obj_burn_cell);
+var _cell = get_world_position_from_grid(col, row);   // 火焰铺在格子中心，和判定格对齐
+var _b = instance_create_depth(_cell.x, ty, depth, obj_eightcake_burn_cell);
 _b.sprite_index = sprite_index;   // 跟着形态走（本体 32 帧 / 一、二转 36 帧），别写死本体那张
 _b.frame_start = burn_start;      // 本体 15（14 是落地过渡）；一、二转 19（18 是落地过渡）
 _b.frame_end = sprite_get_number(sprite_index) - 2;   // 本体 30 / 一、二转 34（末尾是空帧）
 _b.damage = damage;
-_b.life = 30;
+// 火焰缩到一格：三形态火焰的内容框都是 136×158（画布 174×202），不缩会看着烧一大片、实际只判一格
+var _fire_s = min(global.grid_cell_size_x / 136, global.grid_cell_size_y / 158);
+_b.image_xscale = _fire_s;
+_b.image_yscale = _fire_s;
 // 🔴 火格是按「格子底边」摆的，让它自己按坐标反算会算成下一行（用户报「直接投到下一行」），所以锁死格子
 _b.lock_grid = true;
 _b.grid_col = col;

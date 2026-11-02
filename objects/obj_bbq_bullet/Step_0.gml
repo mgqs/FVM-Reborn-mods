@@ -48,36 +48,7 @@ else
     }
 }
 
-// 可被樱桃反弹布丁 / 水神反弹（照 obj_rig_bullet 的写法）：反向 + 加攻击力 + 转 180°
-if (!bounced)
-{
-    with (obj_water_god)
-    {
-        if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
-        {
-            other.move_dir *= -1;
-            other.damage += atk;
-            other.image_angle += 180;
-            other.bounced = true;
-            break;
-        }
-    }
-    if (!bounced)
-    {
-        with (obj_cherry_pudding)
-        {
-            if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
-            {
-                other.move_dir *= -1;
-                other.damage += atk;
-                other.image_angle += 180;
-                other.bounced = true;
-                break;
-            }
-        }
-    }
-}
-
+// 反弹交给引擎碰撞事件（Collision_obj_cherry_pudding / Collision_obj_water_god，同 rig / 玉米那批子弹）
 if (variable_global_exists("enemy_by_type"))
 {
     for (var _t = 0; _t < array_length(hittable_types); _t++)

@@ -3942,7 +3942,7 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [22, 26, 30, 34, 38, 42, 50, 60, 70, 80, 110, 140, 170, 220, 270, 320, 370],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: [84, 81, 78, 75, 72, 69, 66, 60, 54, 54, 51, 51, 48, 48, 45, 45, 39]
+        cycle: array_create(17, 84)
     },
     {
         name: "户外烤肉大师",
@@ -3953,7 +3953,7 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: [84, 81, 78, 75, 72, 69, 66, 60, 54, 54, 51, 51, 48, 48, 45, 45, 39]
+        cycle: array_create(17, 84)
     },
     {
         name: "BBQ烤肉大师",
@@ -3964,42 +3964,42 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: [84, 81, 78, 75, 72, 69, 66, 60, 54, 54, 51, 51, 48, 48, 45, 45, 39]
+        cycle: array_create(17, 84)
     }], false);
 
     mod_register_plant_lite("eightcake", [
     {
         name: "8周年蛋糕",
         shape: 0,
-        description: "8周年蛋糕：投掷蛋糕子弹，每3次攻击附带一次灼烧",
+        description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [45, 55, 65, 70, 90, 110, 140, 170, 200, 230, 280, 360, 450, 550, 660, 780, 900],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [120, 117, 114, 111, 108, 105, 102, 99, 90, 90, 87, 87, 84, 84, 81, 81, 72]
+        cycle: array_create(17, 120)
     },
     {
         name: "8周年慕斯",
         shape: 1,
-        description: "8周年慕斯：投掷蛋糕子弹，子弹威力提升50%，每3次攻击附带一次灼烧",
+        description: "8周年慕斯：投掷威力更高的蛋糕子弹，以及有燃烧效果的蜡烛子弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [67, 82, 97, 105, 135, 170, 210, 255, 300, 345, 420, 540, 675, 825, 990, 1170, 1350],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [120, 117, 114, 111, 108, 105, 102, 99, 90, 90, 87, 87, 84, 84, 81, 81, 72]
+        cycle: array_create(17, 120)
     },
     {
         name: "8周年红丝绒",
         shape: 2,
-        description: "8周年红丝绒：投掷蛋糕子弹，子弹威力提升50%，每3次攻击附带灼烧，每10次投掷可乐炸弹",
+        description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹，有几率投出可乐炸弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [67, 82, 97, 105, 135, 170, 210, 255, 300, 345, 420, 540, 675, 825, 990, 1170, 1350],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [120, 117, 114, 111, 108, 105, 102, 99, 90, 90, 87, 87, 84, 84, 81, 81, 72]
+        cycle: array_create(17, 120)
     }], false);
     mod_register_plant_lite("tangchaolizi", [
     {
@@ -4011,7 +4011,7 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+        cycle: array_create(17, 228)
     },
     {
         name: "开口笑栗子",
@@ -4022,7 +4022,7 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [6, 7, 8, 11, 13, 16, 19, 22, 26, 30, 35, 40, 47, 54, 61, 68, 75],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+        cycle: array_create(17, 228)
     },
     {
         name: "焦香烤栗子",
@@ -4033,7 +4033,7 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [7, 8, 9, 13, 15, 19, 22, 26, 31, 36, 42, 48, 56, 64, 73, 81, 90],
         range: array_create(17, 8),
         cooldown: array_create(17, 420),
-        cycle: [228, 222, 210, 198, 186, 174, 162, 150, 132, 132, 132, 132, 132, 132, 132, 132, 132]
+        cycle: array_create(17, 228)
     }], false);
     mod_register_plant_lite("nengliangmiao", [
     {

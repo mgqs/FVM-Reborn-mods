@@ -3094,7 +3094,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     register_card("bbq", obj_bbq, [
     { shape: 0, sprite: spr_bbq, cost: 350, cooldown: 420, description: "街头烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq },
     { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
-    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
+    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
 
     register_card("eightcake", obj_eightcake, [
     { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },

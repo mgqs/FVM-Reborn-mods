@@ -18,34 +18,27 @@ if (state == CARD_STATE.SLEEP) exit;
 var _step_frames = max(1, flash_speed * (is_slowdown ? 2 : 1));
 var _load_frames = max(1, _step_frames div 2);   // 装填帧播快一倍
 
-// ===== 索敌：整行，但只认**场内**（卡片右边 ~ 第 9 格右沿）=====
-var _max_x = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x;
-var _last_col = global.grid_cols - 1;
-var _hittable = ["normal", "air", "invisible"];
-
+// ===== 索敌：本行 + 卡片右侧，列上限 = 最后一列 + 1，取最近一只（同双菇 / 融合煮蛋器）=====
 var _has_enemy = false;
 var _tgt_col = -1;
 var _tgt = noone;
-if (variable_global_exists("enemy_by_type"))
+var _min_d = 99999;
+
+with (obj_enemy_parent)
 {
-    for (var _t = 0; _t < array_length(_hittable); _t++)
+    if (hp > 0
+        && grid_row == other.grid_row
+        && grid_col >= other.grid_col
+        && grid_col <= (global.grid_cols + 1)
+        && can_target_on(other.target_type, target_type))
     {
-        var _key = _hittable[_t];
-        if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
-        var _list = global.enemy_by_type[$ _key];
-        for (var _i = 0; _i < array_length(_list); _i++)
+        var _d = grid_col - other.grid_col;
+        if (_d < _min_d)
         {
-            var _e = _list[_i];
-            if (!instance_exists(_e) || _e.hp <= 0) continue;
-            if (_e.grid_row != grid_row) continue;
-            if (_e.grid_col > _last_col) continue;              // 第 9 格右边（场外）不算
-            if (_e.x <= x || _e.x > _max_x) continue;
+            _min_d = _d;
+            _tgt_col = grid_col;
+            _tgt = id;
             _has_enemy = true;
-            if (_tgt_col == -1 || _e.grid_col < _tgt_col)
-            {
-                _tgt_col = _e.grid_col;
-                _tgt = _e;
-            }
         }
     }
 }

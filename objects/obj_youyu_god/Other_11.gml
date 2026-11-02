@@ -6,7 +6,7 @@
 //   - 只有中路（0°/180°）子弹会置 can_burn（同一行才算过火，见三份 Collision）
 
 // 只打陆地鼠（无对空 / 幽灵能力）
-var _hittable = ["normal"];
+var _hittable = get_hittable_enemy_types("normal");
 
 var _bullet_spr = spr_youyu_god_bullet;
 if (shape == 1) _bullet_spr = spr_youyu_god_bullet_1;

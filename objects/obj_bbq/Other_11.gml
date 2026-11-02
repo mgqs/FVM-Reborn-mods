@@ -38,7 +38,7 @@ for (var _r = 0; _r < array_length(_rows); _r++)
         inst.start_x = _start_x;
         inst.end_x = _end_x;
         inst.move_dir = 1;
-        inst.hittable_types = ["normal", "air", "invisible"];
+        inst.hittable_types = get_hittable_enemy_types(target_type);
         if (_is_burn) inst.sprite_index = spr_bbq_bullet_burn;
     }
 
