@@ -174,12 +174,9 @@ function fusion_shape_name(_id, _shape){
 	return _nm;
 }
 
-/// @func fusion_pre_card(id) 这张融合卡的前置卡（初融的主卡）
+/// @func fusion_pre_card(id) 这张融合卡的前置卡（= 初融主卡，直接查表）
 function fusion_pre_card(_id){
-	for (var _i = 0; _i < array_length(fusion_demo); _i++){
-		if (fusion_demo[_i].id == _id) return fusion_demo[_i].pre;
-	}
-	return "";
+	return mod_fusion_prereq(_id);
 }
 
 /// @func fusion_shape_tag(shape) 形态标签（提示词里跟在卡名后面：卡牌名（二转））
@@ -189,34 +186,12 @@ function fusion_shape_tag(_shape){
 	return "（本体）";
 }
 
-/// @func fusion_recipe_tip(id) 鼠标悬在食谱格上的提示文本（三行）
-///   第一行 = 食谱名：优先直接取**诸神商店那条商品**的 recipe_name / display_name（跟商店一字不差），
-///            取不到才用 fusion_recipe_display_name() 现拼
-///   主卡 / 副卡 = 食谱实际要的那种形态的卡名 + 形态标签（初融就是「卡牌名（二转）」）
+/// @func fusion_recipe_tip(id) 鼠标悬在食谱格上的提示文本（三行：菜谱名 / 主卡 / 副卡）
+///   拼法只有一处：mod_fusion_recipe_tip（诸神商店、背包凭证页也调它，三边字永远一致）
 function fusion_recipe_tip(_id){
-	var _shape = fusion_levels[fusion_level - 1].shape;
-
-	// ① 标题：诸神商店口径
-	var _title = "";
-	var _goods_id = (_shape <= 0) ? _id : _id + "_" + string(_shape);
-	if (variable_global_exists("gods_goods_map") && ds_map_exists(global.gods_goods_map, _goods_id)){
-		var _g = global.gods_goods_map[? _goods_id];
-		if (!is_undefined(_g)){
-			if (variable_struct_exists(_g, "recipe_name") && is_string(_g.recipe_name) && _g.recipe_name != "") _title = _g.recipe_name;
-			else if (variable_struct_exists(_g, "display_name") && is_string(_g.display_name)) _title = _g.display_name;
-		}
-	}
-	if (_title == "") _title = fusion_recipe_display_name(_id, _shape);
-
-	// ② 主卡 / 副卡：**要几转由食谱决定**（need 已按卡的可用形态兜底），不再一律写二转
-	var _main_id = (_shape == 0) ? fusion_pre_card(_id) : _id;
-	var _main_nd = (_shape == 0) ? fusion_main_need_of(_main_id) : (_shape - 1);
-	var _main_sh = mod_fusion_need_shape(_main_id, _main_nd);
-	var _tip = _title + "\n主卡：" + fusion_shape_name(_main_id, _main_sh) + fusion_shape_tag(_main_sh);
-	var _sq = fusion_sub_card(_id);
-	if (_sq.id != "") _tip += "\n副卡：" + fusion_shape_name(_sq.id, _sq.need) + fusion_shape_tag(_sq.need);
-	return _tip;
+	return mod_fusion_recipe_tip(_id, fusion_levels[fusion_level - 1].shape);
 }
+
 
 // ── 融合页几何（928 整窗空间，Draw_0 与 Step_0 共用这一套，别各算一份）──
 fusion_ws = 1.8                     // 整窗底图缩放（921x582 -> 1658x1048）
@@ -291,12 +266,9 @@ fusion_card_face_s = 0.7;     // 卡面缩放
 
 // ── 三档配置：需金币 / 融合剂（秘制 → 四叶草 → 皇室）──
 fusion_levels = mod_fusion_levels();          // 三档配置（名字/形态/金币/材料）走 mod/craft 表
-// 初融「主卡」要求的形态：0 = 拥有本体即可 / 1 = 一转 / 2 = 二转（**默认值，不是硬规则**）
-// 2026-10-24 用户口径：现有食谱的主卡/副卡一律要二转 → 默认值设 2（数据，不是代码硬编码）
-// 单张融合卡想另配主卡要求 → 写进下面的 fusion_main_needs（卡 id → need），没写的才用这个默认
-// （深度/灵魂 的主卡结构上就是上一形态，不用配；副卡要求全在副卡表里逐条写 need）
-fusion_main_need   = mod_fusion_main_need();    // 「初融」档主卡默认要求形态（表里配）
-fusion_main_needs  = mod_fusion_main_needs();   // 逐卡覆盖（表里配）
+
+// ── 配方数据全在 scripts/mod_craft_fusion_table（一张融合卡一个条目，主副卡写在一起）──
+//    这里**不存表**：要哪一档的主卡/副卡就调 mod_fusion_recipe(融合卡id, 档位-1)
 
 /// @func fusion_recipe_item_id(id, shape) 食谱道具在背包里的 id（诸神商店卖的就是这个）
 function fusion_recipe_item_id(_id, _shape){
@@ -308,18 +280,8 @@ function fusion_recipe_owned(_id, _shape){
 	return has_fusion_recipe(_id, _shape);
 }
 
-/// @func fusion_recipe_spr(id, shape) 食谱图标：形态 0 用 spr_fusion_recipe0，1/2 用现成的 spr_voucher_*
-function fusion_recipe_spr(_id, _shape){
-	if (_shape == 0){
-		for (var _i = 0; _i < array_length(fusion_demo); _i++){
-			if (fusion_demo[_i].id == _id) return [spr_fusion_recipe0, _i];
-		}
-		return [spr_fusion_recipe0, 0];
-	}
-	var _s = asset_get_index("spr_voucher_" + _id + "_" + string(_shape));
-	if (_s == -1) _s = spr_fusion_recipe0;
-	return [_s, 0];
-}
+// 菜谱图标只有一种画法：mod_fusion_draw_recipe（底板 + 该卡该形态的卡面），
+// 旧的「拿菜谱道具图去画」那套（fusion_recipe_spr / fusion_recipe_sprite）已整套删掉
 
 /// @func fusion_recipe_list(shape) 当前档位「还拥有」的食谱 → **融合卡 id 数组**（Draw / Step 共用）
 function fusion_recipe_list(_shape){
@@ -331,8 +293,8 @@ function fusion_recipe_list(_shape){
 }
 
 /// @func fusion_card_list(level) 当前档位「防御卡」面板要画的卡 → [{ id, shape }]
-/// ① 初融的主卡（9 张前置卡，只收练到要求的）② 本档副卡（有填且练到该条 need）③ 融合卡（只有深度/灵魂档有，见下）
-/// 深度 / 灵魂 没有独立的主卡段：它们的主卡就是融合卡自己，由 ③ 按「玩家拥有的形态」画
+/// ① 本档主卡（初融 = 9 张前置卡；深度/灵魂 = 融合卡自己，交给 ③ 按档画）
+/// ② 本档副卡 ③ 深度/灵魂档的融合卡
 /// 🔴 拼完统一过一次 fusion_card_sort()：**白卡 → 金卡 → 融合卡**（融合卡永远排最后），
 ///    Draw 画格 / 飞卡落点 / Step 滚动上限都吃这一份，三处顺序不会再各说各话
 function fusion_card_list(_lv){
@@ -341,23 +303,22 @@ function fusion_card_list(_lv){
 	var _sh = fusion_levels[_lv - 1].shape;
 
 	// ① 主卡：只有初融有独立的主卡列表（9 张前置卡）；深度 / 灵魂 的主卡就是融合卡自己 → 交给 ③
-	//    要求的形态逐张取（fusion_main_needs 覆盖 → fusion_main_need 默认），**不再是写死的二转**
+	//    要哪张、要几转全部读表和配方：mod_fusion_recipe(融合卡, 0).main
 	if (_lv == 1){
-		for (var _i = 0; _i < array_length(fusion_pre_cards); _i++){
-			var _id = fusion_pre_cards[_i];
-			var _mneed = mod_fusion_need_shape(_id, fusion_main_need_of(_id));
-			if (fusion_owned_max_shape(_id) < _mneed) continue;     // 没练到食谱要求的形态就先不列（槽里会画灰）
-			if (array_get_index(_seen, _id) != -1) continue;
-			array_push(_seen, _id);
-			array_push(_a, { id: _id, shape: _mneed });
+		for (var _i = 0; _i < array_length(fusion_demo); _i++){
+			var _mq = mod_fusion_recipe(fusion_demo[_i].id, 0).main;
+			if (_mq.id == "") continue;
+			var _mneed = mod_fusion_need_shape(_mq.id, _mq.need);
+			if (fusion_owned_max_shape(_mq.id) < _mneed) continue;     // 没练到食谱要求的形态就先不列（槽里会画灰）
+			if (array_get_index(_seen, _mq.id) != -1) continue;
+			array_push(_seen, _mq.id);
+			array_push(_a, { id: _mq.id, shape: _mneed });
 		}
 	}
 
-	// ② 副卡：本档副卡表里的卡（有填、且练到该条 need 要求才画；need 由食谱决定，0 = 本体即可）
-	var _tbl = fusion_sub_cards[_lv - 1];
-	var _names = variable_struct_get_names(_tbl);
-	for (var _j = 0; _j < array_length(_names); _j++){
-		var _sreq = fusion_sub_card_at(_lv, _names[_j]);
+	// ② 副卡：本档配方里配了副卡的融合卡，逐条取（有填、且练到该条 need 才画）
+	for (var _j = 0; _j < array_length(fusion_demo); _j++){
+		var _sreq = fusion_sub_card_at(_lv, fusion_demo[_j].id);
 		if (_sreq.id == "") continue;
 		if (fusion_owned_max_shape(_sreq.id) < _sreq.need) continue;
 		if (array_get_index(_seen, _sreq.id) != -1) continue;
@@ -387,16 +348,10 @@ function fusion_card_list(_lv){
 }
 
 /// @func fusion_main_card_id() 当前装填后「主卡」那张卡的真实 id（初级 = 前置卡本体，深度/灵魂 = 融合卡自己）
+/// 直接读本档配方，不自己判断档位
 function fusion_main_card_id(){
-	if (fusion_stage < 1) return "";
-	if (fusion_loaded_id == "") return "";
-	if (fusion_levels[fusion_level - 1].shape == 0){
-		for (var _i = 0; _i < array_length(fusion_demo); _i++){
-			if (fusion_demo[_i].id == fusion_loaded_id) return fusion_demo[_i].pre;
-		}
-		return "";
-	}
-	return fusion_loaded_id;
+	if (fusion_stage < 1 || fusion_loaded_id == "") return "";
+	return mod_fusion_recipe(fusion_loaded_id, fusion_level - 1).main.id;
 }
 
 // ── 食灵融合页（纯演出：不读写存档、不扣卡；融合剂会真扣，见 Step_0）──
@@ -484,10 +439,8 @@ function fusion_owned_max_shape(_id){
 	return -1;
 }
 
-// ── 三档副卡表：数据在 scripts/mod_craft_fusion_table（mod/craft 分组），这里只引用 ──
-//    每条写成 { id:"卡id", need:N }，N = 这道食谱要求的形态（0 本体 / 1 一转 / 2 二转）
-//    改数据请改 mod_fusion_sub_cards()，别在这里加表
-fusion_sub_cards = mod_fusion_sub_cards();
+// ── 主副卡一律走配方：mod_fusion_recipe(融合卡id, 档位-1) → { main:{id,need}, sub:{id,need} } ──
+//    数据在 scripts/mod_craft_fusion_table（一张融合卡一个条目），这里**不存表**
 
 /// @func fusion_sub_card(id) 当前档位这张融合卡要的副卡 → { id, need }（没有副卡 = { id:"", need:0 }）
 /// need 已经按卡的可用形态兜底过，调用方直接用，不要自己再判「是不是二转」
@@ -497,37 +450,18 @@ function fusion_sub_card(_id){
 
 /// @func fusion_sub_card_at(level, id) 指定档位版的 fusion_sub_card（防御卡列表要按档取，不能吃全局 fusion_level）
 function fusion_sub_card_at(_lv, _id){
-	var _tbl = fusion_sub_cards[_lv - 1];
-	if (!variable_struct_exists(_tbl, _id)) return { id: "", need: 0 };
-	var _v = _tbl[$ _id];
-	// 表里统一写 { id:"卡id", need:N }；老写法 "卡id" 仍兼容（= 拥有本体即可）
-	if (is_struct(_v)){
-		if (_v.id == "") return { id: "", need: 0 };
-		return { id: _v.id, need: mod_fusion_need_shape(_v.id, _v.need) };
-	}
-	if (_v == "") return { id: "", need: 0 };
-	return { id: _v, need: 0 };
-}
-
-/// @func fusion_main_need_of(id) 初融这张主卡要求的形态：先查逐条覆盖表 fusion_main_needs，没写就用全局 fusion_main_need
-function fusion_main_need_of(_id){
-	if (_id == "") return fusion_main_need;
-	if (variable_struct_exists(fusion_main_needs, _id)) return fusion_main_needs[$ _id];
-	return fusion_main_need;
+	var _sub = mod_fusion_recipe(_id, _lv - 1).sub;
+	if (_sub.id == "") return { id: "", need: 0 };
+	return { id: _sub.id, need: mod_fusion_need_shape(_sub.id, _sub.need) };
 }
 
 /// @func fusion_main_req() 当前档位「主卡」要求 → { id, need }（need 已兜底）
-/// 初融 = 前置卡（要求看 fusion_main_needs / fusion_main_need）；深度/灵魂 = 融合卡自己，要上一形态
+/// 三档同一套取法：初融 = 那档配方里的前置主卡，深度/灵魂 = 融合卡自己，need 全写在表里
 function fusion_main_req(){
 	if (fusion_stage < 1 || fusion_loaded_id == "") return { id: "", need: 0 };
-	var _cfg = fusion_levels[fusion_level - 1];
-	if (_cfg.shape == 0){
-		var _pid = fusion_main_card_id();
-		if (_pid == "") return { id: "", need: 0 };
-		return { id: _pid, need: mod_fusion_need_shape(_pid, fusion_main_need_of(_pid)) };
-	}
-	var _nd = _cfg.shape - 1;
-	return { id: fusion_loaded_id, need: mod_fusion_need_shape(fusion_loaded_id, _nd) };
+	var _main = mod_fusion_recipe(fusion_loaded_id, fusion_level - 1).main;
+	if (_main.id == "") return { id: "", need: 0 };
+	return { id: _main.id, need: mod_fusion_need_shape(_main.id, _main.need) };
 }
 
 /// @func fusion_card_enough(id, need) 这张卡够不够融合用（need 0 = 拥有本体即可）
@@ -571,11 +505,8 @@ function fusion_check(){
 	return _r;
 }
 
-// 初融「主卡」列表 = 9 张前置卡（收集顺序，排序交给 fusion_card_list() 的最终统一排序）
-// 深度 / 灵魂 的主卡就是融合卡自己，由 fusion_card_list() 的第 ③ 段按本档形态统一画，不在这里重复
-fusion_pre_cards = [];
-for (var _ci = 0; _ci < array_length(fusion_demo); _ci++) array_push(fusion_pre_cards, fusion_demo[_ci].pre);
-fusion_pre_cards = fusion_sort_by_rank(fusion_pre_cards);
+// 初融「主卡」列表不再单独缓存：fusion_card_list() 的 ① 段直接遍历 fusion_demo 读配方
+// （深度 / 灵魂 的主卡就是融合卡自己，由第 ③ 段按本档形态画）
 
 /// @func fusion_rank(id) 排序权重：白卡 0 / 金卡 1 / 融合卡 2（融合卡永远排最后）
 /// 判定口径跟卡底一致（is_fusion_card / is_gold），不额外维护名单

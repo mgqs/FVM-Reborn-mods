@@ -162,7 +162,7 @@ function try_place_once(){
 					for (var i = 0; i < ds_list_size(plant_list); i++) {
 						var plant = ds_list_find_value(plant_list, i);
 						if instance_exists(plant){
-							if (variable_instance_exists(plant, "plant_id") && plant.plant_id == target_card_id) {
+							if (variable_instance_exists(plant, "plant_id") && base_card_match(plant.plant_id, target_card_id)) {
 								card_destroyed(plant);
 								instance_destroy(plant);
 								break;

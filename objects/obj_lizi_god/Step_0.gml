@@ -28,7 +28,7 @@ if (!attacking)
     with (obj_enemy_parent)
     {
         if (grid_row >= (other.grid_row - 1) && grid_row <= (other.grid_row + 1)
-            && grid_col >= other.grid_col && grid_col <= (other.grid_col + other.range)
+            && grid_col >= other.grid_col
             && can_target_on(other.target_type, target_type))
         {
             var distance = grid_col - other.grid_col;
@@ -54,8 +54,15 @@ if (attacking)
     state = CARD_STATE.ATTACK;
     attack_timer++;
 
-    if (attack_timer == ((attack_anim - 5) * current_flash_speed))
+    // 自己推攻击帧：idle 0~9，攻击 10~21
+    var _fi = min(attack_timer div current_flash_speed, attack_anim - 1);
+    var _frame = idle_anim + 1 + _fi;
+    image_index = _frame;
+
+    // 🔴 脱手帧 = 第 19 帧（0 基，即第 20 帧）。原来按 (attack_anim-5)*flash 会卡到第 17 帧就投
+    if (!lizi_fired && _frame >= 19)
     {
+        lizi_fired = true;
         event_user(1);
         audio_play_sound(snd_throw, 0, 0);
     }
@@ -66,5 +73,6 @@ if (attacking)
         cooldown_timer = cycle - attack_timer;
         attack_timer = 0;
         target_instance = -4;
+        lizi_fired = false;
     }
 }

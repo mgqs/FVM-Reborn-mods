@@ -11,6 +11,9 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"a23f479f-8261-42cf-8d49-4b43bc315d4d","path":"sprites/spr_recipe_plate_2/spr_recipe_plate_2.yy",},
+    {"name":"32087004-5b71-4c08-9cba-74a75ae3ee71","path":"sprites/spr_recipe_plate_1/spr_recipe_plate_1.yy",},
+    {"name":"fd44c9ec-53fd-4ff5-ac70-d87b0a2cc2b0","path":"sprites/spr_recipe_plate_0/spr_recipe_plate_0.yy",},
     {"name":"5d3014d2-100e-4172-9ad2-dab314a12c6e","path":"sprites/spr_craft_fusion_panel/spr_craft_fusion_panel.yy",},
     {"name":"18c3e152-6552-4cc3-8a6f-92f59d760b87","path":"sprites/spr_craft_insure_badge/spr_craft_insure_badge.yy",},
     {"name":"80963789-6b2f-4046-a378-2b3197911aee","path":"sprites/spr_craft_rate_bar/spr_craft_rate_bar.yy",},
@@ -27,7 +30,6 @@
     {"name":"9ceecb51-935b-4957-85d1-b30e24e21b1c","path":"sprites/spr_fusion_lv_soul/spr_fusion_lv_soul.yy",},
     {"name":"582c1fa1-a964-4ebf-ad00-1cd95cf7b8c7","path":"sprites/spr_fusion_lv_upgrade/spr_fusion_lv_upgrade.yy",},
     {"name":"d229206f-9f63-4c69-bccd-eee02113e4a7","path":"sprites/spr_fusion_panel_title/spr_fusion_panel_title.yy",},
-    {"name":"7bc46159-c601-4f39-b288-b60aec62596b","path":"sprites/spr_fusion_recipe0/spr_fusion_recipe0.yy",},
     {"name":"a4422fd2-a5be-4f08-bd79-dcb67e1df8d7","path":"sprites/spr_fusion_slot_card/spr_fusion_slot_card.yy",},
     {"name":"ed14b5a5-6b0a-4e86-b00e-711204c413f3","path":"sprites/spr_fusion_slot_label/spr_fusion_slot_label.yy",},
     {"name":"351955d5-348b-48f3-8c70-3629b08a407d","path":"sprites/spr_fusion_slot_prop/spr_fusion_slot_prop.yy",},

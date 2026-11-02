@@ -567,7 +567,7 @@ function mod_shop_init()
         display_name: "爆辣河豚"
     });
 
-    register_goods("shuanggu", { type: "card", cost: "40000", unlock_item_id: "shuanggu", description: "蚝油双菇：同时向前方发射对陆与对空子弹", display_name: "蚝油双菇" });
+    register_goods("shuanggu", { type: "card", cost: "20000", unlock_item_id: "shuanggu", description: "蚝油双菇：同时向前方发射对陆与对空子弹", display_name: "蚝油双菇" });
 
     register_goods("yeziguo", { type: "card", cost: "1130", unlock_item_id: "yeziguo", description: "椰子果：跳起碾压前方鼠军", display_name: "椰子果" });
     register_goods("yeziguo_1", { type: "card", card_id: "yeziguo", card_shape: 1, cost: "260", unlock_item_id: "yeziguo", required_card_shape: 0, description: "浓香椰子果：解锁一转", display_name: "浓香椰子果" });
@@ -579,7 +579,10 @@ function mod_shop_init()
 
     register_goods("wuxingshe", { type: "card", cost: "1500", unlock_item_id: "wuxingshe", description: "五行蛇：为3*3范围内5方向卡片增加攻击力", display_name: "五行蛇" });
 
-    register_goods("bbq", { type: "card", cost: "70000", unlock_item_id: "bbq", description: "街头烤肉大师：沿本行发射穿透串串子弹", display_name: "街头烤肉大师" });
+    register_goods("bbq", { type: "card", cost: "35000", unlock_item_id: "bbq", description: "街头烤肉大师：沿本行发射穿透串串子弹", display_name: "街头烤肉大师" });
     register_goods("eightcake", { type: "card", cost: "20000", unlock_item_id: "eightcake", description: "8周年蛋糕：投掷蛋糕子弹，每3次攻击附带灼烧", display_name: "8周年蛋糕" });
+    register_goods("tangchaolizi", { type: "card", cost: "60000", unlock_item_id: "tangchaolizi", description: "糖炒栗子：向前方喷出持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）", display_name: "糖炒栗子" });
+
+    register_goods("nengliangmiao", { type: "card", cost: "100000", unlock_item_id: "nengliangmiao", description: "能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹", display_name: "能量喵" });
 
 }

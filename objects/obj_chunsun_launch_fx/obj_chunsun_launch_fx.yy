@@ -9,8 +9,8 @@
   "name":"obj_chunsun_launch_fx",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cards",
-    "path":"folders/物体/mod/Cards.yy",
+    "name":"Effect",
+    "path":"folders/物体/mod/Effect.yy",
   },
   "parentObjectId":null,
   "persistent":false,

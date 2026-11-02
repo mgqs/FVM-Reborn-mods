@@ -96,6 +96,7 @@ function card_category_data()
         ["ronghesanxian", "直射类", "三线类", ""],
         ["jinniu", "增幅类", "子弹增幅", "平射增幅"],
         ["fire_god", "增幅类", "子弹增幅", "平射增幅"],
+        ["nengliangmiao", "增幅类", "子弹增幅", "平射增幅"],
         ["blueberry_tower", "增幅类", "子弹增幅", "投掷增幅"],
         ["zhuzhujiaqiang", "增幅类", "子弹增幅", "投掷增幅"],
         ["fruit_tart", "增幅类", "子弹增幅", "投掷增幅"],
@@ -226,7 +227,8 @@ function card_category_data()
         ["hera", "防御类", "护罩类", ""],
         ["chunv", "防御类", "护罩类", ""],
         ["bbq", "直射类", "过火穿透类", ""],
-        ["eightcake", "投掷类", "单线投手", ""]
+        ["eightcake", "投掷类", "单线投手", ""],
+        ["tangchaolizi", "投掷类", "灼烧投手", ""]
     ];
 }
 

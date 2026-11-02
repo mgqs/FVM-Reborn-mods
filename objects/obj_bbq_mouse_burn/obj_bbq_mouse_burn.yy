@@ -9,8 +9,8 @@
   "name":"obj_bbq_mouse_burn",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cards",
-    "path":"folders/物体/mod/Cards.yy",
+    "name":"Effect",
+    "path":"folders/物体/mod/Effect.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -27,4 +27,4 @@ landed = false;
 hit_tick = 0;
 target_type = "throw";
 damage_type = "throw";
-hittable_types = ["normal", "air", "invisible"];
+hittable_types = get_hittable_enemy_types(target_type);

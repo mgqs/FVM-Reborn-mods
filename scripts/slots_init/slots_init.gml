@@ -183,8 +183,8 @@ function slots_init(){
 		{"shape":2, "sprite":spr_chocolate_pult_icon_2, "cost":125, "cooldown":7*60, "description":"脆心巧克力投手：投掷两块能定住敌人的巧克力","plant_type":"normal","feature_type":"normal","target_card":"none","place_preview":spr_chocolate_pult_2}
 	]);
 	register_card("chocolate_cannon", obj_chocolate_cannon, [
-	    {"shape":0, "sprite":spr_chocolate_cannon, "cost":300, "cooldown":50*60, "description":"巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult"},
-	    {"shape":1, "sprite":spr_chocolate_cannon_1, "cost":300, "cooldown":50*60, "description":"节能巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult"},
+	    {"shape":0, "sprite":spr_chocolate_cannon, "cost":300, "cooldown":50*60, "description":"巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult|eightcake"},
+	    {"shape":1, "sprite":spr_chocolate_cannon_1, "cost":300, "cooldown":50*60, "description":"节能巧克力大炮：发射3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"upgrade","target_card":"chocolate_pult|eightcake"},
 		{"shape":2, "sprite":spr_chocolate_cannon_2, "cost":300, "cooldown":50*60, "description":"死神大炮：发射两个3*3范围爆炸的巧克力球","plant_type":"normal","feature_type":"normal","target_card":"none"}
 	]);
 	register_card("firework_dragon", obj_firework_dragon, [

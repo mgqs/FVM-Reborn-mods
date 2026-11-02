@@ -44,17 +44,10 @@ for (var i = 0; i < 4; i++)
                 if (variable_struct_exists(_goods_d1, "recipe_id"))
                 {
                     // 融合卡本体格卖的是「本体食谱」道具：只画食谱图标（不垫卡底）。
-                    // 格子里的「阳光消耗」是卡才有的，食谱没有 → 不画；神谕石价格在下面的购买按钮上
-                    var _rs1 = _goods_d1.spr;
-                    var _rsub1 = variable_struct_exists(_goods_d1, "spr_sub") ? _goods_d1.spr_sub : 0;
-                    // 图标大小对齐左边的卡片格（卡底 89x118）→ 取最长边 90
-                    var _rsc1 = 90 / max(sprite_get_width(_rs1), sprite_get_height(_rs1));
+                    // 底板 + 图案统一画法（mod_fusion_draw_recipe），大小对齐左边的卡片格 → 90
                     var _rx1 = ((x - 618) + (411 * j)) - 122;
                     var _ry1 = (y - 248) + (165 * i);
-                    draw_sprite_ext(_rs1, _rsub1,
-                        _rx1 + (sprite_get_xoffset(_rs1) - sprite_get_width(_rs1) * 0.5) * _rsc1,
-                        _ry1 + (sprite_get_yoffset(_rs1) - sprite_get_height(_rs1) * 0.5) * _rsc1,
-                        _rsc1, _rsc1, 0, c_white, 1);
+                    mod_fusion_draw_recipe(_goods_d1.unlock_item_id, 0, _rx1, _ry1, 90);
                     if (has_fusion_recipe(_goods_d1.unlock_item_id, 0))
                     {
                         draw_set_color(c_black);
@@ -127,7 +120,8 @@ for (var i = 0; i < 4; i++)
             if (ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)) != undefined)
             {
                 var goods_info = ds_map_find_value(global.gods_goods_map, ds_list_find_value(gods_goods_list, (i * 4) + j + ((current_page - 1) * 16)));
-                var goods_spr = goods_info.spr;
+                // 菜谱/凭证类商品不再存 spr（它们走底板 + 立绘的通用画法）→ 取不到就 -1
+                var goods_spr = variable_struct_exists(goods_info, "spr") ? goods_info.spr : -1;
                 var target_card_id = goods_info.unlock_item_id;
                 var _gsub = variable_struct_exists(goods_info, "spr_sub") ? goods_info.spr_sub : 0;
                 var _gsc = 1.5;
@@ -141,7 +135,14 @@ for (var i = 0; i < 4; i++)
                     var _tcy = ((y - 273) + (165 * i) + 25);
                     transfer_credit_draw(_tcx - 52.5, _tcy - 52.5, goods_info.unlock_item_id, goods_info.target_shape, 105, 0, 1);
                 }
-                else
+                else if (variable_struct_exists(goods_info, "recipe_id"))
+                {
+                    // 融合菜谱：底板 + 图案（唯一画法）；初融那批没有 target_shape → 按 0 档
+                    var _rshape_d = variable_struct_exists(goods_info, "target_shape") ? goods_info.target_shape : 0;
+                    mod_fusion_draw_recipe(goods_info.unlock_item_id, _rshape_d,
+                        ((x - 618) + (411 * j)) - 122, ((y - 273) + (165 * i) + 25), 90);
+                }
+                else if (goods_spr != -1)
                 {
                     // 原点不一样（食谱图是 0,0，凭证是中心 4）→ 统一按「中心对齐」摆
                     draw_sprite_ext(goods_spr, _gsub,

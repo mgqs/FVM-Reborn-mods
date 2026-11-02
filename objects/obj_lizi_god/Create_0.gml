@@ -20,6 +20,7 @@ target_type = "throw";
 target_instance = -4;
 cooldown_timer = cycle;
 attacking = false;
+lizi_fired = false;     // 本轮是否已经脱手（第 19 帧出弹，见 Step_0）
 
 // 深度融合（shape>=1）：爆炸伤害 / 周期，按星级 0~16
 // 数值直接写在本对象里（来源：这组卡的推荐数值和情报岛.xlsx），不走植物注册表

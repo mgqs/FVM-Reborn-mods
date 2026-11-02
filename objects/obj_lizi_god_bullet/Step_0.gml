@@ -21,10 +21,13 @@ if (x > 2200 || y > 1200 || x < -200 || y < -200)
 
 if (has_target)
 {
-    if (abs(x - target_x) < 5)
+    // 落地判定用「越过落点」而不是 |x-target_x|<5：
+    //   远距离时 move_speed 有 13px/帧，5px 阈值可能整帧跨过去 → 永远不落地、飞出地图（旧 bug）
+    if (x >= target_x)
     {
         x = target_x;
         y = target_y;
+        // 特效按原样 -30 摆放（2026-11-01 用户：这个位置之前是对的，别动）
         var inst = instance_create_depth(target_x, target_y - 30, 0, obj_lizi_god_bullet_effect);
         inst.damage = damage;
         inst.damage_type = damage_type;

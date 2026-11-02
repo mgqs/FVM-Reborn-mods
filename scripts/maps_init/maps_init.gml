@@ -43,8 +43,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"none",
-					"rewards":[{"prestige":1200,"kind":"first"},
-						{"prestige":360,"kind":"repeat"}]
+					"rewards":[{"prestige":1500,"kind":"first"},
+						{"prestige":450,"kind":"repeat"}]
 					},
 					{
 						"id":"tower_cake_1_2",
@@ -56,8 +56,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_1_1",
-					"rewards":[{"prestige":1440,"kind":"first"},
-						{"prestige":432,"kind":"repeat"}]
+					"rewards":[{"prestige":1800,"kind":"first"},
+						{"prestige":540,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_2_1",
@@ -69,8 +69,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_1_2",
-					"rewards":[{"prestige":1920,"kind":"first"},
-						{"prestige":576,"kind":"repeat"}]
+					"rewards":[{"prestige":2400,"kind":"first"},
+						{"prestige":720,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_2_2",
@@ -82,8 +82,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_2_1",
-					"rewards":[{"prestige":2400,"kind":"first"},
-						{"prestige":720,"kind":"repeat"}]
+					"rewards":[{"prestige":3000,"kind":"first"},
+						{"prestige":900,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_3_1",
@@ -95,8 +95,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_2_2",
-					"rewards":[{"prestige":2400,"kind":"first"},
-						{"prestige":720,"kind":"repeat"}]
+					"rewards":[{"prestige":3000,"kind":"first"},
+						{"prestige":900,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_3_2",
@@ -108,8 +108,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_3_1",
-					"rewards":[{"prestige":2880,"kind":"first"},
-						{"prestige":864,"kind":"repeat"}]
+					"rewards":[{"prestige":3600,"kind":"first"},
+						{"prestige":1080,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_4_1",
@@ -121,8 +121,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_3_2",
-					"rewards":[{"prestige":3360,"kind":"first"},
-						{"prestige":1008,"kind":"repeat"}]
+					"rewards":[{"prestige":4200,"kind":"first"},
+						{"prestige":1260,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_4_2",
@@ -134,8 +134,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_1",
-					"rewards":[{"prestige":3840,"kind":"first"},
-						{"prestige":1152,"kind":"repeat"}]
+					"rewards":[{"prestige":4800,"kind":"first"},
+						{"prestige":1440,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_5_1",
@@ -147,8 +147,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_4_2",
-					"rewards":[{"prestige":3840,"kind":"first"},
-						{"prestige":1152,"kind":"repeat"}]
+					"rewards":[{"prestige":4800,"kind":"first"},
+						{"prestige":1440,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_5_2",
@@ -160,8 +160,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_5_1",
-					"rewards":[{"prestige":4320,"kind":"first"},
-						{"prestige":1296,"kind":"repeat"}]
+					"rewards":[{"prestige":5400,"kind":"first"},
+						{"prestige":1620,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_6_1",
@@ -173,8 +173,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_5_2",
-					"rewards":[{"prestige":4320,"kind":"first"},
-						{"prestige":1296,"kind":"repeat"}]
+					"rewards":[{"prestige":5400,"kind":"first"},
+						{"prestige":1620,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_6_2",
@@ -186,8 +186,8 @@ function maps_init(){
 					"elite_music":mus_delicious_tower_elite,
 					"boss_music":mus_delicious_tower_boss,
 					"pre_level":"tower_cake_6_1",
-					"rewards":[{"prestige":4800,"kind":"first"},
-						{"prestige":1440,"kind":"repeat"}]
+					"rewards":[{"prestige":6000,"kind":"first"},
+						{"prestige":1800,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_7_1",
@@ -199,8 +199,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_6_2",
-					"rewards":[{"prestige":4800,"kind":"first"},
-						{"prestige":1440,"kind":"repeat"}]
+					"rewards":[{"prestige":6000,"kind":"first"},
+						{"prestige":1800,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_7_2",
@@ -212,8 +212,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_7_1",
-					"rewards":[{"prestige":5280,"kind":"first"},
-						{"prestige":1584,"kind":"repeat"}]
+					"rewards":[{"prestige":6600,"kind":"first"},
+						{"prestige":1980,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_8_1",
@@ -225,8 +225,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_7_2",
-					"rewards":[{"prestige":5280,"kind":"first"},
-						{"prestige":1584,"kind":"repeat"}]
+					"rewards":[{"prestige":6600,"kind":"first"},
+						{"prestige":1980,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_8_2",
@@ -238,8 +238,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_8_1",
-					"rewards":[{"prestige":5760,"kind":"first"},
-						{"prestige":1728,"kind":"repeat"}]
+					"rewards":[{"prestige":7200,"kind":"first"},
+						{"prestige":2160,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_9_1",
@@ -251,8 +251,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_8_2",
-					"rewards":[{"prestige":5760,"kind":"first"},
-						{"prestige":1728,"kind":"repeat"}]
+					"rewards":[{"prestige":7200,"kind":"first"},
+						{"prestige":2160,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_9_2",
@@ -264,8 +264,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_1",
-					"rewards":[{"prestige":6240,"kind":"first"},
-						{"prestige":1872,"kind":"repeat"}]
+					"rewards":[{"prestige":7800,"kind":"first"},
+						{"prestige":2340,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_10_1",
@@ -277,8 +277,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_9_2",
-					"rewards":[{"prestige":6240,"kind":"first"},
-						{"prestige":1872,"kind":"repeat"}]
+					"rewards":[{"prestige":7800,"kind":"first"},
+						{"prestige":2340,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_10_2",
@@ -290,8 +290,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_10_1",
-					"rewards":[{"prestige":6720,"kind":"first"},
-						{"prestige":2016,"kind":"repeat"}]
+					"rewards":[{"prestige":8400,"kind":"first"},
+						{"prestige":2520,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_11_1",
@@ -303,8 +303,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_10_2",
-					"rewards":[{"prestige":6720,"kind":"first"},
-						{"prestige":2016,"kind":"repeat"}]
+					"rewards":[{"prestige":8400,"kind":"first"},
+						{"prestige":2520,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_11_2",
@@ -316,8 +316,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_11_1",
-					"rewards":[{"prestige":7200,"kind":"first"},
-						{"prestige":2160,"kind":"repeat"}]
+					"rewards":[{"prestige":9000,"kind":"first"},
+						{"prestige":2700,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_12_1",
@@ -329,8 +329,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_11_2",
-					"rewards":[{"prestige":7200,"kind":"first"},
-						{"prestige":2160,"kind":"repeat"}]
+					"rewards":[{"prestige":9000,"kind":"first"},
+						{"prestige":2700,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_12_2",
@@ -342,8 +342,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_1",
-					"rewards":[{"prestige":7680,"kind":"first"},
-						{"prestige":2304,"kind":"repeat"}]
+					"rewards":[{"prestige":9600,"kind":"first"},
+						{"prestige":2880,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_13_1",
@@ -355,8 +355,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_12_2",
-					"rewards":[{"prestige":8160,"kind":"first"},
-						{"prestige":2448,"kind":"repeat"}]
+					"rewards":[{"prestige":10200,"kind":"first"},
+						{"prestige":3060,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_13_2",
@@ -368,8 +368,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_13_1",
-					"rewards":[{"prestige":8640,"kind":"first"},
-						{"prestige":2592,"kind":"repeat"}]
+					"rewards":[{"prestige":10800,"kind":"first"},
+						{"prestige":3240,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_14_1",
@@ -381,8 +381,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_13_2",
-					"rewards":[{"prestige":8640,"kind":"first"},
-						{"prestige":2592,"kind":"repeat"}]
+					"rewards":[{"prestige":10800,"kind":"first"},
+						{"prestige":3240,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_14_2",
@@ -394,8 +394,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_14_1",
-					"rewards":[{"prestige":9120,"kind":"first"},
-						{"prestige":2736,"kind":"repeat"}]
+					"rewards":[{"prestige":11400,"kind":"first"},
+						{"prestige":3420,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_15_1",
@@ -407,8 +407,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_14_2",
-					"rewards":[{"prestige":9120,"kind":"first"},
-						{"prestige":2736,"kind":"repeat"}]
+					"rewards":[{"prestige":11400,"kind":"first"},
+						{"prestige":3420,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_15_2",
@@ -420,8 +420,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_15_1",
-					"rewards":[{"prestige":9600,"kind":"first"},
-						{"prestige":2880,"kind":"repeat"}]
+					"rewards":[{"prestige":12000,"kind":"first"},
+						{"prestige":3600,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_16_1",
@@ -433,8 +433,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_15_2",
-					"rewards":[{"prestige":9600,"kind":"first"},
-						{"prestige":2880,"kind":"repeat"}]
+					"rewards":[{"prestige":12000,"kind":"first"},
+						{"prestige":3600,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_16_2",
@@ -446,8 +446,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_16_1",
-					"rewards":[{"prestige":10080,"kind":"first"},
-						{"prestige":3024,"kind":"repeat"}]
+					"rewards":[{"prestige":12600,"kind":"first"},
+						{"prestige":3780,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_17_1",
@@ -459,8 +459,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_16_2",
-					"rewards":[{"prestige":10080,"kind":"first"},
-						{"prestige":3024,"kind":"repeat"}]
+					"rewards":[{"prestige":12600,"kind":"first"},
+						{"prestige":3780,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_17_2",
@@ -472,8 +472,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_17_1",
-					"rewards":[{"prestige":10560,"kind":"first"},
-						{"prestige":3168,"kind":"repeat"}]
+					"rewards":[{"prestige":13200,"kind":"first"},
+						{"prestige":3960,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_18_1",
@@ -485,8 +485,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_17_2",
-					"rewards":[{"prestige":10560,"kind":"first"},
-						{"prestige":3168,"kind":"repeat"}]
+					"rewards":[{"prestige":13200,"kind":"first"},
+						{"prestige":3960,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_18_2",
@@ -498,8 +498,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_18_1",
-					"rewards":[{"prestige":11040,"kind":"first"},
-						{"prestige":3312,"kind":"repeat"}]
+					"rewards":[{"prestige":13800,"kind":"first"},
+						{"prestige":4140,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_19_1",
@@ -511,8 +511,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_18_2",
-					"rewards":[{"prestige":10560,"kind":"first"},
-						{"prestige":3168,"kind":"repeat"}]
+					"rewards":[{"prestige":13200,"kind":"first"},
+						{"prestige":3960,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_19_2",
@@ -524,8 +524,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_19_1",
-					"rewards":[{"prestige":11040,"kind":"first"},
-						{"prestige":3312,"kind":"repeat"}]
+					"rewards":[{"prestige":13800,"kind":"first"},
+						{"prestige":4140,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_20_1",
@@ -537,8 +537,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_19_2",
-					"rewards":[{"prestige":10560,"kind":"first"},
-						{"prestige":3168,"kind":"repeat"}]
+					"rewards":[{"prestige":13200,"kind":"first"},
+						{"prestige":3960,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_20_2",
@@ -550,8 +550,8 @@ function maps_init(){
 					"elite_music":mus_volcanic_tower_elite,
 					"boss_music":mus_volcanic_tower_boss,
 					"pre_level":"tower_cake_20_1",
-					"rewards":[{"prestige":10560,"kind":"first"},
-						{"prestige":3168,"kind":"repeat"}]
+					"rewards":[{"prestige":13200,"kind":"first"},
+						{"prestige":3960,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_21_1",
@@ -563,8 +563,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_20_2",
-					"rewards":[{"prestige":11040,"kind":"first"},
-						{"prestige":3312,"kind":"repeat"}]
+					"rewards":[{"prestige":13800,"kind":"first"},
+						{"prestige":4140,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_21_2",
@@ -576,8 +576,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_21_1",
-					"rewards":[{"prestige":12000,"kind":"first"},
-						{"prestige":3600,"kind":"repeat"}]
+					"rewards":[{"prestige":15000,"kind":"first"},
+						{"prestige":4500,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_22_1",
@@ -589,8 +589,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_21_2",
-					"rewards":[{"prestige":12960,"kind":"first"},
-						{"prestige":3888,"kind":"repeat"}]
+					"rewards":[{"prestige":16200,"kind":"first"},
+						{"prestige":4860,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_22_2",
@@ -602,8 +602,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_22_1",
-					"rewards":[{"prestige":13920,"kind":"first"},
-						{"prestige":4176,"kind":"repeat"}]
+					"rewards":[{"prestige":17400,"kind":"first"},
+						{"prestige":5220,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_23_1",
@@ -615,8 +615,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_22_2",
-					"rewards":[{"prestige":13920,"kind":"first"},
-						{"prestige":4176,"kind":"repeat"}]
+					"rewards":[{"prestige":17400,"kind":"first"},
+						{"prestige":5220,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_23_2",
@@ -628,8 +628,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_23_1",
-					"rewards":[{"prestige":14400,"kind":"first"},
-						{"prestige":4320,"kind":"repeat"}]
+					"rewards":[{"prestige":18000,"kind":"first"},
+						{"prestige":5400,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_24_1",
@@ -641,8 +641,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_23_2",
-					"rewards":[{"prestige":14400,"kind":"first"},
-						{"prestige":4320,"kind":"repeat"}]
+					"rewards":[{"prestige":18000,"kind":"first"},
+						{"prestige":5400,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_24_2",
@@ -654,8 +654,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_24_1",
-					"rewards":[{"prestige":14880,"kind":"first"},
-						{"prestige":4464,"kind":"repeat"}]
+					"rewards":[{"prestige":18600,"kind":"first"},
+						{"prestige":5580,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_25_1",
@@ -667,8 +667,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_24_2",
-					"rewards":[{"prestige":14880,"kind":"first"},
-						{"prestige":4464,"kind":"repeat"}]
+					"rewards":[{"prestige":18600,"kind":"first"},
+						{"prestige":5580,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_25_2",
@@ -680,8 +680,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_25_1",
-					"rewards":[{"prestige":15360,"kind":"first"},
-						{"prestige":4608,"kind":"repeat"}]
+					"rewards":[{"prestige":19200,"kind":"first"},
+						{"prestige":5760,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_26_1",
@@ -693,8 +693,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_25_2",
-					"rewards":[{"prestige":15360,"kind":"first"},
-						{"prestige":4608,"kind":"repeat"}]
+					"rewards":[{"prestige":19200,"kind":"first"},
+						{"prestige":5760,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_26_2",
@@ -706,8 +706,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_26_1",
-					"rewards":[{"prestige":15840,"kind":"first"},
-						{"prestige":4752,"kind":"repeat"}]
+					"rewards":[{"prestige":19800,"kind":"first"},
+						{"prestige":5940,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_27_1",
@@ -719,8 +719,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_26_2",
-					"rewards":[{"prestige":15840,"kind":"first"},
-						{"prestige":4752,"kind":"repeat"}]
+					"rewards":[{"prestige":19800,"kind":"first"},
+						{"prestige":5940,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_27_2",
@@ -732,8 +732,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_27_1",
-					"rewards":[{"prestige":16320,"kind":"first"},
-						{"prestige":4896,"kind":"repeat"}]
+					"rewards":[{"prestige":20400,"kind":"first"},
+						{"prestige":6120,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_28_1",
@@ -745,8 +745,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_27_2",
-					"rewards":[{"prestige":16320,"kind":"first"},
-						{"prestige":4896,"kind":"repeat"}]
+					"rewards":[{"prestige":20400,"kind":"first"},
+						{"prestige":6120,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_28_2",
@@ -758,8 +758,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_28_1",
-					"rewards":[{"prestige":16800,"kind":"first"},
-						{"prestige":5040,"kind":"repeat"}]
+					"rewards":[{"prestige":21000,"kind":"first"},
+						{"prestige":6300,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_29_1",
@@ -771,8 +771,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_28_2",
-					"rewards":[{"prestige":16800,"kind":"first"},
-						{"prestige":5040,"kind":"repeat"}]
+					"rewards":[{"prestige":21000,"kind":"first"},
+						{"prestige":6300,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_29_2",
@@ -784,8 +784,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_29_1",
-					"rewards":[{"prestige":17280,"kind":"first"},
-						{"prestige":5184,"kind":"repeat"}]
+					"rewards":[{"prestige":21600,"kind":"first"},
+						{"prestige":6480,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_30_1",
@@ -797,8 +797,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_29_2",
-					"rewards":[{"prestige":17280,"kind":"first"},
-						{"prestige":5184,"kind":"repeat"}]
+					"rewards":[{"prestige":21600,"kind":"first"},
+						{"prestige":6480,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_30_2",
@@ -810,8 +810,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_30_1",
-					"rewards":[{"prestige":17760,"kind":"first"},
-						{"prestige":5328,"kind":"repeat"}]
+					"rewards":[{"prestige":22200,"kind":"first"},
+						{"prestige":6660,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_31_1",
@@ -823,8 +823,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_30_2",
-					"rewards":[{"prestige":17760,"kind":"first"},
-						{"prestige":5328,"kind":"repeat"}]
+					"rewards":[{"prestige":22200,"kind":"first"},
+						{"prestige":6660,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_31_2",
@@ -836,8 +836,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_31_1",
-					"rewards":[{"prestige":18240,"kind":"first"},
-						{"prestige":5472,"kind":"repeat"}]
+					"rewards":[{"prestige":22800,"kind":"first"},
+						{"prestige":6840,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_32_1",
@@ -849,8 +849,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_31_2",
-					"rewards":[{"prestige":18240,"kind":"first"},
-						{"prestige":5472,"kind":"repeat"}]
+					"rewards":[{"prestige":22800,"kind":"first"},
+						{"prestige":6840,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_32_2",
@@ -862,8 +862,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_32_1",
-					"rewards":[{"prestige":18720,"kind":"first"},
-						{"prestige":5616,"kind":"repeat"}]
+					"rewards":[{"prestige":23400,"kind":"first"},
+						{"prestige":7020,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_33_1",
@@ -875,8 +875,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_32_2",
-					"rewards":[{"prestige":18720,"kind":"first"},
-						{"prestige":5616,"kind":"repeat"}]
+					"rewards":[{"prestige":23400,"kind":"first"},
+						{"prestige":7020,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_33_2",
@@ -888,8 +888,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_daytime_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_33_1",
-					"rewards":[{"prestige":19200,"kind":"first"},
-						{"prestige":5760,"kind":"repeat"}]
+					"rewards":[{"prestige":24000,"kind":"first"},
+						{"prestige":7200,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_34_1",
@@ -901,8 +901,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_33_2",
-					"rewards":[{"prestige":19200,"kind":"first"},
-						{"prestige":5760,"kind":"repeat"}]
+					"rewards":[{"prestige":24000,"kind":"first"},
+						{"prestige":7200,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_34_2",
@@ -914,8 +914,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_night_elite,
 					"boss_music":mus_floating_island_night_boss,
 					"pre_level":"tower_cake_34_1",
-					"rewards":[{"prestige":19680,"kind":"first"},
-						{"prestige":5904,"kind":"repeat"}]
+					"rewards":[{"prestige":24600,"kind":"first"},
+						{"prestige":7380,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_35_1",
@@ -927,8 +927,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_34_2",
-					"rewards":[{"prestige":19680,"kind":"first"},
-						{"prestige":5904,"kind":"repeat"}]
+					"rewards":[{"prestige":24600,"kind":"first"},
+						{"prestige":7380,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_35_2",
@@ -940,8 +940,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_35_1",
-					"rewards":[{"prestige":20160,"kind":"first"},
-						{"prestige":6048,"kind":"repeat"}]
+					"rewards":[{"prestige":25200,"kind":"first"},
+						{"prestige":7560,"kind":"repeat"}]
 				},
 				{
 					"id":"tower_cake_35_3",
@@ -953,8 +953,8 @@ function maps_init(){
 					"elite_music":mus_floating_island_crown_elite,
 					"boss_music":mus_floating_island_daytime_boss,
 					"pre_level":"tower_cake_35_2",
-					"rewards":[{"prestige":20640,"kind":"first"},
-						{"prestige":6192,"kind":"repeat"}]
+					"rewards":[{"prestige":25800,"kind":"first"},
+						{"prestige":7740,"kind":"repeat"}]
 				},
 			]
 		}

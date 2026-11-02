@@ -106,7 +106,7 @@ function mod_skill_init()
     register_card_skill("ronghesanxian", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("shuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
     register_card_skill("rongheshuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
-    register_card_skill("chunsun", "prepare_time", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
+    register_card_skill("chunsun", "cycle", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
     register_card_skill("niuyouguo", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
     register_card_skill("ronghedapao", "cooldown", [1500, 1410, 1320, 1230, 1140, 1050, 960, 870, 780]);
     register_card_skill("ronghekafei", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
@@ -126,4 +126,6 @@ function mod_skill_init()
     register_card_skill("mixian", "cycle", [90, 87, 84, 81, 78, 74, 70, 66, 60]);
     register_card_skill("bbq", "cycle", [84, 81, 78, 75, 72, 69, 66, 60, 54]);
     register_card_skill("eightcake", "cycle", [120, 117, 114, 111, 108, 105, 102, 99, 90]);
+    register_card_skill("tangchaolizi", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
+    register_card_skill("nengliangmiao", "cooldown", [480, 450, 420,390, 360, 330, 300, 270, 240]);
 }

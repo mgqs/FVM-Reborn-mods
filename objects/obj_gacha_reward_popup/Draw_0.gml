@@ -73,16 +73,8 @@ if (reward != noone) {
         draw_text(cx, cy + 150, "形态：" + string(reward_shape));
     } else if (reward_type == "recipe") {
         // === 融合菜谱奖励 ===
-        // 图标按最长边 150 居中，中心放在卡框上部（跟卡面同层次）。
-        // ⚠️ spr_fusion_recipe0 原点在左上、spr_voucher_* 原点在中心，两种都要换算
-        var _rspr = fusion_recipe_sprite(reward_id, reward_shape);
-        var _rsw = sprite_get_width(_rspr[0]);
-        var _rsh = sprite_get_height(_rspr[0]);
-        var _rsc = 150 / max(_rsw, _rsh);
-        draw_sprite_ext(_rspr[0], _rspr[1],
-            cx + (sprite_get_xoffset(_rspr[0]) - _rsw * 0.5) * _rsc,
-            (cy - 60) + (sprite_get_yoffset(_rspr[0]) - _rsh * 0.5) * _rsc,
-            _rsc, _rsc, 0, c_white, 1);
+        // 底板 + 图案，150 居中放在卡框上部（唯一画法，见 mod_fusion_draw_recipe）
+        mod_fusion_draw_recipe(reward_id, reward_shape, cx, cy - 60, 150);
 
         // 名字拆两行：卡名 + 档位（原来是一长串「深度融合菜谱（火影怪味鱿鱼）」再写一遍「融合菜谱」）
         draw_set_color(c_green);

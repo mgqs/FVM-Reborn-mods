@@ -1,48 +1,52 @@
 /// =============================================================================
-///  mod/craft · 转职表（合成屋左侧第 3 按钮，craft_top_tab == 2）
+///  mod/craft · 转职表（合成屋左侧第 3 个按钮，craft_top_tab == 2）
 ///  这个文件 = 转职的**全部数值 + 全部规则 + 确认窗绘制**，obj_craft_bg 只调它
 ///  对象那边只留：几何（tg_* 坐标）/ 界面状态（tg_card·tg_assure·tg_pity·tg_confirm·tg_fx）
 ///                列表与元数据缓存（tg_rebuild）/ Draw 与 Step
 ///  详细方案：桌面\fvm的ai\转职系统方案.md
 ///
-///  一、数值（要改就改这里；参数是**凭证档位 1~5**，不是卡形态）
-///    mod_tg_gold(tier)    3000 / 15000 / 5000 / 20000 / 50000
-///    mod_tg_assure(tier)  5000 / 50000 / 100000 / 200000 / 300000
-///    mod_tg_rate(tier)    30 / 20 / 30 / 20 / 20
-///    mod_tg_pity_max(tier) 转职保底次数：一转 6 / 二转 12 / 三·四·终转 15（与保险金无关）
+///  ⚠️ 下面所有函数的 tier 参数都是**凭证档位 1~5**（1 一转 / 2 二转 / 3 三转 / 4 四转 / 5 终转），
+///     **不是卡形态**；金卡的档位 = 卡形态 + 2
+///
+///  一、数值（要改就改这里，全工程生效）
+///    mod_tg_gold(tier)      转职金币   3000 / 10000 / 50000 / 100000 / 200000（档位越界按 15000）
+///    mod_tg_assure(tier)    保险金     5000 / 40000 / 100000 / 200000 / 300000（越界按 50000）
+///    mod_tg_rate(tier)      成功率(%)  一转 30，其余 20
+///    mod_tg_pity_max(tier)  保底次数   一转 6 / 二转 12 / 三·四·终转 15（与保险金开关无关）
+///    mod_tg_star_need(tier) 星级门槛   一转 6 / 二转 10 / 三转 13 / 四转 14 / 终转 16（0 = 不要求）
 ///
 ///  二、规则（纯函数，不碰实例变量 —— 状态全由调用方传进来）
-///    mod_tg_target_shape(card_id)              目标形态 = 练到过的最高形态 + 1
-///    mod_tg_check(card_id, assure_on, gold, debug)  能不能转 → { ok, reason, shape, gold, rate, assure, has_credit }
-///    mod_tg_roll(rate, pity, pity_max)   掷骰 + 保底 → { win, pity }
+///    mod_tg_target_shape(card_id)                    目标形态 = 练到过的最高形态 + 1
+///    mod_tg_check(card_id, assure_on, gold, debug)   能不能转 → { ok, reason, shape, gold, rate, assure, has_credit }
+///    mod_tg_roll(rate, pity, pity_max)               掷骰 + 保底 → { win, pity }
 ///
-///  二·b、缺凭证时「当场补全并转职」（2026-10-28，取代原购买按钮）
-///    mod_tg_balance(currency)                      某货币余额（gold 走存档）
-///    mod_tg_assure_tip(assure_on)                  未勾保险金的提醒句
-///    mod_tg_fill_check(card_id, assure_on, debug)  能不能「买一张 + 直接转职」→ { ok, reason, price, currency, ... }
-///    mod_tg_fill_apply(price, currency, credit_id, debug) 扣货币 + 发 1 张凭证（卡不动）
-///    mod_tg_fill_confirm_draw(hover, price, currency_name, credit_name, assure_on, currency) 补凭证弹窗
+///  三、缺凭证时「当场补全并转职」（取代原购买按钮）
+///    mod_tg_balance(currency)                       某货币余额（gold 走存档）
+///    mod_tg_assure_tip(assure_on)                   未勾保险金的提醒句
+///    mod_tg_fill_check(card_id, assure_on, debug)   能不能「买一张 + 直接转职」→ { ok, reason, price, currency, ... }
+///    mod_tg_fill_apply(price, currency, credit_id, debug)  扣货币 + 发 1 张凭证（卡不动）
+///    mod_tg_fill_confirm_draw(...)                  补凭证确认弹窗
 ///
-///  三、确认窗绘制
+///  四、确认窗绘制
 ///    mod_tg_confirm_rect(i)          按钮矩形（0 = 确定 / 1 = 取消），Draw 与 Step 共用
-///    mod_tg_modal_draw(hover, lines, tip, tip_bottom)  通用两按钮弹窗（转职确认 / 补凭证确认共用）
+///    mod_tg_modal_draw(...)          通用两按钮弹窗（转职确认 / 补凭证确认共用）
 ///    mod_tg_confirm_draw(hover, assure_on)  转职确认窗（调 mod_tg_modal_draw）
-///    mod_tg_help_rect() / mod_tg_help_draw(hover)  「转职说明」弹窗（单个确定按钮）
+///    mod_tg_help_rect / mod_tg_help_draw    「转职说明」弹窗（单个确定按钮）
 ///
-///  四、星级门槛（2026-10-28 用户定）
-///    mod_tg_star_need(tier)  一转 6 / 二转 10 / 三转 13 / 四转 14 / 终转 16（星）
-///    mod_tg_check 里在「此卡已无法转职」之后、「缺凭证」之前判 —— 不够就返回「一转需要达到7星」
-///    mod_tg_fill_check 里也判一次（星级不够就不让先买凭证再转）
-///    面板左上角「转职说明」按钮的弹窗**直接读这两个函数**（「X转：X星」），改数只改一处
+///  五、判定的先后顺序（都在 mod_tg_check 里，一次只返回一个 reason）
+///    ① 没选卡 → ② 还没拥有这张卡 → ③ 形态上限（此卡已无法转职）
+///    → ④ 星级不够 → ⑤ 缺凭证 → ⑥ 金币不足
+///    对象那边配 tg_notice 保证屏幕上不会叠第二条提示；
+///    「转职说明」弹窗直接遍历 5 档读 mod_tg_star_need，改数不用改弹窗
 /// =============================================================================
 
 /// @func mod_tg_gold(tier) 转职金币（tier = 凭证档位 1~5，不是卡形态）
-/// 🔴 用户定价（2026-10-27 定稿）：一转 3,000 / 二转 15,000 / 三转 5,000 / 四转 20,000 / 终转 50,000
+/// 🔴 用户定价（2026-10-27 定稿）：一转 3,000 / 二转 10,000 / 三转 50,000 / 四转 100,000 / 终转 200,000
 function mod_tg_gold(_tier){
     switch (_tier){
         case 1: return 3000;      // 一转
-        case 2: return 20000;     // 二转
-        case 3: return 75000;      // 三转（金卡）
+        case 2: return 10000;     // 二转
+        case 3: return 50000;      // 三转（金卡）
         case 4: return 100000;     // 四转（金卡）
         case 5: return 200000;     // 终转（金卡）
     }
@@ -50,11 +54,11 @@ function mod_tg_gold(_tier){
 }
 
 /// @func mod_tg_assure(tier) 保险金（货币 = 金币；tier = 凭证档位 1~5）
-/// 🔴 用户定价（2026-10-30 调整）：一转 5,000 / 二转 50,000 / 三转 100,000 / 四转 200,000 / 终转 300,000
+/// 🔴 用户定价（2026-10-30 调整）：一转 5,000 / 二转 40,000 / 三转 100,000 / 四转 200,000 / 终转 300,000
 function mod_tg_assure(_tier){
     switch (_tier){
         case 1: return 5000;      // 一转
-        case 2: return 50000;     // 二转
+        case 2: return 40000;     // 二转
         case 3: return 100000;      // 三转（金卡）
         case 4: return 200000;     // 四转（金卡）
         case 5: return 300000;     // 终转（金卡）
@@ -62,7 +66,7 @@ function mod_tg_assure(_tier){
     return 50000;
 }
 
-/// @func mod_tg_rate(tier) 成功率（%）：一转 / 三转 30，其余 20
+/// @func mod_tg_rate(tier) 成功率（%）：一转 30，其余 20
 function mod_tg_rate(_tier){
     if (_tier == 1) return 30;
     return 20;
@@ -94,7 +98,7 @@ function mod_tg_tier_short(_tier){
 }
 
 /// @func mod_tg_star_need(tier) 该档转职要求的**星级**（0 = 不要求）
-///   🔴 2026-10-29 用户定：**一转 7 星 / 二转 10 星 / 三转 13 星 / 四转 14 星 / 终转 16 星**
+///   🔴 2026-10-29 用户定（2026-10-30 一转由 7 降到 6）：**一转 6 星 / 二转 10 星 / 三转 13 星 / 四转 14 星 / 终转 16 星**
 ///      （三·四·终转 = 金卡的 1/2/3 形态；16 星是星级上限）
 ///      面板左上角的「转职说明」按钮直接遍历这 5 档显示「X转：X星」，改数不用改弹窗
 function mod_tg_star_need(_tier){
@@ -145,7 +149,7 @@ function mod_tg_check(_card_id, _assure_on, _gold, _debug = false){
     // 只读 card_max_available_shape 会把「注册表里只有 0 转」的卡全部误报成已转满
     if (_shape > transfer_credit_card_shapes_max(_card_id)){ _r.reason = "此卡已无法转职"; return _r; }
 
-    // 星级门槛（🔴 2026-10-29 用户定）：一转 7 星 / 二转 10 星，不够就不让转
+    // 星级门槛（🔴 2026-10-29 用户定，一转 2026-10-30 由 7 降到 6）：不够就不让转
     //   放在「缺凭证」之前：这是卡本身的条件，跟有没有凭证无关
     var _need_star = mod_tg_star_need(_tier);
     if (_need_star > 0){
@@ -226,7 +230,16 @@ function mod_tg_fill_check(_card_id, _assure_on, _debug = false){
     if (_pi.price <= 0){ _r.reason = "该凭证无法快速补齐"; return _r; }
 
     var _blk = transfer_credit_buyable(_card_id, _shape);
-    if (_blk != ""){ _r.reason = "缺少凭证，不满足购买条件，无法补齐"; return _r; }
+    if (_blk != ""){
+        // 魔塔层数不到 → 直接说清要打哪一层（用户 2026-11-01 口径），别丢一句「不满足购买条件」
+        var _need_key_f = transfer_credit_tower_floor_req(_card_id, _shape);
+        if (_need_key_f > 0 && transfer_credit_tower_done_key() < _need_key_f){
+            _r.reason = "此凭证需魔塔" + transfer_credit_tower_key_text(_need_key_f) + "解锁";
+        } else {
+            _r.reason = "缺少凭证，不满足购买条件，无法补齐";
+        }
+        return _r;
+    }
 
     _r.price         = _pi.price;
     _r.currency      = _pi.currency;
@@ -300,7 +313,8 @@ function mod_tg_confirm_rect(_i){
 /// @param lines 正文行数组，元素 = { text:"...", red:true/false }（red 画红字；行数 1~4 自动排）
 /// @param tip   附注（「暂未勾选保险金」）；空串不画
 /// @param tip_bottom true = 画在按钮下方，false = 画在标题下方
-function mod_tg_modal_draw(_hover, _lines, _tip = "", _tip_bottom = false){
+/// @param labels 两个按钮的文案（2026-11-01 加，默认「确定 / 取消」；开局奖励窗用「领取 / 以后再说」）
+function mod_tg_modal_draw(_hover, _lines, _tip = "", _tip_bottom = false, _labels = ["确定", "取消"]){
     var _px = room_width * 0.5, _py = room_height * 0.5;
     draw_set_alpha(0.55);
     draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
@@ -330,7 +344,7 @@ function mod_tg_modal_draw(_hover, _lines, _tip = "", _tip_bottom = false){
         draw_set_colour(c_white);
     }
 
-    var _lbl = ["确定", "取消"];
+    var _lbl = _labels;
     for (var _b = 0; _b < 2; _b++){
         var _r  = mod_tg_confirm_rect(_b);
         var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;

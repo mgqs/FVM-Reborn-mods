@@ -18,7 +18,7 @@ if (is_slowdown)
 //   ③ 精确：射线与敌人 bbox 的 slab 相交
 //   ★ 性能：射线单位向量每帧只算一次（sin/cos 不进敌人循环），
 //     粗筛让绝大多数敌人只花 ~10 次运算；旧写法每帧每敌人要算 ~20 次三角函数
-var _hittable = ["normal"];
+var _hittable = get_hittable_enemy_types("normal");
 
 var _mx = x + 7;
 var _my = y - 44;

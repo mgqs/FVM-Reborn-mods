@@ -153,6 +153,9 @@ function gods_shop_list_recharge()
                     //   与背包凭证页同一套字（mod_evo_tooltip），2026-10-28 用户要求
                     if (_goods_b1.type == "evo") {
                         inst.tooltip_text = mod_evo_tooltip(_goods_b1.unlock_item_id, _goods_b1.description);
+                    } else if (_is_recipe_b1) {
+                        // 菜谱提示统一走食灵融合页那一套（菜谱名 / 主卡 / 副卡），2026-11-01
+                        inst.tooltip_text = mod_fusion_recipe_tip(_goods_b1.unlock_item_id, 0);
                     } else {
                         inst.tooltip_text = _goods_b1.description;
                     }
@@ -221,7 +224,13 @@ function gods_shop_list_recharge()
                     inst.cost = goods_info.cost;
                     // 名字统一走 gods_goods_name()（不读 display_name，tvoucher 那类已经没这个字段了）
                     inst.goods_name = gods_goods_name(goods_info);
-                    inst.tooltip_text = goods_info.description;
+                    if (_is_recipe_b2) {
+                        var _rs_b2 = 1;
+                        if (variable_struct_exists(goods_info, "target_shape")) _rs_b2 = goods_info.target_shape;
+                        inst.tooltip_text = mod_fusion_recipe_tip(goods_info.unlock_item_id, _rs_b2);
+                    } else {
+                        inst.tooltip_text = goods_info.description;
+                    }
                     inst.recipe_id = _is_recipe_b2 ? goods_info.recipe_id : "";
                     inst.recipe_shape = -1;                       // 同上：第 2 页也可能缺字段
                     if (_is_recipe_b2) {

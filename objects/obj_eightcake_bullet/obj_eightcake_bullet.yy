@@ -10,8 +10,8 @@
   "name":"obj_eightcake_bullet",
   "overriddenProperties":[],
   "parent":{
-    "name":"Cards",
-    "path":"folders/物体/mod/Cards.yy",
+    "name":"Bullet",
+    "path":"folders/物体/mod/Bullet.yy",
   },
   "parentObjectId":{
     "name":"obj_bullet_parent",

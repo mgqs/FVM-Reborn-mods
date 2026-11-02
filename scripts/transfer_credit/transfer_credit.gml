@@ -440,7 +440,12 @@ function transfer_credit_tab_groups(){
         { key:"evo", title:"进化凭证", kind:"evo"             },   // 进化
         { key:"t3",  title:"三转凭证", kind:"transfer", tier:3 },   // 三（金卡）
         { key:"t4",  title:"四转凭证", kind:"transfer", tier:4 },   // 四（金卡）
-        { key:"t5",  title:"终转凭证", kind:"transfer", tier:5 }    // 终（金卡）
+        { key:"t5",  title:"终转凭证", kind:"transfer", tier:5 },   // 终（金卡）
+        // 融合菜谱（2026-11-01 用户要求）：排在终转下面，按 初融 → 深融 → 灵融
+        //   id = recipe_<卡id>_<形态 0/1/2>，命名/图标走 gacha_random_card 里的 fusion_recipe_*
+        { key:"rec0", title:"初级融合菜谱",   kind:"recipe", rshape:0 },
+        { key:"rec1", title:"深度融合菜谱",   kind:"recipe", rshape:1 },
+        { key:"rec2", title:"灵魂融合菜谱",   kind:"recipe", rshape:2 }
     ];
 }
 
@@ -469,6 +474,20 @@ function transfer_credit_tab_collect(){
                 if (_gr.kind != "transfer" || _gr.tier != _p.tier) continue;
                 array_push(_buckets[_g], { id:_id, kind:"transfer", tier:_p.tier, shape:_p.shape,
                     card_id:_p.card_id, group:_g, amount:_amt });
+                break;
+            }
+            continue;
+        }
+
+        if (string_pos("recipe_", _id) == 1 && string_length(_id) >= 10){
+            // recipe_<卡id>_<形态>：卡 id 自己可能带下划线，所以只认「末位是形态数字」
+            var _rlen  = string_length(_id);
+            var _rshp  = real(string_char_at(_id, _rlen));
+            var _rcid  = string_copy(_id, 8, _rlen - 9);
+            for (var _rg = 0; _rg < _gn; _rg++){
+                if (_groups[_rg].kind != "recipe" || _groups[_rg].rshape != _rshp) continue;
+                array_push(_buckets[_rg], { id:_id, kind:"recipe", tier:0, shape:_rshp,
+                    card_id:_rcid, group:_rg, amount:_amt });
                 break;
             }
             continue;
@@ -520,6 +539,7 @@ function transfer_credit_tab_rows(_items, _starts, _cols){
 /// @func transfer_credit_tab_name(item) 凭证名（背包格子悬停、商店等处共用）
 function transfer_credit_tab_name(_it){
     if (_it.kind == "evo") return transfer_credit_card_name(_it.card_id) + "（进化凭证）";
+    if (_it.kind == "recipe") return fusion_recipe_display_name(_it.card_id, _it.shape);
     return transfer_credit_name(_it.card_id, _it.shape);
 }
 
@@ -532,6 +552,13 @@ function transfer_credit_tab_tip(_it){
         return _head + "\n进化路线：" + mod_evo_route_text(_it.card_id)
             + "\n进化凭证：在合成屋-金卡进化中使用";
     }
+    if (_it.kind == "recipe"){
+        // 菜谱：菜谱名 / 主卡 / 副卡（同诸神商店那一套）→ 再写持有与用途（2026-11-01 用户要求，
+        //   主副卡必须写在「持有」上面，和商店保持一致）
+        return mod_fusion_recipe_tip(_it.card_id, _it.shape)
+            + "\n持有：" + string(_it.amount)
+            + "\n融合菜谱：在合成屋-食灵融合中使用";
+    }
     return _head + "\n转职凭证：在合成屋-卡片转职中使用"
         + "\n左键点击回收（" + string(transfer_credit_recycle_price()) + "威望/个）";
 }
@@ -539,6 +566,11 @@ function transfer_credit_tab_tip(_it){
 /// @func transfer_credit_tab_draw(item, x, y, size) 画一个凭证格子
 ///   @param x,y  格子**左上角**；size 格子边长
 function transfer_credit_tab_draw(_it, _x, _y, _size){
+    if (_it.kind == "recipe"){
+        // 菜谱图标 = 底板 + 图案（唯一画法，见 mod_fusion_draw_recipe；跟诸神/抽卡/合成屋同一套）
+        mod_fusion_draw_recipe(_it.card_id, _it.shape, _x + _size * 0.5, _y + _size * 0.5, _size * 0.92);
+        exit;
+    }
     if (_it.kind == "evo"){
         // 进化凭证没有单独图标：底板 + 该金卡的 0 形态立绘（跟进化页第 3 槽同一套画法）
         mod_evo_draw_credit(_it.card_id, _x + _size * 0.5, _y + _size * 0.5, true,
@@ -966,9 +998,16 @@ function credit_shop_filter_search(_list, _query){
     var _keep = ds_list_create();
     for (var _i = 0; _i < ds_list_size(_list); _i++){
         var _gid = ds_list_find_value(_list, _i);
-        if (string_pos(_q, string_lower(credit_shop_goods_name(global.goods_map[? _gid]))) > 0){
-            ds_list_add(_keep, _gid);
+        var _g = global.goods_map[? _gid];
+        var _hit = (string_pos(_q, string_lower(credit_shop_goods_name(_g))) > 0);
+        // 层数：按**前缀**匹配商品自己的 tower_floor
+        //   搜 "11"   → 11-1 / 11-2 都出来（21-1 不会被带出来，因为不是从头匹配）
+        //   搜 "11-1" → 只剩 11-1
+        if (!_hit && variable_struct_exists(_g, "tower_floor")){
+            var _f = string_lower(string(_g.tower_floor));
+            if (_f != "" && string_pos(_q, _f) == 1) _hit = true;
         }
+        if (_hit) ds_list_add(_keep, _gid);
     }
     ds_list_clear(_list);
     for (var _j = 0; _j < ds_list_size(_keep); _j++) ds_list_add(_list, ds_list_find_value(_keep, _j));
@@ -983,7 +1022,7 @@ function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
     var _sb = instance_create_depth(_bg_x + 615, _bg_y - 307, _depth, SearchBox);
     _sb.set_position(_bg_x + 440, _bg_y - 327)
         .set_size(350, 40)
-        .set_placeholder("搜索凭证名")
+        .set_placeholder("搜索凭证名或层数")
         .set_theme({
             bg:           make_colour_rgb(3, 43, 80),
             bg_focus:     make_colour_rgb(8, 62, 112),

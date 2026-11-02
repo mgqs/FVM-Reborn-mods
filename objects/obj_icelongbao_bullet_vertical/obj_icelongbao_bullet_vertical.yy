@@ -9,6 +9,7 @@
     {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_obstacle","path":"objects/obj_obstacle/obj_obstacle.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_water_god","path":"objects/obj_water_god/obj_water_god.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_ronghehuopen","path":"objects/obj_ronghehuopen/obj_ronghehuopen.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_nengliangmiao","path":"objects/obj_nengliangmiao/obj_nengliangmiao.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_icelongbao_bullet_vertical",

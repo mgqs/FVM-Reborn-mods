@@ -33,11 +33,7 @@ if (tab_shown != info_button_select) {
 	// 2026-10-31 用户要求：**切换页签不保留搜索内容** → 切页就把搜索框和过滤词一起清空
 	//   只 set_text("") 不够：SearchBox 每帧会从全局 keyboard_string 同步文字，
 	//   不清 keyboard_string 的话下一帧旧文字又会被写回来
-	info_search_text = ""
-	keyboard_string = ""
-	if (variable_instance_exists(id, "info_search_box") && instance_exists(info_search_box)) {
-		info_search_box.set_text("")
-	}
+	info_island_search_clear(id)
 	if (variable_instance_exists(id, "sr_rowv")) {
 		for (var _k = 0; _k < array_length(sr_rowv); _k++) sr_rowv[_k] = -1
 	}
@@ -91,7 +87,7 @@ if (info_button_select == 1) {
                 var _fcid = global.player_deck[| _di];
                 var _fsd = get_plant_shape_data(_fcid, 0);
                 var _fnm = (_fsd != undefined) ? string(_fsd[? "name"]) : _fcid;
-                if (string_pos(_q, string_lower(_fnm)) <= 0) continue;
+                if (!info_island_search_match(_q, _fnm)) continue;
             }
             array_push(info_view, _di);
         }
@@ -102,7 +98,7 @@ if (info_button_select == 1) {
         var _eid = _eids[_vi];
         if (_q != "" && ds_map_exists(global.enemy_map, _eid)) {
             var _enm = string(global.enemy_map[? _eid].name);
-            if (string_pos(_q, string_lower(_enm)) <= 0) continue;
+            if (!info_island_search_match(_q, _enm)) continue;
         }
         array_push(info_view, _eid);
     }
@@ -112,7 +108,7 @@ if (info_button_select == 1) {
         var _lid = _lids[_vi];
         if (_q != "" && ds_map_exists(global.level_info_island_map, _lid)) {
             var _lnm = string(global.level_info_island_map[? _lid].name);
-            if (string_pos(_q, string_lower(_lnm)) <= 0) continue;
+            if (!info_island_search_match(_q, _lnm)) continue;
         }
         array_push(info_view, _lid);
     }

@@ -164,25 +164,22 @@ function difficulty_reward_item_amount(_item_id, _base_amount, _multiplier) {
 
 /// @function immortal_pick_card_list()
 /// @desc 不朽开局「自选一张」的候选卡
-///       2026-10-30 用户定：生煎锅 / 披萨炉 / 玉蜀黍
-///       2026-10-31 用户改：玉蜀黍 → 蚝油双菇（shuanggu）
-///       2026-10-31 二改：双菇改回玉蜀黍，并新增麻辣香锅（spicy_pot）→ 4 张
-///       2026-10-31 三改：**去掉麻辣香锅，改回三选一**（生煎锅 / 披萨炉 / 玉蜀黍）
+///       2026-11-01 用户定：**生煎锅 / 披萨炉 / 焦油喷壶（tar_sprayer）**
 ///       换卡 / 加卡只改这一行，UI 按 array_length 自动排布，兜底取第 1 张
 function immortal_pick_card_list() {
-    return ["pan_fried_bun", "pizza_oven", "corn_shooter"];
+    return ["pan_fried_bun", "pizza_oven", "tar_sprayer"];
 }
 
 /// @function immortal_pick_info()
 /// @desc 每张候选卡的「开局难度 + 开局星级」，键 = 卡片 id（与 immortal_pick_card_list() 一一对应）
-///       2026-10-31 用户定稿：生煎锅 易 / 0 星、披萨炉 中 / 2 星、玉蜀黍 难 / 4 星
+///       2026-11-01 用户定：**三张一律 0 星、不显示开局难度**（`dif` 留空 = 不画标签）
 ///       改某张卡的难度或星级 = 改这里那一行；dif 只认「易 / 中 / 难」（颜色见 immortal_pick_difficulty_colour）
 ///       star 是 `unlock_card` 的 level（1 起算的星数，0 = 无星，取数值表第 star 档）
 function immortal_pick_info() {
     return {
-        pan_fried_bun: { dif: "易", star: 0 },
-        pizza_oven:    { dif: "中", star: 2 },
-        corn_shooter:  { dif: "难", star: 4 }
+        pan_fried_bun: { dif: "", star: 0 },
+        pizza_oven:    { dif: "", star: 2 },
+        tar_sprayer:   { dif: "", star: 4 }
     };
 }
 
@@ -215,8 +212,8 @@ function immortal_pick_face_h() {
     return {
         pan_fried_bun: 54,   // spr_pan_fried_bun 101x88，内容 y 30~84
         pizza_oven:    66,   // spr_pizza_oven     90x69，内容 y  2~68
-        corn_shooter:  77,   // spr_corn_shooter   76x84，内容 y  7~84
-        spicy_pot:     50    // spr_spicy_pot      88x85，内容 y 19~69
+        tar_sprayer:   74,   // spr_tar_sprayer    86x76，内容 y  2~76
+        spicy_pot:     50    // spr_spicy_pot      88x85，内容 y 19~69（备用，不在三选一名单里）
     };
 }
 
@@ -253,6 +250,8 @@ function immortal_pick_claim_default() {
 }
 
 /// @function difficulty_grant_immortal_start_cards()
+/// @desc 【2026-11-01 起停用】由 difficulty_start_reward_grant() 取代（发奖前要先弹窗确认）。
+///       现在没有任何地方调用它；留着只是为了老存档路径排查方便，别在新代码里用。
 /// @desc 普通不朽难度的新存档：只发暖暖鸡本体，并置「三选一待选」标记。
 ///       2026-10-30 用户要求：原「炎焱兔 + 10 张池子随机 1 张」撤掉，改成点「不朽」时三选一。
 /// @return true = 这一次刚发（启动兜底据此跳过，避免刚置的标记被当场结算掉）
@@ -265,6 +264,87 @@ function difficulty_grant_immortal_start_cards() {
     global.save_data.immortal_pick_pending = true;
     global.save_data.immortal_pick_taken = "";
     global.save_data.immortal_start_cards_given = true;
+    save_file(global.save_slot);
+    return true;
+}
+
+// ── 开局奖励：永恒 / 不朽 互斥，发奖前必须先弹 obj_start_reward ──
+
+/// @function difficulty_start_reward_table()
+/// @desc 开局奖励表：键 = 难度号（4 永恒 / 5 不朽）
+function difficulty_start_reward_table() {
+    return {
+        "4": { name: "永恒级", gold: 60000,  warm_bird: false, pick: false },
+        "5": { name: "不朽级", gold: 200000, warm_bird: true,  pick: true  }
+    };
+}
+
+/// @function difficulty_start_reward_of(_difficulty)
+/// @desc 取某档的开局奖励配置；没有这一档返回 undefined
+function difficulty_start_reward_of(_difficulty) {
+    var _t = difficulty_start_reward_table();
+    if (!variable_struct_exists(_t, string(_difficulty))) return undefined;
+    return _t[$ string(_difficulty)];
+}
+
+/// @function difficulty_start_reward_claimed()
+/// @desc 已经领过哪一档（0 = 没领 / 4 / 5）
+///       老存档迁移（只做一次）：拿过不朽开局金币或暖暖鸡的，一律算「已领不朽」
+function difficulty_start_reward_claimed() {
+    if (!variable_struct_exists(global.save_data, "start_reward_claimed")) {
+        var _old_immortal =
+            (variable_struct_exists(global.save_data, "immortal_bonus_given")
+                && global.save_data.immortal_bonus_given)
+            || (variable_struct_exists(global.save_data, "immortal_start_cards_given")
+                && global.save_data.immortal_start_cards_given);
+        global.save_data.start_reward_claimed = _old_immortal ? 5 : 0;
+    }
+    return round(global.save_data.start_reward_claimed);
+}
+
+/// @function difficulty_start_reward_available(_difficulty)
+/// @desc 这一档现在能不能领：必须是最上面那一档（新存档，通关数 0）+ 没领过任何一档
+function difficulty_start_reward_available(_difficulty) {
+    if (is_undefined(difficulty_start_reward_of(_difficulty))) return false;
+    if (array_length(global.save_data.completed_levels) != 0) return false;
+    return difficulty_start_reward_claimed() == 0;
+}
+
+/// @function difficulty_start_reward_gold_text(_gold)
+/// @desc 金币文案加千分位（GM 的 string_format 不会插逗号）：60000 → "60,000"
+function difficulty_start_reward_gold_text(_gold) {
+    var _s = string(round(_gold));
+    var _n = string_length(_s);
+    var _out = "";
+    for (var i = 1; i <= _n; i++) {
+        if (i > 1 && ((_n - i + 1) mod 3) == 0) _out += ",";
+        _out += string_char_at(_s, i);
+    }
+    return _out;
+}
+
+/// @function difficulty_start_reward_grant(_difficulty)
+/// @desc 发奖 + 记 claimed + 存盘；调用前必须先过 difficulty_start_reward_available()
+/// @return true = 发放成功
+function difficulty_start_reward_grant(_difficulty) {
+    if (!difficulty_start_reward_available(_difficulty)) return false;
+
+    var _row = difficulty_start_reward_of(_difficulty);
+    global.save_data.player.gold += _row.gold;
+    show_notice("已领取" + _row.name + "开局奖励：+" + difficulty_start_reward_gold_text(_row.gold) + " 金币", 90);
+
+    if (_row.warm_bird && global.play_mode == 0) {
+        unlock_card("warm_birds", 0, 0, 0);
+        global.save_data.immortal_start_cards_given = true;
+        if (_row.pick) {
+            global.save_data.immortal_pick_pending = true;
+            global.save_data.immortal_pick_taken = "";
+        }
+    }
+
+    // 旧字段一并写掉：其它地方（启动兜底 / 老存档判断）还在读它
+    global.save_data.immortal_bonus_given = true;
+    global.save_data.start_reward_claimed = _difficulty;
     save_file(global.save_slot);
     return true;
 }

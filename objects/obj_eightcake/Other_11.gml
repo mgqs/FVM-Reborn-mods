@@ -1,10 +1,20 @@
 // obj_eightcake（8周年蛋糕）开火事件（event_user(1)）
-// 往本行最前面那只老鼠身上投一件：普通蛋糕子弹 / 蜡烛子弹（每第 3n 次）；
-// 二转时每第 10n 次再额外补一颗可乐炸弹（与蜡烛子弹相互独立）。
-eightcake_shot_count++;
+// 往本行最前面那只老鼠身上投**一件**：
+//   普通轮           → 蛋糕块（单体）
+//   蜡烛轮（每 3n）  → 蜡烛（落地单格灼烧）
+//   炸弹轮（二转每 10n）→ 可乐炸弹（3×3 灰烬爆炸）—— 投炸弹时**不再叠投蛋糕块**
+// 🔴 出弹守卫：只有 Step_0 的脱手帧（ec_firing = true）才能真的生成子弹。
+//   ⚠️ 这里**绝对不能再把 ec_firing 清零** —— Step 就是靠 `!ec_firing` 判断「本轮还没投过」，
+//   清零 = 下一帧又被判成没投过 → 一次挥勺连投几十颗（2026-11-01 实机截图实锤：
+//   脱手帧到挥勺结束约 28 帧 = 28 颗，连成一条蛋糕/8/炸弹长链）。
+//   ec_firing 只在 Step 开新一轮攻击时复位。
+if (!ec_firing) exit;
+eightcake_shot_count++;          // 只在真正投出时 +1（放在守卫后，否则蜡烛/炸弹轮次会错）
 
-var _is_burn = (eightcake_shot_count mod 3 == 0);
-var _is_bomb = (shape >= 2 && eightcake_shot_count mod 10 == 0);
+// 弹种 = 本轮锁定的 ec_round（Step 决定「这一轮丢什么」），动画和子弹必然一致，不再各算一套：
+//   第 10/20/30… 发 = 可乐炸弹（10 的倍数优先，撞上 3 的倍数也照样出可乐，如第 30 发）
+var _is_bomb = (shape >= 2 && ec_round == 2);
+var _is_candle = (!_is_bomb && ec_round == 1);
 
 // 出膛口 = 勺子末端（精灵原点在盘子中心、卡片按 1.8 倍画：
 //   勺尖在精灵坐标 (42,60)，相对原点 (100,115) 是 (-58,-55) → 1.8 倍后 ≈ (-104,-99)）
@@ -20,15 +30,36 @@ if (_target_col < 0 || _target_col >= global.grid_cols)
     _target_col = min(grid_col + eightcake_throw_dist, global.grid_cols - 1);
 var _cell = get_world_position_from_grid(_target_col, grid_row);
 
-if (_is_burn)
+// 落点：目标在哪儿就丢哪儿（列上限交给 Step 索敌的「最后一列 + 1」，这里不再往场内收）
+var _bcol = _has_tgt ? _tgt.grid_col : _target_col;
+var _bx_t = _has_tgt ? _tgt.x : _cell.x;
+// 本行格子的**视觉中线** y：地图贴图画出来的格子缝比逻辑网格高 36px（同 bbq 的 _art_up），
+//   只按 grid 中线摆会整体偏低、看着烧到下一行
+var _row_y = get_world_position_from_grid(_bcol, grid_row).y - 36;
+
+if (_is_bomb)
+{
+    // ===== 可乐炸弹：同其他投手的抛物线，砸向最前面那只 =====
+    var _bx3 = _bx_t;
+    var _by3 = _has_tgt ? (_tgt.y - 36) : _row_y;
+    var _bd3 = point_distance(_muzzle_x, _muzzle_y, _bx3, _by3);
+
+    var _b3 = instance_create_depth(_muzzle_x, _muzzle_y, depth - 500, obj_eightcake_bomb);
+    _b3.damage = eightcake_bomb_damage;
+    _b3.row = grid_row;
+    _b3.col = _bcol;                     // 3×3 爆炸以它落地那格为中心
+    _b3.sx = _muzzle_x;
+    _b3.sy = _muzzle_y;
+    _b3.tx = _bx3;
+    _b3.ty = _by3;
+    _b3.T   = clamp(round(_bd3 / 20), 20, 46);        // 距离越远飞得越久（同蜡烛 / 蛋糕块）
+    _b3.arc = clamp(_bd3 * 0.42, 80, 300);            // 拱高随距离走
+}
+else if (_is_candle)
 {
     // ===== 蜡烛：砸到老鼠身上，火在**本行格子**上烧 =====
-    //   老鼠跑到地图外（第 9 格右边）也照样砸它 —— 不按格子截断
-    var _bx = _has_tgt ? _tgt.x : _cell.x;
-    var _bcol = _has_tgt ? _tgt.grid_col : _target_col;
-    // 火的位置：本行格子的**视觉中线**。地图贴图画出来的格子缝比逻辑网格高 36px
-    //   （同 bbq 的 _art_up），只按 grid 中线摆会整体偏低、看着烧到下一行
-    var _by = get_world_position_from_grid(_bcol, grid_row).y - 36;
+    var _bx = _bx_t;
+    var _by = _row_y;
     var _bd = point_distance(_muzzle_x, _muzzle_y, _bx, _by);
 
     var _b = instance_create_depth(_muzzle_x, _muzzle_y, depth - 500, obj_eightcake_burn_bullet);
@@ -53,14 +84,13 @@ if (_is_burn)
     _b.tx = _bx;
     _b.ty = _by;
     _b.T   = clamp(round(_bd / 20), 20, 46);          // 距离越远飞得越久
-    _b.arc = clamp(_bd * 0.42, 80, 300);             // 拱高随距离走
+    _b.arc = clamp(_bd * 0.42, 80, 300);              // 拱高随距离走
 }
 else
 {
     // ===== 普通蛋糕块：砸最前面那只的**身体中心**（不是脚底，否则看着像掉在脚上 / 前一格）=====
-    var _bx2 = _has_tgt ? _tgt.x : _cell.x;
+    var _bx2 = _bx_t;
     var _by2 = _has_tgt ? (_tgt.y - 50) : _cell.y;
-    var _bcol2 = _has_tgt ? _tgt.grid_col : _target_col;
     var _bd2 = point_distance(_muzzle_x, _muzzle_y, _bx2, _by2);
 
     var _b2 = instance_create_depth(_muzzle_x, _muzzle_y, depth - 500, obj_eightcake_bullet);
@@ -69,26 +99,13 @@ else
     else if (shape == 1) _b2.sprite_index = spr_eightcake_bullet_1;
     _b2.damage = atk;
     _b2.row = grid_row;
-    _b2.col = _bcol2;
+    _b2.col = _bcol;
     _b2.sx = _muzzle_x;
     _b2.sy = _muzzle_y;
     _b2.tx = _bx2;
     _b2.ty = _by2;
     _b2.T   = clamp(round(_bd2 / 20), 20, 46);
     _b2.arc = clamp(_bd2 * 0.42, 80, 300);
-}
-
-if (_is_bomb)
-{
-    // 可乐炸弹仍按格子落（3×3 爆炸需要格子）
-    var _b3 = instance_create_depth(_muzzle_x + 18, _muzzle_y - 4, depth - 500, obj_eightcake_bomb);
-    _b3.damage = eightcake_bomb_damage;
-    _b3.row = grid_row;
-    _b3.col = _target_col;
-    _b3.sx = _muzzle_x + 18;
-    _b3.sy = _muzzle_y - 4;
-    _b3.tx = _cell.x;
-    _b3.ty = _cell.y + global.grid_cell_size_y / 2 - 14;
 }
 
 audio_play_sound(snd_shot, 0, 0);
