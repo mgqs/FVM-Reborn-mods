@@ -19,6 +19,33 @@ cvspeed -= cgravity;
 if (x > 2200 || y > 1200 || x < -200 || y < -200)
     instance_destroy();
 
+// 飞行中撞到老鼠 → 当场炸在它**当下所在格**（同糖炒栗子 / 生煎锅）：
+//   提前量只是大致瞄准，老鼠中途变向 / 被击退时仍会错格；撞上就炸才跟得住。
+//   命中格直接改写成落点，走下面同一段落地流程（特效位置 / grid_row·col 都不用另写）。
+if (has_target && x < target_x)
+{
+    var _hx = undefined;
+    var _hy = undefined;
+    with (obj_enemy_parent)
+    {
+        if (hp > 0 && grid_row == other.row && can_target_on(other.target_type, target_type)
+            && precise_bbox_collision(other.id, id))
+        {
+            _hx = x;
+            _hy = y;
+        }
+    }
+    if (!is_undefined(_hx))
+    {
+        var _gp = get_grid_position_from_world(_hx, _hy);
+        target_x = _gp.x;
+        target_y = _gp.y;
+        target_col = _gp.col;
+        x = _gp.x;
+        y = _gp.y;
+    }
+}
+
 if (has_target)
 {
     // 落地判定用「越过落点」而不是 |x-target_x|<5：

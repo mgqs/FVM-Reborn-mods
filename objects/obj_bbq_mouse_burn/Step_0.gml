@@ -16,7 +16,7 @@ depth = target.depth - 1;
 
 t++;
 
-// 把整个精灵的帧均匀铺到 life 帧上（素材 21 帧 / 1 秒）
+// 把整个精灵的帧均匀铺到 life 帧上（素材 21 帧 / 0.5 秒）
 var _n = sprite_get_number(sprite_index);
 if (_n > 0)
 {

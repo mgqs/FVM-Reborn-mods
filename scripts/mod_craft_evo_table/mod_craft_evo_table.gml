@@ -84,7 +84,7 @@ function mod_evo_table(){
         gaia:                    { cards:[ {id:"curry_lobster_cannon", slot:0, need:2},
                                         {id:"chocolate_cannon", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 死神大炮
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
-                                        {id:"stinky_tofu_pult", slot:1, need:2} ] },  // 祝融神使 ← 臭豆腐投手 + 生煎锅
+                                        {id:"tangchaolizi", slot:1, need:2} ] },  // 祝融神使 ← 生煎锅 + 糖炒栗子
         rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
                                         {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},

@@ -347,8 +347,6 @@ function mod_apply_category_buff_map()
             {
                 case "thrower": _allowed = card_in_category(_card_id, "投掷类") || _card_id == "gaia"; break;
                 case "tracker": _allowed = _card_id == "guiyuanma" || _card_id == "takoyaki" || _card_id == "juxie" || _card_id == "moon_god" || _card_id == "yufengma" || _card_id == "gaia"; break;
-                // niuyouguo（邪恶牛油果）：分类上是多向类，只属三向，两个增幅都不吃 —— 只吃战旗马这类全体增幅
-                // youyu_god（怪味鱿鱼）：吃多向增幅（multi_dir）但不吃五向增幅 —— 在本行被剔除，主类型落 multi_dir
                 case "five_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo" && _card_id != "youyu_god"; break;
                 case "multi_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo"; break;
                 case "sprayer": _allowed = card_in_category(_card_id, "旋转喷壶类") || card_in_category(_card_id, "直线喷壶类") || _card_id == "hongliukaochuan" || _card_id == "hufa_god"; break;
@@ -391,6 +389,7 @@ function mod_apply_category_buff_map()
     ds_map_set(global.plant_buff_map_2, "cold_drew", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "joker", "tracker_advanced");
+    ds_map_set(global.plant_buff_map_2, "joker", "xiangshui");
     ds_map_set(global.plant_buff_map, "hongliukaochuan", "sprayer");
     ds_map_set(global.plant_buff_map, "hufa_god", "sprayer");
     ds_map_set(global.plant_buff_map, "gaia", "thrower");

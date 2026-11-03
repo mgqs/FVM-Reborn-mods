@@ -18,8 +18,9 @@ damage = 0;
 move_speed = 5.35;
 burnt_speed = 8.02;
 move_dir = 1;            // 1 = 向右飞；被布丁 / 水神反弹后变 -1
-start_x = 0;             // 出膛点（由 obj_bbq 传，反弹后往回飞出这里就销毁）
-end_x = 2200;            // 第 9 格右沿（由 obj_bbq 传）
+start_x = 0;             // 出膛点（由 obj_bbq 传：猫左侧 x-40）
+end_x = 2200;            // 向右飞的销毁点：第 11 格右沿（出图 2 格，由 obj_bbq 传）
+end_x_left = -200;       // 只给**被反弹**的串串用：第 1 格左沿外 1 格（由 obj_bbq 传）
 bounced = false;
 row = 0;
 burn_shot = false;

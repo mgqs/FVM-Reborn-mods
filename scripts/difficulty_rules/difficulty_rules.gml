@@ -164,10 +164,10 @@ function difficulty_reward_item_amount(_item_id, _base_amount, _multiplier) {
 
 /// @function immortal_pick_card_list()
 /// @desc 不朽开局「自选一张」的候选卡
-///       2026-11-01 用户定：**生煎锅 / 披萨炉 / 焦油喷壶（tar_sprayer）**
+///       2026-11-03 用户定：**糖炒栗子 / 披萨炉 / 焦油喷壶（tar_sprayer）**（生煎锅换下）
 ///       换卡 / 加卡只改这一行，UI 按 array_length 自动排布，兜底取第 1 张
 function immortal_pick_card_list() {
-    return ["pan_fried_bun", "pizza_oven", "tar_sprayer"];
+    return ["tangchaolizi", "pizza_oven", "tar_sprayer"];
 }
 
 /// @function immortal_pick_info()
@@ -177,9 +177,9 @@ function immortal_pick_card_list() {
 ///       star 是 `unlock_card` 的 level（1 起算的星数，0 = 无星，取数值表第 star 档）
 function immortal_pick_info() {
     return {
-        pan_fried_bun: { dif: "", star: 0 },
-        pizza_oven:    { dif: "", star: 2 },
-        tar_sprayer:   { dif: "", star: 4 }
+        tangchaolizi:  { dif: "", star: 3 },
+        pizza_oven:    { dif: "", star: 4 },
+        tar_sprayer:   { dif: "", star: 6 }
     };
 }
 
@@ -210,6 +210,7 @@ function immortal_pick_difficulty_colour(_label) {
 ///       🔴 新增候选卡：量一下它的第 0 帧内容高补进来；表里没有 → 回落「按画布居中」
 function immortal_pick_face_h() {
     return {
+        tangchaolizi:  52,   // spr_tangchaolizi  103x81，内容 y 27~79
         pan_fried_bun: 54,   // spr_pan_fried_bun 101x88，内容 y 30~84
         pizza_oven:    66,   // spr_pizza_oven     90x69，内容 y  2~68
         tar_sprayer:   74,   // spr_tar_sprayer    86x76，内容 y  2~76
@@ -333,9 +334,16 @@ function difficulty_start_reward_grant(_difficulty) {
     global.save_data.player.gold += _row.gold;
     show_notice("已领取" + _row.name + "开局奖励：+" + difficulty_start_reward_gold_text(_row.gold) + " 金币", 90);
 
-    if (_row.warm_bird && global.play_mode == 0) {
-        unlock_card("warm_birds", 0, 0, 0);
-        global.save_data.immortal_start_cards_given = true;
+    // 2026-11-03：**特殊模式也能领**，只排除礼盒（礼盒本来就禁止带其他卡）
+    //   普通 / 海克斯 = 暖暖鸡，抽卡 / 欧皇 = 花火龙（普通版），礼盒 = 只发金币
+    //   自选一张（pick）在 play_mode != 3 时都给
+    if (_row.warm_bird && global.play_mode != 3) {
+        if (global.play_mode == 1 || global.play_mode == 2) {
+            unlock_card("firework_dragon", 0, 0, 0);
+        } else {
+            unlock_card("warm_birds", 0, 0, 0);
+            global.save_data.immortal_start_cards_given = true;
+        }
         if (_row.pick) {
             global.save_data.immortal_pick_pending = true;
             global.save_data.immortal_pick_taken = "";

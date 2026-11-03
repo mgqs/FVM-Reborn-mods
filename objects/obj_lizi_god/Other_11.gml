@@ -30,12 +30,14 @@ if (shape >= 2)
     //   不再固定丢到射程最远格（2026-11-01 修正）
     var _last_row = global.grid_rows - 1;
     var _lane_col = [-1, -1, -1];
+    var _lane_e   = [noone, noone, noone];   // 该行锁定的目标实例（提前量要读它的 move_speed）
 
     for (var _i = 0; _i < 3; _i++)
     {
         var _row_q = clamp(grid_row + _i - 1, 0, _last_row);
         var _best = 99999;
         var _bc = -1;
+        var _be = noone;
         with (obj_enemy_parent)
         {
             if (hp > 0 && grid_row == _row_q
@@ -47,10 +49,12 @@ if (shape >= 2)
                 {
                     _best = _dd;
                     _bc = grid_col;
+                    _be = id;
                 }
             }
         }
         _lane_col[_i] = _bc;
+        _lane_e[_i] = _be;
     }
 
     var _lane_h = global.grid_cell_size_y;
@@ -64,6 +68,14 @@ if (shape >= 2)
         // 出手位置/深度按「最终落行」算：补偿后同行的两颗从同一处出手，不会看着像跨行飞
         var _lane_index = (_row - grid_row) + 1;
         var _col = (_lane_col[_j] != -1) ? _lane_col[_j] : _far_col;
+
+        // 提前量（同糖炒栗子 / 生煎锅）：按该行目标的移动速度把落点往前推整格
+        if (_lane_e[_j] != noone && instance_exists(_lane_e[_j])
+            && variable_instance_exists(_lane_e[_j], "move_speed") && _lane_e[_j].move_speed > 0)
+        {
+            var _ft0 = clamp(30 + ((get_world_position_from_grid(_col, _row).x - (x + 20)) / 1000) * 45, 30, 75);
+            _col = max(0, _col - round(_lane_e[_j].move_speed * _ft0 / global.grid_cell_size_x));
+        }
 
         var _off = _lane_off[_lane_index];
         var inst = instance_create_depth(x + 20, y - 105 + _off, depth + _lane_depth[_lane_index], obj_lizi_god_bullet);
@@ -104,6 +116,14 @@ else
     var final_col = _far_col;
     if (target_instance != -4 && instance_exists(target_instance))
         final_col = target_instance.grid_col;      // 不夹列：老鼠在哪一列就丢哪一列
+
+    // 提前量（同糖炒栗子 / 生煎锅）
+    if (target_instance != -4 && instance_exists(target_instance)
+        && variable_instance_exists(target_instance, "move_speed") && target_instance.move_speed > 0)
+    {
+        var _ft0 = clamp(30 + ((get_world_position_from_grid(final_col, grid_row).x - inst.x) / 1000) * 45, 30, 75);
+        final_col = max(0, final_col - round(target_instance.move_speed * _ft0 / global.grid_cell_size_x));
+    }
 
     var grid_pos = get_world_position_from_grid(final_col, grid_row);
     var distance_x = grid_pos.x - inst.x;

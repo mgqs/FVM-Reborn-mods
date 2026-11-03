@@ -204,6 +204,8 @@ function try_place_once(){
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);
 				new_plant.depth = depth_value
+				// 玩家从手牌放下的卡（百变蛇只认这种「下一张卡」，见 mod_on_card_placed）
+				new_plant.from_player_hand = true;
 			}
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				instance_create_depth(logical_world.x + platform_shift_x, logical_world.y + platform_shift_y,-2,obj_place_effect)
