@@ -30,10 +30,17 @@ var _spd = (burnt > 0) ? burnt_speed : move_speed;
 x += _spd * move_dir;
 life++;
 
-// 2026-10-31：飞到第 9 格右边边缘就消失（不飞出地图）；被反弹后往回飞出出膛点即销毁
+// 2026-10-31：飞到第 9 格右边边缘就消失（不飞出地图）
+// 2026-11-02：右端放到第 11 格右沿（出图 2 格）；向左飞（身后目标 / 被反弹）用 end_x_left，
+//   两个端点都由 obj_bbq 传，反弹后照样能扫回整行而不是就地消失。
+if (life > max_life)
+{
+    instance_destroy();
+    exit;
+}
 if (move_dir > 0)
 {
-    if (x >= end_x || life > max_life)
+    if (x >= end_x)
     {
         instance_destroy();
         exit;
@@ -41,7 +48,7 @@ if (move_dir > 0)
 }
 else
 {
-    if (x <= start_x - 60 || life > max_life)
+    if (x <= end_x_left)
     {
         instance_destroy();
         exit;

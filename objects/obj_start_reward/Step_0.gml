@@ -21,8 +21,9 @@ if (mouse_check_button_pressed(mb_left)) {
         sr_done = true;
         if (difficulty_start_reward_grant(sr_diff)) {
             audio_play_sound(snd_button, 0, 0);
-            // 不朽：金币 + 暖暖鸡 刚发完，紧接着弹三选一（沿用现有 obj_immortal_pick）
-            if (global.play_mode == 0 && immortal_pick_pending() && !instance_exists(obj_immortal_pick)) {
+            // 不朽：金币 + 暖暖鸡 / 花火龙 刚发完，紧接着弹三选一（沿用现有 obj_immortal_pick）
+            //   2026-11-03：特殊模式（除礼盒）也弹
+            if (immortal_pick_pending() && !instance_exists(obj_immortal_pick)) {
                 instance_create_depth(0, 0, -16000, obj_immortal_pick);
             }
         }

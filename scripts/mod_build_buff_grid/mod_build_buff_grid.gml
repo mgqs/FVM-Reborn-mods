@@ -139,6 +139,28 @@ function apply_buff(arg0)
             var berry_tracker_grid = ds_map_find_value(global.buff_grid, "tracker_berry");
             if (v > berry_tracker_grid[c][r]) berry_tracker_grid[c][r] = v;
         }
+
+        // 香水神另写一格「xiangshui」专属通道：只给显式挂 plant_buff_map_2 = "xiangshui" 的卡吃
+        // （目前只有小丑神 joker / 埃罗斯，2026-11-03 用户口径「专门给的」）。
+        // 它和 tracker 分组（莓果点心 + 香水神共用）分开，别的卡进不来。
+        if (arg0.plant_id == "xiangshui_god")
+        {
+            var xs_grid = ds_map_find_value(global.buff_grid, "xiangshui");
+            if (xs_grid != undefined && c < array_length(xs_grid) && r < array_length(xs_grid[0]))
+            {
+                if (v > xs_grid[c][r]) xs_grid[c][r] = v;
+            }
+            if (stacking)
+            {
+                var xs_stack_grid = ds_map_find_value(global.buff_stack_grid, "xiangshui");
+                var xs_stack_count = ds_map_find_value(global.buff_stack_count, "xiangshui");
+                if (xs_stack_grid != undefined && xs_stack_count != undefined && xs_stack_count[c][r] < max_stacks)
+                {
+                    xs_stack_grid[c][r] += v;
+                    xs_stack_count[c][r]++;
+                }
+            }
+        }
         
         if (variable_instance_exists(arg0, "buffer_type_2") && !is_undefined(arg0.buffer_type_2))
         {

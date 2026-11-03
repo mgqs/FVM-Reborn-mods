@@ -12,13 +12,15 @@
 ///    mod_tg_gold(tier)      转职金币   3000 / 10000 / 50000 / 100000 / 200000（档位越界按 15000）
 ///    mod_tg_assure(tier)    保险金     5000 / 40000 / 100000 / 200000 / 300000（越界按 50000）
 ///    mod_tg_rate(tier)      成功率(%)  一转 30，其余 20
-///    mod_tg_pity_max(tier)  保底次数   一转 6 / 二转 12 / 三·四·终转 15（与保险金开关无关）
+///    mod_tg_pity_max(tier)  保底次数   一转 6 / 二转 9 / 三·四·终转 12（与保险金开关无关）
 ///    mod_tg_star_need(tier) 星级门槛   一转 6 / 二转 10 / 三转 13 / 四转 14 / 终转 16（0 = 不要求）
 ///
 ///  二、规则（纯函数，不碰实例变量 —— 状态全由调用方传进来）
 ///    mod_tg_target_shape(card_id)                    目标形态 = 练到过的最高形态 + 1
 ///    mod_tg_check(card_id, assure_on, gold, debug)   能不能转 → { ok, reason, shape, gold, rate, assure, has_credit }
-///    mod_tg_roll(rate, pity, pity_max)               掷骰 + 保底 → { win, pity }
+///    mod_tg_roll(rate, pity, pity_max)               掷骰 + 保底 → { win, pity }（保底轮必成）
+///    mod_tg_guaranteed(pity, pity_max)               下一次是不是保底轮（一转第 6 / 二转第 9 / 三·四·终转第 12 次）
+///    mod_tg_rate_text(rate, pity, pity_max)          成功率条文案：`30%(1/6)` / 保底轮 `100%`
 ///
 ///  三、缺凭证时「当场补全并转职」（取代原购买按钮）
 ///    mod_tg_balance(currency)                       某货币余额（gold 走存档）
@@ -73,15 +75,17 @@ function mod_tg_rate(_tier){
 }
 
 /// @func mod_tg_pity_max(tier) 转职保底次数（按凭证档位）
-///   2026-10-28 用户定：**一转 6 次 / 二转 12 次 / 三转·四转·终转 15 次**
+///   2026-11-03 用户定：**一转 6 次 / 二转 9 次 / 三转·四转·终转 12 次**
+///   🔴 按**档位**取值，不是按卡形态：普卡 一转=1 / 二转=2，金卡 三·四·终转 = 3/4/5
+///      （别把 6 套到二转上 —— 二转是 9）
 ///   与保险金开关无关（开关不影响累计，也不影响必成）
 /// @param _tier 凭证档位 1~5（不是卡形态；金卡 = shape + 2）
 function mod_tg_pity_max(_tier){
     switch (_tier){
-        case 1: return 6;
-        case 2: return 12;
+        case 1: return 6;       // 一转
+        case 2: return 9;       // 二转
     }
-    return 15;
+    return 12;                  // 三转 / 四转 / 终转（金卡）
 }
 
 /// @func mod_tg_tier_short(tier) 档位简称：「一转 / 二转 / 三转 / 四转 / 终转」（不带「凭证」两字）
@@ -169,22 +173,37 @@ function mod_tg_check(_card_id, _assure_on, _gold, _debug = false){
 }
 
 /// @func mod_tg_roll(rate, pity, pity_max) 掷骰 + 保底
-///   保底口径（2026-10-28 用户定）：
+///   保底口径（2026-10-28 用户定，2026-11-03 补「必成轮写死 100%」）：
 ///     ① **每次转职都累计**，跟保险金开不开无关（保险金只管失败退不退凭证）；
-///     ② 累计到 pity_max 的那一次**必成**（也不要求开保险金）；
+///     ② 累计到 pity_max 的那一次（一转第 6 / 二转第 9 / 三·四·终转第 12 次）**必成**：成功率直接按 100% 结算、不掷骰，
+///        界面也显示 100%（`mod_tg_rate_text`）—— 免得看不出这是保底轮、主观判断出错；
 ///     ③ 只有「换卡 / 切换界面 / 退出合成屋」由对象那边负责清零；
 ///        转职成功、开关保险金、用补全凭证买来再转 —— 都不清零、也不额外计数。
 /// @return { struct } win（这次成不成）/ pity（新的累计次数，调用方存回）
 function mod_tg_roll(_rate, _pity, _pity_max){
+    var _guarantee = mod_tg_guaranteed(_pity, _pity_max);
     _pity += 1;
-    var _win = (irandom(99) < _rate);
-    if (_pity >= _pity_max){
-        // 保底这一次必成，然后**把计数用掉归零**（重新开始数）
+    if (_guarantee){
+        // 必成这一次，然后**把计数用掉归零**（重新开始数）
         //   —— 否则计数会一直 ≥ 上限，之后每次转职都必成（用户要的是「第 N 次必成」不是「永远必成」）
-        _win  = true;
-        _pity = 0;
+        return { win:true, pity:0, rate:100, guarantee:true };
     }
-    return { win:_win, pity:_pity };
+    return { win:(irandom(99) < _rate), pity:_pity, rate:_rate, guarantee:false };
+}
+
+/// @func mod_tg_guaranteed(pity, pity_max) 下一次转职是不是「必成轮」
+/// @param _pity 已经累计的次数（这一次还没数进去）→ 下一次就是第 _pity + 1 次
+function mod_tg_guaranteed(_pity, _pity_max){
+    return (_pity + 1 >= _pity_max);
+}
+
+/// @func mod_tg_rate_text(rate, pity, pity_max) 成功率条上的文案（绘制与结算同一口径）
+///   必成轮：`100%`（不再写次数）
+///   其余：  `30%(1/6)` = 基础成功率(已失败次数/保底次数)
+///   ⚠️ 绘制用 font_number（纯数字字体，只覆盖 ASCII）：括号 / 斜杠一律用半角，别写中文全角括号
+function mod_tg_rate_text(_rate, _pity, _pity_max){
+    if (mod_tg_guaranteed(_pity, _pity_max)) return "100%";
+    return string(_rate) + "%(" + string(_pity) + "/" + string(_pity_max) + ")";
 }
 
 // ── 缺凭证时「当场补一张并转职」（2026-10-28 用户要求，取代原「凭证槽左侧购买」按钮）──

@@ -309,6 +309,8 @@ if (is_selected) {
 				var depth_value = calculate_plant_depth(logical_col, logical_row, new_plant.plant_type);
 				card_created(new_plant, logical_col, logical_row);
 				new_plant.depth = depth_value
+				// 玩家从手牌放下的卡（百变蛇只认这种「下一张卡」，见 mod_on_card_placed）
+				new_plant.from_player_hand = true;
 				// 平台移动期间放置时锁定逻辑网格位置，防止视觉位置覆盖grid_col/grid_row
 				if (found_plat != noone && variable_instance_exists(found_plat, "state") && found_plat.state == "moving") {
 					new_plant.platform_grid_lock = true;

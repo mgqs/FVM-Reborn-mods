@@ -23,7 +23,8 @@ else if (shape == 2)
 else
     effect_inst.sprite_index = spr_aurora_dead_3;
 
-if (shape >= 2)
+// 2026-11-03：金卡形态 0 = 三转，情报岛写「三转能力：死亡后造成3x3爆炸」
+//   原来写成 shape >= 2（只有终转才炸）→ 改成全形态都炸
 {
     with (obj_enemy_parent)
     {

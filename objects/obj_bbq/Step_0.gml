@@ -18,6 +18,8 @@ if (is_slowdown) current_flash_speed *= 2;
 var _rows = (shape >= 2) ? [grid_row - 1, grid_row, grid_row + 1] : [grid_row];
 var _hittable = get_hittable_enemy_types(target_type);
 
+// 2026-11-02：**整行索敌**（左右都认）—— 身后的地精鼠出土后从左边走过来咬卡，也会触发开火。
+//   子弹轨迹是固定的（永远向右，见 Other_11），**不要**改成按方向左右发射。
 var _has_enemy = false;
 if (variable_global_exists("enemy_by_type"))
 {
@@ -30,7 +32,6 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e) || _e.hp <= 0) continue;
-            if (_e.x <= x) continue;
             for (var _r = 0; _r < array_length(_rows); _r++)
             {
                 if (_e.grid_row == _rows[_r])

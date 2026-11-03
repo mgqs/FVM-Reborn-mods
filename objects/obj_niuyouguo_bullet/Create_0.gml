@@ -14,6 +14,7 @@ hit_tick = 0
 pierce_all = true
 hited_enemy = ds_list_create()
 slow_timer = 0
+bounced = false       // 樱桃反弹布丁只弹一次（Collision_obj_cherry_pudding）
 
 // 飞镖 7 帧素材里 1~6 是旋转循环（第 7 帧 = 第 1 帧），由 Step 按 timer 自己推
 image_speed = 0

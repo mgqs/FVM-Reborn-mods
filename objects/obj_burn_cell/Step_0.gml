@@ -58,13 +58,13 @@ if (_do_hit && variable_global_exists("enemy_by_type"))
                 ds_list_add(burned, _e.id);
             }
 
-            // 身上挂辣椒燃烧特效（跟着这只鼠烧 1 秒；跳伤口径下每跳换新一个，正好接上）
+            // 身上挂辣椒燃烧特效（跟着这只鼠烧；跳伤 0.5 秒一跳，特效也 30 帧，正好一跳换一个不重叠）
             if (mouse_fx_spr != -1)
             {
                 var _fx = instance_create_depth(_e.x, _e.y, _e.depth - 1, obj_bbq_mouse_burn);
                 _fx.fx_spr = mouse_fx_spr;
                 _fx.target = _e;
-                _fx.life = 60;
+                _fx.life = 30;
             }
 
             with (_e)

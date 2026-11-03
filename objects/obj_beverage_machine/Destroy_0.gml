@@ -7,13 +7,8 @@ with obj_battle{
 		// 测试关卡：BOSS 只是被放下来测伤害的木桩，打死不结算（所有玩法模式一致）
 		if (!battle_is_test_level()) {
 			if  current_wave == total_wave-1 {
-				global.is_paused = true
-				global.game_over = true
-				var inst = instance_create_depth(room_width/2,room_height/2,-3001,obj_game_over)
-				inst.sprite_index = spr_win
-				global.audio.play(snd_win,0,0)
-				// 海克斯：胜利瞬间结算本局词条（重复通关也要记，所以不放在 complete_level 里）
-				hex_on_win();
+				// 2026-11-03：改走统一胜利入口，抽卡 / 欧皇模式才会掉抽卡礼盒
+				battle_finish_win();
 			}
 			else{
 				level_stage = "pre"

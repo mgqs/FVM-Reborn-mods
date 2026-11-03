@@ -3,9 +3,17 @@ if (global.is_paused)
 
 event_inherited();
 
-if (!copied && !is_derivative && image_index >= idle_anim - 1)
+// 2026-11-03：待机中 —— 帧循环（f0~f14）全交给父对象，这里什么都不做
+//   变身触发写在 scripts/mod_on_card_placed（只有玩家从手牌放下下一张卡才拨 tb_waiting）
+if (tb_waiting)
+    exit;
+
+if (!copied && !is_derivative && image_index >= tb_anim_end)
 {
     copied = true;
+    // 自己按普通卡占格（plant_type = normal）——出卡判定会把自己这一格算成「已占」，
+    //   所以先把引用从网格列表里摘掉（只移除引用，不触发回收/死亡效果），本帧末尾再销毁实例。
+    card_destroyed(id);
     var _blacklist = ["brahma", "magic_chicken", "ice_cream", "baibianshe", "shegengbao", "kuileima", "xingqiongma"];
     var _copy_count = 1;
 
@@ -167,5 +175,6 @@ if (!copied && !is_derivative && image_index >= idle_anim - 1)
     }
 }
 
-if (image_index >= idle_anim)
+// 变身段播完 → 收场（复制在上一段同帧做完；is_derivative 之类没复制的也在这里走掉）
+if (image_index >= tb_anim_end)
     instance_destroy();
