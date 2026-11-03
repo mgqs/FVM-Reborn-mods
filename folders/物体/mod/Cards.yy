@@ -102,6 +102,8 @@
     {"name":"obj_ronghekafei","path":"objects/obj_ronghekafei/obj_ronghekafei.yy",},
     {"name":"obj_wuxingshe","path":"objects/obj_wuxingshe/obj_wuxingshe.yy",},
     {"name":"obj_bbq","path":"objects/obj_bbq/obj_bbq.yy",},
+    {"name":"obj_maiya","path":"objects/obj_maiya/obj_maiya.yy",},
+    {"name":"obj_guihuajiu","path":"objects/obj_guihuajiu/obj_guihuajiu.yy",},
     {"name":"obj_eightcake","path":"objects/obj_eightcake/obj_eightcake.yy",},
     {"name":"obj_tangchaolizi","path":"objects/obj_tangchaolizi/obj_tangchaolizi.yy",},
   ],

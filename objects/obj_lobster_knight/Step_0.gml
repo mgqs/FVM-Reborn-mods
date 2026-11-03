@@ -140,7 +140,7 @@ switch state{
 		
 		if timer == 1{
 			with obj_card_parent{
-				if plant_id == "soda_bubble"{
+				if (variable_instance_exists(id, "provides_bubble") && provides_bubble){
 					array_push(other.avaliable_pos,{"row":grid_row,"col":grid_col})
 				}
 			}
@@ -152,7 +152,7 @@ switch state{
 				var t_pos = avaliable_pos[t_number]
 				var t_wpos = get_world_position_from_grid(t_pos.col,t_pos.row)
 				with obj_card_parent{
-					if plant_id == "soda_bubble" && grid_row == t_pos.row && grid_col == t_pos.col{
+					if (variable_instance_exists(id, "provides_bubble") && provides_bubble) && grid_row == t_pos.row && grid_col == t_pos.col{
 						instance_destroy()
 						var inst = instance_create_depth(x,y,-800,obj_coke_bomb_explode)
 						inst.sprite_index = spr_lobster_knight_bubble_destroy

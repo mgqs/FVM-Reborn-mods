@@ -3947,10 +3947,10 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "户外烤肉大师",
         shape: 1,
-        description: "户外烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串",
+        description: "户外烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串",
         hp: array_create(17, 50),
         cost: array_create(17, 350),
-        atk: [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740],
+        atk: [22, 26, 30, 34, 38, 42, 50, 60, 70, 80, 110, 140, 170, 220, 270, 320, 370],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 84)
@@ -3958,10 +3958,10 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "BBQ烤肉大师",
         shape: 2,
-        description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每2发发射爆辣烤串",
+        description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每4发发射爆辣烤串",
         hp: array_create(17, 50),
         cost: array_create(17, 350),
-        atk: [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740],
+        atk: [22, 26, 30, 34, 38, 42, 50, 60, 70, 80, 110, 140, 170, 220, 270, 320, 370],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 84)
@@ -3971,7 +3971,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "8周年蛋糕",
         shape: 0,
-        description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。",
+        description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [45, 55, 65, 70, 90, 110, 140, 170, 200, 230, 280, 360, 450, 550, 660, 780, 900],
@@ -3982,7 +3982,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "8周年慕斯",
         shape: 1,
-        description: "8周年慕斯：投掷威力更高的蛋糕子弹，以及有燃烧效果的蜡烛子弹。",
+        description: "8周年慕斯：投掷威力更高的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [67, 82, 97, 105, 135, 170, 210, 255, 300, 345, 420, 540, 675, 825, 990, 1170, 1350],
@@ -3993,7 +3993,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "8周年红丝绒",
         shape: 2,
-        description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹，有几率投出可乐炸弹。",
+        description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹，每10发投掷可乐炸弹。",
         hp: array_create(17, 50),
         cost: array_create(17, 150),
         atk: [67, 82, 97, 105, 135, 170, 210, 255, 300, 345, 420, 540, 675, 825, 990, 1170, 1350],
@@ -4068,5 +4068,64 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1.5),
         cooldown: array_create(17, 720),
         cycle: [8970, 9660, 10350, 11040, 11730, 12420, 13110, 13800, 14490, 15870, 17250, 18630, 20010, 22080, 24150, 26220, 28290]
+    }], false);
+
+    mod_register_plant_lite("maiya", [
+    {
+        name: "麦芽糖",
+        shape: 0,
+        description: "麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧",
+        hp: [36000, 38000, 40000, 42000, 45000, 48000, 51000, 57000, 63000, 69000, 77000, 85000, 93000, 101000, 109000, 117000, 125000],
+        cost: array_create(17, 55),
+        atk: array_create(17, 0),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 0)
+    },
+    {
+        name: "莓莓麦芽糖",
+        shape: 1,
+        description: "莓莓麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧",
+        hp: [36000, 38000, 40000, 42000, 45000, 48000, 51000, 57000, 63000, 69000, 77000, 85000, 93000, 101000, 109000, 117000, 125000],
+        cost: array_create(17, 0),
+        atk: array_create(17, 0),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 0)
+    }], false);
+
+    mod_register_plant_lite("guihuajiu", [
+    {
+        name: "桂花酒",
+        shape: 0,
+        description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠并留下燃烧的酒精",
+        hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
+        cost: array_create(17, 125),
+        atk: array_create(17, 0),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 0)
+    },
+    {
+        name: "陈年桂花酒",
+        shape: 1,
+        description: "陈年桂花酒：阻挡老鼠，爆炸与燃烧范围扩大，伤害提高",
+        hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
+        cost: array_create(17, 125),
+        atk: array_create(17, 0),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 0)
+    },
+    {
+        name: "仙酿桂花酒",
+        shape: 2,
+        description: "仙酿桂花酒：阻挡老鼠，爆炸使范围内老鼠醉酒，受到的伤害提升",
+        hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
+        cost: array_create(17, 125),
+        atk: array_create(17, 0),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 0)
     }], false);
 }

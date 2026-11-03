@@ -1,7 +1,7 @@
 // obj_ronghedapao_bullet Destroy 事件：落地爆炸结算
 // 判定改成「按格子」精判（原版是 point_distance < 250 的近似），
 // 这样 0 转 3*3（3 行 × 3 列）、1/2 转 3*5（5 行 × 3 列）与情报岛写的范围一致。
-// 落点固定在本行第 8 列（target_col = 7），3 列宽 = 第 7~9 列，正好贴住右边界。
+// 落点固定在本行第 9 列（target_col = 8，2026-11-03 与普通巧克力大炮对齐），3 列宽 = 第 8~10 列。
 var _row = target_row;
 var _col = target_col;
 

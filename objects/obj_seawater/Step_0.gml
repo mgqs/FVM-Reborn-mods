@@ -14,7 +14,7 @@ with obj_card_parent{
 	var is_in_front = false
 	is_in_front = grid_row == other.row && grid_col == other.col
 	if is_in_front{
-		if plant_id == "soda_bubble" || plant_id == "lingrong_god"{
+		if variable_instance_exists(id, "provides_bubble") && provides_bubble{
 			on_lava = true
 			other.has_bubble = true
 		}
@@ -25,7 +25,7 @@ with obj_card_parent{
 	var is_in_front = false
 	is_in_front = grid_row == other.row && grid_col == other.col
 	if is_in_front{
-		if (plant_type != "coffee" && !invincible && array_get_index(other.ignore_list,plant_id) == -1 && !(plant_id == "player" && hp <= 0.05*max_hp)){
+		if (plant_type != "coffee" && !invincible && !(variable_instance_exists(id, "provides_bubble") && provides_bubble) && array_get_index(other.ignore_list,plant_id) == -1 && !(plant_id == "player" && hp <= 0.05*max_hp)){
 			other.non_undersea_card = true
 			if !other.has_bubble && other.timer mod 60 == 0{ 
 				hp -= 0.05*max_hp

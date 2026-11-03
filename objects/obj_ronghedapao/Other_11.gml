@@ -1,9 +1,10 @@
-// obj_ronghedapao 开火（event_user(1)）：朝本行第八列投一枚巧克力炸弹
-// 落点固定 target_col = 7（与情报岛「落在本行第八列」一致；格子 0 起算，第九列才是 8）
+// obj_ronghedapao 开火（event_user(1)）：朝本行第九列投一枚巧克力炸弹
+// 落点固定 target_col = 8（格子 0 起算，第 9 格）—— 2026-11-03 用户口径：**与普通巧克力大炮一致**
+//   （普通炮在 obj_chocolate_cannon/Other_11 里就是 target_col = 8；融合炮原来是 7，早一格）
 // 出弹口 = 卡片上那颗球的位置（精灵里球心约在原点上方 57px，卡片按 1.8 倍绘制 ≈ 100px），
 // depth + 1 → 生成在卡片后面：球从大炮后方/炮口升起来，不会一个大球直接盖在卡片正面。
 var inst = instance_create_depth(x, y - 100, depth + 1, obj_ronghedapao_bullet)
-inst.target_col = 7
+inst.target_col = 8
 inst.target_row = grid_row
 inst.damage = atk
 inst.blast_shape = shape
