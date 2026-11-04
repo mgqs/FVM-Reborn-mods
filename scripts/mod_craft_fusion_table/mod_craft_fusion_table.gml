@@ -110,6 +110,24 @@ function mod_fusion_table(){
                 { main:{ id:"ronghekafei",       need:0 }, sub:{ id:"coffee_pot",       need:2 } },  // 红温咖啡喷壶
                 { main:{ id:"ronghekafei",       need:1 }, sub:{ id:"coffee_cup",       need:2 } }   // 骨瓷咖啡杯
             ]
+        },
+        // ── 融合菠萝面包 ← 皇冠菠萝面包 ────────────────────────────────────
+        mianbao: {
+            prereq: "pineapple_explosive_bread",              // 皇冠菠萝面包
+            cards: [
+                { main:{ id:"pineapple_explosive_bread", need:2 }, sub:{ id:"small_fire",        need:2 } },  // 太阳能高效炉
+                { main:{ id:"mianbao",           need:0 }, sub:{ id:"dragon_fruit",      need:2 } },  // 九天皓日火龙果
+                { main:{ id:"mianbao",           need:1 }, sub:{ id:"gatlin_long_bao",   need:2 } }   // 格林机枪笼包（官方「格林机枪花盆」的顶替）
+            ]
+        },
+        // ── 融合旋转咖啡喷壶 ← 原子咖啡壶 ──────────────────────────────────
+        xuanzhuan_ronghe: {
+            prereq: "rotating_coffee_pot",                    // 原子咖啡壶（原版 2 转）
+            cards: [
+                { main:{ id:"rotating_coffee_pot", need:2 }, sub:{ id:"coffee_pot",      need:2 } },  // 红温咖啡喷壶
+                { main:{ id:"xuanzhuan_ronghe",           need:0 }, sub:{ id:"ice_bucket_bomb", need:2 } },  // 二转冰桶炸弹
+                { main:{ id:"xuanzhuan_ronghe",           need:1 }, sub:{ id:"coffee_grounds",  need:2 } }   // 皇族咖啡粉
+            ]
         }
     };
 }
@@ -165,7 +183,9 @@ function mod_fusion_card_order(){
         "ronghehuopen",     // 5 融合火盆
         "ronghesanxian",    // 6 融合三线
         "rongheshuanggu",   // 7 融合双菇
-        "ronghekafei"       // 8 融合咖啡杯
+        "ronghekafei",      // 8 融合咖啡杯
+        "mianbao",          // 9 融合菠萝面包
+        "xuanzhuan_ronghe"           // 10 融合旋转咖啡喷壶
     ];
     var _out = [];
     for (var _i = 0; _i < array_length(_ids); _i++){
@@ -232,7 +252,9 @@ function mod_fusion_recipe_face(_id, _shape){
         ronghehuopen:   [ [2, 8, 66, 48],    [2, 8, 66, 48],     [1, 9, 72, 47] ],
         ronghesanxian:  [ [2, 1, 77, 75],    [2, 1, 77, 75],     [2, 1, 85, 76] ],
         rongheshuanggu: [ [8, 30, 78, 98],   [10, 35, 79, 107],  [10, 36, 78, 115] ],
-        ronghekafei:    [ [0, 6, 65, 45],    [0, 5, 64, 48],     [0, 3, 77, 64] ]
+        ronghekafei:    [ [0, 6, 65, 45],    [0, 5, 64, 48],     [0, 3, 77, 64] ],
+        mianbao:        [ [102, 39, 70, 114], [100, 34, 70, 114], [92, 34, 96, 114] ],
+        xuanzhuan_ronghe:  [ [128, 116, 70, 98], [120, 109, 76, 99], [102, 209, 88, 102] ]
     };
     if (!variable_struct_exists(_t, _id)) return [0, 0, 64, 64];    // 表里没这张卡（正常不会走到，自检会报）
     var _a = _t[$ _id];

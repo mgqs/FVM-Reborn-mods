@@ -96,67 +96,120 @@ function info_island_search_alias_table(){
 }
 
 /// @func info_island_search_words(query)
-/// @desc 过滤词 → token 数组（半角空格 / 全角空格 / Tab 都算分隔，顺手小写）
-///   在过滤循环**外面**调一次，循环里别反复切
+/// @desc 过滤词 → 「词组」数组：**组内是「或」、组之间是「且」**
+///   分组（且）：空格 / 全角空格 / Tab
+///   组内或：`,`  `，`  `|`  `或`
+///   方括号 `[ ]` `【 】` 只是标记，可有可无（当分隔符处理，打了也不影响）
+///   例：`[喷壶类]` = 单组；`[喷壶类,防御类]`、`喷壶类或防御类`、`喷壶类，防御类` 都是「喷壶类 或 防御类」
+///       `喷壶 防御` = 两个组 = 同时满足
+///   在过滤循环**外**调一次，循环里别反复切
 function info_island_search_words(_q){
-    var _out = [];
+    var _groups = [];
+    var _alts = [];
     var _cur = "";
-    for (var _i = 1; _i <= string_length(_q); _i++){
+    var _n = string_length(_q);
+
+    for (var _i = 1; _i <= _n; _i++){
         var _ch = string_char_at(_q, _i);
-        if (_ch == " " || _ch == "　" || _ch == "\t"){
-            if (_cur != "") array_push(_out, string_lower(_cur));
-            _cur = "";
-        } else {
+        var _is_group_sep = (_ch == " " || _ch == "　" || _ch == "\t");
+        var _is_alt_sep   = (_ch == "," || _ch == "，" || _ch == "|" || _ch == "或"
+                             || _ch == "[" || _ch == "]" || _ch == "【" || _ch == "】");
+
+        if (_is_group_sep || _is_alt_sep){
+            if (_cur != ""){
+                var _kw = string_lower(_cur);
+                if (array_get_index(_alts, _kw) == -1) array_push(_alts, _kw);
+                _cur = "";
+            }
+            if (_is_group_sep && array_length(_alts) > 0){
+                array_push(_groups, _alts);
+                _alts = [];
+            }
+        }
+        else{
             _cur += _ch;
         }
     }
-    if (_cur != "") array_push(_out, string_lower(_cur));
-    return _out;
+    if (_cur != ""){
+        var _kw2 = string_lower(_cur);
+        if (array_get_index(_alts, _kw2) == -1) array_push(_alts, _kw2);
+    }
+    if (array_length(_alts) > 0) array_push(_groups, _alts);
+
+    return _groups;
 }
 
-/// @func info_island_search_match_card(words, card_id)
-/// @desc 卡片页签的过滤判定：卡名 / 大类 / 小分类 / 子分类 / 别名，**多个 token 全部命中才算**
-///   _words 由 info_island_search_words() 生成（已小写）；空数组 = 全部通过
-function info_island_search_match_card(_words, _cid){
-    if (array_length(_words) == 0) return true;
+/// @func info_island_search_match_card(groups, card_id)
+/// @desc 卡片页签的过滤判定
+///   **每个词组至少命中一个替代词**（组间「且」、组内「或」）；全部命中才留下这张卡
+///   命中来源：① **任意形态的名字**（转职后的名字也能搜到，例：麻辣香锅 → 酱香鱿鱼锅）
+///             ② 大类 / 小分类 / 子分类
+///             ③ 别名表（info_island_search_alias_table）
+///   _groups 由 info_island_search_words() 生成（已小写）；空数组 = 全部通过
+function info_island_search_match_card(_groups, _cid){
+    if (array_length(_groups) == 0) return true;
 
-    var _sd = get_plant_shape_data(_cid, 0);
-    var _nm = string_lower((_sd != undefined) ? string(_sd[? "name"]) : string(_cid));
+    // ① 所有形态的名字（0~3 形态，取不到就跳）
+    var _names = [];
+    for (var _sh = 0; _sh < 4; _sh++){
+        var _sd = get_plant_shape_data(_cid, _sh);
+        if (_sd == undefined) continue;
+        if (!ds_map_exists(_sd, "name")) continue;
+        array_push(_names, string_lower(string(_sd[? "name"])));
+    }
+    if (array_length(_names) == 0) array_push(_names, string_lower(string(_cid)));
 
+    // ② 分类
     var _cat = [];
     var _c = card_get_category(_cid);
     if (_c != undefined){
         array_push(_cat, string_lower(_c.major), string_lower(_c.minor), string_lower(_c.sub));
     }
 
-    // 别名表只在真的出现过「分类没命中」时才扫，平时不付这个成本
-    for (var _w = 0; _w < array_length(_words); _w++){
-        var _kw = _words[_w];
-        var _hit = (string_pos(_kw, _nm) > 0);
+    // ③ 别名表按需取（没出现过分类/名字没命中的词就不付成本）
+    var _alias = [];
+    var _alias_ready = false;
 
-        if (!_hit){
-            for (var _ci = 0; _ci < array_length(_cat); _ci++){
-                if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _hit = true; break; }
+    for (var _g = 0; _g < array_length(_groups); _g++){
+        var _alts = _groups[_g];
+        var _group_hit = false;
+
+        for (var _a = 0; _a < array_length(_alts); _a++){
+            var _kw = _alts[_a];
+
+            // 形态名（含转职名）
+            for (var _ni = 0; _ni < array_length(_names); _ni++){
+                if (_names[_ni] != "" && string_pos(_kw, _names[_ni]) > 0){ _group_hit = true; break; }
             }
-        }
+            if (_group_hit) break;
 
-        if (!_hit){
-            var _alias = info_island_search_alias_table();
-            for (var _a = 0; _a < array_length(_alias); _a++){
-                if (_alias[_a][0] != _kw) continue;
-                var _targets = _alias[_a][1];
+            // 分类
+            for (var _ci = 0; _ci < array_length(_cat); _ci++){
+                if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _group_hit = true; break; }
+            }
+            if (_group_hit) break;
+
+            // 别名 → 分类
+            if (!_alias_ready){
+                _alias = info_island_search_alias_table();
+                _alias_ready = true;
+            }
+            for (var _ai = 0; _ai < array_length(_alias); _ai++){
+                if (_alias[_ai][0] != _kw) continue;
+                var _targets = _alias[_ai][1];
                 for (var _t = 0; _t < array_length(_targets); _t++){
                     var _tg = string_lower(_targets[_t]);
                     for (var _cj = 0; _cj < array_length(_cat); _cj++){
-                        if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _hit = true; break; }
+                        if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _group_hit = true; break; }
                     }
-                    if (_hit) break;
+                    if (_group_hit) break;
                 }
                 break;
             }
+            if (_group_hit) break;
         }
 
-        if (!_hit) return false;   // 交集：任一词没命中就整卡排除
+        if (!_group_hit) return false;   // 组间「且」：任一组没命中就整卡排除
     }
     return true;
 }

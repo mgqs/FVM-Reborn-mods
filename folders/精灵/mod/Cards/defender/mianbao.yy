@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"mianbao",
+  "folderPath":"folders/精灵/mod/Cards/defender/mianbao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mianbao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"ac002c27-de45-4cae-a998-b635d68667e8","path":"sprites/spr_mianbao/spr_mianbao.yy",},
+    {"name":"1fe80e1a-fba7-4a99-9b54-dcdd9594e243","path":"sprites/spr_mianbao_1/spr_mianbao_1.yy",},
+    {"name":"8203e2b8-391f-44a5-bb10-5c946ebe201f","path":"sprites/spr_mianbao_2/spr_mianbao_2.yy",},
+    {"name":"2f8b97d2-d4b6-46f3-8891-a6d8250327e3","path":"sprites/spr_mianbao_fire/spr_mianbao_fire.yy",},
+    {"name":"a1fd99b4-77ab-4149-8bd7-6b741753a6e9","path":"sprites/spr_mianbao_bullet/spr_mianbao_bullet.yy",},
+],
+}

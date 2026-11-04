@@ -7,4 +7,4 @@ attack_anim = 7
 death_anim = 23
 move_speed = 0.6
 
-block_list = ["chocolate_bread","pineapple_explosive_bread","horseshoe_crab_bread"]
+block_list = ["chocolate_bread","pineapple_explosive_bread","mianbao","horseshoe_crab_bread"]

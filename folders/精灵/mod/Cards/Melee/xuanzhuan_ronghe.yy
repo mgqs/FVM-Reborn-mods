@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"xuanzhuan_ronghe",
+  "folderPath":"folders/精灵/mod/Cards/Melee/xuanzhuan_ronghe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xuanzhuan_ronghe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"3a49985d-6dd7-4580-a27d-96d8a241de3f","path":"sprites/spr_xuanzhuan_ronghe/spr_xuanzhuan_ronghe.yy",},
+    {"name":"5793a155-7664-42d1-a002-7dc751da1069","path":"sprites/spr_xuanzhuan_ronghe_1/spr_xuanzhuan_ronghe_1.yy",},
+    {"name":"2e17a571-004e-49b4-843e-8ecd783a0127","path":"sprites/spr_xuanzhuan_ronghe_2/spr_xuanzhuan_ronghe_2.yy",},
+  ],
+}

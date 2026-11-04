@@ -30,18 +30,21 @@ BOOM_LAST    = 19;
 idle_anim = IDLE_LAST;
 attack_anim = BOOM_LAST - IDLE_LAST;
 
-// 爆炸：0 转只打本格 500 灰烬；1·2 转 3×3 十字 900 灰烬
-boom_damage = (shape >= 1) ? 900 : 500;
+// 数值全部走注册表（mod_cards_init 里三形态各一份），方便在卡片面板直接看 / 直接改：
+//   爆炸伤害   → atk（0 转 500 / 1·2 转 900）
+//   燃烧伤害   → flame_produce（0 转 50 / 1·2 转 100，每格总伤）
+//   每秒限伤   → cycle（0 转 200 / 1 转 150 / 2 转 100，所有来源合计）
+//   🔴 cycle 是「攻击间隔」，面板（情报岛 obj_info_island_bg/Draw_0）显示时会 ÷60，
+//      所以注册表里存的是 数值 ×60（12000 / 9000 / 6000），这里必须 ÷60 还原成真实数值。
+boom_damage = atk;
 boom_cross  = (shape >= 1);
 boom_type   = "ash";
 
-// 火格：0 转铺本格 + 前方 1 格，每格总伤 50 物理；1·2 转 3×3 十字，每格总伤 100 物理
-burn_total  = (shape >= 1) ? 100 : 50;
+burn_total  = variable_instance_exists(id, "flame_produce") ? flame_produce : 50;
 burn_cross  = (shape >= 1);
 burn_type   = "physical";
 
-// 每秒最多接受伤害：0 转 200 / 1 转 150 / 2 转 100（所有来源合计）
-cap_per_sec = (shape >= 2) ? 100 : ((shape == 1) ? 150 : 200);
+cap_per_sec = (origin_cycle > 0) ? (origin_cycle / 60) : 200;   // origin_cycle：减速时 cycle 会被 ×2
 cap_used    = 0;
 cap_timer   = 60;
 last_hp     = hp;

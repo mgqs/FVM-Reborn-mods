@@ -8,4 +8,4 @@ attack_anim = 14
 death_anim = 15
 skipped = false
 
-block_list = ["chocolate_bread","pineapple_explosive_bread"]
+block_list = ["chocolate_bread","pineapple_explosive_bread","mianbao"]

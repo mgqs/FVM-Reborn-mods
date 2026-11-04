@@ -9,4 +9,4 @@ death_anim = 14
 skipped = false
 immune_to_ash = true
 
-block_list = ["chocolate_bread","pineapple_explosive_bread","horseshoe_crab_bread"]
+block_list = ["chocolate_bread","pineapple_explosive_bread","mianbao","horseshoe_crab_bread"]

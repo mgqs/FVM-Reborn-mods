@@ -4101,10 +4101,11 @@ mod_register_plant_lite("xuanfengniu", [
         description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠并留下燃烧的酒精",
         hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
         cost: array_create(17, 125),
-        atk: array_create(17, 0),
+        atk: array_create(17, 500),
+        flame_produce: array_create(17, 50),
         range: array_create(17, 1),
         cooldown: array_create(17, 3000),
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 12000),
     },
     {
         name: "陈年桂花酒",
@@ -4112,10 +4113,11 @@ mod_register_plant_lite("xuanfengniu", [
         description: "陈年桂花酒：阻挡老鼠，爆炸与燃烧范围扩大，伤害提高",
         hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
         cost: array_create(17, 125),
-        atk: array_create(17, 0),
+        atk: array_create(17, 900),
+        flame_produce: array_create(17, 100),
         range: array_create(17, 1),
         cooldown: array_create(17, 3000),
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 9000),
     },
     {
         name: "仙酿桂花酒",
@@ -4123,9 +4125,86 @@ mod_register_plant_lite("xuanfengniu", [
         description: "仙酿桂花酒：阻挡老鼠，爆炸使范围内老鼠醉酒，受到的伤害提升",
         hp: [500, 540, 580, 620, 680, 740, 800, 880, 960, 1040, 1140, 1240, 1340, 1440, 1540, 1640, 1740],
         cost: array_create(17, 125),
+        atk: array_create(17, 900),
+        flame_produce: array_create(17, 100),
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 6000),
+    }], false);
+    mod_register_plant_lite("mianbao", [
+    {
+        name: "火炉菠萝面包",
+        shape: 0,
+        description: "火炉菠萝面包：阻挡老鼠，被啃咬时产出火苗，死亡时产生5*5范围灰烬爆炸",
+        hp: [1320, 1326, 1332, 1338, 1348, 1358, 1368, 1380, 1394, 1408, 1420, 1444, 1468, 1492, 1516, 1540, 1564],
+        cost: array_create(17, 150),
         atk: array_create(17, 0),
+        flame_produce: [0, 6, 8, 10, 10, 12, 12, 14, 16, 16, 18, 18, 22, 24, 28, 30, 34],
         range: array_create(17, 1),
         cooldown: array_create(17, 3000),
         cycle: array_create(17, 0)
-    }], false);
+    },
+    {
+        name: "火龙果菠萝包",
+        shape: 1,
+        description: "火龙果菠萝包：阻挡老鼠，每4.5秒在周围5*5范围燃起火焰",
+        hp: [1320, 1326, 1332, 1338, 1348, 1358, 1368, 1380, 1394, 1408, 1420, 1444, 1468, 1492, 1516, 1540, 1564],
+        cost: array_create(17, 150),
+        atk: array_create(17, 0),
+        flame_produce: [0, 6, 8, 10, 10, 12, 12, 14, 16, 16, 18, 18, 22, 24, 28, 30, 34],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: [0, 3600, 4200, 4800, 6000, 7200, 8400, 10200, 12000, 13800,
+                16200, 18600, 21000, 23400, 25800, 28200, 30600]
+    },
+    {
+        name: "机枪菠萝面包",
+        shape: 2,
+        description: "机枪菠萝面包：阻挡老鼠，每1.5秒向前发射4发子弹，可过火、可被反弹",
+        hp: [1320, 1326, 1332, 1338, 1348, 1358, 1368, 1380, 1394, 1408, 1420, 1444, 1468, 1492, 1516, 1540, 1564],
+        cost: array_create(17, 150),
+        atk: [0, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],
+        flame_produce: [0, 6, 8, 10, 10, 12, 12, 14, 16, 16, 18, 18, 22, 24, 28, 30, 34],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 3000),
+        cycle: [0, 3600, 4200, 4800, 6000, 7200, 8400, 10200, 12000, 13800,
+                16200, 18600, 21000, 23400, 25800, 28200, 30600]
+    }
+    ], false);
+
+    mod_register_plant_lite("xuanzhuan_ronghe", [
+    {
+        name: "红温旋转咖啡壶",
+        shape: 0,
+        description: "红温旋转咖啡壶：向四周5*5范围喷出攻击气体，冷却时间减半",
+        hp: array_create(17, 50),
+        cost: array_create(17, 150),
+        atk: [60, 96, 102, 108, 114, 120, 126, 132, 141, 150, 180, 210, 240, 270, 300, 330, 360],
+        range: array_create(17, 2),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 126)
+    },
+    {
+        name: "果味旋转咖啡壶",
+        shape: 1,
+        description: "果味旋转咖啡壶：向四周5*5范围喷出攻击气体，附带减速与碎冰",
+        hp: array_create(17, 50),
+        cost: array_create(17, 150),
+        atk: [60, 128, 136, 144, 152, 160, 168, 176, 188, 200, 240, 280, 320, 360, 400, 440, 480],
+        range: array_create(17, 2),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 126)
+    },
+    {
+        name: "觉醒旋转咖啡壶",
+        shape: 2,
+        description: "觉醒旋转咖啡壶：向四周5*7范围喷出攻击气体，附带减速与碎冰",
+        hp: array_create(17, 50),
+        cost: array_create(17, 150),
+        atk: [60, 192, 204, 216, 228, 240, 252, 264, 282, 300, 360, 420, 480, 540, 600, 660, 720],
+        range: array_create(17, 3),
+        cooldown: array_create(17, 3000),
+        cycle: array_create(17, 126)
+    }
+    ], false);
 }
