@@ -10,7 +10,7 @@ if shape < 1{
 		var has_bubble = false
 		var has_seawater = false
 		with obj_card_parent{
-			if plant_id == "soda_bubble" && grid_col == other.grid_col && grid_row == other.grid_row{
+			if (variable_instance_exists(id, "provides_bubble") && provides_bubble) && grid_col == other.grid_col && grid_row == other.grid_row{
 				has_bubble = true
 			}
 		}

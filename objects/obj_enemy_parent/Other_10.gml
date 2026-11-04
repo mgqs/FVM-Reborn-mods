@@ -7,6 +7,11 @@ if (hex_enabled()) {
 }
 // 海克斯：暴击 / 对空中目标 / 对被减速目标 的额外伤害（非海克斯模式恒 1.0）
 if (hex_enabled()) damage_amount = damage_amount * hex_damage_taken_mult();
+// 醉酒（drunk）：贝利尔/烈酒类敌人喝醉期间受击放大（pr-29 新增）
+if (variable_instance_exists(id, "drunk_timer") && drunk_timer > 0 && !is_boss)
+{
+    damage_amount = damage_amount * (variable_instance_exists(id, "drunk_mult") ? drunk_mult : 1.5);
+}
 // 海克斯二期：固定减伤 / ±抖动 / 首击倍率 / 对 BOSS / 对跨服鼠军 / 决斗递增 / 致死保护。
 // 必须在上面两步之后、真正扣血之前，否则减伤算不进去
 if (hex_enabled()) {

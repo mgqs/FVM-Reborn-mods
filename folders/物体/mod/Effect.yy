@@ -58,5 +58,8 @@
     {"name":"obj_burn_cell","path":"objects/obj_burn_cell/obj_burn_cell.yy",},
     {"name":"obj_eightcake_burn_cell","path":"objects/obj_eightcake_burn_cell/obj_eightcake_burn_cell.yy",},
     {"name":"obj_bbq_mouse_burn","path":"objects/obj_bbq_mouse_burn/obj_bbq_mouse_burn.yy",},
+    {"name":"obj_guihuajiu_boom","path":"objects/obj_guihuajiu_boom/obj_guihuajiu_boom.yy",},
+    {"name":"obj_guihuajiu_burn_cell","path":"objects/obj_guihuajiu_burn_cell/obj_guihuajiu_burn_cell.yy",},
+    {"name":"obj_guihuajiu_drunk","path":"objects/obj_guihuajiu_drunk/obj_guihuajiu_drunk.yy",},
     {"name":"obj_tangchaolizi_bullet_effect","path":"objects/obj_tangchaolizi_bullet_effect/obj_tangchaolizi_bullet_effect.yy",},],
 }

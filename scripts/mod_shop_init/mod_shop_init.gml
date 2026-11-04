@@ -527,36 +527,10 @@ function mod_shop_init()
     register_goods("zhanqima", { type: "card", cost: "1900", unlock_item_id: "zhanqima", description: "战旗马：5*5范围内主动攻击型卡片提高基础攻击力", display_name: "战旗马" });
     register_goods("zhanqima_1", { type: "card", card_id: "zhanqima", card_shape: 1, cost: "30000", unlock_item_id: "zhanqima", required_card_shape: 0, description: "飞天战旗马：增幅倍率提升", display_name: "飞天战旗马" });
     register_goods("zhanqima_2", { type: "card", card_id: "zhanqima", card_shape: 2, cost: "70000", unlock_item_id: "zhanqima", required_card_shape: 1, description: "燎原战旗马：增幅范围扩大至全屏", display_name: "燎原战旗马" });
-    register_goods("hongliukaochuan",
-    {
-        type: "card",
-        cost: "1650",
-        unlock_item_id: "hongliukaochuan",
-        description: "红柳烤串机：全屏索敌追踪穿透弹",
-        display_name: "红柳烤串机"
-    });
-    register_goods("hongliukaochuan_1",
-    {
-        type: "card",
-        card_id: "hongliukaochuan",
-        card_shape: 1,
-        cost: "390",
-        unlock_item_id: "hongliukaochuan",
-        required_card_shape: 0,
-        description: "茴香红柳烤串机：解锁一转",
-        display_name: "茴香红柳烤串机"
-    });
-    register_goods("hongliukaochuan_2",
-    {
-        type: "card",
-        card_id: "hongliukaochuan",
-        card_shape: 2,
-        cost: "730",
-        unlock_item_id: "hongliukaochuan",
-        required_card_shape: 1,
-        description: "星火红柳烤串机：解锁二转",
-        display_name: "星火红柳烤串机"
-    });
+    // 红柳烤串机（本体 / 茴香·一转 / 星火·二转）2026-11-03 注销：
+    //   本体是百味关首通奖励（地图专属），一·二转改由威望商店卖凭证，
+    //   这三条商品原来被 obj_shop_bg 的 cross_server_exchange_ids 隐藏、又不在跨服名单里，
+    //   属于「哪儿都买不到」的死条目，已整段删除。
 
     register_goods("pufferfish",
     {
@@ -584,5 +558,7 @@ function mod_shop_init()
     register_goods("tangchaolizi", { type: "card", cost: "60000", unlock_item_id: "tangchaolizi", description: "糖炒栗子：向前方喷出持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）", display_name: "糖炒栗子" });
 
     register_goods("nengliangmiao", { type: "card", cost: "100000", unlock_item_id: "nengliangmiao", description: "能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹", display_name: "能量喵" });
+    register_goods("maiya", { type: "card", cost: "20000", unlock_item_id: "maiya", description: "麦芽糖：可在海水与岩浆上承载卡片", display_name: "麦芽糖" });
+    register_goods("guihuajiu", { type: "card", cost: "40000", unlock_item_id: "guihuajiu", description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠", display_name: "桂花酒" });
 
 }

@@ -24,8 +24,7 @@ cross_server_exchange_ids = [
     "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
     "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
     "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
-    // 红柳烤串机转职卡片（仅跨服黄金商店）
-    "hongliukaochuan", "hongliukaochuan_1", "hongliukaochuan_2",
+    // 红柳烤串机（本体 / 一转 / 二转）的商品已在 mod_shop_init 注销，这三个 id 一并清掉
     "zhanqima", "zhanqima_1", "zhanqima_2",
     // 椰子果（0转银牌商店 / 1、2转金牌商店）
     "yeziguo", "yeziguo_1", "yeziguo_2",

@@ -18,7 +18,11 @@ plant_type = "normal";
 is_slowdown = false;
 target_type = "throw";
 target_instance = -4;
-cooldown_timer = cycle;
+// 起手对齐生煎锅（2026-11-04 用户口径）：生煎锅是 `attack_timer == cycle - 30` 就脱手，
+//   本卡脱手在攻击开始后第 45 帧（_frame >= 19 → _fi >= 9 → attack_timer >= 45），
+//   所以初始冷却要少 75 帧（30 + 45）→ 首发 = (cycle-75) + 45 = cycle-30。
+//   间隔不受影响：挥完 `cooldown_timer = cycle - 60`，仍是 cycle 一轮。
+cooldown_timer = cycle - 75;
 attacking = false;
 lizi_fired = false;     // 本轮是否已经脱手（第 19 帧出弹，见 Step_0）
 

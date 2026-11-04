@@ -61,3 +61,102 @@ function info_island_search_match(_q, _text){
     if (!is_string(_text)) return false;
     return (string_pos(_q, string_lower(_text)) > 0);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  卡片分类检索（2026-11-03 用户批准「B 档：分类名 + 别名 + 空格分词」，**不做命中提示**）
+//    只作用于「卡片」页签；敌人 / 关卡两个页签仍走 info_island_search_match（按名字）
+//    分类数据源：card_buff_category 的 card_get_category()（12 大类 / 46 小分类 / 13 子分类）
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// @func info_island_search_alias_table()
+/// @desc 口语别名 → 分类名（可多个）。搜「平射」时把「直射类」和「平射增幅」都带上
+///   只收「玩家真的会这么打」的词；加词就加一行，别在匹配函数里写分支
+function info_island_search_alias_table(){
+    return [
+        ["平射",   ["直射类", "平射增幅"]],
+        ["投手",   ["投掷类", "灼烧投手", "单线投手", "多线投手"]],
+        ["投掷",   ["投掷类"]],
+        ["喷壶",   ["喷壶类"]],
+        ["防空",   ["专业防空类", "纯对空类", "陆空兼备类"]],
+        ["产火",   ["产能类", "主职产火"]],
+        ["护罩",   ["防御类", "护罩类"]],
+        ["面包",   ["防御类", "面包类"]],
+        ["水管",   ["水管类"]],
+        ["三线",   ["三线类"]],
+        ["海星",   ["海星类", "类海星类"]],
+        ["鱼刺",   ["鱼刺类"]],
+        ["追踪",   ["追踪类"]],
+        ["灰烬",   ["灰烬类"]],
+        ["增幅",   ["增幅类"]],
+        ["辅助",   ["辅助类"]],
+        ["防御",   ["防御类"]],
+        ["产能",   ["产能类"]],
+        ["远程",   ["直射类", "投掷类", "多向类", "喷壶类", "追踪类", "专业防空类"]]
+    ];
+}
+
+/// @func info_island_search_words(query)
+/// @desc 过滤词 → token 数组（半角空格 / 全角空格 / Tab 都算分隔，顺手小写）
+///   在过滤循环**外面**调一次，循环里别反复切
+function info_island_search_words(_q){
+    var _out = [];
+    var _cur = "";
+    for (var _i = 1; _i <= string_length(_q); _i++){
+        var _ch = string_char_at(_q, _i);
+        if (_ch == " " || _ch == "　" || _ch == "\t"){
+            if (_cur != "") array_push(_out, string_lower(_cur));
+            _cur = "";
+        } else {
+            _cur += _ch;
+        }
+    }
+    if (_cur != "") array_push(_out, string_lower(_cur));
+    return _out;
+}
+
+/// @func info_island_search_match_card(words, card_id)
+/// @desc 卡片页签的过滤判定：卡名 / 大类 / 小分类 / 子分类 / 别名，**多个 token 全部命中才算**
+///   _words 由 info_island_search_words() 生成（已小写）；空数组 = 全部通过
+function info_island_search_match_card(_words, _cid){
+    if (array_length(_words) == 0) return true;
+
+    var _sd = get_plant_shape_data(_cid, 0);
+    var _nm = string_lower((_sd != undefined) ? string(_sd[? "name"]) : string(_cid));
+
+    var _cat = [];
+    var _c = card_get_category(_cid);
+    if (_c != undefined){
+        array_push(_cat, string_lower(_c.major), string_lower(_c.minor), string_lower(_c.sub));
+    }
+
+    // 别名表只在真的出现过「分类没命中」时才扫，平时不付这个成本
+    for (var _w = 0; _w < array_length(_words); _w++){
+        var _kw = _words[_w];
+        var _hit = (string_pos(_kw, _nm) > 0);
+
+        if (!_hit){
+            for (var _ci = 0; _ci < array_length(_cat); _ci++){
+                if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _hit = true; break; }
+            }
+        }
+
+        if (!_hit){
+            var _alias = info_island_search_alias_table();
+            for (var _a = 0; _a < array_length(_alias); _a++){
+                if (_alias[_a][0] != _kw) continue;
+                var _targets = _alias[_a][1];
+                for (var _t = 0; _t < array_length(_targets); _t++){
+                    var _tg = string_lower(_targets[_t]);
+                    for (var _cj = 0; _cj < array_length(_cat); _cj++){
+                        if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _hit = true; break; }
+                    }
+                    if (_hit) break;
+                }
+                break;
+            }
+        }
+
+        if (!_hit) return false;   // 交集：任一词没命中就整卡排除
+    }
+    return true;
+}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"guihuajiu",
+  "folderPath":"folders/精灵/mod/Cards/defender/guihuajiu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"guihuajiu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"28f6555a-ddd0-4c3d-8b59-df120b9cfcd4","path":"sprites/spr_guihuajiu/spr_guihuajiu.yy",},
+    {"name":"d5a779d7-06e9-4db2-a23c-79a0d673924b","path":"sprites/spr_guihuajiu_1/spr_guihuajiu_1.yy",},
+    {"name":"ef9ca419-032c-4d64-8792-3738904ec5ee","path":"sprites/spr_guihuajiu_2/spr_guihuajiu_2.yy",},
+    {"name":"f33a6e49-a509-422d-b04f-b1cbd5c788e5","path":"sprites/spr_guihuajiu_burn/spr_guihuajiu_burn.yy",},
+    {"name":"91061b38-d035-4018-aaba-3c6904aeddae","path":"sprites/spr_guihuajiu_drunk/spr_guihuajiu_drunk.yy",}
+],
+}

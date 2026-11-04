@@ -58,6 +58,8 @@ for (var _sr_i = _sr_i0; _sr_i <= _sr_i1; _sr_i++) {
 //   info_view 的含义：tab1 = global.player_deck 的下标（已排序）；tab2 = 敌人 id；tab3 = 关卡 id
 //   顺序不能换：排序 → 过滤 → 分页/行数，否则页码和滚动会跟结果对不上
 var _q = string_lower(info_search_text);
+// 卡片页签的分类检索（2026-11-03）：空格分词在这里切一次，过滤循环里复用
+var _q_words = info_island_search_words(_q);
 info_view = [];
 if (info_button_select == 1) {
     if (ds_exists(global.player_deck, ds_type_list)) {
@@ -83,12 +85,8 @@ if (info_button_select == 1) {
 
         for (var _vi = 0; _vi < array_length(deck_sort_order); _vi++) {
             var _di = deck_sort_order[_vi];
-            if (_q != "") {
-                var _fcid = global.player_deck[| _di];
-                var _fsd = get_plant_shape_data(_fcid, 0);
-                var _fnm = (_fsd != undefined) ? string(_fsd[? "name"]) : _fcid;
-                if (!info_island_search_match(_q, _fnm)) continue;
-            }
+            // 卡名 / 分类 / 别名叫法都能搜（2026-11-03）
+            if (!info_island_search_match_card(_q_words, global.player_deck[| _di])) continue;
             array_push(info_view, _di);
         }
     }

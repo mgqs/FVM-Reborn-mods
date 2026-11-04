@@ -18,6 +18,38 @@ if (is_slowdown) current_flash_speed *= 2;
 var _rows = (shape >= 2) ? [grid_row - 1, grid_row, grid_row + 1] : [grid_row];
 var _hittable = get_hittable_enemy_types(target_type);
 
+// 同轮第二发延迟出膛（2026-11-04 用户口径）：Other_11 当帧只出第一发，后面的发记在 bbq_pending，
+//   这里倒计时到点再创建 —— 两发从**同一点**先后出去，间距 = 延迟帧数 × 弹速（5.35 px/帧）。
+//   多行（二转）的待发弹会一起到点、同一帧出膛，行与行之间仍然同步。
+if (bbq_pending_timer > 0)
+{
+    bbq_pending_timer--;
+    if (bbq_pending_timer <= 0 && array_length(bbq_pending) > 0)
+    {
+        for (var _p = 0; _p < array_length(bbq_pending); _p++)
+        {
+            var _pd = bbq_pending[_p];
+            var _pb = instance_create_depth(_pd.x, _pd.y, depth - 500, obj_bbq_bullet);
+            _pb.damage = atk;
+            _pb.row = _pd.row;
+            _pb.burn_shot = _pd.burn;
+            _pb.start_x = _pd.x;
+            _pb.end_x = _pd.end_x;
+            _pb.end_x_left = _pd.end_x_left;
+            _pb.move_dir = 1;
+            _pb.hittable_types = _hittable;
+            if (_pd.burn)
+            {
+                _pb.sprite_index = spr_bbq_bullet_burn;
+                // 🔴 火格跟着**烤串本身**铺：这一发就是烤串 → 补发这一帧才铺，
+                //   不再在本轮第一发（普通串）出膛时就提前出现（2026-11-04 用户口径）
+                bbq_spawn_burn_cell(_pd.row);
+            }
+        }
+        bbq_pending = [];
+    }
+}
+
 // 2026-11-02：**整行索敌**（左右都认）—— 身后的地精鼠出土后从左边走过来咬卡，也会触发开火。
 //   子弹轨迹是固定的（永远向右，见 Other_11），**不要**改成按方向左右发射。
 var _has_enemy = false;

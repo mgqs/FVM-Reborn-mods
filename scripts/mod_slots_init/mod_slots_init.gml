@@ -3093,13 +3093,13 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
 
     register_card("bbq", obj_bbq, [
     { shape: 0, sprite: spr_bbq, cost: 350, cooldown: 420, description: "街头烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq },
-    { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：沿本行发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
-    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每2发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
+    { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
+    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
 
     register_card("eightcake", obj_eightcake, [
-    { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
-    { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷威力更高的蛋糕子弹，以及有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
-    { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，以及有燃烧效果的蜡烛子弹，有几率投出可乐炸弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
+    { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
+    { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷威力更高的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
+    { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹，每10发投掷可乐炸弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
     register_card("tangchaolizi", obj_tangchaolizi, [
     { shape: 0, sprite: spr_tangchaolizi, cost: 160, cooldown: 420, description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi },
     { shape: 1, sprite: spr_tangchaolizi_1, cost: 160, cooldown: 420, description: "开口笑栗子：灼烧范围扩大到3*3", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_1 },
@@ -3109,4 +3109,13 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_nengliangmiao, cost: 225, cooldown: 720, description: "能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao },
     { shape: 1, sprite: spr_nengliangmiao_1, cost: 175, cooldown: 720, description: "蓝焰能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，耗能降低", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_1 },
     { shape: 2, sprite: spr_nengliangmiao_2, cost: 175, cooldown: 720, description: "樱红能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，增幅提高15%", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_2 }]);
+
+    register_card("maiya", obj_maiya, [
+    { shape: 0, sprite: spr_maiya, cost: 55, cooldown: 420, description: "麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya },
+    { shape: 1, sprite: spr_maiya_1, cost: 0, cooldown: 420, description: "莓莓麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya_1 }]);
+
+    register_card("guihuajiu", obj_guihuajiu, [
+    { shape: 0, sprite: spr_guihuajiu, cost: 125, cooldown: 3000, description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠并留下燃烧的酒精", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu },
+    { shape: 1, sprite: spr_guihuajiu_1, cost: 125, cooldown: 3000, description: "陈年桂花酒：阻挡老鼠，爆炸与燃烧范围扩大，伤害提高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_1 },
+    { shape: 2, sprite: spr_guihuajiu_2, cost: 125, cooldown: 3000, description: "仙酿桂花酒：阻挡老鼠，爆炸使范围内老鼠醉酒，受到的伤害提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_2 }]);
 }

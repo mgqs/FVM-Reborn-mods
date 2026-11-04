@@ -4,6 +4,8 @@ obj_type = object_index;
 
 is_derivative = false
 on_lava = false
+provides_bubble = true
+provides_lava = true
 
 event_user(0)
 

@@ -58,7 +58,10 @@ if (state != CARD_STATE.ATTACK)
 {
     if (_has_enemy) tc_cd++;           // 没目标就冻结冷却（不清零，回来接着数）
     // 必须有目标才开打：不然刚放下就会朝空处丢一颗
-    if (_has_enemy && tc_cd >= _cycle_frames)
+    // 🔴 2026-11-04 用户口径：**起手要和生煎锅一致**（生煎锅是 `attack_timer == cycle - 30` 就脱手）。
+    //   栗子脱手在本轮 ATTACK 开始后第 10 帧（_release_off=2 × 5 帧），所以门槛要提前 40 帧：
+    //   (cycle - 40) 进 ATTACK，+10 帧脱手 → 首发 = cycle - 30，跟生煎锅同口径。
+    if (_has_enemy && tc_cd >= _cycle_frames - 40)
     {
         tc_cd = 0;
         tc_atk_t = 0;
@@ -85,10 +88,13 @@ if (state == CARD_STATE.ATTACK)
     }
 
     // 挥完（含收手帧）回待机，接着播待机循环；攻击占掉的帧计入冷却 → 出弹间隔 = cycle
+    //   2026-11-04：门槛提前 40 帧后，这里要补回 40 帧（-40），间隔才回到 cycle。
+    //   对账：脱手后还剩 (45-10)=35 帧攻击 → 冷却从 5 数到 (cycle-40) 用 cycle-45 帧 → 再 10 帧脱手
+    //         35 + (cycle-45) + 10 = cycle ✓
     if (tc_atk_t >= _atk_len * _step_frames)
     {
         state = CARD_STATE.IDLE;
-        tc_cd = tc_atk_t;
+        tc_cd = tc_atk_t - 40;
         tc_anim_t = 0;
     }
 }

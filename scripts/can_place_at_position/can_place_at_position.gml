@@ -112,6 +112,17 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
         return true;
     }
 
+    if (card_id == "maiya" || card_id == "cotton_candy")
+    {
+        var _carrier_other = (card_id == "maiya") ? "cotton_candy" : "maiya";
+        for (var _ci = 0; _ci < ds_list_size(plant_list); _ci++)
+        {
+            var _cp = ds_list_find_value(plant_list, _ci);
+            if (!instance_exists(_cp) || !variable_instance_exists(_cp, "plant_id")) continue;
+            if (_cp.plant_id == _carrier_other) return false;
+        }
+    }
+
     // 根据植物类型检查是否可以种植
 	if target_card != "none"{
 		var same = false
@@ -371,7 +382,10 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
 						for (var i = 0; i < ds_list_size(plant_list); i++) {
 		                    var plant = ds_list_find_value(plant_list, i);
                     		if (!instance_exists(plant)) continue;
-		                    if (plant.plant_type == "lilypad" && !has_same) {
+		                    if ((plant.plant_type == "lilypad"
+							|| (variable_instance_exists(plant, "provides_bubble") && plant.provides_bubble)
+							|| (variable_instance_exists(plant, "provides_lava") && plant.provides_lava))
+							&& !has_same) {
 		                        return true;
 		                    }
 						}

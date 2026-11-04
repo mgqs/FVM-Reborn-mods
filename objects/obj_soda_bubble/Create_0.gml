@@ -6,6 +6,7 @@ obj_type = object_index;
 
 is_derivative = false
 on_lava = false
+provides_bubble = true
 
 
 event_user(0)
