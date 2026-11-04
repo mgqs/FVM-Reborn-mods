@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"soar",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/soar.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"soar",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

@@ -131,6 +131,8 @@ switch state{
 					}
 				}
 			}
+			// 先落到"无效格"（col=-1，不会匹配任何格子）；没卡片时木乃伊就留在原地
+			t_pos = {col: -1, row: -1, x: x, y: y}
 			if ds_list_size(avaliable_pos) > 0{
 				var pos_choose = irandom_range(0,ds_list_size(avaliable_pos)-1)
 				var pos_grid = avaliable_pos[| pos_choose]
@@ -149,7 +151,7 @@ switch state{
 		if timer == 230{
 			var infected = false
 			with obj_card_parent{
-				if grid_col == other.t_pos.col && grid_row == other.t_pos.row && plant_type != "coffee" && !invincible{
+				if other.t_pos.col >= 0 && grid_col == other.t_pos.col && grid_row == other.t_pos.row && plant_type != "coffee" && !invincible{
 					other.hp = clamp(other.hp+other.maxhp*0.035,0,other.maxhp)
 					var inst = instance_create_depth(other.x,other.y,-800,obj_card_heal_effect)
 					inst.sprite_index = spr_mouse_heal_effect

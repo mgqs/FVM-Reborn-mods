@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"panda",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/panda.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"panda",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

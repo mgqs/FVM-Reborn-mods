@@ -12,7 +12,15 @@ view_x = px + 20;
 view_y = py + 112;
 view_w = w - 40;
 view_h = h - 112 - 48;   // 底部留出"收集进度"一行，别把最后一项压在文字下面
-item_h = 80;             // 名字一行 + 效果一行
+item_h = 80;             // 仅作滚轮/键盘的步长参考，真实行高按文本行数动态算
+list_total_h = 0;        // 全部行累计高度（build 时算，Step 的滚动上限用它）
+
+// 行内排版常量（Draw 与 build 共用，改一处即可）
+row_pad_x  = 26;         // 左右内边距
+row_text_w = view_w - row_pad_x * 2 - 8;
+row_head_h = 34;         // 名字行
+row_line_h = 23;         // 描述行
+row_max_lines = 4;       // 单段描述最多几行
 
 // 页签几何：Draw 与 Step 共用一套，避免两处硬编码越改越偏
 tab_w   = 130;
@@ -39,6 +47,29 @@ if (!hex_active()) {          // 测试关卡不提供词条查看
     exit;
 }
 
+/// @function hex_list_make_row(_id, _d, _times, _persist)
+/// @desc 造一行：先把两段描述按视口宽度换好行，再按实际行数算行高。
+///       换行必须在 build 时做（而不是 Draw 里每帧做），否则滚动位置没法定。
+function hex_list_make_row(_id, _d, _times, _persist) {
+    var _old_font = draw_get_font();
+    draw_set_font(font_yuan);
+    var _cl = hex_wrap_text(_d.card_desc, row_text_w);
+    var _el = hex_wrap_text(_d.enemy_desc, row_text_w);
+    draw_set_font(_old_font);
+    var _cn = min(row_max_lines, array_length(_cl));
+    var _en = min(row_max_lines, array_length(_el));
+    return {
+        id: _id, name: _d.name, tier: _d.tier, form: _d.form,
+        card_desc: _d.card_desc, enemy_desc: _d.enemy_desc,
+        unlocked: true, times: _times, impl: _d.impl,
+        persist: _persist,
+        approx: (variable_struct_exists(_d, "approx") && _d.approx),
+        card_lines: _cl, enemy_lines: _el,
+        cd_h: _cn * row_line_h,
+        h: row_head_h + (_cn + _en) * row_line_h + 16
+    };
+}
+
 /// @function hex_list_build()
 /// @desc 按当前页签重建行数据
 function hex_list_build() {
@@ -51,12 +82,7 @@ function hex_list_build() {
             if (is_undefined(_d)) continue;
             var _times = hex_unlocked_times(_id);
             if (_times <= 0) continue;
-            array_push(rows, {
-                id: _id, name: _d.name, tier: _d.tier, form: _d.form,
-                card_desc: _d.card_desc, enemy_desc: _d.enemy_desc,
-                unlocked: true, times: _times, impl: _d.impl,
-                approx: (variable_struct_exists(_d, "approx") && _d.approx)
-            });
+            array_push(rows, hex_list_make_row(_id, _d, _times, false));
         }
     } else {
         if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
@@ -66,27 +92,26 @@ function hex_list_build() {
                     var _pq = global.hex_state.persist[q];
                     var _dq = hex_get(_pq.id);
                     if (is_undefined(_dq)) continue;
-                    array_push(rows, {
-                        id: _pq.id, name: _dq.name, tier: _dq.tier, form: _dq.form,
-                        card_desc: _dq.card_desc, enemy_desc: _dq.enemy_desc,
-                        unlocked: true, times: _pq.stack, persist: true, impl: _dq.impl,
-                        approx: (variable_struct_exists(_dq, "approx") && _dq.approx)
-                    });
+                    array_push(rows, hex_list_make_row(_pq.id, _dq, _pq.stack, true));
                 }
             }
             for (var j = 0; j < array_length(global.hex_state.picked); j++) {
-                var _p = global.hex_state.picked[j];
+                var _p  = global.hex_state.picked[j];
                 var _d2 = hex_get(_p.id);
                 if (is_undefined(_d2)) continue;
-                array_push(rows, {
-                    id: _p.id, name: _d2.name, tier: _d2.tier, form: _d2.form,
-                    card_desc: _d2.card_desc, enemy_desc: _d2.enemy_desc,
-                    unlocked: true, times: _p.stack, impl: _d2.impl,
-                    approx: (variable_struct_exists(_d2, "approx") && _d2.approx)
-                });
+                array_push(rows, hex_list_make_row(_p.id, _d2, _p.stack, false));
             }
         }
     }
+
+    // 累计每行顶部 y：Draw 与 Step 都按 row.y / list_total_h 走，不再乘固定 item_h
+    var _yy = 0;
+    for (var k = 0; k < array_length(rows); k++) {
+        rows[k].y = _yy;
+        _yy += rows[k].h;
+    }
+    list_total_h = _yy;
+
     scroll_y = 0;
     scroll_target = 0;
 }

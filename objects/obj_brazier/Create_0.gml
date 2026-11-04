@@ -20,6 +20,10 @@ if card_equipped_attire_id(plant_id) != -1{
 if shape >= 1{
 	hp *= 5
 	max_hp *= 5
+	// 海克斯按 base_max_hp 重算生命上限（obj_mod_battle_manager / hex_batch2），
+	// 这个基准是 event_user(0) 从数值表写的，不含上面的一转 ×5。
+	// 不同步的话，只要本局带任何动生命上限的词条，一转的加血就会被抹回表值。
+	base_max_hp = max_hp
 }
 attack_anim = 26;
 idle_anim = 11

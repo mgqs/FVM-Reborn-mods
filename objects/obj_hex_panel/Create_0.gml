@@ -30,7 +30,9 @@ msg_text  = "";
 card_w = 300;
 card_h = 420;
 card_gap = 50;
-base_x = room_width / 2 - (card_w * 3 + card_gap * 2) / 2;
+// 牌面张数不固定（Hana 的四卦是 4 张），横向居中必须按实际张数算
+var _n_cards = max(1, array_length(offer));
+base_x = room_width / 2 - (card_w * _n_cards + card_gap * (_n_cards - 1)) / 2;
 base_y = room_height / 2 - card_h / 2 - 40;
 
 // 底部三键：放弃 / 选择 / 重随
@@ -64,6 +66,24 @@ function hex_panel_pick(_i) {
     var _id = offer[_i];
     var _d  = hex_get(_id);
     if (is_undefined(_d)) return;
+    // 领主阳伞：不能自己挑，直接把牌面上的全部拿走
+    if (hex_b3_pick_all_on()) {
+        for (var k = 0; k < array_length(offer); k++) {
+            var _oid = offer[k];
+            var _od  = hex_get(_oid);
+            if (is_undefined(_od)) continue;
+            if (hex_taken(_oid) >= _od.stack) continue;
+            hex_note_pick_form(_od.form);
+            hex_apply(_oid);
+        }
+        hex_b3_panel_extra("");
+        if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
+            global.hex_state.first_done = true;
+        }
+        taken_idx = _i;
+        closing   = 10;
+        return;
+    }
     if (hex_taken(_id) >= _d.stack) {
         msg_text  = "这条已经拿到上限了";
         msg_timer = 60;
@@ -76,6 +96,8 @@ function hex_panel_pick(_i) {
     }
     hex_note_pick_form(_d.form);
     hex_apply(_id);
+    // 宾邦：确认一条之后再白送一条池内词条
+    hex_b3_panel_extra(_id);
     taken_idx = _i;
     closing   = 10;
     // 首抽到这里算处理完：解锁放置

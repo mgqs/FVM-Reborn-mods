@@ -4,6 +4,12 @@ if hp < max_hp && !invincible{
 
 // 海克斯：以牙还牙 / 灰烬爆炸 / 大锅饭反噬 / 一锅端标记（实例还活着，能读到坐标与攻击）
 if (hex_enabled()) hex_on_card_destroyed(id);
+// 海克斯二期：以我残躯化烈火 / 中指的义理 / 鲨鱼的厚皮
+if (hex_enabled()) hex_b3_card_destroyed(id);
+
+// 常驻状态标记跟随宿主一起清掉（标记自身也有兜底，这里避免同帧残影）
+if (variable_instance_exists(id, "awake_mark_obj") && instance_exists(awake_mark_obj)) instance_destroy(awake_mark_obj);
+if (variable_instance_exists(id, "guard_mark_obj") && instance_exists(guard_mark_obj)) instance_destroy(guard_mark_obj);
 
 var _was_shoveled = variable_instance_exists(id, "is_shoveled") && is_shoveled;
 var _no_revive_record = variable_instance_exists(id, "no_revive_record") && no_revive_record;

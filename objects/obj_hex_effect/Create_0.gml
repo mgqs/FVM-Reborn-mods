@@ -37,10 +37,51 @@ close_hover   = false;
 drag          = false;
 drag_off      = 0;
 
+// 行内排版常量：name 可换行、value 单行右对齐，两者之间留 24px 气口
+name_line_h  = 21;
+name_max_lines = 2;
+value_max_w  = col_w * 0.5;
+col_card_h   = 0;
+col_enemy_h  = 0;
+
+/// @function hex_effect_measure()
+/// @desc 预先把每栏的 label 换行、行高、累计 y 算好。
+///       必须在 Create 里做一次 —— 换行结果决定行高，行高决定滚动上限，
+///       放到 Draw 里每帧算会导致滚动位置一直抖。
+function hex_effect_measure() {
+    var _old_font = draw_get_font();
+    draw_set_font(font_yuan);
+
+    var _arrs = [rows.card, rows.enemy];
+    var _hs   = [0, 0];
+    for (var s = 0; s < 2; s++) {
+        var _arr = _arrs[s];
+        var _yy  = 0;
+        for (var i = 0; i < array_length(_arr); i++) {
+            var _r = _arr[i];
+            var _vw = min(string_width(_r.value), value_max_w);
+            var _lw = col_w - 26 - 14 - _vw - 24;
+            if (_lw < 80) _lw = 80;
+            var _ll = hex_wrap_text(_r.label, _lw);
+            var _n  = min(name_max_lines, array_length(_ll));
+            _r.label_lines = _ll;
+            _r.label_w     = _lw;
+            _r.h           = max(item_h, _n * name_line_h + 20);
+            _r.y           = _yy;
+            _yy += _r.h;
+        }
+        _hs[s] = _yy;
+    }
+    col_card_h  = _hs[0];
+    col_enemy_h = _hs[1];
+    draw_set_font(_old_font);
+}
+hex_effect_measure();
+
 /// @function hex_effect_list_h()
 /// @desc 两栏共用一条滚动量，取较长的一栏
 function hex_effect_list_h() {
-    return max(array_length(rows.card), array_length(rows.enemy)) * item_h;
+    return max(col_card_h, col_enemy_h);
 }
 
 /// @function hex_effect_draw_col(_side)
@@ -63,24 +104,27 @@ function hex_effect_draw_col(_side) {
     var _n = array_length(_arr);
     for (var i = 0; i < _n; i++) {
         var _row = _arr[i];
-        var _ry  = i * item_h - scroll_y;
-        if (_ry + item_h < 0 || _ry > list_h) continue;
+        var _ry  = _row.y - scroll_y;
+        if (_ry + _row.h < 0 || _ry > list_h) continue;
 
         if (i mod 2 == 0) {
             draw_set_color(make_color_rgb(18, 22, 29));
-            draw_rectangle(0, _ry, col_w, _ry + item_h, false);
+            draw_rectangle(0, _ry, col_w, _ry + _row.h, false);
         }
 
-        // 左侧色标
+        // 左侧色标：跟着这一行的实际高度
         draw_set_color(make_color_rgb(58, 74, 90));
-        draw_rectangle(10, _ry + 11, 14, _ry + item_h - 11, false);
+        draw_rectangle(10, _ry + 11, 14, _ry + _row.h - 11, false);
 
-        // 名称
+        // 名称：按可用宽度换行（最长 2 行），整块在行内垂直居中
+        var _ll = _row.label_lines;
+        var _ln = min(name_max_lines, array_length(_ll));
         draw_set_font(font_yuan);
         draw_set_halign(fa_left);
         draw_set_valign(fa_middle);
         draw_set_color(#EEF4FA);
-        draw_text(26, _ry + item_h / 2, _row.label);
+        hex_draw_lines(_ll, 26, _ry + (_row.h - _ln * name_line_h) / 2,
+                       name_line_h, name_max_lines, _row.label_w);
 
         // 数值：0% 灰；老鼠侧「变大」才是坏消息，颜色与卡片侧相反
         var _v     = _row.value;
@@ -93,7 +137,7 @@ function hex_effect_draw_col(_side) {
         }
         draw_set_color(_col);
         draw_set_halign(fa_right);
-        draw_text(col_w - 14, _ry + item_h / 2, _v);
+        draw_text(col_w - 14, _ry + _row.h / 2, hex_ellipsis(_v, value_max_w));
         draw_set_halign(fa_left);
     }
 

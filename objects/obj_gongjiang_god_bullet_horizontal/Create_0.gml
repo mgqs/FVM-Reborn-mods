@@ -32,3 +32,5 @@ life_frames = 0;
 
 image_xscale = 1.8;
 image_yscale = 1.8;
+// 固定轨迹类：沿 (卡片→最右列→折返) 往返，不能被地形障碍吃掉
+pierce_obstacle = true;

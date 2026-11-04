@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"cross_server_level_index",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"cross_server_level_index",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

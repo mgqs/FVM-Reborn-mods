@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"cucumber",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/cucumber.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cucumber",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

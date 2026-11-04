@@ -75,6 +75,59 @@ if awake_buff_timer > 0{
 		}
 	}
 }
+
+// ---------- 常驻状态标记 ----------
+// 龙柱的「清醒」（松露大厅封印柱）与「保护」（百味关封印柱）原来只在施法瞬间播一次
+// 约 1 秒的 spr_mixian_effect2，但效果本身持续 15~30 秒，看着像「没生效」。
+// 这里按卡片身上的实际计时维持常驻标记：计时 > 0 就显示，归零立刻消失，
+// 做到「龙柱效果持续几秒就显示几秒」。
+if (!variable_instance_exists(id, "awake_mark_obj")) {
+	awake_mark_obj = noone;
+	guard_mark_obj = noone;
+}
+if (hp > 0 && variable_instance_exists(id, "plant_id") && plant_id != "player") {
+	// 清醒：awake_buff_timer 期间不可被催眠
+	if (awake_buff_timer > 0) {
+		if (!instance_exists(awake_mark_obj)) {
+			awake_mark_obj = instance_create_depth(x + 34, y - 62, depth - 40, obj_card_buff_mark);
+			awake_mark_obj.mark_owner = id;
+			awake_mark_obj.mark_kind = 0;
+			awake_mark_obj.sprite_index = spr_mixian_effect2;
+			awake_mark_obj.mark_off_x = 34;
+			awake_mark_obj.mark_off_y = -62;
+			awake_mark_obj.mark_rate = 6;
+			awake_mark_obj.mark_base_alpha = 1;
+			awake_mark_obj.mark_pulse = 0;
+			awake_mark_obj.image_xscale = 1.6;
+			awake_mark_obj.image_yscale = 1.6;
+		}
+	}
+	else if (instance_exists(awake_mark_obj)) {
+		instance_destroy(awake_mark_obj);
+		awake_mark_obj = noone;
+	}
+
+	// 保护：zodiac_guard_time 期间抵挡若干次伤害（含致命伤）
+	if (variable_instance_exists(id, "zodiac_guard_time") && zodiac_guard_time > 0) {
+		if (!instance_exists(guard_mark_obj)) {
+			guard_mark_obj = instance_create_depth(x, y, depth - 41, obj_card_buff_mark);
+			guard_mark_obj.mark_owner = id;
+			guard_mark_obj.mark_kind = 1;
+			guard_mark_obj.sprite_index = spr_xingqiongma_effect1;
+			guard_mark_obj.mark_off_x = 0;
+			guard_mark_obj.mark_off_y = 0;
+			guard_mark_obj.mark_rate = 6;
+			guard_mark_obj.mark_base_alpha = 0.7;
+			guard_mark_obj.mark_pulse = 0.12;
+			guard_mark_obj.image_xscale = 1.0;
+			guard_mark_obj.image_yscale = 1.0;
+		}
+	}
+	else if (instance_exists(guard_mark_obj)) {
+		instance_destroy(guard_mark_obj);
+		guard_mark_obj = noone;
+	}
+}
 if state == CARD_STATE.SLEEP && !instance_exists(banding_sleep_obj) && awake_anim == 0{
 	banding_sleep_obj = instance_create_depth(x-15,y-20,depth-1,obj_sleep_effect)
 	banding_sleep_obj.banding_card_obj = id

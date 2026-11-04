@@ -386,6 +386,13 @@ function enemy_subwave_summon(){
 
             var enemy_obj = global.enemy_map[? _enemy_type]._obj;
 
+            // 海克斯二期「病毒」系列：有对应跨服鼠军时按概率替换
+            var _hex_swap = hex_b3_infected_swap(_enemy_type);
+            if (_hex_swap != "") {
+                _enemy_type = _hex_swap;
+                enemy_obj   = global.enemy_map[? _enemy_type]._obj;
+            }
+
             var new_x = global.grid_offset_x + (9 + x_offset) * global.grid_cell_size_x;
             var new_y = global.grid_offset_y + (target_row - 1) * global.grid_cell_size_y;
 

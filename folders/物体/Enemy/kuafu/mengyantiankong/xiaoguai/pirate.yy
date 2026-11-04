@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"pirate",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/pirate.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"pirate",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

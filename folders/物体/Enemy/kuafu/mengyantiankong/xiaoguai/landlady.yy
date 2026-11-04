@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"landlady",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/landlady.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"landlady",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

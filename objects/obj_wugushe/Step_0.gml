@@ -7,7 +7,7 @@ zodiac_age++;
 if (is_frozen || state == CARD_STATE.SLEEP) exit;
 
 // 和狮子座一致：范围内没有目标时不累计攻击周期，也不保留攻击动画。
-// 索敌：仅陆军/空军，排除地下鼠、隐身鬼鼠等不可见目标及障碍物（它们同样挂在 obj_enemy_parent 下）
+// 索敌：陆军 / 空军 / 非主流(dance)，排除隐身鬼鼠与障碍物（它们同样挂在 obj_enemy_parent 下）
 var ht_enemies = [];
 for (var he_i = 0; he_i < instance_number(obj_enemy_parent); he_i++) {
     var he_e = instance_find(obj_enemy_parent,he_i);
@@ -21,7 +21,14 @@ var ht_radius = shape == 2 ? 2 : 1;
 var has_target = false;
 for (var ht_i = 0; ht_i < array_length(ht_enemies); ht_i++) {
     var ht_e = ht_enemies[ht_i];
-    if (!is_digging_dijing(ht_e) && ht_e.target_type != "normal" && ht_e.target_type != "air") continue;
+    // 可命中类型：陆军(normal) / 空军(air) / 非主流老鼠(dance)
+    // 地鼠刻意不在此列：鼹鼠/牙医鼠/沙丁鱼鼠/锯齿鼠只在钻地阶段是 underground，
+    // 一冒头 Step 就把 target_type 切成 "normal"，所以「打地鼠」本来就成立；
+    // 反过来放行 underground 等于隔着地面打地里的单位（它们只有 100~500 血），会一击清空。
+    // 唯一例外是龙渊地精鼠（longyuan_dijing）常驻钻地，由 is_digging_dijing 单独放行。
+    var ht_tt = ht_e.target_type;
+    if (!is_digging_dijing(ht_e)
+        && ht_tt != "normal" && ht_tt != "air" && ht_tt != "dance") continue;
     var ht_g = get_grid_position_from_world(ht_e.x,ht_e.y);
     // 战斗域上界（含第 10 列，敌人出生就在那一列），不是地图的 9 列
     if (combat_cell_in(ht_g.col,ht_g.row)
@@ -72,7 +79,10 @@ if (state == CARD_STATE.ATTACK) {
             // 钻地中的地精鼠也可被喷壶类（巫蛊蛇）命中
             var po_e_dig_dijing = (variable_instance_exists(po_e, "mouse_id") && po_e.mouse_id == "longyuan_dijing"
                 && variable_instance_exists(po_e, "ly_mode") && po_e.ly_mode == "dig");
-            if (!po_e_dig_dijing && po_e.target_type != "normal" && po_e.target_type != "air") continue;
+            // 可命中类型同上：陆军 / 空军 / 非主流（地鼠冒头后即为 normal，钻地中不可命中）
+            var po_tt = po_e.target_type;
+            if (!po_e_dig_dijing
+                && po_tt != "normal" && po_tt != "air" && po_tt != "dance") continue;
             var po_g = get_grid_position_from_world(po_e.x,po_e.y);
             if (!combat_cell_in(po_g.col,po_g.row)) continue;
             if (abs(po_g.col-grid_col) <= po_radius && abs(po_g.row-grid_row) <= po_radius) array_push(po_targets,po_e);
@@ -110,8 +120,11 @@ if (state == CARD_STATE.ATTACK) {
                         if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
                         event_user(0);
                     }
-                    // 非防爆鼠（情报岛中不防爆，即非精英/BOSS）直接秒杀；防爆鼠仅承受百分比伤害
-                    if (instance_exists(po_t) && po_t.hp > 0 && !po_t.immune_to_ash) {
+                    // 非防爆鼠（情报岛中不防爆，即非精英/BOSS）直接秒杀；防爆鼠仅承受百分比伤害。
+                    // 兜底：underground（钻地中的地鼠）一律不吃这一下真伤爆发。白名单已经不再收 underground，
+                    // 目前能走到这里的只有龙渊地精鼠（自带 immune_to_ash=true），这条是防止以后再放开白名单时复发。
+                    if (instance_exists(po_t) && po_t.hp > 0 && !po_t.immune_to_ash
+                        && !(variable_instance_exists(po_t, "target_type") && po_t.target_type == "underground")) {
                         var gk_dmg = po_t.hp+po_t.shield_hp+po_t.helmet_hp;
                         with (po_t) {
                             damage_amount = gk_dmg;

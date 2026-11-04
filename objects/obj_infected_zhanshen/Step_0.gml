@@ -133,7 +133,16 @@ switch state{
 		}
 		
 		if timer == 6 * 5 + 2{
-			instance_create_depth(x-30,y-10,-800,obj_infected_zhanshen_wood)
+			// 木鸭子虚影最多同时两只在场：每只会横扫整列 ±1 行，过量叠加会直接清空全图
+			if (instance_number(obj_infected_zhanshen_wood) < 2){
+				instance_create_depth(x-30,y-10,-800,obj_infected_zhanshen_wood)
+				// 第二只错开一行出发，避免与第一只完全重合
+				if (instance_number(obj_infected_zhanshen_wood) < 2){
+					var _wood_row = clamp(grid_row + 1, 0, global.grid_rows - 1)
+					var _wood_pos = get_world_position_from_grid(grid_col, _wood_row)
+					instance_create_depth(_wood_pos.x-30,_wood_pos.y-10,-800,obj_infected_zhanshen_wood)
+				}
+			}
 			var soldier_pos1 = get_world_position_from_grid(grid_col,grid_row-1)
 			instance_create_depth(soldier_pos1.x+10,soldier_pos1.y+38,-800,obj_infected_zhanshen_summon)
 			var soldier_pos2 = get_world_position_from_grid(grid_col-1,grid_row)

@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"julie",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/boss/julie.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"julie",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

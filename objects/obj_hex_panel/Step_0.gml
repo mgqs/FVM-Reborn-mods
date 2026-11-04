@@ -53,10 +53,11 @@ if (mouse_check_button_pressed(mb_left)) {
     }
 }
 
-// ── 键盘：1/2/3 选中，回车/空格确认，R 重随，Esc 放弃 ──
+// ── 键盘：1/2/3/4 选中，回车/空格确认，R 重随，Esc 放弃 ──
 if (keyboard_check_pressed(ord("1"))) hex_panel_select(0);
 if (keyboard_check_pressed(ord("2"))) hex_panel_select(1);
 if (keyboard_check_pressed(ord("3"))) hex_panel_select(2);
+if (keyboard_check_pressed(ord("4"))) hex_panel_select(3);
 if (keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)) hex_panel_confirm();
 if (keyboard_check_pressed(ord("R"))) hex_panel_reroll();
 if (keyboard_check_pressed(vk_escape)) hex_panel_giveup();

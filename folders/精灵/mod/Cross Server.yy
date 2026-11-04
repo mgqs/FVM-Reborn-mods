@@ -95,5 +95,6 @@
     {"name":"e185e1fb-6a08-4427-9e2c-e013e3a4c928","path":"sprites/spr_infected_tropical_fish_mouse_helmet/spr_infected_tropical_fish_mouse_helmet.yy",},
     {"name":"09c405ce-734a-4e78-952d-6e1e60e4bc88","path":"sprites/spr_infected_tropical_fish_mouse_land/spr_infected_tropical_fish_mouse_land.yy",},
     {"name":"1f5beb43-eef2-493f-a713-bef2ed3789fb","path":"sprites/spr_infected_tropical_fish_mouse_land_helmet/spr_infected_tropical_fish_mouse_land_helmet.yy",},
+    {"name":"9af7be30-465d-4404-93b5-1fed8f855f02","path":"sprites/spr_mod_cs_level_icon_nightmare/spr_mod_cs_level_icon_nightmare.yy",},
   ],
 }

@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"iron_pan",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/iron_pan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_pan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

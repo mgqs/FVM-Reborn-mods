@@ -14,6 +14,11 @@ if (image_xscale != 1 || image_yscale != 1)
 image_xscale = 1;
 image_yscale = 1;
 
+// 海克斯二期：子弹出生第一帧按出生位置认领一张卡作为来源（近似归属）。
+// 放在父对象 BeginStep 里，122 个子弹一次覆盖；子弹若自己覆盖了 BeginStep 就退化为
+// 「命中时按子弹 damage 记账」，不会报错。
+if (!variable_instance_exists(id, "hex_src_inst")) hex_b3_bullet_tag(id);
+
 // 海克斯「碎片整理」：多行攻击卡（三线类等）的子弹全部收敛到本行。
 // 只在子弹带 target_row（多行弹专有字段）且向右飞时生效，别的一律不动。
 // 注意：obj_bullet_parent 本身没有 row 字段，巧克力炮之类只有 target_col/target_row，

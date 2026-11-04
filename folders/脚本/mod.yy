@@ -16,6 +16,7 @@
     {"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},
     {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},
     {"name":"cross_server_star_gate","path":"scripts/cross_server_star_gate/cross_server_star_gate.yy",},
+    {"name":"cross_server_level_index","path":"scripts/cross_server_level_index/cross_server_level_index.yy",},
     {"name":"difficulty_rules","path":"scripts/difficulty_rules/difficulty_rules.yy",},
     {"name":"gods_goods_registry","path":"scripts/gods_goods_registry/gods_goods_registry.yy",},
     {"name":"gods_shop_init","path":"scripts/gods_shop_init/gods_shop_init.yy",},
@@ -47,5 +48,8 @@
     {"name":"hex_persist","path":"scripts/hex_persist/hex_persist.yy",},
     {"name":"hex_registry","path":"scripts/hex_registry/hex_registry.yy",},
     {"name":"hex_roll","path":"scripts/hex_roll/hex_roll.yy",},
+    {"name":"hex_batch2","path":"scripts/hex_batch2/hex_batch2.yy",},
+    {"name":"hex_batch3","path":"scripts/hex_batch3/hex_batch3.yy",},
+    {"name":"hex_text_wrap","path":"scripts/hex_text_wrap/hex_text_wrap.yy",},
   ],
 }

@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"paratrooper",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/paratrooper.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"paratrooper",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

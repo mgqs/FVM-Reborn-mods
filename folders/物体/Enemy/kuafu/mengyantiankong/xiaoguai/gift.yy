@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"gift",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/gift.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"gift",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

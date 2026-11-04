@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"bat",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/bat.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"bat",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

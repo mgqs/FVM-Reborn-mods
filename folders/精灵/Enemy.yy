@@ -15,7 +15,9 @@
     {"name":"tower","path":"folders/精灵/Enemy/tower.yy",},
     {"name":"volcanic_island","path":"folders/精灵/Enemy/volcanic_island.yy",},
     {"name":"undersea_vortex","path":"folders/精灵/Enemy/undersea_vortex.yy",},
-    {"name":"delicious_island","path":"folders/精灵/Enemy/delicious_island.yy",}
+    {"name":"delicious_island","path":"folders/精灵/Enemy/delicious_island.yy",},
+    {"name":"kuafu","path":"folders/精灵/Enemy/kuafu.yy",},
+  
   ],
   "listItems":[],
 }

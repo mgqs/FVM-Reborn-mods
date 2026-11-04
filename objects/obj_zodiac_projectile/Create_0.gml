@@ -26,3 +26,6 @@ stored = false;      // 仙笛马飞马停靠状态：不移动、不计时、�
 owner_id = noone;    // 停靠时跟随的宿主卡片
 park_index = 0;      // 停靠层数（从下往上）
 image_speed = 0.2;
+// 固定轨迹类弹（炎凰马/御风马/仙笛马/粉姬马/归元马/星兔）穿地形障碍，
+// 只影响 obj_obstacle 的拦截判定，不改变对老鼠的穿透次数。
+pierce_obstacle = true;

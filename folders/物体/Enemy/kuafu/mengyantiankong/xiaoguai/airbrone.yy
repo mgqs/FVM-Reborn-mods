@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"airbrone",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/airbrone.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"airbrone",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

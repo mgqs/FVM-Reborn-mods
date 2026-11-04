@@ -389,7 +389,9 @@ else if info_button_select == 2 {
 	if (select_card_index != -1 && select_card_index < array_length(info_view)){
 		//绘制右侧信息栏
 		var enemy_id_array = info_view
-        var enemy_id = enemy_id_array[select_card_index]
+		var enemy_id = enemy_id_array[select_card_index]
+		// 海克斯「情报收集」：打开右侧信息栏 = 已查看这只鼠军（跨存档记一笔）
+		if (hex_enabled()) hex_b3_info_mark(string(enemy_id));
 		var enemy_data = global.enemy_map[? enemy_id];
 		var info = global.enemy_info_island[? enemy_id]
 		var name = enemy_data.name

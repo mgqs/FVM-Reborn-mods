@@ -1,4 +1,12 @@
-draw_sprite(global.level_data.level_sprite,map_spr_index,0,0)
+// 关卡背景：默认按原尺寸画在左上角；关卡 JSON 里给了 bg_draw 时按其缩放/偏移绘制
+// （跨服·梦魇天空的底图是 1109×597 半尺寸图，需要还原到 9*107 × 7*116 的格子区）
+if (variable_struct_exists(global.level_file, "bg_draw")){
+	var _bg_draw = global.level_file.bg_draw;
+	draw_sprite_ext(global.level_data.level_sprite,map_spr_index,_bg_draw.x,_bg_draw.y,_bg_draw.sx,_bg_draw.sy,0,c_white,1);
+}
+else{
+	draw_sprite(global.level_data.level_sprite,map_spr_index,0,0)
+}
 draw_set_valign(fa_top)
 draw_set_halign(fa_left)
 draw_set_color(c_white)

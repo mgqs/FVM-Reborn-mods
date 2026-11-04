@@ -26,3 +26,5 @@ my_bottom = global.grid_offset_y + global.grid_cell_size_y * global.grid_rows + 
 
 image_xscale = 1.8;
 image_yscale = 1.8;
+// 固定轨迹类：沿整列上下飞，不能被地形障碍吃掉
+pierce_obstacle = true;

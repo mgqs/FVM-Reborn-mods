@@ -46,4 +46,10 @@ function boss_init(){
 	register_boss("ly_youshen",{"name":"游神鼠","hp":300000,"icon":spr_youshen_icon,"icon_scale":0.9})
 	register_boss("travel_record",{"name":"旅行唱机","hp":50000,"icon":spr_travel_record_icon})
 	register_boss("beverage_machine",{"name":"饮料贩卖机","hp":80000,"icon":spr_beverage_machine_icon})
+	// ===== 跨服·梦魇天空 BOSS =====
+	register_boss("kuafu_boss_buzz",{"name":"变异嗡嗡中尉","hp":50000,"icon":spr_kuafu_boss_buzz_icon})
+	register_boss("kuafu_boss_julie",{"name":"变异迷雾朱莉","hp":50000,"icon":spr_kuafu_boss_julie_icon})
+	register_boss("kuafu_boss_pete",{"name":"变异钢爪皮特","hp":40000,"icon":spr_kuafu_boss_pete_icon})
+	register_boss("kuafu_boss_baron",{"name":"变异针头男爵","hp":30000,"icon":spr_kuafu_boss_baron_icon})
+	register_boss("kuafu_boss_xiaoming",{"name":"变异酷帅小明","hp":60000,"icon":spr_kuafu_boss_xiaoming_icon})
 }

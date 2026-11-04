@@ -351,6 +351,9 @@ function hex_batch2_cost(_card_id, _base) {
 
     _c = _c * hex_cost_mult();
     if (variable_struct_exists(_s.b2_id_cost, _card_id)) _c *= _s.b2_id_cost[$ _card_id];
+    // 二期：自由契约的固定改价 / 直面恐惧的 ×1.5
+    _c = hex_b3_cost_for(_card_id, _c);
+    _c = _c * hex_b3_cost_markup();
     return max(0, _c);
 }
 
@@ -514,6 +517,9 @@ function hex_batch2_card_take_hit(_card, _enemy, _atk) {
 
     var _dmg = _atk;
 
+    // 海克斯二期：鲨鱼的厚皮减伤 / 您的盾牌固定减伤 / 齿轮的烟气累加 / 生存下去的勇气扣上限
+    _dmg = hex_b3_card_damage(_card, _enemy, _dmg);
+
     // 【炼金龙魂】：每损失 20% 生命 +抗性（最高 50%）
     if (_s.b2_resist > 0 && _card.max_hp > 0) {
         var _lost = 1 - clamp(_card.hp / _card.max_hp, 0, 1);
@@ -531,6 +537,8 @@ function hex_batch2_card_take_hit(_card, _enemy, _atk) {
 
     if (_card.invincible) _dmg = 0;
     if (_dmg > 0) _card.hp -= _dmg;
+    // 海克斯二期：记录受伤次数与最后一个攻击者（鲨鱼的厚皮回血用）
+    hex_b3_card_hit_after(_card, _enemy, _dmg);
 
     // 【各种刺身】：反伤
     if (_s.b2_reflect > 0 && instance_exists(_enemy)) {

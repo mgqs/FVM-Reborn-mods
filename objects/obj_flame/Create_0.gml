@@ -32,6 +32,27 @@ velocity_x = 0;          // X轴速度
 velocity_y = 0;          // Y轴速度
 ground_level = 500;      // 地面高度
 
+// 海克斯：记录这一颗火苗的产出来源（此刻 x/y 还是产火卡的位置，下面的弹射随机化会改掉）。
+// 自然生成的火焰从屏幕上方掉下来，离卡 120px 以外，取不到来源 → 来源为空、倍率按 1.0 走。
+hex_src_id     = "";
+hex_prod_first = false;
+if (hex_enabled()) {
+    var _fx = x, _fy = y;
+    var _best = noone;
+    var _best_d = 120;
+    with (obj_card_parent) {
+        if (self.plant_id != "" && self.plant_id != "player") {
+            var _d = point_distance(_fx, _fy, self.x, self.y);
+            if (_d < _best_d) { _best_d = _d; _best = self.id; }
+        }
+    }
+    if (_best != noone && variable_instance_exists(_best, "plant_id")) hex_src_id = _best.plant_id;
+    // 同一次产出会连出 2~3 颗火苗：「每次产出 +N」只让第一颗吃，避免 ×3
+    if (!variable_global_exists("hex_prod_tok")) global.hex_prod_tok = -1;
+    hex_prod_first = (global.hex_prod_tok != current_time);
+    global.hex_prod_tok = current_time;
+}
+
 // 根据生成模式初始化物理状态
 if (mode == 0) {
     // 自然生成模式（从天而降）

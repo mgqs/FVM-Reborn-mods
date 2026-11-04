@@ -22,23 +22,69 @@ function register_weapon(weapon_id,data){
 	ds_map_add(global.weapon_pool,weapon_id,data)
 }
 
+/// @desc 判断某颗宝石能否留在指定槽位的新武器上
+/// 这是「换装保留宝石」的唯一判据，刻意与 equip_gem() 的准入判定保持一致：
+/// 槽位必须相同，且宝石若有 allowed_weapons，新武器必须在其中。
+/// 通用宝石（没有 allowed_weapons）只要槽位对得上就一直留着。
+/// @param {string} _gem_id 宝石ID
+/// @param {string} _weapon_id 换上的新武器ID
+/// @param {string} _slot 武器槽位（main_weapon / secondary_weapon / super_weapon）
+/// @return {bool}
+function gem_fits_weapon(_gem_id, _weapon_id, _slot) {
+	var _gd = get_gem_info(_gem_id)
+	// ds_map 未命中会返回 undefined；历史存档里也可能有已下架的宝石ID，一律按不兼容处理
+	if (!is_struct(_gd)) return false
+	if (!variable_struct_exists(_gd, "slot") || _gd.slot != _slot) return false
+	if (!variable_struct_exists(_gd, "allowed_weapons")) return true
+	var _n = array_length(_gd.allowed_weapons)
+	for (var _i = 0; _i < _n; _i++) {
+		if (_gd.allowed_weapons[_i] == _weapon_id) return true
+	}
+	return false
+}
+
+/// @desc 换武器后重算该槽位的宝石：只保留与新武器兼容的，其余卸下（不丢宝石）
+/// 原来这里是无条件 gems = []，导致换一把同类武器也会把 4 颗宝石全部卸下。
+/// 注意：结构体字段必须整体赋值写回，GML 数组是写时复制，原地改局部变量不会同步。
+/// @param {string} _slot 武器槽位
+/// @param {string} _weapon_id 换上的新武器ID
+function weapon_gems_reconcile(_slot, _weapon_id) {
+	var _eq = undefined
+	if (_slot == "main_weapon") _eq = global.save_data.equipped_items.main_weapon
+	else if (_slot == "secondary_weapon") _eq = global.save_data.equipped_items.secondary_weapon
+	else if (_slot == "super_weapon") _eq = global.save_data.equipped_items.super_weapon
+	if (!is_struct(_eq)) return
+	if (!variable_struct_exists(_eq, "gems") || !is_array(_eq.gems)) {
+		_eq.gems = []
+		return
+	}
+	var _old = _eq.gems
+	var _keep = []
+	var _n = array_length(_old)
+	for (var _i = 0; _i < _n; _i++) {
+		if (gem_fits_weapon(_old[_i], _weapon_id, _slot)) array_push(_keep, _old[_i])
+	}
+	_eq.gems = _keep
+}
+
 /// @function equip_weapon(weapon_id,slot)
 /// @desc 装备武器
 /// @param {string} weapon_id 武器ID
 /// @param {string} slot 武器槽位
 function equip_weapon(weapon_id,slot){
-	// 更换武器时，自动把旧武器的宝石归还背包
+	// 换武器时不再整槽清空宝石：只要宝石与新武器兼容（同槽位 + allowed_weapons 命中）就保留，
+	// 只有不兼容的专属宝石才卸下 —— 与重生原版行为一致。
 	if slot == "main_weapon"{
-		global.save_data.equipped_items.main_weapon.gems = []
 		global.save_data.equipped_items.main_weapon[$ "id"] = weapon_id
+		weapon_gems_reconcile("main_weapon", weapon_id)
 	}
 	else if slot == "secondary_weapon"{
-		global.save_data.equipped_items.secondary_weapon.gems = []
 		global.save_data.equipped_items.secondary_weapon[$ "id"] = weapon_id
+		weapon_gems_reconcile("secondary_weapon", weapon_id)
 	}
 	else if slot == "super_weapon"{
-		global.save_data.equipped_items.super_weapon.gems = []
 		global.save_data.equipped_items.super_weapon[$ "id"] = weapon_id
+		weapon_gems_reconcile("super_weapon", weapon_id)
 	}
 	global.equipped_weapon[? slot].weapon_id = weapon_id
 	save_file(global.save_slot)
@@ -48,7 +94,8 @@ function equip_weapon(weapon_id,slot){
 /// @desc 卸下武器
 /// @param {string} slot 武器槽位
 function remove_weapon(slot){
-	// 卸下武器时，自动把宝石归还背包
+	// 卸下武器：槽位空出来后宝石无处可装，这里仍然全清。
+	// 与 equip_weapon 的「保留兼容宝石」策略不冲突：那条只在换上一把新武器时生效。
 	if slot == "main_weapon"{
 		global.save_data.equipped_items.main_weapon.gems = []
 		global.save_data.equipped_items.main_weapon[$ "id"] = ""

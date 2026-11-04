@@ -19,7 +19,8 @@ image_alpha = 0
 appear = false
 avaliable_pos = ds_list_create()
 missle_coord = []
-t_pos = {}
+// 技能1的落点：默认给合法结构，避免"找不到卡片"时读取 .col/.row 报 not set
+t_pos = {col: -1, row: -1, x: 0, y: 0}
 t_type = 0
 x_move = 0
 y_move_speed = 0

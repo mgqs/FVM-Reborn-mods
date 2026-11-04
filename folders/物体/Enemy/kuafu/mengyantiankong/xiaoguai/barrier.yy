@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"barrier",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/barrier.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"barrier",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

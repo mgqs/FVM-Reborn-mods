@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"armour",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/armour.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"armour",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

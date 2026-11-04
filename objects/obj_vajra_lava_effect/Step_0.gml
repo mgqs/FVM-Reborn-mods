@@ -15,7 +15,12 @@ if state == "start"{
 		image_xscale += 0.1
 		image_yscale += 0.1
 	}
-	if timer >= 30 * 60{
+	// 海克斯二期：允许外部指定寿命（以我残躯化烈火 10 秒 / 喷涌的地脉 60 秒）
+	var _life_frames = 30 * 60
+	if variable_instance_exists(id, "hex_life") && hex_life > 0{
+		_life_frames = hex_life
+	}
+	if timer >= _life_frames{
 		timer = 0
 		state = "drop"
 	}

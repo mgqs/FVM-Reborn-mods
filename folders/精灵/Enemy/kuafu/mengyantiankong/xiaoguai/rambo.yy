@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"rambo",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/rambo.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rambo",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

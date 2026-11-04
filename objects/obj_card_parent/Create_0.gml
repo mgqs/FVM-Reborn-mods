@@ -29,6 +29,9 @@ first_produce = 0
 first_produce_delay = 0
 flame_produce = 0
 awake_buff_timer = 0
+// 常驻状态标记（龙柱「清醒」/「保护」）：效果计时 > 0 期间由 Step 维持，归零即销毁
+awake_mark_obj = noone
+guard_mark_obj = noone
 
 // ========== 位置信息 ==========
 grid_col = -1

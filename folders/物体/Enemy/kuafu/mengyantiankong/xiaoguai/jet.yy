@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"jet",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/jet.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"jet",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

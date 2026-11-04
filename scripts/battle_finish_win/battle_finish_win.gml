@@ -28,6 +28,9 @@ function battle_finish_win() {
     // 内部自己对 committed 幂等，与 BOSS 死亡路径重复调用不会写两次。
     hex_on_win();
 
+    // 海克斯二期：低语耳环（按岛屿上限随机提升卡组里 3 张卡的等级）
+    if (hex_active()) hex_b3_on_win();
+
     if (is_eternal_gacha_mode()) {
         instance_create_depth(
             room_width / 2,

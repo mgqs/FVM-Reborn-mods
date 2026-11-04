@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"football_fan",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/football_fan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"football_fan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

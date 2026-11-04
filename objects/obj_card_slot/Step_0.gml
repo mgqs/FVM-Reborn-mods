@@ -326,7 +326,7 @@ if (is_selected) {
             
             // 扣除阳光（海克斯：每波首次放置免费 / 双厨狂喜 / 赌徒的锅铲全额返还 / 火候观察烧火苗）
             var _hex_paid = false;
-            if (!hex_consume_free_place() && !hex_same_card_free_try(card_id)) {
+            if (!hex_consume_free_place() && !hex_b3_free3_try() && !hex_b3_first_place_free(card_id) && !hex_same_card_free_try(card_id)) {
                 global.flame -= current_cost;
                 _hex_paid = true;
             }
@@ -339,6 +339,14 @@ if (is_selected) {
             var _zl = hex_zero_cd_flame_loss();
             if (_zl > 0 && variable_global_exists("flame")) {
                 global.flame = max(0, global.flame - floor(global.flame * _zl));
+            }
+
+            // 海克斯二期：放置成功回调（食指的指令 / 小指的聚散 / 海洋的婚礼打标）
+            if (hex_enabled()) {
+                hex_b3_on_place(card_id);
+                if (instance_exists(new_plant) && hex_b3_sea_card(card_id)) {
+                    new_plant.b3_sea_double = true;
+                }
             }
 			
             

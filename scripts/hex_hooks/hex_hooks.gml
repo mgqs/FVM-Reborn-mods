@@ -71,6 +71,9 @@ function hex_battle_init() {
     // 重复通关的关卡没有开局抽取机会：先把"首抽已处理"补上，否则放不了卡
     if (hex_level_repeat()) hex_mark_first_done();
 
+    // 二期的一次性结算：拇指的阶级（扫卡组）/ 类别打乱 / 契约 / 海洋婚礼判定 / Hana
+    if (hex_active()) hex_b3_on_battle_init();
+
     hex_pi_recalc();
     return true;
 }
@@ -118,6 +121,9 @@ function hex_on_wave_start() {
     _s.same_card_last  = "";
     // 本波卡片损失标记清零（「一锅端」按波结算）
     _s.wave_card_lost  = false;
+
+    // 二期：生存下去的勇气恢复上限 / 值得托付的信任重随分类 / 婚介所清点名
+    hex_b3_on_wave_start();
 }
 
 /// @function hex_wave_settle(_prev_wave)
@@ -225,6 +231,11 @@ function hex_enemy_scale_apply(_inst, _boss) {
             _inst.b2_guard_until = current_time + hex_batch2_frames_to_ms(_bs.b2_e_invuln);
         }
     }
+
+    // 二期出生标记：寒冷 / 随机减伤 / 同种计数 / 忍者前移 / Hana 复制
+    hex_b3_enemy_spawn(_inst);
+    // 呼朋唤友：BOSS 第一次出场时再叫一只（内部用一次性标记，不会递归）
+    if (_boss) hex_b3_on_boss_enter(_inst);
 
     return _inst;
 }

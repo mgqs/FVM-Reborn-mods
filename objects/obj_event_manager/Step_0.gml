@@ -298,7 +298,7 @@ event_timer ++
 			for(i = 2 ; i < global.grid_cols  ; i ++){
 				for(var j = 0 ; j < global.grid_rows  ; j ++){
 					var cloud_pos = get_world_position_from_grid(i,j)
-					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
+					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 					cloud_inst.image_index = cloud_count mod 2
 					cloud_inst.depth += cloud_count mod 2
 					cloud_inst.image_alpha = 1
@@ -313,7 +313,7 @@ event_timer ++
 			}
 			for(i = 0 ; i < global.grid_rows  ; i ++){
 				var cloud_pos = get_world_position_from_grid(9,i)
-				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
+				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 				cloud_inst.image_index = cloud_count mod 2
 				cloud_inst.depth += cloud_count mod 2
 				if i == hole_row{
@@ -332,7 +332,7 @@ event_timer ++
 			for(i = 2 ; i < global.grid_cols  ; i ++){
 				for(var j = 0 ; j < global.grid_rows  ; j ++){
 					var cloud_pos = get_world_position_from_grid(i,j)
-					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
+					var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 					cloud_inst.image_index = cloud_count mod 2
 					cloud_inst.depth += cloud_count mod 2
 					cloud_inst.image_alpha = 1
@@ -348,7 +348,7 @@ event_timer ++
 			}
 			for(i = 0 ; i < global.grid_rows  ; i ++){
 				var cloud_pos = get_world_position_from_grid(9,i)
-				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,10,obj_cloud)
+				var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 				cloud_inst.image_index = cloud_count mod 2
 				cloud_inst.depth += cloud_count mod 2
 				cloud_inst.sprite_index = spr_cloud_night
@@ -456,7 +456,7 @@ if is_real(global.level_file.version){
 						for(var c_row = 0 ; c_row < global.grid_rows  ; c_row ++){
 							if array_get_index(event_list[i].cloud_rows,c_row+1) != -1{
 								var cloud_pos = get_world_position_from_grid(c_col,c_row)
-								var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,30,obj_cloud)
+								var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 								cloud_inst.image_index = cloud_count mod 2
 								cloud_inst.depth += cloud_count mod 2
 								cloud_inst.image_alpha = 1
@@ -471,7 +471,11 @@ if is_real(global.level_file.version){
 						cloud_count ++
 					}
 				}
-				if event_timer mod 480 == 1{
+				// 云排生成间隔：默认 480 帧（8 秒）。关卡可在 cloud 事件里写 spawn_interval（秒）覆盖，
+				// 跨服·梦魇天空用 5 秒，让「棉花糖空缺」稳定每 5 秒出现一个。
+				var _cloud_spawn = variable_struct_exists(event_list[i], "spawn_interval")
+					? max(60, round(event_list[i].spawn_interval * 60)) : 480
+				if event_timer mod _cloud_spawn == 1{
 					var hole_row = -1
 					if can_cloud_hole_summon{
 						hole_row = irandom_range(0,array_length(event_list[i].cloud_rows)-1)
@@ -479,7 +483,7 @@ if is_real(global.level_file.version){
 					for(var c_row = 0 ; c_row < global.grid_rows  ; c_row ++){
 						if array_get_index(event_list[i].cloud_rows,c_row+1) != -1{
 							var cloud_pos = get_world_position_from_grid(9,c_row)
-							var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,30,obj_cloud)
+							var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 							cloud_inst.image_index = cloud_count mod 2
 							cloud_inst.depth += cloud_count mod 2
 							if event_list[i].cloud_type == "night"{
@@ -506,7 +510,7 @@ if is_real(global.level_file.version){
 						for(var c_row = 0 ; c_row < global.grid_rows  ; c_row ++){
 							if array_get_index(event_list[i].cloud_rows,c_row+1) != -1{
 								var cloud_pos = get_world_position_from_grid(c_col,c_row)
-								var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,35,obj_static_cloud)
+								var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_static_cloud)
 								if event_list[i].cloud_type == "night"{
 									cloud_inst.sprite_index = spr_cloud_night
 								}

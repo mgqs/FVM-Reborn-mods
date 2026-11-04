@@ -188,6 +188,19 @@ if (fx_kind == "hengha_bell") {
         fx_bell_leave = false;    // 离场：播「飞走」后销毁
         fx_bell_ring = false;     // 牛头敲钟标记
         fx_bell_ringing = false;
+        fx_bell_dead_timer = 0;   // BOSS 全灭后的滞留计时
+    }
+
+    // BOSS 全灭兜底：牛头/马面都不在场（含只剩死亡动画）后，钟最多再滞留 10 秒，
+    // 然后走正常「飞走」流程销毁 —— 否则 BOSS 死了钟会永远钉在场上。
+    var _hengha_alive = false;
+    with (obj_ly_boss_hengha_horseface) { if (variable_instance_exists(id, "hp") && hp > 0) _hengha_alive = true; }
+    with (obj_ly_boss_hengha_oxhead)    { if (variable_instance_exists(id, "hp") && hp > 0) _hengha_alive = true; }
+    if (!_hengha_alive && fx_bell_stage != 5) {
+        fx_bell_dead_timer++;
+        if (fx_bell_dead_timer >= 600) fx_bell_leave = true;   // 10 秒
+    } else {
+        fx_bell_dead_timer = 0;
     }
 
     // 马面技能3：切「待机2」（钟尚未落地时先不动，落地后再切；已被敲过也切）

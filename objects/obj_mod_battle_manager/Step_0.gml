@@ -287,6 +287,10 @@ else
                     if (global.hex_state.first_col_atk > 0 && self.grid_col == 0)
                         self.atk *= (1 + global.hex_state.first_col_atk);
 
+                    // 二期：需要实例上下文的攻击倍率（知识收集蓄力 / 小指相邻 / 婚介所点名 /
+                    // 站在熔岩上 / 中指的义理叠层 / 海洋婚礼双倍）
+                    self.atk *= hex_b3_inst_atk(self);
+
                     // 「稳住锅气」：攻击力不低于基础值的 X%
                     var _fl = hex_card_atk_floor(self.base_atk);
                     if (_fl > 0) self.atk = max(self.atk, _fl);
@@ -300,6 +304,8 @@ else
                     if (global.hex_state.near_cycle_on
                         && hex_near_cycle_hit(self.grid_col, self.grid_row, global.hex_state.near_cycle_range))
                         _hex_cyc *= (1 + global.hex_state.near_cycle_add);
+                    // 二期：全属性 / 岩浆 / 海洋婚礼 等实例侧攻速
+                    _hex_cyc *= hex_b3_inst_cycle(self);
                     self.cycle = self.base_cycle * clamp(_hex_cyc, 0.05, 4.0);
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
@@ -316,6 +322,11 @@ else
                     if (variable_instance_exists(self.id, "b2_hp_stack"))
                         _pure_max *= (1 + self.b2_hp_stack);
                     if (_hp_fix > 0) _pure_max = _hp_fix;
+                    // 二期：全属性 / 血魔的渴血上限 / 海洋婚礼双倍
+                    _pure_max *= hex_b3_inst_hp(self);
+                    // 生存下去的勇气：受伤流失掉的生命上限（绝对值，最少保留 10%）
+                    var _b3_loss = hex_b3_hp_loss(self);
+                    if (_b3_loss > 0) _pure_max = max(_pure_max * 0.1, _pure_max - _b3_loss);
 
                     // 「取长补短」：上限与攻击一起取「纯上限 / 攻击力」中较高者
                     var _new_max = _pure_max;
@@ -326,7 +337,7 @@ else
                     }
 
                     // 只有这三类词条会动上限时才重设，别把别的系统临时改过的 max_hp 拉回基准
-                    if (_hex_hp != 1.0 || _hp_fix > 0 || _eq_on)
+                    if (_hex_hp != 1.0 || _hp_fix > 0 || _eq_on || hex_b3_hp_active(self))
                     {
                         // 一次算到底：从「当帧旧上限」直接换算到「新上限」。
                         // 上限涨多少当前血涨多少、跌多少血跌多少。

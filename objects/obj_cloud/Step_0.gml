@@ -35,13 +35,7 @@ if is_hole && col > 1{
 			instance_destroy()
 		}
 	}
-	with obj_enemy_parent{
-		if grid_col == other.col && grid_row == other.row && 
-		array_get_index(other.ignore_list,mouse_id) == -1 && (target_type == "normal" || target_type == "dance" || target_type == "obstacle"){
-			var inst = instance_create_depth(x,y,depth,obj_drop_death_effect)
-			inst.sprite_index = sprite_index
-			inst.image_index = image_index
-			instance_destroy()
-		}
-	}
+	// 棉花糖空缺只吞卡片，不伤老鼠：
+	// 老鼠经过空洞不掉血、不被销毁（原先这里还有一段 with obj_enemy_parent{ instance_destroy() }，已按需求移除）。
+	// 卡片侧的判定保持不变，空缺仍会吃掉同格的非咖啡/非玩家卡片。
 }

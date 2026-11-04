@@ -3,14 +3,16 @@ if (!hex_active()) {
     exit;
 }
 
-var _list_h    = array_length(rows) * item_h;
+var _list_h    = list_total_h;
 var _max_scroll = max(0, _list_h - view_h);
 
-// ── 滚轮：只在列表区域内生效，一格 = 3 项 ──
+// ── 滚轮：只在列表区域内生效，一格 = 3 项（行高不等，步长取固定值更跟手）──
+var _wheel_step = item_h * 3;
+var _key_step   = item_h + 10;
 var _in_view = point_in_rectangle(mouse_x, mouse_y, view_x, view_y, view_x + view_w, view_y + view_h);
 if (_in_view) {
-    if (mouse_wheel_up())   scroll_target -= item_h * 3;
-    if (mouse_wheel_down()) scroll_target += item_h * 3;
+    if (mouse_wheel_up())   scroll_target -= _wheel_step;
+    if (mouse_wheel_down()) scroll_target += _wheel_step;
 }
 scroll_target = clamp(scroll_target, 0, _max_scroll);
 
@@ -19,10 +21,10 @@ scroll_y += (scroll_target - scroll_y) * 0.35;
 if (abs(scroll_target - scroll_y) < 0.5) scroll_y = scroll_target;
 
 // ── 键盘 ──
-if (keyboard_check_pressed(vk_up))       scroll_target = max(0, scroll_target - item_h);
-if (keyboard_check_pressed(vk_down))     scroll_target = min(_max_scroll, scroll_target + item_h);
-if (keyboard_check_pressed(vk_pageup))   scroll_target = max(0, scroll_target - item_h * 5);
-if (keyboard_check_pressed(vk_pagedown)) scroll_target = min(_max_scroll, scroll_target + item_h * 5);
+if (keyboard_check_pressed(vk_up))       scroll_target = max(0, scroll_target - _key_step);
+if (keyboard_check_pressed(vk_down))     scroll_target = min(_max_scroll, scroll_target + _key_step);
+if (keyboard_check_pressed(vk_pageup))   scroll_target = max(0, scroll_target - view_h);
+if (keyboard_check_pressed(vk_pagedown)) scroll_target = min(_max_scroll, scroll_target + view_h);
 if (keyboard_check_pressed(vk_escape)) {
     instance_destroy();
     exit;

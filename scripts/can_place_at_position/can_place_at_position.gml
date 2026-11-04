@@ -11,6 +11,8 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     if (hex_place_locked()) return false;
     // 海克斯「牢大的祝福」：除咖啡杯系以外的攻击类卡片一律不许落位
     if (hex_batch2_coffee_block(card_id)) return false;
+    // 海克斯二期「唯我独尊」：同一种美食场上只能有一张
+    if (hex_b3_unique_block(card_id)) return false;
     if (card_id == "kuileima" && !global.replace_placement) {
         for (var p = 0; p < instance_number(obj_kuileima); p++) {
             var existing = instance_find(obj_kuileima,p);

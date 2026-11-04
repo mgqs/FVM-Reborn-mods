@@ -1,0 +1,19 @@
+ // Inherit the parent event
+event_inherited();
+hp = 43200
+maxhp = 43200
+atk = 900
+atk_cycle = 108
+attack_range = 120
+move_speed = 0.2796
+move_anim = 21
+attack_anim = 18
+death_anim = 22
+immune_to_ash = true
+special_ash = true
+giant_type = true
+throwed = false
+move_anim = 21
+attack_anim = 18
+death_anim = 22
+mouse_id = "kuafu_armour"

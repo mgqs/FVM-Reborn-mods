@@ -165,7 +165,7 @@ if global.lose_focus_pause{
 
 // Keep expedition/tower timers tied to rendered frame rate.  At 60 FPS this
 // is unchanged; lower FPS advances fewer game-time frames per real frame.
-var _frame_rate_scaled = (string_pos("ancient_castle_", global.level_data.id) == 1)
+var _frame_rate_scaled = is_cross_server_level(global.level_data.id)
     || (string_pos("tower_cake_", global.level_data.id) == 1);
 if (_frame_rate_scaled) {
     var _target_fps = max(1, game_get_speed(gamespeed_fps));

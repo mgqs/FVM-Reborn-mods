@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"flute",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/flute.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flute",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

@@ -65,13 +65,13 @@ if (surface_exists(view_surf)) {
     var _n = array_length(rows);
     for (var i = 0; i < _n; i++) {
         var _row = rows[i];
-        var _ry  = i * item_h - scroll_y;
-        if (_ry + item_h < 0 || _ry > view_h) continue;      // 完全在视口外，跳过
+        var _ry  = _row.y - scroll_y;
+        if (_ry + _row.h < 0 || _ry > view_h) continue;      // 完全在视口外，跳过
 
         // 隔行底色
         if (i mod 2 == 0) {
             draw_set_color(make_color_rgb(18, 22, 29));
-            draw_rectangle(0, _ry, view_w, _ry + item_h, false);
+            draw_rectangle(0, _ry, view_w, _ry + _row.h, false);
         }
 
         var _c1;
@@ -83,33 +83,22 @@ if (surface_exists(view_surf)) {
 
         draw_set_alpha(1);
 
-        // 左侧稀有度色条
+        // 左侧稀有度色条：跟着这一行的实际高度走
         draw_set_color(_c1);
-        draw_rectangle(8, _ry + 12, 12, _ry + item_h - 12, false);
+        draw_rectangle(8, _ry + 12, 12, _ry + _row.h - 12, false);
 
-        // 名字（先量宽度，再切字体，否则 string_width 会按 font_hei 算）
+        // ── 第一行：名字 + 稀有度 + 右侧标记 ──
         draw_set_font(font_yuan);
         draw_set_halign(fa_left);
         draw_set_valign(fa_middle);
         draw_set_color(#EEF4FA);
-        draw_text(26, _ry + 24, _row.name);
+        draw_text(row_pad_x, _ry + row_head_h / 2, _row.name);
         var _name_w = string_width(_row.name);
 
         // 稀有度
         draw_set_font(font_hei);
         draw_set_color(_c1);
-        draw_text(26 + _name_w + 18, _ry + 24, hex_tier_name(_row.tier));
-
-        // 效果：卡片侧靠左、老鼠侧靠右，两段各占一头，永远不会叠字
-        var _fc = (_row.form == "C") ? make_color_rgb(255, 110, 110) : make_color_rgb(124, 227, 139);
-        draw_set_font(font_yuan);
-        draw_set_color(_fc);
-        draw_text(26, _ry + 56, _row.card_desc);
-
-        draw_set_color(make_color_rgb(176, 194, 208));
-        draw_set_halign(fa_right);
-        draw_text(view_w - 18, _ry + 56, _row.enemy_desc);
-        draw_set_halign(fa_left);
+        draw_text(row_pad_x + _name_w + 14, _ry + row_head_h / 2, hex_tier_name(_row.tier));
 
         // 右侧标记：永久生效 / 本局叠层数
         var _tag = "";
@@ -118,9 +107,23 @@ if (surface_exists(view_surf)) {
         if (_tag != "") {
             draw_set_color(#9BB3C9);
             draw_set_halign(fa_right);
-            draw_text(view_w - 16, _ry + 24, _tag);
+            draw_text(view_w - 16, _ry + row_head_h / 2, _tag);
             draw_set_halign(fa_left);
         }
+
+        // ── 效果：两段改成纵向堆叠，各自按宽度换行，不会再左右撞在一起 ──
+        var _fc = (_row.form == "C") ? make_color_rgb(255, 110, 110) : make_color_rgb(124, 227, 139);
+        draw_set_font(font_yuan);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_middle);
+
+        draw_set_color(_fc);
+        var _cd_h = hex_draw_lines(_row.card_lines, row_pad_x, _ry + row_head_h,
+                                   row_line_h, row_max_lines, row_text_w);
+
+        draw_set_color(make_color_rgb(176, 194, 208));
+        hex_draw_lines(_row.enemy_lines, row_pad_x, _ry + row_head_h + _cd_h,
+                       row_line_h, row_max_lines, row_text_w);
     }
 
     surface_reset_target();
@@ -131,14 +134,14 @@ if (surface_exists(view_surf)) {
     // 表面创建失败的兜底：直接画（可能溢出视口，但至少内容还在）
     var _n2 = array_length(rows);
     for (var k = 0; k < _n2; k++) {
-        var _r2 = rows[k];
-        var _ry2 = view_y + k * item_h - scroll_y;
-        if (_ry2 + item_h < view_y || _ry2 > view_y + view_h) continue;
+        var _r2  = rows[k];
+        var _ry2 = view_y + _r2.y - scroll_y;
+        if (_ry2 + _r2.h < view_y || _ry2 > view_y + view_h) continue;
         draw_set_font(font_yuan);
         draw_set_halign(fa_left);
         draw_set_valign(fa_middle);
         draw_set_color(#EEF4FA);
-        draw_text(view_x + 26, _ry2 + 20, _r2.name);
+        draw_text(view_x + row_pad_x, _ry2 + row_head_h / 2, _r2.name);
     }
 }
 
@@ -160,7 +163,7 @@ if (array_length(rows) == 0) {
 }
 
 // 滚动条
-var _list_h = array_length(rows) * item_h;
+var _list_h = list_total_h;
 if (_list_h > view_h) {
     var _bar_x = view_x + view_w + 6;
     draw_set_color(make_color_rgb(34, 42, 52));

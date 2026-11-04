@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"waste_flying",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/waste_flying.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"waste_flying",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

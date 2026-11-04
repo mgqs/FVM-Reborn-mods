@@ -102,19 +102,36 @@ for (var i = 0; i < array_length(offer); i++) {
     draw_set_color(_bc1);
     draw_text(_cx, _r.y1 + 30 + _lift, hex_tier_name(_d.tier));
 
-    // 词条名
-    draw_set_color(#F4F8FB);
-    draw_text_ext(_cx, _r.y1 + 74 + _lift, _d.name, 34, card_w - 40);
+    // ── 文本区：全部动态排版，名字/两段描述按实际行数依次下推，绝不越出卡片 ──
+    var _text_w = card_w - 48;              // 左右各留 24
+    var _top    = _r.y1 + 58 + _lift;       // 角标下方
+    var _bottom = _r.y2 - 64 + _lift;       // 底部「叠 N/M」自己要占的位置
 
-    // 分隔线
+    // 词条名：最多 2 行（实测最长 128px，通常 1 行）
+    var _name_l = hex_wrap_text(_d.name, _text_w);
+    draw_set_color(#F4F8FB);
+    var _name_h = hex_draw_lines(_name_l, _cx, _top, 32, 2, _text_w);
+
+    // 分隔线紧跟名字，不再写死 y
+    var _sep_y = _top + _name_h + 14;
     draw_set_color(make_color_rgb(70, 84, 100));
-    draw_line(_r.x1 + 26, _r.y1 + 108 + _lift, _r.x2 - 26, _r.y1 + 108 + _lift);
+    draw_line(_r.x1 + 26, _sep_y, _r.x2 - 26, _sep_y);
 
     // 两段效果：卡片侧在上、老鼠侧在下，同向同色
+    var _lh   = 24;
+    var _cd_y = _sep_y + 16;
+
+    var _cd_l    = hex_wrap_text(_d.card_desc, _text_w);
+    var _rows_av = max(1, floor((_bottom - _cd_y) / _lh));
+    // 卡片侧最多吃掉剩余空间的 60%，剩下的留给老鼠侧，避免一侧把另一侧挤没
+    var _cd_max  = max(1, floor(_rows_av * 0.6));
     draw_set_color(_fc);
-    draw_text_ext(_cx, _r.y1 + 132 + _lift, _d.card_desc, 26, card_w - 44);
+    var _cd_h    = hex_draw_lines(_cd_l, _cx, _cd_y, _lh, _cd_max, _text_w);
+
+    var _ed_y   = _cd_y + _cd_h + 10;
+    var _ed_max = max(1, floor((_bottom - _ed_y) / _lh));
     draw_set_alpha(_ease * 0.85);
-    draw_text_ext(_cx, _r.y1 + 212 + _lift, _d.enemy_desc, 26, card_w - 44);
+    hex_draw_lines(hex_wrap_text(_d.enemy_desc, _text_w), _cx, _ed_y, _lh, _ed_max, _text_w);
 
     // 叠层 / 已持有
     draw_set_alpha(_ease);

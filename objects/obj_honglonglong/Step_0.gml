@@ -89,13 +89,34 @@ switch state{
 		}
 		
 		if timer == 480{
-			instance_create_depth(x-150,y-120,-800,obj_honglonglong_laser)
+			// 变异版激光：0° 与 ±45° 三向齐射，光束绕枪口旋转（精灵原点在光束右端）
+			var _muzzle_x = x - 150
+			var _muzzle_y = y - 120
+			var _beam_angles = [0, 45, -45]
+			for (var _bi = 0; _bi < array_length(_beam_angles); _bi++){
+				var _laser = instance_create_depth(_muzzle_x, _muzzle_y, -800, obj_honglonglong_laser)
+				_laser.laser_angle = _beam_angles[_bi]
+			}
 			
-			// 变异版激光：仅沿角色所在行发射水平激光
-			var _boss_row = get_grid_position_from_world(x, y).row
+			// 伤害与光束一致：以 BOSS 所在格为起点，沿 0° / ±45° 三条线结算
+			// 水平束贯穿整行（沿用原判定）；斜向束受光束长度限制，左向最多 6 格
+			laser_hit_cells = {}
+			var _dirs = [[-1,0], [-1,-1], [-1,1]]
+			for (var _di = 0; _di < 3; _di++){
+				var _dc = _dirs[_di][0]
+				var _dr = _dirs[_di][1]
+				var _reach = (_dr == 0) ? global.grid_cols : 6
+				for (var _s = 1; _s <= _reach; _s++){
+					var _c = grid_col + _dc * _s
+					var _r = grid_row + _dr * _s
+					if (_c < 0 || _c >= global.grid_cols || _r < 0 || _r >= global.grid_rows) continue
+					laser_hit_cells[$ string(_c) + "," + string(_r)] = true
+				}
+			}
 			
 			with obj_card_parent{
-				if grid_row == _boss_row && plant_id != "player" && plant_type != "lilypad"{
+				var _key = string(grid_col) + "," + string(grid_row)
+				if (other.laser_hit_cells[$ _key] && plant_id != "player" && plant_type != "lilypad"){
 					if hp >= max_hp{
 						obj_task_manager.card_loss++
 					}
@@ -224,15 +245,16 @@ switch state{
 		else{
 			image_index = floor(timer/5) mod 24 + 24
 		}
-		if timer == 14 * 5{
+			if timer == 14 * 5{
 				// 变异版坐压：以角色模型当前位置为中心摧毁 4x4 范围
+				// 判定框整体相对模型向左上偏移一格，与坐压贴图的落点对齐
 				var _model_grid = get_grid_position_from_world(x, y)
 				var _center_row = _model_grid.row
 				var _center_col = _model_grid.col
 				var _cards_to_destroy = []
 				with obj_card_parent{
-					if grid_row >= _center_row - 1 && grid_row <= _center_row + 2
-					&& grid_col >= _center_col - 1 && grid_col <= _center_col + 2
+					if grid_row >= _center_row - 2 && grid_row <= _center_row + 1
+					&& grid_col >= _center_col - 2 && grid_col <= _center_col + 1
 					&& !invincible && plant_id != "player"{
 						array_push(_cards_to_destroy, id)
 					}

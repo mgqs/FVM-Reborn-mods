@@ -39,8 +39,11 @@ if (_hit_r > _hit_l && _hit_b > _hit_t)
         // 穿透弹放行：damage_type == "pierce"，或子弹自己标了 pierce_all
         // （融合三线 2 转 / 融合双菇 1·2 转的无限穿透 —— 它们自己的 Collision_obj_obstacle 里都写了
         //  `if (pierce_all) exit;`，这里必须同口径放行，否则障碍这一侧会先把子弹销毁，表现为「穿透失效」）
+        // pierce_obstacle：「固定轨迹类」子弹（炎凰马/花糕/工匠神/赖皮蛇/十二生肖弹等）专用，
+        // 只穿地形障碍、不改变对老鼠的穿透行为，所以不能借用 pierce_all / damage_type。
         var _pierce = (_dt == "pierce")
-                   || (variable_instance_exists(_bullet, "pierce_all") && _bullet.pierce_all);
+                   || (variable_instance_exists(_bullet, "pierce_all") && _bullet.pierce_all)
+                   || (variable_instance_exists(_bullet, "pierce_obstacle") && _bullet.pierce_obstacle);
         // 行门禁：只拦「逻辑行 == 本障碍行」的子弹。炮口高（双向水管 y-75、坚果炸锅 y-95…）
         // 的子弹物理上悬到上一格下缘，若只看几何，下面那格的卡会被上面那格的障碍物白吃子弹。
         // 判定口径统一在 obstacle_should_block() 里。

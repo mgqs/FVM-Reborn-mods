@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"hopper",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/hopper.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hopper",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

@@ -37,3 +37,5 @@ life_frames = 0;
 // 视觉与碰撞放大 1.8 倍（对齐披萨子弹）
 image_xscale = 1.8;
 image_yscale = 1.8;
+// 固定轨迹类：三段式路径贯穿全场，不能被地形障碍吃掉
+pierce_obstacle = true;

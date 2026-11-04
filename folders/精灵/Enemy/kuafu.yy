@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"kuafu",
+  "folderPath":"folders/精灵/Enemy/kuafu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kuafu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"mengyantiankong","path":"folders/精灵/Enemy/kuafu/mengyantiankong.yy",},
+  ],
+  "listItems":[],
+}

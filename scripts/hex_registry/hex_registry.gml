@@ -80,6 +80,8 @@ function hex_registry_init() {
     hex_register_builtin();
     // 第二批（hex_112 ~ hex_184）：机制实现集中在 scripts/hex_batch2
     hex_register_batch2();
+    // 二期（hex_185 ~ hex_259 + Hana 四卦）：机制实现集中在 scripts/hex_batch3
+    hex_register_batch3();
     var _n = 0;
     for (var i = 0; i < array_length(global.hex_ids); i++) {
         if (global.hex_db[$ global.hex_ids[i]].impl) _n++;

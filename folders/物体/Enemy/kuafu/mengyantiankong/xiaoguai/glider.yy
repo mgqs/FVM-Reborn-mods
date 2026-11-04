@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"glider",
+  "folderPath":"folders/物体/Enemy/kuafu/mengyantiankong/xiaoguai/glider.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"glider",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

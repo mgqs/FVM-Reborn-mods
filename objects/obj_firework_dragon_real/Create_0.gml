@@ -19,9 +19,11 @@ invincible = true;
 
 if (shape >= 1)
 {
+    // 一转以上的额外火苗同样按 [火苗产量] 结算（星级影响产量），
+    // 原来硬编码 75 会让这几朵火苗永远停留在 0 星数值。
     for (var i = 0; i < 2; i++)
     {
         var inst = instance_create_depth(x, y - 60, depth - 1000, obj_flame);
-        inst.value = 75;
+        inst.value = flame_produce;
     }
 }

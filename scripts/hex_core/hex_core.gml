@@ -10,6 +10,9 @@
 ///   hex_hp_mult_for_card()    卡片生命倍率
 ///   hex_enemy_mult()          老鼠属性倍率（PI）
 
+// 期望注册总数：110（本体 hex_001~hex_184 去掉 hex_251 等）/ 63（第二批）/ 70（第三批）
+#macro HEX_EXPECTED_TOTAL 243
+
 /// @function hex_enabled()
 /// @desc 海克斯系统总开关。全工程唯一判定点
 function hex_enabled() {
@@ -537,6 +540,10 @@ function hex_apply_core(_id) {
     if (variable_struct_exists(_d.ex, "bond_extra_minor")) _s.bond_minor_extra += _d.ex.bond_extra_minor;
 
     // ---- 老鼠侧 ----
+    // 残响乐团会把残响组的卡片侧效果再结算一次，那一轮必须跳过老鼠侧，
+    // 否则「减半」的鼠军侧效果会被反向翻倍
+    var _card_only = variable_global_exists("hex_card_only_apply") && global.hex_card_only_apply;
+    if (!_card_only) {
     if (variable_struct_exists(_d.en, "e_hp"))    _s.e_hp    *= (1 + _d.en.e_hp);
     if (variable_struct_exists(_d.en, "e_spd"))   _s.e_spd   *= (1 + _d.en.e_spd);
     if (variable_struct_exists(_d.en, "e_atk"))   _s.e_atk   *= (1 + _d.en.e_atk);
@@ -556,9 +563,12 @@ function hex_apply_core(_id) {
     if (variable_struct_exists(_d.en, "e_mole_no_stun")) _s.e_mole_no_stun = true;
     if (variable_struct_exists(_d.en, "e_slow_resist")) _s.e_slow_resist += _d.en.e_slow_resist;
     if (variable_struct_exists(_d.en, "e_no_cat"))     _s.e_no_cat     = true;
+    }
 
     // 第二批（hex_112 ~ hex_184）的机制字段，实现在 scripts/hex_batch2
     hex_batch2_apply(_d);
+    // 二期（hex_185 ~ hex_259）的机制字段，实现在 scripts/hex_batch3
+    hex_b3_apply(_d);
 
     return true;
 }
@@ -790,7 +800,8 @@ function hex_atk_mult_for_card(_plant_id) {
            * hex_atk_per_speed_mult(_plant_id)
            * hex_top_card_atk_mult(_plant_id)
            * hex_batch2_id_atk(_plant_id)
-           * hex_batch2_atk_factor(_plant_id);
+           * hex_batch2_atk_factor(_plant_id)
+           * hex_b3_atk_factor(_plant_id);
     if (variable_global_exists("hex_state") && is_struct(global.hex_state)
         && global.hex_state.other_atk != 0 && !hex_is_top_card(_plant_id)) {
         _m *= (1 + global.hex_state.other_atk);
@@ -897,9 +908,9 @@ function hex_enemy_mult(_kind) {
     var _s = global.hex_state;
     var _v = 1.0;
     switch (_kind) {
-        case "hp":  _v = clamp(_s.e_hp,  0.30, 4.0) * hex_batch2_enemy_hp_extra(); break;
+        case "hp":  _v = clamp(_s.e_hp,  0.30, 4.0) * hex_batch2_enemy_hp_extra() * hex_b3_enemy_hp_extra(); break;
         case "spd": _v = clamp(_s.e_spd, 0.40, 2.5); break;
-        case "atk": _v = clamp(_s.e_atk, 0.30, 3.0); break;
+        case "atk": _v = clamp(_s.e_atk, 0.30, 3.0) * hex_b3_enemy_atk_extra(); break;
         default:    _v = 1.0;                        break;
     }
     return _v * global.pi_enemy_mult;
@@ -1408,9 +1419,11 @@ function hex_selfcheck() {
         }
     } else {
         // 海克斯模式：库、状态、倍率出口都不能是 undefined
+        // 110（本体）+ 63（第二批）+ 70（第三批 66 实装 + 4 条 Hana 伪词条）= 243
         if (!variable_global_exists("hex_db")) array_push(_err, "hex_db 未初始化");
-        else if (array_length(global.hex_ids) != 174) {
-            array_push(_err, "词条条数 " + string(array_length(global.hex_ids)) + " != 174");
+        else if (array_length(global.hex_ids) != HEX_EXPECTED_TOTAL) {
+            array_push(_err, "词条条数 " + string(array_length(global.hex_ids))
+                           + " != " + string(HEX_EXPECTED_TOTAL));
         }
         if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) {
             array_push(_err, "hex_state 未建立");
@@ -1426,6 +1439,15 @@ function hex_selfcheck() {
         // 第二批机制状态：惰性补齐没跑过的话所有 b2_* 出口都会读不到字段
         if (!hex_batch2_ensure()) {
             array_push(_err, "hex_batch2 状态未建立（第二批词条全部失效）");
+        }
+
+        // 第三批同理：b3_* 出口全部依赖 hex_b3_ensure 先补默认值
+        if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
+            if (!hex_b3_ensure()) {
+                array_push(_err, "hex_batch3 状态未建立（第三批词条全部失效）");
+            } else if (!variable_struct_exists(global.hex_state, "b3_gem_cd")) {
+                array_push(_err, "b3_gem_cd 缺失（宝石三件套失效）");
+            }
         }
 
         // 每张卡读倍率都必须拿到正数
@@ -1715,7 +1737,10 @@ function hex_card_incoming_damage(_dmg) {
     if (!hex_enabled()) return _dmg;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return _dmg;
     var _cut = clamp(global.hex_state.range_cut, 0, 0.9);
-    if (hex_card_insta_kill_chance() > 0 && random(1) < hex_card_insta_kill_chance()) return _dmg + 999999;
+    // 鲨鱼的厚皮：免疫秒杀（灰烬类必杀）
+    var _ash_proof = false;
+    if (variable_struct_exists(global.hex_state, "b3_ash_proof")) _ash_proof = global.hex_state.b3_ash_proof;
+    if (!_ash_proof && hex_card_insta_kill_chance() > 0 && random(1) < hex_card_insta_kill_chance()) return _dmg + 999999;
     return _dmg * (1 - _cut);
 }
 
@@ -1805,7 +1830,8 @@ function hex_card_atk_floor(_base_atk) {
 function hex_buff_grant_mult() {
     if (!hex_enabled()) return 1.0;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return 1.0;
-    return max(1.0, global.hex_state.buff_grant);
+    // 不公的契约·增幅：增幅效果 +100%（二期），非海克斯与未签契约时恒 1.0
+    return max(1.0, global.hex_state.buff_grant) * hex_b3_contract_buff_mult();
 }
 
 /// @function hex_card_cooldown(_base, _card_id)
@@ -1976,6 +2002,8 @@ function hex_periodic_run() {
     // 第二批（hex_112 ~ hex_184）的周期效果：落地沉睡/无敌、山脉龙魂、达摩克里斯、
     // 大战召唤、鼠洞、认知偏差。全部在 hex_batch2 内部按毫秒切块，不吃帧率。
     hex_batch2_tick();
+    // 二期（hex_185 ~ hex_259）：周期伤害、时间减速、契约、各种“每 N 秒”效果
+    hex_b3_tick();
 }
 
 /// @function hex_enemy_no_cat()

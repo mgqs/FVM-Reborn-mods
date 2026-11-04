@@ -13,6 +13,7 @@
     {"name":"appendage","path":"folders/物体/Effects/appendage.yy",}
   ],
   "listItems":[
+    {"name":"obj_card_buff_mark","path":"objects/obj_card_buff_mark/obj_card_buff_mark.yy",},
     {"name":"obj_card_heal_effect","path":"objects/obj_card_heal_effect/obj_card_heal_effect.yy",},
     {"name":"obj_card_inhale_effect","path":"objects/obj_card_inhale_effect/obj_card_inhale_effect.yy",},
     {"name":"obj_card_stolen","path":"objects/obj_card_stolen/obj_card_stolen.yy",},

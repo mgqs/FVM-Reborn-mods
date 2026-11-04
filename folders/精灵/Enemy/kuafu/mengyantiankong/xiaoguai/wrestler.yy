@@ -1,0 +1,15 @@
+{
+  "$GMFolder":"",
+  "%Name":"wrestler",
+  "folderPath":"folders/精灵/Enemy/kuafu/mengyantiankong/xiaoguai/wrestler.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wrestler",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[],
+}

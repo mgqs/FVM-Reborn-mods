@@ -6,6 +6,8 @@ function hex_pickable(_id) {
     var _d = hex_get(_id);
     if (is_undefined(_d)) return false;
     if (!_d.impl) return false;                     // 未实装的不进池
+    // 面板专用条目（Hana 的四卦）不出现在随机牌面里
+    if (variable_struct_exists(_d, "no_roll") && _d.no_roll) return false;
     if (hex_taken(_id) >= _d.stack) return false;   // 叠满
     // 减码型单局上限
     if (_d.form == "C" && hex_taken_c() >= hex_cfg().max_c) return false;
@@ -69,6 +71,14 @@ function hex_candidates(_tier, _form) {
 /// @desc 生成三选一。返回 id 数组；池被抽干时可能少于 3 条
 function hex_roll_offer() {
     if (!hex_ensure_state()) return [];
+
+    // Hana 的四卦：本关开局强制弹四选一，牌面固定是四个卦
+    if (hex_enabled() && variable_global_exists("hex_state") && is_struct(global.hex_state)
+        && variable_struct_exists(global.hex_state, "b3_hana_pending")
+        && global.hex_state.b3_hana_pending) {
+        global.hex_state.b3_hana_pending = false;
+        return hex_b3_hana_offer();
+    }
 
     var _cfg   = hex_cfg();
     var _first = (global.hex_state.picks == 0);

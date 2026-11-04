@@ -95,7 +95,28 @@ if !is_capture{
     if (collect_timer >= collect_duration) {
         // 海克斯「火苗自然增长」：只放大拾取量，不改既有产火逻辑
         // 海克斯第二批「熠熠生辉」：每个火苗固定 +N，再走火苗获取倍率
-        global.flame += (value + hex_batch2_flame_flat()) * hex_flame_growth();
+        // 海克斯第三批「江人皇」：产能类美食的产量倍率（按产出来源卡判断）
+        // 本体「产能类每次产出 +N」：同一次产出只让第一颗火苗吃，避免 ×3
+        var _hx_src = "";
+        if (variable_instance_exists(id, "hex_src_id")) _hx_src = hex_src_id;
+        var _hx_pm = (_hx_src == "") ? 1.0 : hex_b3_prod_mult(_hx_src);
+        var _hx_bn = hex_batch2_flame_flat();
+        if (variable_instance_exists(id, "hex_prod_first") && hex_prod_first) {
+            _hx_bn += hex_card_prod_bonus(_hx_src);
+        }
+        // 不公的契约·光明：每个火苗价值 +50
+        _hx_bn += hex_b3_contract_flame_flat();
+        global.flame += (value * _hx_pm + _hx_bn) * hex_flame_growth();
+        // 不公的契约·光明：火苗溢出时产火的美食受伤
+        if (_hx_src != "" && hex_b3_contract_on("light")
+            && variable_global_exists("flame_cap") && global.flame_cap > 0
+            && global.flame >= global.flame_cap) {
+            with (obj_card_parent) {
+                if (self.plant_id == _hx_src && self.hp > 0) {
+                    self.hp = max(1, self.hp - self.max_hp * 0.05);
+                }
+            }
+        }
 	        //var fx = instance_create_layer(target_x, target_y, "Effects", obj_sun_fx);
 	       // fx.value = value;
 	        instance_destroy();

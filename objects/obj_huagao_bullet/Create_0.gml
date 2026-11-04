@@ -25,3 +25,5 @@ hspeed = 0;
 vspeed = 0;
 image_speed = 0.3;
 image_angle = 0;
+// 固定轨迹类：魂虫全程直飞，不能被地形障碍吃掉（否则花糕在障碍行等于废卡）
+pierce_obstacle = true;
