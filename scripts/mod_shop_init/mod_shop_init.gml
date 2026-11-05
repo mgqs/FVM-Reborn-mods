@@ -561,4 +561,15 @@ function mod_shop_init()
     register_goods("maiya", { type: "card", cost: "20000", unlock_item_id: "maiya", description: "麦芽糖：可在海水与岩浆上承载卡片", display_name: "麦芽糖" });
     register_goods("guihuajiu", { type: "card", cost: "40000", unlock_item_id: "guihuajiu", description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠", display_name: "桂花酒" });
 
+
+    register_goods("zhuzhuliaoliji", { type: "card", cost: "250000", unlock_item_id: "zhuzhuliaoliji", description: "猪猪料理机：向五个方向各射出刀片", display_name: "猪猪料理机" });
+    register_goods("budingwang", { type: "card", cost: "50000", unlock_item_id: "budingwang", description: "布丁汪：把穿过自己的子弹弹回去", display_name: "布丁汪" });
+    register_goods("caihongshe", { type: "card", cost: "30000", unlock_item_id: "caihongshe", description: "彩虹蛇：保护被罩住的卡片并发射子弹", display_name: "彩虹蛇" });
+    register_goods("meiweijishiqi", { type: "card", cost: "150000", unlock_item_id: "meiweijishiqi", description: "美味计时器：持续缩短本格卡片的冷却", display_name: "美味计时器" });
+    register_goods("dangdanghu", { type: "card", cost: "60000", unlock_item_id: "dangdanghu", description: "铛铛虎：投掷高温糕饼，落点持续灼烧", display_name: "铛铛虎" });
+    register_goods("dianman", { type: "card", cost: "80000", unlock_item_id: "dianman", description: "美味电鳗：范围内持续放电并定身", display_name: "美味电鳗" });
+    register_goods("tanchitu", { type: "card", cost: "70000", unlock_item_id: "tanchitu", description: "贪吃兔：召唤一列兔子向前冲撞", display_name: "贪吃兔" });
+    register_goods("tunshilong", { type: "card", cost: "50000", unlock_item_id: "tunshilong", description: "吞噬龙：吞掉周围的地面老鼠", display_name: "吞噬龙" });
+    register_goods("xiangliaohu", { type: "card", cost: "150000", unlock_item_id: "xiangliaohu", description: "香料虎：为周围追踪卡片提升攻击力", display_name: "香料虎" });
+    register_goods("zhuanzhuanji", { type: "card", cost: "40000", unlock_item_id: "zhuanzhuanji", description: "转转鸡：连续快速向周边攻击", display_name: "转转鸡" });
 }

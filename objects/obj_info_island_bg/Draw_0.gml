@@ -112,6 +112,15 @@ if (info_button_select == 1) {
         array_push(info_view, _lid);
     }
 }
+// ── 从背包右键进来：只「定位到那张卡」（用 id 找下标，不依赖背包顺序 == 情报岛顺序）
+//   🔴 2026-11-06 用户口径：**不再自动同步星级 / 转职 / 技能**，这三个值只在点「同步背包」按钮时覆盖（见 obj_info_island_sync_btn）
+if (info_button_select == 1 && open_focus_id != ""){
+    for (var _fk = 0; _fk < array_length(info_view); _fk++){
+        if (global.player_deck[| info_view[_fk]] == open_focus_id){ select_card_index = _fk; break; }
+    }
+    open_focus_id = "";
+}
+
 var _info_item_count = array_length(info_view);
 info_rows = max(1, ceil(_info_item_count / info_cols))
 var _max_scroll = max(0, 142 * 1.5 * info_rows - surface_height)
@@ -262,7 +271,8 @@ if info_button_select == 1 {
 			name = _shape_data[? "name"]
 		}
 		// 出处 / 前置卡片已直接写进 register_card_info_island 的文案（2026-10-28）
-		var info_text = global.info_island[? card_id]
+		// 2026-11-05：文案里的 {变量} 按「当前查看的形态 / 星级 / 技能」实时填（见 scripts/mod_info_island_text）
+		var info_text = info_island_text_render(global.info_island[? card_id], card_id, current_view_shape, view_card_level, view_card_skill)
 		
 		//绘制文本
 		draw_set_font(font_yuan)
@@ -287,7 +297,14 @@ if info_button_select == 1 {
 			draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
 			draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		}
-		draw_text_ext(x-390,y-100,info_text,30,300)
+		// 2026-11-06：数值金色。能不能上色由脚本自己判断：
+		//   只有当「自己排出来的行数 == 引擎 string_height_ext 给的行数」时才用分段绘制（行数一致 = 高度一致，不会顶出面板）
+		//   对不齐就直接返回 false，走下面这句原来的 draw_text_ext —— 最差等于没做这个功能，排版不会变样
+		//   参数：wrap 300 / 行高 30 / 正文白 / 数值金 (255,215,107) / 括号白 / bold = false（想伪加粗改 true）
+		if (!info_island_text_draw_rich(x-390, y-100, global.info_island[? card_id], card_id, current_view_shape, view_card_level, view_card_skill,
+				300, 30, c_white, make_colour_rgb(255, 215, 107), c_white, false)){
+			draw_text_ext(x-390,y-100,info_text,30,300)
+		}
 		draw_set_font(font_yuan)
 	}
 }

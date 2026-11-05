@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"tanchitu",
+  "folderPath":"folders/精灵/mod/Cards/boomer/tanchitu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tanchitu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_tanchitu","path":"sprites/spr_tanchitu/spr_tanchitu.yy",},
+    {"name":"spr_tanchitu_bullet","path":"sprites/spr_tanchitu_bullet/spr_tanchitu_bullet.yy",},
+    {"name":"spr_tanchitu_1","path":"sprites/spr_tanchitu_1/spr_tanchitu_1.yy",},
+    {"name":"spr_tanchitu_bullet_1","path":"sprites/spr_tanchitu_bullet_1/spr_tanchitu_bullet_1.yy",},
+    {"name":"spr_tanchitu_2","path":"sprites/spr_tanchitu_2/spr_tanchitu_2.yy",},
+    {"name":"spr_tanchitu_bullet_2","path":"sprites/spr_tanchitu_bullet_2/spr_tanchitu_bullet_2.yy",}
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"zhuanzhuanji",
+  "folderPath":"folders/精灵/mod/Cards/Melee/zhuanzhuanji.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zhuanzhuanji",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_zhuanzhuanji","path":"sprites/spr_zhuanzhuanji/spr_zhuanzhuanji.yy",},
+    {"name":"spr_zhuanzhuanji_1","path":"sprites/spr_zhuanzhuanji_1/spr_zhuanzhuanji_1.yy",},
+    {"name":"spr_zhuanzhuanji_2","path":"sprites/spr_zhuanzhuanji_2/spr_zhuanzhuanji_2.yy",}
+  ],
+}

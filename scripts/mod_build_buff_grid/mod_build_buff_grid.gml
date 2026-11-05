@@ -134,7 +134,10 @@ function apply_buff(arg0)
                 grid[c][r] = v;
         }
 
-        if (arg0.plant_id == "berry_dessert")
+        // 追踪增幅的「名单」原样再写一格 tracker_berry：
+        //   莓果点心 / 香料虎 名单完全同步（2026-11-06 用户口径），只认 tracker_berry 的卡
+        //   （冰块冷萃机）以前只有莓果点心吃得到，香料虎写了 tracker 也进不了它那一档。
+        if (arg0.plant_id == "berry_dessert" || arg0.plant_id == "xiangliaohu")
         {
             var berry_tracker_grid = ds_map_find_value(global.buff_grid, "tracker_berry");
             if (v > berry_tracker_grid[c][r]) berry_tracker_grid[c][r] = v;

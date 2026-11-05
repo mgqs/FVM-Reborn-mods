@@ -35,7 +35,7 @@ function mod_fusion_table(){
             prereq: "chocolate_cannon",                       // 死神大炮
             cards: [
                 { main:{ id:"chocolate_cannon",  need:2 }, sub:{ id:"chocolate_pult",     need:2 } },  // 脆心巧克力投手
-                { main:{ id:"ronghedapao",       need:0 }, sub:{ id:"lightning_baguette", need:2 } },  // 雷电长棍面包（官方电鳗的顶替）
+                { main:{ id:"ronghedapao",       need:0 }, sub:{ id:"dianman",            need:2 } },  // 霸王美味电鳗（2026-11-06 用户指定，替换原「雷电长棍面包」临时顶替）
                 { main:{ id:"ronghedapao",       need:1 }, sub:{ id:"flour_sack",        need:2 } }   // 乾坤分身袋
             ]
         },
@@ -57,9 +57,9 @@ function mod_fusion_table(){
                 { main:{ id:"youyu_god",         need:1 }, sub:{ id:"nut_frier",         need:2 } }   // 松塔爆破机
             ]
         },
-        // ── 融合栗子 ← 糖炒栗子 ────────────────────────────────────────────
+        // ── 融合栗子 ← 焦香烤栗子 ──────────────────────────────────────────
         lizi_god: {
-            prereq: "tangchaolizi",                           // 糖炒栗子
+            prereq: "tangchaolizi",                           // 焦香烤栗子
             cards: [
                 { main:{ id:"tangchaolizi",      need:2 }, sub:{ id:"spicy_pot",         need:2 } },  // 酱香鱿鱼锅
                 { main:{ id:"lizi_god",          need:0 }, sub:{ id:"coke_bomb",         need:2 } },  // 燃烧可乐弹

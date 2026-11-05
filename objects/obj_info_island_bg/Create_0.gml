@@ -18,6 +18,8 @@ btn3.button_index = 3
 btn3.sprite_index = spr_info_island_select_btn_3
 
 var btn_edit = instance_create_depth(x+320,y-320,depth-1,obj_info_island_edit_btn)
+// 「同步背包」按钮：贴在编辑按钮正下方（y-205），点了才把当前查看卡的星级/转职/技能按背包真实值刷一遍
+var btn_sync = instance_create_depth(x+320,y-205,depth-1,obj_info_island_sync_btn)
 
 hover_card_index = -1; // 当前悬停的卡片索引
 hover_weapon_index = -1
@@ -27,6 +29,8 @@ deck_sort_order = [] // 卡片排序映射（普通卡在前 → 融合卡居中
 view_card_level = 0
 view_card_shape = 0
 view_card_skill = 0
+// 从背包右键进来时带过来的目标卡 id：Draw 里只用来「定位到那张卡」（不再自动同步数值）
+open_focus_id = ""
 
 info_surface = -1
 surface_width = 900

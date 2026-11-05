@@ -232,7 +232,17 @@ function card_category_data()
         ["chunv", "防御类", "护罩类", ""],
         ["bbq", "直射类", "过火穿透类", ""],
         ["eightcake", "投掷类", "单线投手", ""],
-        ["tangchaolizi", "投掷类", "灼烧投手", ""]
+        ["tangchaolizi", "投掷类", "灼烧投手", ""],
+        ["zhuzhuliaoliji", "多向类", "海星类", ""],
+        ["budingwang", "辅助类", "反弹类", ""],
+        ["caihongshe", "防御类", "护罩类", ""],
+        ["meiweijishiqi", "辅助类", "冷却类", ""],
+        ["dangdanghu", "投掷类", "灼烧投手", ""],
+        ["dianman", "灰烬类", "持续类", ""],
+        ["tanchitu", "灰烬类", "瞬发类", "冲撞类"],
+        ["tunshilong", "非远程类", "吞噬类", ""],
+        ["xiangliaohu", "增幅类", "名单类增幅", "追踪增幅"],
+        ["zhuanzhuanji", "喷壶类", "旋转喷壶类", ""]
     ];
 }
 

@@ -3014,9 +3014,9 @@ register_card("hongliukaochuan", obj_hongliukaochuan, [
 ]);
 
 register_card("shuanggu", obj_shuanggu, [
-{shape:0,sprite:spr_shuanggu,cost:255,cooldown:420,description: "蚝油双菇：同时向前方发射2发对陆子弹和2发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu},
-{shape:1,sprite:spr_shuanggu_1,cost:255,cooldown:420,description: "伯爵蚝油双菇：同时向前方发射2发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_1},
-{shape:2,sprite:spr_shuanggu_2,cost:255,cooldown:420,description: "皇家蚝油双菇：同时向前方发射3发对陆子弹和3发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_2}
+{shape:0,sprite:spr_shuanggu,cost:255,cooldown:420,description: "蚝油双菇：同时攻击本行空中和陆地的敌人",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu},
+{shape:1,sprite:spr_shuanggu_1,cost:255,cooldown:420,description: "伯爵蚝油双菇：同时攻击本行空中和陆地的敌人",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_1},
+{shape:2,sprite:spr_shuanggu_2,cost:255,cooldown:420,description: "皇家蚝油双菇：同时攻击本行空中和陆地的敌人",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_shuanggu_2}
 ]);
 
 // 融合卡：普卡两转（形态 0/1/2），不写 is_gold（缺键读作 undefined，在 == 1 判断下等同 0）；卡底由 is_fusion 类别标记决定（spr_slot_2），不再逐界面硬编码名单。
@@ -3031,99 +3031,150 @@ register_card("youyu_god", obj_youyu_god, [
 {shape:2,sprite:spr_youyu_god_2,cost:155,cooldown:420,description: "松香怪味鱿鱼：向10个方向各发射2发鱿鱼弹，前后方子弹增加，中路子弹可过火",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_youyu_god_2}
 ]);
 register_card("ronghehaixing", obj_ronghehaixing, [
-{shape:0,sprite:spr_ronghehaixing,cost:175,cooldown:420,description: "仙人球海星刺身：向五个方向发射2枚子弹，后方子弹增加",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing},
-{shape:1,sprite:spr_ronghehaixing_1,cost:175,cooldown:420,description: "奶油海星刺身：向五个方向发射2枚溅射子弹，后方子弹增加",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_1},
-{shape:2,sprite:spr_ronghehaixing_2,cost:175,cooldown:420,description: "王冠海星刺身：向五个方向发射2枚溅射子弹，后方子弹增加，斜向子弹碰上下边框后转为追踪弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_2}
+{shape:0,sprite:spr_ronghehaixing,cost:175,cooldown:420,description: "仙人球海星刺身：5方向发射共计11发子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing},
+{shape:1,sprite:spr_ronghehaixing_1,cost:175,cooldown:420,description: "奶油海星刺身：5方向发射带有单格溅射效果的子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_1},
+{shape:2,sprite:spr_ronghehaixing_2,cost:175,cooldown:420,description: "王冠海星刺身：5方向发射子弹，可被地图上下边缘反弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehaixing_2}
 ]);
 register_card("ronghedan_god", obj_ronghedan_god, [
-{shape:0,sprite:spr_ronghedan_god,cost:250,cooldown:420,description: "雪芭煮蛋器：投掷2个溅射鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god},
-{shape:1,sprite:spr_ronghedan_god_1,cost:250,cooldown:420,description: "臭豆腐煮蛋器：投掷2个溅射毒气鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_1},
-{shape:2,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description: "终结者煮蛋器：向前方3行投掷2个溅射毒气鸡蛋，概率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_2}
+{shape:0,sprite:spr_ronghedan_god,cost:250,cooldown:420,description: "雪芭煮蛋器：向前方投掷鸡蛋&几率定身",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god},
+{shape:1,sprite:spr_ronghedan_god_1,cost:250,cooldown:420,description: "臭豆腐煮蛋器：向前方投掷鸡蛋&几率定身&附加毒气伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_1},
+{shape:2,sprite:spr_ronghedan_god_2,cost:250,cooldown:420,description: "终结者煮蛋器：向前方3行投掷鸡蛋&几率定身&附加毒气伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedan_god_2}
 ]);
 register_card("ronghehuopen", obj_ronghehuopen, [
-{shape:0,sprite:spr_ronghehuopen,cost:175,cooldown:420,description: "刺梨烧烤盘：穿过它的弹药都会提高伤害，啃咬它的老鼠受到等量反伤",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen},
-{shape:1,sprite:spr_ronghehuopen_1,cost:175,cooldown:420,description: "冰榴莲烤盘：穿过它的弹药都会提高伤害，定期在周围5*5范围召唤寒冰之气攻击鼠军",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_1},
-{shape:2,sprite:spr_ronghehuopen_2,cost:175,cooldown:420,description: "缤纷杂果冰盘：穿过它的弹药提高伤害并变为冰弹，定期召唤寒冰之气",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_2}
+{shape:0,sprite:spr_ronghehuopen,cost:175,cooldown:420,description: "刺梨烧烤盘：子弹穿过火力加强同时啃咬反伤",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen},
+{shape:1,sprite:spr_ronghehuopen_1,cost:175,cooldown:420,description: "冰榴莲烤盘：增强火力之外可以召唤寒冰伤害周围老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_1},
+{shape:2,sprite:spr_ronghehuopen_2,cost:175,cooldown:420,description: "缤纷杂果冰盘：穿过变攻击增强的寒冰子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghehuopen_2}
 ]);
 register_card("ronghesanxian", obj_ronghesanxian, [
-{shape:0,sprite:spr_ronghesanxian,cost:325,cooldown:420,description: "子母三线酒架：向前方三行各发射2发葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian},
-{shape:1,sprite:spr_ronghesanxian_1,cost:325,cooldown:420,description: "仙人掌花酒架：向前方三行各发射3发葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_1},
-{shape:2,sprite:spr_ronghesanxian_2,cost:325,cooldown:420,description: "烤灯笼鱼酒架：向前方三行各发射3发可穿透的葡萄酒弹，命中后概率附加燃烧",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_2}
+{shape:0,sprite:spr_ronghesanxian,cost:325,cooldown:420,description: "子母三线酒架：攻击三行老鼠，额外附加燃烧伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian},
+{shape:1,sprite:spr_ronghesanxian_1,cost:325,cooldown:420,description: "仙人掌花酒架：攻击三行老鼠，额外附加燃烧伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_1},
+{shape:2,sprite:spr_ronghesanxian_2,cost:325,cooldown:420,description: "烤灯笼鱼酒架：穿透攻击三行一定数量老鼠，额外附加燃烧伤害",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghesanxian_2}
 ]);
 
 register_card("ronghedapao", obj_ronghedapao, [
-{shape:0,sprite:spr_ronghedapao,cost:300,cooldown:1500,description: "脆心死神大炮：向本行投下2枚巧克力炸弹，3*3范围爆炸",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao},
-{shape:1,sprite:spr_ronghedapao_1,cost:300,cooldown:1500,description: "霸王死神大炮：向本行投下2枚巧克力炸弹，爆炸范围扩大至3*5",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_1},
-{shape:2,sprite:spr_ronghedapao_2,cost:225,cooldown:1500,description: "乾坤死神大炮：向本行投下2枚巧克力炸弹，爆炸改为碾压秒杀",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_2}
+{shape:0,sprite:spr_ronghedapao,cost:300,cooldown:1500,description: "脆心死神大炮：定频率轰炸老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao},
+{shape:1,sprite:spr_ronghedapao_1,cost:300,cooldown:1500,description: "霸王死神大炮：定频率轰炸老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_1},
+{shape:2,sprite:spr_ronghedapao_2,cost:225,cooldown:1500,description: "乾坤死神大炮：定频率轰炸老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghedapao_2}
 ]);
 
 register_card("ronghekafei", obj_ronghekafei, [
-{shape:0,sprite:spr_ronghekafei,cost:0,cooldown:420,description: "机枪咖啡杯：向前方连续发射3发咖啡弹，不需要火苗就能使用",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei},
-{shape:1,sprite:spr_ronghekafei_1,cost:0,cooldown:420,description: "喷壶咖啡杯：向前方发射1发浓缩咖啡弹，可穿透老鼠与障碍",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_1},
-{shape:2,sprite:spr_ronghekafei_2,cost:0,cooldown:420,description: "三叠咖啡杯：三个杯子各吐1发浓缩咖啡弹，可穿透老鼠与障碍",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_2}
+{shape:0,sprite:spr_ronghekafei,cost:0,cooldown:420,description: "机枪咖啡杯：连续发射3发子弹攻击本行老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei},
+{shape:1,sprite:spr_ronghekafei_1,cost:0,cooldown:420,description: "喷壶咖啡杯：发射3发穿透子弹攻击本行老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_1},
+{shape:2,sprite:spr_ronghekafei_2,cost:0,cooldown:420,description: "三叠咖啡杯：1格容纳3个咖啡杯同时攻击本行老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_ronghekafei_2}
 ]);
 
 register_card("rongheshuanggu", obj_rongheshuanggu, [
-{shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗蚝油双菇：同时向前方发射4发对陆子弹和4发对空子弹",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
-{shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶蚝油双菇：对陆子弹变为无限穿透，对空4发不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},
-{shape:2,sprite:spr_rongheshuanggu_2,cost:255,cooldown:420,description: "糖葫芦蚝油双菇：对空子弹变为全屏追踪，对地穿透不变",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_2}
+{shape:0,sprite:spr_rongheshuanggu,cost:255,cooldown:420,description: "热狗蚝油双菇：同时攻击本行空中和陆地老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu},
+{shape:1,sprite:spr_rongheshuanggu_1,cost:255,cooldown:420,description: "喷壶蚝油双菇：攻击空中老鼠的同时穿透攻击陆地老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_1},
+{shape:2,sprite:spr_rongheshuanggu_2,cost:255,cooldown:420,description: "糖葫芦蚝油双菇：追踪攻击空中老鼠同时穿透攻击陆地老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",is_fusion:1,place_preview:spr_rongheshuanggu_2}
 ]);
 
     register_card("pufferfish", obj_pufferfish, [
-    {shape: 0, sprite: spr_pufferfish, cost: 325, cooldown: 3300, description: "爆辣河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish},
-    {shape: 1, sprite: spr_pufferfish_1, cost: 325, cooldown: 3300, description: "朝天椒河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_1},
-    {shape: 2, sprite: spr_pufferfish_2, cost: 325, cooldown: 3300, description: "青芥末河豚：种卡后清除全屏老鼠，或清除部分卡片", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_2}
+    {shape: 0, sprite: spr_pufferfish, cost: 325, cooldown: 3300, description: "爆辣河豚：要么享受美味，要么中毒", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish},
+    {shape: 1, sprite: spr_pufferfish_1, cost: 325, cooldown: 3300, description: "朝天椒河豚：要么享受美味，要么中毒", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_1},
+    {shape: 2, sprite: spr_pufferfish_2, cost: 325, cooldown: 3300, description: "青芥末河豚：要么享受美味，要么中毒", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_pufferfish_2}
     ]);
 
     register_card("yeziguo", obj_yeziguo, [
-    {shape: 0, sprite: spr_yeziguo, cost: 75, cooldown: 1800, description: "椰子果：跳起碾压前方鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo},
-    {shape: 1, sprite: spr_yeziguo_1, cost: 75, cooldown: 1800, description: "浓香椰子果：跳起碾压前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_1},
-    {shape: 2, sprite: spr_yeziguo_2, cost: 75, cooldown: 1800, description: "金丝椰子果：跳起连续碾压3次前方3*3范围鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_2}
+    {shape: 0, sprite: spr_yeziguo, cost: 75, cooldown: 1800, description: "椰子果：跳起秒杀前方单格鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo},
+    {shape: 1, sprite: spr_yeziguo_1, cost: 75, cooldown: 1800, description: "浓香椰子果：跳起秒杀前方单格鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_1},
+    {shape: 2, sprite: spr_yeziguo_2, cost: 75, cooldown: 1800, description: "金丝椰子果：跳起秒杀前方单格鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yeziguo_2}
     ]);
 
     register_card("niuyouguo", obj_niuyouguo, [
-    {shape:0,sprite:spr_niuyouguo,cost:210,cooldown:1800,description: "邪恶牛油果：向前方三个方向各发射1发穿透飞镖",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo},
-    {shape:1,sprite:spr_niuyouguo_1,cost:210,cooldown:1800,description: "沙沙牛油果：向前方三个方向各发射1发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_1},
-    {shape:2,sprite:spr_niuyouguo_2,cost:210,cooldown:1800,description: "桑巴牛油果：向前方三个方向各发射2发穿透飞镖，命中附加减速",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_2}
+    {shape:0,sprite:spr_niuyouguo,cost:210,cooldown:1800,description: "邪恶牛油果：穿透攻击前方3方向老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo},
+    {shape:1,sprite:spr_niuyouguo_1,cost:210,cooldown:1800,description: "沙沙牛油果：穿透攻击前方3方向老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_1},
+    {shape:2,sprite:spr_niuyouguo_2,cost:210,cooldown:1800,description: "桑巴牛油果：穿透攻击前方3方向老鼠",plant_type:"normal",feature_type:"normal",target_card:"none",place_preview:spr_niuyouguo_2}
     ]);
     register_card("wuxingshe", obj_wuxingshe, [
-    { shape: 0, sprite: spr_wuxingshe, cost: 280, cooldown: 2400, description: "五行蛇：为3*3范围内5方向卡片增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe },
-    { shape: 1, sprite: spr_wuxingshe_1, cost: 280, cooldown: 2400, description: "通灵五行蛇：为3*3范围内5方向卡片增加攻击力，攻击力提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_1 },
-    { shape: 2, sprite: spr_wuxingshe_2, cost: 280, cooldown: 2400, description: "泰斗五行蛇：为5*5范围内5方向卡片增加攻击力，攻击力大幅提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_2 }]);
+    { shape: 0, sprite: spr_wuxingshe, cost: 280, cooldown: 2400, description: "五行蛇：大幅提高周围5方向卡片攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe },
+    { shape: 1, sprite: spr_wuxingshe_1, cost: 280, cooldown: 2400, description: "通灵五行蛇：大幅提高周围5方向卡片攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_1 },
+    { shape: 2, sprite: spr_wuxingshe_2, cost: 280, cooldown: 2400, description: "泰斗五行蛇：大幅提高周围5方向卡片攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_wuxingshe_2 }]);
 
     register_card("bbq", obj_bbq, [
-    { shape: 0, sprite: spr_bbq, cost: 350, cooldown: 420, description: "街头烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq },
-    { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：沿本行发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
-    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：向前方3路发射穿透串串子弹，每4发发射爆辣烤串", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
+    { shape: 0, sprite: spr_bbq, cost: 350, cooldown: 420, description: "街头烤肉大师：向前发射固定轨迹穿透子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq },
+    { shape: 1, sprite: spr_bbq_1, cost: 350, cooldown: 420, description: "户外烤肉大师：向前发射固定轨迹穿透子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_1 },
+    { shape: 2, sprite: spr_bbq_2, cost: 350, cooldown: 420, description: "BBQ烤肉大师：向前发射固定轨迹穿透子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_bbq_2 }]);
 
     register_card("eightcake", obj_eightcake, [
-    { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
-    { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷威力更高的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
-    { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷带有伤害的蛋糕子弹，每3发投掷有燃烧效果的蜡烛子弹，每10发投掷可乐炸弹。", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
+    { shape: 0, sprite: spr_eightcake, cost: 150, cooldown: 420, description: "8周年蛋糕：投掷不同功能子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake },
+    { shape: 1, sprite: spr_eightcake_1, cost: 150, cooldown: 420, description: "8周年慕斯：投掷不同功能子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_1 },
+    { shape: 2, sprite: spr_eightcake_2, cost: 150, cooldown: 420, description: "8周年红丝绒：投掷不同功能子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_eightcake_2 }]);
     register_card("tangchaolizi", obj_tangchaolizi, [
-    { shape: 0, sprite: spr_tangchaolizi, cost: 160, cooldown: 420, description: "糖炒栗子：向前方喷出可以持续灼烧老鼠的滚烫栗子", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi },
-    { shape: 1, sprite: spr_tangchaolizi_1, cost: 160, cooldown: 420, description: "开口笑栗子：灼烧范围扩大到3*3", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_1 },
-    { shape: 2, sprite: spr_tangchaolizi_2, cost: 160, cooldown: 420, description: "焦香烤栗子：十字范围伤害提高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_2 }]);
+    { shape: 0, sprite: spr_tangchaolizi, cost: 160, cooldown: 420, description: "糖炒栗子：向前方喷射高温栗子", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi },
+    { shape: 1, sprite: spr_tangchaolizi_1, cost: 160, cooldown: 420, description: "开口笑栗子：向前方喷射高温栗子", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_1 },
+    { shape: 2, sprite: spr_tangchaolizi_2, cost: 160, cooldown: 420, description: "焦香烤栗子：向前方喷射高温栗子", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tangchaolizi_2 }]);
 
     register_card("nengliangmiao", obj_nengliangmiao, [
-    { shape: 0, sprite: spr_nengliangmiao, cost: 225, cooldown: 720, description: "能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao },
-    { shape: 1, sprite: spr_nengliangmiao_1, cost: 175, cooldown: 720, description: "蓝焰能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，耗能降低", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_1 },
-    { shape: 2, sprite: spr_nengliangmiao_2, cost: 175, cooldown: 720, description: "樱红能量喵：本行投掷类卡片加攻，直线子弹经其变为火子弹，增幅提高15%", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_2 }]);
+    { shape: 0, sprite: spr_nengliangmiao, cost: 225, cooldown: 720, description: "能量喵：为本行投掷和直线子弹增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao },
+    { shape: 1, sprite: spr_nengliangmiao_1, cost: 175, cooldown: 720, description: "蓝焰能量喵：为本行投掷和直线子弹增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_1 },
+    { shape: 2, sprite: spr_nengliangmiao_2, cost: 175, cooldown: 720, description: "樱红能量喵：为本行投掷和直线子弹增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_nengliangmiao_2 }]);
 
     register_card("maiya", obj_maiya, [
-    { shape: 0, sprite: spr_maiya, cost: 55, cooldown: 420, description: "麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya },
-    { shape: 1, sprite: spr_maiya_1, cost: 0, cooldown: 420, description: "莓莓麦芽糖：可在海水与岩浆上承载卡片，使上方的卡片免受窒息与灼烧", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya_1 }]);
+    { shape: 0, sprite: spr_maiya, cost: 55, cooldown: 420, description: "麦芽糖：可在果汁上承载美食卡片，在空中变身棉花糖", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya },
+    { shape: 1, sprite: spr_maiya_1, cost: 0, cooldown: 420, description: "莓莓麦芽糖：可在果汁上承载美食卡片，在空中变身棉花糖", plant_type: "coffee", feature_type: "dwarf", target_card: "none", is_gold: 0, place_preview: spr_maiya_1 }]);
 
     register_card("guihuajiu", obj_guihuajiu, [
-    { shape: 0, sprite: spr_guihuajiu, cost: 125, cooldown: 3000, description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠并留下燃烧的酒精", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu },
-    { shape: 1, sprite: spr_guihuajiu_1, cost: 125, cooldown: 3000, description: "陈年桂花酒：阻挡老鼠，爆炸与燃烧范围扩大，伤害提高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_1 },
-    { shape: 2, sprite: spr_guihuajiu_2, cost: 125, cooldown: 3000, description: "仙酿桂花酒：阻挡老鼠，爆炸使范围内老鼠醉酒，受到的伤害提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_2 }]);
+    { shape: 0, sprite: spr_guihuajiu, cost: 125, cooldown: 3000, description: "桂花酒：阻挡进攻，咬破后可炸伤老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu },
+    { shape: 1, sprite: spr_guihuajiu_1, cost: 125, cooldown: 3000, description: "陈年桂花酒：阻挡进攻，咬破后可炸伤老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_1 },
+    { shape: 2, sprite: spr_guihuajiu_2, cost: 125, cooldown: 3000, description: "仙酿桂花酒：阻挡进攻，咬破后可炸伤老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_2 }]);
     register_card("mianbao", obj_mianbao, [
-    { shape: 0, sprite: spr_mianbao, cost: 150, cooldown: 3000, description: "火炉菠萝面包：阻挡老鼠，被啃咬时产出火苗，死亡时产生5*5范围灰烬爆炸", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao },
-    { shape: 1, sprite: spr_mianbao_1, cost: 150, cooldown: 3000, description: "火龙果菠萝包：阻挡老鼠，每4.5秒在周围5*5范围燃起火焰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_1 },
-    { shape: 2, sprite: spr_mianbao_2, cost: 150, cooldown: 3000, description: "机枪菠萝面包：阻挡老鼠，每1.5秒向前发射4发子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_2 }]);
+    { shape: 0, sprite: spr_mianbao, cost: 150, cooldown: 3000, description: "火炉菠萝面包：阻挡老鼠&被啃咬产火", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao },
+    { shape: 1, sprite: spr_mianbao_1, cost: 150, cooldown: 3000, description: "火龙果菠萝包：阻挡老鼠&被啃咬产火&范围伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_1 },
+    { shape: 2, sprite: spr_mianbao_2, cost: 150, cooldown: 3000, description: "机枪菠萝面包：阻挡老鼠&被啃咬产火&范围伤害&向前发射子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_2 }]);
     register_card("xuanzhuan_ronghe", obj_xuanzhuan_ronghe, [
-    { shape: 0, sprite: spr_xuanzhuan_ronghe, cost: 150, cooldown: 3000, description: "红温旋转咖啡壶：向四周5*5范围喷出攻击气体", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe },
-    { shape: 1, sprite: spr_xuanzhuan_ronghe_1, cost: 150, cooldown: 3000, description: "果味旋转咖啡壶：向四周5*5范围喷出攻击气体，附带减速与碎冰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_1 },
-    { shape: 2, sprite: spr_xuanzhuan_ronghe_2, cost: 150, cooldown: 3000, description: "觉醒旋转咖啡壶：向四周5*7范围喷出攻击气体，附带减速与碎冰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_2 }]);
+    { shape: 0, sprite: spr_xuanzhuan_ronghe, cost: 150, cooldown: 3000, description: "红温旋转咖啡壶：攻击周围5*5格内鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe },
+    { shape: 1, sprite: spr_xuanzhuan_ronghe_1, cost: 150, cooldown: 3000, description: "果味旋转咖啡壶：攻击附加减速和碎冰效果", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_1 },
+    { shape: 2, sprite: spr_xuanzhuan_ronghe_2, cost: 150, cooldown: 3000, description: "觉醒旋转咖啡壶：大范围攻击鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_2 }]);
+
+    register_card("zhuzhuliaoliji", obj_zhuzhuliaoliji, [
+    { shape: 0, sprite: spr_zhuzhuliaoliji, cost: 225, cooldown: 420, description: "猪猪料理机：向5个角度的直线射出子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuzhuliaoliji },
+    { shape: 1, sprite: spr_zhuzhuliaoliji_1, cost: 175, cooldown: 420, description: "猪猪搅拌机：向5个角度的直线射出子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuzhuliaoliji_1 },
+    { shape: 2, sprite: spr_zhuzhuliaoliji_2, cost: 175, cooldown: 420, description: "猪猪破壁机：向5个角度的直线射出子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuzhuliaoliji_2 }]);
+
+    register_card("budingwang", obj_budingwang, [
+    { shape: 0, sprite: spr_budingwang, cost: 100, cooldown: 840, description: "布丁汪：反弹子弹并增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_budingwang },
+    { shape: 1, sprite: spr_budingwang_1, cost: 70, cooldown: 840, description: "双拼布丁汪：反弹子弹并增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_budingwang_1 },
+    { shape: 2, sprite: spr_budingwang_2, cost: 70, cooldown: 840, description: "什锦布丁汪：反弹子弹并增加攻击力", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_budingwang_2 }]);
+
+    register_card("caihongshe", obj_caihongshe, [
+    { shape: 0, sprite: spr_caihongshe, cost: 205, cooldown: 900, description: "彩虹蛇：保护被罩卡片同时攻击老鼠", plant_type: "shield_outer", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_caihongshe },
+    { shape: 1, sprite: spr_caihongshe_1, cost: 205, cooldown: 900, description: "溏心彩虹蛇：保护被罩卡片同时攻击老鼠", plant_type: "shield_outer", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_caihongshe_1 },
+    { shape: 2, sprite: spr_caihongshe_2, cost: 205, cooldown: 900, description: "缤纷彩虹蛇：保护被罩卡片同时攻击老鼠", plant_type: "shield_outer", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_caihongshe_2 }]);
+
+    register_card("meiweijishiqi", obj_meiweijishiqi, [
+    { shape: 0, sprite: spr_meiweijishiqi, cost: 275, cooldown: 3720, description: "美味计时器：为范围内卡片缩减冷却", plant_type: "coffee", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_meiweijishiqi },
+    { shape: 1, sprite: spr_meiweijishiqi_1, cost: 275, cooldown: 3720, description: "佳肴计时器：为范围内卡片缩减冷却", plant_type: "coffee", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_meiweijishiqi_1 },
+    { shape: 2, sprite: spr_meiweijishiqi_2, cost: 275, cooldown: 3720, description: "珍馐计时器：为范围内卡片缩减冷却", plant_type: "coffee", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_meiweijishiqi_2 }]);
+
+    register_card("dangdanghu", obj_dangdanghu, [
+    { shape: 0, sprite: spr_dangdanghu, cost: 200, cooldown: 420, description: "铛铛虎：燃烧前方区域，持续伤害老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dangdanghu },
+    { shape: 1, sprite: spr_dangdanghu_1, cost: 200, cooldown: 420, description: "速热铛铛虎：燃烧前方区域，持续伤害老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dangdanghu_1 },
+    { shape: 2, sprite: spr_dangdanghu_2, cost: 200, cooldown: 420, description: "微波铛铛虎：燃烧前方区域，持续伤害老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dangdanghu_2 }]);
+
+    register_card("dianman", obj_dianman, [
+    { shape: 0, sprite: spr_dianman, cost: 325, cooldown: 3600, description: "美味电鳗：一段时间内持续伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dianman },
+    { shape: 1, sprite: spr_dianman_1, cost: 325, cooldown: 3600, description: "变异美味电鳗：一段时间内持续伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dianman_1 },
+    { shape: 2, sprite: spr_dianman_2, cost: 325, cooldown: 3600, description: "霸王美味电鳗：一段时间内持续伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dianman_2 }]);
+
+    register_card("tanchitu", obj_tanchitu, [
+    { shape: 0, sprite: spr_tanchitu, cost: 320, cooldown: 3600, description: "贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu },
+    { shape: 1, sprite: spr_tanchitu_1, cost: 320, cooldown: 3600, description: "肥肥贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_1 },
+    { shape: 2, sprite: spr_tanchitu_2, cost: 320, cooldown: 3600, description: "暴走贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_2 }]);
+
+    register_card("tunshilong", obj_tunshilong, [
+    { shape: 0, sprite: spr_tunshilong, cost: 175, cooldown: 2100, description: "吞噬龙：吞噬周围老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tunshilong },
+    { shape: 1, sprite: spr_tunshilong_1, cost: 175, cooldown: 2100, description: "幼年吞噬龙：吞噬周围老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tunshilong_1 },
+    { shape: 2, sprite: spr_tunshilong_2, cost: 175, cooldown: 2100, description: "成年吞噬龙：吞噬周围老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tunshilong_2 }]);
+
+    register_card("xiangliaohu", obj_xiangliaohu, [
+    { shape: 0, sprite: spr_xiangliaohu, cost: 215, cooldown: 2400, description: "香料虎：为周围特定卡片增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiangliaohu },
+    { shape: 1, sprite: spr_xiangliaohu_1, cost: 215, cooldown: 2400, description: "海洋香料虎：为周围特定卡片增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiangliaohu_1 },
+    { shape: 2, sprite: spr_xiangliaohu_2, cost: 215, cooldown: 2400, description: "魔力香料虎：为周围特定卡片增加攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_xiangliaohu_2 }]);
+
+    register_card("zhuanzhuanji", obj_zhuanzhuanji, [
+    { shape: 0, sprite: spr_zhuanzhuanji, cost: 200, cooldown: 2100, description: "转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji },
+    { shape: 1, sprite: spr_zhuanzhuanji_1, cost: 200, cooldown: 2100, description: "五彩转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji_1 },
+    { shape: 2, sprite: spr_zhuanzhuanji_2, cost: 200, cooldown: 2100, description: "王室转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji_2 }]);
+
 }

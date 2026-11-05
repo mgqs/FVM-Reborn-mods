@@ -15,7 +15,7 @@ function info_island_search_spawn(_px, _py, _depth){
     var _sb = instance_create_depth(_px, _py, _depth, SearchBox);
     _sb.set_position(_px, _py)
        .set_size(384, 40)      // 宽 384 = 正好卡到列表第 3 格左沿（130 + 384 = 514），不会压卡片
-       .set_placeholder("搜索名称或分类（[分类]）")
+       .set_placeholder("搜索名称/[分类名](支持拼音)")
        .set_theme({
             bg:           make_colour_rgb(3, 43, 80),
             bg_focus:     make_colour_rgb(8, 62, 112),
@@ -71,6 +71,7 @@ function info_island_search_match(_q, _text){
 /// @func info_island_search_alias_table()
 /// @desc 口语别名 → 分类名（可多个）。搜「平射」时把「直射类」和「平射增幅」都带上
 ///   只收「玩家真的会这么打」的词；加词就加一行，别在匹配函数里写分支
+///   2026-11-06：别名本身也能用拼音搜（`[toushou]` / `[toush]` → 投手 → 投掷类 / 单线投手…），不用另建表
 function info_island_search_alias_table(){
     return [
         ["平射",   ["直射类", "平射增幅"]],
@@ -158,13 +159,45 @@ function info_island_search_words(_q){
     return _groups;
 }
 
+/// @func info_island_search_cat_hit(keyword_lower, cat_names)
+/// @desc 分类词命中（2026-11-06 加拼音）：
+///   ① 分类名（大类 / 小分类 / 子分类）中文子串
+///   ② 分类名拼音 —— `[toush` / `[toushou` / `[ts` 都能出「投掷类」「单线投手」这类
+///   ③ 别名表：中文精确匹配 **或** 别名拼音（`[mianbao` → 面包 → 防御类 / 面包类）
+///   拼音走 scripts/mod_info_island_pinyin 的通用 `py_hit_text`，末字允许只打一半
+function info_island_search_cat_hit(_kw, _cat){
+    static _alias_tbl = undefined;          // 别名表只建一次（每帧每卡都重建太浪费）
+    if (_alias_tbl == undefined) _alias_tbl = info_island_search_alias_table();
+
+    // ① 分类名中文子串
+    for (var _i = 0; _i < array_length(_cat); _i++){
+        if (_cat[_i] != "" && string_pos(_kw, _cat[_i]) > 0) return true;
+    }
+    // ② 分类名拼音（只对三种分类名做，不碰卡名）
+    for (var _p = 0; _p < array_length(_cat); _p++){
+        if (_cat[_p] != "" && py_hit_text(_cat[_p], _kw)) return true;
+    }
+    // ③ 别名 → 分类：中文精确匹配，或别名拼音命中
+    for (var _a = 0; _a < array_length(_alias_tbl); _a++){
+        if (_alias_tbl[_a][0] != _kw && !py_hit_text(_alias_tbl[_a][0], _kw)) continue;
+        var _targets = _alias_tbl[_a][1];
+        for (var _t = 0; _t < array_length(_targets); _t++){
+            var _tg = string_lower(_targets[_t]);
+            for (var _c = 0; _c < array_length(_cat); _c++){
+                if (_cat[_c] != "" && string_pos(_tg, _cat[_c]) > 0) return true;
+            }
+        }
+    }
+    return false;
+}
+
 /// @func info_island_search_match_card(groups, card_id)
 /// @desc 卡片页签的过滤判定
 ///   **每个词组至少命中一个替代词**（组间「且」、组内「或」）；全部命中才留下这张卡
 ///   命中来源按词的类型分：
-///     - 分类词（带括号）：大类 / 小分类 / 子分类 + 别名表（[喷壶] → 喷壶类）
+///     - 分类词（带括号）：大类 / 小分类 / 子分类 + 别名表（[喷壶] → 喷壶类），**支持拼音与半截拼音**
 ///     - 普通词：**只看卡名**，且任意形态名都能命中（麻辣香锅 → 酱香鱿鱼锅 也能搜到）
-///   拼音（全拼 / 首字母）以后在「普通词」那一支里接索引，接口不变
+///   拼音（全拼 / 首字母 / 末字半截）两类词都支持（2026-11-05 普通词、2026-11-06 分类词）
 function info_island_search_match_card(_groups, _cid){
     if (array_length(_groups) == 0) return true;
 
@@ -185,9 +218,6 @@ function info_island_search_match_card(_groups, _cid){
         array_push(_cat, string_lower(_c.major), string_lower(_c.minor), string_lower(_c.sub));
     }
 
-    var _alias = [];
-    var _alias_ready = false;
-
     for (var _g = 0; _g < array_length(_groups); _g++){
         var _alts = _groups[_g];
         var _group_hit = false;
@@ -197,35 +227,17 @@ function info_island_search_match_card(_groups, _cid){
             var _is_cat = _alts[_a][1];
 
             if (_is_cat){
-                // ── 分类词：分类名子串匹配 ──
-                for (var _ci = 0; _ci < array_length(_cat); _ci++){
-                    if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _group_hit = true; break; }
-                }
-                if (_group_hit) break;
-
-                // ── 分类词：别名（喷壶 / 面包 / 投手 …）→ 分类 ──
-                if (!_alias_ready){
-                    _alias = info_island_search_alias_table();
-                    _alias_ready = true;
-                }
-                for (var _ai = 0; _ai < array_length(_alias); _ai++){
-                    if (_alias[_ai][0] != _kw) continue;
-                    var _targets = _alias[_ai][1];
-                    for (var _t = 0; _t < array_length(_targets); _t++){
-                        var _tg = string_lower(_targets[_t]);
-                        for (var _cj = 0; _cj < array_length(_cat); _cj++){
-                            if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _group_hit = true; break; }
-                        }
-                        if (_group_hit) break;
-                    }
-                    break;
-                }
+                // ── 分类词：中文子串 → 拼音 → 别名（中文 / 拼音）──
+                _group_hit = info_island_search_cat_hit(_kw, _cat);
             }
             else{
-                // ── 普通词：只查卡名（任一形态名命中即可）──
+                // ── 普通词：先查卡名（任一形态名命中即可）──
                 for (var _ni = 0; _ni < array_length(_names); _ni++){
                     if (_names[_ni] != "" && string_pos(_kw, _names[_ni]) > 0){ _group_hit = true; break; }
                 }
+                // 名字没命中 → 再查拼音（全拼 / 首字母 / 末字半截，2026-11-05 实装）
+                //   表与索引都在 scripts/mod_info_island_pinyin
+                if (!_group_hit) _group_hit = info_island_pinyin_hit(_cid, _kw);
             }
 
             if (_group_hit) break;

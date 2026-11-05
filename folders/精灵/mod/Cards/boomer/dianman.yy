@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"dianman",
+  "folderPath":"folders/精灵/mod/Cards/boomer/dianman.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dianman",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_dianman","path":"sprites/spr_dianman/spr_dianman.yy",},
+    {"name":"spr_dianman_effect","path":"sprites/spr_dianman_effect/spr_dianman_effect.yy",},
+    {"name":"spr_dianman_1","path":"sprites/spr_dianman_1/spr_dianman_1.yy",},
+    {"name":"spr_dianman_effect_1","path":"sprites/spr_dianman_effect_1/spr_dianman_effect_1.yy",},
+    {"name":"spr_dianman_2","path":"sprites/spr_dianman_2/spr_dianman_2.yy",},
+    {"name":"spr_dianman_effect_2","path":"sprites/spr_dianman_effect_2/spr_dianman_effect_2.yy",}
+  ],
+}

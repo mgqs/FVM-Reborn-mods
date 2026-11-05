@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"budingwang",
+  "folderPath":"folders/精灵/mod/Cards/Assistant/budingwang.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"budingwang",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_budingwang","path":"sprites/spr_budingwang/spr_budingwang.yy",},
+    {"name":"spr_budingwang_1","path":"sprites/spr_budingwang_1/spr_budingwang_1.yy",},
+    {"name":"spr_budingwang_2","path":"sprites/spr_budingwang_2/spr_budingwang_2.yy",}
+  ],
+}

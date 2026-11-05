@@ -1,7 +1,7 @@
 /// =============================================================================
 ///  mod/craft · 转职表（合成屋左侧第 3 个按钮，craft_top_tab == 2）
 ///  这个文件 = 转职的**全部数值 + 全部规则 + 确认窗绘制**，obj_craft_bg 只调它
-///  对象那边只留：几何（tg_* 坐标）/ 界面状态（tg_card·tg_assure·tg_pity·tg_confirm·tg_fx）
+///  对象那边只留：几何（tg_* 坐标）/ 界面状态（tg_card·tg_assure·tg_confirm·tg_fx）
 ///                列表与元数据缓存（tg_rebuild）/ Draw 与 Step
 ///  详细方案：桌面\fvm的ai\转职系统方案.md
 ///
@@ -21,6 +21,9 @@
 ///    mod_tg_roll(rate, pity, pity_max)               掷骰 + 保底 → { win, pity }（保底轮必成）
 ///    mod_tg_guaranteed(pity, pity_max)               下一次是不是保底轮（一转第 6 / 二转第 9 / 三·四·终转第 12 次）
 ///    mod_tg_rate_text(rate, pity, pity_max)          成功率条文案：`30%(1/6)` / 保底轮 `100%`
+///    mod_tg_pity_get / _set / mod_tg_hidden_get / _set / mod_tg_pity_clear
+///                                                    保底与暗概率**按卡存在 global.tg_pity**（进程内，不写存档），
+///                                                    换卡/切页/退出都不清，只有转职成功才 clear
 ///
 ///  三、缺凭证时「当场补全并转职」（取代原购买按钮）
 ///    mod_tg_balance(currency)                       某货币余额（gold 走存档）
@@ -86,6 +89,70 @@ function mod_tg_pity_max(_tier){
         case 2: return 9;       // 二转
     }
     return 12;                  // 三转 / 四转 / 终转（金卡）
+}
+
+// ── 保底 / 暗概率的**存储**（2026-11-06 用户改口径）──
+//   用户原话：「不要切换卡或退出界面重置保底计数，这个额外效果去掉，就正常的每张卡自己独立保底」
+//   🔴 存法照抄卡牌强化的 `craft_fail_streak`：**写在 save_data.unlocked_cards 每条卡自己身上**
+//     字段：tg_pity（已累计次数）/ tg_hidden（暗概率百分点）
+//     → 每个存档单独计、每张卡单独计；老存档没有这两个字段时按 0 读（`variable_struct_get` 取到 undefined）
+//   生命周期：
+//     不清 —— 换卡 / 切页签 / 退出合成屋（都还在存档里那条卡上）
+//     清   —— 只清**这张卡**：转职成功时 `mod_tg_pity_clear(id)`
+/// @func mod_tg_pity_get(card_id) 这张卡已累计的转职次数（没有记录返回 0）
+function mod_tg_pity_get(_id){
+    if (_id == "") return 0;
+    var _uc = global.save_data.unlocked_cards;
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        if (_uc[_i].id != _id) continue;
+        var _v = variable_struct_get(_uc[_i], "tg_pity");
+        return is_undefined(_v) ? 0 : _v;
+    }
+    return 0;
+}
+
+/// @func mod_tg_pity_set(card_id, n) 写回这张卡的累计次数
+///   不在这里存盘 —— 两个调用点（失败分支 / tg_fx_commit）本来就会 save_file
+function mod_tg_pity_set(_id, _n){
+    if (_id == "") return false;
+    var _uc = global.save_data.unlocked_cards;
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        if (_uc[_i].id != _id) continue;
+        _uc[_i].tg_pity = _n;
+        return true;
+    }
+    return false;
+}
+
+/// @func mod_tg_hidden_get(card_id) 这张卡的暗概率加成（每次失败 +5 个百分点，成功归零）
+function mod_tg_hidden_get(_id){
+    if (_id == "") return 0;
+    var _uc = global.save_data.unlocked_cards;
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        if (_uc[_i].id != _id) continue;
+        var _v = variable_struct_get(_uc[_i], "tg_hidden");
+        return is_undefined(_v) ? 0 : _v;
+    }
+    return 0;
+}
+
+/// @func mod_tg_hidden_set(card_id, n) 写回这张卡的暗概率加成
+function mod_tg_hidden_set(_id, _n){
+    if (_id == "") return false;
+    var _uc = global.save_data.unlocked_cards;
+    for (var _i = 0; _i < array_length(_uc); _i++){
+        if (_uc[_i].id != _id) continue;
+        _uc[_i].tg_hidden = _n;
+        return true;
+    }
+    return false;
+}
+
+/// @func mod_tg_pity_clear(card_id) 清掉这张卡的保底 + 暗概率（只在转职成功时调）
+function mod_tg_pity_clear(_id){
+    if (_id == "") return;
+    mod_tg_pity_set(_id, 0);
+    mod_tg_hidden_set(_id, 0);
 }
 
 /// @func mod_tg_tier_short(tier) 档位简称：「一转 / 二转 / 三转 / 四转 / 终转」（不带「凭证」两字）
@@ -177,8 +244,9 @@ function mod_tg_check(_card_id, _assure_on, _gold, _debug = false){
 ///     ① **每次转职都累计**，跟保险金开不开无关（保险金只管失败退不退凭证）；
 ///     ② 累计到 pity_max 的那一次（一转第 6 / 二转第 9 / 三·四·终转第 12 次）**必成**：成功率直接按 100% 结算、不掷骰，
 ///        界面也显示 100%（`mod_tg_rate_text`）—— 免得看不出这是保底轮、主观判断出错；
-///     ③ 只有「换卡 / 切换界面 / 退出合成屋」由对象那边负责清零；
-///        转职成功、开关保险金、用补全凭证买来再转 —— 都不清零、也不额外计数。
+///     ③ 计数**按卡存在存档里**，换卡 / 切换界面 / 退出合成屋 都不清零（2026-11-06 用户改口径）；
+///        只有转职成功才清这张卡（`mod_tg_pity_clear`）。
+///        开关保险金、用补全凭证买来再转 —— 都不清零、也不额外计数。
 /// @return { struct } win（这次成不成）/ pity（新的累计次数，调用方存回）
 function mod_tg_roll(_rate, _pity, _pity_max){
     var _guarantee = mod_tg_guaranteed(_pity, _pity_max);

@@ -72,11 +72,45 @@ function info_island_wrap_line(_line, _max_chars) {
 			_cut--;
 			_g++;
 		}
+		// 5) 🔴 兜底（2026-11-06）：切完前缀里不能留着没闭合的 `{` / `[`
+		//    否则变量被劈成两半（如 `每把造成{` + `攻击力}点`），
+		//    换行被 render 当表达式空白吞掉，整段又拼回一行、冲出面板
+		_cut = info_island_cut_outside_tokens(_line, _start, _cut);
 		if (_cut < _start) _cut = _start;
 		_out += string_copy(_line, _start, _cut - _start + 1) + "\n";
 		_start = _cut + 1;
 	}
 	return _out + string_copy(_line, _start, _len - _start + 1);
+}
+
+
+/// @function info_island_cut_outside_tokens(_line, _start, _cut)
+/// @description 把断点往前挪，直到 [start, cut] 这段里没有没闭合的 `{` 或 `[`。
+///   挪不动（开括号就在 _start）时原样返回，避免死循环。
+function info_island_cut_outside_tokens(_line, _start, _cut) {
+	var _guard = 0;
+	while (_guard < 8) {
+		var _d_brace = 0;
+		var _d_sq = 0;
+		var _last_brace = 0;
+		var _last_sq = 0;
+		for (var _i = _start; _i <= _cut; _i++) {
+			var _c = string_char_at(_line, _i);
+			if (_c == "{") { _d_brace++; _last_brace = _i; }
+			else if (_c == "}") { _d_brace--; if (_d_brace <= 0) { _d_brace = 0; _last_brace = 0; } }
+			else if (_c == "[") { _d_sq++; _last_sq = _i; }
+			else if (_c == "]") { _d_sq--; if (_d_sq <= 0) { _d_sq = 0; _last_sq = 0; } }
+		}
+		var _open_at = 0;
+		if (_d_brace > 0) _open_at = _last_brace;
+		if (_d_sq > 0 && _last_sq > _open_at) _open_at = _last_sq;
+		if (_open_at == 0) break;
+		var _nc = _open_at - 1;
+		if (_nc < _start) break;
+		_cut = _nc;
+		_guard++;
+	}
+	return _cut;
 }
 
 
@@ -104,30 +138,43 @@ function info_island_join_split_tokens(_lines) {
 
 
 /// @function info_island_in_bracket(_line, _pos)
-/// @description 判断 _pos（1 起算）是否严格位于一对 "[" "]" 之间。
+/// @description 判断 _pos（1 起算）是否严格位于一对占位符内部：`[ ]` 或 `{ }`。
+///   🔴 2026-11-06 修：原来只保护方括号，切点会落进 `{每跳间隔}` 这种变量里；
+///      换行符一旦插进大括号内，`info_island_text_render` 会把整段当表达式解析、
+///      解析时跳过所有空白（含 `\n`），换行被吞掉 → 那段又拼回一整行、冲出面板。
 function info_island_in_bracket(_line, _pos) {
 	var _len = string_length(_line);
 	if (_pos < 1 || _pos > _len) return false;
+	if (info_island_in_pair(_line, _pos, "[", "]")) return true;
+	return info_island_in_pair(_line, _pos, "{", "}");
+}
+
+
+/// @function info_island_in_pair(_line, _pos, _open_ch, _close_ch)
+/// @description 判断 _pos 是否严格位于指定的一对括号内部（供 info_island_in_bracket 调用）。
+function info_island_in_pair(_line, _pos, _open_ch, _close_ch) {
+	var _len = string_length(_line);
 	var _open = 0;
 	var _i = 0;
 	for (_i = _pos - 1; _i >= 1; _i--) {
 		var _c = string_char_at(_line, _i);
-		if (_c == "]") return false;
-		if (_c == "[") { _open = _i; break; }
+		if (_c == _close_ch) return false;
+		if (_c == _open_ch) { _open = _i; break; }
 	}
 	if (_open == 0) return false;
 	for (_i = _open + 1; _i <= _len; _i++) {
-		if (string_char_at(_line, _i) == "]") return (_pos > _open && _pos < _i);
+		if (string_char_at(_line, _i) == _close_ch) return (_pos > _open && _pos < _i);
 	}
 	return false;
 }
 
 
 /// @function info_island_open_bracket_before(_line, _pos, _min_pos)
-/// @description 从 _pos 往前找最近的 "["，返回它前一个字符的位置（找不到返回 _pos）。
+/// @description 从 _pos 往前找最近的 "[" 或 "{"，返回它前一个字符的位置（找不到返回 _pos）。
 function info_island_open_bracket_before(_line, _pos, _min_pos) {
 	for (var _i = _pos; _i >= _min_pos; _i--) {
-		if (string_char_at(_line, _i) == "[") return _i - 1;
+		var _c = string_char_at(_line, _i);
+		if (_c == "[" || _c == "{") return _i - 1;
 	}
 	return _pos;
 }

@@ -999,7 +999,11 @@ function credit_shop_filter_search(_list, _query){
     for (var _i = 0; _i < ds_list_size(_list); _i++){
         var _gid = ds_list_find_value(_list, _i);
         var _g = global.goods_map[? _gid];
-        var _hit = (string_pos(_q, string_lower(credit_shop_goods_name(_g))) > 0);
+        var _nm = credit_shop_goods_name(_g);
+        var _hit = (string_pos(_q, string_lower(_nm)) > 0);
+        // 拼音：全拼 / 首字母 / 混输（与情报岛同一套，见 scripts/mod_info_island_pinyin）
+        //   例：搜 "pjcs" / "paojiao" 都能出「泡椒春笋一转凭证」
+        if (!_hit && string_length(_q) >= 2) _hit = py_hit_text(_nm, _q);
         // 层数：按**前缀**匹配商品自己的 tower_floor
         //   搜 "11"   → 11-1 / 11-2 都出来（21-1 不会被带出来，因为不是从头匹配）
         //   搜 "11-1" → 只剩 11-1
@@ -1022,7 +1026,7 @@ function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
     var _sb = instance_create_depth(_bg_x + 615, _bg_y - 307, _depth, SearchBox);
     _sb.set_position(_bg_x + 440, _bg_y - 327)
         .set_size(350, 40)
-        .set_placeholder("搜索凭证名或层数")
+        .set_placeholder("搜凭证名/拼音/层数")
         .set_theme({
             bg:           make_colour_rgb(3, 43, 80),
             bg_focus:     make_colour_rgb(8, 62, 112),

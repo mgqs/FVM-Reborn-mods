@@ -34,6 +34,8 @@
     {"name":"mod_get_buff_type","path":"scripts/mod_get_buff_type/mod_get_buff_type.yy",},
     {"name":"mod_info_island_init","path":"scripts/mod_info_island_init/mod_info_island_init.yy",},
     {"name":"mod_info_island_search","path":"scripts/mod_info_island_search/mod_info_island_search.yy",},
+    {"name":"mod_info_island_pinyin","path":"scripts/mod_info_island_pinyin/mod_info_island_pinyin.yy",},
+    {"name":"mod_info_island_text","path":"scripts/mod_info_island_text/mod_info_island_text.yy",},
     {"name":"mod_on_card_placed","path":"scripts/mod_on_card_placed/mod_on_card_placed.yy",},
     {"name":"mod_register_plant_lite","path":"scripts/mod_register_plant_lite/mod_register_plant_lite.yy",},
     {"name":"mod_shop_init","path":"scripts/mod_shop_init/mod_shop_init.yy",},

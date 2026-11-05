@@ -10,7 +10,8 @@
 //      啃咬被打断时，不足 1 秒那一段补 1 朵然后停。每产一朵火，本体播一次「产火」动画段
 //   ③ 1 转起：每 4.5 秒（270 帧）一次 5*5 灼烧 —— 铺 25 个 obj_burn_cell（火焰贴片循环素材 5~12 帧），
 //      存在 2 秒、5 跳（每 0.4 秒 = 24 帧一跳），每跳 = 深度灼烧伤害表
-//   ④ 2 转起：每 1.5 秒（90 帧）本行水平 4 连发（每 4 帧一发），复用机枪小笼包的 obj_xiaolongbao_bullet
+//   ④ 2 转起：本行水平 4 连发（每 4 帧一发），**发射周期读注册表 cycle**（默认 90 帧 = 1.5 秒），
+//      复用机枪小笼包的 obj_xiaolongbao_bullet
 //      （它自带火盆过火 + 布丁/水神反弹，正好对上卡面「可过火、可被反弹」）
 event_inherited();  // 继承父对象属性
 plant_id = "mianbao";
@@ -68,7 +69,11 @@ anim_tier = 0             // 受损档：0 正常 / 1 受损 / 2 最残（hp 33%
 idle_t = 0
 fire_anim_t = -1          // 产火动画已播帧数；-1 = 没在播（播待机），>= 0 = 正在播产火段
 shoot_anim_t = -1         // 开火动画已播帧数（只有 2 转用）；-1 = 没在播
-shoot_flash_speed = 2     // 开火段每帧停留帧数（11 帧 × 2 = 22 帧 ≈ 0.37 秒）
+shoot_flash_speed = 2.5   // 开火段每帧停留帧数（11 帧 × 2.5 = 27.5 帧 ≈ 0.46 秒）
+                          // 🔴 这个 2.5 是「弹距」换算出来的，不要随手改回 2：
+                          //    枪口嘴动帧本身隔 2 帧（17/19/21/23），每帧停 2.5 → 每发间隔 5 帧，
+                          //    与机枪小笼包 2 转（flash_speed 5，四连发）同款；
+                          //    写 2 的话间隔只有 4 帧 × 8px = 32px，比子弹还短，四发会连成一条线
 shoot_beat = 0            // 本轮已经打到第几发（0~3）
 // 开火帧（相对该档产火段首帧的偏移）：段首是帧 14，**第 17 帧就是开火帧 → +3**
 //   机枪嘴动 4 下 = 帧 17 / 19 / 21 / 23，每一下打 1 发，正好 4 发
@@ -85,7 +90,12 @@ SHOOT_BEATS = [3, 5, 7, 9]
 fire_table = [0, 6, 8, 10, 10, 12, 12, 14, 16, 16, 18, 18, 22, 24, 28, 30, 34];   // 仅当注册表没给 flame_produce 时兜底
 var _lv = clamp(current_level, 0, 16);
 flame_value   = variable_instance_exists(id, "flame_produce") ? flame_produce : fire_table[_lv];
-burn_damage   = (shape >= 1) ? (origin_cycle / 60) : 0;   // ÷60：注册表存的是「伤害 ×60」；origin_cycle 避免减速时被 ×2
+// 灼烧每跳伤害：2026-11-05 起从注册表 custom["灼烧伤害"] 取（原来借 cycle 存，现已归还）
+var _bd_skill = variable_instance_exists(id, "skill") ? skill : 0;
+var _bd_info  = get_plant_data_with_skill("mianbao", shape, clamp(current_level, 0, 16), _bd_skill);
+burn_damage   = (shape >= 1 && _bd_info != undefined) ? _bd_info[? "灼烧伤害"] : 0;
+// 值只在「星级 / 技能 / 形态」变化时重算（见 Step），这里记一份当前状态
+_bd_lv = current_level; _bd_sk = _bd_skill; _bd_sh = shape;
 bullet_damage = (shape >= 2) ? atk : 0;
 
 // ---------- ② 被咬产火 ----------
@@ -98,5 +108,10 @@ burn_interval = 270     // 4.5 秒一次
 
 // ---------- ④ 2 转 4 连发 ----------
 shot_timer = 0
-shot_interval = 90      // 1.5 秒一轮
+// 灵融（2 转）攻速：2026-11-06 起**改用注册表 cycle**（面板「攻击间隔」= cycle/60 秒），
+//   原来这里写死 90。Step 里每帧实时读 cycle：
+//     · 升级 / 换技能后 Other_10 会重写 cycle → 自动生效
+//     · 减速时父对象（obj_card_parent/Step）会把 cycle ×2 → 冷却自动变长
+//   cycle 为 0（表没填 / 旧存档）时按下面的兜底值走
+SHOT_INTERVAL_FALLBACK = 90   // 1.5 秒
 shots_left = 0         // 本轮还剩几发（跟着嘴动帧出膛）

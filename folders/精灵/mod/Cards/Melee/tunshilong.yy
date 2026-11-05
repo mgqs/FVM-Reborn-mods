@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"tunshilong",
+  "folderPath":"folders/精灵/mod/Cards/Melee/tunshilong.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tunshilong",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_tunshilong","path":"sprites/spr_tunshilong/spr_tunshilong.yy",},
+    {"name":"spr_tunshilong_1","path":"sprites/spr_tunshilong_1/spr_tunshilong_1.yy",},
+    {"name":"spr_tunshilong_2","path":"sprites/spr_tunshilong_2/spr_tunshilong_2.yy",}
+  ],
+}

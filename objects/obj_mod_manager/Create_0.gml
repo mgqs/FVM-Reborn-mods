@@ -13,6 +13,9 @@ gods_shop_init();
 
 mod_boss_init();
 mod_cards_init();
+// 自定义数值（custom）自检：key 撞内置字段 / 撞技能字段 / 形态漏写 / 值类型 / 文案变量取不到
+//   只往输出窗口打 [custom] 日志，不改任何数据；要查问题在 F5 输出里搜 [custom] 即可
+mod_custom_key_check();
 // 转职系统道具（威望）：注册进 material_pool，背包「道具」页才会显示
 mod_material_init();
 // 转职凭证商店（商店新增「转职凭证」页的商品表）
