@@ -90,4 +90,11 @@ if destroy_count < 3 && state == ENEMY_STATE.NORMAL && _near_edge && redirect_co
 	}
 }
 
+// 变异：贴纸到达第 0 列后自动消失。
+// 贴纸每帧 hp = maxhp 无敌，若场上已无可摧毁的卡，它会一路飘到屏幕外永久挂机；
+// 走到第 0 列中心就判定「已经完成使命」，直接销毁。
+if state != ENEMY_STATE.DEAD && x < global.grid_offset_x + global.grid_cell_size_x * 0.5{
+	instance_destroy();
+}
+
 

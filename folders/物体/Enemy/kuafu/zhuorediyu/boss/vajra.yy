@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"vajra",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss/vajra.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"vajra",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zrb_vajra","path":"objects/obj_kf_zrb_vajra/obj_kf_zrb_vajra.yy",},
+    {"name":"obj_kf_zrb_vajra_spike","path":"objects/obj_kf_zrb_vajra_spike/obj_kf_zrb_vajra_spike.yy",},
+    {"name":"obj_kf_zrb_vajra_lava","path":"objects/obj_kf_zrb_vajra_lava/obj_kf_zrb_vajra_lava.yy",},
+    {"name":"obj_kf_zrb_vajra_lightning","path":"objects/obj_kf_zrb_vajra_lightning/obj_kf_zrb_vajra_lightning.yy",},
+  ],
+}

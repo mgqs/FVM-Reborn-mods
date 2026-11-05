@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"cap",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss/cap.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"cap",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zrb_cap","path":"objects/obj_kf_zrb_cap/obj_kf_zrb_cap.yy",},
+    {"name":"obj_kf_zrb_cap_shield","path":"objects/obj_kf_zrb_cap_shield/obj_kf_zrb_cap_shield.yy",},
+    {"name":"obj_kf_zrb_cap_rainbow","path":"objects/obj_kf_zrb_cap_rainbow/obj_kf_zrb_cap_rainbow.yy",},
+  ],
+}

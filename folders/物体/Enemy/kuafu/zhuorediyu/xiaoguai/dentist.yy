@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"dentist",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/dentist.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dentist",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_dentist","path":"objects/obj_kf_zr_dentist/obj_kf_zr_dentist.yy",},
+  ],
+}

@@ -1,4 +1,4 @@
-﻿function gods_shop_init()
+function gods_shop_init()
 {
     register_gods_goods("gaia",
     {
@@ -1310,12 +1310,6 @@ register_gods_goods("ronghedapao_2", {type:"recipe", cost:"60", unlock_item_id:"
 register_gods_goods("ronghekafei", {type:"card", cost:"5", unlock_item_id:"ronghekafei", recipe_id:"recipe_ronghekafei_0", sell_recipe:true, recipe_name:"机枪咖啡杯（初级融合菜谱）", description:"机枪咖啡杯：向前方连续发射3发咖啡弹，不需要火苗就能使用", display_name:"机枪咖啡杯"});
 register_gods_goods("ronghekafei_1", {type:"recipe", cost:"10", unlock_item_id:"ronghekafei", target_shape:1, recipe_id:"recipe_ronghekafei_1", description:"喷壶咖啡杯：子弹浓缩为1发高伤害的穿透弹", display_name:"喷壶咖啡杯（深度融合菜谱）"});
 register_gods_goods("ronghekafei_2", {type:"recipe", cost:"20", unlock_item_id:"ronghekafei", target_shape:2, recipe_id:"recipe_ronghekafei_2", description:"三叠咖啡杯：三个杯子各吐1发穿透弹，总伤害为深度融合的3倍", display_name:"三叠咖啡杯（灵魂融合菜谱）"});
-register_gods_goods("mianbao", {type:"card", cost:"5", unlock_item_id:"mianbao", recipe_id:"recipe_mianbao_0", sell_recipe:true, recipe_name:"火炉菠萝面包（初级融合菜谱）", description:"火炉菠萝面包：阻挡老鼠，被啃咬时产出火苗，死亡时产生5*5范围灰烬爆炸", display_name:"火炉菠萝面包"});
-register_gods_goods("mianbao_1", {type:"recipe", cost:"10", unlock_item_id:"mianbao", target_shape:1, recipe_id:"recipe_mianbao_1", description:"火龙果菠萝包：阻挡老鼠，每4.5秒在周围5*5范围燃起火焰", display_name:"火龙果菠萝包（深度融合菜谱）"});
-register_gods_goods("mianbao_2", {type:"recipe", cost:"20", unlock_item_id:"mianbao", target_shape:2, recipe_id:"recipe_mianbao_2", description:"机枪菠萝面包：阻挡老鼠，每1.5秒向前发射4发子弹，可过火、可被反弹", display_name:"机枪菠萝面包（灵魂融合菜谱）"});
-register_gods_goods("xuanzhuan_ronghe", {type:"card", cost:"5", unlock_item_id:"xuanzhuan_ronghe", recipe_id:"recipe_xuanzhuan_ronghe_0", sell_recipe:true, recipe_name:"红温旋转咖啡壶（初级融合菜谱）", description:"红温旋转咖啡壶：向四周5*5范围喷出攻击气体，冷却时间减半", display_name:"红温旋转咖啡壶"});
-register_gods_goods("xuanzhuan_ronghe_1", {type:"recipe", cost:"10", unlock_item_id:"xuanzhuan_ronghe", target_shape:1, recipe_id:"recipe_xuanzhuan_ronghe_1", description:"果味旋转咖啡壶：向四周5*5范围喷出攻击气体，附带减速与碎冰", display_name:"果味旋转咖啡壶（深度融合菜谱）"});
-register_gods_goods("xuanzhuan_ronghe_2", {type:"recipe", cost:"20", unlock_item_id:"xuanzhuan_ronghe", target_shape:2, recipe_id:"recipe_xuanzhuan_ronghe_2", description:"觉醒旋转咖啡壶：向四周5*7范围喷出攻击气体，附带减速与碎冰", display_name:"觉醒旋转咖啡壶（灵魂融合菜谱）"});
 
 // ── 光明神 / 黑暗神（2026-10-27 补回：清理 display_name 时这两组「一行写完」的商品被整行误删）──
 //    格式与其它金卡一致：1 条 evo（进化凭证）+ 3 条 tvoucher（三/四/终转），价格沿用原表 10/15/25/35

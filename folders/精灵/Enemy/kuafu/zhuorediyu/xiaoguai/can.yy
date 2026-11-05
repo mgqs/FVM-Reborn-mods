@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"can",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/can.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"can",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_can","path":"sprites/spr_kf_zr_can/spr_kf_zr_can.yy",},
+    {"name":"spr_kf_zr_can_withcan","path":"sprites/spr_kf_zr_can_withcan/spr_kf_zr_can_withcan.yy",},
+    {"name":"spr_kf_zr_can_drop","path":"sprites/spr_kf_zr_can_drop/spr_kf_zr_can_drop.yy",},
+  ],
+}

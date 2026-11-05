@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"ghost",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/ghost.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ghost",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_ghost","path":"sprites/spr_kf_zr_ghost/spr_kf_zr_ghost.yy",},
+  ],
+}

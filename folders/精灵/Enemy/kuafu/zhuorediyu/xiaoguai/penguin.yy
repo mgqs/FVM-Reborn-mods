@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"penguin",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/penguin.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"penguin",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_penguin_land","path":"sprites/spr_kf_zr_penguin_land/spr_kf_zr_penguin_land.yy",},
+    {"name":"spr_kf_zr_penguin_water","path":"sprites/spr_kf_zr_penguin_water/spr_kf_zr_penguin_water.yy",},
+    {"name":"spr_kf_zr_penguin_enter","path":"sprites/spr_kf_zr_penguin_enter/spr_kf_zr_penguin_enter.yy",},
+    {"name":"spr_kf_zr_penguin_throw","path":"sprites/spr_kf_zr_penguin_throw/spr_kf_zr_penguin_throw.yy",},
+  ],
+}

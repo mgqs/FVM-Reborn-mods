@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"zhuorediyu",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zhuorediyu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"xiaoguai","path":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai.yy",},
+    {"name":"boss","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss.yy",},
+  ],
+  "listItems":[
+  ],
+}

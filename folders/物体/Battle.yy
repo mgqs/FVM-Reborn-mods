@@ -29,6 +29,7 @@
     {"name":"obj_hex_list","path":"objects/obj_hex_list/obj_hex_list.yy",},
     {"name":"obj_hex_effect","path":"objects/obj_hex_effect/obj_hex_effect.yy",},
     {"name":"obj_hex_list_btn","path":"objects/obj_hex_list_btn/obj_hex_list_btn.yy",},
-    {"name":"obj_hex_panel","path":"objects/obj_hex_panel/obj_hex_panel.yy",}
+    {"name":"obj_hex_panel","path":"objects/obj_hex_panel/obj_hex_panel.yy",},
+    {"name":"obj_hex_test_picker","path":"objects/obj_hex_test_picker/obj_hex_test_picker.yy",}
   ],
 }

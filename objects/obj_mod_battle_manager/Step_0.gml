@@ -306,6 +306,9 @@ else
                         _hex_cyc *= (1 + global.hex_state.near_cycle_add);
                     // 二期：全属性 / 岩浆 / 海洋婚礼 等实例侧攻速
                     _hex_cyc *= hex_b3_inst_cycle(self);
+                    // 减速（冰冻/泥浆）：间隔翻倍。放在这里算，避免 obj_card_parent 的
+                    // Step 每帧硬写 cycle 把词条结果冲掉
+                    if (variable_instance_exists(self.id, "is_slowdown") && self.is_slowdown) _hex_cyc *= 2.0;
                     self.cycle = self.base_cycle * clamp(_hex_cyc, 0.05, 4.0);
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
@@ -316,6 +319,9 @@ else
                     var _hex_hp   = hex_hp_mult_for_card(self.plant_id);
                     var _hp_fix   = hex_batch2_id_hp_fix(self.plant_id);   // 「熊熊烈火」：火盆类固定 10 点
                     var _eq_on    = hex_batch2_equalize_on();              // 「取长补短」
+                    // 增幅类卡不参与取长补短：它们的攻击/生命本身就是被增幅拉高的，
+                    // 取大值会把另一项一起顶到同一个离谱数字，倍率直接失控
+                    if (_eq_on && card_get_major(self.plant_id) == "增幅类") _eq_on = false;
                     var _pure_max = self.base_max_hp * _hex_hp;
                     // 「山脉龙魂」每秒叠生命上限，公式必须和 hex_batch2 的 tick 段完全一致，
                     // 否则两边各自重设 max_hp 会互相抹掉对方那一截
@@ -337,7 +343,10 @@ else
                     }
 
                     // 只有这三类词条会动上限时才重设，别把别的系统临时改过的 max_hp 拉回基准
-                    if (_hex_hp != 1.0 || _hp_fix > 0 || _eq_on || hex_b3_hp_active(self))
+                    // 「山脉龙魂」必须算进这个条件：它每秒只加层数、不复算 max_hp，
+                    // 不带上它的话层数涨了血条却一直不动
+                    var _b2_stack_on = (variable_instance_exists(self.id, "b2_hp_stack") && self.b2_hp_stack > 0);
+                    if (_hex_hp != 1.0 || _hp_fix > 0 || _eq_on || _b2_stack_on || hex_b3_hp_active(self))
                     {
                         // 一次算到底：从「当帧旧上限」直接换算到「新上限」。
                         // 上限涨多少当前血涨多少、跌多少血跌多少。

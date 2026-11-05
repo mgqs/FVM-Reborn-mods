@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"mary",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss/mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zrb_mary","path":"objects/obj_kf_zrb_mary/obj_kf_zrb_mary.yy",},
+    {"name":"obj_kf_zrb_mary_bullet","path":"objects/obj_kf_zrb_mary_bullet/obj_kf_zrb_mary_bullet.yy",},
+  ],
+}

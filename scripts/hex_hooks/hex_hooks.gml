@@ -13,8 +13,9 @@ function hex_mark_first_done() {
 }
 
 /// @function hex_test_cleanup()
-/// @desc 进入测试关卡时调用一次：把整套海克斯拆干净。
-///       测试关卡测的是卡片本体数值，任何残留倍率 / HUD / 暂停面板都会污染伤害统计
+/// @desc 进入测试关卡时调用一次：先把上一局的残留清干净，再交给 obj_hex_test_picker
+///       按「自选列表」重建。
+///       测试关卡仍然不建 HUD、不随机抽卡、不写存档，只是把「抽取」换成了「全库自选」
 function hex_test_cleanup() {
     if (!hex_enabled()) return false;
 
@@ -320,7 +321,9 @@ function hex_spawn_flood(_enemy_list, _used = undefined) {
 /// @desc 胜利结算瞬间记账：把本局词条写进存档并立即落盘。
 ///       与 complete_level() 的区别：那个函数只在「首次通关」时被调用，
 ///       重复通关已完成的关卡根本不会走到，所以解锁必须挂在这里。
-/// @return bool 是否真的写入
+///       序列玩法（魔塔 / 龙渊 / 浮空岛 / 海底漩涡）**每过一关都结算一次**，
+///       但不会清「本局」标记 —— 词条照样跟着这一局继续打下一关。
+/// @return bool 是否真的有新词条写入
 function hex_on_win() {
     if (!hex_enabled()) return false;
     if (hex_level_excluded()) return false;      // 测试关卡不记账（数据不进存档）
@@ -330,18 +333,19 @@ function hex_on_win() {
     // （魔塔等序列的中途关是靠这个标记把本局续到下一关的）
     global.hex_level_cleared = true;
 
-    if (global.hex_state.committed) return false;
-
     // 与 complete_level() 用同一个关卡 id 来源（level_data.id），找不到再退回 level_id
     var _lid = hex_current_level_id();
-    if (!hex_commit_run(_lid)) return false;
+    var _wrote = hex_commit_run(_lid);
 
-    // 本局结束：序列标记作废，下次进同一张序列图从头开始
-    global.hex_series_active = "";
-    global.hex_level_cleared = true;
+    // 序列（魔塔 / 龙渊 / 浮空岛 / 海底漩涡）中途关：本关拿到的词条已经进存档了，
+    // 但这一局还没打完 —— 绝不能清序列标记，否则下一关会把本局词条全部清掉。
+    // 只有真正走到序列末关（或单关岛屿）才结束这一次「一局」。
+    if (hex_run_scope_end(_lid)) {
+        global.hex_series_active = "";
+    }
 
-    if (variable_global_exists("save_slot")) save_file(global.save_slot);
-    return true;
+    if (_wrote && variable_global_exists("save_slot")) save_file(global.save_slot);
+    return _wrote;
 }
 
 /// @function hex_try_drop(_x, _y)

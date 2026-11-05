@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"warrior",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/warrior.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"warrior",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_warrior","path":"objects/obj_kf_zr_warrior/obj_kf_zr_warrior.yy",},
+  ],
+}

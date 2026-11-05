@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[
     {"name":"mengyantiankong","path":"folders/精灵/Enemy/kuafu/mengyantiankong.yy",},
+    {"name":"zhuorediyu","path":"folders/精灵/Enemy/kuafu/zhuorediyu.yy",},
   ],
-  "listItems":[],
+  "listItems":[
+  ],
 }

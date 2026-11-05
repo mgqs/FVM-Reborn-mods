@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"naruto_minion",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/naruto_minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"naruto_minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_naruto_minion","path":"objects/obj_kf_zr_naruto_minion/obj_kf_zr_naruto_minion.yy",},
+  ],
+}

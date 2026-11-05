@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"arson",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/arson.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"arson",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_arson_bomb","path":"sprites/spr_kf_zr_arson_bomb/spr_kf_zr_arson_bomb.yy",},
+    {"name":"spr_kf_zr_arson","path":"sprites/spr_kf_zr_arson/spr_kf_zr_arson.yy",},
+    {"name":"spr_kf_zr_arson_ready","path":"sprites/spr_kf_zr_arson_ready/spr_kf_zr_arson_ready.yy",},
+    {"name":"spr_kf_zr_arson_throw","path":"sprites/spr_kf_zr_arson_throw/spr_kf_zr_arson_throw.yy",},
+  ],
+}

@@ -17,13 +17,17 @@ if (!has_activated && state_timer >= activate_delay) {
     var _self_grid_col = grid_col;
     var _ids = [];
 
-    // 1) 先快照范围内符合条件的普通老鼠，避免一边移动一边遍历
+    // 1) 先快照范围内符合条件的老鼠，避免一边移动一边遍历
+    //    可逆转 = 普通陆军(normal) + 钻地中的地鼠(underground)。
+    //    地鼠（鼹鼠 / 牙医鼠 / 沙丁鱼鼠 / 锯齿鼠 / 龙渊地精鼠）钻地时 target_type 是 "underground"
+    //    而不是 "normal"，但它们和普通鼠一样是一路向左掘进，逆转等于把整段掘进距离作废、
+    //    送回本行出生线重新挖，与普通鼠完全同效。冒头后它们自己会切回 "normal"，同样命中。
+    //    BOSS 仍然免疫（见上一条 is_boss）。
     with (obj_enemy_parent) {
         if (hp <= 0) continue;
         if (state == ENEMY_STATE.DEAD) continue;
         if (is_boss) continue;
-        if (mouse_id == "mole") continue;
-        if (target_type != "normal") continue;
+        if (target_type != "normal" && target_type != "underground") continue;
         if (abs(grid_row - _self_grid_row) > _radius) continue;
         if (abs(grid_col - _self_grid_col) > _radius) continue;
         array_push(_ids, id);

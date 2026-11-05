@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"arson",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/arson.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"arson",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_arson","path":"objects/obj_kf_zr_arson/obj_kf_zr_arson.yy",},
+  ],
+}

@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"naruto_minion",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/naruto_minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"naruto_minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_naruto_minion","path":"sprites/spr_kf_zr_naruto_minion/spr_kf_zr_naruto_minion.yy",},
+    {"name":"spr_kf_zr_naruto_minion_summon","path":"sprites/spr_kf_zr_naruto_minion_summon/spr_kf_zr_naruto_minion_summon.yy",},
+  ],
+}

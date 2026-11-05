@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"boss",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"boss",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"mary","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss/mary.yy",},
+    {"name":"shi","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss/shi.yy",},
+    {"name":"jack","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss/jack.yy",},
+    {"name":"vajra","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss/vajra.yy",},
+    {"name":"cap","path":"folders/物体/Enemy/kuafu/zhuorediyu/boss/cap.yy",},
+  ],
+  "listItems":[
+  ],
+}

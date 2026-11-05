@@ -4,6 +4,12 @@ if global.is_paused{
 
 timer ++
 
+// 冰雾动画循环（Draw 里手动绘制，image_speed 不生效）
+anim_index += anim_speed
+if anim_index >= image_number{
+	anim_index -= image_number
+}
+
 var _cx = global.grid_cell_size_x
 var _cy = global.grid_cell_size_y
 

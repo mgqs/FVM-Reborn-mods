@@ -5,7 +5,8 @@ if global.is_paused{
 
 if (global.level_id == "test_level"
     && ((variable_global_exists("test_mouse_picker_block_place") && global.test_mouse_picker_block_place)
-        || instance_exists(obj_info_island_bg)))
+        || instance_exists(obj_info_island_bg)
+        || hex_picker_is_open()))
 {
 	exit
 }

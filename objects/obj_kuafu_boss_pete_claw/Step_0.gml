@@ -39,7 +39,9 @@ if state == "appear"{
 				instance_destroy()
 			}
 		}
-		instance_create_depth(x,y,depth,obj_pete_claw_effect)
+		// 变异皮特专用钢爪特效（机械口/钢爪素材 6 帧），原版 obj_pete_claw_effect 不动
+		var _fx = instance_create_depth(x,y,depth,obj_pete_claw_effect)
+		_fx.sprite_index = spr_kuafu_pete_claw_effect
 		instance_destroy()
 	}
 }

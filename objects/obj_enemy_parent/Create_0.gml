@@ -69,7 +69,10 @@ hit_sound = snd_hit1
 water_effect_timer = 0
 hp_modified = false
 
-block_mouse_id_list = ["mouse_train_1"]
+// 这些不是“会跑掉的老鼠”，而是 BOSS 的技能物件：被击退/吹飞到左边界时不能触发失败判定
+// （跨服·灼热地域 电刺 / 权杖 / 便便 / 彩虹，2026-11-05）
+block_mouse_id_list = ["mouse_train_1",
+						"kf_zrb_vajra_spike","kf_zrb_shi_mace","kf_zrb_shi_poop","kf_zrb_cap_rainbow"]
 
 enemy_registered = false
 enemy_registered_type = ""

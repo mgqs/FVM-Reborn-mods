@@ -1,6 +1,10 @@
 // Inherit the parent event
 if hp <= 0 && state != ENEMY_STATE.DEAD{
-	sprite_index = spr_kuafu_wrestler
+	if throwed {
+		sprite_index = spr_kuafu_wrestler_empty
+	} else {
+		sprite_index = spr_kuafu_wrestler
+	}
 	state = ENEMY_STATE.DEAD
 	timer = 0
 }
@@ -66,7 +70,11 @@ if state == ENEMY_STATE.APPEAR{
 	if timer >= 14 * flash_speed -1{
 		state = ENEMY_STATE.NORMAL
 		timer = 0
-		sprite_index = spr_kuafu_wrestler
+		if throwed {
+			sprite_index = spr_kuafu_wrestler_empty
+		} else {
+			sprite_index = spr_kuafu_wrestler
+		}
 	}
 	if timer == 7 * flash_speed - 1{
 		var inst = instance_create_depth(x+35,y-125,depth-1,obj_kuafu_little_wrestler)

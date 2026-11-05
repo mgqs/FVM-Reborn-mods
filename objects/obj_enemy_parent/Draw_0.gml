@@ -44,6 +44,13 @@ if is_scare{
 if is_stun{
 	draw_sprite_ext(stun_sprite,sprite_get_number(stun_sprite)-(floor(stun_timer/5) mod sprite_get_number(stun_sprite)),x-20,y-150,1.8,1.8,0,c_white,1)
 }
+// 海克斯「食指的指令」：被标记的鼠军头顶挂标记图案
+if (hex_enabled() && variable_global_exists("hex_state") && is_struct(global.hex_state)
+    && variable_struct_exists(global.hex_state, "b3_mark_on") && global.hex_state.b3_mark_on
+    && variable_struct_exists(global.hex_state, "b3_mark_enemy")
+    && global.hex_state.b3_mark_enemy == id) {
+    hex_b3_mark_icon(x, y - 110, 40);
+}
 if(climb_stage==1){
 	y = climb_base_y
 }

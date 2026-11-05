@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"naruto",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/naruto.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"naruto",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_naruto","path":"sprites/spr_kf_zr_naruto/spr_kf_zr_naruto.yy",},
+    {"name":"spr_kf_zr_naruto_summon","path":"sprites/spr_kf_zr_naruto_summon/spr_kf_zr_naruto_summon.yy",},
+  ],
+}

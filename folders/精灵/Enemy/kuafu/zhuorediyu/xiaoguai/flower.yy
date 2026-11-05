@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"flower",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/flower.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flower",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_flower_shield","path":"sprites/spr_kf_zr_flower_shield/spr_kf_zr_flower_shield.yy",},
+    {"name":"spr_kf_zr_flower","path":"sprites/spr_kf_zr_flower/spr_kf_zr_flower.yy",},
+    {"name":"spr_kf_zr_flower_drop","path":"sprites/spr_kf_zr_flower_drop/spr_kf_zr_flower_drop.yy",},
+  ],
+}

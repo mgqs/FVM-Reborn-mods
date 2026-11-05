@@ -39,11 +39,29 @@ for (var _name_index = 0; _name_index < _active_level_count; _name_index++) {
 }
 var k = 0;
 
-// 关卡卡片图标：梦魇天空直接放该关的地图（spr_mengyantiankong_N 的第 N 帧缩略），
-// 其它章节沿用原来的通用图标（只有 1 帧）。
+// 关卡卡片图标：
+//   梦魇天空 —— 专用 8 帧缩略图 spr_mod_cs_level_icon_nightmare，第 k 帧对应第 k 关；
+//   灼热地域 —— 直接放地图底图 spr_zhuorediyu（只有 1 帧，等比缩到图标框大小；
+//               该精灵 origin 在左上角，需要补一个半宽半高的偏移才能居中）；
+//   其它章节 —— 沿用通用图标（1 帧）。
 var _icon_is_nightmare = (_active_map_id == "cross_server_nightmare_sky");
-var _level_icon_spr = _icon_is_nightmare ? spr_mod_cs_level_icon_nightmare : spr_mod_cs_level_icon;
+var _icon_is_zhuore = (_active_map_id == "cross_server_hot_hell");
+var _level_icon_spr = spr_mod_cs_level_icon;
 var _level_icon_frame = 0;
+var _level_icon_xs = 1.2;
+var _level_icon_ys = 1.2;
+var _level_icon_dx = 0;
+var _level_icon_dy = 0;
+if (_icon_is_nightmare){
+    _level_icon_spr = spr_mod_cs_level_icon_nightmare;
+}
+else if (_icon_is_zhuore){
+    _level_icon_spr = spr_zhuorediyu;
+    _level_icon_xs = 1.2 * 108 / sprite_get_width(spr_zhuorediyu);   // 108 = 通用图标宽度，缩到同宽
+    _level_icon_ys = _level_icon_xs;
+    _level_icon_dx = -sprite_get_width(spr_zhuorediyu) * _level_icon_xs * 0.5;
+    _level_icon_dy = -sprite_get_height(spr_zhuorediyu) * _level_icon_ys * 0.5;
+}
 
 for (var j = 0; j < 2; j++)
 {
@@ -61,7 +79,7 @@ for (var j = 0; j < 2; j++)
             draw_set_valign(fa_middle);
             draw_text_ext_transformed(233 + (405 * i), 202 + (400 * j), level_name[k], 25, 1920, 1, 1, 0);
             draw_sprite_ext(spr_star_slot, 7 + k, 508 + (405 * i), 204 + (400 * j), 1.8, 1.8, 0, c_gray, 1);
-            draw_sprite_ext(_level_icon_spr, _icon_is_nightmare ? k : _level_icon_frame, 228 + (405 * i), 478 + (400 * j), 1.2, 1.2, 0, c_gray, 1);
+            draw_sprite_ext(_level_icon_spr, _icon_is_nightmare ? k : _level_icon_frame, (228 + (405 * i)) + _level_icon_dx, (478 + (400 * j)) + _level_icon_dy, _level_icon_xs, _level_icon_ys, 0, c_gray, 1);
             draw_set_alpha(1);
             draw_set_color(c_black);
             draw_roundrect((228 + (405 * i)) - 67, (478 + (400 * j)) - 67, 228 + (405 * i) + 65, 478 + (400 * j) + 65, true);
@@ -85,7 +103,7 @@ for (var j = 0; j < 2; j++)
             draw_set_valign(fa_middle);
             draw_text_ext_transformed(233 + (405 * i), 202 + (400 * j), level_name[k], 25, 1920, 1, 1, 0);
             draw_sprite_ext(spr_star_slot, 7 + k, 508 + (405 * i), 204 + (400 * j), 1.8, 1.8, 0, c_white, 1);
-            draw_sprite_ext(_level_icon_spr, _icon_is_nightmare ? k : _level_icon_frame, 228 + (405 * i), 478 + (400 * j), 1.2, 1.2, 0, c_white, 1);
+            draw_sprite_ext(_level_icon_spr, _icon_is_nightmare ? k : _level_icon_frame, (228 + (405 * i)) + _level_icon_dx, (478 + (400 * j)) + _level_icon_dy, _level_icon_xs, _level_icon_ys, 0, c_white, 1);
             draw_set_alpha(1);
             draw_set_color(c_dkgray);
             draw_roundrect((228 + (405 * i)) - 67, (478 + (400 * j)) - 67, 228 + (405 * i) + 65, 478 + (400 * j) + 65, true);

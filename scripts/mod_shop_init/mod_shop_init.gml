@@ -497,7 +497,7 @@ function mod_shop_init()
         type: "card",
         cost: "50000",
         unlock_item_id: "nizhuanniu",
-        description: "逆转牛：将3*3范围内普通老鼠逆转到其所在行的出生位置",
+        description: "逆转牛：将3*3范围内普通老鼠与地鼠逆转到其所在行的出生位置",
         display_name: "逆转牛"
     });
     register_goods("wanpilong",

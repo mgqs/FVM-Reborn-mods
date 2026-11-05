@@ -3,7 +3,10 @@
   "%Name":"mod",
   "folderPath":"folders/精灵/mod.yy",
   "isDefaultView":false,
-  "listViewItems":[],
+  "listViewItems":[
+    {"name":"spr_kuafu_pete_claw_effect","path":"sprites/spr_kuafu_pete_claw_effect/spr_kuafu_pete_claw_effect.yy",},
+    {"name":"spr_hex_mark","path":"sprites/spr_hex_mark/spr_hex_mark.yy",},
+  ],
   "name":"mod",
   "resourceType":"GMFolder",
   "resourceVersion":"2.0",

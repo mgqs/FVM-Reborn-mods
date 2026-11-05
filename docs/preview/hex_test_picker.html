@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>测试关卡 · 自选海克斯 —— 效果图</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden; background: #05070a;
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  #stage {
+    position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+    transform-origin: 50% 50%; overflow: hidden;
+    background: radial-gradient(1300px 700px at 50% 0%, #1b2532 0%, #0a0d12 60%, #05070a 100%);
+  }
+  .bg-art { position: absolute; inset: 0; opacity: .55; }
+  .bg-art .blob { position: absolute; border-radius: 50%; filter: blur(50px); }
+  .bg-art .b1 { width: 620px; height: 620px; left: 80px;   top: 110px; background: rgba(70,150,120,.20); }
+  .bg-art .b2 { width: 720px; height: 560px; left: 1090px; top: 300px; background: rgba(150,110,60,.18); }
+  .bg-art .b3 { width: 520px; height: 420px; left: 700px;  top: 640px; background: rgba(60,90,150,.14); }
+  .mask { position: absolute; inset: 0; background: rgba(0,0,0,.62); }
+
+  /* ── 主面板 ── */
+  .panel {
+    position: absolute; left: 120px; top: 60px; width: 1680px; height: 960px;
+    background: #10141A; border: 1px solid #465C70; border-radius: 10px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.65);
+  }
+  .title { position: absolute; left: 32px; top: 28px; font-size: 34px; color: #E8F1F8; letter-spacing: 1px; }
+  .title .tag {
+    display: inline-block; vertical-align: 7px; margin-left: 14px; font-size: 15px;
+    color: #0F1510; background: linear-gradient(180deg,#9BEBAE,#5FC87E);
+    padding: 4px 12px; border-radius: 5px; letter-spacing: 0;
+  }
+  .sub { position: absolute; left: 34px; top: 84px; font-size: 16px; color: #7E93A8; }
+  .sub b { color: #B8CBDD; font-weight: 400; }
+  .sub .warn { color: #C8A24E; }
+  .close {
+    position: absolute; right: 22px; top: 22px; width: 44px; height: 44px; font-size: 24px;
+    color: #8AA2B8; text-align: center; line-height: 44px; cursor: pointer;
+  }
+  .close:hover { color: #FF9E9E; }
+  .hr { position: absolute; left: 30px; right: 30px; top: 116px; height: 1px; background: rgba(70,92,112,.6); }
+
+  /* ── 筛选行 ── */
+  .filters { position: absolute; left: 32px; top: 134px; height: 36px; }
+  .chip {
+    display: inline-block; height: 36px; line-height: 34px; padding: 0 15px; margin-right: 8px;
+    border: 1px solid #3C4B5A; border-radius: 5px; color: #93A8BC; font-size: 15px;
+    cursor: pointer; background: #161C24; user-select: none; vertical-align: top;
+  }
+  .chip:hover { border-color: #5B748C; color: #C9DBEB; }
+  .chip.on { background: #22303D; border-color: #7FA6C4; color: #E9F4FD; }
+  .chip .n { color: #6E8296; font-size: 13px; margin-left: 5px; }
+  .chip.on .n { color: #9FC0D8; }
+  .chip.silver.on { border-color: #C9D3DD; color: #EAF2F8; }
+  .chip.gold.on   { border-color: #FFE3A3; color: #FFF4D6; }
+  .chip.rain.on   { border-color: #B98CFF; color: #F2E8FF; }
+  .sep { display: inline-block; width: 1px; height: 22px; background: #33414F; margin: 0 12px; vertical-align: 7px; }
+
+  .search {
+    position: absolute; left: 912px; top: 134px; width: 300px; height: 36px;
+    background: #0B0F14; border: 1px solid #3C4B5A; border-radius: 5px;
+    color: #D7E6F3; font-size: 15px; padding: 0 12px 0 36px; outline: none; font-family: inherit;
+  }
+  .search:focus { border-color: #7FA6C4; }
+  .search-ico { position: absolute; left: 925px; top: 143px; font-size: 15px; color: #62788C; pointer-events: none; }
+
+  /* ── 卡片网格 ── */
+  .grid-wrap { position: absolute; left: 32px; top: 196px; width: 1180px; height: 670px; overflow: hidden; }
+  .grid { display: grid; grid-template-columns: repeat(3, 380px); gap: 14px 20px; align-content: start; }
+  .card {
+    position: relative; width: 380px; height: 100px; border-radius: 8px;
+    background: #12161C; border: 1px solid #2C3945; cursor: pointer;
+    padding: 11px 14px 11px 22px; overflow: hidden;
+    transition: transform .09s ease, border-color .09s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: #6F8BA3; }
+  .card .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
+  .card.t1 { background: #20190E; border-color: #7A5A24; }
+  .card.t2 { background: #140F1E; border-color: transparent; }
+  .card.t2::after {
+    content: ""; position: absolute; inset: -1px; border-radius: 9px; padding: 1px;
+    background: linear-gradient(120deg,#7CE7FF,#B98CFF,#FF8FD0,#FFC86B,#7CE7FF);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; opacity: .9;
+  }
+  .cname { font-size: 21px; line-height: 1.2; color: #DCE6EF; }
+  .card.t1 .cname { color: #FFEFC9; }
+  .card.t2 .cname { color: #F6ECFF; }
+  .cdesc {
+    margin-top: 6px; font-size: 13.5px; line-height: 1.45; color: #8FA3B6;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .ctier { position: absolute; right: 12px; top: 10px; font-size: 13px; letter-spacing: 1px; color: #C9D3DD; }
+  .t1 .ctier { color: #FFE3A3; }
+  .t2 .ctier { color: #D9C2FF; }
+  .cstack { position: absolute; right: 12px; bottom: 9px; font-size: 12px; color: #7E93A8; }
+  .card.sel { border-color: #FFD479 !important; box-shadow: 0 0 0 1px #FFD479 inset, 0 0 20px rgba(255,212,121,.22); padding-left: 40px; }
+  .card.sel::after { opacity: 0; }
+  .card.sel .chk {
+    position: absolute; left: 12px; top: 9px; width: 20px; height: 20px; border-radius: 50%;
+    background: #FFD479; color: #2A2110; font-size: 13px; font-weight: 700;
+    text-align: center; line-height: 20px;
+  }
+  .card.sel .cname { color: #FFF6E0; }
+  .card.off { opacity: .34; cursor: not-allowed; }
+  .card.off:hover { transform: none; }
+  .off-tag {
+    position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: #8A7C6A;
+    border: 1px solid #5A4D3C; border-radius: 3px; padding: 1px 5px;
+  }
+  .scroll { position: absolute; left: 1222px; top: 196px; width: 6px; height: 670px; background: #1A222B; border-radius: 3px; }
+  .scroll .thumb { position: absolute; left: 0; width: 6px; height: 120px; background: #607C94; border-radius: 3px; }
+
+  /* ── 右侧已选 ── */
+  .side {
+    position: absolute; left: 1250px; top: 134px; width: 400px; height: 732px;
+    background: #0C1116; border: 1px solid #2C3945; border-radius: 8px;
+  }
+  .side-head {
+    height: 46px; line-height: 46px; padding: 0 16px; font-size: 16px; color: #CFE0EE;
+    border-bottom: 1px solid #22303B; background: #151C24; border-radius: 8px 8px 0 0;
+  }
+  .side-head .cnt { float: right; color: #8FB6D8; font-size: 15px; }
+  .side-head .cnt b { color: #FFD479; font-weight: 400; }
+  .side-list { padding: 8px 10px; height: 596px; overflow: hidden; }
+  .srow {
+    height: 38px; line-height: 38px; padding: 0 34px 0 12px; margin-bottom: 4px;
+    background: #121820; border-radius: 5px; font-size: 15px; color: #DCE9F4;
+    border-left: 4px solid #4A5B6C; position: relative;
+  }
+  .srow.t1 { border-left-color: #C98A2E; }
+  .srow.t2 { border-left-color: #A97CF0; }
+  .srow .x { position: absolute; right: 11px; top: 0; color: #7E93A8; cursor: pointer; font-size: 14px; }
+  .srow .x:hover { color: #FF9E9E; }
+  .srow .stk { position: absolute; right: 34px; top: 0; color: #7E93A8; font-size: 12px; }
+  .side-empty { color: #55697C; font-size: 15px; text-align: center; padding-top: 44px; }
+  .side-foot { padding: 10px 16px; border-top: 1px solid #22303B; }
+  .side-foot .row { font-size: 13px; color: #7E93A8; line-height: 1.75; }
+
+  /* ── 底部 ── */
+  .hint { position: absolute; left: 34px; top: 896px; font-size: 14px; color: #6E8296; }
+  .hint b { color: #9FB6C9; font-weight: 400; }
+  .btn {
+    position: absolute; top: 880px; height: 58px; border-radius: 6px; text-align: center;
+    font-size: 20px; line-height: 24px; padding-top: 8px; cursor: pointer; user-select: none;
+  }
+  .btn small { display: block; font-size: 12px; line-height: 16px; margin-top: 1px; }
+  .btn.ghost { right: 306px; width: 172px; background: #1A2530; border: 1px solid #3C5468; color: #C9DBEB; }
+  .btn.ghost:hover { border-color: #7FA6C4; }
+  .btn.primary { right: 30px; width: 260px; background: linear-gradient(180deg,#6B5320,#4A3813); border: 1px solid #C9A24E; color: #FFF6E0; }
+  .btn.primary small { color: #E0CFA4; }
+  .btn.primary:hover { border-color: #FFD479; background: linear-gradient(180deg,#8A6F33,#5A4722); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg-art">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+  <div class="mask"></div>
+
+  <div class="panel">
+    <div class="title">自选海克斯<span class="tag">测试关卡专用</span></div>
+    <div class="sub">共 <b id="n-total">248</b> 条 · 已实装 <b id="n-impl">222</b> 条 · 点卡片加入、再点一次移除 · <span class="warn">不写入存档，不影响「已解锁」</span></div>
+    <div class="close">✕</div>
+    <div class="hr"></div>
+
+    <div class="filters" id="filters">
+      <div class="chip on" data-tier="-1">全部<span class="n">248</span></div>
+      <div class="chip silver" data-tier="0">银<span class="n">82</span></div>
+      <div class="chip gold" data-tier="1">金<span class="n">102</span></div>
+      <div class="chip rain" data-tier="2">彩<span class="n">64</span></div>
+      <div class="sep"></div>
+      <div class="chip on" data-form="-1">全部形态</div>
+      <div class="chip" data-form="A">A 加码</div>
+      <div class="chip" data-form="C">C 减码</div>
+    </div>
+    <div class="search-ico">🔍</div>
+    <input class="search" id="q" placeholder="搜索词条名 / 效果关键字">
+
+    <div class="grid-wrap"><div class="grid" id="grid"></div></div>
+    <div class="scroll"><div class="thumb" id="thumb" style="top:0"></div></div>
+
+    <div class="side">
+      <div class="side-head">本局已选<span class="cnt"><b id="cnt-sel">0</b> / 16</span></div>
+      <div class="side-list" id="sel-list"></div>
+      <div class="side-foot"><div class="row">超过 16 条时自动顶掉最早选的那条<br>测试关卡不限抽取次数，随时可以再改</div></div>
+    </div>
+
+    <div class="hint">左键 <b>加入 / 移除</b>　·　滚轮 <b>翻页</b>　·　名称与效果都能搜</div>
+    <div class="btn ghost">清空重选<small>移除本局全部词条</small></div>
+    <div class="btn primary">应用并开始<small>关闭面板，继续这一关</small></div>
+  </div>
+</div>
+
+<script>
+const HEX = [{"id":"hex_083","name":"万物皆可炸","tier":2,"form":"A","stack":1,"cd":"所有卡片可放置在任何地形，并享受该地形加成","ed":"老鼠生命 +25%","impl":true},{"id":"hex_084","name":"无限续杯","tier":2,"form":"A","stack":1,"cd":"火苗获取量 +100%，火苗无上限","ed":"老鼠数量 +20%","impl":true},{"id":"hex_085","name":"满汉全席宴","tier":2,"form":"A","stack":1,"cd":"所有卡片费用 -25%","ed":"老鼠生命 +30%","impl":true},{"id":"hex_086","name":"双厨狂喜","tier":2,"form":"A","stack":1,"cd":"每波内第 2 次放置同名卡费用为 0","ed":"老鼠移速 +20%","impl":true},{"id":"hex_087","name":"时空炒锅","tier":2,"form":"A","stack":1,"cd":"每波开始全体卡片冷却立即清零","ed":"老鼠啃咬速度 +20%","impl":true},{"id":"hex_088","name":"复制食谱","tier":2,"form":"A","stack":1,"cd":"美食每拥有 1% 攻速加成，就获得 1% 攻击加成","ed":"老鼠生命 +22%","impl":true},{"id":"hex_089","name":"灶神附体","tier":2,"form":"A","stack":1,"cd":"每 30 秒全屏火焰，伤害为全队攻击总和的 200%","ed":"老鼠生命 +25%","impl":true},{"id":"hex_090","name":"一锅端","tier":2,"form":"A","stack":1,"cd":"每波结束若无卡片阵亡，火苗 +500 且下波全队 +15% 攻击（可叠 3 层）","ed":"老鼠数量 +15%","impl":true},{"id":"hex_091","name":"满席共鸣","tier":2,"form":"A","stack":1,"cd":"所有主分类共鸣要求 -2（最低 2 张）","ed":"老鼠生命 +35%","impl":true},{"id":"hex_092","name":"厨神降临","tier":2,"form":"A","stack":1,"cd":"全队攻击 +60%，火苗获取量 -50%","ed":"老鼠生命 +30%","impl":true},{"id":"hex_093","name":"百味调和","tier":2,"form":"A","stack":1,"cd":"直射 / 投掷 / 多向 三类攻击各 +40%","ed":"老鼠护甲 +25%","impl":true},{"id":"hex_094","name":"火海","tier":2,"form":"A","stack":1,"cd":"每 10 秒对全场老鼠造成其 3% 最大生命的灼烧","ed":"老鼠生命 +30%","impl":true},{"id":"hex_095","name":"冰窖","tier":2,"form":"C","stack":1,"cd":"全队攻速 -20%","ed":"老鼠移速 -8%","impl":true},{"id":"hex_096","name":"盛宴","tier":2,"form":"A","stack":1,"cd":"卡组上限 +4","ed":"老鼠数量 +25%","impl":true},{"id":"hex_097","name":"以牙还牙","tier":2,"form":"A","stack":1,"cd":"卡片被摧毁时对全场老鼠造成该卡攻击 300% 的伤害","ed":"老鼠生命 +25%","impl":true},{"id":"hex_098","name":"时间暂停","tier":2,"form":"A","stack":1,"cd":"每波开始全体回复 12% 生命","ed":"老鼠生命 +30%","impl":true},{"id":"hex_099","name":"一菜三吃","tier":2,"form":"A","stack":1,"cd":"场上数量最多的小分类，共鸣计数 +1","ed":"老鼠生命 +25%","impl":true},{"id":"hex_100","name":"明火","tier":2,"form":"C","stack":1,"cd":"所有灰烬卡冷却 +80%","ed":"老鼠生命 -10%","impl":true},{"id":"hex_101","name":"火焰喷射","tier":2,"form":"A","stack":1,"cd":"喷壶类攻击 +40%","ed":"老鼠生命 +30%","impl":true},{"id":"hex_102","name":"无中生有","tier":2,"form":"A","stack":1,"cd":"每波开始火苗 +250","ed":"老鼠数量 +20%","impl":true},{"id":"hex_103","name":"破釜沉舟","tier":2,"form":"C","stack":1,"cd":"火苗上限固定为 500","ed":"老鼠生命 -20%","impl":true},{"id":"hex_104","name":"断火","tier":2,"form":"C","stack":1,"cd":"全队攻击 -25%","ed":"老鼠移速 -10%","impl":true},{"id":"hex_105","name":"空锅","tier":2,"form":"C","stack":1,"cd":"全队攻速 -25%","ed":"老鼠生命 -25%","impl":true},{"id":"hex_106","name":"冰封千里","tier":2,"form":"C","stack":1,"cd":"全部卡片冷却 +40%","ed":"老鼠数量 -20%","impl":true},{"id":"hex_107","name":"天选之卡","tier":2,"form":"A","stack":1,"cd":"场上攻击最高的卡攻击 x2、攻速 +30%，其余卡攻击 -15%","ed":"老鼠生命 +30%","impl":true},{"id":"hex_108","name":"赌徒的锅铲","tier":2,"form":"A","stack":1,"cd":"火苗上限减半，每次放置 30% 概率全额返还费用","ed":"老鼠移速 +15%","impl":true},{"id":"hex_109","name":"龙柱共鸣","tier":2,"form":"A","stack":1,"cd":"全队攻击 +10%，每波开始火苗 +200","ed":"老鼠生命 +20%","impl":true},{"id":"hex_111","name":"灶台主宰","tier":2,"form":"A","stack":1,"cd":"关卡内每击破 1 个精英，全队攻击 +4%（上限 10 层）","ed":"老鼠数量 +20%","impl":true},{"id":"hex_114","name":"剧毒美食II","tier":2,"form":"A","stack":1,"cd":"未实装：需要【选到后替换 I】的回滚机制（现有机制只有叠加，没有撤销）","ed":"未实装","impl":false},{"id":"hex_115","name":"回归基本功","tier":2,"form":"A","stack":1,"cd":"未实装：强制 shape=0 会与转职贴图/技能状态机冲突，需要改角色形态解算","ed":"未实装","impl":false},{"id":"hex_118","name":"火苗生命体","tier":2,"form":"A","stack":1,"cd":"美食受到的伤害改为扣火苗，火苗不足时正常扣血","ed":"无","impl":true},{"id":"hex_120","name":"全息制冷","tier":2,"form":"A","stack":1,"cd":"全体美食攻击间隔减半","ed":"出怪间隔减半","impl":true},{"id":"hex_121","name":"闪闪发亮","tier":2,"form":"A","stack":1,"cd":"拾取每个火苗额外 +25 火苗","ed":"老鼠生命 +25%","impl":true},{"id":"hex_122","name":"管线王朝","tier":2,"form":"A","stack":1,"cd":"未实装：子弹没有【平射/投掷】统一口径与过火标记，无法按类型拆分伤害与减伤","ed":"未实装","impl":false},{"id":"hex_123","name":"投手王朝","tier":2,"form":"A","stack":1,"cd":"未实装：同上，缺少子弹类型统一口径","ed":"未实装","impl":false},{"id":"hex_126","name":"炽热火苗","tier":2,"form":"A","stack":1,"cd":"火苗上限 +50000；每 1000 火苗给全队 +1% 攻击","ed":"老鼠生命 +50%，移速 +20%","impl":true},{"id":"hex_127","name":"达摩克里斯之剑","tier":2,"form":"A","stack":1,"cd":"关卡获得的金币与素材奖励 ×10","ed":"每秒 0.75% 概率让一只老鼠生命 +1000000、移速 +200%","impl":true},{"id":"hex_128","name":"弯勺魔术","tier":2,"form":"A","stack":1,"cd":"未实装：需要把全部攻击卡子弹改造成追踪弹，并禁用喷壶类，属于子弹层重构","ed":"未实装","impl":false},{"id":"hex_140","name":"财运锻造器","tier":2,"form":"A","stack":1,"cd":"未实装：金币消费发生在局外熔炼界面，海克斯是局内状态，跨不到那边","ed":"未实装","impl":false},{"id":"hex_142","name":"跨接电缆","tier":2,"form":"A","stack":1,"cd":"每击杀 75 只老鼠，随机一张卡片冷却立即完毕","ed":"老鼠生命 +25%","impl":true},{"id":"hex_146","name":"大哥来了","tier":2,"form":"A","stack":1,"cd":"未实装：150 发散射在机枪小笼包对象内实现，且同屏子弹数会拖垮性能","ed":"未实装","impl":false},{"id":"hex_148","name":"致命节奏","tier":2,"form":"A","stack":1,"cd":"未实装：没有一个统一的【卡片开火】事件，无法统计连续攻击层数","ed":"未实装","impl":false},{"id":"hex_149","name":"幸运蒸包","tier":2,"form":"A","stack":1,"cd":"未实装：局内没有金币结算出口，金币只在通关奖励里发","ed":"未实装","impl":false},{"id":"hex_173","name":"取长补短","tier":2,"form":"A","stack":1,"cd":"美食的攻击与生命，取两者中较高的那个（增幅类卡不参与）","ed":"无","impl":true},{"id":"hex_181","name":"逆神","tier":2,"form":"A","stack":1,"cd":"BOSS 入场立刻获得 3000 火苗；本局第一个 BOSS 入场时全队攻击 +200%","ed":"无","impl":true},{"id":"hex_189","name":"生化危机","tier":2,"form":"A","stack":1,"cd":"所有美食对跨服鼠军的伤害 +50%","ed":"生成的鼠军一律换成对应的跨服鼠军","impl":true},{"id":"hex_195","name":"后巷的统治者","tier":2,"form":"A","stack":1,"cd":"五指组（义理 / 阶级 / 艺术 / 指令 / 聚散）的加成翻倍","ed":"五指组的鼠军侧效果减半","impl":true},{"id":"hex_199","name":"愈加善良的希望","tier":2,"form":"C","stack":1,"cd":"全队攻击 -25%、生命 -25%、攻速 -25%","ed":"鼠军攻击 -25%、生命 -25%、移速 -25%","impl":true},{"id":"hex_200","name":"生存下去的勇气","tier":2,"form":"C","stack":1,"cd":"美食受伤时同时失去等量生命上限；每波开始恢复","ed":"每波开始场上鼠军回满血","impl":true},{"id":"hex_202","name":"守护他人的决意","tier":2,"form":"A","stack":1,"cd":"全队伤害 +30%，免疫冻结与沉睡","ed":"鼠军受到致命伤害时 5 秒内不死（每只一次）","impl":true},{"id":"hex_203","name":"值得托付的信任","tier":2,"form":"A","stack":1,"cd":"每波随机一个攻击分类伤害翻倍，其余攻击卡伤害减半","ed":"无","impl":true},{"id":"hex_204","name":"直面恐惧斩断循环","tier":2,"form":"A","stack":1,"cd":"本局每张美食第一次放置免费，但卡片费用 ×1.5","ed":"无","impl":true},{"id":"hex_205","name":"拥抱过去创造未来","tier":2,"form":"C","stack":1,"cd":"强制锁定 2 倍速；每暂停一次，回来时随机一张美食阵亡","ed":"非 BOSS 鼠军永久 50% 寒冷（移速减半、啃咬变慢）","impl":true},{"id":"hex_229","name":"不公的契约","tier":2,"form":"C","stack":1,"cd":"开局随机签订一种契约：光明 / 力量 / 自由 / 神速 / 增幅","ed":"无（负面已在契约里）","impl":true},{"id":"hex_230","name":"残响的终曲","tier":2,"form":"A","stack":1,"cd":"对 BOSS 造成的伤害 +100%","ed":"无","impl":true},{"id":"hex_231","name":"残响乐团","tier":2,"form":"A","stack":1,"cd":"残响组十条词条的卡片侧效果再结算一次；不公契约的负面失效","ed":"鼠军全属性 -80%","impl":true},{"id":"hex_232","name":"起源","tier":2,"form":"A","stack":1,"cd":"本局鼠军每出现过一种死亡方式（撞飞 / 灰烬 / 压扁 / 子弹），全队伤害 +20%","ed":"无","impl":true},{"id":"hex_234","name":"我是老曙","tier":2,"form":"A","stack":1,"cd":"所有美食攻击 +200%、冷却 -50%","ed":"本局鼠军血量随机 ×3~×729","impl":true},{"id":"hex_237","name":"璀璨夺目的宝石","tier":2,"form":"A","stack":1,"cd":"武器宝石技能冷却 -50%","ed":"无","impl":true},{"id":"hex_241","name":"鼠鼠爱财宝","tier":2,"form":"A","stack":1,"cd":"无","ed":"鼠军死亡掉落 100 金币（1% 概率 5000）","impl":true},{"id":"hex_248","name":"通天之人","tier":2,"form":"A","stack":1,"cd":"平射类攻击 +300%，其它攻击卡攻击 -90%（产能除外）","ed":"鼠军移速 +30%","impl":true},{"id":"hex_253","name":"领主阳伞","tier":2,"form":"A","stack":1,"cd":"无法自行选择，直接获得牌面上的全部词条","ed":"无","impl":true},{"id":"hex_254","name":"低声耳环","tier":2,"form":"A","stack":1,"cd":"每局结束时随机为卡组里的卡片提升 1~2 级（美味岛上限 6 星，火山岛 9 星，其它 13 星）","ed":"无","impl":true},{"id":"hex_259","name":"婚介所","tier":2,"form":"A","stack":1,"cd":"每 5 秒随机两张美食攻击 +50%，其余美食攻击 -50%","ed":"鼠军生命 +33%","impl":true},{"id":"hex_044","name":"大火爆炒","tier":1,"form":"A","stack":1,"cd":"直射类攻击间隔 -22%，投掷类 +10%","ed":"场上美食数量不能超过 50","impl":true},{"id":"hex_045","name":"面点师","tier":1,"form":"A","stack":1,"cd":"投掷类攻击 +30%，直射类 -10%","ed":"美食受伤时 1/3 概率立即死亡","impl":true},{"id":"hex_046","name":"火锅底料","tier":1,"form":"A","stack":1,"cd":"灰烬类伤害 +35%，阵亡时触发 3x3 爆炸","ed":"老鼠移速 +14%","impl":true},{"id":"hex_047","name":"清汤锅","tier":1,"form":"A","stack":1,"cd":"灰烬类伤害 +30%，阵亡时对全场老鼠造成攻击 100% 的爆炸","ed":"老鼠移速 +12%","impl":true},{"id":"hex_048","name":"蒸汽加压","tier":1,"form":"A","stack":1,"cd":"喷壶类攻击 +30%","ed":"空中老鼠移速 +14%","impl":true},{"id":"hex_049","name":"双灶并行","tier":1,"form":"A","stack":1,"cd":"每行最左侧卡片攻击 +28%","ed":"老鼠护甲 +10%","impl":true},{"id":"hex_050","name":"现炒现卖","tier":1,"form":"A","stack":1,"cd":"全队攻击间隔 -10%","ed":"美食受伤后额外流失 10% 最大生命","impl":true},{"id":"hex_051","name":"招牌菜","tier":1,"form":"A","stack":1,"cd":"场上数量最多的小分类，攻击 +45%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_052","name":"秘制酱料","tier":1,"form":"A","stack":1,"cd":"增幅类卡片提供的倍率 +22%","ed":"卡片火苗消耗 x3","impl":true},{"id":"hex_053","name":"逆火","tier":1,"form":"A","stack":1,"cd":"敌人进入卡片前方 3 格时，该行卡片攻速 +25%","ed":"老鼠移速 +8%","impl":true},{"id":"hex_054","name":"爆炒锅","tier":1,"form":"C","stack":1,"cd":"全队攻击 -15%","ed":"老鼠移速 -5%","impl":true},{"id":"hex_055","name":"慢煮锅","tier":1,"form":"C","stack":1,"cd":"全队攻击间隔 -25%","ed":"老鼠生命 -40%","impl":true},{"id":"hex_056","name":"食材升级","tier":1,"form":"A","stack":1,"cd":"全队攻击 +20%，生命 +20%","ed":"禁用猫","impl":true},{"id":"hex_057","name":"复刻招牌","tier":1,"form":"A","stack":1,"cd":"全队攻击 +15%，每波首次放置免费","ed":"老鼠数量 +10%","impl":true},{"id":"hex_058","name":"火候掌控","tier":1,"form":"A","stack":1,"cd":"火苗上限 +2000，开局火苗 +400","ed":"老鼠生命 +12%","impl":true},{"id":"hex_059","name":"老汤续锅","tier":1,"form":"A","stack":1,"cd":"每波开始回复所有卡 30% 生命，火苗 +100","ed":"老鼠啃咬速度 +10%","impl":true},{"id":"hex_060","name":"精选食材","tier":1,"form":"A","stack":1,"cd":"本局获得 2 次免费重随，全队攻击 +10%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_061","name":"灶王保佑","tier":1,"form":"A","stack":1,"cd":"全队攻击 +12%","ed":"老鼠生命 +12%","impl":true},{"id":"hex_062","name":"备菜台","tier":1,"form":"A","stack":1,"cd":"卡组上限 +2","ed":"老鼠数量 +10%","impl":true},{"id":"hex_063","name":"大锅饭","tier":1,"form":"A","stack":1,"cd":"场上每有 1 张卡，全队攻击 +1.2%（上限 12 张）","ed":"美食阵亡时对 3x3 内美食造成等量伤害","impl":true},{"id":"hex_064","name":"编外厨师","tier":1,"form":"A","stack":1,"cd":"场上数量最多的大分类，共鸣计数 +2","ed":"老鼠生命 +12%","impl":true},{"id":"hex_065","name":"调味大师","tier":1,"form":"A","stack":1,"cd":"所有共鸣效果 +20%","ed":"老鼠生命 +15%","impl":true},{"id":"hex_066","name":"双料锅","tier":1,"form":"A","stack":1,"cd":"所有小分类共鸣要求 -1","ed":"老鼠数量 +8%","impl":true},{"id":"hex_067","name":"蒸笼叠层","tier":1,"form":"A","stack":1,"cd":"同一个小分类内，每多 1 张卡彼此攻击 +4%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_068","name":"借味","tier":1,"form":"A","stack":1,"cd":"场上每有 1 张增幅类卡，全队攻击 +5%（上限 5 层）","ed":"老鼠生命 +10%","impl":true},{"id":"hex_069","name":"中央厨房","tier":1,"form":"A","stack":1,"cd":"场上卡片数达到 12 时，全队攻击 +18%","ed":"老鼠移速 +10%","impl":true},{"id":"hex_070","name":"精简菜单","tier":1,"form":"A","stack":1,"cd":"本局卡组仅 6 张卡时，全队攻击 +30%","ed":"老鼠生命 +15%","impl":true},{"id":"hex_071","name":"满汉全席","tier":1,"form":"A","stack":1,"cd":"本局卡组满 12 张时，每张卡攻击 +9%","ed":"老鼠数量 +10%","impl":true},{"id":"hex_072","name":"双味锅","tier":1,"form":"A","stack":1,"cd":"同时存在灰烬类与非灰烬类时，全队攻击 +12%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_073","name":"主厨推荐","tier":1,"form":"A","stack":1,"cd":"场上数量最少的分类，其卡片攻击 +35%","ed":"老鼠移速 +8%","impl":true},{"id":"hex_074","name":"高汤提鲜","tier":1,"form":"A","stack":1,"cd":"全队攻击 +15%，火苗获取量 -20%","ed":"老鼠护甲 +8%","impl":true},{"id":"hex_075","name":"快刀","tier":1,"form":"C","stack":1,"cd":"全队伤害 -10%","ed":"老鼠移速 -5%","impl":true},{"id":"hex_076","name":"椒盐","tier":1,"form":"A","stack":1,"cd":"对空中目标伤害 +30%","ed":"地面老鼠生命 +10%","impl":true},{"id":"hex_077","name":"醋溜","tier":1,"form":"A","stack":1,"cd":"被减速的老鼠受到伤害 +20%","ed":"老鼠移速 +8%","impl":true},{"id":"hex_078","name":"一勺封喉","tier":1,"form":"A","stack":1,"cd":"全队攻击 +14%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_079","name":"糖衣","tier":1,"form":"C","stack":1,"cd":"卡片攻击 -10%","ed":"老鼠攻击 -15%","impl":true},{"id":"hex_080","name":"窄油锅","tier":1,"form":"C","stack":1,"cd":"全队攻击 -12%","ed":"老鼠移速 -5%","impl":true},{"id":"hex_081","name":"慢工出细活","tier":1,"form":"C","stack":1,"cd":"全队攻速 -12%","ed":"老鼠数量 -10%","impl":true},{"id":"hex_082","name":"断粮","tier":1,"form":"C","stack":1,"cd":"火苗获取量 -35%","ed":"老鼠生命 -5%","impl":true},{"id":"hex_112","name":"保罗的触手","tier":1,"form":"A","stack":1,"cd":"未实装：子弹是各自对象里写死的 x += move_speed，没有统一的速度矢量层，无法改成八向随机","ed":"未实装","impl":false},{"id":"hex_113","name":"剧毒美食I","tier":1,"form":"A","stack":1,"cd":"该卡爆炸段完全随机（50% 概率炸鼠），灰烬伤害 ×11","ed":"无","impl":true},{"id":"hex_117","name":"爆燃2","tier":1,"form":"A","stack":1,"cd":"未实装：同爆燃1，且需要连锁爆炸传播","ed":"未实装","impl":false},{"id":"hex_124","name":"牢大的祝福","tier":1,"form":"A","stack":1,"cd":"咖啡杯与融合咖啡杯伤害 ×5；其它攻击类卡片无法放置","ed":"无","impl":true},{"id":"hex_125","name":"爆破组就位","tier":1,"form":"A","stack":1,"cd":"爆炸类（瞬发类）卡片攻击 +100%，攻击间隔 -50%","ed":"出怪数 +100%；每张在场卡片给老鼠 +1% 生命（上限 +100%）","impl":true},{"id":"hex_129","name":"加速","tier":1,"form":"A","stack":1,"cd":"全体美食攻击间隔减半","ed":"老鼠移速 ×2、啃咬伤害 ×2","impl":true},{"id":"hex_131","name":"养鱼手册","tier":1,"form":"A","stack":1,"cd":"未实装：同鱼塘，且需要按已有转职决定发 1 转还是 2 转","ed":"未实装","impl":false},{"id":"hex_141","name":"各种刺身","tier":1,"form":"A","stack":1,"cd":"所有美食被啃咬时 100% 反伤","ed":"无","impl":true},{"id":"hex_143","name":"大战","tier":1,"form":"A","stack":1,"cd":"每有一张在场美食，全场攻击间隔 -2.5%、攻击 +1%","ed":"在场的鼠军每 7 秒召唤一只同类（BOSS 除外）","impl":true},{"id":"hex_144","name":"有规矩，不烧心","tier":1,"form":"A","stack":1,"cd":"卡片伤害 ×2.5","ed":"卡片耗火 ×2.5","impl":true},{"id":"hex_145","name":"给你糖完了","tier":1,"form":"A","stack":1,"cd":"未实装：布丁与水神的反弹在各自对象里实现，复制子弹需要逐个改","ed":"未实装","impl":false},{"id":"hex_147","name":"熊熊烈火","tier":1,"form":"A","stack":1,"cd":"火盆类卡片攻击 ×2，生命值固定为 10","ed":"无","impl":true},{"id":"hex_154","name":"炼金龙魂","tier":1,"form":"A","stack":1,"cd":"每损失 20% 生命，受到伤害 -10%（最高 -50%）","ed":"无","impl":true},{"id":"hex_155","name":"疾风龙魂","tier":1,"form":"A","stack":1,"cd":"灰烬类（一次性）卡片冷却 -50%","ed":"无","impl":true},{"id":"hex_156","name":"雷电龙魂","tier":1,"form":"A","stack":1,"cd":"未实装：需要在受伤事件里做二次溅射，递归伤害容易打穿钩子，需先做伤害来源标记","ed":"未实装","impl":false},{"id":"hex_157","name":"烈火龙魂","tier":1,"form":"A","stack":1,"cd":"未实装：同雷电龙魂","ed":"未实装","impl":false},{"id":"hex_158","name":"海洋龙魂","tier":1,"form":"A","stack":1,"cd":"卡片每秒回复 5% 最大生命","ed":"无","impl":true},{"id":"hex_159","name":"山脉龙魂","tier":1,"form":"A","stack":1,"cd":"卡片每秒叠加 3% 生命上限，最多叠到 +30%","ed":"无","impl":true},{"id":"hex_161","name":"压榨II","tier":1,"form":"A","stack":1,"cd":"未实装：同压榨I，且要记录【已翻倍】的卡片状态","ed":"未实装","impl":false},{"id":"hex_179","name":"认知偏差","tier":1,"form":"A","stack":1,"cd":"选到后立即随机变成另一条词条（银 50% / 金 30% / 彩 20%）","ed":"无","impl":true},{"id":"hex_182","name":"搏一搏摩托变单车","tier":1,"form":"A","stack":1,"cd":"关卡奖励 50% 概率翻倍、50% 概率减半","ed":"无","impl":true},{"id":"hex_185","name":"以我残躯化烈火","tier":1,"form":"A","stack":1,"cd":"美食阵亡时在该格留下 10 秒火焰（伤害 50）","ed":"鼠军阵亡时在该格生成 10 秒临时熔岩","impl":true},{"id":"hex_188","name":"病毒爆发","tier":1,"form":"A","stack":1,"cd":"所有美食对跨服鼠军的伤害 +30%","ed":"生成时 20% 概率替换成跨服鼠军","impl":true},{"id":"hex_190","name":"中指的义理","tier":1,"form":"A","stack":1,"cd":"美食阵亡时其余美食叠一层：全队攻击与攻速 +10%（最多 20 层）","ed":"鼠军阵亡时其余鼠军生命 +2%","impl":true},{"id":"hex_191","name":"拇指的阶级","tier":1,"form":"A","stack":1,"cd":"卡组含金卡全队全属性 +100%，融合卡 +50%，二转卡 +20%，一转卡 +10%（取最高）","ed":"无","impl":true},{"id":"hex_192","name":"环指的艺术","tier":1,"form":"A","stack":1,"cd":"本关每出没一种鼠军，全队攻击 +5%","ed":"卡组每有一种美食分类，鼠军生命 +5%","impl":true},{"id":"hex_193","name":"食指的指令","tier":1,"form":"A","stack":1,"cd":"每 30 秒标记一张美食：下次种下的正是它则全队全属性 +20%，否则 -10%","ed":"每 30 秒标记一只鼠军：它在场时鼠军全属性 +30%，它死后鼠军 30 秒内 -50% 生命","impl":true},{"id":"hex_194","name":"小指的聚散","tier":1,"form":"A","stack":1,"cd":"相邻的同类美食每张给彼此 +10% 全属性（上限 +100%）","ed":"同种鼠军每多一只，该种鼠军生命 +5%（上限 +50%）","impl":true},{"id":"hex_197","name":"昂首阔步的信念","tier":1,"form":"A","stack":1,"cd":"所有攻击类美食所属分类随机打乱（共鸣随之变化）","ed":"无","impl":true},{"id":"hex_207","name":"Hana的四卦","tier":1,"form":"A","stack":1,"cd":"开局四选一：攻击 +20% / 生命 +30% / 火苗 +1000 / 前三张免费","ed":"开局随机一项：鼠军攻击 +20% / 生命 +30% / 前三只出场时复制自身","impl":true},{"id":"hex_210","name":"生死界限","tier":1,"form":"A","stack":1,"cd":"每一发子弹的伤害随机 ±45","ed":"无","impl":true},{"id":"hex_211","name":"决斗","tier":1,"form":"A","stack":1,"cd":"对同一目标连续命中时伤害递增（每次 +5%，最高 +25%）","ed":"无","impl":true},{"id":"hex_212","name":"满腔热血","tier":1,"form":"A","stack":1,"cd":"全队攻击 -30%，场上每张美食再 +2%（上限 +60%）","ed":"无","impl":true},{"id":"hex_213","name":"情报收集","tier":1,"form":"A","stack":1,"cd":"在情报岛查看过的鼠军受伤 +20%，未查看过的 -20%","ed":"无","impl":true},{"id":"hex_214","name":"派送箱","tier":1,"form":"A","stack":1,"cd":"全队攻速 ×2；美食在场满 30 秒后每秒扣 5 点生命","ed":"无","impl":true},{"id":"hex_215","name":"知识收集","tier":1,"form":"A","stack":1,"cd":"不攻击时 10 秒内攻击渐增至 200%，持续攻击时渐降至 50%","ed":"无","impl":true},{"id":"hex_217","name":"唯我独尊","tier":1,"form":"A","stack":1,"cd":"每种美食只能同时存在一张，但全属性 +50%","ed":"无","impl":true},{"id":"hex_218","name":"释放忍术","tier":1,"form":"A","stack":1,"cd":"火影章鱼烧攻击 +100%","ed":"忍者鼠进场时前移 4 格并召唤一只同类","impl":true},{"id":"hex_221","name":"重燃的火光","tier":1,"form":"A","stack":1,"cd":"美食子弹命中鼠军时在该格生成 3 秒火焰（伤害取该卡攻击）","ed":"鼠军死亡时 5% 生成一只每秒流失 5% 生命的复制（BOSS 除外）","impl":true},{"id":"hex_223","name":"鲨鱼的厚皮","tier":1,"form":"A","stack":1,"cd":"美食受到的伤害 -20%，且免疫灰烬秒杀","ed":"鼠军杀死美食时回复自身 20% 生命上限（BOSS 除外）","impl":true},{"id":"hex_224","name":"顶点的合奏","tier":1,"form":"A","stack":1,"cd":"场上每有一种大分类，全队攻击 +10%","ed":"场上每有一种鼠军，鼠军生命 +2%（上限 +50%）","impl":true},{"id":"hex_226","name":"孤狼的高傲","tier":1,"form":"A","stack":1,"cd":"美食第一次受到致死伤害时免疫并回满生命","ed":"鼠军攻击 +50%","impl":true},{"id":"hex_227","name":"悬丝的傀儡","tier":1,"form":"A","stack":1,"cd":"人物受到致死伤害时免疫并无敌 30 秒（每次进关一次）","ed":"BOSS 受伤时最多把 500 点伤害转移给场上随机鼠军","impl":true},{"id":"hex_233","name":"时间","tier":1,"form":"A","stack":1,"cd":"从点起美食到它被放下的这段时间里，游戏速度降到 1/5；放下即恢复","ed":"无","impl":true},{"id":"hex_236","name":"闪耀光芒的宝石","tier":1,"form":"A","stack":1,"cd":"武器宝石技能冷却 -20%","ed":"无","impl":true},{"id":"hex_239","name":"冻实的冰块","tier":1,"form":"A","stack":1,"cd":"减速类子弹伤害 +100%","ed":"鼠军的减速效果减弱 30%","impl":true},{"id":"hex_242","name":"当头棒喝","tier":1,"form":"A","stack":1,"cd":"每张美食的第一发子弹伤害 ×10","ed":"每只鼠军受到的第一次伤害 ×10","impl":true},{"id":"hex_246","name":"海洋的婚礼","tier":1,"form":"A","stack":1,"cd":"同时携带海神与海洋女神时，这两张与四张海底卡全属性翻倍，海底卡在其他地形不会窒息","ed":"鼠军每秒流失 1% 最大生命","impl":true},{"id":"hex_247","name":"普通人","tier":1,"form":"A","stack":1,"cd":"平射类攻击 +100%，其它攻击卡攻击 -50%（产能除外）","ed":"鼠军移速 +10%","impl":true},{"id":"hex_250","name":"真·雷神","tier":1,"form":"A","stack":1,"cd":"雷神系卡片攻击 +250%","ed":"鼠军生命 +100%，移速 +20%","impl":true},{"id":"hex_252","name":"宾邦","tier":1,"form":"A","stack":1,"cd":"每次获取词条时，额外随机获得一条池内词条","ed":"无","impl":true},{"id":"hex_256","name":"deepseek","tier":1,"form":"C","stack":1,"cd":"全队攻击 +25%、攻速 +25%；每 10 秒随机一张美食被吃掉","ed":"出怪量 +20%","impl":true},{"id":"hex_257","name":"扫福瑞","tier":1,"form":"C","stack":1,"cd":"卡片费用 -25%，全队攻击 -30%","ed":"无","impl":true},{"id":"hex_258","name":"江人皇","tier":1,"form":"A","stack":1,"cd":"产能类美食的火苗产量 ×2","ed":"鼠军移速 +40%","impl":true},{"id":"hex_contract_1","name":"契约·光明","tier":1,"form":"A","stack":1,"cd":"每个火苗价值 +50","ed":"无","impl":true},{"id":"hex_contract_2","name":"契约·力量","tier":1,"form":"A","stack":1,"cd":"全队攻击 +100%","ed":"美食不在攻击状态时每秒流失 1% 生命上限","impl":true},{"id":"hex_contract_3","name":"契约·自由","tier":1,"form":"A","stack":1,"cd":"每 30 秒随机改变一次全队火苗消耗（-40%~+80%）","ed":"无","impl":true},{"id":"hex_contract_4","name":"契约·神速","tier":1,"form":"A","stack":1,"cd":"全队攻速 +100%","ed":"美食不在攻击状态时每秒流失 1% 生命上限","impl":true},{"id":"hex_contract_5","name":"契约·增幅","tier":1,"form":"A","stack":1,"cd":"增幅类卡片的增幅效果 +100%","ed":"无","impl":true},{"id":"hex_hana_1","name":"卦·攻","tier":1,"form":"A","stack":1,"cd":"全队攻击 +20%","ed":"无","impl":true},{"id":"hex_hana_2","name":"卦·守","tier":1,"form":"A","stack":1,"cd":"全队生命 +30%","ed":"无","impl":true},{"id":"hex_hana_3","name":"卦·火","tier":1,"form":"A","stack":1,"cd":"开局火苗 +1000","ed":"无","impl":true},{"id":"hex_hana_4","name":"卦·免","tier":1,"form":"A","stack":1,"cd":"开局前三张美食免费","ed":"无","impl":true},{"id":"hex_001","name":"开胃小菜","tier":0,"form":"A","stack":1,"cd":"开局火苗 +350","ed":"老鼠生命 +8%","impl":true},{"id":"hex_002","name":"慢火细煮","tier":0,"form":"A","stack":2,"cd":"火苗获取量 +20%","ed":"老鼠移速 +6%","impl":true},{"id":"hex_003","name":"剩菜打包","tier":0,"form":"A","stack":1,"cd":"每波结束获得当前火苗 8%（上限 200）","ed":"老鼠数量 +5%","impl":true},{"id":"hex_004","name":"老汤底","tier":0,"form":"A","stack":2,"cd":"每波开始火苗 +100","ed":"老鼠护甲 +6%","impl":true},{"id":"hex_005","name":"稳火","tier":0,"form":"A","stack":2,"cd":"每 15 秒火苗 +25","ed":"老鼠数量 +4%","impl":true},{"id":"hex_006","name":"边角料","tier":0,"form":"A","stack":1,"cd":"击杀老鼠 3% 概率火苗 +10","ed":"老鼠生命 +7%","impl":true},{"id":"hex_007","name":"轻油少盐","tier":0,"form":"A","stack":1,"cd":"卡片费用 -8%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_008","name":"一锅两吃","tier":0,"form":"A","stack":1,"cd":"直射类与投掷类同时在场时，两者攻击各 +5%","ed":"老鼠生命 +7%","impl":true},{"id":"hex_009","name":"盐少许","tier":0,"form":"A","stack":2,"cd":"全队攻击 +10%","ed":"老鼠生命 +8%","impl":true},{"id":"hex_010","name":"快手翻炒","tier":0,"form":"A","stack":2,"cd":"全部卡片冷却 -8%","ed":"老鼠啃咬速度 +8%","impl":true},{"id":"hex_011","name":"一勺到底","tier":0,"form":"A","stack":2,"cd":"卡片生命 +25%","ed":"老鼠攻击 +10%","impl":true},{"id":"hex_012","name":"小火慢煮","tier":0,"form":"A","stack":2,"cd":"每 10 秒回复 1.2% 最大生命","ed":"老鼠移速 +6%","impl":true},{"id":"hex_013","name":"稳住锅气","tier":0,"form":"A","stack":1,"cd":"卡片攻击力不低于基础值的 80%","ed":"老鼠啃咬速度 +6%","impl":true},{"id":"hex_014","name":"灶台擦净","tier":0,"form":"A","stack":1,"cd":"卡片受到的伤害 -10%","ed":"老鼠生命 +8%","impl":true},{"id":"hex_015","name":"一撮糖","tier":0,"form":"A","stack":1,"cd":"攻击 10% 概率造成 1.5 倍伤害","ed":"老鼠生命 +9%","impl":true},{"id":"hex_016","name":"小火温养","tier":0,"form":"A","stack":2,"cd":"每波开始全体回复 8% 生命","ed":"老鼠啃咬速度 +5%","impl":true},{"id":"hex_017","name":"刀工精细","tier":0,"form":"A","stack":2,"cd":"直射类攻速 +12%","ed":"老鼠生命 +10%","impl":true},{"id":"hex_018","name":"面糊裹身","tier":0,"form":"A","stack":2,"cd":"投掷类攻击 +14%","ed":"空中老鼠生命 +12%","impl":true},{"id":"hex_019","name":"文火慢烤","tier":0,"form":"A","stack":2,"cd":"灰烬类伤害 +18%","ed":"老鼠移速 +7%","impl":true},{"id":"hex_020","name":"精油润锅","tier":0,"form":"A","stack":1,"cd":"喷壶类攻击 +10%","ed":"老鼠生命 +9%","impl":true},{"id":"hex_021","name":"香料提味","tier":0,"form":"A","stack":2,"cd":"增幅类卡片提供的倍率 +6%","ed":"老鼠数量 +4%","impl":true},{"id":"hex_022","name":"隔水加热","tier":0,"form":"A","stack":1,"cd":"产能类每次产出 +1 火苗","ed":"老鼠生命 +8%","impl":true},{"id":"hex_023","name":"薄切","tier":0,"form":"A","stack":1,"cd":"直线穿透类攻击 +12%","ed":"老鼠生命 +8%","impl":true},{"id":"hex_024","name":"油温够高","tier":0,"form":"A","stack":2,"cd":"灼烧投手攻击 +10%","ed":"老鼠移速 +6%","impl":true},{"id":"hex_025","name":"夹生","tier":0,"form":"A","stack":1,"cd":"投掷类攻击 +10%","ed":"老鼠生命 +6%","impl":true},{"id":"hex_026","name":"三线全开","tier":0,"form":"A","stack":1,"cd":"多向类每方向伤害 +8%","ed":"老鼠护甲 +5%","impl":true},{"id":"hex_027","name":"甜咸平衡","tier":0,"form":"A","stack":1,"cd":"辅助类生命 +20%","ed":"老鼠数量 +5%","impl":true},{"id":"hex_028","name":"防空警报","tier":0,"form":"A","stack":2,"cd":"对空中目标伤害 +12%","ed":"地面老鼠生命 +8%","impl":true},{"id":"hex_029","name":"冰镇","tier":0,"form":"A","stack":1,"cd":"全队攻速 +8%","ed":"老鼠移速 +6%","impl":true},{"id":"hex_030","name":"抽薪","tier":0,"form":"A","stack":1,"cd":"火苗获取量 +14%","ed":"老鼠生命 +8%","impl":true},{"id":"hex_031","name":"去腥","tier":0,"form":"A","stack":1,"cd":"直射类攻击 +12%","ed":"潜水鼠生命 +10%","impl":true},{"id":"hex_032","name":"去骨","tier":0,"form":"A","stack":1,"cd":"投掷类攻击 +12%","ed":"空中老鼠生命 +10%","impl":true},{"id":"hex_033","name":"除霜","tier":0,"form":"A","stack":1,"cd":"灰烬类伤害 +14%","ed":"障碍类老鼠生命 +12%","impl":true},{"id":"hex_034","name":"净锅","tier":0,"form":"A","stack":1,"cd":"卡片生命 +18%","ed":"老鼠移速 +10%","impl":true},{"id":"hex_035","name":"顺手一抹","tier":0,"form":"A","stack":1,"cd":"铲除返还 +40%","ed":"老鼠生命 +6%","impl":true},{"id":"hex_036","name":"双份备料","tier":0,"form":"A","stack":1,"cd":"卡组上限 +1","ed":"老鼠数量 +6%","impl":true},{"id":"hex_037","name":"半成品","tier":0,"form":"A","stack":1,"cd":"本局获得 2 次免费重随","ed":"老鼠生命 +8%","impl":true},{"id":"hex_038","name":"火候观察","tier":0,"form":"A","stack":1,"cd":"卡片冷却归零，但费用 x5，每次使用后损失当前火苗的 1/4","ed":"老鼠生命 +4%","impl":true},{"id":"hex_039","name":"少油","tier":0,"form":"C","stack":1,"cd":"全队攻速 -6%","ed":"老鼠移速 -5%","impl":true},{"id":"hex_040","name":"收汁","tier":0,"form":"C","stack":1,"cd":"火苗上限 -800","ed":"老鼠生命 -6%","impl":true},{"id":"hex_041","name":"冷冻保鲜","tier":0,"form":"C","stack":1,"cd":"全部卡片冷却 +8%","ed":"老鼠攻击 -28%","impl":true},{"id":"hex_042","name":"清汤寡水","tier":0,"form":"C","stack":1,"cd":"卡片生命 -15%","ed":"老鼠护甲 -18%","impl":true},{"id":"hex_043","name":"老灶台","tier":0,"form":"C","stack":1,"cd":"每波开始火苗 -50","ed":"老鼠数量 -5%","impl":true},{"id":"hex_116","name":"爆燃1","tier":0,"form":"A","stack":1,"cd":"未实装：需要火苗落地倒计时爆炸 + 双方 3×3 伤害的新物件逻辑","ed":"未实装","impl":false},{"id":"hex_119","name":"均值","tier":0,"form":"A","stack":1,"cd":"所有卡槽的卡片费用变为全卡槽的平均值","ed":"老鼠出生时生命额外加上当前火苗数值","impl":true},{"id":"hex_130","name":"鱼塘","tier":0,"form":"A","stack":1,"cd":"未实装：局内没有【发一张卡进卡槽】的统一入口，需要改卡槽生成流程","ed":"未实装","impl":false},{"id":"hex_132","name":"速冻","tier":0,"form":"A","stack":1,"cd":"未实装：减速→冻结要改全部减速卡的结算口径，需要一个统一减速入口","ed":"未实装","impl":false},{"id":"hex_133","name":"暂缓时光","tier":0,"form":"A","stack":1,"cd":"关卡限时 +1 分钟","ed":"无","impl":true},{"id":"hex_134","name":"我真没胖","tier":0,"form":"A","stack":1,"cd":"全体卡片生命 +10%","ed":"老鼠攻击 +5%","impl":true},{"id":"hex_135","name":"轻装伏击","tier":0,"form":"C","stack":1,"cd":"无","ed":"所有鼠军啃咬过一次后才可被攻击，但生命 -70%","impl":true},{"id":"hex_136","name":"塔之怨念","tier":0,"form":"A","stack":1,"cd":"老鼠死亡时 5% 概率 3×3 爆炸，伤害为其生命上限 ×1.2（不分敌我）","ed":"老鼠移速 +20%","impl":true},{"id":"hex_137","name":"化为灰烬","tier":0,"form":"A","stack":1,"cd":"未实装：【不可复活】涉及复生饭 / 治愈苗两套独立复活逻辑","ed":"未实装","impl":false},{"id":"hex_138","name":"谁家锯骨血刺","tier":0,"form":"A","stack":1,"cd":"未实装：局内无法直接补一张已放置形态的鱼刺，需要走卡槽发卡流程","ed":"未实装","impl":false},{"id":"hex_150","name":"3秒真美鼠","tier":0,"form":"A","stack":1,"cd":"所有美食放下时无敌 3 秒","ed":"所有鼠军出场时无敌 3 秒","impl":true},{"id":"hex_151","name":"死灵复苏","tier":0,"form":"A","stack":1,"cd":"未实装：魂鼠是龙渊专属敌人，普通关卡没有可复用的魂鼠对象","ed":"未实装","impl":false},{"id":"hex_152","name":"爱打洞的老鼠","tier":0,"form":"A","stack":1,"cd":"爆爆鸡、旋风牛冷却 -75%、耗火 -50%；清除鼠洞返还 25 火苗与 100 金币（1% 概率 100 火苗与 5000 金币）","ed":"每 10 秒在右侧五列随机出现一个鼠洞","impl":true},{"id":"hex_160","name":"压榨I","tier":0,"form":"A","stack":1,"cd":"未实装：需要在铲子对象里加【范围作用于产能卡】的分支，属铲子逻辑改造","ed":"未实装","impl":false},{"id":"hex_164","name":"QQ弹弹","tier":0,"form":"A","stack":1,"cd":"防御类卡片受击时改为把老鼠击退 2.5 格（无伤害），自身消耗 50 生命","ed":"无","impl":true},{"id":"hex_165","name":"炸丸子","tier":0,"form":"A","stack":1,"cd":"追踪类卡片冷却 -50%；同种追踪卡每满 6 张攻击 +20%（最多 +180%）","ed":"无","impl":true},{"id":"hex_166","name":"荷包蛋","tier":0,"form":"A","stack":1,"cd":"投掷类卡片攻击 +50%","ed":"无","impl":true},{"id":"hex_167","name":"困困虫","tier":0,"form":"A","stack":1,"cd":"攻击类卡片种下即沉睡 10 秒，醒来后攻击 +30%","ed":"无","impl":true},{"id":"hex_168","name":"食之灵","tier":0,"form":"A","stack":1,"cd":"全体融合卡攻击 +30%","ed":"无","impl":true},{"id":"hex_169","name":"石护盾","tier":0,"form":"A","stack":1,"cd":"无","ed":"BOSS 血量降到 75%/50%/25% 时生成需 3 次灰烬伤害打破的护盾；未破前减伤 80%，破后 10 秒内受伤翻倍","impl":true},{"id":"hex_170","name":"火焰杯","tier":0,"form":"A","stack":1,"cd":"未实装：需要新素材（火焰杯未点燃/点燃两态）与新放置物件","ed":"未实装","impl":false},{"id":"hex_171","name":"火护盾","tier":0,"form":"A","stack":1,"cd":"未实装：需要【减速伤害】的统一标记，现有 damage_type 里没有这一类","ed":"未实装","impl":false},{"id":"hex_172","name":"丰收季","tier":0,"form":"A","stack":1,"cd":"未实装：需要新建红/绿苹果物件与贴图，以及一套独立的吸引火力逻辑","ed":"未实装","impl":false},{"id":"hex_180","name":"碎片整理","tier":0,"form":"A","stack":1,"cd":"多行攻击卡片的子弹全部集中到本行（仅对向右飞行的子弹生效）","ed":"无","impl":true},{"id":"hex_184","name":"低语耳环","tier":0,"form":"A","stack":1,"cd":"开局火苗 +1000，每波开始再 +1000","ed":"无","impl":true},{"id":"hex_186","name":"喷涌的地脉","tier":0,"form":"A","stack":1,"cd":"站在熔岩上的美食攻击与攻速 +20%","ed":"每 20 秒随机五格生成 1 分钟临时熔岩","impl":true},{"id":"hex_187","name":"病毒泄露","tier":0,"form":"A","stack":1,"cd":"所有美食对跨服鼠军的伤害 +20%","ed":"有对应跨服鼠军的鼠军生成时 5% 概率替换","impl":true},{"id":"hex_209","name":"您的盾牌","tier":0,"form":"A","stack":1,"cd":"美食获得 25 点固定减伤","ed":"鼠军获得 50 点固定减伤","impl":true},{"id":"hex_222","name":"齿轮的烟气","tier":0,"form":"A","stack":1,"cd":"美食每受一次伤，之后受到的伤害 +2%（上限 +30%）","ed":"鼠军每受一次伤，之后受到的伤害 +2.5%（上限 +50%）","impl":true},{"id":"hex_225","name":"演出的高潮","tier":0,"form":"A","stack":1,"cd":"本局全队随机获得 1%~100% 全属性","ed":"每只鼠军出生时随机获得 -10~+10 点伤害减免","impl":true},{"id":"hex_228","name":"血魔的渴血","tier":0,"form":"A","stack":1,"cd":"美食造成伤害时回复等量生命，满血则转为生命上限（上限 +300%）","ed":"非 BOSS 鼠军啃咬美食时回复等量生命","impl":true},{"id":"hex_235","name":"微微发亮的宝石","tier":0,"form":"A","stack":1,"cd":"武器宝石技能冷却 -10%","ed":"无","impl":true},{"id":"hex_238","name":"呼朋唤友","tier":0,"form":"A","stack":1,"cd":"对 BOSS 伤害 +50%","ed":"BOSS 首次出现时再出现一只同类（半血）","impl":true},{"id":"hex_240","name":"爆破区","tier":0,"form":"A","stack":1,"cd":"每 30 秒在随机格生成一颗既有炸弹（可乐炸弹 / 冰桶炸弹）","ed":"无","impl":true},{"id":"hex_243","name":"疑神疑鬼","tier":0,"form":"A","stack":1,"cd":"攻击类美食在场上没有鼠军目标时也不会停止攻击（照常空放）","ed":"每 30 秒在第 9 列随机行生成一只幽灵鼠","impl":true},{"id":"hex_244","name":"地广人稀","tier":0,"form":"C","stack":1,"cd":"所有卡槽冷却时间翻倍","ed":"出怪量减半","impl":true},{"id":"hex_245","name":"死神临近","tier":0,"form":"C","stack":1,"cd":"每 10 秒随机带走一张美食","ed":"每 10 秒随机带走一只鼠军（含 BOSS）","impl":true},{"id":"hex_249","name":"这不是外挂","tier":0,"form":"A","stack":1,"cd":"穿透类卡片攻击 +30%，火苗获取 -50%","ed":"无","impl":true},{"id":"hex_255","name":"冰冰冰","tier":0,"form":"A","stack":1,"cd":"每 20 秒全场美食与鼠军冻结 5 秒","ed":"无","impl":true}];
+const TIER_NAME = ['银','金','彩'];
+const MAX = 16;
+
+let state = { tier: -1, form: -1, q: '' };
+let selected = ['hex_173','hex_234','hex_231','hex_240','hex_120','hex_159'];
+let scrollTop = 0;
+
+const gridEl  = document.getElementById('grid');
+const thumbEl = document.getElementById('thumb');
+const selList = document.getElementById('sel-list');
+const cntSel  = document.getElementById('cnt-sel');
+
+document.getElementById('n-total').textContent = HEX.length;
+document.getElementById('n-impl').textContent  = HEX.filter(h => h.impl).length;
+
+function filtered() {
+  const q = state.q.trim().toLowerCase();
+  return HEX.filter(h => {
+    if (state.tier >= 0 && h.tier !== state.tier) return false;
+    if (state.form !== -1 && h.form !== state.form) return false;
+    if (q && !(h.name.toLowerCase().includes(q) || (h.cd || '').toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+
+function render() {
+  const list = filtered();
+  const rows = Math.ceil(list.length / 3);
+  const totalH = rows * 114;
+  const maxScroll = Math.max(0, totalH - 670);
+  scrollTop = Math.min(scrollTop, maxScroll);
+  gridEl.style.transform = 'translateY(' + (-scrollTop) + 'px)';
+
+  gridEl.innerHTML = list.map(h => {
+    const on = selected.includes(h.id);
+    const cls = ['card', 't' + h.tier];
+    if (on) cls.push('sel');
+    if (!h.impl) cls.push('off');
+    const stack  = h.stack > 1 ? '<div class="cstack">叠 1/' + h.stack + '</div>' : '';
+    const offTag = h.impl ? '' : '<div class="off-tag">未实装</div>';
+    const chk    = on ? '<div class="chk">✓</div>' : '';
+    return '<div class="' + cls.join(' ') + '" data-id="' + h.id + '">' +
+      '<div class="bar" style="background:' + (h.form === 'C' ? '#FF6E6E' : '#7CE38B') + '"></div>' +
+      chk +
+      '<div class="ctier">' + TIER_NAME[h.tier] + '</div>' +
+      '<div class="cname">' + h.name + '</div>' +
+      '<div class="cdesc">' + (h.cd || '—') + '</div>' +
+      stack + offTag +
+    '</div>';
+  }).join('');
+
+  [...gridEl.children].forEach(el => {
+    el.onclick = () => {
+      const id = el.dataset.id;
+      const h = HEX.find(x => x.id === id);
+      if (!h.impl) return;
+      const i = selected.indexOf(id);
+      if (i >= 0) selected.splice(i, 1);
+      else { selected.push(id); if (selected.length > MAX) selected.shift(); }
+      render();
+    };
+  });
+
+  const frac = totalH <= 670 ? 1 : 670 / totalH;
+  const th = Math.max(40, 670 * frac);
+  thumbEl.style.height = th + 'px';
+  thumbEl.style.top = (maxScroll > 0 ? (scrollTop / maxScroll) * (670 - th) : 0) + 'px';
+
+  renderSel();
+}
+
+function renderSel() {
+  cntSel.textContent = selected.length;
+  if (!selected.length) {
+    selList.innerHTML = '<div class="side-empty">还没有选任何词条</div>';
+    return;
+  }
+  selList.innerHTML = selected.map(id => {
+    const h = HEX.find(x => x.id === id);
+    if (!h) return '';
+    const stk = h.stack > 1 ? '<span class="stk">叠 1/' + h.stack + '</span>' : '';
+    return '<div class="srow t' + h.tier + '">' + h.name + stk + '<span class="x" data-id="' + id + '">✕</span></div>';
+  }).join('');
+  [...selList.querySelectorAll('.x')].forEach(x => {
+    x.onclick = () => { selected = selected.filter(s => s !== x.dataset.id); render(); };
+  });
+}
+
+document.getElementById('filters').onclick = e => {
+  const c = e.target.closest('.chip');
+  if (!c) return;
+  if (c.dataset.tier !== undefined) {
+    state.tier = +c.dataset.tier;
+    [...document.querySelectorAll('[data-tier]')].forEach(x => x.classList.toggle('on', x === c));
+  } else if (c.dataset.form !== undefined) {
+    state.form = c.dataset.form === '-1' ? -1 : c.dataset.form;
+    [...document.querySelectorAll('[data-form]')].forEach(x => x.classList.toggle('on', x === c));
+  }
+  scrollTop = 0; render();
+};
+
+document.getElementById('q').oninput = e => { state.q = e.target.value; scrollTop = 0; render(); };
+
+document.querySelector('.grid-wrap').addEventListener('wheel', e => {
+  e.preventDefault();
+  const rows = Math.ceil(filtered().length / 3);
+  const maxScroll = Math.max(0, rows * 114 - 670);
+  scrollTop = Math.max(0, Math.min(maxScroll, scrollTop + e.deltaY));
+  render();
+}, { passive: false });
+
+function fit() {
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  document.getElementById('stage').style.transform = 'translate(-50%,-50%) scale(' + s + ')';
+}
+window.addEventListener('resize', fit);
+fit(); render();
+</script>
+</body>
+</html>
