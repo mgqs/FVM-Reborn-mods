@@ -109,5 +109,18 @@ draw_text(x+33,y-48,keyboard_get_string(slot_key))
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
+// 海克斯「食指的指令」：这张就是被标记的可种植卡，右上角挂个标记图案
+if (hex_enabled() && variable_global_exists("hex_state") && is_struct(global.hex_state)
+    && variable_struct_exists(global.hex_state, "b3_mark_on") && global.hex_state.b3_mark_on
+    && variable_struct_exists(global.hex_state, "b3_mark_card")
+    && global.hex_state.b3_mark_card == card_id) {
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    hex_b3_mark_icon(x + 30, y - 40, 34);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+}
+
+
 
 

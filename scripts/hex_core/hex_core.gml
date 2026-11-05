@@ -88,7 +88,8 @@ function hex_state_init() {
         free_reroll:     0,
         c_streak:        0,       // 连续全 C 的次数（保底用）
         first_done:      false,   // 开局首抽是否已经处理过（选过或放弃过）
-        committed:       false,   // 本局是否已经写入存档（防止重复记账）
+        committed:       false,   // 本局统计是否已经记过（runs_cleared 只加一次）
+        committed_stacks: {},     // id -> 已写进存档的层数（序列玩法每关结算去重用）
 
         // 卡片侧汇总倍率
         atk:             1.0,
@@ -254,7 +255,8 @@ function hex_state_init() {
         heal_tick_frame: 0,       // 定时回血计时（帧）
 
         // 羁绊
-        bond_count:      {},      // 分类名 -> 不同 card_id 计数
+        bond_count:      {},      // 分类名 -> 不同 card_id 计数（只有大分类）
+        bond_count_all:  {},      // 大分类 + 小分类 全量计数（效果面板用）
         bond_tier:       {},      // 分类名 -> 已达成档位（0 表示未达成）
         bond_minor_extra: 0       // 每张卡额外计入的相邻小分类数（「一菜三吃」）
     };
@@ -1293,6 +1295,20 @@ function hex_bond_recalc() {
 
     global.bond_tier  = _new_tier;
     global.hex_state.bond_tier = _new_tier;
+
+    // 档位表的分类名是大分类 + 小分类混在一起的，而 bond_count 只存大分类。
+    // 效果面板要按档位名取「场上 N 种」，所以另存一份全量计数
+    var _cnt_all = {};
+    for (var ci = 0; ci < array_length(_names); ci++) {
+        var _cn = _names[ci];
+        _cnt_all[$ _cn] = _major[$ _cn];
+    }
+    for (var cj = 0; cj < array_length(_minor_names); cj++) {
+        var _cn2 = _minor_names[cj];
+        _cnt_all[$ _cn2] = _minor[$ _cn2];
+    }
+    global.hex_state.bond_count_all = _cnt_all;
+
     global.bond_mult = 1.0;
 
     // 羁绊是全局加成，卡片的攻击必须重算——buff_apply_id 是既有系统唯一的重算脏标记
@@ -1362,6 +1378,22 @@ function hex_bond_count(_name) {
     if (!variable_global_exists("bond_count")) return 0;
     if (!variable_struct_exists(global.bond_count, _name)) return 0;
     return global.bond_count[$ _name];
+}
+
+/// @function hex_bond_count_any(_name)
+/// @desc 分类计数（大分类 / 小分类都行）。
+///       bond_count 只存大分类，而 bond_tier 里大小分类混在一起 ——
+///       效果面板按档位表逐个取计数时，小分类会取到 undefined（面板一片 undefined 就是这么来的）
+function hex_bond_count_any(_name) {
+    if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return 0;
+    var _s = global.hex_state;
+    if (variable_struct_exists(_s, "bond_count_all") && is_struct(_s.bond_count_all)) {
+        if (variable_struct_exists(_s.bond_count_all, _name)) return _s.bond_count_all[$ _name];
+    }
+    if (variable_struct_exists(_s, "bond_count") && is_struct(_s.bond_count)) {
+        if (variable_struct_exists(_s.bond_count, _name)) return _s.bond_count[$ _name];
+    }
+    return 0;
 }
 
 // ══════════════════════ 隔离自检 ══════════════════════
@@ -1562,7 +1594,7 @@ function hex_effect_rows() {
         var _tier = _s.bond_tier[$ _bn];
         if (_tier > 0) {
             array_push(_card, { label: _bn + " 共鸣",
-                value: string(_tier) + " 档（场上 " + string(_s.bond_count[$ _bn]) + " 种）", tag: "共鸣" });
+                value: string(_tier) + " 档（场上 " + string(hex_bond_count_any(_bn)) + " 种）", tag: "共鸣" });
         }
     }
     if (_s.bond_power != 1.0) {

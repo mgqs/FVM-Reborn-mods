@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"warrior",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/warrior.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"warrior",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_warrior","path":"sprites/spr_kf_zr_warrior/spr_kf_zr_warrior.yy",},
+    {"name":"spr_kf_zr_warrior_summon","path":"sprites/spr_kf_zr_warrior_summon/spr_kf_zr_warrior_summon.yy",},
+  ],
+}

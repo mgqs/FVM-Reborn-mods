@@ -108,42 +108,73 @@ function hex_date_stamp() {
 }
 
 /// @function hex_commit_run(_level_id)
-/// @desc 把本局词条写进存档。非海克斯模式 / 序列未到末关 / 空手通关都不写
-/// @return bool 是否真的写入
+/// @desc 把本局「还没记过账」的词条写进存档。
+///       序列玩法（魔塔 / 龙渊 / 浮空岛 / 海底漩涡）现在是**每通过一关就结算一次**：
+///       中途失败也不会白打，已通过关卡的词条照样进「已解锁」。
+///       同一条词条在一次序列里只记一次——按 stack 差值记账，叠层不会重复加。
+///       非海克斯模式 / 测试关卡 / 空手通关都不写。
+/// @return bool 是否真的有新词条写入
 function hex_commit_run(_level_id) {
     if (!hex_enabled()) return false;                                  // 非海克斯模式：一条都不写
     if (hex_level_excluded()) return false;                            // 测试关卡不入档
     if (_level_id == "test_level") return false;                       // 双保险：显式传测试关卡 id 也不写
     if (!variable_global_exists("hex_state")) return false;
     if (!is_struct(global.hex_state)) return false;
-    if (global.hex_state.committed) return false;                      // 本局已记过账，不重复加
     if (array_length(global.hex_state.picked) == 0) return false;      // 空手通关不写
-    if (!hex_run_scope_end(_level_id)) return false;                   // 魔塔等序列未到末关
 
     hex_ensure_save_fields();
+
+    // 本局已经记过账的层数：id -> stack。
+    // 用它做差值，序列玩法「中途结算 + 末关再结算」不会把同一条记两遍
+    if (!variable_struct_exists(global.hex_state, "committed_stacks")
+        || !is_struct(global.hex_state.committed_stacks)) {
+        global.hex_state.committed_stacks = {};
+    }
+    var _done = global.hex_state.committed_stacks;
+
     // 注意：直接操作 global.save_data.hex_unlocked，不要先取到局部变量。
     // GML 数组是写时复制，array_push 到局部副本不回写到原数组（解锁"写了但看不到"就是这么来的）
     var _today = hex_date_stamp();
+    var _wrote = 0;
 
     for (var i = 0; i < array_length(global.hex_state.picked); i++) {
-        var _id  = global.hex_state.picked[i].id;
-        var _hit = -1;
-        for (var j = 0; j < array_length(global.save_data.hex_unlocked); j++) {
-            if (global.save_data.hex_unlocked[j].id == _id) { _hit = j; break; }
+        var _e = global.hex_state.picked[i];
+        if (!is_struct(_e)) continue;
+        if (!variable_struct_exists(_e, "id")) continue;
+        var _id = _e.id;
+        var _st = variable_struct_exists(_e, "stack") ? max(1, floor(_e.stack)) : 1;
+        var _old = variable_struct_exists(_done, _id) ? _done[$ _id] : 0;
+        var _gap = _st - _old;
+        if (_gap <= 0) continue;                                       // 这一层已经记过了
+
+        for (var g = 0; g < _gap; g++) {
+            var _hit = -1;
+            for (var j = 0; j < array_length(global.save_data.hex_unlocked); j++) {
+                if (global.save_data.hex_unlocked[j].id == _id) { _hit = j; break; }
+            }
+            if (_hit == -1) {
+                array_push(global.save_data.hex_unlocked,
+                    { id: _id, count: 1, first_date: _today, last_date: _today });
+            } else {
+                global.save_data.hex_unlocked[_hit].count    += 1;
+                global.save_data.hex_unlocked[_hit].last_date = _today;
+            }
         }
-        if (_hit == -1) {
-            array_push(global.save_data.hex_unlocked,
-                { id: _id, count: 1, first_date: _today, last_date: _today });
-        } else {
-            global.save_data.hex_unlocked[_hit].count    += 1;
-            global.save_data.hex_unlocked[_hit].last_date = _today;
-        }
+
+        // 直接写回 global，别只改局部副本（GML 的数组/结构体取出来当局部变量容易踩复制语义）
+        global.hex_state.committed_stacks[$ _id] = _st;
+        _wrote += _gap;
     }
 
-    global.hex_state.committed = true;
-    global.save_data.hex_stats.runs_cleared += 1;
-    global.save_data.hex_stats.best_pi =
-        max(global.save_data.hex_stats.best_pi, global.hex_state.pi_value);
+    if (_wrote <= 0) return false;                                     // 没有新东西，别白落一次盘
+
+    // 统计口径保持「一局一次」：只有真正走到序列末关（或单关岛屿）才记
+    if (!global.hex_state.committed && hex_run_scope_end(_level_id)) {
+        global.hex_state.committed = true;
+        global.save_data.hex_stats.runs_cleared += 1;
+        global.save_data.hex_stats.best_pi =
+            max(global.save_data.hex_stats.best_pi, global.hex_state.pi_value);
+    }
 
     return true;   // 真正的 save_file 由调用方统一做
 }

@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"ghost",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/ghost.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ghost",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_ghost","path":"objects/obj_kf_zr_ghost/obj_kf_zr_ghost.yy",},
+  ],
+}

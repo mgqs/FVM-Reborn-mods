@@ -133,8 +133,23 @@ function hex_panel_confirm() {
     hex_panel_pick(sel_idx);
 }
 
+/// @function hex_panel_is_special()
+/// @desc 当前牌面是不是「必选题」：Hana 的四卦 / 不公的契约。
+///       这两种是开局剧情性的选择，不能重随、也不能点「放弃」白拿火苗。
+function hex_panel_is_special() {
+    if (array_length(offer) == 0) return false;
+    if (string_copy(offer[0], 1, 9) == "hex_hana_") return true;
+    if (string_copy(offer[0], 1, 13) == "hex_contract_") return true;
+    return false;
+}
+
 /// @function hex_panel_reroll()
 function hex_panel_reroll() {
+    if (hex_panel_is_special()) {
+        msg_text  = "开局必选，不能重随";
+        msg_timer = 60;
+        return;
+    }
     var _free = global.hex_state.free_reroll > 0;
     var _cost = reroll_cost_now;
     if (!_free) {
@@ -157,6 +172,16 @@ function hex_panel_reroll() {
 
 /// @function hex_panel_giveup()
 function hex_panel_giveup() {
+    // 四卦 / 契约不允许跳过：跳过就等于整条词条空转，这里强制随机替玩家选一张
+    if (hex_panel_is_special()) {
+        var _r = offer[irandom(array_length(offer) - 1)];
+        hex_apply(_r);
+        global.hex_state.first_done = true;
+        taken_idx = 0;
+        closing   = 10;
+        audio_play_sound(snd_button, 0, 0);
+        return;
+    }
     var _wave = (instance_exists(obj_battle)) ? obj_battle.current_wave : 0;
     var _gain = hex_cfg().giveup_flame + _wave * 40;
     if (variable_global_exists("flame")) global.flame += _gain;

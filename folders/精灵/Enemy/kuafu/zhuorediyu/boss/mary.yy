@@ -1,0 +1,26 @@
+{
+  "$GMFolder":"",
+  "%Name":"mary",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/boss/mary.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mary",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zrb_mary","path":"sprites/spr_kf_zrb_mary/spr_kf_zrb_mary.yy",},
+    {"name":"spr_kf_zrb_mary_appear","path":"sprites/spr_kf_zrb_mary_appear/spr_kf_zrb_mary_appear.yy",},
+    {"name":"spr_kf_zrb_mary_disappear","path":"sprites/spr_kf_zrb_mary_disappear/spr_kf_zrb_mary_disappear.yy",},
+    {"name":"spr_kf_zrb_mary_death","path":"sprites/spr_kf_zrb_mary_death/spr_kf_zrb_mary_death.yy",},
+    {"name":"spr_kf_zrb_mary_skill_1_forward","path":"sprites/spr_kf_zrb_mary_skill_1_forward/spr_kf_zrb_mary_skill_1_forward.yy",},
+    {"name":"spr_kf_zrb_mary_skill_1_backward","path":"sprites/spr_kf_zrb_mary_skill_1_backward/spr_kf_zrb_mary_skill_1_backward.yy",},
+    {"name":"spr_kf_zrb_mary_skill_2_ready","path":"sprites/spr_kf_zrb_mary_skill_2_ready/spr_kf_zrb_mary_skill_2_ready.yy",},
+    {"name":"spr_kf_zrb_mary_skill_2","path":"sprites/spr_kf_zrb_mary_skill_2/spr_kf_zrb_mary_skill_2.yy",},
+    {"name":"spr_kf_zrb_mary_skill_3","path":"sprites/spr_kf_zrb_mary_skill_3/spr_kf_zrb_mary_skill_3.yy",},
+    {"name":"spr_kf_zrb_mary_boomerang","path":"sprites/spr_kf_zrb_mary_boomerang/spr_kf_zrb_mary_boomerang.yy",},
+  ],
+}

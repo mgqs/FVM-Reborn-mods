@@ -13,6 +13,8 @@
     {"name":"Craft","path":"folders/脚本/mod/Craft.yy",},
   ],
   "listItems":[
+    {"name":"zhuore_enemy_init","path":"scripts/zhuore_enemy_init/zhuore_enemy_init.yy",},
+    {"name":"zhuore_boss_init","path":"scripts/zhuore_boss_init/zhuore_boss_init.yy",},
     {"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},
     {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},
     {"name":"cross_server_star_gate","path":"scripts/cross_server_star_gate/cross_server_star_gate.yy",},
@@ -51,5 +53,6 @@
     {"name":"hex_batch2","path":"scripts/hex_batch2/hex_batch2.yy",},
     {"name":"hex_batch3","path":"scripts/hex_batch3/hex_batch3.yy",},
     {"name":"hex_text_wrap","path":"scripts/hex_text_wrap/hex_text_wrap.yy",},
+    {"name":"hex_test_picker","path":"scripts/hex_test_picker/hex_test_picker.yy",},
   ],
 }

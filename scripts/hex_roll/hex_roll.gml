@@ -9,6 +9,14 @@ function hex_pickable(_id) {
     // 面板专用条目（Hana 的四卦）不出现在随机牌面里
     if (variable_struct_exists(_d, "no_roll") && _d.no_roll) return false;
     if (hex_taken(_id) >= _d.stack) return false;   // 叠满
+    // 前置词条：必须先把 require 里的每一条都拿到，才会进池
+    // （后巷的统治者要五指组、残响乐团要残响组十条）
+    if (variable_struct_exists(_d, "require")) {
+        var _rq = _d.require;
+        for (var _ri = 0; _ri < array_length(_rq); _ri++) {
+            if (hex_taken(_rq[_ri]) <= 0) return false;
+        }
+    }
     // 减码型单局上限
     if (_d.form == "C" && hex_taken_c() >= hex_cfg().max_c) return false;
     // 总上限
@@ -78,6 +86,15 @@ function hex_roll_offer() {
         && global.hex_state.b3_hana_pending) {
         global.hex_state.b3_hana_pending = false;
         return hex_b3_hana_offer();
+    }
+
+    // 不公的契约：开局五选一（Hana 优先，两者都拿到就先弹四卦，四卦选完再重开面板弹契约）
+    if (hex_enabled() && variable_global_exists("hex_state") && is_struct(global.hex_state)
+        && variable_struct_exists(global.hex_state, "b3_contract_pending")
+        && global.hex_state.b3_contract_pending) {
+        global.hex_state.b3_contract_pending = false;
+        global.hex_state.b3_contract_show    = true;
+        return hex_b3_contract_offer();
     }
 
     var _cfg   = hex_cfg();

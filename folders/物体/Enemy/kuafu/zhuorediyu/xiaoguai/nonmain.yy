@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"nonmain",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/nonmain.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"nonmain",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_nonmain","path":"objects/obj_kf_zr_nonmain/obj_kf_zr_nonmain.yy",},
+  ],
+}

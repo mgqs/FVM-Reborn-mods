@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"jack",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss/jack.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"jack",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zrb_jack","path":"objects/obj_kf_zrb_jack/obj_kf_zrb_jack.yy",},
+    {"name":"obj_kf_zrb_jack_fire","path":"objects/obj_kf_zrb_jack_fire/obj_kf_zrb_jack_fire.yy",},
+    {"name":"obj_kf_zrb_jack_fire_mouse","path":"objects/obj_kf_zrb_jack_fire_mouse/obj_kf_zrb_jack_fire_mouse.yy",},
+    {"name":"obj_kf_zrb_jack_rock_skill_3","path":"objects/obj_kf_zrb_jack_rock_skill_3/obj_kf_zrb_jack_rock_skill_3.yy",},
+    {"name":"obj_kf_zrb_jack_rock_skill_4","path":"objects/obj_kf_zrb_jack_rock_skill_4/obj_kf_zrb_jack_rock_skill_4.yy",},
+  ],
+}

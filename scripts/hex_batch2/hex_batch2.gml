@@ -692,31 +692,24 @@ function hex_batch2_tick() {
     if (current_time - _s.b2_tick_ms >= 1000) {
         _s.b2_tick_ms = current_time;
 
-        // 山脉龙魂：生命上限随时间叠加
+        // 山脉龙魂：生命上限随时间叠加。
+        // 这里**只加层数 + 打脏标记**，真正的 max_hp 由 obj_mod_battle_manager 的
+        // 「纯上限」统一算（它已经乘了 b2_hp_stack）。以前这里自己算一遍 max_hp，
+        // 公式和那边不一致，每秒都会把词条 / 放置时给的生命加成抹回基准值。
         if (_s.b2_hp_stack > 0) {
             var _step = _s.b2_hp_stack;
             var _cap  = _s.b2_hp_stack_cap;
+            var _stacked = false;
             with (obj_card_parent) {
                 if (self.plant_id != "player") {
                     if (!variable_instance_exists(self.id, "b2_hp_stack")) self.b2_hp_stack = 0;
                     if (self.b2_hp_stack < _cap) {
                         self.b2_hp_stack = min(_cap, self.b2_hp_stack + _step);
-                        var _base = self.max_hp;
-                        if (variable_instance_exists(self.id, "base_max_hp")) _base = self.base_max_hp;
-                        // 公式必须与 obj_mod_battle_manager 的「纯上限」完全一致，
-                        // 否则这边每秒把 max_hp 设回不含取长补短 / 固定生命的旧值，血条会抖一下
-                        var _nm = _base * hex_hp_mult_for_card(self.plant_id) * (1 + self.b2_hp_stack);
-                        var _fx = hex_batch2_id_hp_fix(self.plant_id);
-                        if (_fx > 0) _nm = _fx;
-                        if (hex_batch2_equalize_on()) _nm = max(self.atk, _nm);
-                        var _old_max = self.max_hp;
-                        self.max_hp = _nm;
-                        if (_old_max > 0 && self.max_hp != _old_max && self.hp > 0)
-                            self.hp = min(self.max_hp, self.hp * (self.max_hp / _old_max));
-                        if (self.hp > self.max_hp) self.hp = self.max_hp;
+                        _stacked = true;
                     }
                 }
             }
+            if (_stacked && variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
         }
 
         // 达摩克里斯之剑：每秒概率强化一只老鼠
@@ -1103,7 +1096,7 @@ function hex_register_batch2() {
     });
     hex_register("hex_173", {
         tier: 2, form: "A", name: "取长补短",
-        card_desc: "美食的攻击与生命，取两者中较高的那个",
+        card_desc: "美食的攻击与生命，取两者中较高的那个（增幅类卡不参与）",
         enemy_desc: "无",
         stack: 1, impl: true,
         ex: { b2_equalize: true }, en: {}

@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"nonmain",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/nonmain.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"nonmain",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_nonmain","path":"sprites/spr_kf_zr_nonmain/spr_kf_zr_nonmain.yy",},
+    {"name":"spr_kf_zr_nonmain_dance1","path":"sprites/spr_kf_zr_nonmain_dance1/spr_kf_zr_nonmain_dance1.yy",},
+    {"name":"spr_kf_zr_nonmain_dance2","path":"sprites/spr_kf_zr_nonmain_dance2/spr_kf_zr_nonmain_dance2.yy",},
+    {"name":"spr_kf_zr_nonmain_dance3","path":"sprites/spr_kf_zr_nonmain_dance3/spr_kf_zr_nonmain_dance3.yy",},
+  ],
+}

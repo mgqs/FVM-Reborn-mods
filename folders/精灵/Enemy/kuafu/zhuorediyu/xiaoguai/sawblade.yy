@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"sawblade",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/sawblade.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sawblade",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_sawblade","path":"sprites/spr_kf_zr_sawblade/spr_kf_zr_sawblade.yy",},
+    {"name":"spr_kf_zr_sawblade_dig","path":"sprites/spr_kf_zr_sawblade_dig/spr_kf_zr_sawblade_dig.yy",},
+    {"name":"spr_kf_zr_sawblade_appear","path":"sprites/spr_kf_zr_sawblade_appear/spr_kf_zr_sawblade_appear.yy",},
+    {"name":"spr_kf_zr_sawblade_stun","path":"sprites/spr_kf_zr_sawblade_stun/spr_kf_zr_sawblade_stun.yy",},
+  ],
+}

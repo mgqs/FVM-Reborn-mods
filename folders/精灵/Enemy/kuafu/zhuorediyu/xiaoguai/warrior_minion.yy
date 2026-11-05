@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"warrior_minion",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/warrior_minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"warrior_minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_warrior_minion","path":"sprites/spr_kf_zr_warrior_minion/spr_kf_zr_warrior_minion.yy",},
+    {"name":"spr_kf_zr_warrior_minion_summon","path":"sprites/spr_kf_zr_warrior_minion_summon/spr_kf_zr_warrior_minion_summon.yy",},
+  ],
+}

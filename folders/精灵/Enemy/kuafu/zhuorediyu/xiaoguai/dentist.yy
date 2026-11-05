@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"dentist",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/dentist.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dentist",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_dentist","path":"sprites/spr_kf_zr_dentist/spr_kf_zr_dentist.yy",},
+    {"name":"spr_kf_zr_dentist_dig","path":"sprites/spr_kf_zr_dentist_dig/spr_kf_zr_dentist_dig.yy",},
+    {"name":"spr_kf_zr_dentist_appear","path":"sprites/spr_kf_zr_dentist_appear/spr_kf_zr_dentist_appear.yy",},
+    {"name":"spr_kf_zr_dentist_stun","path":"sprites/spr_kf_zr_dentist_stun/spr_kf_zr_dentist_stun.yy",},
+  ],
+}

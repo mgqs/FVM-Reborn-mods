@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"flower",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/flower.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flower",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_flower","path":"objects/obj_kf_zr_flower/obj_kf_zr_flower.yy",},
+  ],
+}

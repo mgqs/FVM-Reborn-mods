@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"mole",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/mole.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mole",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_mole","path":"sprites/spr_kf_zr_mole/spr_kf_zr_mole.yy",},
+    {"name":"spr_kf_zr_mole_dig","path":"sprites/spr_kf_zr_mole_dig/spr_kf_zr_mole_dig.yy",},
+    {"name":"spr_kf_zr_mole_appear","path":"sprites/spr_kf_zr_mole_appear/spr_kf_zr_mole_appear.yy",},
+    {"name":"spr_kf_zr_mole_stun","path":"sprites/spr_kf_zr_mole_stun/spr_kf_zr_mole_stun.yy",},
+  ],
+}

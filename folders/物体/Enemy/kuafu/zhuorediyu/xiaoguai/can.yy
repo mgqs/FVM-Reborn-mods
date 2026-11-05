@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"can",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/can.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"can",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_can","path":"objects/obj_kf_zr_can/obj_kf_zr_can.yy",},
+  ],
+}

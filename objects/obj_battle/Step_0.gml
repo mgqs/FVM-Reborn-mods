@@ -1,8 +1,9 @@
 // ══════════ 海克斯：每关只在开局给一次抽取（重复通关的关卡不给）══════════
 // 非海克斯模式下整块跳过；hex_battle_init 负责"这是一局新的还是序列续关"的判定
-// 测试关卡（test_level）整套关闭：不抽卡、不建 HUD、倍率回 1.0
-// 海克斯周期效果：回血 / 火海 / 灶神附体。非海克斯模式与测试关卡一律不进
-if (hex_enabled() && !hex_level_excluded()) hex_periodic_run();
+// 海克斯周期效果：回血 / 火海 / 灶神附体 / 各批 tick。
+// 测试关卡也要跑 —— 自选词条里有一半是「每 N 秒」类的，不跑就等于选了没反应
+// 但自选面板展开时对局是冻结的，周期效果也不能继续走（否则「暂停」里还在烧老鼠）
+if (hex_enabled() && !hex_picker_is_open()) hex_periodic_run();
 
 if (hex_enabled() && hex_level_excluded())
 {
@@ -10,6 +11,17 @@ if (hex_enabled() && hex_level_excluded())
     {
         hex_excluded_inited = true;
         hex_test_cleanup();
+        // 测试关专用：全库自选面板（不写存档、不占 16 条上限、压迫指数不计入）
+        // 默认是「收起」的小条，对局中按 F5 展开 —— 一进来就全屏盖住没法先摆卡
+        if (!instance_exists(obj_hex_test_picker))
+        {
+            instance_create_depth(0, 0, -11000, obj_hex_test_picker);
+        }
+    }
+    else if (keyboard_check_pressed(vk_f5) && !instance_exists(obj_hex_test_picker))
+    {
+        // 万一面板被外部清掉了，F5 能再叫出来（只在这一个分支里，正式关没有）
+        instance_create_depth(0, 0, -11000, obj_hex_test_picker);
     }
 }
 else if (hex_enabled())
@@ -20,13 +32,23 @@ else if (hex_enabled())
         hex_battle_init();
         hex_last_wave = current_wave;
         hex_on_wave_start();
+        // Hana 的四卦 / 不公的契约是「开局必选」，跟「本关是不是首抽」无关：
+        // 只按 hex_taken_count()==0 开放面板的话，这两条词条在第 2 关以后拿到，
+        // 面板永远弹不出来 —— 玩家就看不到选 buff 的界面（只能吃 30 秒兜底随机）。
+        var _special_need = false;
+        if (variable_global_exists("hex_state") && is_struct(global.hex_state)) {
+            var _hs = global.hex_state;
+            if (variable_struct_exists(_hs, "b3_hana_pending") && _hs.b3_hana_pending)     _special_need = true;
+            if (variable_struct_exists(_hs, "b3_contract_pending") && _hs.b3_contract_pending) _special_need = true;
+        }
         // 同一关卡只有一次抽取机会：之前通关过的关卡重玩不再弹面板
-        if (hex_taken_count() == 0 && !global.hex_pick_open
-            && !hex_level_repeat() && !instance_exists(obj_hex_panel))
+        if (!instance_exists(obj_hex_panel)
+            && (_special_need || (hex_taken_count() == 0 && !hex_level_repeat())))
         {
             instance_create_depth(0, 0, -9000, obj_hex_panel);
         }
-        else if (!instance_exists(obj_hex_panel))
+        // 必选题的面板不能算「首抽已处理」——它必须真的弹出来让玩家选
+        if (!instance_exists(obj_hex_panel) && !_special_need)
         {
             // 本关没有开局抽取（重复通关的关卡 / 序列续关已有词条）：
             // 必须补上"首抽已处理"，否则 hex_place_locked() 会锁住整局的放置
@@ -49,7 +71,7 @@ if (global.level_id == "test_level")
     }
 
     // F2 打开情报岛敌人页。
-    if (!instance_exists(obj_info_island_bg) && keyboard_check_pressed(vk_f2))
+    if (!instance_exists(obj_info_island_bg) && !hex_picker_is_open() && keyboard_check_pressed(vk_f2))
     {
         var test_info = instance_create_depth(1380, room_height / 2, -4000, obj_info_island_bg);
         test_info.depth = -10000;
@@ -68,7 +90,7 @@ if (global.level_id == "test_level")
     }
 
     // F4 打开情报岛敌人页（放置"原版敌人本体"：真实血量/技能/会自己行动，用于测梯子等）。
-    if (!instance_exists(obj_info_island_bg) && keyboard_check_pressed(vk_f4))
+    if (!instance_exists(obj_info_island_bg) && !hex_picker_is_open() && keyboard_check_pressed(vk_f4))
     {
         var f4_info = instance_create_depth(1380, room_height / 2, -4000, obj_info_island_bg);
         f4_info.depth = -10000;
@@ -96,7 +118,8 @@ if (global.level_id == "test_level")
     // 选中情报岛敌人后，点击场上格子生成。
     var test_player = instance_find(obj_player_character, 0);
     if (test_player != noone && test_player.is_placed
-        && !instance_exists(obj_info_island_bg) && global.test_mouse_picker_id != ""
+        && !instance_exists(obj_info_island_bg) && !hex_picker_is_open()
+        && global.test_mouse_picker_id != ""
         && !global.test_mouse_picker_block_place
         && mouse_check_button_pressed(mb_left))
     {

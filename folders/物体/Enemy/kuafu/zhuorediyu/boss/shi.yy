@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"shi",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/boss/shi.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"shi",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zrb_shi","path":"objects/obj_kf_zrb_shi/obj_kf_zrb_shi.yy",},
+    {"name":"obj_kf_zrb_shi_mace","path":"objects/obj_kf_zrb_shi_mace/obj_kf_zrb_shi_mace.yy",},
+    {"name":"obj_kf_zrb_shi_poop","path":"objects/obj_kf_zrb_shi_poop/obj_kf_zrb_shi_poop.yy",},
+    {"name":"obj_kf_zrb_shi_ignis","path":"objects/obj_kf_zrb_shi_ignis/obj_kf_zrb_shi_ignis.yy",},
+  ],
+}

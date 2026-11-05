@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"penguin",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/penguin.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"penguin",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_penguin","path":"objects/obj_kf_zr_penguin/obj_kf_zr_penguin.yy",},
+  ],
+}

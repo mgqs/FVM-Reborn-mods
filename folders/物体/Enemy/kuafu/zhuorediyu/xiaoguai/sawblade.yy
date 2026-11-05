@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"sawblade",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/sawblade.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"sawblade",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_sawblade","path":"objects/obj_kf_zr_sawblade/obj_kf_zr_sawblade.yy",},
+  ],
+}

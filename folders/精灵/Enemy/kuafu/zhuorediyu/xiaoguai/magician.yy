@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"magician",
+  "folderPath":"folders/精灵/Enemy/kuafu/zhuorediyu/xiaoguai/magician.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"magician",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_zr_magician","path":"sprites/spr_kf_zr_magician/spr_kf_zr_magician.yy",},
+  ],
+}

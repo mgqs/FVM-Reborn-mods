@@ -18,4 +18,5 @@ function mod_boss_init()
         hp: 12000,
         icon: spr_infected_bingzha_icon
     });
+    zhuore_boss_init();
 }

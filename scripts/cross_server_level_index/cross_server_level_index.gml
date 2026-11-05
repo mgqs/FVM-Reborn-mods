@@ -1,9 +1,9 @@
 /// 跨服章节关卡 id → 关卡序号（0 起）；非跨服关卡返回 -1
-/// 约定：ancient_castle_N / nightmare_sky_N 都属于跨服章节，奖励走 cross_server_reward()。
+/// 约定：ancient_castle_N / nightmare_sky_N / zhuore_N 都属于跨服章节，奖励走 cross_server_reward()。
 /// 项目里原本有 9 处写死 string_pos("ancient_castle_", id) == 1，新增跨服章节一律走这里，
 /// 不要再复制前缀判断（否则奖励会落到普通关分支去读 rewards[].gold 而报错）。
 function cross_server_level_index(_id){
-    var _prefixes = ["ancient_castle_", "nightmare_sky_"];
+    var _prefixes = ["ancient_castle_", "nightmare_sky_", "zhuore_"];
     var _n = array_length(_prefixes);
     for (var i = 0; i < _n; i++){
         var _p = _prefixes[i];
@@ -29,10 +29,26 @@ function is_cross_server_level(_id){
 ///   古堡 ancient_castle_N —— 项目原有硬编码档位，本次不动
 ///   天空 nightmare_sky_N  —— 用户 2026-11-04 的表「天空8~天空15」（按星级门槛排，正好是关卡 0~7）
 ///                           注：该表只有银/金两档，金币沿用古堡同档，待补
+///   灼热地域 zhuore_N     —— 用户 2026-11-05 的两张表「首通 / 重复」，
+///                           下标 0~7 对应 8 星炼狱之始 ~ 15 星炼狱之末；
+///                           该表同样只有银/金，金币沿用古堡同档
 function cross_server_reward(_id, _is_first){
     var _i = cross_server_level_index(_id);
     if (_i < 0) return undefined;
     var _k = min(_i, 7);
+
+    if (string_pos("zhuore_", _id) == 1){
+        if (_is_first){
+            var _s5 = [490, 670, 820, 915, 980, 945, 735, 525];
+            var _g5 = [126, 198, 253, 331, 392, 553, 889, 1225];
+            var _c5 = [60000, 84000, 104000, 129000, 140000, 160000, 190000, 220000];
+            return { silver: _s5[_k], gold_medal: _g5[_k], coins: _c5[_k] };
+        }
+        var _s6 = [147, 201, 245, 275, 293, 283, 221, 157];
+        var _g6 = [37, 59, 75, 99, 117, 165, 267, 367];
+        var _c6 = [30000, 42000, 52000, 64500, 70000, 80000, 95000, 110000];
+        return { silver: _s6[_k], gold_medal: _g6[_k], coins: _c6[_k] };
+    }
 
     if (string_pos("nightmare_sky_", _id) == 1){
         if (_is_first){

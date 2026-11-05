@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"mole",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/mole.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"mole",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_mole","path":"objects/obj_kf_zr_mole/obj_kf_zr_mole.yy",},
+  ],
+}

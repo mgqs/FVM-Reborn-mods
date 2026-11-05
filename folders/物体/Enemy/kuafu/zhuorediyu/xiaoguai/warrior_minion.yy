@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"warrior_minion",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/warrior_minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"warrior_minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_warrior_minion","path":"objects/obj_kf_zr_warrior_minion/obj_kf_zr_warrior_minion.yy",},
+  ],
+}

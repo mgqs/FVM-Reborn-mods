@@ -175,16 +175,28 @@ if instance_exists(banding_water_obj) && global.grid_terrains[water_define_pos_x
 if is_frozen{
 	exit
 }
+// 海克斯「疑神疑鬼」：攻击类美食在场上没有鼠军时也不停火（照常播攻击动画、照常放空弹）
+if (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
+    && hex_b3_attack_major(plant_id) && instance_number(obj_enemy_parent) <= 0) {
+    state = CARD_STATE.ATTACK;
+}
 // 动画计时器
 var current_flash_speed = flash_speed
 if is_slowdown{
 	current_flash_speed *= 2
 }
-if is_slowdown {
-    cycle = origin_cycle * 2;    
-}
-else{
-	cycle = origin_cycle
+// 减速：只在这一帧「状态发生变化」时改 cycle。
+// 原来这里每帧无条件 cycle = origin_cycle，会把 obj_mod_battle_manager
+// 和词条算好的攻速整个覆盖掉（「派送箱」这类攻速词条因此全部不生效）。
+if (!variable_instance_exists(id, "b3_slow_prev")) b3_slow_prev = is_slowdown;
+if (is_slowdown != b3_slow_prev) {
+    b3_slow_prev = is_slowdown;
+    if (is_slowdown) {
+        cycle = (variable_instance_exists(id, "base_cycle") ? base_cycle : origin_cycle) * 2;
+    } else if (variable_global_exists("buff_apply_id")) {
+        // 解除减速：让管理器按「基准 × 词条倍率」重算一遍，别在这里硬写 origin_cycle
+        global.buff_apply_id += 1;
+    }
 }
 if timer < current_flash_speed - 1 {
     timer++;

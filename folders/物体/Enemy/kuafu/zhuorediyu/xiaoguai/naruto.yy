@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"naruto",
+  "folderPath":"folders/物体/Enemy/kuafu/zhuorediyu/xiaoguai/naruto.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"naruto",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_zr_naruto","path":"objects/obj_kf_zr_naruto/obj_kf_zr_naruto.yy",},
+  ],
+}

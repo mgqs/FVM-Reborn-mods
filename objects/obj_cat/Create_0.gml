@@ -27,7 +27,12 @@ ignore_list = ["mario_mouse","mario_pipeline","arno","pharaoh_coffin","temple_ph
 				"honglonglong","infected_zhanshen","infected_pharaoh","longyuan_dijing",
 				"ly_diting","ly_youshen","travel_record","beverage_machine","face_cookie",
 				"kuafu_boss_buzz","kuafu_boss_julie","kuafu_boss_pete","kuafu_boss_baron","kuafu_boss_xiaoming",
-				"kuafu_boss_pete_claw","kuafu_boss_pete_spike","kuafu_boss_xiaoming_card"
+				"kuafu_boss_pete_claw","kuafu_boss_pete_spike","kuafu_boss_xiaoming_card",
+				// 跨服·灼热地域 变异僵尸 BOSS：与其它 BOSS 同口径，不吃第 0 列猫的唤醒与冲撞秒杀；
+				// 紧随其后的 4 个是技能产物，原版同名附属物（captain_rainbow / messenger_mace /
+				// messenger_poop / hot_vajra_spike）本来就在豁免表里，这里保持一致（2026-11-05）
+				"kf_zrb_mary","kf_zrb_shi","kf_zrb_jack","kf_zrb_vajra","kf_zrb_cap",
+				"kf_zrb_cap_rainbow","kf_zrb_shi_mace","kf_zrb_shi_poop","kf_zrb_vajra_spike"
 ]
 
 target_ignore = ["mole","bat_mouse","sawblade_mouse","dentist_mouse","baron_bats","paratrooper_mouse_shield","kamikaze_glider_mouse",

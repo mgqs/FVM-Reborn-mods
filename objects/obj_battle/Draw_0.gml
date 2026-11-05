@@ -29,6 +29,7 @@ if global.level_id == "test_level"{
 	draw_set_color(c_white)
 	draw_text(0, 175, "F2：打开测试老鼠选择");
 	draw_text(0, 200, "F4：打开原本老鼠选择");
+	draw_text(0, 225, "F5：海克斯自选测试");
 }
 
 
@@ -36,6 +37,6 @@ if (global.level_id == "test_level" && global.test_mouse_picker_id != "")
 {
     draw_set_color(c_yellow);
     draw_set_font(font_yuan);
-    draw_text(0, 225, "已选择测试老鼠：点击场上格子创建");
+    draw_text(0, 250, "已选择测试老鼠：点击场上格子创建");
     draw_set_color(c_white);
 }
