@@ -9,13 +9,13 @@
 
 /// @func info_island_search_spawn(px, py, depth)
 /// @desc 在 (px,py) 建搜索框并绑到调用方（用 `with (bg)` 回写宿主的过滤词）
-///   位置口径（2026-10-31 定）：面板左上 (130,118)、250×40 —— 左边对齐列表第 1 列格子的左沿，
+///   位置口径（2026-10-31 定，2026-11-05 宽度改 384）：面板左上 (130,118)、384×40 —— 左边对齐列表第 1 列格子的左沿，
 ///   宽度只占两列；调用方传的就是这两个数，改位置只改调用处一处
 function info_island_search_spawn(_px, _py, _depth){
     var _sb = instance_create_depth(_px, _py, _depth, SearchBox);
     _sb.set_position(_px, _py)
-       .set_size(250, 40)
-       .set_placeholder("搜索名称或分类(搜分类需先输入[或])")
+       .set_size(384, 40)      // 宽 384 = 正好卡到列表第 3 格左沿（130 + 384 = 514），不会压卡片
+       .set_placeholder("搜索名称或分类（[分类]）")
        .set_theme({
             bg:           make_colour_rgb(3, 43, 80),
             bg_focus:     make_colour_rgb(8, 62, 112),
