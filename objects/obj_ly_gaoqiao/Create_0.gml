@@ -28,7 +28,7 @@ ly_retreat_cooldown = 0;     // 后撤结束后的冷却，避免贴着长线段
 ly_air_speed_bonus = true;
 
 // 高架物：前方 2 格内遇到这些高架卡片（或连通的米线桥）时先后退（保留既有专属逻辑）
-ly_high_obstacle_ids = ["mixian", "chocolate_bread", "pineapple_explosive_bread", "lightning_baguette"];
+ly_high_obstacle_ids = ["mixian", "chocolate_bread", "pineapple_explosive_bread","mianbao", "lightning_baguette"];
 
 // 自己的 SWF 动作帧区间（独立精灵文件：move / attack / dance1-3 / dead）
 ly_anims = longyuan_animation_table("gaoqiao");

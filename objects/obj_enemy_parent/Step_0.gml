@@ -291,6 +291,7 @@ switch(state) {
 			if (other.mouse_id == "longyuan_gaoqiao"
 				&& plant_id != "chocolate_bread"
 				&& plant_id != "pineapple_explosive_bread"
+				&& plant_id != "mianbao"
 				&& plant_id != "lightning_baguette") continue;
 			var dx = x - other.x;
 			var dy = y - other.y;
@@ -411,6 +412,7 @@ switch(state) {
 			if (other.mouse_id == "longyuan_gaoqiao"
 				&& plant_id != "chocolate_bread"
 				&& plant_id != "pineapple_explosive_bread"
+				&& plant_id != "mianbao"
 				&& plant_id != "lightning_baguette") continue;
 			var dx = x - other.x;
 			var dy = y - other.y;

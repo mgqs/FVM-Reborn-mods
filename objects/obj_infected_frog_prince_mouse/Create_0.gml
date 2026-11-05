@@ -10,4 +10,4 @@ move_speed = 2.25;
 state = UnknownEnum.Value_4;
 immune_to_ash = true;
 arm_dropped = false;
-block_list = ["chocolate_bread", "pineapple_explosive_bread"];
+block_list = ["chocolate_bread", "pineapple_explosive_bread","mianbao"];

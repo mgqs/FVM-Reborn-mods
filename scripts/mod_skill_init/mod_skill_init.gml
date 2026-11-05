@@ -130,4 +130,6 @@ function mod_skill_init()
     register_card_skill("nengliangmiao", "cooldown", [480, 450, 420,390, 360, 330, 300, 270, 240]);
     register_card_skill("maiya", "cooldown", [420, 390, 360, 330, 300, 270, 240, 210, 180]);
     register_card_skill("guihuajiu", "cooldown", [3000, 2880, 2700, 2520, 2280, 2040, 1800, 1500, 1200]);
+    register_card_skill("mianbao", "cooldown", [3000, 2880, 2700, 2520, 2280, 2040, 1800, 1500, 1200]);
+    register_card_skill("xuanzhuan_ronghe", "cooldown", [1500, 1410, 1320, 1230, 1110, 990, 870, 720, 570]);
 }

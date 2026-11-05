@@ -17,6 +17,7 @@
     {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",},
   ],
   "listItems":[
+    {"name":"obj_mianbao","path":"objects/obj_mianbao/obj_mianbao.yy",},
     {"name":"obj_pufferfish","path":"objects/obj_pufferfish/obj_pufferfish.yy",},
     {"name":"obj_yeziguo","path":"objects/obj_yeziguo/obj_yeziguo.yy",},
     {"name":"obj_zhanqima","path":"objects/obj_zhanqima/obj_zhanqima.yy",},{"name":"obj_12yinliao","path":"objects/obj_12yinliao/obj_12yinliao.yy",},
@@ -106,5 +107,6 @@
     {"name":"obj_guihuajiu","path":"objects/obj_guihuajiu/obj_guihuajiu.yy",},
     {"name":"obj_eightcake","path":"objects/obj_eightcake/obj_eightcake.yy",},
     {"name":"obj_tangchaolizi","path":"objects/obj_tangchaolizi/obj_tangchaolizi.yy",},
+    {"name":"obj_xuanzhuan_ronghe","path":"objects/obj_xuanzhuan_ronghe/obj_xuanzhuan_ronghe.yy",},
   ],
 }

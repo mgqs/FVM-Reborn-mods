@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_mianbao_bullet","path":"objects/obj_mianbao_bullet/obj_mianbao_bullet.yy",},
     {"name":"obj_aladdin_lamp_bullet","path":"objects/obj_aladdin_lamp_bullet/obj_aladdin_lamp_bullet.yy",},
     {"name":"obj_athena_bullet","path":"objects/obj_athena_bullet/obj_athena_bullet.yy",},
     {"name":"obj_cold_drew_bullet","path":"objects/obj_cold_drew_bullet/obj_cold_drew_bullet.yy",},

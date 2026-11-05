@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_mianbao_boom","path":"objects/obj_mianbao_boom/obj_mianbao_boom.yy",},
+    {"name":"obj_mianbao_burn_fx","path":"objects/obj_mianbao_burn_fx/obj_mianbao_burn_fx.yy",},
     {"name":"obj_12yinliao_effect","path":"objects/obj_12yinliao_effect/obj_12yinliao_effect.yy",},
     {"name":"obj_aurora_dead_explode","path":"objects/obj_aurora_dead_explode/obj_aurora_dead_explode.yy",},
     {"name":"obj_baiyang_effect","path":"objects/obj_baiyang_effect/obj_baiyang_effect.yy",},

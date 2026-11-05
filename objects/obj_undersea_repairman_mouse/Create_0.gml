@@ -12,4 +12,4 @@ placed = false
 armor_dropped = false
 immune_to_ash = true
 
-can_place_list = ["toast_bread","chocolate_bread","melon_shield","pineapple_explosive_bread"]
+can_place_list = ["toast_bread","chocolate_bread","melon_shield","pineapple_explosive_bread","mianbao"]

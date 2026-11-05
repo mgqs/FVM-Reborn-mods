@@ -3118,4 +3118,12 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_guihuajiu, cost: 125, cooldown: 3000, description: "桂花酒：阻挡老鼠，被咬破时炸伤周围老鼠并留下燃烧的酒精", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu },
     { shape: 1, sprite: spr_guihuajiu_1, cost: 125, cooldown: 3000, description: "陈年桂花酒：阻挡老鼠，爆炸与燃烧范围扩大，伤害提高", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_1 },
     { shape: 2, sprite: spr_guihuajiu_2, cost: 125, cooldown: 3000, description: "仙酿桂花酒：阻挡老鼠，爆炸使范围内老鼠醉酒，受到的伤害提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_guihuajiu_2 }]);
+    register_card("mianbao", obj_mianbao, [
+    { shape: 0, sprite: spr_mianbao, cost: 150, cooldown: 3000, description: "火炉菠萝面包：阻挡老鼠，被啃咬时产出火苗，死亡时产生5*5范围灰烬爆炸", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao },
+    { shape: 1, sprite: spr_mianbao_1, cost: 150, cooldown: 3000, description: "火龙果菠萝包：阻挡老鼠，每4.5秒在周围5*5范围燃起火焰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_1 },
+    { shape: 2, sprite: spr_mianbao_2, cost: 150, cooldown: 3000, description: "机枪菠萝面包：阻挡老鼠，每1.5秒向前发射4发子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_mianbao_2 }]);
+    register_card("xuanzhuan_ronghe", obj_xuanzhuan_ronghe, [
+    { shape: 0, sprite: spr_xuanzhuan_ronghe, cost: 150, cooldown: 3000, description: "红温旋转咖啡壶：向四周5*5范围喷出攻击气体", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe },
+    { shape: 1, sprite: spr_xuanzhuan_ronghe_1, cost: 150, cooldown: 3000, description: "果味旋转咖啡壶：向四周5*5范围喷出攻击气体，附带减速与碎冰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_1 },
+    { shape: 2, sprite: spr_xuanzhuan_ronghe_2, cost: 150, cooldown: 3000, description: "觉醒旋转咖啡壶：向四周5*7范围喷出攻击气体，附带减速与碎冰", plant_type: "normal", feature_type: "normal", target_card: "none", is_fusion: 1, place_preview: spr_xuanzhuan_ronghe_2 }]);
 }
