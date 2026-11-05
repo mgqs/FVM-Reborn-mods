@@ -15,7 +15,7 @@ function info_island_search_spawn(_px, _py, _depth){
     var _sb = instance_create_depth(_px, _py, _depth, SearchBox);
     _sb.set_position(_px, _py)
        .set_size(250, 40)
-       .set_placeholder("搜索名称")
+       .set_placeholder("搜索名称或分类(搜分类需先输入[或])")
        .set_theme({
             bg:           make_colour_rgb(3, 43, 80),
             bg_focus:     make_colour_rgb(8, 62, 112),
@@ -99,27 +99,41 @@ function info_island_search_alias_table(){
 /// @desc 过滤词 → 「词组」数组：**组内是「或」、组之间是「且」**
 ///   分组（且）：空格 / 全角空格 / Tab
 ///   组内或：`,`  `，`  `|`  `或`
-///   方括号 `[ ]` `【 】` 只是标记，可有可无（当分隔符处理，打了也不影响）
-///   例：`[喷壶类]` = 单组；`[喷壶类,防御类]`、`喷壶类或防御类`、`喷壶类，防御类` 都是「喷壶类 或 防御类」
-///       `喷壶 防御` = 两个组 = 同时满足
+///   每个替代词是一个 [关键词(小写), 是否分类检索] 的小数组：
+///     - 词里出现过 `[ ]` `【 】` → **分类检索**（查大类 / 小分类 / 子分类 + 别名表）
+///     - 没出现过括号 → **只查卡名**（含各转职形态名；拼音索引以后接在同一处）
+///   例：`[喷壶类]`、`[喷壶类,防御类]`、`【面包】` 走分类；`喷壶` 只按名字找
+///   2026-11-05 用户口径：分类必须打括号，和普通名字搜索区分开 —— 否则「面包」这种
+///   既是卡名一部分、又是分类名的词会一起命中，容易看错结果
 ///   在过滤循环**外**调一次，循环里别反复切
 function info_island_search_words(_q){
     var _groups = [];
     var _alts = [];
     var _cur = "";
+    var _cur_cat = false;
+    var _in_bracket = false;
     var _n = string_length(_q);
 
     for (var _i = 1; _i <= _n; _i++){
         var _ch = string_char_at(_q, _i);
+
+        // 括号只是「这段是分类检索」的标记，本身不进关键词
+        if (_ch == "[" || _ch == "【"){ _in_bracket = true; continue; }
+        if (_ch == "]" || _ch == "】"){ _in_bracket = false; continue; }
+
         var _is_group_sep = (_ch == " " || _ch == "　" || _ch == "\t");
-        var _is_alt_sep   = (_ch == "," || _ch == "，" || _ch == "|" || _ch == "或"
-                             || _ch == "[" || _ch == "]" || _ch == "【" || _ch == "】");
+        var _is_alt_sep   = (_ch == "," || _ch == "，" || _ch == "|" || _ch == "或");
 
         if (_is_group_sep || _is_alt_sep){
             if (_cur != ""){
                 var _kw = string_lower(_cur);
-                if (array_get_index(_alts, _kw) == -1) array_push(_alts, _kw);
+                var _dup = false;
+                for (var _d = 0; _d < array_length(_alts); _d++){
+                    if (_alts[_d][0] == _kw) _dup = true;
+                }
+                if (!_dup) array_push(_alts, [_kw, _cur_cat]);
                 _cur = "";
+                _cur_cat = false;
             }
             if (_is_group_sep && array_length(_alts) > 0){
                 array_push(_groups, _alts);
@@ -127,12 +141,17 @@ function info_island_search_words(_q){
             }
         }
         else{
+            if (_cur == "") _cur_cat = _in_bracket;   // 词的属性由「起始位置在不在括号内」决定
             _cur += _ch;
         }
     }
     if (_cur != ""){
         var _kw2 = string_lower(_cur);
-        if (array_get_index(_alts, _kw2) == -1) array_push(_alts, _kw2);
+        var _dup2 = false;
+        for (var _d2 = 0; _d2 < array_length(_alts); _d2++){
+            if (_alts[_d2][0] == _kw2) _dup2 = true;
+        }
+        if (!_dup2) array_push(_alts, [_kw2, _cur_cat]);
     }
     if (array_length(_alts) > 0) array_push(_groups, _alts);
 
@@ -142,10 +161,10 @@ function info_island_search_words(_q){
 /// @func info_island_search_match_card(groups, card_id)
 /// @desc 卡片页签的过滤判定
 ///   **每个词组至少命中一个替代词**（组间「且」、组内「或」）；全部命中才留下这张卡
-///   命中来源：① **任意形态的名字**（转职后的名字也能搜到，例：麻辣香锅 → 酱香鱿鱼锅）
-///             ② 大类 / 小分类 / 子分类
-///             ③ 别名表（info_island_search_alias_table）
-///   _groups 由 info_island_search_words() 生成（已小写）；空数组 = 全部通过
+///   命中来源按词的类型分：
+///     - 分类词（带括号）：大类 / 小分类 / 子分类 + 别名表（[喷壶] → 喷壶类）
+///     - 普通词：**只看卡名**，且任意形态名都能命中（麻辣香锅 → 酱香鱿鱼锅 也能搜到）
+///   拼音（全拼 / 首字母）以后在「普通词」那一支里接索引，接口不变
 function info_island_search_match_card(_groups, _cid){
     if (array_length(_groups) == 0) return true;
 
@@ -159,14 +178,13 @@ function info_island_search_match_card(_groups, _cid){
     }
     if (array_length(_names) == 0) array_push(_names, string_lower(string(_cid)));
 
-    // ② 分类
+    // ② 分类（只有分类词才用；普通词不查分类）
     var _cat = [];
     var _c = card_get_category(_cid);
     if (_c != undefined){
         array_push(_cat, string_lower(_c.major), string_lower(_c.minor), string_lower(_c.sub));
     }
 
-    // ③ 别名表按需取（没出现过分类/名字没命中的词就不付成本）
     var _alias = [];
     var _alias_ready = false;
 
@@ -175,37 +193,41 @@ function info_island_search_match_card(_groups, _cid){
         var _group_hit = false;
 
         for (var _a = 0; _a < array_length(_alts); _a++){
-            var _kw = _alts[_a];
+            var _kw = _alts[_a][0];
+            var _is_cat = _alts[_a][1];
 
-            // 形态名（含转职名）
-            for (var _ni = 0; _ni < array_length(_names); _ni++){
-                if (_names[_ni] != "" && string_pos(_kw, _names[_ni]) > 0){ _group_hit = true; break; }
-            }
-            if (_group_hit) break;
-
-            // 分类
-            for (var _ci = 0; _ci < array_length(_cat); _ci++){
-                if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _group_hit = true; break; }
-            }
-            if (_group_hit) break;
-
-            // 别名 → 分类
-            if (!_alias_ready){
-                _alias = info_island_search_alias_table();
-                _alias_ready = true;
-            }
-            for (var _ai = 0; _ai < array_length(_alias); _ai++){
-                if (_alias[_ai][0] != _kw) continue;
-                var _targets = _alias[_ai][1];
-                for (var _t = 0; _t < array_length(_targets); _t++){
-                    var _tg = string_lower(_targets[_t]);
-                    for (var _cj = 0; _cj < array_length(_cat); _cj++){
-                        if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _group_hit = true; break; }
-                    }
-                    if (_group_hit) break;
+            if (_is_cat){
+                // ── 分类词：分类名子串匹配 ──
+                for (var _ci = 0; _ci < array_length(_cat); _ci++){
+                    if (_cat[_ci] != "" && string_pos(_kw, _cat[_ci]) > 0){ _group_hit = true; break; }
                 }
-                break;
+                if (_group_hit) break;
+
+                // ── 分类词：别名（喷壶 / 面包 / 投手 …）→ 分类 ──
+                if (!_alias_ready){
+                    _alias = info_island_search_alias_table();
+                    _alias_ready = true;
+                }
+                for (var _ai = 0; _ai < array_length(_alias); _ai++){
+                    if (_alias[_ai][0] != _kw) continue;
+                    var _targets = _alias[_ai][1];
+                    for (var _t = 0; _t < array_length(_targets); _t++){
+                        var _tg = string_lower(_targets[_t]);
+                        for (var _cj = 0; _cj < array_length(_cat); _cj++){
+                            if (_cat[_cj] != "" && string_pos(_tg, _cat[_cj]) > 0){ _group_hit = true; break; }
+                        }
+                        if (_group_hit) break;
+                    }
+                    break;
+                }
             }
+            else{
+                // ── 普通词：只查卡名（任一形态名命中即可）──
+                for (var _ni = 0; _ni < array_length(_names); _ni++){
+                    if (_names[_ni] != "" && string_pos(_kw, _names[_ni]) > 0){ _group_hit = true; break; }
+                }
+            }
+
             if (_group_hit) break;
         }
 

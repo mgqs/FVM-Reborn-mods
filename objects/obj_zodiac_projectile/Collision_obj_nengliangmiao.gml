@@ -1,4 +1,6 @@
-if (ds_list_find_index(brazier_list, other.id) == -1 && burnt == 0 && row == other.grid_row)
+// 2026-11-05：这里原来用 row（星弹从不写 row，恒为 0）→ 只有第 0 行能点燃；
+//   与同目录的火盆 / 火神 / 金牛三处统一改用 center_row（发射时按卡片所在行写入）
+if (ds_list_find_index(brazier_list, other.id) == -1 && burnt == 0 && center_row == other.grid_row)
 {
     burnt += 1;
     damage = round(damage * other.atk / 100);

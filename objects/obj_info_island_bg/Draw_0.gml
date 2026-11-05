@@ -59,6 +59,7 @@ for (var _sr_i = _sr_i0; _sr_i <= _sr_i1; _sr_i++) {
 //   顺序不能换：排序 → 过滤 → 分页/行数，否则页码和滚动会跟结果对不上
 var _q = string_lower(info_search_text);
 // 卡片页签的分类检索（2026-11-03）：空格分词在这里切一次，过滤循环里复用
+//   2026-11-05：**分类必须带括号**（`[喷壶类]` / `[喷壶类,防御类]`），不带括号的词只查卡名，避免「面包」这种词误判
 var _q_words = info_island_search_words(_q);
 info_view = [];
 if (info_button_select == 1) {
