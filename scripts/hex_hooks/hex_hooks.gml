@@ -273,6 +273,8 @@ function hex_flood_pick_row(_feature, _used = undefined, _enforce = true) {
 /// @desc 鼠潮：按 PI 阈值往本波尾部追加精英鼠（复用本波已有的敌人类型）。
 ///       出怪行必须按敌人 feature 与 global.row_feature 匹配，不能纯随机 ——
 ///       否则会出现「陆地鼠站在水路上、水路鼠站在陆地上」的错位。
+/// @return 这批追加精英的**总血量**（不是数量）。调用方需要累加进
+///         obj_battle.current_total_hp，否则快进阈值的分母偏小。
 function hex_spawn_flood(_enemy_list, _used = undefined) {
     if (!hex_enabled()) return 0;
     if (!variable_global_exists("pi_elite_extra")) return 0;
@@ -292,6 +294,7 @@ function hex_spawn_flood(_enemy_list, _used = undefined) {
     var _used_now = is_array(_used) ? _used : array_create(global.grid_rows, false);
 
     var _spawned = 0;
+    var _sum_hp = 0;
     for (var k = 0; k < _n; k++) {
         var _type = _types[irandom(array_length(_types) - 1)];
         var _feature = "land";
@@ -312,9 +315,10 @@ function hex_spawn_flood(_enemy_list, _used = undefined) {
             _e.hp    = _e.maxhp;
         }
         if (variable_instance_exists(_e, "grid_row")) _e.grid_row = _row;
+        _sum_hp += _e.hp;
         _spawned += 1;
     }
-    return _spawned;
+    return _sum_hp;
 }
 
 /// @function hex_on_win()
@@ -400,7 +404,9 @@ function hex_on_card_destroyed(_card) {
             if (hp > 0) {
                 damage_amount = _d;
                 damage_type   = "normal";
-                event_user(10);
+                // Other_10 = 用户事件 0（伤害结算）。原来写的 event_user(10) 指向 Other_20，
+                // 这个对象没有那个事件，等于整段伤害从未执行
+                event_user(0);
             }
         }
     }
@@ -412,7 +418,7 @@ function hex_on_card_destroyed(_card) {
             if (hp > 0 && abs(other.grid_col - _col) <= 1 && abs(other.grid_row - _row) <= 1) {
                 damage_amount = _d2;
                 damage_type   = "normal";
-                event_user(10);
+                event_user(0);
             }
         }
     }
@@ -424,7 +430,7 @@ function hex_on_card_destroyed(_card) {
             if (hp > 0) {
                 damage_amount = _d3;
                 damage_type   = "normal";
-                event_user(10);
+                event_user(0);
             }
         }
     }

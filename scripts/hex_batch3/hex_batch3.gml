@@ -31,7 +31,8 @@ function hex_b3_ensure() {
     _s.b3_first_free      = false;  // 直面恐惧：每张卡首次放置免费
     _s.b3_slot_cd         = 1.0;    // 地广人稀：卡槽冷却倍率
     _s.b3_prod_mult       = 1.0;    // 江人皇：产能火苗产量倍率
-    _s.b3_gem_cd          = 1.0;    // 宝石三件套：技能冷却倍率
+    _s.b3_gem_cd          = 1.0;    // 宝石三件套：技能冷却倍率（历史字段，现已不用）
+    _s.b3_gem_power       = 0;      // 宝石三件套：宝石技能效果加强（0.10 / 0.20 / 0.50）
 
     // ── 卡片生存 ──
     _s.b3_card_dr         = 0;      // 鲨鱼的厚皮：卡片减伤比例
@@ -159,6 +160,7 @@ function hex_b3_ensure() {
 
     // ── 实时联动（这几个漏初始化会直接报「变量未定义」）──
     _s.b3_adj_sig         = "";     // 小指的聚散：上一次的邻接指纹，变了才重算
+    _s.b3_near_sig        = "";     // 逆火：上一次「前方几格是否有鼠」的指纹
     _s.b3_finger_hp_add   = 0;      // 中指的义理：鼠军侧累计的生命增量（新出场的鼠也要吃）
     _s.b3_mark_card_ms    = 0;      // 食指的指令：上一次挑卡标记的时间
     _s.b3_speed_prev      = 0;      // 时间：进减速前的游戏帧率，放卡后按它还原
@@ -202,6 +204,7 @@ function hex_b3_apply(_d) {
     if (variable_struct_exists(_ex, "b3_all_stat"))    _s.b3_all_stat    += _ex.b3_all_stat;
     if (variable_struct_exists(_ex, "b3_prod_mult"))   _s.b3_prod_mult   *= (1 + _ex.b3_prod_mult);
     if (variable_struct_exists(_ex, "b3_gem_cd"))      _s.b3_gem_cd      *= (1 + _ex.b3_gem_cd);
+    if (variable_struct_exists(_ex, "b3_gem_power"))    _s.b3_gem_power   += _ex.b3_gem_power;
     if (variable_struct_exists(_ex, "b3_slot_cd"))     _s.b3_slot_cd     *= _ex.b3_slot_cd;
 
     if (variable_struct_exists(_ex, "b3_id_atk")) {
@@ -322,17 +325,19 @@ function hex_b3_apply(_d) {
     if (variable_struct_exists(_ex, "b3_charge"))       _s.b3_charge_on    = true;
     if (variable_struct_exists(_ex, "b3_shuffle"))      _s.b3_shuffle      = true;
     if (variable_struct_exists(_ex, "b3_info")) {
-        // 情报收集：首次启用时把老存档里已知的鼠军全部标记为「已读」，
-        // 否则老档一进关就是全场 -20%（文档 4.7 明确要求做这个迁移）
-        if (!variable_global_exists("save_data") || !is_struct(global.save_data)) {
-            // 没有存档结构就直接跳过
-        } else if (!variable_struct_exists(global.save_data, "b3_info_seen")) {
-            global.save_data.b3_info_seen = [];
-            if (variable_global_exists("enemy_map") && ds_exists(global.enemy_map, ds_type_map)) {
-                var _all = ds_map_keys_to_array(global.enemy_map);
-                for (var _i = 0; _i < array_length(_all); _i++) {
-                    array_push(global.save_data.b3_info_seen, string(_all[_i]));
-                }
+        // 情报收集：只建空的「已查看」表。
+        // 原来这里把 enemy_map 里所有鼠军一次性全标成已查看 —— 等于每条鼠军都 +20%，
+        // 永远看不到 -20% 那一半，玩家自然觉得「词条没生效」。
+        // 真正的记录口在 obj_info_island_bg/Draw_0：点开右侧情报栏才算看过。
+        if (variable_global_exists("save_data") && is_struct(global.save_data)) {
+            if (!variable_struct_exists(global.save_data, "b3_info_seen")) {
+                global.save_data.b3_info_seen = [];
+            }
+            // 老版本把全部鼠军都塞进去过，那批存档等于「全都看过」。清一次，
+            // 用 b3_info_seen_v2 标记，之后不再清
+            if (!variable_struct_exists(global.save_data, "b3_info_seen_v2")) {
+                global.save_data.b3_info_seen    = [];
+                global.save_data.b3_info_seen_v2 = true;
             }
         }
         _s.b3_info = true;
@@ -487,8 +492,9 @@ function hex_b3_fr() {
 }
 
 /// @function hex_b3_adj_count(_inst)
-/// @desc 小指的聚散：与该卡四邻相邻、且大分类相同的卡有几张。实时算，
-///       不依赖每秒刷新的缓存字段——放置/拆除后当帧就该生效。
+/// @desc 小指的聚散：与该卡**同大分类**、且通过上下左右连通成一片的卡有几张（含自己）。
+///       例：(1,1)~(1,5) 五台小火炉连成一条 → 每台都算 5 张 → +50%。
+///       原来是「只看四邻」，中间隔一格就断，且链式摆放时两端只算 1 张，与描述不符。
 function hex_b3_adj_count(_inst) {
     if (!instance_exists(_inst)) return 0;
     if (!variable_instance_exists(_inst, "grid_col")) return 0;
@@ -497,20 +503,50 @@ function hex_b3_adj_count(_inst) {
     if (_pid == "" || _pid == "player") return 0;
     var _cat = card_get_category(_pid);
     if (is_undefined(_cat)) return 0;
-    var _n = 0;
+
+    // 先把「同大分类」的卡收进一张 col,row -> instance 表，靠连通性做广度优先
+    var _cells = {};
     var _cnt = instance_number(obj_card_parent);
     for (var i = 0; i < _cnt; i++) {
         var _o = instance_find(obj_card_parent, i);
         if (!instance_exists(_o)) continue;
-        if (_o.id == _inst.id) continue;
         if (!variable_instance_exists(_o, "plant_id")) continue;
-        if (_o.plant_id == "player") continue;
-        if (abs(_o.grid_col - _inst.grid_col) + abs(_o.grid_row - _inst.grid_row) != 1) continue;
+        if (_o.plant_id == "player" || _o.plant_id == "") continue;
+        if (!variable_instance_exists(_o, "grid_col")) continue;
         var _c2 = card_get_category(_o.plant_id);
         if (is_undefined(_c2)) continue;
-        if (_c2.major == _cat.major) _n += 1;
+        if (_c2.major != _cat.major) continue;
+        _cells[$ string(_o.grid_col) + "," + string(_o.grid_row)] = _o.id;
     }
-    return _n;
+
+    var _self_key = string(_inst.grid_col) + "," + string(_inst.grid_row);
+    if (!variable_struct_exists(_cells, _self_key)) return 1;
+
+    // BFS：四邻同色连通成一片，返回整片的大小
+    var _seen  = {};
+    var _queue = [_self_key];
+    _seen[$ _self_key] = true;
+    var _size = 0;
+    var _head = 0;
+    while (_head < array_length(_queue)) {
+        var _key = _queue[_head];
+        _head += 1;
+        _size += 1;
+        var _sep = string_pos(",", _key);
+        if (_sep <= 0) continue;
+        var _c = real(string_copy(_key, 1, _sep - 1));
+        var _r = real(string_delete(_key, 1, _sep));
+        var _nbr = [[_c - 1, _r], [_c + 1, _r], [_c, _r - 1], [_c, _r + 1]];
+        for (var k = 0; k < 4; k++) {
+            var _nk = string(_nbr[k][0]) + "," + string(_nbr[k][1]);
+            if (variable_struct_exists(_seen, _nk)) continue;
+            if (!variable_struct_exists(_cells, _nk)) continue;
+            if (!instance_exists(_cells[$ _nk])) continue;
+            _seen[$ _nk] = true;
+            array_push(_queue, _nk);
+        }
+    }
+    return max(1, _size);
 }
 
 /// @function hex_b3_no_stop_attack()
@@ -522,7 +558,7 @@ function hex_b3_no_stop_attack() {
 }
 
 /// @function hex_b3_adj_mult(_inst)
-/// @desc 小指的聚散：每张相邻同类 +10%，上限 +100%（后巷的统治者翻倍到 +200%）
+/// @desc 小指的聚散：同种连通一片每张 +10%（5 连 = +50%），上限 +100%（后巷的统治者翻倍到 +200%）
 function hex_b3_adj_mult(_inst) {
     if (!hex_enabled()) return 1.0;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return 1.0;
@@ -530,7 +566,7 @@ function hex_b3_adj_mult(_inst) {
     var _s = global.hex_state;
     if (!_s.b3_adj_on) return 1.0;
     var _n = hex_b3_adj_count(_inst);
-    if (_n <= 0) return 1.0;
+    if (_n <= 1) return 1.0;      // 孤零零一张不算「相邻同类」
     var _g = hex_b3_fr() * hex_b3_res_mult();
     return 1 + min(1.0 * _g, 0.10 * _n * _g);
 }
@@ -727,6 +763,39 @@ function hex_b3_prod_mult(_plant_id) {
     if (is_undefined(_cat)) return 1.0;
     if (_cat.major != "产能类") return 1.0;
     return _s.b3_prod_mult;
+}
+
+/// @function hex_b3_gem_power()
+/// @desc 宝石三件套：宝石技能效果加强（范围 / 持续时间 / 产量）。没抽到恒 1.0
+function hex_b3_gem_power() {
+    if (!hex_enabled()) return 1.0;
+    if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return 1.0;
+    if (!hex_b3_ensure()) return 1.0;
+    return 1 + clamp(global.hex_state.b3_gem_power, 0, 2.0);
+}
+
+/// @function hex_b3_gem_boost(_inst)
+/// @desc 把「宝石效果加强」落到宝石实例的实际数值上。只改存在且是数值的字段，
+///       不认识的宝石原样不动，避免误伤
+function hex_b3_gem_boost(_inst) {
+    if (!instance_exists(_inst)) return;
+    var _p = hex_b3_gem_power();
+    if (_p == 1.0) return;
+    if (variable_instance_exists(_inst, "range") && is_real(_inst.range)) {
+        _inst.range = max(1, ceil(_inst.range * _p));
+    }
+    var _fields = ["max_time", "freeze_time", "flame_amount", "flame_value",
+                   "damage", "duration", "star_amount", "time"];
+    var _int_fields = ["flame_amount", "star_amount"];   // 这些是「个数」，必须取整
+    for (var i = 0; i < array_length(_fields); i++) {
+        var _f = _fields[i];
+        if (!variable_instance_exists(_inst, _f)) continue;
+        if (!is_real(_inst[$ _f])) continue;
+        if (_inst[$ _f] <= 0) continue;
+        var _v = _inst[$ _f] * _p;
+        if (array_index_of(_int_fields, _f) != -1) _v = max(1, round(_v));
+        _inst[$ _f] = _v;
+    }
 }
 
 /// @function hex_b3_gem_cd_mult()
@@ -950,15 +1019,13 @@ function hex_b3_enemy_damage_pre(_inst, _dmg, _src = noone) {
         }
     }
 
-    // 当头棒喝（美食侧）：该卡的第一发子弹伤害 ×10
+    // 当头棒喝：只看这颗子弹是不是「该卡的第一发」。
+    // 原来用的是「每只老鼠只吃一次 ×10」，导致第二张卡的第一发毫无加成；
+    // 现在标记做在子弹上（hex_first_shot），一发子弹命中几只就几只都吃 ×10，
+    // 且每张「被放下」的美食各有一次机会（标记存在卡片实例上，不是 card_id 上）。
     if (_s.b3_first_shot && instance_exists(_src)) {
-        if (variable_instance_exists(_src, "hex_src_inst") && instance_exists(_src.hex_src_inst)) {
-            var _card = _src.hex_src_inst;
-            if (!variable_instance_exists(_card, "b3_shot_done")) _card.b3_shot_done = false;
-            if (!_card.b3_shot_done) {
-                _card.b3_shot_done = true;
-                _d *= 10;
-            }
+        if (variable_instance_exists(_src, "hex_first_shot") && _src.hex_first_shot) {
+            _d *= max(1, _s.b3_first_hit_mult);
         }
     }
 
@@ -986,14 +1053,8 @@ function hex_b3_enemy_damage_pre(_inst, _dmg, _src = noone) {
         _d = max(1, _d + _inst.b3_dr_roll * -1);
     }
 
-    // 当头棒喝：老鼠受到的第一次伤害 ×N
-    if (_s.b3_first_hit_mult > 1) {
-        if (!variable_instance_exists(_inst, "b3_first_hit_done")) _inst.b3_first_hit_done = false;
-        if (!_inst.b3_first_hit_done) {
-            _inst.b3_first_hit_done = true;
-            _d *= _s.b3_first_hit_mult;
-        }
-    }
+    // （当头棒喝的「第一次伤害 ×N」已经挪到子弹上标记，见 hex_b3_bullet_tag。
+    //   原来是每只老鼠一个 b3_first_hit_done，多张卡的第一发只认第一张）
 
     // 残响的终曲 / 呼朋唤友：对 BOSS 伤害
     if (_s.b3_boss_dmg > 0 && _is_boss) _d *= (1 + _s.b3_boss_dmg);
@@ -1075,15 +1136,16 @@ function hex_b3_enemy_damage_post(_inst, _dmg, _src = noone) {
             if (!instance_exists(_card) && _src.object_index == obj_card_parent) _card = _src;
         }
         // 归属兜底：伤害不是 obj_bullet_parent 打的（灰烬 / 火焰 / 近战 / 词条伤害），
-        // 或者子弹没认领到来源时，退化成「离这只老鼠最近的攻击态卡片」。
-        // 没有这一步，渴血在实机上几乎永远找不到施法者。
-        if (!instance_exists(_card) && instance_exists(_inst)) {
+        // 或者子弹没认领到来源时，按「子弹出生点」回查最近的卡 —— 绝不能按老鼠位置查，
+        // 那样永远认成「被啃的那只老鼠前面挡刀的卡」，玩家看到的就是「给别人加血」。
+        if (!instance_exists(_card) && instance_exists(_src)) {
+            var _ox = variable_instance_exists(_src, "hex_org_x") ? _src.hex_org_x : _src.x;
+            var _oy = variable_instance_exists(_src, "hex_org_y") ? _src.hex_org_y : _src.y;
             var _best_d = 999999;
             with (obj_card_parent) {
                 if (self.plant_id != "player") {
-                    var _dd = point_distance(_inst.x, _inst.y, self.x, self.y);
-                    if (self.state == CARD_STATE.ATTACK) _dd *= 0.5;   // 优先正在开火的
-                    if (_dd < _best_d && _dd < 420) { _best_d = _dd; _card = self.id; }
+                    var _dd = point_distance(_ox, _oy, self.x, self.y);
+                    if (_dd < _best_d && _dd < 260) { _best_d = _dd; _card = self.id; }
                 }
             }
         }
@@ -1322,7 +1384,13 @@ function hex_b3_on_enemy_death(_inst) {
     if (_s.b3_e_death_lava > 0 && !_is_boss) {
         if (variable_instance_exists(_inst, "grid_col") && _inst.grid_col >= 0
             && _inst.grid_row >= 0) {
-            var _fx = instance_create_depth(_inst.x, _inst.y, -1300, obj_vajra_lava_effect);
+            // 位置必须取「格心」，不能直接拿死亡瞬间的坐标：那只老鼠可能已经走进卡格、
+            // 或者被击飞，特效会歪到左下角去（熔岩本体是按 target_col/row 落的）
+            var _wp = get_world_position_from_grid(_inst.grid_col, _inst.grid_row);
+            var _fx_x = _inst.x;
+            var _fx_y = _inst.y;
+            if (!is_undefined(_wp)) { _fx_x = _wp.x; _fx_y = _wp.y - 35; }
+            var _fx = instance_create_depth(_fx_x, _fx_y, -1300, obj_vajra_lava_effect);
             if (instance_exists(_fx)) {
                 _fx.target_col = _inst.grid_col;
                 _fx.target_row = _inst.grid_row;
@@ -1397,6 +1465,21 @@ function hex_b3_bullet_tag(_bullet) {
         _bullet.hex_src_inst = _best;
         if (variable_instance_exists(_best, "plant_id")) _bullet.hex_src_id = _best.plant_id;
     }
+    // 出生点：后面「血魔的渴血」认不出施法者时按它回查，不能用敌人位置（那会认成前三格挡刀的卡）
+    _bullet.hex_org_x = _bullet.x;
+    _bullet.hex_org_y = _bullet.y;
+
+    // 当头棒喝：在「出膛这一刻」就把这张卡的第一发标记写到子弹上。
+    // 写在卡上再逐次判会有两个问题：一发穿透弹只能吃到第一只老鼠；
+    // 卡的第一发和后面几发在命中间隔里分不清
+    if (variable_struct_exists(global.hex_state, "b3_first_shot") && global.hex_state.b3_first_shot
+        && _best != noone && instance_exists(_best)) {
+        if (!variable_instance_exists(_best, "b3_shot_done")) _best.b3_shot_done = false;
+        if (!_best.b3_shot_done) {
+            _best.b3_shot_done   = true;
+            _bullet.hex_first_shot = true;
+        }
+    }
 }
 
 /// @function hex_b3_bullet_hit(_bullet, _enemy)
@@ -1440,7 +1523,11 @@ function hex_b3_on_battle_init() {
     hex_b3_shuffle_categories();
     hex_b3_roll_contract();
     hex_b3_continue_mark();
+    // 鼠军侧标记：开局就先挂一只（原来只把计时器清零，要等满 30 秒才第一次标记，
+    // 那 30 秒里词条看着就是「只有图案、没有效果」）
+    _s.b3_mark_enemy    = hex_b3_pick_enemy();
     _s.b3_mark_enemy_ms = current_time;
+    _s.b3_mark_penalty_ms = 0;
 
     // Hana 的四卦：一局只弹一次（选完置 used，之后不再弹）
     if (_s.b3_hana && !variable_struct_exists(_s, "b3_hana_used")) _s.b3_hana_used = false;
@@ -1473,7 +1560,14 @@ function hex_b3_refresh_counts() {
             }
         }
     }
-    _s.b3_major_kinds = _n;
+    // 种数变了必须打脏标记：obj_mod_battle_manager 只在 buff_apply_id 变化时重算攻击，
+    // 否则「顶点的合奏」永远停在第 1 种大分类那一档（看着就像「只加成一次」）
+    if (_s.b3_major_kinds != _n) {
+        _s.b3_major_kinds = _n;
+        if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
+    } else {
+        _s.b3_major_kinds = _n;
+    }
 }
 
 /// @function hex_b3_count_deck_kinds()
@@ -1764,7 +1858,9 @@ function hex_b3_on_place(_card_id) {
     } else {
         _s.b3_mark_card_bonus -= 0.10;
     }
-    _s.b3_mark_card_bonus = clamp(_s.b3_mark_card_bonus, -0.8, 2.0);
+    // 美食侧不设上限：原来 clamp 到 2.0（+200%），叠几次就顶住了，
+    // 表现就是「怎么种都只加那么多」。下界仍保留 -80%，避免连续种错把全队打到负值
+    _s.b3_mark_card_bonus = max(-0.8, _s.b3_mark_card_bonus);
     _s.b3_mark_card = "";
     if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
 }
@@ -1957,6 +2053,27 @@ function hex_b3_tick() {
         }
     }
 
+    // ── 逆火：老鼠走进/走出「卡片前方 N 格」时也得重算攻速 ──
+    // 同一类问题：hex_near_cycle_hit 是在重算里求值的，不打脏标记就永远停在上一帧的结论
+    if (variable_struct_exists(_s, "near_cycle_on") && _s.near_cycle_on) {
+        var _near_sig = "";
+        var _ncard = instance_number(obj_card_parent);
+        for (var _ni = 0; _ni < _ncard; _ni++) {
+            var _nc = instance_find(obj_card_parent, _ni);
+            if (!instance_exists(_nc)) continue;
+            if (!variable_instance_exists(_nc, "plant_id")) continue;
+            if (_nc.plant_id == "player") continue;
+            if (!variable_instance_exists(_nc, "grid_col")) continue;
+            var _hit = hex_near_cycle_hit(_nc.grid_col, _nc.grid_row, _s.near_cycle_range);
+            _near_sig += string(_nc.grid_col) + "." + string(_nc.grid_row) + ":" + (_hit ? "1" : "0") + "|";
+        }
+        if (!variable_struct_exists(_s, "b3_near_sig")) _s.b3_near_sig = "";
+        if (_near_sig != _s.b3_near_sig) {
+            _s.b3_near_sig = _near_sig;
+            if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
+        }
+    }
+
     // ── 每秒块 ──
     if (current_time - _s.b3_sec_ms >= 1000) {
         _s.b3_sec_ms = current_time;
@@ -1997,15 +2114,20 @@ function hex_b3_tick() {
 
     // 食指的指令：每 30 秒换一只标记鼠
     if (variable_struct_exists(_s, "b3_mark_on") && _s.b3_mark_on) {
-        if (_s.b3_mark_enemy != noone && !instance_exists(_s.b3_mark_enemy)) _s.b3_mark_enemy = noone;
+        // 顺序很重要：必须先判「标记鼠死了」再清引用。
+        // 原来先清 noone，下面那段死亡惩罚永远看不到「刚死」这个事实，
+        // 于是 30 秒一到就直接换一只新的，惩罚一次都不触发 —— 玩家看到的
+        // 就是「每 30 秒无缝衔接，永远是 +30%，从来没有 -50%」。
+        if (_s.b3_mark_enemy != noone && !instance_exists(_s.b3_mark_enemy)) {
+            _s.b3_mark_enemy       = noone;
+            _s.b3_mark_penalty_ms  = current_time + 30000;
+        }
         if (current_time - _s.b3_mark_enemy_ms >= 30000) {
             _s.b3_mark_enemy_ms = current_time;
-            _s.b3_mark_enemy = hex_b3_pick_enemy();
-        }
-        // 标记鼠死亡 → 全场鼠军 30 秒 -50%
-        if (_s.b3_mark_enemy != noone && !instance_exists(_s.b3_mark_enemy)) {
-            _s.b3_mark_enemy = noone;
-            _s.b3_mark_penalty_ms = current_time + 30000;
+            // 惩罚期内不重新标记：整 30 秒都算「标记鼠已死」，鼠军吃满 -50%
+            if (!(_s.b3_mark_penalty_ms > 0 && current_time < _s.b3_mark_penalty_ms)) {
+                _s.b3_mark_enemy = hex_b3_pick_enemy();
+            }
         }
     }
 
@@ -2079,21 +2201,27 @@ function hex_b3_second_block() {
         }
     }
 
-    // 契约：力量 / 神速 的惩罚（非攻击态每秒 -1% 上限）
+    // 契约：力量 / 神速 的惩罚（连续 5 秒没开火才每秒 -1% 上限，且保留 40% 血不死）
+    // v2 修正：原来只要 state != ATTACK 就扣，冷却/生长/待机全被算成"闲置"，
+    //          长关卡里正常工作的卡也会一路掉到死，看起来就是"选了契约卡不动了"。
     if (_s.b3_contract != "" && !_s.b3_contract_off) {
         if (_s.b3_contract == "power" || _s.b3_contract == "speed") {
+            var _has_enemy = (instance_exists(obj_enemy_parent) && instance_number(obj_enemy_parent) > 0);
             with (obj_card_parent) {
                 if (self.plant_id != "player" && hex_b3_attack_major(self.plant_id)) {
-                    if (self.state != CARD_STATE.ATTACK) {
+                    if (self.state == CARD_STATE.ATTACK) {
+                        self.b3_not_atk_ms = current_time;              // 开火即重置闲置计时
+                    } else if (_has_enemy) {
                         if (!variable_instance_exists(self.id, "b3_not_atk_ms")) self.b3_not_atk_ms = current_time;
-                        if (current_time - self.b3_not_atk_ms >= 1000) {
-                            self.b3_not_atk_ms = current_time;
-                            if (!variable_instance_exists(self.id, "b3_contract_loss")) self.b3_contract_loss = 0;
-                            self.b3_contract_loss += self.max_hp * 0.01;
-                            self.hp -= self.max_hp * 0.01;
+                        if (current_time - self.b3_not_atk_ms >= 5000) {
+                            var _floor_hp = self.max_hp * 0.4;
+                            if (self.hp > _floor_hp) {
+                                var _loss = min(self.max_hp * 0.01, self.hp - _floor_hp);
+                                if (!variable_instance_exists(self.id, "b3_contract_loss")) self.b3_contract_loss = 0;
+                                self.b3_contract_loss += _loss;
+                                self.hp -= _loss;
+                            }
                         }
-                    } else {
-                        self.b3_not_atk_ms = current_time;
                     }
                 }
             }
@@ -2469,10 +2597,14 @@ function hex_b3_info_mark(_mouse_id) {
     if (!variable_struct_exists(global.save_data, "b3_info_seen")) {
         global.save_data.b3_info_seen = [];
     }
-    var _a = global.save_data.b3_info_seen;
-    if (array_index_of(_a, _mouse_id) != -1) return;
-    array_push(_a, _mouse_id);
-    global.save_data.b3_info_seen = _a;
+    // 直接操作 global.save_data.b3_info_seen：先 var _a 取到的是副本，
+    // array_push 之后必须写回去，否则「看了但没记上」
+    if (array_index_of(global.save_data.b3_info_seen, _mouse_id) != -1) return;
+    array_push(global.save_data.b3_info_seen, _mouse_id);
+    // 这是跨存档收集品，记上就落盘（只有第一次查看某只鼠时才会走到这里）
+    if (hex_enabled() && !hex_level_excluded() && variable_global_exists("save_slot")) {
+        save_file(global.save_slot);
+    }
 }
 
 /// @function hex_b3_info_mult(_mouse_id)
@@ -2871,14 +3003,16 @@ function hex_register_batch3() {
         card_desc: "所有美食对跨服鼠军的伤害 +30%",
         enemy_desc: "生成时 20% 概率替换成跨服鼠军",
         stack: 1, impl: true,
-        ex: {}, en: { b3_infected: [0.30, 0.20] }
+        ex: {}, en: { b3_infected: [0.30, 0.20] },
+        require: ["hex_187"]          // 必须先在病毒泄露的基础上才会出现
     });
     hex_register("hex_189", {
         tier: 2, form: "A", name: "生化危机",
         card_desc: "所有美食对跨服鼠军的伤害 +50%",
         enemy_desc: "生成的鼠军一律换成对应的跨服鼠军",
         stack: 1, impl: true,
-        ex: {}, en: { b3_infected: [0.50, 1.0] }
+        ex: {}, en: { b3_infected: [0.50, 1.0] },
+        require: ["hex_188"]          // 逐步升级：泄露 → 爆发 → 生化危机
     });
     hex_register("hex_195", {
         tier: 2, form: "A", name: "后巷的统治者",
@@ -2958,24 +3092,24 @@ function hex_register_batch3() {
     });
     hex_register("hex_235", {
         tier: 0, form: "A", name: "微微发亮的宝石",
-        card_desc: "武器宝石技能冷却 -10%",
+        card_desc: "武器宝石技能效果加强 10%（作用范围 / 持续时间 / 产量）",
         enemy_desc: "无",
         stack: 1, impl: true,
-        ex: { b3_gem_cd: -0.10 }, en: {}
+        ex: { b3_gem_power: 0.10 }, en: {}
     });
     hex_register("hex_236", {
         tier: 1, form: "A", name: "闪耀光芒的宝石",
-        card_desc: "武器宝石技能冷却 -20%",
+        card_desc: "武器宝石技能效果加强 20%（作用范围 / 持续时间 / 产量）",
         enemy_desc: "无",
         stack: 1, impl: true,
-        ex: { b3_gem_cd: -0.20 }, en: {}
+        ex: { b3_gem_power: 0.20 }, en: {}
     });
     hex_register("hex_237", {
         tier: 2, form: "A", name: "璀璨夺目的宝石",
-        card_desc: "武器宝石技能冷却 -50%",
+        card_desc: "武器宝石技能效果加强 50%（作用范围 / 持续时间 / 产量）",
         enemy_desc: "无",
         stack: 1, impl: true,
-        ex: { b3_gem_cd: -0.50 }, en: {}
+        ex: { b3_gem_power: 0.50 }, en: {}
     });
     hex_register("hex_246", {
         tier: 1, form: "A", name: "海洋的婚礼",

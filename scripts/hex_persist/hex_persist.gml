@@ -142,6 +142,10 @@ function hex_commit_run(_level_id) {
         if (!is_struct(_e)) continue;
         if (!variable_struct_exists(_e, "id")) continue;
         var _id = _e.id;
+        // 剧情性必选题（不公的契约五选一 / Hana 四卦）不进「已解锁词条」账本。
+        // 它们每局开局重新出现，记进账本就会变成永久词条，还会被算进收集进度。
+        if (string_copy(_id, 1, 13) == "hex_contract_") continue;
+        if (string_copy(_id, 1, 9)  == "hex_hana_")     continue;
         var _st = variable_struct_exists(_e, "stack") ? max(1, floor(_e.stack)) : 1;
         var _old = variable_struct_exists(_done, _id) ? _done[$ _id] : 0;
         var _gap = _st - _old;
