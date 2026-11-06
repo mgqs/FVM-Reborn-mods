@@ -309,7 +309,11 @@ else
                     // 减速（冰冻/泥浆）：间隔翻倍。放在这里算，避免 obj_card_parent 的
                     // Step 每帧硬写 cycle 把词条结果冲掉
                     if (variable_instance_exists(self.id, "is_slowdown") && self.is_slowdown) _hex_cyc *= 2.0;
-                    self.cycle = self.base_cycle * clamp(_hex_cyc, 0.05, 4.0);
+                    // 攻击间隔必须是整数帧：披萨炉 / 红柳烤串机这一类卡片靠
+                    // `attack_timer == cycle - N*frame` 的**精确等号**触发出弹，
+                    // 词条乘出来的 224.4 这种小数会让等号永远不成立 ——
+                    // 表现就是「攻击间隔一高就完全不攻击」，一滴伤害都打不出来
+                    self.cycle = max(1, round(self.base_cycle * clamp(_hex_cyc, 0.05, 4.0)));
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
 

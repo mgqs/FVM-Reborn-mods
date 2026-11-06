@@ -2464,6 +2464,8 @@
     {"id":{"name":"erqi_BOSS","path":"sounds/erqi_BOSS/erqi_BOSS.yy",},},
     {"id":{"name":"erqi_jingying","path":"sounds/erqi_jingying/erqi_jingying.yy",},},
     {"id":{"name":"erqi_xianfeng","path":"sounds/erqi_xianfeng/erqi_xianfeng.yy",},},
+    {"id":{"name":"mus_cross_server_day_boss","path":"sounds/mus_cross_server_day_boss/mus_cross_server_day_boss.yy",},},
+    {"id":{"name":"mus_cross_server_day","path":"sounds/mus_cross_server_day/mus_cross_server_day.yy",},},
     {"id":{"name":"mus_cross_server_night_boss","path":"sounds/mus_cross_server_night_boss/mus_cross_server_night_boss.yy",},},
     {"id":{"name":"mus_cross_server_night","path":"sounds/mus_cross_server_night/mus_cross_server_night.yy",},},
     {"id":{"name":"mus_delicious_island_crown_elite","path":"sounds/mus_delicious_island_crown_elite/mus_delicious_island_crown_elite.yy",},},

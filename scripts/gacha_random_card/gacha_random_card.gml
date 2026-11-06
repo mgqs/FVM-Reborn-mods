@@ -94,7 +94,25 @@ function random_gift_pick_card() {
 /// @function random_gift_spawn_card(x, y, col, row, level)
 /// @desc 创建礼盒抽出的卡片，并在创建前传入形态、星级和技能参数。
 function random_gift_spawn_card(_x, _y, _col, _row, _level) {
+    // 礼盒抽到「水属性鼠军」时必须有水格：纯陆地地图上粉红保罗这类 water 敌人
+    // 没有可走的地形，Boss 技能按行取格会踩空报错。这里最多重抽 8 次，抽不到就放弃。
+    var _water_cell = false;
+    if (variable_global_exists("grid_terrains") && is_array(global.grid_terrains)
+        && _row >= 0 && _col >= 0
+        && _row < array_length(global.grid_terrains)
+        && is_array(global.grid_terrains[_row])
+        && _col < array_length(global.grid_terrains[_row])) {
+        var _t = global.grid_terrains[_row][_col];
+        if (is_struct(_t) && variable_struct_exists(_t, "type")) {
+            _water_cell = (_t.type == "water");
+        }
+    }
     var result = random_gift_pick_card();
+    for (var _try = 0; _try < 8 && result != undefined && result.kind == "enemy" && !_water_cell; _try++) {
+        var _can_feat = (is_struct(result.data) && variable_struct_exists(result.data, "feature")) ? result.data.feature : "";
+        if (_can_feat != "water") break;
+        result = random_gift_pick_card();
+    }
     if (result == undefined) return noone;
     if (result.kind == "enemy") {
         var enemy_obj = result.data._obj;

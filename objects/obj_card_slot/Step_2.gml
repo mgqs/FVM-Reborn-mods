@@ -9,7 +9,9 @@ if card_id == "magic_chicken"{
 			}
 			cost = prev_card_info[? "cost"]
 			if cooldown_timer >= cooldown{
+				raw_cooldown = prev_card_info[? "cooldown"]
 				cooldown = prev_card_info[? "cooldown"]
+				base_cooldown = cooldown
 				//检查食谱
 				var cookbook_list = global.save_data.equipped_cookbook
 				for(var i = 0 ; i < array_length(cookbook_list) ; i++){

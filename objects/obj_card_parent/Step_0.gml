@@ -175,9 +175,10 @@ if instance_exists(banding_water_obj) && global.grid_terrains[water_define_pos_x
 if is_frozen{
 	exit
 }
-// 海克斯「疑神疑鬼」：攻击类美食在场上没有鼠军时也不停火（照常播攻击动画、照常放空弹）
+// 海克斯「疑神疑鬼」：攻击类美食（含人物）从放下的那一刻起就不停火。
+// 原来是「场上没有鼠军时才强制 ATTACK」，等于只在空场才空放；玩家要的是常驻空放
 if (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
-    && hex_b3_attack_major(plant_id) && instance_number(obj_enemy_parent) <= 0) {
+    && (plant_id == "player" || hex_b3_attack_major(plant_id))) {
     state = CARD_STATE.ATTACK;
 }
 // 动画计时器

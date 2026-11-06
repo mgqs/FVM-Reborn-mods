@@ -287,7 +287,12 @@ if info_button_select == 1 {
 			draw_text_ext_transformed(x-200,y-290,"攻击力："+string(info[? "atk"])+"\n"+"生命值："+string(info[? "hp"])+"\n"+"能量消耗："+string(info[? "cost"]),40,1920,1,1,0)
 			draw_text_ext_transformed(x,y-290,"攻击间隔："+string(info[? "cycle"]/60)+"\n"+"冷却时间："+string(info[? "cooldown"]/60)+"\n"+"火苗产量："+sun,40,1920,1,1,0)
 		}
-		draw_text_ext(x-390,y-100,info_text,30,300)
+		// 情报文案兜底：没在 info_island_init 注册过的卡（礼盒这类特殊卡）取到的是
+		// undefined，直接画会显示成字面量 "undefined"。
+		var _info_txt = "";
+		if (!is_undefined(info_text) && is_string(info_text)) _info_txt = info_text;
+		if (_info_txt == "") _info_txt = "\n（暂无情报记录）";
+		draw_text_ext(x-390,y-100,_info_txt,30,300)
 		draw_set_font(font_yuan)
 	}
 }
