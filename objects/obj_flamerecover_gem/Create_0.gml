@@ -16,3 +16,5 @@ cooldown_timer = gem_info.first_cooldown * 60//cooldown
 
 flame_amount = gem_info.flame_amount[gem_level]
 flame_value = gem_info.flame_value[gem_level]
+// 海克斯二期「宝石三件套」：宝石技能效果加强（范围 / 持续时间 / 产量）
+hex_b3_gem_boost(id);

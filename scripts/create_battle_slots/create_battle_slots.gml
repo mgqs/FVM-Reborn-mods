@@ -42,9 +42,12 @@ function create_battle_slots() {
 		}
         
         inst.cost = card_data[? "cost"];
-        inst.cooldown = hex_card_cooldown(card_data[? "cooldown"], _card_id);
-        // 海克斯二期「地广人稀」：卡槽冷却翻倍
-        inst.cooldown = max(1, round(inst.cooldown * hex_b3_slot_cd_mult()));
+        // raw_cooldown = 卡面原始冷却（连词条都没乘过）。卡槽 Step 每帧用
+        // hex_card_cooldown(raw, id) × 二期倍率 重算，这样任何「冷却 -X%」类词条
+        // 都是抽到即生效，不必等下一关重建卡槽
+        inst.raw_cooldown  = card_data[? "cooldown"];
+        inst.base_cooldown = hex_card_cooldown(card_data[? "cooldown"], _card_id);
+        inst.cooldown = max(1, round(inst.base_cooldown * hex_b3_slot_cd_mult()));
         inst.card_obj = card_data[? "obj"]; 
         inst.card_spr = card_data[? "sprite"];
 		inst.place_preview = card_data[? "place_preview"]

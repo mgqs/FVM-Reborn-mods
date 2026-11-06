@@ -1980,6 +1980,29 @@ function hex_periodic_run() {
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return;
     var _s = global.hex_state;
 
+    // ── 暂停时整段冻结 ──
+    // 灶神附体 / 火海 / 小火慢炖 都是「每帧 +1」的帧计数器，暂停里继续走就会
+    // 在暂停菜单里偷偷打伤害、偷偷回血（实测灶神 30 秒那一发在暂停时也在读秒）。
+    // 同时把暂停时长累计下来，恢复时统一把 *_ms 时间戳整体后移，
+    // 这样二期那些用 current_time 记时的周期效果也不会「一解除暂停就补发一轮」。
+    if (variable_global_exists("is_paused") && global.is_paused) {
+        if (!variable_struct_exists(_s, "hex_pause_acc")) _s.hex_pause_acc = 0;
+        _s.hex_pause_acc += delta_time * 0.001;
+        return;
+    }
+    if (variable_struct_exists(_s, "hex_pause_acc") && _s.hex_pause_acc > 0) {
+        var _shift = _s.hex_pause_acc;
+        _s.hex_pause_acc = 0;
+        var _names = variable_struct_get_names(_s);
+        for (var _i = 0; _i < array_length(_names); _i++) {
+            var _fn = _names[_i];
+            if (string_length(_fn) < 3) continue;
+            if (string_copy(_fn, string_length(_fn) - 2, 3) != "_ms") continue;
+            var _fv = _s[$ _fn];
+            if (is_real(_fv) && _fv > 0) _s[$ _fn] = _fv + _shift;
+        }
+    }
+
     // ── 小火慢炖：每 N 秒回复最大生命 ──
     if (_s.heal_tick_pct > 0) {
         _s.heal_tick_frame = (variable_struct_exists(_s, "heal_tick_frame") ? _s.heal_tick_frame : 0) + 1;

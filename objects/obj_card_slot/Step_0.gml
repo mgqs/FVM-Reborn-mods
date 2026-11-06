@@ -11,15 +11,29 @@ if (global.level_id == "test_level"
 	exit
 }
 
+// 海克斯冷却减免：每帧按「卡面原始冷却」重算，词条随时抽到都立刻生效。
+// 原来只在卡槽创建时乘一次，而卡槽是在开局就建好的 —— 面板里选完词条之后
+// 那一次乘法早就过去了，所以「减免冷却」类词条实机全都没反应
+if (!variable_instance_exists(id, "raw_cooldown")) raw_cooldown = cooldown;
+if (!variable_instance_exists(id, "base_cooldown")) base_cooldown = raw_cooldown;
+if (raw_cooldown > 0) {
+	var _want_cd = max(1, round(hex_card_cooldown(raw_cooldown, card_id) * hex_b3_slot_cd_mult()));
+	if (cooldown != _want_cd) cooldown = _want_cd;
+}
+
 if card_id != "magic_chicken"{
 	current_cost = cost
 	if (is_random_gift_mode() && card_id == "lihe") {
 		current_cost = 50;
 		cooldown = 600;
+		raw_cooldown = 600;
+		base_cooldown = 600;
 	}
 	if (is_random_gift_mode() && card_id == "wanpilong") {
 		current_cost = 500;
 		cooldown = 1800;
+		raw_cooldown = 1800;
+		base_cooldown = 1800;
 	}
 	if ds_exists(global.plus_card_map, ds_type_map) && ds_map_find_value(global.plus_card_map,card_id) != undefined{
 		var plus_info = ds_map_find_value(global.plus_card_map,card_id)
@@ -33,6 +47,8 @@ if card_id != "magic_chicken"{
 	if (is_random_gift_mode() && card_id == "wanpilong") {
 		current_cost = 500;
 		cooldown = 1800;
+		raw_cooldown = 1800;
+		base_cooldown = 1800;
 	}
 	// 海克斯「卡片费用」：在所有加法修正之后再乘（非海克斯模式恒 1.0）
 	// 第二批的「均值」「指定卡折扣」也在这里合并，出口只有 hex_batch2_cost 一个

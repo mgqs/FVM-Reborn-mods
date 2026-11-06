@@ -51,7 +51,10 @@ if state == "appear"{
 	else{
 		sprite_index = next_spr
 		
-		image_index = floor((timer-85) /5) mod 10
+		// 滚动动画帧切换间隔随 rock_speed 反比缩放：位移翻倍时转速同步翻倍，
+		// 否则滚石会呈现「平移/滑动」而非「滚动」。原版 rock_speed=1 → 每 5 帧切一帧；
+		// 变异版 rock_speed=2 → 每 2.5 帧切一帧（floor 取整后 2~3 帧交替）。
+		image_index = floor((timer-85) / (5 / rock_speed)) mod 10
 		
 		if timer >= 700{
 			hp = 0

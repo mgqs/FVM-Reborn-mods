@@ -52,12 +52,35 @@ if is_real(global.level_file.version){
 
 	}
 }
+// 本 subwave 的敌人数量决定它的最短停留时间。
+// 原来固定用 wave_min_time（4 秒），导致「只有 1 只敌人」的波和 30 只的波一样要等 4.5 秒；
+// 龙渊 631 个 subwave、勇士深渊 285 个 subwave 里大量是 1~7 只，整关被拖长数倍。
+// 换算：1 只 ≈ 0.33 秒，2 只 ≈ 0.67 秒，12 只以上回到 wave_min_time。
+var _sub_enemy_n = 1
+if current_wave < total_wave{
+	var _sub_arr = global.level_file.waves[current_wave].subwaves
+	if current_subwave < array_length(_sub_arr){
+		var _sub_entry = _sub_arr[current_subwave]
+		if variable_struct_exists(_sub_entry, "enemy_list") && is_array(_sub_entry.enemy_list){
+			_sub_enemy_n = max(1, array_length(_sub_entry.enemy_list))
+		}
+	}
+}
+var _dyn_min = clamp(_sub_enemy_n * 20, 20, wave_min_time)
+if _dyn_min < c_min_time{
+	c_min_time = _dyn_min
+}
 if current_wave_hp <= hp_ratio * current_total_hp && level_stage != "boss"{
 	if current_wave_max_time > c_min_time{
 		if wave_timer < (current_wave_max_time - c_min_time) && wave_timer > 30{
 			wave_timer = 30
 		}
 	}
+}
+// 场上已经没有可打的敌人（全清 / 该波敌人都被跳过）：没必要再空等下限时间，压到 0.2 秒后推进。
+// 只在 level_stage == "pre" 生效：BOSS 阶段靠 boss_waiting_clear 控制，ready 阶段还没出第一波。
+if level_stage == "pre" && current_wave_alive_count == 0 && wave_timer > 12{
+	wave_timer = 12
 }
 if not global.is_paused{
 	wave_timer -= obj_battle.time_ticks_this_step
@@ -92,6 +115,11 @@ if _is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < to
 }
 // 普通关卡的 Boss 波也在这里兜底确认，避免波次计时器与清场发生在同一帧时漏掉 Boss。
 var _longyuan_full_progression = string_copy(global.level_id, 1, 8) == "longyuan";
+// 龙渊 / 勇士深渊：BOSS 波不再「先清完整波鼠军再单独出 BOSS」。
+// 这两个关卡一个 BOSS 波动辄 80~420 只鼠军、5~60 个 subwave，
+// 原来的「等最后一个 subwave 出完 + 全场清空」会把 BOSS 藏到几分钟甚至十几分钟后。
+// 快速关卡：进入 BOSS 波即召唤 BOSS，后续 subwave 的小怪继续按原逻辑刷出（BOSS 带小怪同场）。
+var _fast_boss_level = _longyuan_full_progression || (string_copy(global.level_id, 1, 13) == "abyss_warrior");
 // 龙渊：进入精英波后（BOSS 出现前）切换精英音乐；BOSS 阵亡回到 pre 阶段后亦在此自动恢复
 if (_longyuan_full_progression && level_stage == "pre"
 	&& current_wave >= global.level_file.elite_wave
@@ -103,17 +131,23 @@ if (_longyuan_full_progression && level_stage == "pre"
 		}
 	}
 }
-if !_is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < total_wave && (global.save_data.unlocked_items.elite_unlocked || _longyuan_full_progression) {
+if !_is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < total_wave && (global.save_data.unlocked_items.elite_unlocked || _longyuan_full_progression || _fast_boss_level) {
 	var _main_boss_data = global.level_file.waves[current_wave]
-	if _main_boss_data.boss_wave && _main_boss_data.boss != "" && current_wave_alive_count == 0 {
-		var _main_boss_sub_total = array_length(_main_boss_data.subwaves)
-		if _main_boss_sub_total > 0 && current_subwave >= _main_boss_sub_total - 1 {
+	if _main_boss_data.boss_wave && _main_boss_data.boss != "" {
+		if _fast_boss_level {
+			// 龙渊 / 勇士深渊：一进入 BOSS 波就召唤，不再等鼠军出完、更不等清场
 			boss_waiting_clear = true
+		}
+		else if current_wave_alive_count == 0 {
+			var _main_boss_sub_total = array_length(_main_boss_data.subwaves)
+			if _main_boss_sub_total > 0 && current_subwave >= _main_boss_sub_total - 1 {
+				boss_waiting_clear = true
+			}
 		}
 	}
 }
-// BOSS波：等待所有小怪被清光后召唤BOSS（魔塔模式直接召唤）
-if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 || _is_tower) {
+// BOSS波：等待所有小怪被清光后召唤BOSS（魔塔模式、龙渊/勇士深渊直接召唤）
+if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 || _is_tower || _fast_boss_level) {
 	boss_waiting_clear = false
 	level_stage = "boss"
 	if _is_tower {

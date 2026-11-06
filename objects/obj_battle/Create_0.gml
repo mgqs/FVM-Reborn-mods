@@ -398,6 +398,12 @@ function enemy_subwave_summon(){
 
             var grid_pos = get_grid_position_from_world(new_x, new_y);
             var new_enemy = instance_create_depth(grid_pos.x+30, grid_pos.y + 38, 0, enemy_obj);
+            // 换皮后的敌人（尤其 infected_* 跨服鼠军）有近一半的对象没在自己的 Create 里写 mouse_id，
+            // 结果是「病毒系列增伤 / 环指的艺术 / 情报收集」全都按空 id 判定 → 永远不生效。
+            // 这里统一用注册表的 id 兜底补上，别再指望每个换皮对象自己记得写
+            if (variable_instance_exists(new_enemy, "mouse_id") && new_enemy.mouse_id == "") {
+                new_enemy.mouse_id = _enemy_type;
+            }
             // 生成后立刻乘 PI / 词条的老鼠侧倍率（顺序铁律：在关卡难度系数之后）
             hex_enemy_scale(new_enemy);
 
@@ -406,13 +412,19 @@ function enemy_subwave_summon(){
             if (_hex_extra > 0 && random(1) < _hex_extra) {
                 var _dup = instance_create_depth(grid_pos.x + 30 + irandom_range(-14, 14),
                                                  grid_pos.y + 38, 0, enemy_obj);
+                if (variable_instance_exists(_dup, "mouse_id") && _dup.mouse_id == "") {
+                    _dup.mouse_id = _enemy_type;
+                }
                 hex_enemy_scale(_dup);
-                current_total_hp += global.enemy_map[? _enemy_type].hp;
+                // 快进阈值口径：必须用缩放后的实例血量。
+                // 注册表基础血量不含关卡 hp_modify / 难度系数 / 海克斯倍率，
+                // 用它当分母会让「打到 hp_ratio 就快进」变成「打到 hp_ratio / hp_modify 才快进」。
+                current_total_hp += _dup.hp;
             }
 
             
-            // 更新统计信息
-            current_total_hp += global.enemy_map[? _enemy_type].hp;
+            // 更新统计信息（同上，用实例实际血量）
+            current_total_hp += new_enemy.hp;
 
             var row_index = target_row - 1;
             row_enemy_count[row_index]++;
@@ -421,6 +433,7 @@ function enemy_subwave_summon(){
     }
 
     // 鼠潮：按 PI 阈值往本波尾部追加精英（不计击杀，但算掉落）
-    hex_spawn_flood(enemy_list, rows_used);
+    // 返回值是这批追加精英的总血量，必须计入本波总血量，否则分母偏小、快进更难触发
+    current_total_hp += hex_spawn_flood(enemy_list, rows_used);
 
 }

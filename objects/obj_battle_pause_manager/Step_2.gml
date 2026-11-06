@@ -301,7 +301,10 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                 instance_destroy(obj_gacha_drop);
                 
                 // 返回地图
-                if (global.map_id == "tower_cake" || global.map_id == "delicious_town") {
+                // 跨服远征关卡借用了 tower_cake 的 map_id，但退出要回跨服界面而不是美味岛：
+                // 只要 cross_server_return_page 还挂着（>0 表示有待恢复的页签），就不要改写 map_id。
+                var _cs_back = (variable_global_exists("cross_server_return_page") && global.cross_server_return_page >= 0);
+                if (!_cs_back && (global.map_id == "tower_cake" || global.map_id == "delicious_town")) {
                     global.map_id = "delicious_island";
                     global.map_name = "美味岛";
                 }
@@ -328,7 +331,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
             // 取消暂停
 			if global.game_over{
 				if settlement || obj_game_over.sprite_index == spr_lose || global.level_file.version == "1.0.0"{
-					if global.map_id == "tower_cake" || global.map_id == "delicious_town"{
+					// 同上：跨服远征退关卡要回跨服创建关卡界面，别被改成美味岛
+					var _cs_back2 = (variable_global_exists("cross_server_return_page") && global.cross_server_return_page >= 0);
+					if (!_cs_back2 && (global.map_id == "tower_cake" || global.map_id == "delicious_town")){
 						global.map_id = "delicious_island"
 						global.map_name = "美味岛"
 					}

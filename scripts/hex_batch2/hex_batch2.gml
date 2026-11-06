@@ -739,7 +739,15 @@ function hex_batch2_tick() {
                     var _is_boss = false;
                     if (variable_instance_exists(_pick, "is_boss")) _is_boss = _pick.is_boss;
                     if (!_is_boss) {
-                        var _new = instance_create_depth(_pick.x, _pick.y, _pick.depth, _pick.object_index);
+                        // 从地图最右边进场，而不是在场上那只老鼠的位置原地冒出来
+                        // （原地生成会直接跳过一整段行进，也不符合「召唤援军」的观感）
+                        var _sx = _pick.x;
+                        var _sy = _pick.y;
+                        if (variable_global_exists("grid_offset_x") && variable_global_exists("grid_cols")
+                            && variable_global_exists("grid_cell_size_x")) {
+                            _sx = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x + 60;
+                        }
+                        var _new = instance_create_depth(_sx, _sy, _pick.depth, _pick.object_index);
                         hex_enemy_scale(_new);
                     }
                 }

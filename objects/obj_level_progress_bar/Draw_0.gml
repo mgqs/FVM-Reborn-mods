@@ -51,11 +51,17 @@ draw_sprite_ext(spr_level_wave_text,0,x-340,y-40,1.8,1.8,0,c_white,1)
 
 var level_progress = 0
 var current_total_subwaves = 0
-if obj_battle.current_wave < obj_battle.total_wave{
-	current_total_subwaves = array_length(global.level_file.waves[obj_battle.current_wave].subwaves)
-}
-else{
-	current_total_subwaves = array_length(global.level_file.waves[obj_battle.current_wave-1].subwaves)
+// 防御：礼盒开出的额外 BOSS / 额外波次会把 obj_battle.current_wave 推到
+// global.level_file.waves 之外，原来直接下标会报
+// "Variable Index [2] out of range [2] -9:waves"。这里一律按实际数组长度夹取。
+var _waves  = global.level_file.waves;
+var _wave_n = is_array(_waves) ? array_length(_waves) : 0;
+if (_wave_n > 0) {
+	var _idx = clamp(obj_battle.current_wave, 0, _wave_n - 1);
+	var _wv  = _waves[_idx];
+	if (is_struct(_wv) && variable_struct_exists(_wv, "subwaves") && is_array(_wv.subwaves)) {
+		current_total_subwaves = array_length(_wv.subwaves);
+	}
 }
 if obj_battle.current_wave == total_wave - 1 && obj_battle.current_subwave == current_total_subwaves{
 	last_wave = true

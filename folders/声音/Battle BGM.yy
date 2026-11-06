@@ -15,6 +15,8 @@
   "listItems":[
     {"name":"music","path":"sounds/mus_cross_server_night/mus_cross_server_night.yy",},
     {"name":"music","path":"sounds/mus_cross_server_night_boss/mus_cross_server_night_boss.yy",},
+    {"name":"music","path":"sounds/mus_cross_server_day/mus_cross_server_day.yy",},
+    {"name":"music","path":"sounds/mus_cross_server_day_boss/mus_cross_server_day_boss.yy",},
     {"name":"music","path":"sounds/mus_delicious_island_crown_elite/mus_delicious_island_crown_elite.yy",},
     {"name":"music","path":"sounds/mus_delicious_island_crown_pre/mus_delicious_island_crown_pre.yy",},
     {"name":"music","path":"sounds/mus_delicious_island_daytime_boss/mus_delicious_island_daytime_boss.yy",},

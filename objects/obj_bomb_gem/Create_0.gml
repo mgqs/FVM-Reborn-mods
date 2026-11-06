@@ -17,3 +17,5 @@ cooldown_timer = gem_info.first_cooldown * 60
 range = 7
 inst_pos_col = [7,5,7,5,7]
 inst_pos_row = [1,2,3,4,5]
+// 海克斯二期「宝石三件套」：宝石技能效果加强（范围 / 持续时间 / 产量）
+hex_b3_gem_boost(id);
