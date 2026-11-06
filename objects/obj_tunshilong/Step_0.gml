@@ -3,19 +3,36 @@ event_inherited();
 
 if (is_frozen) exit;
 
-// ── 帧机（分段见 Create_0）──
-//   消化中 → 吞噬段 26~52 循环（27 帧里含「咬」和「嘴里有老鼠」）
-//   待机   → 0~11；父对象兜底推到 12 的话这里再拉回来
-if (digest_timer > 0){
-    digest_timer--;
-    if (digest_timer <= 0){
-        eat_t = -1;             // 消化完毕 → 回待机
-        image_index = 0;
+// ── 帧机（分段见 Create_0，2026-11-06 用户口径）──
+//   0 不在动画里 → 待机 0~11
+//   1 咬住 26~30（编辑器 27~31，31 帧落地）
+//   2 消化 31~46（编辑器 32~47）循环 —— 🔴 只循环这一段，不能把 26~30 再放一遍
+//   3 咽下 47~51（编辑器 48~52）
+if (eat_phase > 0){
+    if (digest_timer > 0) digest_timer--;
+    eat_t++;
+    if (eat_phase == 1){
+        var _fb = TUN_BITE_FIRST + (eat_t div flash_speed);
+        if (_fb > TUN_BITE_LAST){          // 用 > 才会把「落地」那一帧（30）也画出来
+            eat_phase = 2; eat_t = 0;
+            image_index = TUN_CHEW_FIRST;
+        }
+        else image_index = _fb;
+    }
+    else if (eat_phase == 2){
+        if (digest_timer <= 0){
+            eat_phase = 3; eat_t = 0;
+            image_index = TUN_SWALLOW_FIRST;
+        }
+        else image_index = TUN_CHEW_FIRST + ((eat_t div flash_speed) mod TUN_CHEW_LEN);
     }
     else{
-        if (eat_t < 0) eat_t = 0;
-        eat_t++;
-        image_index = TUN_EAT_FIRST + ((eat_t div flash_speed) mod TUN_EAT_LEN);
+        var _fs2 = TUN_SWALLOW_FIRST + (eat_t div flash_speed);
+        if (_fs2 > TUN_SWALLOW_LAST){      // 同理：52 帧（咽完）也要画出来
+            eat_phase = 0; eat_t = 0;
+            image_index = 0;
+        }
+        else image_index = _fs2;
     }
     exit;
 }
@@ -30,7 +47,12 @@ var _best = 99999;
 with (obj_enemy_parent){
     if (hp <= 0) continue;
     if (is_boss) continue;
+    // 障碍（铁锅 / 路障这类）**不能吞**（2026-11-06 用户口径）：
+    //   原来没做类型过滤，不防爆的障碍会被 instance_destroy 直接「吃掉」，防爆的白扣 3000。
+    if (target_type == "obstacle") continue;
     if (target_type == "air") continue;              // 飞行鼠不吞
+    if (target_type == "underground") continue;      // 地鼠军（钻地 / 地下）不吞
+    if (target_type == "diver") continue;            // 潜水鼠不吞
     // 2026-11-06 按表：神风 / 深渊幽灵鼠不吞。深渊那只在本工程里没有单独 mouse_id
     //   （未显形幽灵统一是 target_type = "invisible"），这里按类型再挡一道。
     if (target_type == "invisible") continue;
@@ -50,12 +72,10 @@ if (_tgt == noone) exit;
 if (instance_exists(_tgt)){
     with (_tgt){
         if (!immune_to_ash){
-            // 地面 · 不防爆的普通鼠 → 直接吞掉
-            //   damage_amount 先清 0：event_user(0) 会再按 damage_amount 扣一次，
-            //   不清的话会叠加玩家上一发子弹的伤害值（原来就带着这个隐患）
-            damage_amount = 0;
-            hp = 0;
-            event_user(0);
+            // 地面 · 不防爆的普通鼠 → **直接没了**（照汉堡包 obj_hamburger/Other_11 的 instance_destroy）
+            //   🔴 别再用 hp = 0 + event_user(0)：那会走敌人自己的死亡流程，播完死亡动作**留一具尸体在原地**，
+            //      看起来像没秒杀掉。吞掉的语义就是「整只消失」。
+            instance_destroy();
         }
         else{
             // 防爆鼠 → 不吃秒杀，只按 custom["防爆伤害"] 打一下（默认 3000）
@@ -69,7 +89,8 @@ if (instance_exists(_tgt)){
 
 digest_timer = digest_time;
 swallow_t = 1;
-// 吞噬动画从「咬」那一帧起播（26 = 编辑器第 27 帧）
-eat_t = 1;
-image_index = TUN_EAT_FIRST;
+// 吞噬动画从「咬住」段起播（26 = 编辑器第 27 帧），31 帧落地后进消化循环
+eat_phase = 1;
+eat_t = 0;
+image_index = TUN_BITE_FIRST;
 event_user(1);       // 播吞咽用的音效 / 表现

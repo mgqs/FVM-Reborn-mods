@@ -18,6 +18,8 @@ if is_slowdown{
 //   「本行任意列，或右方（含出图 1 格）」+ 能打的类型；身后的敌人也认（地精鼠出土后会走过来咬卡）
 var _has = false;
 with (obj_enemy_parent){
+    // 2026-11-06：补 hp > 0 —— 原来对着正在播死亡动作的老鼠也会起手，白打一发
+    if (hp <= 0) continue;
     if ((grid_row == other.grid_row || (grid_col >= other.grid_col && grid_col <= global.grid_cols + 1))
         && can_target_on(other.target_type, target_type)){
         _has = true;

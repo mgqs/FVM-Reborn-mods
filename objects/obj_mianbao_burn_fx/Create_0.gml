@@ -41,7 +41,12 @@ t = 0;
 life = 120;                  // 伤害阶段 2 秒
 damage = 0;
 damage_type = "normal";
-hittable_types = ["normal", "dance", "underground", "invisible"];
+// 可打类型与**九天皓日火龙果**一致（2026-11-06 用户口径）：
+//   火龙果 0 转 = "d_fruit"（陆/空/非主流/障碍/地鼠/幽灵），1 转起 = "all"（再含潜水）。
+//   本火格只在 1 转（深度融合）之后出现，所以直接取 "all"，比原来那张
+//   ["normal","dance","underground","invisible"] 少了空军 / 障碍、少了潜水。
+target_type = "all";
+hittable_types = get_hittable_enemy_types(target_type);
 tick_interval = 24;          // 0.4 秒一跳 → 5 跳
 
 grid_col = -1;

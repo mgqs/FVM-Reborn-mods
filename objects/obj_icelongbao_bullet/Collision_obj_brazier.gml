@@ -2,6 +2,7 @@ if source_card_id == "gatlin_ice_long_bao" && ds_list_find_index(brazier_list,ot
 	burnt += 1
 	if burnt == 2{
 		damage = round(damage * other.atk)
+		bullet_fire_mult_up(id, other.atk)
 	}
 	ds_list_add(brazier_list,other.id)
 	global.audio.play(snd_bullet_burnt,0,0)

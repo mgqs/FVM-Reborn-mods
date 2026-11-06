@@ -48,3 +48,8 @@ hit_idx = 0;
 atk_timer = 0;
 // 攻击间隔不再写死：Step 里直接读注册表 cycle（技能 9 档在 mod_skill_init）
 
+// 可打名单：rotate 全套（陆 / 空 / 非主流 / 障碍 / 地鼠军 / 幽灵）**再加潜水鼠**
+//   （2026-11-06 用户口径：转转鸡要能打潜水；rotate 本身不含 diver，所以卡片侧补一支）
+zzj_can_hit = function(_t){
+    return can_hit(target_type, _t) || _t == "diver";
+};

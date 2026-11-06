@@ -50,8 +50,13 @@ function ronghehuopen_pass_fire(_bullet, _pit) {
 	}
 	if (!_touched) return;
 
+	if (_touched && !_ignite) {
+		_bullet.fire_mult = 1;      // 冰弹只融化、没点燃 → 本次飞行还没有倍率
+	}
 	if (_ignite) {
 		_bullet.damage = round(_bullet.damage * _pit.atk);
+		// 累乘记下这一档倍率：布丁反弹的附伤要按它补乘（见 bullet_rebound_bonus）
+		bullet_fire_mult_up(_bullet, _pit.atk);
 		// 焚寂马（kind == "fire"）的分裂冲击波是按 base_damage 生成的，
 		// 不同步增幅就会出现「直击被强化、分裂波还是原伤害」的观感（与 obj_brazier / 火神 / 金牛同口径）。
 		if (variable_instance_exists(_bullet, "kind") && _bullet.kind == "fire"
@@ -77,4 +82,29 @@ function ronghehuopen_pass_fire(_bullet, _pit) {
 	}
 	ds_list_add(_bullet.brazier_list, _pit.id);
 	audio_play_sound(snd_bullet_burnt, 0, 0);
+}
+
+/// @func bullet_fire_mult_up(_bullet, _mult)
+/// @desc 过火增幅的乘法入口：除了乘伤害，还把这个倍率**累乘**到子弹的 fire_mult 上。
+///       用途：布丁反弹的附伤要按累计倍率补乘一次，才能保证
+///       「先过火再反弹」和「先反弹再过火」的结果都是 (子弹伤害 + 反弹附伤) × 火盆倍率。
+function bullet_fire_mult_up(_bullet, _mult) {
+	if (!instance_exists(_bullet)) return;
+	// 🔴 直接赋值、不累乘：全工程每一颗子弹「一次飞行只会被点燃一次」
+	//   （火盆 / 火神 / 金牛 / 能量喵 / 融合火盆 五个事件都有 `burnt == 0` 门禁，第一个点着了后面的都进不来；
+	//     冰弹是「0→1 融化、1→2 点燃」，融化那一步不乘伤害）。
+	//   赋值还有个好处：对象池复用时刻意留下的旧 fire_mult 会被这一发直接盖掉，不会串味。
+	_bullet.fire_mult = _mult;
+}
+
+/// @func bullet_rebound_bonus(_bullet, _bonus)
+/// @desc 反弹附伤（布丁汪 / 樱桃布丁 / 水神 通用）：按子弹当前的过火倍率补乘。
+///       没被过火过的子弹 fire_mult = 1，等于原来的加法；过了火则等价于「附伤也被火盆乘过一遍」。
+function bullet_rebound_bonus(_bullet, _bonus) {
+	if (!instance_exists(_bullet)) return;
+	// 只有「这一发真的被点燃过」才按倍率补乘；burnt = 0（没点燃 / 池复用残留）一律当 1 倍
+	var _fm = 1;
+	if (variable_instance_exists(_bullet, "burnt") && _bullet.burnt > 0
+		&& variable_instance_exists(_bullet, "fire_mult")) _fm = _bullet.fire_mult;
+	_bullet.damage += round(_bonus * _fm);
 }

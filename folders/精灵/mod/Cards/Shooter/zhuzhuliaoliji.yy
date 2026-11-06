@@ -15,7 +15,5 @@
     {"name":"spr_zhuzhuliaoliji_1","path":"sprites/spr_zhuzhuliaoliji_1/spr_zhuzhuliaoliji_1.yy",},
     {"name":"spr_zhuzhuliaoliji_2","path":"sprites/spr_zhuzhuliaoliji_2/spr_zhuzhuliaoliji_2.yy",},
     {"name":"spr_zhuzhuliaoliji_bullet","path":"sprites/spr_zhuzhuliaoliji_bullet/spr_zhuzhuliaoliji_bullet.yy",},
-    {"name":"spr_zhuzhuliaoliji_bullet_1","path":"sprites/spr_zhuzhuliaoliji_bullet_1/spr_zhuzhuliaoliji_bullet_1.yy",},
-    {"name":"spr_zhuzhuliaoliji_bullet_2","path":"sprites/spr_zhuzhuliaoliji_bullet_2/spr_zhuzhuliaoliji_bullet_2.yy",}
   ],
 }

@@ -10,7 +10,7 @@ for (var _i = 0; _i < instance_number(obj_enemy_parent); _i++){
     if (!instance_exists(_e) || _e.hp <= 0) continue;
     if (abs(_e.grid_col - grid_col) > range_col) continue;
     if (abs(_e.grid_row - grid_row) > range_row) continue;
-    if (!can_hit(target_type, _e.target_type)) continue;
+    if (!zzj_can_hit(_e.target_type)) continue;
     _has = true;
     break;
 }
@@ -51,7 +51,7 @@ if (_hit_now){
         if (!instance_exists(_t) || _t.hp <= 0) continue;
         if (abs(_t.grid_col - grid_col) > range_col) continue;
         if (abs(_t.grid_row - grid_row) > range_row) continue;
-        if (!can_hit(target_type, _t.target_type)) continue;
+        if (!zzj_can_hit(_t.target_type)) continue;
         with (_t){
             damage_amount = _per;
             damage_type = "true";

@@ -30,7 +30,7 @@ for (var _d = 0; _d < 5; _d++){
         // 🔴 2026-11-06 修：这里原来每发都补一句 `_b.kind = "star"`（照星星兔抄的），
         //   会把子弹 Create 里「不设 kind、走过火通用判定」的决定又改回去 → 一碰融合火盆就报
         //   「move_y not set」，哪一发都过不了火。刀片没有 kind 这个说法，删掉。
-        if (shape == 1)      _b.sprite_index = spr_zhuzhuliaoliji_bullet_1;
-        else if (shape == 2) _b.sprite_index = spr_zhuzhuliaoliji_bullet_2;
+        // 三个形态**共用同一颗子弹精灵**（spr_zhuzhuliaoliji_bullet），不再按形态换图
+        // （原有的 _1 / _2 两颗素材已删，别再写回来）。
     }
 }

@@ -60,6 +60,10 @@ if (tick_timer >= tick_gap){
     var _gr = row;
     with (obj_enemy_parent){
         if (hp <= 0) continue;
+        // 🔴 2026-11-06：原来只看格子，空军 / 非主流 / 幽灵 / 障碍站在火格里也会被烧。
+        //   照生煎锅 / 糖炒栗子（obj_tangchaolizi_bullet_effect）的做法按可命中类型过滤：
+        //   投掷类 = 陆 + 潜水鼠，别的类型一脚都不吃。
+        if (!can_hit(other.target_type, target_type)) continue;
         var _dr = grid_row - _gr;
         var _dc = grid_col - _gc;
         var _in = false;
@@ -73,7 +77,10 @@ if (tick_timer >= tick_gap){
         }
         if (_in){
             damage_amount = _per;
-            damage_type = "ash";
+            // 🔴 2026-11-06：原来写 "ash"，但龙渊魂体（ly_kailu / ly_zhinian / 符咒魂鼠）会
+            //   对 damage_type == "ash" 的伤害**整额退还** → 灼烧对魂系鼠等于 0 伤害。
+            //   糖炒栗子/生煎锅都是 "throw"，这里跟它们对齐。
+            damage_type = "throw";
             event_user(0);
         }
     }
