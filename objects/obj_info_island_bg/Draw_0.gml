@@ -302,14 +302,17 @@ if info_button_select == 1 {
 		var _info_txt = "";
 		if (!is_undefined(info_text) && is_string(info_text)) _info_txt = info_text;
 		if (_info_txt == "") _info_txt = "\n（暂无情报记录）";
-		draw_text_ext(x-390,y-100,_info_txt,30,300)
+		// 🔴 2026-11-06 合并修正：这里**不要再无条件 draw_text_ext 一遍**。
+		//    上游那条兜底是直接画，跟下面的金色分段绘制同一个坐标 → 整段文字叠两层（数字发虚像描边）。
+		//    改成把 sanitize 过的 _info_txt 交给金色绘制；它排不齐 / 没有 {变量} 时返回 false，
+		//    else 分支再画同一份 _info_txt（原来传 info_text，礼盒类卡是 undefined → 报 argument 4）。
 		// 2026-11-06：数值金色。能不能上色由脚本自己判断：
 		//   只有当「自己排出来的行数 == 引擎 string_height_ext 给的行数」时才用分段绘制（行数一致 = 高度一致，不会顶出面板）
 		//   对不齐就直接返回 false，走下面这句原来的 draw_text_ext —— 最差等于没做这个功能，排版不会变样
 		//   参数：wrap 300 / 行高 30 / 正文白 / 数值金 (255,215,107) / 括号白 / bold = false（想伪加粗改 true）
-		if (!info_island_text_draw_rich(x-390, y-100, global.info_island[? card_id], card_id, current_view_shape, view_card_level, view_card_skill,
+		if (!info_island_text_draw_rich(x-390, y-100, _info_txt, card_id, current_view_shape, view_card_level, view_card_skill,
 				300, 30, c_white, make_colour_rgb(255, 215, 107), c_white, false)){
-			draw_text_ext(x-390,y-100,info_text,30,300)
+			draw_text_ext(x-390,y-100,_info_txt,30,300)
 		}
 		draw_set_font(font_yuan)
 	}
