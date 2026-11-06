@@ -1,0 +1,390 @@
+/// =====================================================================
+/// mod_info_island_text —— 情报岛「文案变量」（2026-11-05）
+///   卡片描述里可以写 {变量}，面板按「当前查看的形态 / 星级 / 技能」实时填值：
+///     {攻击力} {生命值} {体力} {能量消耗} {攻击间隔}（秒）{冷却时间}（秒）{火苗产量} {范围}
+///     {星级} {转职} {技能} {形态名}
+///     以及卡片注册里 custom 结构体的任意字段（如 {灼烧伤害} {每秒限伤} {每跳间隔}）
+///   🔴 只认大括号：老的 `[攻击力]` / `[喷壶类]` 一律不动（方括号里既有数字占位又有分类标签，没法区分）
+///   🔴 支持四则运算，从左到右连算：{攻击力/100}、{攻击力*2/100}（能量喵 atk 存 ×100，靠文案自己 /100）
+///   找不到的变量名 → 原样保留 `{xxx}`，方便一看就知道写错了
+/// =====================================================================
+
+/// @func info_island_text_num(value)
+/// @desc 数值格式化：整数不带小数点，小数最多 2 位；undefined → 无
+function info_island_text_num(_v){
+    if (is_undefined(_v)) return "无";
+    if (is_string(_v)) return _v;
+    var _r = round(_v * 100) / 100;
+    if (abs(_r - round(_r)) < 0.0001) return string(round(_r));
+    return string(_r);
+}
+
+/// @func info_island_text_vars(card_id, shape, level, skill)
+/// @desc 当前查看状态下可用的变量表（ds_map）。用完记得 ds_map_destroy
+///   基础字段来自 get_plant_data_with_skill；custom 结构体里的字段原样带过来
+///   当前形态缺的 custom 字段会去同卡其它形态兜底（文案是整卡一份，不分形态）
+function info_island_text_vars(_cid, _shape, _level, _skill){
+    var _v = ds_map_create();
+    var _info = get_plant_data_with_skill(_cid, _shape, _level, _skill);
+    if (_info != undefined){
+        _v[? "攻击力"]   = _info[? "atk"];
+        _v[? "生命值"]   = _info[? "hp"];
+        _v[? "体力"]     = _info[? "hp"];
+        _v[? "能量消耗"] = _info[? "cost"];
+        _v[? "攻击间隔"] = _info[? "cycle"] / 60;      // 面板口径：帧 → 秒
+        _v[? "冷却时间"] = _info[? "cooldown"] / 60;
+        _v[? "范围"]     = _info[? "range"];
+        // 持续时间（计时器 / 电鳗这类）：技能表里叫 duration，存的是**帧**，面板按秒显示
+        if (ds_map_exists(_info, "duration")) _v[? "持续时间"] = _info[? "duration"] / 60;
+        if (ds_map_exists(_info, "flame_produce")) _v[? "火苗产量"] = _info[? "flame_produce"];
+
+        // custom 透传：注册表里没列进「基础字段」的 key 一律当自定义数值
+        var _keys = ds_map_keys_to_array(_info);
+        var _skip = ["level", "hp", "cost", "atk", "range", "cooldown", "cycle", "flame_produce", "first_produce_delay"];
+        for (var _i = 0; _i < array_length(_keys); _i++){
+            var _k = _keys[_i];
+            if (array_contains(_skip, _k)) continue;
+            _v[? _k] = _info[? _k];
+        }
+    }
+    _v[? "星级"] = _level;
+    _v[? "转职"] = _shape;
+    _v[? "技能"] = _skill;
+    var _sd = get_plant_shape_data(_cid, _shape);
+    if (_sd != undefined && ds_map_exists(_sd, "name")) _v[? "形态名"] = string(_sd[? "name"]);
+
+    // custom 结构体（注册时直接挂在形态数据上，比升级表更可靠）：按当前星级取值，覆盖同名项
+    if (_sd != undefined && ds_map_exists(_sd, "custom")){
+        var _cs = _sd[? "custom"];
+        var _ck = variable_struct_get_names(_cs);
+        for (var _ci = 0; _ci < array_length(_ck); _ci++){
+            var _cv = variable_struct_get(_cs, _ck[_ci]);
+            if (is_array(_cv)) _v[? _ck[_ci]] = _cv[clamp(_level, 0, array_length(_cv) - 1)];
+            else _v[? _ck[_ci]] = _cv;
+        }
+    }
+
+    // 跨形态兜底（2026-11-06）：文案是「整卡一份」，不分形态，但变量按当前形态取。
+    //   某个 key 只写在别的形态上（如菠萝面包只有 1·2 转写了 灼烧伤害）时，当前形态会取不到、
+    //   于是原样吐出 `{灼烧伤害}`。这里补一遍：当前形态没有的 custom key，去同卡其它形态找第一份有的。
+    //   只补「缺的」，不覆盖已有的（所以当前形态自己的数值永远优先）
+    for (var _sh2 = 0; _sh2 < 4; _sh2++){
+        if (_sh2 == _shape) continue;
+        var _sd2 = get_plant_shape_data(_cid, _sh2);
+        if (_sd2 == undefined) continue;
+        if (!ds_map_exists(_sd2, "custom")) continue;
+        var _cs2 = _sd2[? "custom"];
+        var _ck2 = variable_struct_get_names(_cs2);
+        for (var _c2 = 0; _c2 < array_length(_ck2); _c2++){
+            var _k2 = _ck2[_c2];
+            if (ds_map_exists(_v, _k2)) continue;
+            var _cv2 = variable_struct_get(_cs2, _k2);
+            if (is_array(_cv2)) _v[? _k2] = _cv2[clamp(_level, 0, array_length(_cv2) - 1)];
+            else _v[? _k2] = _cv2;
+        }
+    }
+    return _v;
+}
+
+/// @func info_island_text_eval(expr, vars)
+/// @desc 算一个 {…} 里的内容：变量名 + 若干「运算符 + 数字」。不认识的变量返回 undefined
+/// 🔴 变量名 / 数字里的**所有空白都要跳过**：半角空格、全角空格、`\n`、`\r`、`\t`。
+///    2026-11-06 踩过：`{灼烧伤害*5}` 被编辑器/手改塞进了换行变成 `{灼烧伤害\n*5}`，
+///    只跳空格不跳换行 → 变量名成了「灼烧伤害\n」→ 查不到 → 整串原样显示。
+function info_island_text_eval(_expr, _v){
+    var _n = string_length(_expr);
+    var _name = "";
+    var _i = 1;
+    while (_i <= _n){
+        var _c = string_char_at(_expr, _i);
+        if (_c == "+" || _c == "-" || _c == "*" || _c == "/") break;
+        if (_c != " " && _c != "　" && _c != "\n" && _c != "\r" && _c != "\t") _name += _c;
+        _i++;
+    }
+    if (_name == "" || !ds_map_exists(_v, _name)) return undefined;
+
+    var _val = _v[? _name];
+    if (!is_real(_val)) return string(_val);      // 形态名这类字符串直接返回，不能参与运算
+
+    while (_i <= _n){
+        var _op = string_char_at(_expr, _i);
+        _i++;
+        var _num_s = "";
+        while (_i <= _n){
+            var _c2 = string_char_at(_expr, _i);
+            if (_c2 == "+" || _c2 == "-" || _c2 == "*" || _c2 == "/") break;
+            if (_c2 != " " && _c2 != "　" && _c2 != "\n" && _c2 != "\r" && _c2 != "\t") _num_s += _c2;
+            _i++;
+        }
+        // 只认「纯数字 + 小数点」，避免 real() 把写错的串当 0
+        var _ok = (_num_s != "");
+        for (var _d = 1; _d <= string_length(_num_s); _d++){
+            var _dc = string_char_at(_num_s, _d);
+            if (_dc != "." && (_dc < "0" || _dc > "9")){ _ok = false; break; }
+        }
+        if (!_ok) return undefined;
+        var _num = real(_num_s);
+        switch (_op){
+            case "+": _val += _num; break;
+            case "-": _val -= _num; break;
+            case "*": _val *= _num; break;
+            case "/":
+                if (_num == 0) return undefined;
+                _val /= _num;
+                break;
+            default: return undefined;
+        }
+    }
+    return info_island_text_num(_val);
+}
+
+/// @func info_island_text_render(raw, card_id, shape, level, skill)
+/// @desc 把描述里的 {…} 全部换成当前状态的值；没有闭合的 `{` 原样吐回去
+///   ⚠️ 需要「数值变色」时用 info_island_text_spans + info_island_text_draw（单串无法区分颜色）
+function info_island_text_render(_raw, _cid, _shape, _level, _skill){
+    if (!is_string(_raw)) return string(_raw);
+    var _v = info_island_text_vars(_cid, _shape, _level, _skill);
+    var _out = "";
+    var _n = string_length(_raw);
+    var _i = 1;
+    while (_i <= _n){
+        var _ch = string_char_at(_raw, _i);
+        if (_ch != "{"){
+            _out += _ch;
+            _i++;
+            continue;
+        }
+        var _j = _i + 1;
+        var _expr = "";
+        while (_j <= _n && string_char_at(_raw, _j) != "}"){
+            _expr += string_char_at(_raw, _j);
+            _j++;
+        }
+        if (_j > _n){                       // 没有闭合括号 → 剩下的原样输出
+            _out += string_copy(_raw, _i, _n - _i + 1);
+            break;
+        }
+        var _val = info_island_text_eval(_expr, _v);
+        if (is_undefined(_val)) _out += "{" + _expr + "}";
+        else _out += string(_val);
+        _i = _j + 1;
+    }
+    ds_map_destroy(_v);
+    return _out;
+}
+// ─────────────────────────────────────────────────────────────────────────────
+//  数值上色（2026-11-06 · v2「引擎对行数」版）
+//  ─ 为什么不能「替换的时候顺便换个颜色」：
+//    整段描述是由**一次** draw_text_ext 画出来的，一次调用只能一种颜色。
+//    想只给数字上色，就必须把文字拆开、逐段画 —— 而「逐段画」要自己排每一行的 x/y，
+//    这就要求自己复刻引擎的断行。上一版就是自己按 string_width 断行，和引擎差 20%+，把面板顶穿。
+//  ─ 这一版的做法：仍然自己排版，但**用引擎校准**、并且**允许放弃**：
+//    ① string_height_ext(text, sep, w) 能问出「引擎按 300 宽会排成几行」
+//    ② 我们自己排版时把宽度当变量，扫一遍找到「行数正好等于引擎行数」的宽度
+//       （引擎实际能塞更多字，所以这个宽度会比 300 大）
+//    ③ 行数一致 → 高度一致 → 绝不会顶出面板；行内断点也和引擎基本重合
+//    ④ 万一找不到匹配宽度（字体/文案特殊）→ 直接返回 -1，调用方退回原来的单串白字绘制，
+//       也就是「最差等于没做这个功能」，绝不会再出现排版变样
+//  结果按「卡 id + 形态 + 星级 + 技能」缓存在 global.iit_cache，每帧不重算
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// @func info_island_text_spans(raw, card_id, shape, level, skill)
+/// @desc 把描述切成段，供「数值上色」用：[[文本, 类型], …]
+///   类型 0 = 普通文字（白） 1 = {变量} 算出来的数值（金） 2 = 全角【 】
+///   只认全角【】；老的 [攻击力] / [喷壶类] 半角方括号当普通文字
+function info_island_text_spans(_raw, _cid, _shape, _level, _skill){
+    if (!is_string(_raw)) return [[string(_raw), 0]];
+    var _v = info_island_text_vars(_cid, _shape, _level, _skill);
+    var _out = [];
+    var _buf = "";
+    var _n = string_length(_raw);
+    var _i = 1;
+    while (_i <= _n){
+        var _ch = string_char_at(_raw, _i);
+
+        // 全角括号单独成段
+        if (_ch == "【" || _ch == "】"){
+            if (_buf != ""){ array_push(_out, [_buf, 0]); _buf = ""; }
+            array_push(_out, [_ch, 2]);
+            _i++;
+            continue;
+        }
+        if (_ch != "{"){
+            _buf += _ch;
+            _i++;
+            continue;
+        }
+
+        // {…} → 数值段
+        var _j = _i + 1;
+        var _expr = "";
+        while (_j <= _n && string_char_at(_raw, _j) != "}"){
+            _expr += string_char_at(_raw, _j);
+            _j++;
+        }
+        if (_j > _n){                       // 没闭合：剩下的当普通文字
+            _buf += string_copy(_raw, _i, _n - _i + 1);
+            break;
+        }
+        var _val = info_island_text_eval(_expr, _v);
+        if (is_undefined(_val)){
+            _buf += "{" + _expr + "}";      // 取不到就原样留着（一眼能看出写错）
+        }
+        else{
+            if (_buf != ""){ array_push(_out, [_buf, 0]); _buf = ""; }
+            array_push(_out, [string(_val), 1]);
+        }
+        _i = _j + 1;
+    }
+    if (_buf != "") array_push(_out, [_buf, 0]);
+    ds_map_destroy(_v);
+    if (array_length(_out) == 0) array_push(_out, ["", 0]);
+    return _out;
+}
+
+/// @func info_island_text_engine_lines(text, sep, w)
+/// @desc 引擎按 (sep, w) 会把这段文字排成几行 —— 直接问 string_height_ext，不用猜
+function info_island_text_engine_lines(_text, _sep, _w){
+    if (!is_string(_text) || _text == "") return 1;
+    var _h = string_height_ext(_text, _sep, _w);
+    return max(1, round(_h / _sep));
+}
+
+/// @func info_island_text_lines(spans, wrap)
+/// @desc 自己排版：按像素宽度贪心断行，返回「行数组」，每行是若干 [文本, 类型] 段
+///   段类型同 info_island_text_spans：0 普通 / 1 数值 / 2 括号
+function info_island_text_lines(_spans, _wrap){
+    var _lines = [];
+    var _line  = [];            // 当前行的段
+    var _buf   = "";            // 当前段还没落行的文字
+    var _kind  = 0;
+    var _w     = 0;             // 当前行已占宽度
+
+    for (var _s = 0; _s < array_length(_spans); _s++){
+        var _txt = _spans[_s][0];
+        var _k   = _spans[_s][1];
+        if (_buf != "" && _k != _kind){
+            array_push(_line, [_buf, _kind]);
+            _buf = "";
+        }
+        _kind = _k;
+
+        var _len = string_length(_txt);
+        for (var _i = 1; _i <= _len; _i++){
+            var _ch = string_char_at(_txt, _i);
+
+            if (_ch == "\n"){
+                if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
+                array_push(_lines, _line);
+                _line = [];
+                _w = 0;
+                continue;
+            }
+
+            var _nw  = _w + string_width(_ch);
+            if (_w > 0 && _nw > _wrap){
+                if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
+                array_push(_lines, _line);
+                _line = [];
+                _w = 0;
+                _nw = string_width(_ch);
+            }
+            _buf += _ch;
+            _w = _nw;
+        }
+        if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
+    }
+    if (array_length(_line) > 0) array_push(_lines, _line);
+    if (array_length(_lines) == 0) array_push(_lines, []);
+    return _lines;
+}
+
+/// @func info_island_text_auto_wrap(spans, text, wrap, sep)
+/// @desc 扫宽度：找「自己排出来的行数 == 引擎行数」的宽度区间，取中间值
+///   找到返回该宽度；找不到返回 -1（调用方退回白字）
+function info_island_text_auto_wrap(_spans, _text, _wrap, _sep){
+    var _target = info_island_text_engine_lines(_text, _sep, _wrap);
+
+    var _lo = max(40, _wrap);
+    var _hi = _wrap * 3;
+    var _best_lo = -1;
+    var _best_hi = -1;
+
+    for (var _w = _lo; _w <= _hi; _w += 4){
+        var _n = array_length(info_island_text_lines(_spans, _w));
+        if (_n == _target){
+            if (_best_lo < 0) _best_lo = _w;
+            _best_hi = _w;
+        }
+        else if (_best_lo >= 0){
+            break;              // 已经出了匹配区间，收工
+        }
+    }
+    if (_best_lo < 0) return -1;
+    return (_best_lo + _best_hi) * 0.5;
+}
+
+/// @func info_island_text_draw_lines(x, y, lines, line_h, col_normal, col_value, col_bracket, bold)
+/// @desc 逐行逐段绘制（左上对齐）。bold = 金色数字再横向错开 0.6px 画一遍，伪加粗
+function info_island_text_draw_lines(_x, _y, _lines, _line_h, _cn, _cv, _cb, _bold){
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+
+    var _cy = _y;
+    for (var _l = 0; _l < array_length(_lines); _l++){
+        var _line = _lines[_l];
+        var _cx = _x;
+        for (var _s = 0; _s < array_length(_line); _s++){
+            var _txt  = _line[_s][0];
+            var _kind = _line[_s][1];
+            draw_set_color((_kind == 1) ? _cv : ((_kind == 2) ? _cb : _cn));
+            draw_text(_cx, _cy, _txt);
+            if (_bold && _kind == 1 && _txt != ""){
+                draw_text(_cx + 0.6, _cy, _txt);     // 伪加粗
+            }
+            _cx += string_width(_txt);
+        }
+        _cy += _line_h;
+    }
+    draw_set_color(c_white);
+}
+
+/// @func info_island_text_draw_rich(px, py, raw, cid, shape, level, skill, wrap, line_h, cn, cv, cb, bold)
+/// @desc 对外唯一入口：能对齐引擎就用分段上色，对不齐就**原样白字**（等于没变）
+///   返回 true = 已用分段绘制；false = 调用方自己去 draw_text_ext
+///   结果按「卡 + 形态 + 星级 + 技能」缓存，文本框不变时不重排
+function info_island_text_draw_rich(_px, _py, _raw, _cid, _shape, _level, _skill, _wrap, _line_h, _cn, _cv, _cb, _bold){
+    if (!is_string(_raw) || _raw == "") return false;
+    // 文案里没有 {变量}（老卡全是 [攻击力] 这种）→ 一个数值都不会变色，直接不用做，省一次排版
+    if (string_pos("{", _raw) <= 0) return false;
+    draw_set_font(font_yuan);
+
+    if (!variable_global_exists("iit_cache") || !ds_exists(global.iit_cache, ds_type_map)){
+        global.iit_cache = ds_map_create();
+    }
+    // key 里带上文案长度：以后改文案（长度变了）就会重排，不会拿到旧结果
+    var _key = _cid + "|" + string(_shape) + "|" + string(_level) + "|" + string(_skill) + "|" + string(string_length(_raw));
+
+    var _entry;
+    if (ds_map_exists(global.iit_cache, _key)){
+        _entry = global.iit_cache[? _key];
+    }
+    else{
+        var _text  = info_island_text_render(_raw, _cid, _shape, _level, _skill);
+        var _spans = info_island_text_spans(_raw, _cid, _shape, _level, _skill);
+
+        var _wrap_ok = info_island_text_auto_wrap(_spans, _text, _wrap, _line_h);
+        if (_wrap_ok < 0){
+            _entry = undefined;          // 对不齐 → 记成“不做”，下次也不用再算
+        }
+        else{
+            _entry = info_island_text_lines(_spans, _wrap_ok);
+        }
+        global.iit_cache[? _key] = _entry;
+    }
+
+    if (is_undefined(_entry)) return false;
+
+    info_island_text_draw_lines(_px, _py, _entry, _line_h, _cn, _cv, _cb, _bold);
+    return true;
+}

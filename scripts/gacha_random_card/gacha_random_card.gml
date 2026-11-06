@@ -622,10 +622,10 @@ function gacha_pick_random_reward() {
     // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
     //   抽卡（难度6）：融合菜谱20 / 金卡15 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5   → 合计 130
     //   欧皇（难度7）：融合菜谱30 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5   → 合计 130
-    var fusion_weight = 20;
+    var fusion_weight = 15;
     var gold_weight = 15;
-    var zodiac_weight = 30;
-    var normal_weight = 70;
+    var zodiac_weight = 20;
+    var normal_weight = 80;
     var weapon_weight = 0.5;
     var gem_weight = 0.5;
 

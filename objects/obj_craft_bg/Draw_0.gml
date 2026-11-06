@@ -279,7 +279,7 @@ if (craft_top_tab == 2) {
 	// 2026-11-03：**在转职确认之前（面板上）就要显示**——
 	//   未到保底：`30%(2/6)` = 基础成功率(已失败次数/保底次数)
 	//   到了保底：只画 `100%`（不再写次数），与 mod_tg_roll 的结算口径一致
-	var _pity_now = (tg_pity_card == "" || tg_pity_card == tg_card) ? tg_pity : 0;
+	var _pity_now = (tg_card == "") ? 0 : mod_tg_pity_get(tg_card);
 	var _rtxt = string(_chk.rate) + "%";
 	if (tg_card != "") _rtxt = mod_tg_rate_text(_chk.rate, _pity_now, mod_tg_pity_max(transfer_credit_tier(tg_card, _chk.shape)));
 	draw_set_halign(fa_center);

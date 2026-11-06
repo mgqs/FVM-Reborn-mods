@@ -1,0 +1,24 @@
+{
+  "$GMFolder":"",
+  "%Name":"caihongshe",
+  "folderPath":"folders/精灵/mod/Cards/defender/caihongshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"caihongshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_caihongshe","path":"sprites/spr_caihongshe/spr_caihongshe.yy",},
+    {"name":"spr_caihongshe_shield","path":"sprites/spr_caihongshe_shield/spr_caihongshe_shield.yy",},
+    {"name":"spr_caihongshe_bullet","path":"sprites/spr_caihongshe_bullet/spr_caihongshe_bullet.yy",},
+    {"name":"spr_caihongshe_1","path":"sprites/spr_caihongshe_1/spr_caihongshe_1.yy",},
+    {"name":"spr_caihongshe_shield_1","path":"sprites/spr_caihongshe_shield_1/spr_caihongshe_shield_1.yy",},
+    {"name":"spr_caihongshe_bullet_1","path":"sprites/spr_caihongshe_bullet_1/spr_caihongshe_bullet_1.yy",},
+    {"name":"spr_caihongshe_2","path":"sprites/spr_caihongshe_2/spr_caihongshe_2.yy",},
+    {"name":"spr_caihongshe_shield_2","path":"sprites/spr_caihongshe_shield_2/spr_caihongshe_shield_2.yy",},
+    {"name":"spr_caihongshe_bullet_2","path":"sprites/spr_caihongshe_bullet_2/spr_caihongshe_bullet_2.yy",}
+  ],
+}

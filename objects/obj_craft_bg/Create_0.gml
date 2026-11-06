@@ -649,20 +649,17 @@ tg_meta = {}                                  // id → { shape, level, is_gold,
 tg_card = ""                                  // 主卡槽里的卡 id，"" = 空
 tg_assure = false                             // 保险金开关（独立于强化页那个）
 
-// ── 转职保底（2026-10-27 用户定）──
-//   口径：**每次转职都累计**（2026-10-28 改），同一张卡、同一次打开合成屋，连转第 N 次必成（N = mod_tg_pity_max）
+// ── 转职保底（2026-10-27 用户定，2026-11-06 改存储口径）──
+//   口径：**每次转职都累计**，连转第 N 次必成（N = mod_tg_pity_max）
 //         **保险金开关本身不影响次数**（开着关着来回点，已累计的照旧；保险金只管失败退不退凭证）
-//   归零的三种情况：① 换成别的卡（含点主卡槽取回）② 转职成功 ③ 退出合成屋
-//     ③ 是天然的：obj_craft_bg 每次进合成屋都是新实例（obj_player_menu_btn 里 instance_create_depth），
-//        关面板 panel_anim_close() 会 instance_destroy()，实例变量跟着一起没
-tg_pity      = 0                              // 本次已累计的转职次数（每次转都 +1；只有换卡/切页/退出才清零）
-// 「第几次必成」= mod_tg_pity_max(tier)（一转 6 / 二转 9 / 三·四·终转 12，与保险金无关）
-tg_pity_card = ""                             // 累计期间绑的那张卡，换卡就归零
-// ── 转职暗概率（2026-10-30 用户定）──
-//   每失败（炸）一次，下一次成功率**暗暗**加 5 个百分点（不显示给玩家），成功即归零。
-//   生命周期与保底完全一致：换卡 / 切换界面 / 退出合成屋 一并清零，不写存档 → 「退出即没」。
-//   掷骰时用它叠加：实际成功率 = min(100, mod_tg_rate(tier) + tg_hidden)
-tg_hidden    = 0
+//   🔴 2026-11-06 用户改口径：「不要切换卡或退出界面重置保底计数，这个额外效果去掉，
+//      就正常的每张卡自己独立保底」→ 计数挂在**存档里每张卡自己身上**
+//      （save_data.unlocked_cards[i].tg_pity / .tg_hidden，写法同卡牌强化的 craft_fail_streak），
+//      换卡 / 切页签 / 退出合成屋 都不清零；**只有转职成功**才清这张卡。每个存档独立计。
+//      读写一律走 mod_craft_transfer_table 里的 mod_tg_pity_get / _set / _clear。
+// 转职暗概率（2026-10-30 用户定，2026-11-06 一并改成按卡存）：
+//   每失败一次，下一次成功率暗暗 +5 个百分点（不显示给玩家），成功即归零。
+//   存 unlocked_cards[i].tg_hidden，寿命与保底完全一致。
 tg_hidden_step = 5                            // 每次失败加的百分点
 tg_hover_card = -1
 tg_btn_hover = false
@@ -782,16 +779,13 @@ function tg_do(){
     var _id = tg_card;
     var _shape = _r.shape;
 
-    // ── 转职保底（2026-10-28）：每次转都累计，跟保险金开不开无关；到档位上限那一次必成 ──
-    //    清零只在「换卡 / 切换界面 / 退出合成屋」，转职成功不清（由 tg_fx_commit / Step 负责）
-    if (tg_pity_card == ""){
-        tg_pity = 0;
-        tg_pity_card = tg_card;
-    }
+    // ── 转职保底（2026-11-06）：每次转都累计，跟保险金开不开无关；到档位上限那一次必成 ──
+    //    计数按卡存在存档里，换卡 / 切页 / 退出都不清（只有转职成功在 tg_fx_commit 里清）
+    var _pity = mod_tg_pity_get(_id);
     // 实际成功率 = 基础成功率 + 暗概率加成（每次失败 +5%，成功归零）
-    var _eff_rate = min(100, _r.rate + tg_hidden);
-    var _roll = mod_tg_roll(_eff_rate, tg_pity, mod_tg_pity_max(transfer_credit_tier(tg_card, _shape)));
-    tg_pity  = _roll.pity;
+    var _eff_rate = min(100, _r.rate + mod_tg_hidden_get(_id));
+    var _roll = mod_tg_roll(_eff_rate, _pity, mod_tg_pity_max(transfer_credit_tier(tg_card, _shape)));
+    mod_tg_pity_set(_id, _roll.pity);
     var _win = _roll.win;
 
     if (_win){
@@ -824,7 +818,7 @@ function tg_do(){
         global.save_data.player.gold -= _r.gold + _r.assure;
         if (!tg_assure) add_material_amount(transfer_credit_id(_id, _shape), -1);
         // 炸一次 → 暗概率 +5 个百分点（上限 100），下次掷骰就吃到
-        tg_hidden = min(100, tg_hidden + tg_hidden_step);
+        mod_tg_hidden_set(_id, min(100, mod_tg_hidden_get(_id) + tg_hidden_step));
         tg_notice("不够好运，转职失败");
         save_file(global.save_slot);
     }
@@ -844,12 +838,9 @@ function tg_fx_commit(){
 
     tg_list_dirty = true;                              // 形态变了 → 列表 / 元数据下次绘制前重建
     tg_card = "";                                      // 主卡槽清空，三槽一起回到「只显示槽名」
-    tg_pity = 0;
-    tg_pity_card = "";
-    // 保底清零（2026-10-28 用户确认）：**转职成功也清零**，重新从 0 数
-    //   另外三个重置点：换卡 / 切换界面 / 退出合成屋
-    // 暗概率同理：成功即归零（2026-10-30 用户确认）
-    tg_hidden = 0;
+    // 保底 + 暗概率清零（2026-11-06）：**只有转职成功**才清这张卡的记录，重新从 0 数
+    //   换卡 / 切页签 / 退出合成屋 都不清了（计数在存档里，按卡独立）
+    mod_tg_pity_clear(_p.id);
     save_file(global.save_slot);
 }
 

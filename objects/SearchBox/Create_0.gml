@@ -9,6 +9,9 @@ self.state = {
     focused: false,
     cursor_visible: true,
     cursor_timer: 0,
+    /// 2026-11-05：光标插入位置（0 = 最前、string_length(text) = 末尾）+ 上一帧 keyboard_string 副本
+    caret: 0,
+    kb_prev: "",
     /// @type {function}
     on_change: undefined,
     /// @type {function ():Bool}
@@ -60,6 +63,11 @@ function get_text() {
 
 function set_text(_text) {
     self.state.text = string(_text)
+    // 2026-11-05：外部改文字时光标跟到末尾，并把 keyboard_string 对齐 —— 否则下一帧的
+    //   「新旧串比对」会拿旧串当输入，把刚设进去的文字覆盖回去
+    self.state.caret = string_length(self.state.text)
+    keyboard_string = self.state.text
+    self.state.kb_prev = keyboard_string
     return self
 }
 
@@ -78,6 +86,8 @@ function focus() {
     self.state.cursor_timer = 0
     self.state.cursor_visible = true
     keyboard_string = self.state.text
+    self.state.kb_prev = keyboard_string
+    self.state.caret = string_length(self.state.text)
     if (variable_global_exists("ime_block") && native_enable_ime != undefined) {
         native_enable_ime(window_handle())
     }
@@ -101,6 +111,36 @@ function contains_point(_mx, _my) {
         self.state.top + self.state.height)
 }
 
+/// @func insert_at_caret(text) 在光标处插入文字（2026-11-05）
+function insert_at_caret(_t) {
+    _t = string(_t)
+    if (_t == "") return
+    var _c = clamp(self.state.caret, 0, string_length(self.state.text))
+    self.state.text = string_copy(self.state.text, 1, _c) + _t + string_delete(self.state.text, 1, _c)
+    self.state.caret = _c + string_length(_t)
+}
+
+/// @func set_caret_from_mouse(mx) 点击时按字符宽度找最近的字缝（2026-11-05）
+function set_caret_from_mouse(_mx) {
+    var _t = self.state.text
+    var _n = string_length(_t)
+    var _rel = _mx - (self.state.left + 12)
+    if (_rel <= 0 || _n == 0) {
+        self.state.caret = 0
+        return
+    }
+    draw_set_font(font_yuan)
+    var _i = 0
+    var _w0 = 0
+    while (_i < _n) {
+        var _w1 = string_width(string_copy(_t, 1, _i + 1))
+        if (_rel < (_w0 + _w1) * 0.5) break
+        _w0 = _w1
+        _i += 1
+    }
+    self.state.caret = _i
+}
+
 function on_create() {
 }
 
@@ -120,6 +160,7 @@ function on_step() {
         var _my = device_mouse_y_to_gui(0)
         if (contains_point(_mx, _my)) {
             focus()
+            set_caret_from_mouse(_mx)      // 2026-11-05：点哪就把光标放到哪
         } else if (self.state.focused) {
             blur()
         }
@@ -135,16 +176,53 @@ function on_step() {
     }
 
     var _prev = self.state.text
+
+    // ── 2026-11-05：支持「光标插在中间」（原来整串取 keyboard_string，只能在末尾加、末尾删）──
+    //   自己维护 text + caret：每帧把 keyboard_string 和上一帧副本比对，只把「新增的那一段」
+    //   插到光标处；随后回写 keyboard_string = text，让下一帧的比对基准永远是本框的文字。
     if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V"))) {
-        self.state.text += clipboard_get_text()
-        keyboard_string = self.state.text
+        insert_at_caret(clipboard_get_text())
     } else {
-        self.state.text = keyboard_string
+        var _kb = keyboard_string
+        var _pk = self.state.kb_prev
+        if (_kb != _pk) {
+            if (string_length(_kb) > string_length(_pk) && string_pos(_pk, _kb) == 1) {
+                // 正常打字 / 中文输入法上屏：多出来的那段插到光标处
+                insert_at_caret(string_delete(_kb, 1, string_length(_pk)))
+            } else if (string_length(_kb) < string_length(_pk) && string_pos(_kb, _pk) == 1) {
+                // 原生退格：GM 已把键盘串末尾删掉 → 改成「删光标前一个字」
+                if (self.state.caret > 0) {
+                    self.state.text = string_delete(self.state.text, self.state.caret, 1)
+                    self.state.caret -= 1
+                }
+            } else {
+                // 兜底（输入法组合态等判定不了的变化）：整串接管，光标跟到末尾
+                self.state.text = _kb
+                self.state.caret = string_length(_kb)
+            }
+        }
+    }
+
+    // 方向键 / Home / End / Delete（移动后立刻显示光标，别正好落在「灭」的相位）
+    var _prev_caret = self.state.caret
+    if (keyboard_check_pressed(vk_left))  self.state.caret = max(0, self.state.caret - 1)
+    if (keyboard_check_pressed(vk_right)) self.state.caret = min(string_length(self.state.text), self.state.caret + 1)
+    if (keyboard_check_pressed(vk_home))  self.state.caret = 0
+    if (keyboard_check_pressed(vk_end))   self.state.caret = string_length(self.state.text)
+    if (keyboard_check_pressed(vk_delete) && self.state.caret < string_length(self.state.text)) {
+        self.state.text = string_delete(self.state.text, self.state.caret + 1, 1)
     }
 
     if (string_length(self.state.text) > 64) {
         self.state.text = string_copy(self.state.text, 1, 64)
-        keyboard_string = self.state.text
+    }
+    self.state.caret = clamp(self.state.caret, 0, string_length(self.state.text))
+    keyboard_string = self.state.text
+    self.state.kb_prev = keyboard_string
+
+    if (self.state.text != _prev || self.state.caret != _prev_caret) {
+        self.state.cursor_timer = 0
+        self.state.cursor_visible = true
     }
 
     if (self.state.text != _prev) {
@@ -177,7 +255,8 @@ function on_draw() {
         draw_set_halign(fa_left)
         draw_set_valign(fa_middle)
         // 光标位置：文字末端（空文本时 string_width("") = 0，正好落在左内边距 left+14）
-        var _caret_x = _s.left + 14 + string_width(_s.text)
+        //   2026-11-05：改成「光标之前那段文字的宽度」，支持插在中间
+        var _caret_x = _s.left + 14 + string_width(string_copy(_s.text, 1, _s.caret))
         if (_s.text == "") {
             // 空且已聚焦时只留光标，别让占位字和竖线叠在一起
             if (!_s.focused) {
@@ -208,7 +287,7 @@ function on_draw() {
 
     var _label = _s.text
     var _color_name = "font_hei_outline_4dir_black"
-    var _caret_x2 = _s.left + 14 + string_width(_label)     // 空文本时 = 左内边距
+    var _caret_x2 = _s.left + 14 + string_width(string_copy(_label, 1, _s.caret))   // 空文本时 = 左内边距
     if (_label == "") {
         // 空且已聚焦时只留光标，占位字不画（否则竖线会压在第 1 个字上）
         if (!_s.focused) {

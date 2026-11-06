@@ -31,20 +31,23 @@ idle_anim = IDLE_LAST;
 attack_anim = BOOM_LAST - IDLE_LAST;
 
 // 数值全部走注册表（mod_cards_init 里三形态各一份），方便在卡片面板直接看 / 直接改：
-//   爆炸伤害   → atk（0 转 500 / 1·2 转 900）
-//   燃烧伤害   → flame_produce（0 转 50 / 1·2 转 100，每格总伤）
-//   每秒限伤   → cycle（0 转 200 / 1 转 150 / 2 转 100，所有来源合计）
-//   🔴 cycle 是「攻击间隔」，面板（情报岛 obj_info_island_bg/Draw_0）显示时会 ÷60，
-//      所以注册表里存的是 数值 ×60（12000 / 9000 / 6000），这里必须 ÷60 还原成真实数值。
-boom_damage = atk;
+//   爆炸伤害   → custom["爆炸伤害"]（0 转 500 / 1 转 900 / 2 转 1800）
+//   燃烧伤害   → custom["燃烧伤害"]（0 转 50 / 1·2 转 100，每格总伤）
+//   每秒限伤   → custom["每秒限伤"]（0 转 200 / 1 转 150 / 2 转 100，所有来源合计）
 boom_cross  = (shape >= 1);
 boom_type   = "ash";
 
-burn_total  = variable_instance_exists(id, "flame_produce") ? flame_produce : 50;
 burn_cross  = (shape >= 1);
 burn_type   = "physical";
 
-cap_per_sec = (origin_cycle > 0) ? (origin_cycle / 60) : 200;   // origin_cycle：减速时 cycle 会被 ×2
+// 三个数值都从注册表 custom 取（2026-11-05 从 cycle 搬出、2026-11-06 从 atk / flame_produce 搬出）
+var _gj_skill = variable_instance_exists(id, "skill") ? skill : 0;
+var _gj_info  = get_plant_data_with_skill("guihuajiu", shape, clamp(current_level, 0, 16), _gj_skill);
+cap_per_sec = (_gj_info != undefined) ? _gj_info[? "每秒限伤"] : 200;
+// 爆炸伤害：固定值（原先存在 atk 表里，17 档全一样，没必要；本卡 atk 已归 0）
+boom_damage = (_gj_info != undefined && ds_map_exists(_gj_info, "爆炸伤害")) ? _gj_info[? "爆炸伤害"] : 500;
+// 燃烧伤害：每格总伤（原先借 flame_produce 占位，现已归还，本卡不再产火苗）
+burn_total  = (_gj_info != undefined && ds_map_exists(_gj_info, "燃烧伤害")) ? _gj_info[? "燃烧伤害"] : 50;
 cap_used    = 0;
 cap_timer   = 60;
 last_hp     = hp;

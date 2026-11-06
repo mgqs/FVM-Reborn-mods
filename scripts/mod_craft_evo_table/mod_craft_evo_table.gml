@@ -68,9 +68,10 @@ function mod_evo_table(){
         houyi_god:               { cards:[ {id:"bbq", slot:0, need:2},
                                         {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← BBQ烤肉大师 + 游侠双刃蛇（2026-10-30：第 1 槽由玉蜀黍换成 BBQ烤肉大师）
         joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
-        time_god:                { cards:[ {id:"ice_cream", slot:0, need:2},
-                                        {id:"zhiyumiao", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 极寒冰沙 + 全能治愈喵（2026-10-30 用户要求两槽对调）
-        xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2} ] },  // 塔利亚神使 ← 流心莓果点心
+        time_god:                { cards:[ {id:"meiweijishiqi", slot:0, need:2},
+                                        {id:"ice_cream", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 珍馐计时器 + 极寒冰沙（2026-11-06 用户指定：计时器做主卡，冰沙挪副槽，治愈喵移出）
+        xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2},
+                                        {id:"xiangliaohu", slot:1, need:2} ] },  // 塔利亚神使 ← 流心莓果点心 + 魔力香料虎（2026-11-06 用户指定副卡）
         war_god:                 { cards:[ {id:"tiancheng", slot:0, need:2},
                                         {id:"double_water_pipe", slot:1, need:2} ] },  // 阿瑞斯神使 ← 天秤座星宿 + 合金水管
         thor:                    { cards:[ {id:"shuangyu", slot:0, need:2},
@@ -84,19 +85,22 @@ function mod_evo_table(){
         gaia:                    { cards:[ {id:"curry_lobster_cannon", slot:0, need:2},
                                         {id:"chocolate_cannon", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 死神大炮
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
-                                        {id:"tangchaolizi", slot:1, need:2} ] },  // 祝融神使 ← 生煎锅 + 糖炒栗子
+                                        {id:"dangdanghu", slot:1, need:2} ] },  // 祝融神使 ← 驴肉火烧锅 + 微波铛铛虎（2026-11-06 用户指定：替换糖炒栗子）
         rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
                                         {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
                                         {id:"spoon_rabbit", slot:1, need:2} ] },  // 尤弥尔神使 ← 花椒蜥蜴投手 + 盖世勺勺兔
         save_god:                { cards:[ {id:"baiyang", slot:0, need:2},
-                                        {id:"bull_firework", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 白羊座星宿 + 璀璨金牛烟花
+                                        {id:"tanchitu", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 白羊座星宿 + 暴走贪吃兔（2026-11-06 用户指定：替换璀璨金牛烟花）
         poseidon:                { cards:[ {id:"shizi", slot:0, need:2},
                                         {id:"rotating_coffee_pot", slot:1, need:2} ] },  // 波塞冬神使 ← 狮子座星宿 + 原子咖啡壶
-        ghost_god:               { cards:[ {id:"coal_starfish", slot:0, need:2} ] },  // 哈迪斯神使 ← 芥末海星刺身
+        ghost_god:               { cards:[ {id:"coal_starfish", slot:0, need:2},
+                                        {id:"zhuzhuliaoliji", slot:1, need:2} ] },  // 哈迪斯神使 ← 芥末海星刺身 + 猪猪破壁机（2026-11-06 用户指定副卡）
         odin:                    { cards:[ {id:"tar_sprayer", slot:0, need:2} ] },  // 奥丁神使 ← 焦油喷壶（2026-10-29：原游侠双刃蛇被三张金卡共用，换成平射穿透类）
-        water_god:               { cards:[ {id:"cherry_pudding", slot:0, need:2} ] },  // 忒提丝神使 ← 节能反弹布丁
-        hundun_god:              { cards:[ {id:"hamburger", slot:0, need:2} ] },  // 混沌神使 ← 牛肉双黑汉堡
+        water_god:               { cards:[ {id:"cherry_pudding", slot:0, need:2},
+                                        {id:"budingwang", slot:1, need:2} ] },  // 忒提丝神使 ← 热量反弹布丁 + 什锦布丁汪（2026-11-06 用户指定副卡）
+        hundun_god:              { cards:[ {id:"hamburger", slot:0, need:2},
+                                        {id:"tunshilong", slot:1, need:2} ] },  // 混沌神使 ← 牛肉双黑汉堡 + 成年吞噬龙（2026-11-06 用户指定副卡）
         // ⚠️ 下面 4 张不在用户给的配方表里（图上没有），沿用旧前置，等补表再改
         firework_dragon_real:    { cards:[ {id:"firework_dragon", slot:0, need:2},
                                         {id:"shegengbao", slot:1, need:2} ] },  // 真·花火龙 ← 花火龙 + 蛇羹煲

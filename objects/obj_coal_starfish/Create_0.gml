@@ -24,8 +24,18 @@ is_slowdown = false
 drown_timer = 0
 
 if shape >= 2{
-	attack_anim = 16
+	// 🔴 2026-11-06 用户口径：二转素材 26 帧，**第 26 帧（index 25）和第 18 帧（index 17）是同一张**
+	//   → 动画截断到 18 帧：待机 0~11（12 帧）、攻击 12~17（6 帧），只演一次
+	//   那一次攻击里**错帧连发 2 发**（两轮 5 方向，第二轮延后 burst_gap 帧出膛）
+	idle_anim   = 11
+	attack_anim = 6
 }
 
-// 本次攻击是否已经出弹（出弹绑在动画第 22 帧，见 Step_0）
+// 本次攻击是否已经出弹（出弹绑在动画帧上，见 Step_0）
 fired_this_attack = false;
+// 本轮已经开火几次（0·1 转只一次；2 转一次攻击里连发 2 发）
+shots_fired = 0;
+// 二转「错帧连发」剩余轮数与计时
+burst_left  = 0
+burst_timer = 0
+burst_gap   = 6

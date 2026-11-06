@@ -12,7 +12,12 @@ if is_frozen{
 //   灼烧 → cycle（攻击间隔表）／子弹 → atk（攻击力表）
 var _lv = clamp(current_level, 0, 16);
 flame_value   = variable_instance_exists(id, "flame_produce") ? flame_produce : fire_table[_lv];
-burn_damage   = (shape >= 1) ? (origin_cycle / 60) : 0;   // ÷60：注册表存的是「伤害 ×60」；origin_cycle 避免减速被 ×2
+// 灼烧每跳伤害：从注册表 custom["灼烧伤害"] 取；只在星级 / 技能 / 形态变化时重算一次
+if (shape >= 1 && (current_level != _bd_lv || skill != _bd_sk || shape != _bd_sh)){
+	_bd_lv = current_level; _bd_sk = skill; _bd_sh = shape;
+	var _bd_info = get_plant_data_with_skill("mianbao", shape, clamp(current_level, 0, 16), skill);
+	burn_damage = (_bd_info != undefined) ? _bd_info[? "灼烧伤害"] : 0;
+}
 bullet_damage = (shape >= 2) ? atk : 0;
 
 // 一次遍历同时算两件事：
@@ -85,8 +90,11 @@ if (shape >= 1 && burn_damage > 0){
 // ---------- ③ 2 转起：每 1.5 秒一轮 4 连发，**子弹跟着机枪嘴动出膛** ----------
 //   开火段 11 帧（14~24）；嘴动 4 下 = 帧 17/19/21/23，每一下打 1 发
 if (shape >= 2 && bullet_damage > 0 && _row_target){
+	// 攻速：每帧实时读注册表 cycle（面板「攻击间隔」= cycle/60 秒）
+	//   升级 / 换技能 → Other_10 改写 cycle；减速 → 父对象把 cycle ×2。这里都自动跟着走
+	var _shot_cycle = (variable_instance_exists(id, "cycle") && cycle > 0) ? cycle : SHOT_INTERVAL_FALLBACK;
 	shot_timer++;
-	if (shot_timer >= shot_interval){
+	if (shot_timer >= _shot_cycle){
 		shot_timer = 0;
 		shots_left = 4;
 		shoot_beat = 0;
@@ -96,7 +104,11 @@ if (shape >= 2 && bullet_damage > 0 && _row_target){
 	if (shots_left > 0 && shoot_anim_t >= 0){
 		var _beat_frame = floor(shoot_anim_t / shoot_flash_speed);
 		if (shoot_beat < array_length(SHOOT_BEATS) && _beat_frame >= SHOOT_BEATS[shoot_beat]){
-			var _b = instance_create_depth(x + 40, y - 70, depth - 500, obj_mianbao_bullet);
+			// 出弹点按 2 转精灵实测：枪口在第 17 帧的右端 x≈190、枪管中心 y≈112（原点 141,149、1.8 倍绘制）
+			//   → 对象坐标 = ((190-141)*1.8, (112-149)*1.8) ≈ (+86, -66)
+			//   子弹精灵 spr_mianbao_bullet 原点在「底部中点」(10,16)，所以纵向要再补半颗弹高
+			//   (16/2 × 1.8 = +14.4) → y - 51 才与枪管同心，否则整颗浮在枪管上方
+			var _b = instance_create_depth(x + 86, y - 51, depth - 500, obj_mianbao_bullet);
 			_b.damage = bullet_damage;
 			_b.move_speed = 8;
 			_b.row = grid_row;

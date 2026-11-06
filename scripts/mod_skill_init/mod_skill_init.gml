@@ -132,4 +132,13 @@ function mod_skill_init()
     register_card_skill("guihuajiu", "cooldown", [3000, 2880, 2700, 2520, 2280, 2040, 1800, 1500, 1200]);
     register_card_skill("mianbao", "cooldown", [3000, 2880, 2700, 2520, 2280, 2040, 1800, 1500, 1200]);
     register_card_skill("xuanzhuan_ronghe", "cooldown", [1500, 1410, 1320, 1230, 1110, 990, 870, 720, 570]);
+    register_card_skill("zhuzhuliaoliji", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
+    register_card_skill("budingwang", "cooldown", [840, 780, 720, 660, 600, 540, 480, 420, 360]);
+    register_card_skill("caihongshe", "cycle", [120, 117, 114, 111, 108, 105, 102, 96, 90]);
+    register_card_skill("meiweijishiqi", "duration", [510, 540, 570, 600, 630, 660, 690, 720, 900]);
+    register_card_skill("dangdanghu", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
+    register_card_skill("dianman", "duration", [600, 660, 720, 780, 900, 1020, 1320, 1620, 1920]);
+    register_card_skill("tunshilong", "cooldown", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
+    register_card_skill("xiangliaohu", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
+    register_card_skill("zhuanzhuanji", "cycle", [108, 105, 102, 99, 96, 93, 90, 84, 78]);
 }

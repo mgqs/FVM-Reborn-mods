@@ -50,7 +50,10 @@ if (_do_hit && variable_global_exists("enemy_by_type"))
             // 只烧「就是这一格」的敌人：列、行都严格相等。
             //   不能再用 bbox 兜底 —— 老鼠贴图很高，下一行老鼠的头顶会探进上一行的格子里，
             //   用 bbox 判会连带把上下行的老鼠一起烧了（2026-10-31 用户反馈）。
-            if (_e.grid_col != grid_col || _e.grid_row != grid_row) continue;
+            // 2026-11-06：extra_col_right > 0 时，右边紧邻的 extra_col_right 格**也算命中**
+            //   （bbq = 1：火格在第 9 格，能烧到第 10 格 / BOSS 出生位；行必须仍然是本行）。
+            if (_e.grid_row != grid_row) continue;
+            if (_e.grid_col < grid_col || _e.grid_col > grid_col + extra_col_right) continue;
 
             if (single_hit)
             {

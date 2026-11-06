@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"meiweijishiqi",
+  "folderPath":"folders/精灵/mod/Cards/Assistant/meiweijishiqi.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"meiweijishiqi",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_meiweijishiqi","path":"sprites/spr_meiweijishiqi/spr_meiweijishiqi.yy",},
+    {"name":"spr_meiweijishiqi_effect","path":"sprites/spr_meiweijishiqi_effect/spr_meiweijishiqi_effect.yy",},
+    {"name":"spr_meiweijishiqi_1","path":"sprites/spr_meiweijishiqi_1/spr_meiweijishiqi_1.yy",},
+    {"name":"spr_meiweijishiqi_effect_1","path":"sprites/spr_meiweijishiqi_effect_1/spr_meiweijishiqi_effect_1.yy",},
+    {"name":"spr_meiweijishiqi_2","path":"sprites/spr_meiweijishiqi_2/spr_meiweijishiqi_2.yy",},
+    {"name":"spr_meiweijishiqi_effect_2","path":"sprites/spr_meiweijishiqi_effect_2/spr_meiweijishiqi_effect_2.yy",}
+  ],
+}

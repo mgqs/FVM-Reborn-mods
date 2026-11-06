@@ -56,10 +56,7 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 	// 转职页的两个弹窗一起关掉（切页签后弹窗不再绘制，留着状态会在切回来时突然冒出来）
 	tg_confirm = false
 	tg_confirm_mode = 0
-	// 切换界面 = 保底归零（2026-10-28 用户口径：换卡 / 切换界面 / 退出合成屋 三个重置点之一）
-	tg_pity = 0
-	tg_pity_card = ""
-	tg_hidden = 0     // 暗概率跟着一起清（2026-10-30）
+	// 切页签**不再清保底**（2026-11-06 用户口径：切卡 / 退出界面都不清，只有转职成功才清）
 	// 🔴 2026-10-30：转职列表/元数据（含星级、形态、卡图）必须重建。
 	//   否则「转职页 → 强化页把卡强化一下 → 回转职页」会一直显示旧的星级，
 	//   因为 tg_list 只在新建 / 转职成功时置脏，切页签这一侧原来漏了。
@@ -360,12 +357,9 @@ if (craft_top_tab == 2) {
 			tg_help_hover = false;
 			audio_play_sound(snd_button, 0, 0);
 		}
-		// ① 右侧列表选卡 → 进主卡槽（**只有换到另一张卡才清保底**，2026-10-28 用户口径）
-		//    转职成功后槽会自动清空，再放回同一张卡不算换卡 → 保底接着累计
+		// ① 右侧列表选卡 → 进主卡槽（**换卡不再清保底**，2026-11-06 用户口径：每张卡各自独立计数）
 		else if (tg_hover_card != -1 && tg_hover_card < array_length(tg_list)) {
 			var _pick = tg_list[tg_hover_card];
-			// 换卡：保底与暗概率一起归零（2026-10-30）
-			if (tg_pity_card != "" && tg_pity_card != _pick) { tg_pity = 0; tg_pity_card = ""; tg_hidden = 0; }
 			tg_card = _pick;
 			audio_play_sound(snd_button, 0, 0);
 		}

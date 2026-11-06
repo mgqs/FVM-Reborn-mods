@@ -4,6 +4,13 @@ if global.is_paused{
 	exit
 }
 
+// 过火（融合火盆 / 火盆 / 火神 / 金牛 / 能量喵）→ 换火焰弹贴图
+// 🔴 原来整段漏了这句：burnt 会涨、damage 会乘，但贴图不变，玩家看着就是「过不了火」。
+//    与 obj_xiaolongbao_bullet / obj_corn_shooter_bullet 同款；2 转冰化贴图（spr_ronghehuopen_ice_bullet）不要覆盖。
+if (burnt >= 1 && sprite_index != spr_ronghehuopen_ice_bullet){
+	sprite_index = spr_fire_bullet;
+}
+
 x += move_speed;
 if x > 2200 or y > 1200 or x < 0 or y < 0{
 	instance_destroy();

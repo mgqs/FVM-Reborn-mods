@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"dangdanghu",
+  "folderPath":"folders/精灵/mod/Cards/Pult/dangdanghu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dangdanghu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_dangdanghu","path":"sprites/spr_dangdanghu/spr_dangdanghu.yy",},
+    {"name":"spr_dangdanghu_bullet","path":"sprites/spr_dangdanghu_bullet/spr_dangdanghu_bullet.yy",},
+    {"name":"spr_dangdanghu_1","path":"sprites/spr_dangdanghu_1/spr_dangdanghu_1.yy",},
+    {"name":"spr_dangdanghu_bullet_1","path":"sprites/spr_dangdanghu_bullet_1/spr_dangdanghu_bullet_1.yy",},
+    {"name":"spr_dangdanghu_2","path":"sprites/spr_dangdanghu_2/spr_dangdanghu_2.yy",},
+    {"name":"spr_dangdanghu_bullet_2","path":"sprites/spr_dangdanghu_bullet_2/spr_dangdanghu_bullet_2.yy",}
+  ],
+}

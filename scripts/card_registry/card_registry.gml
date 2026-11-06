@@ -239,6 +239,17 @@ function add_plant_upgrade_lite(plant_id, level, shapes_upgrade_array) {
             ds_map_add(upgrade_map, "cycle", upgrade_info.cycle[level]);
 			if struct_exists(upgrade_info,"flame_produce"){
 			ds_map_add(upgrade_map,"flame_produce",upgrade_info.flame_produce[level])}
+
+            // 自定义数值（custom，见 mod_register_plant_lite 的 info_custom）：
+            //   数组按 level 取（越界取最后一档），单个数字原样写
+            if (struct_exists(upgrade_info, "custom")){
+                var _ck = variable_struct_get_names(upgrade_info.custom);
+                for (var _ci = 0; _ci < array_length(_ck); _ci++){
+                    var _cv = variable_struct_get(upgrade_info.custom, _ck[_ci]);
+                    if (is_array(_cv)) ds_map_add(upgrade_map, _ck[_ci], _cv[min(level, array_length(_cv) - 1)]);
+                    else ds_map_add(upgrade_map, _ck[_ci], _cv);
+                }
+            }
             
             // 添加自定义属性
             //var keys = ds_map_keys_to_array(upgrade_info);

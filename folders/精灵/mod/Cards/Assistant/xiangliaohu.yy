@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"xiangliaohu",
+  "folderPath":"folders/精灵/mod/Cards/Assistant/xiangliaohu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xiangliaohu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_xiangliaohu","path":"sprites/spr_xiangliaohu/spr_xiangliaohu.yy",},
+    {"name":"spr_xiangliaohu_1","path":"sprites/spr_xiangliaohu_1/spr_xiangliaohu_1.yy",},
+    {"name":"spr_xiangliaohu_2","path":"sprites/spr_xiangliaohu_2/spr_xiangliaohu_2.yy",}
+  ],
+}

@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"zhuzhuliaoliji",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/zhuzhuliaoliji.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zhuzhuliaoliji",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_zhuzhuliaoliji","path":"sprites/spr_zhuzhuliaoliji/spr_zhuzhuliaoliji.yy",},
+    {"name":"spr_zhuzhuliaoliji_1","path":"sprites/spr_zhuzhuliaoliji_1/spr_zhuzhuliaoliji_1.yy",},
+    {"name":"spr_zhuzhuliaoliji_2","path":"sprites/spr_zhuzhuliaoliji_2/spr_zhuzhuliaoliji_2.yy",},
+    {"name":"spr_zhuzhuliaoliji_bullet","path":"sprites/spr_zhuzhuliaoliji_bullet/spr_zhuzhuliaoliji_bullet.yy",},
+    {"name":"spr_zhuzhuliaoliji_bullet_1","path":"sprites/spr_zhuzhuliaoliji_bullet_1/spr_zhuzhuliaoliji_bullet_1.yy",},
+    {"name":"spr_zhuzhuliaoliji_bullet_2","path":"sprites/spr_zhuzhuliaoliji_bullet_2/spr_zhuzhuliaoliji_bullet_2.yy",}
+  ],
+}

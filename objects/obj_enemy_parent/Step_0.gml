@@ -49,6 +49,11 @@ if scare_timer > 0{
 else{
 	is_scare = false
 }
+// BOSS 免疫定身（2026-11-06 用户口径）：全工程所有定身来源统一在这里失效，
+//   卡侧不用再各自写 !is_boss。定身值照写进来也没关系，这里直接清零。
+if is_boss{
+	stun_timer = 0
+}
 if stun_timer > 0{
 	stun_timer--
 	is_stun = true

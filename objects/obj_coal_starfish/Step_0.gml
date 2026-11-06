@@ -63,16 +63,35 @@ if (has_enemy) {
     //   改成「只在真正进入攻击段的那一帧重置」，并把动画拉到攻击段首帧，保证一次攻击只发一次。
     if (!_was_attack && state == CARD_STATE.ATTACK) {
         fired_this_attack = false;
+        shots_fired = 0;                   // 本轮已开火轮数清零
+        burst_left = 0;
+        burst_timer = 0;
         image_index = idle_anim + 1;
     }
 
     // 出弹绑在动画帧上（2026-10-30 用户口径）：
-    //   第 21 帧蓄力到最满、第 22 帧（image_index 21）爆发的同时打出子弹。
-    if (state == CARD_STATE.ATTACK && !fired_this_attack && image_index >= 21) {
+    //   0·1 转：第 22 帧（image_index 21）爆发，一次 event_user(1)（事件本身出 5 个方向）
+    //   2 转（2026-11-06 用户口径）：动画截断到 18 帧、只在 index 15（编辑器第 16 帧）打**一次**，
+    //     但那一次里**错帧连发 2 发** —— 第一轮当帧出，第二轮隔 burst_gap 帧再调一次 event_user(1)
+    var _fire_frame = (shape >= 2) ? 15 : 21;
+    if (state == CARD_STATE.ATTACK && !fired_this_attack && image_index >= _fire_frame) {
         fired_this_attack = true;
-        // 二转两组钳子同时打出
-        var _shots = (shape >= 2) ? 2 : 1;
-        for (var _k = 0; _k < _shots; _k++) {
+        shots_fired++;
+        event_user(1);
+        global.audio.play(snd_shot, 0, 0);
+        if (shape >= 2) {
+            burst_left  = 1;      // 还要补一轮
+            burst_timer = 0;
+        }
+    }
+
+    // 二转第二轮的错帧补发（母体出弹后隔 burst_gap 帧再来一轮 5 方向）
+    if (burst_left > 0) {
+        burst_timer++;
+        if (burst_timer >= burst_gap) {
+            burst_timer = 0;
+            burst_left--;
+            shots_fired++;
             event_user(1);
             global.audio.play(snd_shot, 0, 0);
         }
@@ -81,6 +100,9 @@ if (has_enemy) {
     // 没有符合条件的敌人，重置状态
     attack_timer = 0;
     fired_this_attack = false;
+    shots_fired = 0;
+    burst_left = 0;
+    burst_timer = 0;
     state = CARD_STATE.IDLE;
 }
 
