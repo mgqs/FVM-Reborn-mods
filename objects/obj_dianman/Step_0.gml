@@ -61,13 +61,17 @@ if (_do_hit){
         if (abs(grid_row - other.grid_row) > other.range_row) continue;
         // 可攻击：陆 / 空 / 地鼠军（2026-11-06 按卡面）；非主流(dance) 与 幽灵(invisible) 除外
         //   rotate 名单本身含 dance / invisible，所以这里按**敌人类型**再剔一次
-        //   （旧写法误用了 target_type —— 那是卡片自己的 "rotate"，条件永远不成立）
+        //   🔴 2026-11-06 二次修：with 里 `other` 是电鳗自己，`other.target_type` 拿到的是卡片的 "rotate"，
+        //      拿它去比 dance / invisible 永远不成立（等于没剔）；必须用**裸变量** target_type（= 敌人的）。
         if (!can_hit(other.target_type, target_type)) continue;
-        if (other.target_type == "dance" || other.target_type == "invisible") continue;
+        if (target_type == "dance" || target_type == "invisible") continue;
 
         // 伤害照常（2026-11-06 用户口径：BOSS 也要吃伤害）
         damage_amount = other.atk;
         damage_type = "true";
+        // 钻地中的龙渊地精：rotate 能索敌 underground，但 obj_ly_dijing/Other_10 会整条拦掉伤害，
+        //   不先放行就是「能索敌、打上去没伤害」（同转转鸡 / 融合喷壶）。
+        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
         event_user(0);
 
         // 定身对 BOSS 无效，只有非 BOSS 才定

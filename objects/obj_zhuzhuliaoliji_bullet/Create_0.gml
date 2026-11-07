@@ -3,9 +3,9 @@
 event_inherited();
 
 sprite_index = spr_zhuzhuliaoliji_bullet;
-image_speed = 0;
+image_speed = 0;        // 帧由 Step 自己推（刀片 15 帧旋转），见 Step 里的注释
 image_index = 0;
-image_angle = 0;
+image_angle = 0;        // 出膛时由 Other_11 按弹道赋值，Step 每帧再按 vx/vy 校一次
 image_alpha = 1;
 image_blend = c_white;
 image_xscale = 1.4;
@@ -13,7 +13,13 @@ image_yscale = 1.4;
 
 vx = -8;
 vy = 0;
-delay = 0;
+// 命中判定节流：全工程通用口径是 2 帧（global.bullet_hit_interval）；
+//   刀片 52x32 × 1.4 缩放沿飞行方向的半宽约 36px，老鼠半宽 20~30px，
+//   3 帧 = 24px 仍远小于「子弹 + 鼠」的合体宽度 → 单卡放宽到 3 帧（2026-11-07 用户口径）
+hit_tick = 0;
+hit_interval = 3;
+// 刀片不播动画（恒定第 0 帧）；只有过火后的火焰贴图还要帧数
+_fire_frames = sprite_get_number(spr_fire_bullet);
 damage = 0;
 damage_type = "normal";
 target_type = "normal";

@@ -68,6 +68,18 @@ if (hit_tick >= hit_interval)
 	}
 }
 
-if x > 2200 or y > 1200 or x < 0 or y < -200{
+// ===== 出界销毁 =====
+// 2026-11-07：原来写死 x>2200 / y>1200 / x<0 / y<-200 —— 战斗区实际只有 x≈695~1765 / y≈228~900，
+//   右侧与斜向两发（move_speed=5）要在商店货架、边框上白飞 250+ 帧才销毁，
+//   期间每 3 帧还要跑一次 bullet_sap_type_list 候选查询 + 每帧绘制 → 同场子弹堆积就卡。
+//   现在与融合海星 / 猪猪料理机刀片统一：边界 = 战斗区外放一格。
+//   · 右边界 +1 格：出图那一列（grid_cols + 1）刚刷出来、还没进场的老鼠仍打得到
+//   · 上边界 -1 格：上向弹出弹口本身就在卡外（y-95），严格贴边会一出生就被删
+//   · 左边界放宽到「老鼠判输线」(grid_offset_x - 150)，老鼠能一路走到那儿
+var _bx_l = global.grid_offset_x - 150
+var _bx_r = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x + global.grid_cell_size_x
+var _bx_t = global.grid_offset_y - global.grid_cell_size_y
+var _bx_b = global.grid_offset_y + global.grid_rows * global.grid_cell_size_y + global.grid_cell_size_y
+if (x < _bx_l || x > _bx_r || y < _bx_t || y > _bx_b){
 	instance_destroy()
 }

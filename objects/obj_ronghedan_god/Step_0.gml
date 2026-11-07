@@ -20,6 +20,10 @@ var _row_span = (shape >= 2) ? 1 : 0;
 with(obj_enemy_parent){
     if (grid_row >= (other.grid_row - _row_span) && grid_row <= (other.grid_row + _row_span)
         && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1)
+        // 🔴 2026-11-07：**索敌不索障碍**（铁锅 / 路障）。throw 类型本身含 obstacle，
+        //   卡面是「投掷打鼠军」，对着障碍起手就是空放 → 只在这里剔掉；
+        //   子弹本身的命中表不动（打偏擦到障碍照样造成伤害，用户口径）。
+        && target_type != "obstacle"
         && can_target_on(other.target_type, target_type)){
         var distance = grid_col - other.grid_col
         if (distance < min_distance) {

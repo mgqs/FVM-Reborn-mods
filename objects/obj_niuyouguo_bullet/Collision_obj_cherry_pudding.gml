@@ -7,6 +7,6 @@ if (!bounced && row == other.grid_row)
 	travel_dir = 180 - travel_dir;
 	if (travel_dir > 180) travel_dir -= 360;
 	if (travel_dir <= -180) travel_dir += 360;
-	damage += other.atk;
+	bullet_rebound_bonus(id, other.atk);
 	bounced = true;
 }

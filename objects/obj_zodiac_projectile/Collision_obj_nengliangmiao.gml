@@ -29,6 +29,7 @@ if (!_same_line) exit;
 
 burnt += 1;
 damage = round(damage * other.atk / 100);
+bullet_fire_mult_up(id, other.atk / 100);
 // 焚寂马分裂波按 base_damage 生成，必须同步增幅，否则过火后的实际伤害没有提升
 // （与 obj_brazier / 火神 / 金牛 / 融合火盆同口径；能量喵 atk 存 ×100，要 /100）
 if (variable_instance_exists(id, "kind") && kind == "fire" && variable_instance_exists(id, "base_damage")){

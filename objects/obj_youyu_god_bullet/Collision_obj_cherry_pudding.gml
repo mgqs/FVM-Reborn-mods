@@ -3,7 +3,7 @@ if (!bounced && row == other.grid_row)
 {
     move_x *= -1;
     move_y *= -1;
-    damage += other.atk;
+    bullet_rebound_bonus(id, other.atk);
     image_angle += 180;
     bounced = true;
 }

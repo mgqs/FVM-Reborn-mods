@@ -106,7 +106,7 @@ function mod_skill_init()
     register_card_skill("ronghesanxian", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("shuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
     register_card_skill("rongheshuanggu", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
-    register_card_skill("chunsun", "cycle", [390, 378, 366, 354, 342, 330, 318, 300, 210]);
+    register_card_skill("chunsun", "准备时间", [6.5, 6.3, 6.1, 5.9, 5.7, 5.5, 5.3, 5, 3.5]);
     register_card_skill("niuyouguo", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
     register_card_skill("ronghedapao", "cooldown", [1500, 1410, 1320, 1230, 1140, 1050, 960, 870, 780]);
     register_card_skill("ronghekafei", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
@@ -138,6 +138,7 @@ function mod_skill_init()
     register_card_skill("meiweijishiqi", "duration", [510, 540, 570, 600, 630, 660, 690, 720, 900]);
     register_card_skill("dangdanghu", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
     register_card_skill("dianman", "duration", [600, 660, 720, 780, 900, 1020, 1320, 1620, 1920]);
+	register_card_skill("tanchitu", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);
     register_card_skill("tunshilong", "cooldown", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
     register_card_skill("xiangliaohu", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
     register_card_skill("zhuanzhuanji", "cycle", [108, 105, 102, 99, 96, 93, 90, 84, 78]);

@@ -27,13 +27,21 @@ target_type = "throw"
 has_fired = false
 
 // ========== 融合数据（按星级查表，取自「这组卡的推荐数值和情报岛.xlsx」） ==========
-// 星 0~16 逐档：定身概率(%) / 定身时间(tick, 表里是秒×60) / 深度毒气伤害
-var _stun_chance_by_star = [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-var _stun_time_by_star   = [0, 126, 126, 132, 132, 138, 138, 144, 144, 150, 150, 156, 168, 180, 192, 204, 216];
-var _poison_by_star      = [0, 20, 23, 27, 36, 47, 57, 68, 81, 95, 114, 135, 156, 177, 198, 219, 243];
+// 定身概率(%) / 定身时间(s) 走注册表 custom（mod_cards_init 三形态的 info_custom），
+//   情报岛文案直接写 {定身概率} / {定身时间}；这里换算成帧存 stun_frames（同彩虹蛇 / 电鳗口径）。
+// 深度毒气伤害仍按星级查表 —— 投掷类但 2026-11-07 用户确认「毒气故意固定」，不跟 atk 增幅。
+var _poison_by_star = [0, 20, 23, 27, 36, 47, 57, 68, 81, 95, 114, 135, 156, 177, 198, 219, 243];
 var _cl = clamp(current_level, 0, array_length(_poison_by_star) - 1);
-stun_chance = _stun_chance_by_star[_cl];
-stun_duration = _stun_time_by_star[_cl];
 poison_damage = _poison_by_star[_cl];
+
+var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
+var _info = get_plant_data_with_skill("ronghedan_god", shape, clamp(current_level, 0, 16), _sk);
+stun_chance = 20;   // 兜底：17 级满
+stun_time   = 3.6;  // 秒
+if (_info != undefined){
+    if (ds_map_exists(_info, "定身概率")) stun_chance = _info[? "定身概率"];
+    if (ds_map_exists(_info, "定身时间")) stun_time   = _info[? "定身时间"];
+}
+stun_frames = round(stun_time * 60);
 // 溅射比例：三档恒定 35%（表里只给了本体档「3*3范围35%溅射」）
 splash_ratio = 0.35;

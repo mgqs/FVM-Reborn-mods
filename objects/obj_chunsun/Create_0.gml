@@ -34,13 +34,18 @@ ATK_HOLD_TICKS = 4;     // 攻击相位持续几个动画帧（4 帧 ≈ 0.33 �
 range_col = 1;
 range_row = (shape >= 2) ? 2 : 1;
 
-// 准备时间 = cycle（注册表 base 390 = 6.5 秒，技能表 register_card_skill("chunsun","cycle",…)
-//   会把它覆盖成 390→210）。不再单独存 prepare_time 变量，Step 里直接读 cycle。
+// 准备时间 = 注册表 custom["准备时间"]（秒），技能表 register_card_skill("chunsun","准备时间",…)
+//   会把它覆盖成 6.5→3.5 秒。cycle 已归还成 0（不再借它存准备时间），这里换算成帧存 prepare_frames。
+var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
+var _info = get_plant_data_with_skill("chunsun", shape, clamp(current_level, 0, 16), _sk);
+prepare_time   = 6.5;   // 秒（兜底 = 技能 0 级）
+if (_info != undefined && ds_map_exists(_info, "准备时间")) prepare_time = _info[? "准备时间"];
+prepare_frames = round(prepare_time * 60);
 
 max_attack = 5;                                     // 最多攻击 5 次
 attack_count = 0;
 attack_timer = 0;
-// 存在时间写死：0 转 45 秒，一·二转 90 秒（cycle 已被准备时间占用，不再兼这个）
+// 存在时间写死：0 转 45 秒，一·二转 90 秒（cycle 已归还成 0，不兼这个）
 life_time = (shape >= 1) ? 90 * 60 : 45 * 60;
 alive_timer = 0;
 

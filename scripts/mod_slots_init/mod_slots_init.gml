@@ -3158,9 +3158,9 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 2, sprite: spr_dianman_2, cost: 325, cooldown: 3600, description: "霸王美味电鳗：一段时间内持续伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dianman_2 }]);
 
     register_card("tanchitu", obj_tanchitu, [
-    { shape: 0, sprite: spr_tanchitu, cost: 320, cooldown: 3600, description: "贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu },
-    { shape: 1, sprite: spr_tanchitu_1, cost: 320, cooldown: 3600, description: "肥肥贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_1 },
-    { shape: 2, sprite: spr_tanchitu_2, cost: 320, cooldown: 3600, description: "暴走贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_2 }]);
+    { shape: 0, sprite: spr_tanchitu, cost: 320, cooldown: 3600, description: "贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu },
+    { shape: 1, sprite: spr_tanchitu_1, cost: 320, cooldown: 3600, description: "肥肥贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_1 },
+    { shape: 2, sprite: spr_tanchitu_2, cost: 320, cooldown: 3600, description: "暴走贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_2 }]);
 
     register_card("tunshilong", obj_tunshilong, [
     { shape: 0, sprite: spr_tunshilong, cost: 175, cooldown: 2100, description: "吞噬龙：吞噬周围老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tunshilong },

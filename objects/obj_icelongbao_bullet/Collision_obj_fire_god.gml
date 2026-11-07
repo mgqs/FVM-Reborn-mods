@@ -2,6 +2,7 @@ if (source_card_id == "gatlin_ice_long_bao" && ds_list_find_index(brazier_list, 
 {
     burnt += 1;
     damage = round(damage * other.atk);
+    bullet_fire_mult_up(id, other.atk);
     ds_list_add(brazier_list, other.id);
     audio_play_sound(snd_bullet_burnt, 0, 0);
     image_xscale = 1.8;

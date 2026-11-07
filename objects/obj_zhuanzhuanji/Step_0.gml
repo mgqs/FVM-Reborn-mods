@@ -10,7 +10,7 @@ for (var _i = 0; _i < instance_number(obj_enemy_parent); _i++){
     if (!instance_exists(_e) || _e.hp <= 0) continue;
     if (abs(_e.grid_col - grid_col) > range_col) continue;
     if (abs(_e.grid_row - grid_row) > range_row) continue;
-    if (!can_hit(target_type, _e.target_type)) continue;
+    if (!zzj_can_hit(_e.target_type)) continue;
     _has = true;
     break;
 }
@@ -51,10 +51,14 @@ if (_hit_now){
         if (!instance_exists(_t) || _t.hp <= 0) continue;
         if (abs(_t.grid_col - grid_col) > range_col) continue;
         if (abs(_t.grid_row - grid_row) > range_row) continue;
-        if (!can_hit(target_type, _t.target_type)) continue;
+        if (!zzj_can_hit(_t.target_type)) continue;
         with (_t){
             damage_amount = _per;
             damage_type = "true";
+            // 钻地中的龙渊地精：rotate 能索敌 underground，但伤害会被 obj_ly_dijing/Other_10 的
+            //   `ly_mode == "dig"` 门禁整条拦下 → 表现就是「能索敌、打上去没伤害」。
+            //   照原版旋转喷壶的做法，在 event_user(0) 之前放行（该标记只对当帧有效，敌人自己会清）。
+            if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
             event_user(0);
         }
     }

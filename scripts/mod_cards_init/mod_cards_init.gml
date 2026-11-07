@@ -10,7 +10,8 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 390)
+        cycle: array_create(17, 0),
+        custom: info_custom([["准备时间", 6.5]])
     },
     {
         name: "火辣泡椒笋",
@@ -21,7 +22,8 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 390)
+        cycle: array_create(17, 0),
+        custom: info_custom([["准备时间", 6.5]])
     },
     {
         name: "望乡泡椒笋",
@@ -32,7 +34,8 @@ function mod_cards_init()
         atk: [300, 350, 400, 450, 500, 550, 600, 700, 800, 900, 1000, 1100, 1200, 1400, 1700, 2000, 2500],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
-        cycle: array_create(17, 390)
+        cycle: array_create(17, 0),
+        custom: info_custom([["准备时间", 6.5]])
     }], false);
 
     mod_register_plant_lite("mixian", [
@@ -70,7 +73,6 @@ function mod_cards_init()
         cycle: array_create(17, 90)
     }], false);
 
-    // 生肖卡注册（共12张，17级数据表）
     mod_register_plant_lite("yanyantu", [
     {
         name: "炎焱兔",
@@ -281,8 +283,6 @@ function mod_cards_init()
         cycle: array_create(17, 156)
     }], false);
 
-    // 灯影花糕：cost 300，星级影响攻击力，技能影响攻击间隔（210→168 帧）
-    // 二转 atk 约为基础 2.6 倍（表内 60->156、1200->3120）
     mod_register_plant_lite("huagao", [
     {
         name: "灯影花糕",
@@ -388,8 +388,6 @@ function mod_cards_init()
         cycle: array_create(17, 60)
     }], false);
 
-    // 浮生茶：范围内「直射类-固定轨迹类」卡片攻击力增幅（同类含音盒马取最高、不叠乘）
-    // 倍率取自用户表格：第一行 0/1 转，第二行 2 转；冷却 50~18 秒见 mod_skill_init
     mod_register_plant_lite("fushengcha", [
     {
         name: "浮生茶",
@@ -569,7 +567,6 @@ function mod_cards_init()
         flame_produce: [20, 21, 22, 23, 24, 25, 27, 29, 31, 33, 35, 37, 42, 47, 57, 67, 80]
     }], false);
 
-    // 礼盒自身属性固定；星级数据存在于注册表中以复用普通升星流程。
     mod_register_plant_lite("lihe", [{
         name: "随机礼盒",
         shape: 0,
@@ -1966,12 +1963,6 @@ function mod_cards_init()
         cooldown: [2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100],
         cycle: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
     }]);
-    // 猪猪加强器：为本行投掷类卡片增伤，倍率 = 攻击力 / 100
-    // 数值来源：docs 表格 spr-zhuzhujiaqiang（0~16 星）
-    //   本体增幅倍率：1.6 1.7 1.8 1.9 2 2.1 2.2 2.3 2.4 | 2.6 | 2.8 3 | 3.2 | 3.5 3.8 4.1 | 4.5
-    //   二转增幅倍率：1.92 2.04 2.16 2.28 2.4 2.52 2.64 2.76 2.88 | 3.12 | 3.36 3.6 | 3.84 | 4.2 4.56 4.92 | 5.4
-    //   体力：60 110 160 210 260 310 360 410 460 | 510 | 560 610 | 660 | 710 760 810 | 860
-    //   耗能 175，冷却 35/32/29/26/23/20/16/12/7 秒（见 mod_skill_init）
     register_plant_lite("zhuzhujiaqiang", [
     {
         name: "猪猪加强器",
@@ -1988,7 +1979,6 @@ function mod_cards_init()
         name: "猪猪信号塔",
         shape: 1,
         description: "猪猪信号塔：为本行投掷类卡片增加攻击力，体力翻倍",
-        // 一转：体力翻倍，增幅倍率不变
         hp: [120, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120, 1220, 1320, 1420, 1520, 1620, 1720],
         cost: array_create(17, 175),
         atk: [160, 170, 180, 190, 200, 210, 220, 230, 240, 260, 280, 300, 320, 350, 380, 410, 450],
@@ -2000,7 +1990,6 @@ function mod_cards_init()
         name: "猪猪发射站",
         shape: 2,
         description: "猪猪发射站：为本行投掷类卡片大幅增加攻击力",
-        // 二转：沿用一转的翻倍体力，增幅倍率换成二转表
         hp: [120, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120, 1220, 1320, 1420, 1520, 1620, 1720],
         cost: array_create(17, 175),
         atk: [192, 204, 216, 228, 240, 252, 264, 276, 288, 312, 336, 360, 384, 420, 456, 492, 540],
@@ -2691,8 +2680,6 @@ mod_register_plant_lite("xiangshui_god", [
         cycle: [75, 72, 69, 66, 63, 60, 57, 54, 51, 48, 45, 42, 39, 36, 33, 30, 27, 24, 21]
     }]);
 
-    // 鲁班神使：四转（基础/三转/四转/终转）数值
-    // 攻击间隔 3.5→2.0 秒（60fps 换算为帧，19 级严格递减），耗能 385
     mod_register_plant_lite("gongjiang_god", [
     {
         name: "鲁班神使",
@@ -2968,11 +2955,6 @@ mod_register_plant_lite("lingrong_god", [
         cycle: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }]);
 
-    // 神农氏神使 —— 固定轨迹的多线穿透攻击卡
-    // 0转：神农氏神使，召唤2只沿固定行轨迹的穿透神焰，可攻击空中，击杀灰烬
-    // 1转：神农氏圣神，攻击力+30%
-    // 2转：炎帝·神农氏，攻击力+60%
-    // 特殊：场上炎帝数量>7时，增加一行攻击轨迹
     mod_register_plant_lite("shennong_god", [
     {
         name: "神农氏神使",
@@ -3236,14 +3218,6 @@ mod_register_plant_lite("liehuohu", [
         cycle: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }], false);
 
-    // ============================================
-    // 顽皮龙 - 生肖卡·龙年卡
-    // 辅助型防御卡：二段选点移动卡片/角色
-    // 0转: 5x5范围移动卡片
-    // 1转: 全屏范围移动卡片
-    // 2转: 全屏范围移动卡片+角色
-    // 技能强化：不支持
-    // ============================================
     mod_register_plant_lite("wanpilong", [
     {
         name: "顽皮龙",
@@ -3314,12 +3288,6 @@ mod_register_plant_lite("liehuohu", [
         cycle: [78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78]
     }]);
 
-    // ==================== 治愈喵 ====================
-    // 辅助型一次性卡牌，释放技能后销毁卡片本体
-    // 0转：5×5范围卡片和玩家恢复50点体力
-    // 1转：5×5范围卡片和玩家恢复80点体力 + 3秒补血Buff
-    // 2转：全屏卡片和玩家恢复80点体力 + 保留3秒补血Buff
-    // 不支持技能强化，星级影响[冷却时间]
     mod_register_plant_lite("zhiyumiao", [
     {
         name: "治愈喵",
@@ -3355,12 +3323,6 @@ mod_register_plant_lite("liehuohu", [
         cycle: [2820, 2700, 2580, 2460, 2340, 2220, 2100, 1980, 1860, 1740, 1560, 1380, 1200, 1020, 840, 660, 480]
     }], false);
 
-    // ==================== 爆爆鸡 ====================
-    // 攻击型清障防御卡，部署时清除范围内障碍物
-    // 0转：3×3范围，耗能275
-    // 一转：3×3范围，耗能降至225
-    // 二转：5×5范围，耗能保持225
-    // 不支持技能，不造成伤害，清障不消耗体力
     mod_register_plant_lite("baobaoji", [
     {
         name: "爆爆鸡",
@@ -3431,12 +3393,6 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }], false);
 
-    // 青涩柿柿 —— 美食卡·纪念卡，碾压秒杀型攻击卡
-    // 0转：青涩柿柿，1个柿子，陆地+地下
-    // 1转：成熟柿柿，3个柿子（上下各1），陆地+地下
-    // 2转：柿柿如意，5个柿子（上下各2），陆地+地下+空中
-    // 强化项：冷却时间；技能强化：不支持
-    // 单柿子伤害：1800，范围：3×3，可叠加
     mod_register_plant_lite("qingse_shishi", [
     {
         name: "青涩柿柿",
@@ -3518,8 +3474,6 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150]
     }]);
 
-    // 战旗马：增幅所有卡片攻击力
-    // 攻击力数值即倍率百分比（例如 138 = 1.38 倍）
     mod_register_plant_lite("zhanqima", [
     {
         name: "战旗马",
@@ -3601,8 +3555,6 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
     }]);
 
-    // 俱吠罗神使：四形态金卡，全屏索敌追踪穿透
-    // 攻击间隔 1.8→1.3 秒，耗能 300
     mod_register_plant_lite("hufa_god", [
     {
         name: "俱吠罗神使",
@@ -3683,7 +3635,6 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: [90, 90, 87, 87, 84, 84, 81, 81, 78, 78, 75, 75, 72, 72, 69, 69, 60]
     }], false);
 
-    // 融合卡：按普卡 16 星登记（形态 0/1/2，两次转职），数值取 xlsx 前 17 档（0~16 星）。
     mod_register_plant_lite("lizi_god", [
         {name: "酱香锅烤栗子",
         shape: 0,
@@ -3720,13 +3671,16 @@ mod_register_plant_lite("xuanfengniu", [
     mod_register_plant_lite("ronghedan_god", [
         {name: "雪芭煮蛋器",
         shape: 0,
-        description: "雪芭煮蛋器：向前方投掷鸡蛋&几率定身", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)},
+        description: "雪芭煮蛋器：向前方投掷鸡蛋&几率定身", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])},
         {name: "臭豆腐煮蛋器",
         shape: 1,
-        description: "臭豆腐煮蛋器：向前方投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)},
+        description: "臭豆腐煮蛋器：向前方投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])},
         {name: "终结者煮蛋器",
         shape: 2,
-        description: "终结者煮蛋器：向前方3行投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180)}
+        description: "终结者煮蛋器：向前方3行投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])}
     ], false);
     mod_register_plant_lite("ronghehuopen", [
         {name: "刺梨烧烤盘",
@@ -4054,7 +4008,10 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 350, 370, 390, 410, 430],
         range: array_create(17, 1.5),
         cooldown: array_create(17, 720),
-        cycle: [7800, 8400, 9000, 9600, 10200, 10800, 11400, 12000, 12600, 13800, 15000, 16200, 17400, 19200, 21000, 22800, 24600]
+        cycle: array_create(17, 0),
+        custom: info_custom([
+            ["投掷增幅", [1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.3, 2.5, 2.7, 2.9, 3.2, 3.5, 3.8, 4.1]]
+        ])
     },
     {
         name: "蓝焰能量喵",
@@ -4065,7 +4022,10 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 350, 370, 390, 410, 430],
         range: array_create(17, 1.5),
         cooldown: array_create(17, 720),
-        cycle: [7800, 8400, 9000, 9600, 10200, 10800, 11400, 12000, 12600, 13800, 15000, 16200, 17400, 19200, 21000, 22800, 24600]
+        cycle: array_create(17, 0),
+        custom: info_custom([
+            ["投掷增幅", [1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 2.1, 2.3, 2.5, 2.7, 2.9, 3.2, 3.5, 3.8, 4.1]]
+        ])
     },
     {
         name: "樱红能量喵",
@@ -4076,7 +4036,10 @@ mod_register_plant_lite("xuanfengniu", [
         atk: [253, 264.5, 276, 287.5, 299, 310.5, 322, 333.5, 345, 356.5, 368, 379.5, 402.5, 425.5, 448.5, 471.5, 494.5],
         range: array_create(17, 1.5),
         cooldown: array_create(17, 720),
-        cycle: [8970, 9660, 10350, 11040, 11730, 12420, 13110, 13800, 14490, 15870, 17250, 18630, 20010, 22080, 24150, 26220, 28290]
+        cycle: array_create(17, 0),
+        custom: info_custom([
+            ["投掷增幅", [1.495, 1.61, 1.725, 1.84, 1.955, 2.07, 2.185, 2.3, 2.415, 2.645, 2.875, 3.105, 3.335, 3.68, 4.025, 4.37, 4.715]]
+        ])
     }], false);
 
     mod_register_plant_lite("maiya", [
@@ -4502,7 +4465,7 @@ mod_register_plant_lite("xuanfengniu", [
 
     mod_register_plant_lite("tanchitu", [
     {
-        name: "贪吃兔",
+        name: "贪吃兔棍",
         shape: 0,
         description: "贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),
@@ -4513,7 +4476,7 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 0)
     },
     {
-        name: "肥肥贪吃兔",
+        name: "肥肥贪吃兔棍",
         shape: 1,
         description: "肥肥贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),
@@ -4524,7 +4487,7 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 0)
     },
     {
-        name: "暴走贪吃兔",
+        name: "暴走贪吃兔棍",
         shape: 2,
         description: "暴走贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),

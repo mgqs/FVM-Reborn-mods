@@ -103,7 +103,7 @@ if (phase == 0) {
 	// 准备：坑里空无一物（资源 1-14）
 	image_index = _f mod (PREPARE_LAST + 1);
 	phase_timer++;
-	if (phase_timer >= cycle) {          // 准备时间 = cycle（技能表驱动，见 Create 注释）
+	if (phase_timer >= prepare_frames) {   // 准备时间 = custom["准备时间"]（见 Create 注释）
 		phase = 1;
 		anim_tick = 0;
 	}
@@ -147,7 +147,7 @@ if (phase == 3) {
 	if (!swing_done) {
 		swing_done = true;
 		attack_count++;
-		attack_timer = 120;              // 攻击间隔固定 2 秒（cycle 是准备时间，不再当间隔用）
+		attack_timer = 120;              // 攻击间隔固定 2 秒（cycle 已归还成 0，不再兼准备时间）
 		chunsun_spawn_spikes();
 		chunsun_deal_damage(tg);
 	}

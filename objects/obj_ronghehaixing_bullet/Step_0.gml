@@ -60,17 +60,27 @@ y += y_move_speed
 // 命中判定：接全局索敌管线（obj_battle/Step_2 每帧建好 enemy_sx 扫掠索引 + enemy_col_n）
 //   ★ 旧写法每帧、每颗子弹都裸扫 global.enemy_by_type 全表 —— 与 obj_youyu_god_bullet 属同一类热路径：
 //     五方向齐射 + 反弹/追踪弹，同场子弹数量多，逐颗 × 逐个敌人跑 precise_bbox_collision 开销很重
-//   现改为「只处理与子弹 x 轴扫掠窗口相交的少量候选 + 按 global.bullet_hit_interval 隔帧判定」；
+//   现改为「只处理与子弹 x 轴扫掠窗口相交的少量候选 + 对象级 hit_interval 隔帧判定」；
 //   bullet_sap_type_list 内部按代缓存，同一帧多颗子弹共享同一份索引
-//   安全性：子弹最快 8px/帧、判定步长 global.bullet_hit_interval(2) = 16px，
-//          远小于「子弹 + 鼠」的合体碰撞宽度，不会跳过命中
+//   ★ 2026-11-07 用户口径：hit_interval = 3（Create 里设），与炭烧海星 / 猪猪料理机刀片统一，
+//     不再用全局 global.bullet_hit_interval（2）。
+//   安全性：子弹最快 8px/帧、斜向两发 √(5²+3²)≈5.83px/帧 → 3 帧 ≈ 17.5px；
+//          子弹包围盒约 45×50（1.5 缩放）、老鼠半宽 20~30px，合体宽度远大于 17.5px，不会跳过命中
 hit_tick++;
-if (hit_tick >= global.bullet_hit_interval)
+if (hit_tick >= hit_interval)
 {
     hit_tick = 0;
 
-    if (variable_global_exists("enemy_by_type") && bullet_enemy_reachable(id))
+    if (variable_global_exists("enemy_by_type") && precise_bbox_prepare(id) && bullet_enemy_reachable(id))
     {
+        // 子弹本帧的旋转包围盒只算一次（precise_bbox_prepare 会写进 global._pbc_*），
+        //   循环里直接拿敌人 bbox 比 —— 与 obj_coalstarfish_bullet 完全同款，
+        //   不再对每个候选调 precise_bbox_collision（那会重复读实例变量 + 重复查缓存）
+        var _bl = global._pbc_l;
+        var _br = global._pbc_r;
+        var _bt = global._pbc_t;
+        var _bb = global._pbc_b;
+
         for (var _t = 0; _t < array_length(hittable_types); _t++)
         {
             var _key = hittable_types[_t];
@@ -84,7 +94,7 @@ if (hit_tick >= global.bullet_hit_interval)
                 if (_e.hp <= 0) continue;
                 // 直线弹只在同一行命中；一旦撞过上下边框切为追踪模式，则解除行限制
                 if (!(has_bounced_wall || b_type == 0 || (b_type == 1 && row == _e.grid_row))) continue;
-                if (!precise_bbox_collision(id, _e)) continue;
+                if (_e.bbox_right < _bl || _e.bbox_left > _br || _e.bbox_bottom < _bt || _e.bbox_top > _bb) continue;
 
                 // 命中格先记下来：下面可能把这只鼠打死、实例就没了
                 var _hrow = _e.grid_row;
@@ -139,6 +149,10 @@ if (shape >= 2 && dir_index >= 3 && !has_bounced_wall) {
 
 	if (_hit_wall) {
 		has_bounced_wall = true
+		// 🔴 2026-11-07 用户口径：**转追踪的这一帧**才把命中口径换成 track（普通 + 空军 + 潜水，不含障碍）。
+		//   出膛到撞壁这段仍是 normal（普通 + 障碍），所以直线飞行时打不到空军 —— 对空是追踪的奖励。
+		target_type = "track"
+		hittable_types = get_hittable_enemy_types(target_type)
 		bullet_speed = sqrt(move_speed*move_speed + y_move_speed*y_move_speed)
 		if (bullet_speed == 0) bullet_speed = 8
 		image_angle = point_direction(0, 0, move_speed, y_move_speed)

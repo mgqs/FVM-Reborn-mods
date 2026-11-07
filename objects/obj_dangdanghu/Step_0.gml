@@ -15,7 +15,9 @@ var _has = false;
 var _tgt = noone;
 var _min = 99999;
 with (obj_enemy_parent){
-    if (hp > 0 && grid_row == other.grid_row && grid_col >= other.grid_col
+    // 索敌行：**本行 + 上下各一行**（同糖炒栗子 / 生煎锅 `abs(grid_row - other.grid_row) <= 1`）
+    //   落点仍按本行（_row = grid_row，同栗子 Other_11），靠 0/1 转十字火焰把上面那行烧到。
+    if (hp > 0 && abs(grid_row - other.grid_row) <= 1 && grid_col >= other.grid_col
         && (grid_col - other.grid_col) <= _rng
         && can_target_on(other.target_type, target_type)){
         var _d = grid_col - other.grid_col;
