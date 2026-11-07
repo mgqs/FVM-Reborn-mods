@@ -48,8 +48,8 @@ function mod_evo_table(){
                                         {id:"pizza_oven", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
         brahma:                  { cards:[ {id:"magic_chicken", slot:0, need:2},
                                         {id:"baibianshe", slot:1, need:2} ] },  // 梵天神使 ← 幻幻鸡（这卡只注册到本体，need 2 会被上限兜到 0）+ 双子百变蛇
-        guangming_god:           { cards:[ {id:"rabbit_lantern", slot:0, need:2},
-                                        {id:"dragon_fruit", slot:1, need:2} ] },  // 巴德尔神使 ← 广寒玉兔灯笼 + 九天皓日火龙果
+        guangming_god:           { cards:[ {id:"dragon_fruit", slot:0, need:2},
+                                        {id:"dianman", slot:1, need:2} ] },  // 巴德尔神使 ← 九天皓日火龙果（主卡）+ 美味电鳗（副卡·进化，2026-11-07 用户改回）
         shennong_god:            { cards:[ {id:"yanhuangma", slot:0, need:2},
                                         {id:"huagao", slot:1, need:2} ] },  // 神农氏神使 ← 焚天炎凰马 + 梦境灯影花糕
         haiyang_god:             { cards:[ {id:"mozhang", slot:0, need:2},

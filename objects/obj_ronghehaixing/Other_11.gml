@@ -27,6 +27,9 @@ for (var _d = 0; _d < 5; _d++)
 		_b.image_angle = _angle[_d];
 		_b.b_type = _btype[_d];
 		_b.shape = shape;
+		// 🔴 2026-11-07 用户口径：灵融的「对空 / 潜水」**只在反弹转追踪之后**才生效。
+		//   出膛时一律维持 Create 里的 normal（普通 + 障碍）—— 直线飞行的段不能打空军。
+		//   类型切换写在子弹 Step 的 _hit_wall 分支里（has_bounced_wall = true 时）。
 		_b.sprite_index = _spr;
 		_b.delay = _k * _delay_step;          // 0 / 3 / 6
 		_b.dir_index = _d;                    // 0=后 1=下 2=上 3=右上 4=右下（子弹的边界/追踪规则用）

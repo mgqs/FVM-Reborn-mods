@@ -18,6 +18,8 @@ stun_chance = 10;
 stun_frames = 120;
 bounced = false;
 life = 0;
+// 命中判定节流（同全工程 75 个子弹对象）
+hit_tick = 0;
 hittable_types = get_hittable_enemy_types(target_type);
 
 // ── 命中特效（2026-11-06 用户指正：素材后 5 帧就是攻击特效，之前直接销毁没播）──

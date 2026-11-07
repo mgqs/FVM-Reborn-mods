@@ -21,7 +21,12 @@ if (x > 2200 || x < -200 || y > 1200 || y < -400){
     exit
 }
 
-if (variable_global_exists("enemy_by_type") && precise_bbox_prepare(id)){
+// 🔴 2026-11-07 性能：隔 global.bullet_hit_interval 帧判一次 + 飞出所有敌人后早退（同全工程其它子弹）
+hit_tick++;
+if (hit_tick < global.bullet_hit_interval) exit;
+
+hit_tick = 0;
+if (variable_global_exists("enemy_by_type") && bullet_enemy_reachable(id) && precise_bbox_prepare(id)){
     var _al = global._pbc_l;
     var _ar = global._pbc_r;
     var _at = global._pbc_t;

@@ -37,3 +37,8 @@ if (_info != undefined && ds_map_exists(_info, "减速时间")) slow_time = _inf
 slow_frames = (shape >= 1) ? round(slow_time * 60) : 0;
 
 fired_this_attack = false;
+// 2 转错帧连发（照炭烧海星）：第一轮当帧出，第二轮隔 burst_gap 帧再出一次 5 方向
+//   🔴 原来的做法是「一次造 10 颗，第二颗靠子弹 delay 冻在枪口」，那 5 帧看着就是一颗刀片卡住不动
+burst_left  = 0;
+burst_timer = 0;
+burst_gap   = 5;

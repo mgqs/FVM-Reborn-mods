@@ -55,6 +55,10 @@ if (_hit_now){
         with (_t){
             damage_amount = _per;
             damage_type = "true";
+            // 钻地中的龙渊地精：rotate 能索敌 underground，但伤害会被 obj_ly_dijing/Other_10 的
+            //   `ly_mode == "dig"` 门禁整条拦下 → 表现就是「能索敌、打上去没伤害」。
+            //   照原版旋转喷壶的做法，在 event_user(0) 之前放行（该标记只对当帧有效，敌人自己会清）。
+            if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
             event_user(0);
         }
     }

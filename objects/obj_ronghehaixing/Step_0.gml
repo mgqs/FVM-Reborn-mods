@@ -34,7 +34,9 @@ var _reach_sq = (_ray_len + 128) * (_ray_len + 128);   // 粗筛半径（出弹�
 var has_enemy = false
 if (variable_global_exists("enemy_by_type"))
 {
-	var _types = get_hittable_enemy_types(target_type);
+	// 灵融（2 转）：追踪子弹走标准「追踪」口径 track = 普通 + 空军 + 潜水
+	//   （2026-11-07 用户口径：追踪就该对空，且**不再打障碍** —— 这是追踪的卖点）
+	var _types = get_hittable_enemy_types((shape >= 2) ? "track" : target_type);
 	var _type_n = array_length(_types);
 	for (var _t = 0; _t < _type_n && !has_enemy; _t++)
 	{

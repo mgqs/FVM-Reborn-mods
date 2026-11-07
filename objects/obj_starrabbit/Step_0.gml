@@ -71,7 +71,8 @@ if (state == CARD_STATE.ATTACK) {
             b.image_xscale = 1;
             b.image_yscale = 1;
             b.can_dandantu_store = false;
-            b.damage_type = "pierce";
+            // 2026-11-07 用户口径：星弹不穿透，也不穿盾 → 走普通伤害（护盾先吃）
+            b.damage_type = "normal";
             b.center_row = grid_row;
         }
     }

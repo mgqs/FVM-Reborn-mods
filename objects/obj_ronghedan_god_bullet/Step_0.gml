@@ -33,13 +33,9 @@ if (hit_enemy) {
                 damage_type = other.damage_type;
                 event_user(0);
 
-                // 溅射附带定身效果（概率减半）
-                var _chance = other.stun_chance * 0.5;
-                var _duration = other.stun_duration;
-                if (random(100) < _chance) {
-                    if (stun_timer < _duration) {
-                        stun_timer = _duration;
-                    }
+                // 溅射附带定身效果（概率减半）；BOSS 免疫（同彩虹蛇 / 电鳗口径）
+                if (!is_boss && irandom(99) < other.stun_chance * 0.5){
+                    if (stun_timer < other.stun_frames) stun_timer = other.stun_frames;
                 }
             }
         }
@@ -102,13 +98,9 @@ if (hit_tick >= global.bullet_hit_interval)
                             damage_amount = other.damage
                             damage_type = other.damage_type
                             event_user(0)
-                            // 定身效果（按星级查表，见 obj_ronghedan_god/Create_0）
-                            var _chance = other.stun_chance;
-                            var _duration = other.stun_duration;
-                            if (random(100) < _chance) {
-                                if (stun_timer < _duration) {
-                                    stun_timer = _duration;
-                                }
+                            // 定身效果（按星级查表，见 obj_ronghedan_god/Create_0）；BOSS 免疫
+                            if (!is_boss && irandom(99) < other.stun_chance){
+                                if (stun_timer < other.stun_frames) stun_timer = other.stun_frames;
                             }
                         }
                         _hit = true;

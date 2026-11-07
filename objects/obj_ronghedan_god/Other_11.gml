@@ -21,7 +21,8 @@ if (shape >= 2)
 
     with (obj_enemy_parent)
     {
-        if (hp > 0 && can_target_on(other.target_type, target_type)
+        // 2026-11-07：不吃障碍（同 Step 索敌口径）
+        if (hp > 0 && target_type != "obstacle" && can_target_on(other.target_type, target_type)
             && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1))
         {
             var _lane = 1 + (grid_row - other.grid_row);   // -1 行→0 / 本行→1 / +1 行→2
@@ -65,7 +66,7 @@ if (shape >= 2)
             inst.thrower_y = y + _off;
             inst.shape = shape;
             inst.stun_chance = stun_chance;
-            inst.stun_duration = stun_duration;
+            inst.stun_frames = stun_frames;
             inst.poison_damage = poison_damage;
             inst.splash_ratio = splash_ratio;
 
@@ -120,7 +121,7 @@ else
         inst.thrower_y = y;
         inst.shape = shape;
         inst.stun_chance = stun_chance;
-        inst.stun_duration = stun_duration;
+        inst.stun_frames = stun_frames;
         inst.poison_damage = poison_damage;
         inst.splash_ratio = splash_ratio;
 

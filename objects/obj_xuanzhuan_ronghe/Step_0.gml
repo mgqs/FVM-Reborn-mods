@@ -68,6 +68,10 @@ if (_hit_now){
 			damage_amount = other.damage_value;
 			damage_type = "true";
 			damage_source_object = other.object_index;
+			// 钻地中的龙渊地精：rotate 能索敌 underground，但 obj_ly_dijing/Other_10 在
+			//   `ly_mode == "dig"` 时会把伤害整条吃掉（只认 ly_dig_hittable / 少数白名单来源）
+			//   → 表现就是「能索敌、打上去没伤害」。照原版旋转喷壶在结算前放行。
+			if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
 			event_user(0);          // 走敌人自己的受伤流程（护盾 / 减伤 / 测试关统计都在这条路上）
 
 			// 1 转起：减速 1.5 秒（命中的每只都挂，重复命中刷新时长；BOSS 也吃）

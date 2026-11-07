@@ -56,15 +56,16 @@ if (kind == "return" || kind == "flute") {
 x += move_x;
 y += move_y;
 // 追踪弹的命中半径较小，保持逐帧判定避免高速转向时穿过目标；直线弹使用统一节流。
+// 🔴 2026-11-07 用户口径：星星兔**不穿透**（命中即消失）→ 判定间隔必须收回标准 2 帧。
+//   原来星弹是「全场穿透」，靠 10 帧一判（80px）省性能；改成单发命中后，10 帧会直接从老鼠身上跨过去。
 var _hit_interval = (kind == "return" || kind == "flute") ? 1
-    : (kind == "star" ? 10
-    : (variable_global_exists("bullet_hit_interval") ? global.bullet_hit_interval : 2));
+    : (variable_global_exists("bullet_hit_interval") ? global.bullet_hit_interval : 2);
 var _do_hit = hit_tick >= _hit_interval;
 if (_do_hit) hit_tick = 0;
 // 星星兔弹数量最多，优先建立一次宽松的 SAP 候选父集；后续普通/空中类型直接复用。
 var enemies = _zodiac_candidates;
-// 星星兔星弹为全场穿透弹：不做水平距离裁剪，只要场上有敌人就持续飞行索敌，
-// 无敌人时由上方 enemy_sx_n<=0 分支销毁，飞出场地由边界判定销毁。
+// 星星兔星弹：命中一个就消失（2026-11-07 起不再穿透），这里保留「不做水平距离裁剪」的宽松裁剪，
+//   只是为了让 5 发扇形弹在场上还有敌人时正常判定；无敌人时由上方 enemy_sx_n<=0 分支销毁。
 var _can_reach = _do_hit && (kind == "star" || bullet_enemy_reachable(id));
 if (kind == "star" && _do_hit && variable_global_exists("enemy_sx_gen") && global.enemy_sx_gen > 0 && !_can_reach) {
     instance_destroy();
@@ -294,11 +295,14 @@ for (var i = 0; i < array_length(enemies); i++) {
                 var st_dmg = damage;
                 with (e) {
                     damage_amount = st_dmg;
-                    damage_type = "pierce";
+                    // 2026-11-07 用户口径：星弹不穿透、也不穿盾 → 普通伤害（护盾先吃，破盾才掉血）
+                    damage_type = "normal";
                     event_user(0);
                 }
-                // 星弹为穿透弹，命中后继续飞行，靠 hit_ids 防止重复伤害同一目标。
-                break;
+                // 🔴 2026-11-07 用户口径：星星兔**不穿透** —— 命中一个就销毁（卡面只写「5 方向各发 1 颗」，没穿透）。
+                //   原来是「命中后继续飞、靠 hit_ids 防重复」，表现为一颗星弹串一整列老鼠。
+                instance_destroy();
+                exit;
             }
         case "phoenix":
             {

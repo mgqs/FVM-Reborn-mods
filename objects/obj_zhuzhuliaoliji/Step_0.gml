@@ -43,6 +43,8 @@ if (_has){
 
     if (!_was && state == CARD_STATE.ATTACK){
         fired_this_attack = false;
+        burst_left = 0;
+        burst_timer = 0;
         image_index = idle_anim + 1;
     }
 
@@ -50,10 +52,29 @@ if (_has){
         fired_this_attack = true;
         event_user(1);
         global.audio.play(snd_shot, 0, 0);
+        // 2 转：错帧连发 2 轮（照炭烧海星）：第一轮当帧出，第二轮隔 burst_gap 帧再调一次
+        //   🔴 原来是「同一次里直接造 10 颗、第 2 颗靠子弹自己的 delay 冻在枪口 5 帧」，
+        //      表现就是一颗刀片卡在枪口不动再突然飞出去 → 改成海星这种「隔帧补发一轮」。
+        if (shape >= 2){
+            burst_left = 1;
+            burst_timer = 0;
+        }
+    }
+
+    if (burst_left > 0){
+        burst_timer++;
+        if (burst_timer >= burst_gap){
+            burst_timer = 0;
+            burst_left--;
+            event_user(1);
+            global.audio.play(snd_shot, 0, 0);
+        }
     }
 }
 else{
     attack_timer = 0;
     fired_this_attack = false;
+    burst_left = 0;
+    burst_timer = 0;
     state = CARD_STATE.IDLE;
 }

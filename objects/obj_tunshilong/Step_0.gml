@@ -6,7 +6,7 @@ if (is_frozen) exit;
 // ── 帧机（分段见 Create_0，2026-11-06 用户口径）──
 //   0 不在动画里 → 待机 0~11
 //   1 咬住 26~30（编辑器 27~31，31 帧落地）
-//   2 消化 31~46（编辑器 32~47）循环 —— 🔴 只循环这一段，不能把 26~30 再放一遍
+//   2 消化 34~46（编辑器 35~47）循环 —— 🔴 只循环这一段，不能把 26~34 再放一遍（32~34 会闪）
 //   3 咽下 47~51（编辑器 48~52）
 if (eat_phase > 0){
     if (digest_timer > 0) digest_timer--;
@@ -39,10 +39,11 @@ if (eat_phase > 0){
 
 if (image_index > TUN_IDLE_LAST || image_index < 0) image_index = 0;
 
-// 索敌：以右边第 1 格为中心的矩形范围内，取最近的一只可吞目标
-var _cc = grid_col + 1;
-var _tgt = noone;
-var _best = 99999;
+// 索敌：**自身 1 格 + 前方 3×3 / 5×5** 内所有可吞目标一起结算
+//   2026-11-07 用户口径：范围内几只就吃几只（不是只吞最近的一只）。
+//   🔴 边遍历边 instance_destroy 会打断 with 的实例链表（后面的老鼠被跳过），
+//      所以先把 id 收进数组，再统一处理。
+var _victims = [];
 
 with (obj_enemy_parent){
     if (hp <= 0) continue;
@@ -56,20 +57,20 @@ with (obj_enemy_parent){
     // 2026-11-06 按表：神风 / 深渊幽灵鼠不吞。深渊那只在本工程里没有单独 mouse_id
     //   （未显形幽灵统一是 target_type = "invisible"），这里按类型再挡一道。
     if (target_type == "invisible") continue;
-    if (abs(grid_col - _cc) > other.range_col) continue;
+    // 列：自身列 ~ 自身列 + front_cols（自身左边一律不吃）
+    if (grid_col < other.grid_col) continue;
+    if (grid_col > other.grid_col + other.front_cols) continue;
     if (abs(grid_row - other.grid_row) > other.range_row) continue;
     if (array_get_index(other.no_eat, mouse_id) != -1) continue;
 
-    var _d = abs(grid_col - _cc) + abs(grid_row - other.grid_row);
-    if (_d < _best){
-        _best = _d;
-        _tgt = id;
-    }
+    array_push(_victims, id);      // 范围内**全部**收下，不再挑最近的一只
 }
 
-if (_tgt == noone) exit;
+if (array_length(_victims) <= 0) exit;
 
-if (instance_exists(_tgt)){
+for (var _vi = 0; _vi < array_length(_victims); _vi++){
+    var _tgt = _victims[_vi];
+    if (!instance_exists(_tgt)) continue;
     with (_tgt){
         if (!immune_to_ash){
             // 地面 · 不防爆的普通鼠 → **直接没了**（照汉堡包 obj_hamburger/Other_11 的 instance_destroy）
@@ -87,7 +88,9 @@ if (instance_exists(_tgt)){
     }
 }
 
-digest_timer = digest_time;
+// 消化时间 = 每只 5 秒 × 这一批吞到的只数（2026-11-07 用户口径：吞 3 只就是 15 秒）
+var _n_eaten = max(1, array_length(_victims));
+digest_timer = digest_time * _n_eaten;
 swallow_t = 1;
 // 吞噬动画从「咬住」段起播（26 = 编辑器第 27 帧），31 帧落地后进消化循环
 eat_phase = 1;

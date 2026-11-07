@@ -4,7 +4,24 @@ y += move_speed;
 life++;
 image_index = (life div 4) mod sprite_get_number(sprite_index);
 
-if (variable_global_exists("enemy_by_type") && precise_bbox_prepare(id)){
+// 🔴 2026-11-07 性能：兔子只撞**同一列**的敌人，这一列没敌人时整段判定（bbox + 全量 with）直接跳过。
+//   obj_battle/Step_2 每帧建好 global.enemy_col_n（按列计数），O(1) 就能问出来，判定条件一个都没改。
+var _col_has_enemy = true;
+if (variable_global_exists("enemy_col_n")){
+    var _ncols = array_length(global.enemy_col_n);
+    if (grid_col >= 0 && grid_col < _ncols){
+        // enemy_col_n 是**按碰撞框跨度**统计的（bbox 跨几列就几列 +1），所以这里查「本列 ±1 列」，
+        // 只放宽不收紧 —— 宁可多扫一次，也不会漏掉任何本该撞上的老鼠。
+        var _c0 = max(0, grid_col - 1);
+        var _c1 = min(_ncols - 1, grid_col + 1);
+        _col_has_enemy = false;
+        for (var _ci = _c0; _ci <= _c1; _ci++){
+            if (global.enemy_col_n[_ci] > 0){ _col_has_enemy = true; break; }
+        }
+    }
+}
+
+if (_col_has_enemy && variable_global_exists("enemy_by_type") && precise_bbox_prepare(id)){
     // 🔴 2026-11-06 修「_al not set」：precise_bbox_prepare 的结果在 global._pbc_* 里，
     //    是**本实例（兔子）**的碰撞框；下面 with 里 self 变成老鼠，`other` 才是兔子。
     //    原来写成 `var _al = ...`（局部变量）再用 `other._al` 读 → 局部变量不在实例上，直接报错。

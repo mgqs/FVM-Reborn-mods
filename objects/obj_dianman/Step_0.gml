@@ -69,6 +69,9 @@ if (_do_hit){
         // 伤害照常（2026-11-06 用户口径：BOSS 也要吃伤害）
         damage_amount = other.atk;
         damage_type = "true";
+        // 钻地中的龙渊地精：rotate 能索敌 underground，但 obj_ly_dijing/Other_10 会整条拦掉伤害，
+        //   不先放行就是「能索敌、打上去没伤害」（同转转鸡 / 融合喷壶）。
+        if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
         event_user(0);
 
         // 定身对 BOSS 无效，只有非 BOSS 才定

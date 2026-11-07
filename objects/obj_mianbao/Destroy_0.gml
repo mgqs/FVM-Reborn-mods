@@ -1,9 +1,10 @@
 // obj_mianbao（融合菠萝面包）Destroy 事件
-// 死亡爆炸：**只有 hp 归零才炸**（铲除 / 云洞吞 / BOSS 清格 都不炸）
+// 死亡爆炸：**只要不是铲除就炸**（2026-11-07 改口径 —— 战神齿轮 / 木鸭木轮 / 滚木 / 洞君 / 阿诺
+//   都是满血直接 instance_destroy()，原来按 hp <= 0 判会整片不炸；铲除 / 龙渊偷卡都置 is_shoveled，仍不炸）
 // 这里只负责起一个 obj_mianbao_boom 播爆炸段；**伤害在爆炸对象播到「炸开」那一帧时才结算**
 var _shoveled = variable_instance_exists(id, "is_shoveled") && is_shoveled;
 
-if (!_shoveled && hp <= 0){
+if (!_shoveled){
 	// ① 爆炸段首帧（0 转 87 / 1 转 78 / 2 转 72）→ 播到精灵末帧
 	var _boom = instance_create_depth(x, y, depth, obj_mianbao_boom);
 	_boom.sprite_index = sprite_index;
