@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FVM 关卡编辑器 · 适配版</title>
+<style>
+  :root{
+    --bg:#0d0f12; --panel:#15181d; --panel2:#1b1f26; --line:#2c323b;
+    --text:#e6e9ee; --dim:#98a1ae; --accent:#f0a53c; --accent2:#4aa3ff;
+    --normal:#3b4048; --water:#1d4d70; --obstacle:#5b452c;
+    --cell:56px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    background:var(--bg); color:var(--text);
+    font:14px/1.45 "Microsoft YaHei","PingFang SC",system-ui,sans-serif;
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  button{
+    font:inherit; color:var(--text); background:var(--panel2);
+    border:1px solid var(--line); padding:6px 12px; cursor:pointer;
+    border-radius:4px; transition:.12s;
+  }
+  button:hover{border-color:var(--accent); color:#fff;}
+  button.primary{background:var(--accent); color:#1a1206; border-color:var(--accent); font-weight:700;}
+  button.primary:hover{filter:brightness(1.1); color:#1a1206;}
+  button.ghost{background:transparent;}
+  button.danger:hover{border-color:#e2564a; color:#ff9b90;}
+  button.mini{padding:2px 7px; font-size:12px; border-radius:3px;}
+  input,select,textarea{
+    font:inherit; color:var(--text); background:#0f1216;
+    border:1px solid var(--line); border-radius:4px; padding:5px 8px; outline:none;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--accent2);}
+  input[type=number]{width:100%;}
+  select{width:100%;}
+  textarea{resize:vertical; width:100%;}
+  ::-webkit-scrollbar{width:9px;height:9px;}
+  ::-webkit-scrollbar-thumb{background:#333b46;border-radius:6px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+
+  header{
+    flex:0 0 auto; display:flex; align-items:center; gap:14px;
+    padding:8px 14px; background:linear-gradient(180deg,#181c22,#12151a);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:700; letter-spacing:.5px; white-space:nowrap;}
+  .brand span{color:var(--accent);}
+  .brand .sub{color:var(--dim); font-weight:400; font-size:12px; margin-left:8px;}
+  nav{display:flex; gap:6px;}
+  nav button{background:#101318; border-color:#252b33;}
+  nav button.on{background:var(--accent); color:#1a1206; border-color:var(--accent); font-weight:700;}
+  .spacer{flex:1;}
+  .actions{display:flex; gap:6px;}
+
+  main{flex:1; min-height:0; position:relative;}
+  .page{display:none; height:100%; overflow:auto;}
+  .page.on{display:block;}
+  .page.flat{overflow:hidden;}
+
+  /* ---------------- page 1 : basics ---------------- */
+  .basics{display:grid; grid-template-columns:minmax(420px,1fr) 380px; gap:18px; padding:18px;}
+  .card-box{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px;}
+  .card-box h3{margin:0 0 12px; font-size:14px; color:var(--accent); font-weight:700;}
+  .field{display:grid; grid-template-columns:132px 1fr; gap:10px; align-items:center; margin-bottom:9px;}
+  .field > label{color:var(--dim); font-size:13px; text-align:right;}
+  .field.wide{grid-template-columns:132px 1fr;}
+  .field textarea{min-height:56px;}
+  .field .hint{color:#6f7885; font-size:12px; margin-top:2px;}
+  .pair{display:grid; grid-template-columns:132px 1fr 1fr; gap:8px; align-items:center;}
+  .preview-map{width:100%; border:1px solid var(--line); border-radius:6px; background:#0a0c0f; object-fit:contain;}
+  .summary{font-size:12.5px; color:var(--dim); line-height:1.7;}
+  .summary b{color:var(--text); font-weight:600;}
+  .summary .k{display:inline-block; min-width:86px; color:#7b8593;}
+  .musicrow{display:grid; grid-template-columns:1fr auto; gap:6px;}
+
+  /* ---------------- page 2 : map ---------------- */
+  .map-layout{display:grid; grid-template-columns:270px minmax(0,1fr) 316px; height:100%;}
+  .col{min-height:0; display:flex; flex-direction:column; border-right:1px solid var(--line);}
+  .col:last-child{border-right:none;}
+  .col-head{
+    flex:0 0 auto; padding:9px 12px; border-bottom:1px solid var(--line);
+    background:#12151a; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .col-body{flex:1; min-height:0; overflow:auto; padding:10px 12px;}
+  .seg{display:flex; gap:4px; flex-wrap:wrap;}
+  .seg button{padding:4px 10px; font-size:13px;}
+  .seg button.on{background:var(--accent); color:#1a1206; border-color:var(--accent); font-weight:700;}
+
+  .pal-item{
+    display:flex; align-items:center; gap:9px; padding:5px 7px; border:1px solid transparent;
+    border-radius:5px; cursor:pointer; margin-bottom:3px;
+  }
+  .pal-item:hover{background:#1c2129;}
+  .pal-item.on{background:#2a2113; border-color:var(--accent);}
+  .pal-item .ico{width:26px; height:26px; object-fit:contain; flex:0 0 auto;
+    background:#00000033; border-radius:4px;}
+  .pal-item .txt{min-width:0; flex:1;}
+  .pal-item .nm{font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .pal-item .id{font-size:11px; color:#6f7885; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .swatch{width:26px; height:26px; border-radius:4px; border:1px solid #00000055; flex:0 0 auto;}
+
+  .grid-wrap{flex:1; min-height:0; overflow:auto; padding:14px;}
+  .grid{display:grid; gap:3px; width:max-content;}
+  .ruler{display:flex; align-items:center; justify-content:center; color:#68717e; font-size:11px;}
+  .cell{
+    position:relative; width:var(--cell); height:var(--cell); border-radius:4px;
+    border:1px solid #00000066; cursor:pointer; overflow:hidden; user-select:none;
+    background:var(--normal);
+  }
+  .cell.t-water{background:var(--water);}
+  .cell.t-obstacle{background:var(--obstacle);}
+  .cell.sel{outline:2px solid var(--accent); outline-offset:-1px;}
+  /* 开着地图底图时，地形的颜色会被图片盖住，加一层半透明色块保证一眼能看出水/障碍 */
+  .cell.t-water::after,
+  .cell.t-obstacle::after{content:""; position:absolute; inset:0; pointer-events:none; z-index:1;}
+  .cell.t-water::after{background:#2f8fd433;}
+  .cell.t-obstacle::after{background:#c8792e42;}
+  /* 开着地图底图时，底下的地形底色会让整张地图糊成一片，改成只留半透明色标 */
+  .grid.bg-on .cell{background-color:transparent;}
+  .cell .obj{z-index:2;}
+  .cell .obj{
+    position:absolute; inset:0; margin:auto; max-width:96%; max-height:96%;
+    object-fit:contain; pointer-events:none;
+    filter:drop-shadow(0 1px 2px #0008);
+  }
+  .cell .obj-txt{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:11px; color:#ffe6b8; text-shadow:0 1px 2px #000; pointer-events:none;
+    background:#00000066;
+  }
+  .cell .cards{
+    position:absolute; left:1px; right:1px; bottom:1px; display:flex; gap:1px;
+    flex-wrap:wrap; pointer-events:none;
+  }
+  .cell .cards img{width:17px; height:17px; object-fit:contain; background:#00000066; border-radius:2px;}
+  .cell .badge{
+    position:absolute; top:0; left:0; font-size:10px; line-height:1;
+    padding:1px 3px; background:#000000aa; color:#ffd08a; border-bottom-right-radius:3px;
+  }
+  .cell.waterrow{box-shadow:inset 0 0 0 1px #4aa3ff55;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:5px; margin:6px 0 10px;}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; padding:3px 7px;
+    background:#20262f; border:1px solid var(--line); border-radius:12px; font-size:12px;
+  }
+  .chip img{width:16px; height:16px; object-fit:contain;}
+  .chip button{background:none; border:none; color:#8b939f; padding:0 2px; font-size:13px; line-height:1;}
+  .chip button:hover{color:#ff8a7d;}
+  .muted{color:#6f7885; font-size:12px;}
+  .row-btns{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;}
+  .kbox{background:#0f1216; border:1px solid var(--line); border-radius:6px; padding:10px 12px; margin-bottom:12px;}
+
+  /* ---------------- page 3 : waves ---------------- */
+  .wave-layout{display:grid; grid-template-columns:296px 250px minmax(0,1fr); height:100%;}
+  .enemy-item{display:flex; align-items:center; gap:8px; padding:4px 6px; border-radius:5px;
+    cursor:pointer; border:1px solid transparent;}
+  .enemy-item:hover{background:#1c2129;}
+  .enemy-item.on{background:#2a2113; border-color:var(--accent);}
+  .enemy-item .ico{width:28px; height:28px; object-fit:contain; flex:0 0 auto;}
+  .enemy-item .nm{font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .enemy-item .meta{font-size:11px; color:#6f7885; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .enemy-item .boss{font-size:10px; color:#1a1206; background:var(--accent); border-radius:3px; padding:0 3px;}
+  .wave-item{padding:6px 8px; border:1px solid transparent; border-radius:5px; cursor:pointer;
+    display:flex; align-items:center; gap:8px; font-size:13px;}
+  .wave-item:hover{background:#1c2129;}
+  .wave-item.on{background:#2a2113; border-color:var(--accent);}
+  .wave-item .n{color:var(--dim); min-width:44px;}
+  .wave-item .tag{font-size:10px; padding:0 4px; border-radius:3px; background:#3c2a12; color:#ffcd8a;}
+  .wave-item .tag.boss{background:#4a1f1c; color:#ffb0a5;}
+  .wave-item .tag.elite{background:#1d3a4a; color:#9fd4ff;}
+  .wave-item .cnt{color:#6f7885; font-size:11px; margin-left:auto;}
+
+  .sub-tabs{display:flex; gap:5px; flex-wrap:wrap; margin-bottom:8px;}
+  .sub-tabs button{padding:3px 9px; font-size:12px;}
+  .sub-tabs button.on{background:var(--accent2); color:#06121f; border-color:var(--accent2); font-weight:700;}
+
+  .rowpick{display:flex; gap:6px; flex-wrap:wrap;}
+  .rowpick .rp{
+    width:56px; padding:6px 0; text-align:center; border:1px solid var(--line);
+    background:#141920; border-radius:5px; cursor:pointer; font-size:12px;
+  }
+  .rowpick .rp:hover{border-color:var(--accent); background:#20262f;}
+  .rowpick .rp b{display:block; font-size:14px;}
+  .rowpick .rp .c{color:#6f7885; font-size:10px;}
+
+  table.ent{width:100%; border-collapse:collapse; font-size:12.5px;}
+  table.ent th,table.ent td{border-bottom:1px solid var(--line); padding:4px 6px; text-align:left;}
+  table.ent th{color:#7b8593; font-weight:500; font-size:12px;}
+  table.ent select,table.ent input{width:100%; padding:2px 4px; font-size:12px;}
+  table.ent tr:hover td{background:#191d24;}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .field-inline{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+  .field-inline > label{color:var(--dim); font-size:12.5px; white-space:nowrap; min-width:74px;}
+
+  #toast{
+    position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px);
+    background:#20262f; border:1px solid var(--accent); color:#fff; padding:9px 18px;
+    border-radius:8px; opacity:0; pointer-events:none; transition:.2s; z-index:99;
+    box-shadow:0 8px 30px #000a; font-size:13px;
+  }
+  #toast.on{opacity:1; transform:translateX(-50%) translateY(0);}
+  #toast.err{border-color:#e2564a;}
+
+  dialog{
+    background:var(--panel); color:var(--text); border:1px solid var(--line);
+    border-radius:10px; padding:0; width:min(720px,90vw); max-height:78vh;
+  }
+  dialog::backdrop{background:#000a;}
+  dialog .dh{padding:12px 16px; border-bottom:1px solid var(--line); font-weight:700;}
+  dialog .db{padding:14px 16px; overflow:auto; max-height:60vh; font-size:13px;}
+  dialog .df{padding:10px 16px; border-top:1px solid var(--line); text-align:right;}
+  .vok{color:#7ddc9a;}
+  .vwarn{color:#ffcf87;}
+  .verr{color:#ff8a7d;}
+
+  /* ============================================================
+     2.10 外观：纯黑底 + 白色 1px 描边方框（覆盖上面的暗色主题）
+     ============================================================ */
+  :root{
+    --bg:#000; --panel:#000; --panel2:#000; --line:#fff;
+    --text:#fff; --dim:#b9b9b9; --accent:#fff; --accent2:#fff;
+    --normal:#000; --water:#123a56; --obstacle:#4b3418;
+  }
+  body{background:#000; color:#fff; font-weight:700; letter-spacing:.2px;}
+  button{background:#000; border:1px solid #fff; border-radius:0; color:#fff; font-weight:700; padding:6px 14px;}
+  button:hover{background:#fff; color:#000; border-color:#fff;}
+  button.primary{background:#000; color:#fff; border-color:#fff; font-weight:700;}
+  button.primary:hover{background:#fff; color:#000;}
+  button.danger:hover{background:#fff; color:#000; border-color:#fff;}
+  button.mini{padding:3px 9px; font-size:12px; border-radius:0;}
+  input,select,textarea{background:transparent; border:0; border-radius:0; color:#fff; padding:0; font-weight:700; outline:none;}
+  input:focus,select:focus,textarea:focus{border:0; outline:none;}
+  select option{background:#000; color:#fff;}
+  textarea{resize:none; height:1.6em;}
+  ::-webkit-scrollbar{width:10px; height:10px;}
+  ::-webkit-scrollbar-thumb{background:#555; border-radius:0;}
+  header{background:#000; border-bottom:1px solid #fff; padding:10px 12px; gap:10px;}
+  .brand span{color:#fff;}
+  .brand .sub{color:#8c8c8c; font-weight:400;}
+  nav button{background:#000; border-color:#fff;}
+  nav button.on{background:#fff; color:#000; border-color:#fff;}
+  .page{background:#000;}
+
+  /* ---- 页 0：2.10 的竖排方框列 ---- */
+  .basics{display:flex; justify-content:center; align-items:flex-start; gap:44px; padding:26px 18px 60px;}
+  .stack{width:452px; flex:0 0 auto;}
+  .stack .field{
+    display:flex; align-items:center; width:452px; min-height:35px;
+    border:1px solid #fff; padding:5px 10px; margin:0 auto 7px; background:#000;
+  }
+  .stack .field > label{color:#fff; font-size:14px; text-align:left; white-space:nowrap;}
+  .stack .field > label::after{content:"：";}
+  .stack .field > div{flex:1; min-width:0;}
+  .stack .field .hint{display:none;}
+  .stack .field input,.stack .field select,.stack .field textarea{font-size:14px;}
+  .stack .field textarea{height:1.55em; overflow:hidden;}
+  .stack .musicrow{display:flex; gap:8px; align-items:center;}
+  .stack .musicrow select{flex:1; min-width:0;}
+  .stack .musicrow button{padding:0 8px; font-size:12px; line-height:1.6;}
+  .side{width:392px; flex:0 0 auto;}
+  .box{border:1px solid #fff; padding:8px 10px; margin-bottom:8px;}
+  .box-t{border-bottom:1px solid #fff; margin:-2px 0 8px; padding-bottom:6px; font-size:13px;}
+
+  /* ---- 通用面板 ---- */
+  .card-box{background:#000; border:1px solid #fff; border-radius:0; padding:10px 12px;}
+  .card-box h3{color:#fff; font-size:13px;}
+  .kbox{background:#000; border:1px solid #fff; border-radius:0;}
+  .col{border-right:1px solid #fff;}
+  .col-head{background:#000; border-bottom:1px solid #fff;}
+  .seg button{background:#000; border-color:#fff;}
+  .seg button.on{background:#fff; color:#000; border-color:#fff;}
+  .pal-item{border-radius:0; border:1px solid #fff; margin-bottom:6px; padding:5px 8px;}
+  .pal-item .id{display:none;}
+  .pal-item:hover,.pal-item.on{background:#fff; color:#000;}
+  .pal-item:hover .nm,.pal-item:hover .id,.pal-item.on .nm,.pal-item.on .id{color:#000;}
+  .pal-item .ico,.pal-item .swatch{border-radius:0; border:0;}
+  .cell{border-radius:0; border:1px solid #fff;}
+  .cell.t-water{background:var(--water);}
+  .cell.t-obstacle{background:var(--obstacle);}
+  .cell .cards img{border-radius:0; background:#00000088;}
+  .chip{background:#000; border:1px solid #fff; border-radius:0;}
+  .chip button{color:#fff;}
+  .chip button:hover{color:#000; background:#fff;}
+  .preview-map{border:1px solid #fff; border-radius:0;}
+  .summary{color:#b9b9b9; font-weight:400;}
+  .summary b{color:#fff;}
+  .summary .k{color:#8f8f8f;}
+  .enemy-item{border:1px solid #fff; border-radius:0; margin-bottom:5px;}
+  .enemy-item:hover,.enemy-item.on{background:#fff; color:#000;}
+  .enemy-item:hover .nm,.enemy-item:hover .meta,.enemy-item.on .nm,.enemy-item.on .meta{color:#000;}
+  .enemy-item .boss{background:#fff; color:#000; border-radius:0;}
+  .wave-item{border-radius:0; border:1px solid #fff; margin-bottom:5px; flex-wrap:wrap;}
+  .wave-item:hover,.wave-item.on{background:#fff; color:#000;}
+  .wave-item .n,.wave-item .cnt{white-space:nowrap;}
+  .wave-item .tag,.wave-item .tag.boss,.wave-item .tag.elite{
+    background:#000; color:#fff; border:1px solid #fff; border-radius:0;
+    white-space:nowrap; font-size:10px; padding:0 3px;
+  }
+  table.ent td{vertical-align:middle;}
+  table.ent img.ico{width:22px; height:22px; object-fit:contain; vertical-align:middle; margin-right:4px;}
+  .wave-item:hover .n,.wave-item:hover .cnt,.wave-item.on .n,.wave-item.on .cnt{color:#000;}
+  .wave-item .tag{background:#000; color:#fff; border:1px solid #fff; border-radius:0;}
+  .sub-tabs button.on{background:#fff; color:#000; border-color:#fff;}
+  .rowpick .rp{background:#000; border:1px solid #fff; border-radius:0;}
+  .rowpick .rp:hover{background:#fff; color:#000;}
+  .rowpick .rp .c{color:#8f8f8f;}
+  table.ent th,table.ent td{border-bottom:1px solid #555;}
+  table.ent th{color:#b9b9b9;}
+  table.ent tr:hover td{background:#111;}
+  .muted{color:#9a9a9a; font-weight:400;}
+  .musicrow{display:flex; gap:6px;}
+  #toast{background:#000; border:1px solid #fff; border-radius:0; box-shadow:none;}
+  dialog{background:#000; border:1px solid #fff; border-radius:0;}
+  dialog .dh,dialog .df{border-color:#fff;}
+  .grid{border:0;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">FVM<span>关卡编辑器</span><span class="sub">2.10 适配版</span></div>
+  <nav id="tabs">
+    <button data-page="0" class="on">基础信息</button>
+    <button data-page="1">地图信息</button>
+    <button data-page="2">波次信息</button>
+  </nav>
+  <div class="spacer"></div>
+  <div class="actions">
+    <button id="btn-new">新建</button>
+    <button id="btn-load">加载</button>
+    <button id="btn-save" class="primary">保存</button>
+    <button id="btn-validate">校验</button>
+    <input type="file" id="file-input" accept=".json,application/json" hidden>
+  </div>
+</header>
+
+<main>
+  <!-- ============ page 0 ============ -->
+  <section class="page on" id="page-0">
+    <div class="basics">
+      <div class="stack">
+        <div id="form-basic"></div>
+        <div id="form-wave"></div>
+      </div>
+      <div class="side">
+        <div class="box">
+          <div class="box-t">地图预览</div>
+          <img id="map-preview" class="preview-map" alt="">
+          <div class="summary" id="summary" style="margin-top:10px"></div>
+        </div>
+        <div class="box">
+          <div class="box-t">操作</div>
+          <div class="row-btns">
+            <button id="go-map">进入地图信息</button>
+            <button id="go-wave">进入波次信息</button>
+          </div>
+          <div class="muted" style="line-height:1.9;font-size:12px">
+            点“地图信息”“波次信息”切换页面。<br>
+            保存的 json 放进 <code>datafiles/level_data/</code> 对应目录即可被关卡列表读到。<br>
+            编辑内容会自动存在浏览器里，误关页面不会丢。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ page 1 ============ -->
+  <section class="page flat" id="page-1">
+    <div class="map-layout">
+      <div class="col">
+        <div class="col-head">
+          <div class="seg" id="brush-tabs">
+            <button data-brush="terrain" class="on">地形</button>
+            <button data-brush="card">初始卡片</button>
+            <button data-brush="object">地图物件</button>
+          </div>
+        </div>
+        <div class="col-head" style="border-top:1px solid var(--line)">
+          <input id="pal-search" placeholder="搜索名称 / ID" style="width:100%">
+        </div>
+        <div class="col-body" id="palette"></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head">
+          <span class="muted" id="grid-info"></span>
+          <div class="spacer"></div>
+          <label class="muted"><input type="checkbox" id="bg-toggle" checked> 显示地图底图</label>
+          <button class="mini" id="zoom-out">－</button>
+          <button class="mini" id="zoom-in">＋</button>
+          <button class="mini danger" id="btn-clear-map">清空地图</button>
+        </div>
+        <div class="grid-wrap" id="grid-wrap"><div class="grid" id="grid"></div></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head">本格信息</div>
+        <div class="col-body" id="cell-panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ page 2 ============ -->
+  <section class="page flat" id="page-2">
+    <div class="wave-layout">
+      <div class="col">
+        <div class="col-head"><div class="seg" id="series-tabs"></div></div>
+        <div class="col-head" style="border-top:1px solid var(--line)">
+          <input id="enemy-search" placeholder="搜索敌人名称 / ID" style="width:100%">
+        </div>
+        <div class="col-body" id="enemy-list"></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head">
+          <span class="muted">大波次</span>
+          <div class="spacer"></div>
+          <button class="mini" id="wave-add">＋ 添加</button>
+          <button class="mini" id="wave-clone">复制</button>
+          <button class="mini danger" id="wave-del">删除</button>
+        </div>
+        <div class="col-body" id="wave-list"></div>
+      </div>
+
+      <div class="col">
+        <div class="col-head">
+          <span id="wave-title" class="muted">第 1 波</span>
+          <div class="spacer"></div>
+          <span class="muted" id="pick-hint"></span>
+        </div>
+        <div class="col-body" id="wave-editor"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<dialog id="dlg">
+  <div class="dh" id="dlg-title">校验结果</div>
+  <div class="db" id="dlg-body"></div>
+  <div class="df"><button onclick="document.getElementById('dlg').close()">关闭</button></div>
+</dialog>
+
+<script src="data.js"></script>
+<script>
+"use strict";
+/* ============================================================
+   FVM 关卡编辑器（适配版）
+   数据：data.js（由 tools/level_editor/gen_data.ps1 从工程生成）
+   关卡格式：与 datafiles/level_data/**.json 完全一致
+   ============================================================ */
+
+const D = window.FVM_DATA || {cards:[],enemies:[],musics:[],maps:[],objects:[]};
+const ROOT = "../../";                 // 从 tools/level_editor/ 回到工程根
+const AUTOSAVE_KEY = "fvm_level_editor_v1";
+
+const cardById  = new Map(D.cards.map(c => [c.id, c]));
+const enemyById = new Map(D.enemies.map(e => [e.id, e]));
+const mapById   = new Map(D.maps.map(m => [m.id, m]));
+const objById   = new Map(D.objects.map(o => [o.id, o]));
+
+const SERIES = [
+  {key:"main",     label:"美味岛"},
+  {key:"cross",    label:"跨服系列"},
+  {key:"longyuan", label:"龙渊系列"},
+  {key:"zhuore",   label:"灼热系列"},
+  {key:"mod",      label:"感染(MOD)"}
+];
+const TERRAINS = [
+  {id:"normal",   label:"普通",  color:"var(--normal)"},
+  {id:"water",    label:"水域",  color:"var(--water)"},
+  {id:"obstacle", label:"障碍",  color:"var(--obstacle)"}
+];
+
+/* ---------------- 编号 / 数据工具 ---------------- */
+function num(v, d){ const n = typeof v === "number" ? v : parseFloat(v); return Number.isFinite(n) ? n : d; }
+function int(v, d){ const n = Math.round(num(v, d)); return Number.isFinite(n) ? n : d; }
+function isNum(v){ return typeof v === "number" || (typeof v === "string" && v.trim() !== "" && Number.isFinite(parseFloat(v))); }
+function catOf(c){
+  if(!c) return "其他";
+  const m = {normal:"普通卡", gold:"金卡", fusion:"融合卡"};
+  return m[c.cat] || c.cat || "其他";
+}
+const CARD_CATS = ["全部","普通卡","金卡","生肖卡","融合卡","其他"];
+function imgTag(url, cls){
+  if(!url) return "";
+  return `<img class="${cls}" src="${ROOT}${url}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+}
+
+/* ---------------- 状态 ---------------- */
+const S = {
+  page: 0,
+  level: null,
+  brush: {mode:"terrain", terrain:"normal", card:"", object:""},
+  cell: {r:0, c:0},
+  wave: 0,
+  sub: 0,
+  series: "main",
+  enemy: "",
+  cardCat: "全部",
+  palSearch: "",
+  enemySearch: "",
+  showBg: true,
+  cellSize: 56,
+  painting: false
+};
+
+/* ---------------- 关卡结构 ---------------- */
+function blankCell(){ return {type:"normal", plant:[], object:[]}; }
+
+function blankMap(rows, cols){
+  const m = [];
+  for(let r=0;r<rows;r++){
+    const row = [];
+    for(let c=0;c<cols;c++) row.push(blankCell());
+    m.push(row);
+  }
+  return m;
+}
+function blankSubwave(i){
+  return {subwave_index:i, local_max_wave_time:-1, local_min_wave_time:-1, enemy_list:[]};
+}
+function blankWave(i){
+  return {
+    boss_wave:false, wave_index:i, boss:"", boss_1_hp_modify:1,
+    boss2:"", boss_2_hp_modify:1, subwaves:[blankSubwave(0)]
+  };
+}
+function defaultLevel(){
+  return {
+    version:1.2, level_name:"new_level", level_time_feature:"daytime",
+    map_sprite:"spr_salad_island_land", display_name:"新关卡", author:"you",
+    pre_music:"", elite_music:"", boss_music:"",
+    time_limit:0, map_cols:9, map_rows:7, starting_flame:50, first_wave_delay:30,
+    total_waves:4, elite_wave:2, boss_wave:4, hp_modify:1,
+    min_wave_time:240, max_wave_time:1500,
+    desc:"这是一个什么都没有的新关卡",
+    map:blankMap(7,9), waves:[blankWave(1),blankWave(2),blankWave(3),blankWave(4)],
+    rewards:[], events:[]
+  };
+}
+
+function normalizeCell(c){
+  const out = (c && typeof c === "object") ? Object.assign({}, c) : {};
+  if(!["normal","water","obstacle"].includes(out.type)) out.type = "normal";
+  if(!Array.isArray(out.plant)) out.plant = [];
+  if(!Array.isArray(out.object)) out.object = [];
+  return out;
+}
+function normalizeMap(rawMap, rows, cols){
+  const src = Array.isArray(rawMap) ? rawMap : [];
+  const m = [];
+  for(let r=0;r<rows;r++){
+    const srcRow = Array.isArray(src[r]) ? src[r] : [];
+    const row = [];
+    for(let c=0;c<cols;c++) row.push(normalizeCell(srcRow[c]));
+    m.push(row);
+  }
+  return m;
+}
+function normalizeSubwaves(raw, base){
+  const src = Array.isArray(raw) ? raw : [];
+  const out = [];
+  for(let i=0;i<src.length;i++){
+    const s = Object.assign({}, src[i] || {});
+    // 引擎从不读 subwave_index（全工程 0 处引用），真实关卡里一律是 0，原样保留
+    s.subwave_index = int(s.subwave_index, 0);
+    s.local_min_wave_time = int(s.local_min_wave_time, -1);
+    s.local_max_wave_time = int(s.local_max_wave_time, -1);
+    const list = Array.isArray(s.enemy_list) ? s.enemy_list : [];
+    s.enemy_list = list.map(e => {
+      const o = Object.assign({}, e || {});
+      o.type = o.type || "";
+      o.row = int(o.row, -1);
+      o.prosperity = int(o.prosperity, 0);
+      return o;
+    });
+    out.push(s);
+  }
+  if(out.length === 0) out.push(blankSubwave(0));
+  if(base) for(const k in base) if(out[0][k] === undefined) out[0][k] = base[k];
+  return out;
+}
+function normalizeWave(raw, i){
+  const w = Object.assign(blankWave(i+1), raw || {});
+  // wave_index 引擎完全不读（全工程 0 处引用），但要原样保留：
+  // 真实关卡里存在 0 基与 -1 两种写法，改动只会造成无意义的 diff
+  w.wave_index = int(w.wave_index, i+1);
+  w.boss_wave = !!w.boss_wave;
+  w.boss = typeof w.boss === "string" ? w.boss : "";
+  w.boss2 = typeof w.boss2 === "string" ? w.boss2 : "";
+  w.boss_1_hp_modify = num(w.boss_1_hp_modify, 1);
+  w.boss_2_hp_modify = num(w.boss_2_hp_modify, 1);
+  w.subwaves = normalizeSubwaves(w.subwaves, blankSubwave(0));
+  return w;
+}
+// 载入已有关卡时使用的兜底值：
+// 缺失的文本字段一律补空串（不能补「新关卡」——那会把真实关卡的标题改掉；
+// 工程里 102 个关卡本来就没有 display_name/author，265 个没有音乐）
+const FILL = {
+  version:1.2, level_name:"new_level", level_time_feature:"daytime",
+  map_sprite:"spr_salad_island_land", display_name:"", author:"",
+  pre_music:"", elite_music:"", boss_music:"", desc:"",
+  time_limit:0, map_cols:9, map_rows:7, starting_flame:50, first_wave_delay:30,
+  total_waves:4, elite_wave:2, boss_wave:4, hp_modify:1,
+  min_wave_time:240, max_wave_time:1500
+};
+
+function normalizeLevel(raw){
+  const L = Object.assign({}, raw || {});
+  for(const k in FILL) if(L[k] === undefined || L[k] === null) L[k] = FILL[k];
+
+  // version 可能是数字 1.5，也可能是老格式的字符串 "1.1.0"：
+  // 引擎用 is_real() 判断，字符串会走另一条分支，所以必须原样保留
+  if(typeof L.version === "string"){
+    if(!L.version.trim()) L.version = 1.2;
+  }else{
+    L.version = num(L.version, 1.2);
+  }
+
+  L.time_limit = int(L.time_limit, 0);
+  L.starting_flame = int(L.starting_flame, 50);
+  L.first_wave_delay = int(L.first_wave_delay, 30);
+  L.hp_modify = num(L.hp_modify, 1);
+  L.min_wave_time = int(L.min_wave_time, 240);
+  L.max_wave_time = int(L.max_wave_time, 1500);
+  L.map_cols = Math.max(3, Math.min(20, int(L.map_cols, 9)));
+  L.map_rows = Math.max(3, Math.min(10, int(L.map_rows, 7)));
+  L.total_waves = Math.max(1, Math.min(60, int(L.total_waves, 4)));
+  // elite_wave / boss_wave 可能是 0（无精英段）、-1（未设置），
+  // 也可能大于 total_waves（真实数据里有 total_waves=2 而 boss_wave=4 的关卡），
+  // 所以只做宽松范围检查，绝不按 total_waves 截断
+  L.elite_wave = Math.max(-1, Math.min(99, int(L.elite_wave, 2)));
+  L.boss_wave  = Math.max(-1, Math.min(99, int(L.boss_wave, 4)));
+  L.level_time_feature = L.level_time_feature === "night" ? "night" : "daytime";
+  if(typeof L.desc !== "string") L.desc = "";
+
+  for(const k of ["display_name","author","pre_music","elite_music","boss_music","level_name","map_sprite"])
+    if(typeof L[k] !== "string") L[k] = String(L[k] == null ? "" : L[k]);
+
+  L.map = normalizeMap(L.map, L.map_rows, L.map_cols);
+
+  const srcW = Array.isArray(L.waves) ? L.waves : [];
+  const waves = [];
+  for(let i=0;i<L.total_waves;i++) waves.push(normalizeWave(srcW[i], i));
+  L.waves = waves;
+
+  if(!Array.isArray(L.rewards)) L.rewards = [];
+  if(!Array.isArray(L.events)) L.events = [];
+  return L;
+}
+
+/* ---------------- 水位行判定（与引擎一致） ---------------- */
+// obj_battle/Create_0.gml:146  →  global.grid_terrains[i][1].type == "water"
+function isWaterRow(r){
+  const row = S.level.map[r];
+  if(!row || !row[1]) return false;
+  return row[1].type === "water";
+}
+
+/* ---------------- 通用 UI ---------------- */
+let toastTimer = 0;
+function toast(msg, isErr){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = isErr ? "on err" : "on";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = ""; }, 2200);
+}
+function dialog(title, html){
+  document.getElementById("dlg-title").textContent = title;
+  document.getElementById("dlg-body").innerHTML = html;
+  document.getElementById("dlg").showModal();
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, m =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+/* ---------------- 自动存档 ---------------- */
+let saveTimer = 0;
+function autosave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try{ localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(S.level)); }catch(e){}
+  }, 400);
+}
+function touch(){ autosave(); renderSummary(); }
+
+/* ============================================================
+   页面 0：基础信息
+   ============================================================ */
+const BASIC_FIELDS = [
+  ["desc",             "关卡简介",  "text"],
+  ["version",          "版本",      "version"],
+  ["level_name",       "文件名称",  "text"],
+  ["level_time_feature","关卡时间（白天/黑夜）", "select"],
+  ["map_sprite",       "地图精灵",  "mapselect"],
+  ["display_name",     "关卡名称",  "text"],
+  ["author",           "作者名称",  "text"]
+];
+const FORM_MUSIC = [
+  ["pre_music",   "先锋段音乐"],
+  ["elite_music", "精英段音乐"],
+  ["boss_music",  "BOSS段音乐"]
+];
+const WAVE_FIELDS = [
+  ["time_limit",       "时间限制",  "number", "秒，0 = 不限时"],
+  ["map_cols",         "地图列数",  "number", "3–20"],
+  ["map_rows",         "地图行数",  "number", "3–10"],
+  ["starting_flame",   "初始火苗",  "number"],
+  ["first_wave_delay", "第一波延迟","number", "帧（60 = 1 秒左右）"],
+  ["total_waves",      "总波次",    "number", "改这个会自动增删下面的波次"],
+  ["elite_wave",       "精英段波次","number", "从第几大波切精英段；0 或 -1 = 没有精英段（原版大量关卡是 0）"],
+  ["boss_wave",        "BOSS出现波次","number", "仅界面提示用，可填 -1"],
+  ["hp_modify",        "普通敌人血量倍率","number", "1 = 原始血量，2 = 双倍"],
+  ["min_wave_time",    "最短波长",  "number", "帧"],
+  ["max_wave_time",    "最长波长",  "number", "帧"]
+];
+
+// 地图精灵补中文名（gen_data.ps1 是纯 ASCII 脚本，写不了中文，在这里补）
+const MAP_LABELS = {
+  spr_salad_island_land:"沙拉岛·陆地", spr_new_level:"新关卡（默认）",
+  spr_cookie_island:"曲奇岛", spr_naigaiqiao:"奶盖桥",
+  spr_songludating_ri:"松露大厅·白天", spr_songludating_ye:"松露大厅·黑夜",
+  spr_chixiadu_ri:"赤霞都·白天", spr_chixiadu_ye:"赤霞都·黑夜",
+  spr_baiweiguan:"白薇馆", spr_zhuorediyu:"灼热地狱",
+  spr_snowcap_volcano:"雪帽火山",
+  spr_delicious_islands:"美味群岛", spr_floating_island:"浮空岛",
+  spr_volcanic_island:"火山岛", spr_champagne_island_land:"香槟岛·陆地",
+  spr_champagne_island_water:"香槟岛·水域",
+  spr_cocoa_island_daytime:"可可岛·白天", spr_cocoa_island_night:"可可岛·黑夜",
+  spr_curry_island_daytime:"咖喱岛·白天", spr_curry_island_night:"咖喱岛·黑夜",
+  spr_mousse_island:"慕斯岛",
+  spr_pudding_island_daytime:"布丁岛·白天", spr_pudding_island_night:"布丁岛·黑夜"
+};
+function mapLabel(id){
+  if(MAP_LABELS[id]) return MAP_LABELS[id];
+  const m = mapById.get(id);
+  if(m && m.label && m.label !== m.id) return m.label;
+  // 逐段翻译 spr_xxx_ri/ye 这类命名
+  const tail = id.replace(/^spr_/, "").replace(/_ri$/, "·白天").replace(/_ye$/, "·黑夜")
+                 .replace(/_daytime$/, "·白天").replace(/_night$/, "·黑夜");
+  return tail;
+}
+
+function fieldHTML(key, label, type, hint){
+  const L = S.level;
+  let inner = "";
+  if(type === "textarea"){
+    inner = `<textarea data-field="${key}" rows="2">${esc(L[key])}</textarea>`;
+  }else if(type === "number"){
+    inner = `<input type="number" data-field="${key}" value="${esc(L[key])}" step="any">`;
+  }else if(type === "select"){
+    inner = `<select data-field="${key}">
+      <option value="daytime"${L[key]==="daytime"?" selected":""}>daytime（白天）</option>
+      <option value="night"${L[key]==="night"?" selected":""}>night（黑夜）</option>
+    </select>`;
+  }else if(type === "version"){
+    const vals = ["1.1.0","1.2","1.3","1.4","1.5"];
+    inner = `<input type="text" data-field="${key}" value="${esc(L[key])}" list="ver-list">
+      <datalist id="ver-list">${vals.map(v => `<option value="${v}">`).join("")}</datalist>`;
+  }else if(type === "mapselect"){
+    const opts = D.maps.map(m =>
+      `<option value="${m.id}"${m.id===L[key]?" selected":""}>${esc(mapLabel(m.id))} · ${m.id}</option>`);
+    if(!D.maps.some(m => m.id === L[key]) && L[key])
+      opts.unshift(`<option value="${esc(L[key])}" selected>${esc(L[key])}（未在关卡库中找到）</option>`);
+    inner = `<select data-field="${key}">${opts.join("")}</select>`;
+  }else{
+    inner = `<input type="text" data-field="${key}" value="${esc(L[key])}">`;
+  }
+  return `<div class="field">
+    <label>${label}</label>
+    <div>${inner}${hint?`<div class="hint">${hint}</div>`:""}</div>
+  </div>`;
+}
+
+function musicRowHTML(key, label){
+  const L = S.level;
+  const opts = ['<option value="">（无 / 静音）</option>'].concat(
+    D.musics.map(m => `<option value="${m}"${m===L[key]?" selected":""}>${m}</option>`));
+  if(L[key] && !D.musics.includes(L[key]))
+    opts.unshift(`<option value="${esc(L[key])}" selected>${esc(L[key])}（工程内未找到）</option>`);
+  return `<div class="field">
+    <label>${label}</label>
+    <div class="musicrow">
+      <select data-field="${key}">${opts.join("")}</select>
+      <button class="mini" data-play="${key}">试听</button>
+    </div>
+  </div>`;
+}
+
+function renderPage0(){
+  document.getElementById("form-basic").innerHTML =
+    BASIC_FIELDS.map(f => fieldHTML(...f)).join("") +
+    FORM_MUSIC.map(f => musicRowHTML(...f)).join("");
+  document.getElementById("form-wave").innerHTML =
+    WAVE_FIELDS.map(f => fieldHTML(...f)).join("");
+  renderSummary();
+}
+
+function renderSummary(){
+  const L = S.level;
+  if(!L) return;
+  const lb = document.getElementById("map-preview");
+  const mp = mapById.get(L.map_sprite);
+  if(mp && mp.url){ lb.src = ROOT + mp.url; lb.style.display = ""; }
+  else { lb.removeAttribute("src"); lb.style.display = "none"; }
+
+  let presets = 0, objs = 0, waters = 0;
+  for(let r=0;r<L.map_rows;r++){
+    for(let c=0;c<L.map_cols;c++){
+      const cell = L.map[r][c];
+      presets += cell.plant.length;
+      objs += cell.object.length;
+      if(cell.type === "water") waters++;
+    }
+  }
+  let enemies = 0;
+  for(const w of L.waves) for(const s of w.subwaves) enemies += s.enemy_list.length;
+
+  document.getElementById("summary").innerHTML = `
+    <div><span class="k">关卡</span><b>${esc(L.display_name)}</b> · <code>${esc(L.level_name)}</code></div>
+    <div><span class="k">地图</span><b>${L.map_cols} × ${L.map_rows}</b>
+      · ${esc(mapLabel(L.map_sprite))}</div>
+    <div><span class="k">预置卡</span><b>${presets}</b> 张 · 地图物件 <b>${objs}</b> 个 · 水域格 <b>${waters}</b></div>
+    <div><span class="k">波次</span>共 <b>${L.total_waves}</b> 大波 ·
+      精英段 <b>${L.elite_wave}</b> · 敌总数 <b>${enemies}</b></div>
+  `;
+  const gi = document.getElementById("grid-info");
+  if(gi) gi.textContent = `${L.map_rows} 行 × ${L.map_cols} 列`;
+}
+
+/* 输入绑定：页面 0 */
+document.addEventListener("input", ev => {
+  const el = ev.target.closest("[data-field]");
+  if(!el) return;
+  const key = el.dataset.field;
+  if(!key || !S.level) return;
+
+  if(key === "version"){
+    const v = el.value.trim();
+    // 纯数字写法存成 number（引擎 is_real() 才走新分支），"1.1.0" 保留字符串
+    S.level.version = /^-?\d+(\.\d+)?$/.test(v) ? parseFloat(v) : v;
+    touch();
+    return;
+  }
+
+  if(el.tagName === "SELECT" || el.type === "text" || el.tagName === "TEXTAREA"){
+    S.level[key] = el.value;
+  }else if(el.type === "number"){
+    const v = parseFloat(el.value);
+    S.level[key] = Number.isFinite(v) ? v : 0;
+  }
+
+  if(key === "map_cols" || key === "map_rows"){
+    const cols = Math.max(3, Math.min(20, int(S.level.map_cols, 9)));
+    const rows = Math.max(3, Math.min(10, int(S.level.map_rows, 7)));
+    S.level.map = normalizeMap(S.level.map, rows, cols);
+    S.level.map_cols = cols; S.level.map_rows = rows;
+    S.cell.r = Math.min(S.cell.r, rows-1); S.cell.c = Math.min(S.cell.c, cols-1);
+    if(S.page === 1){ renderGrid(); renderCellPanel(); }
+  }
+  if(key === "total_waves"){
+    const n = Math.max(1, Math.min(60, int(S.level.total_waves, 4)));
+    S.level.total_waves = n;
+    const src = S.level.waves || [];
+    const waves = [];
+    for(let i=0;i<n;i++) waves.push(src[i] ? normalizeWave(src[i], i) : blankWave(i+1));
+    S.level.waves = waves;
+    renumberWaves();
+    // 注意：不在这里截断 elite_wave / boss_wave——真实关卡里存在 boss_wave > total_waves 的写法
+    S.wave = Math.min(S.wave, n-1);
+    if(S.page === 2){ renderWaveList(); renderWaveEditor(); }
+  }
+  if(key === "map_sprite" && S.page === 1) renderGrid();
+  if(key === "map_cols" || key === "map_rows" || key === "map_sprite") renderGridSoon();
+  touch();
+});
+
+let gridSoon = 0;
+function renderGridSoon(){
+  if(S.page !== 1) return;
+  clearTimeout(gridSoon);
+  gridSoon = setTimeout(renderGrid, 30);
+}
+
+/* 音乐试听 */
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-play]");
+  if(!b) return;
+  const key = b.dataset.play;
+  const name = S.level[key];
+  if(!name){ toast("这段音乐是空的", true); return; }
+  const a = new Audio(ROOT + `sounds/${name}/${name}.wav`);
+  a.volume = 0.6;
+  a.play().then(() => toast("试听：" + name)).catch(() => toast("没找到音频文件，可能不是 .wav", true));
+});
+
+/* ============================================================
+   页面 1：地图信息
+   ============================================================ */
+function renderPalette(){
+  const host = document.getElementById("palette");
+  const q = S.palSearch.trim().toLowerCase();
+  const hit = (a, b) => !q || String(a).toLowerCase().includes(q) || String(b).toLowerCase().includes(q);
+  let html = "";
+
+  if(S.brush.mode === "terrain"){
+    html += `<div class="muted" style="margin-bottom:8px">点击格子涂刷地形；拖动可连续涂。</div>`;
+    for(const t of TERRAINS){
+      const on = S.brush.terrain === t.id ? " on" : "";
+      html += `<div class="pal-item${on}" data-terrain="${t.id}">
+        <span class="swatch" style="background:${t.color}"></span>
+        <div class="txt"><div class="nm">${t.label}</div><div class="id">${t.id}</div></div>
+      </div>`;
+    }
+    html += `<div class="muted" style="margin-top:12px; line-height:1.7">
+      引擎按<b>每行第 2 格</b>的 type 判定整行是水行还是陆地行
+      （<code>Create_0.gml:146</code>），所以水域请整行涂满。<br>
+      放龙柱等物件的格子建议用 <code>obstacle</code>，与原版关卡一致。
+    </div>`;
+    document.getElementById("palette").innerHTML = html;
+    return;
+  }
+
+  if(S.brush.mode === "card"){
+    html += `<div class="seg" style="margin-bottom:8px" id="cat-tabs">` +
+      CARD_CATS.map(c => `<button data-cat="${c}" class="${S.cardCat===c?"on":""}">${c}</button>`).join("") +
+      `</div>`;
+    let list = D.cards;
+    if(S.cardCat !== "全部") list = list.filter(c => catOf(c) === S.cardCat);
+    list = list.filter(c => hit(c.name, c.id));
+    html += `<div class="muted" style="margin-bottom:6px">共 ${list.length} 张 · 点击格子放置/移除</div>`;
+    for(const c of list){
+      const on = S.brush.card === c.id ? " on" : "";
+      html += `<div class="pal-item${on}" data-card="${c.id}" title="${esc(c.id)}">
+        ${imgTag(c.url, "ico")}
+        <div class="txt"><div class="nm">${esc(c.name)}</div><div class="id">${esc(c.id)} · ${catOf(c)}</div></div>
+      </div>`;
+    }
+    document.getElementById("palette").innerHTML = html;
+    return;
+  }
+
+  // object
+  html += `<div class="muted" style="margin-bottom:8px">点击格子放置物件；再次点击同一物件可移除。</div>`;
+  for(const o of D.objects){
+    if(!hit(o.name, o.id)) continue;
+    const on = S.brush.object === o.id ? " on" : "";
+    const note = o.kind ? `<div class="id">${esc(o.id)} · 龙柱 kind=${o.kind}</div>`
+                        : `<div class="id">${esc(o.id)}</div>`;
+    html += `<div class="pal-item${on}" data-object="${o.id}">
+      ${imgTag(o.icon, "ico")}
+      <div class="txt"><div class="nm">${esc(o.name)}</div>${note}</div>
+    </div>`;
+  }
+  document.getElementById("palette").innerHTML = html;
+}
+
+function cellObject(o){
+  if(!o) return "";
+  const data = objById.get(o);
+  if(!data) return `<div class="obj-txt">${esc(o)}</div>`;
+  if(!data.icon) return `<div class="obj-txt">${esc(data.name)}</div>`;
+  return `<img class="obj" src="${ROOT}${data.icon}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'obj-txt',textContent:'${esc(data.name)}'}))">`;
+}
+
+function cellCards(cell){
+  const ids = cell.plant.slice(0, 6);
+  if(!ids.length) return "";
+  return `<div class="cards">` + ids.map(id => {
+    const c = cardById.get(id);
+    if(c && c.url) return `<img src="${ROOT}${c.url}" title="${esc(c.name)}">`;
+    return `<span style="font-size:9px;color:#ffd08a;background:#000a;border-radius:2px;padding:0 2px">${esc(id.slice(0,4))}</span>`;
+  }).join("") + (cell.plant.length > 6 ? `<span style="font-size:9px;color:#ffd08a">+${cell.plant.length-6}</span>` : "") + `</div>`;
+}
+
+function renderGrid(){
+  const L = S.level;
+  if(!L) return;
+  const grid = document.getElementById("grid");
+  const cellSize = S.cellSize;
+  grid.style.gridTemplateColumns = `26px repeat(${L.map_cols}, ${cellSize}px)`;
+  grid.style.setProperty("--cell", cellSize + "px");
+
+  const mp = mapById.get(L.map_sprite);
+  const bg = (S.showBg && mp && mp.url) ? ROOT + mp.url : "";
+  grid.classList.toggle("bg-on", !!bg);
+
+  const parts = [];
+  parts.push(`<div class="ruler"></div>`);
+  for(let c=0;c<L.map_cols;c++) parts.push(`<div class="ruler">${c+1}</div>`);
+
+  for(let r=0;r<L.map_rows;r++){
+    const wr = isWaterRow(r);
+    parts.push(`<div class="ruler" title="${wr?"水行":"陆地行"}">${r+1}${wr?"💧":""}</div>`);
+    for(let c=0;c<L.map_cols;c++){
+      const cell = L.map[r][c];
+      const cls = ["cell", "t-" + cell.type];
+      if(S.cell.r === r && S.cell.c === c) cls.push("sel");
+      if(wr) cls.push("waterrow");
+      const style = [];
+      if(bg){
+        const w = mp.w || 2005, h = mp.h || 1080;
+        style.push(`background-image:url('${bg}')`);
+        style.push(`background-size:${(w/L.map_cols*L.map_cols)}px ${h}px`);
+        style.push(`background-position:${-(c*(w/L.map_cols))}px ${-(r*(h/L.map_rows))}px`);
+        style.push(`background-blend-mode:multiply`);
+      }
+      const objHTML = cell.object.length ? cellObject(cell.object[0]) : "";
+      const badge = cell.object.length > 1 ? `<div class="badge">×${cell.object.length}</div>` : "";
+      parts.push(`<div class="${cls.join(" ")}" data-r="${r}" data-c="${c}" style="${style.join(";")}">
+        ${objHTML}${badge}${cellCards(cell)}</div>`);
+    }
+  }
+  grid.innerHTML = parts.join("");
+}
+
+function renderCellPanel(){
+  const L = S.level;
+  const {r,c} = S.cell;
+  const cell = L.map[r][c];
+  const objChips = cell.object.map(id => {
+    const o = objById.get(id);
+    return `<span class="chip">${imgTag(o && o.icon, "")}${esc(o ? o.name : id)}
+      <button data-rm-object="${esc(id)}" title="移除">✕</button></span>`;
+  }).join("") || `<span class="muted">（空）</span>`;
+  const cardChips = cell.plant.map(id => {
+    const cc = cardById.get(id);
+    return `<span class="chip">${imgTag(cc && cc.url, "")}${esc(cc ? cc.name : id)}
+      <button data-rm-card="${esc(id)}" title="移除">✕</button></span>`;
+  }).join("") || `<span class="muted">（空）</span>`;
+
+  const objOpts = ['<option value="">＋ 添加物件…</option>'].concat(
+    D.objects.map(o => `<option value="${o.id}">${esc(o.name)}</option>`)).join("");
+  const cardOpts = ['<option value="">＋ 添加卡片…</option>'].concat(
+    D.cards.map(cc => `<option value="${cc.id}">${esc(cc.name)}（${cc.id}）</option>`)).join("");
+
+  const terrLabel = (TERRAINS.find(t => t.id === cell.type) || {label:cell.type}).label;
+  const objNames = cell.object.map(id => (objById.get(id) || {}).name || id);
+
+  document.getElementById("cell-panel").innerHTML = `
+    <div class="box"><div style="text-align:center">${r+1}行${c+1}列</div></div>
+
+    <div class="box">
+      <div class="field-inline">
+        <label style="min-width:0">格子类型</label>
+        <select id="cell-type" style="flex:1">
+          ${TERRAINS.map(t => `<option value="${t.id}"${cell.type===t.id?" selected":""}>${t.label}</option>`).join("")}
+        </select>
+      </div>
+      <div class="muted" style="font-size:11px;margin-top:4px">
+        ${isWaterRow(r) ? "本行是水行（第 2 格 type=water）" : "本行是陆地行"} · 当前 ${esc(terrLabel)}
+      </div>
+    </div>
+
+    <div class="box">
+      <div style="margin-bottom:6px">地图物件：${objNames.length ? esc(objNames.join("、")) : "无"}</div>
+      <div class="chips">${objChips}</div>
+      <select id="cell-add-object">${objOpts}</select>
+    </div>
+
+    <div class="box">
+      <div style="margin-bottom:6px">本格卡片</div>
+      <div class="chips">${cardChips}</div>
+      <select id="cell-add-card">${cardOpts}</select>
+    </div>
+
+    <div class="row-btns">
+      <button class="mini" id="row-water">本行设为水域</button>
+      <button class="mini" id="row-land">本行设为陆地</button>
+      <button class="mini danger" id="cell-clear">清空本格</button>
+    </div>
+    <div class="muted" style="line-height:1.7;font-size:11.5px">
+      右键点格子 = 快速清空该格。<br>
+      “本行设为水域”会把整行 type 写成 water，引擎据此判定整行为水行。
+    </div>
+  `;
+}
+
+/* 网格交互 */
+function setCellType(r, c, type){
+  const cell = S.level.map[r][c];
+  cell.type = type;
+}
+function applyBrush(r, c, erase){
+  const L = S.level;
+  const cell = L.map[r][c];
+  if(erase){
+    if(S.brush.mode === "card") cell.plant = [];
+    else if(S.brush.mode === "object") cell.object = [];
+    else cell.type = "normal";
+    return;
+  }
+  if(S.brush.mode === "terrain"){
+    cell.type = S.brush.terrain;
+  }else if(S.brush.mode === "card"){
+    if(!S.brush.card) { toast("先在左侧选一张卡片", true); return; }
+    const i = cell.plant.indexOf(S.brush.card);
+    if(i >= 0) cell.plant.splice(i, 1);
+    else cell.plant.push(S.brush.card);
+  }else{
+    if(!S.brush.object) { toast("先在左侧选一个物件", true); return; }
+    if(cell.object[0] === S.brush.object) cell.object = [];
+    else cell.object = [S.brush.object];
+    // 龙柱等障碍类物件：自动把地形设成 obstacle（与原版关卡一致）
+    if(cell.object.length && cell.type === "normal"){
+      const o = objById.get(cell.object[0]);
+      if(o && o.kind) cell.type = "obstacle";
+    }
+  }
+}
+
+document.getElementById("grid").addEventListener("mousedown", ev => {
+  const cell = ev.target.closest(".cell");
+  if(!cell) return;
+  const r = +cell.dataset.r, c = +cell.dataset.c;
+  S.cell = {r, c};
+  if(ev.button === 2){
+    applyBrush(r, c, true);
+  }else{
+    applyBrush(r, c, ev.shiftKey);
+    if(S.brush.mode === "terrain") S.painting = true;
+  }
+  renderGrid(); renderCellPanel(); touch();
+});
+document.getElementById("grid").addEventListener("mouseover", ev => {
+  if(!S.painting) return;
+  const cell = ev.target.closest(".cell");
+  if(!cell) return;
+  const r = +cell.dataset.r, c = +cell.dataset.c;
+  if(S.level.map[r][c].type === S.brush.terrain) return;
+  setCellType(r, c, S.brush.terrain);
+  cell.className = "cell t-" + S.brush.terrain + (isWaterRow(r) ? " waterrow" : "");
+  touch();
+});
+document.addEventListener("mouseup", () => { S.painting = false; });
+document.getElementById("grid").addEventListener("contextmenu", ev => {
+  ev.preventDefault();
+  const cell = ev.target.closest(".cell");
+  if(!cell) return;
+  S.cell = {r:+cell.dataset.r, c:+cell.dataset.c};
+  applyBrush(S.cell.r, S.cell.c, true);
+  renderGrid(); renderCellPanel(); touch();
+});
+
+/* 左侧调色板点击 */
+document.getElementById("palette").addEventListener("click", ev => {
+  const t = ev.target.closest("[data-terrain]");
+  if(t){ S.brush.terrain = t.dataset.terrain; renderPalette(); return; }
+  const c = ev.target.closest("[data-card]");
+  if(c){ S.brush.card = (S.brush.card === c.dataset.card) ? "" : c.dataset.card; renderPalette(); return; }
+  const o = ev.target.closest("[data-object]");
+  if(o){ S.brush.object = (S.brush.object === o.dataset.object) ? "" : o.dataset.object; renderPalette(); return; }
+  const cat = ev.target.closest("[data-cat]");
+  if(cat){ S.cardCat = cat.dataset.cat; renderPalette(); return; }
+});
+document.getElementById("brush-tabs").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-brush]");
+  if(!b) return;
+  S.brush.mode = b.dataset.brush;
+  [...document.querySelectorAll("#brush-tabs button")].forEach(x => x.classList.toggle("on", x === b));
+  renderPalette();
+});
+document.getElementById("pal-search").addEventListener("input", ev => {
+  S.palSearch = ev.target.value; renderPalette();
+});
+
+/* 右侧格子面板 */
+document.getElementById("cell-panel").addEventListener("change", ev => {
+  const cell = S.level.map[S.cell.r][S.cell.c];
+  if(ev.target.id === "cell-type"){
+    cell.type = ev.target.value; renderGrid(); touch();
+  }else if(ev.target.id === "cell-add-object"){
+    if(ev.target.value){ cell.object.push(ev.target.value); renderGrid(); renderCellPanel(); touch(); }
+  }else if(ev.target.id === "cell-add-card"){
+    if(ev.target.value){ cell.plant.push(ev.target.value); renderGrid(); renderCellPanel(); touch(); }
+  }
+});
+document.getElementById("cell-panel").addEventListener("click", ev => {
+  const rmO = ev.target.closest("[data-rm-object]");
+  const rmC = ev.target.closest("[data-rm-card]");
+  const cell = S.level.map[S.cell.r][S.cell.c];
+  if(rmO){
+    cell.object = cell.object.filter(x => x !== rmO.dataset.rmObject);
+    renderGrid(); renderCellPanel(); touch(); return;
+  }
+  if(rmC){
+    const i = cell.plant.indexOf(rmC.dataset.rmCard);
+    if(i >= 0) cell.plant.splice(i, 1);
+    renderGrid(); renderCellPanel(); touch(); return;
+  }
+  const id = ev.target.id;
+  if(id === "cell-clear"){ S.level.map[S.cell.r][S.cell.c] = blankCell(); renderGrid(); renderCellPanel(); touch(); }
+  if(id === "row-water" || id === "row-land"){
+    const t = id === "row-water" ? "water" : "normal";
+    for(let c=0;c<S.level.map_cols;c++) S.level.map[S.cell.r][c].type = t;
+    renderGrid(); renderCellPanel(); touch();
+  }
+});
+
+document.getElementById("bg-toggle").addEventListener("change", ev => {
+  S.showBg = ev.target.checked; renderGrid();
+});
+document.getElementById("zoom-in").addEventListener("click", () => {
+  S.cellSize = Math.min(96, S.cellSize + 8); renderGrid();
+});
+document.getElementById("zoom-out").addEventListener("click", () => {
+  S.cellSize = Math.max(32, S.cellSize - 8); renderGrid();
+});
+document.getElementById("btn-clear-map").addEventListener("click", () => {
+  if(!confirm("清空整张地图的地形、物件与预置卡？")) return;
+  S.level.map = blankMap(S.level.map_rows, S.level.map_cols);
+  renderGrid(); renderCellPanel(); touch();
+});
+
+/* ============================================================
+   页面 2：波次信息
+   ============================================================ */
+function enemiesOfSeries(key, q){
+  const s = (q||"").trim().toLowerCase();
+  return D.enemies.filter(e => e.series === key &&
+    (!s || e.name.toLowerCase().includes(s) || e.id.toLowerCase().includes(s)));
+}
+function renderSeriesTabs(){
+  document.getElementById("series-tabs").innerHTML = SERIES.map(s =>
+    `<button data-series="${s.key}" class="${S.series===s.key?"on":""}">
+       ${s.label}<span style="color:#8b939f;font-size:11px"> ${D.enemies.filter(e=>e.series===s.key).length}</span>
+     </button>`).join("");
+}
+function renderEnemyList(){
+  const list = enemiesOfSeries(S.series, S.enemySearch);
+  const host = document.getElementById("enemy-list");
+  if(!list.length){ host.innerHTML = `<div class="muted">没有匹配的敌人</div>`; return; }
+  host.innerHTML = list.map(e => {
+    const on = S.enemy === e.id ? " on" : "";
+    const boss = e.boss ? `<span class="boss">BOSS</span>` : "";
+    const f = e.feature === "water" ? "水域" : "陆地";
+    return `<div class="enemy-item${on}" data-enemy="${e.id}" title="${esc(e.desc)}">
+      ${imgTag(e.url, "ico")}
+      <div style="min-width:0;flex:1">
+        <div class="nm">${esc(e.name)} ${boss}</div>
+        <div class="meta">${esc(e.id)} · HP ${e.hp} · ${f}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function curWave(){ return S.level.waves[S.wave]; }
+function curSub(){ const w = curWave(); return w ? w.subwaves[S.sub] : null; }
+
+function renderWaveList(){
+  const L = S.level;
+  const host = document.getElementById("wave-list");
+  host.innerHTML = L.waves.map((w, i) => {
+    const enemies = w.subwaves.reduce((a, s) => a + s.enemy_list.length, 0);
+    const tags = [];
+    if(w.boss_wave) tags.push(`<span class="tag boss">BOSS</span>`);
+    if(i+1 === L.elite_wave) tags.push(`<span class="tag elite">精英段</span>`);
+    if(w.boss) tags.push(`<span class="tag">${esc(enemyById.get(w.boss)?.name || w.boss)}</span>`);
+    return `<div class="wave-item${S.wave===i?" on":""}" data-wave="${i}">
+      <span class="n">第 ${i+1} 波</span>${tags.join("")}
+      <span class="cnt">${w.subwaves.length} 子波 / ${enemies} 敌</span>
+    </div>`;
+  }).join("");
+  document.getElementById("wave-title").textContent =
+    `第 ${S.wave+1} 波 · 共 ${L.total_waves} 波`;
+}
+
+function bossOptions(sel){
+  const bosses = D.enemies.filter(e => e.boss);
+  const opts = [`<option value="">（无）</option>`].concat(
+    bosses.map(e => `<option value="${e.id}"${e.id===sel?" selected":""}>${esc(e.name)}（${e.id}）</option>`));
+  if(sel && !bosses.some(e => e.id === sel))
+    opts.unshift(`<option value="${esc(sel)}" selected>${esc(sel)}（未在 BOSS 列表）</option>`);
+  return opts.join("");
+}
+
+function renderWaveEditor(){
+  const L = S.level;
+  const w = curWave();
+  if(!w){ document.getElementById("wave-editor").innerHTML = `<div class="muted">没有波次</div>`; return; }
+  if(S.sub >= w.subwaves.length) S.sub = Math.max(0, w.subwaves.length-1);
+  const sub = w.subwaves[S.sub];
+
+  const pickName = S.enemy
+    ? (enemyById.get(S.enemy)?.name || S.enemy)
+    : "（未选择）";
+  document.getElementById("pick-hint").textContent =
+    S.enemy ? `当前敌人：${pickName} —— 点右侧行格子放置` : "先在左侧选一个敌人";
+  document.getElementById("wave-title").textContent =
+    `第 ${S.wave+1} 波 · 共 ${L.total_waves} 波`;
+
+  // 行号统计
+  const perRow = {};
+  for(const e of sub.enemy_list) perRow[e.row] = (perRow[e.row]||0) + 1;
+
+  const rowBtns = [];
+  for(let r=1;r<=L.map_rows;r++){
+    rowBtns.push(`<div class="rp" data-row="${r}">
+      <b>行 ${r}</b><span class="c">${perRow[r]||0} 只</span></div>`);
+  }
+  rowBtns.push(`<div class="rp" data-row="-1"><b>随机行</b><span class="c">${perRow[-1]||0} 只</span></div>`);
+  rowBtns.push(`<div class="rp" data-row="all"><b>每行各 1</b><span class="c">批量</span></div>`);
+
+  const subTabs = w.subwaves.map((s, i) =>
+    `<button data-sub="${i}" class="${i===S.sub?"on":""}">子波 ${i+1} · ${s.enemy_list.length}</button>`).join("");
+
+  const entRows = sub.enemy_list.map((e, i) => {
+    const en = enemyById.get(e.type);
+    const rowOpts = ['<option value="-1"'+ (e.row === -1 ? " selected":"") +'>随机</option>']
+      .concat(Array.from({length:L.map_rows},(_,k)=>{
+        const v = k+1;
+        return `<option value="${v}"${e.row===v?" selected":""}>行 ${v}</option>`;
+      })).join("");
+    return `<tr>
+      <td><select data-ent-row="${i}">${rowOpts}</select></td>
+      <td>${imgTag(en && en.url, "ico")} ${esc(en ? en.name : e.type)}
+        <span class="muted" style="font-size:11px;margin-left:4px">${esc(e.type)}</span></td>
+      <td style="width:70px"><input type="number" data-ent-pro="${i}" value="${e.prosperity}"></td>
+      <td style="width:44px"><button class="mini danger" data-ent-del="${i}">删</button></td>
+    </tr>`;
+  }).join("") || `<tr><td colspan="4" class="muted">这个子波还没有敌人 —— 先选敌人，再点上面的行格子。</td></tr>`;
+
+  document.getElementById("wave-editor").innerHTML = `
+    <div class="kbox">
+      <div class="two">
+        <label class="field-inline"><input type="checkbox" id="w-boss"${w.boss_wave?" checked":""}> 这是 BOSS 波</label>
+        <div class="field-inline"><label>精英段</label>
+          <span class="muted">${S.wave+1} / ${L.elite_wave}</span></div>
+      </div>
+      <div class="field-inline"><label>BOSS 1</label>
+        <select id="w-boss1">${bossOptions(w.boss)}</select></div>
+      <div class="field-inline"><label>血量倍率</label>
+        <input type="number" id="w-boss1-hp" step="0.1" value="${w.boss_1_hp_modify}"></div>
+      <div class="field-inline"><label>BOSS 2</label>
+        <select id="w-boss2">${bossOptions(w.boss2)}</select></div>
+      <div class="field-inline"><label>血量倍率</label>
+        <input type="number" id="w-boss2-hp" step="0.1" value="${w.boss_2_hp_modify}"></div>
+      <div class="muted">BOSS 波：清完本波小怪后召唤 BOSS；龙渊 / 勇士深渊关卡进入该波立即召唤。</div>
+    </div>
+
+    <div class="kbox">
+      <div class="muted" style="margin-bottom:6px">行选择器（给当前选中敌人指定出怪行）</div>
+      <div class="rowpick">${rowBtns.join("")}</div>
+      <div class="muted" style="margin-top:8px">
+        <b style="color:var(--accent)">${esc(pickName)}</b> · 陆地敌人只能放陆地行，水域敌人只能放水域行，放错行引擎会改成随机行。
+      </div>
+    </div>
+
+    <div class="kbox">
+      <div class="col-head" style="background:none;border:none;padding:0 0 6px">
+        <div class="muted">子波</div>
+        <div class="spacer"></div>
+        <button class="mini" id="sub-add">＋ 子波</button>
+        <button class="mini" id="sub-clone">复制</button>
+        <button class="mini danger" id="sub-del">删除</button>
+      </div>
+      <div class="sub-tabs">${subTabs}</div>
+      <div class="two">
+        <div class="field-inline"><label>最短波长</label>
+          <input type="number" id="sub-min" value="${sub.local_min_wave_time}" title="-1 = 继承全局"></div>
+        <div class="field-inline"><label>最长波长</label>
+          <input type="number" id="sub-max" value="${sub.local_max_wave_time}" title="-1 = 继承全局"></div>
+      </div>
+      <div class="muted" style="margin-bottom:6px">-1 = 继承关卡的全局波长；只有 version ≥ 1.3 的关卡才会读取。</div>
+      <table class="ent">
+        <thead><tr><th style="width:76px">行</th><th>敌人</th><th>prosperity</th><th>操作</th></tr></thead>
+        <tbody>${entRows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* 系列 / 敌人选择 */
+document.getElementById("series-tabs").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-series]");
+  if(!b) return;
+  S.series = b.dataset.series;
+  renderSeriesTabs(); renderEnemyList();
+});
+document.getElementById("enemy-search").addEventListener("input", ev => {
+  S.enemySearch = ev.target.value; renderEnemyList();
+});
+document.getElementById("enemy-list").addEventListener("click", ev => {
+  const it = ev.target.closest("[data-enemy]");
+  if(!it) return;
+  S.enemy = it.dataset.enemy;
+  renderEnemyList(); renderWaveEditor();
+});
+
+/* 波次列表 */
+document.getElementById("wave-list").addEventListener("click", ev => {
+  const it = ev.target.closest("[data-wave]");
+  if(!it) return;
+  S.wave = +it.dataset.wave;
+  S.sub = 0;
+  renderWaveList(); renderWaveEditor();
+});
+// 老关卡里有 0 基的 wave_index（2 个）也有 -1 的（13 个），增删波次时沿用原来的基数
+function waveBase(){
+  const w = S.level && S.level.waves && S.level.waves[0];
+  return (w && w.wave_index === 0) ? 0 : 1;
+}
+function renumberWaves(){
+  const b = waveBase();
+  S.level.waves.forEach((w, i) => { w.wave_index = b + i; });
+}
+document.getElementById("wave-add").addEventListener("click", () => {
+  const L = S.level;
+  if(L.waves.length >= 40) { toast("最多 40 波", true); return; }
+  L.waves.push(blankWave(L.waves.length + waveBase()));
+  L.total_waves = L.waves.length;
+  renumberWaves();
+  S.wave = L.waves.length-1; S.sub = 0;
+  renderWaveList(); renderWaveEditor(); touch();
+  renderPage0();
+});
+document.getElementById("wave-clone").addEventListener("click", () => {
+  const L = S.level;
+  if(L.waves.length >= 40) { toast("最多 40 波", true); return; }
+  const copy = JSON.parse(JSON.stringify(curWave()));
+  L.waves.splice(S.wave+1, 0, copy);
+  L.total_waves = L.waves.length;
+  renumberWaves();
+  S.wave = S.wave+1; S.sub = 0;
+  renderWaveList(); renderWaveEditor(); touch(); renderPage0();
+});
+document.getElementById("wave-del").addEventListener("click", () => {
+  const L = S.level;
+  if(L.waves.length <= 1){ toast("至少保留 1 波", true); return; }
+  L.waves.splice(S.wave, 1);
+  L.total_waves = L.waves.length;
+  renumberWaves();
+  S.wave = Math.max(0, S.wave-1); S.sub = 0;
+  renderWaveList(); renderWaveEditor(); touch(); renderPage0();
+});
+
+/* 波次编辑器事件 */
+document.getElementById("wave-editor").addEventListener("click", ev => {
+  const w = curWave();
+  const sub = curSub();
+  const rp = ev.target.closest("[data-row]");
+  if(rp){
+    if(!S.enemy){ toast("先在左侧选一个老鼠", true); return; }
+    const rows = S.level.map_rows;
+    const val = rp.dataset.row;
+    if(val === "all"){
+      for(let r=1;r<=rows;r++) sub.enemy_list.push({type:S.enemy, row:r, prosperity:0});
+    }else{
+      sub.enemy_list.push({type:S.enemy, row:parseInt(val,10), prosperity:0});
+    }
+    renderWaveList(); renderWaveEditor(); touch();
+    return;
+  }
+  const sb = ev.target.closest("[data-sub]");
+  if(sb){ S.sub = +sb.dataset.sub; renderWaveEditor(); return; }
+  const del = ev.target.closest("[data-ent-del]");
+  if(del){ sub.enemy_list.splice(+del.dataset.entDel, 1); renderWaveList(); renderWaveEditor(); touch(); return; }
+
+  const id = ev.target.id;
+  if(id === "sub-add"){
+    w.subwaves.push(blankSubwave(w.subwaves.length));
+    S.sub = w.subwaves.length-1;
+    renderWaveList(); renderWaveEditor(); touch(); return;
+  }
+  if(id === "sub-clone"){
+    const copy = JSON.parse(JSON.stringify(sub));
+    w.subwaves.splice(S.sub+1, 0, copy);
+    w.subwaves.forEach((s,i)=>s.subwave_index=i);
+    S.sub = S.sub+1;
+    renderWaveList(); renderWaveEditor(); touch(); return;
+  }
+  if(id === "sub-del"){
+    if(w.subwaves.length <= 1){ toast("至少保留 1 个子波", true); return; }
+    w.subwaves.splice(S.sub, 1);
+    w.subwaves.forEach((s,i)=>s.subwave_index=i);
+    S.sub = Math.max(0, S.sub-1);
+    renderWaveList(); renderWaveEditor(); touch(); return;
+  }
+});
+document.getElementById("wave-editor").addEventListener("change", ev => {
+  const w = curWave();
+  const sub = curSub();
+  const t = ev.target;
+  if(t.id === "w-boss"){ w.boss_wave = t.checked; renderWaveList(); touch(); return; }
+  if(t.id === "w-boss1"){ w.boss = t.value; if(t.value) w.boss_wave = true; renderWaveList(); renderWaveEditor(); touch(); return; }
+  if(t.id === "w-boss2"){ w.boss2 = t.value; renderWaveList(); touch(); return; }
+  if(t.id === "w-boss1-hp"){ w.boss_1_hp_modify = num(t.value, 1); touch(); return; }
+  if(t.id === "w-boss2-hp"){ w.boss_2_hp_modify = num(t.value, 1); touch(); return; }
+  if(t.id === "sub-min"){ sub.local_min_wave_time = int(t.value, -1); touch(); return; }
+  if(t.id === "sub-max"){ sub.local_max_wave_time = int(t.value, -1); touch(); return; }
+  if(t.dataset.entRow !== undefined){
+    sub.enemy_list[+t.dataset.entRow].row = parseInt(t.value, 10);
+    renderWaveEditor(); touch(); return;
+  }
+  if(t.dataset.entPro !== undefined){
+    sub.enemy_list[+t.dataset.entPro].prosperity = int(t.value, 0);
+    touch(); return;
+  }
+});
+
+/* ============================================================
+   校验 / 保存 / 加载
+   ============================================================ */
+function validate(){
+  const L = S.level;
+  const out = [];
+  const bad = (s) => out.push(`<div class="verr">✗ ${s}</div>`);
+  const warn = (s) => out.push(`<div class="vwarn">! ${s}</div>`);
+  const ok = (s) => out.push(`<div class="vok">✓ ${s}</div>`);
+
+  ok(`结构：${L.map_rows} 行 × ${L.map_cols} 列，共 ${L.total_waves} 大波`);
+
+  if(mapById.has(L.map_sprite)) ok(`地图精灵 ${L.map_sprite} 存在`);
+  else warn(`地图精灵 ${L.map_sprite} 不在关卡库中出现过（引擎仍会尝试加载）`);
+
+  for(const k of ["pre_music","elite_music","boss_music"]){
+    const v = L[k];
+    if(!v) warn(`${k} 为空（引擎会静音/沿用上一首）`);
+    else if(D.musics.includes(v)) ok(`${k} = ${v}`);
+    else warn(`${k} = ${v} 未在 sounds/ 下找到`);
+  }
+
+  const missingCards = new Set(), missingEnemies = new Set();
+  let rowErr = 0, cardN = 0, objN = 0, enemyN = 0;
+
+  for(let r=0;r<L.map_rows;r++) for(let c=0;c<L.map_cols;c++){
+    const cell = L.map[r][c];
+    for(const id of cell.plant){ cardN++; if(!cardById.has(id)) missingCards.add(id); }
+    for(const id of cell.object){ objN++; if(!objById.has(id)) missingEnemies.add("object:"+id); }
+  }
+
+  for(const w of L.waves){
+    for(const s of w.subwaves){
+      for(const e of s.enemy_list){
+        enemyN++;
+        if(!enemyById.has(e.type)) missingEnemies.add(e.type);
+        if(e.row !== -1 && (e.row < 1 || e.row > L.map_rows)) rowErr++;
+      }
+    }
+    if(w.boss && !enemyById.has(w.boss)) missingEnemies.add(w.boss);
+    if(w.boss2 && !enemyById.has(w.boss2)) missingEnemies.add(w.boss2);
+    if(w.boss_wave && !w.boss) warn(`第 ${w.wave_index} 波标了 BOSS 波但没有 BOSS`);
+  }
+
+  if(cardN) ok(`预置卡 ${cardN} 张`);
+  if(objN) ok(`地图物件 ${objN} 个`);
+  ok(`波次敌人 ${enemyN} 个`);
+
+  if(missingCards.size) bad("未知卡片 ID：" + [...missingCards].join(", "));
+  else if(cardN) ok("全部预置卡 ID 有效");
+
+  if(missingEnemies.size) bad("未知敌人/物件 ID：" + [...missingEnemies].join(", "));
+  else if(enemyN) ok("全部敌人 ID 有效");
+
+  if(rowErr) bad(`${rowErr} 个敌人条目行号越界（应为 1..${L.map_rows} 或 -1）`);
+  else ok("敌人行号全部合法");
+
+  const waterRows = [];
+  for(let r=0;r<L.map_rows;r++) if(isWaterRow(r)) waterRows.push(r+1);
+  if(waterRows.length) ok(`水行：第 ${waterRows.join("、")} 行`);
+  else out.push(`<div class="muted">没有水行（该行第 2 格 type=water 才算水行）</div>`);
+
+  const aquatic = new Set();
+  for(const w of L.waves) for(const s of w.subwaves) for(const e of s.enemy_list){
+    const en = enemyById.get(e.type);
+    if(en && en.feature === "water") aquatic.add(en.name);
+  }
+  if(aquatic.size && !waterRows.length)
+    bad(`用到了水域敌人（${[...aquatic].slice(0,5).join("、")}）但没有水行，这些敌人会被迫走随机行且只会挑水行 → 可能不出怪`);
+
+  dialog("关卡校验", out.join("") || `<div class="muted">没有可报告的内容</div>`);
+}
+
+function saveJSON(){
+  const name = (S.level.level_name || "level").replace(/[\\/:*?"<>|]/g, "_");
+  const data = JSON.stringify(S.level, (k, v) => (k === "notes" && v === undefined) ? undefined : v, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = name + ".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("已保存 " + name + ".json");
+}
+
+// 真实的关卡 json 大多以 \\u0000 结尾（GameMaker buffer_save 留下的空字节），
+// 直接 JSON.parse 会报 "Unexpected non-whitespace character after JSON"。
+// 先彻底剥离 BOM 与控制字符，再退一步截断到最后一个 }
+function parseLevelText(text){
+  let t = String(text).replace(/^\uFEFF/, "");
+  t = t.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
+  try{
+    return JSON.parse(t);
+  }catch(e){
+    const i = t.lastIndexOf("}");
+    if(i > 0) return JSON.parse(t.slice(0, i + 1));
+    throw e;
+  }
+}
+
+function loadFile(file){
+  const fr = new FileReader();
+  fr.onload = () => {
+    try{
+      const raw = parseLevelText(fr.result);
+      if(!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("不是关卡对象");
+      S.level = normalizeLevel(raw);
+      S.wave = 0; S.sub = 0;
+      S.cell = {r:0, c:0};
+      renderAll();
+      toast("已加载 " + (raw.level_name || "关卡") + "（" + (raw.map_cols||"?") + "×" + (raw.map_rows||"?") + "）");
+    }catch(e){
+      toast("解析失败：" + e.message, true);
+    }
+  };
+  fr.readAsText(file, "utf-8");
+}
+
+/* ============================================================
+   页面切换 / 初始化
+   ============================================================ */
+function renderAll(){
+  renderPage0();
+  if(S.page === 1){ renderGrid(); renderPalette(); renderCellPanel(); }
+  if(S.page === 2){ renderSeriesTabs(); renderEnemyList(); renderWaveList(); renderWaveEditor(); }
+}
+
+function gotoPage(n){
+  S.page = n;
+  [...document.querySelectorAll("#tabs button")].forEach(b => b.classList.toggle("on", +b.dataset.page === n));
+  [...document.querySelectorAll(".page")].forEach(p => p.classList.toggle("on", p.id === "page-" + n));
+  if(n === 1){ renderGrid(); renderPalette(); renderCellPanel(); }
+  if(n === 2){ renderSeriesTabs(); renderEnemyList(); renderWaveList(); renderWaveEditor(); }
+}
+
+document.getElementById("tabs").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-page]");
+  if(b) gotoPage(+b.dataset.page);
+});
+document.getElementById("go-map").addEventListener("click", () => gotoPage(1));
+document.getElementById("go-wave").addEventListener("click", () => gotoPage(2));
+document.getElementById("btn-save").addEventListener("click", saveJSON);
+document.getElementById("btn-validate").addEventListener("click", validate);
+document.getElementById("btn-load").addEventListener("click", () => document.getElementById("file-input").click());
+document.getElementById("file-input").addEventListener("change", ev => {
+  const f = ev.target.files && ev.target.files[0];
+  if(f) loadFile(f);
+  ev.target.value = "";
+});
+document.getElementById("btn-new").addEventListener("click", () => {
+  if(!confirm("新建会清空当前编辑内容，继续？")) return;
+  S.level = defaultLevel();
+  S.wave = 0; S.sub = 0; S.cell = {r:0,c:0};
+  renderAll(); toast("已新建关卡");
+});
+window.addEventListener("beforeunload", () => {
+  try{ localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(S.level)); }catch(e){}
+});
+
+/* 启动 */
+(function boot(){
+  let restored = false;
+  try{
+    const raw = localStorage.getItem(AUTOSAVE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      if(parsed && parsed.map && parsed.waves){ S.level = normalizeLevel(parsed); restored = true; }
+    }
+  }catch(e){}
+  if(!restored) S.level = defaultLevel();
+  renderAll();
+
+  // 支持 #basic / #map / #wave 直达（方便分享与书签）
+  const h = (location.hash || "").replace("#", "").toLowerCase();
+  if(h === "map") gotoPage(1);
+  else if(h === "wave") gotoPage(2);
+  else if(h === "basic") gotoPage(0);
+
+  if(restored) toast("已恢复上次编辑的关卡");
+  if(!D.cards.length || !D.enemies.length){
+    dialog("数据未生成", `<div class="verr">data.js 里没有卡片/敌人数据。</div>
+      <div class="muted" style="margin-top:8px">在工程根执行：<br>
+      <code>powershell -ExecutionPolicy Bypass -File tools\\level_editor\\gen_data.ps1</code></div>`);
+  }
+})();
+</script>
+<script>
+window.addEventListener('load',()=>{try{
+  const raw="{\n    \"version\": 1.5,\n    \"level_name\": \"tuna_current\",\n    \"level_time_feature\": \"daytime\",\n    \"map_sprite\": \"spr_salad_island_land\",\n    \"display_name\": \"新关卡\",\n    \"author\": \"you\",\n    \"pre_music\": \"mus_delicious_island_daytime_pre\",\n    \"elite_music\": \"mus_delicious_island_daytime_elite\",\n    \"desc\": \"这是一个什么都没有的新关卡\",\n    \"boss_music\": \"mus_delicious_island_daytime_boss\",\n    \"time_limit\": 0.0,\n    \"map_cols\": 9.0,\n    \"map_rows\": 7.0,\n    \"starting_flame\": 50.0,\n    \"first_wave_delay\": 30.0,\n    \"total_waves\": 5.0,\n    \"elite_wave\": 2.0,\n    \"boss_wave\": 5.0,\n    \"hp_modify\": 0.5,\n    \"min_wave_time\": 240.0,\n    \"max_wave_time\": 1500.0,\n    \"map\": [\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ],\n        [\n            {\n                \"plant\": [\n                    \"soda_bubble\",\n                    \"small_fire\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [\n                    \"soda_bubble\"\n                ],\n                \"object\": [],\n                \"type\": \"normal\"\n            },\n            {\n                \"plant\": [],\n                \"object\": [],\n                \"type\": \"normal\"\n            }\n        ]\n    ],\n    \"waves\": [\n        {\n            \"boss_wave\": false,\n            \"wave_index\": 1.0,\n            \"boss\": \"\",\n            \"boss_1_hp_modify\": 1.0,\n            \"subwaves\": [\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                }\n            ],\n            \"boss2\": \"\",\n            \"boss_2_hp_modify\": 1.0\n        },\n        {\n            \"boss_wave\": false,\n            \"wave_index\": 2.0,\n            \"boss\": \"\",\n            \"boss_1_hp_modify\": 1.0,\n            \"subwaves\": [\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_captain_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                }\n            ],\n            \"boss2\": \"\",\n            \"boss_2_hp_modify\": 1.0\n        },\n        {\n            \"boss_wave\": false,\n            \"wave_index\": 3.0,\n            \"boss\": \"\",\n            \"boss_1_hp_modify\": 1.0,\n            \"subwaves\": [\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                }\n            ],\n            \"boss2\": \"\",\n            \"boss_2_hp_modify\": 1.0\n        },\n        {\n            \"boss_wave\": false,\n            \"wave_index\": 4.0,\n            \"boss\": \"\",\n            \"boss_1_hp_modify\": 1.0,\n            \"subwaves\": [\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_repairman_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_captain_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 2.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_panda_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                }\n            ],\n            \"boss2\": \"\",\n            \"boss_2_hp_modify\": 1.0\n        },\n        {\n            \"boss_wave\": true,\n            \"wave_index\": 5.0,\n            \"boss\": \"blonde_mary\",\n            \"boss_1_hp_modify\": 0.80000000000000004,\n            \"subwaves\": [\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"undersea_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"clownfish_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": 120.0,\n                    \"local_min_wave_time\": 120.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"iron_diver_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                },\n                {\n                    \"subwave_index\": 0.0,\n                    \"local_max_wave_time\": -1.0,\n                    \"local_min_wave_time\": -1.0,\n                    \"enemy_list\": [\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        },\n                        {\n                            \"type\": \"sardine_mouse\",\n                            \"row\": -1.0,\n                            \"prosperity\": 0.0\n                        }\n                    ]\n                }\n            ],\n            \"boss2\": \"\",\n            \"boss_2_hp_modify\": 1.0\n        }\n    ],\n    \"rewards\": [\n        {\n            \"gold\": 4000.0,\n            \"items\": [\n                {\n                    \"id\": \"secret_spices\",\n                    \"amount\": 100.0\n                },\n                {\n                    \"id\": \"middle_crystal\",\n                    \"amount\": 75.0\n                },\n                {\n                    \"id\": \"clover_1\",\n                    \"amount\": 1.0\n                }\n            ]\n        },\n        {\n            \"skill_level\": 0.0,\n            \"gold\": 4000.0,\n            \"items\": [\n                {\n                    \"id\": \"secret_spices\",\n                    \"amount\": 100.0\n                },\n                {\n                    \"id\": \"middle_crystal\",\n                    \"amount\": 75.0\n                },\n                {\n                    \"id\": \"clover_1\",\n                    \"amount\": 1.0\n                }\n            ],\n            \"card_unlock\": [\n                \"soda_bubble\"\n            ],\n            \"weapon_unlock\": [],\n            \"gem_unlock\": [],\n            \"player_level\": 0.0\n        }\n    ],\n    \"events\": [\n        {\n            \"id\": \"full_seawater\"\n        }\n    ]\n}";
+  S.level=normalizeLevel(JSON.parse(raw)); S.wave=0; S.sub=0; S.cell={r:0,c:0};
+  renderAll(); gotoPage(1);
+}catch(e){document.body.insertAdjacentHTML('afterbegin','<div style="color:red">ERR '+e.message+'</div>');}});
+</script></body>
+</html>

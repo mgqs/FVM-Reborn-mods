@@ -204,23 +204,65 @@ function gacha_is_gold_card(card_id) {
     return false;
 }
 
+/// @function gacha_is_map_unlock_card(card_id)
+/// @desc 地图正常解锁、不进入抽卡卡池的卡
+///       2026-11-07 用户口径（同 docs/抽卡概率与卡池总表.md 第八章）：
+///       这批卡靠初始赠送 / 关卡内解锁获得，抽卡模式、欧皇模式、随机礼盒都不发。
+/// @param {string} card_id
+/// @return {bool}
+function gacha_is_map_unlock_card(card_id) {
+    var _map_only = [
+        "small_fire", "toast_bread", "xiao_long_bao", "flour_sack",   // 初始四张
+        "wooden_plate", "wooden_cork", "cotton_candy", "sausage",     // 关卡内解锁
+        "oil_lamp", "soda_bubble", "tang_hu_lu", "double_water_pipe",
+        "aquarius_elve", "coffee_grounds"
+    ];
+    return array_get_index(_map_only, card_id) != -1;
+}
+
 /// @function gacha_is_zodiac_card(card_id)
-/// @desc 判断是否为生肖卡（商店价格 >= 80000 的卡片类商品）
+/// @desc 判断是否为生肖卡
+/// 🔴 2026-11-07 用户口径：「以后我添加的卡片未特别声明的自动进入生肖卡池」
+///   所以本函数是 **默认生肖**，只有下面几类例外才返回 false：
+///     1. 金卡     —— 走 gold 池（发进化凭证），优先级最高
+///     2. 融合卡   —— 走 fusion 池（发初融菜谱）
+///     3. 普通卡池名单 _normal（docs 2.5，74 张）—— 用户逐张指定的
+///     4. 地图正常解锁卡（docs 第八章，14 张）—— 不进抽卡池
+///   → 新增卡片不用改这个函数，自动进生肖池；要它进普通池，把 id 写进 _normal。
+///   旧判据（商店售价 >= 80000）已废弃：那 12 张生肖卡不在商店里，全被漏判成普通卡。
 /// @param {string} card_id
 /// @return {bool}
 function gacha_is_zodiac_card(card_id) {
-    // 先排除金卡
     if (gacha_is_gold_card(card_id)) return false;
+    if (is_fusion_card(card_id)) return false;
+    if (gacha_is_map_unlock_card(card_id)) return false;
 
-    // 检查是否在商店中
-    if (!ds_map_exists(global.goods_map, card_id)) return false;
+    // 普通卡池名单：与 docs/抽卡概率与卡池总表.md 2.5 一一对应，共 74 张
+    var _normal = [
+        // MOD 普通卡 12 张
+        "chunsun", "mixian", "corn_shooter", "12yinliao", "anranxiaohunfan",
+        "qingse_shishi", "pufferfish", "yeziguo", "bbq", "eightcake", "maiya", "guihuajiu",
+        // 原版普通卡 62 张（scripts/slots_init/slots_init.gml 注册）
+        "beef_hotpot", "brazier", "cat_box", "cat_chest", "cherry_pudding",
+        "chili_powder", "chocolate_bread", "chocolate_cannon", "chocolate_pult",
+        "coffee_cup", "coffee_pot", "coke_bomb", "curry_lobster_cannon",
+        "delicacy_firework", "double_ice_long_bao", "double_long_bao", "dragon_fruit",
+        "durian", "egg_boiler_pult", "fishbone", "fruit_tart", "gatlin_ice_long_bao",
+        "gatlin_long_bao", "goblet_lamp", "hamburger", "horseshoe_crab_bread",
+        "hotdog_cannon", "ice_bucket_bomb", "ice_egg_boiler_pult", "ice_long_bao",
+        "iron_fishbone", "kettle_bomb", "king_long_bao", "king_triple_long_bao",
+        "large_fire", "lightning_baguette", "melon_shield", "mouse_clip", "nut_frier",
+        "oden_pot", "pan_fried_bun", "pineapple_explosive_bread", "pizza_oven",
+        "rabbit_lantern", "rotating_coffee_pot", "salad_pult", "skewer_bomb",
+        "spicy_pot", "steel_wool", "stinky_tofu_pult", "sugar_ball_pult",
+        "sugar_roxburghii", "takoyaki", "tar_sprayer", "triple_ice_long_bao",
+        "triple_long_bao", "triple_wine_rack", "ventilation_fan", "water_tea_cup",
+        "whisky_bomb", "wine_bottle_bomb", "xinjiang_fried_noodles"
+    ];
+    if (array_get_index(_normal, card_id) != -1) return false;
 
-    var goods_data = global.goods_map[? card_id];
-    if (!variable_struct_exists(goods_data, "type")) return false;
-    if (goods_data[$ "type"] != "card") return false;
-
-    var cost = real(goods_data[$ "cost"]);
-    return cost >= 80000;
+    // 其余（含以后新增的卡）：默认生肖池
+    return true;
 }
 
 /// @function gacha_is_mod_weapon(weapon_id)
@@ -622,18 +664,19 @@ function gacha_pick_random_reward() {
     // 权重值（非百分比；最终按「有候选的池」的权重之和归一化）：
     //   抽卡（难度6）：融合菜谱20 / 金卡15 / 生肖20 / 普通74 / 武器0.5 / 宝石0.5   → 合计 130
     //   欧皇（难度7）：融合菜谱30 / 金卡50 / 生肖25 / 普通20 / 武器2.5 / 宝石2.5   → 合计 130
+    // 抽卡模式权重（2026-11-07 用户定稿）：合计 100，权重即百分比
     var fusion_weight = 15;
     var gold_weight = 15;
-    var zodiac_weight = 20;
-    var normal_weight = 80;
+    var zodiac_weight = 29;
+    var normal_weight = 40;
     var weapon_weight = 0.5;
     var gem_weight = 0.5;
 
     if (is_lucky_gacha_mode()) {
-        fusion_weight = 30;
-        gold_weight = 50;
+        fusion_weight = 20;
+        gold_weight = 40;
         zodiac_weight = 25;
-        normal_weight = 20;
+        normal_weight = 10;
         weapon_weight = 2.5;
         gem_weight = 2.5;
     }

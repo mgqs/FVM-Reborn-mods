@@ -1,0 +1,2386 @@
+{
+ "cards": [
+  {
+   "id": "chunsun",
+   "name": "泡椒春笋",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "mixian",
+   "name": "桥头米线",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yanyantu",
+   "name": "炎焱兔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "wugushe",
+   "name": "巫蛊蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "kuileima",
+   "name": "傀儡马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yufengma",
+   "name": "御风马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "fenjima",
+   "name": "焚寂马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "guiyuanma",
+   "name": "归元马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "huagao",
+   "name": "灯影花糕",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yanhuangma",
+   "name": "炎凰马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yinhema",
+   "name": "音盒马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "fushengcha",
+   "name": "浮生茶",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "xiandima",
+   "name": "仙笛马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "xingqiongma",
+   "name": "星穹马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "starrabbit",
+   "name": "星星兔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yinghuoshe",
+   "name": "萤火蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "lihe",
+   "name": "随机礼盒",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "gaia",
+   "name": "盖亚神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "aurora",
+   "name": "欧若拉神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "zhurong",
+   "name": "祝融神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "rig",
+   "name": "里格神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "brahma",
+   "name": "梵天神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "baibianshe",
+   "name": "百变蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "mozhang",
+   "name": "魔杖蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "clotho",
+   "name": "克洛托神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "time_god",
+   "name": "柯罗诺斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "firework_dragon_real",
+   "name": "真·花火龙",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "sun_god",
+   "name": "阿波罗神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "war_god",
+   "name": "阿瑞斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "love_god",
+   "name": "丘比特神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "thor",
+   "name": "索尔神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "moon_god",
+   "name": "狄安娜神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "poseidon",
+   "name": "波塞冬神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "odin",
+   "name": "奥丁神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "zeus",
+   "name": "宙斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "ice_god",
+   "name": "典伊神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "ghost_god",
+   "name": "哈迪斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "hera",
+   "name": "赫拉神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "fire_god",
+   "name": "洛基神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "water_god",
+   "name": "忒提丝神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "power_god",
+   "name": "赫丘利神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "sheng_huo",
+   "name": "赫斯提亚神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "save_god",
+   "name": "灵鱼摩羯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "ymir",
+   "name": "尤弥尔神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "joker",
+   "name": "埃罗斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "athena",
+   "name": "雅典娜守护",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "shuangzi",
+   "name": "双子座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "sheshou",
+   "name": "射手座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "tiancheng",
+   "name": "天秤座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "shuangyu",
+   "name": "双鱼座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "juxie",
+   "name": "巨蟹座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "shizi",
+   "name": "狮子座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "jinniu",
+   "name": "金牛座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "chunv",
+   "name": "处女座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "baiyang",
+   "name": "白羊座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "mojie",
+   "name": "摩羯座精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "corn_shooter",
+   "name": "玉蜀黍",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "warm_birds",
+   "name": "暖暖鸡",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "cold_drew",
+   "name": "冰块冷萃机",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "berry_dessert",
+   "name": "莓果点心",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "grilled_lizard_pult",
+   "name": "烤蜥蜴投手",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "blueberry_tower",
+   "name": "蓝莓信号塔塔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "zhuzhujiaqiang",
+   "name": "猪猪加强器",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "donut",
+   "name": "梦幻多拿滋",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "spoon_rabbit",
+   "name": "勺勺兔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "hspeed_juicer",
+   "name": "加速榨汁机",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "xiangshui_god",
+   "name": "塔利亚神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "fengrao_god",
+   "name": "弗雷神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "houyi_god",
+   "name": "后羿神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "gongjiang_god",
+   "name": "鲁班神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "heian_god",
+   "name": "霍德尔神使",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "hundun_god",
+   "name": "混沌神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "guangming_god",
+   "name": "巴德尔神使",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "lingrong_god",
+   "name": "魔导士软糖",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "panduola_god",
+   "name": "潘多拉",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "12yinliao",
+   "name": "12饮料精灵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "anranxiaohunfan",
+   "name": "黯然销魂饭",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "dandantu",
+   "name": "蛋蛋兔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "laipishe",
+   "name": "赖皮蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "nizhuanniu",
+   "name": "逆转牛",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "liehuohu",
+   "name": "烈火虎",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "shegengbao",
+   "name": "蛇羹煲",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "wanpilong",
+   "name": "顽皮龙",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "double_blade_snake",
+   "name": "双刃蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "zhiyumiao",
+   "name": "治愈喵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "baobaoji",
+   "name": "爆爆鸡",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "xuanfengniu",
+   "name": "旋风牛",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "qingse_shishi",
+   "name": "青涩柿柿",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "chongsheng_god",
+   "name": "奥西里斯神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "zhanqima",
+   "name": "战旗马",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "haiyang_god",
+   "name": "塔拉萨神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "hufa_god",
+   "name": "俱吠罗神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "shennong_god",
+   "name": "神农氏神使",
+   "gold": 1,
+   "fusion": 0
+  },
+  {
+   "id": "hongliukaochuan",
+   "name": "红柳烤串机",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "shuanggu",
+   "name": "蚝油双菇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "lizi_god",
+   "name": "酱香锅烤栗子",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "youyu_god",
+   "name": "火影怪味鱿鱼",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghehaixing",
+   "name": "仙人球海星刺身",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghedan_god",
+   "name": "雪芭煮蛋器",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghehuopen",
+   "name": "刺梨烧烤盘",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghesanxian",
+   "name": "子母三线酒架",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghedapao",
+   "name": "脆心死神大炮",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "ronghekafei",
+   "name": "机枪咖啡杯",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "rongheshuanggu",
+   "name": "热狗蚝油双菇",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "pufferfish",
+   "name": "爆辣河豚",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "yeziguo",
+   "name": "椰子果",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "niuyouguo",
+   "name": "邪恶牛油果",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "wuxingshe",
+   "name": "五行蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "bbq",
+   "name": "街头烤肉大师",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "eightcake",
+   "name": "8周年蛋糕",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "tangchaolizi",
+   "name": "糖炒栗子",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "nengliangmiao",
+   "name": "能量喵",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "maiya",
+   "name": "麦芽糖",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "guihuajiu",
+   "name": "桂花酒",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "mianbao",
+   "name": "火炉菠萝面包",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "xuanzhuan_ronghe",
+   "name": "红温旋转咖啡壶",
+   "gold": 0,
+   "fusion": 1
+  },
+  {
+   "id": "zhuzhuliaoliji",
+   "name": "猪猪料理机",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "budingwang",
+   "name": "布丁汪",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "caihongshe",
+   "name": "彩虹蛇",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "meiweijishiqi",
+   "name": "美味计时器",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "dangdanghu",
+   "name": "铛铛虎",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "dianman",
+   "name": "美味电鳗",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "tanchitu",
+   "name": "贪吃兔",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "tunshilong",
+   "name": "吞噬龙",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "xiangliaohu",
+   "name": "香料虎",
+   "gold": 0,
+   "fusion": 0
+  },
+  {
+   "id": "zhuanzhuanji",
+   "name": "转转鸡",
+   "gold": 0,
+   "fusion": 0
+  }
+ ],
+ "zodiac": [
+  "baibianshe",
+  "baobaoji",
+  "caihongshe",
+  "dandantu",
+  "dangdanghu",
+  "double_blade_snake",
+  "fenjima",
+  "guiyuanma",
+  "kuileima",
+  "laipishe",
+  "liehuohu",
+  "mozhang",
+  "nizhuanniu",
+  "shegengbao",
+  "spoon_rabbit",
+  "starrabbit",
+  "tanchitu",
+  "tunshilong",
+  "wanpilong",
+  "warm_birds",
+  "wugushe",
+  "wuxingshe",
+  "xiandima",
+  "xiangliaohu",
+  "xingqiongma",
+  "xuanfengniu",
+  "yanhuangma",
+  "yanyantu",
+  "yinghuoshe",
+  "yinhema",
+  "yufengma",
+  "zhanqima",
+  "zhuanzhuanji",
+  "zhuzhujiaqiang",
+  "zhuzhuliaoliji"
+ ],
+ "weapons": {
+  "zeus_bolt": {
+   "name": "宙斯神弩",
+   "gems": [
+    "zeus_shadow_gem",
+    "zeus_power_gem",
+    "zeus_anger_gem",
+    "zeus_ren_gem"
+   ]
+  },
+  "hades_scythe": {
+   "name": "冥王战镰",
+   "gems": [
+    "ghost_strike_gem",
+    "ghost_spark_gem",
+    "ghost_pact_gem",
+    "ghost_caijue_gem"
+   ]
+  },
+  "gods_shield": {
+   "name": "诸神之盾",
+   "gems": [
+    "gods_shield_gem_1",
+    "gods_shield_gem_2",
+    "gods_shield_gem_3",
+    "gods_shield_gem_4"
+   ]
+  },
+  "master_shield": {
+   "name": "主宰之盾",
+   "gems": [
+    "master_shield_gem_1",
+    "master_shield_gem_2",
+    "master_shield_gem_3",
+    "master_shield_gem_4",
+    "divine_shenji_gem"
+   ]
+  },
+  "star_wand": {
+   "name": "星之神杖",
+   "gems": [
+    "star_wand_gem_1",
+    "star_wand_gem_2",
+    "star_wand_gem_3",
+    "star_wand_gem_4",
+    "star_wand_gem_5"
+   ]
+  },
+  "rose_shield": {
+   "name": "荆棘玫瑰",
+   "gems": [
+    "rose_shield_gem_1",
+    "rose_shield_gem_2",
+    "rose_shield_gem_3",
+    "rose_shield_gem_4",
+    "rose_shield_gem_5"
+   ]
+  },
+  "aladdin_lamp": {
+   "name": "阿拉丁神灯",
+   "gems": [
+    "aladdin_lamp_gem_1",
+    "aladdin_lamp_gem_2",
+    "aladdin_lamp_gem_3",
+    "aladdin_lamp_gem_4",
+    "aladdin_lamp_gem_5"
+   ]
+  }
+ },
+ "gems": {
+  "zeus_shadow_gem": {
+   "name": "天神之影",
+   "weapons": [
+    "zeus_bolt"
+   ]
+  },
+  "zeus_power_gem": {
+   "name": "天神之力",
+   "weapons": [
+    "zeus_bolt"
+   ]
+  },
+  "zeus_anger_gem": {
+   "name": "天神之怒",
+   "weapons": [
+    "zeus_bolt"
+   ]
+  },
+  "zeus_ren_gem": {
+   "name": "天神之刃",
+   "weapons": [
+    "zeus_bolt"
+   ]
+  },
+  "ghost_strike_gem": {
+   "name": "亡灵强袭",
+   "weapons": [
+    "hades_scythe"
+   ]
+  },
+  "ghost_spark_gem": {
+   "name": "亡灵星火",
+   "weapons": [
+    "hades_scythe"
+   ]
+  },
+  "ghost_pact_gem": {
+   "name": "亡灵契约",
+   "weapons": [
+    "hades_scythe"
+   ]
+  },
+  "ghost_caijue_gem": {
+   "name": "亡灵裁决",
+   "weapons": [
+    "hades_scythe"
+   ]
+  },
+  "gods_shield_gem_1": {
+   "name": "光能之源",
+   "weapons": [
+    "gods_shield"
+   ]
+  },
+  "gods_shield_gem_2": {
+   "name": "撕裂之源",
+   "weapons": [
+    "gods_shield"
+   ]
+  },
+  "gods_shield_gem_3": {
+   "name": "永恒之源",
+   "weapons": [
+    "gods_shield"
+   ]
+  },
+  "gods_shield_gem_4": {
+   "name": "生命之源",
+   "weapons": [
+    "gods_shield"
+   ]
+  },
+  "master_shield_gem_1": {
+   "name": "神佑之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "master_shield_gem_2": {
+   "name": "神忌之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "master_shield_gem_3": {
+   "name": "神护之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "master_shield_gem_4": {
+   "name": "神圣之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "divine_blessing_gem": {
+   "name": "神佑之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "divine_protect_gem": {
+   "name": "神护之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "divine_holy_gem": {
+   "name": "神圣之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "divine_shenji_gem": {
+   "name": "神忌之眼",
+   "weapons": [
+    "master_shield"
+   ]
+  },
+  "star_wand_gem_1": {
+   "name": "星之焕",
+   "weapons": [
+    "star_wand"
+   ]
+  },
+  "star_wand_gem_2": {
+   "name": "星之吻",
+   "weapons": [
+    "star_wand"
+   ]
+  },
+  "star_wand_gem_3": {
+   "name": "星之雨",
+   "weapons": [
+    "star_wand"
+   ]
+  },
+  "star_wand_gem_4": {
+   "name": "星之闪",
+   "weapons": [
+    "star_wand"
+   ]
+  },
+  "rose_shield_gem_1": {
+   "name": "光合作用",
+   "weapons": [
+    "rose_shield"
+   ]
+  },
+  "rose_shield_gem_2": {
+   "name": "玫瑰之刺",
+   "weapons": [
+    "rose_shield"
+   ]
+  },
+  "rose_shield_gem_3": {
+   "name": "玫瑰之护",
+   "weapons": [
+    "rose_shield"
+   ]
+  },
+  "rose_shield_gem_4": {
+   "name": "玫瑰之绞",
+   "weapons": [
+    "rose_shield"
+   ]
+  },
+  "aladdin_lamp_gem_1": {
+   "name": "灯神原力",
+   "weapons": [
+    "aladdin_lamp"
+   ]
+  },
+  "aladdin_lamp_gem_2": {
+   "name": "灯神疾速",
+   "weapons": [
+    "aladdin_lamp"
+   ]
+  },
+  "aladdin_lamp_gem_3": {
+   "name": "灯神召唤",
+   "weapons": [
+    "aladdin_lamp"
+   ]
+  },
+  "aladdin_lamp_gem_4": {
+   "name": "灯神迷雾",
+   "weapons": [
+    "aladdin_lamp"
+   ]
+  },
+  "star_wand_gem_5": {
+   "name": "星之耀",
+   "weapons": [
+    "star_wand"
+   ]
+  },
+  "rose_shield_gem_5": {
+   "name": "玫瑰之心",
+   "weapons": [
+    "rose_shield"
+   ]
+  },
+  "aladdin_lamp_gem_5": {
+   "name": "灯神涅槃",
+   "weapons": [
+    "aladdin_lamp"
+   ]
+  }
+ },
+ "enemies": [
+  {
+   "id": "normal_mouse",
+   "name": "平民鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "test_mouse",
+   "name": "测试鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "football_fan_mouse",
+   "name": "球迷鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "iron_pan_mouse",
+   "name": "铁锅鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "skateboard_mouse",
+   "name": "滑板鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "landlady_mouse",
+   "name": "房东鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "zombie_with_flower_pot",
+   "name": "捧花僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "machine_mouse",
+   "name": "机器鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "ninja_mouse",
+   "name": "忍者鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "minion_mouse",
+   "name": "忍者鼠随从",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "kangaroo",
+   "name": "跳跳鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "repairman_mouse",
+   "name": "修理鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "diver_mouse",
+   "name": "潜水鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "paper_boat_mouse",
+   "name": "纸船鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "duck_mouse",
+   "name": "鸭子泳圈鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "tropical_fish_mouse",
+   "name": "热带鱼泳圈鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "lambo_mouse",
+   "name": "兰博鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "butterfly_mouse",
+   "name": "蝴蝶泳圈鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "taro_toho_mouse",
+   "name": "多宝太郎鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "water_taro_toho_mouse",
+   "name": "水上多宝太郎鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "assault_mouse",
+   "name": "突袭鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "frog_prince_mouse",
+   "name": "青蛙王子鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "roller_skating_mouse",
+   "name": "轮滑鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "giant_mouse",
+   "name": "巨型鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "mario_mouse",
+   "name": "洞君",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "arno",
+   "name": "阿诺",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "temple_pharaoh",
+   "name": "法老原形",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "engineering_vehicle_mouse",
+   "name": "工程车鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "garbage_track_mouse",
+   "name": "垃圾车鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "mole",
+   "name": "鼹鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "glider_mouse",
+   "name": "滑翔鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "ice_residue",
+   "name": "冰渣",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "infected_bingzha",
+   "name": "感染冰渣",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "bat_mouse",
+   "name": "蝙蝠鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "rumble",
+   "name": "轰隆隆",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "honglonglong",
+   "name": "轰隆隆",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "abyss_pharaoh",
+   "name": "法老鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "infected_pharaoh",
+   "name": "感染法老",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "cucumber_paper_boat_mouse",
+   "name": "黄瓜纸船鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "apple_duck_mouse",
+   "name": "苹果泳圈鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "egg_tropical_fish_mouse",
+   "name": "煎蛋泳圈鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "orange_prince_mouse",
+   "name": "陈皮王子鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "submarine_mouse",
+   "name": "水潜艇鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "rowboat_mouse",
+   "name": "划艇鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "water_penguin_mouse",
+   "name": "水企鹅鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "pink_paul",
+   "name": "粉红保罗",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "cucumber_normal_mouse",
+   "name": "黄瓜平民鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "apple_football_fan_mouse",
+   "name": "苹果球迷鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "egg_iron_pan_mouse",
+   "name": "煎蛋铁锅鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "tangerine_skateboard_mouse",
+   "name": "橘子滑板鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "shy_landlady_mouse",
+   "name": "羞涩房东鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "zombie_with_wallnut",
+   "name": "坚果僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "caribbean_mouse",
+   "name": "加勒比鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "penguin_mouse",
+   "name": "陆企鹅鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "arson_mouse",
+   "name": "纵火鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "non_mainstream_mouse",
+   "name": "非主流鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "flute_mouse",
+   "name": "魔笛鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "panda_mouse",
+   "name": "熊猫鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "can_mouse",
+   "name": "罐头鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "blonde_mary",
+   "name": "金发玛丽",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "pete",
+   "name": "钢爪皮特",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "dragon_boat_mouse",
+   "name": "龙舟鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "flagship_mouse",
+   "name": "旗舰鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "thug_submarine_mouse",
+   "name": "打手潜艇鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kof_submarine_mouse",
+   "name": "拳皇潜艇鼠",
+   "feature": "water",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "soar_mouse",
+   "name": "腾空鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "jet_mouse",
+   "name": "喷气鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "dentist_mouse",
+   "name": "牙医鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "sawblade_mouse",
+   "name": "锯刀狂鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "warrior_mouse",
+   "name": "武士鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "naruto_mouse",
+   "name": "火影忍者鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "hazelnut_cannon_mouse",
+   "name": "榛子炮鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "landmine_vehicle_mouse",
+   "name": "地雷车鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "waste_flying_mouse",
+   "name": "废品飞兵鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "airbrone_explosive_mouse",
+   "name": "空降爆破鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "priest_mouse",
+   "name": "祭祀鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "pope_mouse",
+   "name": "教皇鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "wrestler_mouse",
+   "name": "摔跤手鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "special_armour_mouse",
+   "name": "特种装甲鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "magician_mouse",
+   "name": "魔术师鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "ghost_mouse",
+   "name": "幽灵鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "flight_barrier_mouse",
+   "name": "飞行路障鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "hells_messenger",
+   "name": "地狱屎者",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "needle_baron",
+   "name": "针头男爵",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "fog_julie",
+   "name": "迷雾朱莉",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "lieutenant_buzz",
+   "name": "嗡嗡中尉",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "paratrooper_mouse",
+   "name": "伞兵鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "irritable_jack",
+   "name": "暴躁杰克",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "hot_vajra",
+   "name": "炽热金刚",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_normal_mouse",
+   "name": "机器平民鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "machine_football_fan_mouse",
+   "name": "机器球迷鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "machine_iron_pan_mouse",
+   "name": "机器铁锅鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "machine_skateboard_mouse",
+   "name": "机器滑板鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "machine_flag_mouse",
+   "name": "机器举旗鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "mirror_mouse",
+   "name": "魔镜鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "trumpeter_mouse",
+   "name": "小号手鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "huang_xiaoming",
+   "name": "酷帅小明",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "angelababy",
+   "name": "闪亮Baby",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "mouse_train_1",
+   "name": "鼠国列车一态",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "soldier_mouse",
+   "name": "大兵鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_bomb_mouse",
+   "name": "机械投弹鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "aircraft_carrier",
+   "name": "空中航母",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kamikaze_glider_mouse",
+   "name": "神风滑翔鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "captain_america_mouse",
+   "name": "鼠国队长",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "iron_man_mouse",
+   "name": "钢铁侠鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "mouse_train_2",
+   "name": "鼠国列车二态",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "charge_spring_mouse",
+   "name": "冲锋弹簧鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "snail_mouse",
+   "name": "蜗牛鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_beehive_mouse",
+   "name": "机械蜂箱鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_bee",
+   "name": "机械蜜蜂",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "spider_man_mouse",
+   "name": "蜘蛛侠鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "hulk_mouse",
+   "name": "绿巨鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "mouse_train_3",
+   "name": "鼠国列车三态",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_diver_mouse",
+   "name": "海底潜水鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "iron_diver_mouse",
+   "name": "钢铁潜水鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "clownfish_mouse",
+   "name": "小丑鱼鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "sardine_mouse",
+   "name": "沙丁鱼鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_repairman_mouse",
+   "name": "海底工程鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_captain_mouse",
+   "name": "船长鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_panda_mouse",
+   "name": "海底熊猫鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "windmill_fish_mouse",
+   "name": "翻车鱼鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "conch_mouse",
+   "name": "海螺鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "eel_mouse",
+   "name": "电鳗鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "oyster_mouse",
+   "name": "牡蛎鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "undersea_penguin_mouse",
+   "name": "海底企鹅鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "undersea_can_mouse",
+   "name": "海底罐头鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_submarine_1",
+   "name": "海底潜艇1",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "undersea_submarine_2",
+   "name": "海底潜艇2",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "swordfish_mouse",
+   "name": "剑鱼鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "seahorse_mouse",
+   "name": "海马鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "mermaid_mary",
+   "name": "人鱼玛丽",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_shark_1",
+   "name": "机械鲨鱼一态",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "lobster_knight",
+   "name": "龙虾骑士",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "electric_jellyfish",
+   "name": "电光水母",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "machine_shark_2",
+   "name": "机械鲨鱼二态",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "war_god",
+   "name": "战神",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "infected_zhanshen",
+   "name": "变异战神",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "hercules",
+   "name": "大力神",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "thor",
+   "name": "雷神",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "explore_mouse",
+   "name": "探险鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "tire_mouse",
+   "name": "轮胎鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "suv_mouse",
+   "name": "越野车鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "carpet_mouse",
+   "name": "飞毯鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": false
+  },
+  {
+   "id": "barrel_mouse",
+   "name": "酒桶鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "travel_record",
+   "name": "旅行唱机",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "beverage_machine",
+   "name": "饮料贩卖机",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_rambo",
+   "name": "兰博僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_pirate",
+   "name": "加勒比僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_gift",
+   "name": "多宝太郎僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_cucumber",
+   "name": "黄瓜平民僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_flute",
+   "name": "魔笛僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_football_fan",
+   "name": "苹果球迷僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_iron_pan",
+   "name": "煎蛋铁锅僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_skateboard",
+   "name": "橘子滑板僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_landlady",
+   "name": "变异房东僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_wrestler",
+   "name": "摔跤手僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_panda",
+   "name": "变异熊猫僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_armour",
+   "name": "特种装甲僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_glider",
+   "name": "滑翔僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_barrier",
+   "name": "路障僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_airbrone",
+   "name": "空降爆破僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_waste_flying",
+   "name": "废品飞兵僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_paratrooper",
+   "name": "伞兵僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_bat",
+   "name": "蝙蝠僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_hopper",
+   "name": "变异跳跳僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_soar",
+   "name": "腾空僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_jet",
+   "name": "喷气僵尸鼠",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_boss_buzz",
+   "name": "变异嗡嗡中尉",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_boss_julie",
+   "name": "变异迷雾朱莉",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_boss_pete",
+   "name": "变异钢爪皮特",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_boss_baron",
+   "name": "变异针头男爵",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  },
+  {
+   "id": "kuafu_boss_xiaoming",
+   "name": "变异酷帅小明",
+   "feature": "land",
+   "elite": false,
+   "ash": true
+  }
+ ],
+ "bosses": [
+  "abyss_pharaoh",
+  "angelababy",
+  "arno",
+  "beverage_machine",
+  "blonde_mary",
+  "captain_america_mouse",
+  "electric_jellyfish",
+  "fog_julie",
+  "hells_messenger",
+  "hercules",
+  "honglonglong",
+  "hot_vajra",
+  "huang_xiaoming",
+  "hulk_mouse",
+  "ice_residue",
+  "infected_bingzha",
+  "infected_pharaoh",
+  "infected_zhanshen",
+  "iron_man_mouse",
+  "irritable_jack",
+  "kuafu_boss_baron",
+  "kuafu_boss_buzz",
+  "kuafu_boss_julie",
+  "kuafu_boss_pete",
+  "kuafu_boss_xiaoming",
+  "lieutenant_buzz",
+  "lobster_knight",
+  "ly_diting",
+  "ly_hengha",
+  "ly_hengha_horseface",
+  "ly_hengha_oxhead",
+  "ly_mengpo",
+  "ly_wuchang",
+  "ly_youshen",
+  "machine_shark_1",
+  "mario_mouse",
+  "mermaid_mary",
+  "mouse_train_1",
+  "mouse_train_2",
+  "mouse_train_3",
+  "needle_baron",
+  "pete",
+  "pink_paul",
+  "rumble",
+  "spider_man_mouse",
+  "temple_pharaoh",
+  "thor",
+  "travel_record",
+  "war_god"
+ ],
+ "bossname": {
+  "mario_mouse": "洞君",
+  "arno": "阿诺",
+  "temple_pharaoh": "法老原形",
+  "ice_residue": "冰渣",
+  "infected_bingzha": "感染冰渣",
+  "rumble": "轰隆隆",
+  "honglonglong": "轰隆隆",
+  "abyss_pharaoh": "法老鼠",
+  "infected_pharaoh": "感染法老",
+  "pink_paul": "粉红保罗",
+  "blonde_mary": "金发玛丽",
+  "pete": "钢爪皮特",
+  "hells_messenger": "地狱屎者",
+  "needle_baron": "针头男爵",
+  "fog_julie": "迷雾朱莉",
+  "lieutenant_buzz": "嗡嗡中尉",
+  "irritable_jack": "暴躁杰克",
+  "hot_vajra": "炽热金刚",
+  "huang_xiaoming": "酷帅小明",
+  "angelababy": "闪亮Baby",
+  "mouse_train_1": "列车初级",
+  "captain_america_mouse": "鼠国队长",
+  "iron_man_mouse": "钢铁侠鼠",
+  "mouse_train_2": "列车进阶",
+  "spider_man_mouse": "蜘蛛侠鼠",
+  "hulk_mouse": "绿巨鼠",
+  "mouse_train_3": "列车终极",
+  "mermaid_mary": "人鱼玛丽",
+  "machine_shark_1": "机械鲨鱼",
+  "lobster_knight": "龙虾骑士",
+  "electric_jellyfish": "电光水母",
+  "war_god": "战神",
+  "infected_zhanshen": "变异战神",
+  "hercules": "大力神",
+  "thor": "雷神",
+  "ly_diting": "谛听鼠",
+  "ly_hengha_horseface": "哼哈将军·马面",
+  "ly_hengha_oxhead": "哼哈将军·牛头",
+  "ly_hengha": "哼哈将军",
+  "ly_mengpo": "孟婆鼠",
+  "ly_wuchang": "无常鼠",
+  "ly_youshen": "游神鼠",
+  "travel_record": "旅行唱机",
+  "beverage_machine": "饮料贩卖机",
+  "kuafu_boss_buzz": "变异嗡嗡中尉",
+  "kuafu_boss_julie": "变异迷雾朱莉",
+  "kuafu_boss_pete": "变异钢爪皮特",
+  "kuafu_boss_baron": "变异针头男爵",
+  "kuafu_boss_xiaoming": "变异酷帅小明"
+ }
+}

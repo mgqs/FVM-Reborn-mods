@@ -17,7 +17,9 @@ with (obj_enemy_parent)
 
         if (_prev_hp > 0 && hp <= 0)
         {
-            if (shape >= 2)
+            // 注意：这里在 with (obj_enemy_parent) 内，shape 必须走 other.（火焰自身的星级），
+            // 直接写 shape 会去读敌人身上不存在的变量 → obj_normal_mouse.shape not set 崩溃
+            if (other.shape >= 2)
             {
                 var inst = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
                 inst.special_ash = true;
