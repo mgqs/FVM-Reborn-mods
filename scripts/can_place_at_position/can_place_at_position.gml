@@ -112,16 +112,9 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
         return true;
     }
 
-    if (card_id == "maiya" || card_id == "cotton_candy")
-    {
-        var _carrier_other = (card_id == "maiya") ? "cotton_candy" : "maiya";
-        for (var _ci = 0; _ci < ds_list_size(plant_list); _ci++)
-        {
-            var _cp = ds_list_find_value(plant_list, _ci);
-            if (!instance_exists(_cp) || !variable_instance_exists(_cp, "plant_id")) continue;
-            if (_cp.plant_id == _carrier_other) return false;
-        }
-    }
+    // 2026-11-08 用户口径：**取消麦芽糖 ↔ 棉花糖的放置互斥**（两者可同格共存），
+    //   麦芽糖仍然 feature_type = "dwarf"：不阻挡老鼠、不会被啃、也不补云洞。
+    //   原来这里有一段「对方在就 return false」的判断，已整段删掉。
 
     // 根据植物类型检查是否可以种植
 	if target_card != "none"{

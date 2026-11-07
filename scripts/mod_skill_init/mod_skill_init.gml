@@ -142,4 +142,10 @@ function mod_skill_init()
     register_card_skill("tunshilong", "cooldown", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
     register_card_skill("xiangliaohu", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
     register_card_skill("zhuanzhuanji", "cycle", [108, 105, 102, 99, 96, 93, 90, 84, 78]);
+    register_card_skill("fashishe", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
+    register_card_skill("fangkongmiao", "cycle", [180, 168, 156, 144, 132, 120, 108, 96, 72]);
+    register_card_skill("huojianzhu", "cycle", [360, 348, 336, 324, 312, 300, 288, 276, 261]);
+    register_card_skill("doumaobang", "前摇", [4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5]);
+    register_card_skill("honeytrap", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
+    register_card_skill("huanyingshe", "cycle", [138, 135, 132, 129, 126, 123, 117, 111, 102]);
 }

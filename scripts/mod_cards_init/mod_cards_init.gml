@@ -4465,7 +4465,7 @@ mod_register_plant_lite("xuanfengniu", [
 
     mod_register_plant_lite("tanchitu", [
     {
-        name: "贪吃兔棍",
+        name: "贪吃兔",
         shape: 0,
         description: "贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),
@@ -4476,7 +4476,7 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 0)
     },
     {
-        name: "肥肥贪吃兔棍",
+        name: "肥肥贪吃兔",
         shape: 1,
         description: "肥肥贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),
@@ -4487,7 +4487,7 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 0)
     },
     {
-        name: "暴走贪吃兔棍",
+        name: "暴走贪吃兔",
         shape: 2,
         description: "暴走贪吃兔：贪吃的兔子，撞飞整列老鼠",
         hp: array_create(17, 30),
@@ -4616,6 +4616,232 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 2),
         cooldown: array_create(17, 2100),
         cycle: array_create(17, 108)
+    }
+    ], false);
+
+    mod_register_plant_lite("fashishe", [
+    {
+        name: "法师蛇",
+        shape: 0,
+        description: "法师蛇：向前发射整行穿透毒子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [40, 45, 55, 65, 75, 85, 95, 105, 130, 155, 200, 260, 320, 420, 520, 620, 750],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+    },
+    {
+        name: "幽冥法师蛇",
+        shape: 1,
+        description: "幽冥法师蛇：向前发射整行穿透毒子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [40, 45, 55, 65, 75, 85, 95, 105, 130, 155, 200, 260, 320, 420, 520, 620, 750],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+    },
+    {
+        name: "奥术法师蛇",
+        shape: 2,
+        description: "奥术法师蛇：向前发射整行穿透毒子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [40, 45, 55, 65, 75, 85, 95, 105, 130, 155, 200, 260, 320, 420, 520, 620, 750],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+    }
+    ], false);
+
+    mod_register_plant_lite("fangkongmiao", [
+    {
+        name: "防空喵",
+        shape: 0,
+        description: "防空喵：高伤害轰炸空中鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [190, 200, 210, 220, 240, 270, 320, 370, 420, 470, 520, 570, 620, 680, 720, 780, 840],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 180)
+    },
+    {
+        name: "钢盔防空喵",
+        shape: 1,
+        description: "钢盔防空喵：高伤害轰炸空中鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [247, 260, 273, 286, 312, 351, 416, 481, 546, 611, 676, 741, 806, 884, 936, 1014, 1092],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 180),
+        custom: info_custom([["减速时间", 3]])
+    },
+    {
+        name: "狂暴防空喵",
+        shape: 2,
+        description: "狂暴防空喵：高伤害轰炸空中鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [247, 260, 273, 286, 312, 351, 416, 481, 546, 611, 676, 741, 806, 884, 936, 1014, 1092],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 180),
+        custom: info_custom([["减速时间", 3]])
+    }
+    ], false);
+
+    mod_register_plant_lite("huojianzhu", [
+    {
+        name: "火箭猪",
+        shape: 0,
+        description: "火箭猪：全屏追踪攻击",
+        hp: array_create(17, 60),
+        cost: array_create(17, 255),
+        atk: [120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 340, 380, 420, 460, 500, 540, 590],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 1920),
+        cycle: array_create(17, 360)
+    },
+    {
+        name: "运载火箭猪",
+        shape: 1,
+        description: "运载火箭猪：全屏追踪攻击",
+        hp: array_create(17, 60),
+        cost: array_create(17, 255),
+        atk: [144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 408, 456, 504, 552, 600, 648, 708],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 1920),
+        cycle: array_create(17, 360),
+        custom: info_custom([["定身时间", 2]])
+    },
+    {
+        name: "反重力火箭猪",
+        shape: 2,
+        description: "反重力火箭猪：全屏追踪攻击",
+        hp: array_create(17, 60),
+        cost: array_create(17, 255),
+        atk: [144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 408, 456, 504, 552, 600, 648, 708],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 1920),
+        cycle: array_create(17, 360),
+        custom: info_custom([["定身时间", 2]])
+    }
+    ], false);
+
+    mod_register_plant_lite("doumaobang", [
+    {
+        name: "逗猫棒",
+        shape: 0,
+        description: "逗猫棒：撞伤整行老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: array_create(17, 900),
+        range: array_create(17, 1),
+        cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
+        cycle: array_create(17, 0)
+    },
+    {
+        name: "金鱼逗猫棒",
+        shape: 1,
+        description: "金鱼逗猫棒：撞伤整行老鼠，伤害对空、地下有效",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: array_create(17, 900),
+        range: array_create(17, 1),
+        cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
+        cycle: array_create(17, 0)
+    },
+    {
+        name: "鼠鼠逗猫棒",
+        shape: 2,
+        description: "鼠鼠逗猫棒：召唤3只猫猫，撞伤整行老鼠，伤害对空、地下有效",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: array_create(17, 900),
+        range: array_create(17, 1),
+        cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
+        cycle: array_create(17, 0)
+    }
+    ], false);
+
+    mod_register_plant_lite("honeytrap", [
+    {
+        name: "蜜糖陷阱",
+        shape: 0,
+        description: "蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: [100, 110, 120, 140, 160, 180, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900, 1000],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 900)
+    },
+    {
+        name: "香浓蜜糖陷阱",
+        shape: 1,
+        description: "香浓蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: [100, 110, 120, 140, 160, 180, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900, 1000],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 900)
+    },
+    {
+        name: "王冠蜜糖陷阱",
+        shape: 2,
+        description: "王冠蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 300),
+        atk: [200, 220, 240, 280, 320, 360, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1600, 1800, 2000],
+        range: array_create(17, 9),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 900)
+    }
+    ], false);
+
+    mod_register_plant_lite("huanyingshe", [
+    {
+        name: "幻影蛇",
+        shape: 0,
+        description: "幻影蛇：大范围发射可追踪的投掷类子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 325),
+        atk: [45, 54, 63, 72, 90, 108, 126, 153, 180, 207, 252, 324, 405, 495, 594, 702, 810],
+        range: array_create(17, 3),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 138),
+        custom: info_custom([["溅射比例", 0.3]])
+    },
+    {
+        name: "羽翼幻影蛇",
+        shape: 1,
+        description: "羽翼幻影蛇：大范围发射可追踪的投掷类子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 325),
+        atk: [58, 70, 81, 93, 117, 140, 163, 198, 234, 269, 327, 421, 526, 643, 772, 912, 1053],
+        range: array_create(17, 3),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 138),
+        custom: info_custom([["溅射比例", 0.45]])
+    },
+    {
+        name: "金盔幻影蛇",
+        shape: 2,
+        description: "金盔幻影蛇：大范围发射可追踪的投掷类子弹",
+        hp: array_create(17, 50),
+        cost: array_create(17, 325),
+        atk: [58, 70, 81, 93, 117, 140, 163, 198, 234, 269, 327, 421, 526, 643, 772, 912, 1053],
+        range: array_create(17, 3),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 138),
+        custom: info_custom([["溅射比例", 0.45]])
     }
     ], false);
 

@@ -226,7 +226,7 @@ function gacha_is_map_unlock_card(card_id) {
 ///   所以本函数是 **默认生肖**，只有下面几类例外才返回 false：
 ///     1. 金卡     —— 走 gold 池（发进化凭证），优先级最高
 ///     2. 融合卡   —— 走 fusion 池（发初融菜谱）
-///     3. 普通卡池名单 _normal（docs 2.5，74 张）—— 用户逐张指定的
+///     3. 普通卡池名单 _normal（docs 2.5，75 张）—— 用户逐张指定的
 ///     4. 地图正常解锁卡（docs 第八章，14 张）—— 不进抽卡池
 ///   → 新增卡片不用改这个函数，自动进生肖池；要它进普通池，把 id 写进 _normal。
 ///   旧判据（商店售价 >= 80000）已废弃：那 12 张生肖卡不在商店里，全被漏判成普通卡。
@@ -237,11 +237,11 @@ function gacha_is_zodiac_card(card_id) {
     if (is_fusion_card(card_id)) return false;
     if (gacha_is_map_unlock_card(card_id)) return false;
 
-    // 普通卡池名单：与 docs/抽卡概率与卡池总表.md 2.5 一一对应，共 74 张
+    // 普通卡池名单：与 docs/抽卡概率与卡池总表.md 2.5 一一对应，共 75 张
     var _normal = [
-        // MOD 普通卡 12 张
+        // MOD 普通卡 13 张
         "chunsun", "mixian", "corn_shooter", "12yinliao", "anranxiaohunfan",
-        "qingse_shishi", "pufferfish", "yeziguo", "bbq", "eightcake", "maiya", "guihuajiu",
+        "qingse_shishi", "pufferfish", "yeziguo", "bbq", "eightcake", "maiya", "guihuajiu", "honeytrap",
         // 原版普通卡 62 张（scripts/slots_init/slots_init.gml 注册）
         "beef_hotpot", "brazier", "cat_box", "cat_chest", "cherry_pudding",
         "chili_powder", "chocolate_bread", "chocolate_cannon", "chocolate_pult",

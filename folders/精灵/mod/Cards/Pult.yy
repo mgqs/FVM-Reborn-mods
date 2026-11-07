@@ -10,6 +10,7 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"huanyingshe","path":"folders/精灵/mod/Cards/Pult/huanyingshe.yy",},
     {"name":"eightcake","path":"folders/精灵/mod/Cards/Pult/eightcake.yy",},
     {"name":"tangchaolizi","path":"folders/精灵/mod/Cards/Pult/tangchaolizi.yy",},
   ],

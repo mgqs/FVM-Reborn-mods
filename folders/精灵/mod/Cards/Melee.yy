@@ -1,0 +1,16 @@
+{
+  "$GMFolder":"",
+  "%Name":"Melee",
+  "folderPath":"folders/精灵/mod/Cards/Melee.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Melee",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"doumaobang","path":"folders/精灵/mod/Cards/Melee/doumaobang.yy",},
+  ],
+  "listItems":[],
+}

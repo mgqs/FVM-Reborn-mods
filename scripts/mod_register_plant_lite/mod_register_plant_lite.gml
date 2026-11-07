@@ -169,8 +169,10 @@ function mod_custom_key_check(){
                     _bad++;
                 }
                 if (_skill_key != "" && _key == _skill_key){
-                    show_debug_message(_tag + "✗ 撞技能字段 " + _id + " [" + _key + "]：会被技能表覆盖成技能值");
-                    _bad++;
+                    // 自定义值与技能字段同名 = 技能值覆盖自定义值，这是**支持的用法**
+                    //   （春笋 custom["准备时间"] 只是基础值，技能等级会覆盖它，情报岛要能取到）。
+                    //   2026-11-08 用户确认属预期 → 不再计入问题，只留一行提示。
+                    show_debug_message(_tag + "· 与技能同名 " + _id + " [" + _key + "]：技能值会覆盖自定义值（一般是有意的）");
                 }
                 if (!is_real(_val) && !is_array(_val)){
                     show_debug_message(_tag + "✗ 值类型 " + _id + " shape" + string(_shape_s) + " [" + _key + "]：只能写数字或按星级取值的数组");
@@ -225,6 +227,15 @@ function mod_custom_key_check(){
                 var _cs2 = _sd2[? "custom"];
                 var _ck2 = variable_struct_get_names(_cs2);
                 for (var _c2 = 0; _c2 < array_length(_ck2); _c2++) variable_struct_set(_avail, _ck2[_c2], true);
+            }
+
+            // 技能值派生出来的名字：情报岛把技能表里的 duration（帧）显示成「持续时间」（秒），
+            //   见 info_island_text_vars 的 duration → 持续时间。自检原先不认这个名字，
+            //   计时器 / 电鳗这种只写技能、没写 custom 的卡就会被误报「取不到」。2026-11-08
+            if (ds_map_exists(global.skill_registry, _cid)){
+                var _se3 = global.skill_registry[? _cid];
+                if (is_array(_se3) && array_length(_se3) >= 1 && string(_se3[0]) == "duration")
+                    variable_struct_set(_avail, "持续时间", true);
             }
 
             for (var _n = 0; _n < array_length(_names); _n++){

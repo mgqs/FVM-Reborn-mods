@@ -7,9 +7,16 @@ if global.debug{
 var grid_pos = get_world_position_from_grid(col,row)
 timer++
 
+// 2026-11-07：麦芽糖在岩浆格上承载时，本格植物整格免伤（老鼠照烧）。
+//   病根：岩浆只按 damage_order 挑一张卡打（lilypad→vehicle→shield→shield_outer→normal），
+//   棉花糖在岩浆上会把自己切成 lilypad 抢到第 0 位，麦芽糖是 coffee（故意不切，切了会被啃）→ 抢不到位，
+//   于是挑中上面那张普通卡照烧，它自己那句 provides_lava 豁免永远用不上。
+//   灵融神同属这一类，用户 2026-11-07 明确「只修麦芽糖」，所以这里只认 plant_id == "maiya"。
+var _maiya_carry = false
 with obj_card_parent{
 	if (variable_instance_exists(id, "provides_lava") && provides_lava) && grid_row == other.row && grid_col == other.col{
 		on_lava = true
+		if (plant_id == "maiya") _maiya_carry = true
 	}
 }
 
@@ -42,7 +49,7 @@ if timer mod 60 == 0{
 	for(var i = 0 ; i < 5 ; i++){
 		if plant_order_list[i] != noone{
 			with plant_order_list[i]{
-				if (plant_type != "coffee" && !invincible && !(variable_instance_exists(id, "provides_lava") && provides_lava) && plant_id != "yanhuangma" && !(plant_id == "player" && hp <= 10)){
+				if (!_maiya_carry && plant_type != "coffee" && !invincible && !(variable_instance_exists(id, "provides_lava") && provides_lava) && plant_id != "yanhuangma" && !(plant_id == "player" && hp <= 10)){
 					hp -= 10
 					event_user(2)
 				}

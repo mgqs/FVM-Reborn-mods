@@ -10,6 +10,13 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"Track","path":"folders/精灵/mod/Cards/Track.yy",},
+    {"name":"huanyingshe","path":"folders/精灵/mod/Cards/Pult/huanyingshe.yy",},
+    {"name":"honeytrap","path":"folders/精灵/mod/Cards/Track/honeytrap.yy",},
+    {"name":"doumaobang","path":"folders/精灵/mod/Cards/Melee/doumaobang.yy",},
+    {"name":"huojianzhu","path":"folders/精灵/mod/Cards/Track/huojianzhu.yy",},
+    {"name":"fangkongmiao","path":"folders/精灵/mod/Cards/Shooter/fangkongmiao.yy",},
+    {"name":"fashishe","path":"folders/精灵/mod/Cards/Shooter/fashishe.yy",},
     {"name":"baibianshe","path":"folders/精灵/mod/Cards/baibianshe.yy",},
     {"name":"hundun_god","path":"folders/精灵/mod/Cards/hundun_god.yy",},
     {"name":"guangming_god","path":"folders/精灵/mod/Cards/guangming_god.yy",},
@@ -159,8 +166,10 @@
     {"name":"6613f2ca-328d-4366-afab-3c108f60234b","path":"sprites/spr_power_god_1/spr_power_god_1.yy",},
     {"name":"46964469-a661-49df-a79a-1461464803ae","path":"sprites/spr_power_god_2/spr_power_god_2.yy",},
     {"name":"58f0e26c-dd16-4415-94f9-427db06f53fc","path":"sprites/spr_power_god_3/spr_power_god_3.yy",},
-    {"name":"35cd2d35-ee67-4132-b12a-be4a5396e58e","path":"sprites/spr_pufferfish/spr_pufferfish.yy",},
-    {"name":"f0579491-65ab-40fd-bd94-250802bb4711","path":"sprites/spr_pufferfish_1/spr_pufferfish_1.yy",},
+    {"name":"35cd2d35-ee67-4132-b12a-be4a5396e58e
+","path":"sprites/spr_pufferfish/spr_pufferfish.yy",},
+    {"name":"f0579491-65ab-40fd-bd94-250802bb4711
+","path":"sprites/spr_pufferfish_1/spr_pufferfish_1.yy",},
     {"name":"6a65e74c-2512-48fb-a96f-8c416ab88986","path":"sprites/spr_pufferfish_2/spr_pufferfish_2.yy",},
     {"name":"f21010fd-06c9-4702-ba66-ead62ad439e5","path":"sprites/spr_rig/spr_rig.yy",},
     {"name":"261d1689-0af5-4010-ae92-281e0cb5c8f2","path":"sprites/spr_rig_1/spr_rig_1.yy",},

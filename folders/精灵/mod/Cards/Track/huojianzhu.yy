@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"huojianzhu",
+  "folderPath":"folders/精灵/mod/Cards/Track/huojianzhu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"huojianzhu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_huojianzhu","path":"sprites/spr_huojianzhu/spr_huojianzhu.yy",},
+    {"name":"spr_huojianzhu_1","path":"sprites/spr_huojianzhu_1/spr_huojianzhu_1.yy",},
+    {"name":"spr_huojianzhu_2","path":"sprites/spr_huojianzhu_2/spr_huojianzhu_2.yy",},
+    {"name":"spr_huojianzhu_bullet","path":"sprites/spr_huojianzhu_bullet/spr_huojianzhu_bullet.yy",},
+    {"name":"spr_huojianzhu_bullet_1","path":"sprites/spr_huojianzhu_bullet_1/spr_huojianzhu_bullet_1.yy",},
+    {"name":"spr_huojianzhu_bullet_2","path":"sprites/spr_huojianzhu_bullet_2/spr_huojianzhu_bullet_2.yy",},
+  ],
+}

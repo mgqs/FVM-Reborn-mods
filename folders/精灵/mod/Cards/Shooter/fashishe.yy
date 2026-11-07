@@ -1,0 +1,23 @@
+{
+  "$GMFolder":"",
+  "%Name":"fashishe",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/fashishe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fashishe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_fashishe","path":"sprites/spr_fashishe/spr_fashishe.yy",},
+    {"name":"spr_fashishe_1","path":"sprites/spr_fashishe_1/spr_fashishe_1.yy",},
+    {"name":"spr_fashishe_2","path":"sprites/spr_fashishe_2/spr_fashishe_2.yy",},
+    {"name":"spr_fashishe_bullet","path":"sprites/spr_fashishe_bullet/spr_fashishe_bullet.yy",},
+    {"name":"spr_fashishe_bullet_1","path":"sprites/spr_fashishe_bullet_1/spr_fashishe_bullet_1.yy",},
+    {"name":"spr_fashishe_bullet_2","path":"sprites/spr_fashishe_bullet_2/spr_fashishe_bullet_2.yy",},
+    {"name":"spr_fashishe_burn_ground","path":"sprites/spr_fashishe_burn_ground/spr_fashishe_burn_ground.yy",},
+    {"name":"spr_fashishe_burn_mouse","path":"sprites/spr_fashishe_burn_mouse/spr_fashishe_burn_mouse.yy",},
+  ],
+}

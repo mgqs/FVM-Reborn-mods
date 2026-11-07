@@ -78,6 +78,10 @@ if (hit_tick >= hit_interval)
 //   · 左边界放宽到「老鼠判输线」(grid_offset_x - 150)，老鼠能一路走到那儿
 var _bx_l = global.grid_offset_x - 150
 var _bx_r = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x + global.grid_cell_size_x
+// 2026-11-07：右边界改成「跟着最右的那只老鼠走」。
+//   出怪列 = (9 + x_offset)（obj_battle/Create_0：同一行连刷会排到第 11、12 列），
+//   原来写死「地图右沿 +1 格」→ 那些在场外排队、还没进场的老鼠永远打不到。
+if (variable_global_exists("enemy_max_right")) _bx_r = max(_bx_r, global.enemy_max_right + global.grid_cell_size_x)
 var _bx_t = global.grid_offset_y - global.grid_cell_size_y
 var _bx_b = global.grid_offset_y + global.grid_rows * global.grid_cell_size_y + global.grid_cell_size_y
 if (x < _bx_l || x > _bx_r || y < _bx_t || y > _bx_b){
