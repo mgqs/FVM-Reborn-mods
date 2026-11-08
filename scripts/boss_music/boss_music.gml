@@ -75,19 +75,18 @@ function boss_music_scan() {
 /// @func boss_music_builtin_list()
 /// @desc 内置曲库的文件名清单（不含目录）。改歌单只需改这里 + 同步 datafiles/boss_music_pack/
 function boss_music_builtin_list() {
+	// 随游戏分发的内置曲库。加歌要同时改三处：
+	// 1) datafiles/boss_music_pack/ 放文件  2) .yyp 的 IncludedFiles  3) 这里补一行
 	return [
-		"周杰伦 - 晴天.ogg",
-		"阿YueYue,刘兆宇 - 冬眠.ogg",
-		"蔡健雅 - 红色高跟鞋.ogg",
-		"未知歌手 - 七里香.ogg",
 		"杨丞琳 - 雨爱.ogg",
 		"张芸京 - 偏爱.ogg",
-		"周杰伦 - 花海.ogg",
-		"周杰伦 - 明明就.ogg",
-		"周杰伦 - 青花瓷.ogg",
-		"(猴叫司凤版)-泡泡心.ogg"
+		"阿YueYue,刘兆宇 - 冬眠.ogg",
+		"未知歌手 - 七里香.ogg",
+		"雨爱(猴叫司凤版)-泡泡心.ogg",
+		"蔡健雅 - 红色高跟鞋.ogg"
 	];
 }
+
 
 /// @func boss_music_count()
 /// @desc 曲库曲目数。设置界面每帧都会调，所以带 3 秒缓存，避免逐帧扫目录
@@ -114,6 +113,18 @@ function boss_music_track(_s) {
 
 /// @func boss_music_stream_free_all()
 /// @desc 停止并销毁本场战斗创建的所有流（obj_battle_music_controller 的 Room End 调用）
+/// @desc 判断某个 sound 索引是不是 boss_music 模块用 audio_create_stream 创建的流
+/// @param {Real} _snd
+/// @return {Bool}
+function boss_music_is_stream(_snd) {
+	if (!variable_global_exists("boss_music_streams")) return false;
+	var _a = global.boss_music_streams;
+	for (var i = 0; i < array_length(_a); i++) {
+		if (_a[i] == _snd) return true;
+	}
+	return false;
+}
+
 function boss_music_stream_free_all() {
 	if (!variable_global_exists("boss_music_streams")) return;
 	var _a = global.boss_music_streams;

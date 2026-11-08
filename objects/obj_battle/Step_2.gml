@@ -120,14 +120,20 @@ var _longyuan_full_progression = string_copy(global.level_id, 1, 8) == "longyuan
 // 原来的「等最后一个 subwave 出完 + 全场清空」会把 BOSS 藏到几分钟甚至十几分钟后。
 // 快速关卡：进入 BOSS 波即召唤 BOSS，后续 subwave 的小怪继续按原逻辑刷出（BOSS 带小怪同场）。
 var _fast_boss_level = _longyuan_full_progression || (string_copy(global.level_id, 1, 13) == "abyss_warrior");
-// 龙渊：进入精英波后（BOSS 出现前）切换精英音乐；BOSS 阵亡回到 pre 阶段后亦在此自动恢复
-if (_longyuan_full_progression && level_stage == "pre"
-	&& current_wave >= global.level_file.elite_wave
-	&& instance_exists(obj_battle_music_controller)) {
-	with (obj_battle_music_controller) {
-		if (new_battle_music != global.level_data.elite_music) {
-			new_battle_music = global.level_data.elite_music;
-			event_user(10);
+// 精英波起切换「BOSS 随机音乐」，一直播到通关（含 BOSS 波）：
+// 开关关闭 / 曲库为空 / 加载失败时自动回退关卡自带的 elite_music。
+// 每场只抽一次（music_picked），BOSS 阵亡回到 pre 阶段也不会重抽。
+// elite_wave 为 0 的关卡（魔塔系）没有精英段，退化为「从最后一波开始」。
+if (level_stage == "pre" && instance_exists(obj_battle_music_controller)) {
+	var _ew = global.level_file.elite_wave;
+	var _music_start_wave = (_ew > 0 && _ew < total_wave) ? _ew : max(0, total_wave - 1);
+	if (current_wave >= _music_start_wave) {
+		with (obj_battle_music_controller) {
+			if (!music_picked) {
+				music_picked = true;
+				new_battle_music = boss_music_resolve(global.level_data.elite_music);
+				event_user(10);
+			}
 		}
 	}
 }
@@ -202,11 +208,7 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 			}
 		}
 	}
-	with obj_battle_music_controller{
-		// BOSS 随机音乐：开关关闭 / 曲库为空 / 加载失败时自动回退关卡自带的 boss_music
-		new_battle_music = boss_music_resolve(global.level_data.boss_music)
-		event_user(10)
-	}
+	// BOSS 波不再单独换音乐：精英波抽到的随机曲一直播到通关。
 }
 if (!global.save_data.unlocked_items.elite_unlocked && current_wave >= global.level_file.elite_wave && !_longyuan_full_progression)||current_wave >= global.level_file.total_waves{
 	if current_wave_alive_count == 0 && !instance_exists(obj_game_over) && !instance_exists(obj_gacha_drop){
