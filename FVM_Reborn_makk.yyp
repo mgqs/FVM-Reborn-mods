@@ -749,6 +749,18 @@
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"(猴叫司凤版)-泡泡心.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"(猴叫司凤版)-泡泡心.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+
+    {"$GMIncludedFile":"","%Name":"周杰伦 - 晴天.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"周杰伦 - 晴天.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"阿YueYue,刘兆宇 - 冬眠.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"阿YueYue,刘兆宇 - 冬眠.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"蔡健雅 - 红色高跟鞋.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"蔡健雅 - 红色高跟鞋.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"未知歌手 - 七里香.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"未知歌手 - 七里香.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"杨丞琳 - 雨爱.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"杨丞琳 - 雨爱.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"张芸京 - 偏爱.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"张芸京 - 偏爱.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"周杰伦 - 花海.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"周杰伦 - 花海.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"周杰伦 - 明明就.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"周杰伦 - 明明就.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"周杰伦 - 青花瓷.ogg","CopyToMask":-1,"filePath":"datafiles/boss_music_pack","name":"周杰伦 - 青花瓷.ogg","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+
     {"$GMIncludedFile":"","%Name":"baiguiyexing.json","CopyToMask":-1,"filePath":"datafiles/laboratory","name":"baiguiyexing.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"shendianjihui.json","CopyToMask":-1,"filePath":"datafiles/laboratory","name":"shendianjihui.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"tower-30-2_hard_a.json","CopyToMask":-1,"filePath":"datafiles/laboratory","name":"tower-30-2_hard_a.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -2260,6 +2272,7 @@
     {"id":{"name":"battle_event_init","path":"scripts/battle_event_init/battle_event_init.yy",},},
     {"id":{"name":"battle_finish_win","path":"scripts/battle_finish_win/battle_finish_win.yy",},},
     {"id":{"name":"boss_init","path":"scripts/boss_init/boss_init.yy",},},
+    {"id":{"name":"boss_music","path":"scripts/boss_music/boss_music.yy",},},
     {"id":{"name":"boss_registry","path":"scripts/boss_registry/boss_registry.yy",},},
     {"id":{"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},},
     {"id":{"name":"Camera_Shock","path":"scripts/Camera_Shock/Camera_Shock.yy",},},

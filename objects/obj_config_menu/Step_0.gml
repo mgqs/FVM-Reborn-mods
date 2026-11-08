@@ -74,6 +74,7 @@ function draw_settings_page(){
 		ui_anim_drag    = false;
 		ui_anim_drag_moved = false;
     
+	    
 	    // 标记当前设置页面
 	    current_settings = id;
 	    // 记录本页子对象的基准 x：标签页滑动以此为原点（每个 page 创建按钮后各记一次）
@@ -220,6 +221,14 @@ function draw_audio_page(){
 	    var mute_sound = instance_create_depth(slider_max_x + 52, slider_y+3, depth-1, obj_mute_button);
 	    mute_sound.volume_type = "sound";
 	    array_push(setting_buttons, mute_sound);
+    
+    
+    // BOSS 随机音乐（与「游戏设置」里的模式勾选同一个控件 obj_setting_toggle）
+    boss_music_ensure_dir();
+    var _boss_tog = instance_create_depth(x - 440, y + 61, depth - 1, obj_setting_toggle);
+    _boss_tog.config_key = "boss_music_random";
+    _boss_tog.tooltip_text = "打开后，BOSS 波会从曲库里随机播放一首音乐\n曲库位置：%LOCALAPPDATA%\\FVM_Reborn_makk\\boss_music（只认 .ogg）";
+    array_push(setting_buttons, _boss_tog);
     
 	    // 标记当前设置页面
 	    current_settings = id;

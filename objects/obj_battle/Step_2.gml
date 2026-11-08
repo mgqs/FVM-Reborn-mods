@@ -203,7 +203,8 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 		}
 	}
 	with obj_battle_music_controller{
-		new_battle_music = global.level_data.boss_music
+		// BOSS 随机音乐：开关关闭 / 曲库为空 / 加载失败时自动回退关卡自带的 boss_music
+		new_battle_music = boss_music_resolve(global.level_data.boss_music)
 		event_user(10)
 	}
 }
