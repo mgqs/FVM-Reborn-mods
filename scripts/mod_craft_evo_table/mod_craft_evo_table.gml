@@ -66,7 +66,7 @@ function mod_evo_table(){
         aurora:                  { cards:[ {id:"zhuzhujiaqiang", slot:0, need:2},
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
         houyi_god:               { cards:[ {id:"bbq", slot:0, need:2},
-                                        {id:"double_blade_snake", slot:1, need:2} ] },  // 后羿神使 ← BBQ烤肉大师 + 游侠双刃蛇（2026-10-30：第 1 槽由玉蜀黍换成 BBQ烤肉大师）
+                                        {id:"fashishe", slot:1, need:2} ] },  // 后羿神使 ← BBQ烤肉大师 + 奥术法师蛇（2026-11-08 用户指定副卡）
         joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
         time_god:                { cards:[ {id:"meiweijishiqi", slot:0, need:2},
                                         {id:"ice_cream", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 珍馐计时器 + 极寒冰沙（2026-11-06 用户指定：计时器做主卡，冰沙挪副槽，治愈喵移出）
@@ -81,17 +81,17 @@ function mod_evo_table(){
         moon_god:                { cards:[ {id:"juxie", slot:0, need:2},
                                         {id:"takoyaki", slot:1, need:2} ] },  // 狄安娜神使 ← 巨蟹座星宿 + 火影章鱼烧
         power_god:               { cards:[ {id:"hotdog_cannon", slot:0, need:2},
-                                        {id:"tang_hu_lu", slot:1, need:2} ] },  // 赫丘利神使 ← 热狗榴弹炮 + 七彩糖葫芦弹
+                                        {id:"fangkongmiao", slot:1, need:2} ] },  // 赫丘利神使（大力神）← 热狗榴弹炮 + 狂暴防空喵（2026-11-08 用户指定副卡）
         gaia:                    { cards:[ {id:"curry_lobster_cannon", slot:0, need:2},
-                                        {id:"chocolate_cannon", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 死神大炮
+                                        {id:"huojianzhu", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 反重力火箭猪（2026-11-08 用户指定副卡）
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
                                         {id:"dangdanghu", slot:1, need:2} ] },  // 祝融神使 ← 驴肉火烧锅 + 微波铛铛虎（2026-11-06 用户指定：替换糖炒栗子）
         rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
                                         {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
                                         {id:"spoon_rabbit", slot:1, need:2} ] },  // 尤弥尔神使 ← 花椒蜥蜴投手 + 盖世勺勺兔
-        save_god:                { cards:[ {id:"baiyang", slot:0, need:2},
-                                        {id:"tanchitu", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 白羊座星宿 + 暴走贪吃兔（2026-11-06 用户指定：替换璀璨金牛烟花）
+        save_god:                { cards:[ {id:"doumaobang", slot:0, need:2},
+                                        {id:"tanchitu", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 鼠鼠逗猫棒 + 暴走贪吃兔（2026-11-08 用户指定：主卡由白羊座星宿换成逗猫棒）
         poseidon:                { cards:[ {id:"shizi", slot:0, need:2},
                                         {id:"rotating_coffee_pot", slot:1, need:2} ] },  // 波塞冬神使 ← 狮子座星宿 + 原子咖啡壶
         ghost_god:               { cards:[ {id:"coal_starfish", slot:0, need:2},
