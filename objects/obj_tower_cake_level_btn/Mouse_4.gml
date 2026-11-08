@@ -36,6 +36,9 @@ if not obj_tower_cake_bg.is_submenu_opened{
 		global.audio.play(snd_button,0,0)
 		with obj_tower_cake_bg{
 			refresh_reward_button()
+			// 2026-11-08：右边「本层解锁的转职凭证」跟着换关（换关 = 回第 1 页）
+			credit_page = 1
+			refresh_credit_grid()
 		}
 	}
 	obj_tower_cake_start_btn.is_unlocked = is_unlocked

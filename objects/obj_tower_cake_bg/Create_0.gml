@@ -33,8 +33,36 @@ var page_btn4 = instance_create_depth(x-550,y+495,depth-1,obj_tower_cake_page_bt
 page_btn4.sprite_index = spr_tower_cake_page_set_btn
 page_btn4.btn_type = "max"
 
+// 2026-11-08：右下的「本层解锁的转职凭证」面板（红框凭证格 + 绿框翻页）
+//   3×3 = 每页 9 格；格子位置全部相对 obj 原点算，改版面只动这几个数
+credit_page       = 1
+credit_total_page = 1
+credit_goods_list = []
+credit_per_page   = 9
+credit_cell_size  = 110
+credit_grid_x     = 441          // 第一列中心（相对 x）：红框内区 375~837，3 列 165 步长正好居中
+credit_grid_y     = -15          // 第一行中心（相对 y）
+credit_pitch_x    = 165          // 列距
+credit_pitch_y    = 140          // 行距
+credit_page_btn_list = []
+credit_page_text_pos = [606, 385]   // 页码文字中心（相对 x / y）
+// 格下小字单独一层（卡面会往上溢出格子，同层画的话下一行立绘会盖住上一行卡名）
+credit_labels     = []              // [[x, y, 文本, 是否已转职], ...]
+instance_create_depth(x, y, depth-3, obj_tower_cake_credit_label)
+
+var _cbtn1 = instance_create_depth(x+520,y+385,depth-1,obj_tower_cake_page_btn)
+_cbtn1.sprite_index = spr_tower_cake_page_btn
+_cbtn1.btn_type = "credit_prev"
+_cbtn1.visible = false
+var _cbtn2 = instance_create_depth(x+700,y+385,depth-1,obj_tower_cake_page_btn)
+_cbtn2.sprite_index = spr_tower_cake_page_btn
+_cbtn2.btn_type = "credit_next"
+_cbtn2.visible = false
+credit_page_btn_list = [_cbtn1, _cbtn2]
+
 instance_create_depth(x+608,y+470,depth-1,obj_tower_cake_start_btn)
 refresh_level_button()
+refresh_credit_grid()
 //for(var i = 0 ; i < 15 ; i ++){
 //	instance_create_depth(x-648,y+438-56*i,depth-1,obj_tower_cake_level_btn)
 //}
@@ -94,6 +122,79 @@ function refresh_reward_button(){
 		inst.btn_index = i + 1
 		// 已通关 → 首通那格盖灰（首通只发一次）；次通格一直亮（能反复刷）
 		inst.dimmed = (_cleared && i == 0)
+	}
+}
+
+// 2026-11-08：右下凭证面板
+//   数据源 = 商品表里 tower_floor 正好等于**当前选中关卡**的 credit 商品（口径见 transfer_credit_tower_goods）
+//   一格里画什么、灰不灰，全在 obj_tower_cake_credit_cell 里，这里只负责摆位置 + 算页数
+function refresh_credit_grid(){
+	instance_destroy(obj_tower_cake_credit_cell)
+	credit_goods_list = []
+	credit_labels = []
+	credit_total_page = 1
+
+	if (real_level_index < 0){
+		update_credit_pager()
+		return
+	}
+	var level_list = global.maps_map[? "tower_cake"].levels_data
+	if (real_level_index >= array_length(level_list)){
+		update_credit_pager()
+		return
+	}
+
+	var _lv  = level_list[real_level_index]
+	var _key = transfer_credit_tower_level_key(_lv.id)
+	credit_goods_list = transfer_credit_tower_goods(_key)
+	credit_total_page = max(1, ceil(array_length(credit_goods_list) / credit_per_page))
+	credit_page = clamp(credit_page, 1, credit_total_page)
+
+	var _start = (credit_page - 1) * credit_per_page
+	for (var i = 0 ; i < credit_per_page ; i ++){
+		var _gi = _start + i
+		if (_gi >= array_length(credit_goods_list)) break
+		var _gid = credit_goods_list[_gi]
+		var _g   = global.goods_map[? _gid]
+		var _cp  = transfer_credit_parse(_g.unlock_item_id)
+		if (is_undefined(_cp)) continue
+
+		var inst = instance_create_depth(x + credit_grid_x + credit_pitch_x * (i mod 3),
+		                                 y + credit_grid_y + credit_pitch_y * (i div 3),
+		                                 depth-2, obj_tower_cake_credit_cell)
+		inst.goods_id        = _gid
+		inst.card_id         = _cp.card_id
+		inst.card_shape      = _cp.shape
+		inst.credit_size     = credit_cell_size
+		inst.slot_index      = 0
+		inst.target_item     = _g.unlock_item_id
+		inst.cost            = _g.cost
+		inst.coin_type       = variable_struct_exists(_g, "coin_type") ? _g.coin_type : "gold"
+		inst.reward_prestige = variable_struct_exists(_g, "reward_prestige") ? _g.reward_prestige : 0
+		inst.label_text      = transfer_credit_short_label(_cp.card_id, _cp.shape)
+		inst.goods_name      = transfer_credit_name(_cp.card_id, _cp.shape)
+		// 卡名交给独立的顶层去画（深度 bg-3，永远压住卡面立绘）
+		array_push(credit_labels, [inst.x, inst.y + credit_cell_size * 0.5 + 7,
+		                           inst.label_text, transfer_credit_is_transferred(_cp.card_id, _cp.shape)])
+	}
+	update_credit_pager()
+}
+
+// 换关卡页 / 取消选中时清空面板（跟 refresh_reward_button 的「不重建就空着」一致）
+function clear_credit_grid(){
+	instance_destroy(obj_tower_cake_credit_cell)
+	credit_goods_list = []
+	credit_labels = []
+	credit_total_page = 1
+	credit_page = 1
+	update_credit_pager()
+}
+
+// 只有一页就不显示翻页按钮（用户要的是「能翻页」，不是常驻两个死按钮）
+function update_credit_pager(){
+	for (var i = 0 ; i < array_length(credit_page_btn_list) ; i ++){
+		var _b = credit_page_btn_list[i]
+		if (instance_exists(_b)) _b.visible = (credit_total_page > 1)
 	}
 }
 

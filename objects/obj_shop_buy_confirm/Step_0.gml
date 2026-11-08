@@ -22,13 +22,17 @@ for (var i = 0; i < array_length(buttons); i++) {
         if (mouse_check_button_released(mb_left)) {
             switch (i) {
                 case 1: // 取消
-					obj_shop_bg.is_submenu_opened = false
+					// 2026-11-08：魔塔蛋糕里也能开这个窗（没有 obj_shop_bg），两边都兜住
+					if (instance_exists(obj_shop_bg)) obj_shop_bg.is_submenu_opened = false
+					if (instance_exists(obj_tower_cake_bg)) obj_tower_cake_bg.is_submenu_opened = false
                     instance_destroy();
                     break;
                     
                 case 0: // 确定
                     // 购买逻辑
-					obj_shop_bg.is_submenu_opened = false
+					// 2026-11-08：魔塔蛋糕里也能开这个窗（没有 obj_shop_bg），两边都兜住
+					if (instance_exists(obj_shop_bg)) obj_shop_bg.is_submenu_opened = false
+					if (instance_exists(obj_tower_cake_bg)) obj_tower_cake_bg.is_submenu_opened = false
 
 					// 兜底：转职凭证可能已经不可买（连点 / 界面状态过期）→ 提示并关窗，不扣钱
 					if (banding_buy_btn != noone && instance_exists(banding_buy_btn) && banding_buy_btn.btn_type == "credit") {
@@ -124,6 +128,8 @@ for (var i = 0; i < array_length(buttons); i++) {
 						with obj_shop_bg{
 							shop_list_recharge()
 						}
+						// 2026-11-08：在魔塔蛋糕里买的凭证 → 刷新右侧凭证面板（已转职/未解锁状态随之变）
+						if (instance_exists(obj_tower_cake_bg)) with (obj_tower_cake_bg){ refresh_credit_grid() }
 						instance_destroy()
 					}
                     break;
@@ -136,6 +142,9 @@ for (var i = 0; i < array_length(buttons); i++) {
 
 // ESC键关闭确认窗口
 if (keyboard_check_pressed(vk_escape)) {
+    // 2026-11-08：ESC 是动画关闭，不经过上面两个分支 → 这里也解锁，别把魔塔蛋糕/商店卡死
+    if (instance_exists(obj_shop_bg)) obj_shop_bg.is_submenu_opened = false
+    if (instance_exists(obj_tower_cake_bg)) obj_tower_cake_bg.is_submenu_opened = false
     panel_anim_close(id);
 }
 if (!instance_exists(id)) exit
