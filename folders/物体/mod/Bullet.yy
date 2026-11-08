@@ -85,6 +85,13 @@
     {"name":"obj_zhuzhuliaoliji_bullet","path":"objects/obj_zhuzhuliaoliji_bullet/obj_zhuzhuliaoliji_bullet.yy",},
     {"name":"obj_caihongshe_bullet","path":"objects/obj_caihongshe_bullet/obj_caihongshe_bullet.yy",},
     {"name":"obj_dangdanghu_bullet","path":"objects/obj_dangdanghu_bullet/obj_dangdanghu_bullet.yy",},
-    {"name":"obj_tanchitu_rabbit","path":"objects/obj_tanchitu_rabbit/obj_tanchitu_rabbit.yy",}
+    {"name":"obj_tanchitu_rabbit","path":"objects/obj_tanchitu_rabbit/obj_tanchitu_rabbit.yy",},
+    {"name":"obj_fashishe_bullet","path":"objects/obj_fashishe_bullet/obj_fashishe_bullet.yy",},
+    {"name":"obj_fangkongmiao_bullet","path":"objects/obj_fangkongmiao_bullet/obj_fangkongmiao_bullet.yy",},
+    {"name":"obj_huojianzhu_bullet","path":"objects/obj_huojianzhu_bullet/obj_huojianzhu_bullet.yy",},
+    {"name":"obj_huojianzhu_boom","path":"objects/obj_huojianzhu_boom/obj_huojianzhu_boom.yy",},
+    {"name":"obj_doumaobang_cat","path":"objects/obj_doumaobang_cat/obj_doumaobang_cat.yy",},
+    {"name":"obj_honeytrap_bee","path":"objects/obj_honeytrap_bee/obj_honeytrap_bee.yy",},
+    {"name":"obj_huanyingshe_bullet","path":"objects/obj_huanyingshe_bullet/obj_huanyingshe_bullet.yy",},
   ],
 }

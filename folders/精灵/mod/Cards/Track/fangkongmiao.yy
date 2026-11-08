@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"fangkongmiao",
+  "folderPath":"folders/精灵/mod/Cards/Track/fangkongmiao.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"fangkongmiao",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_fangkongmiao","path":"sprites/spr_fangkongmiao/spr_fangkongmiao.yy",},
+    {"name":"spr_fangkongmiao_1","path":"sprites/spr_fangkongmiao_1/spr_fangkongmiao_1.yy",},
+    {"name":"spr_fangkongmiao_2","path":"sprites/spr_fangkongmiao_2/spr_fangkongmiao_2.yy",},
+    {"name":"spr_fangkongmiao_bullet","path":"sprites/spr_fangkongmiao_bullet/spr_fangkongmiao_bullet.yy",},
+    {"name":"spr_fangkongmiao_bullet_1","path":"sprites/spr_fangkongmiao_bullet_1/spr_fangkongmiao_bullet_1.yy",},
+    {"name":"spr_fangkongmiao_bullet_2","path":"sprites/spr_fangkongmiao_bullet_2/spr_fangkongmiao_bullet_2.yy",},
+  ],
+}

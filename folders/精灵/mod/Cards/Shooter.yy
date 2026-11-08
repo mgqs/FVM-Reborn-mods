@@ -10,6 +10,7 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"fashishe","path":"folders/精灵/mod/Cards/Shooter/fashishe.yy",},
     {"name":"shuanggu","path":"folders/精灵/mod/Cards/Shooter/shuanggu.yy",},
     {"name":"rongheshuanggu","path":"folders/精灵/mod/Cards/Shooter/rongheshuanggu.yy",},
     {"name":"niuyouguo","path":"folders/精灵/mod/Cards/Shooter/niuyouguo.yy",},

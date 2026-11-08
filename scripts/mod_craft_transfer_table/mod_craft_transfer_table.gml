@@ -49,11 +49,11 @@
 /// 🔴 用户定价（2026-10-27 定稿）：一转 3,000 / 二转 10,000 / 三转 50,000 / 四转 100,000 / 终转 200,000
 function mod_tg_gold(_tier){
     switch (_tier){
-        case 1: return 2000;      // 一转
-        case 2: return 5000;     // 二转
-        case 3: return 20000;      // 三转（金卡）
-        case 4: return 50000;     // 四转（金卡）
-        case 5: return 100000;     // 终转（金卡）
+        case 1: return 1000;      // 一转
+        case 2: return 3000;     // 二转
+        case 3: return 10000;      // 三转（金卡）
+        case 4: return 20000;     // 四转（金卡）
+        case 5: return 50000;     // 终转（金卡）
     }
     return 15000;
 }
@@ -62,11 +62,11 @@ function mod_tg_gold(_tier){
 /// 🔴 用户定价（2026-10-30 调整）：一转 5,000 / 二转 40,000 / 三转 100,000 / 四转 200,000 / 终转 300,000
 function mod_tg_assure(_tier){
     switch (_tier){
-        case 1: return 3000;      // 一转
-        case 2: return 25000;     // 二转
-        case 3: return 80000;      // 三转（金卡）
-        case 4: return 150000;     // 四转（金卡）
-        case 5: return 200000;     // 终转（金卡）
+        case 1: return 2000;      // 一转
+        case 2: return 12000;     // 二转
+        case 3: return 40000;      // 三转（金卡）
+        case 4: return 80000;     // 四转（金卡）
+        case 5: return 100000;     // 终转（金卡）
     }
     return 50000;
 }

@@ -91,39 +91,80 @@ function info_island_text_vars(_cid, _shape, _level, _skill){
 /// 🔴 变量名 / 数字里的**所有空白都要跳过**：半角空格、全角空格、`\n`、`\r`、`\t`。
 ///    2026-11-06 踩过：`{灼烧伤害*5}` 被编辑器/手改塞进了换行变成 `{灼烧伤害\n*5}`，
 ///    只跳空格不跳换行 → 变量名成了「灼烧伤害\n」→ 查不到 → 整串原样显示。
+/// @func info_island_text_is_number(tok)
+/// @desc 纯数字判断（只认 0-9 和一个小数点），避免 real() 把写错的串当成 0
+function info_island_text_is_number(_s){
+    if (!is_string(_s) || _s == "") return false;
+    var _len = string_length(_s);
+    var _dot = 0;
+    for (var _d = 1; _d <= _len; _d++){
+        var _dc = string_char_at(_s, _d);
+        if (_dc == "."){
+            _dot++;
+            if (_dot > 1 || _d == _len) return false;   // 多点 / 结尾是点 → 不算数字
+            continue;
+        }
+        if (_dc < "0" || _dc > "9") return false;
+    }
+    return true;
+}
+
+/// @func info_island_text_operand(tok, vars)
+/// @desc 取一个操作数：纯数字直接转 real，否则当变量名查表（必须数值型）。取不到返回 undefined
+function info_island_text_operand(_tok, _v){
+    if (!is_string(_tok) || _tok == "") return undefined;
+    if (info_island_text_is_number(_tok)) return real(_tok);
+    if (!ds_map_exists(_v, _tok)) return undefined;
+    var _raw = _v[? _tok];
+    if (!is_real(_raw)) return undefined;              // 形态名这类字符串不参与运算
+    return _raw;
+}
+
+/// @func info_island_text_eval(expr, vars)
+/// @desc 算一个 {…} 里的内容：操作数 + 若干「运算符 + 操作数」，**从左到右连算**
+///   操作数 = 变量名 **或** 纯数字 → 变量之间也能算：
+///     {攻击力/100}、{攻击力*2/100}（原来就支持）
+///     {毒雾持续*毒雾次数}、{120/毒雾次数}、{毒雾持续/毒雾次数}（2026-11-08 新增）
+///   不认识的变量返回 undefined（调用方把 `{…}` 原样吐回去，方便看错在哪）
+/// 🔴 变量名 / 数字里的**所有空白都要跳过**：半角空格、全角空格、`\n`、`\r`、`\t`。
+///    2026-11-06 踩过：`{灼烧伤害*5}` 被编辑器/手改塞进了换行变成 `{灼烧伤害\n*5}`，
+///    只跳空格不跳换行 → 变量名成了「灼烧伤害\n」→ 查不到 → 整串原样显示。
 function info_island_text_eval(_expr, _v){
     var _n = string_length(_expr);
-    var _name = "";
     var _i = 1;
+
+    // ── 第一个操作数 ──
+    var _tok = "";
     while (_i <= _n){
         var _c = string_char_at(_expr, _i);
         if (_c == "+" || _c == "-" || _c == "*" || _c == "/") break;
-        if (_c != " " && _c != "　" && _c != "\n" && _c != "\r" && _c != "\t") _name += _c;
+        if (_c != " " && _c != "　" && _c != "\n" && _c != "\r" && _c != "\t") _tok += _c;
         _i++;
     }
-    if (_name == "" || !ds_map_exists(_v, _name)) return undefined;
+    if (_tok == "") return undefined;
 
-    var _val = _v[? _name];
-    if (!is_real(_val)) return string(_val);      // 形态名这类字符串直接返回，不能参与运算
+    // 字符串型变量（形态名之类）直接原样返回，不能参与运算
+    if (!info_island_text_is_number(_tok)){
+        if (!ds_map_exists(_v, _tok)) return undefined;
+        var _raw0 = _v[? _tok];
+        if (!is_real(_raw0)) return string(_raw0);
+    }
+    var _val = info_island_text_operand(_tok, _v);
+    if (is_undefined(_val)) return undefined;
 
+    // ── 后续「运算符 + 操作数」 ──
     while (_i <= _n){
         var _op = string_char_at(_expr, _i);
         _i++;
-        var _num_s = "";
+        var _tok2 = "";
         while (_i <= _n){
             var _c2 = string_char_at(_expr, _i);
             if (_c2 == "+" || _c2 == "-" || _c2 == "*" || _c2 == "/") break;
-            if (_c2 != " " && _c2 != "　" && _c2 != "\n" && _c2 != "\r" && _c2 != "\t") _num_s += _c2;
+            if (_c2 != " " && _c2 != "　" && _c2 != "\n" && _c2 != "\r" && _c2 != "\t") _tok2 += _c2;
             _i++;
         }
-        // 只认「纯数字 + 小数点」，避免 real() 把写错的串当 0
-        var _ok = (_num_s != "");
-        for (var _d = 1; _d <= string_length(_num_s); _d++){
-            var _dc = string_char_at(_num_s, _d);
-            if (_dc != "." && (_dc < "0" || _dc > "9")){ _ok = false; break; }
-        }
-        if (!_ok) return undefined;
-        var _num = real(_num_s);
+        var _num = info_island_text_operand(_tok2, _v);
+        if (is_undefined(_num)) return undefined;
         switch (_op){
             case "+": _val += _num; break;
             case "-": _val -= _num; break;

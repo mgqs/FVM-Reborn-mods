@@ -1,7 +1,7 @@
 // 鲁班神使 - 用户事件1（开火）
-// 0转：1发子弹（4倍率伤害），沿固定轨迹往返
+// 0转：1发子弹（伤害 = 注册表 atk，不再额外乘倍率），沿固定轨迹往返
 // 三转：伤害提升 + 概率释放 spr_gongjiang_god_effect_1_1 河豚毒素
-// 四转：1发子弹（5倍率伤害），概率释放 spr_gongjiang_god_effect_2_2
+// 四转：1发子弹（同 atk），概率释放 spr_gongjiang_god_effect_2_2
 // 终转：后排增加两条交叉固定轨迹 + 概率释放 spr_gongjiang_god_effect_3_2
 // 轨迹：方向① 卡片→(9,1)→(9,4)→卡片  方向② 卡片→(9,7)→(9,4)→卡片
 //
@@ -22,7 +22,9 @@ if (shape == 1) _bullet_spr = spr_gongjiang_god_bullet_1;
 else if (shape == 2) _bullet_spr = spr_gongjiang_god_bullet_2;
 else if (shape == 3) _bullet_spr = spr_gongjiang_god_bullet_3;
 
-var _dmg_mul = (shape >= 2) ? 5 : 4;
+// 2026-11-08 用户口径：**注册表 atk 就是「每发」伤害**，不再额外乘 4/5 倍。
+//   原来 atk * 4（四转起 * 5）与攻击表重复计算 → 11 星本体 1800 × 4 = 7200，明显超高。
+var _dmg_mul = 1;
 
 var _poison_spr = -1;
 var _poison_chance = 0;

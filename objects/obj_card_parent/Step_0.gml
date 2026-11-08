@@ -147,7 +147,12 @@ if state != CARD_STATE.SLEEP && instance_exists(banding_sleep_obj){
 
 
 
-var grid_pos = get_grid_position_from_world(x,y)
+// 2026-11-08：原来这里调 get_grid_position_from_world(x,y)，运行时偶发
+//   「argument0 not set」崩错（糖炒栗子踩到）。同算法内联，等价且不再依赖脚本调用。
+var grid_pos = {
+    col: floor((x - global.grid_offset_x) / global.grid_cell_size_x),
+    row: floor((y - global.grid_offset_y) / global.grid_cell_size_y)
+}
 
 if !(variable_instance_exists(id, "platform_grid_lock") && platform_grid_lock) {
     grid_col = clamp(grid_pos.col, 0, global.grid_cols - 1)

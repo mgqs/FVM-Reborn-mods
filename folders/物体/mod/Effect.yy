@@ -67,6 +67,7 @@
     {"name":"obj_caihongshe_shield","path":"objects/obj_caihongshe_shield/obj_caihongshe_shield.yy",},
     {"name":"obj_meiweijishiqi_effect","path":"objects/obj_meiweijishiqi_effect/obj_meiweijishiqi_effect.yy",},
     {"name":"obj_dangdanghu_fire","path":"objects/obj_dangdanghu_fire/obj_dangdanghu_fire.yy",},
-    {"name":"obj_dianman_effect","path":"objects/obj_dianman_effect/obj_dianman_effect.yy",}
+    {"name":"obj_dianman_effect","path":"objects/obj_dianman_effect/obj_dianman_effect.yy",},
+    {"name":"obj_fashishe_poison_cell","path":"objects/obj_fashishe_poison_cell/obj_fashishe_poison_cell.yy",}
   ],
 }

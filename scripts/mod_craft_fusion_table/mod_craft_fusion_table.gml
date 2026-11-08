@@ -45,7 +45,7 @@ function mod_fusion_table(){
             cards: [
                 { main:{ id:"coal_starfish",     need:2 }, sub:{ id:"melon_shield",      need:2 } },  // 锋芒瓜皮护罩（官方仙人掌花刺身的顶替）
                 { main:{ id:"ronghehaixing",     need:0 }, sub:{ id:"eightcake",         need:2 } },  // 8周年红丝绒
-                { main:{ id:"ronghehaixing",     need:1 }, sub:{ id:"sugar_ball_pult",   need:2 } }   // 可可糖全能投手（官方王冠蜜糖陷阱的顶替）
+                { main:{ id:"ronghehaixing",     need:1 }, sub:{ id:"honeytrap",        need:2 } }   // 王冠蜜糖陷阱（2026-11-08 用户指定：换回购蜜糖陷阱当副卡，可可糖全能投手移出）
             ]
         },
         // ── 融合鱿鱼 ← 章鱼烧 ──────────────────────────────────────────────

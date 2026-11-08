@@ -92,8 +92,9 @@ bbq_spawn_burn_cell = function(_row)
     _b.lock_grid = true;
     _b.grid_col = _bc;
     _b.grid_row = _row;
-    // 地面单位全烧：普通 / 非主流 / 幽灵 / 潜水 / 障碍；空军、钻地不烧
-    _b.hittable_types = ["normal", "dance", "invisible", "diver", "obstacle"];
+    // 地面单位全烧：普通 / 非主流 / 幽灵 / 潜水 / 障碍 / **钻地**；空军不烧
+    //   2026-11-08 补 underground：原来漏了钻地鼠，站在火格里也不掉血
+    _b.hittable_types = ["normal", "dance", "invisible", "diver", "obstacle", "underground"];
     // 被烧到的老鼠身上挂辣椒燃烧特效
     _b.mouse_fx_spr = spr_bbq_burn_mouse;
     // 铺满整格（按内容缩放，per-axis 保证不溢到上下行）

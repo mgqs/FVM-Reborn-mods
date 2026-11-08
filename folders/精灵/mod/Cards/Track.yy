@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"Track",
+  "folderPath":"folders/精灵/mod/Cards/Track.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Track",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"honeytrap","path":"folders/精灵/mod/Cards/Track/honeytrap.yy",},
+    {"name":"huojianzhu","path":"folders/精灵/mod/Cards/Track/huojianzhu.yy",},
+    {"name":"fangkongmiao","path":"folders/精灵/mod/Cards/Track/fangkongmiao.yy",},
+  ],
+  "listItems":[],
+}

@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"honeytrap",
+  "folderPath":"folders/精灵/mod/Cards/Track/honeytrap.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"honeytrap",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_honeytrap","path":"sprites/spr_honeytrap/spr_honeytrap.yy",},
+    {"name":"spr_honeytrap_1","path":"sprites/spr_honeytrap_1/spr_honeytrap_1.yy",},
+    {"name":"spr_honeytrap_2","path":"sprites/spr_honeytrap_2/spr_honeytrap_2.yy",},
+    {"name":"spr_honeytrap_bullet","path":"sprites/spr_honeytrap_bullet/spr_honeytrap_bullet.yy",},
+  ],
+}

@@ -118,6 +118,12 @@
     {"name":"obj_tanchitu","path":"objects/obj_tanchitu/obj_tanchitu.yy",},
     {"name":"obj_tunshilong","path":"objects/obj_tunshilong/obj_tunshilong.yy",},
     {"name":"obj_xiangliaohu","path":"objects/obj_xiangliaohu/obj_xiangliaohu.yy",},
-    {"name":"obj_zhuanzhuanji","path":"objects/obj_zhuanzhuanji/obj_zhuanzhuanji.yy",}
+    {"name":"obj_zhuanzhuanji","path":"objects/obj_zhuanzhuanji/obj_zhuanzhuanji.yy",},
+    {"name":"obj_fashishe","path":"objects/obj_fashishe/obj_fashishe.yy",},
+    {"name":"obj_fangkongmiao","path":"objects/obj_fangkongmiao/obj_fangkongmiao.yy",},
+    {"name":"obj_huojianzhu","path":"objects/obj_huojianzhu/obj_huojianzhu.yy",},
+    {"name":"obj_doumaobang","path":"objects/obj_doumaobang/obj_doumaobang.yy",},
+    {"name":"obj_honeytrap","path":"objects/obj_honeytrap/obj_honeytrap.yy",},
+    {"name":"obj_huanyingshe","path":"objects/obj_huanyingshe/obj_huanyingshe.yy",},
   ],
 }

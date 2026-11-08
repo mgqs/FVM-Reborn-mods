@@ -184,13 +184,17 @@ if (shape >= 2 && dir_index >= 3 && !has_bounced_wall) {
 //   已转追踪的子弹（has_bounced_wall）不在此列，交给下面兜底
 var _pad_x = global.grid_cell_size_x
 var _pad_y = global.grid_cell_size_y
-if (!has_bounced_wall && (x < global.grid_offset_x - 150 || x > _gr + _pad_x
+// 2026-11-07：右边界跟着「最右的那只老鼠」走（出怪列 = 9 + x_offset，同一行连刷会排到第 11、12 列），
+//   原来卡死「地图右沿 +1 格」→ 场外排队的老鼠打不到
+var _bx_r = _gr + _pad_x
+if (variable_global_exists("enemy_max_right")) _bx_r = max(_bx_r, global.enemy_max_right + _pad_x)
+if (!has_bounced_wall && (x < global.grid_offset_x - 150 || x > _bx_r
     || y < _gt - _pad_y || y > _gb + _pad_y)) {
 	instance_destroy()
 	exit
 }
 
-// 兜底：飞出很远还没处理掉就销毁
-if (x > 2200 or y > 1200 or x < 0 or y < -200) {
+// 兜底：飞出很远还没处理掉就销毁（右边界跟着敌人走时不能比它更早砍，否则上面的放宽白做）
+if (x > max(2200, _bx_r + 400) or y > 1200 or x < 0 or y < -200) {
 	instance_destroy()
 }

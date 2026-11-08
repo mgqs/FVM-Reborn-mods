@@ -30,6 +30,8 @@ y += vy;
 //   销毁线 = 战斗区外**放宽一格**（出图那一列刚刷出来的老鼠仍可打），左侧再放 150px（老鼠判输线）。
 var _bx_l = global.grid_offset_x - 150;
 var _bx_r = global.grid_offset_x + global.grid_cols * global.grid_cell_size_x + global.grid_cell_size_x;
+// 2026-11-07：右边界跟着「最右的那只老鼠」走（出怪列 = 9 + x_offset，同一行连刷会排到第 11、12 列）
+if (variable_global_exists("enemy_max_right")) _bx_r = max(_bx_r, global.enemy_max_right + global.grid_cell_size_x);
 var _bx_t = global.grid_offset_y - global.grid_cell_size_y;
 var _bx_b = global.grid_offset_y + global.grid_rows * global.grid_cell_size_y + global.grid_cell_size_y;
 if (x < _bx_l || x > _bx_r || y < _bx_t || y > _bx_b){

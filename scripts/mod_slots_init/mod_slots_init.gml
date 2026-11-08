@@ -3158,9 +3158,9 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 2, sprite: spr_dianman_2, cost: 325, cooldown: 3600, description: "霸王美味电鳗：一段时间内持续伤害", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_dianman_2 }]);
 
     register_card("tanchitu", obj_tanchitu, [
-    { shape: 0, sprite: spr_tanchitu, cost: 320, cooldown: 3600, description: "贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu },
-    { shape: 1, sprite: spr_tanchitu_1, cost: 320, cooldown: 3600, description: "肥肥贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_1 },
-    { shape: 2, sprite: spr_tanchitu_2, cost: 320, cooldown: 3600, description: "暴走贪吃兔棍：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_2 }]);
+    { shape: 0, sprite: spr_tanchitu_bullet, cost: 320, cooldown: 3600, description: "贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu },
+    { shape: 1, sprite: spr_tanchitu_bullet_1, cost: 320, cooldown: 3600, description: "肥肥贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_1 },
+    { shape: 2, sprite: spr_tanchitu_bullet_2, cost: 320, cooldown: 3600, description: "暴走贪吃兔：贪吃的兔子，撞飞整列老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tanchitu_2 }]);
 
     register_card("tunshilong", obj_tunshilong, [
     { shape: 0, sprite: spr_tunshilong, cost: 175, cooldown: 2100, description: "吞噬龙：吞噬周围老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tunshilong },
@@ -3176,5 +3176,35 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_zhuanzhuanji, cost: 200, cooldown: 2100, description: "转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji },
     { shape: 1, sprite: spr_zhuanzhuanji_1, cost: 200, cooldown: 2100, description: "五彩转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji_1 },
     { shape: 2, sprite: spr_zhuanzhuanji_2, cost: 200, cooldown: 2100, description: "王室转转鸡：连续快速向周边发出猛烈攻击，海陆空兼顾", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_zhuanzhuanji_2 }]);
+
+    register_card("fashishe", obj_fashishe, [
+    { shape: 0, sprite: spr_fashishe, cost: 350, cooldown: 420, description: "法师蛇：向前发射整行穿透毒子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fashishe },
+    { shape: 1, sprite: spr_fashishe_1, cost: 350, cooldown: 420, description: "幽冥法师蛇：向前发射整行穿透毒子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fashishe_1 },
+    { shape: 2, sprite: spr_fashishe_2, cost: 350, cooldown: 420, description: "奥术法师蛇：向前发射整行穿透毒子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fashishe_2 }]);
+
+    register_card("fangkongmiao", obj_fangkongmiao, [
+    { shape: 0, sprite: spr_fangkongmiao, cost: 220, cooldown: 420, description: "防空喵：高伤害轰炸空中鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fangkongmiao },
+    { shape: 1, sprite: spr_fangkongmiao_1, cost: 220, cooldown: 420, description: "钢盔防空喵：高伤害轰炸空中鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fangkongmiao_1 },
+    { shape: 2, sprite: spr_fangkongmiao_2, cost: 220, cooldown: 420, description: "狂暴防空喵：高伤害轰炸空中鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fangkongmiao_2 }]);
+
+    register_card("huojianzhu", obj_huojianzhu, [
+    { shape: 0, sprite: spr_huojianzhu, cost: 255, cooldown: 1920, description: "火箭猪：全屏追踪攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huojianzhu },
+    { shape: 1, sprite: spr_huojianzhu_1, cost: 255, cooldown: 1920, description: "运载火箭猪：全屏追踪攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huojianzhu_1 },
+    { shape: 2, sprite: spr_huojianzhu_2, cost: 255, cooldown: 1920, description: "反重力火箭猪：全屏追踪攻击", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huojianzhu_2 }]);
+
+    register_card("doumaobang", obj_doumaobang, [
+    { shape: 0, sprite: spr_doumaobang_icon, cost: 300, cooldown: 3600, description: "逗猫棒：撞伤整行老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_doumaobang },
+    { shape: 1, sprite: spr_doumaobang_icon_1, cost: 300, cooldown: 3600, description: "金鱼逗猫棒：撞伤整行老鼠，伤害对空、地下有效", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_doumaobang_1 },
+    { shape: 2, sprite: spr_doumaobang_icon_2, cost: 300, cooldown: 3600, description: "鼠鼠逗猫棒：召唤3只猫猫，撞伤整行老鼠，伤害对空、地下有效", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_doumaobang_2 }]);
+
+    register_card("honeytrap", obj_honeytrap, [
+    { shape: 0, sprite: spr_honeytrap, cost: 300, cooldown: 420, description: "蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_honeytrap },
+    { shape: 1, sprite: spr_honeytrap_1, cost: 300, cooldown: 420, description: "香浓蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_honeytrap_1 },
+    { shape: 2, sprite: spr_honeytrap_2, cost: 300, cooldown: 420, description: "王冠蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_honeytrap_2 }]);
+
+    register_card("huanyingshe", obj_huanyingshe, [
+    { shape: 0, sprite: spr_huanyingshe, cost: 325, cooldown: 420, description: "幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe },
+    { shape: 1, sprite: spr_huanyingshe_1, cost: 325, cooldown: 420, description: "羽翼幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe_1 },
+    { shape: 2, sprite: spr_huanyingshe_2, cost: 325, cooldown: 420, description: "金盔幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe_2 }]);
 
 }

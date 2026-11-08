@@ -10,7 +10,7 @@ if (!instance_exists(target))
 
 if (fx_spr != -1 && sprite_index != fx_spr) sprite_index = fx_spr;
 
-x = target.x;
+x = target.x + x_off;
 y = target.y - y_off;
 depth = target.depth - 1;
 

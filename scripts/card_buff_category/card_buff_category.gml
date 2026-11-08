@@ -242,7 +242,13 @@ function card_category_data()
         ["tanchitu", "灰烬类", "瞬发类", "冲撞类"],
         ["tunshilong", "非远程类", "吞噬类", ""],
         ["xiangliaohu", "增幅类", "名单类增幅", "追踪增幅"],
-        ["zhuanzhuanji", "喷壶类", "旋转喷壶类", ""]
+        ["zhuanzhuanji", "喷壶类", "旋转喷壶类", ""],
+        ["fashishe", "直射类", "过火穿透类", ""],
+        ["fangkongmiao", "专业防空类", "纯对空类", ""],
+        ["huojianzhu", "追踪类", "群轰追踪", ""],
+        ["doumaobang", "灰烬类", "瞬发类", "冲撞类"],
+        ["honeytrap", "追踪类", "集火追踪", ""],
+        ["huanyingshe", "投掷类", "多线投手", ""]
     ];
 }
 
@@ -393,6 +399,11 @@ function mod_apply_category_buff_map()
     _advanced_tracker = get_cards_in_category("散点追踪");
     for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
         ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
+
+    // 2026-11-07 新卡：火箭猪属群轰追踪（主类型 tracker_advanced = 宴飨女神），
+    //   但按数值表注「吃香料虎 / 宴飨女神」→ 副类型再写 tracker，结算时与主类型取较高倍率。
+    //   ⚠️ 只新增这一张，别的卡的归属一行没改。
+    ds_map_set(global.plant_buff_map_2, "huojianzhu", "tracker");
 
     // 冷萃机（散点追踪）同时吃两档追踪增幅：
     //   主类型 tracker_berry    = 莓果点心（apply_buff 里按 plant_id 单独写的那一格）
