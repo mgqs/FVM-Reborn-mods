@@ -354,7 +354,15 @@ function hex_batch2_cost(_card_id, _base) {
     // 二期：自由契约的固定改价 / 直面恐惧的 ×1.5
     _c = hex_b3_cost_for(_card_id, _c);
     _c = _c * hex_b3_cost_markup();
-    return max(0, _c);
+
+    // 费用必须受「火苗上限」约束：破釜沉舟把上限压到 500 / 赌徒减半之后，
+    // 再叠直面恐惧 ×1.5、自由契约 ×1.8，费用会直接超过上限 —— 玩家看到的就是
+    // 「火苗明明攒满了（= 上限）却永远种不下去」。夹到上限即可种。
+    var _cap = 0;
+    if (variable_global_exists("flame_cap")) _cap = global.flame_cap;
+    else if (variable_global_exists("flame_cap_base")) _cap = global.flame_cap_base;
+    if (_cap > 0) _c = min(_c, _cap);
+    return max(0, round(_c));
 }
 
 /// @function hex_batch2_coffee_block(_card_id)

@@ -23,6 +23,7 @@ if (variable_global_exists("level_id") && global.level_id == "test_level") {
 	if (!variable_global_exists("test_damage_total_all")) global.test_damage_total_all = 0;
 	global.test_damage_total_all += damage_amount;
 }
+var _hp_before_dmg = hp;
 if shield_hp > 0{
 	if damage_type == "normal"{
 		shield_hp -= damage_amount
@@ -38,11 +39,25 @@ if shield_hp > 0{
 else{
 	hp -= damage_amount
 }
+var _hp_real_lost = max(0, _hp_before_dmg - hp);
 
 // 海克斯二期后置：受伤层数（齿轮的烟气）/ 美食吸血（血魔的渴血）/ 命中火焰（重燃的火光）
 if (hex_enabled()) {
-	hex_b3_enemy_damage_post(id, damage_amount, other);
-	if (other != noone && instance_exists(other) && variable_instance_exists(other, "hex_src_inst")) {
-		hex_b3_bullet_hit(other, id);
+	// 血魔的渴血要按「实际掉的血」结算（护盾吃掉的部分不算），
+	// 传 damage_amount 会在石护盾/减伤里多给一整份治疗
+	hex_b3_enemy_damage_post(id, _hp_real_lost, other);
+	// 重燃的火光：来源不一定是 obj_bullet_parent 的子对象（很多卡片有自己的子弹类），
+	// 缺字段就先补一份来源标记，再判一次 —— 原来只认父对象子弹，所以很多卡完全不出火。
+	// 卡片本体 / 老鼠本体不算「子弹」，别给它们打标记（会污染吸血归属）
+	if (other != noone && instance_exists(other)
+		&& !object_is_ancestor(other.object_index, obj_card_parent)
+		&& !object_is_ancestor(other.object_index, obj_enemy_parent)) {
+		if (!variable_instance_exists(other, "hex_src_inst")
+			&& variable_instance_exists(other, "damage")) {
+			// 只给「带自己的伤害值的飞行物」补来源标记；岩浆 / 特效这类没有 damage 的
+			// 不算子弹，否则会顺手吃掉「当头棒喝」的首发名额
+			hex_b3_bullet_tag(other, true);
+		}
+		if (variable_instance_exists(other, "hex_src_inst")) hex_b3_bullet_hit(other, id);
 	}
 }

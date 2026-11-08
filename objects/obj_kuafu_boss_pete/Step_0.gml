@@ -85,9 +85,12 @@ switch state{
 		if timer == 6*5-1{
 			with obj_card_parent{
 				if grid_row == other.grid_row && grid_col == other.grid_col && plant_id != "player" && plant_type != "coffee" && plant_id != "cotton_candy"{
-					instance_destroy()
-					if hp >= max_hp{
-						obj_task_manager.card_loss++
+					// 海克斯「鲨鱼的厚皮」：踩踏/冲撞是秒杀（整张摧毁），此词条免疫
+					if (!hex_card_sec_proof()) {
+					    if hp >= max_hp{
+					        obj_task_manager.card_loss++
+					    }
+					    instance_destroy()
 					}
 				}
 			}
@@ -127,9 +130,12 @@ switch state{
 		if timer == 6*5{
 			with obj_card_parent{
 				if grid_col >= other.grid_col - 2 && grid_col <= other.grid_col && abs(grid_row-other.grid_row) <= 1 && plant_id != "player" && plant_type != "coffee" && plant_id != "cotton_candy"{
-					instance_destroy()
-					if hp >= max_hp{
-						obj_task_manager.card_loss++
+					// 海克斯「鲨鱼的厚皮」：踩踏/冲撞是秒杀（整张摧毁），此词条免疫
+					if (!hex_card_sec_proof()) {
+					    if hp >= max_hp{
+					        obj_task_manager.card_loss++
+					    }
+					    instance_destroy()
 					}
 				}
 			}

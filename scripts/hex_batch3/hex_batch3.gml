@@ -1042,8 +1042,10 @@ function hex_b3_enemy_damage_pre(_inst, _dmg, _src = noone) {
     if (_s.b3_mark_on) {
         if (_s.b3_mark_penalty_ms > 0 && current_time < _s.b3_mark_penalty_ms) {
             _d *= 2.0;
-        } else if (_s.b3_mark_enemy != noone && instance_exists(_s.b3_mark_enemy)
-                   && _s.b3_mark_enemy != _inst) {
+        } else if (_s.b3_mark_enemy != noone && instance_exists(_s.b3_mark_enemy)) {
+            // 标记鼠在场 → 「鼠军全属性 +30%」，等效为全体鼠军少挨 23% 伤害。
+            // 原来这里多判了 `_s.b3_mark_enemy != _inst`，把被标记的那只自己排除在外 ——
+            // 全场只有它身上有标记图案、也只有它吃不到减伤，看着就是「只有标记、效果不生效」
             _d *= 0.77;
         }
     }
@@ -1132,23 +1134,21 @@ function hex_b3_enemy_damage_post(_inst, _dmg, _src = noone) {
     if (_s.b3_lifesteal && _dmg > 0) {
         var _card = noone;
         if (instance_exists(_src)) {
-            if (variable_instance_exists(_src, "hex_src_inst")) _card = _src.hex_src_inst;
-            if (!instance_exists(_card) && _src.object_index == obj_card_parent) _card = _src;
-        }
-        // 归属兜底：伤害不是 obj_bullet_parent 打的（灰烬 / 火焰 / 近战 / 词条伤害），
-        // 或者子弹没认领到来源时，按「子弹出生点」回查最近的卡 —— 绝不能按老鼠位置查，
-        // 那样永远认成「被啃的那只老鼠前面挡刀的卡」，玩家看到的就是「给别人加血」。
-        if (!instance_exists(_card) && instance_exists(_src)) {
-            var _ox = variable_instance_exists(_src, "hex_org_x") ? _src.hex_org_x : _src.x;
-            var _oy = variable_instance_exists(_src, "hex_org_y") ? _src.hex_org_y : _src.y;
-            var _best_d = 999999;
-            with (obj_card_parent) {
-                if (self.plant_id != "player") {
-                    var _dd = point_distance(_ox, _oy, self.x, self.y);
-                    if (_dd < _best_d && _dd < 260) { _best_d = _dd; _card = self.id; }
-                }
+            // ① 火焰 / 召唤物自己带的来源卡（hex_b3_spawn_fire 写入，最准）
+            if (variable_instance_exists(_src, "hex_src_card")) _card = _src.hex_src_card;
+            // ② 子弹 / 投掷物在出生时认领的卡片
+            if (!instance_exists(_card) && variable_instance_exists(_src, "hex_src_inst")) {
+                _card = _src.hex_src_inst;
             }
+            // ③ 近战 / 直接由卡片自己造成
+            if (!instance_exists(_card) && _src.object_index == obj_card_parent) _card = _src;
+            // 命中时才补认领的来源是「就近猜的」（多半是挡在老鼠前面挨啃的那张卡），
+            // 不能拿它结算吸血 —— 那正是玩家抱怨的「血魔给别人的卡加血」。
+            if (variable_instance_exists(_src, "hex_src_weak") && _src.hex_src_weak) _card = noone;
         }
+        // 认不出施法者就不回血。原来这里还有一段「按子弹出生点扫 260px 内最近的卡」，
+        // 结果永远是「被啃的那只老鼠前面挡刀的那张卡」在加血 —— 玩家看到的
+        // 就是「血魔的渴血给别人的卡加血」。宁可这次不加，也不猜。
         if (instance_exists(_card) && variable_instance_exists(_card, "plant_id")
             && _card.plant_id != "player") {
             var _missing = _card.max_hp - _card.hp;
@@ -1212,18 +1212,35 @@ function hex_b3_card_damage(_card, _enemy, _dmg) {
         var _base = _card.max_hp;
         if (variable_instance_exists(_card, "base_max_hp")) _base = _card.base_max_hp;
         var _room = max(0, _base * 0.9 - _card.b3_hp_loss);
-        _card.b3_hp_loss += min(_room, _d);
+        var _cut  = min(_room, _d);
+        _card.b3_hp_loss += _cut;
+        // 立刻把这一截落到血条上：原来只记了 b3_hp_loss，等 obj_mod_battle_manager
+        // 下一轮重算才生效，而且那轮重算的条件里还夹着别的词条 ——
+        // 玩家看到的就是「选了这个词条，血条纹丝不动」。
+        if (_cut > 0) {
+            _card.max_hp = max(1, _card.max_hp - _cut);
+            if (_card.hp > _card.max_hp) _card.hp = _card.max_hp;
+            if (_card.hp > 0 && _card.hp < 1) _card.hp = 1;
+        }
         if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
     }
 
-    // 血魔的渴血（鼠军侧）：老鼠啃咬美食时按伤害回血（BOSS 不回）
-    if (_s.b3_lifesteal && instance_exists(_enemy)) {
-        var _boss = false;
-        if (variable_instance_exists(_enemy, "is_boss")) _boss = _enemy.is_boss;
-        if (!_boss) _enemy.hp = min(_enemy.maxhp, _enemy.hp + _d);
-    }
+    // 血魔的渴血（鼠军侧）：原来这里给「啃美食的老鼠」回血 —— 和词条描述正好相反。
+    // 描述是「造成伤害的美食回复等同于伤害的生命」，那条走 hex_b3_enemy_damage_post。
+    // 这里必须什么都不做，否则玩家看到的是「老鼠越咬越硬，血魔在奶敌人」。
 
     return _d;
+}
+
+/// @function hex_card_sec_proof()
+/// @desc 鲨鱼的厚皮：美食免疫「敌人技能造成的直接摧毁」（阿诺霰弹 / 冰渣光弹 /
+///       钢爪皮特踩踏 / 钢爪 · 导弹 / 岩浆踩踏等），不是免疫灰烬。
+///       敌人侧的「with (obj_card_parent) { instance_destroy() }」在销毁前调它。
+function hex_card_sec_proof() {
+    if (!hex_enabled()) return false;
+    if (!variable_hex_b3_state()) return false;
+    if (!variable_struct_exists(global.hex_state, "b3_ash_proof")) return false;
+    return global.hex_state.b3_ash_proof;
 }
 
 /// @function hex_b3_card_hit_after(_card, _enemy, _dmg)
@@ -1279,7 +1296,7 @@ function hex_b3_card_lethal(_card) {
 }
 
 /// @function hex_b3_card_destroyed(_card)
-/// @desc 卡片阵亡：以我残躯化烈火（该格火焰）/ 中指的义理（全队叠层）/ 鲨鱼的厚皮（击杀者回血）
+/// @desc 卡片阵亡：以我残躯化烈火（该格火焰）/ 中指的义理（全队叠层）
 function hex_b3_card_destroyed(_card) {
     if (!hex_enabled()) return;
     if (!instance_exists(_card)) return;
@@ -1302,20 +1319,15 @@ function hex_b3_card_destroyed(_card) {
         if (variable_global_exists("buff_apply_id")) global.buff_apply_id += 1;
     }
 
-    // 鲨鱼的厚皮：凶手回 20% 上限
-    if (_s.b3_card_dr > 0 && variable_instance_exists(_card, "b3_last_enemy")) {
-        var _e = _card.b3_last_enemy;
-        if (instance_exists(_e) && variable_instance_exists(_e, "maxhp")) {
-            var _boss = false;
-            if (variable_instance_exists(_e, "is_boss")) _boss = _e.is_boss;
-            if (!_boss) _e.hp = min(_e.maxhp, _e.hp + _e.maxhp * 0.2);
-        }
-    }
+    // 鲨鱼的厚皮原来在这里有一段「让凶手回 20% 血」——那和「防秒杀」毫无关系，
+    // 而且等于给鼠军加血，玩家看到的就是「选了这个词条反而更难打」。已删除。
 }
 
-/// @function hex_b3_spawn_fire(_col, _row, _dmg, _frames)
-/// @desc 生成一格玩家侧的火焰（后羿神火，“只烧老鼠不烧自己人”）
-function hex_b3_spawn_fire(_col, _row, _dmg, _frames) {
+/// @function hex_b3_spawn_fire(_col, _row, _dmg, _frames, _src_card)
+/// @desc 生成一格玩家侧的火焰（后羿神火，“只烧老鼠不烧自己人”）。
+///       _src_card：这团火算谁打出的伤害 —— 血魔的渴血要按它给「造成伤害的美食」回血。
+///       不传就认不出施法者（火焰凭空出现），此时不回血，绝不按坐标猜一张卡。
+function hex_b3_spawn_fire(_col, _row, _dmg, _frames, _src_card = noone) {
     if (!variable_global_exists("grid_offset_x")) return noone;
     if (_col < 0 || _row < 0) return noone;
     if (_col >= global.grid_cols || _row >= global.grid_rows) return noone;
@@ -1326,6 +1338,8 @@ function hex_b3_spawn_fire(_col, _row, _dmg, _frames) {
     _f.grid_col = _col;
     _f.grid_row = _row;
     _f.hex_life = max(30, round(_frames));
+    // 伤害归属：渴血 / 当归宿之类按「谁打出来的」结算，火焰自己带一份来源卡
+    _f.hex_src_card = _src_card;
     return _f;
 }
 
@@ -1434,16 +1448,20 @@ function hex_b3_on_boss_enter(_boss) {
 
 // ══════════════════════ 子弹来源（近似归属） ══════════════════════
 
-/// @function hex_b3_bullet_tag(_bullet)
+/// @function hex_b3_bullet_tag(_bullet, _late = false)
 /// @desc 子弹出生第一帧：按出生位置就近认领一张卡片作为来源。
 ///       子弹都是「卡片所在格向外发射」，所以用 1 格半径 + 优先攻击态判定，
 ///       拿到的是近似归属，足够「血魔的渴血 / 当头棒喝 / 重燃的火光」这类叙事用。
-function hex_b3_bullet_tag(_bullet) {
+///       _late = true 表示这次是「命中的时候才补认领」（子弹不是 obj_bullet_parent 的子对象）：
+///       此时子弹已经在老鼠身上，就近认领很可能认成「挡在那只老鼠前面挨啃的卡」——
+///       这种归属只能用来算火焰伤害，不能用来结算血魔的渴血（否则又奶错卡）。
+function hex_b3_bullet_tag(_bullet, _late = false) {
     if (!hex_enabled()) return;
     if (!instance_exists(_bullet)) return;
     if (variable_instance_exists(_bullet, "hex_src_inst")) return;
     _bullet.hex_src_inst = noone;
     _bullet.hex_src_id   = "";
+    _bullet.hex_src_weak = _late;
     var _best = noone;
     var _best_d = 999999;
     var _fallback = noone;
@@ -1460,7 +1478,9 @@ function hex_b3_bullet_tag(_bullet) {
             }
         }
     }
-    if (_best == noone) _best = _fallback;
+    if (_best == noone && _fallback != noone && _fallback_d <= 260) _best = _fallback;
+    // 兜底也加距离上限：子弹如果在离任何卡都很远的地方出生（召唤物 / 特效子弹），
+    // 硬认「全场最近的卡」会把伤害的功劳记到别人头上 —— 血魔的渴血就奶错卡。
     if (_best != noone) {
         _bullet.hex_src_inst = _best;
         if (variable_instance_exists(_best, "plant_id")) _bullet.hex_src_id = _best.plant_id;
@@ -1492,18 +1512,23 @@ function hex_b3_bullet_hit(_bullet, _enemy) {
 
     // 重燃的火光：命中格生成 3 秒火焰，伤害取该卡攻击
     if (_s.b3_bullet_fire > 0 && instance_exists(_bullet)) {
+        // 火焰自己也是 obj_bullet_parent 的子对象，它「命中」时不能再生成火焰 ——
+        // 否则 火焰 → 命中 → 新火焰 → 命中 → … 无限翻倍，几秒后就崩
+        if (_bullet.object_index == obj_houyi_god_fire) return;
         if (!variable_instance_exists(_bullet, "b3_fire_done")) _bullet.b3_fire_done = false;
         if (!_bullet.b3_fire_done) {
             _bullet.b3_fire_done = true;
             var _col = variable_instance_exists(_enemy, "grid_col") ? _enemy.grid_col : -1;
             var _row = variable_instance_exists(_enemy, "grid_row") ? _enemy.grid_row : -1;
             var _dmg = 10;
+            var _owner = noone;
             if (variable_instance_exists(_bullet, "hex_src_inst") && instance_exists(_bullet.hex_src_inst)) {
-                if (variable_instance_exists(_bullet.hex_src_inst, "atk")) _dmg = _bullet.hex_src_inst.atk;
+                _owner = _bullet.hex_src_inst;
+                if (variable_instance_exists(_owner, "atk")) _dmg = _owner.atk;
             } else if (variable_instance_exists(_bullet, "damage")) {
                 _dmg = _bullet.damage;
             }
-            if (_col >= 0 && _row >= 0) hex_b3_spawn_fire(_col, _row, _dmg, 180);
+            if (_col >= 0 && _row >= 0) hex_b3_spawn_fire(_col, _row, _dmg, 180, _owner);
         }
     }
 }
@@ -1523,6 +1548,9 @@ function hex_b3_on_battle_init() {
     hex_b3_shuffle_categories();
     hex_b3_roll_contract();
     hex_b3_continue_mark();
+    // 卡侧标记也要记下这一轮的起始时间，否则 tick 里 current_time - 0 立刻成立，
+    // 开局同一帧会连着重抽一张（玩家看到的就是「标记一直在跳」）。
+    _s.b3_mark_card_ms = current_time;
     // 鼠军侧标记：开局就先挂一只（原来只把计时器清零，要等满 30 秒才第一次标记，
     // 那 30 秒里词条看着就是「只有图案、没有效果」）
     _s.b3_mark_enemy    = hex_b3_pick_enemy();
@@ -1712,9 +1740,14 @@ function hex_b3_shuffle_categories() {
 /// @function hex_b3_roll_contract()
 /// @desc 不公的契约：开局弹五选一（玩家自己挑），面板没弹出来就退化成随机
 function hex_b3_roll_contract() {
+    if (!variable_hex_b3_state()) return;
     var _s = global.hex_state;
+    if (!variable_struct_exists(_s, "b3_contract")) return;
     if (_s.b3_contract != "") return;
     if (!variable_struct_exists(_s, "b3_contract_on") || !_s.b3_contract_on) return;
+    // 已经在等玩家选了就别刷新计时：否则每秒重置一次 pending_ms，
+    // 「30 秒了还没选就随机签一种」的兜底永远等不到 30 秒
+    if (variable_struct_exists(_s, "b3_contract_pending") && _s.b3_contract_pending) return;
     _s.b3_contract_pending = true;
     _s.b3_contract_pending_ms = current_time;
 }
@@ -1817,6 +1850,9 @@ function hex_b3_continue_mark() {
             if (self.plant_id != "player" && self.plant_id != "") array_push(_pool, self.plant_id);
         }
     }
+    // 不管挑没挑到，都把这轮的时间记下来：标记是「每 30 秒一次」的节拍，
+    // 挑不到也要等满一个周期再试，不能每个 tick 都重抽一张（会变成无缝换标）。
+    _s.b3_mark_card_ms = current_time;
     if (array_length(_pool) == 0) { _s.b3_mark_card = ""; return; }
 
     var _pick = _pool[irandom(array_length(_pool) - 1)];
@@ -2131,23 +2167,12 @@ function hex_b3_tick() {
         }
     }
 
-    // 食指的指令·卡片侧：标记要一直挂在「当前可种植的那张卡」上。
-    // 只在换波时挑一次是不够的 —— 玩家把那张种下去了、或者卡槽换了，
-    // 标记就空着，面板上什么都看不到。这里每隔 2 秒补一次。
+    // 食指的指令·卡片侧：标记每 30 秒才换一次目标。
+    // 原来是「标记一空就 2 秒补一个」：把标记的那张种下去之后 2 秒又冒出新的，
+    // 玩家看到的就是标记无缝衔接、永远有 +20% 可吃，跟「每 30 秒指一张」的设定不符。
+    // 现在只按 30 秒节奏换，种掉之后空着就空着，等下一轮。
     if (variable_struct_exists(_s, "b3_mark_on") && _s.b3_mark_on) {
-        var _need_mark = (_s.b3_mark_card == "");
-        if (!_need_mark) {
-            var _still = false;
-            var _sn = instance_number(obj_card_slot);
-            for (var _si = 0; _si < _sn; _si++) {
-                var _sl = instance_find(obj_card_slot, _si);
-                if (!instance_exists(_sl)) continue;
-                if (!variable_instance_exists(_sl, "card_id")) continue;
-                if (_sl.card_id == _s.b3_mark_card) { _still = true; break; }
-            }
-            if (!_still) _need_mark = true;
-        }
-        if (_need_mark && current_time - _s.b3_mark_card_ms >= 2000) {
+        if (current_time - _s.b3_mark_card_ms >= 30000) {
             _s.b3_mark_card_ms = current_time;
             hex_b3_continue_mark();
         }
@@ -2170,6 +2195,9 @@ function hex_b3_second_block() {
     var _s = global.hex_state;
 
     // 不公的契约：面板没弹 / 被弃权时兜底随机签一种
+    // （roll 放在这里而不是只在开局：中途从词条三选一里选到它时，
+    //   只有 roll 过才会置 pending，obj_battle 那边才会把五选一面板弹出来）
+    hex_b3_roll_contract();
     hex_b3_contract_fallback();
 
     // 自由契约：每 30 秒重滚一次全队耗能
@@ -2378,16 +2406,35 @@ function hex_b3_roll_couple() {
 /// @desc 喷涌的地脉：随机五格生成临时熔岩（1 分钟）
 function hex_b3_spawn_lava() {
     if (!variable_global_exists("grid_cols") || !variable_global_exists("grid_rows")) return;
-    for (var i = 0; i < 5; i++) {
+    // 五格不能重复：同一格刷两块 effect，就会生出两份 obj_lava，伤害直接翻倍
+    var _used = {};
+    var _n = 0;
+    var _guard = 0;
+    while (_n < 5 && _guard < 40) {
+        _guard++;
         var _col = irandom(global.grid_cols - 1);
         var _row = irandom(global.grid_rows - 1);
-        var _fx = instance_create_depth(0, 0, -1300, obj_vajra_lava_effect);
+        var _key = string(_col) + "_" + string(_row);
+        if (variable_struct_exists(_used, _key)) continue;
+        _used[$ _key] = true;
+        _n++;
+        // 原来这里是 instance_create_depth(0, 0, …)：效果对象本体留在屏幕左上角，
+        // 只有它内部创建的 obj_lava 被放到了目标格，而 obj_lava 的 sprite 是 spr_pixel
+        // 且 image_alpha = 0 —— 于是「喷涌的地脉」一格岩浆都看不见。
+        // 参照炽热金刚的写法，效果对象必须直接创建在目标格上，贴图（spr_vajra_lava_effect）才跟着走。
+        var _wp = get_world_position_from_grid(_col, _row);
+        var _fx = instance_create_depth(_wp.x, _wp.y - 35, -1200, obj_vajra_lava_effect);
         if (instance_exists(_fx)) {
             _fx.target_col = _col;
             _fx.target_row = _row;
             _fx.hex_life   = 3600;
+            // 缩放交给 obj_vajra_lava_effect 自己的 12 帧放大（0.6 → 1.8），
+            // 这里不要再写死，否则它会在 1.8 的基础上继续长到 3.0
         }
     }
+    // 不再额外铺一块 obj_vajra_lava：那一块落地时会再建一个 obj_vajra_lava_effect
+    // → 同一格两份 obj_lava → 岩浆伤害翻倍。效果对象本身带 spr_vajra_lava_effect 贴图，
+    // 放在目标格上就已经是「看得见的岩浆」了。
 }
 
 /// @function hex_b3_refresh_card_flags()
@@ -2806,8 +2853,8 @@ function hex_register_batch3() {
     });
     hex_register("hex_223", {
         tier: 1, form: "A", name: "鲨鱼的厚皮",
-        card_desc: "美食受到的伤害 -20%，且免疫灰烬秒杀",
-        enemy_desc: "鼠军杀死美食时回复自身 20% 生命上限（BOSS 除外）",
+        card_desc: "美食受到的伤害 -20%，且免疫敌人技能造成的秒杀（阿诺霰弹 / 冰渣光弹 / 钢爪皮特踩踏等直接摧毁）",
+        enemy_desc: "无",
         stack: 1, impl: true,
         ex: { b3_card_dr: 0.20, b3_ash_proof: true }, en: {}
     });
@@ -3061,7 +3108,7 @@ function hex_register_batch3() {
     hex_register("hex_228", {
         tier: 0, form: "A", name: "血魔的渴血",
         card_desc: "美食造成伤害时回复等量生命，满血则转为生命上限（上限 +300%）",
-        enemy_desc: "非 BOSS 鼠军啃咬美食时回复等量生命",
+        enemy_desc: "无",
         stack: 1, impl: true,
         ex: { b3_lifesteal: true }, en: {}
     });

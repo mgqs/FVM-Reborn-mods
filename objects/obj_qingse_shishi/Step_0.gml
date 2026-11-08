@@ -49,6 +49,17 @@ with(obj_enemy_parent){
 	}
 }
 
+// 傲慢龙柱的青苹果不是 obj_enemy_parent，但它是可被碾压的实体目标，同样要进索敌
+if (!has_enemy){
+	with (obj_longzhu_green_apple){
+		if (hp > 0 && abs(row - other.grid_row) <= 1 && abs(col - other.grid_col) <= other.range){
+			has_enemy = true
+			first_target_col = col
+			first_target_row = row
+		}
+	}
+}
+
 // ========== 状态转换 ==========
 // 有敌人 + 冷却完毕 + IDLE → 进入攻击
 if (has_enemy) && state == CARD_STATE.IDLE && cooldown_timer <= 0{

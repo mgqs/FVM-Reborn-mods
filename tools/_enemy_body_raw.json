@@ -1,0 +1,4514 @@
+{
+"spr_abyss_pharaoh_death": {
+"l": -62,
+"r": 13,
+"t": -158,
+"b": -13,
+"w": 76,
+"h": 146
+},
+"spr_abyss_pharaoh_idle": {
+"l": -63,
+"r": 15,
+"t": -158,
+"b": -13,
+"w": 79,
+"h": 146
+},
+"spr_airbrone_explosive_mouse_air": {
+"l": -134,
+"r": 43,
+"t": -153,
+"b": -38,
+"w": 178,
+"h": 116
+},
+"spr_airbrone_explosive_mouse_drop": {
+"l": -134,
+"r": 43,
+"t": -153,
+"b": -39,
+"w": 178,
+"h": 115
+},
+"spr_airbrone_explosive_mouse_land": {
+"l": -33,
+"r": 39,
+"t": -94,
+"b": -5,
+"w": 73,
+"h": 90
+},
+"spr_aircraft_carrier": {
+"l": -86,
+"r": 272,
+"t": -231,
+"b": -51,
+"w": 359,
+"h": 181
+},
+"spr_aircraft_carrier_release_1": {
+"l": -86,
+"r": 272,
+"t": -231,
+"b": -51,
+"w": 359,
+"h": 181
+},
+"spr_aircraft_carrier_release_2": {
+"l": -86,
+"r": 272,
+"t": -231,
+"b": -51,
+"w": 359,
+"h": 181
+},
+"spr_aircraft_carrier_release_3": {
+"l": -86,
+"r": 272,
+"t": -231,
+"b": -51,
+"w": 359,
+"h": 181
+},
+"spr_angelababy_death": {
+"l": -122,
+"r": 78,
+"t": -207,
+"b": -13,
+"w": 201,
+"h": 195
+},
+"spr_angelababy_idle": {
+"l": -123,
+"r": 68,
+"t": -220,
+"b": 13,
+"w": 192,
+"h": 234
+},
+"spr_angelababy_move_backward": {
+"l": -91,
+"r": 88,
+"t": -230,
+"b": 13,
+"w": 180,
+"h": 244
+},
+"spr_angelababy_move_forward": {
+"l": -150,
+"r": 59,
+"t": -206,
+"b": 13,
+"w": 210,
+"h": 220
+},
+"spr_apple_duck_mouse": {
+"l": -43,
+"r": 44,
+"t": -76,
+"b": -16,
+"w": 88,
+"h": 61
+},
+"spr_apple_duck_mouse_enter": {
+"l": -43,
+"r": 44,
+"t": -106,
+"b": -21,
+"w": 88,
+"h": 86
+},
+"spr_apple_duck_mouse_enter_helmet": {
+"l": -43,
+"r": 44,
+"t": -114,
+"b": -21,
+"w": 88,
+"h": 94
+},
+"spr_apple_duck_mouse_helmet": {
+"l": -42,
+"r": 42,
+"t": -87,
+"b": -17,
+"w": 85,
+"h": 71
+},
+"spr_apple_duck_mouse_land": {
+"l": -43,
+"r": 44,
+"t": -106,
+"b": -21,
+"w": 88,
+"h": 86
+},
+"spr_apple_duck_mouse_land_helmet": {
+"l": -43,
+"r": 44,
+"t": -114,
+"b": -21,
+"w": 88,
+"h": 94
+},
+"spr_apple_football_fan_mouse": {
+"l": -35,
+"r": 51,
+"t": -105,
+"b": -20,
+"w": 87,
+"h": 86
+},
+"spr_apple_football_fan_mouse_helmet": {
+"l": -35,
+"r": 51,
+"t": -113,
+"b": -20,
+"w": 87,
+"h": 94
+},
+"spr_arno_death": {
+"l": -95,
+"r": 56,
+"t": -143,
+"b": -9,
+"w": 152,
+"h": 135
+},
+"spr_arno_idle": {
+"l": -65,
+"r": 88,
+"t": -168,
+"b": -7,
+"w": 154,
+"h": 162
+},
+"spr_arno_skill_1": {
+"l": -95,
+"r": 60,
+"t": -143,
+"b": -9,
+"w": 156,
+"h": 135
+},
+"spr_arson_mouse": {
+"l": -49,
+"r": 22,
+"t": -110,
+"b": -17,
+"w": 72,
+"h": 94
+},
+"spr_arson_mouse_bomb": {
+"l": -49,
+"r": 22,
+"t": -110,
+"b": -17,
+"w": 72,
+"h": 94
+},
+"spr_arson_mouse_ready": {
+"l": -49,
+"r": 12,
+"t": -109,
+"b": -17,
+"w": 62,
+"h": 93
+},
+"spr_arson_mouse_throw": {
+"l": -47,
+"r": 14,
+"t": -109,
+"b": -17,
+"w": 62,
+"h": 93
+},
+"spr_assault_mouse": {
+"l": -44,
+"r": 44,
+"t": -86,
+"b": -26,
+"w": 89,
+"h": 61
+},
+"spr_assault_mouse_helmet": {
+"l": -43,
+"r": 44,
+"t": -101,
+"b": -27,
+"w": 88,
+"h": 75
+},
+"spr_assault_mouse_land": {
+"l": -42,
+"r": 44,
+"t": -111,
+"b": -25,
+"w": 87,
+"h": 87
+},
+"spr_assault_mouse_land_helmet": {
+"l": -42,
+"r": 45,
+"t": -126,
+"b": -25,
+"w": 88,
+"h": 102
+},
+"spr_barrel_mouse": {
+"l": -41,
+"r": 35,
+"t": -107,
+"b": -19,
+"w": 77,
+"h": 89
+},
+"spr_barrel_mouse_act": {
+"l": -45,
+"r": 33,
+"t": -105,
+"b": -19,
+"w": 79,
+"h": 87
+},
+"spr_barrel_mouse_return": {
+"l": -26,
+"r": 29,
+"t": -81,
+"b": -20,
+"w": 56,
+"h": 62
+},
+"spr_bat_mouse": {
+"l": -53,
+"r": 41,
+"t": -82,
+"b": -7,
+"w": 95,
+"h": 76
+},
+"spr_beverage_machine_death": {
+"l": -90,
+"r": 118,
+"t": -262,
+"b": -14,
+"w": 209,
+"h": 249
+},
+"spr_beverage_machine_idle": {
+"l": -90,
+"r": 118,
+"t": -262,
+"b": -14,
+"w": 209,
+"h": 249
+},
+"spr_blonde_mary_death": {
+"l": -98,
+"r": 105,
+"t": -132,
+"b": 21,
+"w": 204,
+"h": 154
+},
+"spr_blonde_mary_idle": {
+"l": -76,
+"r": 82,
+"t": -131,
+"b": -13,
+"w": 159,
+"h": 119
+},
+"spr_butterfly_mouse": {
+"l": -42,
+"r": 34,
+"t": -82,
+"b": -10,
+"w": 77,
+"h": 73
+},
+"spr_butterfly_mouse_enter": {
+"l": -42,
+"r": 34,
+"t": -106,
+"b": -16,
+"w": 77,
+"h": 91
+},
+"spr_butterfly_mouse_enter_shield": {
+"l": -45,
+"r": 34,
+"t": -106,
+"b": -20,
+"w": 80,
+"h": 87
+},
+"spr_butterfly_mouse_land": {
+"l": -42,
+"r": 34,
+"t": -106,
+"b": -20,
+"w": 77,
+"h": 87
+},
+"spr_butterfly_mouse_land_shield": {
+"l": -45,
+"r": 34,
+"t": -105,
+"b": -19,
+"w": 80,
+"h": 87
+},
+"spr_butterfly_mouse_shield": {
+"l": -45,
+"r": 34,
+"t": -82,
+"b": -10,
+"w": 80,
+"h": 73
+},
+"spr_can": {
+"l": -36,
+"r": 36,
+"t": -42,
+"b": 42,
+"w": 73,
+"h": 85
+},
+"spr_can_mouse": {
+"l": -42,
+"r": 18,
+"t": -100,
+"b": -16,
+"w": 61,
+"h": 85
+},
+"spr_can_mouse_drop": {
+"l": -37,
+"r": 40,
+"t": -127,
+"b": -42,
+"w": 78,
+"h": 86
+},
+"spr_can_mouse_with_can": {
+"l": -46,
+"r": 40,
+"t": -126,
+"b": -16,
+"w": 87,
+"h": 111
+},
+"spr_captain_america_mouse_death": {
+"l": -101,
+"r": 105,
+"t": -189,
+"b": -15,
+"w": 207,
+"h": 175
+},
+"spr_captain_america_mouse_idle": {
+"l": -101,
+"r": 105,
+"t": -196,
+"b": -15,
+"w": 207,
+"h": 182
+},
+"spr_caribbean_mouse": {
+"l": -49,
+"r": 41,
+"t": -136,
+"b": -11,
+"w": 91,
+"h": 126
+},
+"spr_carpet_mouse": {
+"l": -37,
+"r": 34,
+"t": -100,
+"b": -11,
+"w": 72,
+"h": 90
+},
+"spr_carpet_mouse_air": {
+"l": -45,
+"r": 45,
+"t": -146,
+"b": -14,
+"w": 91,
+"h": 133
+},
+"spr_carpet_mouse_drop": {
+"l": -45,
+"r": 45,
+"t": -146,
+"b": -14,
+"w": 91,
+"h": 133
+},
+"spr_charge_spring_mouse": {
+"l": -42,
+"r": 21,
+"t": -99,
+"b": -15,
+"w": 64,
+"h": 85
+},
+"spr_charge_spring_mouse_place": {
+"l": -41,
+"r": 31,
+"t": -104,
+"b": -14,
+"w": 73,
+"h": 91
+},
+"spr_charge_spring_mouse_shield": {
+"l": -41,
+"r": 31,
+"t": -104,
+"b": -15,
+"w": 73,
+"h": 90
+},
+"spr_clownfish_mouse": {
+"l": -43,
+"r": 30,
+"t": -101,
+"b": -14,
+"w": 74,
+"h": 88
+},
+"spr_clownfish_mouse_skate": {
+"l": -55,
+"r": 35,
+"t": -109,
+"b": -18,
+"w": 91,
+"h": 92
+},
+"spr_conch_mouse": {
+"l": -68,
+"r": 28,
+"t": -128,
+"b": -17,
+"w": 97,
+"h": 112
+},
+"spr_conch_mouse_act": {
+"l": -68,
+"r": 28,
+"t": -128,
+"b": -17,
+"w": 97,
+"h": 112
+},
+"spr_conch_mouse_ready": {
+"l": -68,
+"r": 28,
+"t": -128,
+"b": -17,
+"w": 97,
+"h": 112
+},
+"spr_cucumber_normal_mouse": {
+"l": -43,
+"r": 30,
+"t": -101,
+"b": -15,
+"w": 74,
+"h": 87
+},
+"spr_cucumber_paper_boat_mouse": {
+"l": -44,
+"r": 19,
+"t": -75,
+"b": -16,
+"w": 64,
+"h": 60
+},
+"spr_cucumber_paper_boat_mouse_enter": {
+"l": -44,
+"r": 29,
+"t": -105,
+"b": -20,
+"w": 74,
+"h": 86
+},
+"spr_cucumber_paper_boat_mouse_land": {
+"l": -44,
+"r": 29,
+"t": -105,
+"b": -20,
+"w": 74,
+"h": 86
+},
+"spr_dentist_mouse": {
+"l": -33,
+"r": 37,
+"t": -114,
+"b": -14,
+"w": 71,
+"h": 101
+},
+"spr_dentist_mouse_dig": {
+"l": -48,
+"r": 34,
+"t": -51,
+"b": -13,
+"w": 83,
+"h": 39
+},
+"spr_dentist_mouse_stun": {
+"l": -33,
+"r": 36,
+"t": -114,
+"b": -13,
+"w": 70,
+"h": 102
+},
+"spr_diver_mouse": {
+"l": -55,
+"r": 3,
+"t": -45,
+"b": -12,
+"w": 59,
+"h": 34
+},
+"spr_diver_mouse_enter": {
+"l": -54,
+"r": 39,
+"t": -101,
+"b": -20,
+"w": 94,
+"h": 82
+},
+"spr_diver_mouse_land": {
+"l": -53,
+"r": 43,
+"t": -105,
+"b": -18,
+"w": 97,
+"h": 88
+},
+"spr_diver_mouse_up": {
+"l": -55,
+"r": 7,
+"t": -49,
+"b": -12,
+"w": 63,
+"h": 38
+},
+"spr_dragon_boat_mouse": {
+"l": -139,
+"r": 127,
+"t": -128,
+"b": -6,
+"w": 267,
+"h": 123
+},
+"spr_duck_mouse": {
+"l": -43,
+"r": 44,
+"t": -76,
+"b": -16,
+"w": 88,
+"h": 61
+},
+"spr_duck_mouse_enter": {
+"l": -43,
+"r": 43,
+"t": -106,
+"b": -20,
+"w": 87,
+"h": 87
+},
+"spr_duck_mouse_enter_helmet": {
+"l": -43,
+"r": 44,
+"t": -114,
+"b": -21,
+"w": 88,
+"h": 94
+},
+"spr_duck_mouse_helmet": {
+"l": -42,
+"r": 42,
+"t": -87,
+"b": -17,
+"w": 85,
+"h": 71
+},
+"spr_duck_mouse_land": {
+"l": -43,
+"r": 44,
+"t": -106,
+"b": -21,
+"w": 88,
+"h": 86
+},
+"spr_duck_mouse_land_helmet": {
+"l": -43,
+"r": 44,
+"t": -114,
+"b": -21,
+"w": 88,
+"h": 94
+},
+"spr_eel_mouse": {
+"l": -51,
+"r": 72,
+"t": -98,
+"b": -26,
+"w": 124,
+"h": 73
+},
+"spr_eel_mouse_bomb": {
+"l": -51,
+"r": 72,
+"t": -98,
+"b": -21,
+"w": 124,
+"h": 78
+},
+"spr_egg_iron_pan_mouse": {
+"l": -44,
+"r": 17,
+"t": -98,
+"b": -13,
+"w": 62,
+"h": 86
+},
+"spr_egg_iron_pan_mouse_helmet": {
+"l": -56,
+"r": 17,
+"t": -102,
+"b": -12,
+"w": 74,
+"h": 91
+},
+"spr_egg_tropical_fish_mouse": {
+"l": -43,
+"r": 30,
+"t": -78,
+"b": -19,
+"w": 74,
+"h": 60
+},
+"spr_egg_tropical_fish_mouse_enter": {
+"l": -44,
+"r": 30,
+"t": -108,
+"b": -24,
+"w": 75,
+"h": 85
+},
+"spr_egg_tropical_fish_mouse_enter_helmet": {
+"l": -56,
+"r": 31,
+"t": -114,
+"b": -24,
+"w": 88,
+"h": 91
+},
+"spr_egg_tropical_fish_mouse_helmet": {
+"l": -54,
+"r": 31,
+"t": -87,
+"b": -19,
+"w": 86,
+"h": 69
+},
+"spr_egg_tropical_fish_mouse_land": {
+"l": -43,
+"r": 30,
+"t": -109,
+"b": -24,
+"w": 74,
+"h": 86
+},
+"spr_egg_tropical_fish_mouse_land_helmet": {
+"l": -56,
+"r": 31,
+"t": -113,
+"b": -23,
+"w": 88,
+"h": 91
+},
+"spr_electric_jellyfish_death": {
+"l": -125,
+"r": 132,
+"t": -291,
+"b": -27,
+"w": 258,
+"h": 265
+},
+"spr_electric_jellyfish_idle": {
+"l": -123,
+"r": 133,
+"t": -290,
+"b": -11,
+"w": 257,
+"h": 280
+},
+"spr_electric_jellyfish_move": {
+"l": -120,
+"r": 138,
+"t": -287,
+"b": -15,
+"w": 259,
+"h": 273
+},
+"spr_electric_jellyfish_move_fast": {
+"l": -120,
+"r": 138,
+"t": -287,
+"b": -15,
+"w": 259,
+"h": 273
+},
+"spr_engineering_vehicle_mouse": {
+"l": -29,
+"r": 62,
+"t": -115,
+"b": -13,
+"w": 92,
+"h": 103
+},
+"spr_engineering_vehicle_mouse_move": {
+"l": -29,
+"r": 62,
+"t": -115,
+"b": -13,
+"w": 92,
+"h": 103
+},
+"spr_explore_mouse": {
+"l": -34,
+"r": 39,
+"t": -105,
+"b": -17,
+"w": 74,
+"h": 89
+},
+"spr_explore_mouse_armor": {
+"l": -23,
+"r": 31,
+"t": -20,
+"b": 16,
+"w": 55,
+"h": 37
+},
+"spr_explore_mouse_helmet": {
+"l": -34,
+"r": 39,
+"t": -111,
+"b": -17,
+"w": 74,
+"h": 95
+},
+"spr_fire_residue_ball": {
+"l": -22,
+"r": 21,
+"t": -114,
+"b": -72,
+"w": 44,
+"h": 43
+},
+"spr_flagship_mouse": {
+"l": -146,
+"r": 159,
+"t": -168,
+"b": -8,
+"w": 306,
+"h": 161
+},
+"spr_flight_barrier_mouse_air": {
+"l": -74,
+"r": 36,
+"t": -136,
+"b": -17,
+"w": 111,
+"h": 120
+},
+"spr_flight_barrier_mouse_drop": {
+"l": -74,
+"r": 36,
+"t": -136,
+"b": -42,
+"w": 111,
+"h": 95
+},
+"spr_flight_barrier_mouse_land": {
+"l": -33,
+"r": 20,
+"t": -98,
+"b": -17,
+"w": 54,
+"h": 82
+},
+"spr_flute_mouse": {
+"l": -42,
+"r": 20,
+"t": -109,
+"b": -16,
+"w": 63,
+"h": 94
+},
+"spr_flute_mouse_perform": {
+"l": -42,
+"r": 20,
+"t": -109,
+"b": -16,
+"w": 63,
+"h": 94
+},
+"spr_fog_julie_death": {
+"l": -111,
+"r": 128,
+"t": -157,
+"b": -47,
+"w": 240,
+"h": 111
+},
+"spr_fog_julie_idle": {
+"l": -111,
+"r": 128,
+"t": -157,
+"b": -49,
+"w": 240,
+"h": 109
+},
+"spr_football_fan_mouse": {
+"l": -40,
+"r": 46,
+"t": -104,
+"b": -19,
+"w": 87,
+"h": 86
+},
+"spr_football_fan_mouse_helmet": {
+"l": -40,
+"r": 46,
+"t": -112,
+"b": -19,
+"w": 87,
+"h": 94
+},
+"spr_football_helmet": {
+"l": -20,
+"r": 22,
+"t": -14,
+"b": 12,
+"w": 43,
+"h": 27
+},
+"spr_frog_prince_mouse": {
+"l": -40,
+"r": 24,
+"t": -61,
+"b": -17,
+"w": 65,
+"h": 45
+},
+"spr_frog_prince_mouse_enter": {
+"l": -34,
+"r": 40,
+"t": -110,
+"b": -7,
+"w": 75,
+"h": 104
+},
+"spr_frog_prince_mouse_frog": {
+"l": -36,
+"r": 38,
+"t": -83,
+"b": -20,
+"w": 75,
+"h": 64
+},
+"spr_frog_prince_mouse_land": {
+"l": -40,
+"r": 28,
+"t": -90,
+"b": -7,
+"w": 69,
+"h": 84
+},
+"spr_gaoqiao_move": {
+"l": -36,
+"r": 33,
+"t": -135,
+"b": -17,
+"w": 70,
+"h": 119
+},
+"spr_garbage_track_mouse": {
+"l": -45,
+"r": 129,
+"t": -100,
+"b": -13,
+"w": 175,
+"h": 88
+},
+"spr_ghost_mouse": {
+"l": -42,
+"r": 30,
+"t": -90,
+"b": -16,
+"w": 73,
+"h": 75
+},
+"spr_giant_mouse": {
+"l": -57,
+"r": 34,
+"t": -143,
+"b": -9,
+"w": 92,
+"h": 135
+},
+"spr_glider_mouse_air": {
+"l": -74,
+"r": 36,
+"t": -136,
+"b": -42,
+"w": 111,
+"h": 95
+},
+"spr_glider_mouse_drop": {
+"l": -74,
+"r": 36,
+"t": -136,
+"b": -42,
+"w": 111,
+"h": 95
+},
+"spr_glider_mouse_land": {
+"l": -33,
+"r": 20,
+"t": -98,
+"b": -17,
+"w": 54,
+"h": 82
+},
+"spr_hazelnut_cannon_mouse": {
+"l": -34,
+"r": 64,
+"t": -118,
+"b": -11,
+"w": 99,
+"h": 108
+},
+"spr_hazelnut_cannon_mouse_move": {
+"l": -34,
+"r": 64,
+"t": -118,
+"b": -11,
+"w": 99,
+"h": 108
+},
+"spr_hells_messenger_death": {
+"l": -81,
+"r": 71,
+"t": -139,
+"b": -9,
+"w": 153,
+"h": 131
+},
+"spr_hells_messenger_idle": {
+"l": -76,
+"r": 74,
+"t": -195,
+"b": -9,
+"w": 151,
+"h": 187
+},
+"spr_hercules_death": {
+"l": -63,
+"r": 210,
+"t": -185,
+"b": -16,
+"w": 274,
+"h": 170
+},
+"spr_hercules_idle": {
+"l": -62,
+"r": 210,
+"t": -187,
+"b": -16,
+"w": 273,
+"h": 172
+},
+"spr_honglonglong_death": {
+"l": -96,
+"r": 80,
+"t": -189,
+"b": -9,
+"w": 177,
+"h": 181
+},
+"spr_honglonglong_drop": {
+"l": -96,
+"r": 74,
+"t": -237,
+"b": -23,
+"w": 171,
+"h": 215
+},
+"spr_honglonglong_idle": {
+"l": -96,
+"r": 74,
+"t": -174,
+"b": -8,
+"w": 171,
+"h": 167
+},
+"spr_honglonglong_launch": {
+"l": -96,
+"r": 74,
+"t": -171,
+"b": -8,
+"w": 171,
+"h": 164
+},
+"spr_honglonglong_move_backword": {
+"l": -102,
+"r": 74,
+"t": -237,
+"b": -24,
+"w": 177,
+"h": 214
+},
+"spr_honglonglong_move_forward": {
+"l": -96,
+"r": 88,
+"t": -237,
+"b": -28,
+"w": 185,
+"h": 210
+},
+"spr_hot_vajra_death": {
+"l": -131,
+"r": 192,
+"t": -293,
+"b": -6,
+"w": 324,
+"h": 288
+},
+"spr_hot_vajra_idle": {
+"l": -131,
+"r": 192,
+"t": -293,
+"b": -6,
+"w": 324,
+"h": 288
+},
+"spr_huang_xiaoming_death": {
+"l": -83,
+"r": 78,
+"t": -221,
+"b": 10,
+"w": 162,
+"h": 232
+},
+"spr_huang_xiaoming_idle": {
+"l": -83,
+"r": 78,
+"t": -221,
+"b": 10,
+"w": 162,
+"h": 232
+},
+"spr_hulk_mouse_death": {
+"l": -140,
+"r": 86,
+"t": -278,
+"b": -7,
+"w": 227,
+"h": 272
+},
+"spr_hulk_mouse_idle": {
+"l": -141,
+"r": 126,
+"t": -294,
+"b": -10,
+"w": 268,
+"h": 285
+},
+"spr_hulk_mouse_move_fast": {
+"l": -142,
+"r": 126,
+"t": -294,
+"b": -10,
+"w": 269,
+"h": 285
+},
+"spr_hulk_mouse_move_slow": {
+"l": -141,
+"r": 126,
+"t": -294,
+"b": -10,
+"w": 268,
+"h": 285
+},
+"spr_ice_residue_ball": {
+"l": -21,
+"r": 22,
+"t": -112,
+"b": -70,
+"w": 44,
+"h": 43
+},
+"spr_ice_residue_bullet": {
+"l": -16,
+"r": 39,
+"t": -18,
+"b": 14,
+"w": 56,
+"h": 33
+},
+"spr_ice_residue_disappear": {
+"l": -66,
+"r": 33,
+"t": -129,
+"b": -7,
+"w": 100,
+"h": 123
+},
+"spr_infected_arno_death": {
+"l": -81,
+"r": 72,
+"t": -114,
+"b": 22,
+"w": 154,
+"h": 137
+},
+"spr_infected_arno_idle": {
+"l": -57,
+"r": 93,
+"t": -149,
+"b": 12,
+"w": 151,
+"h": 162
+},
+"spr_infected_bingzha_ball": {
+"l": -13,
+"r": 31,
+"t": -119,
+"b": -76,
+"w": 45,
+"h": 44
+},
+"spr_infected_bingzha_bullet": {
+"l": -18,
+"r": 38,
+"t": -18,
+"b": 14,
+"w": 57,
+"h": 33
+},
+"spr_infected_bingzha_disappear": {
+"l": -63,
+"r": 35,
+"t": -138,
+"b": -18,
+"w": 99,
+"h": 121
+},
+"spr_infected_bingzha_fire_ball": {
+"l": -12,
+"r": 31,
+"t": -118,
+"b": -75,
+"w": 44,
+"h": 44
+},
+"spr_infected_diver_mouse": {
+"l": -49,
+"r": 9,
+"t": -33,
+"b": 0,
+"w": 59,
+"h": 34
+},
+"spr_infected_diver_mouse_enter": {
+"l": -48,
+"r": 49,
+"t": -90,
+"b": -8,
+"w": 98,
+"h": 83
+},
+"spr_infected_diver_mouse_land": {
+"l": -53,
+"r": 48,
+"t": -188,
+"b": -101,
+"w": 102,
+"h": 88
+},
+"spr_infected_diver_mouse_up": {
+"l": -50,
+"r": 10,
+"t": -34,
+"b": -1,
+"w": 61,
+"h": 34
+},
+"spr_infected_duck_mouse": {
+"l": -52,
+"r": 33,
+"t": -105,
+"b": -43,
+"w": 86,
+"h": 63
+},
+"spr_infected_duck_mouse_enter": {
+"l": -82,
+"r": -19,
+"t": -155,
+"b": -92,
+"w": 64,
+"h": 64
+},
+"spr_infected_duck_mouse_enter_helmet": {
+"l": -60,
+"r": 32,
+"t": -126,
+"b": -44,
+"w": 93,
+"h": 83
+},
+"spr_infected_duck_mouse_helmet": {
+"l": -47,
+"r": 51,
+"t": -60,
+"b": -1,
+"w": 99,
+"h": 60
+},
+"spr_infected_duck_mouse_land": {
+"l": -45,
+"r": 49,
+"t": -77,
+"b": 0,
+"w": 95,
+"h": 78
+},
+"spr_infected_duck_mouse_land_helmet": {
+"l": -66,
+"r": 32,
+"t": -121,
+"b": -43,
+"w": 99,
+"h": 79
+},
+"spr_infected_football_fan_mouse": {
+"l": -46,
+"r": 48,
+"t": -74,
+"b": 3,
+"w": 95,
+"h": 78
+},
+"spr_infected_football_fan_mouse_helmet": {
+"l": -49,
+"r": 49,
+"t": -77,
+"b": 1,
+"w": 99,
+"h": 79
+},
+"spr_infected_frog_prince_mouse": {
+"l": -37,
+"r": 27,
+"t": -43,
+"b": -2,
+"w": 65,
+"h": 42
+},
+"spr_infected_frog_prince_mouse_frog": {
+"l": -35,
+"r": 39,
+"t": -149,
+"b": -90,
+"w": 75,
+"h": 60
+},
+"spr_infected_frog_prince_mouse_land": {
+"l": -35,
+"r": 32,
+"t": -72,
+"b": 4,
+"w": 68,
+"h": 77
+},
+"spr_infected_iron_pan_mouse": {
+"l": -45,
+"r": 21,
+"t": -76,
+"b": 2,
+"w": 67,
+"h": 79
+},
+"spr_infected_iron_pan_mouse_helmet": {
+"l": -70,
+"r": 6,
+"t": -94,
+"b": -14,
+"w": 77,
+"h": 81
+},
+"spr_infected_kangaroo_drop": {
+"l": -33,
+"r": 61,
+"t": -95,
+"b": 2,
+"w": 95,
+"h": 98
+},
+"spr_infected_kangaroo_dropped": {
+"l": -34,
+"r": 57,
+"t": -84,
+"b": 2,
+"w": 92,
+"h": 87
+},
+"spr_infected_landlady_mouse": {
+"l": -52,
+"r": 21,
+"t": -78,
+"b": 2,
+"w": 74,
+"h": 81
+},
+"spr_infected_landlady_mouse_shield": {
+"l": -52,
+"r": 21,
+"t": -79,
+"b": 1,
+"w": 74,
+"h": 81
+},
+"spr_infected_little_panda": {
+"l": -31,
+"r": 15,
+"t": -68,
+"b": 1,
+"w": 47,
+"h": 70
+},
+"spr_infected_little_panda_throw": {
+"l": -32,
+"r": 15,
+"t": -71,
+"b": -5,
+"w": 48,
+"h": 67
+},
+"spr_infected_mario_mouse_dig_down": {
+"l": -55,
+"r": 53,
+"t": -110,
+"b": 1,
+"w": 109,
+"h": 112
+},
+"spr_infected_mario_mouse_idle": {
+"l": -49,
+"r": 58,
+"t": -104,
+"b": 2,
+"w": 108,
+"h": 107
+},
+"spr_infected_mario_pipeline_land": {
+"l": -62,
+"r": 31,
+"t": -72,
+"b": 5,
+"w": 94,
+"h": 78
+},
+"spr_infected_mario_pipeline_water": {
+"l": -58,
+"r": 44,
+"t": -69,
+"b": 17,
+"w": 103,
+"h": 87
+},
+"spr_infected_panda_mouse": {
+"l": -62,
+"r": 28,
+"t": -127,
+"b": 6,
+"w": 91,
+"h": 134
+},
+"spr_infected_panda_mouse_throw": {
+"l": -55,
+"r": 40,
+"t": -157,
+"b": 7,
+"w": 96,
+"h": 165
+},
+"spr_infected_paper_boat_mouse": {
+"l": -40,
+"r": 29,
+"t": -58,
+"b": -1,
+"w": 70,
+"h": 58
+},
+"spr_infected_paper_boat_mouse_enter": {
+"l": -44,
+"r": 25,
+"t": -76,
+"b": 2,
+"w": 70,
+"h": 79
+},
+"spr_infected_paper_boat_mouse_land": {
+"l": -44,
+"r": 25,
+"t": -76,
+"b": 2,
+"w": 70,
+"h": 79
+},
+"spr_infected_pharaoh_death": {
+"l": -52,
+"r": 23,
+"t": -147,
+"b": -3,
+"w": 76,
+"h": 145
+},
+"spr_infected_pharaoh_idle": {
+"l": -62,
+"r": 12,
+"t": -138,
+"b": 6,
+"w": 75,
+"h": 145
+},
+"spr_infected_roller_skating_mouse": {
+"l": -40,
+"r": 31,
+"t": -84,
+"b": 5,
+"w": 72,
+"h": 90
+},
+"spr_infected_roller_skating_mouse_helmet": {
+"l": -43,
+"r": 30,
+"t": -77,
+"b": 5,
+"w": 74,
+"h": 83
+},
+"spr_infected_skateboard_mouse": {
+"l": -37,
+"r": 41,
+"t": -75,
+"b": 3,
+"w": 79,
+"h": 79
+},
+"spr_infected_submarine_mouse": {
+"l": -60,
+"r": 66,
+"t": -65,
+"b": 4,
+"w": 127,
+"h": 70
+},
+"spr_infected_submarine_mouse_enter": {
+"l": -70,
+"r": 57,
+"t": -153,
+"b": 1,
+"w": 128,
+"h": 155
+},
+"spr_infected_submarine_mouse_land": {
+"l": -69,
+"r": 58,
+"t": -141,
+"b": 8,
+"w": 128,
+"h": 150
+},
+"spr_infected_tropical_fish_mouse": {
+"l": -32,
+"r": 45,
+"t": -61,
+"b": 1,
+"w": 78,
+"h": 63
+},
+"spr_infected_tropical_fish_mouse_enter": {
+"l": -39,
+"r": 39,
+"t": -77,
+"b": 2,
+"w": 79,
+"h": 80
+},
+"spr_infected_tropical_fish_mouse_enter_helmet": {
+"l": -55,
+"r": 38,
+"t": -78,
+"b": 2,
+"w": 94,
+"h": 81
+},
+"spr_infected_tropical_fish_mouse_helmet": {
+"l": -48,
+"r": 43,
+"t": -59,
+"b": 0,
+"w": 92,
+"h": 60
+},
+"spr_infected_tropical_fish_mouse_land": {
+"l": -46,
+"r": 37,
+"t": -75,
+"b": 2,
+"w": 84,
+"h": 78
+},
+"spr_infected_tropical_fish_mouse_land_helmet": {
+"l": -54,
+"r": 38,
+"t": -77,
+"b": 1,
+"w": 93,
+"h": 79
+},
+"spr_infected_zhanshen_death": {
+"l": -55,
+"r": 115,
+"t": -187,
+"b": -20,
+"w": 171,
+"h": 168
+},
+"spr_infected_zhanshen_idle": {
+"l": -58,
+"r": 115,
+"t": -186,
+"b": -22,
+"w": 174,
+"h": 165
+},
+"spr_iron_diver_helmet": {
+"l": -24,
+"r": 25,
+"t": -29,
+"b": 24,
+"w": 50,
+"h": 54
+},
+"spr_iron_diver_mouse": {
+"l": -57,
+"r": 37,
+"t": -103,
+"b": -4,
+"w": 95,
+"h": 100
+},
+"spr_iron_diver_mouse_helmet": {
+"l": -64,
+"r": 37,
+"t": -110,
+"b": -4,
+"w": 102,
+"h": 107
+},
+"spr_iron_man_mouse_death": {
+"l": -147,
+"r": 125,
+"t": -193,
+"b": 46,
+"w": 273,
+"h": 240
+},
+"spr_iron_man_mouse_death2": {
+"l": -51,
+"r": 41,
+"t": -178,
+"b": -15,
+"w": 93,
+"h": 164
+},
+"spr_iron_man_mouse_drop": {
+"l": -56,
+"r": 85,
+"t": -227,
+"b": -26,
+"w": 142,
+"h": 202
+},
+"spr_iron_man_mouse_idle": {
+"l": -62,
+"r": 72,
+"t": -208,
+"b": -15,
+"w": 135,
+"h": 194
+},
+"spr_iron_man_mouse_launch": {
+"l": -62,
+"r": 72,
+"t": -208,
+"b": -15,
+"w": 135,
+"h": 194
+},
+"spr_iron_man_mouse_move": {
+"l": -90,
+"r": 101,
+"t": -214,
+"b": 38,
+"w": 192,
+"h": 253
+},
+"spr_iron_pan_mouse": {
+"l": -42,
+"r": 18,
+"t": -100,
+"b": -15,
+"w": 61,
+"h": 86
+},
+"spr_iron_pan_mouse_helmet": {
+"l": -55,
+"r": 18,
+"t": -104,
+"b": -14,
+"w": 74,
+"h": 91
+},
+"spr_irritable_jack_death": {
+"l": -78,
+"r": 68,
+"t": -181,
+"b": -18,
+"w": 147,
+"h": 164
+},
+"spr_irritable_jack_idle": {
+"l": -78,
+"r": 68,
+"t": -192,
+"b": -18,
+"w": 147,
+"h": 175
+},
+"spr_jet_mouse": {
+"l": -46,
+"r": 40,
+"t": -109,
+"b": -13,
+"w": 87,
+"h": 97
+},
+"spr_kamikaze_glider_mouse_air": {
+"l": -51,
+"r": 72,
+"t": -165,
+"b": -35,
+"w": 124,
+"h": 131
+},
+"spr_kamikaze_glider_mouse_drop": {
+"l": -66,
+"r": 87,
+"t": -187,
+"b": -38,
+"w": 154,
+"h": 150
+},
+"spr_kamikaze_glider_mouse_land": {
+"l": -50,
+"r": 74,
+"t": -127,
+"b": -32,
+"w": 125,
+"h": 96
+},
+"spr_kangaroo": {
+"l": -46,
+"r": 40,
+"t": -111,
+"b": -15,
+"w": 87,
+"h": 97
+},
+"spr_kf_zr_arson": {
+"l": -46,
+"r": 18,
+"t": -112,
+"b": -17,
+"w": 65,
+"h": 96
+},
+"spr_kf_zr_arson_ready": {
+"l": -41,
+"r": 19,
+"t": -116,
+"b": -17,
+"w": 61,
+"h": 100
+},
+"spr_kf_zr_arson_throw": {
+"l": -46,
+"r": 18,
+"t": -112,
+"b": -17,
+"w": 65,
+"h": 96
+},
+"spr_kf_zr_can": {
+"l": -43,
+"r": 19,
+"t": -94,
+"b": -16,
+"w": 63,
+"h": 79
+},
+"spr_kf_zr_can_drop": {
+"l": -30,
+"r": 42,
+"t": -124,
+"b": -43,
+"w": 73,
+"h": 82
+},
+"spr_kf_zr_can_withcan": {
+"l": -51,
+"r": 37,
+"t": -125,
+"b": -16,
+"w": 89,
+"h": 110
+},
+"spr_kf_zr_dentist": {
+"l": -41,
+"r": 46,
+"t": -108,
+"b": -14,
+"w": 88,
+"h": 95
+},
+"spr_kf_zr_dentist_dig": {
+"l": -56,
+"r": 26,
+"t": -52,
+"b": -14,
+"w": 83,
+"h": 39
+},
+"spr_kf_zr_dentist_stun": {
+"l": -41,
+"r": 43,
+"t": -108,
+"b": -14,
+"w": 85,
+"h": 95
+},
+"spr_kf_zr_flower": {
+"l": -45,
+"r": 20,
+"t": -112,
+"b": -15,
+"w": 66,
+"h": 98
+},
+"spr_kf_zr_flower_drop": {
+"l": -49,
+"r": 20,
+"t": -92,
+"b": -15,
+"w": 70,
+"h": 78
+},
+"spr_kf_zr_flower_shield": {
+"l": -50,
+"r": 20,
+"t": -92,
+"b": -15,
+"w": 71,
+"h": 78
+},
+"spr_kf_zr_magician": {
+"l": -58,
+"r": 60,
+"t": -150,
+"b": -13,
+"w": 119,
+"h": 138
+},
+"spr_kf_zr_mole": {
+"l": -40,
+"r": 44,
+"t": -98,
+"b": -14,
+"w": 85,
+"h": 85
+},
+"spr_kf_zr_mole_dig": {
+"l": -58,
+"r": 24,
+"t": -52,
+"b": -14,
+"w": 83,
+"h": 39
+},
+"spr_kf_zr_mole_stun": {
+"l": -40,
+"r": 41,
+"t": -98,
+"b": -14,
+"w": 82,
+"h": 85
+},
+"spr_kf_zr_naruto": {
+"l": -43,
+"r": 29,
+"t": -104,
+"b": -11,
+"w": 73,
+"h": 94
+},
+"spr_kf_zr_naruto_minion": {
+"l": -41,
+"r": 28,
+"t": -93,
+"b": -14,
+"w": 70,
+"h": 80
+},
+"spr_kf_zr_naruto_minion_summon": {
+"l": -44,
+"r": 21,
+"t": -80,
+"b": -16,
+"w": 66,
+"h": 65
+},
+"spr_kf_zr_naruto_summon": {
+"l": -53,
+"r": 29,
+"t": -97,
+"b": -13,
+"w": 83,
+"h": 85
+},
+"spr_kf_zr_nonmain": {
+"l": -38,
+"r": 48,
+"t": -100,
+"b": -11,
+"w": 87,
+"h": 90
+},
+"spr_kf_zr_penguin_enter": {
+"l": -44,
+"r": 22,
+"t": -101,
+"b": -15,
+"w": 67,
+"h": 87
+},
+"spr_kf_zr_penguin_land": {
+"l": -44,
+"r": 22,
+"t": -101,
+"b": -15,
+"w": 67,
+"h": 87
+},
+"spr_kf_zr_penguin_throw": {
+"l": -40,
+"r": 21,
+"t": -97,
+"b": -13,
+"w": 62,
+"h": 85
+},
+"spr_kf_zr_penguin_water": {
+"l": -44,
+"r": 22,
+"t": -101,
+"b": -15,
+"w": 67,
+"h": 87
+},
+"spr_kf_zr_sawblade": {
+"l": -39,
+"r": 45,
+"t": -120,
+"b": -12,
+"w": 85,
+"h": 109
+},
+"spr_kf_zr_sawblade_dig": {
+"l": -56,
+"r": 25,
+"t": -69,
+"b": -11,
+"w": 82,
+"h": 59
+},
+"spr_kf_zr_sawblade_stun": {
+"l": -40,
+"r": 43,
+"t": -119,
+"b": -11,
+"w": 84,
+"h": 109
+},
+"spr_kf_zr_warrior": {
+"l": -45,
+"r": 26,
+"t": -103,
+"b": -12,
+"w": 72,
+"h": 92
+},
+"spr_kf_zr_warrior_minion": {
+"l": -41,
+"r": 28,
+"t": -93,
+"b": -14,
+"w": 70,
+"h": 80
+},
+"spr_kf_zr_warrior_minion_summon": {
+"l": -44,
+"r": 21,
+"t": -80,
+"b": -16,
+"w": 66,
+"h": 65
+},
+"spr_kf_zr_warrior_summon": {
+"l": -54,
+"r": 26,
+"t": -94,
+"b": -13,
+"w": 81,
+"h": 82
+},
+"spr_kf_zrb_cap": {
+"l": -95,
+"r": 99,
+"t": -195,
+"b": -15,
+"w": 195,
+"h": 181
+},
+"spr_kf_zrb_cap_death": {
+"l": -101,
+"r": 105,
+"t": -198,
+"b": -15,
+"w": 207,
+"h": 184
+},
+"spr_kf_zrb_jack": {
+"l": -77,
+"r": 67,
+"t": -189,
+"b": -18,
+"w": 145,
+"h": 172
+},
+"spr_kf_zrb_jack_death": {
+"l": -77,
+"r": 67,
+"t": -180,
+"b": -18,
+"w": 145,
+"h": 163
+},
+"spr_kf_zrb_mary": {
+"l": -77,
+"r": 82,
+"t": -129,
+"b": -13,
+"w": 160,
+"h": 117
+},
+"spr_kf_zrb_mary_death": {
+"l": -83,
+"r": 90,
+"t": -127,
+"b": 21,
+"w": 174,
+"h": 149
+},
+"spr_kf_zrb_shi": {
+"l": -74,
+"r": 71,
+"t": -194,
+"b": -9,
+"w": 146,
+"h": 186
+},
+"spr_kf_zrb_shi_death": {
+"l": -80,
+"r": 70,
+"t": -138,
+"b": -9,
+"w": 151,
+"h": 130
+},
+"spr_kf_zrb_vajra": {
+"l": -128,
+"r": 189,
+"t": -292,
+"b": -6,
+"w": 318,
+"h": 287
+},
+"spr_kf_zrb_vajra_death": {
+"l": -128,
+"r": 189,
+"t": -292,
+"b": -6,
+"w": 318,
+"h": 287
+},
+"spr_kof_submarine_mouse": {
+"l": -83,
+"r": 62,
+"t": -131,
+"b": -2,
+"w": 146,
+"h": 130
+},
+"spr_kof_submarine_mouse_enter": {
+"l": -83,
+"r": 55,
+"t": -166,
+"b": -8,
+"w": 139,
+"h": 159
+},
+"spr_kof_submarine_mouse_land": {
+"l": -83,
+"r": 55,
+"t": -166,
+"b": -14,
+"w": 139,
+"h": 153
+},
+"spr_kuafu_airbrone_air": {
+"l": -130,
+"r": 42,
+"t": -153,
+"b": -34,
+"w": 173,
+"h": 120
+},
+"spr_kuafu_airbrone_drop": {
+"l": -130,
+"r": 42,
+"t": -154,
+"b": -39,
+"w": 173,
+"h": 116
+},
+"spr_kuafu_airbrone_land": {
+"l": -31,
+"r": 37,
+"t": -82,
+"b": -5,
+"w": 69,
+"h": 78
+},
+"spr_kuafu_armour": {
+"l": -53,
+"r": 43,
+"t": -178,
+"b": -11,
+"w": 97,
+"h": 168
+},
+"spr_kuafu_armour_empty": {
+"l": -54,
+"r": 41,
+"t": -179,
+"b": -11,
+"w": 96,
+"h": 169
+},
+"spr_kuafu_armour_throw": {
+"l": -56,
+"r": 41,
+"t": -175,
+"b": -10,
+"w": 98,
+"h": 166
+},
+"spr_kuafu_barrier_air": {
+"l": -73,
+"r": 35,
+"t": -113,
+"b": 1,
+"w": 109,
+"h": 115
+},
+"spr_kuafu_barrier_drop": {
+"l": -73,
+"r": 35,
+"t": -138,
+"b": -42,
+"w": 109,
+"h": 97
+},
+"spr_kuafu_barrier_land": {
+"l": -42,
+"r": 25,
+"t": -92,
+"b": -17,
+"w": 68,
+"h": 76
+},
+"spr_kuafu_bat": {
+"l": -52,
+"r": 41,
+"t": -83,
+"b": -7,
+"w": 94,
+"h": 77
+},
+"spr_kuafu_boss_baron_death": {
+"l": -126,
+"r": 117,
+"t": -139,
+"b": -8,
+"w": 244,
+"h": 132
+},
+"spr_kuafu_boss_baron_idle": {
+"l": -126,
+"r": 117,
+"t": -139,
+"b": -8,
+"w": 244,
+"h": 132
+},
+"spr_kuafu_boss_buzz_death": {
+"l": -77,
+"r": 99,
+"t": -190,
+"b": -40,
+"w": 177,
+"h": 151
+},
+"spr_kuafu_boss_buzz_idle": {
+"l": -77,
+"r": 99,
+"t": -191,
+"b": -40,
+"w": 177,
+"h": 152
+},
+"spr_kuafu_boss_buzz_para_air": {
+"l": -51,
+"r": 45,
+"t": -198,
+"b": -14,
+"w": 97,
+"h": 185
+},
+"spr_kuafu_boss_buzz_para_body": {
+"l": -31,
+"r": 30,
+"t": -99,
+"b": -16,
+"w": 62,
+"h": 84
+},
+"spr_kuafu_boss_julie_death": {
+"l": -110,
+"r": 128,
+"t": -173,
+"b": -47,
+"w": 239,
+"h": 127
+},
+"spr_kuafu_boss_julie_idle": {
+"l": -110,
+"r": 128,
+"t": -151,
+"b": -49,
+"w": 239,
+"h": 103
+},
+"spr_kuafu_boss_pete_death": {
+"l": -74,
+"r": 195,
+"t": -290,
+"b": -14,
+"w": 270,
+"h": 277
+},
+"spr_kuafu_boss_pete_idle": {
+"l": -74,
+"r": 195,
+"t": -290,
+"b": -14,
+"w": 270,
+"h": 277
+},
+"spr_kuafu_boss_xiaoming_card_2": {
+"l": -2,
+"r": 70,
+"t": -40,
+"b": 172,
+"w": 73,
+"h": 213
+},
+"spr_kuafu_boss_xiaoming_card_3": {
+"l": -2,
+"r": 70,
+"t": -39,
+"b": 172,
+"w": 73,
+"h": 212
+},
+"spr_kuafu_boss_xiaoming_death": {
+"l": -83,
+"r": 78,
+"t": -221,
+"b": 10,
+"w": 162,
+"h": 232
+},
+"spr_kuafu_boss_xiaoming_idle": {
+"l": -83,
+"r": 78,
+"t": -221,
+"b": 10,
+"w": 162,
+"h": 232
+},
+"spr_kuafu_boss_xiaoming_stomp": {
+"l": -81,
+"r": 77,
+"t": -80,
+"b": 78,
+"w": 159,
+"h": 159
+},
+"spr_kuafu_cucumber": {
+"l": -39,
+"r": 27,
+"t": -93,
+"b": -15,
+"w": 67,
+"h": 79
+},
+"spr_kuafu_flute": {
+"l": -41,
+"r": 20,
+"t": -105,
+"b": -14,
+"w": 62,
+"h": 92
+},
+"spr_kuafu_flute_perform": {
+"l": -40,
+"r": 19,
+"t": -110,
+"b": -15,
+"w": 60,
+"h": 96
+},
+"spr_kuafu_football_fan": {
+"l": -39,
+"r": 56,
+"t": -97,
+"b": -20,
+"w": 96,
+"h": 78
+},
+"spr_kuafu_football_fan_helmet": {
+"l": -40,
+"r": 58,
+"t": -99,
+"b": -20,
+"w": 99,
+"h": 80
+},
+"spr_kuafu_gift": {
+"l": -44,
+"r": 48,
+"t": -104,
+"b": -14,
+"w": 93,
+"h": 91
+},
+"spr_kuafu_glider_air": {
+"l": -73,
+"r": 35,
+"t": -138,
+"b": -42,
+"w": 109,
+"h": 97
+},
+"spr_kuafu_glider_drop": {
+"l": -73,
+"r": 35,
+"t": -138,
+"b": -42,
+"w": 109,
+"h": 97
+},
+"spr_kuafu_glider_land": {
+"l": -42,
+"r": 25,
+"t": -92,
+"b": -17,
+"w": 68,
+"h": 76
+},
+"spr_kuafu_hopper": {
+"l": -46,
+"r": 40,
+"t": -113,
+"b": -15,
+"w": 87,
+"h": 99
+},
+"spr_kuafu_iron_pan": {
+"l": -48,
+"r": 19,
+"t": -90,
+"b": -13,
+"w": 68,
+"h": 78
+},
+"spr_kuafu_iron_pan_helmet": {
+"l": -58,
+"r": 18,
+"t": -91,
+"b": -12,
+"w": 77,
+"h": 80
+},
+"spr_kuafu_jet": {
+"l": -46,
+"r": 40,
+"t": -110,
+"b": -13,
+"w": 87,
+"h": 98
+},
+"spr_kuafu_landlady": {
+"l": -42,
+"r": 30,
+"t": -92,
+"b": -12,
+"w": 73,
+"h": 81
+},
+"spr_kuafu_landlady_door": {
+"l": -36,
+"r": 36,
+"t": -81,
+"b": -1,
+"w": 73,
+"h": 81
+},
+"spr_kuafu_landlady_shield": {
+"l": -41,
+"r": 31,
+"t": -92,
+"b": -12,
+"w": 73,
+"h": 81
+},
+"spr_kuafu_little_armour": {
+"l": -33,
+"r": 12,
+"t": -79,
+"b": -10,
+"w": 46,
+"h": 70
+},
+"spr_kuafu_little_armour_throw": {
+"l": -35,
+"r": 10,
+"t": -79,
+"b": -19,
+"w": 46,
+"h": 61
+},
+"spr_kuafu_little_panda": {
+"l": -35,
+"r": 11,
+"t": -84,
+"b": -15,
+"w": 47,
+"h": 70
+},
+"spr_kuafu_little_panda_throw": {
+"l": -39,
+"r": 8,
+"t": -86,
+"b": -24,
+"w": 48,
+"h": 63
+},
+"spr_kuafu_little_wrestler": {
+"l": -34,
+"r": 11,
+"t": -83,
+"b": -15,
+"w": 46,
+"h": 69
+},
+"spr_kuafu_little_wrestler_throw": {
+"l": -37,
+"r": 8,
+"t": -84,
+"b": -24,
+"w": 46,
+"h": 61
+},
+"spr_kuafu_panda": {
+"l": -50,
+"r": 38,
+"t": -176,
+"b": -14,
+"w": 89,
+"h": 163
+},
+"spr_kuafu_panda_empty": {
+"l": -53,
+"r": 37,
+"t": -147,
+"b": -14,
+"w": 91,
+"h": 134
+},
+"spr_kuafu_panda_throw": {
+"l": -55,
+"r": 40,
+"t": -175,
+"b": -13,
+"w": 96,
+"h": 163
+},
+"spr_kuafu_paratrooper": {
+"l": -31,
+"r": 30,
+"t": -99,
+"b": -16,
+"w": 62,
+"h": 84
+},
+"spr_kuafu_paratrooper_air": {
+"l": -51,
+"r": 45,
+"t": -198,
+"b": -14,
+"w": 97,
+"h": 185
+},
+"spr_kuafu_pirate": {
+"l": -48,
+"r": 41,
+"t": -116,
+"b": -11,
+"w": 90,
+"h": 106
+},
+"spr_kuafu_rambo": {
+"l": -45,
+"r": 23,
+"t": -119,
+"b": -14,
+"w": 69,
+"h": 106
+},
+"spr_kuafu_skateboard": {
+"l": -47,
+"r": 32,
+"t": -92,
+"b": -13,
+"w": 80,
+"h": 80
+},
+"spr_kuafu_skateboard_skate": {
+"l": -48,
+"r": 31,
+"t": -108,
+"b": -13,
+"w": 80,
+"h": 96
+},
+"spr_kuafu_soar": {
+"l": -46,
+"r": 40,
+"t": -112,
+"b": -14,
+"w": 87,
+"h": 99
+},
+"spr_kuafu_waste_flying_air": {
+"l": -81,
+"r": 62,
+"t": -168,
+"b": -31,
+"w": 144,
+"h": 138
+},
+"spr_kuafu_waste_flying_drop": {
+"l": -81,
+"r": 62,
+"t": -168,
+"b": -32,
+"w": 144,
+"h": 137
+},
+"spr_kuafu_waste_flying_land": {
+"l": -31,
+"r": 56,
+"t": -97,
+"b": -14,
+"w": 88,
+"h": 84
+},
+"spr_kuafu_wrestler": {
+"l": -48,
+"r": 39,
+"t": -175,
+"b": -14,
+"w": 88,
+"h": 162
+},
+"spr_kuafu_wrestler_empty": {
+"l": -51,
+"r": 38,
+"t": -147,
+"b": -14,
+"w": 90,
+"h": 134
+},
+"spr_kuafu_wrestler_throw": {
+"l": -54,
+"r": 41,
+"t": -175,
+"b": -13,
+"w": 96,
+"h": 163
+},
+"spr_ladder_shield": {
+"l": -17,
+"r": 17,
+"t": -35,
+"b": 34,
+"w": 35,
+"h": 70
+},
+"spr_lambo_mouse": {
+"l": -44,
+"r": 23,
+"t": -140,
+"b": -14,
+"w": 68,
+"h": 127
+},
+"spr_landlady_mouse": {
+"l": -43,
+"r": 31,
+"t": -99,
+"b": -12,
+"w": 75,
+"h": 88
+},
+"spr_landlady_mouse_shield": {
+"l": -45,
+"r": 34,
+"t": -99,
+"b": -12,
+"w": 80,
+"h": 88
+},
+"spr_landlady_shield": {
+"l": -15,
+"r": 13,
+"t": -21,
+"b": 21,
+"w": 29,
+"h": 43
+},
+"spr_landmine_bullet": {
+"l": -13,
+"r": 20,
+"t": -13,
+"b": 10,
+"w": 34,
+"h": 24
+},
+"spr_landmine_vehicle_mouse": {
+"l": -38,
+"r": 70,
+"t": -119,
+"b": -12,
+"w": 109,
+"h": 108
+},
+"spr_landmine_vehicle_mouse_move": {
+"l": -38,
+"r": 70,
+"t": -119,
+"b": -12,
+"w": 109,
+"h": 108
+},
+"spr_lieutenant_buzz_death": {
+"l": -79,
+"r": 100,
+"t": -191,
+"b": -40,
+"w": 180,
+"h": 152
+},
+"spr_lieutenant_buzz_idle": {
+"l": -79,
+"r": 100,
+"t": -191,
+"b": -40,
+"w": 180,
+"h": 152
+},
+"spr_little_armour_mouse": {
+"l": -40,
+"r": 15,
+"t": -90,
+"b": -10,
+"w": 56,
+"h": 81
+},
+"spr_little_armour_mouse_throw": {
+"l": -43,
+"r": 12,
+"t": -81,
+"b": -19,
+"w": 56,
+"h": 63
+},
+"spr_little_magician": {
+"l": -42,
+"r": 14,
+"t": -90,
+"b": -15,
+"w": 57,
+"h": 76
+},
+"spr_little_magician_throw": {
+"l": -45,
+"r": 12,
+"t": -83,
+"b": -26,
+"w": 58,
+"h": 58
+},
+"spr_little_panda": {
+"l": -41,
+"r": 13,
+"t": -90,
+"b": -15,
+"w": 55,
+"h": 76
+},
+"spr_little_panda_throw": {
+"l": -45,
+"r": 10,
+"t": -84,
+"b": -24,
+"w": 56,
+"h": 61
+},
+"spr_little_undersea_panda_mouse": {
+"l": -31,
+"r": 11,
+"t": -82,
+"b": -10,
+"w": 43,
+"h": 73
+},
+"spr_little_undersea_panda_mouse_throw": {
+"l": -31,
+"r": 9,
+"t": -79,
+"b": -15,
+"w": 41,
+"h": 65
+},
+"spr_little_wrestler": {
+"l": -41,
+"r": 13,
+"t": -90,
+"b": -15,
+"w": 55,
+"h": 76
+},
+"spr_little_wrestler_throw": {
+"l": -45,
+"r": 10,
+"t": -84,
+"b": -24,
+"w": 56,
+"h": 61
+},
+"spr_lobster_knight_bubble_destroy": {
+"l": -51,
+"r": 51,
+"t": -97,
+"b": 5,
+"w": 103,
+"h": 103
+},
+"spr_lobster_knight_death": {
+"l": -112,
+"r": 207,
+"t": -306,
+"b": -28,
+"w": 320,
+"h": 279
+},
+"spr_lobster_knight_idle": {
+"l": -112,
+"r": 208,
+"t": -309,
+"b": -28,
+"w": 321,
+"h": 282
+},
+"spr_lobster_knight_move": {
+"l": -112,
+"r": 208,
+"t": -306,
+"b": -28,
+"w": 321,
+"h": 279
+},
+"spr_machine_bee": {
+"l": -39,
+"r": 35,
+"t": -101,
+"b": -32,
+"w": 75,
+"h": 70
+},
+"spr_machine_beehive_mouse": {
+"l": -52,
+"r": 52,
+"t": -159,
+"b": -16,
+"w": 105,
+"h": 144
+},
+"spr_machine_beehive_release_1": {
+"l": -52,
+"r": 51,
+"t": -159,
+"b": -17,
+"w": 104,
+"h": 143
+},
+"spr_machine_beehive_release_2": {
+"l": -52,
+"r": 51,
+"t": -159,
+"b": -17,
+"w": 104,
+"h": 143
+},
+"spr_machine_beehive_release_3": {
+"l": -52,
+"r": 51,
+"t": -159,
+"b": -17,
+"w": 104,
+"h": 143
+},
+"spr_machine_bomb_mouse_air": {
+"l": -52,
+"r": 41,
+"t": -140,
+"b": -35,
+"w": 94,
+"h": 106
+},
+"spr_machine_bomb_mouse_drop": {
+"l": -52,
+"r": 21,
+"t": -140,
+"b": -35,
+"w": 74,
+"h": 106
+},
+"spr_machine_bomb_mouse_land": {
+"l": -48,
+"r": 30,
+"t": -116,
+"b": -16,
+"w": 79,
+"h": 101
+},
+"spr_machine_flag_mouse_air": {
+"l": -52,
+"r": 48,
+"t": -157,
+"b": -35,
+"w": 101,
+"h": 123
+},
+"spr_machine_flag_mouse_drop": {
+"l": -52,
+"r": 48,
+"t": -157,
+"b": -35,
+"w": 101,
+"h": 123
+},
+"spr_machine_flag_mouse_land": {
+"l": -50,
+"r": 67,
+"t": -122,
+"b": -16,
+"w": 118,
+"h": 107
+},
+"spr_machine_football_fan_mouse": {
+"l": -48,
+"r": 42,
+"t": -106,
+"b": -13,
+"w": 91,
+"h": 94
+},
+"spr_machine_football_fan_mouse_helmet": {
+"l": -48,
+"r": 42,
+"t": -107,
+"b": -13,
+"w": 91,
+"h": 95
+},
+"spr_machine_iron_pan_mouse": {
+"l": -42,
+"r": 23,
+"t": -110,
+"b": -14,
+"w": 66,
+"h": 97
+},
+"spr_machine_iron_pan_mouse_helmet": {
+"l": -47,
+"r": 23,
+"t": -110,
+"b": -14,
+"w": 71,
+"h": 97
+},
+"spr_machine_mouse": {
+"l": -32,
+"r": 24,
+"t": -106,
+"b": -17,
+"w": 57,
+"h": 90
+},
+"spr_machine_mouse_explode": {
+"l": -61,
+"r": 51,
+"t": -109,
+"b": -2,
+"w": 113,
+"h": 108
+},
+"spr_machine_normal_mouse": {
+"l": -46,
+"r": 19,
+"t": -106,
+"b": -13,
+"w": 66,
+"h": 94
+},
+"spr_machine_shark_1_death": {
+"l": -106,
+"r": 237,
+"t": -267,
+"b": -57,
+"w": 344,
+"h": 211
+},
+"spr_machine_shark_1_idle": {
+"l": -115,
+"r": 230,
+"t": -260,
+"b": -49,
+"w": 346,
+"h": 212
+},
+"spr_machine_skateboard_mouse": {
+"l": -31,
+"r": 35,
+"t": -107,
+"b": -12,
+"w": 67,
+"h": 96
+},
+"spr_machine_skateboard_mouse_skate": {
+"l": -44,
+"r": 50,
+"t": -131,
+"b": -20,
+"w": 95,
+"h": 112
+},
+"spr_magician_mouse": {
+"l": -58,
+"r": 61,
+"t": -153,
+"b": -13,
+"w": 120,
+"h": 141
+},
+"spr_mario_mouse_death": {
+"l": -45,
+"r": 63,
+"t": -110,
+"b": -10,
+"w": 109,
+"h": 101
+},
+"spr_mario_mouse_dig_down": {
+"l": -55,
+"r": 55,
+"t": -124,
+"b": -14,
+"w": 111,
+"h": 111
+},
+"spr_mario_mouse_idle": {
+"l": -53,
+"r": 55,
+"t": -124,
+"b": -15,
+"w": 109,
+"h": 110
+},
+"spr_mario_pipeline_land": {
+"l": -62,
+"r": 32,
+"t": -78,
+"b": 0,
+"w": 95,
+"h": 79
+},
+"spr_mario_pipeline_water": {
+"l": -62,
+"r": 40,
+"t": -81,
+"b": 6,
+"w": 103,
+"h": 88
+},
+"spr_mermaid_mary_dash": {
+"l": -160,
+"r": 100,
+"t": -242,
+"b": -15,
+"w": 261,
+"h": 228
+},
+"spr_mermaid_mary_death": {
+"l": -117,
+"r": 120,
+"t": -245,
+"b": -25,
+"w": 238,
+"h": 221
+},
+"spr_mermaid_mary_idle": {
+"l": -117,
+"r": 119,
+"t": -245,
+"b": -25,
+"w": 237,
+"h": 221
+},
+"spr_messenger_fog": {
+"l": -46,
+"r": 50,
+"t": -44,
+"b": 53,
+"w": 97,
+"h": 98
+},
+"spr_minion_mouse": {
+"l": -41,
+"r": 30,
+"t": -99,
+"b": -14,
+"w": 72,
+"h": 86
+},
+"spr_minion_mouse_summon": {
+"l": -43,
+"r": 22,
+"t": -84,
+"b": -21,
+"w": 66,
+"h": 64
+},
+"spr_mirror_mouse": {
+"l": -56,
+"r": 49,
+"t": -115,
+"b": -17,
+"w": 106,
+"h": 99
+},
+"spr_mirror_mouse_acting": {
+"l": -74,
+"r": 40,
+"t": -114,
+"b": -15,
+"w": 115,
+"h": 100
+},
+"spr_mole": {
+"l": -30,
+"r": 35,
+"t": -97,
+"b": -14,
+"w": 66,
+"h": 84
+},
+"spr_mole_dig": {
+"l": -48,
+"r": 34,
+"t": -51,
+"b": -13,
+"w": 83,
+"h": 39
+},
+"spr_mole_stun": {
+"l": -30,
+"r": 35,
+"t": -96,
+"b": -14,
+"w": 66,
+"h": 83
+},
+"spr_mouse_spring_2": {
+"l": -22,
+"r": 21,
+"t": -34,
+"b": -1,
+"w": 44,
+"h": 34
+},
+"spr_mouse_train_1_body_death": {
+"l": -66,
+"r": 48,
+"t": -151,
+"b": 0,
+"w": 115,
+"h": 152
+},
+"spr_mouse_train_1_body_idle": {
+"l": -49,
+"r": 49,
+"t": -134,
+"b": -1,
+"w": 99,
+"h": 134
+},
+"spr_mouse_train_1_head_death": {
+"l": -42,
+"r": 46,
+"t": -90,
+"b": 10,
+"w": 89,
+"h": 101
+},
+"spr_mouse_train_1_head_idle": {
+"l": -42,
+"r": 40,
+"t": -88,
+"b": -2,
+"w": 83,
+"h": 87
+},
+"spr_mouse_train_2_body_death": {
+"l": -64,
+"r": 87,
+"t": -113,
+"b": 1,
+"w": 152,
+"h": 115
+},
+"spr_mouse_train_2_body_idle1": {
+"l": -63,
+"r": 61,
+"t": -97,
+"b": 1,
+"w": 125,
+"h": 99
+},
+"spr_mouse_train_2_body_idle2": {
+"l": -65,
+"r": 63,
+"t": -98,
+"b": 2,
+"w": 129,
+"h": 101
+},
+"spr_mouse_train_2_head_death": {
+"l": -31,
+"r": 69,
+"t": -95,
+"b": -6,
+"w": 101,
+"h": 90
+},
+"spr_mouse_train_2_head_idle": {
+"l": -26,
+"r": 60,
+"t": -88,
+"b": -6,
+"w": 87,
+"h": 83
+},
+"spr_naruto_minion_mouse": {
+"l": -42,
+"r": 30,
+"t": -101,
+"b": -14,
+"w": 73,
+"h": 88
+},
+"spr_naruto_minion_mouse_summon": {
+"l": -43,
+"r": 22,
+"t": -79,
+"b": -16,
+"w": 66,
+"h": 64
+},
+"spr_naruto_mouse": {
+"l": -44,
+"r": 30,
+"t": -112,
+"b": -11,
+"w": 75,
+"h": 102
+},
+"spr_naruto_mouse_summon": {
+"l": -59,
+"r": 29,
+"t": -102,
+"b": -13,
+"w": 89,
+"h": 90
+},
+"spr_needle_baron_death": {
+"l": -127,
+"r": 117,
+"t": -140,
+"b": -8,
+"w": 245,
+"h": 133
+},
+"spr_needle_baron_idle": {
+"l": -127,
+"r": 117,
+"t": -139,
+"b": -8,
+"w": 245,
+"h": 132
+},
+"spr_ninja_mouse": {
+"l": -43,
+"r": 27,
+"t": -100,
+"b": -13,
+"w": 71,
+"h": 88
+},
+"spr_ninja_mouse_summon": {
+"l": -54,
+"r": 26,
+"t": -92,
+"b": -14,
+"w": 81,
+"h": 79
+},
+"spr_non_mainstream_mouse": {
+"l": -35,
+"r": 46,
+"t": -101,
+"b": -12,
+"w": 82,
+"h": 90
+},
+"spr_normal_mouse": {
+"l": -43,
+"r": 30,
+"t": -101,
+"b": -15,
+"w": 74,
+"h": 87
+},
+"spr_orange_prince_mouse": {
+"l": -38,
+"r": 25,
+"t": -63,
+"b": -12,
+"w": 64,
+"h": 52
+},
+"spr_orange_prince_mouse_enter": {
+"l": -33,
+"r": 42,
+"t": -110,
+"b": -2,
+"w": 76,
+"h": 109
+},
+"spr_orange_prince_mouse_frog": {
+"l": -35,
+"r": 39,
+"t": -84,
+"b": -14,
+"w": 75,
+"h": 71
+},
+"spr_orange_prince_mouse_land": {
+"l": -39,
+"r": 30,
+"t": -92,
+"b": -1,
+"w": 70,
+"h": 92
+},
+"spr_oyster_mouse": {
+"l": -41,
+"r": 38,
+"t": -112,
+"b": -11,
+"w": 80,
+"h": 102
+},
+"spr_pan_helmet": {
+"l": -26,
+"r": 28,
+"t": -12,
+"b": 12,
+"w": 55,
+"h": 25
+},
+"spr_panda_mouse": {
+"l": -56,
+"r": 40,
+"t": -148,
+"b": -14,
+"w": 97,
+"h": 135
+},
+"spr_panda_mouse_has_small": {
+"l": -56,
+"r": 40,
+"t": -182,
+"b": -14,
+"w": 97,
+"h": 169
+},
+"spr_panda_mouse_throw": {
+"l": -56,
+"r": 40,
+"t": -182,
+"b": -13,
+"w": 97,
+"h": 170
+},
+"spr_paper_boat_mouse": {
+"l": -44,
+"r": 19,
+"t": -75,
+"b": -16,
+"w": 64,
+"h": 60
+},
+"spr_paper_boat_mouse_enter": {
+"l": -43,
+"r": 30,
+"t": -105,
+"b": -19,
+"w": 74,
+"h": 87
+},
+"spr_paper_boat_mouse_land": {
+"l": -44,
+"r": 29,
+"t": -105,
+"b": -20,
+"w": 74,
+"h": 86
+},
+"spr_paratrooper_mouse": {
+"l": -31,
+"r": 30,
+"t": -99,
+"b": -16,
+"w": 62,
+"h": 84
+},
+"spr_paratrooper_mouse_air": {
+"l": -51,
+"r": 45,
+"t": -198,
+"b": -14,
+"w": 97,
+"h": 185
+},
+"spr_penguin_mouse": {
+"l": -47,
+"r": 25,
+"t": -97,
+"b": -16,
+"w": 73,
+"h": 82
+},
+"spr_penguin_mouse_bomb": {
+"l": -47,
+"r": 25,
+"t": -97,
+"b": -16,
+"w": 73,
+"h": 82
+},
+"spr_penguin_mouse_throw": {
+"l": -40,
+"r": 22,
+"t": -97,
+"b": -14,
+"w": 63,
+"h": 84
+},
+"spr_pete_death": {
+"l": -73,
+"r": 194,
+"t": -255,
+"b": -14,
+"w": 268,
+"h": 242
+},
+"spr_pete_idle": {
+"l": -73,
+"r": 194,
+"t": -255,
+"b": -14,
+"w": 268,
+"h": 242
+},
+"spr_pink_paul_death": {
+"l": -69,
+"r": 63,
+"t": -178,
+"b": 4,
+"w": 133,
+"h": 183
+},
+"spr_pink_paul_idle": {
+"l": -73,
+"r": 69,
+"t": -177,
+"b": 8,
+"w": 143,
+"h": 186
+},
+"spr_pope_mouse": {
+"l": -38,
+"r": 28,
+"t": -123,
+"b": -6,
+"w": 67,
+"h": 118
+},
+"spr_pope_mouse_perform": {
+"l": -38,
+"r": 29,
+"t": -123,
+"b": -6,
+"w": 68,
+"h": 118
+},
+"spr_priest_mouse": {
+"l": -40,
+"r": 23,
+"t": -123,
+"b": -14,
+"w": 64,
+"h": 110
+},
+"spr_priest_mouse_perform": {
+"l": -40,
+"r": 22,
+"t": -123,
+"b": -14,
+"w": 63,
+"h": 110
+},
+"spr_repairman_mouse": {
+"l": -39,
+"r": 33,
+"t": -100,
+"b": -14,
+"w": 73,
+"h": 87
+},
+"spr_repairman_mouse_place": {
+"l": -39,
+"r": 33,
+"t": -100,
+"b": -14,
+"w": 73,
+"h": 87
+},
+"spr_repairman_mouse_shield": {
+"l": -39,
+"r": 33,
+"t": -100,
+"b": -14,
+"w": 73,
+"h": 87
+},
+"spr_roller_skating_mouse": {
+"l": -32,
+"r": 39,
+"t": -95,
+"b": -5,
+"w": 72,
+"h": 91
+},
+"spr_roller_skating_mouse_helmet": {
+"l": -32,
+"r": 39,
+"t": -92,
+"b": -5,
+"w": 72,
+"h": 88
+},
+"spr_rowboat_mouse": {
+"l": -134,
+"r": 112,
+"t": -130,
+"b": -6,
+"w": 247,
+"h": 125
+},
+"spr_rumble_death": {
+"l": -95,
+"r": 72,
+"t": -195,
+"b": -16,
+"w": 168,
+"h": 180
+},
+"spr_rumble_drop": {
+"l": -95,
+"r": 72,
+"t": -242,
+"b": -30,
+"w": 168,
+"h": 213
+},
+"spr_rumble_idle": {
+"l": -95,
+"r": 72,
+"t": -179,
+"b": -16,
+"w": 168,
+"h": 164
+},
+"spr_rumble_launch": {
+"l": -95,
+"r": 72,
+"t": -179,
+"b": -16,
+"w": 168,
+"h": 164
+},
+"spr_rumble_move_backword": {
+"l": -100,
+"r": 68,
+"t": -242,
+"b": -31,
+"w": 169,
+"h": 212
+},
+"spr_rumble_move_forward": {
+"l": -95,
+"r": 89,
+"t": -242,
+"b": -35,
+"w": 185,
+"h": 208
+},
+"spr_sardine_mouse": {
+"l": -40,
+"r": 34,
+"t": -109,
+"b": -13,
+"w": 75,
+"h": 97
+},
+"spr_sardine_mouse_dig": {
+"l": -47,
+"r": 35,
+"t": -49,
+"b": -11,
+"w": 83,
+"h": 39
+},
+"spr_sardine_mouse_stun": {
+"l": -39,
+"r": 34,
+"t": -109,
+"b": -13,
+"w": 74,
+"h": 97
+},
+"spr_sawblade_mouse": {
+"l": -30,
+"r": 36,
+"t": -119,
+"b": -12,
+"w": 67,
+"h": 108
+},
+"spr_sawblade_mouse_dig": {
+"l": -48,
+"r": 34,
+"t": -49,
+"b": -11,
+"w": 83,
+"h": 39
+},
+"spr_sawblade_mouse_stun": {
+"l": -31,
+"r": 35,
+"t": -118,
+"b": -12,
+"w": 67,
+"h": 107
+},
+"spr_seahorse_mouse": {
+"l": -34,
+"r": 38,
+"t": -118,
+"b": -11,
+"w": 73,
+"h": 108
+},
+"spr_seahorse_mouse_jump": {
+"l": -34,
+"r": 38,
+"t": -118,
+"b": -11,
+"w": 73,
+"h": 108
+},
+"spr_shy_landlady_mouse": {
+"l": -44,
+"r": 31,
+"t": -113,
+"b": -13,
+"w": 76,
+"h": 101
+},
+"spr_shy_landlady_mouse_shield": {
+"l": -48,
+"r": 31,
+"t": -113,
+"b": -13,
+"w": 80,
+"h": 101
+},
+"spr_skateboard_mouse": {
+"l": -47,
+"r": 27,
+"t": -102,
+"b": -13,
+"w": 75,
+"h": 90
+},
+"spr_skateboard_mouse_skate": {
+"l": -45,
+"r": 25,
+"t": -110,
+"b": -16,
+"w": 71,
+"h": 95
+},
+"spr_snail_mouse": {
+"l": -45,
+"r": 96,
+"t": -121,
+"b": -15,
+"w": 142,
+"h": 107
+},
+"spr_soar_mouse": {
+"l": -46,
+"r": 40,
+"t": -109,
+"b": -14,
+"w": 87,
+"h": 96
+},
+"spr_soldier_mouse": {
+"l": -63,
+"r": 28,
+"t": -154,
+"b": -9,
+"w": 92,
+"h": 146
+},
+"spr_special_armour_mouse": {
+"l": -55,
+"r": 41,
+"t": -186,
+"b": -11,
+"w": 97,
+"h": 176
+},
+"spr_special_armour_mouse_has_small": {
+"l": -55,
+"r": 41,
+"t": -186,
+"b": -11,
+"w": 97,
+"h": 176
+},
+"spr_special_armour_mouse_throw": {
+"l": -55,
+"r": 41,
+"t": -186,
+"b": -10,
+"w": 97,
+"h": 177
+},
+"spr_spider_man_mouse_death": {
+"l": -67,
+"r": 43,
+"t": -639,
+"b": -57,
+"w": 111,
+"h": 583
+},
+"spr_spider_man_mouse_idle": {
+"l": -48,
+"r": 85,
+"t": -720,
+"b": -78,
+"w": 134,
+"h": 643
+},
+"spr_submarine_mouse": {
+"l": -73,
+"r": 62,
+"t": -123,
+"b": -6,
+"w": 136,
+"h": 118
+},
+"spr_submarine_mouse_enter": {
+"l": -73,
+"r": 55,
+"t": -167,
+"b": -11,
+"w": 129,
+"h": 157
+},
+"spr_submarine_mouse_land": {
+"l": -73,
+"r": 55,
+"t": -167,
+"b": -17,
+"w": 129,
+"h": 151
+},
+"spr_suv_mouse": {
+"l": -59,
+"r": 130,
+"t": -147,
+"b": -16,
+"w": 190,
+"h": 132
+},
+"spr_suv_mouse_act": {
+"l": -59,
+"r": 121,
+"t": -147,
+"b": -16,
+"w": 181,
+"h": 132
+},
+"spr_swordfish_mouse": {
+"l": -92,
+"r": 86,
+"t": -128,
+"b": -20,
+"w": 179,
+"h": 109
+},
+"spr_swordfish_mouse_dash": {
+"l": -103,
+"r": 82,
+"t": -117,
+"b": -8,
+"w": 186,
+"h": 110
+},
+"spr_swordfish_mouse_ready": {
+"l": -92,
+"r": 86,
+"t": -128,
+"b": -10,
+"w": 179,
+"h": 119
+},
+"spr_swordfish_mouse_stun": {
+"l": -88,
+"r": 85,
+"t": -128,
+"b": -20,
+"w": 174,
+"h": 109
+},
+"spr_tangerine_skateboard_mouse": {
+"l": -45,
+"r": 30,
+"t": -101,
+"b": -13,
+"w": 76,
+"h": 89
+},
+"spr_tangerine_skateboard_mouse_skate": {
+"l": -43,
+"r": 28,
+"t": -109,
+"b": -14,
+"w": 72,
+"h": 96
+},
+"spr_taro_toho_mouse": {
+"l": -46,
+"r": 51,
+"t": -106,
+"b": -14,
+"w": 98,
+"h": 93
+},
+"spr_temple_pharaoh_death": {
+"l": -128,
+"r": 40,
+"t": -150,
+"b": -4,
+"w": 169,
+"h": 147
+},
+"spr_temple_pharaoh_idle": {
+"l": -46,
+"r": 40,
+"t": -150,
+"b": -4,
+"w": 87,
+"h": 147
+},
+"spr_thor_body_death": {
+"l": -80,
+"r": 79,
+"t": -140,
+"b": -17,
+"w": 160,
+"h": 124
+},
+"spr_thor_body_idle": {
+"l": -80,
+"r": 79,
+"t": -140,
+"b": -17,
+"w": 160,
+"h": 124
+},
+"spr_thor_head_death": {
+"l": -84,
+"r": 83,
+"t": -150,
+"b": -16,
+"w": 168,
+"h": 135
+},
+"spr_thor_head_idle": {
+"l": -84,
+"r": 83,
+"t": -149,
+"b": -14,
+"w": 168,
+"h": 136
+},
+"spr_thug_submarine_mouse": {
+"l": -83,
+"r": 62,
+"t": -128,
+"b": -6,
+"w": 146,
+"h": 123
+},
+"spr_thug_submarine_mouse_enter": {
+"l": -83,
+"r": 55,
+"t": -169,
+"b": -12,
+"w": 139,
+"h": 158
+},
+"spr_thug_submarine_mouse_land": {
+"l": -83,
+"r": 55,
+"t": -169,
+"b": -17,
+"w": 139,
+"h": 153
+},
+"spr_tire_mouse": {
+"l": -33,
+"r": 27,
+"t": -142,
+"b": -17,
+"w": 61,
+"h": 126
+},
+"spr_tire_mouse_act": {
+"l": -33,
+"r": 27,
+"t": -142,
+"b": -17,
+"w": 61,
+"h": 126
+},
+"spr_tire_mouse_land": {
+"l": -40,
+"r": 25,
+"t": -89,
+"b": -18,
+"w": 66,
+"h": 72
+},
+"spr_travel_recoed_line": {
+"l": -110,
+"r": -14,
+"t": 15,
+"b": 108,
+"w": 97,
+"h": 94
+},
+"spr_travel_record_death_1": {
+"l": -109,
+"r": 99,
+"t": -246,
+"b": -19,
+"w": 209,
+"h": 228
+},
+"spr_travel_record_death_2": {
+"l": -83,
+"r": 82,
+"t": -224,
+"b": -13,
+"w": 166,
+"h": 212
+},
+"spr_travel_record_drop": {
+"l": -83,
+"r": 82,
+"t": -247,
+"b": -19,
+"w": 166,
+"h": 229
+},
+"spr_travel_record_idle_1": {
+"l": -83,
+"r": 83,
+"t": -222,
+"b": -13,
+"w": 167,
+"h": 210
+},
+"spr_travel_record_idle_2": {
+"l": -83,
+"r": 82,
+"t": -246,
+"b": -19,
+"w": 166,
+"h": 228
+},
+"spr_travel_record_launch": {
+"l": -83,
+"r": 83,
+"t": -222,
+"b": -13,
+"w": 167,
+"h": 210
+},
+"spr_travel_record_moon_explode": {
+"l": -44,
+"r": 42,
+"t": -80,
+"b": 6,
+"w": 87,
+"h": 87
+},
+"spr_travel_record_move": {
+"l": -83,
+"r": 82,
+"t": -245,
+"b": -19,
+"w": 166,
+"h": 227
+},
+"spr_tropical_fish_mouse": {
+"l": -43,
+"r": 30,
+"t": -78,
+"b": -19,
+"w": 74,
+"h": 60
+},
+"spr_tropical_fish_mouse_enter": {
+"l": -44,
+"r": 30,
+"t": -108,
+"b": -24,
+"w": 75,
+"h": 85
+},
+"spr_tropical_fish_mouse_enter_helmet": {
+"l": -56,
+"r": 31,
+"t": -114,
+"b": -24,
+"w": 88,
+"h": 91
+},
+"spr_tropical_fish_mouse_helmet": {
+"l": -54,
+"r": 31,
+"t": -87,
+"b": -19,
+"w": 86,
+"h": 69
+},
+"spr_tropical_fish_mouse_land": {
+"l": -43,
+"r": 30,
+"t": -109,
+"b": -24,
+"w": 74,
+"h": 86
+},
+"spr_tropical_fish_mouse_land_helmet": {
+"l": -56,
+"r": 31,
+"t": -113,
+"b": -23,
+"w": 88,
+"h": 91
+},
+"spr_trumpeter_mouse": {
+"l": -64,
+"r": 43,
+"t": -124,
+"b": -13,
+"w": 108,
+"h": 112
+},
+"spr_trumpeter_mouse_perform": {
+"l": -67,
+"r": 48,
+"t": -125,
+"b": -15,
+"w": 116,
+"h": 111
+},
+"spr_undersea_can": {
+"l": -52,
+"r": 32,
+"t": -47,
+"b": 44,
+"w": 85,
+"h": 92
+},
+"spr_undersea_can_mouse": {
+"l": -45,
+"r": 22,
+"t": -122,
+"b": -12,
+"w": 68,
+"h": 111
+},
+"spr_undersea_can_mouse_drop": {
+"l": -47,
+"r": 43,
+"t": -138,
+"b": -36,
+"w": 91,
+"h": 103
+},
+"spr_undersea_can_mouse_with_can": {
+"l": -48,
+"r": 43,
+"t": -137,
+"b": -12,
+"w": 92,
+"h": 126
+},
+"spr_undersea_captain_mouse": {
+"l": -73,
+"r": 62,
+"t": -142,
+"b": -25,
+"w": 136,
+"h": 118
+},
+"spr_undersea_diver_mouse": {
+"l": -62,
+"r": 35,
+"t": -103,
+"b": -3,
+"w": 98,
+"h": 101
+},
+"spr_undersea_panda_mouse": {
+"l": -66,
+"r": 76,
+"t": -163,
+"b": -10,
+"w": 143,
+"h": 154
+},
+"spr_undersea_panda_mouse_has_small": {
+"l": -66,
+"r": 76,
+"t": -185,
+"b": -10,
+"w": 143,
+"h": 176
+},
+"spr_undersea_panda_mouse_throw": {
+"l": -80,
+"r": 44,
+"t": -188,
+"b": -19,
+"w": 125,
+"h": 170
+},
+"spr_undersea_penguin_mouse": {
+"l": -43,
+"r": 39,
+"t": -121,
+"b": -11,
+"w": 83,
+"h": 111
+},
+"spr_undersea_penguin_mouse_ready": {
+"l": -41,
+"r": 31,
+"t": -122,
+"b": -15,
+"w": 73,
+"h": 108
+},
+"spr_undersea_penguin_mouse_throw": {
+"l": -41,
+"r": 31,
+"t": -122,
+"b": -15,
+"w": 73,
+"h": 108
+},
+"spr_undersea_repairman_ladder": {
+"l": -16,
+"r": 16,
+"t": -66,
+"b": -1,
+"w": 33,
+"h": 66
+},
+"spr_undersea_repairman_ladder_1": {
+"l": -16,
+"r": 16,
+"t": -66,
+"b": -1,
+"w": 33,
+"h": 66
+},
+"spr_undersea_repairman_mouse": {
+"l": -47,
+"r": 64,
+"t": -114,
+"b": -9,
+"w": 112,
+"h": 106
+},
+"spr_undersea_repairman_mouse_place": {
+"l": -44,
+"r": 30,
+"t": -125,
+"b": -12,
+"w": 75,
+"h": 114
+},
+"spr_undersea_repairman_mouse_shield": {
+"l": -47,
+"r": 64,
+"t": -114,
+"b": -9,
+"w": 112,
+"h": 106
+},
+"spr_undersea_submarine": {
+"l": -67,
+"r": 202,
+"t": -240,
+"b": -48,
+"w": 270,
+"h": 193
+},
+"spr_undersea_submarine_release_1": {
+"l": -67,
+"r": 202,
+"t": -240,
+"b": -48,
+"w": 270,
+"h": 193
+},
+"spr_undersea_submarine_release_2": {
+"l": -67,
+"r": 202,
+"t": -240,
+"b": -48,
+"w": 270,
+"h": 193
+},
+"spr_war_god_death": {
+"l": -59,
+"r": 112,
+"t": -177,
+"b": -11,
+"w": 172,
+"h": 167
+},
+"spr_war_god_idle": {
+"l": -61,
+"r": 111,
+"t": -177,
+"b": -12,
+"w": 173,
+"h": 166
+},
+"spr_warrior_minion_mouse": {
+"l": -42,
+"r": 30,
+"t": -101,
+"b": -14,
+"w": 73,
+"h": 88
+},
+"spr_warrior_minion_mouse_summon": {
+"l": -43,
+"r": 22,
+"t": -79,
+"b": -16,
+"w": 66,
+"h": 64
+},
+"spr_warrior_mouse": {
+"l": -45,
+"r": 27,
+"t": -110,
+"b": -12,
+"w": 73,
+"h": 99
+},
+"spr_warrior_mouse_summon": {
+"l": -57,
+"r": 25,
+"t": -98,
+"b": -14,
+"w": 83,
+"h": 85
+},
+"spr_waste_flying_mouse_air": {
+"l": -81,
+"r": 62,
+"t": -167,
+"b": -31,
+"w": 144,
+"h": 137
+},
+"spr_waste_flying_mouse_drop": {
+"l": -81,
+"r": 62,
+"t": -167,
+"b": -32,
+"w": 144,
+"h": 136
+},
+"spr_waste_flying_mouse_land": {
+"l": -31,
+"r": 55,
+"t": -96,
+"b": -14,
+"w": 87,
+"h": 83
+},
+"spr_water_penguin_mouse": {
+"l": -46,
+"r": 17,
+"t": -64,
+"b": -12,
+"w": 64,
+"h": 53
+},
+"spr_water_penguin_mouse_enter": {
+"l": -46,
+"r": 19,
+"t": -96,
+"b": -13,
+"w": 66,
+"h": 84
+},
+"spr_water_penguin_mouse_land": {
+"l": -46,
+"r": 24,
+"t": -96,
+"b": -15,
+"w": 71,
+"h": 82
+},
+"spr_water_penguin_mouse_throw": {
+"l": -46,
+"r": 18,
+"t": -66,
+"b": -12,
+"w": 65,
+"h": 55
+},
+"spr_water_taro_toho_mouse": {
+"l": -57,
+"r": 43,
+"t": -85,
+"b": -16,
+"w": 101,
+"h": 70
+},
+"spr_water_taro_toho_mouse_enter": {
+"l": -55,
+"r": 42,
+"t": -112,
+"b": -20,
+"w": 98,
+"h": 93
+},
+"spr_water_taro_toho_mouse_land": {
+"l": -55,
+"r": 42,
+"t": -112,
+"b": -20,
+"w": 98,
+"h": 93
+},
+"spr_weed_helmet": {
+"l": -24,
+"r": 24,
+"t": -15,
+"b": 17,
+"w": 49,
+"h": 33
+},
+"spr_windmill_fish_mouse_air": {
+"l": -67,
+"r": 53,
+"t": -160,
+"b": -33,
+"w": 121,
+"h": 128
+},
+"spr_windmill_fish_mouse_drop": {
+"l": -67,
+"r": 53,
+"t": -160,
+"b": -40,
+"w": 121,
+"h": 121
+},
+"spr_windmill_fish_mouse_land": {
+"l": -35,
+"r": 28,
+"t": -126,
+"b": -14,
+"w": 64,
+"h": 113
+},
+"spr_windmill_fish_mouse_urchin": {
+"l": -28,
+"r": 28,
+"t": -57,
+"b": -9,
+"w": 57,
+"h": 49
+},
+"spr_wrestler_mouse": {
+"l": -55,
+"r": 41,
+"t": -148,
+"b": -14,
+"w": 97,
+"h": 135
+},
+"spr_wrestler_mouse_has_small": {
+"l": -55,
+"r": 41,
+"t": -182,
+"b": -14,
+"w": 97,
+"h": 169
+},
+"spr_wrestler_mouse_throw": {
+"l": -55,
+"r": 41,
+"t": -182,
+"b": -13,
+"w": 97,
+"h": 170
+},
+"spr_xiaoming_ice": {
+"l": -81,
+"r": 77,
+"t": -80,
+"b": 78,
+"w": 159,
+"h": 159
+},
+"spr_xiaoming_text_2": {
+"l": -2,
+"r": 70,
+"t": -37,
+"b": 172,
+"w": 73,
+"h": 210
+},
+"spr_xiaoming_text_3": {
+"l": -2,
+"r": 70,
+"t": -36,
+"b": 172,
+"w": 73,
+"h": 209
+},
+"spr_zhangaiwu_dead": {
+"l": -30,
+"r": 31,
+"t": -58,
+"b": 1,
+"w": 62,
+"h": 60
+},
+"spr_zhangaiwu_idel": {
+"l": -30,
+"r": 32,
+"t": -78,
+"b": 1,
+"w": 63,
+"h": 80
+},
+"spr_zhangaiwu_move": {
+"l": -30,
+"r": 32,
+"t": -78,
+"b": 1,
+"w": 63,
+"h": 80
+},
+"spr_zombie_with_flower_pot": {
+"l": -43,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 58,
+"h": 90
+},
+"spr_zombie_with_flower_pot_drop": {
+"l": -47,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 62,
+"h": 90
+},
+"spr_zombie_with_flower_pot_shield": {
+"l": -44,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 59,
+"h": 90
+},
+"spr_zombie_with_wallnut": {
+"l": -43,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 58,
+"h": 90
+},
+"spr_zombie_with_wallnut_drop": {
+"l": -43,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 58,
+"h": 90
+},
+"spr_zombie_with_wallnut_shield": {
+"l": -43,
+"r": 14,
+"t": -104,
+"b": -15,
+"w": 58,
+"h": 90
+}
+}

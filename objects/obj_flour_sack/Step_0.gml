@@ -23,6 +23,17 @@ with(obj_enemy_parent){
 		break
 	}
 }
+// 傲慢龙柱的青苹果不是 obj_enemy_parent，但同样是可碾压目标
+if (!has_enemy){
+	with (obj_longzhu_green_apple){
+		if (hp > 0 && row == other.grid_row
+		&& col >= other.grid_col - other.range && col <= other.grid_col + other.range){
+			has_enemy = true
+			other.first_target_x = x
+			other.first_target_y = y
+		}
+	}
+}
 //攻击逻辑
 if (has_enemy) && state == CARD_STATE.IDLE{
 	state = CARD_STATE.ATTACK;

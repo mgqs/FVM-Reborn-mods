@@ -67,6 +67,20 @@ if (_search) {
 			}
 		}
 	}
+	// 傲慢龙柱的青苹果不是 obj_enemy_parent，但要能被碾压型卡片索敌
+	if (_pick == noone) {
+		with (obj_longzhu_green_apple) {
+			if (hp > 0
+				&& col >= _c0 && col <= _c1
+				&& row >= _r0 && row <= _r1) {
+				var _d = point_distance(x, y, other.x, other.y);
+				if (_d < _best_dist) {
+					_best_dist = _d;
+					_pick = id;
+				}
+			}
+		}
+	}
 
 	// 有目标 → 跳到目标格；2 转后续段没目标 → **原地砸**（把剩余次数砸掉，而不是直接消失）
 	var _has_target = (_pick != noone);

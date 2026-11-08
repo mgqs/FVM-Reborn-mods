@@ -311,7 +311,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                 global.gui_stack.pop();
                 global.gui_stack.pop();
                 global.menu_screen = true;
-                obj_world_map_button.world_map = 0;
+                // 跨服远征回程：obj_menu_manager 的 Create 已经把 world_map 设成 2（跨服页），
+                // 这里再无条件写 0 会把刚恢复好的跨服界面顶掉，只剩一个空壳背景。
+                obj_world_map_button.world_map = _cs_back ? 2 : 0;
                 global.game_over = false;
                 global.is_paused = false;
             }
@@ -342,7 +344,7 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 						global.gui_stack.pop()
 					}
 					global.menu_screen = true
-					obj_world_map_button.world_map = 0
+					obj_world_map_button.world_map = _cs_back2 ? 2 : 0
 				}
 				if global.level_file.version != "1.0.0"{
 					if obj_game_over.sprite_index == spr_win && !settlement{

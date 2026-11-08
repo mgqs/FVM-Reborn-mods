@@ -313,7 +313,20 @@ else
                     // `attack_timer == cycle - N*frame` 的**精确等号**触发出弹，
                     // 词条乘出来的 224.4 这种小数会让等号永远不成立 ——
                     // 表现就是「攻击间隔一高就完全不攻击」，一滴伤害都打不出来
-                    self.cycle = max(1, round(self.base_cycle * clamp(_hex_cyc, 0.05, 4.0)));
+                    // 攻速上限（= 攻击间隔下限）：大量卡片用「attack_timer == cycle - N*flash_speed」
+                    // 或 `attack_timer <= cycle - attack_anim*flash_speed` 的分段判定来触发出弹。
+                    // cycle 被词条压到比攻击动画还短时，这些判定右侧变成 0 / 负数、永远不成立 ——
+                    // 大炮、巨神这类就只剩抬手动作、一发子弹都出不来。
+                    // 下限取「这套攻击动画放完所需的帧数」，等于给攻速立了个上限。
+                    var _fs = 1;
+                    if (variable_instance_exists(self.id, "flash_speed") && self.flash_speed > 0) {
+                        _fs = self.flash_speed;
+                    }
+                    var _anim = 0;
+                    if (variable_instance_exists(self.id, "attack_anim")) _anim = max(0, self.attack_anim);
+                    var _min_cycle = max(8, ceil((_anim + 2) * _fs));
+                    self.cycle = clamp(round(self.base_cycle * clamp(_hex_cyc, 0.05, 4.0)),
+                                       _min_cycle, 999999);
 
                     if (!variable_instance_exists(self.id, "base_max_hp")) self.base_max_hp = self.max_hp;
 

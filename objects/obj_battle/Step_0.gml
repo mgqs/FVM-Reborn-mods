@@ -60,6 +60,19 @@ else if (hex_enabled())
         hex_last_wave = current_wave;
         hex_on_wave_start();
     }
+
+    // 不公的契约：这个面板只在「开局 _special_need」那一次被创建过，
+    // 玩家在中途的词条三选一里选到它时，pending 是当场置上的，
+    // 结果没有任何地方再开面板 —— 只能吃 30 秒兜底随机签一种，
+    // 玩家看到的就是「选了不公的契约，五选一界面根本不弹」。
+    // 这里每帧兜一次：只要 pending 还没被消费、场上也没有别的面板，就立刻弹。
+    if (!instance_exists(obj_hex_panel) && !hex_picker_is_open()
+        && variable_global_exists("hex_state") && is_struct(global.hex_state)
+        && variable_struct_exists(global.hex_state, "b3_contract_pending")
+        && global.hex_state.b3_contract_pending)
+    {
+        instance_create_depth(0, 0, -9000, obj_hex_panel);
+    }
 }
 
 if (global.level_id == "test_level")

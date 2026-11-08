@@ -393,11 +393,17 @@ function enemy_subwave_summon(){
                 enemy_obj   = global.enemy_map[? _enemy_type]._obj;
             }
 
-            var new_x = global.grid_offset_x + (9 + x_offset) * global.grid_cell_size_x;
+            // 强制在第 10 列（col 9）出生，不再按整格向右排成纵队。
+            // 同行多只用像素级微错开，且必须往**左**错：
+            //   obj_enemy_parent/Step_0.gml:26-27 每帧用自己 x 反算 grid_col，
+            //   出生点 = 格心 +30，格右沿只剩 23px 余量，往右错开会被算进 col 10 → 卡片打不到。
+            //   往左错最多 80px，x 始终落在 col 9 的格内（1658..1765）。
+            var _stagger = min(x_offset, 5) * 16;
+            var new_x = global.grid_offset_x + 9 * global.grid_cell_size_x;
             var new_y = global.grid_offset_y + (target_row - 1) * global.grid_cell_size_y;
 
             var grid_pos = get_grid_position_from_world(new_x, new_y);
-            var new_enemy = instance_create_depth(grid_pos.x+30, grid_pos.y + 38, 0, enemy_obj);
+            var new_enemy = instance_create_depth(grid_pos.x + 30 - _stagger, grid_pos.y + 38, 0, enemy_obj);
             // 换皮后的敌人（尤其 infected_* 跨服鼠军）有近一半的对象没在自己的 Create 里写 mouse_id，
             // 结果是「病毒系列增伤 / 环指的艺术 / 情报收集」全都按空 id 判定 → 永远不生效。
             // 这里统一用注册表的 id 兜底补上，别再指望每个换皮对象自己记得写
@@ -410,7 +416,7 @@ function enemy_subwave_summon(){
             // 海克斯：「老鼠数量 +X%」按概率多刷一只（与上面的 −X% 跳过对称）
             var _hex_extra = hex_enemy_extra_chance();
             if (_hex_extra > 0 && random(1) < _hex_extra) {
-                var _dup = instance_create_depth(grid_pos.x + 30 + irandom_range(-14, 14),
+                var _dup = instance_create_depth(grid_pos.x + 30 - _stagger + irandom_range(-14, 14),
                                                  grid_pos.y + 38, 0, enemy_obj);
                 if (variable_instance_exists(_dup, "mouse_id") && _dup.mouse_id == "") {
                     _dup.mouse_id = _enemy_type;

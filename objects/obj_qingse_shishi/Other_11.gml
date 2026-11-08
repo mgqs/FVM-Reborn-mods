@@ -53,6 +53,19 @@ for (var j = 0; j < persimmon_count; j++){
 		}
 	}
 
+	// 本行没有鼠军时，青苹果也算落点（否则柿子会砸在自己脚下）
+	if (_nearest_dist >= 9999){
+		with (obj_longzhu_green_apple){
+			if (hp > 0 && row == _target_row){
+				var _d2 = abs(col - other.grid_col);
+				if (_d2 >= -other.range && _d2 <= other.range && _d2 < _nearest_dist){
+					_nearest_dist = _d2;
+					_target_col = col;
+				}
+			}
+		}
+	}
+
 	// 计算目标世界坐标
 	var _target_pos = get_world_position_from_grid(_target_col, _target_row)
 

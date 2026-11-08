@@ -268,7 +268,7 @@ switch state{
 			// 变异：先在当前侧释放斜劈，紧接着转移到对角再释放一次
 			var inst = instance_create_depth(x-90,y-20,-800,obj_kuafu_boss_baron_blade)
 			if t_type == 0{
-				inst.image_yscale = -1.8
+				inst.image_yscale = -2.7
 				inst.y -= 80
 			}
 			inst.type = t_type
@@ -285,7 +285,7 @@ switch state{
 			
 			var inst2 = instance_create_depth(x-90,y-20,-800,obj_kuafu_boss_baron_blade)
 			if second_type == 0{
-				inst2.image_yscale = -1.8
+				inst2.image_yscale = -2.7
 				inst2.y -= 80
 			}
 			inst2.type = second_type
