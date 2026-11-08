@@ -12,6 +12,7 @@ if (config_key == "play_mode_gacha") state = (global.play_mode == 1);
 if (config_key == "play_mode_lucky") state = (global.play_mode == 2);
 if (config_key == "play_mode_gift") state = (global.play_mode == 3);
 if (config_key == "play_mode_hex")  state = (global.play_mode == 4);
+if (config_key == "boss_music_random") state = global.boss_music_random;
 
 bounce_t = -1
 bounce_frames = 10

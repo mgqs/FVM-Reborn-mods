@@ -190,6 +190,18 @@ switch (button_select) {
 		//draw_roundrect(bar_min_x, y - 55, bar_max_x, y - 25, false);
 		draw_set_color(#17314C);
 		draw_roundrect(bar_max_x, y - 55, bar_min_x + (bar_max_x - bar_min_x) * _sv, y - 25, false);
+
+		// BOSS 随机音乐标签 + 曲库状态（开关本体由 obj_setting_toggle 自己画，在 y+61）
+		draw_set_font(font_yuan);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
+		draw_text(x - 390, y + 61, "BOSS 随机音乐");
+		var _bc = boss_music_count();
+		draw_set_halign(fa_right);
+		draw_set_color(#3B6E9E);
+		draw_text(x + 360, y + 61, (_bc > 0) ? (string(_bc) + " 首") : "曲库为空");
+		draw_set_halign(fa_left);
 		break;
 	case 1:
 		// 绘制标签

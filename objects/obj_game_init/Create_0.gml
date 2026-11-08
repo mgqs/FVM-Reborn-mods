@@ -184,6 +184,7 @@ if (ini_read_string("settings", "craft_rate_enabled", "") == "") {
 }
 // 合成屋「保险金」开关（默认关；键缺失时补写）
 global.craft_assure_enabled = ini_read_bool("settings", "craft_assure_enabled", false);
+global.boss_music_random = ini_read_bool("settings", "boss_music_random", false); // BOSS 随机音乐（曲库在 %LOCALAPPDATA%\FVM_Reborn_makk\boss_music）
 if (ini_read_string("settings", "craft_assure_enabled", "") == "") {
     ini_write_bool("settings", "craft_assure_enabled", false);
 }

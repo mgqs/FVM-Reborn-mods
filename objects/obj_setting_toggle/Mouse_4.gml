@@ -69,3 +69,7 @@ else if (config_key == "lose_focus_pause"){
 else if (config_key == "ui_anim"){
 	global.ui_anim = state ? 1 : 0
 }
+else if (config_key == "boss_music_random"){
+	global.boss_music_random = state
+	boss_music_ensure_dir()
+}
