@@ -7,13 +7,15 @@ if state == CARD_STATE.IDLE{
 	var _range = 250
 
 	with (obj_enemy_parent) {
-		if mouse_id == "ice_residue"{
+		// 2026-11-08：感染版（感染冰渣 / 感染火渣）与原版冰渣同一套打断口径，
+		//   否则情报文案里写的「火形态可被冰桶打断」对它们不成立
+		if (mouse_id == "ice_residue" || mouse_id == "infected_bingzha" || mouse_id == "infected_fire_residue"){
 			if shape == "fire" && state == BOSS_STATE.SKILL2{
 				timer = 0
 				state = BOSS_STATE.STUN
 			}
 		}
-		if mouse_id == "ice_residue_ball"{
+		if (mouse_id == "ice_residue_ball" || mouse_id == "infected_bingzha_ball"){
 			if shape == "fire"{
 				hp -= maxhp
 			}

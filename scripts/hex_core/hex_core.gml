@@ -946,10 +946,19 @@ function hex_sync_flame_cap() {
     }
 
     var _target = 15000 + _add;
-    if (_unbound) _target = 99999999;
-    if (_fixed > 0) _target = _fixed;
+    // 优先级改成：无上限（无限续杯）> 固定值（破釜沉舟 500）> 基础 + 增量。
+    // 原来是 fixed 压过 unbound、最后还统一 max(2000,…) 兜底，结果：
+    //   ① 破釜沉舟的 500 被抬成 2000，根本不是「上限 500」；
+    //   ② 之后拿到「无限续杯」也解不开这个固定上限 —— 玩家看到的就是「火苗上限永远锁死」。
+    if (_unbound) {
+        _target = 99999999;
+    } else if (_fixed > 0) {
+        _target = _fixed;
+    } else if (_target < 2000) {
+        _target = 2000;
+    }
     if (_half) _target = _target * 0.5;
-    _target = max(2000, round(_target));
+    _target = max(1, round(_target));
 
     if (variable_global_exists("flame_cap_base") && global.flame_cap_base == _target) return;
     global.flame_cap_base = _target;

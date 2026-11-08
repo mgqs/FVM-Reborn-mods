@@ -11,9 +11,9 @@
   "total_waves": 10,
   "elite_wave": 5,
   "boss_wave": 5,
-  "hp_modify": 1.8,
-  "min_wave_time": 240,
-  "max_wave_time": 1500,
+  "hp_modify": 15,
+  "min_wave_time": 0,
+  "max_wave_time": 300,
   "map": [
     [
       {
@@ -4044,7 +4044,7 @@
       "boss": ""
     },
     {
-      "boss_1_hp_modify": 1.5,
+      "boss_1_hp_modify": 15,
       "subwaves": [
         {
           "enemy_list": [
@@ -4733,7 +4733,7 @@
         }
       ],
       "boss2": "",
-      "boss_2_hp_modify": 1.0,
+      "boss_2_hp_modify": 15,
       "boss_wave": true,
       "wave_index": 6.0,
       "boss": "ly_hengha"
@@ -5379,7 +5379,7 @@
       "boss": ""
     },
     {
-      "boss_1_hp_modify": 1.5,
+      "boss_1_hp_modify": 15,
       "subwaves": [
         {
           "enemy_list": [
@@ -6118,7 +6118,7 @@
         }
       ],
       "boss2": "",
-      "boss_2_hp_modify": 1.0,
+      "boss_2_hp_modify": 15.0,
       "boss_wave": true,
       "wave_index": 8.0,
       "boss": "ly_wuchang"
@@ -6969,7 +6969,7 @@
       "boss": ""
     },
     {
-      "boss_1_hp_modify": 1.5,
+      "boss_1_hp_modify": 15,
       "subwaves": [
         {
           "enemy_list": [
@@ -7783,7 +7783,7 @@
         }
       ],
       "boss2": "",
-      "boss_2_hp_modify": 1.0,
+      "boss_2_hp_modify": 15.0,
       "boss_wave": true,
       "wave_index": 10.0,
       "boss": "ly_mengpo"

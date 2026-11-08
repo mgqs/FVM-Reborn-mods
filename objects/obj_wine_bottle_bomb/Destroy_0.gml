@@ -8,13 +8,14 @@
 	with (obj_enemy_parent) {
 		
 			if (grid_row == other.grid_row||(abs(x - other.x) <= 100 && other.shape >= 2)) {
-				if mouse_id == "ice_residue"{
+				// 2026-11-08：感染冰渣/冰球与原版同一套打断口径（火渣只有火形态，走冰桶那条）
+				if (mouse_id == "ice_residue" || mouse_id == "infected_bingzha"){
 					if shape == "ice" && state == BOSS_STATE.SKILL2{
 						timer = 0
 						state = BOSS_STATE.STUN
 					}
 				}
-				if mouse_id == "ice_residue_ball"{
+				if (mouse_id == "ice_residue_ball" || mouse_id == "infected_bingzha_ball"){
 					if shape == "ice"{
 						hp -= maxhp
 					}

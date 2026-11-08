@@ -22,10 +22,14 @@ if x >= target_x - 10 && x <= target_x + 10{
 	var erase_row = row
 	with obj_card_parent{
 		if(grid_col == erase_col && grid_row == erase_row && plant_id != "player"){
-			if hp >= max_hp{
-				obj_task_manager.card_loss++
+			// 海克斯「鲨鱼的厚皮」：免疫敌人技能的秒杀（阿诺霰弹是直接抹掉整张卡）。
+			// 被免疫时连 card_loss 也不记 —— 卡没掉，别顺手再罚玩家一次
+			if (!hex_card_sec_proof()) {
+				if hp >= max_hp{
+					obj_task_manager.card_loss++
+				}
+				instance_destroy()
 			}
-			instance_destroy()
 		}
 	}
 	if sprite_index == spr_arno_bullet{

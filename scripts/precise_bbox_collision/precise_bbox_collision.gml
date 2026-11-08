@@ -62,6 +62,23 @@ function precise_bbox_collision(_inst_a, _inst_b) {
     var _b_top = _inst_b.bbox_top;
     var _b_bottom = _inst_b.bbox_bottom;
 
+    // B 方案：B 侧若是敌人且表里有固定判定框，改用固定值。
+    // 原因：实例 bbox 是「当前帧掩码」，collisionKind=4 的敌人会随动作突变
+    // （巨人鼠挥爪帧左缘 -57 -> -104，凭空多 47px），导致命中时机忽早忽晚。
+    // 开关：ENEMY_BODY_ENABLED（scripts/enemy_body/enemy_body.gml）
+    if (ENEMY_BODY_ENABLED) {
+        var _eb = enemy_body_get(_inst_b);
+        if (!is_undefined(_eb)) {
+            var _ebsx = abs(_inst_b.image_xscale);
+            var _ebsy = abs(_inst_b.image_yscale);
+            var _ebneg = (_inst_b.image_xscale < 0);
+            _b_left = _inst_b.x + (_ebneg ? _eb.r : _eb.l) * _ebsx;
+            _b_right = _inst_b.x + (_ebneg ? _eb.l : _eb.r) * _ebsx;
+            _b_top = _inst_b.y + _eb.t * _ebsy;
+            _b_bottom = _inst_b.y + _eb.b * _ebsy;
+        }
+    }
+
     return _a_right >= _b_left && _a_left <= _b_right
         && _a_bottom >= _b_top && _a_top <= _b_bottom;
 }

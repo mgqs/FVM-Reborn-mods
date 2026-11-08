@@ -54,9 +54,10 @@ longyuan_dijing_food_ahead = function() {
     var _found = noone;
     with (obj_card_parent) {
         if (hp <= 0 || grid_row != other.grid_row || abs(x - other.x) > 50) continue;
-        // 能引诱出土的：5 种食物卡，以及外层护罩本身（瓜皮 / 赫拉 / 处女座）。
-        // 后者不能漏：护罩罩住的若不是食物卡，只认食物卡会让地精鼠从护罩底下整个穿过去。
-        if (longyuan_dijing_is_food_card(plant_id) || plant_type == "shield_outer") _found = id;
+        // 只有 5 种食物卡能引诱出土；护罩本身不再单独算目标。
+        // 但护罩罩住食物卡时仍要钻出来，所以下面统一走 longyuan_outer_card_of 解析外层：
+        // 撞击与啃咬先落到护罩，破罩后才轮到食物卡本体。
+        if (longyuan_dijing_is_food_card(plant_id)) _found = id;
     }
     // 被外部保护卡罩住时，出土撞击与后续啃咬都先落到保护卡上，破罩后才轮到内层。
     if (instance_exists(_found)) return longyuan_outer_card_of(_found);

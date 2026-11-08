@@ -1198,3 +1198,107 @@ function credit_shop_sort_key(_gid) {
     var _cid = is_undefined(_p) ? string(_gid) : string(_p.card_id);
     return _cid + "|" + string(_g.credit_shape);
 }
+
+// ─────────────────────────────────────────────────────────────
+// 魔塔蛋糕「本层解锁的转职凭证」面板（2026-11-08）
+//   红框里的凭证格 = 商品表里 tower_floor 正好等于该关卡的 credit 商品
+//   位置：obj_tower_cake_bg（Create 里的 refresh_credit_grid）
+//   绘制统一走 transfer_credit_draw（底板 + 卡面），别在界面里另画一套
+// ─────────────────────────────────────────────────────────────
+
+/// @func transfer_credit_tower_level_key(level_id) 关卡 id → 门槛 key（层×100+小关）
+///   "tower_cake_2_1" → 201；"tower_cake_12_2" → 1202；解析失败 → 0
+///   ⚠️ 别用 real() 判合法性：GML 的 real("abc") 不报错、直接给 0
+function transfer_credit_tower_level_key(_level_id){
+    if (!is_string(_level_id)) return 0;
+    var _parts = string_split(_level_id, "_");
+    var _n = array_length(_parts);
+    if (_n < 2) return 0;
+    var _layer = real(_parts[_n - 2]);
+    var _sub   = real(_parts[_n - 1]);
+    if (_layer <= 0 || _sub <= 0) return 0;
+    return _layer * 100 + _sub;
+}
+
+/// @func transfer_credit_tower_goods(level_key) 该层解锁的转职凭证 = 商品 id 数组
+///   口径（跟商店凭证页一致）：type == "credit" 且 credit_shape > 0 且 credit_shop_floor_key() == level_key
+///   排序也复用 credit_shop_sort_key()（同卡挨着、卡内先一转后二转），别自己另写一套
+function transfer_credit_tower_goods(_level_key){
+    var _out = [];
+    if (_level_key <= 0) return _out;
+    if (!variable_global_exists("goods_map")) return _out;
+
+    var _keys = ds_map_keys_to_array(global.goods_map);
+    for (var _i = 0; _i < array_length(_keys); _i++){
+        var _g = global.goods_map[? _keys[_i]];
+        if (!is_struct(_g)) continue;
+        if (!variable_struct_exists(_g, "type") || _g.type != "credit") continue;
+        if (!variable_struct_exists(_g, "credit_shape") || _g.credit_shape <= 0) continue;
+        if (credit_shop_floor_key(_g) != _level_key) continue;
+        array_push(_out, _keys[_i]);
+    }
+
+    var _n = array_length(_out);
+    for (var _a = 1; _a < _n; _a++){
+        var _cur = _out[_a];
+        var _ck  = credit_shop_sort_key(_cur);
+        var _b   = _a - 1;
+        while (_b >= 0){
+            if (credit_shop_sort_key(_out[_b]) <= _ck) break;
+            _out[_b + 1] = _out[_b];
+            _b -= 1;
+        }
+        _out[_b + 1] = _cur;
+    }
+    return _out;
+}
+
+/// @func transfer_credit_short_label(card_id, shape) 凭证格下的小字：「油灯-一转」
+///   档位用 mod_tg_tier_short()（一转/二转/…/终转），**不带槽位字母**（2026-11-08 用户定）
+function transfer_credit_short_label(_card_id, _shape){
+    var _tier = transfer_credit_tier(_card_id, _shape);
+    return transfer_credit_card_name(_card_id) + "-" + mod_tg_tier_short(_tier);
+}
+
+/// @func transfer_credit_is_transferred(card_id, shape) 这张卡是不是已经转职到该形态（或更高）
+///   魔塔凭证格「已转职」灰态的唯一判据 —— 跟商店 transfer_credit_buyable_locked 同源
+function transfer_credit_is_transferred(_card_id, _shape){
+    return (transfer_credit_card_max_shape(_card_id) >= _shape);
+}
+
+/// @func transfer_credit_tower_click(goods_id, owner_id) 魔塔凭证格点击 → 跟商店购买完全同一条路
+///   ① 爬塔门槛没过 → 「请通关 X-X 解锁」（用户 2026-11-08 指定文案）
+///   ② 商店口径的其它拦截（形态不存在 / 已转职）→ 直接弹原因
+///   ③ 余额不够 → 威望不足 / 金币不足
+///   ④ 全过 → 弹 obj_shop_buy_confirm（跟商店同一个确认窗），确认后按 owner 的字段扣钱发货
+///   owner_id = 点了哪一格（必须带 btn_type="credit" / target_item / cost / coin_type / reward_prestige）
+function transfer_credit_tower_click(_gid, _owner){
+    var _g = global.goods_map[? _gid];
+    if (!is_struct(_g) || !instance_exists(_owner)) return;
+
+    var _need = credit_shop_floor_key(_g);
+    if (_need > 0 && transfer_credit_tower_done_key() < _need){
+        show_notice("请通关 " + transfer_credit_tower_key_text(_need) + " 解锁", 80);
+        return;
+    }
+
+    var _cp = transfer_credit_parse(_g.unlock_item_id);
+    if (!is_undefined(_cp)){
+        var _blk = transfer_credit_buyable(_cp.card_id, _cp.shape);
+        if (_blk != ""){ show_notice(_blk, 80); return; }
+    }
+
+    var _cost = is_string(_g.cost) ? real(_g.cost) : _g.cost;
+    var _coin = variable_struct_exists(_g, "coin_type") ? _g.coin_type : "gold";
+    var _bal  = (_coin == "prestige") ? get_material_amount("prestige") : global.save_data.player.gold;
+    if (_bal < _cost && !global.debug){
+        show_notice((_coin == "prestige") ? "威望不足" : "金币不足", 60);
+        return;
+    }
+
+    var _conf = instance_create_depth(room_width * 0.5, room_height * 0.5, depth - 3, obj_shop_buy_confirm);
+    _conf.banding_buy_btn = _owner;
+    if (instance_exists(obj_tower_cake_bg)) obj_tower_cake_bg.is_submenu_opened = true;
+    if (instance_exists(obj_shop_bg)) obj_shop_bg.is_submenu_opened = true;
+    global.audio.play(snd_button, 0, 0);
+}

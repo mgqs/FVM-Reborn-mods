@@ -2681,7 +2681,7 @@ register_card("liehuohu", obj_liehuohu, [
         cost: 75,
         cooldown: 47000,
         description: "治愈喵：为5*5范围内卡片和玩家恢复50点体力",
-        plant_type: "normal",
+        plant_type: "gridless",
         feature_type: "normal",
         target_card: "none",
         is_gold: 0
@@ -2692,7 +2692,7 @@ register_card("liehuohu", obj_liehuohu, [
         cost: 75,
         cooldown: 47000,
         description: "武装治愈喵：为5*5范围内卡片和玩家恢复80点体力，并持续恢复3秒",
-        plant_type: "normal",
+        plant_type: "gridless",
         feature_type: "normal",
         target_card: "none",
         is_gold: 0
@@ -2703,7 +2703,7 @@ register_card("liehuohu", obj_liehuohu, [
         cost: 75,
         cooldown: 47000,
         description: "全能治愈喵：为全屏范围内卡片和玩家恢复80点体力，并持续恢复3秒",
-        plant_type: "normal",
+        plant_type: "gridless",
         feature_type: "normal",
         target_card: "none",
         is_gold: 0

@@ -49,6 +49,9 @@ if x >= target_x - 10 && x <= target_x + 10{
 			with plant_order_list[i]{
 				if plant_id != "player"{
 					hp -= other.damage
+					// 海克斯「鲨鱼的厚皮」：冰渣的光弹是秒杀口径（一发打掉整张卡），
+					// 这个词条让它至少留下 1 点血，不吃满额致死
+					if (hp <= 0 && hex_card_sec_proof()) hp = 1
 					event_user(2)
 				}
 			}

@@ -188,8 +188,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "gaia",
         target_shape: 1,
-        description: "盖亚圣神：攻击力提高，眩晕并初始瞬发",
-        spr: spr_voucher_gaia
+        description: "盖亚圣神：攻击力提高，眩晕并初始瞬发"
     });
     register_gods_goods("aurora_1",
     {
@@ -197,8 +196,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "aurora",
         target_shape: 1,
-        description: "欧若拉圣神：死亡后造成3x3爆炸",
-        spr: spr_voucher_aurora
+        description: "欧若拉圣神：死亡后造成3x3爆炸"
     });
     register_gods_goods("zhurong_1",
     {
@@ -206,8 +204,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "zhurong",
         target_shape: 1,
-        description: "祝融圣神：[攻击力]额外提升30%，射程增加一格",
-        spr: spr_voucher_zhurong
+        description: "祝融圣神：[攻击力]额外提升30%，射程增加一格"
     });
     register_gods_goods("rig_1",
     {
@@ -215,8 +212,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "rig",
         target_shape: 1,
-        description: "里格圣神：[攻击力]额外提升10%，能量守恒",
-        spr: spr_voucher_rig
+        description: "里格圣神：[攻击力]额外提升10%，能量守恒"
     });
     register_gods_goods("brahma_1",
     {
@@ -224,8 +220,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "brahma",
         target_shape: 1,
-        description: "梵天圣神：放置造成5x5灰烬爆炸",
-        spr: spr_voucher_brahma
+        description: "梵天圣神：放置造成5x5灰烬爆炸"
     });
     register_gods_goods("clotho_1",
     {
@@ -233,8 +228,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "clotho",
         target_shape: 1,
-        description: "克洛托圣神：优化升星概率，必定升星",
-        spr: spr_voucher_clotho
+        description: "克洛托圣神：优化升星概率，必定升星"
     });
     register_gods_goods("time_god_1",
     {
@@ -242,8 +236,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "time_god",
         target_shape: 1,
-        description: "柯罗诺斯圣神：放卡产生爆炸",
-		spr: spr_time_god_pin1
+        description: "柯罗诺斯圣神：放卡产生爆炸"
     });
     register_gods_goods("fire_god_1",
     {
@@ -251,8 +244,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "fire_god",
         target_shape: 1,
-        description: "洛基圣神：[攻击力]额外提高15%",
-        spr: spr_voucher_loki
+        description: "洛基圣神：[攻击力]额外提高15%"
     });
     register_gods_goods("firework_dragon_real_1",
     {
@@ -260,8 +252,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "firework_dragon_real",
         target_shape: 1,
-        description: "真·灼灼花火龙：放下后立刻返还种植消耗的火苗",
-        spr: spr_voucher_firework_dragon
+        description: "真·灼灼花火龙：放下后立刻返还种植消耗的火苗"
     });
     register_gods_goods("thor_1",
     {
@@ -269,8 +260,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "thor",
         target_shape: 1,
-        description: "索尔圣神：增加1发冰锤，但攻击力降低，总伤害增加20%",
-        spr: spr_thor_1pin
+        description: "索尔圣神：增加1发冰锤，但攻击力降低，总伤害增加20%"
     });
     register_gods_goods("war_god_1",
     {
@@ -278,8 +268,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "war_god",
         target_shape: 1,
-        description: "阿瑞斯圣神：前后增加1发子弹。",
-        spr: spr_war_1pin
+        description: "阿瑞斯圣神：前后增加1发子弹。"
     });
     register_gods_goods("odin_1",
     {
@@ -287,8 +276,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "odin",
         target_shape: 1,
-        description: "奥丁圣神：攻击力提升25%",
-        spr: spr_odin_1pin
+        description: "奥丁圣神：攻击力提升25%"
     });
     register_gods_goods("moon_god_1",
     {
@@ -296,8 +284,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "moon_god",
         target_shape: 1,
-        description: "狄安娜圣神：增加1发子弹",
-        spr: spr_moon_1pin
+        description: "狄安娜圣神：增加1发子弹"
     });
     register_gods_goods("ymir_1",
     {
@@ -305,8 +292,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "ymir",
         target_shape: 1,
-        description: "尤弥尔圣神：中路增加一发巨锤，攻击力提升10%，溅射伤害提升至50%",
-        spr: spr_big_1pin
+        description: "尤弥尔圣神：中路增加一发巨锤，攻击力提升10%，溅射伤害提升至50%"
     });
     register_gods_goods("hera_1",
     {
@@ -314,8 +300,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "hera",
         target_shape: 1,
-        description: "赫拉圣神：增加25%体力",
-        spr: spr_hera_1pin
+        description: "赫拉圣神：增加25%体力"
     });
     register_gods_goods("sun_god_1",
     {
@@ -323,8 +308,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "sun_god",
         target_shape: 1,
-        description: "阿波罗圣神：一次生产8朵火苗，冷却与耗火略微降低。",
-        spr: spr_sun_1pin
+        description: "阿波罗圣神：一次生产8朵火苗，冷却与耗火略微降低。"
     });
     register_gods_goods("poseidon_1",
     {
@@ -332,8 +316,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "poseidon",
         target_shape: 1,
-        description: "波塞冬圣神：攻击力提升20%并附加减速效果",
-        spr: spr_sea_1pin
+        description: "波塞冬圣神：攻击力提升20%并附加减速效果"
     });
     register_gods_goods("ice_god_1",
     {
@@ -341,8 +324,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "ice_god",
         target_shape: 1,
-        description: "典伊圣神：耗能减少，冰晶带有3程3的40%溅射伤害",
-        spr: spr_ice_1pin
+        description: "典伊圣神：耗能减少，冰晶带有3程3的40%溅射伤害"
     });
     register_gods_goods("ghost_god_1",
     {
@@ -350,8 +332,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "ghost_god",
         target_shape: 1,
-        description: "哈迪斯圣神：增加一发附带减速和穿透的次级子弹，但伤害仅有20%",
-        spr: spr_ghost_1pin
+        description: "哈迪斯圣神：增加一发附带减速和穿透的次级子弹，但伤害仅有20%"
     });
     register_gods_goods("zeus_1",
     {
@@ -359,8 +340,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "zeus",
         target_shape: 1,
-        description: "宙斯圣神：攻击力提升20%",
-        spr: spr_zeus_1pin
+        description: "宙斯圣神：攻击力提升20%"
     });
     register_gods_goods("love_god_1",
     {
@@ -368,8 +348,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "love_god",
         target_shape: 1,
-        description: "丘比特圣神：中路增加1发子弹",
-        spr: spr_love_1pin
+        description: "丘比特圣神：中路增加1发子弹"
     });
     register_gods_goods("water_god_1",
     {
@@ -377,8 +356,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "water_god",
         target_shape: 1,
-        description: "忒提丝圣神：[能量消耗]降低至75",
-        spr: spr_water_1pin
+        description: "忒提丝圣神：[能量消耗]降低至75"
     });
     register_gods_goods("power_god_1",
     {
@@ -386,8 +364,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "power_god",
         target_shape: 1,
-        description: "赫丘利圣神：威力提升35%，定身加强",
-        spr: spr_power_1pin
+        description: "赫丘利圣神：威力提升35%，定身加强"
     });
     register_gods_goods("sheng_huo_1",
     {
@@ -395,8 +372,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "sheng_huo",
         target_shape: 1,
-        description: "赫斯提亚圣神：伤害大幅度提升, 几率眩晕,灰烬效果",
-        spr: spr_sh_1pin
+        description: "赫斯提亚圣神：伤害大幅度提升, 几率眩晕,灰烬效果"
     });
     register_gods_goods("save_god_1",
     {
@@ -404,8 +380,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "save_god",
         target_shape: 1,
-        description: "灵鱼摩羯圣神：无需格子",
-        spr: spr_save_1pin
+        description: "灵鱼摩羯圣神：无需格子"
     });
     register_gods_goods("joker_1",
     {
@@ -413,8 +388,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "joker",
         target_shape: 1,
-        description: "埃罗斯圣神：溅射伤害提升，死亡蝙蝠效果",
-        spr: spr_joker_1pin
+        description: "埃罗斯圣神：溅射伤害提升，死亡蝙蝠效果"
     });
     register_gods_goods("gaia_2",
     {
@@ -422,8 +396,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "gaia",
         target_shape: 2,
-        description: "大地女神·盖亚：增加1发子弹",
-        spr: spr_voucher_gaia_1
+        description: "大地女神·盖亚：增加1发子弹"
     });
     register_gods_goods("aurora_2",
     {
@@ -431,8 +404,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "aurora",
         target_shape: 2,
-        description: "曙光女神·欧若拉：[攻击力]额外增加30%",
-        spr: spr_voucher_aurora_1
+        description: "曙光女神·欧若拉：[攻击力]额外增加30%"
     });
     register_gods_goods("zhurong_2",
     {
@@ -440,8 +412,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "zhurong",
         target_shape: 2,
-        description: "赤帝·祝融：点燃范围扩大到5x5",
-        spr: spr_voucher_zhurong_1
+        description: "赤帝·祝融：点燃范围扩大到5x5"
     });
     register_gods_goods("rig_2",
     {
@@ -449,8 +420,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "rig",
         target_shape: 2,
-        description: "守护神·里格：攻击力根据场上里格的数量提升",
-        spr: spr_voucher_rig_1
+        description: "守护神·里格：攻击力根据场上里格的数量提升"
     });
     register_gods_goods("brahma_2",
     {
@@ -458,8 +428,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "brahma",
         target_shape: 2,
-        description: "创造神·梵天：额外复制一张卡片",
-        spr: spr_voucher_brahma_1
+        description: "创造神·梵天：额外复制一张卡片"
     });
     register_gods_goods("clotho_2",
     {
@@ -467,8 +436,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "clotho",
         target_shape: 2,
-        description: "命运女神·克洛托：优化升星概率，影响范围扩大到5x5",
-        spr: spr_voucher_clotho_1
+        description: "命运女神·克洛托：优化升星概率，影响范围扩大到5x5"
     });
     register_gods_goods("time_god_2",
     {
@@ -476,8 +444,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "time_god",
         target_shape: 2,
-        description: "时间神·柯罗诺斯：范围扩大至5x5，冷却缩减50%",
-		spr: spr_time_god_pin2
+        description: "时间神·柯罗诺斯：范围扩大至5x5，冷却缩减50%"
     });
     register_gods_goods("fire_god_2",
     {
@@ -485,8 +452,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "fire_god",
         target_shape: 2,
-        description: "火神·洛基：穿过的子弹额外获得单格100%溅射",
-        spr: spr_voucher_loki_1
+        description: "火神·洛基：穿过的子弹额外获得单格100%溅射"
     });
     register_gods_goods("firework_dragon_real_2",
     {
@@ -494,8 +460,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "firework_dragon_real",
         target_shape: 2,
-        description: "真·炽焰花火龙：额外产出6朵火苗",
-        spr: spr_voucher_firework_dragon_1
+        description: "真·炽焰花火龙：额外产出6朵火苗"
     });
     register_gods_goods("thor_2",
     {
@@ -503,8 +468,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "thor",
         target_shape: 2,
-        description: "雷神·索尔：溅射伤害提升至45%，每3轮额外投出1发超级子弹",
-        spr: spr_thor_2pin
+        description: "雷神·索尔：溅射伤害提升至45%，每3轮额外投出1发超级子弹"
     });
     register_gods_goods("war_god_2",
     {
@@ -512,8 +476,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "war_god",
         target_shape: 2,
-        description: "战神·阿瑞斯：前方每四轮额外射出一发超级子弹，超级子弹拥有800%攻击力",
-        spr: spr_war_2pin
+        description: "战神·阿瑞斯：前方每四轮额外射出一发超级子弹，超级子弹拥有800%攻击力"
     });
     register_gods_goods("odin_2",
     {
@@ -521,8 +484,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "odin",
         target_shape: 2,
-        description: "主神·奥丁：增加1发子弹",
-        spr: spr_odin_2pin
+        description: "主神·奥丁：增加1发子弹"
     });
     register_gods_goods("moon_god_2",
     {
@@ -530,8 +492,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "moon_god",
         target_shape: 2,
-        description: "月神·狄安娜：每组首发的子弹变身超级子弹",
-        spr: spr_moon_2pin
+        description: "月神·狄安娜：每组首发的子弹变身超级子弹"
     });
     register_gods_goods("ymir_2",
     {
@@ -539,8 +500,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ymir",
         target_shape: 2,
-        description: "巨神·尤弥尔：侧路各增加一发巨锤，攻击力再提升10%，击杀附带灰烬效果",
-        spr: spr_big_2pin
+        description: "巨神·尤弥尔：侧路各增加一发巨锤，攻击力再提升10%，击杀附带灰烬效果"
     });
     register_gods_goods("hera_2",
     {
@@ -548,8 +508,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "hera",
         target_shape: 2,
-        description: "天后·赫拉：给被保护的卡片增加1000体力",
-        spr: spr_hera_2pin
+        description: "天后·赫拉：给被保护的卡片增加1000体力"
     });
     register_gods_goods("sun_god_2",
     {
@@ -557,8 +516,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "sun_god",
         target_shape: 2,
-        description: "太阳神·阿波罗：一次生产10朵火苗，冷却与耗火进一步降低。",
-        spr: spr_sun_2pin
+        description: "太阳神·阿波罗：一次生产10朵火苗，冷却与耗火进一步降低。"
     });
     register_gods_goods("poseidon_2",
     {
@@ -566,8 +524,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "poseidon",
         target_shape: 2,
-        description: "海神·波塞冬：增加1发水波攻击",
-        spr: spr_sea_2pin
+        description: "海神·波塞冬：增加1发水波攻击"
     });
     register_gods_goods("ice_god_2",
     {
@@ -575,8 +532,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ice_god",
         target_shape: 2,
-        description: "冰神·典伊：攻击力提升，攻击数量+2",
-        spr: spr_ice_2pin
+        description: "冰神·典伊：攻击力提升，攻击数量+2"
     });
     register_gods_goods("ghost_god_2",
     {
@@ -584,8 +540,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ghost_god",
         target_shape: 2,
-        description: "冥神·哈迪斯：攻击力提升，再增加一发次级子弹",
-        spr: spr_ghost_2pin
+        description: "冥神·哈迪斯：攻击力提升，再增加一发次级子弹"
     });
     register_gods_goods("zeus_2",
     {
@@ -593,8 +548,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "zeus",
         target_shape: 2,
-        description: "天神·宙斯：增加一发闪电",
-        spr: spr_zeus_2pin
+        description: "天神·宙斯：增加一发闪电"
     });
     register_gods_goods("love_god_2",
     {
@@ -602,8 +556,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "love_god",
         target_shape: 2,
-        description: "爱神·丘比特：侧路各增加1发子弹",
-        spr: spr_love_2pin
+        description: "爱神·丘比特：侧路各增加1发子弹"
     });
     register_gods_goods("water_god_2",
     {
@@ -611,8 +564,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "water_god",
         target_shape: 2,
-        description: "水神·忒提丝：[攻击力]额外增加",
-        spr: spr_water_2pin
+        description: "水神·忒提丝：[攻击力]额外增加"
     });
     register_gods_goods("power_god_2",
     {
@@ -620,8 +572,7 @@ function gods_shop_init()
         cost: "5",
         unlock_item_id: "power_god",
         target_shape: 2,
-        description: "大力神·赫丘利：增加1发子弹",
-        spr: spr_power_2pin
+        description: "大力神·赫丘利：增加1发子弹"
     });
     register_gods_goods("sheng_huo_2",
     {
@@ -629,8 +580,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "sheng_huo",
         target_shape: 2,
-        description: "圣火女神·赫斯提亚：可伤害老鼠类型增加空中和地下",
-        spr: spr_sh_2pin
+        description: "圣火女神·赫斯提亚：可伤害老鼠类型增加空中和地下"
     });
     register_gods_goods("save_god_2",
     {
@@ -638,8 +588,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "save_god",
         target_shape: 2,
-        description: "救世神·灵鱼摩羯：增加2条灵鱼，几率清理障碍",
-        spr: spr_save_2pin
+        description: "救世神·灵鱼摩羯：增加2条灵鱼，几率清理障碍"
     });
     register_gods_goods("joker_2",
     {
@@ -647,8 +596,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "joker",
         target_shape: 2,
-        description: "恶作剧神·埃罗斯：增加1发子弹",
-        spr: spr_joker_2pin
+        description: "恶作剧神·埃罗斯：增加1发子弹"
     });
     register_gods_goods("gaia_3",
     {
@@ -656,8 +604,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "gaia",
         target_shape: 3,
-        description: "至尊大地女神：爆炸范围扩大至5x5",
-        spr: spr_voucher_gaia_2
+        description: "至尊大地女神：爆炸范围扩大至5x5"
     });
     register_gods_goods("aurora_3",
     {
@@ -665,8 +612,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "aurora",
         target_shape: 3,
-        description: "至尊曙光女神：增伤范围提升至三行，非本行加成为原来的20%",
-        spr: spr_voucher_aurora_2
+        description: "至尊曙光女神：增伤范围提升至三行，非本行加成为原来的20%"
     });
     register_gods_goods("zhurong_3",
     {
@@ -674,8 +620,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "zhurong",
         target_shape: 3,
-        description: "至尊赤帝：[攻击力]额外提升45%，点燃范围扩大到7x5",
-        spr: spr_voucher_zhurong_2
+        description: "至尊赤帝：[攻击力]额外提升45%，点燃范围扩大到7x5"
     });
     register_gods_goods("rig_3",
     {
@@ -683,8 +628,7 @@ function gods_shop_init()
         cost: "15",
         unlock_item_id: "rig",
         target_shape: 3,
-        description: "至尊守护神：每次攻击额外发射一轮子弹",
-        spr: spr_voucher_rig_2
+        description: "至尊守护神：每次攻击额外发射一轮子弹"
     });
     register_gods_goods("clotho_3",
     {
@@ -692,8 +636,7 @@ function gods_shop_init()
         cost: "15",
         unlock_item_id: "clotho",
         target_shape: 3,
-        description: "至尊命运女神：优化升星概率，影响范围扩大到7x5",
-        spr: spr_voucher_clotho_2
+        description: "至尊命运女神：优化升星概率，影响范围扩大到7x5"
     });
     register_gods_goods("brahma_3",
     {
@@ -701,8 +644,7 @@ function gods_shop_init()
         cost: "15",
         unlock_item_id: "brahma",
         target_shape: 3,
-        description: "至尊创造神：再额外复制两张卡片，共5张",
-        spr: spr_voucher_brahma_3
+        description: "至尊创造神：再额外复制两张卡片，共5张"
     });
     register_gods_goods("time_god_3",
     {
@@ -710,8 +652,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "time_god",
         target_shape: 3,
-        description: "至尊时间神：范围扩大至全屏，冷却缩减100%",
-		spr: spr_time_god_pin3
+        description: "至尊时间神：范围扩大至全屏，冷却缩减100%"
     });
     register_gods_goods("fire_god_3",
     {
@@ -719,8 +660,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "fire_god",
         target_shape: 3,
-        description: "至尊火神：穿过的子弹额外获得3x3范围30%溅射",
-        spr: spr_voucher_loki_2
+        description: "至尊火神：穿过的子弹额外获得3x3范围30%溅射"
     });
     register_gods_goods("thor_3",
     {
@@ -728,8 +668,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "thor",
         target_shape: 3,
-        description: "至尊雷神：每轮增加一发超级子弹，溅射伤害提升至100%",
-        spr: spr_thor_3pin
+        description: "至尊雷神：每轮增加一发超级子弹，溅射伤害提升至100%"
     });
     register_gods_goods("war_god_3",
     {
@@ -737,8 +676,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "war_god",
         target_shape: 3,
-        description: "至尊战神：后方每四轮也额外射出一发超级子弹，超级子弹拥有1200%攻击力",
-        spr: spr_war_3pin
+        description: "至尊战神：后方每四轮也额外射出一发超级子弹，超级子弹拥有1200%攻击力"
     });
     register_gods_goods("odin_3",
     {
@@ -746,8 +684,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "odin",
         target_shape: 3,
-        description: "至尊主神：再次增加1发子弹",
-        spr: spr_odin_3pin
+        description: "至尊主神：再次增加1发子弹"
     });
     register_gods_goods("moon_god_3",
     {
@@ -755,8 +692,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "moon_god",
         target_shape: 3,
-        description: "至尊月神：增加一发子弹，场上每个月神增加5%伤害，最高至145%",
-        spr: spr_moon_3pin
+        description: "至尊月神：增加一发子弹，场上每个月神增加5%伤害，最高至145%"
     });
     register_gods_goods("ymir_3",
     {
@@ -764,8 +700,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ymir",
         target_shape: 3,
-        description: "至尊巨神：每路增加一发巨锤，攻击力再额外提升20%",
-        spr: spr_big_3pin
+        description: "至尊巨神：每路增加一发巨锤，攻击力再额外提升20%"
     });
     register_gods_goods("hera_3",
     {
@@ -773,8 +708,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "hera",
         target_shape: 3,
-        description: "至尊天后：一次种植3个，优先正上与正下方",
-        spr: spr_hera_3pin
+        description: "至尊天后：一次种植3个，优先正上与正下方"
     });
     register_gods_goods("sun_god_3",
     {
@@ -782,8 +716,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "sun_god",
         target_shape: 3,
-        description: "至尊太阳神：一次生产12朵火苗，冷却与耗火大幅降低，首次产量翻倍",
-        spr: spr_sun_3pin
+        description: "至尊太阳神：一次生产12朵火苗，冷却与耗火大幅降低，首次产量翻倍"
     });
     register_gods_goods("poseidon_3",
     {
@@ -791,8 +724,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "poseidon",
         target_shape: 3,
-        description: "至尊海神：范围提升至7×5，总伤害提升85%",
-        spr: spr_sea_3pin
+        description: "至尊海神：范围提升至7×5，总伤害提升85%"
     });
     register_gods_goods("ice_god_3",
     {
@@ -800,8 +732,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ice_god",
         target_shape: 3,
-        description: "至尊冰神：攻击力大幅提升，攻击数量＋2",
-        spr: spr_ice_3pin
+        description: "至尊冰神：攻击力大幅提升，攻击数量＋2"
     });
     register_gods_goods("ghost_god_3",
     {
@@ -809,8 +740,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "ghost_god",
         target_shape: 3,
-        description: "至尊冥神：所有子弹变为次级子弹，但次级子弹现在拥有100%伤害",
-        spr: spr_ghost_3pin
+        description: "至尊冥神：所有子弹变为次级子弹，但次级子弹现在拥有100%伤害"
     });
     register_gods_goods("zeus_3",
     {
@@ -818,8 +748,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "zeus",
         target_shape: 3,
-        description: "至尊天神：增加两发闪电，范围变为5×5",
-        spr: spr_zeus_3pin
+        description: "至尊天神：增加两发闪电，范围变为5×5"
     });
     register_gods_goods("love_god_3",
     {
@@ -827,8 +756,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "love_god",
         target_shape: 3,
-        description: "至尊爱神：每四轮额外发射三发超级子弹",
-        spr: spr_love_3pin
+        description: "至尊爱神：每四轮额外发射三发超级子弹"
     });
     register_gods_goods("water_god_3",
     {
@@ -836,8 +764,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "water_god",
         target_shape: 3,
-        description: "至尊水神：反弹子弹并附加伤害",
-        spr: spr_water_3pin
+        description: "至尊水神：反弹子弹并附加伤害"
     });
     register_gods_goods("power_god_3",
     {
@@ -845,8 +772,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "power_god",
         target_shape: 3,
-        description: "至尊大力神：再增加一发子弹且触发灰烬效果",
-        spr: spr_power_3pin
+        description: "至尊大力神：再增加一发子弹且触发灰烬效果"
     });
     register_gods_goods("sheng_huo_3",
     {
@@ -854,8 +780,7 @@ function gods_shop_init()
         cost: "15",
         unlock_item_id: "sheng_huo",
         target_shape: 3,
-        description: "至尊圣火女神：施展火焰术，同类卡片可提升伤害，几率产生暴烈一击",
-        spr: spr_sh_3pin
+        description: "至尊圣火女神：施展火焰术，同类卡片可提升伤害，几率产生暴烈一击"
     });
     register_gods_goods("save_god_3",
     {
@@ -863,8 +788,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "save_god",
         target_shape: 3,
-        description: "至尊救世神：增加2条灵鱼，清理遇到的路障",
-        spr: spr_save_3pin
+        description: "至尊救世神：增加2条灵鱼，清理遇到的路障"
     });
     register_gods_goods("joker_3",
     {
@@ -872,8 +796,7 @@ function gods_shop_init()
         cost: "10",
         unlock_item_id: "joker",
         target_shape: 3,
-        description: "至尊恶作剧神：溅射伤害提升",
-        spr: spr_joker_3pin
+        description: "至尊恶作剧神：溅射伤害提升"
     });
 
 register_gods_goods("xiangshui_god",
@@ -890,8 +813,7 @@ register_gods_goods("xiangshui_god_1",
     cost: "10",
     unlock_item_id: "xiangshui_god",
     target_shape: 1,
-    description: "塔利亚圣神：为周围绿地追踪卡片提升大幅攻击力",
-    spr: spr_xiangshui_god_pin1
+    description: "塔利亚圣神：为周围绿地追踪卡片提升大幅攻击力"
 });
 
 register_gods_goods("xiangshui_god_2",
@@ -900,8 +822,7 @@ register_gods_goods("xiangshui_god_2",
     cost: "10",
     unlock_item_id: "xiangshui_god",
     target_shape: 2,
-    description: "宴飨女神·塔利亚：攻击力提升，冰神类卡片共享增幅，范围为5x5（终转前）",
-    spr: spr_xiangshui_god_pin2
+    description: "宴飨女神·塔利亚：攻击力提升，冰神类卡片共享增幅，范围为5x5（终转前）"
 });
 
 register_gods_goods("xiangshui_god_3",
@@ -910,8 +831,7 @@ register_gods_goods("xiangshui_god_3",
     cost: "10",
     unlock_item_id: "xiangshui_god",
     target_shape: 3,
-    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升，范围扩大至5x7（终转）",
-    spr: spr_xiangshui_god_pin3
+    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升，范围扩大至5x7（终转）"
 });
 
 register_gods_goods("fengrao_god",
@@ -928,8 +848,7 @@ register_gods_goods("fengrao_god_1",
     cost: "10",
     unlock_item_id: "fengrao_god",
     target_shape: 1,
-    description: "弗雷圣神：追加多向类卡片增幅",
-    spr: spr_fengrao_pin1
+    description: "弗雷圣神：追加多向类卡片增幅"
 });
 
 register_gods_goods("fengrao_god_2",
@@ -938,8 +857,7 @@ register_gods_goods("fengrao_god_2",
     cost: "10",
     unlock_item_id: "fengrao_god",
     target_shape: 2,
-    description: "丰饶神·弗雷：攻击力大幅提升",
-    spr: spr_fengrao_pin2
+    description: "丰饶神·弗雷：攻击力大幅提升"
 });
 
 register_gods_goods("fengrao_god_3",
@@ -948,8 +866,7 @@ register_gods_goods("fengrao_god_3",
     cost: "10",
     unlock_item_id: "fengrao_god",
     target_shape: 3,
-    description: "至尊丰饶神：同类卡片加成可叠加2次",
-    spr: spr_fengrao_pin3
+    description: "至尊丰饶神：同类卡片加成可叠加2次"
 });
 
 register_gods_goods("panduola_god",
@@ -966,8 +883,7 @@ register_gods_goods("panduola_god_1",
     cost: "5",
     unlock_item_id: "panduola_god",
     target_shape: 1,
-    description: "潘多拉魔盒：毒气伤害+35%",
-    spr: spr_panduola_pin1
+    description: "潘多拉魔盒：毒气伤害+35%"
 });
 
 register_gods_goods("panduola_god_2",
@@ -976,8 +892,7 @@ register_gods_goods("panduola_god_2",
     cost: "5",
     unlock_item_id: "panduola_god",
     target_shape: 2,
-    description: "疫神·潘多拉：毒气范围+1列，全屏8000灰烬爆炸+鼠疫",
-    spr: spr_panduola_pin2
+    description: "疫神·潘多拉：毒气范围+1列，全屏8000灰烬爆炸+鼠疫"
 });
 
 register_gods_goods("panduola_god_3",
@@ -986,8 +901,7 @@ register_gods_goods("panduola_god_3",
     cost: "10",
     unlock_item_id: "panduola_god",
     target_shape: 3,
-    description: "至尊疫神：全屏8000灰烬爆炸并造成三次鼠疫",
-    spr: spr_panduola_pin3
+    description: "至尊疫神：全屏8000灰烬爆炸并造成三次鼠疫"
 });
 
 register_gods_goods("houyi_god",
@@ -1004,8 +918,7 @@ register_gods_goods("houyi_god_1",
     cost: "10",
     unlock_item_id: "houyi_god",
     target_shape: 1,
-    description: "后羿圣神：灼烧效果提升，中路子弹+1",
-    spr: spr_houyi_god_pin1
+    description: "后羿圣神：灼烧效果提升，中路子弹+1"
 });
 
 register_gods_goods("houyi_god_2",
@@ -1014,8 +927,7 @@ register_gods_goods("houyi_god_2",
     cost: "10",
     unlock_item_id: "houyi_god",
     target_shape: 2,
-    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬",
-    spr: spr_houyi_god_pin2
+    description: "宗布神·后羿：侧路两行子弹+1，子弹击杀灰烬"
 });
 
 register_gods_goods("houyi_god_3",
@@ -1024,8 +936,7 @@ register_gods_goods("houyi_god_3",
     cost: "15",
     unlock_item_id: "houyi_god",
     target_shape: 3,
-    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高",
-    spr: spr_houyi_god_pin3
+    description: "至尊宗布神：每行子弹+1，三昧真火叠加次数提高"
 });
 
 register_gods_goods("gongjiang_god",
@@ -1042,8 +953,7 @@ register_gods_goods("gongjiang_god_1",
     cost: "10",
     unlock_item_id: "gongjiang_god",
     target_shape: 1,
-    description: "鲁班圣神：子弹威力提升，概率附加河豚毒素",
-    spr: spr_gongjiang_god_pin1
+    description: "鲁班圣神：子弹威力提升，概率附加河豚毒素"
 });
 
 register_gods_goods("gongjiang_god_2",
@@ -1052,8 +962,7 @@ register_gods_goods("gongjiang_god_2",
     cost: "10",
     unlock_item_id: "gongjiang_god",
     target_shape: 2,
-    description: "工匠神·鲁班：子弹威力提升至5倍，概率释放河豚毒素",
-    spr: spr_gongjiang_god_pin2
+    description: "工匠神·鲁班：子弹威力提升至5倍，概率释放河豚毒素"
 });
 
 register_gods_goods("gongjiang_god_3",
@@ -1062,8 +971,7 @@ register_gods_goods("gongjiang_god_3",
     cost: "15",
     unlock_item_id: "gongjiang_god",
     target_shape: 3,
-    description: "至尊工匠神：第1、2列增加上下竖向子弹，子弹威力再次提升",
-    spr: spr_gongjiang_god_pin3
+    description: "至尊工匠神：第1、2列增加上下竖向子弹，子弹威力再次提升"
 });
 
 
@@ -1088,8 +996,7 @@ register_gods_goods("hundun_god_1",
     cost: "5",
     unlock_item_id: "hundun_god",
     target_shape: 1,
-    description: "混沌圣神：吞噬范围扩大，精英伤害提升至6000",
-    spr: spr_hundun_pin1
+    description: "混沌圣神：吞噬范围扩大，精英伤害提升至6000"
 });
 
 register_gods_goods("hundun_god_2",
@@ -1098,8 +1005,7 @@ register_gods_goods("hundun_god_2",
     cost: "10",
     unlock_item_id: "hundun_god",
     target_shape: 2,
-    description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人",
-    spr: spr_hundun_pin2_
+    description: "上古神·混沌：纵向吞噬范围扩大，同时吞噬多个敌人"
 });
 
 register_gods_goods("hundun_god_3",
@@ -1108,8 +1014,7 @@ register_gods_goods("hundun_god_3",
     cost: "10",
     unlock_item_id: "hundun_god",
     target_shape: 3,
-    description: "至尊上古神：自身右侧为中心5×7范围吞噬普通鼠军，对精英鼠造成9000伤害",
-    spr: spr_hundun_pin3
+    description: "至尊上古神：自身右侧为中心5×7范围吞噬普通鼠军，对精英鼠造成9000伤害"
 });
 
 register_gods_goods("lingrong_god",
@@ -1126,8 +1031,7 @@ register_gods_goods("lingrong_god_1",
     cost: "5",
     unlock_item_id: "lingrong_god",
     target_shape: 1,
-    description: "彩虹棉花软糖：竖向生成三张，三合一承载卡片",
-    spr: spr_lingrong_god_pin1
+    description: "彩虹棉花软糖：竖向生成三张，三合一承载卡片"
 });
 
 register_gods_goods("lingrong_god_2",
@@ -1136,8 +1040,7 @@ register_gods_goods("lingrong_god_2",
     cost: "10",
     unlock_item_id: "lingrong_god",
     target_shape: 2,
-    description: "无敌猫猫软糖：直接生成九张，三合一承载卡片",
-    spr: spr_lingrong_god_pin2
+    description: "无敌猫猫软糖：直接生成九张，三合一承载卡片"
 });
 
 register_gods_goods("shennong_god",
@@ -1154,8 +1057,7 @@ register_gods_goods("shennong_god_1",
     cost: "5",
     unlock_item_id: "shennong_god",
     target_shape: 1,
-    description: "神农氏圣神：攻击力提升，召唤固定轨迹穿透神焰攻击敌人",
-    spr: spr_shennong_god_pin1
+    description: "神农氏圣神：攻击力提升，召唤固定轨迹穿透神焰攻击敌人"
 });
 
 register_gods_goods("shennong_god_2",
@@ -1164,8 +1066,7 @@ register_gods_goods("shennong_god_2",
     cost: "5",
     unlock_item_id: "shennong_god",
     target_shape: 2,
-    description: "炎帝·神农氏：攻击力大幅提升，神焰威力增强",
-    spr: spr_shennong_god_pin2
+    description: "炎帝·神农氏：攻击力大幅提升，神焰威力增强"
 });
 
 register_gods_goods("chongsheng_god",
@@ -1182,8 +1083,7 @@ register_gods_goods("chongsheng_god_1",
     cost: "5",
     unlock_item_id: "chongsheng_god",
     target_shape: 1,
-    description: "奥西里斯圣神：复活上限提升至6张，减伤效果增强",
-    spr: spr_chongsheng_god_pin1
+    description: "奥西里斯圣神：复活上限提升至6张，减伤效果增强"
 });
 
 register_gods_goods("chongsheng_god_2",
@@ -1192,8 +1092,7 @@ register_gods_goods("chongsheng_god_2",
     cost: "10",
     unlock_item_id: "chongsheng_god",
     target_shape: 2,
-    description: "重生神·奥西里斯：复活上限6张，减伤BUFF持续时间延长",
-    spr: spr_chongsheng_god_pin2
+    description: "重生神·奥西里斯：复活上限6张，减伤BUFF持续时间延长"
 });
 
 register_gods_goods("chongsheng_god_3",
@@ -1202,8 +1101,7 @@ register_gods_goods("chongsheng_god_3",
     cost: "10",
     unlock_item_id: "chongsheng_god",
     target_shape: 3,
-    description: "至尊重生神：范围扩大至5*7，复活上限提升至12张，减伤大幅增强",
-    spr: spr_chongsheng_god_pin3
+    description: "至尊重生神：范围扩大至5*7，复活上限提升至12张，减伤大幅增强"
 });
 
 register_gods_goods("hufa_god",
@@ -1220,8 +1118,7 @@ register_gods_goods("hufa_god_1",
     cost: "10",
     unlock_item_id: "hufa_god",
     target_shape: 1,
-    description: "俱吠罗圣神：攻击力提升，魂系老鼠1.8倍伤害",
-    spr: spr_hufa_god_pin1
+    description: "俱吠罗圣神：攻击力提升，魂系老鼠1.8倍伤害"
 });
 
 register_gods_goods("hufa_god_2",
@@ -1230,8 +1127,7 @@ register_gods_goods("hufa_god_2",
     cost: "10",
     unlock_item_id: "hufa_god",
     target_shape: 2,
-    description: "护法神·俱吠罗：追加地鼠目标，攻击力大幅提升",
-    spr: spr_hufa_god_pin2
+    description: "护法神·俱吠罗：追加地鼠目标，攻击力大幅提升"
 });
 
 register_gods_goods("hufa_god_3",
@@ -1240,8 +1136,7 @@ register_gods_goods("hufa_god_3",
     cost: "15",
     unlock_item_id: "hufa_god",
     target_shape: 3,
-    description: "至尊护法神：终转对BOSS造成基础形态攻击力2倍伤害",
-    spr: spr_hufa_god_pin3
+    description: "至尊护法神：终转对BOSS造成基础形态攻击力2倍伤害"
 });
 
 register_gods_goods("haiyang_god",
@@ -1258,8 +1153,7 @@ register_gods_goods("haiyang_god_1",
     cost: "10",
     unlock_item_id: "haiyang_god",
     target_shape: 1,
-    description: "塔拉萨圣神：悬浮卡，不占用格子，攻击力提升，增幅倍率增加",
-    spr: spr_haiyang_god_pin1
+    description: "塔拉萨圣神：悬浮卡，不占用格子，攻击力提升，增幅倍率增加"
 });
 
 register_gods_goods("haiyang_god_2",
@@ -1268,8 +1162,7 @@ register_gods_goods("haiyang_god_2",
     cost: "10",
     unlock_item_id: "haiyang_god",
     target_shape: 2,
-    description: "海洋女神塔拉萨：悬浮卡，不占用格子，攻击力大幅提升",
-    spr: spr_haiyang_god_pin2
+    description: "海洋女神塔拉萨：悬浮卡，不占用格子，攻击力大幅提升"
 });
 
 register_gods_goods("haiyang_god_3",
@@ -1278,8 +1171,7 @@ register_gods_goods("haiyang_god_3",
     cost: "10",
     unlock_item_id: "haiyang_god",
     target_shape: 3,
-    description: "至尊海洋女神：场上满4张后，增幅范围扩大至全屏",
-    spr: spr_haiyang_god_pin3
+    description: "至尊海洋女神：场上满4张后，增幅范围扩大至全屏"
 });
 
 // 融合卡：本体 + 一转 / 二转凭证进入诸神商店。
@@ -1332,8 +1224,7 @@ register_gods_goods("guangming_god_1",
     cost: "5",
     unlock_item_id: "guangming_god",
     target_shape: 1,
-    description: "巴德尔圣神：和铲子碰撞发生爆炸",
-    spr: spr_light_pin
+    description: "巴德尔圣神：和铲子碰撞发生爆炸"
 });
 register_gods_goods("guangming_god_2",
 {
@@ -1341,8 +1232,7 @@ register_gods_goods("guangming_god_2",
     cost: "5",
     unlock_item_id: "guangming_god",
     target_shape: 2,
-    description: "光明神·巴德尔：场上卡片数量增加1，伤害增加1倍",
-    spr: spr_light_pin_1
+    description: "光明神·巴德尔：场上卡片数量增加1，伤害增加1倍"
 });
 register_gods_goods("guangming_god_3",
 {
@@ -1350,8 +1240,7 @@ register_gods_goods("guangming_god_3",
     cost: "10",
     unlock_item_id: "guangming_god",
     target_shape: 3,
-    description: "至尊光明神：范围扩大至5*7",
-    spr: spr_light_pin_2
+    description: "至尊光明神：范围扩大至5*7"
 });
 register_gods_goods("heian_god",
 {
@@ -1366,8 +1255,7 @@ register_gods_goods("heian_god_1",
     cost: "5",
     unlock_item_id: "heian_god",
     target_shape: 1,
-    description: "霍德尔圣神：伤害大幅提升",
-    spr: spr_dark_pin
+    description: "霍德尔圣神：伤害大幅提升"
 });
 register_gods_goods("heian_god_2",
 {
@@ -1375,8 +1263,7 @@ register_gods_goods("heian_god_2",
     cost: "5",
     unlock_item_id: "heian_god",
     target_shape: 2,
-    description: "黑暗神·霍德尔：范围扩大至5*7",
-    spr: spr_dark_pin_1
+    description: "黑暗神·霍德尔：范围扩大至5*7"
 });
 register_gods_goods("heian_god_3",
 {
@@ -1384,8 +1271,7 @@ register_gods_goods("heian_god_3",
     cost: "10",
     unlock_item_id: "heian_god",
     target_shape: 3,
-    description: "至尊黑暗神：每攻击一次敌人伤害翻倍,击杀增加灰烬效果",
-    spr: spr_dark_pin_2
+    description: "至尊黑暗神：每攻击一次敌人伤害翻倍,击杀增加灰烬效果"
 });
 
 }

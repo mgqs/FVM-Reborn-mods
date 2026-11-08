@@ -30,7 +30,9 @@ if (state == ENEMY_STATE.NORMAL && hp > 0 && ly_retreat_cooldown <= 0) {
 if (ly_obstacle_near && state == ENEMY_STATE.NORMAL) {
     ly_retreat = true;
     ly_retreat_playing = false;
-    ly_retreat_target_x = x + global.grid_cell_size_x * 2;   // 后退两个格子
+    // 用户口径：遇到米线龙柱链路 / 高卡片拦截时不再「退两格继续走」，
+    // 而是一路退出屏幕右侧直接离场（老鼠被拦在外面，等于自己让开）。
+    ly_retreat_target_x = room_width + global.grid_cell_size_x * 3;
     state = ENEMY_STATE.IDLE;
     timer = 0;
 }
@@ -60,13 +62,16 @@ if (ly_retreat) {
         if (ly_air_speed_bonus) _rs *= longyuan_air_speed_multiplier();
         x = min(ly_retreat_target_x, x + _rs);
     }
-    if (x >= ly_retreat_target_x || state == ENEMY_STATE.DEAD) {
+    if (state == ENEMY_STATE.DEAD) {
         ly_retreat = false;
         ly_retreat_playing = false;
         ly_retreat_cooldown = 240;
         ly_action = "";
-        sprite_index = ly_anims[$ "正常移动"][0];
-        if (state == ENEMY_STATE.IDLE) { state = ENEMY_STATE.NORMAL; timer = 0; }
+    }
+    else if (x >= ly_retreat_target_x) {
+        // 退到屏幕外 → 高跷鼠直接消失，不再折返
+        instance_destroy();
+        exit;
     }
     exit;
 }

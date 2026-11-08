@@ -186,6 +186,43 @@ if (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
     && (plant_id == "player" || hex_b3_attack_major(plant_id))) {
     state = CARD_STATE.ATTACK;
 }
+// 海克斯「疑神疑鬼」：空场也要真的打出子弹，而不只是摆动作。
+// 每张卡的出弹逻辑都写在自己的 Step 里、并且大多被 `if (has_enemy)` 包着：
+// 场上没老鼠时它们连 event_user(1) 都走不到，父对象这边只改了 state，
+// 于是玩家看到的就是「一直在做攻击动作，但一颗子弹也没有」。
+// 这里由父对象接管空放：没有可打目标时按自己的 cycle 调一次发射事件（Other_11）。
+if (hex_enabled() && hex_b3_no_stop_attack() && state != CARD_STATE.SLEEP
+    && (plant_id == "player" || hex_b3_attack_major(plant_id))) {
+    if (!variable_instance_exists(id, "b3_blank_cd"))      b3_blank_cd = 0;
+    if (!variable_instance_exists(id, "b3_blank_allowed")) b3_blank_allowed = true;
+    if (b3_blank_allowed) {
+        var _hex_has_target = false;
+        // 这里 with 是「卡片自己发起」的，所以 other = 这张卡、不带 other. 的 target_type = 老鼠的：
+        // can_target_on(卡的 target_type, 鼠的 target_type) 正好是正确顺序
+        with (obj_enemy_parent) {
+            if (can_target_on(other.target_type, target_type)) {
+                _hex_has_target = true;
+                break;
+            }
+        }
+        if (_hex_has_target) {
+            // 有真目标就交给卡片自己打，别抢
+            b3_blank_cd = max(1, cycle);
+        } else if (b3_blank_cd > 0) {
+            b3_blank_cd -= 1;
+        } else {
+            b3_blank_cd = max(1, cycle);
+            if (variable_instance_exists(id, "target_enemy")) target_enemy = noone;
+            try {
+                event_user(1);
+            } catch (_hex_blank_err) {
+                // 少数卡的发射事件强依赖真实目标（直接读 target_enemy 的字段），
+                // 空放会抛异常 —— 这种卡就关掉空放，避免每个攻击周期刷一次报错
+                b3_blank_allowed = false;
+            }
+        }
+    }
+}
 // 动画计时器
 var current_flash_speed = flash_speed
 if is_slowdown{

@@ -121,9 +121,7 @@ function enemy_info_island_init(){
 	register_enemy_info_island("kuafu_football_fan","来源:跨服·梦魇天空\n足球帽使它的脑门更硬了，头盔被击碎前会额外承受大量伤害。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_iron_pan","来源:跨服·梦魇天空\n头顶的铁锅使它能够承受大量伤害。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_skateboard","来源:跨服·梦魇天空\n入场时以0.9的速度移动，遇到第一个卡片后，会使用滑板翻越该卡片，并\n落至该卡片的后面一格，落地后移动速度降低至0.3。无法越过重型防御。\nTip：可以将低耗火的卡放在它面前，使其提前使用滑板。\n变异僵尸形态，体力远高于普通个体。")
-	register_enemy_info_island("kuafu_landlady","来源:跨服·梦魇天空\n盾牌可以抵挡直射伤害，并免疫其带来的负面效果，但是无法抵挡投掷和穿\n透伤害。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_wrestler","来源:跨服·梦魇天空\n生命值降低至一半时，如果自身在第五列之外，则会向第3或4列投掷一只小\n摔跤手鼠。\nTip：可以利用冷却快的卡片诱使其攻击，拖延其前进\n变异僵尸形态，体力远高于普通个体。")
-	register_enemy_info_island("kuafu_panda","来源:跨服·梦魇天空\n巨型老鼠，会对你的防御卡造成毁灭性打击。\n生命值降低至一半时，如果自身在第五列之外，则会向第3或4列投掷一只小\n熊猫鼠。\nTip：可以利用冷却快的卡片诱使其攻击，拖延其前进\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_armour","来源:跨服·梦魇天空\n生命值降低至一半时，如果自身在第五列之外，则会向第3或4列投掷一只小\n型特种装甲鼠。\nTip：可以利用冷却快的卡片诱使其攻击，拖延其前进\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_glider","来源:跨服·梦魇天空\n入场时以0.72的速度滑翔，飞到最后一列或者滑翔翼被摧毁后会落地，速度\n降低至0.36。\nTip:可以使用香肠、章鱼烧、旋转咖啡喷壶等卡片将它击落。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_barrier","来源:跨服·梦魇天空\n入场后以0.9的速度滑翔，到达第5-7列后会丢下一个生命值极高的障碍物并\n落地，落地后速度降低至0.36。\n变异僵尸形态，体力远高于普通个体。")
@@ -131,7 +129,6 @@ function enemy_info_island_init(){
 	register_enemy_info_island("kuafu_waste_flying","来源:跨服·梦魇天空\n入场时为空中单位，受击或飞到场地左侧后会落地，落地后速度降低至0.36。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_paratrooper","来源:跨服·梦魇天空\n入场时为空中单位，会随机选择一个3列以外格子落地，落地后在本格卡片\n上覆盖一个瓜皮罩，并转变为陆地单位。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_bat","来源:跨服·梦魇天空\n蝙蝠鼠会在一个格子上放置标靶，随后偷走标记格子上的卡片。\n蝙蝠鼠在下降和返回时被视为空中目标，其余时刻被视为地面目标。\n变异僵尸形态，体力远高于普通个体。")
-	register_enemy_info_island("kuafu_hopper","来源:跨服·梦魇天空\n遇到卡片后，会在短暂的停顿后跳过该卡片。无法越过重型防御。\nTip：尽量避免在前排放置卡片，这会让它更快接近基地！\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_soar","来源:跨服·梦魇天空\n遇到卡片后会在短暂停顿后跳过该卡片，跳跃期间持续向前突进。无法越过\n重型防御。\n变异僵尸形态，体力远高于普通个体。")
 	register_enemy_info_island("kuafu_jet","来源:跨服·梦魇天空\n遇到卡片后会在短暂停顿后跳过该卡片，跳跃期间持续向前突进。无法越过\n重型防御。\n变异僵尸形态，体力远高于普通个体。")
 	// ===== 跨服·梦魇天空 BOSS =====

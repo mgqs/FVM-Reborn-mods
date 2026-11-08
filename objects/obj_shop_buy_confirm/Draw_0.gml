@@ -28,7 +28,8 @@ if (instance_exists(banding_buy_btn) && banding_buy_btn.btn_type == "credit" && 
 	_coin_txt = "威望";
 }
 draw_text(x, y - 10 * pop_s, "确定以"+string(_buy_cost)+_coin_txt+"购买"+_buy_nm+"吗？");
-if obj_shop_bg.shop_button_select == 4{
+// 2026-11-08：魔塔蛋糕里也能弹这个窗（没有 obj_shop_bg），守卫一下
+if (instance_exists(obj_shop_bg) && obj_shop_bg.shop_button_select == 4){
 	draw_set_color(c_yellow)
 		draw_text(x, y + 15 * pop_s, "你需要在背包中切换卡片时装。");
 	draw_set_color(c_white)
