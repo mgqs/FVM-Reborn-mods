@@ -33,3 +33,17 @@ if (shop_button_select == 6 && !is_submenu_opened && mouse_check_button_pressed(
 		}
 	}
 }
+
+// 搜索框右侧「清空」按钮（2026-11-09）：清过滤词 + 输入框 + keyboard_string，回到第 1 页
+//   只在搜索框可见时判定（卡片页 / 凭证页），子菜单开着不吃点击
+if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box) && shop_search_box.visible
+	&& !is_submenu_opened && mouse_check_button_pressed(mb_left)
+	&& point_in_rectangle(mouse_x, mouse_y, shop_clear_x1, shop_clear_y1, shop_clear_x1 + shop_clear_w, shop_clear_y1 + shop_clear_h))
+{
+	shop_search_text = "";
+	keyboard_string = "";
+	shop_search_box.set_text("");
+	current_page = 1;
+	shop_list_recharge();
+	global.audio.play(snd_button, 0, 0);
+}

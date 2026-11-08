@@ -121,15 +121,18 @@ if (craft_top_tab == 3) {
 			if (_cid2 == evo_cards[0] || _cid2 == evo_cards[1]) continue;   // 进槽的原位留空
 			var _m3 = evo_meta[$ _cid2];
 			if (variable_struct_exists(evo_meta, _cid2)) {
-				// 右侧列表不套灰（用户 2026-10-26：变灰只发生在槽位里，列表照常显示）
-				draw_sprite_ext(spr_slot, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
-				if (_m3.sprite != -1) draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
+				// 右侧列表平时不套灰（2026-10-26 口径）；只在**搜索中**把没命中的灰掉
+				var _edim = craft_nav.active && !mod_search_nav_hit(craft_nav, _cid2);
+				var _etint = _edim ? c_gray : c_white;
+				var _etint_a = _edim ? 0.35 : 1;
+				draw_sprite_ext(spr_slot, 0, _gx, _gy - 3, 0.25, 0.25, 0, _etint, _etint_a);
+				if (_m3.sprite != -1) draw_sprite_ext(_m3.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, _etint, _etint_a);
 				draw_set_font(font_pixel);
 				draw_set_colour(c_black);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_bottom);
 				draw_text(_gx, _gy + 37, _m3.cost);
-				if (_m3.level > 0) draw_sprite_ext(spr_star_slot, _m3.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, c_white, 1);
+				if (_m3.level > 0) draw_sprite_ext(spr_star_slot, _m3.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, _etint, _etint_a);
 			}
 			if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) evo_hover_card = _ci;
 		}
@@ -321,15 +324,19 @@ if (craft_top_tab == 2) {
 			// 再 deck_get_card_data（内部线性扫 player_deck），56 格 × 188 张 = 每帧上万次）
 			var _m2 = tg_meta_get(_cid);
 			if (!is_undefined(_m2)) {
+				// 搜索中：没命中的灰掉（与卡片宝石页 / 进化页同一套）
+				var _tdim = craft_nav.active && !mod_search_nav_hit(craft_nav, _cid);
+				var _ttint = _tdim ? c_gray : c_white;
+				var _tta = _tdim ? 0.35 : 1;
 				var _b2 = _m2.is_gold ? spr_slot_1 : spr_slot;
-				draw_sprite_ext(_b2, 0, _gx, _gy - 3, 0.25, 0.25, 0, c_white, 1);
-				if (_m2.sprite != -1) draw_sprite_ext(_m2.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, c_white, 1);
+				draw_sprite_ext(_b2, 0, _gx, _gy - 3, 0.25, 0.25, 0, _ttint, _tta);
+				if (_m2.sprite != -1) draw_sprite_ext(_m2.sprite, 0, _gx, _gy + 15, 0.7, 0.7, 0, _ttint, _tta);
 				draw_set_color(c_black);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_bottom);
 				draw_set_font(font_pixel);
 				draw_text(_gx, _gy + 37, _m2.cost);
-				if (_m2.level > 0) draw_sprite_ext(spr_star_slot, _m2.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, c_white, 1);
+				if (_m2.level > 0) draw_sprite_ext(spr_star_slot, _m2.level - 1, _gx - 25, _gy - 35, 0.7, 0.7, 0, _ttint, _tta);
 			}
 			if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) tg_hover_card = _ci;
 		}
@@ -954,18 +961,23 @@ if button_select == 0{
 		var card_x = 42 + card_col*84
 		var card_y = 48+96 * card_row - y_offset
 
+		// 搜索中：没命中的卡灰掉（2026-11-08 用户要的「可选增强」）
+		var _dim    = craft_nav.active && !mod_search_nav_hit(craft_nav, card_id);
+		var _tint   = _dim ? c_gray : c_white;
+		var _tint_a = _dim ? 0.35 : 1;
+
 		if (card_slot_data != noone) {
 			// 卡底：融合卡 spr_slot_2 > 金卡 spr_slot_1 > 普通 spr_slot（与其它列表界面同一口径）
 			var _base_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_slot_data, "is_gold") == 1) ? spr_slot_1 : spr_slot)
-			draw_sprite_ext(_base_spr,0,card_x,card_y-3,0.25,0.25,0,c_white,1)
-			draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,c_white,1)
+			draw_sprite_ext(_base_spr,0,card_x,card_y-3,0.25,0.25,0,_tint,_tint_a)
+			draw_sprite_ext(card_slot_data[? "sprite"],0,card_x,card_y+15,0.7,0.7,0,_tint,_tint_a)
 			draw_set_color(c_black);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_bottom);
 			draw_set_font(font_pixel)
 			draw_text(card_x,card_y+37,card_slot_data[? "cost"])
 			if card_data.max_level > 0{
-				draw_sprite_ext(spr_star_slot,  card_data.max_level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, c_white, 1);
+				draw_sprite_ext(spr_star_slot,  card_data.max_level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, _tint, _tint_a);
 			}
 		}
 		
@@ -992,7 +1004,17 @@ if button_select == 0{
 	}
 	surface_reset_target()
 	draw_surface(card_surface,x+196-42,y-321-48)
-	
+
+	// ── 搜索：通用导航器（2026-11-08）────────────────────────────────
+	//   只在 tab0（卡片宝石）/ tab3（金卡进化）生效，enabled 由 Step 的 mod_search_nav_set_on 管；
+	//   光圈必须画在 draw_surface 之后，坐标与 hover 判定同源。
+	if (craft_nav.hit_t > 0) craft_nav.hit_t--;
+	mod_search_nav_draw(craft_nav);
+
+	// 2026-11-08 用户口径：**不再画命中光圈**（未命中整片灰掉已经够醒目），只保留滚动定位
+	draw_set_color(c_white);
+	draw_set_alpha(1);
+
 	//绘制悬停提示
 	if (hover_card_index != -1) {
         

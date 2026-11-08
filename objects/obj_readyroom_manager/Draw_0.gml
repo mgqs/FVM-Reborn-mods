@@ -104,11 +104,15 @@ for(var i = 0 ; i < slot_rows ; i++){
             var _fly_back = fly_active && !fly_add && fly_pool_i == card_index;
             for (var _fi = 0; _fi < array_length(fly_batch); _fi++) if (fly_batch[_fi].pool_i == card_index && !fly_batch[_fi].add) _fly_back = true;
             if (_fly_back) { is_unlocked = false; is_selected = true; }
+            // 搜索中：没命中的卡灰掉（2026-11-08 用户要的「可选增强」）
+            var _dim    = rrm_nav.active && !mod_search_nav_hit(rrm_nav, card_id);
+            var _tint   = _dim ? c_gray : c_white;
+            var _tint_a = _dim ? 0.35 : 1;
             if (is_unlocked) {
                 // 已解锁的卡片正常绘制
 				var _slot_spr = is_fusion_card(card_id) ? spr_slot_2 : ((ds_map_find_value(card_data, "is_gold") == 1) ? spr_slot_1 : spr_slot);
-				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, c_white, 1);
-                draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, c_white, 1);
+				draw_sprite_ext(_slot_spr, 0, card_x, card_y-3, 0.25, 0.25, 0, _tint, _tint_a);
+                draw_sprite_ext(card_data[? "sprite"], 0, card_x, card_y+15, 0.7, 0.7, 0, _tint, _tint_a);
 				draw_set_color(c_black);
 				draw_set_halign(fa_center);
 				draw_set_valign(fa_bottom);
@@ -125,7 +129,7 @@ for(var i = 0 ; i < slot_rows ; i++){
 				}
 				var level = global.save_data.unlocked_cards[info_index].level
 				if level > 0{
-					draw_sprite_ext(spr_star_slot,  level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, c_white, 1);
+					draw_sprite_ext(spr_star_slot,  level - 1,  card_x-25,  card_y-35, 0.7, 0.7, 0, _tint, _tint_a);
 				}
                 // 检查鼠标是否悬停在卡片上
                 var spr_width = 84;
@@ -513,3 +517,13 @@ draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 draw_set_font(font_yuan)
 draw_text(1820,1080,"右键点击或按ESC退出")
+
+// ── 搜索：命中光圈 + 清空 / 下一个按钮（2026-11-08，改走通用导航器）──────────
+//   卡片都画在 surface 里，光圈必须画在 draw_surface 之后；坐标与 hover 判定同源。
+if (rrm_nav.hit_t > 0) rrm_nav.hit_t--;
+
+mod_search_nav_draw(rrm_nav);
+
+// 2026-11-08 用户口径：**不再画命中光圈**（未命中整片灰掉已经够醒目），只保留滚动定位
+draw_set_color(c_white);
+draw_set_alpha(1);

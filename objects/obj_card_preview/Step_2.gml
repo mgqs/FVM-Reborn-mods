@@ -4,6 +4,7 @@ var _info = get_card_info_simple(card_id)
 if _info != false{
     var card_shape = _info.shape
     card_data = deck_get_card_data(card_id,card_shape)
+    preview_shape = card_shape        // 给 Draw_0 用（百变蛇二转要多画两格预览虚影）
 }
 if card_id == "magic_chicken"{
     if global.last_placed_card_id != ""{

@@ -1,6 +1,6 @@
 // obj_burn_cell（单格持续灼烧，目前只有街头烤肉大师在用）Create 事件
 // 调用方传 sprite_index / frame_start / frame_end / damage / life / extra_col_right
-//   （bbq：spr_bbq_burn_ground 的 3~16 帧、存在 2 秒 life 120、每 30 帧一跳 custom["灼烧伤害"]，
+//   （bbq：spr_bbq_burn_ground 的 3~16 帧、时长与跳数由 custom["灼烧持续"]/["灼烧跳数"] 算，每跳 = 卡片 atk，
 //     extra_col_right = 1 → 第 9 格的火还能烧到第 10 格 / BOSS 出生位，但特效不跟着外扩）。
 // 判定口径：
 //   ① single_hit = true → 整个持续时间内每帧扫，格内**每只敌人只吃一次** damage（进 burned 名单）；

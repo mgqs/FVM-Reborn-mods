@@ -34,3 +34,13 @@ with (obj_info_island_card_edit_select_btn) { pnl_po = other.pnl_o; image_alpha 
 if (variable_instance_exists(id, "info_search_box") && instance_exists(info_search_box)) {
     info_search_box.visible = (pnl_o > 0.5);
 }
+
+// 搜索框右侧「清空」按钮点击（2026-11-08）：清过滤词 + 输入框 + keyboard_string，并回到列表顶部
+if (pnl_o > 0.5 && !is_submenu_opened && mod_search_clear_btn_hit(522, 118, 70, 40))
+{
+    info_island_search_clear(id);
+    y_offset = 0;
+    y_offset_target = 0;
+    select_card_index = -1;
+    global.audio.play(snd_button, 0, 0);
+}

@@ -462,3 +462,14 @@ if close_timer == 0{
 	panel_anim_close(id)
 	close_timer = -1
 }
+
+// ── 搜索（2026-11-08，通用导航器 mod_search_nav_*）──────────────────
+//   1) 页签变了就清空（只保留当前页的过滤词，切走不残留）
+//   2) 只在「卡片宝石」(0) /「卡片转职」(2) /「金卡进化」(3) 这三页启用；融合页隐藏 + 不吃点击
+//   3) 清空 / 下一个 的点击交给导航器
+if (craft_prev_tab != craft_top_tab) {
+    craft_prev_tab = craft_top_tab;
+    mod_search_nav_clear(craft_nav);
+}
+mod_search_nav_set_on(craft_nav, (craft_top_tab == 0 || craft_top_tab == 2 || craft_top_tab == 3));
+mod_search_nav_step(craft_nav);

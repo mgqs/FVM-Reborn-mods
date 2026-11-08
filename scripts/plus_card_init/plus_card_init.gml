@@ -19,4 +19,7 @@ function plus_card_init(){
 	ds_map_add(global.plus_card_map,"sheshou",[obj_sheshou,1])
 	ds_map_add(global.plus_card_map,"juxie",[obj_juxie,1])
 	ds_map_add(global.plus_card_map,"rig",[obj_rig,1])
+	ds_map_add(global.plus_card_map,"athena",[obj_athena,1])
+	ds_map_add(global.plus_card_map,"corn_shooter",[obj_corn_shooter,1])
+	ds_map_add(global.plus_card_map,"tianxie",[obj_tianxie,1])
 }

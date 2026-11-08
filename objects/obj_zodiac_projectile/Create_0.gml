@@ -4,6 +4,7 @@ burnt = false;
 bounced = false;
 damage = 0;
 base_damage = 0;
+star_splash_dmg = 0;      // 星星兔单格溅射那一跳的伤害（命中时算，with 里靠它传值）
 shape = 0;
 move_x = 8;
 move_y = 0;

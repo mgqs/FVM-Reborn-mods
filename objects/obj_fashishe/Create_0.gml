@@ -30,15 +30,14 @@ state = CARD_STATE.IDLE;
 
 idle_anim   = 11;   // 待机 1~12
 attack_anim = 16;   // 攻击 13~28
-fire_frame  = 24;   // 攻击段播到第 25 帧才出弹（改这里就换出弹时机）
-anim_t      = 0;
-fashishe_fired = false;
+fashishe_fired = false;   // 本段攻击是否已出弹（出弹帧写在 Step 里：image_index >= idle_anim + 3）
 
 // ── 可调参数（要微调只改这几行）──
 fashishe_per_row      = (shape >= 1) ? 3 : 2;   // 每轮子弹数：0 转 2 发 / 1·2 转 3 发
 fashishe_shot_delay   = 14;                     // 一轮内后几发比上一发晚几帧出膛（同 bbq）
 fashishe_poison_every = 3;                      // 每几「发」铺一次毒雾（3 = 第 3/6/9… 发）
 fashishe_art_up       = 36;                     // 贴图格线比逻辑网格高 36px（同 bbq_art_up），正 = 往上抬
+fashishe_start_cells   = -0.5;                  // 出膛点：地图最左沿再往左几格（负 = 更靠后；贴边写 0，同 bbq）
 fashishe_poison_cells = (shape >= 1) ? 3 : 1;   // 毒雾覆盖行末几格：0 转 1 格 / 1·2 转 3 格
 fashishe_end_cells    = 1;                      // 飞出地图右沿几格开始消散（原来 2 格太远，特效看不见）
 fashishe_poison_extra_col = 1;                  // 毒雾能烧到场外几格（1 = 第 10 格 / BOSS 出生位，同 bbq；特效不跟着外扩）
@@ -71,7 +70,9 @@ fashishe_poison_at = function(_row)
         _p.frame_start  = 0;
         _p.frame_end    = sprite_get_number(spr_fashishe_burn_ground) - 1;
         _p.anim_loop_frames = 30;
-        _p.damage        = poison_damage;
+        // 每跳伤害直接读卡片当前 atk（同 bbq 读攻击表，但**不翻倍**）；
+        //   铺毒这一刻现取 → 星级 / 技能 / 平射增幅都吃得到，每跳 = 一发子弹的伤害
+        _p.damage        = atk;
         _p.damage_type   = "normal";
         _p.life          = poison_frames;
         _p.tick_interval = poison_interval;
@@ -100,7 +101,10 @@ fashishe_fire_one = function()
         var _lane_y = global.grid_offset_y + _row * global.grid_cell_size_y
                     + global.grid_cell_size_y * 0.5 - fashishe_art_up;
 
-        var _b = instance_create_depth(global.grid_offset_x, _lane_y, depth - 500, obj_fashishe_bullet);
+        // 出膛点：地图最左沿再往左半格（fashishe_start_cells = -0.5，负 = 更靠后），不跟卡片位置走（同 bbq）。
+        //   🔴 别按卡片偏移写 x±40：卡面 1.8 倍、半宽约 61px，落在卡身里会像从蛇身上钻出来。
+        var _start_x = global.grid_offset_x + fashishe_start_cells * global.grid_cell_size_x;
+        var _b = instance_create_depth(_start_x, _lane_y, depth - 500, obj_fashishe_bullet);
         _b.row            = _row;
         _b.base_y         = _lane_y;
         _b.phase          = 0;
@@ -119,16 +123,16 @@ fashishe_fire_one = function()
     audio_play_sound(snd_shot, 0, 0);
 };
 
-// ── 毒雾数值：全部走注册表 custom ──
-//   情报岛里的 {毒雾持续} / {毒雾伤害} / {毒雾次数} 读的就是这三个 key，改表即生效。
+// ── 毒雾数值 ──
+//   每跳伤害 = **卡片当前攻击力 atk**（2026-11-08 用户口径：同 bbq 读攻击表，但不用双倍，直接读）。
+//     不再走 custom["毒雾伤害"]：注册表里那条已删，铺毒时现取 atk（见上面 fashishe_poison_at）。
+//   持续 / 跳数仍走注册表 custom：情报岛里的 {毒雾持续} / {毒雾次数} 读的就是这两个 key，改表即生效。
 //   持续时间（秒）× 60 = 总帧数；总帧数 ÷ 跳数 = 每跳间隔（1s / 5 跳 → 12 帧 = 0.2s 一跳）。
 var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _info = get_plant_data_with_skill("fashishe", shape, clamp(current_level, 0, 16), _sk);
 
-poison_damage = 400;    // 每跳伤害（伤害类型 = 平射）
 poison_time   = 1;      // 持续秒数（custom["毒雾持续"]）
 poison_ticks  = 5;      // 跳数 / 次数（custom["毒雾次数"]）
-if (_info != undefined && ds_map_exists(_info, "毒雾伤害")) poison_damage = _info[? "毒雾伤害"];
 if (_info != undefined && ds_map_exists(_info, "毒雾持续")) poison_time   = _info[? "毒雾持续"];
 if (_info != undefined && ds_map_exists(_info, "毒雾次数")) poison_ticks  = _info[? "毒雾次数"];
 

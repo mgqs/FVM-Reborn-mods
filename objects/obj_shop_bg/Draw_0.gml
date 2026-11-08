@@ -266,5 +266,12 @@ if (shop_button_select == 6) {
 	}
 }
 
+// 搜索框右侧「清空」（2026-11-09；只在搜索框可见的页签画）
+if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)
+    && shop_search_box.visible && variable_instance_exists(id, "shop_clear_x1"))
+{
+	mod_search_clear_btn_draw(shop_clear_x1, shop_clear_y1, shop_clear_w, shop_clear_h, (shop_search_text != ""));
+}
+
 draw_set_alpha(1)
 panel_anim_end_slide(id, 260)

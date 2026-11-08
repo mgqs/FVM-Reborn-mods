@@ -26,7 +26,9 @@ var _moved_to_prestige = [
     "kuileima_1", "kuileima_2", "yufengma_1", "yufengma_2", "fenjima_1", "fenjima_2",
     "guiyuanma_1", "guiyuanma_2", "yanhuangma_1", "yanhuangma_2", "yinhema_1", "yinhema_2",
     "xiandima_1", "xiandima_2", "xingqiongma_1", "xingqiongma_2",
-    "starrabbit_1", "starrabbit_2", "yinghuoshe_1", "yinghuoshe_2"
+    "starrabbit_1", "starrabbit_2", "yinghuoshe_1", "yinghuoshe_2",
+    // 2026-11-08：椰子果本体挪回普通商店（55000），一/二转只在威望商店 —— 打完标就在这剔除显示
+    "yeziguo_1", "yeziguo_2"
 ];
 for (var _mi = array_length(exchange_cards) - 1; _mi >= 0; _mi--) {
     if (array_get_index(_moved_to_prestige, exchange_cards[_mi]) != -1) array_delete(exchange_cards, _mi, 1);

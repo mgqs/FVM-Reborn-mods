@@ -59,5 +59,5 @@ range_cols = 2;
 range_rows = (shape >= 2) ? 3 : 2;
 
 // ========== 1 转起的附加效果 ==========
-slow_frames = 90;             // 减速 1.5 秒（敌人 ice_timer 单位是帧）
+slow_frames = 150;            // 减速 2.5 秒（敌人 ice_timer 单位是帧；2026-11-09 从 1.5s 加强）
 use_ice = (shape >= 1);       // 减速 + 击杀碎冰

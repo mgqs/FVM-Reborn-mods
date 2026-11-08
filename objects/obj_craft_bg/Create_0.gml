@@ -1026,3 +1026,107 @@ panel_anim_kids(id, [obj_closecraft_btn, obj_craft_select_btn, obj_craft_confirm
 craft_parts = [[130,  15, 1096,  900, -1, 0],   // 左上板块（卡片/宝石强化台）：从左边
                [130, 900, 1096, 1065,  0, 1],   // 下面的道具条：从下边
                [1096, 15, 1790, 1065,  1, 0]]   // 右边的素材格：从右边
+
+// ── 卡片搜索（2026-11-08；改用通用模块 mod_search_nav_*）─────────────────
+//   只在「卡片宝石」(tab0) 和「金卡进化」(tab3) 生效；候选顺序由本界面自己的两个列表决定，
+//   搜索框配色 / 清空 / 下一个按钮 / 命中集合都在 scripts/mod_info_island_search 的通用层。
+craft_order    = [];   // 强化页卡片排序（= Draw_0 里 craft_sort_order 的同口径副本）
+craft_prev_tab = 0;    // 上一帧页签：变了就清空搜索
+
+/// 与 Draw_0 里 craft_sort_order 同口径：普卡 → 融合卡 → 金卡（改了要两边一起改）
+craft_card_order = function() {
+    var _order  = [];
+    var _fusion = [];
+    var _gold   = [];
+    var _n = array_length(global.save_data.unlocked_cards);
+    for (var i = 0; i < _n; i++) {
+        var _c    = global.save_data.unlocked_cards[i];
+        var _slot = deck_get_card_data(_c.id, _c.shape);
+        if (_slot != noone && ds_map_find_value(_slot, "is_fusion") == 1)      array_push(_fusion, i);
+        else if (_slot != noone && ds_map_find_value(_slot, "is_gold") == 1)   array_push(_gold, i);
+        else                                                                  array_push(_order, i);
+    }
+    for (var a = 0; a < array_length(_fusion); a++) array_push(_order, _fusion[a]);
+    for (var b = 0; b < array_length(_gold);   b++) array_push(_order, _gold[b]);
+    return _order;
+};
+
+// 🔧 搜索栏位置参数（只改这 6 个，改完重进一次合成屋生效）
+//   相对合成屋**窗口中心点**（本对象 x / y）：窗口顶 = y-525、右沿 = x+830、左沿 = x-830
+//   卡片面板顶边 = y-412，别把搜索框压到那一行以下
+craft_search_x = x + 300;
+craft_search_y = y - 480;
+craft_search_w = 300;
+craft_search_h = 40;
+craft_btn_w    = 96;    // 「清空」「下一个」按钮的**最小**宽度（实际按文字实测自适应）
+craft_btn_gap  = 8;     // 按钮与搜索框的间距
+
+craft_nav = mod_search_nav_create(id, {
+    x: craft_search_x, y: craft_search_y, w: craft_search_w, h: craft_search_h,
+    clear_w: craft_btn_w, next_w: craft_btn_w, gap: craft_btn_gap,
+    depth: depth - 1,
+    placeholder: "搜索名称/[分类]（可拼音）",
+    collect: method({ h: id }, function(_groups){
+        var _h   = h;
+        var _out = [];
+        if (_h.craft_top_tab == 3) {
+            // 金卡进化页：右侧列表 = evo_list（行优先）
+            for (var e = 0; e < array_length(_h.evo_list); e++) {
+                if (mod_search_match_card(_h.evo_list[e], _groups)) array_push(_out, e);
+            }
+        }
+        else if (_h.craft_top_tab == 2) {
+            // 转职页：右侧列表 = tg_list（融合卡 / 已转满的卡在 tg_rebuild 里已经滤掉）
+            if (_h.tg_list_dirty) _h.tg_rebuild();
+            for (var t = 0; t < array_length(_h.tg_list); t++) {
+                var _tid = _h.tg_list[t];
+                if (_tid == _h.tg_card) continue;                              // 已进槽那张原位留空
+                if (!mod_search_match_card(_tid, _groups)) continue;
+                if (!variable_struct_exists(_h.tg_meta, _tid)) continue;        // 没有 deck 数据的卡画不出内容
+                array_push(_out, t);
+            }
+        }
+        else {
+            _h.craft_order = _h.craft_card_order();
+            for (var i = 0; i < array_length(_h.craft_order); i++) {
+                var _ci2 = global.save_data.unlocked_cards[_h.craft_order[i]];
+                if (!mod_search_match_card(_ci2.id, _groups)) continue;
+                // 只认「真的会画出来」的卡：deck_get_card_data 返回 noone 的卡 Draw 里不画
+                //   （下标照旧 push 进去的位置算，保证 jump 的格子与绘制顺序一致）
+                if (deck_get_card_data(_ci2.id, _ci2.shape) == noone) continue;
+                array_push(_out, i);
+            }
+        }
+        return _out;
+    }),
+    key_of: method({ h: id }, function(_i){
+        var _h = h;
+        if (_h.craft_top_tab == 3) return _h.evo_list[_i];
+        if (_h.craft_top_tab == 2) return _h.tg_list[_i];
+        return global.save_data.unlocked_cards[_h.craft_order[_i]].id;
+    }),
+    jump: method({ h: id }, function(_i){
+        var _h = h;
+        if (_h.craft_top_tab == 3) {
+            // 进化页滚动单位是「行」
+            var _erow = _i div _h.evo_gcols;
+            _h.evo_scroll_target = clamp(_erow - (_h.evo_grows div 2), 0, _h.evo_rows_max);
+        }
+        else if (_h.craft_top_tab == 2) {
+            // 转职页滚动单位也是「行」（滚轮 ±1 行），落点居中
+            //   上限自己算一次，不依赖 Draw 里的 tg_rows_max（Step 早于 Draw，首帧会是 0）
+            var _trows = max(1, ceil(array_length(_h.tg_list) / _h.tg_gcols));
+            var _tmax  = max(0, _trows - _h.tg_grows);
+            _h.tg_scroll_target = clamp(_i div _h.tg_gcols - (_h.tg_grows div 2), 0, _tmax);
+        }
+        else {
+            var _row  = _i div 7;
+            var _rows = max(20, ceil(array_length(_h.craft_order) / 7));
+            var _max  = max(0, 96 * _rows - 815);
+            _h.y_offset_target = clamp(_row * 96 - 96, 0, _max);
+        }
+    }),
+    should_correspond: method({ h: id }, function(){
+        return (h.craft_top_tab == 0 || h.craft_top_tab == 2 || h.craft_top_tab == 3);
+    })
+});
