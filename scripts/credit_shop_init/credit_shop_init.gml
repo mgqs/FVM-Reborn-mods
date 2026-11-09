@@ -1844,6 +1844,7 @@ function credit_shop_init()
         unlock_item_id: transfer_credit_id("fashishe", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
+
     register_goods("credit_fangkongmiao_1", {
         type: "credit", cost: "12000", coin_type: "prestige", credit_shape: 1,
         tower_floor: "14-1",
@@ -1904,4 +1905,17 @@ function credit_shop_init()
         unlock_item_id: transfer_credit_id("huanyingshe", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
+
+    register_goods("credit_tianxie_1", {
+        type: "credit", cost: "3400", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "6-1",
+        unlock_item_id: transfer_credit_id("tianxie", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    // register_goods("credit_tianxie_2", {
+    //     type: "credit", cost: "16800", coin_type: "prestige", credit_shape: 2,
+    //     tower_floor: "20-2",
+    //     unlock_item_id: transfer_credit_id("tianxie", 2),
+    //     description: "二转凭证\n在合成屋-卡片转职中使用"
+    // });
 }

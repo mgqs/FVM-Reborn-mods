@@ -2,8 +2,9 @@
 // 攒蜜蜂 → 攒满一次放飞（先 BOSS，再当前血量最高的）。没有目标就继续停靠等下一轮。
 if (global.is_paused) exit;
 
-// 同格去重：不占格的卡走 can_place_at_position 的 gridless 分支（直接放行），
-//   同格能无限叠 → 放第二张时把旧的那张清掉（与麦芽糖 obj_maiya 完全一致）
+// 同格去重（兜底）：2026-11-08 起放置判定已由 place_mutex_class 拦住「同格同类」，
+//   正常情况下放第二张会被判成不可放；这里保留第 1 帧清同格旧卡的兜底
+//   （复制 / 换卡 / 直接生成等绕过 can_place_at_position 的路径仍可能同格）。
 remove_timer++;
 if (remove_timer == 1)
 {

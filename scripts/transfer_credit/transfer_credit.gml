@@ -990,6 +990,8 @@ function credit_shop_goods_name(_g){
 }
 
 /// @func credit_shop_filter_search(list, query) 凭证页搜索：就地过滤商品 id 列表
+///   ⚠️ 2026-11-08 起商店统一走 shop_search_filter（分类 + 拼音 + 层数都在那边），本函数**已不再被调用**，
+///      只留作老口径参考；别把它接回 obj_shop_bg（会丢掉分类搜索）。
 ///   口径 = 商品显示名子串匹配、不区分大小写（中英文都能搜，中文靠调用方的 IME）
 ///   在 shop_list_recharge 里「过滤 → 排序 → 分页」的顺序不要换，页码才会跟着搜索结果走
 function credit_shop_filter_search(_list, _query){
@@ -1018,34 +1020,93 @@ function credit_shop_filter_search(_list, _query){
     ds_list_destroy(_keep);
 }
 
-/// @func credit_shop_search_box_spawn(bg_x, bg_y, depth) 创建凭证页搜索框（obj_shop_bg 调一句）
-///   用工程通用的 SearchBox（自带 IME，能打中文）；位置 = 顶部蓝带右半段（左半段是三个分类页签）
-///   只在「转职凭证」页签显示 + 生效：visible 由 shop_list_recharge 管，should_correspond 在这里判
+/// @func shop_search_name_hit(groups, query_lower, card_id, display_name)
+///   商店搜索的「名字命中」判定（卡片页 / 凭证页共用）：
+///     ① **情报岛同一套**：分类词（带括号，支持大类 / 小分类 / 子分类 + 别名 + 拼音）
+///        + 卡名（任意形态名，含转职名）+ 拼音；组间「且」、组内「或」
+///     ② 兜底再比一次商品显示名（`泡椒春笋一转凭证` 里的「一转凭证」这种只存在于商品名的词）
+function shop_search_name_hit(_groups, _q, _cid, _display){
+    // 2026-11-08：两个判定都收进通用层（mod_search_match_card / mod_search_match_text）
+    if (_cid != "" && mod_search_match_card(_cid, _groups)) return true;
+    return mod_search_match_text(_display, _q);
+}
+
+/// @func shop_search_filter(list, query, tab) 本体商店**全页签**搜索：就地过滤商品 id 列表
+///   tab 1（卡片）/ 6（转职凭证）：走 shop_search_name_hit（= 情报岛分类 + 卡名 + 拼音）
+///     凭证页额外保留原来的**层数前缀**搜索（搜 `11` → 11-1 / 11-2；21-1 不会被带出来）
+///   其他页签（武器 / 道具 / 卡皮肤 / 角色皮肤）：只按商品名子串 + 拼音
+///   顺序要求：**过滤 → 排序 → 分页**，页码才会跟着搜索结果走
+function shop_search_filter(_list, _query, _tab){
+    if (!is_string(_query) || _query == "") return;
+    var _q = string_lower(_query);
+    var _groups = mod_search_words(_q);   // 词组切一次就够，循环里别反复切
+
+    var _keep = ds_list_create();
+    for (var _i = 0; _i < ds_list_size(_list); _i++){
+        var _gid = ds_list_find_value(_list, _i);
+        var _g = global.goods_map[? _gid];
+        var _display = variable_struct_exists(_g, "display_name") ? string(_g.display_name) : "";
+        var _hit = false;
+
+        if (_tab == 1 || _tab == 6){
+            // 卡片 id：卡片页用 unlock_item_id；凭证页的 unlock_item_id 是 transfer_<卡>_<档>，解析回来
+            var _cid = "";
+            if (variable_struct_exists(_g, "card_id")) _cid = _g.card_id;
+            else if (variable_struct_exists(_g, "unlock_item_id")){
+                var _parsed = transfer_credit_parse(_g.unlock_item_id);
+                _cid = is_undefined(_parsed) ? _g.unlock_item_id : _parsed.card_id;
+            }
+
+            _hit = shop_search_name_hit(_groups, _q, _cid, _display);
+
+            // 凭证页：层数按**前缀**匹配（老口径，2026-10-27 定的）
+            if (!_hit && _tab == 6 && variable_struct_exists(_g, "tower_floor")){
+                var _f = string_lower(string(_g.tower_floor));
+                if (_f != "" && string_pos(_q, _f) == 1) _hit = true;
+            }
+        }
+        else{
+            // 其他页签：只看商品名（中文子串 + 拼音）—— 判定在通用层
+            _hit = mod_search_match_text(_display, _q);
+        }
+
+        if (_hit) ds_list_add(_keep, _gid);
+    }
+    ds_list_clear(_list);
+    for (var _j = 0; _j < ds_list_size(_keep); _j++) ds_list_add(_list, ds_list_find_value(_keep, _j));
+    ds_list_destroy(_keep);
+}
+
+/// @func credit_shop_search_box_spawn(bg_x, bg_y, depth) 创建商店搜索框（obj_shop_bg 调一句）
+///   用工程通用的 SearchBox（自带 IME，能打中文）；位置 = 顶部蓝带右半段（左半段是分类页签）
+///   2026-11-08 起**每个页签都能用**：可见性直接常开，过滤口径按页签分（见 shop_search_filter）
 ///   ⚠️ 这个函数专门服务 obj_shop_bg（回调里直接写它的变量名），别给别的界面复用
 function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
-    var _sb = instance_create_depth(_bg_x + 615, _bg_y - 307, _depth, SearchBox);
-    _sb.set_position(_bg_x + 440, _bg_y - 327)
-        .set_size(350, 40)
-        .set_placeholder("搜凭证名/拼音/层数")
-        .set_theme({
-            bg:           make_colour_rgb(3, 43, 80),
-            bg_focus:     make_colour_rgb(8, 62, 112),
-            border:       make_colour_rgb(120, 190, 240),
-            border_focus: make_colour_rgb(200, 240, 255),
-            text:         c_white,
-            placeholder:  make_colour_rgb(150, 195, 230)
-        })
-        .set_on_change(method({ bg: id }, function(_t) {
+    var _sx = _bg_x + 440, _sy = _bg_y - 327, _sw = 350, _sh = 40;
+
+    // 「清空」按钮贴搜索框右边 —— 几何只在这里算一次，Draw / Step 共用这几个变量
+    //   （🔧 要挪按钮位置改这 5 行即可；右侧到窗口边还有约 150px 余量）
+    shop_clear_w  = 70;
+    shop_clear_h  = _sh - 4;
+    shop_clear_x1 = _sx + _sw + 8;
+    shop_clear_y1 = _sy + 2;
+
+    // 2026-11-08：配色 / 尺寸走通用层 mod_search_box_spawn；这里只留商店自己的回调
+    return mod_search_box_spawn({
+        x: _sx, y: _sy, w: _sw, h: _sh, depth: _depth,
+        placeholder: "搜索名称/[分类]",
+        on_change: method({ bg: id }, function(_t) {
             with (bg) {
                 shop_search_text = _t;
                 current_page = 1;
                 shop_list_recharge();
             }
-        }))
-        .set_should_correspond(method({ bg: id }, function() {
-            return (bg.shop_button_select == 6 && !bg.is_submenu_opened);
-        }));
-    return _sb;
+        }),
+        should_correspond: method({ bg: id }, function() {
+            // 全页签都响应，只在子菜单打开时不抢输入
+            return !bg.is_submenu_opened;
+        })
+    });
 }
 
 /// @func credit_trade_balance(pay_kind) 该货币的余额（"gold" / "prestige" / "oracle"）

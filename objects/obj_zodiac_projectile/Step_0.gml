@@ -293,11 +293,29 @@ for (var i = 0; i < array_length(enemies); i++) {
         case "star":
             {
                 var st_dmg = damage;
+                // 溅射要用的格子 / 数值**先取出来**：event_user(0) 可能把目标打死或销毁，
+                //   之后再读 e.grid_col 就不安全了；数值走实例变量（with 里取不到 var 局部变量）
+                var _sp_col = e.grid_col;
+                var _sp_row = e.grid_row;
+                star_splash_dmg = round(st_dmg * 0.3);
                 with (e) {
                     damage_amount = st_dmg;
                     // 2026-11-07 用户口径：星弹不穿透、也不穿盾 → 普通伤害（护盾先吃，破盾才掉血）
                     damage_type = "normal";
                     event_user(0);
+                }
+                // 30% 单格溅射（2026-11-09 补）：命中那一格里**其他**敌人各吃 30%，主目标仍是 100%
+                //   星星兔本身不穿透（下面立刻销毁），所以这里只补同格的其他老鼠
+                for (var _si = 0; _si < instance_number(obj_enemy_parent); _si++) {
+                    var _se = instance_find(obj_enemy_parent, _si);
+                    if (!instance_exists(_se) || _se == e || _se.hp <= 0) continue;
+                    if (_se.grid_col != _sp_col || _se.grid_row != _sp_row) continue;
+                    if (_se.target_type != "normal") continue;
+                    with (_se) {
+                        damage_amount = other.star_splash_dmg;
+                        damage_type = "normal";
+                        event_user(0);
+                    }
                 }
                 // 🔴 2026-11-07 用户口径：星星兔**不穿透** —— 命中一个就销毁（卡面只写「5 方向各发 1 颗」，没穿透）。
                 //   原来是「命中后继续飞、靠 hit_ids 防重复」，表现为一颗星弹串一整列老鼠。

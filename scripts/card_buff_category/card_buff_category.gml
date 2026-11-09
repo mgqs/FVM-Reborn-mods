@@ -248,7 +248,8 @@ function card_category_data()
         ["huojianzhu", "追踪类", "群轰追踪", ""],
         ["doumaobang", "灰烬类", "瞬发类", "冲撞类"],
         ["honeytrap", "追踪类", "集火追踪", ""],
-        ["huanyingshe", "投掷类", "多线投手", ""]
+        ["huanyingshe", "投掷类", "多线投手", ""],
+        ["tianxie", "直射类", "直线穿透类", ""]
     ];
 }
 

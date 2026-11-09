@@ -38,6 +38,7 @@
     {"name":"mod_info_island_text","path":"scripts/mod_info_island_text/mod_info_island_text.yy",},
     {"name":"mod_on_card_placed","path":"scripts/mod_on_card_placed/mod_on_card_placed.yy",},
     {"name":"mod_register_plant_lite","path":"scripts/mod_register_plant_lite/mod_register_plant_lite.yy",},
+    {"name":"place_mutex_class","path":"scripts/place_mutex_class/place_mutex_class.yy",},
     {"name":"mod_shop_init","path":"scripts/mod_shop_init/mod_shop_init.yy",},
     {"name":"mod_skill_init","path":"scripts/mod_skill_init/mod_skill_init.yy",},
     {"name":"mod_slots_init","path":"scripts/mod_slots_init/mod_slots_init.yy",},

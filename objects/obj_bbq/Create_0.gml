@@ -6,7 +6,8 @@
 // 数值取自「食神谱金卡融合卡前置补全\基本信息.xlsx」第 216~222 行（街头烤肉大师那一段）。
 // 机制：沿本行向右发射穿透串串子弹；**每第 4 发**换成爆辣烤串（见 Other_11 的 _burn_every），并在该行最右 1 格留下灼烧：
 //       存在 2 秒，**每 0.5 秒烫一次**（共 4 跳）→ 站满 4 跳（见 bbq_spawn_burn_cell / obj_burn_cell）。
-//       2026-11-06 用户改口径：灼烧**每跳伤害**改走注册表 custom["灼烧伤害"]（17 档 = 攻击力 ×2，原来是 atk 原值）。
+//       2026-11-08 用户改口径：灼烧**每跳伤害**直接读卡片 atk（同法师蛇，不再 ×2、不再走 custom）；
+//         持续秒数 / 跳数走 custom["灼烧持续"] / ["灼烧跳数"]（默认 2 秒 4 跳）。
 //       其余节奏（0.5 秒 / 4 跳 / 2 秒）不动，仍写在对象里。
 //       灼烧**能烧到场外 1 格**（第 10 格 / BOSS 出生位），但火格特效仍然只铺在第 9 格（不跟着外扩）。
 //       火格与**烤串本发出膛同帧**生成（2026-11-04）。
@@ -44,13 +45,18 @@ bbq_pending_timer = 0;   // 还有几帧出膛（0 = 没有待发射）
 // 贴图格线与逻辑网格的原点差（36px）。串串飞行高度、灼烧火格都用它抬高，要微调只改这一个数。
 bbq_art_up = 36;
 
-// ── 灼烧区每跳伤害：走注册表 custom["灼烧伤害"]（2026-11-06 用户口径）──
-//   改 mod_cards_init 里 bbq 那三个形态的 custom 就生效，不用动对象代码。
-//   注册表是「攻击力 ×2」的 17 档；取不到时兜底也用 atk × 2。
+// ── 灼烧区：每跳伤害 = 卡片当前 atk（2026-11-08 用户口径，同法师蛇）──
+//   不再走 custom["灼烧伤害"]（注册表里那条已删），也不乘 2 —— 铺火那一帧现取 atk，
+//   星级 / 技能 / 平射增幅全都跟得上；持续与跳数才走 custom（改表即生效）。
 var _bsk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _binfo = get_plant_data_with_skill("bbq", shape, clamp(current_level, 0, 16), _bsk);
-burn_damage = atk * 2;
-if (_binfo != undefined && ds_map_exists(_binfo, "灼烧伤害")) burn_damage = _binfo[? "灼烧伤害"];
+burn_damage  = atk;
+burn_duration = 2;   // custom["灼烧持续"]（秒）
+burn_ticks    = 4;   // custom["灼烧跳数"]（跳）
+if (_binfo != undefined && ds_map_exists(_binfo, "灼烧持续")) burn_duration = _binfo[? "灼烧持续"];
+if (_binfo != undefined && ds_map_exists(_binfo, "灼烧跳数")) burn_ticks    = _binfo[? "灼烧跳数"];
+burn_life          = max(1, round(burn_duration * 60));                 // 总帧数
+burn_tick_interval = max(1, round(burn_life / max(1, burn_ticks)));     // 每跳间隔帧
 
 // 灼烧**能烧到场外 1 格**（第 10 格 / BOSS 出生位），火格特效仍铺在第 9 格不动。
 //   要改能烧出去几格就改这一个数（0 = 只烧第 9 格，回到老行为）。
@@ -82,10 +88,10 @@ bbq_spawn_burn_cell = function(_row)
     _b.frame_start = 3;
     _b.frame_end = 16;
     _b.anim_loop_frames = 42;      // 14 帧 × 3 = 20fps，1 秒不到一轮，一直有火
-    // 每跳伤害 = custom["灼烧伤害"]（= 攻击力 ×2），火格存在 2 秒、每 30 帧（0.5 秒）一跳 → 站满 4 跳
+    // 每跳伤害 = 卡片 atk；存在时长 / 跳数走 custom（默认 2 秒 4 跳 → 每 30 帧一跳）
     _b.damage = burn_damage;
-    _b.life = 120;
-    _b.tick_interval = 30;
+    _b.life = burn_life;
+    _b.tick_interval = burn_tick_interval;
     // 灼烧能烧到场外 1 格（第 10 格 / BOSS 出生位）；火格特效仍铺在第 9 格（_bc），不跟着外扩
     //   → 只在判定上放宽，位置 / 缩放都不动（2026-11-06 用户口径）
     _b.extra_col_right = bbq_burn_extra_col;

@@ -630,6 +630,10 @@ if (scroll_max > 0) {
     }
 }
 
+// 搜索框右侧「清空」按钮（2026-11-08 用户口径：情报岛只要清空，不要「下一个」）
+//   位置 = 搜索框 (130,118,384×40) 右边再留 8px；面板收起时随 surface 一起淡出
+mod_search_clear_btn_draw(522, 118, 70, 40, (info_search_text != ""));
+
 // 重置绘制设置
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);

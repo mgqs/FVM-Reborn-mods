@@ -80,8 +80,8 @@ function mod_evo_table(){
                                         {id:"brazier", slot:1, need:2} ] },  // 洛基神使 ← 金牛座星宿 + 岩烧烤盘
         moon_god:                { cards:[ {id:"juxie", slot:0, need:2},
                                         {id:"takoyaki", slot:1, need:2} ] },  // 狄安娜神使 ← 巨蟹座星宿 + 火影章鱼烧
-        power_god:               { cards:[ {id:"hotdog_cannon", slot:0, need:2},
-                                        {id:"fangkongmiao", slot:1, need:2} ] },  // 赫丘利神使（大力神）← 热狗榴弹炮 + 狂暴防空喵（2026-11-08 用户指定副卡）
+        power_god:               { cards:[ {id:"tang_hu_lu", slot:0, need:2},
+                                        {id:"fangkongmiao", slot:1, need:2} ] },  // 赫丘利神使（大力神）← 七彩糖葫芦弹 + 狂暴防空喵（2026-11-08 用户指定：主卡是糖葫芦，不是热狗榴弹炮）
         gaia:                    { cards:[ {id:"curry_lobster_cannon", slot:0, need:2},
                                         {id:"huojianzhu", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 反重力火箭猪（2026-11-08 用户指定副卡）
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},

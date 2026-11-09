@@ -30,10 +30,15 @@ x = lerp(start_x, land_x, _p);
 y = lerp(start_y, land_y, _p) - arc_h * sin(pi * _p);
 image_angle = -life * 6;      // 蛋在空中慢慢翻
 
-// ── 命中：隔帧走 SAP 管线，撞到谁就以谁的格子当爆点 ──
+// ── 命中：只判「自己这一路」+ 只在过了弧顶开始下落之后 ──
+//   2026-11-08 实机反馈：蛋飞到上面两行就被那里的老鼠撞碎，伤害也记在那只身上；远处 / 场外目标同样半路炸。
+//   根因：起点 y-120、弧高 140 → 弧顶在卡上方约 1.2 格（格子高 116），前半段整条轨迹横穿**上面两行**老鼠的判定框，
+//        而这里原来从第 1 帧就对所有行做 bbox 命中 → 谁先碰上谁先炸，蛋根本到不了目标那一行。
+//   修法：① 只认 grid_row == grid_target_row（这一发蛋分到的那一路）② _p >= 0.5（过了弧顶）才判定。
+//   不动：弧高 arc_h / 起手高度 / 落点逐帧追踪 / 溅射口径（投手 200px、行 ±1）。
 var _hit_e = noone;
 hit_tick++;
-if (hit_tick >= global.bullet_hit_interval && bullet_enemy_reachable(id))
+if (_p >= 0.5 && hit_tick >= global.bullet_hit_interval && bullet_enemy_reachable(id))
 {
     hit_tick = 0;
     for (var _t = 0; _t < array_length(hittable_types); _t++)
@@ -44,6 +49,8 @@ if (hit_tick >= global.bullet_hit_interval && bullet_enemy_reachable(id))
         {
             var _e = _list[_i];
             if (!instance_exists(_e) || _e.hp <= 0) continue;
+            if (!variable_instance_exists(_e, "grid_row")) continue;
+            if (_e.grid_row != grid_target_row) continue;
             if (precise_bbox_collision(id, _e))
             {
                 _hit_e = _e;
@@ -119,7 +126,8 @@ if (_boom)
         event_user(0);
     }
 
-    audio_play_sound(snd_fire_hit, 0, 0);
+    // 命中音：2026-11-08 用户口径 —— 换成煮蛋投手的「蛋碎裂」音（原来是火系命中音 snd_fire_hit）
+    audio_play_sound(snd_egg_bullet, 0, 0);
 
     exploding   = true;
     explode_t   = 0;

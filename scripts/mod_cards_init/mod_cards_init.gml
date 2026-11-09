@@ -1562,7 +1562,7 @@ function mod_cards_init()
         shape: 1,
         description: "忒提丝圣神：反弹子弹并附加伤害",
         hp: [50, 60, 70, 80, 90, 100, 110, 130, 150, 170, 210, 250, 290, 330, 370, 410, 450, 550, 700],
-        cost: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
+        cost: array_create(19, 75),
         atk: [21, 23, 26, 30, 34, 38, 44, 55, 68, 93, 118, 146, 174, 202, 237, 273, 307, 350, 450],
         range: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         cooldown: [420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420],
@@ -1573,7 +1573,7 @@ function mod_cards_init()
         shape: 2,
         description: "水神·忒提丝：反弹子弹并附加伤害",
         hp: [50, 60, 70, 80, 90, 100, 110, 130, 150, 170, 210, 250, 290, 330, 370, 410, 450, 550, 700],
-        cost: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
+        cost: array_create(19, 75),
         atk: [21, 23, 26, 30, 34, 38, 44, 55, 68, 93, 118, 146, 174, 202, 237, 273, 307, 350, 450],
         range: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         cooldown: [420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420],
@@ -1584,7 +1584,7 @@ function mod_cards_init()
         shape: 3,
         description: "至尊水神：反弹子弹并附加双倍伤害",
         hp: [50, 60, 70, 80, 90, 100, 110, 130, 150, 170, 210, 250, 290, 330, 370, 410, 450, 550, 700],
-        cost: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
+        cost: array_create(19, 75),
         atk: [42, 46, 52, 60, 68, 76, 88, 110, 136, 186, 236, 292, 348, 404, 474, 546, 614, 700, 900],
         range: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         cooldown: [420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420],
@@ -3897,9 +3897,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 84),
-        custom: info_custom([
-            ["灼烧伤害", [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740]]
-        ])
+        custom: info_custom([["灼烧持续", 2], ["灼烧跳数", 4]])
     },
     {
         name: "户外烤肉大师",
@@ -3911,9 +3909,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 84),
-        custom: info_custom([
-            ["灼烧伤害", [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740]]
-        ])
+        custom: info_custom([["灼烧持续", 2], ["灼烧跳数", 4]])
     },
     {
         name: "BBQ烤肉大师",
@@ -3925,9 +3921,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 84),
-        custom: info_custom([
-            ["灼烧伤害", [44, 52, 60, 68, 76, 84, 100, 120, 140, 160, 220, 280, 340, 440, 540, 640, 740]]
-        ])
+        custom: info_custom([["灼烧持续", 2], ["灼烧跳数", 4]])
     }], false);
 
     mod_register_plant_lite("eightcake", [
@@ -4630,7 +4624,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78),
-        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+        custom: info_custom([["毒雾持续", 2], ["毒雾次数", 5]])
     },
     {
         name: "幽冥法师蛇",
@@ -4642,7 +4636,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78),
-        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+        custom: info_custom([["毒雾持续", 2], ["毒雾次数", 5]])
     },
     {
         name: "奥术法师蛇",
@@ -4654,10 +4648,10 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78),
-        custom: info_custom([["毒雾持续", 1], ["毒雾伤害", 400], ["毒雾次数", 5]])
+        custom: info_custom([["毒雾持续", 2], ["毒雾次数", 5]])
     }
     ], false);
-
+	
     mod_register_plant_lite("fangkongmiao", [
     {
         name: "防空喵",
@@ -4842,6 +4836,42 @@ mod_register_plant_lite("xuanfengniu", [
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
         custom: info_custom([["溅射比例", 0.45]])
+    }
+    ], false);
+
+    mod_register_plant_lite("tianxie", [
+    {
+        name: "天蝎座精灵",
+        shape: 0,
+        description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 160, 190, 220, 250, 280, 310, 340],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 90)
+    },
+    {
+        name: "天蝎座战将",
+        shape: 1,
+        description: "天蝎座战将：猩红毒针，一行连续4格穿透伤害（无视障碍）",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: [52, 65, 78, 91, 104, 117, 130, 143, 156, 169, 208, 247, 286, 325, 364, 403, 442],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 90)
+    },
+    {
+        name: "天蝎座主宰",
+        shape: 2,
+        description: "天蝎座主宰：猩红毒针，一行连续4格穿透伤害（无视障碍）",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: [52, 65, 78, 91, 104, 117, 130, 143, 156, 169, 208, 247, 286, 325, 364, 403, 442],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 90)
     }
     ], false);
 

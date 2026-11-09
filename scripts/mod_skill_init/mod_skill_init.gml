@@ -148,4 +148,5 @@ function mod_skill_init()
     register_card_skill("doumaobang", "前摇", [4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5]);
     register_card_skill("honeytrap", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("huanyingshe", "cycle", [138, 135, 132, 129, 126, 123, 117, 111, 102]);
+    register_card_skill("tianxie", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
 }

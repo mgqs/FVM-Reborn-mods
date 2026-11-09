@@ -26,8 +26,8 @@ cross_server_exchange_ids = [
     "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
     // 红柳烤串机（本体 / 一转 / 二转）的商品已在 mod_shop_init 注销，这三个 id 一并清掉
     "zhanqima", "zhanqima_1", "zhanqima_2",
-    // 椰子果（0转银牌商店 / 1、2转金牌商店）
-    "yeziguo", "yeziguo_1", "yeziguo_2",
+    // 椰子果：2026-11-08 本体重回普通商店（55000 金币），一/二转在跨服那边打标 + 剔除显示，
+    //   所以这里三个 id 都不用再列（本体靠「无 cross_server_shop 标」自然出现）
     // 牛油果（0转银牌商店；1、2转凭证改在威望商店，普通商店一律不显示）、五行蛇（0转银牌商店）
     //   2026-10-30 补：这两张一直漏在名单外，普通商店会按金币重复显示（同一个 goods 结构体被跨服覆写过 cost）
     "niuyouguo", "niuyouguo_1", "niuyouguo_2", "wuxingshe"
@@ -202,18 +202,15 @@ function shop_list_recharge(){
 		}
 	}
 
-	// 搜索过滤（2026-10-27，只在凭证页）：口径 / 名字来源见 transfer_credit 的 credit_shop_filter_search
+	// 搜索过滤（2026-10-27 凭证页 / 2026-11-08 起**全页签**都有）
 	//   过滤完再排序 / 分页，所以页码、售罄遮罩、购买按钮全都自动跟着走
-	if (shop_button_select == 6){
-		// 搜索框只在凭证页可见（SearchBox 的 visible 不会被 should_correspond 自动关掉绘制）
-		if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)){
-			shop_search_box.visible = true;
-		}
-		credit_shop_filter_search(goods_list, shop_search_text);
+	//   口径见 shop_search_filter：卡片 / 凭证页 = 情报岛那套（分类词 + 卡名 + 拼音，凭证页额外保留层数），
+	//   其余页签只按商品名 + 拼音
+	if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)){
+		// 搜索框的 visible 不会被 should_correspond 自动关掉绘制，这里常开
+		shop_search_box.visible = true;
 	}
-	else if (variable_instance_exists(id, "shop_search_box") && instance_exists(shop_search_box)){
-		shop_search_box.visible = false;
-	}
+	shop_search_filter(goods_list, shop_search_text, shop_button_select);
 
 	// 凭证页排序（2026-10-26 用户口径，第二版）
 	//   取消的是「全局先一转、后二转」；现在要求：**同一张卡的凭证挨在一起，卡内先一转后二转**

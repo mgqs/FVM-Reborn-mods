@@ -1086,7 +1086,7 @@ function mod_slots_init()
     {
         shape: 1,
     sprite: spr_water_god_1,
-    cost: 150,
+    cost: 75,
         cooldown: 420,
         description: "忒提丝圣神：反弹子弹并附加伤害",
         plant_type: "normal",
@@ -1097,7 +1097,7 @@ function mod_slots_init()
     {
         shape: 2,
     sprite: spr_water_god_2_icon,
-    cost: 150,
+    cost: 75,
         cooldown: 420,
         description: "水神·忒提丝：反弹子弹并附加伤害",
         plant_type: "normal",
@@ -1109,7 +1109,7 @@ function mod_slots_init()
     {
         shape: 3,
     sprite: spr_water_god_3_icon,
-    cost: 150,
+    cost: 75,
         cooldown: 420,
         description: "至尊水神：反弹子弹并附加双倍伤害",
         plant_type: "normal",
@@ -3182,6 +3182,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 1, sprite: spr_fashishe_1, cost: 350, cooldown: 420, description: "幽冥法师蛇：向前发射整行穿透毒子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fashishe_1 },
     { shape: 2, sprite: spr_fashishe_2, cost: 350, cooldown: 420, description: "奥术法师蛇：向前发射整行穿透毒子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fashishe_2 }]);
 
+
     register_card("fangkongmiao", obj_fangkongmiao, [
     { shape: 0, sprite: spr_fangkongmiao, cost: 220, cooldown: 420, description: "防空喵：高伤害轰炸空中鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fangkongmiao },
     { shape: 1, sprite: spr_fangkongmiao_1, cost: 220, cooldown: 420, description: "钢盔防空喵：高伤害轰炸空中鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_fangkongmiao_1 },
@@ -3206,5 +3207,11 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 0, sprite: spr_huanyingshe, cost: 325, cooldown: 420, description: "幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe },
     { shape: 1, sprite: spr_huanyingshe_1, cost: 325, cooldown: 420, description: "羽翼幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe_1 },
     { shape: 2, sprite: spr_huanyingshe_2, cost: 325, cooldown: 420, description: "金盔幻影蛇：大范围发射可追踪的投掷类子弹", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_huanyingshe_2 }]);
+
+
+    register_card("tianxie", obj_tianxie, [
+    { shape: 0, sprite: spr_tianxie, cost: 200, cooldown: 420, description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tianxie },
+    { shape: 1, sprite: spr_tianxie_1, cost: 200, cooldown: 420, description: "天蝎座战将：猩红毒针，一行连续4格穿透伤害（无视障碍）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tianxie_1 },
+    { shape: 2, sprite: spr_tianxie_2, cost: 200, cooldown: 420, description: "天蝎座主宰：猩红毒针，一行连续4格穿透伤害（无视障碍）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tianxie_2 }]);
 
 }

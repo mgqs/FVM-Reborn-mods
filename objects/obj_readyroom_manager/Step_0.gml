@@ -67,3 +67,8 @@ if (hover_card_index != -1 && !is_submenu_open && !instance_exists(obj_package_b
 
 // Advance queued flight animations after input has had a chance to enqueue them.
 
+
+// ── 搜索（2026-11-08，通用导航器）──
+//   子菜单开着 → 搜索框和按钮一起隐藏且不吃点击；关掉再恢复
+mod_search_nav_set_on(rrm_nav, !is_submenu_open);
+mod_search_nav_step(rrm_nav);

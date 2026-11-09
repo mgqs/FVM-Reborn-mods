@@ -125,5 +125,6 @@
     {"name":"obj_doumaobang","path":"objects/obj_doumaobang/obj_doumaobang.yy",},
     {"name":"obj_honeytrap","path":"objects/obj_honeytrap/obj_honeytrap.yy",},
     {"name":"obj_huanyingshe","path":"objects/obj_huanyingshe/obj_huanyingshe.yy",},
+    {"name":"obj_tianxie","path":"objects/obj_tianxie/obj_tianxie.yy",},
   ],
 }

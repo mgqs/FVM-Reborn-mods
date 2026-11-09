@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%%Name":"tianxie",
+  "folderPath":"folders/精灵/mod/Cards/Shooter/tianxie.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tianxie",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_tianxie","path":"sprites/spr_tianxie/spr_tianxie.yy",},
+    {"name":"spr_tianxie_1","path":"sprites/spr_tianxie_1/spr_tianxie_1.yy",},
+    {"name":"spr_tianxie_2","path":"sprites/spr_tianxie_2/spr_tianxie_2.yy",},
+    {"name":"spr_tianxie_needle","path":"sprites/spr_tianxie_needle/spr_tianxie_needle.yy",},
+  ],
+}

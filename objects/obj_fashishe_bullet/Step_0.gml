@@ -21,7 +21,9 @@ if (burnt > 0)
     image_yscale = 1.6;
 }
 
-x += move_speed * move_dir;
+// 过火后提速（同 bbq：burnt_speed / move_speed，一比一照抄它的取法）
+var _spd = (burnt > 0) ? burnt_speed : move_speed;
+x += _spd * move_dir;
 life++;
 
 // 普通状态按帧轮播：1~4 帧是飞行，5 帧起是消散（不在这里播）
