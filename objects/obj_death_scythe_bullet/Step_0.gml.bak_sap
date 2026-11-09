@@ -1,0 +1,31 @@
+if (global.is_paused)
+{
+    image_speed = 0;
+    move_speed = 0;
+    exit;
+}
+
+image_speed = 2;
+move_speed = 2;
+t += move_speed;
+
+if (t < 0)
+    t += 360;
+
+total_deg += move_speed;
+
+if (total_deg >= 360)
+{
+    instance_destroy();
+    exit;
+}
+
+if (t >= 360)
+    t -= 360;
+
+var max_width = 1100;
+var nx = (1 - dcos(t)) / 2;
+var px = max_width * nx;
+var py = -644.28 * power(nx, 1.75) * dsin(t);
+x = start_x + px;
+y = start_y + py;

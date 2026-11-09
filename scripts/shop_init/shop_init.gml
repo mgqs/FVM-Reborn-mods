@@ -41,7 +41,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("strength_gem",{"type":"gem","cost":"50000","unlock_item_id":"strength_gem","description":"蓄力宝石：增加周围卡片伤害","display_name":"蓄力宝石"})
 	register_goods("ice_gem",{"type":"gem","cost":"30000","unlock_item_id":"ice_gem","description":"减速宝石：对伤害到的老鼠造成减速\n需镶嵌于超级武器槽位","display_name":"减速宝石（超级武器）"})
 	register_goods("ice_spoon_crossbow",{"type":"weapon","cost":"20000","unlock_item_id":"ice_spoon_crossbow","description":"冰勺弩枪：投掷减速冰鸡蛋","display_name":"冰勺弩枪"})
-	register_goods("poseidon_dart_gun",{"type":"weapon","cost":"80000","unlock_item_id":"poseidon_dart_gun","description":"海神镖枪：发射两个追踪飞镖攻击敌人","display_name":"海神镖枪"})
+	register_goods("poseidon_dart_gun",{"type":"weapon","cost":"200000","unlock_item_id":"poseidon_dart_gun","description":"海神镖枪：连续发射追踪飞镖，可溅射","display_name":"海神镖枪"})
 	register_goods("double_ice_crossbow",{"type":"weapon","cost":"50000","unlock_item_id":"double_ice_crossbow","description":"冰霜连弩：投掷两个减速冰鸡蛋","display_name":"冰霜连弩"})
 	register_goods("ice_mighty_gun",{"type":"weapon","cost":"20000","unlock_item_id":"ice_mighty_gun","description":"冰威武枪：发射四发冰弹","display_name":"冰威武枪"})
 	register_goods("rotating_water_gun",{"type":"weapon","cost":"50000","unlock_item_id":"rotating_water_gun","description":"旋转水枪：每隔一段时间伤害5*5范围敌人","display_name":"旋转水枪"})

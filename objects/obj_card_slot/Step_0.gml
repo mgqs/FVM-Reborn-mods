@@ -123,7 +123,16 @@ if (is_ready && mouse_check_button_pressed(mb_left)) {
     }
 }
 
-var slot_key = global.keybind_map[? "卡槽" + string(slot_index)];
+// 键位表只到「卡槽21」（keybind_config 共 21 条）。海克斯「卡组上限+N」或
+// 存档解锁能把卡组槽位顶到 22+，此时 slot_index 越界，查表拿到 undefined，
+// keyboard_check_pressed(undefined) 会直接崩溃（实测星光宝石放第 22 槽就闪退）。
+var slot_key = vk_nokey;
+if (variable_global_exists("keybind_map") && ds_exists(global.keybind_map, ds_type_map)) {
+    var _slot_key_name = "卡槽" + string(slot_index);
+    if (ds_map_exists(global.keybind_map, _slot_key_name)) {
+        slot_key = global.keybind_map[? _slot_key_name];
+    }
+}
 
 if keyboard_check_pressed(slot_key) && is_ready{
         // 选中当前卡槽

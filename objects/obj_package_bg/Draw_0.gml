@@ -286,7 +286,7 @@ else if package_button_select == 2 {
 	hover_gem_index = -1
 
 	// 需要分组显示的mod武器：每把武器单独一格子，同列下方放该武器的专属宝石
-	var _mod_weapon_ids = ["zeus_bolt","master_shield","hades_scythe","aladdin_lamp","rose_shield","star_wand"]
+	var _mod_weapon_ids = ["zeus_bolt","master_shield","hades_scythe","aladdin_lamp","rose_shield","star_wand","gods_shield","poseidon_dart_gun","death_scythe"]
 	var _group_col = 0
 	var _group_end_row = 0
 	var _drawn_gem_indices = []

@@ -227,6 +227,9 @@ function draw_audio_page(){
     boss_music_ensure_dir();
     var _boss_tog = instance_create_depth(x - 440, y + 61, depth - 1, obj_setting_toggle);
     _boss_tog.config_key = "boss_music_random";
+    // 必须在这里手动回填：obj_setting_toggle 的 Create 事件早于 config_key 赋值，
+    // 它内部那些 if (config_key == ...) 分支全都命中不到（其它页的开关同样是手动设的）。
+    _boss_tog.state = global.boss_music_random;
     _boss_tog.tooltip_text = "打开后，BOSS 波会从曲库里随机播放一首音乐\n曲库位置：%LOCALAPPDATA%\\FVM_Reborn_makk\\boss_music（只认 .ogg）";
     array_push(setting_buttons, _boss_tog);
     

@@ -121,10 +121,112 @@ function mod_weapons_init()
         slow_timer: 240,
         max_level: 15
     });
-    register_weapon("gods_shield",
+    register_weapon("death_scythe", 
     {
-        sprite: spr_master_shield_icon,
-        icon: spr_master_shield_icon,
+        sprite: spr_death_scythe_icon,
+        icon: spr_death_scythe_icon,
+        obj: obj_death_scythe_enter,
+        slot: "super_weapon",
+        allowed_gems: ["death_scythe_gem_1", "death_scythe_gem_2", "death_scythe_gem_3", "death_scythe_gem_4"],
+        atk: 200,
+        cycle: 900,
+        ghost_shape: 0,
+        bullet_shape: 0,
+        bullet_amount: 1,
+        description: "死神镰刀：O形轨迹发射旋转镰刀",
+        name: "死神镰刀",
+        atk_impact: [260, 300, 340, 380, 440, 500, 560, 640, 720, 800, 900, 950, 1000, 1050, 1100, 1200],
+        cycle_impact: [882, 855, 828, 801, 765, 729, 693, 639, 585, 495, 405, 396, 387, 375, 360, 342],
+        bullet_amount_impact: [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4],
+        bullet_shape_impact: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3],
+        ghost_shape_impact: [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
+        atk_bonus_impact: [50, 60, 70, 80, 90, 100, 120, 150, 180, 210, 300, 350, 370, 390, 410, 450]
+    });
+    register_gem("death_scythe_gem_1",
+    {
+        name: "死神一击",
+        description: "死神一击：增加死神镰刀伤害\n[专属宝石]：死神镰刀",
+        icon: spr_death_scythe_gem_1,
+        slot: "super_weapon",
+        obj: obj_death_scythe_gem_1,
+        allowed_weapons: ["death_scythe"],
+        max_level: 15
+    });
+    register_gem("death_scythe_gem_2",
+    {
+        name: "死神收割",
+        description: "死神收割：增加死神镰刀攻速\n[专属宝石]：死神镰刀",
+        icon: spr_death_scythe_gem_2,
+        slot: "super_weapon",
+        obj: obj_death_scythe_gem_2,
+        allowed_weapons: ["death_scythe"],
+        max_level: 15
+    });
+    register_gem("death_scythe_gem_3",
+    {
+        name: "死神苏醒",
+        description: "死神苏醒：增加死神镰刀子弹数量\n[专属宝石]：死神镰刀",
+        icon: spr_death_scythe_gem_3,
+        slot: "super_weapon",
+        obj: obj_death_scythe_gem_3,
+        allowed_weapons: ["death_scythe"],
+        max_level: 15
+    });
+    register_gem("death_scythe_gem_4",
+    {
+        name: "死神意志",
+        description: "死神意志：额外增加死神镰刀攻击并改变子弹形态\n[专属宝石]：死神镰刀",
+        icon: spr_death_scythe_gem_4,
+        slot: "super_weapon",
+        obj: obj_death_scythe_gem_4,
+        allowed_weapons: ["death_scythe"],
+        max_level: 15
+    });    register_gem("poseidon_dart_gun_gem_1",
+    {
+        name: "魔影圣衣",
+        description: "魔影圣衣：海神镖枪子弹获得溅射伤害\n[专属宝石]：海神镖枪",
+        icon: spr_poseidon_dart_gun_gem_1,
+        slot: "main_weapon",
+        obj: obj_poseidon_dart_gun_gem_1,
+        allowed_weapons: ["poseidon_dart_gun"],
+        splash_ratio: [0.1, 0.13, 0.16, 0.19, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.4, 0.43, 0.46, 0.49, 0.53, 0.58],
+        max_level: 15
+    });
+    register_gem("poseidon_dart_gun_gem_2",
+    {
+        name: "魔影蛮力",
+        description: "魔影蛮力：增加海神镖枪伤害\n[专属宝石]：海神镖枪",
+        icon: spr_poseidon_dart_gun_gem_2,
+        slot: "main_weapon",
+        obj: obj_poseidon_dart_gun_gem_2,
+        allowed_weapons: ["poseidon_dart_gun"],
+        max_level: 15
+    });
+    register_gem("poseidon_dart_gun_gem_3",
+    {
+        name: "魔影超刃",
+        description: "魔影超刃：增加海神镖枪子弹数量\n[专属宝石]：海神镖枪",
+        icon: spr_poseidon_dart_gun_gem_3,
+        slot: "main_weapon",
+        obj: obj_poseidon_dart_gun_gem_3,
+        allowed_weapons: ["poseidon_dart_gun"],
+        bullet_count: [2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 7],
+        atk_bonus: [0, 15, 20, 25, 30, 35, 10, 15, 20, 25, 10, 25, 35, 10, 40, 30],
+        max_level: 15
+    });
+    register_gem("poseidon_dart_gun_gem_4",
+    {
+        name: "魔影迅疾",
+        description: "魔影迅疾：增加海神镖枪攻速\n[专属宝石]：海神镖枪",
+        icon: spr_poseidon_dart_gun_gem_4,
+        slot: "main_weapon",
+        obj: obj_poseidon_dart_gun_gem_4,
+        allowed_weapons: ["poseidon_dart_gun"],
+        max_level: 15
+    });    register_weapon("gods_shield",
+    {
+        sprite: spr_gods_shield_icon,
+        icon: spr_gods_shield_icon,
         obj: obj_player_shield,
         slot: "secondary_weapon",
         allowed_gems: ["gods_shield_gem_1", "gods_shield_gem_2", "gods_shield_gem_3", "gods_shield_gem_4"],
@@ -147,9 +249,9 @@ function mod_weapons_init()
     {
         name: "光能之源",
         description: "光能之源：生产大量火苗\n[专属宝石]：诸神之盾",
-        icon: spr_divine_blessing_gem_icon,
+        icon: spr_gods_shield_gem_1,
         slot: "secondary_weapon",
-        obj: noone,
+        obj: obj_gods_shield_gem_1,
         allowed_weapons: ["gods_shield"],
         first_produce_delay: 1,
         cycle: [15, 15, 15, 14, 14, 14, 13, 13, 12, 11, 10, 10, 10, 10, 10, 10],
@@ -160,9 +262,9 @@ function mod_weapons_init()
     {
         name: "撕裂之源",
         description: "撕裂之源：撕裂3x3范围内的敌人\n[专属宝石]：诸神之盾",
-        icon: spr_divine_holy_gem_icon,
+        icon: spr_gods_shield_gem_2,
         slot: "secondary_weapon",
-        obj: noone,
+        obj: obj_gods_shield_gem_2,
         allowed_weapons: ["gods_shield"],
         atk: [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 110, 120, 130, 140, 150],
         rate: [0.02, 0.03, 0.03, 0.04, 0.05, 0.06, 0.08, 0.1, 0.12, 0.15, 0.18, 0.19, 0.2, 0.23, 0.24, 0.26],
@@ -173,9 +275,9 @@ function mod_weapons_init()
     {
         name: "永恒之源",
         description: "永恒之源：为5x5范围内的卡片提升攻击力\n[专属宝石]：诸神之盾",
-        icon: spr_divine_protect_gem_icon,
+        icon: spr_gods_shield_gem_3,
         slot: "secondary_weapon",
-        obj: noone,
+        obj: obj_gods_shield_gem_3,
         allowed_weapons: ["gods_shield"],
         ratio_inner: [0.05, 0.06, 0.07, 0.09, 0.11, 0.13, 0.16, 0.19, 0.22, 0.26, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
         ratio_outer: [0.025, 0.03, 0.035, 0.045, 0.055, 0.065, 0.08, 0.095, 0.11, 0.13, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
@@ -185,9 +287,9 @@ function mod_weapons_init()
     {
         name: "生命之源",
         description: "生命之源：提升5x5范围内卡片的最大生命值\n[专属宝石]：诸神之盾",
-        icon: spr_divine_blessing_gem_icon,
+        icon: spr_gods_shield_gem_4,
         slot: "secondary_weapon",
-        obj: noone,
+        obj: obj_gods_shield_gem_4,
         allowed_weapons: ["gods_shield"],
         max_hp_increase_rate: [0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 1],
         max_level: 15

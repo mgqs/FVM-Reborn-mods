@@ -1,57 +1,89 @@
-// obj_plant_parent 的 Step 事件
-if global.is_paused{
-	exit
-}
-// 动画计时器
+if (global.is_paused)
+    exit;
 
-	if timer < flash_speed - 1 {
-	    timer++;
-	} else {
-	    switch (state) {
-	        case CARD_STATE.IDLE:
-	            if image_index < 7 image_index++;
-	            else image_index = 0;
-	            break;
+if (timer < (flash_speed - 1))
+{
+    timer++;
+}
+else
+{
+    switch (state)
+    {
+        case CARD_STATE.IDLE:
+            if (image_index < 7)
+                image_index++;
+            else
+                image_index = 0;
             
-	        case CARD_STATE.ATTACK:
-	            if (image_index >= (7+1) && image_index <= (7+1) + attack_anim) image_index++;
-	            else image_index = (7+1);
-	            break;
-		
-	    }
-	    timer = 0;
-	}
-
-
-
-// 计算深度值
-//var depth_value = -((y + depth_offset) * 10 + x);
-//depth = depth_value - depth_group * 100;
-depth = parent_player.depth-1
-grid_row = parent_player.grid_row
-
-//检测自身右方是否有敌人
-var has_enemy = false
-with(obj_enemy_parent){
-	if (can_target_on("track",target_type) && hp > 0){
-		has_enemy = true
-		break
-	}
+            break;
+        
+        case CARD_STATE.ATTACK:
+            if (image_index >= 8 && image_index <= (8 + attack_anim))
+                image_index++;
+            else
+                image_index = 8;
+            
+            break;
+    }
+    
+    timer = 0;
 }
-//攻击逻辑
-if (has_enemy) {
-    if (attack_timer <= cycle - attack_anim * flash_speed) {
-        attack_timer++;
-    } else if (attack_timer <= cycle) {
-        attack_timer++;
+
+// 守卫：parent_player 必须有效，否则读 depth/grid_row 会崩
+if (!instance_exists(parent_player))
+{
+    instance_destroy();
+    exit;
+}
+depth = parent_player.depth - 2;
+grid_row = parent_player.grid_row;
+var has_enemy = false;
+
+with (obj_enemy_parent)
+{
+    if (can_target_on("track", target_type) && hp > 0)
+    {
+        has_enemy = true;
+        break;
+    }
+}
+
+if (has_enemy)
+{
+    attack_timer++;
+    
+    if (attack_timer > (cycle - (attack_anim * flash_speed)))
+    {
         state = CARD_STATE.ATTACK;
-    } else {
-        event_user(1); // 发射子弹
+        
+        if (fire_count < bullet_count)
+        {
+            if (fire_cd <= 0)
+            {
+                event_user(1);
+                fire_count++;
+                fire_cd = 4;
+            }
+            else
+            {
+                fire_cd--;
+            }
+        }
+    }
+    
+    if (attack_timer > cycle)
+    {
         attack_timer = 0;
         state = CARD_STATE.IDLE;
+        fire_count = 0;
+        fire_cd = 0;
     }
-} else {
-    // 没有符合条件的敌人，重置状态
+}
+else
+{
     attack_timer = 0;
     state = CARD_STATE.IDLE;
+    fire_count = 0;
+    fire_cd = 0;
 }
+

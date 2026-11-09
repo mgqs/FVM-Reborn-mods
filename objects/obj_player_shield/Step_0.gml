@@ -24,7 +24,7 @@ if (!aura_created)
         if (gods_flame_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 30, 0, obj_shield_aura);
-            _eff.sprite_index = spr_master_shield_effect_1;
+            _eff.sprite_index = spr_gods_shield_effect_1;
             _eff.depth = parent_player.depth - 3;
             _eff.parent_player = parent_player;
             _eff.depth_offset = -3;
@@ -36,7 +36,7 @@ if (!aura_created)
         if (gods_damage_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
-            _eff.sprite_index = spr_master_shield_effect_2;
+            _eff.sprite_index = spr_gods_shield_effect_2;
             _eff.depth = parent_player.depth + 149;
             _eff.parent_player = parent_player;
             _eff.depth_offset = 149;
@@ -48,7 +48,7 @@ if (!aura_created)
         if (gods_buff_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
-            _eff.sprite_index = spr_master_shield_effect_3;
+            _eff.sprite_index = spr_gods_shield_effect_3;
             _eff.depth = parent_player.depth + 150;
             _eff.parent_player = parent_player;
             _eff.depth_offset = 150;
@@ -60,7 +60,7 @@ if (!aura_created)
         if (gods_hp_gem)
         {
             var _eff = instance_create_depth_define(spawn_x - 15, spawn_y - 5, 0, obj_shield_aura);
-            _eff.sprite_index = spr_master_shield_effect_4;
+            _eff.sprite_index = spr_gods_shield_effect_4;
             _eff.depth = parent_player.depth + 148;
             _eff.parent_player = parent_player;
             _eff.depth_offset = 148;

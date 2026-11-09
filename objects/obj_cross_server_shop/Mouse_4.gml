@@ -68,6 +68,7 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _owned = false;
     var _prerequisite_met = true;
     var _required_gem_id = "";
+    var _required_weapon_id = "";
 
     // 抽卡 / 欧皇模式：**一转·二转凭证照常可买**，其余（卡本体 / 武器 / 宝石）仍禁买；
     //   随机礼盒模式整店禁买（2026-10-28 用户口径）
@@ -106,6 +107,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
         }
     } else if (_goods_type == "weapon") {
         _owned = is_weapon_unlocked(_id);
+        if (variable_struct_exists(_goods, "required_weapon_id")) {
+            _required_weapon_id = _goods.required_weapon_id;
+            _prerequisite_met = is_weapon_unlocked(_required_weapon_id);
+        }
     } else if (_goods_type == "gem") {
         _owned = is_gem_unlocked(_id);
         if (variable_struct_exists(_goods, "required_gem_id")) {
@@ -118,7 +123,12 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _balance = get_material_amount(_medal_id);
     if (_owned) show_notice("该商品已兑换", 60);
     else if (!_prerequisite_met) {
-        if (_required_gem_id != "") {
+        if (_required_weapon_id != "") {
+            var _rw = global.goods_map[? _required_weapon_id];
+            var _rw_name = _required_weapon_id;
+            if (is_struct(_rw) && variable_struct_exists(_rw, "display_name")) _rw_name = _rw.display_name;
+            show_notice("请先兑换" + _rw_name, 60);
+        } else if (_required_gem_id != "") {
             var _required_goods = global.goods_map[? _required_gem_id];
             show_notice("请先兑换" + _required_goods.display_name, 60);
         } else {

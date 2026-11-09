@@ -19,22 +19,18 @@
 
 ### 内置曲库（随游戏分发）
 
-游戏自带 10 首，放在项目里的 `datafiles/boss_music_pack/`，打包后位于游戏目录的 `boss_music_pack/`：
+游戏自带 6 首，放在项目里的 `datafiles/boss_music_pack/`，打包后位于游戏目录的 `boss_music_pack/`：
 
 | # | 曲目 | 大小 |
 |---|---|---|
-| 1 | 周杰伦 - 晴天 | 5.6 MB |
-| 2 | 阿YueYue,刘兆宇 - 冬眠 | 3.9 MB |
-| 3 | 蔡健雅 - 红色高跟鞋 | 4.5 MB |
+| 1 | 杨丞琳 - 雨爱 | 6.1 MB |
+| 2 | 张芸京 - 偏爱 | 4.7 MB |
+| 3 | 阿YueYue,刘兆宇 - 冬眠 | 3.9 MB |
 | 4 | 未知歌手 - 七里香 | 6.7 MB |
-| 5 | 杨丞琳 - 雨爱 | 6.1 MB |
-| 6 | 张芸京 - 偏爱 | 4.7 MB |
-| 7 | 周杰伦 - 花海 | 5.3 MB |
-| 8 | 周杰伦 - 明明就 | 5.4 MB |
-| 9 | 周杰伦 - 青花瓷 | 5.1 MB |
-| 10 | (猴叫司凤版)-泡泡心 | 3.3 MB |
+| 5 | 雨爱(猴叫司凤版)-泡泡心 | 3.3 MB |
+| 6 | 蔡健雅 - 红色高跟鞋 | 4.5 MB |
 
-合计 **50.7 MB**。新设备装上就能用，不需要往曲库里放任何东西。
+合计 **29.2 MB**。新设备装上就能用，不需要往曲库里放任何东西。
 
 **两级扫描**：`boss_music_scan()` 先扫玩家目录（`boss_music\*.ogg`），再追加内置清单，两者进同一个随机池。
 
@@ -61,6 +57,25 @@ mp3 / flac / wav 没有对应的运行时 API（`audio_create_stream` 会返回 
 ---
 
 ## 3. 怎么把网易云的歌变成 ogg
+
+### 最省事：拖放转换
+
+用 `tools\音频转OGG.bat`：把 mp3 / flac / wav / m4a / aac / wma / ape 直接拖到它图标上松手，
+同目录生成同名 `.ogg`（重名自动加 `_2 _3`）。双击、不带文件，则转换 bat 所在目录的全部音频。
+窗口会停在结果页，显示每首的耗时、体积变化和失败原因。
+
+命令行版可以指定输出目录与质量：
+
+```bat
+powershell -ExecutionPolicy Bypass -File tools\音频转OGG.ps1 "歌.mp3" -OutDir "D:\music" -Quality 8
+```
+
+- `-Quality` 0~10，默认 6（约 192 kbps，4 分钟约 5~6 MB）；8 约 256 kbps。
+- `-Overwrite` 覆盖同名文件；`-NoPause` 不等待回车（脚本调用时用）。
+- 自动找 GameMaker 自带的 ffmpeg（`C:\ProgramData\GameMakerStudio2*\Cache\runtimes\*\bin\ffmpeg\windows\ffmpeg.exe`），
+  找不到才回退 PATH；也可以把 `ffmpeg.exe` 直接放在脚本旁边。
+- 转换时固定带 `-vn`（丢掉内嵌封面）—— 不丢的话 ogg 容器要找 theora 编码器，GM 自带的 ffmpeg 没编进去，会直接失败。
+
 
 ### 步骤一：在客户端里下载
 
@@ -123,23 +138,30 @@ mp3 / flac / wav 没有对应的运行时 API（`audio_create_stream` 会返回 
 
 | 情况 | 结果 |
 |---|---|
-| 开关关 | 播关卡自带 `boss_music`，与改动前完全一致 |
-| 开关开 + 曲库有歌 | 每次进 BOSS 波随机一首，**同一场战斗只抽一次**；内置 BOSS 音乐被 `audio_stop_sound` 停掉 |
-| 开关开 + 玩家曲库为空 | 只用内置 10 首，仍能随机 |
-| 开关开 + 玩家曲库也为空且内置缺失 | 静默回退自带 `boss_music`，不报错、不弹窗 |
-| 开关开 + 某首歌损坏 | `audio_create_stream` 返回 -1 → 回退自带音乐 |
-| 精英波（elite wave） | 不受影响，仍用关卡 `elite_music` |
-| 没有 BOSS 的关卡 | 不触发，全程播关卡 `pre_music` |
+| 开关关 | 全程播关卡自带音乐（`pre_music` → `elite_music` → `boss_music`），与改动前完全一致 |
+| 开关开 + 曲库有歌 | **进入精英波时**随机抽一首，一直播到通关（BOSS 波也不换）；同一场只抽一次 |
+| 开关开 + 玩家曲库为空 | 只用内置 6 首，仍能随机 |
+| 开关开 + 内置也缺失 | 静默回退关卡自带的 `elite_music`，不报错、不弹窗 |
+| 开关开 + 某首歌损坏 | `audio_create_stream` 返回 -1 → 自动换下一首（最多试 8 首），全失败再回退 |
+| 没有精英段的关卡 | `elite_wave` 为 0（魔塔系），退化为「从最后一波开始」 |
+| BOSS 波 | **不单独换音乐**，继续播精英波抽到的那首，直到通关 |
 
 随机范围包含刚播过的那首（不记忆历史），连续两场撞歌是正常的。
+
+**音量跟随**：随机曲是 `audio_create_stream` 建的流，属于 `audiogroup_default`，不吃 `music` 组的
+`audio_group_set_gain`。所以 `obj_battle_music_controller/Step_0.gml` 会对流单独套一次
+`global.music_volume`，拖音乐音量条、点静音按钮都实时生效。普通音乐资源仍在 `music` 组，
+这里只处理流，避免二次衰减。
 
 ### 开关长什么样
 
 用的是 `obj_setting_toggle` —— 和「游戏设置」页里抽卡版 / 欧皇版 / 随机礼盒 / 海克斯那四个勾选**完全同一个控件**
 （`spr_option_setting_toggle`，64×64，5 帧开合动画，点击有回弹）。
 
-位置在音频设置页第三行：`[✓] BOSS 随机音乐 ............ 40 首`。
+位置在音频设置页第三行：`[✓] BOSS 随机音乐 ............ N 首`。
 悬停会提示曲库路径。
+
+勾选状态写进 `config.ini` 的 `[settings] boss_music_random`，退出重进、切页回来都保持勾选。
 
 ### 为什么第一版没生效（已修）
 
@@ -150,6 +172,10 @@ mp3 / flac / wav 没有对应的运行时 API（`audio_create_stream` 会返回 
 2. **文件访问用了绝对路径**：`file_find_first` / `audio_create_stream` 在 GM 沙盒模式下只认
    相对游戏存档目录的路径，喂 `C:\Users\...\boss_music\*.ogg` 会扫到 0 个文件 →
    `boss_music_resolve()` 一直返回 fallback → 听起来"开了没反应"。
+3. **勾选状态没回填**：`obj_setting_toggle` 的 `Create` 事件比 `config_key` 赋值更早执行，
+   它内部 `if (config_key == "boss_music_random") state = global.boss_music_random` 永远命中不到 →
+   每次进音频页开关都是关闭的。现在 `draw_audio_page()` 创建后手动补一行
+   `_boss_tog.state = global.boss_music_random`（其它页的开关本来就是这么写的）。
 
 现在 `boss_music_scan()` 先用 `boss_music\*.ogg` 相对路径扫，扫不到再用绝对路径兜底；
 `audio_create_stream` 加载失败也会换绝对路径重试一次。
@@ -162,7 +188,7 @@ mp3 / flac / wav 没有对应的运行时 API（`audio_create_stream` 会返回 
 |---|---|
 | `scripts/boss_music/boss_music.gml` | 扫描曲库、随机选取、流的生命周期管理 |
 | `scripts/boss_music/boss_music.yy` | 资源描述 |
-| `objects/obj_battle/Step_2.gml:207` | `new_battle_music = boss_music_resolve(global.level_data.boss_music)` |
+| `objects/obj_battle/Step_2.gml`（精英波分支） | 精英波起 `new_battle_music = boss_music_resolve(global.level_data.elite_music)`，`music_picked` 保证每场只抽一次 |
 | `objects/obj_battle_music_controller/Other_5.gml` | 房间结束时销毁本次创建的流 |
 | `objects/obj_game_init/Create_0.gml:187` | 从 `config.ini` 读 `boss_music_random` |
 | `objects/obj_setting_toggle/Create_0.gml` | 开关初始状态 |
