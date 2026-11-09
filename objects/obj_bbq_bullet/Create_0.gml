@@ -24,7 +24,7 @@ end_x_left = -200;       // 只给**被反弹**的串串用：第 1 格左沿外
 bounced = false;
 row = 0;
 burn_shot = false;
-damage_type = "pierce";
+damage_type = "normal";     // 平射（2026-11-09 用户口径：bbq 属直射类，造成平射伤害）
 target_type = "normal";
 
 // 过火相关（ronghehuopen_pass_fire / 火盆碰撞都按这几个字段判定）
