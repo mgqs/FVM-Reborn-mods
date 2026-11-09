@@ -66,6 +66,9 @@ for (var _slot = 0; _slot < 16; _slot++) {
         }
     } else if (_goods_type == "weapon") {
         _owned = is_weapon_unlocked(_id);
+        if (variable_struct_exists(_goods, "required_weapon_id")) {
+            _prerequisite_met = is_weapon_unlocked(_goods.required_weapon_id);
+        }
     } else if (_goods_type == "gem") {
         _owned = is_gem_unlocked(_id);
         if (variable_struct_exists(_goods, "required_gem_id")) {
@@ -140,9 +143,13 @@ for (var _slot = 0; _slot < 16; _slot++) {
     } else if (!_prerequisite_met) {
         draw_set_font(font_yuan);
         draw_set_color(c_white);
-        var _required_text = _goods_type == "card"
-            ? (_goods.required_card_shape == 0 ? "需先兑换本体" : "需先兑换一转")
-            : "需先兑换前置宝石";
+        var _required_text = "需先兑换前置宝石";
+        if (_goods_type == "card")
+            _required_text = (_goods.required_card_shape == 0 ? "需先兑换本体" : "需先兑换一转");
+        else if (_goods_type == "weapon" && variable_struct_exists(_goods, "required_weapon_id")) {
+            var _rp = global.goods_map[? _goods.required_weapon_id];
+            _required_text = "需先兑换" + (is_struct(_rp) && variable_struct_exists(_rp, "display_name") ? _rp.display_name : _goods.required_weapon_id);
+        }
         draw_text(_gx + 77, _gy + 60, _required_text);
     }
 }

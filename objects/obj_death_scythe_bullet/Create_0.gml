@@ -1,0 +1,24 @@
+damage = 0;
+move_speed = 0;
+row = 0;
+damage_type = "pierce";
+target_type = "all";
+disabled = false;
+burnt = 0;
+hitted_enemy = ds_list_create();
+shape_b = 0;
+image_xscale = 1.2;
+image_yscale = 1.2;
+image_angle = 0;
+t = 0;
+total_deg = 0;
+move_speed = 2;
+radius = 500;
+start_x = x;
+start_y = y;
+
+slow_timer = 0;
+brazier_list = ds_list_create();
+hittable_types = get_hittable_enemy_types(target_type);
+array_push(hittable_types, "invisible");
+hit_tick = 0;

@@ -167,7 +167,7 @@ function info_island_search_words(_q){
 ///   拼音走 scripts/mod_info_island_pinyin 的通用 `py_hit_text`，末字允许只打一半
 function info_island_search_cat_hit(_kw, _cat){
     static _alias_tbl = undefined;          // 别名表只建一次（每帧每卡都重建太浪费）
-    if (_alias_tbl == undefined) _alias_tbl = info_island_search_alias_table();
+    _alias_tbl = _alias_tbl ?? info_island_search_alias_table();
 
     // ① 分类名中文子串
     for (var _i = 0; _i < array_length(_cat); _i++){

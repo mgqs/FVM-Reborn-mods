@@ -1,0 +1,19 @@
+﻿===== ① 插入 Folders 数组（放在 folders/精灵/mod/germ/star_wand.yy 那一行之后）=====
+    {"$GMFolder":"","%Name":"death_scythe","folderPath":"folders/精灵/mod/germ/death_scythe.yy","name":"death_scythe","resourceType":"GMFolder","resourceVersion":"2.0",}
+
+===== ② 插入 Sprites resources（按字母序找位置）=====
+    {"id":{"name":"spr_death_scythe","path":"sprites/spr_death_scythe/spr_death_scythe.yy",},},
+    {"id":{"name":"spr_death_scythe_1","path":"sprites/spr_death_scythe_1/spr_death_scythe_1.yy",},},
+    {"id":{"name":"spr_death_scythe_2","path":"sprites/spr_death_scythe_2/spr_death_scythe_2.yy",},},
+    {"id":{"name":"spr_death_scythe_bullet_1","path":"sprites/spr_death_scythe_bullet_1/spr_death_scythe_bullet_1.yy",},},
+    {"id":{"name":"spr_death_scythe_bullet_2","path":"sprites/spr_death_scythe_bullet_2/spr_death_scythe_bullet_2.yy",},},
+    {"id":{"name":"spr_death_scythe_bullet_3","path":"sprites/spr_death_scythe_bullet_3/spr_death_scythe_bullet_3.yy",},},
+    {"id":{"name":"spr_death_scythe_bullet_4","path":"sprites/spr_death_scythe_bullet_4/spr_death_scythe_bullet_4.yy",},},
+    {"id":{"name":"spr_death_scythe_effect","path":"sprites/spr_death_scythe_effect/spr_death_scythe_effect.yy",},},
+    {"id":{"name":"spr_death_scythe_effect_1","path":"sprites/spr_death_scythe_effect_1/spr_death_scythe_effect_1.yy",},},
+    {"id":{"name":"spr_death_scythe_effect_2","path":"sprites/spr_death_scythe_effect_2/spr_death_scythe_effect_2.yy",},},
+    {"id":{"name":"spr_death_scythe_gem_1","path":"sprites/spr_death_scythe_gem_1/spr_death_scythe_gem_1.yy",},},
+    {"id":{"name":"spr_death_scythe_gem_2","path":"sprites/spr_death_scythe_gem_2/spr_death_scythe_gem_2.yy",},},
+    {"id":{"name":"spr_death_scythe_gem_3","path":"sprites/spr_death_scythe_gem_3/spr_death_scythe_gem_3.yy",},},
+    {"id":{"name":"spr_death_scythe_gem_4","path":"sprites/spr_death_scythe_gem_4/spr_death_scythe_gem_4.yy",},},
+    {"id":{"name":"spr_death_scythe_icon","path":"sprites/spr_death_scythe_icon/spr_death_scythe_icon.yy",},},

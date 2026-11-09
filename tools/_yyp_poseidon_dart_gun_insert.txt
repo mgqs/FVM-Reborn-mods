@@ -1,0 +1,16 @@
+﻿===== ① 插入 Folders 数组（放在 folders/精灵/mod/germ/star_wand.yy 那一行之后）=====
+    {"$GMFolder":"","%Name":"poseidon_dart_gun","folderPath":"folders/精灵/mod/germ/poseidon_dart_gun.yy","name":"poseidon_dart_gun","resourceType":"GMFolder","resourceVersion":"2.0",}
+
+===== ② 插入 Sprites resources（按字母序找位置）=====
+    {"id":{"name":"spr_poseidon_bullet_1","path":"sprites/spr_poseidon_bullet_1/spr_poseidon_bullet_1.yy",},},
+    {"id":{"name":"spr_poseidon_bullet_2","path":"sprites/spr_poseidon_bullet_2/spr_poseidon_bullet_2.yy",},},
+    {"id":{"name":"spr_poseidon_bullet_3","path":"sprites/spr_poseidon_bullet_3/spr_poseidon_bullet_3.yy",},},
+    {"id":{"name":"spr_poseidon_bullet_4","path":"sprites/spr_poseidon_bullet_4/spr_poseidon_bullet_4.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_1","path":"sprites/spr_poseidon_dart_gun_gem_1/spr_poseidon_dart_gun_gem_1.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_2","path":"sprites/spr_poseidon_dart_gun_gem_2/spr_poseidon_dart_gun_gem_2.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_3","path":"sprites/spr_poseidon_dart_gun_gem_3/spr_poseidon_dart_gun_gem_3.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_4","path":"sprites/spr_poseidon_dart_gun_gem_4/spr_poseidon_dart_gun_gem_4.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_effect_2","path":"sprites/spr_poseidon_dart_gun_gem_effect_2/spr_poseidon_dart_gun_gem_effect_2.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_effect_3","path":"sprites/spr_poseidon_dart_gun_gem_effect_3/spr_poseidon_dart_gun_gem_effect_3.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_effect_4","path":"sprites/spr_poseidon_dart_gun_gem_effect_4/spr_poseidon_dart_gun_gem_effect_4.yy",},},
+    {"id":{"name":"spr_poseidon_dart_gun_gem_effect_5","path":"sprites/spr_poseidon_dart_gun_gem_effect_5/spr_poseidon_dart_gun_gem_effect_5.yy",},},

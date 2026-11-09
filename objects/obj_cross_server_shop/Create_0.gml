@@ -137,6 +137,14 @@ function cross_shop_buy_do(){
     confirm_id = "";
     if (_id == "" || !ds_map_exists(global.goods_map, _id)) return;
     var _g = global.goods_map[? _id];
+    // 武器前置校验（防绕过 Mouse_4 的直接调用）：必须在扣勋章之前
+    if (variable_struct_exists(_g, "required_weapon_id") && !is_weapon_unlocked(_g.required_weapon_id)){
+        var _rw2 = global.goods_map[? _g.required_weapon_id];
+        var _rw2_name = _g.required_weapon_id;
+        if (is_struct(_rw2) && variable_struct_exists(_rw2, "display_name")) _rw2_name = _rw2.display_name;
+        show_notice("请先兑换" + _rw2_name, 60);
+        return;
+    }
     if (get_material_amount(confirm_medal) < confirm_cost && !global.debug){
         show_notice(confirm_medal_name + "不足", 60);
         return;

@@ -181,9 +181,24 @@ if is_frozen{
 	exit
 }
 // 海克斯「疑神疑鬼」：攻击类美食（含人物）从放下的那一刻起就不停火。
-// 原来是「场上没有鼠军时才强制 ATTACK」，等于只在空场才空放；玩家要的是常驻空放
-if (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
-    && (plant_id == "player" || hex_b3_attack_major(plant_id))) {
+// 关键约束：**只在「没有可打目标」时**才由父对象接管（强制攻击态 + 空放出弹）。
+// 有真实目标时必须完全放手，让卡片跑自己的状态机 —— 否则像法师蛇这类「出弹状态
+// 靠 state 从非攻击态切到攻击态那一刻重置」的卡，父对象每帧硬写 state=ATTACK 会
+// 绕过它的攻击段入口，fashishe_fired 永远卡在 true，动画照播但子弹一颗都不出。
+var _hex_ns_on = (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
+                  && (plant_id == "player" || hex_b3_attack_major(plant_id)));
+var _hex_has_target = false;
+if (_hex_ns_on) {
+    // 这里 with 是「卡片自己发起」的，所以 other = 这张卡、不带 other. 的 target_type = 老鼠的：
+    // can_target_on(卡的 target_type, 鼠的 target_type) 正好是正确顺序
+    with (obj_enemy_parent) {
+        if (can_target_on(other.target_type, target_type)) {
+            _hex_has_target = true;
+            break;
+        }
+    }
+}
+if (_hex_ns_on && !_hex_has_target) {
     state = CARD_STATE.ATTACK;
 }
 // 海克斯「疑神疑鬼」：空场也要真的打出子弹，而不只是摆动作。
@@ -191,24 +206,11 @@ if (hex_enabled() && state != CARD_STATE.SLEEP && hex_b3_no_stop_attack()
 // 场上没老鼠时它们连 event_user(1) 都走不到，父对象这边只改了 state，
 // 于是玩家看到的就是「一直在做攻击动作，但一颗子弹也没有」。
 // 这里由父对象接管空放：没有可打目标时按自己的 cycle 调一次发射事件（Other_11）。
-if (hex_enabled() && hex_b3_no_stop_attack() && state != CARD_STATE.SLEEP
-    && (plant_id == "player" || hex_b3_attack_major(plant_id))) {
+if (_hex_ns_on && !_hex_has_target) {
     if (!variable_instance_exists(id, "b3_blank_cd"))      b3_blank_cd = 0;
     if (!variable_instance_exists(id, "b3_blank_allowed")) b3_blank_allowed = true;
     if (b3_blank_allowed) {
-        var _hex_has_target = false;
-        // 这里 with 是「卡片自己发起」的，所以 other = 这张卡、不带 other. 的 target_type = 老鼠的：
-        // can_target_on(卡的 target_type, 鼠的 target_type) 正好是正确顺序
-        with (obj_enemy_parent) {
-            if (can_target_on(other.target_type, target_type)) {
-                _hex_has_target = true;
-                break;
-            }
-        }
-        if (_hex_has_target) {
-            // 有真目标就交给卡片自己打，别抢
-            b3_blank_cd = max(1, cycle);
-        } else if (b3_blank_cd > 0) {
+        if (b3_blank_cd > 0) {
             b3_blank_cd -= 1;
         } else {
             b3_blank_cd = max(1, cycle);

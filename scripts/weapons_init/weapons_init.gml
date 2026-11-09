@@ -96,9 +96,13 @@ function weapons_init(){
 										"slot":"main_weapon",
 										"atk":20,
 										"cycle":90,
-										"description":"海神镖枪：发射两个追踪飞镖攻击敌人",
+										"bullet_style":0,
+										"description":"海神镖枪：发射多个追踪飞镖攻击敌人",
 										"name":"海神镖枪",
-										"atk_impact":[24,28,32,36,40,44,52,64,80,110,140,170,200,230,260,290]
+										"allowed_gems":["poseidon_dart_gun_gem_1","poseidon_dart_gun_gem_2","poseidon_dart_gun_gem_3","poseidon_dart_gun_gem_4"],
+										"atk_impact":[50,60,70,80,90,100,110,120,130,140,150,170,190,215,240,270],
+										"cycle_impact":[120,116,112,108,104,100,96,92,88,84,80,76,72,68,64,60],
+										"bullet_style_impact":[0,0,0,0,0,0,1,1,1,1,2,2,3,3,4,4]
 										})
 		register_weapon("ice_mighty_gun",{"sprite":spr_ice_mighty_gun,
 									"icon":spr_ice_mighty_gun_icon,

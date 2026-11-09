@@ -2167,12 +2167,18 @@ function hex_b3_tick() {
         }
     }
 
-    // 食指的指令·卡片侧：标记每 30 秒才换一次目标。
-    // 原来是「标记一空就 2 秒补一个」：把标记的那张种下去之后 2 秒又冒出新的，
-    // 玩家看到的就是标记无缝衔接、永远有 +20% 可吃，跟「每 30 秒指一张」的设定不符。
-    // 现在只按 30 秒节奏换，种掉之后空着就空着，等下一轮。
+    // 食指的指令·卡片侧：标记要一直挂在「当前可种植的那张卡」上，不能断档。
+    // 开局第一次标记由 hex_b3_on_battle_init 里的 hex_b3_continue_mark 尝试挑卡；
+    // 但那时卡槽可能还没建出来（挑不到），所以这里补两道兜底：
+    //   ① 标记空着（开局没挑到 / 刚把标记卡种下去）→ 2 秒后立刻补一张；
+    //   ② 标记一直挂着 → 每 30 秒换一次目标。
+    // 之前的版本「种掉之后空着等下一轮 30 秒」，结果是开局前 30 秒、以及每次种掉
+    // 标记卡之后的 30 秒里，卡片侧完全没有标记图案 —— 玩家看到的就是「标记消失了」。
     if (variable_struct_exists(_s, "b3_mark_on") && _s.b3_mark_on) {
-        if (current_time - _s.b3_mark_card_ms >= 30000) {
+        var _b3_mark_empty = (_s.b3_mark_card == "");
+        var _b3_mark_swap = (!_b3_mark_empty && current_time - _s.b3_mark_card_ms >= 30000);
+        var _b3_mark_fill = (_b3_mark_empty && current_time - _s.b3_mark_card_ms >= 2000);
+        if (_b3_mark_swap || _b3_mark_fill) {
             _s.b3_mark_card_ms = current_time;
             hex_b3_continue_mark();
         }

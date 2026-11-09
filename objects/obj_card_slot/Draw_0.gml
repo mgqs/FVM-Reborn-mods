@@ -98,14 +98,22 @@ if (cooldown_timer < cooldown) {
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
 }
-//快捷键提示
-var slot_key = global.keybind_map[? "卡槽" + string(slot_index)]
+//快捷键提示（槽位越界时没有键位，回退 vk_nokey，避免 undefined 崩溃）
+var slot_key = vk_nokey;
+if (variable_global_exists("keybind_map") && ds_exists(global.keybind_map, ds_type_map)) {
+    var _slot_key_name = "卡槽" + string(slot_index);
+    if (ds_map_exists(global.keybind_map, _slot_key_name)) {
+        slot_key = global.keybind_map[? _slot_key_name];
+    }
+}
 draw_set_color(c_black);
 draw_set_font(font_song);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_sprite_ext(spr_hotkey_prompt,0,x+33,y-46,1,1,0,c_white,1)
-draw_text(x+33,y-48,keyboard_get_string(slot_key))
+if (slot_key != vk_nokey) {
+    draw_text(x+33,y-48,keyboard_get_string(slot_key))
+}
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
