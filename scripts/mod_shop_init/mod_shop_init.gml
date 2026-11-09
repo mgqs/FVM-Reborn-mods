@@ -59,7 +59,7 @@ function mod_shop_init()
     register_goods("spoon_rabbit", 
     {
         type: "card",
-        cost: "90000",
+        cost: "80000",            // 2026-11-09 用户：从跨服挪回本体，定价 8 万
         unlock_item_id: "spoon_rabbit",
         description: "勺勺兔：向前方3行投射子弹",
         display_name: "勺勺兔"

@@ -1005,11 +1005,8 @@ if button_select == 0{
 	surface_reset_target()
 	draw_surface(card_surface,x+196-42,y-321-48)
 
-	// ── 搜索：通用导航器（2026-11-08）────────────────────────────────
-	//   只在 tab0（卡片宝石）/ tab3（金卡进化）生效，enabled 由 Step 的 mod_search_nav_set_on 管；
-	//   光圈必须画在 draw_surface 之后，坐标与 hover 判定同源。
-	if (craft_nav.hit_t > 0) craft_nav.hit_t--;
-	mod_search_nav_draw(craft_nav);
+	// 搜索栏的绘制挪到文件末尾（2026-11-09）：原来写在这里 = 被 `if button_select == 0`
+	//   包住 → 宝石强化 / 卡片转职 / 进化页都没有搜索框和「清空」
 
 	// 2026-11-08 用户口径：**不再画命中光圈**（未命中整片灰掉已经够醒目），只保留滚动定位
 	draw_set_color(c_white);
@@ -1305,6 +1302,11 @@ else if button_select == 1{
         if (mouse_check_button_released(mb_left)) sb_dragging = false
     }
 }
+
+// ── 搜索栏（2026-11-09）──
+//   「清空 / 下一个」不再在这里画：改由搜索框实例自己画（SearchBox.set_on_draw_extra）。
+//   原来画在这儿会被转职页 / 神级进化页那些 depth 更低的按钮实例盖住 —— 点得到、看不见。
+if (craft_nav.hit_t > 0) craft_nav.hit_t--;
 
 // 提示框：推进尺寸/消失动画并绘制（每帧一次）
 tooltip_draw();

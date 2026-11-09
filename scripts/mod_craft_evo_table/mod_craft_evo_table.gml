@@ -86,8 +86,8 @@ function mod_evo_table(){
                                         {id:"huojianzhu", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 反重力火箭猪（2026-11-08 用户指定副卡）
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
                                         {id:"dangdanghu", slot:1, need:2} ] },  // 祝融神使 ← 驴肉火烧锅 + 微波铛铛虎（2026-11-06 用户指定：替换糖炒栗子）
-        rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
-                                        {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
+        rig:                     { cards:[ {id:"nut_frier", slot:0, need:2},
+                                        {id:"starrabbit", slot:1, need:2} ] },  // 里格神使 ← 松塔爆破机（坚果爆炒机）+ 宇宙星星兔（2026-11-09 用户指定：两个前置互换槽位）
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
                                         {id:"spoon_rabbit", slot:1, need:2} ] },  // 尤弥尔神使 ← 花椒蜥蜴投手 + 盖世勺勺兔
         save_god:                { cards:[ {id:"doumaobang", slot:0, need:2},

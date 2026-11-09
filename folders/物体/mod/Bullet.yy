@@ -93,5 +93,6 @@
     {"name":"obj_doumaobang_cat","path":"objects/obj_doumaobang_cat/obj_doumaobang_cat.yy",},
     {"name":"obj_honeytrap_bee","path":"objects/obj_honeytrap_bee/obj_honeytrap_bee.yy",},
     {"name":"obj_huanyingshe_bullet","path":"objects/obj_huanyingshe_bullet/obj_huanyingshe_bullet.yy",},
+    {"name":"obj_tianxie_alt","path":"objects/obj_tianxie_alt/obj_tianxie_alt.yy",},
   ],
 }

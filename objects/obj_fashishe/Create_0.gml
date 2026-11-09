@@ -110,7 +110,9 @@ fashishe_fire_one = function()
         _b.phase          = 0;
         _b.damage         = atk;
         _b.end_x          = _end_x;
-        _b.damage_type    = "normal";
+        _b.damage_type    = "pierce";   // 2026-11-10：毒针是全程穿透弹，必须能穿地形障碍
+                                        //   （障碍物 Step 只放行 pierce / pierce_all / pierce_obstacle）
+                                        //   ⚠️ 这一行会盖掉 obj_fashishe_bullet/Create 里的同名赋值，改口径两处都要改
         _b.target_type    = "normal";
         _b.hittable_types = get_hittable_enemy_types("normal");
 

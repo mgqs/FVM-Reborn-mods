@@ -145,16 +145,33 @@ rrm_order = [];          // 与 Draw_0 里那份排序同口径（key_of / jump 
 // 🔧 搜索栏位置参数（只改这 6 个，改完重进一次预备房生效）
 //   x / y = **屏幕绝对坐标**（管理器实例在 (32,0)，不是相对它的偏移）
 //   卡片区第一行的视觉顶部 = 屏幕 y 327，搜索框底边（y + h）别越过这条线
-rrm_search_x = 1158;
-rrm_search_y = 267;
+// 2026-11-09 用户口径：左边缘对齐「卡组2」按钮的**右边界** + 整体再上移 3px
+//   🔴 卡组按钮 i 是 **1..6**（见本文件第 62 行 `x+680+150*i`）：
+//      卡组1 中心 = x+830、卡组2 = x+980、卡组3 = x+1130 …
+//      卡组2 右边界 = x + 680 + 150*2 + 83*1.8/2 ≈ x + 1054.7（x=32 → 1086.7）
+//   下面优先用按钮实例算（以后改精灵尺寸 / 缩放会自动跟），拿不到实例才退回公式
+//   嫌偏左/偏右就在 `rrm_search_x` 那行末尾加减（例：`+ 20` 往右挪 20）
+var _deck2_edge = x + 680 + 150 * 2 + 83 * 1.8 * 0.5;
+for (var _di = 0; _di < instance_number(obj_deck_select_btn); _di++) {
+	var _db = instance_find(obj_deck_select_btn, _di);
+	if (_db != noone && _db.deck_index == 2) {
+		_deck2_edge = _db.x + sprite_get_width(_db.sprite_index) * _db.image_xscale * 0.5;
+		break;
+	}
+}
+rrm_search_x = _deck2_edge;
+rrm_search_y = 257;
 rrm_search_w = 300;
 rrm_search_h = 40;
-rrm_btn_w    = 96;    // 「清空」「下一个」按钮的**最小**宽度（实际按文字实测自适应，放不下会更宽）
+rrm_btn_w    = 56;    // 「清空」「下一个」按钮的**最小**宽度（2026-11-09 与合成屋统一：56，文字长了自己会撑）
 rrm_btn_gap  = 8;     // 按钮与搜索框的间距
 
 rrm_nav = mod_search_nav_create(id, {
     x: rrm_search_x, y: rrm_search_y, w: rrm_search_w, h: rrm_search_h,
     clear_w: rrm_btn_w, next_w: rrm_btn_w, gap: rrm_btn_gap,
+    clear_when_active: true,   // 2026-11-09 跟合成屋 / 情报岛 / 商店统一：有输入才出「清空」
+    clear_side: "right",       // 清空也在搜索框右边（与合成屋一致；「下一个」自动再往右让位）
+    btn_pad: 16,               // 按钮宽度 =「清空」文字宽 + 16
     depth: depth - 1,
     placeholder: "搜索名称/[分类]（可拼音）",
     // 命中下标 = 在 rrm_order（= 绘制顺序）里的位置

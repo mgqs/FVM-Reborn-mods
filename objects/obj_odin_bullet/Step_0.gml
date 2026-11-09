@@ -7,7 +7,7 @@ if (global.is_paused)
 image_speed = 1;
 x += move_speed;
 
-if (burnt == 1)
+if (burnt == 1 && ds_list_find_index(brazier_list, -9999) == -1)
     sprite_index = spr_fire_bullet;
 
 if (x > 2200 || y > 1200 || x < 0 || y < 0)
@@ -16,20 +16,7 @@ if (x > 2200 || y > 1200 || x < 0 || y < 0)
     exit;
 }
 
-if (!bounced)
-{
-    with (obj_water_god)
-    {
-        if (other.row == grid_row && precise_bbox_collision(other.id, id))
-        {
-            other.move_speed *= -1;
-            other.damage += atk;
-            other.image_angle += 180;
-            other.bounced = true;
-            break;
-        }
-    }
-}
+// 2026-11-10：手动 with(obj_water_god) 扫描已删除，改由父类统一反弹事件处理。
 
 with (obj_obstacle)
 {

@@ -14,7 +14,8 @@ goods_list = ds_list_create()
 // These items are exclusive to the cross-server medal shop.
 cross_server_exchange_ids = [
     // 白银商店卡片
-    "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
+    // 勺勺兔 2026-11-09 挪回普通商店（80000）→ 不在这里剔除
+    "baibianshe", "double_blade_snake", "laipishe", "magic_chicken", "xuanfengniu",
     // 黄金商店武器
     "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
     // 黄金商店宝石

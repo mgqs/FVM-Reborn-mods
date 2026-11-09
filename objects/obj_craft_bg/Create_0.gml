@@ -1051,19 +1051,24 @@ craft_card_order = function() {
     return _order;
 };
 
-// 🔧 搜索栏位置参数（只改这 6 个，改完重进一次合成屋生效）
+// 🔧 搜索栏位置参数（改完重进一次合成屋生效）
+//   2026-11-09 用户口径：**挪到顶部页签行右侧**（「融合罐合」标签右边那段空白），
+//   位置跟着页签算 → 以后调标签间距 / 缩放，搜索栏自动跟着走，不用再手改坐标
 //   相对合成屋**窗口中心点**（本对象 x / y）：窗口顶 = y-525、右沿 = x+830、左沿 = x-830
-//   卡片面板顶边 = y-412，别把搜索框压到那一行以下
-craft_search_x = x + 300;
-craft_search_y = y - 480;
+// 2026-11-09 用户圈定：放「卡片宝石」标签**正下方**那块深色空带（与标签左对齐）
+craft_search_x = tab_cardgem_x;
+craft_search_y = tab_cardgem_y + 31 * craft_tab_scale + 8;    // 标签底 + 8（嫌高/低就调这个 +8）
 craft_search_w = 300;
 craft_search_h = 40;
-craft_btn_w    = 96;    // 「清空」「下一个」按钮的**最小**宽度（实际按文字实测自适应）
+craft_btn_w    = 56;    // 「清空」最小宽度（就俩字，别撑成一块大板子）
 craft_btn_gap  = 8;     // 按钮与搜索框的间距
 
 craft_nav = mod_search_nav_create(id, {
     x: craft_search_x, y: craft_search_y, w: craft_search_w, h: craft_search_h,
     clear_w: craft_btn_w, next_w: craft_btn_w, gap: craft_btn_gap,
+    clear_when_active: true,   // 有输入才出「清空」
+    clear_side: "right",       // 清空排在搜索框右边（左边是页签，不能压）
+    btn_pad: 16,               // 按钮宽度 =「清空」文字宽 + 16
     depth: depth - 1,
     placeholder: "搜索名称/[分类]（可拼音）",
     collect: method({ h: id }, function(_groups){
