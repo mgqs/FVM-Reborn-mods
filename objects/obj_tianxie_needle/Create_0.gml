@@ -17,7 +17,7 @@ fx_row      = 0;          // 打哪一行
 fx_col0     = 0;          // 从哪一格开始（最左敌人所在列）
 fx_cells    = 4;          // 打几格（卡侧 tianxie_needle_cells）
 fx_dmg      = 0;          // 每格伤害 = 卡的 atk（卡侧传，已吃增幅）
-fx_dmg_type = "normal";   // 伤害类型（平射，2026-11-09 与 bbq / 法师蛇 同口径）
+fx_dmg_type = "pierce";   // 伤害类型（穿透，与双刃蛇同分类同口径）
 fx_from_x   = x;          // 出弹口 x（飞行段起点）
 fx_land_x   = x;          // 针 1 的落点 x（卡侧算好）
 fx_ground_y = y;          // 演出的纵向位置（卡侧算好）
@@ -53,7 +53,7 @@ fx_hit_cell = function(_col)
         if (_e.grid_row != fx_row) continue;
         if (_e.grid_col != _col) continue;
         if (ds_list_find_index(fx_hit, _e.id) != -1) continue;
-        if (!can_target_on("normal", _e.target_type)) continue;
+        if (!can_target_on("pierce", _e.target_type)) continue;
 
         ds_list_add(fx_hit, _e.id);
         with (_e)
