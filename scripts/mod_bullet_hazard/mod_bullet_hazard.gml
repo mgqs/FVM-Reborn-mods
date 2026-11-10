@@ -173,16 +173,12 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         && variable_instance_exists(_bullet, "base_damage"))
         _bullet.base_damage = round(_bullet.base_damage / _cur * _mult);
 
-    // 已经是「冰火弹」（融盆二转的产物，brazier_list 里有 -9999）：
-    //   后续过火**和普通火弹完全一致**（照常取最高），只是外观固定冰弹贴图 + 1.4 倍，
-    //   减速 / 击杀碎冰由 obj_ronghehuopen_ice_ctrl 照常接管。
+    // 冰火弹标记：融盆二转在 brazier_list 里插的哨兵 -9999
     var _frozen_fire = (ds_list_find_index(_bullet.brazier_list, -9999) != -1);
 
-    if (_frozen_fire) {
-        _bullet.image_xscale = 1.4;
-        _bullet.image_yscale = 1.4;
-    } else if (_ice_pit) {
-        // 二转专属：点燃后换成冰弹（贴图锁定 / 减速 / 冰冻特效交给 obj_ronghehuopen_ice_ctrl）
+    if (_ice_pit) {
+        // 融盆二转：变冰弹（已经是冰火弹就保持冰样，只是倍率又变高了）
+        // 贴图 / 尺寸由 obj_ronghehuopen_ice_ctrl 每帧接管（减速 + 击杀碎冰）
         if (ds_list_find_index(_bullet.brazier_list, -9999) == -1)
             ds_list_add(_bullet.brazier_list, -9999);
         _bullet.sprite_index = spr_ronghehuopen_ice_bullet;
@@ -190,6 +186,17 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         _bullet.image_yscale = 1.4;
         if (!instance_exists(obj_ronghehuopen_ice_ctrl))
             instance_create_depth(0, 0, -10000, obj_ronghehuopen_ice_ctrl);
+    } else if (_frozen_fire) {
+        // 🔴 冰火弹被**更高倍率**的普通火源再点燃（能走到这里 = 倍率确实提升）：
+        //    必须解除冰化、换回普通火弹外观。否则 obj_ronghehuopen_ice_ctrl 的 End Step
+        //    每帧把贴图和尺寸锁回冰弹 1.4，玩家完全看不出倍率已经提升，等于「过火没反应」。
+        var _fi = ds_list_find_index(_bullet.brazier_list, -9999);
+        if (_fi != -1) ds_list_delete(_bullet.brazier_list, _fi);
+        _bullet.sprite_index = spr_fire_bullet;
+        if (_scale > 0) {                    // scale:0 的子弹（bbq / 星弹等）自己管尺寸，别硬套 1.8
+            _bullet.image_xscale = _scale;
+            _bullet.image_yscale = _scale;
+        }
     } else if (_scale > 0) {
         // 普通火源：点燃后放大一圈
         _bullet.image_xscale = _scale;
