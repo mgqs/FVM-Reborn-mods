@@ -174,7 +174,15 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         && variable_instance_exists(_bullet, "base_damage"))
         _bullet.base_damage = round(_bullet.base_damage / _cur * _mult);
 
-    if (_ice_pit) {
+    // 已经是「冰火弹」（融盆二转的产物，brazier_list 里有 -9999）：
+    //   后续过火**和普通火弹完全一致**（照常取最高），只是外观固定冰弹贴图 + 1.4 倍，
+    //   减速 / 击杀碎冰由 obj_ronghehuopen_ice_ctrl 照常接管。
+    var _frozen_fire = (ds_list_find_index(_bullet.brazier_list, -9999) != -1);
+
+    if (_frozen_fire) {
+        _bullet.image_xscale = 1.4;
+        _bullet.image_yscale = 1.4;
+    } else if (_ice_pit) {
         // 二转专属：点燃后换成冰弹（贴图锁定 / 减速 / 冰冻特效交给 obj_ronghehuopen_ice_ctrl）
         if (ds_list_find_index(_bullet.brazier_list, -9999) == -1)
             ds_list_add(_bullet.brazier_list, -9999);
