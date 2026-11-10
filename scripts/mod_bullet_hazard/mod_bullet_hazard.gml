@@ -68,7 +68,7 @@ function bullet_hazard_cfg(_bullet) {
 /// @param _bullet 子弹实例
 /// @param _src    点火源实例（火盆 / 火神 / 金牛 / 能量喵 / 融合火盆）
 /// @param _mult   增幅倍率（= 火源的 atk × fire_mult_scale）
-/// @param _scale  点燃后放大到几倍；0 = 不放大（bbq / 法师蛇 自己在 Step 里处理）
+/// @param _scale  兼容旧调用；实际以子弹声明的 scale 为准（默认 1.8，0 = 不放大）
 /// @return bool   是否真的点燃 / 提升了倍率
 function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
     if (!instance_exists(_bullet) || !instance_exists(_src)) return false;
@@ -102,8 +102,13 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         if (_bullet.source_card_id != _cfg.src_gate) return false;
     }
 
-    // 同一座火源只记一次
-    if (ds_list_find_index(_bullet.brazier_list, _src.id) != -1) return false;
+    // ── 同一座火源只生效一次 ──
+    //   ⚠️ 冰弹的「融化 → 点燃」是同一次接触里的两步，必须放行第二步，
+    //      否则一颗冰弹在**单座**火盆里永远只能融化、永远点不着。
+    var _is_ice  = _cfg.ice;
+    var _seen    = (ds_list_find_index(_bullet.brazier_list, _src.id) != -1);
+    var _ice_2nd = (_is_ice && _cfg.step2 && _bullet.burnt == 1);
+    if (_seen && !_ice_2nd) return false;
 
     // ── 同排判定 ──
     //   星弹（星星兔）不判行（2026-11-10 用户口径：碰到哪一行的火盆都算）；
@@ -123,8 +128,6 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         return false;
     }
 
-    var _is_ice = _cfg.ice;
-
     // 融合火盆 2 转（缤纷杂果冰盘）：点燃后把子弹换成冰弹外观
     //   用 ancestor 判断，以后给融盆加子对象也认
     var _ice_pit = false;
@@ -136,7 +139,7 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
     // ── 冰弹两步：0→1 只融化（不增幅、fire_mult 归 1），1→2 才点燃 ──
     if (_is_ice && _cfg.step2 && _bullet.burnt < 2) {
         _bullet.burnt += 1;
-        ds_list_add(_bullet.brazier_list, _src.id);
+        if (!_seen) ds_list_add(_bullet.brazier_list, _src.id);
         audio_play_sound(snd_bullet_burnt, 0, 0);
         if (_bullet.burnt < 2) {
             // 融化：不增幅、不变火球；只把尺寸按融化后的贴图重新配平，玩家能看出「降级了」
@@ -152,8 +155,10 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
 
     // ── 到这里 = 要点燃 / 提升倍率 ──
     // 过火取最高：不高于当前已获得的倍率就不生效（相等也不算）
-    var _cur = (variable_instance_exists(_bullet, "fire_mult") && _bullet.fire_mult > 0)
-             ? _bullet.fire_mult : 1;
+    // 只有「这一发真的被点燃过」才认 fire_mult —— 对象池复用时它会保留上一发的值，
+    //   burnt 已被 Create 重置成 0，此时必须当成 1，否则同一等级的第二次永远点不着
+    var _cur = (variable_instance_exists(_bullet, "fire_mult") && _bullet.fire_mult > 0
+                && _bullet.burnt > 0) ? _bullet.fire_mult : 1;
     if (_mult <= _cur) {
         hazard_dbg(_nm + " 倍率不更高（" + string(_mult) + " <= " + string(_cur) + "），跳过");
         return false;
@@ -184,7 +189,7 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         _bullet.image_yscale = _scale;
     }
 
-    ds_list_add(_bullet.brazier_list, _src.id);
+    if (!_seen) ds_list_add(_bullet.brazier_list, _src.id);
     audio_play_sound(snd_bullet_burnt, 0, 0);
     hazard_dbg(_nm + " 点燃/升倍率 →" + string(_mult) + "，源=" + object_get_name(_src.object_index));
     return true;

@@ -44,8 +44,8 @@ function mod_evo_table(){
                                         {id:"spicy_pot", slot:1, need:2} ] },  // 赫斯提亚神使 ← 海鲜肥牛锅 + 酱香鱿鱼锅
         hufa_god:                { cards:[ {id:"hongliukaochuan", slot:0, need:2},
                                         {id:"guiyuanma", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 幻境归元马（2026-10-30 用户指定）
-        gongjiang_god:           { cards:[ {id:"laipishe", slot:0, need:2},
-                                        {id:"pizza_oven", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
+        gongjiang_god:           { cards:[ {id:"pizza_oven", slot:0, need:2},
+                                        {id:"laipishe", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
         brahma:                  { cards:[ {id:"magic_chicken", slot:0, need:2},
                                         {id:"baibianshe", slot:1, need:2} ] },  // 梵天神使 ← 幻幻鸡（这卡只注册到本体，need 2 会被上限兜到 0）+ 双子百变蛇
         guangming_god:           { cards:[ {id:"dragon_fruit", slot:0, need:2},

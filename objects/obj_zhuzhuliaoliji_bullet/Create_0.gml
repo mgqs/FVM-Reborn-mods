@@ -28,7 +28,7 @@ slow_frames = 0;
 bounced = false;
 life = 0;
 
-// 过火（ronghehuopen_pass_fire / 火盆碰撞按这几个字段判定）
+// 过火（父类统一事件 bullet_hazard_fire 按这几个字段判定）
 // 🔴 2026-11-06 修：原来写 kind = "star"（照星星兔那颗抄的），
 //   过火脚本对 star 走的是「看 move_y + center_row」那一支（只让水平那一发吃增幅），
 //   而刀片用的是 vx / vy、没有这两个字段 → 一碰融合火盆就报
@@ -46,3 +46,4 @@ hittable_types = get_hittable_enemy_types(target_type);
 // ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
 hazard_fire = true;      // 可被火盆 / 火神 / 金牛 / 能量喵 / 融合火盆 点燃
 hazard_rebound = { axis:"vx" };   // 猪猪料理机：vx/vy
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

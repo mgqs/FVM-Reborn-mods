@@ -34,3 +34,4 @@ pierce_obstacle = true;
 // ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
 hazard_fire = { scale:0 };   // 星弹：五发斜射，只 fire/star 反弹
 hazard_rebound = { axis:"move_x", judge:"none", kind_gate:true };   // 星弹：五发斜射，只 fire/star 反弹
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

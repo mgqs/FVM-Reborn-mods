@@ -14,7 +14,7 @@ hit_tick = 0
 pierce_all = true
 hited_enemy = ds_list_create()
 slow_timer = 0
-bounced = false       // 樱桃反弹布丁只弹一次（Collision_obj_cherry_pudding）
+bounced = false       // 一次飞行只反弹一次（父类 Collision_obj_rebound_source）
 
 // 飞镖 7 帧素材里 1~6 是旋转循环（第 7 帧 = 第 1 帧），由 Step 按 timer 自己推
 image_speed = 0
@@ -29,3 +29,4 @@ image_blend = c_white;
 
 // ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
 hazard_rebound = { axis:"travel_dir", angle180:false };   // 牛油果飞镖：角度镜像
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

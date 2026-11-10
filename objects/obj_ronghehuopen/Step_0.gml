@@ -9,7 +9,7 @@ if is_frozen{
 }
 
 // ---------- ① 过火增幅：已改到「子弹侧碰撞」（与 obj_brazier / 火神 / 金牛同款）----------
-// 每个可过火子弹都有 Collision_obj_ronghehuopen，里面调 scripts/ronghehuopen_pass_fire；
+// 过火统一走父类事件 Collision_obj_fire_source → scripts/mod_bullet_hazard 的 bullet_hazard_fire；
 // 卡片这里不再每帧 with(obj_bullet_parent) 扫描 —— 那是「多张火盆 + 一堆子弹」时卡顿的根源。
 // 判定口径（普通 / 冰弹两跳 / 2 转冰化）与门禁（can_burn / kind / disabled）全部在脚本里。
 

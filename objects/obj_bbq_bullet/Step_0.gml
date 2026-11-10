@@ -5,7 +5,7 @@ if (global.is_paused)
     exit;
 }
 
-// 过火（引擎碰撞触发，见 Collision_obj_brazier / fire_god / jinniu / ronghehuopen）：
+// 过火（引擎碰撞触发，见父类 obj_bullet_parent 的 Collision_obj_fire_source）：
 //   一律换成通用「火弹」贴图（与玉米子弹等普通子弹同一口径）。
 //   2026-11-10 用户口径：**爆辣烤串不再单独放大/染色，统一掉**（原来 2.2 倍 + 偏红火色会盖住融盆二转的冰弹外观）。
 //   融盆 2 转会把子弹改成冰弹（贴图 + 1.4 倍 + brazier_list 里插哨兵 -9999），这里必须让路，否则每帧被改回火球。
@@ -49,7 +49,7 @@ else
     }
 }
 
-// 反弹交给引擎碰撞事件（Collision_obj_cherry_pudding / Collision_obj_water_god，同 rig / 玉米那批子弹）
+// 反弹交给引擎碰撞事件（父类 obj_bullet_parent 的 Collision_obj_rebound_source）
 if (variable_global_exists("enemy_by_type"))
 {
     for (var _t = 0; _t < array_length(hittable_types); _t++)
