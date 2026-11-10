@@ -103,12 +103,11 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
     }
 
     // ── 同一座火源只生效一次 ──
-    //   ⚠️ 冰弹的「融化 → 点燃」是同一次接触里的两步，必须放行第二步，
-    //      否则一颗冰弹在**单座**火盆里永远只能融化、永远点不着。
-    var _is_ice  = _cfg.ice;
-    var _seen    = (ds_list_find_index(_bullet.brazier_list, _src.id) != -1);
-    var _ice_2nd = (_is_ice && _cfg.step2 && _bullet.burnt == 1);
-    if (_seen && !_ice_2nd) return false;
+    //   🔴 冰弹的「融化 → 点燃」必须是**两座不同的火源**（2026-11-10 用户口径）：
+    //      同一座火盆里连做两步，融化只存在 1 帧，玩家看不到，等于「直接过火」。
+    var _is_ice = _cfg.ice;
+    var _seen   = (ds_list_find_index(_bullet.brazier_list, _src.id) != -1);
+    if (_seen) return false;
 
     // ── 同排判定 ──
     //   星弹（星星兔）不判行（2026-11-10 用户口径：碰到哪一行的火盆都算）；
