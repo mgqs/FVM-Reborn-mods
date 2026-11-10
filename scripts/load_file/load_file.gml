@@ -200,6 +200,9 @@ function ensure_save_data() {
     if !variable_struct_exists(global.save_data, "equipped_cookbook") || !is_array(global.save_data.equipped_cookbook) {
         global.save_data.equipped_cookbook = [[], [], []]
     }
+    if !variable_struct_exists(global.save_data, "weapon_gem_memory") || !is_struct(global.save_data.weapon_gem_memory) {
+        global.save_data.weapon_gem_memory = {}
+    }
     // 转职保底 / 暗概率（2026-11-06）：不单独建字段，直接挂在每张卡的 unlocked_cards 条目上
     //   （tg_pity / tg_hidden，写法同 craft_fail_streak）→ 每个存档独立计，老存档缺字段按 0 读
 
@@ -243,6 +246,7 @@ function reset_file(file_slot){
                 {"id": "long_bao_gun"}
             ],
 			"unlocked_gems":[],
+			"weapon_gem_memory":{},
 			"equipped_items":{
 				"main_weapon":{
 					"id":"long_bao_gun",

@@ -43,6 +43,60 @@ function gem_fits_weapon(_gem_id, _weapon_id, _slot) {
 	return false
 }
 
+/// @desc 把某槽位当前装备的宝石记到「该武器的记忆表」里
+/// 用途：切到别的武器时旧武器的专属宝石会被 reconcile 卸下，先存一份，切回来再装回。
+/// @param {string} _slot 武器槽位
+function weapon_gems_snapshot(_slot) {
+	var _eq = undefined
+	if (_slot == "main_weapon") _eq = global.save_data.equipped_items.main_weapon
+	else if (_slot == "secondary_weapon") _eq = global.save_data.equipped_items.secondary_weapon
+	else if (_slot == "super_weapon") _eq = global.save_data.equipped_items.super_weapon
+	if (!is_struct(_eq)) return
+	var _id = _eq[$ "id"]
+	if (!is_string(_id) || _id == "") return
+	if (!variable_struct_exists(_eq, "gems") || !is_array(_eq.gems)) return
+	if (!variable_struct_exists(global.save_data, "weapon_gem_memory") || !is_struct(global.save_data.weapon_gem_memory)) {
+		global.save_data.weapon_gem_memory = {}
+	}
+	var _copy = []
+	var _n = array_length(_eq.gems)
+	for (var _i = 0; _i < _n; _i++) {
+		if (is_string(_eq.gems[_i]) && _eq.gems[_i] != "") array_push(_copy, _eq.gems[_i])
+	}
+	global.save_data.weapon_gem_memory[$ _id] = _copy
+}
+
+/// @desc 从记忆表里把某把武器上次装的宝石补回当前槽位
+/// 只补「与当前武器兼容且当前没有」的，最多 4 颗。
+/// @param {string} _slot 武器槽位
+/// @param {string} _weapon_id 当前换上的武器ID
+function weapon_gems_restore(_slot, _weapon_id) {
+	if (!is_string(_weapon_id) || _weapon_id == "") return
+	if (!variable_struct_exists(global.save_data, "weapon_gem_memory") || !is_struct(global.save_data.weapon_gem_memory)) return
+	if (!variable_struct_exists(global.save_data.weapon_gem_memory, _weapon_id)) return
+	var _mem = global.save_data.weapon_gem_memory[$ _weapon_id]
+	if (!is_array(_mem)) return
+	var _eq = undefined
+	if (_slot == "main_weapon") _eq = global.save_data.equipped_items.main_weapon
+	else if (_slot == "secondary_weapon") _eq = global.save_data.equipped_items.secondary_weapon
+	else if (_slot == "super_weapon") _eq = global.save_data.equipped_items.super_weapon
+	if (!is_struct(_eq)) return
+	if (!variable_struct_exists(_eq, "gems") || !is_array(_eq.gems)) _eq.gems = []
+	var _cur = []
+	var _n0 = array_length(_eq.gems)
+	for (var _i = 0; _i < _n0; _i++) array_push(_cur, _eq.gems[_i])
+	var _n = array_length(_mem)
+	for (var _i = 0; _i < _n; _i++) {
+		var _g = _mem[_i]
+		if (!is_string(_g) || _g == "") continue
+		if (!gem_fits_weapon(_g, _weapon_id, _slot)) continue
+		if (array_get_index(_cur, _g) != -1) continue
+		if (array_length(_cur) >= 4) break
+		array_push(_cur, _g)
+	}
+	_eq.gems = _cur
+}
+
 /// @desc 换武器后重算该槽位的宝石：只保留与新武器兼容的，其余卸下（不丢宝石）
 /// 原来这里是无条件 gems = []，导致换一把同类武器也会把 4 颗宝石全部卸下。
 /// 注意：结构体字段必须整体赋值写回，GML 数组是写时复制，原地改局部变量不会同步。
@@ -74,17 +128,22 @@ function weapon_gems_reconcile(_slot, _weapon_id) {
 function equip_weapon(weapon_id,slot){
 	// 换武器时不再整槽清空宝石：只要宝石与新武器兼容（同槽位 + allowed_weapons 命中）就保留，
 	// 只有不兼容的专属宝石才卸下 —— 与重生原版行为一致。
+	// 换走之前先把旧武器的宝石记进记忆表，切回来能自动装回。
+	weapon_gems_snapshot(slot)
 	if slot == "main_weapon"{
 		global.save_data.equipped_items.main_weapon[$ "id"] = weapon_id
 		weapon_gems_reconcile("main_weapon", weapon_id)
+		weapon_gems_restore("main_weapon", weapon_id)
 	}
 	else if slot == "secondary_weapon"{
 		global.save_data.equipped_items.secondary_weapon[$ "id"] = weapon_id
 		weapon_gems_reconcile("secondary_weapon", weapon_id)
+		weapon_gems_restore("secondary_weapon", weapon_id)
 	}
 	else if slot == "super_weapon"{
 		global.save_data.equipped_items.super_weapon[$ "id"] = weapon_id
 		weapon_gems_reconcile("super_weapon", weapon_id)
+		weapon_gems_restore("super_weapon", weapon_id)
 	}
 	global.equipped_weapon[? slot].weapon_id = weapon_id
 	save_file(global.save_slot)
@@ -94,18 +153,18 @@ function equip_weapon(weapon_id,slot){
 /// @desc 卸下武器
 /// @param {string} slot 武器槽位
 function remove_weapon(slot){
-	// 卸下武器：槽位空出来后宝石无处可装，这里仍然全清。
-	// 与 equip_weapon 的「保留兼容宝石」策略不冲突：那条只在换上一把新武器时生效。
+	// 卸下武器：**保留 gems 数组不动**。装回同一把武器时 equip_weapon -> weapon_gems_reconcile
+	// 会把专属宝石原样留下，玩家不用手动重装。
+	// 只有换成别的武器时，reconcile 才会按 allowed_weapons 把不兼容的专属宝石卸掉。
+	// 另外把当前宝石记进记忆表，这样即使之后换过别的武器，切回这把也能自动装回。
+	weapon_gems_snapshot(slot)
 	if slot == "main_weapon"{
-		global.save_data.equipped_items.main_weapon.gems = []
 		global.save_data.equipped_items.main_weapon[$ "id"] = ""
 	}
 	else if slot == "secondary_weapon"{
-		global.save_data.equipped_items.secondary_weapon.gems = []
 		global.save_data.equipped_items.secondary_weapon[$ "id"] = ""
 	}
 	else if slot == "super_weapon"{
-		global.save_data.equipped_items.super_weapon.gems = []
 		global.save_data.equipped_items.super_weapon[$ "id"] = ""
 	}
 	global.equipped_weapon[? slot].weapon_id = ""
@@ -185,6 +244,7 @@ function equip_gem(gem_id){
 			}
 		}
 	}
+	weapon_gems_snapshot(slot)
 	save_file(global.save_slot)
 }
 
@@ -256,6 +316,7 @@ function remove_gem(gem_id){
 			array_delete(global.save_data.equipped_items.super_weapon.gems,gem_index,1)
 		}
 	}
+	weapon_gems_snapshot(slot)
 	save_file(global.save_slot)
 }
 

@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_death_scythe",
-    "path":"sprites/spr_death_scythe/spr_death_scythe.yy",
+    "name":"spr_death_scythe_22",
+    "path":"sprites/spr_death_scythe_22/spr_death_scythe_22.yy",
   },
   "spriteMaskId":null,
   "visible":true,

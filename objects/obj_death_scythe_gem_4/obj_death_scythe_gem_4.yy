@@ -1,4 +1,4 @@
-﻿{
+{
   "$GMObject":"",
   "%Name":"obj_death_scythe_gem_4",
   "eventList":[
@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_death_scythe_gem_4",
-    "path":"sprites/spr_death_scythe_gem_4/spr_death_scythe_gem_4.yy",
+    "name":"spr_death_scythe_gem_effect_4",
+    "path":"sprites/spr_death_scythe_gem_effect_4/spr_death_scythe_gem_effect_4.yy",
   },
   "spriteMaskId":null,
   "visible":true,

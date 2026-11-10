@@ -1,4 +1,8 @@
-﻿# -*- coding: utf-8 -*-
+# [已废弃] 本脚本只扫「站立首帧」，对帧间位移大的敌人判定框严重偏小。
+# 现由 tools/gen_enemy_body_frames.ps1 取代（逐帧扫描 + keyframes 顺序）。
+# 保留仅作历史参考，不要再用它覆盖 enemy_body.gml。
+
+# -*- coding: utf-8 -*-
 """
 gen_enemy_body.py —— 生成 scripts/enemy_body/enemy_body.gml（敌人固定判定框表）
 

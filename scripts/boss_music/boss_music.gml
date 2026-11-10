@@ -78,12 +78,9 @@ function boss_music_builtin_list() {
 	// 随游戏分发的内置曲库。加歌要同时改三处：
 	// 1) datafiles/boss_music_pack/ 放文件  2) .yyp 的 IncludedFiles  3) 这里补一行
 	return [
-		"杨丞琳 - 雨爱.ogg",
-		"张芸京 - 偏爱.ogg",
 		"阿YueYue,刘兆宇 - 冬眠.ogg",
-		"未知歌手 - 七里香.ogg",
-		"雨爱(猴叫司凤版)-泡泡心.ogg",
-		"蔡健雅 - 红色高跟鞋.ogg"
+		"杨丞琳 - 雨爱.ogg",
+		"雨爱(猴叫司凤版)-泡泡心.ogg"
 	];
 }
 

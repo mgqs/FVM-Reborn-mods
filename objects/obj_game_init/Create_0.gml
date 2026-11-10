@@ -45,10 +45,13 @@ global.level_data = {}
 global.ui_anim = 1
 global.debug = 0
 global.laboretory_room = false
-global.game_version = "3.0.2.11"
+global.game_version = "3.0.2.12"
 global.tower_level_click = false
 global.tower_cake_page = 1
 global.cross_server_return_page = -1
+// 跨服关卡借用 tower_cake 的 map_id，退出时要还原进入前的底图（否则回程停在空白的魔塔蛋糕底图上）
+global.cross_server_return_map_id = ""
+global.cross_server_return_map_name = ""
 Music_Init()
 
 global.laboratory_manager = new LaboratoryManager()

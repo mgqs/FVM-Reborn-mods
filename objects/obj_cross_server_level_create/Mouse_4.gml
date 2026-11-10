@@ -44,11 +44,16 @@ if (!is_disabled)
         }
     }
     
-    global.map_id = "tower_cake";
-    global.map_name = "跨服远征";
-    // 记录返回跨服远征界面时的页签，退出关卡后恢复
+    // 记录返回跨服远征界面时的页签与进入前的底图，退出关卡后恢复。
+    // 必须在改写 map_id 之前记录：跨服关卡借用 tower_cake 的 map_id，
+    // 若不还原，回程的地图房间会按 tower_cake 铺一张没有关卡按钮的空白底图。
     if (instance_exists(obj_cross_server_bg)) {
         global.cross_server_return_page = obj_cross_server_bg.selected_page;
     }
+    global.cross_server_return_map_id = global.map_id;
+    global.cross_server_return_map_name = global.map_name;
+
+    global.map_id = "tower_cake";
+    global.map_name = "跨服远征";
     global.gui_stack.to(room_ready);
 }
