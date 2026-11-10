@@ -30,3 +30,6 @@ hit_t        = 0;
 hit_fx_first = 1;       // 特效起始帧（image_index）
 hit_fx_last  = 4;       // 特效末帧（image_index）
 hit_fx_speed = 3;       // 每 3 帧推一帧 ≈ 0.05 秒，整段约 0.18 秒
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_rebound = true;   // 可被樱桃布丁 / 布丁汪 / 水神 反弹

@@ -9,8 +9,12 @@
 ///   🔴 只用「引擎碰撞事件」驱动。任何情况下都不要再写 with(obj_bullet_parent) 轮询 ——
 ///      融盆第一版就是那种全表扫描（每张火盆 × 每颗子弹），多放两张直接掉帧。
 ///   🔴 子弹侧不要再写任何 Collision 事件，也不要在 Step 里手动 with(火源) 扫描。
-///      要吃火 / 反弹：Create 里写 hazard_fire = true / hazard_rebound = true，
-///      或去 scripts/mod_bullet_hazard_table 加一行。
+///      吃不吃火 / 能不能反弹 + **要什么参数，全部写在子弹自己 Create 里**：
+///        hazard_fire    = true;                        // 用默认参数
+///        hazard_fire    = { scale:0 };                 // 默认参数 + 覆盖 scale（写结构体就等于开了）
+///        hazard_rebound = true;
+///        hazard_rebound = { axis:"move_dir", judge:"none" };
+///      默认全关（不写就既不过火也不反弹）。特殊口径直接写进结构体，不需要别的表。
 ///
 ///   调试：把 global.hazard_debug 设为 true，控制台会打每次过火/反弹的判定过程。
 /// =====================================================================
@@ -21,21 +25,58 @@ function hazard_dbg(_msg) {
         show_debug_message("[hazard] " + string(_msg));
 }
 
+/// @function hazard_merge(_dst, _src)
+/// @desc 把 _src 结构体的字段逐个盖到 _dst 上（只盖它有的键）
+function hazard_merge(_dst, _src) {
+    var _k = variable_struct_get_names(_src);
+    for (var i = 0; i < array_length(_k); i++) _dst[$ _k[i]] = _src[$ _k[i]];
+}
+
+/// @function bullet_hazard_cfg(_bullet)
+/// @desc 合并出这颗子弹的最终参数：默认值 ← 子弹自己 Create 的声明
+///       结果缓存在实例变量 hz_cfg 上，一颗子弹一条命只算一次。
+/// @return struct { fire:{...}, reb:{...} }
+function bullet_hazard_cfg(_bullet) {
+    if (variable_instance_exists(_bullet, "hz_cfg")) return _bullet.hz_cfg;
+
+    var _cf = { on:false, ice:undefined, step2:true, scale:1.8, srcs:"*", src_gate:"" };
+    var _cr = { on:false, axis:"move_speed", judge:"row", flip_y:false, angle180:true,
+                kind_gate:false, dir_guard:false, reset_hits:true };
+
+    // 子弹自己的声明（Create 里写 true = 全默认；写结构体 = 开了 + 覆盖字段）
+    if (variable_instance_exists(_bullet, "hazard_fire")) {
+        var _hf = _bullet.hazard_fire;
+        if (is_struct(_hf)) { _cf.on = true; hazard_merge(_cf, _hf); }
+        else _cf.on = _hf;
+    }
+    if (variable_instance_exists(_bullet, "hazard_rebound")) {
+        var _hr = _bullet.hazard_rebound;
+        if (is_struct(_hr)) { _cr.on = true; hazard_merge(_cr, _hr); }
+        else _cr.on = _hr;
+    }
+
+    // ice 缺省 = 对象名含 "ice"
+    if (is_undefined(_cf.ice)) _cf.ice = (string_count("ice", object_get_name(_bullet.object_index)) != 0);
+
+    var _out = { fire:_cf, reb:_cr };
+    _bullet.hz_cfg = _out;
+    return _out;
+}
+
 /// @function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8)
 /// @desc 过火增幅：门禁 / 同排 / 冰弹两步 / **取最高倍率** / 融合火盆二转变冰弹 / 音效 / 放大
 /// @param _bullet 子弹实例
 /// @param _src    点火源实例（火盆 / 火神 / 金牛 / 能量喵 / 融合火盆）
-/// @param _mult   增幅倍率（普通火源传 other.atk；能量喵目前传 other.atk / 100）
+/// @param _mult   增幅倍率（= 火源的 atk × fire_mult_scale）
 /// @param _scale  点燃后放大到几倍；0 = 不放大（bbq / 法师蛇 自己在 Step 里处理）
 /// @return bool   是否真的点燃 / 提升了倍率
 function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
     if (!instance_exists(_bullet) || !instance_exists(_src)) return false;
 
     var _nm  = object_get_name(_bullet.object_index);
-    var _cfg = bullet_hazard_cfg(_bullet.object_index).fire;
-    // 默认关；子弹自己写了 hazard_fire = true 也算（两者都支持，表优先）
-    var _self_on = variable_instance_exists(_bullet, "hazard_fire") && _bullet.hazard_fire;
-    if (!_cfg.on && !_self_on) return false;
+    var _cfg = bullet_hazard_cfg(_bullet).fire;
+    if (!_cfg.on) return false;                 // 默认全关：没声明 / 声明成 false 都直接走
+    _scale = _cfg.scale;                        // 放大倍数由子弹自己声明（默认 1.8）
 
     if (!variable_instance_exists(_bullet, "burnt"))        return false;
     if (!variable_instance_exists(_bullet, "brazier_list")) return false;
@@ -150,7 +191,7 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
 }
 
 /// @function bullet_hazard_rebound(_bullet, _src)
-/// @desc 反弹（樱桃布丁 / 布丁汪 / 水神 —— 共用表里同一段 reb 参数）
+/// @desc 反弹（樱桃布丁 / 布丁汪 / 水神 —— 三张卡共用这一套实现）
 ///       附伤 = 源卡 atk × 当前过火倍率（bullet_rebound_bonus 里算），等价于「(子弹+增伤) × 过火倍率」
 ///       reset_hits 为 true 时还会清空命中记录 → 回程能再打一次已经打过的老鼠
 /// @return bool 是否真的反弹了
@@ -158,10 +199,8 @@ function bullet_hazard_rebound(_bullet, _src) {
     if (!instance_exists(_bullet) || !instance_exists(_src)) return false;
 
     var _nm = object_get_name(_bullet.object_index);
-    var _c  = bullet_hazard_cfg(_bullet.object_index).reb;
-    // 默认关；子弹自己写了 hazard_rebound = true 也算（两者都支持，表优先）
-    var _self_on = variable_instance_exists(_bullet, "hazard_rebound") && _bullet.hazard_rebound;
-    if (!_c.on && !_self_on) return false;
+    var _c  = bullet_hazard_cfg(_bullet).reb;
+    if (!_c.on) return false;                   // 默认全关：没声明 / 声明成 false 都直接走
 
     if (!variable_instance_exists(_bullet, "bounced")) _bullet.bounced = false;
     if (_bullet.bounced) return false;

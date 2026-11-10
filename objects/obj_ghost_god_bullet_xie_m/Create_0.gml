@@ -12,3 +12,6 @@ image_xscale = 1.8;
 image_yscale = 1.8;
 hittable_types = get_hittable_enemy_types(target_type);
 hit_tick = 0;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_rebound = { judge:"col" };   // 饿鬼神三向弹：按列判定

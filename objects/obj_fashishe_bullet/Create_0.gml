@@ -51,3 +51,7 @@ hitted = ds_list_create();
 hittable_types = get_hittable_enemy_types(target_type);
 max_life = 400;
 life = 0;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = { scale:0 };   // 法师蛇：同上
+hazard_rebound = { axis:"move_dir", judge:"none" };   // 法师蛇：同上

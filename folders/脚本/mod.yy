@@ -57,6 +57,5 @@
     {"name":"hex_text_wrap","path":"scripts/hex_text_wrap/hex_text_wrap.yy",},
     {"name":"hex_test_picker","path":"scripts/hex_test_picker/hex_test_picker.yy",},
     {"name":"mod_bullet_hazard","path":"scripts/mod_bullet_hazard/mod_bullet_hazard.yy",},
-    {"name":"mod_bullet_hazard_table","path":"scripts/mod_bullet_hazard_table/mod_bullet_hazard_table.yy",},
   ],
 }

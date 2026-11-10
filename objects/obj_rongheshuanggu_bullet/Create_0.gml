@@ -23,3 +23,7 @@ image_angle = 0;
 image_index = 0;
 image_alpha = 1;
 image_blend = c_white;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = { scale:0 };   // 融合双菇：不放大
+hazard_rebound = true;   // 可被樱桃布丁 / 布丁汪 / 水神 反弹

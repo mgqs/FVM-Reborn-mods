@@ -12,3 +12,6 @@ bullet_hit = false;
 image_xscale = 1.2;
 image_yscale = 1.2;
 hittable_types = get_hittable_enemy_types(target_type);
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_rebound = { axis:"move_speed_x", judge:"none" };   // 里格斜弹：只反水平分量

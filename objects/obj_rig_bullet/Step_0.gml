@@ -26,7 +26,7 @@ else
 x += move_speed_x;
 
 // 2026-11-10：手动 with() 扫描已删除，改由父类 obj_bullet_parent 的
-//   Collision_obj_rebound_source 事件统一处理（参数在 mod_bullet_hazard_table）。
+//   Collision_obj_rebound_source 事件统一处理（参数写在这颗子弹自己的 Create 里）。
 
 // 类型过滤碰撞检测：仅遍历可命中的敌人类型
 if (!bullet_hit && variable_global_exists("enemy_by_type"))

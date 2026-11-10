@@ -2397,7 +2397,6 @@
     {"id":{"name":"mod_build_buff_cells_calculation","path":"scripts/mod_build_buff_cells_calculation/mod_build_buff_cells_calculation.yy",},},
     {"id":{"name":"mod_build_buff_grid","path":"scripts/mod_build_buff_grid/mod_build_buff_grid.yy",},},
     {"id":{"name":"mod_build_buff_shield","path":"scripts/mod_build_buff_shield/mod_build_buff_shield.yy",},},
-    {"id":{"name":"mod_bullet_hazard_table","path":"scripts/mod_bullet_hazard_table/mod_bullet_hazard_table.yy",},},
     {"id":{"name":"mod_bullet_hazard","path":"scripts/mod_bullet_hazard/mod_bullet_hazard.yy",},},
     {"id":{"name":"mod_cards_init","path":"scripts/mod_cards_init/mod_cards_init.yy",},},
     {"id":{"name":"mod_clotho_get_random_level","path":"scripts/mod_clotho_get_random_level/mod_clotho_get_random_level.yy",},},

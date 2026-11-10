@@ -20,3 +20,7 @@ hit_tick = 0;
 ash_kill = false;
 sanwei_stack = 1;
 burn_bonus = false;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = true;      // 可被火盆 / 火神 / 金牛 / 能量喵 / 融合火盆 点燃
+hazard_rebound = true;   // 可被樱桃布丁 / 布丁汪 / 水神 反弹

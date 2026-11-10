@@ -42,3 +42,7 @@ can_burn = false;
 brazier_list = ds_list_create();
 
 hittable_types = get_hittable_enemy_types(target_type);
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = true;      // 可被火盆 / 火神 / 金牛 / 能量喵 / 融合火盆 点燃
+hazard_rebound = { axis:"vx" };   // 猪猪料理机：vx/vy
