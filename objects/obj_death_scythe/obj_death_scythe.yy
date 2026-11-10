@@ -31,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_death_scythe_22",
-    "path":"sprites/spr_death_scythe_22/spr_death_scythe_22.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
