@@ -21,7 +21,7 @@ idle_start   = 0;
 idle_anim    = 25;
 attack_start = 25;
 attack_anim  = 10;
-fire_start_tick = 15;
+fire_start_tick = 10;
 bullet_spr = spr_death_scythe_bullet_00;
 
 timer = 0;
@@ -72,49 +72,48 @@ if (_will_lv < 0)
 {
     sprite_index = spr_death_scythe_00;
     bullet_spr   = spr_death_scythe_bullet_00;
-    idle_start   = 7;   idle_anim = 11;
-    attack_start = 18;  attack_anim = 5;
+    idle_start   = 10;  idle_anim = 7;
+    attack_start = 17;  attack_anim = 6;
     fire_start_tick = 5;
 }
 else if (_will_lv <= 5)
 {
     sprite_index = spr_death_scythe_11;
     bullet_spr   = spr_death_scythe_bullet_11;
-    idle_start   = 14;  idle_anim = 39;
+    idle_start   = 28;  idle_anim = 25;
     attack_start = 53;  attack_anim = 10;
-    fire_start_tick = 15;
+    fire_start_tick = 10;
 }
 else if (_will_lv <= 9)
 {
     sprite_index = spr_death_scythe_22;
     bullet_spr   = spr_death_scythe_bullet_22;
-    idle_start   = 0;   idle_anim = 10;
-    attack_start = 17;  attack_anim = 18;
-    fire_start_tick = 30;
+    idle_start   = 28;  idle_anim = 25;
+    attack_start = 53;  attack_anim = 10;
+    fire_start_tick = 10;
 }
 else if (_will_lv <= 11)
 {
     sprite_index = spr_death_scythe_33;
     bullet_spr   = spr_death_scythe_bullet_33;
-    idle_start   = 14;  idle_anim = 39;
+    idle_start   = 28;  idle_anim = 25;
     attack_start = 53;  attack_anim = 10;
-    fire_start_tick = 15;
+    fire_start_tick = 10;
 }
 else if (_will_lv <= 13)
 {
     sprite_index = spr_death_scythe_44;
     bullet_spr   = spr_death_scythe_bullet_44;
-    idle_start   = 0;   idle_anim = 10;
-    attack_start = 25;  attack_anim = 9;
-    fire_start_tick = 14;
+    idle_start   = 28;  idle_anim = 25;
+    attack_start = 53;  attack_anim = 10;
+    fire_start_tick = 10;
 }
 else
 {
     sprite_index = spr_death_scythe_55;
     bullet_spr   = spr_death_scythe_bullet_55;
-    idle_start   = 0;   idle_anim = 10;
-    attack_start = 25;  attack_anim = 9;
-    fire_start_tick = 14;
+    idle_start   = 28;  idle_anim = 25;
+    attack_start = 53;  attack_anim = 10;
+    fire_start_tick = 10;
 }
-
 image_index = idle_start;

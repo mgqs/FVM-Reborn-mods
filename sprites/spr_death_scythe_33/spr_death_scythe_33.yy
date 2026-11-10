@@ -93,7 +93,7 @@
   ],
   "name":"spr_death_scythe_33",
   "nineSlice":null,
-  "origin":0,
+  "origin":9,
   "parent":{
     "name":"death_scythe",
     "path":"folders/精灵/mod/germ/death_scythe.yy",
@@ -355,7 +355,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":150,
+    "xorigin":138,
     "yorigin":165,
   },
   "swatchColours":null,

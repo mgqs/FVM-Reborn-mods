@@ -13,13 +13,13 @@ ghost_shape = weapon_info.ghost_shape;
 if (get_gem_index("death_scythe_gem_1") != -1)
     ghost_shape = weapon_info.ghost_shape_impact[get_gem_level("death_scythe_gem_1")];
 
-// 出场直接播主形态精灵自带的「召唤聚合」段，播完再落地成 obj_death_scythe：
-//   未装备 : spr_death_scythe_00 的 0..6   （7 帧）
-//   0-5    : spr_death_scythe_11 的 0..13  （14 帧）
-//   6-9    : spr_death_scythe_22 没有召唤段 → 直接落场
-//   10-11  : spr_death_scythe_33 的 0..13  （14 帧）
-//   12-13  : spr_death_scythe_44 没有召唤段 → 直接落场
-//   14-15  : spr_death_scythe_55 没有召唤段 → 直接落场
+// 出场直接播主形态精灵自带的「召唤聚合」段（appear），播完再落地成 obj_death_scythe：
+//   未装备 : spr_death_scythe_00 的 0..9   （10 帧）
+//   0-5    : spr_death_scythe_11 的 0..27  （28 帧）
+//   6-9    : spr_death_scythe_22 的 0..27  （28 帧）
+//   10-11  : spr_death_scythe_33 的 0..27  （28 帧）
+//   12-13  : spr_death_scythe_44 的 0..27  （28 帧）
+//   14-15  : spr_death_scythe_55 的 0..27  （28 帧）
 var _will_lv = -1;
 if (get_gem_index("death_scythe_gem_4") != -1)
     _will_lv = get_gem_level("death_scythe_gem_4");
@@ -29,29 +29,31 @@ enter_last_frame = -1;   // -1 表示不需要播召唤段
 if (_will_lv < 0)
 {
     sprite_index = spr_death_scythe_00;
-    enter_last_frame = 6;
+    enter_last_frame = 9;
 }
 else if (_will_lv <= 5)
 {
     sprite_index = spr_death_scythe_11;
-    enter_last_frame = 13;
+    enter_last_frame = 27;
 }
 else if (_will_lv <= 9)
 {
     sprite_index = spr_death_scythe_22;
+    enter_last_frame = 27;
 }
 else if (_will_lv <= 11)
 {
     sprite_index = spr_death_scythe_33;
-    enter_last_frame = 13;
+    enter_last_frame = 27;
 }
 else if (_will_lv <= 13)
 {
     sprite_index = spr_death_scythe_44;
+    enter_last_frame = 27;
 }
 else
 {
     sprite_index = spr_death_scythe_55;
+    enter_last_frame = 27;
 }
-
 timer = 0;
