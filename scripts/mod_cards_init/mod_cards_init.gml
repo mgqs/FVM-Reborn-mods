@@ -509,10 +509,10 @@ function mod_cards_init()
     {
         name: "科技星星兔",
         shape: 1,
-        description: "科技星星兔：五个方向各发射1发星弹，伤害提升至2倍。",
+        description: "科技星星兔：五个方向各发射1发星弹，攻击力为星星兔的2倍。",
         hp: array_create(17, 50),
         cost: array_create(17, 225),
-        atk: [40, 48, 56, 64, 72, 80, 100, 120, 140, 170, 200, 230, 330, 430, 530, 630, 730],
+        atk: [80, 96, 112, 128, 144, 160, 200, 240, 280, 340, 400, 460, 660, 860, 1060, 1260, 1460],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78)
@@ -520,10 +520,10 @@ function mod_cards_init()
     {
         name: "宇宙星星兔",
         shape: 2,
-        description: "宇宙星星兔：五个方向各发射1发星弹，伤害提升至3倍。",
+        description: "宇宙星星兔：五个方向各发射1发星弹，攻击力为星星兔的3倍。",
         hp: array_create(17, 50),
         cost: array_create(17, 225),
-        atk: [40, 48, 56, 64, 72, 80, 100, 120, 140, 170, 200, 230, 330, 430, 530, 630, 730],
+        atk: [120, 144, 168, 192, 216, 240, 300, 360, 420, 510, 600, 690, 990, 1290, 1590, 1890, 2190],
         range: array_create(17, 10),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78)
@@ -3672,15 +3672,15 @@ mod_register_plant_lite("xuanfengniu", [
         {name: "雪芭煮蛋器",
         shape: 0,
         description: "雪芭煮蛋器：向前方投掷鸡蛋&几率定身", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
-        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])},
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]], ["毒气伤害",[0,20,23,27,36,47,57,68,81,95,114,135,156,177,198,219,243]]])},
         {name: "臭豆腐煮蛋器",
         shape: 1,
         description: "臭豆腐煮蛋器：向前方投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,66,77,88,110,132,154,187,220,253,308,396,495,605,726,858,990], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
-        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])},
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]], ["毒气伤害",[0,20,23,27,36,47,57,68,81,95,114,135,156,177,198,219,243]]])},
         {name: "终结者煮蛋器",
         shape: 2,
         description: "终结者煮蛋器：向前方3行投掷鸡蛋&几率定身&附加毒气伤害", hp:array_create(17,250), cost:array_create(17,250), atk:[55,96,112,128,160,192,224,272,320,368,448,576,720,880,1056,1248,1440], range:array_create(17,3), cooldown:array_create(17,420), cycle:array_create(17,180),
-        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]]])}
+        custom: info_custom([["定身概率",[0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]], ["定身时间",[0,2.1,2.1,2.2,2.2,2.3,2.3,2.4,2.4,2.5,2.5,2.6,2.8,3,3.2,3.4,3.6]], ["毒气伤害",[0,20,23,27,36,47,57,68,81,95,114,135,156,177,198,219,243]]])}
     ], false);
     mod_register_plant_lite("ronghehuopen", [
         {name: "刺梨烧烤盘",
@@ -3858,7 +3858,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "五行蛇：大幅提高周围5方向卡片攻击力",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
-        atk: [104.5, 106, 107.5, 109, 112, 115, 118, 121, 124, 127, 130, 145, 175, 205, 235, 270, 316],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.045, 1.06, 1.075, 1.09, 1.12, 1.15, 1.18, 1.21, 1.24, 1.27, 1.3, 1.45, 1.75, 2.05, 2.35, 2.7, 3.16]]]),
         range: array_create(17, 1.5),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 60)
@@ -3869,7 +3870,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "通灵五行蛇：大幅提高周围5方向卡片攻击力",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
-        atk: [139.5, 141, 142.5, 144, 147, 150, 153, 156, 159, 162, 165, 180, 210, 240, 270, 305, 351],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.395, 1.41, 1.425, 1.44, 1.47, 1.5, 1.53, 1.56, 1.59, 1.62, 1.65, 1.8, 2.1, 2.4, 2.7, 3.05, 3.51]]]),
         range: array_create(17, 1.5),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 60)
@@ -3880,7 +3882,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "泰斗五行蛇：大幅提高周围5方向卡片攻击力",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
-        atk: [189.5, 191, 192.5, 194, 197, 200, 203, 206, 209, 212, 215, 230, 260, 290, 320, 355, 401],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.895, 1.91, 1.925, 1.94, 1.97, 2, 2.03, 2.06, 2.09, 2.12, 2.15, 2.3, 2.6, 2.9, 3.2, 3.55, 4.01]]]),
         range: array_create(17, 2.5),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 60)
@@ -4548,7 +4551,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "香料虎：为周围特定卡片增加攻击",
         hp: array_create(17, 50),
         cost: array_create(17, 215),
-        atk: [130, 130, 140, 140, 150, 160, 170, 180, 190, 200, 220, 240, 260, 280, 300, 320, 350],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.3, 1.3, 1.4, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.5]]]),
         range: array_create(17, 1),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 0)
@@ -4559,7 +4563,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "海洋香料虎：为周围特定卡片增加攻击",
         hp: array_create(17, 50),
         cost: array_create(17, 215),
-        atk: [130, 130, 140, 140, 150, 160, 170, 180, 190, 200, 220, 240, 260, 280, 300, 320, 350],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.3, 1.3, 1.4, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.5]]]),
         range: array_create(17, 2),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 0)
@@ -4570,7 +4575,8 @@ mod_register_plant_lite("xuanfengniu", [
         description: "魔力香料虎：为周围特定卡片增加攻击",
         hp: array_create(17, 50),
         cost: array_create(17, 215),
-        atk: [165, 165, 175, 175, 185, 195, 205, 215, 225, 235, 255, 275, 295, 315, 335, 355, 385],
+        atk: array_create(17, 0),
+        custom: info_custom([["增幅倍率", [1.65, 1.65, 1.75, 1.75, 1.85, 1.95, 2.05, 2.15, 2.25, 2.35, 2.55, 2.75, 2.95, 3.15, 3.35, 3.55, 3.85]]]),
         range: array_create(17, 2),
         cooldown: array_create(17, 2400),
         cycle: array_create(17, 0)
@@ -4624,7 +4630,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78),
-        custom: info_custom([["毒雾持续", 2], ["毒雾次数", 5]])
+        custom: info_custom([["毒雾持续", 1], ["毒雾次数", 5]])
     },
     {
         name: "幽冥法师蛇",
@@ -4636,7 +4642,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 78),
-        custom: info_custom([["毒雾持续", 2], ["毒雾次数", 5]])
+        custom: info_custom([["毒雾持续", 1], ["毒雾次数", 5]])
     },
     {
         name: "奥术法师蛇",
