@@ -123,6 +123,21 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         y = _y;
         depth = _depth;
         visible = true;
+
+        // 复用前清空上一个宿主留下的显示状态（必须在 instance_change 之前执行）
+        //  instance_change 会重跑新对象的 Create，Create 里显式赋的值才是最终值；
+        //  这里只给 Create 没有显式设置的属性兜底：
+        //   - image_angle 残留 180° → 被布丁反弹过的子弹复用后贴图倒挂
+        //   - image_alpha 残留 ≈0 → 上一轮淡出过的特效复用后完全透明
+        //   - image_index 残留 14 → 灰烬复用后从空白帧开始
+        //   - image_blend 残留 → 冰冻/染色效果串色
+        //  image_speed 故意不动：191 个池化对象里有 93 个没在 Create 里设它，
+        //  强行清 0 会把它们的引擎自动播帧冻住。
+        image_angle  = 0;
+        image_alpha  = 1;
+        image_blend  = c_white;
+        image_index  = 0;
+
         instance_change(_obj, true);
         event_user(14);
 

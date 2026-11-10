@@ -385,6 +385,18 @@ if is_real(global.level_file.version){
 					}
 				}
 			}
+			//处理变异蝙蝠鼠生成事件（跨服·梦魇天空）
+			if event_list[i].id == "kuafu_bat_spawn"{
+				if event_timer mod (event_list[i].interval*60) == (event_list[i].interval*60-1){
+					for(var q_count = 0 ; q_count < event_list[i].mouse_amount ; q_count++){
+						var q_row = irandom_range(0,global.grid_rows-1)
+						var q_pos = get_world_position_from_grid(0,q_row)
+						var q_bat = instance_create_depth(q_pos.x,q_pos.y-room_height,-500,obj_kuafu_bat)
+						q_bat.target_row = q_row
+						q_bat.target_col = irandom_range(0,global.grid_cols-1)
+					}
+				}
+			}
 			//处理老鼠洞生成事件
 			if event_list[i].id == "mouse_hole_spawn"{
 				if event_timer mod (event_list[i].interval*60) == 5{

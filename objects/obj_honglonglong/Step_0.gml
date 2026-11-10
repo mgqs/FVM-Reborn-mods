@@ -269,6 +269,10 @@ switch state{
 					instance_destroy(_card)
 				}
 			}
+		// 第 15 帧（floor(timer/5) == 15）落地瞬间播技能特效
+		if timer == 15 * 5{
+			instance_create_depth(x, y, depth - 1, obj_honglonglong_skill_3_effect)
+		}
 		if timer >= 24*5-1{
 			timer = 0
 			state = BOSS_STATE.IDLE

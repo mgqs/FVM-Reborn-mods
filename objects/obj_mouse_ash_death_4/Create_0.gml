@@ -1,7 +1,8 @@
+sprite_index = spr_mouse_ash_electric;
 image_xscale = 1.8
 image_yscale = 1.8
 image_speed = 1
-timer = 0
+timer = 11
 life = 90
 can_destroy = false
 special_ash = false

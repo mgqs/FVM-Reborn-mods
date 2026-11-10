@@ -30,4 +30,22 @@ function battle_event_init(){
 			]
 		}
 	)
+	register_battle_event("kuafu_bat_spawn",
+		{
+			"name":"生成变异蝙蝠鼠",
+			"desc":"在地图随机位置，每隔一段时间生成变异蝙蝠鼠（跨服·梦魇天空）。",
+			"params":[
+				{
+					"param_name":"interval",
+					"desc":"生成间隔",
+					"type":"real"
+				},
+				{
+					"param_name":"mouse_amount",
+					"desc":"生成数量",
+					"type":"real"
+				}
+			]
+		}
+	)
 }

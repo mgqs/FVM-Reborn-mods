@@ -1,4 +1,4 @@
-﻿{
+{
   "$GMObject":"",
   "%Name":"obj_death_scythe_enter",
   "eventList":[
@@ -30,10 +30,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_death_scythe_effect",
-    "path":"sprites/spr_death_scythe_effect/spr_death_scythe_effect.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

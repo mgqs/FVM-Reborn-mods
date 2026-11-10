@@ -9,6 +9,15 @@ var _entrance_list = instance_create_depth(0, 0, -2, EventEntranceList)
 _entrance_list.set_position(600,20)
               .set_size(900, 300)
 
+// 跨服关卡返回：先把底图还原成进入前的地图。
+// 跨服关卡借用 tower_cake 的 map_id，若停在 tower_cake，本房间会按 spr_tower_cake_bg 铺底，
+// 而 tower_cake 的关卡数据没有 button_x/button_y → 一个关卡按钮都不建，只剩一张空白底图。
+var _cs_pending = (variable_global_exists("cross_server_return_page") && global.cross_server_return_page >= 0);
+if (_cs_pending && variable_global_exists("cross_server_return_map_id") && global.cross_server_return_map_id != "") {
+	global.map_id = global.cross_server_return_map_id;
+	global.map_name = global.cross_server_return_map_name;
+}
+
 current_map_id = global.map_id
 var map_button_array = struct_get(ds_map_find_value(global.maps_map,current_map_id),"levels_data")
 var button_array_length = array_length(map_button_array)
@@ -64,4 +73,16 @@ if global.save_data.player.level >= 36{
 	if !is_task_unlocked("ruins_level_0") && !is_task_complete("ruins_level_0"){
 		unlock_task("ruins_level_0")
 	}
+}
+
+// 从跨服远征关卡返回时，恢复跨服远征界面。
+// 跨服关卡是从本地图界面点「跨服远征」覆盖层进去的，退出时 gui_stack 弹回的就是本房间，
+// 所以这里必须有和 obj_menu_manager/Create_0 同一段恢复逻辑，否则只剩一张空白底图。
+if (_cs_pending) {
+	var _cs_bg = instance_create_depth((room_width / 2) - 5, room_height / 2, -100, obj_cross_server_bg);
+	_cs_bg.selected_page = global.cross_server_return_page;
+	_cs_bg.refresh_level_buttons();
+	if (instance_exists(obj_player_info_ui)) obj_player_info_ui.menu_type = 4;
+	if (instance_exists(obj_world_map_button)) obj_world_map_button.world_map = 2;
+	global.cross_server_return_page = -1;
 }

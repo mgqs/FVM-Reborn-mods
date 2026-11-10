@@ -304,7 +304,14 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                 // 跨服远征关卡借用了 tower_cake 的 map_id，但退出要回跨服界面而不是美味岛：
                 // 只要 cross_server_return_page 还挂着（>0 表示有待恢复的页签），就不要改写 map_id。
                 var _cs_back = (variable_global_exists("cross_server_return_page") && global.cross_server_return_page >= 0);
-                if (!_cs_back && (global.map_id == "tower_cake" || global.map_id == "delicious_town")) {
+                if (_cs_back) {
+                    // 回跨服：还原进入前的地图（跨服关卡借用 tower_cake 的 map_id）
+                    if (variable_global_exists("cross_server_return_map_id") && global.cross_server_return_map_id != "") {
+                        global.map_id = global.cross_server_return_map_id;
+                        global.map_name = global.cross_server_return_map_name;
+                    }
+                }
+                else if (global.map_id == "tower_cake" || global.map_id == "delicious_town") {
                     global.map_id = "delicious_island";
                     global.map_name = "美味岛";
                 }
@@ -335,7 +342,17 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 				if settlement || obj_game_over.sprite_index == spr_lose || global.level_file.version == "1.0.0"{
 					// 同上：跨服远征退关卡要回跨服创建关卡界面，别被改成美味岛
 					var _cs_back2 = (variable_global_exists("cross_server_return_page") && global.cross_server_return_page >= 0);
-					if (!_cs_back2 && (global.map_id == "tower_cake" || global.map_id == "delicious_town")){
+					if (_cs_back2){
+						// 还原进入前的地图底图（跨服关卡借用 tower_cake 的 map_id）。
+						// 失败时只弹一层、退回准备室重打，此时不能改 map_id/map_name：
+						// 重打时 obj_baiyang_effect / obj_doumaobang_cat 等靠 map_name == "跨服远征" 豁免冲撞。
+						if (obj_game_over.sprite_index != spr_lose
+						    && variable_global_exists("cross_server_return_map_id") && global.cross_server_return_map_id != ""){
+							global.map_id = global.cross_server_return_map_id
+							global.map_name = global.cross_server_return_map_name
+						}
+					}
+					else if (global.map_id == "tower_cake" || global.map_id == "delicious_town"){
 						global.map_id = "delicious_island"
 						global.map_name = "美味岛"
 					}

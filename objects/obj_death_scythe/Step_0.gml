@@ -14,16 +14,19 @@ else
     switch (state)
     {
         case 0:
-            if (image_index < (idle_anim - 1))
+            var idle_end = idle_start + idle_anim - 1;
+            
+            if (image_index < idle_start || image_index > idle_end)
+                image_index = idle_start;
+            else if (image_index < idle_end)
                 image_index++;
             else
-                image_index = 0;
+                image_index = idle_start;
             
             break;
         
         case 1:
-            var attack_start = idle_anim;
-            var attack_end = (idle_anim + attack_anim) - 1;
+            var attack_end = (attack_start + attack_anim) - 1;
             
             if (image_index < attack_start || image_index > attack_end)
                 image_index = attack_start;
@@ -66,7 +69,7 @@ if (is_attacking)
     state = 1;
     attack_timer++;
     var t = attack_timer;
-    var start_t = 32;
+    var start_t = fire_start_tick;
     var interval = 6;
     
     for (var i = 0; i < bullet_amount; i++)

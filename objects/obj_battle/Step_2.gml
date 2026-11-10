@@ -131,7 +131,12 @@ if (level_stage == "pre" && instance_exists(obj_battle_music_controller)) {
 		with (obj_battle_music_controller) {
 			if (!music_picked) {
 				music_picked = true;
-				new_battle_music = boss_music_resolve(global.level_data.elite_music);
+				var _rand_music = boss_music_resolve(global.level_data.elite_music);
+				new_battle_music = _rand_music;
+				// 只有真的换成了曲库里的曲子才算「随机曲生效」。
+				// 开关关闭 / 曲库为空时 resolve 原样返回 elite_music，
+				// 这时 BOSS 波还要切回关卡自带的 boss_music。
+				music_random_active = (_rand_music != global.level_data.elite_music);
 				event_user(10);
 			}
 		}
@@ -156,6 +161,17 @@ if !_is_tower && level_stage == "pre" && !boss_waiting_clear && current_wave < t
 if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 || _is_tower || _fast_boss_level) {
 	boss_waiting_clear = false
 	level_stage = "boss"
+	// BOSS 波音乐：
+	//  - 抽到随机曲（开关开 + 曲库有曲子）→ 继续播随机曲，一直播到通关，不切换
+	//  - 没抽到（开关关 / 曲库为空 / 加载失败）→ 切回关卡自带的 boss_music
+	if (instance_exists(obj_battle_music_controller)) {
+		with (obj_battle_music_controller) {
+			if (!music_random_active) {
+				new_battle_music = global.level_data.boss_music;
+				event_user(10);
+			}
+		}
+	}
 	if _is_tower {
 		wave_timer = 0
 		current_subwave = 0
@@ -208,7 +224,8 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 			}
 		}
 	}
-	// BOSS 波不再单独换音乐：精英波抽到的随机曲一直播到通关。
+	// BOSS 波音乐已在上面 level_stage = "boss" 处处理过：
+	//  抽到随机曲就一直播到通关，没抽到就切关卡自带的 boss_music。
 }
 if (!global.save_data.unlocked_items.elite_unlocked && current_wave >= global.level_file.elite_wave && !_longyuan_full_progression)||current_wave >= global.level_file.total_waves{
 	if current_wave_alive_count == 0 && !instance_exists(obj_game_over) && !instance_exists(obj_gacha_drop){
