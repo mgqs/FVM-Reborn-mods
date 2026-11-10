@@ -11,8 +11,10 @@ image_index  = 0;
 image_angle  = 0;
 image_alpha  = 1;
 image_blend  = c_white;
-image_xscale = 1.5;
-image_yscale = 1.5;
+// 2026-11-10 用户口径：原来 1.5 倍太大（0/1 转精灵 169×69，×1.5 后 2.4 格宽；2 转 3.2 格宽），
+//   改回素材原大（1.58 格宽）。想再大/再小就改这两个数。
+image_xscale = 1.0;
+image_yscale = 1.0;
 
 damage    = 0;
 move_speed = 6.5;
@@ -22,10 +24,10 @@ burnt_speed = 9.75;
 move_dir   = 1;          // 1 = 向右；被布丁 / 水神反弹后 -1
 
 row    = 0;
-base_y = y;              // 正弦摆动的中心线
-phase  = 0;              // 两发之间错开半周期
-wave_amp   = 15;
-wave_speed = 0.13;
+base_y = y;              // 飞行中线（改平射后就是恒定的 y）
+phase  = 0;              // 已停用：原来给正弦用
+wave_amp   = 0;          // 已停用（2026-11-10 取消蛇形摆动，改直线平射）
+wave_speed = 0;
 
 end_x      = 2200;
 end_x_left = -200;
@@ -33,10 +35,13 @@ bounced    = false;
 fading     = false;   // 出图后播「飞行到极限」的消散帧（第 5 帧起）
 fade_t     = 0;
 
-damage_type = "normal";     // 平射（2026-11-08 口径）
+damage_type = "pierce";     // 穿透（2026-11-10 用户口径：改回 pierce —— 毒针是全程穿透弹，必须能穿地形障碍，
+                            //   障碍物 Step 的放行条件只认 damage_type=="pierce" / pierce_all / pierce_obstacle。
+                            //   ⚠️ 连带效果（已知并接受）：打带护盾的老鼠会「破盾 + 直接掉血」；
+                            //   蛋蛋兔不再储存这颗子弹的伤害。target_type 仍是 normal，可攻击类型不变。）
 target_type = "normal";
 
-// 过火字段（Collision_obj_* 与 ronghehuopen_pass_fire 都按这几个判定）
+// 过火字段（父类统一事件 bullet_hazard_fire 按这几个判定）
 kind        = "fire";
 burnt       = 0;
 can_burn    = true;
@@ -46,3 +51,8 @@ hitted = ds_list_create();
 hittable_types = get_hittable_enemy_types(target_type);
 max_life = 400;
 life = 0;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = { scale:0 };   // 法师蛇：同上
+hazard_rebound = { axis:"move_dir", judge:"none" };   // 法师蛇：同上
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

@@ -24,10 +24,13 @@ end_x_left = -200;       // 只给**被反弹**的串串用：第 1 格左沿外
 bounced = false;
 row = 0;
 burn_shot = false;
-damage_type = "pierce";
+damage_type = "pierce";     // 穿透（2026-11-10 用户口径：改回 pierce —— 全程穿透的串串必须能穿地形障碍，
+                            //   障碍物 Step 的放行条件只认 damage_type=="pierce" / pierce_all / pierce_obstacle。
+                            //   ⚠️ 连带效果（已知并接受）：打带护盾的老鼠会「破盾 + 直接掉血」；
+                            //   蛋蛋兔不再储存这颗子弹的伤害。target_type 仍是 normal，可攻击类型不变。）
 target_type = "normal";
 
-// 过火相关（ronghehuopen_pass_fire / 火盆碰撞都按这几个字段判定）
+// 过火相关状态（父类统一事件 bullet_hazard_fire 按这几个字段判定）
 kind = "fire";
 burnt = 0;
 can_burn = true;
@@ -37,3 +40,8 @@ hitted = ds_list_create();
 hittable_types = get_hittable_enemy_types(target_type);
 max_life = 300;
 life = 0;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_fire = { scale:0 };   // 爆辣烤串：尺寸自己 Step 里处理；按角度反射
+hazard_rebound = { axis:"move_dir", judge:"none" };   // 爆辣烤串：尺寸自己 Step 里处理；按角度反射
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

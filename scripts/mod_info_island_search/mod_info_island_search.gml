@@ -291,6 +291,8 @@ function mod_search_box_spawn(_cfg){
        .set_on_change(variable_struct_exists(_cfg, "on_change") ? _cfg.on_change : undefined)
        .set_should_correspond(variable_struct_exists(_cfg, "should_correspond") ? _cfg.should_correspond
                                                                                 : method({}, function(){ return true; }));
+    // 2026-11-09：附加绘制（清空 / 下一个）由搜索框自己画 —— 它 depth 比宿主高，不会被面板盖住
+    if (variable_struct_exists(_cfg, "on_draw_extra")) _sb.set_on_draw_extra(_cfg.on_draw_extra);
     if (variable_struct_exists(_cfg, "text")) _sb.set_text(_cfg.text);
     return _sb;
 }
@@ -335,6 +337,14 @@ function mod_search_nav_create(_host, _cfg){
         clear_w:   variable_struct_exists(_cfg, "clear_w") ? _cfg.clear_w : 70,
         next_w:    variable_struct_exists(_cfg, "next_w")  ? _cfg.next_w  : 76,
         gap:       variable_struct_exists(_cfg, "gap")     ? _cfg.gap     : 8,
+        // 2026-11-09：三个「行为开关」收到这里，各界面只传参数、不再各写一份
+        //   clear_when_active：清空按钮「有输入才出现」（默认 true = 全界面统一口径）
+        //   clear_side      ：清空排在搜索框左 / 右
+        //   next_on         ：要不要「下一个」（情报岛 / 商店这类只过滤不跳转的传 false）
+        clear_when_active: variable_struct_exists(_cfg, "clear_when_active") ? _cfg.clear_when_active : true,
+        clear_side:        variable_struct_exists(_cfg, "clear_side") ? _cfg.clear_side : "left",
+        next_on:           variable_struct_exists(_cfg, "next_on") ? _cfg.next_on : true,
+        btn_pad:           variable_struct_exists(_cfg, "btn_pad") ? _cfg.btn_pad : 26,
         text:      "",
         active:    false,
         enabled:   true,
@@ -365,6 +375,10 @@ function mod_search_nav_create(_host, _cfg){
                                _nv.text = _t;
                                mod_search_nav_apply(_nv);
                            }),
+        // 「清空 / 下一个」交给搜索框画（2026-11-09）
+        //   原因：宿主自己 Draw 里画的按钮会被面板内那些 depth 更低的按钮实例盖住
+        //   （合成屋的转职 / 神级进化页就是这样：点得到、看不见）。搜索框 depth = 宿主 - 1，永远在上层。
+        on_draw_extra:     method({ n: _nav }, function(){ mod_search_nav_draw(n); }),
         should_correspond: variable_struct_exists(_cfg, "should_correspond")
                                ? _cfg.should_correspond
                                : method({ n: _nav }, function(){ return n.enabled; })
@@ -403,7 +417,8 @@ function mod_search_nav_apply(_nav){
         var _k = _nav.key_of(_nav.matches[i]);
         _nav.hit_set[$ string(_k)] = true;
     }
-    mod_search_nav_next(_nav);
+    // 只过滤、不跳转的界面（情报岛 / 商店，next_on = false）不自动滚到第一条
+    if (_nav.next_on) mod_search_nav_next(_nav);
 }
 
 /// @func mod_search_nav_next(nav) 跳到下一条命中（循环）
@@ -443,6 +458,14 @@ function mod_search_nav_hit(_nav, _key){
 ///   实测出的矩形存进 nav.btn_*，Step 直接拿它判定点击，两处口径永远一致
 function mod_search_nav_draw(_nav){
     if (!_nav.enabled) return;
+
+    // 兜底（2026-11-09）：Step 里若因演出 / 弹窗提前 exit，这里再对一次文字，
+    //   保证「框里有字 → 清空和下一个一定画出来」，不会再出现只有框没按钮的页面
+    if (instance_exists(_nav.box)){
+        var _bt = _nav.box.get_text();
+        if (_bt != _nav.text){ _nav.text = _bt; mod_search_nav_apply(_nav); }
+    }
+
     var _by = _nav.y + 2;
     var _bh = _nav.h - 4;
 
@@ -450,24 +473,33 @@ function mod_search_nav_draw(_nav){
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
 
-    // 「清空」（搜索框左边，常驻）
-    var _cw = max(_nav.clear_w, string_width("清空") + 26);
-    _nav.btn_clear_x1 = _nav.x - _nav.gap - _cw;
-    _nav.btn_clear_y1 = _by;
-    _nav.btn_clear_x2 = _nav.btn_clear_x1 + _cw;
-    _nav.btn_clear_y2 = _by + _bh;
-    mod_search_clear_btn_draw(_nav.btn_clear_x1, _by, _cw, _bh, _nav.active);
+    // 「清空」：默认常驻在搜索框左边；合成屋传 clear_when_active → **有输入才出现**
+    var _show_clear = (!_nav.clear_when_active || _nav.active);
+    var _cw = max(_nav.clear_w, string_width("清空") + _nav.btn_pad);
+    _nav.btn_clear_x1 = -1;
+    _nav.btn_clear_y1 = -1;
+    _nav.btn_clear_x2 = -1;
+    _nav.btn_clear_y2 = -1;
+    if (_show_clear){
+        if (_nav.clear_side == "right") _nav.btn_clear_x1 = _nav.x + _nav.w + _nav.gap;
+        else                            _nav.btn_clear_x1 = _nav.x - _nav.gap - _cw;
+        _nav.btn_clear_y1 = _by;
+        _nav.btn_clear_x2 = _nav.btn_clear_x1 + _cw;
+        _nav.btn_clear_y2 = _by + _bh;
+        mod_search_clear_btn_draw(_nav.btn_clear_x1, _by, _cw, _bh, _nav.active);
+    }
 
-    // 「下一个」（搜索框右边，有搜索时）
+    // 「下一个」（搜索框右边，有搜索时）；清空挪到右边时自动让位
     _nav.btn_next_x1 = -1;
     _nav.btn_next_y1 = -1;
     _nav.btn_next_x2 = -1;
     _nav.btn_next_y2 = -1;
-    if (_nav.active){
+    if (_nav.active && _nav.next_on){
         var _hit   = array_length(_nav.matches);
         var _label = (_hit > 0 ? "下一个 " + string(_nav.pos + 1) + "/" + string(_hit) : "无结果");
         var _nw    = max(_nav.next_w, string_width(_label) + 26);
         var _nx    = _nav.x + _nav.w + _nav.gap;
+        if (_show_clear && _nav.clear_side == "right") _nx = _nav.btn_clear_x2 + _nav.gap;
         _nav.btn_next_x1 = _nx;
         _nav.btn_next_y1 = _by;
         _nav.btn_next_x2 = _nx + _nw;
@@ -487,9 +519,18 @@ function mod_search_nav_draw(_nav){
 /// @func mod_search_nav_step(nav) 处理「清空 / 下一个」点击
 function mod_search_nav_step(_nav){
     if (!_nav.enabled) return;
-    if (_nav.btn_clear_x1 < 0) return;      // 还没调用过 draw（第一帧）
 
-    if (mod_search_clear_btn_hit(_nav.btn_clear_x1, _nav.btn_clear_y1,
+    // 每帧把输入框里的真实文字拉回来（2026-11-09）：
+    //   切换页签会把 text 清成空、而输入框里可能还剩字（或回调漏触发），以前就会出现
+    //   「框里有字、清空和下一个却不画」。以输入框为准，状态永远跟得上。
+    if (instance_exists(_nav.box)){
+        var _bt = _nav.box.get_text();
+        if (_bt != _nav.text){ _nav.text = _bt; mod_search_nav_apply(_nav); }
+    }
+
+    if (_nav.btn_clear_x1 < 0 && _nav.btn_next_x1 < 0) return;   // 还没调用过 draw（第一帧）
+
+    if (_nav.btn_clear_x1 >= 0 && mod_search_clear_btn_hit(_nav.btn_clear_x1, _nav.btn_clear_y1,
                                  _nav.btn_clear_x2 - _nav.btn_clear_x1,
                                  _nav.btn_clear_y2 - _nav.btn_clear_y1)){
         mod_search_nav_clear(_nav);

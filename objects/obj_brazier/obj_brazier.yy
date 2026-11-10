@@ -12,10 +12,7 @@
     "name":"Assistant",
     "path":"folders/物体/Cards/Assistant.yy",
   },
-  "parentObjectId":{
-    "name":"obj_card_parent",
-    "path":"objects/obj_card_parent/obj_card_parent.yy",
-  },
+  "parentObjectId":{"name":"obj_fire_source","path":"objects/obj_fire_source/obj_fire_source.yy",},
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

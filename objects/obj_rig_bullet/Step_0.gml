@@ -25,35 +25,8 @@ else
 
 x += move_speed_x;
 
-// 跨行反弹检测：检测水神和樱桃布丁（不限制行号）
-if (!bounced)
-{
-    with (obj_water_god)
-    {
-        if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
-        {
-            other.move_speed_x *= -1;
-            other.damage += atk;
-            other.image_angle += 180;
-            other.bounced = true;
-            break;
-        }
-    }
-    if (!bounced)
-    {
-        with (obj_cherry_pudding)
-        {
-            if (other.bbox_right >= bbox_left && other.bbox_left <= bbox_right)
-            {
-                other.move_speed_x *= -1;
-                other.damage += atk;
-                other.image_angle += 180;
-                other.bounced = true;
-                break;
-            }
-        }
-    }
-}
+// 2026-11-10：手动 with() 扫描已删除，改由父类 obj_bullet_parent 的
+//   Collision_obj_rebound_source 事件统一处理（参数写在这颗子弹自己的 Create 里）。
 
 // 类型过滤碰撞检测：仅遍历可命中的敌人类型
 if (!bullet_hit && variable_global_exists("enemy_by_type"))

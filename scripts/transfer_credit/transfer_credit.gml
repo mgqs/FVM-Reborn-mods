@@ -1082,7 +1082,9 @@ function shop_search_filter(_list, _query, _tab){
 ///   2026-11-08 起**每个页签都能用**：可见性直接常开，过滤口径按页签分（见 shop_search_filter）
 ///   ⚠️ 这个函数专门服务 obj_shop_bg（回调里直接写它的变量名），别给别的界面复用
 function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
-    var _sx = _bg_x + 440, _sy = _bg_y - 327, _sw = 350, _sh = 40;
+    // 🔧 整体左右挪就改这个数（2026-11-09：440 → 390，把跑到窗口外的「清空」收回来）
+    shop_search_dx = 390;
+    var _sx = _bg_x + shop_search_dx, _sy = _bg_y - 327, _sw = 350, _sh = 40;
 
     // 「清空」按钮贴搜索框右边 —— 几何只在这里算一次，Draw / Step 共用这几个变量
     //   （🔧 要挪按钮位置改这 5 行即可；右侧到窗口边还有约 150px 余量）
@@ -1092,9 +1094,10 @@ function credit_shop_search_box_spawn(_bg_x, _bg_y, _depth){
     shop_clear_y1 = _sy + 2;
 
     // 2026-11-08：配色 / 尺寸走通用层 mod_search_box_spawn；这里只留商店自己的回调
+    // 2026-11-09：placeholder 跟其它三个界面统一（商店本来就支持拼音，见 credit_shop_filter_search）
     return mod_search_box_spawn({
         x: _sx, y: _sy, w: _sw, h: _sh, depth: _depth,
-        placeholder: "搜索名称/[分类]",
+        placeholder: "搜索名称/[分类]（可拼音）",
         on_change: method({ bg: id }, function(_t) {
             with (bg) {
                 shop_search_text = _t;

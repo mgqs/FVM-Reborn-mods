@@ -13,3 +13,7 @@ image_yscale = 1.5;
 hittable_types = get_hittable_enemy_types(target_type);
 hit_interval = 3;
 hit_tick = 0;
+
+// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
+hazard_rebound = { flip_y:true, judge:"none" };   // 炭烧海星：斜弹翻 y
+fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着

@@ -11,6 +11,10 @@ if (global.is_paused) exit;
 
 event_inherited();
 
+// ── 二转多发卡的补发队列（小笼包 6 连发 / 法师蛇 3 发）──
+//   放在冻结判断之前：一轮攻击已经开始了，中途被冻也要把剩下的几发打完，不然只出半轮。
+if (array_length(tx_pending) > 0) tx_tick();
+
 if (is_frozen || state == CARD_STATE.SLEEP || hp <= 0) exit;
 
 // 🔴 少这个局部变量会直接崩（bbq 2026-10-31 踩过）：减速时攻速翻倍，与 obj_bbq / obj_eightcake 同写法

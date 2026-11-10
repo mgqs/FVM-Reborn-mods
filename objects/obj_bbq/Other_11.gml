@@ -65,10 +65,11 @@ for (var _r = 0; _r < array_length(_rows); _r++)
     var _row = _rows[_r];
     if (_row < 0 || _row >= global.grid_rows) continue;
 
-    // 出膛点固定 = **地图最左沿（第 1 格左沿）**，不跟卡片位置走（2026-10-31 的固定攻击口径）
+    // 出膛点固定 = **地图最左沿往左 0.5 格**，不跟卡片位置走（2026-10-31 的固定攻击口径）
     // 🔴 2026-11-02：别再按卡片偏移写 x±40 —— 卡面 1.8 倍、半宽约 61px，±40 都落在卡身里，看着像从猫身上/背后钻出来。
-    //   要再往左到边框外就写 `global.grid_offset_x - 20`。
-    var _start_x = global.grid_offset_x;
+    // 🔧 2026-11-10：与法师蛇对齐，从「贴左沿」再往后退半格（法师蛇的 fashishe_start_cells = -0.5）。
+    //   想再往后就改这个 -0.5（-1 = 退一整格）；贴回第 1 格左沿写 0。
+    var _start_x = global.grid_offset_x - 0.5 * global.grid_cell_size_x;
 
     // 行内飞行高度：贴图格子的中线（含 _art_up 修正）
     var _lane_y = global.grid_offset_y + _row * global.grid_cell_size_y

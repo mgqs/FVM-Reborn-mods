@@ -520,9 +520,8 @@ draw_text(1820,1080,"右键点击或按ESC退出")
 
 // ── 搜索：命中光圈 + 清空 / 下一个按钮（2026-11-08，改走通用导航器）──────────
 //   卡片都画在 surface 里，光圈必须画在 draw_surface 之后；坐标与 hover 判定同源。
+//   2026-11-09：「清空 / 下一个」改由搜索框实例自己画（SearchBox.set_on_draw_extra），这里不再画。
 if (rrm_nav.hit_t > 0) rrm_nav.hit_t--;
-
-mod_search_nav_draw(rrm_nav);
 
 // 2026-11-08 用户口径：**不再画命中光圈**（未命中整片灰掉已经够醒目），只保留滚动定位
 draw_set_color(c_white);

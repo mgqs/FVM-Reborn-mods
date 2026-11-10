@@ -14,6 +14,9 @@ self.state = {
     kb_prev: "",
     /// @type {function}
     on_change: undefined,
+    /// 2026-11-09：附加绘制的回调（搜索导航器用它画「清空 / 下一个」）
+    ///   画在搜索框这同一层 → 不会被面板里那些 depth 更低的按钮实例盖住
+    on_draw_extra: undefined,
     /// @type {function ():Bool}
     should_correspond: function() { return true },
     /// @type {Struct|undefined} 可选配色；undefined = 原来的米色（实验室 / 联机地图两处不变）
@@ -46,6 +49,12 @@ function set_placeholder(_text) {
 
 function set_on_change(_on_change) {
     self.state.on_change = _on_change
+    return self
+}
+
+/// @func set_on_draw_extra(func) 搜索框画完之后再画点什么（同一层，最上层）
+function set_on_draw_extra(_f) {
+    self.state.on_draw_extra = _f
     return self
 }
 
@@ -275,6 +284,8 @@ function on_draw() {
         draw_set_halign(fa_left)
         draw_set_valign(fa_top)
         draw_set_color(c_white)
+        // 附加绘制（清空 / 下一个）：跟搜索框同层，永远在面板之上
+        if (!is_undefined(_s.on_draw_extra)) _s.on_draw_extra()
         exit
     }
 
@@ -308,6 +319,8 @@ function on_draw() {
         draw_set_color(c_black)
         draw_line(_caret_x2, _s.top + 8, _caret_x2, _s.top + _s.height - 8)
     }
+    // 附加绘制（清空 / 下一个）：米色分支同样支持
+    if (!is_undefined(_s.on_draw_extra)) _s.on_draw_extra()
 }
 
 on_create()

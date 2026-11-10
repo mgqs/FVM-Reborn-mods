@@ -1,7 +1,9 @@
 function cross_server_shop_init()
 {
     var _cross_server_goods = [
-        "baibianshe", "double_blade_snake", "laipishe", "spoon_rabbit", "magic_chicken", "xuanfengniu",
+        // 勺勺兔：2026-11-09 本体从跨服挪回普通商店（80000 金币，见 mod_shop_init），
+        //   所以这里不再打 cross_server_shop 标；一/二转凭证照旧在威望商店。
+        "baibianshe", "double_blade_snake", "laipishe", "magic_chicken", "xuanfengniu",
         "zhanqima", "zhanqima_1", "zhanqima_2", "niuyouguo", "fashishe", "huanyingshe", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
         // 椰子果一/二转：2026-11-08 本体挪回普通商店后，这里只留「打标再剔除」的两个转职商品，
         //   见下面 _moved_to_prestige（本体走普通商店 55000，转职在威望商店）
@@ -15,7 +17,8 @@ function cross_server_shop_init()
 
     var _cross_server_prices = {
         baibianshe: {cost: "1510", shop: "silver"}, double_blade_snake: {cost: "1320", shop: "silver"}, laipishe: {cost: "1320", shop: "silver"},
-        spoon_rabbit: {cost: "1130", shop: "silver"}, magic_chicken: {cost: "1130", shop: "silver"}, xuanfengniu: {cost: "1020", shop: "silver"},
+        // spoon_rabbit 已挪回普通商店（80000 金币），不再有跨服价目
+        magic_chicken: {cost: "1130", shop: "silver"}, xuanfengniu: {cost: "1020", shop: "silver"},
         zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "225", shop: "gold"}, zhanqima_2: {cost: "228", shop: "gold"},
         // 法师蛇 / 幻影蛇：2026-11-08 本体从普通商店挪进跨服（白银页）
         fashishe: {cost: "2000", shop: "silver"},

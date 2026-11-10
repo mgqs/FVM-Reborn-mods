@@ -44,8 +44,8 @@ function mod_evo_table(){
                                         {id:"spicy_pot", slot:1, need:2} ] },  // 赫斯提亚神使 ← 海鲜肥牛锅 + 酱香鱿鱼锅
         hufa_god:                { cards:[ {id:"hongliukaochuan", slot:0, need:2},
                                         {id:"guiyuanma", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 幻境归元马（2026-10-30 用户指定）
-        gongjiang_god:           { cards:[ {id:"laipishe", slot:0, need:2},
-                                        {id:"pizza_oven", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
+        gongjiang_god:           { cards:[ {id:"pizza_oven", slot:0, need:2},
+                                        {id:"laipishe", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
         brahma:                  { cards:[ {id:"magic_chicken", slot:0, need:2},
                                         {id:"baibianshe", slot:1, need:2} ] },  // 梵天神使 ← 幻幻鸡（这卡只注册到本体，need 2 会被上限兜到 0）+ 双子百变蛇
         guangming_god:           { cards:[ {id:"dragon_fruit", slot:0, need:2},
@@ -86,8 +86,8 @@ function mod_evo_table(){
                                         {id:"huojianzhu", slot:1, need:2} ] },  // 盖亚神使 ← 加农龙虾炮 + 反重力火箭猪（2026-11-08 用户指定副卡）
         zhurong:                 { cards:[ {id:"pan_fried_bun", slot:0, need:2},
                                         {id:"dangdanghu", slot:1, need:2} ] },  // 祝融神使 ← 驴肉火烧锅 + 微波铛铛虎（2026-11-06 用户指定：替换糖炒栗子）
-        rig:                     { cards:[ {id:"starrabbit", slot:0, need:2},
-                                        {id:"nut_frier", slot:1, need:2} ] },  // 里格神使 ← 宇宙星星兔 + 松塔爆破机
+        rig:                     { cards:[ {id:"nut_frier", slot:0, need:2},
+                                        {id:"starrabbit", slot:1, need:2} ] },  // 里格神使 ← 松塔爆破机（坚果爆炒机）+ 宇宙星星兔（2026-11-09 用户指定：两个前置互换槽位）
         ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
                                         {id:"spoon_rabbit", slot:1, need:2} ] },  // 尤弥尔神使 ← 花椒蜥蜴投手 + 盖世勺勺兔
         save_god:                { cards:[ {id:"doumaobang", slot:0, need:2},

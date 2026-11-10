@@ -28,8 +28,8 @@ buff_max_stacks = 1;
 //      海克斯攻速词条会乘它 → 一改就把增幅倍率改坏；面板/情报岛读出来还是「攻击间隔 130 秒」。
 //      注册表里本卡 cycle 已归还成 0（本体不攻击，它什么都不该装）。
 //   数值口径：0/1 转 1.3~4.1；2 转整体 ×1.15（= 1.495~4.715，对应「二转威力提高15%」）。
-//   **平射增幅仍在 atk**（220 = 2.2 倍，2 转 253 = 2.2×1.15），消费点是子弹侧的
-//      Collision_obj_nengliangmiao 里的 other.atk / 100 —— 那条没动，两套增幅互不影响。
+//   **平射增幅就是 atk 本身**（2026-11-10 起：0/1 转 2.2~4.3，2 转 2.53~4.945），
+//      不再存「220 这种百分数再 /100」——父类事件统一按 other.atk * fire_mult_scale（=1）取。两套增幅互不影响。
 //   custom 值按星级已经写进升级表（mod_register_plant_lite / add_plant_upgrade_lite），直接读即可。
 //   关卡里星级不会再变（升星会重建卡片），所以只在 Create 取一次，Step 里直接用 throw_buff_value。
 var _nl_info = get_plant_data_with_skill("nengliangmiao", shape, clamp(current_level, 0, 16),

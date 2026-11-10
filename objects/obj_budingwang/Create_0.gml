@@ -1,5 +1,5 @@
 // obj_budingwang（布丁汪 / 双拼布丁汪 / 什锦布丁汪）Create 事件
-// 辅助类·反弹类：继承 obj_cherry_pudding —— 所有直射子弹自带的 Collision_obj_cherry_pudding
+// 辅助类·反弹类：继承 obj_cherry_pudding（父链 → obj_rebound_source，子弹侧统一由父类事件反弹）
 //   对「它的子对象」一样生效，所以**不用去改那 45 个子弹**，穿过来就会被弹回去。
 // 反弹附伤走子弹事件里的 `damage += other.atk` → 本卡 atk 就是「附加伤害」（0 转 6→100、二转 12→190）。
 // 素材 10 帧纯待机（0~9），没有攻击段。

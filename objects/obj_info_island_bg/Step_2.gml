@@ -36,7 +36,9 @@ if (variable_instance_exists(id, "info_search_box") && instance_exists(info_sear
 }
 
 // 搜索框右侧「清空」按钮点击（2026-11-08）：清过滤词 + 输入框 + keyboard_string，并回到列表顶部
-if (pnl_o > 0.5 && !is_submenu_opened && mod_search_clear_btn_hit(522, 118, 70, 40))
+//   2026-11-09：按钮只在有输入时画，判定同样加条件，避免点到一块看不见的按钮
+if (pnl_o > 0.5 && !is_submenu_opened && info_search_text != ""
+    && mod_search_clear_btn_hit(522, 118, 70, 40))
 {
     info_island_search_clear(id);
     y_offset = 0;
