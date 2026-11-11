@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-import json
 import os
 from pathlib import Path
 import platform
@@ -17,6 +16,8 @@ import sys
 import tempfile
 import zipfile
 
+from desktop_resources import configuration, prepare_project, read_yy, sprite_group, texture_groups
+
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY_NAME = "libFvmNativeSupport.dylib"
 LAUNCHER_NAME = "FVM_Launcher"
@@ -25,13 +26,6 @@ MAC_ARCH = "arm64"
 
 def run(args: list[str | Path], **kwargs) -> None:
     subprocess.run([str(arg) for arg in args], check=True, **kwargs)
-
-
-def read_yy(path: Path) -> dict:
-    # GameMaker's YY JSON permits trailing commas. Preserve commas in strings.
-    text = re.sub(r'("(?:\\.|[^"\\])*")|,(\s*[}\]])',
-                  lambda m: m[1] if m[1] is not None else m[2], path.read_text())
-    return json.loads(text)
 
 
 def sign(path: Path, identity: str) -> None:
@@ -273,12 +267,29 @@ def assemble_app(stage: Path, runtime: Path, output: Path, identity: str, work: 
     return destination
 
 
+def macos_configuration(resource: dict) -> dict:
+    return configuration(resource, "macOS")
+
+
+def macos_texture_groups(project: dict) -> list[dict]:
+    return texture_groups(project, "macOS")
+
+
+def macos_sprite_group(sprite: dict) -> str:
+    return sprite_group(sprite)
+
+
+def prepare_macos_project(work: Path) -> Path:
+    return prepare_project(ROOT, work, "macOS")
+
+
 def build_game(args, work: Path, runtime: Path, user: Path) -> None:
     output = args.output.expanduser().resolve()
     output.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="package-", dir=work))
     log_path = work / "build.log"
-    command = [*igor_command(runtime), f"--project={ROOT / 'FVM_Reborn_makk.yyp'}",
+    project = prepare_macos_project(work)
+    command = [*igor_command(runtime), f"--project={project}",
                f"--rp={runtime}", f"--uf={user}", f"--cache={work / 'cache'}",
                f"--temp={work / 'temp'}",
                f"--of={stage / 'FVM_Reborn_makk.zip'}", f"--tf={stage / 'FVM_Reborn_makk.zip'}",
@@ -302,6 +313,7 @@ def build_game(args, work: Path, runtime: Path, user: Path) -> None:
         print("\n".join(log_path.read_text(errors="replace").splitlines()[-60:]), file=sys.stderr)
         raise RuntimeError(f"GameMaker build failed ({result.returncode}); see {log_path}")
     destination = assemble_app(stage, runtime, output, args.sign_identity, work)
+    run([sys.executable, ROOT / "tools/test_macos_resources.py", destination])
     archive = output / "FVM_Reborn_makk-macOS.zip"
     if archive.exists():
         archive.unlink()

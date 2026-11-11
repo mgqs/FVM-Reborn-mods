@@ -1,6 +1,37 @@
 function Music_Init(){
-	audio_group_load(music)
+    if (!resource_memory_enabled()) audio_group_load(music)
 	audio_group_load(sound)
+}
+
+/// Asset streams use the default bus, so apply the music slider per asset.
+function music_builtin_assets() {
+    static _assets = [
+        Boss_zhandou, day_jingying, day_xianfeng, erqi_BOSS,
+        erqi_jingying, erqi_xianfeng, mus_cross_server_day, mus_cross_server_day_boss,
+        mus_cross_server_night, mus_cross_server_night_boss, mus_delicious_island_crown_elite, mus_delicious_island_crown_pre,
+        mus_delicious_island_daytime_boss, mus_delicious_island_daytime_elite, mus_delicious_island_daytime_pre, mus_delicious_island_night_boss,
+        mus_delicious_island_night_elite, mus_delicious_island_night_pre, mus_delicious_tower_boss, mus_delicious_tower_elite,
+        mus_delicious_tower_pre, mus_explore_camp_boss, mus_explore_camp_pre, mus_floating_island_crown_elite,
+        mus_floating_island_crown_pre, mus_floating_island_daytime_boss, mus_floating_island_daytime_elite, mus_floating_island_daytime_pre,
+        mus_floating_island_night_boss, mus_floating_island_night_elite, mus_floating_island_night_pre, mus_menu,
+        mus_readyroom, mus_town, mus_undersea_vortex_boss, mus_undersea_vortex_daytime,
+        mus_undersea_vortex_night, mus_volcanic_island_crown_elite, mus_volcanic_island_crown_pre, mus_volcanic_island_daytime_boss,
+        mus_volcanic_island_daytime_elite, mus_volcanic_island_daytime_pre, mus_volcanic_island_night_boss, mus_volcanic_island_night_elite,
+        mus_volcanic_island_night_pre, mus_volcanic_tower_boss, mus_volcanic_tower_elite, mus_volcanic_tower_pre,
+        night_jingying, night_xianfeng
+    ];
+    return _assets;
+}
+
+function music_apply_volume() {
+    if (!resource_memory_enabled()) {
+        audio_group_set_gain(music, global.music_volume, 0);
+        return;
+    }
+    var _assets = music_builtin_assets();
+    for (var i = 0; i < array_length(_assets); i++) {
+        audio_sound_gain(_assets[i], global.music_volume, 0);
+    }
 }
 
 /// ═══════════════════════════════════════════════════════════════════════════
@@ -104,7 +135,8 @@ global.audio.play = function(_snd, _prio = 0, _loop = 0) {
     var _len = audio_sound_length(_snd);
 
     // 音乐 / 长音频 / 循环音 / 关闭开关：完全放行
-    if (!global.audio.enable || _loop != 0 || _len > global.audio.music_len) {
+    if (!global.audio.enable || _loop != 0 || _len > global.audio.music_len
+        || array_get_index(music_builtin_assets(), _snd) >= 0) {
         global.audio.played += 1;
         return audio_play_sound(_snd, _prio, _loop);
     }

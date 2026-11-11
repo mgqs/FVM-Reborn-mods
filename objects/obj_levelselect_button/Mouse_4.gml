@@ -7,7 +7,7 @@ if on_click && obj_player_info_ui.menu_type == 0 && unlock{
 		if room != room_map global.gui_stack.to(room_map)
 		exit
 	}
-	texture_prefetch("cards")
+	resource_texture_prepare("cards")
 	if target_level_id == "camp_shop"{
 		instance_create_depth(room_width/2,room_height/2,-5,obj_camp_shop_bg)
 		obj_player_info_ui.menu_type = 4

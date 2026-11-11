@@ -8,7 +8,7 @@ if on_click and obj_player_info_ui.menu_type == 0 and global.preloaded{
 	global.gui_stack.to(room_map)
 	global.map_name = "美味岛"
 	global.map_id = "delicious_island"
-	//texture_prefetch("enemy_delicious")
-	//texture_prefetch("enemy_volcanic")
-	//texture_prefetch("enemy_tower")
+	//resource_texture_prepare("enemy_delicious")
+	//resource_texture_prepare("enemy_volcanic")
+	//resource_texture_prepare("enemy_tower")
 }

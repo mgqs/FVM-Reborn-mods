@@ -104,3 +104,7 @@ dist/macos/
 extensions/WindowsNative/libFvmNativeSupport.dylib
 
 /.private/
+
+# Local Windows toolchain, staging, logs and portable packages.
+.windows-build/
+dist/windows/

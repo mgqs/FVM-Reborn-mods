@@ -1,6 +1,7 @@
 {
   "$GMSound":"v2",
   "%Name":"mus_floating_island_crown_elite",
+  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",
