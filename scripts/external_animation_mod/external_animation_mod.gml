@@ -1,4 +1,8 @@
 /// Visual-only overrides. Never assign an instance's sprite_index/image_index/mask.
+#macro EXTERNAL_ANIMATION_MAX_OVERRIDES 4096
+#macro EXTERNAL_ANIMATION_MAX_PACKAGE_BYTES 8589934592
+#macro EXTERNAL_ANIMATION_CACHE_BYTES 536870912
+
 global.external_animation_active = false;
 
 function external_animation_integer(value, minimum, maximum, label) {
@@ -52,7 +56,7 @@ function external_animation_clock_validate(payload) {
 /// Validation reads files, but does not allocate textures or execute scripts.
 function external_animation_validate(root, manifest) {
     var paths = external_mod_field(manifest, "overrides", []);
-    if (!is_array(paths) || array_length(paths) < 1 || array_length(paths) > 128) throw "overrides 需要 1–128 个配置路径";
+    if (!is_array(paths) || array_length(paths) < 1 || array_length(paths) > EXTERNAL_ANIMATION_MAX_OVERRIDES) throw "overrides 需要 1–4096 个配置路径";
     var definitions = [];
     var seen = {};
     var package_bytes = 0;
@@ -103,14 +107,17 @@ function external_animation_validate(root, manifest) {
                 covered[f] = true;
             }
             clip.bytes = source.width * source.height * 4 * expected;
+            if (clip.bytes > EXTERNAL_ANIMATION_CACHE_BYTES) throw "单个动作解码后超过 512 MiB，请细分动作段";
             package_bytes += clip.bytes;
-            if (package_bytes > 268435456) throw "动画包解码后超过 256 MiB，请拆分素材";
+            if (package_bytes > EXTERNAL_ANIMATION_MAX_PACKAGE_BYTES) throw "动画包解码估算量超过 8 GiB，请拆分素材包";
             for (var f = 0; f < expected; f++) {
                 var p = external_mod_path(d.root, clip.frames[f]);
                 if (string_lower(filename_ext(p)) != ".png" || !file_exists(p)) throw "PNG 不存在：" + p;
                 external_animation_png_validate(p, source.width, source.height);
             }
             clip.sprite_asset = -1;
+            clip.cache_frame = -1;
+            clip.cache_used = 0;
             d.clips[c] = clip;
         }
         d.failed = false;
@@ -128,9 +135,14 @@ function external_animation_release() {
             var clip = d.clips[c];
             if (clip.sprite_asset != -1 && sprite_exists(clip.sprite_asset)) sprite_delete(clip.sprite_asset);
             clip.sprite_asset = -1;
+            clip.cache_frame = -1;
+            clip.cache_used = 0;
         }
     }
     global.external_animation_bytes = 0;
+    global.external_animation_cache = [];
+    global.external_animation_cache_frame = 0;
+    global.external_animation_cache_serial = 0;
 }
 
 function external_animation_init() {
@@ -138,6 +150,58 @@ function external_animation_init() {
     global.external_animation_active = false;
     global.external_animation_registry = {};
     global.external_animation_bytes = 0;
+    global.external_animation_cache = [];
+    global.external_animation_cache_frame = 0;
+    global.external_animation_cache_serial = 0;
+    global.external_animation_cache_budget = EXTERNAL_ANIMATION_CACHE_BYTES;
+}
+
+/// One epoch covers every Draw/Draw GUI event and every view in this game step.
+function external_animation_cache_step() {
+    if (global.external_animation_active) global.external_animation_cache_frame++;
+}
+
+function external_animation_cache_touch(clip) {
+    clip.cache_frame = global.external_animation_cache_frame;
+    clip.cache_used = ++global.external_animation_cache_serial;
+}
+
+function external_animation_cache_drop(cache_index) {
+    var clip = global.external_animation_cache[cache_index].clip;
+    if (clip.sprite_asset != -1) {
+        if (sprite_exists(clip.sprite_asset)) sprite_delete(clip.sprite_asset);
+        global.external_animation_bytes -= clip.bytes;
+        clip.sprite_asset = -1;
+    }
+    clip.cache_frame = -1;
+    clip.cache_used = 0;
+    array_delete(global.external_animation_cache, cache_index, 1);
+}
+
+/// Never delete a sprite already sampled this frame: callers can reuse its visual
+/// for another overlay and GameMaker can still have pending draw commands for it.
+function external_animation_cache_reserve(bytes) {
+    var needed = global.external_animation_bytes + bytes - global.external_animation_cache_budget;
+    if (needed <= 0) return true;
+    var available = 0;
+    for (var i = 0; i < array_length(global.external_animation_cache); i++) {
+        var clip = global.external_animation_cache[i].clip;
+        if (clip.cache_frame != global.external_animation_cache_frame) available += clip.bytes;
+    }
+    if (available < needed) return false;
+    while (global.external_animation_bytes + bytes > global.external_animation_cache_budget) {
+        var oldest_index = -1;
+        var oldest_used = global.external_animation_cache_serial + 1;
+        for (var i = 0; i < array_length(global.external_animation_cache); i++) {
+            var clip = global.external_animation_cache[i].clip;
+            if (clip.cache_frame == global.external_animation_cache_frame || clip.cache_used >= oldest_used) continue;
+            oldest_index = i;
+            oldest_used = clip.cache_used;
+        }
+        if (oldest_index == -1) return false;
+        external_animation_cache_drop(oldest_index);
+    }
+    return true;
 }
 
 function external_animation_register(pack, folder) {
@@ -167,18 +231,27 @@ function external_animation_fail(folder, message) {
             if (clip.sprite_asset == -1) continue;
             if (sprite_exists(clip.sprite_asset)) sprite_delete(clip.sprite_asset);
             clip.sprite_asset = -1;
+            clip.cache_frame = -1;
+            clip.cache_used = 0;
             global.external_animation_bytes -= clip.bytes;
         }
+    }
+    for (var i = array_length(global.external_animation_cache) - 1; i >= 0; i--) {
+        if (global.external_animation_cache[i].folder == folder) array_delete(global.external_animation_cache, i, 1);
     }
 }
 
 /// Shared, lazy textures. Temporary sprites are deleted immediately after merging.
 function external_animation_load(d, clip) {
-    if (clip.sprite_asset != -1) return clip.sprite_asset;
+    if (clip.sprite_asset != -1) {
+        external_animation_cache_touch(clip);
+        return clip.sprite_asset;
+    }
+    // A busy frame falls back only for this draw and retries when space is free.
+    if (!external_animation_cache_reserve(clip.bytes)) return -1;
     var result = -1;
     var part = -1;
     try {
-        if (global.external_animation_bytes + clip.bytes > 268435456) throw "当前场景动画覆盖缓存超过 256 MiB";
         for (var i = 0; i < array_length(clip.frames); i++) {
             part = sprite_add(external_mod_path(d.root, clip.frames[i]), 1, false, false, d.source.origin_x, d.source.origin_y);
             if (part == -1) throw "PNG 解码失败：" + clip.frames[i];
@@ -189,6 +262,8 @@ function external_animation_load(d, clip) {
         }
         clip.sprite_asset = result;
         global.external_animation_bytes += clip.bytes;
+        external_animation_cache_touch(clip);
+        array_push(global.external_animation_cache, {clip: clip, folder: d.folder});
         return result;
     } catch (error_data) {
         if (part != -1 && part != result && sprite_exists(part)) sprite_delete(part);
