@@ -45,4 +45,7 @@ else{
 	inst4.shape = shape
 	inst4.row = grid_row
 	inst4.start_col = grid_col
+	// 前三条路径都显式赋了 sprite_index，这条漏了：池里复用来的实例 sprite_index 还是 -1，
+	// 第一帧画不出来（Step_0 的 shape>=2 强写会自愈，所以只是闪一下）。这里补上，与上面保持一致。
+	inst4.sprite_index = spr_odenpot_bullet_2
 }

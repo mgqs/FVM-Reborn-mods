@@ -172,9 +172,24 @@ if (ini_read_string("settings", "ui_anim", "") == "") {
     ini_write_real("settings", "ui_anim", global.ui_anim);
 }
 global.ime_block = ini_read_bool("settings", "ime_block", true); // 输入法屏蔽开关（个别输入法环境异常时可关）
-global.mouse_limit_hz = ini_read_real("settings", "mouse_limit_hz", 500);
+// 鼠标输入限频（鼠标帧锁定）：默认关闭，0 = 关闭。
+//   v3 之前默认写死 500 Hz：会在光标链路上吞掉移动事件、再用 SendInput 绝对坐标补发，
+//   手感就是「移动鼠标时有人跟自己抢鼠标」——补发与真实移动打架、且取整误差会累积。
+//   需要限频的环境可手改 %LOCALAPPDATA%\FVM_Reborn_makk\config.ini 的 mouse_limit_hz
+//   （有效区间 1~1000，建议 250~500），改完进游戏即生效，无需重启。
+global.mouse_limit_hz = clamp(ini_read_real("settings", "mouse_limit_hz", 0), 0, 1000);
 if (ini_read_string("settings", "mouse_limit_hz", "") == "") {
-    ini_write_real("settings", "mouse_limit_hz", 500);
+    ini_write_real("settings", "mouse_limit_hz", 0);
+}
+// 老配置迁移：旧版把 500 当默认写进 config.ini，绝大多数玩家从没动过它。
+// cfg_rev 缺失 = v3 之前的配置 → 只有当值仍是旧默认 500 时才归零，
+// 玩家自己设过别的值（比如 250 / 1000）保持不动。
+if (ini_read_real("settings", "cfg_rev", 0) < 1) {
+    if (abs(global.mouse_limit_hz - 500) < 0.5) {
+        global.mouse_limit_hz = 0;
+        ini_write_real("settings", "mouse_limit_hz", 0);
+    }
+    ini_write_real("settings", "cfg_rev", 1);
 }
 // 兼容旧配置：键缺失时补写，玩家可手改 %LOCALAPPDATA%\FVM_Reborn_makk\config.ini 关闭
 if (ini_read_string("settings", "ime_block", "") == "") {

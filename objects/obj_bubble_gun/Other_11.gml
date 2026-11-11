@@ -5,3 +5,5 @@ inst.move_speed = 0
 inst.shape = 0
 inst.row = grid_row
 inst.start_col = grid_col
+// 池化复用兜底：不显式指定就会带着 -1 进 Draw（见 obj_pool_acquire）
+inst.sprite_index = spr_coffeepot_bullet

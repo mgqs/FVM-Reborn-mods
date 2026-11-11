@@ -26,7 +26,7 @@ if (state == CARD_STATE.IDLE)
 		{
 			var _rd = abs(grid_row - _check_row);
 			var _cd = abs(grid_col - _check_col);
-			if (_rd <= _check_row_range && _cd <= _check_col_range && can_target_on(other.target_type, target_type))
+			if (_rd <= _check_row_range && _cd <= _check_col_range && can_hit_ash(other.target_type, target_type))
 			{
 				has_enemy = true;
 				other.enemy_encounted = true;
@@ -103,7 +103,7 @@ else if (state == CARD_STATE.ATTACK)
 			{
 				var _rd = abs(grid_row - _check_row);
 				var _cd = abs(grid_col - _check_col);
-				if (_rd <= _check_row_range && _cd <= _check_col_range && can_target_on(other.target_type, target_type))
+				if (_rd <= _check_row_range && _cd <= _check_col_range && can_hit_ash(other.target_type, target_type))
 				{
 					var _dx = _front_x - x;
 					var _dy = _front_y - y;

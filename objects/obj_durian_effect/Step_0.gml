@@ -15,7 +15,7 @@ if not can_destroy{
 	if timer == 20{
 	
 		with obj_enemy_parent{
-			if (grid_col == other.grid_pos.col && grid_row == other.grid_pos.row && can_hit(other.target_type,target_type)){
+			if (grid_col == other.grid_pos.col && grid_row == other.grid_pos.row && can_hit_ash(other.target_type,target_type)){
 				
 				hp -= other.damage
 				event_user(0)

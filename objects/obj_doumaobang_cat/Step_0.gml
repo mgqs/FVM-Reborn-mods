@@ -12,8 +12,8 @@ with (obj_enemy_parent)
     if (grid_row != other.grid_row) continue;
     if (ds_list_find_index(other.hitted, id) != -1) continue;
 
-    // 命中口径：照常走 can_target_on；1 转起「对地下有效」→ 钻地 / 鼹鼠单独放行
-    var _ok = can_target_on(other.target_type, target_type);
+    // 命中口径：灰烬卡走 can_hit_ash（dance 也吃）；1 转起「对地下有效」→ 钻地 / 鼹鼠单独放行
+    var _ok = can_hit_ash(other.target_type, target_type);
     if (!_ok && other.hit_underground && target_type == "underground") _ok = true;
     if (!_ok) continue;
 

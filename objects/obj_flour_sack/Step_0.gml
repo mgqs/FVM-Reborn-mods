@@ -16,7 +16,7 @@ if origin_row == -1{
 //检测自身右方是否有敌人
 var has_enemy = false
 with(obj_enemy_parent){
-	if (grid_row == other.grid_row && grid_col >= other.grid_col-other.range && grid_col <= (other.grid_col + other.range) && can_target_on(other.target_type,target_type)){
+	if (grid_row == other.grid_row && grid_col >= other.grid_col-other.range && grid_col <= (other.grid_col + other.range) && can_hit_ash(other.target_type,target_type)){
 		has_enemy = true
 		other.first_target_x = x
 		other.first_target_y = y
