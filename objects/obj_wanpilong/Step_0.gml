@@ -277,6 +277,7 @@ function step_idle()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 等待被激活（通过点击释放技能）
     // 实际激活由 card_slot 的点击事件触发
@@ -298,6 +299,7 @@ function step_targeting_source()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 鼠标位置转网格
     var _mouse_grid = get_grid_position_from_world(mouse_x, mouse_y);
@@ -368,6 +370,7 @@ function step_pre_swing()
     image_index += 0.2;
     if (image_index >= idle_anim)
         image_index = idle_anim - 1;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     pre_swing_timer++;
 
@@ -448,6 +451,7 @@ function step_targeting_dest()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 源目标实时校验
     if (!wanpilong_is_valid_source(source_entity))
@@ -546,6 +550,7 @@ function step_cooldown()
     image_index += 0.05;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     cooldown_timer++;
 

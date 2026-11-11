@@ -13,6 +13,7 @@ if is_slowdown{
 if state == CARD_STATE.SLEEP{
 	anim_timer++
 	image_index = floor(anim_timer/current_flash_speed) mod 10
+	external_animation_sync_native(id, current_flash_speed, anim_timer, "anim_timer");
 	//if anim_timer > 60{
 	//	state = CARD_STATE.AWAKE
 	//}
@@ -20,6 +21,7 @@ if state == CARD_STATE.SLEEP{
 if state == CARD_STATE.AWAKE{
 	wake_timer++
 	image_index = floor(wake_timer/current_flash_speed) mod 5 + 10
+	external_animation_sync_native(id, current_flash_speed, wake_timer, "wake_timer");
 	if wake_timer >= 5*current_flash_speed{
 		sprite_index = spr_coffee_pot;
 		image_index = 0

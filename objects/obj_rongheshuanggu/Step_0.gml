@@ -77,6 +77,7 @@ if (has_enemy) {
 		atk_t++
 		image_index = atk_start_frame + floor(atk_t / current_flash_speed)
 		if (image_index > atk_end_frame) image_index = atk_end_frame
+		external_animation_sync_native(id, current_flash_speed, atk_t, "atk_t");
 
 		if (!fired_this_attack && image_index >= atk_fire_frame){
 			fired_this_attack = true

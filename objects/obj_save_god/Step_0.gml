@@ -67,6 +67,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+external_animation_sync_native(id, current_flash_speed);
 
 if hp <= 0{
     instance_destroy()

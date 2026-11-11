@@ -98,3 +98,4 @@ if (timer >= flash_speed) {
         }
     }
 }
+external_animation_sync_native(id, flash_speed);

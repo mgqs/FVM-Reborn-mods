@@ -43,8 +43,10 @@ if (state == CARD_STATE.IDLE)
 	if (anim_frame > (f_idle_end + 1) * current_flash_speed)
 		anim_frame = 0;
 	image_index = floor(anim_frame / current_flash_speed);
+	external_animation_sync_native(id, current_flash_speed, anim_frame, "anim_frame");
 	if (image_index > f_idle_end)
 		image_index = f_idle_end;
+		external_animation_sync_native(id, current_flash_speed, anim_frame, "anim_frame");
 
 	attack_timer += 1;
 	if (has_enemy && attack_timer >= cycle)
@@ -71,10 +73,12 @@ else if (state == CARD_STATE.ATTACK)
 			var _elapsed = digest_timer_max - digest_timer;
 		var _frame_offset = floor(_elapsed / current_flash_speed) mod _digest_range;
 		image_index = f_chew_start + _frame_offset;
+		external_animation_sync_native(id, current_flash_speed, _elapsed, "digest_elapsed");
 		}
 		else
 		{
 			image_index = f_chew_start;
+			external_animation_sync_native(id, 1, 0, "hold");
 		}
 
 		if (digest_timer <= 0)
@@ -82,12 +86,14 @@ else if (state == CARD_STATE.ATTACK)
 			is_digesting = false;
 			anim_frame = f_swallow_start * current_flash_speed;
 			image_index = f_swallow_start;
+			external_animation_sync_native(id, current_flash_speed, anim_frame, "anim_frame");
 		}
 	}
 	else
 	{
 		anim_frame += 1;
 		image_index = floor(anim_frame / current_flash_speed);
+		external_animation_sync_native(id, current_flash_speed, anim_frame, "anim_frame");
 	}
 
 	var _frame = image_index;
@@ -139,6 +145,7 @@ else if (state == CARD_STATE.ATTACK)
 		attack_timer = 0;
 		anim_frame = 0;
 		image_index = 0;
+		external_animation_sync_native(id, 1, 0, "reset");
 		enemy_hitted = false;
 		enemy_encounted = false;
 		target_enemy = [];
@@ -150,4 +157,5 @@ else if (state != CARD_STATE.SLEEP)
 	timer = 0;
 	anim_frame = 0;
 	image_index = 0;
+	external_animation_sync_native(id, 1, 0, "reset");
 }

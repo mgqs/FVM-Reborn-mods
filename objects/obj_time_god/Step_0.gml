@@ -137,6 +137,7 @@ if (exec_count < max_exec)
                 image_index = anim_frame;
             }
         }
+        external_animation_sync_native(id, current_flash, tg_timer, "tg_timer");
     }
     else
     {

@@ -102,6 +102,7 @@ var _f = anim_tick div _rate;
 if (phase == 0) {
 	// 准备：坑里空无一物（资源 1-14）
 	image_index = _f mod (PREPARE_LAST + 1);
+	external_animation_sync_native(id, _rate, anim_tick, "anim_tick");
 	phase_timer++;
 	if (phase_timer >= prepare_frames) {   // 准备时间 = custom["准备时间"]（见 Create 注释）
 		phase = 1;
@@ -121,6 +122,7 @@ if (attack_timer > 0) attack_timer--;
 if (phase == 1) {
 	// 冒芽：单次播完进待机（资源 15-19）
 	image_index = GROW_FIRST + min(GROW_LAST - GROW_FIRST, _f);
+	external_animation_sync_native(id, _rate, anim_tick, "anim_tick");
 	if (_f > (GROW_LAST - GROW_FIRST)) {
 		phase = 2;
 		anim_tick = 0;
@@ -133,6 +135,7 @@ var tg = chunsun_targets_in_range(id);
 if (phase == 2) {
 	// 待机：春笋长在云上循环（资源 20-30）；范围内有老鼠、间隔到点且还有剩余次数才出手
 	image_index = IDLE_FIRST + (_f mod (IDLE_LAST - IDLE_FIRST + 1));
+	external_animation_sync_native(id, _rate, anim_tick, "anim_tick");
 	if (array_length(tg) > 0 && attack_timer <= 0 && attack_count < max_attack) {
 		phase = 3;
 		anim_tick = 0;
@@ -144,6 +147,7 @@ if (phase == 2) {
 if (phase == 3) {
 	// 攻击：本体固定停在云底座那一帧、不会消失；刺由范围内每格（含本体自己那格）的 obj_chunsun_spike 负责
 	image_index = ATK_BODY_FRAME;
+	external_animation_sync_native(id, 1, 0, "hold");
 	if (!swing_done) {
 		swing_done = true;
 		attack_count++;

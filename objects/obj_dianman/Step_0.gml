@@ -9,6 +9,7 @@ live_timer++;
 anim_t = (anim_t + 1) mod 60;
 if (anim_t < anim_idle_max) image_index = ((anim_t div 3) mod (idle_anim + 1));
 else                        image_index = atk_start + (anim_t - anim_idle_max);
+external_animation_sync_native(id, (anim_t < anim_idle_max ? 3 : 1), anim_t, "anim_t");
 
 // 到「放电那一帧」（卡片第 24 帧）才把电弧点亮，播一遍就熄 —— 放下后、两次放电之间都不显示
 if (anim_t == fx_start_frame){

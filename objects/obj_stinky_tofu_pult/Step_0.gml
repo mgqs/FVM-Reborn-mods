@@ -14,6 +14,7 @@ event_inherited();
 if timer == 0{
 	if state == CARD_STATE.ATTACK{
 		image_index += attack_anim
+		external_animation_sync_native(id, current_flash_speed);
 	}
 }
 if is_frozen || state == CARD_STATE.SLEEP{

@@ -40,6 +40,7 @@ if (mixian_dying) {
 	var _f = mixian_death_tick div _rate;
 	if (_f <= 5) {
 		image_index = 16 + _f;
+		external_animation_sync_native(id, _rate, mixian_death_tick, "mixian_death_tick");
 	} else {
 		instance_destroy();
 	}
@@ -152,6 +153,7 @@ if (mixian_attack_phase == 0) {
 	// 待机循环 0-7
 	mixian_idle_tick++;
 	image_index = (mixian_idle_tick div _rate) mod 8;
+	external_animation_sync_native(id, _rate, mixian_idle_tick, "mixian_idle_tick");
 
 	mixian_attack_timer--;
 	if (!is_frozen && state != CARD_STATE.SLEEP && mixian_attack_timer <= 0) {
@@ -181,6 +183,7 @@ if (mixian_attack_phase == 0) {
 	mixian_attack_tick++;
 	var _f = mixian_attack_tick div _rate;
 	image_index = 8 + min(7, _f);
+	external_animation_sync_native(id, _rate, mixian_attack_tick, "mixian_attack_tick");
 
 	if (!mixian_attack_hit && _f >= 4) {
 		mixian_attack_hit = true;
