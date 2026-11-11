@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"zhuanlonghu",
+  "folderPath":"folders/精灵/mod/Cards/Assistant/zhuanlonghu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zhuanlonghu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"cc17b0dd-b254-4765-82db-0c65746a3c54","path":"sprites/spr_zhuanlonghu/spr_zhuanlonghu.yy",},
+    {"name":"ee581dfb-93fb-470d-907e-fe4b97fe2783","path":"sprites/spr_zhuanlonghu_1/spr_zhuanlonghu_1.yy",},
+    {"name":"daeb153b-8318-4342-8aaf-cd4c8d04ca9c","path":"sprites/spr_zhuanlonghu_2/spr_zhuanlonghu_2.yy",},
+],
+}

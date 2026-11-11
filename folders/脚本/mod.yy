@@ -58,5 +58,7 @@
     {"name":"hex_test_picker","path":"scripts/hex_test_picker/hex_test_picker.yy",},
     {"name":"mod_tianxie_pool","path":"scripts/mod_tianxie_pool/mod_tianxie_pool.yy",},
     {"name":"mod_bullet_hazard","path":"scripts/mod_bullet_hazard/mod_bullet_hazard.yy",},
+    {"name":"baibianshe_preview_cell","path":"scripts/baibianshe_preview_cell/baibianshe_preview_cell.yy",},
+    {"name":"mod_set_card_level","path":"scripts/mod_set_card_level/mod_set_card_level.yy",},
   ],
 }

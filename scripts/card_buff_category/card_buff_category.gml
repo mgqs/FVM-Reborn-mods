@@ -249,8 +249,17 @@ function card_category_data()
         ["doumaobang", "灰烬类", "瞬发类", "冲撞类"],
         ["honeytrap", "追踪类", "集火追踪", ""],
         ["huanyingshe", "投掷类", "多线投手", ""],
-        ["tianxie", "直射类", "直线穿透类", ""]
-    ];
+        ["tianxie", "直射类", "直线穿透类", ""],
+        ["jingangma", "喷壶类", "旋转喷壶类", ""],
+        ["qiedanlong", "投掷类", "多线投手", ""],
+        ["qishui", "直射类", "特殊直线类", ""],
+        ["sheshejiu", "辅助类", "变星类", ""],
+        ["shiguangji", "辅助类", "变星类", ""],
+        ["snowrabbit", "追踪类", "散点追踪", ""],
+        ["tanhuanghu", "专业防空类", "陆空兼备类", ""],
+        ["yuanqiniu", "喷壶类", "旋转喷壶类", ""],
+        ["zhuanlonghu", "辅助类", "冷却类", ""],
+];
 }
 
 /// @func card_category_index_add(_name, _id)

@@ -3214,4 +3214,329 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 1, sprite: spr_tianxie_1, cost: 200, cooldown: 420, description: "天蝎座战将：猩红毒针，一行连续4格穿透伤害（无视障碍）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tianxie_1 },
     { shape: 2, sprite: spr_tianxie_2, cost: 200, cooldown: 420, description: "天蝎座主宰：猩红毒针，一行连续4格穿透伤害（无视障碍）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_tianxie_2 }]);
 
+
+    register_card("jingangma", obj_jingangma, [
+    {
+        shape: 0,
+        sprite: spr_jingangma,
+        cost: 285,
+        cooldown: 420,
+        description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_jingangma
+    },
+    {
+        shape: 1,
+        sprite: spr_jingangma_1,
+        cost: 285,
+        cooldown: 420,
+        description: "魔铃金刚马：音波数量+1，攻击附加几率定身",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_jingangma_1
+    },
+    {
+        shape: 2,
+        sprite: spr_jingangma_2,
+        cost: 285,
+        cooldown: 420,
+        description: "梵音金刚马：音波数量+1，秒杀平民鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_jingangma_2
+    }
+    ]);
+
+    register_card("qiedanlong", obj_qiedanlong, [
+    {
+        shape: 0,
+        sprite: spr_qiedanlong,
+        cost: 350,
+        cooldown: 420,
+        description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qiedanlong
+    },
+    {
+        shape: 1,
+        sprite: spr_qiedanlong_1,
+        cost: 350,
+        cooldown: 420,
+        description: "蓝角窃蛋龙：中路增加1发炮弹",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qiedanlong_1
+    },
+    {
+        shape: 2,
+        sprite: spr_qiedanlong_2,
+        cost: 350,
+        cooldown: 420,
+        description: "钢爪窃蛋龙：2行侧路各增加1发炮弹",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qiedanlong_2
+    }
+    ]);
+
+    register_card("qishui", obj_qishui, [
+    {
+        shape: 0,
+        sprite: spr_qishui,
+        cost: 220,
+        cooldown: 420,
+        description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qishui
+    },
+    {
+        shape: 1,
+        sprite: spr_qishui_1,
+        cost: 220,
+        cooldown: 420,
+        description: "香橙弹珠汽水：子弹数+1，附加减速效果",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qishui_1
+    },
+    {
+        shape: 2,
+        sprite: spr_qishui_2,
+        cost: 220,
+        cooldown: 420,
+        description: "果味弹珠汽水：子弹数+1，击杀碎冰效果，弹射范围扩大",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_qishui_2
+    }
+    ]);
+
+    register_card("sheshejiu", obj_sheshejiu, [
+    {
+        shape: 0,
+        sprite: spr_sheshejiu,
+        cost: 380,
+        cooldown: 3600,
+        description: "蛇蛇酒：为3*3范围内卡片随机升星或者降星，持续一段时间后恢复",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_sheshejiu
+    },
+    {
+        shape: 1,
+        sprite: spr_sheshejiu_1,
+        cost: 380,
+        cooldown: 3600,
+        description: "仙露蛇蛇酒：升星上限提高",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_sheshejiu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_sheshejiu_2,
+        cost: 380,
+        cooldown: 3600,
+        description: "琼浆蛇蛇酒：星级只升不降",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_sheshejiu_2
+    }
+    ]);
+
+    register_card("shiguangji", obj_shiguangji, [
+    {
+        shape: 0,
+        sprite: spr_shiguangji,
+        cost: 275,
+        cooldown: 3300,
+        description: "13周年时光机：随机为本格卡片升星或者降星",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_shiguangji
+    },
+    {
+        shape: 1,
+        sprite: spr_shiguangji_1,
+        cost: 275,
+        cooldown: 3300,
+        description: "超载时光机：作用范围扩大到3*3",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_shiguangji_1
+    },
+    {
+        shape: 2,
+        sprite: spr_shiguangji_2,
+        cost: 275,
+        cooldown: 3300,
+        description: "未来时光机：升星效果加强",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_shiguangji_2
+    }
+    ]);
+
+    register_card("snowrabbit", obj_snowrabbit, [
+    {
+        shape: 0,
+        sprite: spr_snowrabbit,
+        cost: 280,
+        cooldown: 900,
+        description: "雪球兔：召唤雪球同时攻击全屏最多5只老鼠",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_snowrabbit
+    },
+    {
+        shape: 1,
+        sprite: spr_snowrabbit_1,
+        cost: 280,
+        cooldown: 900,
+        description: "见习雪球兔：同类卡伤害可以加成",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_snowrabbit_1
+    },
+    {
+        shape: 2,
+        sprite: spr_snowrabbit_2,
+        cost: 280,
+        cooldown: 900,
+        description: "导师雪球兔：攻击附加溅射，数量+3",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_snowrabbit_2
+    }
+    ]);
+
+    register_card("tanhuanghu", obj_tanhuanghu, [
+    {
+        shape: 0,
+        sprite: spr_tanhuanghu,
+        cost: 195,
+        cooldown: 420,
+        description: "弹簧虎：连续发射2发带溅射的子弹攻击本行，优先空中，子弹可穿过岩浆和障碍",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_tanhuanghu
+    },
+    {
+        shape: 1,
+        sprite: spr_tanhuanghu_1,
+        cost: 195,
+        cooldown: 420,
+        description: "飞行弹簧虎：溅射伤害提高到40%",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_tanhuanghu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_tanhuanghu_2,
+        cost: 195,
+        cooldown: 420,
+        description: "机器弹簧虎：增加1发子弹",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_tanhuanghu_2
+    }
+    ]);
+
+    register_card("yuanqiniu", obj_yuanqiniu, [
+    {
+        shape: 0,
+        sprite: spr_yuanqiniu,
+        cost: 225,
+        cooldown: 1800,
+        description: "元气牛：连续散发全方位伤害气泡波，场上每多1张同类卡伤害提升1次",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_yuanqiniu
+    },
+    {
+        shape: 1,
+        sprite: spr_yuanqiniu_1,
+        cost: 225,
+        cooldown: 1800,
+        description: "泡泡元气牛：范围扩大到5*5，能量守恒",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_yuanqiniu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_yuanqiniu_2,
+        cost: 225,
+        cooldown: 1800,
+        description: "酷酷元气牛：增加1波气泡伤害",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_yuanqiniu_2
+    }
+    ]);
+
+    register_card("zhuanlonghu", obj_zhuanlonghu, [
+    {
+        shape: 0,
+        sprite: spr_zhuanlonghu,
+        cost: 200,
+        cooldown: 3600,
+        description: "转龙壶：缩减3*3范围内正在冷却的美食的冷却时间30%",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuanlonghu
+    },
+    {
+        shape: 1,
+        sprite: spr_zhuanlonghu_1,
+        cost: 200,
+        cooldown: 3600,
+        description: "充能转龙壶：缩短时间能力提升至50%",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuanlonghu_1
+    },
+    {
+        shape: 2,
+        sprite: spr_zhuanlonghu_2,
+        cost: 200,
+        cooldown: 3600,
+        description: "巨星转龙壶：能力影响范围提升至5*5",
+        plant_type: "normal",
+        feature_type: "normal",
+        target_card: "none",
+        place_preview: spr_zhuanlonghu_2
+    }
+    ]);
+
 }

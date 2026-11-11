@@ -8,7 +8,17 @@ if card_id == "magic_chicken"{
 				exit
 			}
 			cost = prev_card_info[? "cost"]
-			if cooldown_timer >= cooldown{
+			// 🔴 2026-11-12 修：只有「冷却走完 + 源卡换了」才重算，杜绝自动进冷却死循环。
+			//   原来这段挂在 `cooldown_timer >= cooldown` 下面，而它自己又把 cooldown_timer 顶成 cooldown
+			//   —— 顶满之后这个条件下一帧必然继续成立，于是这一段每帧都跑一次：
+			//   ① 食谱加成（plus / multiply）被反复叠乘，cooldown 越滚越大；
+			//   ② cooldown_timer 跟着一起顶满，冷却环永远停在满值。
+			//   融合大炮（脆心死神大炮 1500 帧）冷却基数大，几十帧内就滚到几十万帧 → 看起来就是「永远卡在冷却」。
+			//   现在：mc_src_id 记住上次处理的源卡 → 同一张源卡只算一次；换源仍然要等冷却走完（保持原口径，
+			//   否则玩家随便塞张便宜卡就能白刷一次冷却）；重设用 0 而不是 cooldown。
+			if (!variable_instance_exists(id, "mc_src_id")) mc_src_id = "";
+			if (mc_src_id != global.last_placed_card_id && cooldown_timer >= cooldown){
+				mc_src_id = global.last_placed_card_id
 				raw_cooldown = prev_card_info[? "cooldown"]
 				cooldown = prev_card_info[? "cooldown"]
 				base_cooldown = cooldown
@@ -35,7 +45,8 @@ if card_id == "magic_chicken"{
 				if cooldown < 13.5 * 60{
 					cooldown = 13.5 * 60
 				}
-				cooldown_timer = cooldown
+				cooldown_timer = 0
+				is_ready = false
 			}
 			var card_slot_data = deck_get_card_data(global.last_placed_card_id,card_save_data.shape)
 			if card_slot_data != noone{

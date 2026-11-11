@@ -17,7 +17,8 @@
     {"name":"ronghedapao","path":"folders/精灵/mod/Cards/Shooter/ronghedapao.yy",},
     {"name":"ronghekafei","path":"folders/精灵/mod/Cards/Shooter/ronghekafei.yy",},
     {"name":"bbq","path":"folders/精灵/mod/Cards/Shooter/bbq.yy",},
-    {"name":"tianxie","path":"folders/精灵/mod/Cards/Shooter/tianxie.yy",}
+    {"name":"tianxie","path":"folders/精灵/mod/Cards/Shooter/tianxie.yy",},
+    {"name":"qishui","path":"folders/精灵/mod/Cards/Shooter/qishui.yy",},
   ],
   "listItems":[],
 }

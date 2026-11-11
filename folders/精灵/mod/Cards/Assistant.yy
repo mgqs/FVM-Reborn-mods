@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"Assistant",
+  "folderPath":"folders/精灵/mod/Cards/Assistant.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"Assistant",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"budingwang","path":"folders/精灵/mod/Cards/Assistant/budingwang.yy",},
+    {"name":"meiweijishiqi","path":"folders/精灵/mod/Cards/Assistant/meiweijishiqi.yy",},
+    {"name":"sheshejiu","path":"folders/精灵/mod/Cards/Assistant/sheshejiu.yy",},
+    {"name":"shiguangji","path":"folders/精灵/mod/Cards/Assistant/shiguangji.yy",},
+    {"name":"xiangliaohu","path":"folders/精灵/mod/Cards/Assistant/xiangliaohu.yy",},
+    {"name":"zhuanlonghu","path":"folders/精灵/mod/Cards/Assistant/zhuanlonghu.yy",},
+  ],
+  "listItems":[],
+}

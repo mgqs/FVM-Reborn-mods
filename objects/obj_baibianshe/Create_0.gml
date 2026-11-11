@@ -45,48 +45,13 @@ copy_plant_type   = "normal";
 copy_feature_type = "normal";
 copy_base_target  = "none";
 
-// 找「百变蛇自己能放」的最近空格（二转放上下两只时用；起手格不能放就按距离外扩，同列优先）
-baibianshe_free_cell = function(_col, _row)
+// 找「百变蛇自己能放」的最近空格（二转放上下两只时用）
+//   _col/_row 期望格 ｜ _max_r 最大半径（undefined = 全屏）｜ _used 已占格集合（键 "col_row"）
+//   搜索逻辑只保留一份：scripts/baibianshe_preview_cell —— 放置预览与实放共用，
+//   避免两边各写一套 40 行再慢慢走偏（2026-11-12 合并）
+baibianshe_free_cell = function(_col, _row, _max_r = undefined, _used = undefined)
 {
-    var _maxd = max(global.grid_cols, global.grid_rows);
-    for (var d = 0; d <= _maxd; d++)
-    {
-        var _cands = [];
-        var dr = -d;
-        while (dr <= d)
-        {
-            var _dca = d - abs(dr);
-            if (_dca == 0)
-                array_push(_cands, { c: _col, r: _row + dr, p: 0 });
-            else
-            {
-                for (var s = -1; s <= 1; s += 2)
-                {
-                    var _c2 = _col + s * _dca;
-                    var _r2 = _row + dr;
-                    array_push(_cands, { c: _c2, r: _r2, p: (_r2 == _row) ? 1 : 2 });
-                }
-            }
-            dr++;
-        }
-
-        array_sort(_cands, function(a, b)
-        {
-            if (a.p != b.p) return a.p - b.p;
-            if (a.r != b.r) return a.r - b.r;
-            return a.c - b.c;
-        });
-
-        for (var j = 0; j < array_length(_cands); j++)
-        {
-            var _cc = _cands[j].c;
-            var _rr = _cands[j].r;
-            if (_cc < 0 || _cc >= global.grid_cols || _rr < 0 || _rr >= global.grid_rows) continue;
-            var _w = get_world_position_from_grid(_cc, _rr);
-            if (can_place_at_position(_w.x, _w.y, "normal", "normal", "none", "baibianshe")) return [_cc, _rr];
-        }
-    }
-    return [];
+    return baibianshe_preview_cell(_col, _row, _max_r, _used);
 };
 
 // 这一格还放得下目标卡吗（= 变身逻辑里那份 can_copy_card_at_position，补了越界判断）

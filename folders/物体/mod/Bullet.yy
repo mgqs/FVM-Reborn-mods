@@ -11,6 +11,11 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_jingangma_bullet","path":"objects/obj_jingangma_bullet/obj_jingangma_bullet.yy",},
+    {"name":"obj_qiedanlong_bullet","path":"objects/obj_qiedanlong_bullet/obj_qiedanlong_bullet.yy",},
+    {"name":"obj_qishui_bullet","path":"objects/obj_qishui_bullet/obj_qishui_bullet.yy",},
+    {"name":"obj_snowrabbit_bullet","path":"objects/obj_snowrabbit_bullet/obj_snowrabbit_bullet.yy",},
+    {"name":"obj_tanhuanghu_bullet","path":"objects/obj_tanhuanghu_bullet/obj_tanhuanghu_bullet.yy",},
     {"name":"obj_mianbao_bullet","path":"objects/obj_mianbao_bullet/obj_mianbao_bullet.yy",},
     {"name":"obj_aladdin_lamp_bullet","path":"objects/obj_aladdin_lamp_bullet/obj_aladdin_lamp_bullet.yy",},
     {"name":"obj_athena_bullet","path":"objects/obj_athena_bullet/obj_athena_bullet.yy",},

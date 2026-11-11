@@ -43,7 +43,7 @@ function mod_evo_table(){
         sheng_huo:               { cards:[ {id:"beef_hotpot", slot:0, need:2},
                                         {id:"spicy_pot", slot:1, need:2} ] },  // 赫斯提亚神使 ← 海鲜肥牛锅 + 酱香鱿鱼锅
         hufa_god:                { cards:[ {id:"hongliukaochuan", slot:0, need:2},
-                                        {id:"guiyuanma", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 幻境归元马（2026-10-30 用户指定）
+                                        {id:"jingangma", slot:1, need:2} ] },  // 俱吠罗神使 ← 星火红柳烤串机 + 梵音金刚马（2026-11-11 按官方配方：金刚马替换幻境归元马）
         gongjiang_god:           { cards:[ {id:"pizza_oven", slot:0, need:2},
                                         {id:"laipishe", slot:1, need:2} ] },  // 鲁班神使 ← 大王赖皮蛇 + 拉丝披萨炉
         brahma:                  { cards:[ {id:"magic_chicken", slot:0, need:2},
@@ -56,7 +56,8 @@ function mod_evo_table(){
                                         {id:"hspeed_juicer", slot:1, need:2} ] },  // 塔拉萨神使 ← 凤羽魔杖蛇 + 大菠萝榨汁机
         fengrao_god:             { cards:[ {id:"zhanqima", slot:0, need:2},
                                         {id:"wuxingshe", slot:1, need:2} ] },  // 弗雷神使 ← 燎原战旗马 + 泰斗五行蛇
-        clotho:                  { cards:[ {id:"brahma", slot:0, need:0} ] },  // 克洛托神使 ← 梵天神使（**本体即可**，用户 2026-10-27 明确）
+        clotho:                  { cards:[ {id:"shiguangji", slot:0, need:2},
+                                        {id:"sheshejiu", slot:1, need:2} ] },  // 克洛托神使 ← 未来时光机 + 琼浆蛇蛇酒（2026-11-11 按官方配方，原梵天神使单卡作废）
         chongsheng_god:          { cards:[ {id:"xingqiongma", slot:0, need:2},
                                         {id:"anranxiaohunfan", slot:1, need:2} ] },  // 奥西里斯神使 ← 浩瀚星穹马 + 天妇罗盖饭
         sun_god:                 { cards:[ {id:"shuangzi", slot:0, need:2},
@@ -67,9 +68,10 @@ function mod_evo_table(){
                                         {id:"blueberry_tower", slot:1, need:2} ] },  // 欧若拉神使 ← 猪猪发射站 + 蓝莓信号塔塔（这卡只注册到本体，按上限兜底）
         houyi_god:               { cards:[ {id:"bbq", slot:0, need:2},
                                         {id:"fashishe", slot:1, need:2} ] },  // 后羿神使 ← BBQ烤肉大师 + 奥术法师蛇（2026-11-08 用户指定副卡）
-        joker:                   { cards:[ {id:"donut", slot:0, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋
+        joker:                   { cards:[ {id:"donut", slot:0, need:2},
+                                        {id:"tanhuanghu", slot:1, need:2} ] },  // 埃罗斯神使 ← 女王多拿滋 + 机器弹簧虎（2026-11-11 按官方配方，多拿滋留主槽）
         time_god:                { cards:[ {id:"meiweijishiqi", slot:0, need:2},
-                                        {id:"ice_cream", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 珍馐计时器 + 极寒冰沙（2026-11-06 用户指定：计时器做主卡，冰沙挪副槽，治愈喵移出）
+                                        {id:"zhuanlonghu", slot:1, need:2} ] },  // 柯罗诺斯神使 ← 珍馐计时器 + 巨星转龙壶（2026-11-11 按官方配方，计时器留主槽，极寒冰沙移出）
         xiangshui_god:           { cards:[ {id:"berry_dessert", slot:0, need:2},
                                         {id:"xiangliaohu", slot:1, need:2} ] },  // 塔利亚神使 ← 流心莓果点心 + 魔力香料虎（2026-11-06 用户指定副卡）
         war_god:                 { cards:[ {id:"tiancheng", slot:0, need:2},
@@ -88,8 +90,8 @@ function mod_evo_table(){
                                         {id:"dangdanghu", slot:1, need:2} ] },  // 祝融神使 ← 驴肉火烧锅 + 微波铛铛虎（2026-11-06 用户指定：替换糖炒栗子）
         rig:                     { cards:[ {id:"nut_frier", slot:0, need:2},
                                         {id:"starrabbit", slot:1, need:2} ] },  // 里格神使 ← 松塔爆破机（坚果爆炒机）+ 宇宙星星兔（2026-11-09 用户指定：两个前置互换槽位）
-        ymir:                    { cards:[ {id:"grilled_lizard_pult", slot:0, need:2},
-                                        {id:"spoon_rabbit", slot:1, need:2} ] },  // 尤弥尔神使 ← 花椒蜥蜴投手 + 盖世勺勺兔
+        ymir:                    { cards:[ {id:"qiedanlong", slot:0, need:2},
+                                        {id:"grilled_lizard_pult", slot:1, need:2} ] },  // 尤弥尔神使 ← 钢爪窃蛋龙 + 花椒蜥蜴投手（2026-11-11 按官方配方，窃蛋龙进主槽，勺勺兔移出）
         save_god:                { cards:[ {id:"doumaobang", slot:0, need:2},
                                         {id:"tanchitu", slot:1, need:2} ] },  // 灵鱼摩蹉神使 ← 鼠鼠逗猫棒 + 暴走贪吃兔（2026-11-08 用户指定：主卡由白羊座星宿换成逗猫棒）
         poseidon:                { cards:[ {id:"shizi", slot:0, need:2},

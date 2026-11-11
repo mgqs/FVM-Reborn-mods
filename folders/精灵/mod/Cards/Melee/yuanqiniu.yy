@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"yuanqiniu",
+  "folderPath":"folders/精灵/mod/Cards/Melee/yuanqiniu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"yuanqiniu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"8c567afb-4171-4c45-8acd-eb337f739465","path":"sprites/spr_yuanqiniu/spr_yuanqiniu.yy",},
+    {"name":"48db048e-8ecb-4802-b78d-e8c160a0ea02","path":"sprites/spr_yuanqiniu_1/spr_yuanqiniu_1.yy",},
+    {"name":"cc7d3ef0-03d7-41ce-8c19-fe7297910c6c","path":"sprites/spr_yuanqiniu_2/spr_yuanqiniu_2.yy",},
+],
+}

@@ -6,7 +6,8 @@ event_inherited();
 // ── 二转：放下来就一起占 3 格（2026-11-08 用户口径）──
 //   「从变 3 个变成放 3 个」：本格 + 同列上一格 + 同列下一格各放一只百变蛇，
 //   之后玩家种下一张卡时**每只各变 1 张**（不是一只变 3 张）。
-//   上下格被占 → baibianshe_free_cell 由近到远找最近可放格；顶/底没有那一行就不补（只放 2 只）。
+//   上下格被占 / 顶底没有那一行 → 行号 clamp 到最边行后，由 baibianshe_free_cell 由近到远找最近可放格，
+//   只有周围半径 2 格内实在没地方才放弃那一只（2026-11-12 用户口径，不再「只放 2 只」）。
 //   等自己被 card_created 登记进网格后再动手（否则 grid_col / grid_row 还是初始值）。
 if (shape == 2 && !tb_siblings_done)
 {
@@ -15,14 +16,22 @@ if (shape == 2 && !tb_siblings_done)
     {
         tb_siblings_done = true;
 
-        var _rows = [grid_row - 1, grid_row + 1];
-        for (var _si = 0; _si < array_length(_rows); _si++)
-        {
-            var _rr = _rows[_si];
-            if (_rr < 0 || _rr >= global.grid_rows) continue;
+        // 2026-11-12 修（用户口径）：不再向外圈乱扩成「3 列各一个」，也不再在边路直接丢一只。
+        //   目标格 = 本格 + 同列上下各一格；边路没有那一行时先把行号 clamp 到最边行，
+        //   再由近到远（半径 ≤ 2 格）找最近的可放格；周围一圈实在没地方才放弃这一只。
+        //   已占用的格子记在 _used 里，防止上/下两只被挤到同一格。
+        var _slots = [grid_row - 1, grid_row + 1];
+        var _used = {};
+        _used[$ string(grid_col) + "_" + string(grid_row)] = true;
 
-            var _cell = baibianshe_free_cell(grid_col, _rr);
+        for (var _si = 0; _si < array_length(_slots); _si++)
+        {
+            var _want_r = clamp(_slots[_si], 0, global.grid_rows - 1);
+
+            var _cell = baibianshe_free_cell(grid_col, _want_r, 2, _used);
             if (array_length(_cell) == 0) continue;
+
+            _used[$ string(_cell[0]) + "_" + string(_cell[1])] = true;
 
             var _w = get_world_position_from_grid(_cell[0], _cell[1]);
             var _sib = external_mod_spawn(_w.x, _w.y, depth, "baibianshe", shape, current_level,

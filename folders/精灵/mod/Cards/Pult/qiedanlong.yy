@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"qiedanlong",
+  "folderPath":"folders/精灵/mod/Cards/Pult/qiedanlong.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"qiedanlong",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"dcce1a8e-936a-4de9-840e-6846458bc50a","path":"sprites/spr_qiedanlong/spr_qiedanlong.yy",},
+    {"name":"04a3de01-f984-460a-8263-314cd20c5a20","path":"sprites/spr_qiedanlong_1/spr_qiedanlong_1.yy",},
+    {"name":"8887811d-a43e-4fd3-ac42-8ecc94fcb188","path":"sprites/spr_qiedanlong_2/spr_qiedanlong_2.yy",},
+    {"name":"29fdddc7-2d20-4b40-a71a-a8b0e4ab03af","path":"sprites/spr_qiedanlong_bullet/spr_qiedanlong_bullet.yy",},
+    {"name":"341d7187-a41b-431c-be64-01017d0c44a3","path":"sprites/spr_qiedanlong_bullet_1/spr_qiedanlong_bullet_1.yy",},
+    {"name":"f32d968e-9483-4208-8166-45557efb38ac","path":"sprites/spr_qiedanlong_bullet_2/spr_qiedanlong_bullet_2.yy",}
+],
+}

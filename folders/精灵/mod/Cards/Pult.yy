@@ -13,6 +13,7 @@
     {"name":"huanyingshe","path":"folders/精灵/mod/Cards/Pult/huanyingshe.yy",},
     {"name":"eightcake","path":"folders/精灵/mod/Cards/Pult/eightcake.yy",},
     {"name":"tangchaolizi","path":"folders/精灵/mod/Cards/Pult/tangchaolizi.yy",},
+    {"name":"qiedanlong","path":"folders/精灵/mod/Cards/Pult/qiedanlong.yy",},
   ],
   "listItems":[],
 }
