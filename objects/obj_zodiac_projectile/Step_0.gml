@@ -100,13 +100,17 @@ if (_do_hit && _decoy_count > 0) {
     }
 }
 // 御风马二转秒杀表只在风弹路径中建立，避免其他投射物每步分配临时数组。
+// 2026-11-11：补入跨服·梦魇天空的两种滑翔系僵尸鼠 —— 滑翔僵尸鼠(kuafu_glider)、
+//   路障僵尸鼠(kuafu_barrier)。它们免疫灰烬，只能靠这条 true 伤害通道处理。
 var wind_execute_ids = undefined;
-if (kind == "wind") wind_execute_ids = ["glider_mouse","waste_flying_mouse","kamikaze_glider_mouse","flight_barrier_mouse","paratrooper_mouse","machine_bomb_mouse"];
+if (kind == "wind") wind_execute_ids = ["glider_mouse","waste_flying_mouse","kamikaze_glider_mouse","flight_barrier_mouse","paratrooper_mouse","machine_bomb_mouse","kuafu_glider","kuafu_barrier"];
 for (var i = 0; i < array_length(enemies); i++) {
     var e = enemies[i];
     if (array_contains(hit_ids,e.id)) continue;
     if (kind == "return" && e.object_index == obj_kuileima_decoy) continue; // 归元马忽略傀儡马，绝不攻击傀儡马代理
-    if (e.target_type != "normal" && e.target_type != "air") continue;
+    // 2026-11-11：归元马(return)额外放行 dance —— 高跷鼠 / 非主流鼠走行虽然不可被普通攻击锁定，
+    //   但属于「陆地上真实存在的鼠」，应能被归元马回收转化（原版机制）。
+    if (e.target_type != "normal" && e.target_type != "air" && !(kind == "return" && e.target_type == "dance")) continue;
     // 星弹只打地面：五星弹是扇形发出去的，原逻辑会顺路打空军（卡片本身不对空）
     if (kind == "star" && e.target_type != "normal") continue;
     var collision = false;
@@ -239,7 +243,8 @@ for (var i = 0; i < array_length(enemies); i++) {
                 var rm_rows_n = array_length(global.grid_terrains);
                 var rm_row_ok = (rm_rows_n > 0) && (rm_row >= 0) && (rm_row < rm_rows_n);
                 if (rm_row_ok) rm_row_ok = (rm_col >= 0) && (rm_col < array_length(global.grid_terrains[rm_row]));
-                if (!gy_returned && rm_row_ok && e.target_type == "normal"
+                // 2026-11-11：dance（高跷鼠 / 非主流鼠走行）同样允许变身归元马呆呆鼠
+                if (!gy_returned && rm_row_ok && (e.target_type == "normal" || e.target_type == "dance")
                     && instance_exists(e) && e.hp > 0 && !e.is_boss) {
                     // 送回第9列变为归元马呆呆鼠：仅非BOSS敌人才会变身，能力同平民鼠，继承原老鼠50%最大生命，动画由专属对象接管
                     var rm_pos = get_world_position_from_grid(rm_col,rm_row);

@@ -50,6 +50,17 @@ function can_hit(bullet_target_type,enemy_target_type){
 	return can_target_on(bullet_target_type,enemy_target_type)
 }
 
+/// 灰烬类卡片专用命中判定。
+/// 「dance」= 走行/腾空中的不可锁定状态（非主流鼠走行、高跷鼠腾空）。
+/// 该状态的原始语义是「普通攻击卡打不到，但灰烬类照样吃」——
+/// 见 obj_chunsun\Step_0.gml 的索敌白名单注释：「normal(陆鼠) / dance(非主流鼠走行时的类别) /
+/// underground(地鼠军) / invisible(未显形幽灵)」。灰烬卡因此统一走这个入口，
+/// 不再被 can_target_on 的 dance 分支（只认 pierce/rotate/d_fruit）挡掉。
+function can_hit_ash(bullet_target_type,enemy_target_type){
+	if (enemy_target_type == "dance") return true;
+	return can_target_on(bullet_target_type,enemy_target_type)
+}
+
 /// 是否为钻地状态中的龙渊地精鼠（喷壶类卡片可在索敌与命中阶段放行）
 function is_digging_dijing(_inst){
 	return instance_exists(_inst)

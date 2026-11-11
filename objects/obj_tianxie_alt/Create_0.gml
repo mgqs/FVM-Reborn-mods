@@ -31,15 +31,18 @@ alt_dy     = 0;
 alt_scale  = 1;
 alt_hit_range = 46;      // 与老鼠横向距离 ≤ 这个值就算碰到（卡面约一格宽）
 
-/// 结算：cow = 5×5 送回（0 伤害），wine = 十字火焰格 + 醉酒 25 秒
+/// 结算：cow = 5×5 送回 + 1000 物理伤害，wine = 十字火焰格 + 1800 爆炸 + 醉酒 25 秒
 alt_trigger = function(_e)
 {
     if (alt_mode == "cow")
     {
-        // 逆转牛口径（照 obj_nizhuanniu 的二转脉冲）：±2 行 / ±2 列，只搬 normal / 钻地，BOSS 免疫，**不造成伤害**
+        // 逆转牛口径（照 obj_nizhuanniu 的二转脉冲）：±2 行 / ±2 列，只搬 normal / 钻地，BOSS 免疫，
+        //   搬完每个目标再补 **1000 物理伤害**（原卡 reverse_damage = shape >= 1 ? 1000 : 0，
+        //   固定值、不吃星级 / 攻击力 buff → 这里同样写死 1000，不跟天蝎座 atk 走）
         var _r = _e.grid_row;
         var _c = _e.grid_col;
         var _radius = 2;
+        var _dmg = 1000;
         var _ids = [];
 
         with (obj_enemy_parent)
@@ -65,18 +68,30 @@ alt_trigger = function(_e)
             _m.x = _dest;
             _m.grid_col = global.grid_cols;
             instance_create_depth(_m.x, _m.y, _m.depth - 10, obj_nizhuanniu_effect);
+
+            // 送回之后补固定物理伤害（原卡是在 with (_e) 里 event_user(0) 结算的）
+            with (_m)
+            {
+                damage_amount = _dmg;
+                damage_type = "physical";
+                damage_source_object = obj_nizhuanniu;
+                event_user(0);
+            }
         }
     }
     else
     {
-        // 桂花酒口径（照 obj_guihuajiu 二转爆炸）：十字 5 格火焰 + 醉酒 25 秒
-        //   boom_damage = 0 → 命中那一下不炸伤害，只留火焰格 DoT（每跳 = burn_total / 2）和醉酒
+        // 桂花酒口径（照 obj_guihuajiu 二转爆炸）：十字 5 格，1800 爆炸 + 火焰格 DoT + 醉酒 25 秒
+        //   爆炸伤害读注册表 custom「爆炸伤害」（二转 1800），取不到再退回 1800
+        var _gj_info = get_plant_data_with_skill("guihuajiu", 2, 16, 0);
+        var _gj_boom = (_gj_info != undefined && ds_map_exists(_gj_info, "爆炸伤害")) ? _gj_info[? "爆炸伤害"] : 1800;
+
         var _cell = get_world_position_from_grid(_e.grid_col, _e.grid_row);
         var _boom = instance_create_depth(_cell.x, _cell.y, depth + 1, obj_guihuajiu_boom);
         _boom.shape       = 2;
         _boom.grid_col    = _e.grid_col;
         _boom.grid_row    = _e.grid_row;
-        _boom.boom_damage = 0;
+        _boom.boom_damage = _gj_boom;
         _boom.boom_cross  = true;
         _boom.boom_type   = "ash";
         _boom.burn_total  = alt_dmg;

@@ -30,13 +30,26 @@ if !has_dealt_damage{
 			var _col_diff = abs(grid_col - _center_col)
 			var _row_diff = abs(grid_row - _center_row)
 			if _col_diff <= other.hit_radius && _row_diff <= other.hit_radius{
-				// 目标类型判定
-				if can_hit(other.target_type, target_type){
-					// 造成伤害
-					damage_amount = other.damage
-					damage_type = "physical"
-					damage_source_object = other.object_index
-					event_user(0)
+				// 目标类型判定：灰烬卡统一走 can_hit_ash（dance 也吃 —— 高跷鼠 / 非主流鼠走行）
+				if can_hit_ash(other.target_type, target_type){
+					// 结算口径与辣椒粉 / 椰子果一致：只看 is_boss 与 immune_to_ash，与 target_type 无关。
+					//   BOSS / 防爆(精英)只吃伤害，其余一律碾压成灰。
+					if (is_boss || (immune_to_ash && hp > other.damage)){
+						damage_amount = other.damage
+						damage_type = "physical"
+						damage_source_object = other.object_index
+						event_user(0)
+					} else {
+						if (special_ash){
+							var _ash = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death)
+							_ash.special_ash = true
+							_ash.sprite_index = sprite_index
+							_ash.image_index = image_index
+						} else {
+							instance_create_depth(x, y - 20, depth, obj_mouse_ash_death)
+						}
+						instance_destroy()
+					}
 				}
 			}
 		}

@@ -88,5 +88,12 @@ if (ml_tick >= 10) {
             native_stop_mouse_limit();
             ml_on = false;
         }
+    } else if (ml_on) {
+        // 关闭限频（mouse_limit_hz 改成 0 后热生效）：必须卸钩子，
+        // 否则已装好的 WH_MOUSE_LL 会一直留在系统里继续吞移动事件。
+        if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
+        ml_on = false;
+        ml_focus_stable = false;
+        ml_focus_count = 0;
     }
 }

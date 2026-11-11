@@ -446,13 +446,15 @@ function mod_tg_modal_draw(_hover, _lines, _tip = "", _tip_bottom = false, _labe
 }
 
 /// @func mod_tg_confirm_draw(hover, assure_on) 转职确认窗（文案不变；未勾保险金时顶部加一句提醒）
-function mod_tg_confirm_draw(_hover, _assure_on = true){
+function mod_tg_confirm_draw(_hover, _assure_on = true, _guaranteed = false){
     var _lines = [
         { text: "转职后凭证将消失，您确定", red: false },
         { text: "要进行卡片转职吗？", red: false }
     ];
     // 提醒画在**按钮下方**（2026-10-28 用户要求），红字放大
-    mod_tg_modal_draw(_hover, _lines, mod_tg_assure_tip(_assure_on), true);
+    // 必成轮不再提醒「未勾保险金」：那一次 100% 成功，提醒反而误导（2026-11-11）
+    var _tip = _guaranteed ? "" : mod_tg_assure_tip(_assure_on);
+    mod_tg_modal_draw(_hover, _lines, _tip, true);
 }
 
 // ── 「转职说明」按钮 + 星级要求弹窗（2026-10-28 新增）──

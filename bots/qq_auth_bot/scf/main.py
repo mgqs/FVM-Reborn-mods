@@ -26,10 +26,24 @@
     AUTH_ADMIN_TOKEN  管理员认领口令（可选）。不填就无法 /解绑，也就没人能解绑
     ADMIN_QQ          仅用于提示文案里的 QQ 号，**不参与鉴权**（事件里没有 QQ 号）
 
+群成员清理（2026-11 新增，都可选）
+--------------------------------
+    GROUP_OPENID      要清理的那个群的 group_openid（必填，否则巡检直接退出）
+    KICK_MODE         dry_run（默认，只记名单）| mute（禁言 30 天）| remove（移出群）
+    KICK_NO_AUTH_DAYS 新成员几天内必须绑定授权码，默认 3
+    KICK_IDLE_DAYS    多少天不发言就清退，默认 7
+    KICK_BOUND_IDLE   已绑定的人是否也算 7 天清退，默认 1（要保护老玩家就设 0）
+    WARN_BEFORE_SEC   清退前多久 @ 提示一次，默认 3600 秒
+    EXEMPT_MARKS      群昵称里含这些字样就永不清理，默认「留」，可用逗号给多个
+    EXEMPT_OPENIDS    额外豁免的 member_openid（前缀或全量），逗号分隔
+    BLACKLIST_EXPIRE_DAYS 黑名单保留天数，默认 0 = 永久
+    COS_MEMBERS_KEY   成员表对象路径，默认 qqauth/members.json
+
 本地自检
 --------
     python main.py --check     检查配置 + 跑 Ed25519 向量 + 连一次 COS
     python main.py --simulate  不联网，模拟一次群 @ 消息，走完整发码链路
+    python main.py --sweep     本地跑一轮巡检（dry_run，不会真的踢人）
 """
 
 import base64
@@ -37,6 +51,7 @@ import hashlib
 import json
 import os
 import sys
+import time
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 # 本地开发时 bot.py / qq_auth.py 不在这里；云上打包后都在这里。
@@ -114,6 +129,13 @@ def build_handler():
         print(" ⚠️  授权签名密钥是占位符！发出去的码游戏端 100% 验不过。")
         print("    到「函数配置 → 环境变量」加 AUTH_SECRET，值是 tools/auth_secret.txt 的内容。")
         print("    （回调地址仍然能保存成功，但领码会被拒绝，别以为是机器人坏了）")
+    print(" 群清理: mode=%s 未绑=%dd 未言=%dd 警告提前=%d分钟 豁免字=%s"
+          % (bot.KICK_MODE, bot.KICK_NO_AUTH_DAYS, bot.KICK_IDLE_DAYS,
+             bot.WARN_BEFORE_SEC // 60, ",".join(bot.EXEMPT_MARKS) or "-"))
+    if bot.GROUP_OPENID:
+        print(" 群 openid: %s…" % bot.GROUP_OPENID[:10])
+    else:
+        print(" ⚠️  GROUP_OPENID 没配，定时巡检不会动任何人（入群事件照常记录）。")
     print("=" * 60)
     return _HANDLER
 
@@ -204,6 +226,13 @@ def _headers(event):
 
 def main_handler(event, context=None):
     """SCF 调用入口。"""
+    # 定时触发器也走这个入口（SCF 的「执行方法」只有一个，改不了）。
+    # 定时事件体形如 {"Type":"Timer","TriggerName":"...","Time":"..."}，
+    # 没有 httpMethod，也没有 body。不先分流的话会拿空 body 去验签，
+    # 每 15 分钟往日志里刷一条 401。
+    if isinstance(event, dict) and str(event.get("Type") or "") == "Timer":
+        return sweep_handler(event, context)
+
     try:
         handler = get_handler()
     except Exception as exc:
@@ -219,6 +248,20 @@ def main_handler(event, context=None):
     # 只报状态、不报桶名和任何密钥，且全是 ASCII，不怕没 charset。
     method = str(event.get("httpMethod") or "").upper()
     if method in ("GET", "HEAD") and not candidates[0]:
+        # 浏览器打开 函数URL?action=sweep[&mode=remove] 可以手动跑一轮巡检。
+        # 不验签，但**只读加推送、不泄露任何数据**；返回值只有统计数字。
+        # 想要更保险就在函数 URL 上关掉「公网访问」，只让定时触发器进。
+        qs = event.get("queryString") or {}
+        if isinstance(qs, str):
+            qs = dict(p.split("=", 1) for p in qs.split("&") if "=" in p)
+        if str(qs.get("action") or "").strip().lower() == "sweep":
+            mode = str(qs.get("mode") or "").strip().lower()
+            if mode:
+                # 临时用 URL 参数覆盖 KICK_MODE，验证完记得改环境变量，
+                # 否则定时触发的那条链路用的还是环境变量里的值。
+                bot.KICK_MODE = mode
+            out = sweep_handler({"manual": 1})
+            return _resp_text(200, json.dumps(out, ensure_ascii=False))
         cos_ok = all(os.environ.get(k, "").strip() for k in
                      ("COS_SECRET_ID", "COS_SECRET_KEY", "COS_REGION", "COS_BUCKET"))
         secret_ok = not qq_auth.SECRET.startswith("CHANGE_ME")
@@ -231,6 +274,10 @@ def main_handler(event, context=None):
                              else "PLACEHOLDER -- issued codes will never verify"),
             "admin  : %s" % ("token set (claim once in private chat)"
                              if bot.ADMIN_TOKEN else "no AUTH_ADMIN_TOKEN -- unbind disabled"),
+            "kick   : mode=%s no_auth=%dd idle=%dd warn=%dmin mark=%s"
+            % (bot.KICK_MODE, bot.KICK_NO_AUTH_DAYS, bot.KICK_IDLE_DAYS,
+               bot.WARN_BEFORE_SEC // 60, ",".join(bot.EXEMPT_MARKS) or "-"),
+            "group  : %s" % (bot.GROUP_OPENID or "GROUP_OPENID not set (sweep will stop)"),
         ]
         return _resp_text(200, "\n".join(lines))
 
@@ -254,6 +301,35 @@ def main_handler(event, context=None):
                  len(candidates), sample))
 
     return _resp(status, payload)
+
+
+def sweep_handler(event=None, context=None):
+    """定时触发器入口：每 15 分钟被调一次，跑一轮群成员巡检。
+
+    触发器的「定时触发」事件体是 `{"Type":"Timer","TriggerName":...}`，
+    没有 HTTP 字段，所以这个入口不参与验签，直接干活。
+
+    也可以手动调用来「现在就跑一轮」——比如刚改完 KICK_MODE，
+    想立刻看效果，不必等到下一个 15 分钟。
+
+    手动测试的两种方式：
+      1. 云函数控制台「函数代码 → 测试」，事件模板随便填（例如 {"manual":1}）
+      2. 浏览器打开 函数URL?action=sweep   ← 这个更省事（见下面的分支）
+    """
+    try:
+        handler = get_handler()
+    except Exception as exc:
+        print("[sweep] 初始化失败：%s" % exc)
+        return {"ok": False, "error": "not configured: %s" % exc}
+
+    import sweep as sweep_mod
+    try:
+        stat = sweep_mod.sweep(handler)
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        return {"ok": False, "error": str(exc)}
+    return {"ok": True, "stat": stat}
 
 
 # ---------------------------------------------------------------- 本地自检
@@ -336,6 +412,10 @@ def simulate():
     mem = store.MemoryStore()
     bot_handle = build_handler()
     bot_handle.ledger_factory = lambda: store.Ledger(mem)
+    # 成员表同样用内存的，否则本地点一下就往磁盘写一份 _members_debug.json
+    import members as members_mod
+    mem_table = store.MemoryStore()
+    bot_handle._members_factory = lambda: members_mod.Members(mem_table)
 
     text = "/授权 CF8A-EFFE"
     uid = "SIMULATED_OPENID"
@@ -365,11 +445,107 @@ def simulate():
     return 1
 
 
+def local_sweep():
+    """本地跑一轮巡检，用内存成员表 + 内存账本，绝不碰云端数据。
+
+    只打印名单，不调任何 QQ 接口 —— 本地连不上平台，也没有 token 权限。
+    想看「到底会踢谁」，这是最快的办法。
+    """
+    import members as members_mod
+    import sweep as sweep_mod
+
+    handler = build_handler()
+    mem_store = store.MemoryStore()
+    led_store = store.MemoryStore()
+    handler.ledger_factory = lambda: store.Ledger(led_store)
+    handler._members_factory = lambda: members_mod.Members(mem_store)
+
+    mem = handler._members_factory()
+    now = int(time.time())
+    # 造五个人，覆盖全部判定分支：
+    #   刚进来的 / 进来 4 天没绑的（超期）/ 进来 2.9 天（正在警告窗口）
+    #   老玩家已绑但 8 天没说话 / 名字带「留」的
+    mem.add_member("SIM_NEW_0001", now - 3600)
+    mem.add_member("SIM_NOAUTH_02", now - 4 * 86400)
+    mem.add_member("SIM_WARN_0005", now - 2 * 86400 - 23 * 3600)
+    mem.add_member("SIM_IDLE_0003", now - 30 * 86400)
+    mem.get("SIM_IDLE_0003")["bound"] = True
+    mem.get("SIM_IDLE_0003")["last_speak_ts"] = now - 8 * 86400
+    mem.add_member("SIM_EXEMPT_04", now - 10 * 86400, name="老王（留）", role="member")
+    mem.flush()   # sweep 会用另一个实例重新 load，不 flush 就看不到这些人
+
+    print("成员表 %d 人：" % mem.count())
+    for mid, rec in mem.members().items():
+        last = int(rec.get("last_speak_ts") or 0)
+        print("  %-14s name=%-10r bound=%-5s join=%+6.1fd last=%s"
+              % (mid, rec.get("name"), rec.get("bound"),
+                 (int(rec["join_ts"]) - now) / 86400.0,
+                 ("%+.1fd" % ((last - now) / 86400.0)) if last else "（从未）"))
+
+    plan = bot.sweep_plan(mem, now)
+    print("\n计划：警告 %d / 清理 %d / 跳过 %d"
+          % (len(plan["warn"]), len(plan["kick"]), len(plan["skip"])))
+    for it in plan["warn"]:
+        print("  [警告] %-14s %s 剩 %d 小时" % (it["mid"], it["why"], it["hours"]))
+    for it in plan["kick"]:
+        print("  [清理] %-14s %s" % (it["mid"], it["why"]))
+    for it in plan["skip"]:
+        print("  [跳过] %-14s %s" % (it["mid"], it["why"]))
+
+    print("\n警告文案预览：")
+    for it in plan["warn"] + plan["kick"]:
+        print("  · " + bot.warn_text(it).replace("\n", " "))
+
+    print("\n/待清理 会回：")
+    rows = bot.pending_report(mem, now)
+    if not rows:
+        print("  " + bot.MSG_ADMIN_PENDING_EMPTY)
+    else:
+        for r in rows:
+            print("  %s  %s" % (r["mid"][:8], r["why"]))
+
+    # 真跑一遍 sweep，mode=dry_run，验证不炸。
+    # 把发消息和踢人都换成假的 —— 本地不该有任何真实网络请求，
+    # 否则会带着假 group id 打到平台上、日志里全是 11321 干扰判断。
+    sent = []
+
+    def _fake_send(token, group_openid, content):
+        sent.append(content)
+        return 200, {"fake": True}
+
+    def _fake_token():
+        return "SIM_TOKEN", 7200
+
+    bot.GROUP_OPENID = bot.GROUP_OPENID or "SIM_GROUP_OPENID"
+    real_send, real_token = bot.send_group_active, bot.get_access_token
+    bot.send_group_active = _fake_send
+    bot.get_access_token = _fake_token
+    try:
+        stat = sweep_mod.sweep(handler, now=now, mode="dry_run")
+    finally:
+        bot.send_group_active = real_send
+        bot.get_access_token = real_token
+    print("\nsweep 返回：%s" % json.dumps(stat, ensure_ascii=False))
+    print("已发警告 %d 条（本地模拟，没真的发出去）" % len(sent))
+
+    ok = (len(plan["kick"]) == 2
+          and any(it["mid"] == "SIM_NOAUTH_02" for it in plan["kick"])
+          and any(it["mid"] == "SIM_IDLE_0003" for it in plan["kick"])
+          and any(it["mid"] == "SIM_WARN_0005" for it in plan["warn"])
+          and not any(it["mid"] == "SIM_EXEMPT_04" for it in plan["kick"] + plan["warn"])
+          and stat["kicked"] == 0)   # dry_run 不许真踢
+    print("\n" + ("✓ 判定正确：该踢的踢、该警告的警告、带「留」的放过、dry_run 不动手"
+                  if ok else "✗ 判定不对，看上面"))
+    return 0 if ok else 1
+
+
 def main():
     if "--check" in sys.argv:
         return check()
     if "--simulate" in sys.argv:
         return simulate()
+    if "--sweep" in sys.argv:
+        return local_sweep()
     print(__doc__)
     return 0
 

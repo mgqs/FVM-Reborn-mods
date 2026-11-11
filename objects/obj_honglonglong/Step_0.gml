@@ -98,19 +98,49 @@ switch state{
 				_laser.laser_angle = _beam_angles[_bi]
 			}
 			
-			// 伤害与光束一致：以 BOSS 所在格为起点，沿 0° / ±45° 三条线结算
-			// 水平束贯穿整行（沿用原判定）；斜向束受光束长度限制，左向最多 6 格
+			// ---------- 毁伤范围：与光束显示路径逐像素对齐 ----------
+			// 老写法按「格坐标 1 列 = 1 行」硬走对角，但格子是 107(宽) × 116(高) 的矩形：
+			//   精灵绕枪口转 45°，屏幕上每推进 1 列只升降 107px = 107/116 ≈ 0.92 行，
+			//   而硬走对角是每列整 1 行，等效斜率 atan2(116,107) ≈ 47.3°，比显示的 45° 更陡。
+			//   → 越到末端偏差越大：向左上发射时毁伤偏到上一格、向左下发射时偏到下一格
+			//     （两个方向误差镜像对称，正是 m00163 反馈的现象）。
+			// 现在改法：
+			//   ① 水平束不受影响，仍沿用「BOSS 所在行向左贯穿」的原判定；
+			//   ② 斜向束沿枪口出发的真实 45° 屏幕射线逐点采样，横向再覆盖光束厚度，
+			//      命中格与红色光带完全重合。
 			laser_hit_cells = {}
-			var _dirs = [[-1,0], [-1,-1], [-1,1]]
-			for (var _di = 0; _di < 3; _di++){
-				var _dc = _dirs[_di][0]
-				var _dr = _dirs[_di][1]
-				var _reach = (_dr == 0) ? global.grid_cols : 6
-				for (var _s = 1; _s <= _reach; _s++){
-					var _c = grid_col + _dc * _s
-					var _r = grid_row + _dr * _s
-					if (_c < 0 || _c >= global.grid_cols || _r < 0 || _r >= global.grid_rows) continue
-					laser_hit_cells[$ string(_c) + "," + string(_r)] = true
+			
+			// ① 水平束：BOSS 所在行，向左贯穿到边界
+			for (var _s = 1; _s <= global.grid_cols; _s++){
+				var _hcol = grid_col - _s
+				if (_hcol < 0) break
+				laser_hit_cells[$ string(_hcol) + "," + string(grid_row)] = true
+			}
+			
+			// ② 斜向束：spr_honglonglong_laser 498×42（可见区 top 9 ~ bottom 36，即 27px 厚），
+			//    image_xscale/yscale = 1.8，精灵默认朝左（GM 方向 180°），
+			//    image_angle 是逆时针（与 GM direction 同向），故实际指向 180° + laser_angle
+			//    （45 → 左下 225°，-45 → 左上 135°）
+			var _beam_len = 498 * 1.8
+			var _beam_half = 27 * 1.8 * 0.5   // 光带半宽 = 贴图可见厚度(bbox top9~bottom36)的一半
+			var _sample_step = 4              // 沿光束方向每 4px 采样一次
+			var _wide_step = 6                // 沿法线每 6px 采样一次（覆盖光带厚度）
+			for (var _ai = 1; _ai < array_length(_beam_angles); _ai++){
+				var _dir = 180 + _beam_angles[_ai]
+				var _ux = lengthdir_x(1, _dir)
+				var _uy = lengthdir_y(1, _dir)
+				// 光束法线，用来覆盖光带宽度（±半宽各一条采样线）
+				var _nx = lengthdir_x(1, _dir + 90)
+				var _ny = lengthdir_y(1, _dir + 90)
+				for (var _t = 0; _t <= _beam_len; _t += _sample_step){
+					for (var _w = -_beam_half; _w <= _beam_half; _w += _wide_step){
+						var _px = _muzzle_x + _ux * _t + _nx * _w
+						var _py = _muzzle_y + _uy * _t + _ny * _w
+						var _pc = floor((_px - global.grid_offset_x) / global.grid_cell_size_x)
+						var _pr = floor((_py - global.grid_offset_y) / global.grid_cell_size_y)
+						if (_pc < 0 || _pc >= global.grid_cols || _pr < 0 || _pr >= global.grid_rows) continue
+						laser_hit_cells[$ string(_pc) + "," + string(_pr)] = true
+					}
 				}
 			}
 			

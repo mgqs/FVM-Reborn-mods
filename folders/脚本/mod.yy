@@ -56,6 +56,7 @@
     {"name":"hex_batch3","path":"scripts/hex_batch3/hex_batch3.yy",},
     {"name":"hex_text_wrap","path":"scripts/hex_text_wrap/hex_text_wrap.yy",},
     {"name":"hex_test_picker","path":"scripts/hex_test_picker/hex_test_picker.yy",},
+    {"name":"mod_tianxie_pool","path":"scripts/mod_tianxie_pool/mod_tianxie_pool.yy",},
     {"name":"mod_bullet_hazard","path":"scripts/mod_bullet_hazard/mod_bullet_hazard.yy",},
   ],
 }

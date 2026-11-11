@@ -4,7 +4,7 @@
 //       0/1 转 3*3，2 转 5*5；**不增幅鱿鱼（youyu_god）与牛油果（niuyouguo）**。
 //       本体无攻击行为，28 帧全是闲置循环。
 // 数值取自「龙渊期新增卡组\数据与建议.xlsx」五行蛇那一段（倍率 17 档 / 耗能 280 / 冷却 40~15 秒）；
-// atk 存的是「倍率 × 100」（与丰饶神同口径：buff_value = atk / 100），所以是 104.5 这种小数。
+// 2026-11-10：倍率改存注册表 custom["增幅倍率"]（真小倍率，如 1.045），atk 归 0 不再参与。
 event_inherited();
 plant_id = "wuxingshe";
 obj_type = object_index;
@@ -28,7 +28,11 @@ buffer_type = "five_dir";
 buff_stacking = false;
 buff_max_stacks = 1;
 
-buff_value = atk / 100;
+buff_value = 1;
+var _wxs_info = get_plant_data_with_skill("wuxingshe", shape, clamp(current_level, 0, 16),
+    variable_instance_exists(id, "skill") ? skill : 0);
+if (_wxs_info != undefined && ds_map_exists(_wxs_info, "增幅倍率"))
+    buff_value = _wxs_info[? "增幅倍率"];
 buff_shape = (shape >= 2) ? "5x5" : "3x3";
 buff_cells = build_buff_cells(grid_col, grid_row, buff_shape, buff_value);
 buff_cells_refreshed = false;
