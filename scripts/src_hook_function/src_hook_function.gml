@@ -8,6 +8,18 @@ global._last_platform = -1
 #macro instance_destroy_origfunc instance_destroy
 #macro instance_destroy          obj_pool_instance_destroy
 
+// Visual-only sprite routing. Native aliases prevent recursive interception.
+#macro draw_self_origfunc draw_self
+#macro draw_self external_animation_draw_self
+#macro draw_sprite_origfunc draw_sprite
+#macro draw_sprite external_animation_draw_sprite
+#macro draw_sprite_ext_origfunc draw_sprite_ext
+#macro draw_sprite_ext external_animation_draw_sprite_ext
+#macro draw_sprite_part_origfunc draw_sprite_part
+#macro draw_sprite_part external_animation_draw_sprite_part
+#macro draw_sprite_part_ext_origfunc draw_sprite_part_ext
+#macro draw_sprite_part_ext external_animation_draw_sprite_part_ext
+
 
 function instance_create_depth_define(_x, _y, _depth, _obj, _variables = undefined) {
 

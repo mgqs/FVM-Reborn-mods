@@ -1,4 +1,6 @@
 /// Visual-only overrides. Never assign an instance's sprite_index/image_index/mask.
+global.external_animation_active = false;
+
 function external_animation_integer(value, minimum, maximum, label) {
     if (!is_numeric(value) || is_nan(value) || is_infinity(value) || floor(value) != value || value < minimum || value > maximum) {
         throw label + " 必须为 " + string(minimum) + "–" + string(maximum) + " 的整数";
@@ -24,6 +26,29 @@ function external_animation_png_validate(path, expected_width, expected_height) 
     if (!valid || w != expected_width || h != expected_height) throw "覆盖 PNG 必须保持原尺寸：" + path;
 }
 
+/// A clock only reads existing animation state; it never advances game time.
+function external_animation_clock_validate(payload) {
+    if (is_string(payload)) {
+        if (array_get_index(["card_parent", "enemy_parent", "image_index"], payload) == -1) throw "不支持的动画时钟：" + payload;
+        return payload;
+    }
+    if (!is_struct(payload)) throw "clock 必须是时钟名称或配置对象";
+    var clock_type = external_mod_field(payload, "type", "");
+    if (clock_type != "counter" && clock_type != "phase") throw "时钟 type 只支持 counter 或 phase";
+    var field = external_mod_field(payload, "field", "");
+    if (!is_string(field) || field == "" || string_length(field) > 100) throw "时钟 field 必须为实例变量名";
+    var offset = external_mod_field(payload, "offset", 0);
+    if (!is_numeric(offset) || is_nan(offset) || is_infinity(offset)) throw "时钟 offset 必须为有限数值";
+    var clock_direction = external_mod_field(payload, "direction", 1);
+    if (clock_direction != 1 && clock_direction != -1) throw "时钟 direction 只能是 1 或 -1";
+    var period_field = external_mod_field(payload, "period_field", "");
+    var period = external_mod_field(payload, "ticks_per_frame", 1);
+    if (!is_string(period_field) || string_length(period_field) > 100) throw "period_field 必须为实例变量名";
+    if (!is_numeric(period) || is_nan(period) || is_infinity(period) || period <= 0) throw "ticks_per_frame 必须为正有限数值";
+    return {type: clock_type, field: field, offset: offset, direction: clock_direction,
+        period_field: period_field, ticks_per_frame: period};
+}
+
 /// Validation reads files, but does not allocate textures or execute scripts.
 function external_animation_validate(root, manifest) {
     var paths = external_mod_field(manifest, "overrides", []);
@@ -42,9 +67,7 @@ function external_animation_validate(root, manifest) {
         d.sprite_asset = asset_get_index(d.sprite);
         d.object_asset = asset_get_index(d.object);
         if (d.sprite_asset == -1 || asset_get_type(d.sprite_asset) != asset_sprite) throw "找不到原版精灵：" + d.sprite;
-        if (d.object_asset == -1 || asset_get_type(d.object_asset) != asset_object) throw "找不到卡片对象：" + d.object;
-        if (d.object_asset == obj_external_mod_card || !object_is_ancestor(d.object_asset, obj_card_parent)) throw "动画覆盖仅支持原有卡片对象：" + d.object;
-        if (d.object_asset == obj_player_character || object_is_ancestor(d.object_asset, obj_player_character)) throw "玩家角色使用独立绘制，暂不支持动画覆盖";
+        if (d.object_asset == -1 || asset_get_type(d.object_asset) != asset_object) throw "找不到原有对象：" + d.object;
         if (variable_struct_exists(seen, d.sprite)) throw "重复覆盖精灵：" + d.sprite;
         seen[$ d.sprite] = true;
         var source = external_mod_field(d, "source", {});
@@ -56,8 +79,10 @@ function external_animation_validate(root, manifest) {
             if (!is_numeric(declared) || declared != actual[k]) throw "原素材版本不匹配：" + d.sprite + " / " + properties[k];
         }
         d.source = source;
-        d.clock = external_mod_field(d, "clock", "card_parent");
-        if (d.clock != "card_parent" && d.clock != "image_index") throw "clock 只支持 card_parent 或 image_index";
+        var default_clock = "image_index";
+        if (d.object_asset == obj_card_parent || object_is_ancestor(d.object_asset, obj_card_parent)) default_clock = "card_parent";
+        else if (d.object_asset == obj_enemy_parent || object_is_ancestor(d.object_asset, obj_enemy_parent)) default_clock = "enemy_parent";
+        d.clock = external_animation_clock_validate(external_mod_field(d, "clock", default_clock));
         d.clips = external_mod_field(d, "clips", []);
         if (!is_array(d.clips) || array_length(d.clips) < 1 || array_length(d.clips) > 32) throw "clips 需要 1–32 个动作段";
         var covered = array_create(source.frames, false);
@@ -69,6 +94,7 @@ function external_animation_validate(root, manifest) {
             clip.samples_per_frame = external_animation_integer(external_mod_field(clip, "samples_per_frame", 1), 1, 16, "samples_per_frame");
             clip.loop = external_mod_field(clip, "loop", false);
             if (!is_bool(clip.loop)) throw "loop 必须为布尔值";
+            clip.clock = external_animation_clock_validate(external_mod_field(clip, "clock", d.clock));
             clip.frames = external_mod_field(clip, "frames", []);
             var expected = (clip.last - clip.first + 1) * clip.samples_per_frame;
             if (!is_array(clip.frames) || array_length(clip.frames) != expected || expected > 4096) throw "动作段 PNG 数量必须等于原帧数 × samples_per_frame，最多 4096 张";
@@ -109,6 +135,7 @@ function external_animation_release() {
 
 function external_animation_init() {
     external_animation_release();
+    global.external_animation_active = false;
     global.external_animation_registry = {};
     global.external_animation_bytes = 0;
 }
@@ -124,6 +151,7 @@ function external_animation_register(pack, folder) {
         d.folder = folder;
         global.external_animation_registry[$ string(d.sprite_asset)] = d;
     }
+    global.external_animation_active = true;
 }
 
 function external_animation_fail(folder, message) {
@@ -181,28 +209,109 @@ function external_animation_sync(inst, period) {
         state: inst.state, period: max(1, period)};
 }
 
-function external_animation_sample(inst) {
-    var original = {sprite: inst.sprite_index, frame: inst.image_index};
-    if (!variable_global_exists("external_animation_registry")) return original;
-    var d = external_mod_field(global.external_animation_registry, string(inst.sprite_index), undefined);
-    if (is_undefined(d) || d.failed || !(inst.object_index == d.object_asset || object_is_ancestor(inst.object_index, d.object_asset))) return original;
-    var source_frame = ((floor(inst.image_index) mod d.source.frames) + d.source.frames) mod d.source.frames;
-    var fraction = 0;
-    if (d.clock == "image_index") fraction = inst.image_index - floor(inst.image_index);
-    else if (variable_instance_exists(inst, "external_animation_snapshot")) {
+function external_animation_clock_number(inst, field) {
+    if (!variable_instance_exists(inst, field)) throw "动画时钟缺少实例变量：" + field;
+    var value = variable_instance_get(inst, field);
+    if (!is_numeric(value) || is_nan(value) || is_infinity(value)) throw "动画时钟变量必须为有限数值：" + field;
+    return value;
+}
+
+function external_animation_phase(inst, clock, source_sprite, source_frame) {
+    if (is_struct(clock)) {
+        var value = external_animation_clock_number(inst, clock.field) + clock.offset;
+        if (clock.type == "counter") {
+            var period = clock.period_field == "" ? clock.ticks_per_frame : external_animation_clock_number(inst, clock.period_field);
+            if (period <= 0) throw "动画时钟换帧周期必须大于零";
+            value /= period;
+        }
+        if (is_nan(value) || is_infinity(value)) throw "动画时钟计算结果必须为有限数值";
+        return value - floor(value);
+    }
+    if (clock == "image_index") return source_frame - floor(source_frame);
+    if (clock == "enemy_parent") {
+        var period = external_animation_clock_number(inst, "flash_speed");
+        if (period <= 0) throw "敌鼠动画换帧周期必须大于零";
+        var value = external_animation_clock_number(inst, "timer") / period;
+        if (is_nan(value) || is_infinity(value)) throw "敌鼠动画时钟计算结果必须为有限数值";
+        return value - floor(value);
+    }
+    if (variable_instance_exists(inst, "external_animation_snapshot")) {
         var snapshot = inst.external_animation_snapshot;
-        // Child Step events may switch state/sprite or drive their own frame index.
-        if (!is_undefined(snapshot) && snapshot.sprite == inst.sprite_index && snapshot.frame == inst.image_index && snapshot.state == inst.state
+        if (!is_undefined(snapshot) && snapshot.sprite == source_sprite && snapshot.frame == source_frame && snapshot.state == inst.state
             && (inst.state == CARD_STATE.IDLE || inst.state == CARD_STATE.ATTACK)) {
-            fraction = clamp(snapshot.timer / snapshot.period, 0, 0.999999);
+            return clamp(snapshot.timer / snapshot.period, 0, 0.999999);
         }
     }
+    return 0;
+}
+
+/// Optional arguments also map auxiliary sprites and clipped Draw calls. A struct
+/// method or global draw has no instance scope and must keep the native result.
+function external_animation_sample(inst, requested_sprite = undefined, requested_frame = undefined) {
+    var valid_instance = !is_struct(inst) && instance_exists(inst);
+    if (is_undefined(requested_sprite)) requested_sprite = valid_instance ? inst.sprite_index : -1;
+    if (is_undefined(requested_frame)) requested_frame = valid_instance ? inst.image_index : 0;
+    var original = {sprite: requested_sprite, frame: requested_frame};
+    if (!variable_global_exists("external_animation_registry")) return original;
+    var d = external_mod_field(global.external_animation_registry, string(requested_sprite), undefined);
+    if (is_undefined(d) || d.failed || !valid_instance) return original;
+    if (!(inst.object_index == d.object_asset || object_is_ancestor(inst.object_index, d.object_asset))) return original;
+    // Native draw_sprite* accepts -1 as the instance's current subimage.
+    var frame_value = requested_frame == -1 ? inst.image_index : requested_frame;
+    var source_frame = ((floor(frame_value) mod d.source.frames) + d.source.frames) mod d.source.frames;
     for (var i = 0; i < array_length(d.clips); i++) {
         var clip = d.clips[i];
         if (source_frame < clip.first || source_frame > clip.last) continue;
+        var fraction;
+        try { fraction = external_animation_phase(inst, clip.clock, requested_sprite, frame_value); }
+        catch (error_data) {
+            external_animation_fail(d.folder, external_mod_error_text(error_data));
+            return original;
+        }
         var replacement = external_animation_load(d, clip);
         if (replacement == -1) return original;
-        return {sprite: replacement, frame: (source_frame - clip.first) * clip.samples_per_frame + floor(fraction * clip.samples_per_frame)};
+        var frame = source_frame;
+        if (is_struct(clip.clock) && clip.clock.direction == -1 && fraction > 0) {
+            if (frame > clip.first) frame--;
+            else if (clip.loop) frame = clip.last;
+            else fraction = 0;
+            if (fraction > 0) fraction = 1 - fraction;
+        }
+        return {sprite: replacement, frame: (frame - clip.first) * clip.samples_per_frame + min(clip.samples_per_frame - 1, floor(fraction * clip.samples_per_frame))};
     }
     return original;
+}
+
+/// The draw hooks use the same nonrecursive native aliases as the object-pool
+/// hooks. They preserve all transform, colour, alpha, crop and shader state.
+function external_animation_draw_self() {
+    if (!global.external_animation_active) { draw_self_origfunc(); return; }
+    if (is_struct(self) || !instance_exists(self)) { draw_self_origfunc(); return; }
+    var visual = external_animation_sample(self);
+    if (visual.sprite == sprite_index && visual.frame == image_index) { draw_self_origfunc(); return; }
+    draw_sprite_ext_origfunc(visual.sprite, visual.frame, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
+}
+
+function external_animation_draw_sprite(spr, subimg, px, py) {
+    if (!global.external_animation_active) { draw_sprite_origfunc(spr, subimg, px, py); return; }
+    var visual = external_animation_sample(self, spr, subimg);
+    draw_sprite_origfunc(visual.sprite, visual.frame, px, py);
+}
+
+function external_animation_draw_sprite_ext(spr, subimg, px, py, sx, sy, rotation, colour, alpha) {
+    if (!global.external_animation_active) { draw_sprite_ext_origfunc(spr, subimg, px, py, sx, sy, rotation, colour, alpha); return; }
+    var visual = external_animation_sample(self, spr, subimg);
+    draw_sprite_ext_origfunc(visual.sprite, visual.frame, px, py, sx, sy, rotation, colour, alpha);
+}
+
+function external_animation_draw_sprite_part(spr, subimg, left, top, width, height, px, py) {
+    if (!global.external_animation_active) { draw_sprite_part_origfunc(spr, subimg, left, top, width, height, px, py); return; }
+    var visual = external_animation_sample(self, spr, subimg);
+    draw_sprite_part_origfunc(visual.sprite, visual.frame, left, top, width, height, px, py);
+}
+
+function external_animation_draw_sprite_part_ext(spr, subimg, left, top, width, height, px, py, sx, sy, colour, alpha) {
+    if (!global.external_animation_active) { draw_sprite_part_ext_origfunc(spr, subimg, left, top, width, height, px, py, sx, sy, colour, alpha); return; }
+    var visual = external_animation_sample(self, spr, subimg);
+    draw_sprite_part_ext_origfunc(visual.sprite, visual.frame, left, top, width, height, px, py, sx, sy, colour, alpha);
 }
