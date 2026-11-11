@@ -5,7 +5,7 @@ var _cy = grid_row;
 // 1) 3×3 灰烬爆炸（[攻击力] 伤害）
 with (obj_enemy_parent)
 {
-    if (hp > 0 && abs(grid_col - _cx) <= 1 && abs(grid_row - _cy) <= 1 && can_hit(other.target_type, target_type))
+    if (hp > 0 && abs(grid_col - _cx) <= 1 && abs(grid_row - _cy) <= 1 && can_hit_ash(other.target_type, target_type))
     {
         damage_amount = other.atk;
         damage_type = "normal";

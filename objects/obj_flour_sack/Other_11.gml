@@ -10,7 +10,7 @@ var nearest_dist = 1000; // 足够大的初始距离
 with (obj_enemy_parent) {
     if (hp > 0) {
         var dist = point_distance(x, y, other.x, other.y);
-        if (grid_row == other.grid_row && grid_col >= other.grid_col-other.range && grid_col <= (other.grid_col + other.range) && can_target_on(other.target_type,target_type)) {
+        if (grid_row == other.grid_row && grid_col >= other.grid_col-other.range && grid_col <= (other.grid_col + other.range) && can_hit_ash(other.target_type,target_type)) {
             nearest_enemy = id;
             nearest_dist = dist;
             has_target = true;

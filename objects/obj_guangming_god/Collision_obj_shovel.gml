@@ -26,7 +26,7 @@ if explode_cooldown <= 0 {
         && grid_col <= other.grid_col + 2
         && grid_row >= other.grid_row - 2
         && grid_row <= other.grid_row + 2
-        && can_hit(other.target_type, target_type)) {
+        && can_hit_ash(other.target_type, target_type)) {
 
             if array_get_index(other.can_mouse_list, mouse_id) != -1 && !can_dropped {
                 into_act()

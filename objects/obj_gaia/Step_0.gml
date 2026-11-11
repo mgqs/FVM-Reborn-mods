@@ -23,23 +23,32 @@ var target_enemy = -4;
 
 if (!attacking)
 {
- var min_distance = 10000;
- var row_offset = (shape == 3) ? 2 : 1;
+    // 2026-11-11：索敌口径改为「咖喱龙虾炮(find_priority_enemy)」——
+    //   旧逻辑是「本行 ±row_offset 行内、列坐标最靠左的敌人」，
+    //   新逻辑与龙虾炮一致：任意行，只看存活(hp>0)、已进屏(y>0)、
+    //   命中类型通过(can_hit_ash)，优先 maxhp 最高的，maxhp 相同取最左(x 最小)。
+    //   行限制 row_offset 因此取消 —— 巨石会直接飞到目标所在格落点爆炸，
+    //   3*3 / 5*5 的爆炸范围仍由 obj_gaia_bullet 自己按 shape 决定。
+    //   唯一保留的是「已进地图」这一条（grid_col <= 列数+1）：龙虾炮没有这条，
+    //   但巨石是落点即爆，锁到还在屏幕外很远的鼠（含刚生成、占位 99 的实例）
+    //   等于白发一发；这一条不影响「不限行 / 血上限优先」的改动。
+    var _best_hp = -1;
+    var _best_x = room_width;
 
- with (obj_enemy_parent)
- {
- if (grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type) && grid_row >= (other.grid_row - row_offset) && grid_row <= (other.grid_row + row_offset))
- {
- var distance = grid_col - other.grid_col;
-
- if (distance < min_distance)
- {
- min_distance = distance;
- target_enemy = id;
- has_enemy = true;
- }
- }
- }
+    with (obj_enemy_parent)
+    {
+        if (hp > 0 && y > 0 && grid_col <= (global.grid_cols + 1)
+            && can_hit_ash(other.target_type, target_type))
+        {
+            if (maxhp > _best_hp || (maxhp == _best_hp && x < _best_x))
+            {
+                _best_hp = maxhp;
+                _best_x = x;
+                target_enemy = id;
+                has_enemy = true;
+            }
+        }
+    }
 }
 
 if (has_enemy)

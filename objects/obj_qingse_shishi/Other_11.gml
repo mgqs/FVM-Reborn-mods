@@ -41,7 +41,7 @@ for (var j = 0; j < persimmon_count; j++){
 		if (hp <= 0) continue
 		if (state == ENEMY_STATE.DEAD) continue
 		if (grid_row != _target_row) continue
-		if (!can_target_on(other.target_type, target_type)) continue
+		if (!can_hit_ash(other.target_type, target_type)) continue
 		// 在前方范围内
 		var _col_diff = grid_col - other.grid_col
 		if (_col_diff >= -other.range && _col_diff <= other.range){

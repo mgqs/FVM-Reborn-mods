@@ -26,7 +26,10 @@ if effect_timer == 4 * current_flash_speed{
 	with obj_enemy_parent{
 		if target_type == "air" && array_get_index(other.ignore_list,mouse_id) == -1{
 			// 东风鼠：换气扇直接秒杀（免疫灰烬不等于免疫吹飞）。
-			if mouse_id == "longyuan_dongfeng"{
+			// 2026-11-11：滑翔僵尸鼠(kuafu_glider) 同属「免疫灰烬但该被吹飞」的空中单位，
+			//   它免疫灰烬所以以前落到最下面的 else 只扣伤；按同一个口径直接吹死。
+			//   注意不要顺手加 kuafu_barrier（路障僵尸鼠重量级，换气扇不处理）。
+			if mouse_id == "longyuan_dongfeng" || mouse_id == "kuafu_glider"{
 				var inst = instance_create_depth(x,y,-500,obj_mouse_blow_effect)
 				inst.sprite_index = sprite_index
 				inst.image_index = image_index

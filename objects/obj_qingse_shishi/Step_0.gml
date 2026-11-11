@@ -41,7 +41,7 @@ with(obj_enemy_parent){
 	if (_row_diff <= 1
 		&& _col_diff >= -other.range
 		&& _col_diff <= other.range
-		&& can_target_on(other.target_type, target_type)){
+		&& can_hit_ash(other.target_type, target_type)){
 		has_enemy = true
 		first_target_col = grid_col
 		first_target_row = grid_row
