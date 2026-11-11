@@ -148,6 +148,9 @@ function external_mod_validate(folder) {
     var root = external_mod_root(folder);
     var manifest = file_exists(root + "/manifest.json") ? json_parse(external_mod_read(root + "/manifest.json")) : {};
     if (external_mod_field(manifest, "api_version", 1) != 1) throw "不支持的 Mod API 版本";
+    var pack_type = external_mod_field(manifest, "type", "cards");
+    if (pack_type == "animation_override") return external_animation_validate(root, manifest);
+    if (pack_type != "cards") throw "不支持的 Mod 类型：" + string(pack_type);
     var files = external_mod_field(manifest, "cards", ["card.json"]);
     if (!is_array(files) || array_length(files) < 1 || array_length(files) > 64) throw "cards 必须为 1–64 个 card.json 路径";
     var cards = [];
@@ -231,7 +234,20 @@ function external_mod_validate(folder) {
         d.initial_unlock = external_mod_field(d, "initial_unlock", {level: 0, shape: 0, skill: 0});
         array_push(cards, d);
     }
-    return {root: root, name: external_mod_field(manifest, "name", filename_name(folder)), cards: cards};
+    return {type: "cards", root: root, name: external_mod_field(manifest, "name", filename_name(folder)), cards: cards, overrides: []};
+}
+
+function external_mod_check_conflicts(incoming, installed) {
+    for (var i = 0; i < array_length(incoming.cards); i++) {
+        for (var j = 0; j < array_length(installed.cards); j++) {
+            if (incoming.cards[i].id == installed.cards[j].id) throw "已安装同 ID 卡片：" + incoming.cards[i].id;
+        }
+    }
+    for (var i = 0; i < array_length(incoming.overrides); i++) {
+        for (var j = 0; j < array_length(installed.overrides); j++) {
+            if (incoming.overrides[i].sprite == installed.overrides[j].sprite) throw "已安装同精灵动画覆盖：" + incoming.overrides[i].sprite;
+        }
+    }
 }
 
 function external_mod_sprite(root, anim, assets, default_origin = "bottom_center") {
@@ -325,6 +341,7 @@ function external_mod_get(cid) {
 }
 
 function external_mod_load_all() {
+    external_animation_init();
     global.external_card_registry = {};
     global.external_mod_errors = {};
     global.external_mod_loaded = {};
@@ -351,6 +368,12 @@ function external_mod_load_all() {
         var assets = ds_list_create();
         try {
             var pack = external_mod_validate(root + "/" + folder);
+            if (pack.type == "animation_override") {
+                external_animation_register(pack, folder);
+                global.external_mod_loaded[$ folder] = array_length(pack.overrides);
+                ds_list_destroy(assets);
+                continue;
+            }
             // Check every ID before publishing any card from this package.
             for (var c = 0; c < array_length(pack.cards); c++) {
                 var d = pack.cards[c];

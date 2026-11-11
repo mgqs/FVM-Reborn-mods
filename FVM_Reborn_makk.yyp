@@ -2349,6 +2349,7 @@
     {"id":{"name":"enemy_registry","path":"scripts/enemy_registry/enemy_registry.yy",},},
     {"id":{"name":"Enum_Init","path":"scripts/Enum_Init/Enum_Init.yy",},},
     {"id":{"name":"external_mod_system","path":"scripts/external_mod_system/external_mod_system.yy",},},
+    {"id":{"name":"external_animation_mod","path":"scripts/external_animation_mod/external_animation_mod.yy",},},
     {"id":{"name":"FileUtil","path":"scripts/FileUtil/FileUtil.yy",},},
     {"id":{"name":"gacha_random_card","path":"scripts/gacha_random_card/gacha_random_card.yy",},},
     {"id":{"name":"get_grid_position_from_world","path":"scripts/get_grid_position_from_world/get_grid_position_from_world.yy",},},

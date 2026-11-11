@@ -41,22 +41,18 @@ if (point_in_rectangle(mouse_x, mouse_y, x - 420, y - 305, x - 245, y - 270) && 
         if (code == 0) {
             try {
                 var pack = external_mod_validate(target);
-                var imported_ids = {};
-                for (var c = 0; c < array_length(pack.cards); c++) imported_ids[$ pack.cards[c].id] = true;
                 // Compare with installed packages, including disabled ones.
                 for (var m = 0; m < array_length(mods); m++) {
                     var existing_pack;
                     try { existing_pack = external_mod_validate(mod_root + "/" + mods[m].folder); }
                     catch (_invalid_existing) { continue; }
-                    for (var c = 0; c < array_length(existing_pack.cards); c++) {
-                        if (variable_struct_exists(imported_ids, existing_pack.cards[c].id)) throw "已安装同 ID 卡片：" + existing_pack.cards[c].id;
-                    }
+                    external_mod_check_conflicts(pack, existing_pack);
                 }
                 refresh_mods();
                 for (var imported_index = 0; imported_index < array_length(mods); imported_index++) {
                     if (mods[imported_index].folder == filename_name(target)) mods[imported_index].enabled = true;
                 }
-                if (save_state()) notify_result("已导入并开启：" + pack.name + "\n请完全退出并重新启动游戏，卡片才会加入背包、情报岛和选卡界面。");
+                if (save_state()) notify_result("已导入并开启：" + pack.name + "\n请完全退出并重新启动游戏，Mod 才会生效。");
                 else notify_result("压缩包已解压，但开启状态保存失败，请检查目录权限。");
             } catch (_validation_error) {
                 native_delete_folder(target);

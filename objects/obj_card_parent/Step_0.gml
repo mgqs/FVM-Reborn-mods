@@ -260,3 +260,4 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+external_animation_sync(id, current_flash_speed);
