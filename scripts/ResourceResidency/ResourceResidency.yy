@@ -1,0 +1,10 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ResourceResidency",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ResourceResidency",
+  "parent":{"name":"Util","path":"folders/Util.yy",},
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

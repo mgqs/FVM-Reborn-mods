@@ -30,7 +30,7 @@ def run(args: list[str | Path], **kwargs) -> None:
 def read_yy(path: Path) -> dict:
     # GameMaker's YY JSON permits trailing commas. Preserve commas in strings.
     text = re.sub(r'("(?:\\.|[^"\\])*")|,(\s*[}\]])',
-                  lambda m: m[1] if m[1] is not None else m[2], path.read_text())
+                  lambda m: m[1] if m[1] is not None else m[2], path.read_text(encoding="utf-8-sig"))
     return json.loads(text)
 
 
@@ -273,12 +273,66 @@ def assemble_app(stage: Path, runtime: Path, output: Path, identity: str, work: 
     return destination
 
 
+def macos_configuration(resource: dict) -> dict:
+    """Materialize overrides: the LTS asset compiler can silently ignore them."""
+    resource = dict(resource)
+    overrides = resource.pop("ConfigValues", {}).get("macOS", {})
+    for key, value in overrides.items():
+        if isinstance(value, str):
+            try:
+                value = json.loads(value)
+            except json.JSONDecodeError:
+                pass
+        resource[key] = value
+    return resource
+
+
+def prepare_macos_project(work: Path) -> Path:
+    # Stage metadata only. Source images/audio are symlinked, and source files
+    # remain untouched so IDE/Windows builds and other worktrees stay independent.
+    stage = work / "macOS-project"
+    if stage.exists():
+        shutil.rmtree(stage)
+    stage.mkdir()
+    for path in ROOT.iterdir():
+        if path.name.startswith(".") or path.name in {"sounds", "dist", "out", "output"} or path.suffix == ".yyp":
+            continue
+        (stage / path.name).symlink_to(path, target_is_directory=path.is_dir())
+    project = macos_configuration(read_yy(ROOT / "FVM_Reborn_makk.yyp"))
+    project["TextureGroups"] = [macos_configuration(group) for group in project["TextureGroups"]]
+    sounds = stage / "sounds"
+    sounds.mkdir()
+    for entry in project["resources"]:
+        relative = Path(entry["id"]["path"])
+        if relative.parts[0] != "sounds":
+            continue
+        original = ROOT / relative
+        metadata = read_yy(original)
+        if "macOS" not in metadata.get("ConfigValues", {}):
+            (sounds / original.parent.name).symlink_to(original.parent, target_is_directory=True)
+            continue
+        metadata = macos_configuration(metadata)
+        # Streamed assets are exported individually and use the default bus.
+        if metadata.get("compression") == 3:
+            metadata["audioGroupId"] = {"name": "audiogroup_default", "path": "audiogroups/audiogroup_default"}
+        target = stage / relative
+        target.parent.mkdir()
+        for asset in original.parent.iterdir():
+            if asset != original:
+                (target.parent / asset.name).symlink_to(asset, target_is_directory=asset.is_dir())
+        target.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
+    destination = stage / "FVM_Reborn_makk.yyp"
+    destination.write_text(json.dumps(project, ensure_ascii=False, indent=2) + "\n")
+    return destination
+
+
 def build_game(args, work: Path, runtime: Path, user: Path) -> None:
     output = args.output.expanduser().resolve()
     output.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="package-", dir=work))
     log_path = work / "build.log"
-    command = [*igor_command(runtime), f"--project={ROOT / 'FVM_Reborn_makk.yyp'}",
+    project = prepare_macos_project(work)
+    command = [*igor_command(runtime), f"--project={project}",
                f"--rp={runtime}", f"--uf={user}", f"--cache={work / 'cache'}",
                f"--temp={work / 'temp'}",
                f"--of={stage / 'FVM_Reborn_makk.zip'}", f"--tf={stage / 'FVM_Reborn_makk.zip'}",
@@ -302,6 +356,7 @@ def build_game(args, work: Path, runtime: Path, user: Path) -> None:
         print("\n".join(log_path.read_text(errors="replace").splitlines()[-60:]), file=sys.stderr)
         raise RuntimeError(f"GameMaker build failed ({result.returncode}); see {log_path}")
     destination = assemble_app(stage, runtime, output, args.sign_identity, work)
+    run([sys.executable, ROOT / "tools/test_macos_resources.py", destination])
     archive = output / "FVM_Reborn_makk-macOS.zip"
     if archive.exists():
         archive.unlink()

@@ -1,6 +1,7 @@
 {
   "$GMSound":"v2",
   "%Name":"mus_delicious_island_daytime_pre",
+  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",

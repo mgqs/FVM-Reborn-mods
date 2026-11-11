@@ -200,7 +200,7 @@ for (var i = 0; i < array_length(global.keybind_config); i++) {
 
 
 ini_close();
-audio_group_set_gain(music,global.music_volume,0)
+music_apply_volume()
 audio_group_set_gain(sound,global.sound_volume,0)
 window_set_fullscreen(global.fullscreen)
 gpu_set_tex_filter(global.tex_fliter)

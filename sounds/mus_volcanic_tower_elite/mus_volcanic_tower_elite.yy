@@ -1,6 +1,7 @@
 {
   "$GMSound":"v2",
   "%Name":"mus_volcanic_tower_elite",
+  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",

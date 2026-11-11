@@ -1,6 +1,7 @@
 {
   "$GMSound":"v2",
   "%Name":"mus_cross_server_day_boss",
+  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",

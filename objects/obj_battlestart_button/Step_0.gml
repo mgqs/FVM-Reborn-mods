@@ -9,14 +9,14 @@ if button_pushed{
 		button_pushed = false
 		audio_pause_sound(mus_readyroom)
 		global.gui_stack.to(room_battle)
-		texture_prefetch("bullet")
-		texture_prefetch("effects")
+		resource_texture_prepare("bullet")
+		resource_texture_prepare("effects")
 		if global.map_id == "tower_cake"{
-			texture_prefetch("enemy_tower")
+			resource_texture_prepare("enemy_tower")
 		}
 		else if global.map_id == "undersea_vortex"{
-			texture_prefetch("pack_undersea_vortex")
+			resource_texture_prepare("pack_undersea_vortex")
 		}
-		texture_prefetch("time_god")
+		resource_texture_prepare("time_god")
 	}
 }
