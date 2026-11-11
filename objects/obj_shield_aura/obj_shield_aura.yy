@@ -9,8 +9,8 @@
   "name":"obj_shield_aura",
   "overriddenProperties":[],
   "parent":{
-    "name":"FVM_Reborn_makk",
-    "path":"FVM_Reborn_makk.yyp",
+    "name":"Weapons",
+    "path":"folders/物体/Player/Weapons.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -50,11 +50,12 @@ if (state == CARD_STATE.ATTACK) {
         if (sprite_index == asset_get_index("spr_starrabbit_2")) shot_shape = max(shot_shape,2);
         else if (sprite_index == asset_get_index("spr_starrabbit_1")) shot_shape = max(shot_shape,1);
         var angles = [0,22.5,-22.5,45,-45];
-        var damage_multiplier = shot_shape + 1;
+        // 2026-11-10 用户口径：转数只体现在 atk 表（1/2/3 转 = 1x/2x/3x），
+        //   代码里不再乘一次，避免“面板 2 倍 × 代码 2 倍”重复放大
         var sr_spr = spr_starrabbit_bullet;
         if (shot_shape == 1) sr_spr = spr_starrabbit_bullet_1;
         else if (shot_shape >= 2) sr_spr = spr_starrabbit_bullet_2;
-        var sr_dmg = atk*damage_multiplier;
+        var sr_dmg = atk;
         for (var i = 0; i < array_length(angles); i++) {
             var b = instance_create_depth(x,y-30,-2500,obj_zodiac_projectile);
             b.kind = "star";

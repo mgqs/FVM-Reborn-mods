@@ -27,18 +27,17 @@ target_type = "throw"
 has_fired = false
 
 // ========== 融合数据（按星级查表，取自「这组卡的推荐数值和情报岛.xlsx」） ==========
-// 定身概率(%) / 定身时间(s) 走注册表 custom（mod_cards_init 三形态的 info_custom），
-//   情报岛文案直接写 {定身概率} / {定身时间}；这里换算成帧存 stun_frames（同彩虹蛇 / 电鳗口径）。
-// 深度毒气伤害仍按星级查表 —— 投掷类但 2026-11-07 用户确认「毒气故意固定」，不跟 atk 增幅。
-var _poison_by_star = [0, 20, 23, 27, 36, 47, 57, 68, 81, 95, 114, 135, 156, 177, 198, 219, 243];
-var _cl = clamp(current_level, 0, array_length(_poison_by_star) - 1);
-poison_damage = _poison_by_star[_cl];
-
+// 定身概率(%) / 定身时间(s) / 深度毒气伤害 **全部走注册表 custom**（mod_cards_init 三形态的 info_custom），
+//   情报岛文案直接写 {定身概率} / {定身时间} / {毒气伤害}，改表即生效，代码里不再有硬编码数组。
+//   毒气伤害仍**故意固定**（2026-11-07 口径：投掷类但毒气不跟 atk 增幅），只是数值搬进了表里。
 var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _info = get_plant_data_with_skill("ronghedan_god", shape, clamp(current_level, 0, 16), _sk);
-stun_chance = 20;   // 兜底：17 级满
-stun_time   = 3.6;  // 秒
+
+poison_damage = 0;      // 兜底：表里没有就不出毒气
+stun_chance = 20;       // 兜底：17 级满
+stun_time   = 3.6;      // 秒
 if (_info != undefined){
+    if (ds_map_exists(_info, "毒气伤害")) poison_damage = _info[? "毒气伤害"];
     if (ds_map_exists(_info, "定身概率")) stun_chance = _info[? "定身概率"];
     if (ds_map_exists(_info, "定身时间")) stun_time   = _info[? "定身时间"];
 }

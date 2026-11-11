@@ -695,7 +695,7 @@ function tg_confirm_draw(){
         mod_tg_fill_confirm_draw(tg_confirm_hover, tg_fill_price, tg_fill_cur_name, tg_fill_name, tg_assure, tg_fill_currency);
         return;
     }
-    mod_tg_confirm_draw(tg_confirm_hover, tg_assure);
+    mod_tg_confirm_draw(tg_confirm_hover, tg_assure, tg_is_guaranteed());
 }
 // 「转职说明」弹窗（2026-10-28）：矩形判定与绘制都在表脚本里
 function tg_help_rect(){ return mod_tg_help_rect(); }
@@ -766,11 +766,25 @@ function tg_check(){
     return mod_tg_check(tg_card, tg_assure, global.save_data.player.gold, global.debug);
 }
 
+/// @func tg_is_guaranteed() 当前选的这张卡**这一次**转职是不是「必成轮」
+///   保底计数按卡存在存档里（mod_tg_pity_get），上限按目标形态的档位算（mod_tg_pity_max）
+///   用途（2026-11-11 用户要求）：必成轮 100% 成功，保险金只在失败时退凭证 → 勾着纯浪费，
+///   所以选中 / 累计到上限时自动取消勾选，并且不允许再勾上
+function tg_is_guaranteed(){
+    if (tg_card == "") return false;
+    var _shape = mod_tg_target_shape(tg_card);
+    var _tier  = transfer_credit_tier(tg_card, _shape);
+    return mod_tg_guaranteed(mod_tg_pity_get(tg_card), mod_tg_pity_max(_tier));
+}
+
 /// @func tg_do() 真转一次：掷骰 → **成功只登记待结算**（动画播完才扣钱/扣凭证/提形态）/ 失败立刻结算
 ///       ⚠️ 2026-10-26 用户口径：动画期间「凭证和卡都不变」，播完才 清槽 + 提示 + 卡回列表。
 ///          所以成功分支里**一样都不能改**（存档、形态、凭证、金币），全部塞进 tg_fx_pending，
 ///          由 Step_0 在特效收尾时调 tg_fx_commit() 一次做完。
 function tg_do(){
+    // 必成轮不带保险金（2026-11-11）：Step 那边已经会自动取消，这里再兜一次，
+    //   防止「确认窗开着的时候计数刚好到上限」之类的边角情况还把钱扣掉
+    if (tg_assure && tg_is_guaranteed()) tg_assure = false;
     var _r = tg_check();
     if (!_r.ok){
         tg_notice(_r.reason);
@@ -893,6 +907,23 @@ evo_rows_max      = 0      // Draw 每帧按卡数算（ceil(n/列) - 8），Ste
 //   状态各存一份（tg_sb / evo_sb），别共用 → 两页互不影响。
 tg_sb  = { on:false, y:0, off:0 }
 evo_sb = { on:false, y:0, off:0 }
+
+// ── 演出锁定（2026-11-11 用户口径）────────────────────────────────────────────
+//   融合演出 / 转职成功特效 / 金卡进化特效，这三种都是**播完那一帧才落账**
+//   （扣金币·融合剂·食谱 / 扣凭证·提形态 / 合卡给金卡）。
+//   → 演出期间**不许操作、不许退出**：页签、档位、升格按钮、右上角 X、ESC 全锁，
+//     保证演出一定播得完，不会出现「点 X 提前退出 = 白扣材料 / 白转」。
+//   ⚠️ 之前的「中途退出就算浪费」的口径已作废（用户 2026-11-11 明确：不要那种设定）。
+//   ⚠️ 窗口右上角那个系统 X 拦不了（LTS2026 运行时没有 window_set_close_button），
+//      Alt+F4 / 强退属于玩家主动杀进程，不在锁定范围。
+
+/// @func craft_anim_lock() 当前是否处于「演出锁定」
+function craft_anim_lock(){
+    if (fusion_phase == 1) return true;   // 食灵融合演出
+    if (tg_fx)             return true;   // 卡片转职成功特效
+    if (evo_fx)            return true;   // 金卡进化特效
+    return false;
+}
 
 /// @func craft_list_sb(top, h, max_row, cur, tgt, st) 画右侧列表滑块并处理拖动
 /// @param top,h   列表可视区（= 800 格的顶边 / 高）

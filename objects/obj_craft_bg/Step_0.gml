@@ -25,6 +25,12 @@ if (fusion_confirm){
 	exit;
 }
 
+// ── 演出锁定（2026-11-11）：融合演出 / 转职特效 / 进化特效播放期间 ──────────────
+//   这三段都是「播完那一帧才落账」，中途退出一律白扣材料 / 白转，所以整段锁死：
+//   页签切不了、档位和升格按钮点不了、右上角 X 隐藏（GM 不给 invisible 的实例派发鼠标事件）、
+//   ESC 在 obj_menu_manager / obj_map_manager 里吃掉、窗口 X 由本对象的 Close Button 事件接管
+var _anim_lock = craft_anim_lock();
+
 // ── 顶部页签切换：卡片宝石 / 神级进化 / 食灵融合（2026-10-26 由 2 个改 3 个）──
 //   craft_tab_hover 存的是**页签值**（0 / 3 / 1），不是位置序号
 craft_tab_hover = -1
@@ -39,7 +45,8 @@ for (var _ti = 0; _ti < 3; _ti++){
 		craft_tab_hover = _tab_ids[_ti];
 	}
 }
-if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_hover != craft_top_tab && !tg_help){
+// 演出中不给切页签（切走会把 fusion_phase / tg_fx 状态丢掉，材料已经扣了一半就白扣）
+if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_hover != craft_top_tab && !tg_help && !_anim_lock){
 	craft_top_tab = craft_tab_hover
 	current_uprade_target_id = ""
 	// 切页签 = 融合页重开：装填状态和「刚融出来的临时结果卡」一起清掉
@@ -67,7 +74,7 @@ if (mouse_check_button_pressed(mb_left) && craft_tab_hover != -1 && craft_tab_ho
 // ⚠️ with 里要用 other. 取本实例的变量，直接写 craft_top_tab 会被解析成目标实例的变量 → 报 not set
 with (obj_craft_select_btn) visible = (other.craft_top_tab != 1 && other.craft_top_tab != 3)   // 转职页要显示，神级进化页不显示（那页只画「金卡进化」一个按钮）
 with (obj_craft_confirm_btn) visible = (other.craft_top_tab == 0)
-with (obj_closecraft_btn) visible = true     // 弹窗关掉后恢复（弹窗分支里会被隐藏）
+with (obj_closecraft_btn) visible = !_anim_lock   // 演出中把 X 藏起来（弹窗分支里也会隐藏，播完自动恢复）
 
 // ── 食灵融合页：档位按钮 + 融合按钮 + 演出计时（纯演出，不判断任何前置、不消耗）──
 if (craft_top_tab == 1){
@@ -103,10 +110,10 @@ if (craft_top_tab == 1){
 		}
 	}
 
-	// 卡片升阶 → 切回「卡片宝石」页
+	// 卡片升阶 → 切回「卡片宝石」页（演出中不给点，否则会半路离场，材料白扣）
 	var _uy = fusion_ly + 265*_lvs
 	fusion_up_hover = point_in_rectangle(mouse_x, mouse_y, _lvx, _uy, _lvx + 55*_lvs, _uy + 59*_lvs)
-	if fusion_up_hover && mouse_check_button_pressed(mb_left){
+	if fusion_up_hover && mouse_check_button_pressed(mb_left) && fusion_phase != 1{
 		craft_top_tab = 0
 		audio_play_sound(snd_button,0,0)
 	}
@@ -298,6 +305,14 @@ if (craft_top_tab == 2) {
 	if (tg_list_dirty) tg_rebuild();
 	if (tg_btn_press > 0) tg_btn_press -= 1;
 
+	// ── 必成轮自动取消保险金（2026-11-11 用户要求，防止白花钱）──────────────
+	//   必成轮 100% 成功，而保险金只在**失败**时退凭证 → 勾着没有任何收益。
+	//   选卡 / 换卡 / 失败累计到上限，都会在这里自动取消勾选（画面上直接看到没勾了）。
+	if (tg_assure && tg_is_guaranteed()){
+		tg_assure = false;
+		tg_notice("本次转职必成，保险金已自动取消");
+	}
+
 	// ⓪ 「转职说明」弹窗开着 → 模态：只处理「确定」，底下页签 / 卡格 / 转职按钮一概点不到
 	//    （跟融合页「系统提示」同一口径：顺便把合成屋的 X 藏起来，免得点着 X 关窗）
 	if (tg_help) {
@@ -372,10 +387,16 @@ if (craft_top_tab == 2) {
 		}
 		// ③ 保险金：点徽章或勾选框都算（独立开关，不动强化页那个配置）
 		//    ⚠️ 开关**不影响保底次数**（用户 2026-10-27 明确）：开着关着来回点，已累计的次数照旧
+		//    🔴 必成轮不许勾（2026-11-11）：这一转 100% 成功，保险金只在失败时退凭证 → 勾了纯浪费
 		else if (point_in_rectangle(mouse_x, mouse_y, assure_badge_cx - 33, assure_badge_cy - 36, assure_badge_cx + 33, assure_toggle_y + 18)) {
-			tg_assure = !tg_assure;
-			audio_play_sound(snd_button, 0, 0);
-			tg_notice(tg_assure ? "保险金已开启：失败不消耗凭证" : "保险金已关闭");
+			if (!tg_assure && tg_is_guaranteed()) {
+				tg_notice("本次转职必成，保险金用不上");
+			}
+			else {
+				tg_assure = !tg_assure;
+				audio_play_sound(snd_button, 0, 0);
+				tg_notice(tg_assure ? "保险金已开启：失败不消耗凭证" : "保险金已关闭");
+			}
 		}
 		// ④ 转职按钮（2026-10-28 改）：能转 → 普通确认窗；**只差凭证** → 「补全并转职」确认窗；其它 → 提示原因
 		else if (point_in_rectangle(mouse_x, mouse_y, tg_btn_x - 73, tg_btn_y - 40, tg_btn_x + 73, tg_btn_y + 40)) {

@@ -8,8 +8,7 @@ if (hp <= 0) exit;
 
 if (!buff_cells_refreshed)
 {
-    buff_value = atk / 100;
-    ds_list_add(global.buff_sources, id);
+    ds_list_add(global.buff_sources, id);   // buff_value 已在 Create 从 custom["增幅倍率"] 取好
     refresh_buff_cells();
     global.buff_dirty = true;
     buff_cells_refreshed = true;
@@ -18,7 +17,6 @@ if (!buff_cells_refreshed)
 }
 else if (grid_col != last_buff_col || grid_row != last_buff_row)
 {
-    buff_value = atk / 100;
     refresh_buff_cells();
     global.buff_dirty = true;
     last_buff_col = grid_col;
