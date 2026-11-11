@@ -43,9 +43,9 @@ function boss_music_scan() {
 	var _out = [];
 
 	// ① 沙盒相对路径（正常工作路径：GM 自动映射到 %LOCALAPPDATA%\<项目>\boss_music\）
-	var _f = file_find_first(kBossMusicRelDir + "\\*.ogg", fa_readonly | fa_archive);
+	var _f = file_find_first(kBossMusicRelDir + "/*.ogg", fa_readonly | fa_archive);
 	while (_f != "") {
-		array_push(_out, kBossMusicRelDir + "\\" + _f);
+		array_push(_out, kBossMusicRelDir + "/" + _f);
 		_f = file_find_next();
 	}
 	file_find_close();
@@ -54,9 +54,9 @@ function boss_music_scan() {
 	if (array_length(_out) == 0) {
 		var _abs = boss_music_dir();
 		if (directory_exists(_abs)) {
-			_f = file_find_first(_abs + "\\*.ogg", fa_readonly | fa_archive);
+			_f = file_find_first(_abs + "/*.ogg", fa_readonly | fa_archive);
 			while (_f != "") {
-				array_push(_out, _abs + "\\" + _f);
+				array_push(_out, _abs + "/" + _f);
 				_f = file_find_next();
 			}
 			file_find_close();
@@ -67,7 +67,7 @@ function boss_music_scan() {
 	var _builtin = boss_music_builtin_list();
 	var _bn = array_length(_builtin);
 	for (var _bi = 0; _bi < _bn; _bi++) {
-		array_push(_out, kBossMusicPackDir + "\\" + _builtin[_bi]);
+		array_push(_out, kBossMusicPackDir + "/" + _builtin[_bi]);
 	}
 	return _out;
 }
@@ -159,7 +159,7 @@ function boss_music_resolve(_fallback) {
 		// 兜底：玩家目录里的歌，相对路径失败时换绝对路径再试一次
 		if (_loaded == -1 && !string_starts_with(_path, kBossMusicPackDir)) {
 			var _abs2 = global.native_util.get_path_in_local_appdata(kBossMusicFolderSuffix)
-			            + "\\" + filename_name(_path);
+			            + "/" + filename_name(_path);
 			_loaded = audio_create_stream(_abs2);
 			if (_loaded != -1) _path = _abs2;
 		}

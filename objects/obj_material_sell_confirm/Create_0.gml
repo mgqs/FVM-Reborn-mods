@@ -40,6 +40,7 @@ y = room_height / 2
 
 keyboard_string = "1"
 keyboard_lastchar = ""
+mac_editor = new MacTextInput(id)
 
 // ── 凭证买卖（2026-10-27 新增；这几个字段留默认值 = 原来的「出售材料」行为，别处调用不受影响）──
 //   同一个窗三用：① 道具页卖材料（默认）② 凭证回收 ③ 凭证购买（威望商店 / 诸神商店）

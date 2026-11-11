@@ -1,5 +1,5 @@
 // obj_text_input 键盘按下事件
-if (active) {
+if (active && !mac_editor.enabled) {
     // 获取按下的键
     var key = keyboard_key;
     var char = keyboard_lastchar;

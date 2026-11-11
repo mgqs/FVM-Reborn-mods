@@ -34,7 +34,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x - 420, y - 305, x - 245, y - 270) && 
             notify_result("压缩包名称无效");
             exit;
         }
-        var target = mod_root + "\\" + base_name;
+        var target = mod_root + "/" + base_name;
         if (native_folder_exists(target)) target += "_" + string(current_time);
         directory_create(target);
         var code = native_unzip_map_file(selected, target);
@@ -98,7 +98,7 @@ for (var i = 0; i < array_length(mods); i++) {
         audio_play_sound(snd_button, 0, 0);
     }
     if (point_in_rectangle(mouse_x, mouse_y, x + 335, row_y - 17, x + 415, row_y + 17) && mouse_check_button_pressed(mb_left)) {
-        var delete_code = native_delete_folder(mod_root + "\\" + mods[i].folder);
+        var delete_code = native_delete_folder(mod_root + "/" + mods[i].folder);
         if (delete_code == 0) {
             status_text = "已删除：" + mods[i].name + "，重启后生效；保留卡片进度";
             refresh_mods();

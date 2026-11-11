@@ -19,7 +19,7 @@ if (closing > 0) {
 }
 
 // Esc 关闭：强制模式没有这条路（未授权不给走）
-if (!mandatory && keyboard_check_pressed(vk_escape)) {
+if (!mandatory && input_box.cancel_pressed()) {
     instance_destroy();
     exit;
 }
@@ -49,7 +49,7 @@ if (!mandatory && _clicked && hover_no) {
 }
 
 // 回车等同点「确认绑定」
-var _confirm = (_clicked && hover_ok) || keyboard_check_pressed(vk_enter);
+var _confirm = (_clicked && hover_ok) || input_box.accept_pressed();
 if (!_confirm) {
     exit;
 }

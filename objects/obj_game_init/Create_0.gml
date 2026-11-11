@@ -12,8 +12,8 @@ function move_files () {
     var _old_root = global.native_util.get_path_in_local_appdata("\\FVM_Reborn")
 
     // 迁移存档：原版 FVM_Reborn\saves -> FVM_Reborn_makk\saves（仅当新目录不存在且旧目录存在时）
-    var _saves_old = _old_root + "\\saves"
-    var _saves_new = _local_folder + "\\saves"
+    var _saves_old = _old_root + "/saves"
+    var _saves_new = _local_folder + "/saves"
     if (native_folder_exists(_saves_new) == 0 && native_folder_exists(_saves_old) == 1) {
         var _copy_result = native_copy_folder(_saves_old, _local_folder)
         if (_copy_result == 0) {
@@ -24,8 +24,8 @@ function move_files () {
     }
 
     // 迁移实验室：原版 FVM_Reborn\laboratory -> FVM_Reborn_makk\laboratory
-    var _lab_old = _old_root + "\\laboratory"
-    var _lab_new = _local_folder + "\\laboratory"
+    var _lab_old = _old_root + "/laboratory"
+    var _lab_new = _local_folder + "/laboratory"
     if (native_folder_exists(_lab_new) == 0 && native_folder_exists(_lab_old) == 1) {
         var _lab_copy_result = native_copy_folder(_lab_old, _local_folder)
         if (_lab_copy_result != 0) {
@@ -171,8 +171,8 @@ global.ui_anim = clamp(ini_read_real("settings", "ui_anim", 1), 0, 2);
 if (ini_read_string("settings", "ui_anim", "") == "") {
     ini_write_real("settings", "ui_anim", global.ui_anim);
 }
-global.ime_block = ini_read_bool("settings", "ime_block", true); // 输入法屏蔽开关（个别输入法环境异常时可关）
-global.mouse_limit_hz = ini_read_real("settings", "mouse_limit_hz", 500);
+global.ime_block = os_type == os_windows && ini_read_bool("settings", "ime_block", true); // Windows IME hooks
+global.mouse_limit_hz = os_type == os_windows ? ini_read_real("settings", "mouse_limit_hz", 500) : 0;
 if (ini_read_string("settings", "mouse_limit_hz", "") == "") {
     ini_write_real("settings", "mouse_limit_hz", 500);
 }
@@ -205,6 +205,13 @@ audio_group_set_gain(sound,global.sound_volume,0)
 window_set_fullscreen(global.fullscreen)
 gpu_set_tex_filter(global.tex_fliter)
 window_enable_borderless_fullscreen(global.borderless_window)
+
+// 与 macOS 选项中关闭 VSync 配套，用固定间隔限帧减少 60/120 FPS 的帧间隔抖动。
+// 步频仍由 game_set_speed 控制，正常速度、倍速和战斗内的临时减速共用此计时方式。
+if (os_type == os_macosx) {
+    display_set_timing_method(tm_sleep);
+    display_set_sleep_margin(2);
+}
 
 // 设置初始静音状态
 global.music_volume_before_mute = global.music_volume > 0 ? global.music_volume : 0.7;

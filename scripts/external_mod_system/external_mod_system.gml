@@ -10,12 +10,13 @@ function external_mod_error_text(error_data) {
 // Resolve lazily: older DLLs can still run the base game when no external Mod is enabled.
 function external_mod_lua_bind() {
     if (variable_global_exists("external_mod_lua_functions")) return;
-    var library = "FvmNativeSupport.dll";
-    if (file_exists(working_directory + "native/FvmNativeSupport.dll")) library = working_directory + "native/FvmNativeSupport.dll";
+    var library = os_type == os_macosx ? "libFvmNativeSupport.dylib" : "FvmNativeSupport.dll";
+    if (file_exists(working_directory + "native/" + library)) library = working_directory + "native/" + library;
+    else if (file_exists(working_directory + library)) library = working_directory + library;
     var create = external_define(library, "ModLuaCreate", dll_cdecl, ty_string, 1, ty_string);
     var call = external_define(library, "ModLuaCall", dll_cdecl, ty_string, 3, ty_real, ty_string, ty_string);
     var destroy = external_define(library, "ModLuaDestroy", dll_cdecl, ty_real, 1, ty_real);
-    if (create < 0 || call < 0 || destroy < 0) throw "原生扩展尚未包含 Lua；需要更新 FvmNativeSupport.dll";
+    if (create < 0 || call < 0 || destroy < 0) throw "原生扩展尚未包含 Lua；需要更新 " + library;
     global.external_mod_lua_functions = [create, call, destroy];
 }
 

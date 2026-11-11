@@ -16,9 +16,9 @@ function keyboard_get_string(key){
 	    case vk_control: return "Ctrl";
 		case vk_lcontrol: return "左Ctrl";
 		case vk_rcontrol: return "右Ctrl";
-		case vk_alt: return "Alt";
-	    case vk_lalt: return "左Alt";
-		case vk_ralt: return "右Alt";
+		case vk_alt: return os_type == os_macosx ? "Option" : "Alt";
+	    case vk_lalt: return os_type == os_macosx ? "左Option" : "左Alt";
+		case vk_ralt: return os_type == os_macosx ? "右Option" : "右Alt";
 	    case vk_pause: return "Pause";
 	    case 20: return "Caps Lock";
 	    case vk_escape: return "Esc";
@@ -68,7 +68,8 @@ function keyboard_get_string(key){
 	    case vk_f12: return "F12";
     
 	    // 其他特殊键
-	    case 91: return "Win";
+	    case 91: return os_type == os_macosx ? "左Command" : "Win";
+	    case 92: return os_type == os_macosx ? "右Command" : "Win";
 	    case 93: return "Apps";
 	    case 145: return "Scroll Lock";
     

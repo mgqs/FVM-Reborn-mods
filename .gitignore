@@ -97,3 +97,10 @@ bots/qq_auth_bot/scf-qqauth.zip
 bots/qq_auth_bot/scf/_ledger_debug.json
 bots/qq_auth_bot/bot.log
 __pycache__/
+
+# Local macOS builds (the extension is built from FvmNativeSupport sources).
+.macos-build/
+dist/macos/
+extensions/WindowsNative/libFvmNativeSupport.dylib
+
+/.private/

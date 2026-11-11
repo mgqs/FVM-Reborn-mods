@@ -1,4 +1,5 @@
 // obj_text_input 绘制事件
+if (mac_editor.active) exit;
 // 绘制背景
 //draw_set_color(bg_color);
 //draw_rectangle(x, y, x + width, y + height, false);
