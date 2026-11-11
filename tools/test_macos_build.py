@@ -62,7 +62,7 @@ class MacProjectTests(unittest.TestCase):
 
     def test_large_sources_are_shared_but_private_and_build_folders_are_not(self):
         staged = build_macos.prepare_macos_project(self.work).parent
-        self.assertTrue((staged / "sprites").is_symlink())
+        self.assertTrue((staged / "sprites").is_dir())
         self.assertTrue((staged / "sounds/music_example/music_example.wav").is_symlink())
         self.assertTrue((staged / "sounds/sound_example").is_symlink())
         self.assertFalse((staged / ".private").exists())
@@ -83,6 +83,53 @@ class MacProjectTests(unittest.TestCase):
         path = self.root / "bom.yy"
         path.write_text('\ufeff{"name":"text,}","value":2,}')
         self.assertEqual(build_macos.read_yy(path), {"name": "text,}", "value": 2})
+
+    def test_mac_sprite_layout_preserves_sources_and_animation_frames(self):
+        project = build_macos.read_yy(self.project)
+        for group in ("Default", "enemy_tower", "cards", "maps"):
+            project["TextureGroups"].append({"name": group, "loadType": "default",
+                "compressFormat": "custom", "customOptions": "BCN -3 -u4"})
+        examples = (("spr_ly_boss_idle", "Default", 24, 100, 100, "enemy_longyuan"),
+                    ("spr_ly_boss_skill", "enemy_tower", 92, 100, 100, "enemy_longyuan"),
+                    ("spr_card_icon", "cards", 1, 100, 100, "cards_ui"),
+                    ("spr_card_animated", "cards", 24, 100, 100, "cards"),
+                    ("spr_new_battle", "Default", 24, 100, 100, "battle_misc"),
+                    ("spr_option_mute_btn", "Default", 2, 35, 33, "Default"),
+                    ("spr_new_map", "Default", 1, 2005, 1080, "maps"))
+        before = {}
+        for name, group, frames, width, height, expected in examples:
+            folder = self.root / "sprites" / name
+            folder.mkdir()
+            path = folder / (name + ".yy")
+            path.write_text(json.dumps({"name": name, "frames": list(range(frames)),
+                "width": width, "height": height,
+                "textureGroupId": {"name": group, "path": "texturegroups/" + group}}))
+            (folder / "frame.png").write_bytes(b"source-image")
+            before[path] = path.read_bytes()
+            project["resources"].append({"id": {"path": str(path.relative_to(self.root))}})
+        self.project.write_text(json.dumps(project))
+        before[self.project] = self.project.read_bytes()
+        # Restaging must never traverse directory symlinks and remove originals.
+        build_macos.prepare_macos_project(self.work)
+        staged = build_macos.prepare_macos_project(self.work)
+        groups = {g["name"]: g for g in build_macos.read_yy(staged)["TextureGroups"]}
+        for name in ("enemy_longyuan", "battle_misc", "cards_ui"):
+            self.assertEqual(groups[name]["loadType"], "dynamicpages")
+            self.assertEqual(groups[name]["customOptions"], "BCN -3 -u4")
+        for name, group, frames, width, height, expected in examples:
+            folder = staged.parent / "sprites" / name
+            metadata = build_macos.read_yy(folder / (name + ".yy"))
+            self.assertEqual(metadata["textureGroupId"]["name"], expected)
+            self.assertEqual(len(metadata["frames"]), frames)
+            self.assertEqual((folder / "frame.png").read_bytes(), b"source-image")
+        for path, content in before.items():
+            self.assertEqual(path.read_bytes(), content)
+
+    def test_generated_groups_are_not_duplicated(self):
+        project = {"TextureGroups": [{"name": "Default", "loadType": "default"},
+                   {"name": "battle_misc", "loadType": "dynamicpages"}]}
+        groups = build_macos.macos_texture_groups(project)
+        self.assertEqual([g["name"] for g in groups].count("battle_misc"), 1)
 
 
 if __name__ == "__main__":

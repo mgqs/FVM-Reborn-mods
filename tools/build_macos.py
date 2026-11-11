@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-import json
 import os
 from pathlib import Path
 import platform
@@ -17,6 +16,8 @@ import sys
 import tempfile
 import zipfile
 
+from desktop_resources import configuration, prepare_project, read_yy, sprite_group, texture_groups
+
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY_NAME = "libFvmNativeSupport.dylib"
 LAUNCHER_NAME = "FVM_Launcher"
@@ -25,13 +26,6 @@ MAC_ARCH = "arm64"
 
 def run(args: list[str | Path], **kwargs) -> None:
     subprocess.run([str(arg) for arg in args], check=True, **kwargs)
-
-
-def read_yy(path: Path) -> dict:
-    # GameMaker's YY JSON permits trailing commas. Preserve commas in strings.
-    text = re.sub(r'("(?:\\.|[^"\\])*")|,(\s*[}\]])',
-                  lambda m: m[1] if m[1] is not None else m[2], path.read_text(encoding="utf-8-sig"))
-    return json.loads(text)
 
 
 def sign(path: Path, identity: str) -> None:
@@ -274,56 +268,19 @@ def assemble_app(stage: Path, runtime: Path, output: Path, identity: str, work: 
 
 
 def macos_configuration(resource: dict) -> dict:
-    """Materialize overrides: the LTS asset compiler can silently ignore them."""
-    resource = dict(resource)
-    overrides = resource.pop("ConfigValues", {}).get("macOS", {})
-    for key, value in overrides.items():
-        if isinstance(value, str):
-            try:
-                value = json.loads(value)
-            except json.JSONDecodeError:
-                pass
-        resource[key] = value
-    return resource
+    return configuration(resource, "macOS")
+
+
+def macos_texture_groups(project: dict) -> list[dict]:
+    return texture_groups(project, "macOS")
+
+
+def macos_sprite_group(sprite: dict) -> str:
+    return sprite_group(sprite)
 
 
 def prepare_macos_project(work: Path) -> Path:
-    # Stage metadata only. Source images/audio are symlinked, and source files
-    # remain untouched so IDE/Windows builds and other worktrees stay independent.
-    stage = work / "macOS-project"
-    if stage.exists():
-        shutil.rmtree(stage)
-    stage.mkdir()
-    for path in ROOT.iterdir():
-        if path.name.startswith(".") or path.name in {"sounds", "dist", "out", "output"} or path.suffix == ".yyp":
-            continue
-        (stage / path.name).symlink_to(path, target_is_directory=path.is_dir())
-    project = macos_configuration(read_yy(ROOT / "FVM_Reborn_makk.yyp"))
-    project["TextureGroups"] = [macos_configuration(group) for group in project["TextureGroups"]]
-    sounds = stage / "sounds"
-    sounds.mkdir()
-    for entry in project["resources"]:
-        relative = Path(entry["id"]["path"])
-        if relative.parts[0] != "sounds":
-            continue
-        original = ROOT / relative
-        metadata = read_yy(original)
-        if "macOS" not in metadata.get("ConfigValues", {}):
-            (sounds / original.parent.name).symlink_to(original.parent, target_is_directory=True)
-            continue
-        metadata = macos_configuration(metadata)
-        # Streamed assets are exported individually and use the default bus.
-        if metadata.get("compression") == 3:
-            metadata["audioGroupId"] = {"name": "audiogroup_default", "path": "audiogroups/audiogroup_default"}
-        target = stage / relative
-        target.parent.mkdir()
-        for asset in original.parent.iterdir():
-            if asset != original:
-                (target.parent / asset.name).symlink_to(asset, target_is_directory=asset.is_dir())
-        target.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
-    destination = stage / "FVM_Reborn_makk.yyp"
-    destination.write_text(json.dumps(project, ensure_ascii=False, indent=2) + "\n")
-    return destination
+    return prepare_project(ROOT, work, "macOS")
 
 
 def build_game(args, work: Path, runtime: Path, user: Path) -> None:
