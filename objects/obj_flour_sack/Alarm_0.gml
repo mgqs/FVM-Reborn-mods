@@ -12,7 +12,7 @@ else if shape == 2{
 }
 if !global.is_paused{
 	with (obj_enemy_parent) {
-		if (can_hit(other.target_type,target_type) && point_distance(x, y, _x, _y) < _range && grid_row == other.grid_row) {
+		if (can_hit_ash(other.target_type,target_type) && point_distance(x, y, _x, _y) < _range && grid_row == other.grid_row) {
 		    if (immune_to_ash) {
 		        // 对免疫灰烬的敌人只造成伤害
 		        hp -= other.atk;

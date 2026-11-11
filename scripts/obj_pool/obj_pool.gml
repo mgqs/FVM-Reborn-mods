@@ -141,6 +141,20 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         instance_change(_obj, true);
         event_user(14);
 
+        // ── sprite_index 兜底（必须在 instance_change 之后）──
+        //  回收时实例被 instance_change(obj_pool_holder) 切走，holder 的 spriteId 是 null，
+        //  所以复用时 sprite_index 会停在 -1，而 instance_change 切回真实对象**不会**恢复
+        //  对象默认精灵 —— 只要对象 Create 里没写 sprite_index，画出来就是空的：
+        //    · 麻辣香锅子弹 obj_spicypot_bullet → 「攻击特效丢失」（2026-11-11 用户报）
+        //    · 灰烬 obj_mouse_ash_death 曾因此在 Draw 里报 argument 1 = -1 直接崩
+        //  全项目 167 个池化子弹没有在 Create 里设它（其中 115 个发射处也不赋），逐个补不现实。
+        //  这里统一兜底：Create 显式赋过的（含 Other_11 里 inst.sprite_index = xxx）保持不动，
+        //  只有仍然是无效索引时才回落到对象默认精灵。
+        if (!sprite_exists(sprite_index)) {
+            var _def = object_get_sprite(_obj);
+            if (sprite_exists(_def)) sprite_index = _def;
+        }
+
         if (obj_pool_is_enemy_whitelisted(_obj)) {
             image_alpha = 1;
             image_blend = c_white;

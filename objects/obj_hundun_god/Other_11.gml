@@ -12,7 +12,7 @@ if shape == 0{
 		var target_inst = target_enemy[0]
 		if instance_exists(target_inst){
 			with target_inst{
-				if can_hit(other.target_type, target_type){
+				if can_hit_ash(other.target_type, target_type){
 					var _dijing_requires_terminal = mouse_id == "longyuan_dijing" && ly_mode == "dig" && other.shape < 3;
 					if _dijing_requires_terminal && hp > 0{
 						instance_destroy()
@@ -47,7 +47,7 @@ else{
 			if mouse_id == "longyuan_dijing" && ly_mode == "dig" && other.shape < 3 continue;
 			var _rd = abs(grid_row - _center_row)
 			var _cd = abs(grid_col - _center_col)
-			if _rd <= _grid_range_row && _cd <= _grid_range_col && can_hit(other.target_type, target_type){
+			if _rd <= _grid_range_row && _cd <= _grid_range_col && can_hit_ash(other.target_type, target_type){
 				if !immune_to_ash
 					array_push(_kill_list, id)
 				else

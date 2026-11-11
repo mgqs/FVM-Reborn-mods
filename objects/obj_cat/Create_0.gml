@@ -32,7 +32,11 @@ ignore_list = ["mario_mouse","mario_pipeline","arno","pharaoh_coffin","temple_ph
 				// 紧随其后的 4 个是技能产物，原版同名附属物（captain_rainbow / messenger_mace /
 				// messenger_poop / hot_vajra_spike）本来就在豁免表里，这里保持一致（2026-11-05）
 				"kf_zrb_mary","kf_zrb_shi","kf_zrb_jack","kf_zrb_vajra","kf_zrb_cap",
-				"kf_zrb_cap_rainbow","kf_zrb_shi_mace","kf_zrb_shi_poop","kf_zrb_vajra_spike"
+				"kf_zrb_cap_rainbow","kf_zrb_shi_mace","kf_zrb_shi_poop","kf_zrb_vajra_spike",
+				// 杰克系技能2 的滚石（本体与变异版）：滚石是按行横扫的技能产物，
+				// 让它触发第 0 列猫会白丢一只猫（唤醒后被滚石碾掉 / 或反把滚石撞飞导致整行漏怪），
+				// 因此滚石对猫完全透明（2026-11-11）
+				"irritable_jack_rock","kf_zrb_jack_rock_skill_4"
 ]
 
 target_ignore = ["mole","bat_mouse","sawblade_mouse","dentist_mouse","baron_bats","paratrooper_mouse_shield","kamikaze_glider_mouse",

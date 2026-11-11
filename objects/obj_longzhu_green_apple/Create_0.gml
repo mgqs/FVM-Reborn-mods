@@ -16,6 +16,10 @@ longzhu_timer = 0;
 
 image_speed = 0;
 depth = LONGZHU_APPLE_DEPTH_OFFSET;
+// 贴图放大 2 倍：原精灵 59×56（不透明区约 47×42），相对龙柱本体 287×342 明显偏小。
+// 只放大视觉，不动 col/row 判定与 depth（碰撞仍按格坐标结算）。
+image_xscale = 2;
+image_yscale = 2;
 longzhu_clip_set(id, "出生", true);
 
 // ---------- 目标接口 ----------
