@@ -23,6 +23,12 @@ with obj_enemy_parent{
 	// 马面技能三召唤的食灵不触发第 0 列的猫
 	if (object_index == obj_ly_hengha_spirit) continue;
 	// 符咒魂鼠（符咒转化的随从）现在正常触发猫（2026-10-27 按需求解除豁免）。
+	// 傀儡马（kuileima）的巫毒代理：只是承接攻击伤害的隐身载体，位置吸附在卡片所在格，
+	// 卡片放在第 0 列时代理落在第 0 列中心，与第 -1 列的猫相距 117px（正好在 120px 半径内）。
+	// 它既不该唤醒猫，也不该被猫撞掉（撞掉后卡片下一帧立刻重建，表现为猫被白白放出去、
+	// 代理被反复撞飞的循环）。鼠标ID会被 decoy_sync_identity 同步成真实老鼠的ID，
+	// 无法靠 ignore_list 豁免，只能按对象类型整类跳过（2026-11-12）
+	if (object_index == obj_kuileima_decoy) continue;
 	if abs(x - other.x) <= 120{
 		if other.state == "idle" && other.row == grid_row && hp > 0 && (array_get_index(other.ignore_list,mouse_id) == -1)&& (array_get_index(other.target_ignore,mouse_id) == -1){
 			other.state = "awake"

@@ -475,7 +475,10 @@ switch(state) {
             with (target_plant) {
 				if !invincible{
 					// 海克斯第二批：反伤 / 防御类击退 / 火苗护盾 / 炼金龙魂抗性 统一走这里
-					hex_batch2_card_take_hit(id, other.id, hex_card_incoming_damage(other.atk));
+					// 海克斯「食指的指令」：鼠军全属性 +30% 的攻击面要**实时**读，
+					// 不能只在出场那一刻乘一次 —— 标记是中途挂上的，出场时乘就永远吃不到。
+					hex_batch2_card_take_hit(id, other.id,
+						hex_card_incoming_damage(other.atk * hex_b3_enemy_mark_atk_mult()));
 					// 「现炒现卖」：受伤后再流失一部分最大生命，但不低于基础生命的 40%
 					var _dr = hex_card_drain_pct();
 					if (_dr > 0 && hp > 0) {

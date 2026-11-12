@@ -21,6 +21,8 @@ function random_gift_pick_card() {
     for (var i = 0; i < ds_list_size(global.player_deck); i += 2) {
         var card_id = global.player_deck[| i];
         if (array_get_index(gift_card_blacklist, card_id) != -1) continue;
+        // 地图关卡本身奖励的卡（木盘 / 咖啡粉等）不进礼盒池，与抽卡口径一致（2026-11-12）
+        if (gacha_is_excluded_card(card_id)) continue;
         var card = global.player_deck[| i + 1];
         if (!ds_exists(card, ds_type_map)) continue;
         var shapes = card[? "shapes"];
@@ -145,18 +147,28 @@ function random_gift_spawn_card(_x, _y, _col, _row, _level) {
 }
 
 /// @function gacha_get_excluded_cards()
-/// @desc 获取本体仅通过关卡奖励获得的卡片；其转职可通过抽卡获得。
+/// @desc 获取「本体不走抽卡」的卡片：初始赠送 / 关卡首通奖励 / 商城独占，共 19 张。
+///       抽卡、欧皇、随机礼盒三条路都不可获得这些卡的本体（2026-11-12 与 gacha_is_map_unlock_card 合并）。
 /// @return {array}
 function gacha_get_excluded_cards() {
     return [
-        "wooden_plate",       // 木盘子
-        "wooden_cork",        // 木塞子
-        "cotton_candy",       // 棉花糖
-        "sausage",            // 香肠
-        "oil_lamp",           // 油灯
-        "soda_bubble",        // 苏打气泡
-        "tang_hu_lu",         // 糖葫芦炮弹
-        "double_water_pipe",  // 双向水管
+        // ── 初始四张：进游戏直接送，不进任何抽卡池 ──
+        "small_fire",         // 小火炉
+        "toast_bread",        // 土司面包
+        "xiao_long_bao",      // 小笼包
+        "flour_sack",         // 面粉袋
+        // ── 关卡内解锁（首通奖励本体），靠打关卡拿 ──
+        "wooden_plate",       // 木盘子（沙拉岛（陆））
+        "wooden_cork",        // 木塞子（神庙）
+        "cotton_candy",       // 棉花糖（玛奇朵港）
+        "sausage",            // 香肠（布丁岛（夜））
+        "oil_lamp",           // 油灯（可可岛（夜））
+        "soda_bubble",        // 苏打气泡（金枪鱼洋流）
+        "tang_hu_lu",         // 糖葫芦炮弹（桂月天空（夜））
+        "double_water_pipe",  // 双向水管（布丁岛（日））
+        "coffee_grounds",     // 咖啡粉（神庙）
+        "aquarius_elve",      // 水瓶座精灵（商城 15000，不走抽卡）
+        // ── 首通奖励卡（2026-11-01 之后新增）──
         "mixian",             // 米线（松露大厅首通奖励）
         "huagao",             // 灯影花糕（松露大厅（夜）首通奖励）
         "fushengcha",         // 浮生茶（松露大厅（夜）首通奖励）
@@ -174,24 +186,6 @@ function gacha_is_excluded_card(card_id) {
     return array_get_index(excluded, card_id) != -1;
 }
 
-/// @function gacha_is_current_level_reward_card(card_id)
-/// @desc 指定八张卡片中，本次关卡会正常发放本体的卡片。
-function gacha_is_current_level_reward_card(card_id) {
-    if (!gacha_is_excluded_card(card_id)) return false;
-    if (!variable_global_exists("level_file") || !is_struct(global.level_file)) return false;
-    if (!variable_struct_exists(global.level_file, "rewards")) return false;
-
-    var rewards = global.level_file.rewards;
-    if (!is_array(rewards) || array_length(rewards) <= 1) return false;
-    var first_reward = rewards[1];
-    if (!is_struct(first_reward) || !variable_struct_exists(first_reward, "card_unlock")) return false;
-
-    var card_unlock = first_reward.card_unlock;
-    for (var i = 0; i < array_length(card_unlock); i++) {
-        if (card_unlock[i] == card_id) return true;
-    }
-    return false;
-}
 
 /// @function gacha_is_gold_card(card_id)
 /// @desc 是不是金卡：**只看卡注册数据里的 is_gold**（2026-10-27 用户：不要用「在不在诸神商店」判断）
@@ -587,9 +581,10 @@ function gacha_pick_random_reward() {
         var card_id = global.player_deck[| i];
 		if (card_id == "lihe") continue;
 
-        // 本体仅关卡奖励的特殊卡：未拥有且不是本关奖励 → 不进池（原逻辑保留）
-        if (gacha_is_excluded_card(card_id) && !is_card_unlocked(card_id)
-            && !gacha_is_current_level_reward_card(card_id)) continue;
+        // 本体仅关卡奖励的特殊卡：**一律不进抽卡池**（2026-11-12 用户：抽卡模式不能抽出
+        // 木盘 / 咖啡粉这类地图关卡本身奖励的卡）。旧写法给「本关奖励」开了口子，
+        // 于是打该关时那张卡会溜进普通池被抽出来。本关奖励由结算直接发放，与抽卡无关。
+        if (gacha_is_excluded_card(card_id)) continue;
 
         // ── 融合卡：**只发初融菜谱**（形态 0，2026-10-27 用户口径）──
         //    深度 / 灵魂菜谱不再从抽卡出，改去「诸神商店」按需买（那里本来就有 18 条 recipe）
