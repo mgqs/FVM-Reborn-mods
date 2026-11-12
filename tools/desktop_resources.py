@@ -14,6 +14,8 @@ DYNAMIC_GROUPS = {
     "enemy_delicious", "enemy_volcanic", "enemy_floating", "enemy_tower",
     "pack_undersea_vortex", "pack_explore_camp", "enemy_longyuan", "battle_misc", "cards_ui",
 }
+TEXTURE_DIRECTORY = "assets/textures"
+MUSIC_DIRECTORY = "assets/music"
 
 
 def read_yy(path: Path) -> dict:
@@ -50,7 +52,21 @@ def texture_groups(project: dict, target: str) -> list[dict]:
     for group in groups:
         if group["name"] in DYNAMIC_GROUPS:
             group["loadType"] = "dynamicpages"
+        if group.get("loadType") == "dynamicpages":
+            group["directory"] = TEXTURE_DIRECTORY
     return groups
+
+
+def music_names(root: Path) -> list[str]:
+    project = read_yy(root / "FVM_Reborn_makk.yyp")
+    names = []
+    for entry in project["resources"]:
+        relative = Path(entry["id"]["path"])
+        if relative.parts[0] == "sounds":
+            sound = read_yy(root / relative)
+            if sound.get("audioGroupId", {}).get("name") == "music":
+                names.append(sound["name"])
+    return names
 
 
 def sprite_group(sprite: dict) -> str:
@@ -128,6 +144,7 @@ def prepare_project(root: Path, work: Path, target: str, *, copy_assets: bool = 
         elif metadata.get("audioGroupId", {}).get("name") == "music":
             metadata["compression"] = 3  # CompressedStreamed, not decompress-on-load.
             metadata["audioGroupId"] = {"name": "audiogroup_default", "path": "audiogroups/audiogroup_default"}
+            metadata["exportDir"] = MUSIC_DIRECTORY
         stage_resource(original, stage / relative, metadata if metadata != source else None, copy_assets)
     destination = stage / "FVM_Reborn_makk.yyp"
     destination.write_text(json.dumps(project, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

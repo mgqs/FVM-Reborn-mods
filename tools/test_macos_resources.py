@@ -3,10 +3,10 @@
 
 import argparse
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import struct
 
-from desktop_resources import read_yy, texture_groups
+from desktop_resources import MUSIC_DIRECTORY, TEXTURE_DIRECTORY, music_names, read_yy, texture_groups
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -38,19 +38,22 @@ def validate(app: Path, target: str = "macOS") -> dict:
         for pointer in pointers:
             stream.seek(pointer)
             fields = struct.unpack("<9I", stream.read(36))
-            sounds[text_at(fields[0])] = {"group": fields[7], "flags": fields[1], "audio": fields[8]}
+            sounds[text_at(fields[0])] = {"group": fields[7], "flags": fields[1], "audio": fields[8],
+                                         "file": text_at(fields[3]).replace("\\", "/")}
 
-    expected_music = [read_yy(p)["name"] for p in (ROOT / "sounds").glob("*/*.yy")
-                      if read_yy(p)["audioGroupId"]["name"] == "music"]
+    expected_music = music_names(ROOT)
     assert expected_music, "No built-in music assets found"
-    files = {p.name.casefold(): p for p in resources.rglob("*") if p.is_file()}
     for name in expected_music:
         assert name in sounds, f"Music asset missing from compiled sound table: {name}"
         assert sounds[name]["group"] == 0, f"Music still uses a resident audio group: {name}"
         assert sounds[name]["flags"] & 3 == 0 and sounds[name]["audio"] == 0xFFFFFFFF, \
             f"Music is embedded instead of streamed: {name}"
-        path = files.get((name + ".ogg").casefold())
-        assert path is not None, f"Stream file was not packaged: {name}"
+        relative = PurePosixPath(sounds[name]["file"])
+        assert relative.parent == PurePosixPath(MUSIC_DIRECTORY) and relative.suffix.lower() == ".ogg", \
+            f"Compiled music still points outside {MUSIC_DIRECTORY}: {name}"
+        path = resources / relative
+        assert path.is_file(), f"Stream file was not packaged in {MUSIC_DIRECTORY}: {name}"
+        assert not (resources / relative.name).exists(), f"Music still clutters the root: {name}"
         with path.open("rb") as source:
             assert source.read(4) == b"OggS", f"Invalid stream file: {name}"
     music_group = resources / "music.dat"
@@ -60,7 +63,8 @@ def validate(app: Path, target: str = "macOS") -> dict:
     dynamic = [group["name"] for group in texture_groups(project, target)
                if group.get("loadType") == "dynamicpages"]
     assert dynamic, "No dynamic texture groups configured"
-    textures = [p for p in resources.rglob("*.yytex") if p.is_file()]
+    assert not list(resources.glob("*.yytex")), "Dynamic textures still clutter the resource root"
+    textures = [p for p in (resources / TEXTURE_DIRECTORY).glob("*.yytex") if p.is_file()]
     for page in textures:
         with page.open("rb") as source:
             header = source.read(148)

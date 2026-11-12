@@ -3,7 +3,9 @@
 import json
 from pathlib import Path
 import tempfile
+import struct
 import unittest
+from unittest.mock import patch
 import zipfile
 
 import build_windows
@@ -45,12 +47,14 @@ class WindowsProjectTests(unittest.TestCase):
         groups = {g["name"]: g for g in data["TextureGroups"]}
         for name in ("cards", "enemy_tower", "enemy_longyuan", "battle_misc", "cards_ui"):
             self.assertEqual(groups[name]["loadType"], "dynamicpages")
+            self.assertEqual(groups[name]["directory"], "assets/textures")
             self.assertEqual(groups[name]["customOptions"], "BCN -u4")
         self.assertEqual(groups["Default"]["loadType"], "default")
         self.assertEqual(groups["UI"]["loadType"], "default")
         music = read_yy(staged.parent / "sounds/music_example/music_example.yy")
         effect = read_yy(staged.parent / "sounds/short_sound/short_sound.yy")
         self.assertEqual((music["compression"], music["audioGroupId"]["name"]), (3, "audiogroup_default"))
+        self.assertEqual(music["exportDir"], "assets/music")
         self.assertEqual((effect["compression"], effect["audioGroupId"]["name"]), (0, "sound"))
         enemy = read_yy(staged.parent / "sprites/spr_ly_enemy/spr_ly_enemy.yy")
         icon = read_yy(staged.parent / "sprites/spr_card_icon/spr_card_icon.yy")
@@ -83,6 +87,39 @@ class WindowsProjectTests(unittest.TestCase):
             z.writestr("FVM_Reborn_makk.exe", b"incomplete")
         with self.assertRaisesRegex(RuntimeError, "FvmNativeSupport.dll"):
             build_windows.assemble(archive, self.root / "dist/windows")
+
+    def test_portable_zip_matches_the_organized_application_tree(self):
+        archive = self.work / "compiler.zip"
+        pe = bytearray(134)
+        pe[:2] = b"MZ"
+        struct.pack_into("<I", pe, 0x3C, 128)
+        pe[128:132] = b"PE\x00\x00"
+        struct.pack_into("<H", pe, 132, 0x8664)
+        entries = {name: pe for name in ("FVM_Reborn_makk.exe", "FvmNativeSupport.dll", "7z.dll")}
+        entries.update({"data.win": b"compiled-game", "assets/music/music_example.ogg": b"OggS-music",
+                        "assets/textures/cards_0.yytex": b"texture",
+                        "boss_music_pack/自选音乐.ogg": b"OggS-custom"})
+        with zipfile.ZipFile(archive, "w") as package:
+            for name, data in entries.items():
+                package.writestr(name, data)
+        output = self.root / "dist/windows"
+        def validate_layout(resources, target):
+            self.assertEqual(target, "Windows")
+            self.assertEqual((resources / "assets/music/music_example.ogg").read_bytes(), b"OggS-music")
+            self.assertFalse((resources / "music_example.ogg").exists())
+            return {"checked": True}
+        with patch.object(build_windows, "ROOT", self.root), \
+             patch.object(build_windows, "validate", side_effect=validate_layout) as validate:
+            self.assertEqual(build_windows.assemble(archive, output), {"checked": True})
+            validate.assert_called_once()
+        app = output / "FVM_Reborn_makk"
+        self.assertFalse((app / "music_example.ogg").exists())
+        self.assertEqual((app / "assets/music/music_example.ogg").read_bytes(), b"OggS-music")
+        with zipfile.ZipFile(output / "FVM_Reborn_makk-Windows-x64.zip") as package:
+            actual = {p.relative_to(app).as_posix() for p in app.rglob("*") if p.is_file()}
+            self.assertEqual(set(package.namelist()), actual)
+            self.assertEqual(package.read("assets/music/music_example.ogg"), b"OggS-music")
+            self.assertEqual(package.read("boss_music_pack/自选音乐.ogg"), b"OggS-custom")
 
 
 if __name__ == "__main__":
