@@ -338,13 +338,17 @@ if battle_time >= (global.level_file.first_wave_delay * 60) && level_stage == "r
 }
 var current_total_subwaves = 0
 var wave_data = {}
-if current_wave < total_wave{
+if current_wave < total_wave && is_array(global.level_file.waves) && current_wave < array_length(global.level_file.waves){
 	current_total_subwaves = array_length(global.level_file.waves[current_wave].subwaves)
 	wave_data = global.level_file.waves[current_wave]
 }
-else{
+else if (is_array(global.level_file.waves) && current_wave - 1 >= 0 && current_wave - 1 < array_length(global.level_file.waves)){
 	current_total_subwaves = array_length(global.level_file.waves[current_wave-1].subwaves)
 	wave_data = global.level_file.waves[current_wave-1]
+}
+else{
+	current_total_subwaves = 0
+	wave_data = {}
 }
 
 if wave_timer <= 0 && level_stage == "pre"{

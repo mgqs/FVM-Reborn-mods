@@ -176,12 +176,15 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 		wave_timer = 0
 		current_subwave = 0
 	}
-	var wave_data = global.level_file.waves[current_wave]
+	var wave_data = {}
+	if (is_array(global.level_file.waves) && current_wave >= 0 && current_wave < array_length(global.level_file.waves)) {
+		wave_data = global.level_file.waves[current_wave]
+	}
 	var boss_spawn_mult = 1
 	if global.difficulty == 5{
 		boss_spawn_mult = 2
 	}
-	var _boss_id = wave_data.boss
+	var _boss_id = variable_struct_exists(wave_data, "boss") ? wave_data.boss : ""
 	if _boss_id != "" && ds_map_exists(global.enemy_map, _boss_id){
 		var _boss_data = global.enemy_map[? _boss_id]
 		var _has_ver = is_real(global.level_file.version)

@@ -34,8 +34,6 @@ FILES = [
     (os.path.join(HERE, "webhook.py"), "webhook.py"),
     (os.path.join(HERE, "store.py"), "store.py"),
     (os.path.join(HERE, "ed25519_ref.py"), "ed25519_ref.py"),
-    (os.path.join(HERE, "members.py"), "members.py"),
-    (os.path.join(HERE, "sweep.py"), "sweep.py"),
     (os.path.join(BOT_DIR, "bot.py"), "bot.py"),
     (os.path.join(TOOLS, "qq_auth.py"), "qq_auth.py"),
     (os.path.join(TOOLS, "codes_pool.txt"), "codes_pool.txt"),

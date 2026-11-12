@@ -73,7 +73,8 @@ next_btn.type = "next"
 //统计敌人和BOSS类型
 enemy_type_list = []
 boss_type_list = []
-for(var i = 0;i < global.level_file.total_waves;i ++){
+var _wave_n = is_array(global.level_file.waves) ? array_length(global.level_file.waves) : 0
+for(var i = 0;i < _wave_n;i ++){
 	if global.level_file.waves[i].boss_wave{
 		if array_get_index(boss_type_list,global.level_file.waves[i].boss) == -1{
 			array_push(boss_type_list,global.level_file.waves[i].boss)

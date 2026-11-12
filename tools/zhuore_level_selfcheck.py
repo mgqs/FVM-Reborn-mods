@@ -7,6 +7,7 @@
   3. 本次新增的 18 只（13 小怪 + 5 BOSS）是否都进了情报岛
   4. spr_zhuorediyu / spr_mod_cs_bg 是否存在
   5. 血量调整（煎蛋铁锅僵尸鼠 2000 / 橘子滑板僵尸鼠 800）注册表与对象是否一致
+  6. 猫豁免与边界判负豁免（BOSS / 技能产物 / 傀儡马代理）是否还在
 
 用法：python tools/zhuore_level_selfcheck.py
 """
@@ -126,6 +127,15 @@ def main():
     print('猫豁免表：5 只 BOSS + 4 个技能产物 %s（is_boss 标记已逐个校验）' % ('全部豁免' if not cat_lack else '缺 ' + ', '.join(cat_lack)))
     if cat_lack:
         problems.append('猫 ignore_list 缺少：' + ', '.join(cat_lack))
+
+    # 傀儡马（kuileima）的巫毒代理：位置吸附卡片格，卡片放第 0 列时代理距第 -1 列猫 117px
+    # （< 120px 唤醒半径）；mouse_id 被 decoy_sync_identity 同步成真实老鼠 id，没法靠 ignore_list 豁免，
+    # 只能在 obj_cat 里按对象类型整类跳过。这里守住那行，避免以后被“清理豁免”时误删。
+    cat_step = read('objects/obj_cat/Step_0.gml')
+    has_decoy_skip = re.search(r'object_index' + WS + r'==' + WS + r'obj_kuileima_decoy' + WS + r'\)?' + WS + r'continue', cat_step) is not None
+    print('傀儡马代理豁免：第 0 列猫跳过 obj_kuileima_decoy %s' % ('已接入' if has_decoy_skip else '缺失'))
+    if not has_decoy_skip:
+        problems.append('objects/obj_cat/Step_0.gml 缺少 obj_kuileima_decoy 跳过分支（傀儡马放第 0 列会误触发猫）')
 
     # 技能物件不能被击退到左边界后触发“老鼠跑掉”判负
     parent_src = read('objects/obj_enemy_parent/Create_0.gml')

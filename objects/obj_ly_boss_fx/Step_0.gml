@@ -90,13 +90,32 @@ if (fx_kind == "diting_soundwave_live") {
     // 飞行路径/驻留格上的钟被引信（不销毁音波）
     longyuan_diting_prison_fuse_cell(_swcol, fx_row);
     x += fx_direction * fx_speed;
+
+    // 音波只摧毁「已经被它扫过」的列：前缘推进到新的一列就结算一次，
+    // 不再一开场就对整行结算（旧写法导致音波才飞到第 4、5 格，最左侧卡片就已经爆了）。
+    if (!variable_instance_exists(id, "fx_col_prev")) fx_col_prev = _swcol;
+    if (_swcol != fx_col_prev) {
+        var _c0, _c1;
+        if (fx_direction < 0) { _c0 = _swcol; _c1 = fx_col_prev - 1; }
+        else                  { _c0 = fx_col_prev + 1; _c1 = _swcol; }
+        _c0 = max(_c0, 0);
+        _c1 = min(_c1, global.grid_cols - 1);
+        for (var _c = _c0; _c <= _c1; ++_c) {
+            longyuan_damage_cell(_c, fx_row, fx_damage);
+        }
+        fx_col_prev = _swcol;
+    }
+
     if (x <= global.grid_offset_x - 40) { instance_destroy(); exit; }
-    // 音波经过整行时按秒对本行所有卡片造成一次伤害。
+    // 按秒对「已扫过的那一段」续伤（只会覆盖音波身后，不会提前打到还没飞到的格子）
     fx_damage_timer++;
     if (fx_damage_timer >= game_get_speed(gamespeed_fps)) {
         fx_damage_timer = 0;
-        for (var _col = 0; _col < global.grid_cols; ++_col) {
-            longyuan_damage_cell(_col, fx_row, fx_damage);
+        var _t0, _t1;
+        if (fx_direction < 0) { _t0 = clamp(_swcol, 0, global.grid_cols - 1); _t1 = global.grid_cols - 1; }
+        else                  { _t0 = 0; _t1 = clamp(_swcol, 0, global.grid_cols - 1); }
+        for (var _c = _t0; _c <= _t1; ++_c) {
+            longyuan_damage_cell(_c, fx_row, fx_damage);
         }
     }
 }

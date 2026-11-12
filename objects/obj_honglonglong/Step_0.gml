@@ -281,6 +281,7 @@ switch state{
 				var _model_grid = get_grid_position_from_world(x, y)
 				var _center_row = _model_grid.row
 				var _center_col = _model_grid.col
+				// 判定区 = 行 [_center_row-2, _center_row+1] x 列 [_center_col-2, _center_col+1]
 				var _cards_to_destroy = []
 				with obj_card_parent{
 					if grid_row >= _center_row - 2 && grid_row <= _center_row + 1
@@ -301,7 +302,16 @@ switch state{
 			}
 		// 第 15 帧（floor(timer/5) == 15）落地瞬间播技能特效
 		if timer == 15 * 5{
-			instance_create_depth(x, y, depth - 1, obj_honglonglong_skill_3_effect)
+			// 15*5 = 落地那一 tick：BOSS 的 (x, y) 一个像素都不动，只把特效原点摆到 BOSS 视觉中心
+			// 特效贴图 278x262、origin (139,131)，光环圆心 = 贴图几何中心（实测质心偏差 <4px），
+			// 所以「光环圆心落在 BOSS 视觉中心」等价于「特效画在 BOSS 视觉中心这个点上」。
+			// BOSS 视觉中心：坐压驻留帧 15..23 的 alpha 加权质心均值 = 贴图 (169.6, 168.7)，取 (170, 170)；
+			// 原点 (177, 250)，image_scale 1.8 -> 视觉中心比 (x, y) 高 144px、左 13px。
+			var _vcx = x + (170 - sprite_get_xoffset(sprite_index)) * image_xscale
+			var _vcy = y + (170 - sprite_get_yoffset(sprite_index)) * image_yscale
+			// 特效画在 BOSS 背后一层（depth 数值更大 = 更远）：
+			// 冲击波是地面环，BOSS 要站在环心里，不能被环心的不透明白核盖住
+			instance_create_depth(_vcx, _vcy, depth + 1, obj_honglonglong_skill_3_effect)
 		}
 		if timer >= 24*5-1{
 			timer = 0

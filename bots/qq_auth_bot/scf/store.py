@@ -346,6 +346,96 @@ def ledger_from_env(autosave=True):
     return Ledger(FileStore(path), autosave)
 
 
+# ---------------------------------------------------------------- 现场回放
+# 线上最常见的两种「@ 了机器人没反应」根本不在同一层：
+#   ① 平台压根没把事件送到函数 → 这里有记录才有，没记录就是事件订阅/函数 URL 的问题；
+#   ② 事件到了但发不出去（密钥错、msg_id 过期、被平台拒）→ 记录里能看到 action 和发送状态。
+# 所以每次事件都留一条，打开 ?diag=1 就能分辨。
+
+def _diag_key():
+    base = os.environ.get("COS_KEY", "qqauth/ledger.json").strip() or "qqauth/ledger.json"
+    return base.rsplit("/", 1)[0] + "/diag.json" if "/" in base else "diag.json"
+
+
+def _diag_path():
+    path = os.environ.get("AUTH_DIAG_FILE", "").strip()
+    if path:
+        return path
+    try:
+        import tempfile
+        return os.path.join(tempfile.gettempdir(), "_qqauth_diag.json")
+    except Exception:
+        return "_qqauth_diag.json"
+
+
+def _diag_cos():
+    sid = os.environ.get("COS_SECRET_ID", "").strip()
+    skey = os.environ.get("COS_SECRET_KEY", "").strip()
+    region = os.environ.get("COS_REGION", "").strip()
+    bucket = os.environ.get("COS_BUCKET", "").strip()
+    if sid and skey and region and bucket:
+        return CosClient(sid, skey, region, bucket, timeout=3)
+    return None
+
+
+def diag_load():
+    client = _diag_cos()
+    if client is not None:
+        try:
+            data, exists = client.get_json(_diag_key())
+            if exists and isinstance(data, dict):
+                return data
+        except Exception:
+            pass
+    try:
+        with open(_diag_path(), "r", encoding="utf-8") as fp:
+            data = json.load(fp)
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def diag_record(rec, keep=10, sample_after=None):
+    """记一条现场记录：谁发的、原文是什么、最后做了什么。成功返回 True。
+
+    sample_after（秒）：给「不值得每条都记」的事件用（比如群里没 @ 机器人的
+    闲聊）。距上一条不足这么多秒就直接跳过，避免每句话都写一次 COS——
+    既能留下样本证明事件在到，又不为闲聊付存储和延迟。
+    """
+    import time as _time
+    now = _time.time()
+    data = diag_load() or {}
+    items = list(data.get("items") or [])
+    if sample_after is not None and items:
+        try:
+            if now - float(items[-1].get("ts") or 0) < sample_after:
+                return False
+        except (TypeError, ValueError):
+            pass
+    row = dict(rec or {})
+    row.setdefault("ts", int(now))
+    # 云函数容器走 UTC，直接打时间戳会差 8 小时（看着像「早上的消息」），
+    # 所以两个都给出来，看的人不用自己换算。
+    row.setdefault("at", _time.strftime("%Y-%m-%d %H:%M:%S", _time.gmtime(now)) + " UTC")
+    row.setdefault("at_cst", _time.strftime("%Y-%m-%d %H:%M:%S", _time.gmtime(now + 8 * 3600)) + " +08")
+    items.append(row)
+    data = {"items": items[-keep:]}
+
+    client = _diag_cos()
+    if client is not None:
+        try:
+            client.put_json(_diag_key(), data)
+            return True
+        except Exception:
+            pass
+    try:
+        with open(_diag_path(), "w", encoding="utf-8") as fp:
+            json.dump(data, fp, ensure_ascii=False)
+        return True
+    except Exception:
+        return False
+
+
 # ---------------------------------------------------------------- 自检
 
 def selftest():

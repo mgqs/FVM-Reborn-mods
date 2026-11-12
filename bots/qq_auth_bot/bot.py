@@ -80,16 +80,6 @@ def _flag(env_key, cfg_key, default="0"):
     return v in ("1", "true", "yes", "on")
 
 
-def _int(env_key, cfg_key, default):
-    """读整数配置。写错了就用默认值，别让整个机器人起不来。"""
-    raw = _conf(env_key, cfg_key, str(default))
-    try:
-        return int(str(raw).strip())
-    except (TypeError, ValueError):
-        print("⚠️  配置 %s=%r 不是整数，改用默认值 %s" % (cfg_key, raw, default))
-        return int(default)
-
-
 APP_ID = _conf("QQ_APP_ID", "app_id")
 APP_SECRET = _conf("QQ_APP_SECRET", "app_secret")
 SANDBOX = _flag("QQ_SANDBOX", "sandbox")
@@ -133,15 +123,8 @@ ADMIN_QQ = _conf("ADMIN_QQ", "admin_qq", "1017443780")
 ADMIN_CLAIM_CMDS = _cmd_variants("管理绑定", "管理绑定")
 UNBIND_UID_CMDS = _cmd_variants("解绑账号", "解绑账号")   # 必须排在 UNBIND_CMDS 前面解析
 UNBIND_CMDS = _cmd_variants("解绑", "解绑")
-# 2026-11 起 /绑定列表 改名为 /绑定数量，只回数量不回明细。
-# 旧命令保留成别名（同样只回数量），免得管理员按老习惯发过来时以为命令失效。
-LIST_CMDS = _cmd_variants("绑定数量", "绑定数量")
-LIST_ALIAS_CMDS = _cmd_variants("绑定列表", "绑定列表")
+LIST_CMDS = _cmd_variants("绑定列表", "绑定列表")
 WHOAMI_CMDS = _cmd_variants("我是谁", "我是谁")
-EXEMPT_CMDS = _cmd_variants("豁免", "豁免")           # 手动把某成员加入免踢名单
-UNBLACK_CMDS = _cmd_variants("解黑", "解黑")          # 从群黑名单里放出来
-PENDING_CMDS = _cmd_variants("待清理", "待清理")       # 看下一轮会被踢谁
-QUERY_CMDS = _cmd_variants("查询", "查询")             # 看 N 小时内会被清理的人（默认 24 小时）
 
 # 群里是否直接发码。码已经和机器码绑定，群发也拿不走，
 # 所以默认允许（1）；想只走私聊就设 0。
@@ -154,50 +137,11 @@ TRACE = _flag("QQ_TRACE", "trace", "0")
 API_BASE = "https://sandbox.api.sgroup.qq.com" if SANDBOX else "https://api.sgroup.qq.com"
 TOKEN_URL = "https://bots.qq.com/app/getAppAccessToken"
 
-# Intents：
-#   1 << 25  GROUP_AND_C2C_EVENT   群里 @ 机器人 + 单聊消息
-#   1 << 24  GROUP_MEMBER_EVENT    群成员加入/退出（新功能要登记新人，必须订阅）
-# 只加 1<<24 不影响原有 @ 消息链路；群消息全量模式（GROUP_MESSAGE_CREATE）
-# 也在这个 intent 里推，但要到群设置里开「接收所有消息」才真的有数据。
-INTENTS = (1 << 25) | (1 << 24)
+# Intents：GROUP_AND_C2C_EVENT = 1 << 25（QQ 群 @ 与单聊消息）
+INTENTS = 1 << 25
 
 RECONNECT_MAX = 5           # 连续失败几次就停，别无限重试（会被风控盯上）
 MSG_SEQ = {}                # msg_id -> 已用过的 msg_seq
-
-# ────────────────────── 群成员清理（3 天未绑定 / 7 天未发言）──────────────────────
-# 规则
-#   1. 新人入群 3 天还没绑定授权码 → 踢出 + 拉黑
-#   2. 7 天没发过言 → 踢出 + 拉黑（已绑定的也照样处理，这是用户明确要求）
-#   3. 踢出前 1 小时 @ 他提示一次
-#   4. 群昵称里含「留」字的人永不踢（用户指定的豁免标记）
-#
-# 豁免为什么看群昵称
-# ------------------
-# 平台没有「这个成员有没有设群昵称」这样的字段，只有一个 username。
-# 但它返回的就是群里显示的那个名字 —— 所以让想留名额的人把群昵称改成
-# 带「留」字（例：小明-留），机器人看到 username 里有「留」就跳过。
-# 这样不需要申请任何新接口，也不依赖未验证的接口行为。
-EXEMPT_MARKS = [m.strip() for m in
-                _conf("EXEMPT_MARKS", "exempt_marks", "留").split(",") if m.strip()]
-EXEMPT_OPENIDS = [m.strip().upper() for m in
-                  _conf("EXEMPT_OPENIDS", "exempt_openids", "").split(",") if m.strip()]
-
-KICK_NO_AUTH_DAYS = _int("KICK_NO_AUTH_DAYS", "kick_no_auth_days", 3)
-KICK_IDLE_DAYS = _int("KICK_IDLE_DAYS", "kick_idle_days", 7)
-WARN_BEFORE_SEC = _int("WARN_BEFORE_SEC", "warn_before_sec", 3600)
-# dry_run：只算名单、只发警告，不真踢（权限没下来 / 想先看误判率时用）
-# mute   ：踢不动时退而求其次，给 30 天禁言
-# remove ：真踢 + 拉黑
-KICK_MODE = (_conf("KICK_MODE", "kick_mode", "dry_run") or "dry_run").strip().lower()
-KICK_WITHOUT_WARN = _flag("KICK_WITHOUT_WARN", "kick_without_warn", "1")
-BLACKLIST_EXPIRE_DAYS = _int("BLACKLIST_EXPIRE_DAYS", "blacklist_expire_days", 0)
-# 已绑定的人要不要也按 7 天未发言清理（用户要求：要）
-KICK_BOUND_IDLE = _flag("KICK_BOUND_IDLE", "kick_bound_idle", "1")
-GROUP_OPENID = _conf("GROUP_OPENID", "group_openid", "")
-# 踢人成功后要不要顺带调官方的群黑名单接口（POST /member_blacklist）。
-# 那个接口还在内邀（11253），默认关；开了也不会致命 —— 失败只记日志。
-# 我们自己的 members.json 黑名单始终生效，/解黑 只改自己那份。
-PUSH_QQ_BLACKLIST = _flag("PUSH_QQ_BLACKLIST", "push_qq_blacklist", "0")
 
 # ────────────────────────────── 文案 ──────────────────────────────
 # 注意：这些字会显示在 QQ 里，走 QQ 自带字体，不用担心游戏字体缺字
@@ -226,15 +170,12 @@ MSG_BAD_HWID = (
 MSG_GREETING = (
     "发送 {cmd} 加你的本机识别码即可领取授权码。\n"
     "例：{cmd} 1A2B-3C4D\n"
-    "（识别码在游戏启动时弹出的授权窗口里，点一下就能复制）\n"
-    "\n"
-    "想知道自己会不会被清理、怎么拿豁免，发：/豁免"
+    "（识别码在游戏启动时弹出的授权窗口里，点一下就能复制）"
 )
 
 MSG_GROUP_HINT = (
     "领码请带上本机识别码：{cmd} XXXX-XXXX\n"
-    "（识别码在游戏启动时弹出的授权窗口里点一下就能复制）\n"
-    "查自己的豁免状态：/豁免"
+    "（识别码在游戏启动时弹出的授权窗口里点一下就能复制）"
 )
 
 MSG_POOL_EMPTY = "授权码暂时发完了，请联系管理加码后再领。"
@@ -259,11 +200,7 @@ MSG_ADMIN_CLAIMED = (
     "可用命令：\n"
     "/解绑 <识别码或码ID>   解绑单台机器\n"
     "/解绑账号 <openid前缀> 解绑某人名下全部机器\n"
-    "/绑定数量              看当前绑定了多少台\n"
-    "/待清理                看下一轮会被清退谁\n"
-    "/查询 [小时]           看 N 小时内会被清理的人（默认 24）\n"
-    "/豁免 <openid前缀>     加入免踢名单\n"
-    "/解黑 <openid前缀>     从黑名单放出来"
+    "/绑定列表              看当前所有绑定"
 )
 
 MSG_ADMIN_UNBIND_USAGE = (
@@ -297,139 +234,19 @@ MSG_ADMIN_UID_DONE = (
 
 MSG_ADMIN_LIST_HEAD = "绑定记录：共 {n} 台"
 
-# ── 新的 /绑定数量：只回一个数，绝不贴 openid 和明细 ──
-MSG_ADMIN_COUNT = "绑定数量：{n} 台"
-
-MSG_ADMIN_PENDING_EMPTY = "当前没有被清退的对象。"
-
-MSG_ADMIN_PENDING = (
-    "下一轮待清理：{n} 人\n"
-    "{lines}"
-)
-
-# ── /查询：按「还剩多久」筛人，默认看 1 天内会消失的 ──
-MSG_ADMIN_QUERY_EMPTY = "{hours} 小时内没有被清理的人。"
-MSG_ADMIN_QUERY = (
-    "{hours} 小时内会被清理：{n} 人\n"
-    "{lines}"
-)
-MSG_ADMIN_QUERY_USAGE = (
-    "用法：/查询 或 /查询 48\n"
-    "（不带参数看 24 小时内，也可以报小时数）"
-)
-
-MSG_ADMIN_EXEMPT_USAGE = "用法：/豁免 5D253F99（openid 前 8 位就够，也可以直接报群昵称）"
-
-# ── /豁免 不带参数：谁都能查自己有没有豁免（群里也能用）──
-# 普通玩家最常问的两句是「我会不会被踢」和「怎么才不被踢」，
-# 与其让他们等 1 小时前的警告，不如让他们随时能自己查。
-MSG_EXEMPT_SELF_YES = (
-    "你有豁免，不会被自动清理。\n"
-    "原因：{reason}"
-)
-
-MSG_EXEMPT_SELF_NO = (
-    "你目前没有豁免。\n"
-    "{deadline_line}\n"
-    "\n"
-    "三种拿到豁免的办法，任选一种：\n"
-    "1）把群昵称改成带「{mark}」字的，改完下一轮巡检就生效\n"
-    "2）在群里说一句话（每次发言都会重置「{idle} 天未发言」的倒计时）\n"
-    "3）找管理员，让他私聊发：/豁免 {short}"
-)
-
-MSG_EXEMPT_SELF_UNKNOWN = (
-    "成员表里还没有你的记录。\n"
-    "（机器人上线前就在群的人，第一次说话才会被登记）\n"
-    "\n"
-    "想要豁免，把群昵称改成带「{mark}」字的就行，或者找管理员。"
-)
-
-MSG_ADMIN_EXEMPT_DONE = "已加入免踢名单：{mid}…"
-MSG_ADMIN_EXEMPT_NONE = "成员表里没找到：{x}"
-
-MSG_ADMIN_EXEMPT_LIST = (
-    "免踢名单：{n} 人\n"
-    "{lines}"
-)
-
-MSG_ADMIN_UNBLACK_DONE = "已从黑名单放出：{n} 个"
-MSG_ADMIN_UNBLACK_NONE = "黑名单里没有：{x}"
-
-# ── 清理相关（发给被清理的人 / 群）──
-MSG_WARN_NO_AUTH = (
-    "{who}\n"
-    "你加入本群 {days} 天还没绑定授权码，{hours} 小时后会被移出本群并拉黑。\n"
-    "\n"
-    "现在发这一句就能保住名额：\n"
-    "    {cmd} XXXX-XXXX\n"
-    "（识别码在游戏启动时弹出的授权窗口里，点一下即可复制）\n"
-    "\n"
-    "暂时不方便授权的，把群昵称改一下、带上「{mark}」字即可保留。"
-)
-
-MSG_WARN_IDLE = (
-    "{who}\n"
-    "你已经 {days} 天没在群里说过话，{hours} 小时后会被移出本群并拉黑。\n"
-    "\n"
-    "在群里随便说一句话就能保住名额。\n"
-    "不方便发言的，把群昵称改一下、带上「{mark}」字即可保留。"
-)
-
-MSG_KICKED_NO_AUTH = "未在 {days} 天内绑定授权码，已移出并加入黑名单。"
-MSG_KICKED_IDLE = "连续 {days} 天未发言，已移出并加入黑名单。"
-MSG_MUTED_NO_AUTH = "未在 {days} 天内绑定授权码，已禁言。"
-MSG_MUTED_IDLE = "连续 {days} 天未发言，已禁言。"
-
-# 新成员入群提示（被动回复，借用 GROUP_ADD_ROBOT 之类事件的配额不足，
-# 所以只在能拿到 msg_id 时发；拿不到就靠群公告）
-MSG_WELCOME = (
-    "欢迎新成员。\n"
-    "本群需要绑定游戏授权码才能留下：{days} 天内发\n"
-    "    {cmd} XXXX-XXXX\n"
-    "（识别码在游戏授权窗口里点一下就能复制）\n"
-    "\n"
-    "暂时没法授权的，把群昵称改一下、带上「{mark}」字可保留名额。\n"
-    "超过 {days} 天未绑定会被移出本群。"
-)
-
-MSG_C2C_REDIRECT = (
-    "授权统一在群里办理。\n"
-    "回群里 @我 发：{cmd} XXXX-XXXX\n"
-    "查自己的豁免状态也是回群里发：/豁免"
-)
-
 
 # ────────────────────────────── 发码 ──────────────────────────────
 
-def issue_for(uid, hwid, ledger=None):
-    """返回 (code, is_new)。同一台机器永远只对应一个码。
-
-    uid 归属修正
-    ------------
-    机器人早期的 uid_of() 优先取 union_openid，所以老记录里的 uid 可能是
-    union 值；而群成员事件只有 member_openid。不修正的话，这些人永远被判定
-    成「未绑定」，3 天一到就被误踢。
-
-    命中已有机器时把 uid 改成现在这个（群内就是 member_openid）。改动只涉及
-    「归属显示」，码本身已经和 hwid 绑死，不影响实际授权。
-    """
-    own = ledger is None
-    if own:
-        ledger = qq_auth.Ledger(qq_auth.DB_PATH)
+def issue_for(uid, hwid):
+    """返回 (code, is_new)。同一台机器永远只对应一个码。"""
+    ledger = qq_auth.Ledger(qq_auth.DB_PATH)
     try:
         row = ledger.get_by_hwid(hwid)
         if row:
-            if str(row[1]) != str(uid):
-                ledger.put(uid, hwid, row[2], row[3])
-                if hasattr(ledger, "audit_append"):
-                    ledger.audit_append("uid_fix", "system", str(uid),
-                                        "hwid=%s old=%s" % (hwid, str(row[1])[:12]))
             return row[3], False
         return qq_auth.issue_for(uid, hwid, ledger)
     finally:
-        if own:
-            ledger.close()
+        ledger.close()
 
 
 # ────────────────────────────── HTTP ──────────────────────────────
@@ -513,19 +330,6 @@ def send_group(token, group_openid, content, msg_id):
     })
 
 
-def send_group_active(token, group_openid, content):
-    """主动消息：没有 msg_id 可带（定时巡检不来自任何一条消息）。
-
-    被动回复要求 msg_id 是某条真实消息的 id，巡检手里没有，只能发主动消息。
-    主动消息有自己的频控（单群 20 条/分钟、每群每天 1000 条），
-    所以 sweep 里每轮最多发 20 条，正好卡在上限内。
-    """
-    return _api("POST", "/v2/groups/%s/messages" % group_openid, token, {
-        "content": content,
-        "msg_type": 0,
-    })
-
-
 def _log_reply(kind, status, body, msg_id):
     """发消息的结果一定打出来。
 
@@ -541,13 +345,7 @@ def _log_reply(kind, status, body, msg_id):
 # ────────────────────────────── 消息处理 ──────────────────────────────
 
 def strip_mention(text):
-    """去掉 <@!123> / <@123> / @机器人 这类前缀，再取命令词。
-
-    2026-11 修：原来只吃掉 `<@!...>`（带感叹号）这一种。
-    群消息里 @ 更常见的是 `<@openid>`（不带感叹号），旧实现会把 openid
-    整串留在命令词前面，于是 `/授权` 变成 `<openid> /授权` 永远匹配不上，
-    玩家看到的现象就是「@ 了机器人却毫无反应」。
-    """
+    """去掉 <@!123> / <@123> / @机器人 这类前缀，再取命令词。"""
     t = text or ""
     while True:
         s = t.find("<@")
@@ -557,12 +355,28 @@ def strip_mention(text):
         if e < 0:
             break
         t = t[:s] + t[e + 1:]
-    t = t.replace("<@", "").replace(">", "")
+    t = t.replace("<@", "").replace(">", "").strip()
+
+    while t[:1] in ("@", "＠"):
+        rest = t[1:].lstrip()
+        i = 0
+        while i < len(rest) and rest[i] not in " \t\u3000/#＃／":
+            i += 1
+        head = rest[:i]
+        tail = rest[i:].lstrip()
+        if not tail and _looks_like_hwid(head):
+            t = rest
+            break
+        t = tail
     return t.strip()
 
 
-# 全角标点归一：手机输入法很容易把 / # 打成 ／ ＃，
-# 玩家看不出区别，代码里却匹配不上，表现就是「发了没反应」。
+def _looks_like_hwid(token):
+    """`1A2B-3C4D` / `1a2b3c4d` 这种是不是识别码。"""
+    raw = "".join(ch for ch in str(token or "") if ch not in "- _")
+    return len(raw) == qq_auth.HWID_LEN and qq_auth.hwid_valid(raw.upper())
+
+
 _FULLWIDTH_MAP = {
     ord("／"): "/", ord("＃"): "#", ord("＠"): "@",
     ord("　"): " ",
@@ -573,6 +387,8 @@ def _norm_cmd(plain):
     return (plain or "").translate(_FULLWIDTH_MAP)
 
 
+
+
 def parse_command(text):
     """返回 (命令类别, 参数)。严格匹配，'#授权码给我' 不算。
 
@@ -581,19 +397,44 @@ def parse_command(text):
     '#查码 1A2B-3C4D'  -> ('lookup', '1A2B3C4D')
     """
     plain = _norm_cmd(strip_mention(text))
-    for cmds, kind in ((AUTH_CMDS, "auth"), (LOOKUP_CMDS, "lookup")):
-        for cmd in cmds:
-            if plain == cmd:
-                return (kind, "")
-            # 命令后面必须跟空白，否则 '#授权码' 会被误判成 '#授权'
-            if plain.startswith(cmd) and len(plain) > len(cmd) and plain[len(cmd)] in (" ", "\u3000"):
-                return (kind, plain[len(cmd):].strip())
-    # 兜底：@ 了机器人但只发了一串识别码（'1145-CCBB'），也算 /授权。
-    # 玩家从游戏里复制识别码直接粘到群里是常态，不会附带命令词。
+    # '／＃授权' 归一后是 '/#授权'，多打的符号也得认：剥光了再补一个 /
+    body = plain.lstrip("/#").lstrip()
+    cands = [plain] if body == plain else [plain, "/" + body]
+    for cand in cands:
+        for cmds, kind in ((AUTH_CMDS, "auth"), (LOOKUP_CMDS, "lookup")):
+            # 前缀符号漏打也认：'授权 513E7579' 和 '/授权 513E7579' 等价
+            for cmd in list(cmds) + [c.lstrip("/#") for c in cmds]:
+                if not cmd:
+                    continue
+                if cand == cmd:
+                    return (kind, "")
+                # 命令后面必须跟空白，否则 '#授权码' 会被误判成 '#授权'
+                if (cand.startswith(cmd) and len(cand) > len(cmd)
+                        and cand[len(cmd)] in (" ", "\u3000")):
+                    return (kind, cand[len(cmd):].strip())
     guess = plain.replace("-", "").replace(" ", "").upper()
     if _hwid_like(guess):
         return ("auth", plain)
     return None
+
+
+def looks_like_issue_attempt(text):
+    """群 @ 之后解析不出来时，要不要回一句提示。
+
+    只有玩家明显在问「领码 / 查码」才回；闲聊和管理命令一律不回
+    （群里回管理命令等于把别人的 openid 贴出来）。
+    """
+    if parse_admin_command(text) is not None:
+        return False
+    plain = _norm_cmd(strip_mention(text))
+    if not plain:
+        return False
+    for word in ("授权", "查码", "识别码", "领码", "激活", "码"):
+        if word in plain:
+            return True
+    parts = plain.split()
+    token = parts[-1] if parts else ""
+    return _hwid_like(token.replace("-", "").replace(" ", "").upper())
 
 
 def parse_admin_command(text):
@@ -606,17 +447,14 @@ def parse_admin_command(text):
     table = (
         (ADMIN_CLAIM_CMDS, "claim"),
         (UNBIND_UID_CMDS, "unbind_uid"),
-        (UNBLACK_CMDS, "unblack"),
         (UNBIND_CMDS, "unbind"),
         (LIST_CMDS, "list"),
-        (LIST_ALIAS_CMDS, "list"),      # 旧命令 /绑定列表 保留成别名，同样只回数量
-        (EXEMPT_CMDS, "exempt"),
-        (PENDING_CMDS, "pending"),
-        (QUERY_CMDS, "query"),
         (WHOAMI_CMDS, "whoami"),
     )
     for cmds, kind in table:
-        for cmd in cmds:
+        for cmd in list(cmds) + [c.lstrip("/#") for c in cmds]:
+            if not cmd:
+                continue
             if plain == cmd:
                 return (kind, "")
             if plain.startswith(cmd) and len(plain) > len(cmd) and plain[len(cmd)] in (" ", "\u3000"):
@@ -629,14 +467,11 @@ def _hwid_like(s):
             and all(c in qq_auth.HWID_CHARS for c in s))
 
 
-def handle_admin(uid, kind, arg, ledger, members=None):
+def handle_admin(uid, kind, arg, ledger):
     """管理员命令。返回要回的内容，None = 不回。
 
     ledger 必须是带 admins/is_admin/admin_add/drop_hwid/drop_uid/audit_append
     的那套（scf/store.py）。本地 SQLite 版没有这些，会被 handle_message 挡在前面。
-
-    members：可选的成员表（scf/members.py 的 Members）。/待清理、/豁免、/解黑
-    需要它；不传时这几个命令回一句提示，其余命令照常。
     """
     uid = str(uid or "").strip()
 
@@ -660,20 +495,24 @@ def handle_admin(uid, kind, arg, ledger, members=None):
         print("  [管理] 已设为管理员 uid=%s" % uid[:12])
         return MSG_ADMIN_CLAIMED.format(qq=ADMIN_QQ)
 
-    # /豁免 不带参数 = 任何人查自己的豁免状态。放在管理员闸门之前，
-    # 所以普通群友也能用；它只读成员表，不改任何东西。
-    if kind == "exempt" and not str(arg or "").strip():
-        return exempt_self_text(uid, members)
-
     # ── 以下只给管理员；非管理员静默丢弃，不暴露这些命令存在 ──
     if not ledger.is_admin(uid):
         print("  [管理] 非管理员尝试 %s uid=%s（已忽略）" % (kind, uid[:12]))
         return None
 
     if kind == "list":
-        # 2026-11 改版：只回数量。原来会列出每台的识别码 + openid 前缀，
-        # 30 条消息刷满屏幕，管理员实际只想知道「一共绑了多少台」。
-        return MSG_ADMIN_COUNT.format(n=ledger.count())
+        rows = ledger.all()
+        if not rows:
+            return MSG_ADMIN_LIST_HEAD.format(n=0)
+        rows = rows[::-1][:30]
+        lines = [MSG_ADMIN_LIST_HEAD.format(n=ledger.count()), ""]
+        for i, (hwid, owner, code_id, _code, ts) in enumerate(rows, 1):
+            lines.append("%d. %s  %s  %s  %s"
+                         % (i, hwid, str(owner)[:8], code_id,
+                            time.strftime("%m-%d %H:%M", time.localtime(ts))))
+        if ledger.count() > len(rows):
+            lines.append("（只显示最近 30 条）")
+        return "\n".join(lines)
 
     if kind == "unbind":
         raw = str(arg or "").replace("-", "").replace(" ", "").upper()
@@ -714,332 +553,7 @@ def handle_admin(uid, kind, arg, ledger, members=None):
         print("  [解绑] %s -> uid=%s 共 %d 台" % (uid[:12], victim[:12], n))
         return MSG_ADMIN_UID_DONE.format(n=n, hwids="、".join(hwids))
 
-    # ── 成员清理相关 ──
-    if kind in ("pending", "exempt", "unblack", "query"):
-        if members is None:
-            return "成员表没接上，这个命令要云端 Webhook 版才可用。"
-
-    if kind == "pending":
-        rows = pending_report(members)
-        if not rows:
-            return MSG_ADMIN_PENDING_EMPTY
-        lines = ["%d. %s  %s  %s" % (i, r["mid"][:8], r["name"] or "-", r["why"])
-                 for i, r in enumerate(rows[:30], 1)]
-        if len(rows) > 30:
-            lines.append("（只显示前 30 个）")
-        return MSG_ADMIN_PENDING.format(n=len(rows), lines="\n".join(lines))
-
-    if kind == "query":
-        raw = str(arg or "").strip()
-        if raw:
-            try:
-                hours = int(raw)
-            except ValueError:
-                return MSG_ADMIN_QUERY_USAGE
-            if hours <= 0:
-                return MSG_ADMIN_QUERY_USAGE
-        else:
-            hours = 24
-        rows = due_report(members, hours)
-        if not rows:
-            return MSG_ADMIN_QUERY_EMPTY.format(hours=hours)
-        lines = ["%d. %s  %s  %s" % (i, r["mid"][:8], r["name"] or "-", r["why"])
-                 for i, r in enumerate(rows[:30], 1)]
-        if len(rows) > 30:
-            lines.append("（只显示前 30 个）")
-        return MSG_ADMIN_QUERY.format(hours=hours, n=len(rows), lines="\n".join(lines))
-
-    if kind == "exempt":
-        pref = str(arg or "").strip()
-        if not pref:
-            return MSG_ADMIN_EXEMPT_USAGE
-        mid = _find_member(members, pref)
-        if not mid:
-            return MSG_ADMIN_EXEMPT_NONE.format(x=pref)
-        members.set_exempt(mid, True, "admin:%s" % uid[:8])
-        members.flush()
-        ledger.audit_append("exempt", uid, mid, "manual")
-        return MSG_ADMIN_EXEMPT_DONE.format(mid=mid[:8])
-
-    if kind == "unblack":
-        pref = str(arg or "").strip()
-        if not pref:
-            return "用法：/解黑 5D253F99（openid 前 8 位）"
-        hits = members.blacklist_find(pref)
-        if not hits:
-            return MSG_ADMIN_UNBLACK_NONE.format(x=pref)
-        for mid in hits:
-            members.blacklist_del(mid)
-            rec = members.get(mid)
-            if rec is not None and rec.get("state") == "kicked":
-                rec["state"] = "left"
-        members.flush()
-        ledger.audit_append("unblack", uid, ",".join(m[:8] for m in hits),
-                            "n=%d" % len(hits))
-        return MSG_ADMIN_UNBLACK_DONE.format(n=len(hits))
-
     return None
-
-
-# ────────────────────── 清理判定（sweep 和 /待清理 共用一份逻辑）──────────────────────
-
-def _has_exempt_mark(name):
-    """群昵称里含约定字样即豁免。用户指定：含「留」就不踢。"""
-    text = str(name or "")
-    if not text:
-        return ""
-    for mark in EXEMPT_MARKS:
-        if mark and mark in text:
-            return mark
-    return ""
-
-
-def is_exempt(mid, rec):
-    """返回豁免原因（空串 = 不豁免）。"""
-    if not rec:
-        return ""
-    if rec.get("exempt"):
-        return rec.get("exempt_by") or "manual"
-    if str(mid).upper() in EXEMPT_OPENIDS:
-        return "config"
-    if str(rec.get("role") or "") in ("owner", "admin"):
-        return "role:%s" % rec.get("role")
-    mark = _has_exempt_mark(rec.get("name"))
-    if mark:
-        return "name:%s" % mark
-    return ""
-
-
-def deadline_of(rec, now=None):
-    """返回 (截止时间戳, 规则名)。永不清理返回 (0, "")。
-
-    未绑定：入群 3 天，或 7 天没发言，取早的那个
-    已绑定：只看 7 天没发言（KICK_BOUND_IDLE 关掉则永不清理）
-    """
-    now = int(now or time.time())
-    join_ts = int(rec.get("join_ts") or 0) or now
-    last = int(rec.get("last_speak_ts") or 0) or join_ts
-    idle_dl = last + KICK_IDLE_DAYS * 86400
-    if rec.get("bound"):
-        return (idle_dl, "idle") if KICK_BOUND_IDLE else (0, "")
-    noauth_dl = join_ts + KICK_NO_AUTH_DAYS * 86400
-    return (min(noauth_dl, idle_dl), "no_auth" if noauth_dl <= idle_dl else "idle")
-
-
-def _first_mark():
-    return EXEMPT_MARKS[0] if EXEMPT_MARKS else "留"
-
-
-def _human_left(sec):
-    """把剩余秒数说成人话：3 天 4 小时 / 2 天 / 5 小时 / 12 分钟。"""
-    sec = int(sec)
-    if sec <= 0:
-        return "已经到点了"
-    d, rem = divmod(sec, 86400)
-    h = rem // 3600
-    if d:
-        return "%d 天 %d 小时" % (d, h) if h else "%d 天" % d
-    if h:
-        return "%d 小时" % h
-    return "%d 分钟" % max(1, rem // 60)
-
-
-def _exempt_reason_text(why):
-    """把 is_exempt() 返回的内部原因翻译成玩家能看懂的话。"""
-    why = str(why or "")
-    if why == "config":
-        return "管理员在名单里指定了你"
-    if why.startswith("role:"):
-        role = why.split(":", 1)[1]
-        return "你是群主" if role == "owner" else "你是群管理员"
-    if why.startswith("name:"):
-        return "你的群昵称里带了「%s」字" % why.split(":", 1)[1]
-    if why.startswith("admin:"):
-        return "管理员手动给你开的（%s）" % why.split(":", 1)[1]
-    if why == "manual":
-        return "管理员手动给你开的"
-    return why
-
-
-def exempt_self_text(uid, members=None):
-    """任何人 @ 机器人发 /豁免（不带参数），只回他自己的豁免状态。
-
-    这是个只读查询，不碰账本、不改成员表，所以群里也能放心开放 ——
-    否则玩家想知道自己会不会被踢，只能等到清理前 1 小时的警告。
-    """
-    uid = str(uid or "").strip()
-    mark = _first_mark()
-    if members is None:
-        return "豁免查询暂时不可用（成员表没接上），请联系管理。"
-    rec = members.get(uid)
-    if rec is None:
-        return MSG_EXEMPT_SELF_UNKNOWN.format(mark=mark)
-
-    why = is_exempt(uid, rec)
-    if why:
-        return MSG_EXEMPT_SELF_YES.format(reason=_exempt_reason_text(why))
-
-    now = int(time.time())
-    dl, rule = deadline_of(rec, now)
-    if not dl:
-        line = "按现在的规则，你不会被自动清理。"
-    elif dl <= now:
-        line = ("按现在的规则，你已经到清理点了"
-                "（%s），下一轮巡检就会处理。"
-                % ("还没绑定授权码" if rule == "no_auth" else "很久没发言"))
-    else:
-        line = ("按现在的规则，你%s，%s后会被清理。"
-                % ("还没绑定授权码" if rule == "no_auth" else "很久没发言",
-                   _human_left(dl - now)))
-    return MSG_EXEMPT_SELF_NO.format(
-        deadline_line=line,
-        mark=mark,
-        idle=KICK_IDLE_DAYS,
-        short=uid[:8],
-    )
-
-
-def sweep_plan(members, now=None):
-    """算出这一轮要警告谁、要踢谁。纯函数，不动任何数据。
-
-    返回 {"warn": [...], "kick": [...], "skip": [...]}
-    """
-    now = int(now or time.time())
-    warn, kick, skip = [], [], []
-    for mid, rec in members.members().items():
-        state = str(rec.get("state") or "active")
-        if state in ("left", "kicked"):
-            skip.append({"mid": mid, "why": "state:%s" % state})
-            continue
-        why_ex = is_exempt(mid, rec)
-        if why_ex:
-            skip.append({"mid": mid, "why": "exempt:%s" % why_ex})
-            continue
-        dl, rule = deadline_of(rec, now)
-        if not dl:
-            skip.append({"mid": mid, "why": "no-deadline"})
-            continue
-        item = {
-            "mid": mid,
-            "name": rec.get("name") or "",
-            "why": rule,
-            "deadline": dl,
-            "hours": max(1, int(round((dl - now) / 3600.0))),
-        }
-        if now >= dl:
-            kick.append(item)
-        elif now >= dl - WARN_BEFORE_SEC:
-            if not rec.get("warned_at") or rec.get("warn_kind") != rule:
-                warn.append(item)
-            else:
-                skip.append({"mid": mid, "why": "already-warned"})
-        else:
-            skip.append({"mid": mid, "why": "not-yet"})
-    return {"warn": warn, "kick": kick, "skip": skip}
-
-
-def pending_report(members, now=None):
-    """/待清理 用：列出已经进入警告窗口和准备踢的人。"""
-    plan = sweep_plan(members, now)
-    rows = []
-    for it in plan["warn"]:
-        rows.append({"mid": it["mid"], "name": it["name"],
-                     "why": "%s · 警告中 · 剩 %d 小时" % (it["why"], it["hours"])})
-    for it in plan["kick"]:
-        rows.append({"mid": it["mid"], "name": it["name"],
-                     "why": "%s · 到点待踢" % it["why"]})
-    return rows
-
-
-def due_report(members, hours=24, now=None):
-    """/查询 用：列出「还剩 hours 小时内会被清理」的人，按剩余时间从少到多排。
-
-    和 /待清理 的区别：
-      /待清理  只看「已经在警告窗口里（默认剩 1 小时）+ 已到点」的
-      /查询 N  看「从现在起 N 小时内任何一个时刻会到点」的，窗口由你定
-
-    所以 /查询 24 往往比 /待清理 多出一批人——那批人还没开始被告警，
-    但你今天之内就会失去他们，提前知道才好决定要不要 /豁免。
-    """
-    now = int(now or time.time())
-    limit = now + int(hours) * 3600
-    rows = []
-    for mid, rec in members.members().items():
-        state = str(rec.get("state") or "active")
-        if state in ("left", "kicked"):
-            continue
-        if is_exempt(mid, rec):
-            continue
-        dl, rule = deadline_of(rec, now)
-        if not dl or dl > limit:
-            continue
-        left = dl - now
-        if left <= 0:
-            when = "已到点"
-            hrs = 0
-        elif left < 3600:
-            when = "剩 %d 分钟" % max(1, int(round(left / 60.0)))
-            hrs = 1
-        else:
-            hrs = max(1, int(round(left / 3600.0)))
-            when = "剩 %d 小时" % hrs
-        label = "未绑定" if rule == "no_auth" else "未发言"
-        rows.append({
-            "mid": mid,
-            "name": rec.get("name") or "",
-            "why": "%s · %s · %s" % (label, when, rule),
-            "hours": hrs,
-            "deadline": dl,
-            "rule": rule,
-        })
-    rows.sort(key=lambda r: (r["deadline"], r["mid"]))
-    return rows
-
-
-def _find_member(members, key):
-    """按 openid 前缀或群昵称找成员。管理员手里通常只有名字。"""
-    key = str(key or "").strip()
-    if not key:
-        return ""
-    for mid in members.members():
-        if mid.upper().startswith(key.upper()):
-            return mid
-    hits = [mid for mid, rec in members.members().items()
-            if str(rec.get("name") or "") == key]
-    if len(hits) == 1:
-        return hits[0]
-    return ""
-
-
-def mention_of(mid, name=""):
-    """群内 @ 某人的写法。
-
-    发送侧用 `<@openid>`：接收事件里 @ 就是被替换成这个形式的，
-    发回去平台同样认识。拿不到 openid 才退回纯文本 @名字（不会真提醒，
-    但至少文案读得通）。
-    """
-    mid = str(mid or "").strip()
-    if mid:
-        return "<@%s>" % mid
-    return "@%s" % (name or "群成员")
-
-
-def warn_text(item, cmd=None):
-    """生成警告文案。不放 URL（平台会以 40054010 直接拒收）。"""
-    mark = EXEMPT_MARKS[0] if EXEMPT_MARKS else "留"
-    who = mention_of(item.get("mid"), item.get("name"))
-    if item["why"] == "no_auth":
-        return MSG_WARN_NO_AUTH.format(
-            who=who,
-            days=KICK_NO_AUTH_DAYS,
-            hours=item["hours"],
-            cmd=cmd or AUTH_COMMAND,
-            mark=mark)
-    return MSG_WARN_IDLE.format(
-        who=who,
-        days=KICK_IDLE_DAYS,
-        hours=item["hours"],
-        mark=mark)
 
 
 def handle_message(uid, text, ledger=None):
@@ -1088,138 +602,18 @@ def handle_message(uid, text, ledger=None):
         return MSG_ERROR
 
 
-def uid_of(data, prefer="member"):
+def uid_of(data):
     """取稳定的用户标识。
 
-    **群内一律用 member_openid。** 这是 2026-11 改过的地方，之前的顺序是
-    union_openid 优先，结果是：群消息里 union_openid 有值就存了 union，
-    而入群事件（GROUP_MEMBER_ADD）只给 member_openid，两边永远对不上，
-    已经绑定的老玩家会被判定成「未绑定」然后被清理掉。
-
-    单聊场景才用 user_openid（私聊里没有 member_openid）。
-    现在授权只在群里做，私聊只回一句指引，所以不会产生新的 user_openid 记录。
+    union_openid 存在时优先用它（同一主体下跨场景一致），
+    否则 C2C 用 user_openid、群消息用 member_openid。
     """
     author = data.get("author") or {}
-    if prefer == "member":
-        return (author.get("member_openid")
-                or author.get("union_openid")
-                or author.get("user_openid")
-                or author.get("id")
-                or "")
-    return (author.get("user_openid")
-            or author.get("union_openid")
+    return (author.get("union_openid")
+            or author.get("user_openid")
             or author.get("member_openid")
             or author.get("id")
             or "")
-
-
-# ────────────────────────────── 群管理接口 ──────────────────────────────
-
-def group_api(path, token, payload=None, method="POST"):
-    """群管理接口的统一入口。返回 (status, dict)。
-
-    这几个接口都要机器人是**群管理员**；权限没下来时平台回 11253
-    （应用无接口访问权限），调用方据此降级到禁言或只记日志。
-    """
-    return _api(method, path, token, payload)
-
-
-def kick_members(group_openid, tokens, token=None):
-    """批量移除群成员。单次最多 20 个。
-
-    返回 (ok, status, body)。11253 = 接口还在内邀，调用方要退化处理。
-    """
-    tokens = [str(t).strip() for t in (tokens or []) if str(t).strip()][:20]
-    if not tokens:
-        return False, 0, {"error": "empty"}
-    status, body = group_api(
-        "/v2/groups/%s/batch_remove_members" % group_openid,
-        token, {"members": tokens})
-    return status < 400, status, body
-
-
-def mute_members(group_openid, tokens, days=30, token=None, op="add"):
-    """设置禁言。踢不动时的退路（需要机器人是群管理员）。单次最多 20 个。"""
-    tokens = [str(t).strip() for t in (tokens or []) if str(t).strip()][:20]
-    if not tokens:
-        return False, 0, {"error": "empty"}
-    payload = {"members": tokens, "op": op}
-    if op in ("add", "update"):
-        payload["mute_expire_at"] = time.strftime(
-            "%Y-%m-%dT%H:%M:%S+08:00", time.localtime(time.time() + days * 86400))
-    status, body = group_api(
-        "/v2/groups/%s/restrict_chat_setting" % group_openid, token, payload)
-    return status < 400, status, body
-
-
-def blacklist_members(group_openid, tokens, token=None, op="add"):
-    """群黑名单操作（QQ 官方接口）POST /v2/groups/{gid}/member_blacklist
-
-    **两条硬前提**（官方文档明确写了）：
-      1. 只能对「不在群里」的人操作 —— 所以顺序必须是先踢人、再拉黑。
-         人还在群里时调 add，这个人会被放进 fail_openids。
-      2. 这个接口同样在内邀（11253），和 batch_remove_members 一个待遇。
-
-    op="add" 拉黑，op="del" 放出来（等价于我们的 /解黑，但作用于 QQ 侧）。
-    返回 (ok, status, body)，body 里 fail_openids 是没处理成功的。
-    """
-    tokens = [str(t).strip() for t in (tokens or []) if str(t).strip()][:20]
-    if not tokens:
-        return False, 0, {"error": "empty"}
-    status, body = group_api(
-        "/v2/groups/%s/member_blacklist" % group_openid,
-        token, {"op": str(op or "add").lower(), "member_openids": tokens})
-    return status < 400, status, body
-
-
-def approve_join_request(group_openid, member_openid, token=None,
-                         op="decline", join_request_id="", reason="",
-                         add_to_blacklist=False):
-    """审批入群申请（机器人需群管理员）。
-
-    op="approve" 放进来，op="decline" 拒绝。
-    **这是唯一一条能把人塞进 QQ 侧黑名单的开放途径**：
-    decline 时带 add_to_member_blacklist=true，平台会顺手拉黑
-    （member_blacklist 接口还在内邀，这条不用等）。
-
-    返回 (ok, status, body)。
-    """
-    if not member_openid:
-        return False, 0, {"error": "empty"}
-    payload = {"op": str(op or "decline").lower()}
-    if join_request_id:
-        payload["join_request_id"] = str(join_request_id)
-    if payload["op"] == "decline":
-        if reason:
-            payload["reject_reason"] = str(reason)[:50]
-        if add_to_blacklist:
-            payload["add_to_member_blacklist"] = True
-    status, body = group_api(
-        "/v2/groups/%s/approval_join_request/%s" % (group_openid, member_openid),
-        token, payload)
-    return status < 400, status, body
-
-
-def list_group_members(group_openid, token=None, limit=200):
-    """拉群成员列表。**这个接口目前还在内邀**（11253），拿不到就算了。
-
-    拿得到的话有两个用处：①补登记机器人上线前就在群的老成员；
-    ②刷新群昵称（判断「留」字豁免）。
-    """
-    out, cursor = [], ""
-    while len(out) < limit:
-        path = "/v2/groups/%s/members?limit=30" % group_openid
-        if cursor:
-            path += "&after=" + str(cursor)
-        status, body = group_api(path, token, None, method="GET")
-        if status >= 400:
-            return out, status, body
-        chunk = body.get("data") or []
-        out.extend(chunk)
-        cursor = body.get("next_cursor") or ""
-        if not cursor or not chunk:
-            break
-    return out[:limit], 0, {}
 
 
 # ────────────────────────────── WS 客户端 ──────────────────────────────

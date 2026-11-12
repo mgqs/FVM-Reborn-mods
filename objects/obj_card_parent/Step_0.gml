@@ -87,19 +87,50 @@ if (!variable_instance_exists(id, "awake_mark_obj")) {
 }
 if (hp > 0 && variable_instance_exists(id, "plant_id") && plant_id != "player") {
 	// 清醒：awake_buff_timer 期间不可被催眠
+	// 该计时器是「共用字段」：桥头米线龙柱封印（longzhu_awake_touch）、咖啡粉唤醒、
+	// 海克斯落地沉睡豁免、玛丽系列 boss 都会写它。贴图必须按来源挑，
+	// 否则咖啡粉唤醒也会显示成米线印记（spr_mixian_effect2）。
 	if (awake_buff_timer > 0) {
-		if (!instance_exists(awake_mark_obj)) {
-			awake_mark_obj = instance_create_depth(x + 34, y - 62, depth - 40, obj_card_buff_mark);
-			awake_mark_obj.mark_owner = id;
-			awake_mark_obj.mark_kind = 0;
-			awake_mark_obj.sprite_index = spr_mixian_effect2;
-			awake_mark_obj.mark_off_x = 34;
-			awake_mark_obj.mark_off_y = -62;
-			awake_mark_obj.mark_rate = 6;
-			awake_mark_obj.mark_base_alpha = 1;
-			awake_mark_obj.mark_pulse = 0;
-			awake_mark_obj.image_xscale = 1.6;
-			awake_mark_obj.image_yscale = 1.6;
+		var _from_pillar = variable_instance_exists(id, "mixian_awake_source")
+		                && instance_exists(mixian_awake_source);
+		// 米线龙柱：spr_mixian_effect2（小图标，放大到 1.6 才看得清）
+		// 其它来源（咖啡粉唤醒等）：spr_coffee_grounds_icon，缩小到 0.55 当印记
+		var _want_spr = _from_pillar ? spr_mixian_effect2 : spr_coffee_grounds_icon;
+		var _want_scale = _from_pillar ? 1.6 : 0.55;
+		// spr_coffee_grounds_icon 只有 1 帧，靠 alpha 呼吸避免看着像贴图死板
+		var _want_alpha = _from_pillar ? 1 : 0.85;
+		var _want_pulse = _from_pillar ? 0 : 0.12;
+		// spr_coffee_grounds_icon 的画稿中心在原点左上（原点 52,56 / 绘图区 13~48），
+		// 缩小后要把原点补偿回卡片右上角，否则印记会贴到卡片外面。
+		var _want_off_x = _from_pillar ? 34 : 36;
+		var _want_off_y = _from_pillar ? -62 : -48;
+		// 咖啡粉本体不给自己挂唤醒印记（它只是施法者，身上那个计时没有实际意义）
+		if (plant_id == "coffee_grounds") {
+			if (instance_exists(awake_mark_obj)) {
+				instance_destroy(awake_mark_obj);
+				awake_mark_obj = noone;
+			}
+		}
+		else {
+			// 贴图或位置变了就重建（不要在旧实例上改，避免残留 alpha/xscale 状态）
+			var _need_rebuild = true;
+			if (instance_exists(awake_mark_obj)) {
+				_need_rebuild = (awake_mark_obj.sprite_index != _want_spr);
+			}
+			if (_need_rebuild) {
+				if (instance_exists(awake_mark_obj)) instance_destroy(awake_mark_obj);
+				awake_mark_obj = instance_create_depth(x + _want_off_x, y + _want_off_y, depth - 40, obj_card_buff_mark);
+				awake_mark_obj.mark_owner = id;
+				awake_mark_obj.mark_kind = 0;
+				awake_mark_obj.sprite_index = _want_spr;
+				awake_mark_obj.mark_off_x = _want_off_x;
+				awake_mark_obj.mark_off_y = _want_off_y;
+				awake_mark_obj.mark_rate = 6;
+				awake_mark_obj.mark_base_alpha = _want_alpha;
+				awake_mark_obj.mark_pulse = _want_pulse;
+				awake_mark_obj.image_xscale = _want_scale;
+				awake_mark_obj.image_yscale = _want_scale;
+			}
 		}
 	}
 	else if (instance_exists(awake_mark_obj)) {
