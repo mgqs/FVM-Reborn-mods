@@ -48,10 +48,12 @@ class MacProjectTests(unittest.TestCase):
         staged = build_macos.prepare_macos_project(self.work)
         data = build_macos.read_yy(staged)
         self.assertEqual(data["TextureGroups"][0]["loadType"], "dynamicpages")
+        self.assertEqual(data["TextureGroups"][0]["directory"], "assets/textures")
         self.assertEqual(data["TextureGroups"][0]["customOptions"], "BCN -3 -u4")
         self.assertEqual(data["TextureGroups"][1]["loadType"], "default")
         music = build_macos.read_yy(staged.parent / "sounds/music_example/music_example.yy")
         self.assertEqual(music["compression"], 3)
+        self.assertEqual(music["exportDir"], "assets/music")
         self.assertEqual(music["audioGroupId"]["name"], "audiogroup_default")
 
     def test_source_metadata_stays_unchanged(self):
@@ -115,6 +117,7 @@ class MacProjectTests(unittest.TestCase):
         groups = {g["name"]: g for g in build_macos.read_yy(staged)["TextureGroups"]}
         for name in ("enemy_longyuan", "battle_misc", "cards_ui"):
             self.assertEqual(groups[name]["loadType"], "dynamicpages")
+            self.assertEqual(groups[name]["directory"], "assets/textures")
             self.assertEqual(groups[name]["customOptions"], "BCN -3 -u4")
         for name, group, frames, width, height, expected in examples:
             folder = staged.parent / "sprites" / name

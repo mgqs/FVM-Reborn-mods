@@ -5,10 +5,13 @@ function resource_memory_enabled() {
     if (is_undefined(_enabled)) {
         // IDE builds on affected runtimes can ignore configuration overrides.
         // Use the original loading/audio buses unless external assets exist.
-        _enabled = (os_type == os_macosx || os_type == os_windows)
-            && file_exists(working_directory + "cards_0.yytex")
+        var _grouped = file_exists(working_directory + "assets/textures/cards_0.yytex")
+            && file_exists(working_directory + "assets/textures/enemy_longyuan_0.yytex")
+            && file_exists(working_directory + "assets/music/mus_town.ogg");
+        var _legacy = file_exists(working_directory + "cards_0.yytex")
             && file_exists(working_directory + "enemy_longyuan_0.yytex")
             && file_exists(working_directory + "mus_town.ogg");
+        _enabled = (os_type == os_macosx || os_type == os_windows) && (_grouped || _legacy);
     }
     return _enabled;
 }
