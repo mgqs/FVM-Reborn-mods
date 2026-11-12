@@ -147,13 +147,17 @@ function longyuan_soul_bonus_mult_id(_id) {
 	if (_id == "hufa_god")        return LY_SOUL_BONUS_HUFA;
 	if (_id == "huagao")          return LY_SOUL_BONUS_HUAGAO;
 	if (_id == "shennong_god")    return LY_SOUL_BONUS_SHENNONG;
+	// 2026-11-13：金刚马卡面「无视魂系鬼火减伤并造成 1.5 倍伤害」
+	//   1.5 倍已在 obj_jingangma_bullet 里乘过，这里只用来放行「不减伤」
+	if (_id == "jingangma")       return 1.5;
 	return 1.0;
 }
 
 /// 该来源（对象索引或卡片 id 字符串）是否属于「无视魂体减伤」的四张卡
 function longyuan_soul_pierce_source(_src) {
 	if (_src == obj_hongliukaochuan || _src == obj_hufa_god
-	 || _src == obj_huagao         || _src == obj_shennong_god) return true;
+	 || _src == obj_huagao         || _src == obj_shennong_god
+	 || _src == obj_jingangma) return true;
 	return (longyuan_soul_bonus_mult_id(_src) > 1.0);
 }
 

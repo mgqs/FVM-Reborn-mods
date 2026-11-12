@@ -40,6 +40,9 @@ if (atk_t >= 0 && hit_idx < array_length(HIT_FRAMES)){
 }
 
 if (_hit_now){
+    // 2026-11-13 补：命中音（原来整张卡一次声响都没有；按「一次结算响一次」写，不会因多只老鼠连响）
+    audio_play_sound(snd_hit1, 0, 0);
+
     // 一轮总伤 = atk（2 转 ×1.2），按结算次数均分，最后一份补差
     var _total = round(atk * range_mult);
     var _per = floor(_total / K);

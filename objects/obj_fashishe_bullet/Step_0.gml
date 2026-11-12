@@ -81,6 +81,7 @@ if (variable_global_exists("enemy_by_type"))
             if (precise_bbox_collision(id, _e))
             {
                 ds_list_add(hitted, _e.id);
+                if (ds_list_size(hitted) == 1) audio_play_sound(snd_hit1, 0, 0);   // 2026-11-12 补：每发只响一次
                 with (_e)
                 {
                     damage_amount = other.damage;

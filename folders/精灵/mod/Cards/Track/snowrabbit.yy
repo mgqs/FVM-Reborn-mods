@@ -14,8 +14,6 @@
     {"name":"cf12b4e5-e12c-4620-86e4-fec569ac86ea","path":"sprites/spr_snowrabbit/spr_snowrabbit.yy",},
     {"name":"1d42f760-0b0f-4cce-ba3a-af0f435a8b6c","path":"sprites/spr_snowrabbit_1/spr_snowrabbit_1.yy",},
     {"name":"98a8ce14-a9fb-46e2-ac2e-7d785a0e308d","path":"sprites/spr_snowrabbit_2/spr_snowrabbit_2.yy",},
-    {"name":"fafe74fd-8b77-4045-af58-03f983935b58","path":"sprites/spr_snowrabbit_bullet/spr_snowrabbit_bullet.yy",},
-    {"name":"6b4ebe16-af7c-4c01-81ee-4805e0120d78","path":"sprites/spr_snowrabbit_bullet_1/spr_snowrabbit_bullet_1.yy",},
-    {"name":"05d59ef6-78ae-4c3f-8fc4-00057a2a66a2","path":"sprites/spr_snowrabbit_bullet_2/spr_snowrabbit_bullet_2.yy",}
-],
+    {"name":"fafe74fd-8b77-4045-af58-03f983935b58","path":"sprites/spr_snowrabbit_bullet/spr_snowrabbit_bullet.yy",}
+  ],
 }

@@ -20,8 +20,9 @@ is_slowdown  = false;
 image_speed  = 0;
 flash_speed  = 5;
 
-idle_anim   = 12;
-attack_anim = 10;
+// 2026-11-12 用户口径：待机 = 第 1~10 帧（index 0~9），攻击 = 第 11~22 帧（index 10~21，12 帧）
+idle_anim   = 9;
+attack_anim = 12;
 
 attack_timer = 0;
 state        = CARD_STATE.IDLE;

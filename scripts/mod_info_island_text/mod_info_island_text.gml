@@ -54,13 +54,23 @@ function info_island_text_vars(_cid, _shape, _level, _skill){
     if (_sd != undefined && ds_map_exists(_sd, "name")) _v[? "形态名"] = string(_sd[? "name"]);
 
     // custom 结构体（注册时直接挂在形态数据上，比升级表更可靠）：按当前星级取值，覆盖同名项
+    // 🔴 2026-11-13 用户口径：卡片和技能表都有同一个 key 时，**以技能表为准**。
+    //   get_plant_data_with_skill 最后一句已经把技能值写进 _info（custom 是它的兜底基础值），
+    //   这里如果再把 custom 盖回去，就会出现「面板显示 45，实际按技能档 80 在跑」的错位。
+    var _skill_key = "";
+    if (ds_map_exists(global.skill_registry, _cid)){
+        var _se = global.skill_registry[? _cid];
+        if (is_array(_se) && array_length(_se) >= 1) _skill_key = string(_se[0]);
+    }
     if (_sd != undefined && ds_map_exists(_sd, "custom")){
         var _cs = _sd[? "custom"];
         var _ck = variable_struct_get_names(_cs);
         for (var _ci = 0; _ci < array_length(_ck); _ci++){
-            var _cv = variable_struct_get(_cs, _ck[_ci]);
-            if (is_array(_cv)) _v[? _ck[_ci]] = _cv[clamp(_level, 0, array_length(_cv) - 1)];
-            else _v[? _ck[_ci]] = _cv;
+            var _key_c = _ck[_ci];
+            if (_key_c == _skill_key) continue;      // 技能表优先，_info 里已是技能值
+            var _cv = variable_struct_get(_cs, _key_c);
+            if (is_array(_cv)) _v[? _key_c] = _cv[clamp(_level, 0, array_length(_cv) - 1)];
+            else _v[? _key_c] = _cv;
         }
     }
 

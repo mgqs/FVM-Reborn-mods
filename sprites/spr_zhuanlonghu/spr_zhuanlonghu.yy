@@ -132,13 +132,13 @@
               },"Disabled":false,"id":"09c4df68-9ee0-45ef-8598-159ae6478980","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"91935c0a-dc4f-41e0-8872-cc500b3fab9e","path":"sprites/spr_zhuanlonghu/spr_zhuanlonghu.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"3531c8d7-cac6-4b9b-8d21-07c018f89335","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"3531c8d7-cac6-4b9b-8d21-07c018f89335","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":91,
-    "yorigin":190,
+    "xorigin":85,
+    "yorigin":90,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

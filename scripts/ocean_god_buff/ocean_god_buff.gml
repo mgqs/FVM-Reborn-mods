@@ -158,6 +158,9 @@ function get_zhanqima_buff_multiplier(card)
 /// @return {string} buff 类型（"row_sprayer"/"sprayer"/"attach"/"both"/"none"）
 function mod_get_ocean_buff_type(arg0)
 {
+    // 2026-11-13 用户口径：汽水吃海洋的「附加类」5×1（本行 ±2 列），不吃喷壶 5×5
+    if (arg0 == "qishui") return "attach";
+
     var type = mod_get_buff_type(arg0);
 
     // 喷壶类

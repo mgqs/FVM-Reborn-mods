@@ -4744,7 +4744,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     },
     {
         name: "金鱼逗猫棒",
@@ -4755,7 +4756,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     },
     {
         name: "鼠鼠逗猫棒",
@@ -4766,7 +4768,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     }
     ], false);
 
@@ -4817,7 +4820,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.3]])
+        custom: info_custom([["溅射比例", 0.3], ["子弹数", 3]])
     },
     {
         name: "羽翼幻影蛇",
@@ -4829,7 +4832,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.45]])
+        custom: info_custom([["溅射比例", 0.45], ["子弹数", 3]])
     },
     {
         name: "金盔幻影蛇",
@@ -4841,7 +4844,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.45]])
+        custom: info_custom([["溅射比例", 0.45], ["子弹数", 6]])
     }
     ], false);
 
@@ -4886,7 +4889,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "金刚马",
         shape: 0,
-        description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠",
+        description: "金刚马：海陆空全方位攻击鼠军",
         hp: array_create(17, 50),
         cost: array_create(17, 285),
         atk: [80, 100, 120, 140, 160, 200, 240, 280, 340, 400, 460, 520, 640, 800, 960, 1120, 1330],
@@ -4898,7 +4901,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "魔铃金刚马",
         shape: 1,
-        description: "魔铃金刚马：音波数量+1，攻击附加几率定身",
+        description: "魔铃金刚马：海陆空全方位攻击鼠军",
         hp: array_create(17, 50),
         cost: array_create(17, 285),
         atk: [160, 200, 240, 280, 320, 400, 480, 560, 680, 800, 920, 1040, 1280, 1600, 1920, 2240, 2660],
@@ -4910,7 +4913,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "梵音金刚马",
         shape: 2,
-        description: "梵音金刚马：音波数量+1，秒杀平民鼠",
+        description: "梵音金刚马：海陆空全方位攻击鼠军",
         hp: array_create(17, 50),
         cost: array_create(17, 285),
         atk: [240, 300, 360, 420, 480, 600, 720, 840, 1020, 1200, 1380, 1560, 1920, 2400, 2880, 3360, 3990],
@@ -4925,7 +4928,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "窃蛋龙",
         shape: 0,
-        description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸",
+        description: "窃蛋龙：向前方3行投掷龙蛋",
         hp: array_create(17, 50),
         cost: array_create(17, 350),
         atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
@@ -4937,7 +4940,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "蓝角窃蛋龙",
         shape: 1,
-        description: "蓝角窃蛋龙：中路增加1发炮弹",
+        description: "蓝角窃蛋龙：向前方3行投掷龙蛋",
         hp: array_create(17, 50),
         cost: array_create(17, 350),
         atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
@@ -4949,7 +4952,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "钢爪窃蛋龙",
         shape: 2,
-        description: "钢爪窃蛋龙：2行侧路各增加1发炮弹",
+        description: "钢爪窃蛋龙：向前方3行投掷龙蛋",
         hp: array_create(17, 50),
         cost: array_create(17, 350),
         atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
@@ -4964,7 +4967,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "弹珠汽水",
         shape: 0,
-        description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只",
+        description: "弹珠汽水：向前喷射可弹射攻击的弹珠",
         hp: array_create(17, 50),
         cost: array_create(17, 220),
         atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
@@ -4976,7 +4979,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "香橙弹珠汽水",
         shape: 1,
-        description: "香橙弹珠汽水：子弹数+1，附加减速效果",
+        description: "香橙弹珠汽水：向前喷射可弹射攻击的弹珠",
         hp: array_create(17, 50),
         cost: array_create(17, 220),
         atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
@@ -4988,7 +4991,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "果味弹珠汽水",
         shape: 2,
-        description: "果味弹珠汽水：子弹数+1，击杀碎冰效果，弹射范围扩大",
+        description: "果味弹珠汽水：向前喷射可弹射攻击的弹珠",
         hp: array_create(17, 50),
         cost: array_create(17, 220),
         atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
@@ -5003,35 +5006,38 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "蛇蛇酒",
         shape: 0,
-        description: "蛇蛇酒：为3*3范围内卡片随机升星或者降星，持续45~80秒后恢复（持续时间随技能等级提升）",
+        description: "蛇蛇酒：一段时间内改变卡片星级",
         hp: array_create(17, 50),
         cost: array_create(17, 380),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45]])
     },
     {
         name: "仙露蛇蛇酒",
         shape: 1,
-        description: "仙露蛇蛇酒：升星上限提高",
+        description: "仙露蛇蛇酒：一段时间内改变卡片星级",
         hp: array_create(17, 50),
         cost: array_create(17, 380),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45]])
     },
     {
         name: "琼浆蛇蛇酒",
         shape: 2,
-        description: "琼浆蛇蛇酒：星级只升不降",
+        description: "琼浆蛇蛇酒：一段时间内改变卡片星级",
         hp: array_create(17, 50),
         cost: array_create(17, 380),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45]])
     }
     ], false);
 
@@ -5039,35 +5045,38 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "13周年时光机",
         shape: 0,
-        description: "13周年时光机：随机为本格卡片升星或者降星（前摇2.7~1.1秒，随技能等级缩短）",
+        description: "13周年时光机：随机为格子内卡片升星或者降星",
         hp: array_create(17, 50),
         cost: array_create(17, 275),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
     },
     {
         name: "超载时光机",
         shape: 1,
-        description: "超载时光机：作用范围扩大到3*3",
+        description: "超载时光机：随机为格子内卡片升星或者降星",
         hp: array_create(17, 50),
         cost: array_create(17, 275),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
     },
     {
         name: "未来时光机",
         shape: 2,
-        description: "未来时光机：升星效果加强",
+        description: "未来时光机：随机为格子内卡片升星或者降星",
         hp: array_create(17, 50),
         cost: array_create(17, 275),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
     }
     ], false);
 
@@ -5075,7 +5084,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "雪球兔",
         shape: 0,
-        description: "雪球兔：召唤雪球同时攻击全屏最多5只老鼠",
+        description: "雪球兔：召唤雪球攻击全屏老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
         atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
@@ -5087,7 +5096,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "见习雪球兔",
         shape: 1,
-        description: "见习雪球兔：同类卡伤害可以加成",
+        description: "见习雪球兔：召唤雪球攻击全屏老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
         atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
@@ -5099,7 +5108,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "导师雪球兔",
         shape: 2,
-        description: "导师雪球兔：攻击附加溅射，数量+3",
+        description: "导师雪球兔：召唤雪球攻击全屏老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 280),
         atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
@@ -5114,7 +5123,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "弹簧虎",
         shape: 0,
-        description: "弹簧虎：连续发射2发带溅射的子弹攻击本行，优先空中，子弹可穿过岩浆和障碍",
+        description: "弹簧虎：连续攻击本行敌人，优先伤害空中",
         hp: array_create(17, 50),
         cost: array_create(17, 195),
         atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
@@ -5126,7 +5135,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "飞行弹簧虎",
         shape: 1,
-        description: "飞行弹簧虎：溅射伤害提高到40%",
+        description: "飞行弹簧虎：连续攻击本行敌人，优先伤害空中",
         hp: array_create(17, 50),
         cost: array_create(17, 195),
         atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
@@ -5138,7 +5147,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "机器弹簧虎",
         shape: 2,
-        description: "机器弹簧虎：增加1发子弹",
+        description: "机器弹簧虎：连续攻击本行敌人，优先伤害空中",
         hp: array_create(17, 50),
         cost: array_create(17, 195),
         atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
@@ -5153,7 +5162,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "元气牛",
         shape: 0,
-        description: "元气牛：连续散发全方位伤害气泡波，场上每多1张同类卡伤害提升1次",
+        description: "元气牛：全方位攻击范围内的老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 225),
         atk: [50, 58, 66, 74, 82, 90, 98, 110, 130, 150, 190, 230, 270, 310, 350, 390, 450],
@@ -5164,7 +5173,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "泡泡元气牛",
         shape: 1,
-        description: "泡泡元气牛：范围扩大到5*5，能量守恒",
+        description: "泡泡元气牛：全方位攻击范围内的老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 225),
         atk: [50, 58, 66, 74, 82, 90, 98, 110, 130, 150, 190, 230, 270, 310, 350, 390, 450],
@@ -5175,7 +5184,7 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "酷酷元气牛",
         shape: 2,
-        description: "酷酷元气牛：增加1波气泡伤害",
+        description: "酷酷元气牛：全方位攻击范围内的老鼠",
         hp: array_create(17, 50),
         cost: array_create(17, 225),
         atk: [75, 87, 99, 111, 123, 135, 147, 165, 195, 225, 285, 345, 405, 465, 525, 585, 675],
@@ -5189,38 +5198,38 @@ mod_register_plant_lite("xuanfengniu", [
     {
         name: "转龙壶",
         shape: 0,
-        description: "转龙壶：缩减3*3范围内正在冷却的美食的冷却时间30%",
+        description: "转龙壶：缩减范围内卡片冷却时间",
         hp: array_create(17, 50),
         cost: array_create(17, 200),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 30]])
+        custom: info_custom([["冷却缩减", 30], ["前摇", 2.3]])
     },
     {
         name: "充能转龙壶",
         shape: 1,
-        description: "充能转龙壶：缩短时间能力提升至50%",
+        description: "充能转龙壶：缩减范围内卡片冷却时间",
         hp: array_create(17, 50),
         cost: array_create(17, 200),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 50]])
+        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
     },
     {
         name: "巨星转龙壶",
         shape: 2,
-        description: "巨星转龙壶：能力影响范围提升至5*5",
+        description: "巨星转龙壶：缩减范围内卡片冷却时间",
         hp: array_create(17, 50),
         cost: array_create(17, 200),
         atk: array_create(17, 0),
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 50]])
+        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
     }
     ], false);
 

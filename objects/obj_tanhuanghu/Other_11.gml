@@ -1,8 +1,7 @@
 /// 弹簧虎 开火事件：本行直线弹（穿透，可越过岩浆/障碍），命中后溅射
 // 命中桶：pierce（普通 / 走行 / 障碍 / 幽灵）+ air（卡面「陆空兼备」，pierce 本身不含 air）
 //   障碍在子弹 Step 里直接跳过（穿过、不消耗），所以放在表里也不会被挡下
-var _hittable = get_hittable_enemy_types(target_type);
-if (array_get_index(_hittable, "air") == -1) array_push(_hittable, "air");
+var _hittable = get_hittable_enemy_types(target_type);   // pierce_air = 普通 + 空军 + 障碍
 
 // 出弹点：优先空军时按本行空军**身体 bbox 中心**对齐（同多拿滋 2026-11-06 写法）
 //   固定 y-26 永远够不到空军，表现就是「索敌了但打不中」

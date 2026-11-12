@@ -35,6 +35,7 @@ for (var _t = 0; _t < array_length(hittable_types); _t++){
         if (_e.hp <= 0) continue;
         if (_key == "underground" && !is_digging_dijing(_e)) continue;
         if (!precise_bbox_collision(id, _e)) continue;
+        audio_play_sound(snd_hit1, 0, 0);     // 2026-11-12 补：命中音
 
         with (_e){
             damage_amount         = other.damage;

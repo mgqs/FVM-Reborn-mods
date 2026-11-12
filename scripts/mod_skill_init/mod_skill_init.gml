@@ -152,7 +152,7 @@ function mod_skill_init()
     register_card_skill("jingangma", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 48]);
     register_card_skill("qiedanlong", "cycle", [132, 129, 126, 123, 120, 117, 114, 111, 105]);
     register_card_skill("qishui", "cycle", [120, 117, 114, 111, 108, 102, 96, 90, 78]);
-    register_card_skill("sheshejiu", "持续时间", [45, 48, 51, 54, 57, 60, 65, 70, 80]);
+    register_card_skill("sheshejiu", "升降持续", [45, 48, 51, 54, 57, 60, 65, 70, 80]);
     register_card_skill("shiguangji", "前摇", [2.7, 2.5, 2.3, 2.1, 1.9, 1.7, 1.5, 1.3, 1.1]);
     register_card_skill("snowrabbit", "cycle", [330, 318, 306, 294, 282, 270, 258, 240, 210]);
     register_card_skill("tanhuanghu", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);

@@ -22,4 +22,6 @@ function plus_card_init(){
 	ds_map_add(global.plus_card_map,"athena",[obj_athena,1])
 	ds_map_add(global.plus_card_map,"corn_shooter",[obj_corn_shooter,1])
 	ds_map_add(global.plus_card_map,"tianxie",[obj_tianxie,1])
+	// 2026-11-13：元气牛 0 转「场上每存在一张 +50」，1 转起能量守恒（不再加）
+	ds_map_add(global.plus_card_map,"yuanqiniu",[obj_yuanqiniu,1])
 }

@@ -25,6 +25,7 @@ landed = true;
 x = tx;
 y = ty;
 image_index = 7;
+audio_play_sound(snd_coke_bomb_explode, 0, false);   // 2026-11-12 补：可乐炸弹爆炸音
 
 if (variable_global_exists("enemy_by_type"))
 {

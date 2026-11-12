@@ -430,6 +430,10 @@ function mod_apply_category_buff_map()
     ds_map_set(global.plant_buff_map, "gaia", "thrower");
     ds_map_set(global.plant_buff_map_2, "gaia", "tracker");
 
+    // 2026-11-13 用户口径：汽水（直射类·特殊直线）吃「喷壶档」增幅 —— 魔杖蛇（含本行整行）、榨汁机。
+    //   海洋女神那边单独按「附加类 5×1」算，见 ocean_god_buff.gml 的 mod_get_ocean_buff_type。
+    ds_map_set(global.plant_buff_map, "qishui", "sprayer");
+
     show_debug_message("增幅分组按分类重建：" + string(_total) + " 条");
     return _total;
 }

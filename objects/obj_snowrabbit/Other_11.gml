@@ -3,9 +3,11 @@
 var _list = ds_priority_create();
 
 with (obj_enemy_parent){
-    if (hp <= 0) exit;
-    if (target_type == "obstacle") exit;
-    if (!can_target_on(other.target_type, target_type)) exit;
+    // ⚠️ 这里必须是 continue：GML 里 with 内写 exit 会直接跳出整个事件，
+    //    第一只老鼠不合格就一个目标都选不出来（2026-11-13 修）
+    if (hp <= 0) continue;
+    if (target_type == "obstacle") continue;
+    if (!can_target_on(other.target_type, target_type)) continue;
     // 越靠前（grid_col 越小）越优先，BOSS 加权
     var _score = grid_col * 1000 + random(99);
     if (is_boss) _score -= 100000;
@@ -18,8 +20,10 @@ for (var _i = 0; _i < _n; _i++){
     var _t = ds_priority_delete_min(_list);
     if (!instance_exists(_t)) continue;
 
-    var _bx = x;
-    var _by = y - sr_art_up;
+    // 2026-11-13：直接生在目标脚底 —— 精灵 spr_snowrabbit_bullet 自带「从天而降 → 砸中 → 碎冰」动画
+    //   （旧版从卡片位置斜飞，会在半路撞到别的小老鼠，看着就是「天上冒一下老鼠就掉血」）
+    var _bx = _t.x;
+    var _by = _t.y;
     var _b = instance_create_depth(_bx, _by, depth - 500, obj_snowrabbit_bullet);
     _b.damage         = round(atk * sr_atk_mult);
     _b.base_atk       = atk;
@@ -33,13 +37,11 @@ for (var _i = 0; _i < _n; _i++){
     _b.splash_ratio   = sr_splash_ratio;
     _b.splash_cells   = sr_splash_cells;
     _b.move_speed     = 14;
-    _b.fall_delay     = _i * 4;      // 错帧下落
+    _b.fall_delay     = 0;          // 2026-11-13 用户口径：同时落下，不要依次错帧（同冷萃机）
     _b.start_y        = _by;
 
-    // 按 shape 换图
-    if (shape == 1)      _b.sprite_index = spr_snowrabbit_bullet_1;
-    else if (shape == 2) _b.sprite_index = spr_snowrabbit_bullet_2;
-    else                 _b.sprite_index = spr_snowrabbit_bullet;
+    // 三形态共用同一张冰球（_1/_2 与本体相同，2026-11-13 已删）
+    _b.sprite_index = spr_snowrabbit_bullet;
 }
 
 ds_priority_destroy(_list);

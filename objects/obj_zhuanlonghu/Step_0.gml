@@ -31,11 +31,17 @@ if (zl_anim_tick >= flash_speed){
 image_index = zl_anim_i;      // 每帧都写：父对象也在推帧
 
 // ── ② 前摇 ──
-if (zl_cast_done) exit;
+if (zl_cast_done)
+{
+    // 2026-11-12 用户口径：前摇一到点就生效（effect 已经在下面那次 event_user(1) 里发过），
+    //   但**动画要播完这一轮再消失**，否则会出现「刚冒头就突然没了」。
+    if (zl_anim_i >= idle_anim) instance_destroy();
+    exit;
+}
 
 zl_timer++;
 if (zl_timer >= zl_cast_delay){
     zl_cast_done = true;
-    event_user(1);
-    instance_destroy();
+    event_user(1);            // 生效（减冷却）
+    // 不在这里销毁：等当前这轮 16 帧播完，见上面的分支
 }

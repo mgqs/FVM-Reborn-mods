@@ -4,22 +4,26 @@ if (global.is_paused) exit;
 
 // ── 推进 ──
 if (is_bounce){
-    // 弹射弹：朝「命中时记下的目标」飞过去（原来 move_x/move_y 恒 0、又直接出生在目标身上，
-    //   看起来就是瞬移；现在从上一只的位置起飞，飞到身边才结算）
-    if (instance_exists(bounce_target) && bounce_target.hp > 0){
-        var _dx = bounce_target.x - x;
-        var _dy = bounce_target.y - 20 - y;
-        var _l  = point_distance(0, 0, _dx, _dy);
-        if (_l > 4){
-            move_x = (_dx / _l) * move_speed;
-            move_y = (_dy / _l) * move_speed;
-        }
+    // 目标没了 / 根本没找到下一个 → 原地停住，淡出后消失（用户：范围内没得弹就不动）
+    if (!instance_exists(bounce_target) || bounce_target.hp <= 0){
+        bounce_wait++;
+        image_alpha = max(0, 1 - bounce_wait / 20);
+        if (bounce_wait > 20) instance_destroy();
+        exit;
     }
-    x += move_x;
-    y += move_y;
+
+    // 抛物线跳过去（色拉那种弧线，不是直线贴脸）
+    if (bounce_t < bounce_total){
+        bounce_t++;
+        var _p  = bounce_t / bounce_total;
+        var _tx = bounce_target.x;
+        var _ty = bounce_target.y - 20;
+        x = lerp(bs_x, _tx, _p);
+        y = lerp(bs_y, _ty, _p) - sin(_p * pi) * bounce_arc;
+    }
 
     bounce_life++;
-    if (bounce_life > 120){
+    if (bounce_life > 180){
         instance_destroy();
         exit;
     }
@@ -51,20 +55,27 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
         var _e = _list[_j];
         if (!instance_exists(_e) || _e.hp <= 0) continue;
         if (_e.id == skip_enemy) continue;   // 刚弹射离开的那只，别回头再打一次
+        // 弹射链上已经打过的（chain_ids）也不再结算 —— 否则气泡停在原地会连着打好几次
+        if (array_get_index(chain_ids, _e.id) != -1) continue;
 
-        // 直线弹只打本行；弹射弹不限行
+        // 直线弹只打本行；弹射弹只打「这一跳指定的那一只」（不然飞过去路上会撞别的，看着像穿透）
         if (!is_bounce && _e.grid_row != row) continue;
+        if (is_bounce && _e.id != bounce_target) continue;
 
         if (!precise_bbox_collision(id, _e)) continue;
 
         hitted_enemy = _e.id;
         has_hit = true;
+        audio_play_sound(snd_hit1, 0, 0);     // 2026-11-12 补：命中音
 
         // 先存坐标：下面的碎冰分支可能把这只老鼠直接销毁
         hit_x   = _e.x;
         hit_y   = _e.y;
         hit_col = _e.grid_col;
         hit_row = _e.grid_row;
+
+        var _just = _e.id;
+        array_push(chain_ids, _just);   // 记下来，弹射时别再回头打它
 
         with (_e){
             damage_amount = other.damage;
@@ -86,6 +97,62 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
                 _ash.sprite_index = spr_mouse_ice_death;
                 instance_destroy();
             }
+        }
+
+        // ── 弹射：同一颗子弹原地切「弹射态」，抛物线跳到下一只 ──
+        //   2026-11-13：旧写法在 Destroy 里 instance_create 新弹，实测打完第一只气泡就没了；
+        //   现在不销毁、不复用新实例，按色拉那种弧线跳到 3×3 / 5×5 内最近的另一只（直射 2 倍 / 弹射原值）
+        if (chain_left > 0){
+            var _next     = noone;
+            var _best_dis = 999999;
+
+            with (obj_enemy_parent){
+                if (hp <= 0) continue;
+                if (target_type == "obstacle") continue;
+                if (abs(grid_col - other.hit_col) > other.bounce_cells) continue;
+                if (abs(grid_row - other.hit_row) > other.bounce_cells) continue;
+                if (!can_target_on(other.target_type, target_type)) continue;
+
+                var _already = false;
+                for (var _ci = 0; _ci < array_length(other.chain_ids); _ci++){
+                    if (id == other.chain_ids[_ci]){ _already = true; break; }
+                }
+                if (_already) continue;
+
+                var _dis = point_distance(other.hit_x, other.hit_y, x, y);
+                if (_dis < _best_dis){
+                    _best_dis = _dis;
+                    _next     = id;
+                }
+            }
+
+            if (_next != noone){
+                chain_left--;
+                // 弹射段 = 攻击表原值（直射段才是 2 倍）
+                damage        = base_atk * bounce_mult;
+                is_bounce     = true;
+                bounce_target = _next;
+                skip_enemy    = _just;
+                sprite_index  = spr_qishui_bullet_2;   // 弹射段换小圆弹
+                image_index   = 0;
+                bs_x = x;
+                bs_y = y;
+                bounce_t      = 0;
+                bounce_total  = clamp(round(point_distance(x, y, _next.x, _next.y) / 9), 12, 30);
+                bounce_life   = 0;
+                hit_tick      = 0;
+                has_hit       = false;
+                hitted_enemy  = noone;
+                exit;   // 不销毁，抛物线跳过去
+            }
+
+            // 范围内没有可弹射的别的老鼠 → 原地停住、淡出（不再往前飞、也不再结算）
+            is_bounce     = true;
+            bounce_target = noone;
+            bounce_wait   = 0;
+            sprite_index  = spr_qishui_bullet_2;
+            hit_tick      = 0;
+            exit;
         }
 
         instance_destroy();

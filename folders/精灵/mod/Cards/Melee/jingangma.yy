@@ -14,8 +14,6 @@
     {"name":"02095335-82a2-44c0-ac3f-6054df249f2c","path":"sprites/spr_jingangma/spr_jingangma.yy",},
     {"name":"5bacde48-d135-4ae6-8db9-2dfe15ef3946","path":"sprites/spr_jingangma_1/spr_jingangma_1.yy",},
     {"name":"d7698d9c-f555-4157-baee-2d8cb6630f93","path":"sprites/spr_jingangma_2/spr_jingangma_2.yy",},
-    {"name":"95f65556-5113-4941-a446-9804ed69545b","path":"sprites/spr_jingangma_bullet/spr_jingangma_bullet.yy",},
-    {"name":"712eb496-73a0-4ddf-8ff0-dca44f05c4b6","path":"sprites/spr_jingangma_bullet_1/spr_jingangma_bullet_1.yy",},
-    {"name":"762a1b1c-0d5e-4252-a5d1-aa322e31afe9","path":"sprites/spr_jingangma_bullet_2/spr_jingangma_bullet_2.yy",}
-],
+    {"name":"95f65556-5113-4941-a446-9804ed69545b","path":"sprites/spr_jingangma_bullet/spr_jingangma_bullet.yy",}
+  ],
 }

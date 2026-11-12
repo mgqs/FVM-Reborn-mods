@@ -32,6 +32,7 @@ if (hit_tick >= global.bullet_hit_interval && variable_global_exists("enemy_by_t
             if (precise_bbox_collision(id, _e))
             {
                 landed = true;
+                audio_play_sound(snd_hit1, 0, 0);      // 2026-11-12 补：蛋糕块命中音
                 with (_e)
                 {
                     damage_amount = other.damage;
@@ -49,6 +50,7 @@ if (t < T) exit;
 
 // ===== 落地：没撞到人就打落点上最近的一只（单体） =====
 landed = true;
+audio_play_sound(snd_hit1, 0, 0);          // 2026-11-12 补：蛋糕块落地/命中音
 
 if (variable_global_exists("enemy_by_type"))
 {

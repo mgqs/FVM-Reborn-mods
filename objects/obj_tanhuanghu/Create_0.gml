@@ -14,14 +14,15 @@ else                 sprite_index = spr_tanhuanghu_2;
 
 plant_type   = "normal";
 feature_type = "normal";
-target_type  = "pierce";        // 穿透：可打 dance / invisible / 障碍
+target_type  = "pierce_air";    // 2026-11-13：陆空兼备 = 普通 + 空军 + 障碍（可穿），不含 非主流/钻地/幽灵
 is_slowdown  = false;
 attack_type  = ATTACK_TYPE.SHOOTER;
 image_speed  = 0;
 flash_speed  = 5;
 
+// 2026-11-12 用户口径：待机 = 第 1~13 帧（index 0~12），攻击 = 第 14~26 帧（index 13~25，13 帧）
 idle_anim   = 12;
-attack_anim = 10;
+attack_anim = 13;
 
 attack_timer = 0;
 state        = CARD_STATE.IDLE;

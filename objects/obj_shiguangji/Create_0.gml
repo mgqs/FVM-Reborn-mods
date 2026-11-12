@@ -23,14 +23,24 @@ is_slowdown  = false;
 image_speed  = 0;             // 帧自己推
 flash_speed  = 5;
 
-// ── 待机帧：31 帧整段循环 ──
-sg_anim_from = 0;
-sg_anim_to   = 30;
-sg_anim_i    = 0;
+// ── 帧段（2026-11-12 用户口径，素材 31 帧）──
+//   第 1~10 帧（index 0~9）  = 通用前摇待机（循环）
+//   第 11~20 帧（index 10~19）= 升星动画（正向播一次）
+//   第 21~31 帧（index 20~30）= 降星动画（**倒转**播：30 → 20，一次）
+sg_idle_from = 0;
+sg_idle_to   = 9;
+sg_up_from   = 10;
+sg_up_to     = 19;
+sg_down_from = 20;
+sg_down_to   = 30;
+sg_anim_i    = sg_idle_from;
 sg_anim_tick = 0;
-image_index  = 0;
+sg_play      = 0;             // 0 = 还没演出；1 = 播升星段；-1 = 播降星段（倒放）
+sg_net       = 0;             // 本次施法的净星数，由 Other_11 累加（>=0 走升星、<0 走降星）
+sg_anim_done = false;
+image_index  = sg_anim_i;
 
-idle_anim   = sg_anim_to;     // 父对象推帧要读，对齐到 31 帧整段
+idle_anim   = sg_idle_to;     // 父对象推帧要读
 attack_anim = 0;
 
 // ── 前摇：技能 9 档，走 register_card_skill("shiguangji", "前摇", [...]) ──

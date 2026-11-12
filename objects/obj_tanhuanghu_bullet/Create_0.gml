@@ -9,7 +9,7 @@ shape      = 0;
 
 target_type    = "pierce";
 damage_type    = "pierce";
-hittable_types = ["normal", "air", "invisible", "obstacle", "dance", "underground"];
+hittable_types = ["normal", "air", "obstacle"];   // 2026-11-13：陆空兼备，去掉 非主流/钻地/幽灵
 
 hit_tick   = 0;
 hitted_enemy = noone;

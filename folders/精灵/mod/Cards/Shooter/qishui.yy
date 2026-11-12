@@ -15,7 +15,6 @@
     {"name":"bee05043-67b8-4a21-92b6-27e4a76577f7","path":"sprites/spr_qishui_1/spr_qishui_1.yy",},
     {"name":"ad4b899c-53b3-4a13-8686-8641ac712f20","path":"sprites/spr_qishui_2/spr_qishui_2.yy",},
     {"name":"e2395eae-965a-4c38-9aeb-1f2607d92f6e","path":"sprites/spr_qishui_bullet/spr_qishui_bullet.yy",},
-    {"name":"a6293fe2-f14a-4480-b1b4-2395d5f37b69","path":"sprites/spr_qishui_bullet_1/spr_qishui_bullet_1.yy",},
     {"name":"4138521b-6b95-4a12-b43d-6eefef62e08c","path":"sprites/spr_qishui_bullet_2/spr_qishui_bullet_2.yy",}
-],
+  ],
 }

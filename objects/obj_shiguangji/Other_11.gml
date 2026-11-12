@@ -35,8 +35,10 @@ with (obj_card_parent){
     var _new = clamp(current_level + _off, 0, 16);
     if (_new == current_level) continue;
 
+    var _delta = _new - current_level;         // 先算增量（mod_set_card_level 会改 current_level）
     mod_set_card_level(id, _new);
     other.sg_touched++;
+    other.sg_net += _delta;                    // 2026-11-12：累加净星数，Step 用它决定播升星还是降星演出
 
     // ── 星光演出 ──
     var _eff = instance_create_depth(x, y, depth - 1, obj_clotho_star_effect);

@@ -1,6 +1,6 @@
 /// 金刚马 开火事件（用户事件 1）
 /// 全屏索敌「最远目标」= x 最大的那只，发射追踪穿透音波
-var _hittable = get_hittable_enemy_types(target_type);
+var _hittable = jg_hittable;   // 2026-11-13：白名单（normal/air/invisible），不再用 pierce 全集
 var _target   = noone;
 var _best_x   = -999999;
 
@@ -38,13 +38,13 @@ _b.stun_chance    = jg_stun_chance;
 _b.stun_frames    = jg_stun_frames;
 _b.kill_normal    = jg_kill_normal;
 
-// 1/2 转贴图：Create 时 shape 还没赋（=0），只能建完再换（同雪球兔写法）
-if (shape == 1)      _b.sprite_index = spr_jingangma_bullet_1;
-else if (shape == 2) _b.sprite_index = spr_jingangma_bullet_2;
-
+// 2026-11-13：三个形态的音波贴图完全一样，多余的 _1/_2 精灵已删除，统一用 spr_jingangma_bullet
 // 初始朝向目标
+//   2026-11-13：不再照抄烤串机的「瞄敌人头部」（原来写 _target.y - 30）。
+//   音波精灵原点已改成贴内容底、碰撞框按内容收紧，直接瞄敌人 y（脚底线）即可，
+//   音波本身有 170px 高，整段覆盖敌人身体。
 var _dx = _target.x - _bx;
-var _dy = (_target.y - 30) - _by;
+var _dy = _target.y - _by;
 var _len = point_distance(0, 0, _dx, _dy);
 if (_len > 0.001){
     _b.move_x = (_dx / _len) * _b.move_speed;

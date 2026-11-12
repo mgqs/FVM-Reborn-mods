@@ -16,6 +16,7 @@ if (t < T) exit;
 
 // ===== 落地：本格 0.5s 灼烧 =====
 landed = true;
+audio_play_sound(snd_bullet_burnt, 0, 0);   // 2026-11-12 补：蜡烛落地起火音
 
 var _cell = get_world_position_from_grid(col, row);   // 火焰铺在格子中心，和判定格对齐
 var _b = instance_create_depth(_cell.x, ty, depth, obj_eightcake_burn_cell);

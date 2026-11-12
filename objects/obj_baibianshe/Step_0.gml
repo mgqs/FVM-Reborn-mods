@@ -16,23 +16,22 @@ if (shape == 2 && !tb_siblings_done)
     {
         tb_siblings_done = true;
 
-        // 2026-11-12 修（用户口径）：不再向外圈乱扩成「3 列各一个」，也不再在边路直接丢一只。
-        //   目标格 = 本格 + 同列上下各一格；边路没有那一行时先把行号 clamp 到最边行，
-        //   再由近到远（半径 ≤ 2 格）找最近的可放格；周围一圈实在没地方才放弃这一只。
-        //   已占用的格子记在 _used 里，防止上/下两只被挤到同一格。
-        var _slots = [grid_row - 1, grid_row + 1];
+        // 2026-11-12 修（用户口径，按九宫格标数看，5 = 本格）：
+        //      1 2 3
+        //      4 5 6
+        //      7 8 9
+        //   ① 先占 2 / 8（两只都在 = 竖排）；
+        //   ② 某一侧被挡 → 替补落在**被挡那一侧同一行的左右**（2 挡 → 1/3，8 挡 → 7/9）；
+        //   ③ 2 和 8 都被挡 → 横着放（4/6）；
+        //   ④ 3×3 九个格都满 → 才用远距离兜底。
+        //   排布算法只有一份：scripts/baibianshe_preview_cell → baibianshe_layout_cells（预览同源）。
         var _used = {};
         _used[$ string(grid_col) + "_" + string(grid_row)] = true;
 
-        for (var _si = 0; _si < array_length(_slots); _si++)
+        var _cells = baibianshe_layout_cells(grid_col, grid_row, _used);
+        for (var _ci = 0; _ci < array_length(_cells); _ci++)
         {
-            var _want_r = clamp(_slots[_si], 0, global.grid_rows - 1);
-
-            var _cell = baibianshe_free_cell(grid_col, _want_r, 2, _used);
-            if (array_length(_cell) == 0) continue;
-
-            _used[$ string(_cell[0]) + "_" + string(_cell[1])] = true;
-
+            var _cell = _cells[_ci];
             var _w = get_world_position_from_grid(_cell[0], _cell[1]);
             var _sib = external_mod_spawn(_w.x, _w.y, depth, "baibianshe", shape, current_level,
                                           variable_instance_exists(id, "skill") ? skill : 0);
