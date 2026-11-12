@@ -911,6 +911,24 @@ function hex_b3_enemy_atk_extra() {
     return _m;
 }
 
+/// @function hex_b3_enemy_mark_atk_mult()
+/// @desc 食指的指令·鼠军侧的输出面：标记鼠在场时鼠军「全属性 +30%」里
+///       攻击那一半。原来只做了「受到伤害 -23%」这一半，玩家在画面上
+///       完全看不出来，报的就是「只有标记、效果不生效」。
+///       惩罚期（标记鼠已死 30 秒内）不加攻击，走生命 -50% 那条。
+function hex_b3_enemy_mark_atk_mult() {
+    if (!hex_enabled()) return 1.0;
+    if (!variable_hex_b3_state()) return 1.0;
+    var _s = global.hex_state;
+    if (!variable_struct_exists(_s, "b3_mark_on") || !_s.b3_mark_on) return 1.0;
+    if (_s.b3_mark_penalty_ms > 0 && current_time < _s.b3_mark_penalty_ms) return 1.0;
+    if (_s.b3_mark_enemy == noone) return 1.0;
+    if (!instance_exists(_s.b3_mark_enemy)) return 1.0;
+    // 后巷的统治者：五指组的**鼠军侧**效果减半（卡片侧才是翻倍），别乘反
+    var _f = (hex_b3_fr() > 1.0) ? 0.5 : 1.0;
+    return 1 + 0.30 * _f;
+}
+
 /// @function hex_b3_infected_swap(_type)
 /// @desc 病毒系列：把普通鼠军换成跨服（感染）鼠军。返回 "" 表示不换
 function hex_b3_infected_swap(_type) {
@@ -1043,10 +1061,12 @@ function hex_b3_enemy_damage_pre(_inst, _dmg, _src = noone) {
         if (_s.b3_mark_penalty_ms > 0 && current_time < _s.b3_mark_penalty_ms) {
             _d *= 2.0;
         } else if (_s.b3_mark_enemy != noone && instance_exists(_s.b3_mark_enemy)) {
-            // 标记鼠在场 → 「鼠军全属性 +30%」，等效为全体鼠军少挨 23% 伤害。
+            // 标记鼠在场 → 「鼠军全属性 +30%」的防御面：全体鼠军少挨 23% 伤害。
             // 原来这里多判了 `_s.b3_mark_enemy != _inst`，把被标记的那只自己排除在外 ——
             // 全场只有它身上有标记图案、也只有它吃不到减伤，看着就是「只有标记、效果不生效」
-            _d *= 0.77;
+            // 后巷的统治者：五指组的鼠军侧效果减半
+            var _mk_red = 0.23 * ((hex_b3_fr() > 1.0) ? 0.5 : 1.0);
+            _d *= (1 - _mk_red);
         }
     }
 
@@ -1548,14 +1568,17 @@ function hex_b3_on_battle_init() {
     hex_b3_shuffle_categories();
     hex_b3_roll_contract();
     hex_b3_continue_mark();
-    // 卡侧标记也要记下这一轮的起始时间，否则 tick 里 current_time - 0 立刻成立，
-    // 开局同一帧会连着重抽一张（玩家看到的就是「标记一直在跳」）。
-    _s.b3_mark_card_ms = current_time;
+    // 卡侧标记的时间戳由 hex_b3_continue_mark() 自己写（只有真的挑到一张才写）。
+    // 这里**不要**再补一句 `_s.b3_mark_card_ms = current_time;`：
+    // 开局那一刻卡槽往往还没建出来，continue_mark() 挑不到卡就返回了，
+    // 这一句会把时间戳记成「刚刚标过」，于是整关开局 30 秒里卡片侧一个标记都没有；
+    // 不写的话 tick 会逐帧重试，卡槽一建好就立刻挂上标记。
     // 鼠军侧标记：开局就先挂一只（原来只把计时器清零，要等满 30 秒才第一次标记，
     // 那 30 秒里词条看着就是「只有图案、没有效果」）
-    _s.b3_mark_enemy    = hex_b3_pick_enemy();
-    _s.b3_mark_enemy_ms = current_time;
+    _s.b3_mark_enemy      = hex_b3_pick_enemy();
+    _s.b3_mark_enemy_ms   = current_time;
     _s.b3_mark_penalty_ms = 0;
+    if (_s.b3_mark_enemy == noone) _s.b3_mark_retry_ms = 0;   // 立刻允许 tick 补挂
 
     // Hana 的四卦：一局只弹一次（选完置 used，之后不再弹）
     if (_s.b3_hana && !variable_struct_exists(_s, "b3_hana_used")) _s.b3_hana_used = false;
@@ -1850,10 +1873,10 @@ function hex_b3_continue_mark() {
             if (self.plant_id != "player" && self.plant_id != "") array_push(_pool, self.plant_id);
         }
     }
-    // 不管挑没挑到，都把这轮的时间记下来：标记是「每 30 秒一次」的节拍，
-    // 挑不到也要等满一个周期再试，不能每个 tick 都重抽一张（会变成无缝换标）。
-    _s.b3_mark_card_ms = current_time;
+    // 挑不到（开局卡槽还没建出来 / 卡槽全空）就不写时间戳：下一帧 tick 还会再试一次，
+    // 不会因为「挑不到」白等 30 秒才出现第一个标记。
     if (array_length(_pool) == 0) { _s.b3_mark_card = ""; return; }
+    _s.b3_mark_card_ms = current_time;
 
     var _pick = _pool[irandom(array_length(_pool) - 1)];
     if (_pick == _s.b3_mark_card && array_length(_pool) > 1) {
@@ -2165,21 +2188,33 @@ function hex_b3_tick() {
                 _s.b3_mark_enemy = hex_b3_pick_enemy();
             }
         }
+        // 补挂：开局那一刻场上往往还没出老鼠（pick_enemy 返回 noone），
+        // 而换标计时器已经置成 30 秒 —— 头 30 秒整条词条的鼠军侧完全不生效，
+        // 玩家看到的就是「只有标记图案、没有任何效果」。这里每秒重试一次，
+        // 一有老鼠就立刻挂上，不用等满 30 秒。
+        if (_s.b3_mark_enemy == noone) {
+            if (!variable_struct_exists(_s, "b3_mark_retry_ms")) _s.b3_mark_retry_ms = 0;
+            if (current_time - _s.b3_mark_retry_ms >= 1000) {
+                _s.b3_mark_retry_ms = current_time;
+                if (!(_s.b3_mark_penalty_ms > 0 && current_time < _s.b3_mark_penalty_ms)) {
+                    var _fresh = hex_b3_pick_enemy();
+                    if (_fresh != noone) {
+                        _s.b3_mark_enemy    = _fresh;
+                        _s.b3_mark_enemy_ms = current_time;
+                    }
+                }
+            }
+        }
     }
 
-    // 食指的指令·卡片侧：标记要一直挂在「当前可种植的那张卡」上，不能断档。
-    // 开局第一次标记由 hex_b3_on_battle_init 里的 hex_b3_continue_mark 尝试挑卡；
-    // 但那时卡槽可能还没建出来（挑不到），所以这里补两道兜底：
-    //   ① 标记空着（开局没挑到 / 刚把标记卡种下去）→ 2 秒后立刻补一张；
-    //   ② 标记一直挂着 → 每 30 秒换一次目标。
-    // 之前的版本「种掉之后空着等下一轮 30 秒」，结果是开局前 30 秒、以及每次种掉
-    // 标记卡之后的 30 秒里，卡片侧完全没有标记图案 —— 玩家看到的就是「标记消失了」。
+    // 食指的指令·卡片侧：每 30 秒才换一次目标。
+    // 上一版在这里留了「空档 2 秒就补一张」（`_b3_mark_fill`），于是把标记卡种下去之后
+    // 2 秒又冒出一张新的 —— 玩家看到的就是「每 30 秒变无缝衔接、永远有标记」。
+    // 现在只认 30 秒节拍：种掉之后空着就空着，等下一轮。
+    // 时间戳由 hex_b3_continue_mark() 在「真的挑到一张」时写入，
+    // 所以开局卡槽还没建出来时会逐帧重试（挑不到不写时间，不会卡住 30 秒没有标记）。
     if (variable_struct_exists(_s, "b3_mark_on") && _s.b3_mark_on) {
-        var _b3_mark_empty = (_s.b3_mark_card == "");
-        var _b3_mark_swap = (!_b3_mark_empty && current_time - _s.b3_mark_card_ms >= 30000);
-        var _b3_mark_fill = (_b3_mark_empty && current_time - _s.b3_mark_card_ms >= 2000);
-        if (_b3_mark_swap || _b3_mark_fill) {
-            _s.b3_mark_card_ms = current_time;
+        if (current_time - _s.b3_mark_card_ms >= 30000) {
             hex_b3_continue_mark();
         }
     }

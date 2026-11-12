@@ -18,20 +18,19 @@ WS 是机器人主动连上去等消息；Webhook 是腾讯主动 POST 过来。
 """
 
 import json
+import os
 import time
 
 import ed25519_ref as ed25519
+import store
 
 
 class WebhookHandler(object):
     def __init__(self, app_id, app_secret, bot_module, ledger_factory,
-                 verbose=True, secret_ok=True, members_factory=None):
+                 verbose=True, secret_ok=True):
         self.app_id = (app_id or "").strip()
         self.bot = bot_module
         self.ledger_factory = ledger_factory
-        # 成员表工厂。不传就懒加载 scf/members.py 里的 members_from_env()，
-        # 这样老的调用方（selftest / simulate）不用改也能跑。
-        self._members_factory = members_factory
         self.verbose = verbose
         # 密钥没配好时仍然允许应答握手（否则回调地址都存不进去，
         # 反而更难查），但绝不允许真的发码——那种码游戏端一律验不过。
@@ -49,13 +48,6 @@ class WebhookHandler(object):
         # msg_seq：同一条消息多次回复要递增，否则会被平台去重丢掉。
         # 函数每次冷启动 MSG_SEQ 都是空的，用时间戳保证跨实例不撞。
         bot_module._next_seq = lambda msg_id: int(time.time() * 1000) % 900000 + 1
-
-    @property
-    def members_factory(self):
-        if self._members_factory is None:
-            import members as members_mod
-            self._members_factory = members_mod.members_from_env
-        return self._members_factory
 
     # ────────────────────────── 日志 ──────────────────────────
     def _log(self, fmt, *args):
@@ -130,205 +122,146 @@ class WebhookHandler(object):
 
     # ────────────────────────── 事件 ──────────────────────────
     def _on_event(self, name, data):
+        """处理事件，并把「谁发了什么、最后怎么处理」记进口现场记录。
+
+        记录入口在 ?diag=1：有记录=事件确实到了函数；没记录=平台没送来，
+        问题在事件订阅 / 函数 URL，改多少代码都不会有反应。
+        """
+        action = "?"
+        try:
+            action, replied = self._dispatch(name, data)
+        except Exception as exc:
+            action, replied = "异常：%s" % exc, False
+            raise
+        finally:
+            try:
+                # 群里没 @ 机器人的闲聊每句都记一次太浪费，10 分钟留一条样本即可：
+                # 既能证明事件在到，也不用为闲聊付存储和延迟。
+                idle_chat = str(action).startswith("群消息（没 @ 机器人")
+                store.diag_record({
+                    "event": name,
+                    "uid": self.bot.uid_of(data)[:16],
+                    "group": str(data.get("group_openid", ""))[:16],
+                    "content": str(data.get("content", ""))[:120],
+                    "action": action,
+                    "replied": bool(locals().get("replied")),
+                }, sample_after=600 if idle_chat else None)
+            except Exception as exc:
+                self._log("现场记录写失败：%s" % exc)
+
+    def _aimed_at_bot(self, text):
+        """群消息事件里判断「这条是不是在 @ 机器人」，返回 (是否, 原因)。
+
+        GROUP_MESSAGE_CREATE 推的是**群里每一条消息**，不能见消息就回，
+        否则机器人会对着全群刷屏。判定顺序：
+          1. 正文里根本没有 `<@…>` → 没 @ 任何人，不是冲机器人来的；
+          2. 配了 QQ_BOT_OPENID → 精确比对（最稳，多个人同时被 @ 也不会误判）；
+          3. 没配 → 退回「正文以 `<@` 开头」这条经验规则：正常用法永远是
+             `@小Makk /授权 xxx`，@ 一定在最前面。
+        """
+        raw = (text or "").lstrip()
+        if "<@" not in raw:
+            return False, "正文里没有 @"
+        own = (os.environ.get("QQ_BOT_OPENID", "") or "").strip()
+        if own:
+            if ("<@" + own + ">") in raw or ("<@!" + own + ">") in raw:
+                return True, "命中 QQ_BOT_OPENID"
+            return False, "@ 的不是机器人（QQ_BOT_OPENID 不匹配）"
+        if raw.startswith("<@"):
+            return True, "以 @ 开头（未配 QQ_BOT_OPENID，按经验规则）"
+        return False, "@ 不在开头"
+
+    def _dispatch(self, name, data):
+        """返回 (动作说明, 是否真的发了消息)。"""
         bot = self.bot
 
-        # ── 群成员进出：这是「3 天未绑定」规则的唯一触发点 ──
-        if name == "GROUP_MEMBER_ADD":
-            self._on_member_add(data)
-            return
-
-        if name == "GROUP_MEMBER_REMOVE":
-            self._on_member_remove(data)
-            return
-
-        if name == "GROUP_MESSAGE_CREATE":
-            # 全量模式：群里每句话都推（不限 @）。只用来记「最后发言时间」，
-            # 不回复——每条都回会被当成刷屏。
-            self._on_group_message(data, allow_reply=False)
-            return
-
-        if name == "GROUP_AT_MESSAGE_CREATE":
-            self._on_group_message(data, allow_reply=True)
-            return
-
         if name == "C2C_MESSAGE_CREATE":
-            uid = bot.uid_of(data, prefer="user")
+            uid = bot.uid_of(data)
             if not uid:
-                return
+                self._log("私聊没有 uid，跳过")
+                return "私聊缺 uid", False
             text = data.get("content", "")
             msg_id = data.get("id", "")
             self._log("私聊 %s %r" % (uid[:12], text[:30]))
-            # 授权统一在群里办：私聊只回一句指引，不发码也不处理管理命令。
-            # 原来的实现会在私聊里发码，导致账本里混进 user_openid，
-            # 而群成员事件只给 member_openid —— 两边对不上就会被误踢。
-            out = self._handle_text(uid, text, allow_admin=True, channel="c2c")
+            out = self._handle_text(uid, text, allow_admin=True)
             if out:
                 self._send_c2c(uid, out, msg_id)
-            return
+                return "私聊回复", True
+            return "私聊无内容可回", False
+
+        if name in ("GROUP_AT_MESSAGE_CREATE", "GROUP_MESSAGE_CREATE"):
+            group_openid = data.get("group_openid", "")
+            uid = bot.uid_of(data)
+            text = data.get("content", "")
+            msg_id = data.get("id", "")
+
+            # GROUP_MESSAGE_CREATE 是「群里每一条消息」都会推过来，
+            # GROUP_AT_MESSAGE_CREATE 才是「@ 了机器人」。两者内容格式一样
+            # （`<@bot_openid> /授权 xxx`），所以只要判定这条是不是冲着机器
+            # 人来的，后面的处理完全共用。
+            if name == "GROUP_MESSAGE_CREATE":
+                aimed, why = self._aimed_at_bot(text)
+                if not aimed:
+                    self._log("群消息但不是 @ 机器人（%s），忽略" % why)
+                    return "群消息（没 @ 机器人：%s）" % why, False
+            self._log("群%s %s group=%s %r"
+                      % ("@" if name == "GROUP_AT_MESSAGE_CREATE" else "消息",
+                         uid[:10], str(group_openid)[:10], text[:40]))
+            if not group_openid or not msg_id:
+                self._log("跳过：缺 group_openid / msg_id")
+                return "缺 group_openid / msg_id", False
+            if bot.ALLOW_GROUP_ISSUE:
+                out = self._handle_text(uid, text)
+                if out:
+                    self._send_group(group_openid, out, msg_id)
+                    return "群回复", True
+                # 明显是在问领码却没认出来 → 回一句用法，别让玩家以为机器人挂了。
+                # 闲聊和管理命令仍然静默（群里回管理命令会贴出别人的 openid）。
+                if bot.looks_like_issue_attempt(text):
+                    self._log("没命中命令，已回提示（需要 %s 加识别码）"
+                              % " / ".join(bot.AUTH_CMDS))
+                    self._send_group(group_openid,
+                                     bot.MSG_GROUP_HINT.format(cmd=bot.AUTH_COMMAND),
+                                     msg_id)
+                    return "群回提示（没认出命令）", True
+                self._log("忽略：没命中命令也看不出在领码（需要 %s 加识别码）"
+                          % " / ".join(bot.AUTH_CMDS))
+                return "忽略（不是领码消息）", False
+            if bot.parse_command(text):
+                self._send_group(group_openid,
+                                 bot.MSG_GROUP_HINT.format(cmd=bot.AUTH_COMMAND),
+                                 msg_id)
+                return "群回提示（群发码已关闭）", True
+            return "忽略（群发码已关闭）", False
 
         self._log("事件 %s 不处理" % name)
+        return "不处理的事件 %s" % name, False
 
-    # ── 成员表相关的三个小处理器 ──
-
-    def _members(self):
-        return self.members_factory()
-
-    def _on_member_add(self, data):
-        """入群登记。事件体只有 group_openid + member_openid + timestamp。"""
-        bot = self.bot
-        mid = str(data.get("member_openid") or "").strip()
-        gid = str(data.get("group_openid") or "").strip()
-        ts = int(data.get("timestamp") or time.time())
-        if not mid:
-            self._log("GROUP_MEMBER_ADD 缺 member_openid，跳过")
-            return
-        mem = self._members()
-        try:
-            if not mem.group and gid:
-                mem.data["group"] = gid
-            rec = mem.add_member(mid, ts)
-            is_new = rec is not None and rec.get("join_ts") == ts
-            # 黑名单里的人又回来了：直接记下来，交给下一轮 sweep 处理
-            black = mem.is_blacklisted(mid)
-            mem.meta_set("last_join", ts)
-            mem.flush()
-            self._log("入群登记 %s group=%s new=%s blacklisted=%s"
-                      % (mid[:10], gid[:10], is_new, black))
-        finally:
-            mem.close()
-
-    def _on_member_remove(self, data):
-        bot = self.bot
-        mid = str(data.get("member_openid") or "").strip()
-        if not mid:
-            return
-        mem = self._members()
-        try:
-            mem.remove_member(mid)
-            mem.flush()
-            self._log("退群 %s" % mid[:10])
-        finally:
-            mem.close()
-
-    def _on_group_message(self, data, allow_reply=True):
-        """群消息统一入口：先记发言、再决定要不要回。"""
-        bot = self.bot
-        gid = str(data.get("group_openid") or "").strip()
-        mid = str(data.get("member_openid") or "").strip()
-        text = data.get("content", "")
-        msg_id = data.get("id", "")
-        author = data.get("author") or {}
-
-        if not mid:
-            # 老字段兜底（极少数事件里 author 结构不同）
-            mid = str(bot.uid_of(data) or "").strip()
-
-        if mid:
-            # 记发言只是「顺手」，任何失败都不许影响后面的回复。
-            # 云函数里代码目录是只读的，COS 没配好时 FileStore 会写盘失败，
-            # 早期版本没兜住这个异常，表现就是「@ 了机器人完全没反应」。
-            try:
-                mem = self._members()
-                try:
-                    if not mem.group and gid:
-                        mem.data["group"] = gid
-                    # 昵称里带「留」就靠这个字段判断，所以每次发言都刷新一遍
-                    changed = mem.touch_speak(
-                        mid,
-                        name=str(author.get("username") or ""),
-                        union=str(author.get("union_openid") or ""),
-                        role=str(author.get("member_role") or ""),
-                    )
-                    if changed:
-                        mem.flush()   # 同一天的第二句之后 changed=False，省掉一次 COS 写
-                finally:
-                    mem.close()
-            except Exception as exc:
-                self._log("记发言失败（不影响回复）：%s" % exc)
-
-        if not allow_reply:
-            return   # 全量模式只看不说话
-
-        self._log("群@ %s group=%s %r"
-                  % (mid[:10], gid[:10], str(text)[:40]))
-        if not gid or not msg_id:
-            self._log("跳过：缺 group_openid / msg_id")
-            return
-        if bot.ALLOW_GROUP_ISSUE:
-            out = self._handle_text(mid, text)
-            if out:
-                self._send_group(gid, out, msg_id)
-            else:
-                self._log("忽略：没命中命令（需要 %s 加识别码）"
-                          % " / ".join(bot.AUTH_CMDS))
-        elif bot.parse_command(text):
-            self._send_group(gid,
-                             bot.MSG_GROUP_HINT.format(cmd=bot.AUTH_COMMAND),
-                             msg_id)
-        else:
-            # 群内发码关掉时，也允许玩家自查豁免（只读，不涉及发码）
-            adm = bot.parse_admin_command(text)
-            if adm is not None and adm[0] == "exempt" and not str(adm[1] or "").strip():
-                self._send_group(gid, self._exempt_self(mid), msg_id)
-
-    def _exempt_self(self, uid):
-        """群内自查豁免。成员表挂掉也得回一句人话，不能沉默。"""
-        mem = None
-        try:
-            mem = self._members()
-            return self.bot.exempt_self_text(uid, mem)
-        except Exception as exc:
-            self._log("自查豁免失败 %s：%s" % (str(uid)[:10], exc))
-            return self.bot.exempt_self_text(uid, None)
-        finally:
-            if mem is not None:
-                try:
-                    mem.close()
-                except Exception:
-                    pass
-
-    def _handle_text(self, uid, text, allow_admin=False, channel="group"):
+    def _handle_text(self, uid, text, allow_admin=False):
         """把发码这件事接到 COS 账本上，其余逻辑全用 bot.py 的。
 
         allow_admin：管理员命令只在私聊生效。群里 @ 一律不给 ——
-        /绑定数量 虽然不再贴明细，但 /解绑、/豁免 这些改数据的操作被
-        别人看到也是麻烦，所以管理命令的入口收在私聊。
-
-        channel="c2c"：私聊只回指引，不发码（授权统一在群内办）。
-
-        例外：/豁免 不带参数只读成员表、只回发起人自己的状态，群里也放行
-        （见下）。改成数据的那一半 /豁免 <别人> 仍然只在私聊生效。
+        /绑定列表 会把别人的 openid 贴到群里，那是泄露。
         """
         bot = self.bot
-
-        if channel == "c2c":
-            # 私聊不走发码链路，也不处理管理命令 —— 后者由
-            # handle_message 里 parse_admin_command 单独判断，这里保留，
-            # 因为管理员认领只能在私聊完成。
-            adm = bot.parse_admin_command(text)
-            if adm is not None and allow_admin:
-                return self._run_admin(uid, adm)
-            if bot.parse_command(text):
-                return bot.MSG_C2C_REDIRECT.format(cmd=bot.AUTH_COMMAND)
-            if bot.strip_mention(text) == "":
-                return bot.MSG_GREETING.format(cmd=bot.AUTH_COMMAND)
-            return None
 
         # 管理员命令要先于发码判断，而且**不走 secret_ok 那道闸**：
         # 认领管理员、解绑设备都不涉及签名密钥，密钥没配好也得能解绑。
         adm = bot.parse_admin_command(text)
         if adm is not None:
             if not allow_admin:
-                # 唯一的例外：/豁免 不带参数是「查我自己」，只读成员表、
-                # 不透露任何别人的信息，所以群里也放行。玩家想知道自己会
-                # 不会被踢，不必等到清理前 1 小时的警告。
-                if adm[0] == "exempt" and not str(adm[1] or "").strip():
-                    out = self._exempt_self(uid)
-                    self._log("群内自查豁免 uid=%s" % str(uid)[:10])
-                    return out
                 self._log("群里收到管理命令 %s，已忽略（仅私聊可用）" % adm[0])
                 return None
-            return self._run_admin(uid, adm)
+            if adm[0] == "whoami":
+                return bot.handle_admin(uid, adm[0], adm[1], None)
+            ledger = self.ledger_factory()
+            try:
+                out = bot.handle_admin(uid, adm[0], adm[1], ledger)
+            finally:
+                ledger.close()   # close() 里带 flush，解绑/白名单都靠它落盘
+            self._log("管理员命令 %s uid=%s -> %s"
+                      % (adm[0], str(uid)[:10], "已回复" if out else "静默忽略"))
+            return out
 
         parsed = bot.parse_command(text)
         if parsed is None:
@@ -350,7 +283,6 @@ class WebhookHandler(object):
             code, is_new = self._issue(uid, hwid)
             self._log("发码 uid=%s hwid=%s new=%s code=%s"
                       % (uid[:12], hwid, is_new, code))
-            self._mark_bound(uid)
             return bot.MSG_CODE.format(code=code)
         except bot.qq_auth.PoolExhausted:
             return bot.MSG_POOL_EMPTY
@@ -363,61 +295,14 @@ class WebhookHandler(object):
             traceback.print_exc()
             return bot.MSG_ERROR
 
-    def _run_admin(self, uid, adm):
-        bot = self.bot
-        if adm[0] == "whoami":
-            return bot.handle_admin(uid, adm[0], adm[1], None)
-        ledger = self.ledger_factory()
-        mem = None
-        try:
-            if adm[0] in ("pending", "exempt", "unblack", "query"):
-                mem = self._members()
-            out = bot.handle_admin(uid, adm[0], adm[1], ledger, members=mem)
-        finally:
-            ledger.close()   # close() 里带 flush，解绑/白名单都靠它落盘
-            if mem is not None:
-                mem.close()
-        self._log("管理员命令 %s uid=%s -> %s"
-                  % (adm[0], str(uid)[:10], "已回复" if out else "静默忽略"))
-        return out
-
-    def _mark_bound(self, uid):
-        """领到码就当已绑定。成员表里没有这个人（比如老玩家在私聊领过）也补一条，
-        否则 3 天规则会把他当成没绑定的人清掉。
-
-        **整段都不许抛**：这一步只是记账，码已经发出去了，成员表炸掉
-        也得让玩家看到码（云函数里代码目录只读，COS 没配好时就会抛）。
-        """
-        uid = str(uid or "").strip()
-        if not uid:
-            return
-        mem = None
-        try:
-            mem = self._members()
-            if mem.get(uid) is None:
-                mem.add_member(uid, time.time())
-                mem.get(uid)["state"] = "joined_late"
-            mem.mark_bound(uid)
-            mem.flush()
-        except Exception as exc:
-            self._log("标记已绑定失败 %s：%s" % (uid[:10], exc))
-        finally:
-            if mem is not None:
-                try:
-                    mem.close()
-                except Exception:
-                    pass
-
     def _issue(self, uid, hwid):
-        """发码 + 落盘。账本在函数里存不住，所以每次都要读回来再写回去。
-
-        走 bot.issue_for 而不是在这里再判一遍 get_by_hwid —— 它顺带会把
-        「老记录里存的 union_openid」修正成现在的 member_openid，
-        否则群成员事件永远对不上、老玩家会被清退出群。
-        """
+        """发码 + 落盘。账本在函数里存不住，所以每次都要读回来再写回去。"""
         ledger = self.ledger_factory()
         try:
-            return self.bot.issue_for(uid, hwid, ledger)
+            row = ledger.get_by_hwid(hwid)
+            if row:
+                return row[3], False
+            return self.bot.qq_auth.issue_for(uid, hwid, ledger)
         finally:
             ledger.close()   # close() 里带 flush
 

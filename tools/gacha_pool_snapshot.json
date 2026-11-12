@@ -1,0 +1,1847 @@
+{
+    "generated_at":  "2026-11-12 14:14:23",
+    "source":  [
+                   "scripts\\gacha_random_card\\gacha_random_card.gml",
+                   "scripts\\slots_init\\slots_init.gml",
+                   "scripts\\mod_slots_init\\mod_slots_init.gml"
+               ],
+    "counts":  {
+                   "excluded":  19,
+                   "lihe":  1,
+                   "fusion":  11,
+                   "gold":  39,
+                   "map_unlock":  0,
+                   "normal":  73,
+                   "zodiac":  71,
+                   "map_only_all":  14,
+                   "total":  214
+               },
+    "excluded":  [
+                     "small_fire",
+                     "toast_bread",
+                     "xiao_long_bao",
+                     "flour_sack",
+                     "wooden_plate",
+                     "wooden_cork",
+                     "cotton_candy",
+                     "sausage",
+                     "oil_lamp",
+                     "soda_bubble",
+                     "tang_hu_lu",
+                     "double_water_pipe",
+                     "coffee_grounds",
+                     "aquarius_elve",
+                     "mixian",
+                     "huagao",
+                     "fushengcha",
+                     "hongliukaochuan",
+                     "chunsun"
+                 ],
+    "map_only":  [
+                     "small_fire",
+                     "toast_bread",
+                     "xiao_long_bao",
+                     "flour_sack",
+                     "wooden_plate",
+                     "wooden_cork",
+                     "cotton_candy",
+                     "sausage",
+                     "oil_lamp",
+                     "soda_bubble",
+                     "tang_hu_lu",
+                     "double_water_pipe",
+                     "aquarius_elve",
+                     "coffee_grounds"
+                 ],
+    "normal_list":  [
+                        "chunsun",
+                        "mixian",
+                        "corn_shooter",
+                        "12yinliao",
+                        "anranxiaohunfan",
+                        "qingse_shishi",
+                        "pufferfish",
+                        "yeziguo",
+                        "bbq",
+                        "eightcake",
+                        "maiya",
+                        "guihuajiu",
+                        "honeytrap",
+                        "beef_hotpot",
+                        "brazier",
+                        "cat_box",
+                        "cat_chest",
+                        "cherry_pudding",
+                        "chili_powder",
+                        "chocolate_bread",
+                        "chocolate_cannon",
+                        "chocolate_pult",
+                        "coffee_cup",
+                        "coffee_pot",
+                        "coke_bomb",
+                        "curry_lobster_cannon",
+                        "delicacy_firework",
+                        "double_ice_long_bao",
+                        "double_long_bao",
+                        "dragon_fruit",
+                        "durian",
+                        "egg_boiler_pult",
+                        "fishbone",
+                        "fruit_tart",
+                        "gatlin_ice_long_bao",
+                        "gatlin_long_bao",
+                        "goblet_lamp",
+                        "hamburger",
+                        "horseshoe_crab_bread",
+                        "hotdog_cannon",
+                        "ice_bucket_bomb",
+                        "ice_egg_boiler_pult",
+                        "ice_long_bao",
+                        "iron_fishbone",
+                        "kettle_bomb",
+                        "king_long_bao",
+                        "king_triple_long_bao",
+                        "large_fire",
+                        "lightning_baguette",
+                        "melon_shield",
+                        "mouse_clip",
+                        "nut_frier",
+                        "oden_pot",
+                        "pan_fried_bun",
+                        "pineapple_explosive_bread",
+                        "pizza_oven",
+                        "rabbit_lantern",
+                        "rotating_coffee_pot",
+                        "salad_pult",
+                        "skewer_bomb",
+                        "spicy_pot",
+                        "steel_wool",
+                        "stinky_tofu_pult",
+                        "sugar_ball_pult",
+                        "sugar_roxburghii",
+                        "takoyaki",
+                        "tar_sprayer",
+                        "triple_ice_long_bao",
+                        "triple_long_bao",
+                        "triple_wine_rack",
+                        "ventilation_fan",
+                        "water_tea_cup",
+                        "whisky_bomb",
+                        "wine_bottle_bomb",
+                        "xinjiang_fried_noodles"
+                    ],
+    "cards":  [
+                  {
+                      "id":  "12yinliao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "anranxiaohunfan",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "aquarius_elve",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "athena",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "aurora",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "baibianshe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "baiyang",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "baobaoji",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "bbq",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "beef_hotpot",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "berry_dessert",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "blueberry_tower",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "brahma",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "brazier",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "budingwang",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "bull_firework",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "caihongshe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "cat_box",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "cat_chest",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "cherry_pudding",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chili_powder",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chocolate_bread",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chocolate_cannon",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chocolate_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chongsheng_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chunsun",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "chunv",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "clotho",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "coal_starfish",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "coffee_cup",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "coffee_grounds",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "coffee_pot",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "coke_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "cold_drew",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "corn_shooter",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "cotton_candy",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "curry_lobster_cannon",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "dandantu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "dangdanghu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "delicacy_firework",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "dianman",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "donut",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "double_blade_snake",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "double_ice_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "double_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "double_water_pipe",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "doumaobang",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "dragon_fruit",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "durian",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "egg_boiler_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "eightcake",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fangkongmiao",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fashishe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fengrao_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fenjima",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fire_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "firework_dragon",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "firework_dragon_real",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fishbone",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "flour_sack",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "fruit_tart",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  true
+                  },
+                  {
+                      "id":  "fushengcha",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "gaia",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "gatlin_ice_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "gatlin_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ghost_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "goblet_lamp",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "gongjiang_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "grilled_lizard_pult",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "guangming_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "guihuajiu",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "guiyuanma",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "haiyang_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hamburger",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "heian_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hera",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "honeytrap",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hongliukaochuan",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "horseshoe_crab_bread",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hotdog_cannon",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "houyi_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hspeed_juicer",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "huagao",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "huanyingshe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hufa_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "hundun_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "huojianzhu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ice_bucket_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ice_cream",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ice_egg_boiler_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ice_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ice_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "iron_fishbone",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "jinniu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "joker",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "juxie",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "kettle_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "king_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "king_triple_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "kuileima",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "laipishe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "large_fire",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "liehuohu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "lightning_baguette",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "lihe",
+                      "category":  "lihe",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "lingrong_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "lizi_god",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "love_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "magic_chicken",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "maiya",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "meiweijishiqi",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "melon_shield",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "mianbao",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "mixian",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "mojie",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "moon_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "mouse_clip",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "mozhang",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "nengliangmiao",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "niuyouguo",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "nizhuanniu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "nut_frier",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "oden_pot",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "odin",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "oil_lamp",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "pan_fried_bun",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "panduola_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "pineapple_explosive_bread",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "pizza_oven",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "poseidon",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "power_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "pufferfish",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "qingse_shishi",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "rabbit_lantern",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "rig",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghedan_god",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghedapao",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghehaixing",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghehuopen",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghekafei",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ronghesanxian",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "rongheshuanggu",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "rotating_coffee_pot",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "salad_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sausage",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "save_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shegengbao",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sheng_huo",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shennong_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sheshou",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shizi",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shuanggu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shuangyu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "shuangzi",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "skewer_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "small_fire",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "soda_bubble",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "spicy_pot",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "spoon_rabbit",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "starrabbit",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "steel_wool",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "stinky_tofu_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sugar_ball_pult",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sugar_roxburghii",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "sun_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "takoyaki",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tanchitu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tang_hu_lu",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tangchaolizi",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tar_sprayer",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "thor",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tiancheng",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tianxie",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "time_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "toast_bread",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "triple_ice_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "triple_long_bao",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "triple_wine_rack",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "tunshilong",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ventilation_fan",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wanpilong",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "war_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "warm_birds",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "water_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "water_tea_cup",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "whisky_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wine_bottle_bomb",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wooden_cork",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wooden_plate",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wugushe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "wuxingshe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xiandima",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xiangliaohu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xiangshui_god",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xiao_long_bao",
+                      "category":  "excluded",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  1,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xingqiongma",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xinjiang_fried_noodles",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xuanfengniu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "xuanzhuan_ronghe",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yanhuangma",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yanyantu",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yeziguo",
+                      "category":  "normal",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yinghuoshe",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yinhema",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "ymir",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "youyu_god",
+                      "category":  "fusion",
+                      "gold":  0,
+                      "fusion":  1,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "yufengma",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zeus",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhanqima",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhiyumiao",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhuanzhuanji",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhurong",
+                      "category":  "gold",
+                      "gold":  1,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhuzhujiaqiang",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  },
+                  {
+                      "id":  "zhuzhuliaoliji",
+                      "category":  "zodiac",
+                      "gold":  0,
+                      "fusion":  0,
+                      "map_only":  0,
+                      "dup":  false
+                  }
+              ]
+}

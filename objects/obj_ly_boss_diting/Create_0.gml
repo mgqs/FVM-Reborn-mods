@@ -128,16 +128,27 @@ ly_boss_step = function() {
             if (ly_action != _act) longyuan_clip_set(_act);
             longyuan_clip_frame(timer, ly_anim_rate, false);
             if (timer == 20) {
-                // 技能2 音波：仅在本行及上下相邻行（共 3 行）生成，每行一条向左扫过
-                for (var _off = -1; _off <= 1; ++_off) {
-                    var _r = grid_row + _off;
-                    if (_r < 0 || _r >= global.grid_rows) continue;
-                    var _pos = get_world_position_from_grid(global.grid_cols - 1, _r);
-                    var _wave = instance_create_depth(_pos.x, _pos.y - 20, -1300, obj_ly_boss_fx);
+                // 技能2 音波：以 BOSS 所在行为中心，取连续 3 行各生成一条向左扫过的音波。
+                // 起点先按 grid_rows-3 夹取，整段窗口一起平移，保证永远是「连续 3 行」，
+                // 不会贴边时塌成 2 行，也不会把首行和末行拼到一起。
+                var _n = min(3, global.grid_rows);
+                var _start = clamp(grid_row - 1, 0, global.grid_rows - _n);
+                var _rows = [];
+                var _r, _i;
+                for (_i = 0; _i < _n; ++_i) {
+                    _rows[_i] = _start + _i;
+                }
+
+                var _pos, _wave, _rr;
+                for (_i = 0; _i < _n; ++_i) {
+                    _rr = _rows[_i];
+                    _pos = get_world_position_from_grid(global.grid_cols - 1, _rr);
+                    _wave = instance_create_depth(_pos.x, _pos.y, -1300, obj_ly_boss_fx);
                     longyuan_boss_fx_start(_wave, "diting_soundwave", "待机", true, 5);
                     _wave.fx_kind = "diting_soundwave_live";
-                    _wave.fx_row = _r; _wave.fx_direction = -1; _wave.fx_speed = 6;
+                    _wave.fx_row = _rr; _wave.fx_direction = -1; _wave.fx_speed = 6;
                     _wave.fx_life = 0; _wave.fx_damage_timer = 0; _wave.fx_stuck = false;
+                    _wave.fx_col_prev = global.grid_cols; // 尚未扫过任何列，首帧结算出生列
                     _wave.fx_damage = LY_DITING_SOUNDWAVE_DPS;
                 }
             }
