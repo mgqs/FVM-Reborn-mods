@@ -6,6 +6,7 @@ record_timer = 5;
 show_debug_message("obj_mod_battle_manager已创建");
 global.last_placed_card_id = "";
 global.last_placed_card_shape = 0;
+mod_battle_resources_clear();
 global.buff_sources = ds_list_create();
 global.buff_dirty = false;
 global.buff_apply_id = 0;

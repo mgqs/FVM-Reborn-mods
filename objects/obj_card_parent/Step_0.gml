@@ -187,7 +187,7 @@ var grid_pos = {
 
 if !(variable_instance_exists(id, "platform_grid_lock") && platform_grid_lock) {
     grid_col = clamp(grid_pos.col, 0, global.grid_cols - 1)
-    grid_row = clamp(grid_pos.row, 0, global.grid_rows - 1)
+    grid_row = combat_targets_row_value(id, clamp(grid_pos.row, 0, global.grid_rows - 1))
 }
 
 depth = calculate_plant_depth(grid_pos.col, grid_pos.row, plant_type)

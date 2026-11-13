@@ -97,8 +97,9 @@ def check():
 
     script_template = read_yy(ROOT / "scripts/friendly_attack_visuals/friendly_attack_visuals.yy")
     sources = {}
-    for name in ("friendly_attack_visuals", "obj_pool", "src_hook_function"):
+    for name in ("friendly_attack_visuals", "obj_pool", "src_hook_function", "combat_targets"):
         sources[name] = (ROOT / f"scripts/{name}/{name}.gml").read_text(encoding="utf-8-sig")
+    names.update(validate_object_references(real_project, sources["combat_targets"]))
     hooks = (ROOT / "scripts/external_animation_mod/external_animation_mod.gml").read_text()
     sources["draw_hooks"] = hooks[hooks.index("function external_animation_draw_self()"):] + """
 global.external_animation_active = false;

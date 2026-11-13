@@ -314,7 +314,7 @@ function hex_spawn_flood(_enemy_list, _used = undefined) {
             _e.maxhp = round(_e.maxhp * 1.5);
             _e.hp    = _e.maxhp;
         }
-        if (variable_instance_exists(_e, "grid_row")) _e.grid_row = _row;
+        if (variable_instance_exists(_e, "grid_row")) _e.grid_row = combat_targets_row_value(_e, _row);
         _sum_hp += _e.hp;
         _spawned += 1;
     }

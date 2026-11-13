@@ -15,12 +15,7 @@ if is_slowdown{
 
 // 检测自身右方是否有敌人（射程一整行，三形态同口径）
 var has_enemy = false
-with(obj_enemy_parent){
-	if (grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type)){
-		has_enemy = true
-		break
-	}
-}
+has_enemy = combat_enemy_in_rows(id, grid_row, grid_row, grid_col, global.grid_cols + 1, target_type);
 
 // 攻击窗 = (attack_anim + 1) * flash_speed：0转 / 2转 = 55 帧（把 12~22 共 11 帧播完）；1转 = 25 帧（12~16）
 // ⚠️ 窗口不能占满一整个 cycle：最高技能等级 cycle 只有 54 帧（减速时同样比例），

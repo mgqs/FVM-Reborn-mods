@@ -115,7 +115,7 @@ else if (state == "moving") {
 	                        var plant = ds_list_find_value(old_list, i);
 	                        ds_list_add(new_list, plant);
 	                        if (instance_exists(plant)) {
-	                            plant.grid_row = target_r;
+	                            plant.grid_row = combat_targets_row_value(plant, target_r);
 	                            plant.platform_grid_lock = true;
 	                        }
 	                    }

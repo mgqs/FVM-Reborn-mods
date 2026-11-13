@@ -162,7 +162,7 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
 
     // 5. 更新实体自身的网格坐标
     _entity.grid_col = _to_col;
-    _entity.grid_row = _to_row;
+    _entity.grid_row = combat_targets_row_value(_entity, _to_row);
 
     // 6. 移动绑定对象（星级贴图、水面特效、睡眠特效等）
     if (variable_instance_exists(_entity, "banding_star_obj") && instance_exists(_entity.banding_star_obj))
@@ -211,7 +211,7 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
                 if (variable_instance_exists(id, "grid_col"))
                     grid_col = _to_col;
                 if (variable_instance_exists(id, "grid_row"))
-                    grid_row = _to_row;
+                    grid_row = combat_targets_row_value(id, _to_row);
 
                 // 如果是盾牌，还需要移动其特效数组中的特效
                 if (variable_instance_exists(id, "shield_vfx_insts") && is_array(shield_vfx_insts))

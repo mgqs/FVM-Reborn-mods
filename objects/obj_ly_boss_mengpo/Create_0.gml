@@ -409,7 +409,7 @@ ly_boss_step = function() {
                 if (ly_action != "正常闪进") {
                     var _pos = get_world_position_from_grid(ly_tp_col, ly_tp_row);
                     x = _pos.x; y = _pos.y;
-                    grid_col = ly_tp_col; grid_row = ly_tp_row;
+                    grid_col = ly_tp_col; grid_row = combat_targets_row_value(id, ly_tp_row);
                     longyuan_clip_set("正常闪进");
                 }
                 longyuan_clip_frame(timer, ly_anim_rate, false);
@@ -440,7 +440,7 @@ ly_boss_step = function() {
                 if (ly_action != "正常闪进") {
                     var _pos2 = get_world_position_from_grid(ly_tp_col, ly_tp_row);
                     x = _pos2.x; y = _pos2.y;
-                    grid_col = ly_tp_col; grid_row = ly_tp_row;
+                    grid_col = ly_tp_col; grid_row = combat_targets_row_value(id, ly_tp_row);
                     longyuan_clip_set("正常闪进");
                 }
                 longyuan_clip_frame(timer, ly_anim_rate, false);
@@ -473,7 +473,7 @@ ly_boss_step = function() {
                 if (ly_action != "正常闪进") {
                     var _pos3 = get_world_position_from_grid(ly_tp_col, ly_tp_row);
                     x = _pos3.x; y = _pos3.y;
-                    grid_col = ly_tp_col; grid_row = ly_tp_row;
+                    grid_col = ly_tp_col; grid_row = combat_targets_row_value(id, ly_tp_row);
                     longyuan_clip_set("正常闪进");
                 }
                 longyuan_clip_frame(timer, ly_anim_rate, false);
