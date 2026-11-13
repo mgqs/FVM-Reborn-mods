@@ -27,9 +27,6 @@ function tx_pool_data()
 {
     static _d = [
         { w: 10, name: "一档 直射·投掷", classes: [
-            { name: "三向类", cards: [
-                { nm: "邪恶牛油果", o: obj_niuyouguo_bullet, dx: 42, dy: -58, spd: 9, n: 6, per: 3, gap: 4, sp: "ang", ang: [0, -35.26, 35.26, 0, -35.26, 35.26], tdirs: [0, -35.26, 35.26, 0, -35.26, 35.26], fx: { slow_timer: 90, pierce_all: true }, wt: 50 },   // 满转 3 向 × 2 批（隔 4 帧）；减速 90 帧 + 全程穿透
-            ] },
             { name: "三线类", cards: [
                 { nm: "三线酒架", o: obj_triplewinerack_bullet, dx: 40, dy: -80, spd: 8, n: 6, per: 3, gap: 10, sp: "rows3", wt: 50 },   // 满转 3 行 × 2 批（隔 10 帧）
                 { nm: "子母三线酒架", o: obj_ronghesanxian_bullet, dx: 40, dy: -80, spd: 8, n: 9, per: 3, gap: 5, sp: "rows3", fx: { pierce_all: true, burn_damage: 190 }, wt: 50 },   // 满转 3 行 × 3 批；30% 挂燃烧（满级每跳 190）
@@ -99,15 +96,16 @@ function tx_pool_data()
             { name: "特殊直线类", cards: [
                 { nm: "焚寂马", o: obj_zodiac_projectile, dx: 0, dy: -30, spd: 8, k: "fire", shape: 2, wt: 50 },   // 满转命中裂 5 道 wave
             ] },
-            { name: "直线穿透类", cards: [
+            { name: "A型穿透类", cards: [
                 { nm: "双刃蛇", o: obj_double_blade_snake_bullet, dx: 40, dy: -80, spd: 8, wt: 50 },
                 { nm: "御风马", o: obj_zodiac_projectile, dx: 0, dy: -30, spd: 8, k: "wind", shape: 2, wt: 50 },   // 满转秒杀 / 击退
             ] },
             { name: "类海星类", cards: [
+                { nm: "邪恶牛油果", o: obj_niuyouguo_bullet, dx: 42, dy: -58, spd: 9, n: 6, per: 3, gap: 4, sp: "ang", ang: [0, -35.26, 35.26, 0, -35.26, 35.26], tdirs: [0, -35.26, 35.26, 0, -35.26, 35.26], fx: { slow_timer: 90, pierce_all: true }, wt: 50 },   // 满转 3 向 × 2 批（隔 4 帧）；减速 90 帧 + 全程穿透
                 { nm: "星星兔", o: obj_zodiac_projectile, dx: 0, dy: -30, spd: 8, n: 5, sp: "ang", ang: [0, 22.5, -22.5, 45, -45], k: "star", wt: 50 },   // 五向齐射
                 { nm: "火影怪味鱿鱼", o: obj_youyu_god_bullet, dx: 7, dy: -44, spd: 8, n: 22, sp: "ang", ang: [0,0,0, 30,30, 60,60, 90,90, 135,135, 180,180,180, 225,225, 270,270, 300,300, 330,330], delays: [0,4,8, 0,4, 0,4, 0,4, 0,4, 0,4,8, 0,4, 0,4, 0,4, 0,4], shape: 2, wt: 50 },   // 满转 10 向，每向 2 发（中路 3 发），同向错 4 帧
             ] },
-            { name: "过火穿透类", cards: [
+            { name: "B型穿透类", cards: [
                 { nm: "法师蛇", o: obj_fashishe_bullet, mode: "fashishe", n: 9, per: 3, gap: 14, wt: 50 },   // 3 批 × 3 行；出膛点在地图左沿外半格、row 各不同、第 3 批铺毒（口径见 tx_special_shot）
                 { nm: "焦油喷壶", o: obj_tarsprayer_bullet, dx: 50, dy: -75, spd: 8, shape: 2, wt: 50 },   // 满转射程 7 格
                 { nm: "街头烤肉大师", o: obj_bbq_bullet, dx: 40, dy: -80, spd: 8, n: 6, per: 3, gap: 14, sp: "rows3", burn: true, wt: 50 },   // 满转 3 行 × 2 批；每第 4 发爆辣 + 铺火格
@@ -144,7 +142,7 @@ function tx_pool_data()
                 { nm: "咖喱龙虾炮", o: obj_currylobstercannon_bullet, mode: "cannon_target", dx: 0, dy: -90, dep: -1, n: 3, gap: 15, per: 1, spr: spr_curry_lobster_cannon_bullet_2, wt: 20 },   // 落点 = 优先级敌人那一格；每轮 3 发错 15 帧
                 { nm: "火箭猪", o: obj_huojianzhu_bullet, mode: "missile", n: 3, wt: 20 },   // 3 枚导弹，错帧由 launch_delay 自己做
             ] },
-            { name: "轰炸类", cards: [
+            { name: "轰炸型", cards: [
                 { nm: "巧克力大炮", o: obj_chocolatecannon_bullet, mode: "cannon_lane", col: 8, dx: 0, dy: -60, dep: -1, n: 2, gap: 6, per: 1, spt: true },   // 砸本行第 9 格，最高形态 2 发
                 { nm: "盖亚神使", o: obj_gaia_bullet, mode: "gaia", n: 3, gap: 10, per: 1, spt: true },   // 3 发落石错 10 帧，落点 = 敌人身上
                 { nm: "脆心死神大炮", o: obj_ronghedapao_bullet, mode: "cannon_lane", col: 8, dx: 0, dy: -100, dep: 1, n: 2, gap: 7, per: 1,
@@ -192,7 +190,7 @@ function tx_pool_data()
             { name: "群轰追踪", cards: [
                 { nm: "宙斯神使", o: obj_zeus_bullet, mode: "zeus", n: 5, gap: 5, per: 1, wt: 20 },   // 一轮 5 道闪电，间隔 5 帧
             ] },
-            { name: "过火穿透类", cards: [
+            { name: "B型穿透类", cards: [
                 { nm: "后羿神使", o: obj_houyi_god_bullet, dx: 40, dy: -75, spd: 8, n: 3, sp: "rows3", dys: [-95, -75, -55], shape: 3, fx: { fire_chance: 0.30, burn_bonus: true, ash_kill: true, sanwei_stack: 2 }, wt: 50 },   // 满转三行各 1（上/中/下错 20px），30% 三昧真火
                 { nm: "奥丁神使", o: obj_odin_bullet, dx: 40, dy: -95, spd: 8, shape: 3, wt: 50 },
             ] },

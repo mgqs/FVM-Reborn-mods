@@ -45,6 +45,8 @@ for (var _t = 0; _t < array_length(hittable_types); _t++){
         if (!instance_exists(_e)) continue;
         if (_e.hp <= 0) continue;
         if (_key == "underground" && !is_digging_dijing(_e)) continue;
+        // 🔴 只打本行：子弹贴图放大 1.4 倍，光靠 bbox 会蹭到上下行的老鼠
+        if (_e.grid_row != row) continue;
         if (!precise_bbox_collision(id, _e)) continue;
         audio_play_sound(snd_hit1, 0, 0);     // 2026-11-12 补：命中音
 

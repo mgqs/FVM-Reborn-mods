@@ -935,7 +935,7 @@ function hex_register_batch2() {
         card_desc: "爆炸类（瞬发类）卡片攻击 +100%，攻击间隔 -50%",
         enemy_desc: "出怪数 +100%；每张在场卡片给老鼠 +1% 生命（上限 +100%）",
         stack: 1, impl: true,
-        ex: { cat_atk: [ ["瞬发类", 1.0] ], cat_cycle: [ ["瞬发类", -0.5] ] },
+        ex: { cat_atk: [ ["瞬爆型", 1.0] ], cat_cycle: [ ["瞬爆型", -0.5] ] },
         en: { e_count: 1.0, b2_e_hp_per_card: [0.01, 1.0] }
     });
     hex_register("hex_126", {

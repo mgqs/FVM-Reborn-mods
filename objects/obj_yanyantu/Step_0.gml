@@ -5,10 +5,8 @@ if (hp <= 0) exit;
 zodiac_age++;
 // 由场上第一只炎焱兔统一维护受增幅卡片脚下的特效，避免重叠光环重复显示。
 if (id == instance_find(obj_yanyantu, 0) && zodiac_age mod 5 == 0) {
-    var _flame_targets = ["small_fire", "goblet_lamp", "large_fire", "shuangzi", "warm_birds", "sun_god"];
-
     with (obj_card_parent) {
-        if (variable_instance_exists(id, "plant_id") && array_get_index(_flame_targets, plant_id) >= 0) {
+        if (variable_instance_exists(id, "plant_id") && buff_channels_has(plant_id, "production")) {
             var _card = id;
             var _covered = false;
             with (obj_yanyantu) {
@@ -42,7 +40,7 @@ if (id == instance_find(obj_yanyantu, 0) && zodiac_age mod 5 == 0) {
     with (obj_zodiac_effect) {
         if (variable_instance_exists(id, "yanyantu_target")) {
             var _target = yanyantu_target;
-            if (!instance_exists(_target) || array_get_index(_flame_targets, _target.plant_id) < 0) {
+            if (!instance_exists(_target) || !buff_channels_has(_target.plant_id, "production")) {
                 if (instance_exists(_target)) _target.yanyantu_effect_id = noone;
                 instance_destroy();
             }

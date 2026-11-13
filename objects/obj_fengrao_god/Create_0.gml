@@ -17,9 +17,13 @@ flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
 
-buffer_type = "multi_dir";
+// ── 增幅档位（2026-11-14 按官方 4.增幅 r98 修正）──────────────────────
+//   基础：5×5 只幅增「五向类」（分类 多向类-五向类 那一层）
+//   三转：追加幅增「多向类」（金卡 shape：0=神使 / 1=三转 / 2=四转 / 3=终转）
+//   原来写成 buffer_type = "multi_dir"，等于 0 转就给多向类（鱿鱼提前吃），已改
+buffer_type = "five_dir";
+if (shape >= 1) buffer_type_2 = "multi_dir";
 
-// 五向增幅只对应「多向类」（分类驱动），不再挂载 multi_dir 第二类型。
 // 终转（shape 3）可叠加：多张丰饶神覆盖同一格时倍率累加，
 //   上限 3 层 = 原有加成倍率的 3 倍（2026-11-13 用户口径，情报岛文案同步改为 3 倍）。
 buff_stacking = (shape >= 3);

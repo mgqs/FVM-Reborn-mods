@@ -61,12 +61,14 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
-            // underground：四转（shape >= 3）起追加地鼠目标（obj_mole 等）；
+            // underground：四转起追加地鼠目标（obj_mole 等）；
+            //   金卡 shape：0=初始 / 1=三转(圣神) / 2=四转(护法神·俱吠罗) / 3=终转(至尊)
+            //   官方 hufa_god_2「追加地鼠目标」→ 四转 = shape 2
             // 钻地中的地精鼠沿用既有放行规则（任何形态都能打）。终转同样享受四转的地鼠目标。
             if (_key == "underground") {
                 var _is_dig_dijing = (variable_instance_exists(_e, "mouse_id") && _e.mouse_id == "longyuan_dijing"
                     && variable_instance_exists(_e, "ly_mode") && _e.ly_mode == "dig");
-                if (!_is_dig_dijing && shape < 3) continue;
+                if (!_is_dig_dijing && shape < 2) continue;
             }
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0

@@ -2,7 +2,7 @@
 /// card_buff_category —— 卡片分类独立模块
 /// 数据来源：docs/卡片分类.md（175 张卡；三级分类：大分类 / 小分类 / 子分类）
 /// 职责：只提供「分类数据 + 查询 API」，不直接参与战斗逻辑。
-///       增幅系统（mod_buff_init / 战斗管理器 / 炎焱兔 / 音盒马）按需消费本模块。
+///       增幅系统（scripts/buff_target / 战斗管理器 / 炎焱兔 / 音盒马 / 星轨神）按需消费本模块。
 /// 维护：数据由 docs/卡片分类.md 解析生成，分类结构调整后需同步刷新数据表。
 /// =====================================================================
 
@@ -10,7 +10,11 @@
 /// @desc 建立全局分类注册表与反向索引（每局启动调用一次）
 function card_category_init()
 {
-    global.card_category_map = ds_map_create();    // card_id -> {major, minor, sub}
+    // 分类数据是增幅通道的唯一依据，重建时清掉通道缓存（2026-11-14）
+    if (variable_global_exists("buff_channel_cache") && ds_exists(global.buff_channel_cache, ds_type_map))
+        ds_map_clear(global.buff_channel_cache);
+
+    global.card_category_map = ds_map_create();    // card_id -> {major, minor, sub, levels}
     global.card_category_index = ds_map_create();  // 分类名 -> ds_list(card_id)
 
     var _data = card_category_data();
@@ -18,16 +22,24 @@ function card_category_init()
     {
         var _row = _data[i];
         var _id = _row[0];
-        var _major = _row[1];
-        var _minor = _row[2];
-        var _sub = _row[3];
 
-        ds_map_set(global.card_category_map, _id, { major: _major, minor: _minor, sub: _sub });
+        // 第 0 位是 id，后面全是层级名：长度随意、允许空串（空串跳过）
+        var _levels = [];
+        for (var k = 1; k < array_length(_row); k++)
+        {
+            if (_row[k] == "") continue;
+            array_push(_levels, _row[k]);
+            card_category_index_add(_row[k], _id);
+        }
 
-        card_category_index_add(_major, _id);
-        card_category_index_add(_minor, _id);
-        if (_sub != "")
-            card_category_index_add(_sub, _id);
+        // 兼容字段：前 3 个非空层（旧代码读 major / minor / sub）
+        var _major = array_length(_levels) > 0 ? _levels[0] : "";
+        var _minor = array_length(_levels) > 1 ? _levels[1] : "";
+        var _sub   = array_length(_levels) > 2 ? _levels[2] : "";
+
+        ds_map_set(global.card_category_map, _id,
+            { major: _major, minor: _minor, sub: _sub, levels: _levels });
+
     }
 
     show_debug_message("卡片分类模块初始化完成：" + string(ds_map_size(global.card_category_map)) + " 张卡");
@@ -58,21 +70,21 @@ function card_category_data()
         ["king_long_bao", "直射类", "传统直线类", ""],
         ["king_triple_long_bao", "直射类", "传统直线类", ""],
         ["fenjima", "直射类", "特殊直线类", ""],
-        ["double_blade_snake", "直射类", "直线穿透类", ""],
-        ["yufengma", "直射类", "直线穿透类", ""],
-        ["yuansushe", "直射类", "直线穿透类", ""],   // 2026-11-13 新卡：元素蛇（四色循环弹）
+        ["double_blade_snake", "直射类", "A型穿透类", ""],
+        ["yufengma", "直射类", "A型穿透类", ""],
+        ["yuansushe", "直射类", "A型穿透类", ""],   // 2026-11-13 新卡：元素蛇（四色循环弹）
         ["laipishe", "直射类", "固定轨迹类", ""],
         ["pizza_oven", "直射类", "固定轨迹类", ""],
         ["gongjiang_god", "直射类", "固定轨迹类", ""],
         ["huagao", "直射类", "固定轨迹类", ""],
         ["yanhuangma", "直射类", "固定轨迹类", ""],
         ["shennong_god", "直射类", "固定轨迹类", ""],
-        ["tar_sprayer", "直射类", "过火穿透类", ""],
-        ["odin", "直射类", "过火穿透类", ""],
-        ["houyi_god", "直射类", "过火穿透类", ""],
-        ["spoon_rabbit", "投掷类", "多线投手", ""],
-        ["ymir", "投掷类", "多线投手", ""],
-        ["sugar_ball_pult", "投掷类", "多线投手", ""],
+        ["tar_sprayer", "直射类", "B型穿透类", ""],
+        ["odin", "直射类", "B型穿透类", ""],
+        ["houyi_god", "直射类", "B型穿透类", ""],
+        ["spoon_rabbit", "投掷类", "多线投手", "三线投手"],
+        ["ymir", "投掷类", "多线投手", "三线投手"],
+        ["sugar_ball_pult", "投掷类", "多线投手", "追踪投手"],
         ["egg_boiler_pult", "投掷类", "单线投手", ""],
         ["ice_egg_boiler_pult", "投掷类", "单线投手", ""],
         ["ronghedan_god", "投掷类", "单线投手", ""],
@@ -85,23 +97,24 @@ function card_category_data()
         ["pan_fried_bun", "投掷类", "灼烧投手", ""],
         ["zhurong", "投掷类", "灼烧投手", ""],
         ["lizi_god", "投掷类", "灼烧投手", ""],
-        ["coal_starfish", "多向类", "海星类", ""],
-        ["ronghehaixing", "多向类", "海星类", ""],
-        ["ghost_god", "多向类", "海星类", ""],
-        ["starrabbit", "多向类", "类海星类", ""],
-        ["rig", "多向类", "类海星类", ""],
-        ["youyu_god", "多向类", "类海星类", ""],
-        ["niuyouguo", "多向类", "三向类", ""],
-        ["brazier", "增幅类", "子弹增幅", "平射增幅"],
-        ["ronghehuopen", "增幅类", "子弹增幅", "平射增幅"],
+        ["coal_starfish", "多向类", "五向类", "海星类"],
+        ["ronghehaixing", "多向类", "五向类", "海星类"],
+        ["ghost_god", "多向类", "五向类", "海星类"],
+        ["starrabbit", "多向类", "五向类", "类海星类", "扇形类"],
+        ["nut_frier", "多向类", "五向类", "类海星类", "扇形类"],   // 官方 3.海星&竞技 A.扇形类
+        ["rig", "多向类", "五向类", "类海星类", "扇形类"],
+        ["youyu_god", "多向类", "类海星类", "章鱼类"],
+        ["niuyouguo", "多向类", "类海星类", "扇形类"],
+        ["brazier", "增幅类", "子弹类增幅", "平射增幅"],
+        ["ronghehuopen", "增幅类", "子弹类增幅", "平射增幅"],
         ["ronghesanxian", "直射类", "三线类", ""],
-        ["jinniu", "增幅类", "子弹增幅", "平射增幅"],
-        ["fire_god", "增幅类", "子弹增幅", "平射增幅"],
-        ["nengliangmiao", "增幅类", "子弹增幅", "平射增幅"],
-        ["blueberry_tower", "增幅类", "子弹增幅", "投掷增幅"],
-        ["zhuzhujiaqiang", "增幅类", "子弹增幅", "投掷增幅"],
-        ["fruit_tart", "增幅类", "子弹增幅", "投掷增幅"],
-        ["aurora", "增幅类", "子弹增幅", "投掷增幅"],
+        ["jinniu", "增幅类", "子弹类增幅", "平射增幅"],
+        ["fire_god", "增幅类", "子弹类增幅", "平射增幅"],
+        ["nengliangmiao", "增幅类", "子弹类增幅", "平射增幅"],
+        ["blueberry_tower", "增幅类", "子弹类增幅", "投掷增幅"],
+        ["zhuzhujiaqiang", "增幅类", "子弹类增幅", "投掷增幅"],
+        ["fruit_tart", "增幅类", "子弹类增幅", "投掷增幅"],
+        ["aurora", "增幅类", "子弹类增幅", "投掷增幅"],
         ["berry_dessert", "增幅类", "名单类增幅", "追踪增幅"],
         ["xiangshui_god", "增幅类", "名单类增幅", "追踪增幅"],
         ["fengrao_god", "增幅类", "名单类增幅", "五向增幅"],
@@ -112,7 +125,7 @@ function card_category_data()
         ["yinhema", "增幅类", "名单类增幅", "固定轨迹增幅"],
         ["fushengcha", "增幅类", "名单类增幅", "固定轨迹增幅"],
         ["xinggui_god", "增幅类", "名单类增幅", "固定轨迹增幅"],   // 2026-11-13 新卡：星轨神·阿斯特
-        ["mixian", "辅助类", "地形类", ""],
+        ["mixian", "辅助类", "场地类", ""],
         ["yanyantu", "增幅类", "名单类增幅", "产能增幅"],
         ["zhanqima", "增幅类", "全能增幅", ""],
         ["small_fire", "产能类", "主职产火", "常规型"],
@@ -134,21 +147,21 @@ function card_category_data()
         ["maiya", "辅助类", "承载类", ""],
         ["ice_cream", "辅助类", "冷却类", ""],
         ["time_god", "辅助类", "冷却类", ""],
-        ["magic_chicken", "辅助类", "种卡类", ""],
-        ["baibianshe", "辅助类", "种卡类", ""],
-        ["brahma", "辅助类", "种卡类", ""],
-        ["wanpilong", "辅助类", "种卡类", ""],
-        ["anranxiaohunfan", "辅助类", "种卡类", ""],
-        ["xingqiongma", "辅助类", "种卡类", ""],
-        ["lihe", "辅助类", "种卡类", ""],
-        ["chongsheng_god", "辅助类", "种卡类", ""],
+        ["magic_chicken", "辅助类", "复制类", ""],
+        ["baibianshe", "辅助类", "复制类", ""],
+        ["brahma", "辅助类", "复制类", ""],
+        ["wanpilong", "辅助类", "复制类", ""],
+        ["anranxiaohunfan", "辅助类", "复制类", ""],
+        ["xingqiongma", "辅助类", "复制类", ""],
+        ["lihe", "辅助类", "复制类", ""],
+        ["chongsheng_god", "辅助类", "复制类", ""],
         ["clotho", "辅助类", "变星类", ""],
-        ["oil_lamp", "辅助类", "地形类", ""],
-        ["yinghuoshe", "辅助类", "地形类", ""],
-        ["ventilation_fan", "辅助类", "地形类", ""],
-        ["baobaoji", "辅助类", "地形类", ""],
-        ["xuanfengniu", "辅助类", "地形类", ""],
-        ["wooden_cork", "辅助类", "地形类", ""],
+        ["oil_lamp", "辅助类", "场地类", ""],
+        ["yinghuoshe", "辅助类", "场地类", ""],
+        ["ventilation_fan", "辅助类", "场地类", ""],
+        ["baobaoji", "辅助类", "场地类", ""],
+        ["xuanfengniu", "辅助类", "场地类", ""],
+        ["wooden_cork", "辅助类", "场地类", ""],
         ["guihuajiu", "防御类", "面包类", ""],
         ["mianbao", "防御类", "面包类", ""],
         ["zhiyumiao", "辅助类", "增益类", ""],
@@ -166,66 +179,67 @@ function card_category_data()
         ["joker", "专业防空类", "陆空兼备类", ""],
         ["shuanggu", "专业防空类", "陆空兼备类", ""],
         ["rongheshuanggu", "专业防空类", "陆空兼备类", ""],
-        ["coffee_pot", "喷壶类", "直线喷壶类", ""],
-        ["oden_pot", "喷壶类", "直线喷壶类", ""],
-        ["beef_hotpot", "喷壶类", "直线喷壶类", ""],
-        ["spicy_pot", "喷壶类", "直线喷壶类", ""],
-        ["sheng_huo", "喷壶类", "直线喷壶类", ""],
+        ["coffee_pot", "喷壶类", "咖啡喷壶类", ""],
+        ["oden_pot", "喷壶类", "咖啡喷壶类", ""],
+        ["beef_hotpot", "喷壶类", "咖啡喷壶类", ""],
+        ["spicy_pot", "喷壶类", "咖啡喷壶类", ""],
+        ["sheng_huo", "喷壶类", "咖啡喷壶类", ""],
         ["rotating_coffee_pot", "喷壶类", "旋转喷壶类", ""],
         ["xuanzhuan_ronghe", "喷壶类", "旋转喷壶类", ""],
         ["shizi", "喷壶类", "旋转喷壶类", ""],
         ["wugushe", "喷壶类", "旋转喷壶类", ""],
         ["poseidon", "喷壶类", "旋转喷壶类", ""],
-        ["hongliukaochuan", "喷壶类", "旋转喷壶类", ""],
-        ["hufa_god", "喷壶类", "旋转喷壶类", ""],
-        ["takoyaki", "追踪类", "飞镖追踪", ""],
-        ["juxie", "追踪类", "飞镖追踪", ""],
-        ["moon_god", "追踪类", "飞镖追踪", ""],
-        ["athena", "追踪类", "群轰追踪", ""],
-        ["curry_lobster_cannon", "追踪类", "群轰追踪", ""],
-        ["zeus", "追踪类", "群轰追踪", ""],
-        ["ice_god", "追踪类", "散点追踪", ""],
-        ["cold_drew", "追踪类", "散点追踪", ""],
-        ["xiandima", "追踪类", "集火追踪", ""],
-        ["guiyuanma", "追踪类", "特殊追踪", ""],
+        ["hongliukaochuan", "追踪类", "直线追踪", ""],
+        ["hufa_god", "追踪类", "直线追踪", ""],
+        ["takoyaki", "追踪类", "有轨迹追踪", "飞镖追踪"],
+        ["juxie", "追踪类", "有轨迹追踪", "飞镖追踪"],
+        ["moon_god", "追踪类", "有轨迹追踪", "飞镖追踪"],
+        ["athena", "追踪类", "无轨迹追踪", "群轰追踪"],
+        ["curry_lobster_cannon", "追踪类", "无轨迹追踪", "群轰追踪"],
+        ["zeus", "追踪类", "无轨迹追踪", "群轰追踪"],
+        ["ice_god", "追踪类", "无轨迹追踪", "散点追踪"],
+        ["cold_drew", "追踪类", "无轨迹追踪", "散点追踪"],
+        ["xiandima", "追踪类", "专注追踪", ""],
+        ["guiyuanma", "追踪类", "有轨迹追踪", "特殊追踪"],
         ["hamburger", "非远程类", "吞噬类", ""],
         ["hundun_god", "非远程类", "吞噬类", ""],
         ["lightning_baguette", "非远程类", "连携类", ""],
-        ["xinjiang_fried_noodles", "非远程类", "近战类", ""],
-        ["iron_fishbone", "非远程类", "鱼刺类", ""],
-        ["fishbone", "非远程类", "鱼刺类", ""],
-        ["chocolate_cannon", "灰烬类", "轰炸类", ""],
-        ["galaxy_horse", "灰烬类", "轰炸类", ""],   // 2026-11-13 新卡：银河马（陨石）
-        ["ronghedapao", "灰烬类", "轰炸类", ""],
+        ["xinjiang_fried_noodles", "非远程类", "近战类", "拳击类"],
+        ["iron_fishbone", "非远程类", "近战类", "鱼刺类"],
+        ["fishbone", "非远程类", "近战类", "鱼刺类"],
+        ["sugar_roxburghii", "非远程类", "近战类", "鱼刺类"],   // 官方 10.杂项 B.鱼刺类
+        ["chocolate_cannon", "灰烬类", "轰炸型", ""],
+        ["galaxy_horse", "灰烬类", "轰炸型", ""],   // 2026-11-13 新卡：银河马（陨石）
+        ["ronghedapao", "灰烬类", "轰炸型", ""],
         ["ronghekafei", "直射类", "传统直线类", ""],
-        ["gaia", "灰烬类", "轰炸类", ""],
-        ["durian", "灰烬类", "持续类", ""],
-        ["dragon_fruit", "灰烬类", "持续类", ""],
-        ["heian_god", "灰烬类", "持续类", ""],
-        ["guangming_god", "灰烬类", "持续类", ""],
-        ["mojie", "灰烬类", "持续类", ""],
-        ["chunsun", "灰烬类", "持续类", ""],
-        ["coke_bomb", "灰烬类", "瞬发类", "爆炸类"],
-        ["kettle_bomb", "灰烬类", "瞬发类", "爆炸类"],
-        ["wine_bottle_bomb", "灰烬类", "瞬发类", "爆炸类"],
-        ["whisky_bomb", "灰烬类", "瞬发类", "爆炸类"],
-        ["panduola_god", "灰烬类", "瞬发类", "爆炸类"],
-        ["rabbit_lantern", "灰烬类", "瞬发类", "爆炸类"],
-        ["delicacy_firework", "灰烬类", "瞬发类", "爆炸类"],
-        ["ice_bucket_bomb", "灰烬类", "瞬发类", "爆炸类"],
-        ["aquarius_elve", "灰烬类", "瞬发类", "爆炸类"],
-        ["pufferfish", "灰烬类", "瞬发类", "爆炸类"],
-        ["baiyang", "灰烬类", "瞬发类", "冲撞类"],
-        ["bull_firework", "灰烬类", "瞬发类", "冲撞类"],
-        ["save_god", "灰烬类", "瞬发类", "冲撞类"],
-        ["yeziguo", "灰烬类", "触发类", "碾压类"],
-        ["qingse_shishi", "灰烬类", "触发类", "碾压类"],
-        ["flour_sack", "灰烬类", "触发类", "碾压类"],
-        ["mouse_clip", "灰烬类", "触发类", "常规类"],
-        ["steel_wool", "灰烬类", "触发类", "常规类"],
-        ["skewer_bomb", "灰烬类", "触发类", "常规类"],
-        ["chili_powder", "灰烬类", "触发类", "常规类"],
-        ["dandantu", "灰烬类", "触发类", "常规类"],
+        ["gaia", "灰烬类", "轰炸型", ""],
+        ["durian", "灰烬类", "持续型", ""],
+        ["dragon_fruit", "灰烬类", "持续型", ""],
+        ["heian_god", "灰烬类", "持续型", ""],
+        ["guangming_god", "灰烬类", "持续型", ""],
+        ["mojie", "灰烬类", "持续型", ""],
+        ["chunsun", "灰烬类", "持续型", ""],
+        ["coke_bomb", "灰烬类", "瞬爆型", "常规型"],
+        ["kettle_bomb", "灰烬类", "瞬爆型", "常规型"],
+        ["wine_bottle_bomb", "灰烬类", "瞬爆型", "常规型"],
+        ["whisky_bomb", "灰烬类", "瞬爆型", "常规型"],
+        ["panduola_god", "灰烬类", "瞬爆型", "常规型"],
+        ["rabbit_lantern", "灰烬类", "瞬爆型", "常规型"],
+        ["delicacy_firework", "灰烬类", "瞬爆型", "常规型"],
+        ["ice_bucket_bomb", "灰烬类", "瞬爆型", "常规型"],
+        ["aquarius_elve", "灰烬类", "瞬爆型", "常规型"],
+        ["pufferfish", "灰烬类", "瞬爆型", "常规型"],
+        ["baiyang", "灰烬类", "瞬爆型", "冲撞型"],
+        ["bull_firework", "灰烬类", "瞬爆型", "冲撞型"],
+        ["save_god", "灰烬类", "瞬爆型", "冲撞型"],
+        ["yeziguo", "灰烬类", "触发型", "碾压型"],
+        ["qingse_shishi", "灰烬类", "触发型", "碾压型"],
+        ["flour_sack", "灰烬类", "触发型", "碾压型"],
+        ["mouse_clip", "灰烬类", "触发型", "常规型"],
+        ["steel_wool", "灰烬类", "触发型", "常规型"],
+        ["skewer_bomb", "灰烬类", "触发型", "常规型"],
+        ["chili_powder", "灰烬类", "触发型", "常规型"],
+        ["dandantu", "灰烬类", "触发型", "常规型"],
         ["toast_bread", "防御类", "面包类", ""],
         ["chocolate_bread", "防御类", "面包类", ""],
         ["pineapple_explosive_bread", "防御类", "面包类", ""],
@@ -233,33 +247,33 @@ function card_category_data()
         ["melon_shield", "防御类", "护罩类", ""],
         ["hera", "防御类", "护罩类", ""],
         ["chunv", "防御类", "护罩类", ""],
-        ["bbq", "直射类", "过火穿透类", ""],
+        ["bbq", "直射类", "B型穿透类", ""],
         ["eightcake", "投掷类", "单线投手", ""],
         ["tangchaolizi", "投掷类", "灼烧投手", ""],
-        ["zhuzhuliaoliji", "多向类", "海星类", ""],
+        ["zhuzhuliaoliji", "多向类", "五向类", "海星类"],
         ["budingwang", "辅助类", "反弹类", ""],
         ["caihongshe", "防御类", "护罩类", ""],
         ["meiweijishiqi", "辅助类", "冷却类", ""],
         ["dangdanghu", "投掷类", "灼烧投手", ""],
-        ["dianman", "灰烬类", "持续类", ""],
-        ["tanchitu", "灰烬类", "瞬发类", "冲撞类"],
+        ["dianman", "灰烬类", "持续型", ""],
+        ["tanchitu", "灰烬类", "瞬爆型", "冲撞型"],
         ["tunshilong", "非远程类", "吞噬类", ""],
         ["xiangliaohu", "增幅类", "名单类增幅", "追踪增幅"],
         ["zhuanzhuanji", "喷壶类", "旋转喷壶类", ""],
-        ["fashishe", "直射类", "过火穿透类", ""],
+        ["fashishe", "直射类", "B型穿透类", ""],
         ["fangkongmiao", "专业防空类", "纯对空类", ""],
-        ["huojianzhu", "追踪类", "群轰追踪", ""],
-        ["doumaobang", "灰烬类", "瞬发类", "冲撞类"],
-        ["honeytrap", "追踪类", "集火追踪", ""],
-        ["huanyingshe", "投掷类", "多线投手", ""],
-        ["tianxie", "直射类", "直线穿透类", ""],
-        ["shiliu_baobao_bing", "灰烬类", "瞬发类", "爆炸类"],
-        ["jingangma", "喷壶类", "旋转喷壶类", ""],
-        ["qiedanlong", "投掷类", "多线投手", ""],
+        ["huojianzhu", "追踪类", "无轨迹追踪", "群轰追踪"],
+        ["doumaobang", "灰烬类", "瞬爆型", "冲撞型"],
+        ["honeytrap", "追踪类", "专注追踪", ""],
+        ["huanyingshe", "投掷类", "多线投手", "追踪投手"],
+        ["tianxie", "直射类", "A型穿透类", ""],
+        ["shiliu_baobao_bing", "灰烬类", "瞬爆型", "常规型"],
+        ["jingangma", "追踪类", "直线追踪", ""],
+        ["qiedanlong", "投掷类", "多线投手", "三线投手"],
         ["qishui", "直射类", "特殊直线类", ""],
         ["sheshejiu", "辅助类", "变星类", ""],
         ["shiguangji", "辅助类", "变星类", ""],
-        ["snowrabbit", "追踪类", "散点追踪", ""],
+        ["snowrabbit", "追踪类", "无轨迹追踪", "散点追踪"],
         ["tanhuanghu", "专业防空类", "陆空兼备类", ""],
         ["yuanqiniu", "喷壶类", "旋转喷壶类", ""],
         ["zhuanlonghu", "辅助类", "冷却类", ""],
@@ -274,6 +288,32 @@ function card_category_index_add(_name, _id)
         ds_map_set(global.card_category_index, _name, ds_list_create());
 
     ds_list_add(ds_map_find_value(global.card_category_index, _name), _id);
+}
+
+/// @func card_in_category_path(_id, _path)
+/// @desc 按**完整路径**匹配分类：从大分类开始逐级比对，路径里的空串表示「跳过该层」
+///   例：card_in_category_path("small_fire", ["产能类","主职产火","常规型"]) -> true
+///   比 card_in_category 严：只写「常规型」不会命中别的分类里同名的一层。
+function card_in_category_path(_id, _path)
+{
+    var _c = card_get_category(_id);
+    if (_c == undefined) return false;
+
+    // 卡片实际层级（已跳过空层）
+    var _lv = _c.levels;
+
+    // 目标层级（跳过空层）
+    var _want = [];
+    for (var i = 0; i < array_length(_path); i++){
+        if (_path[i] != "") array_push(_want, _path[i]);
+    }
+
+    if (array_length(_want) == 0 || array_length(_want) > array_length(_lv)) return false;
+
+    for (var i = 0; i < array_length(_want); i++){
+        if (_lv[i] != _want[i]) return false;
+    }
+    return true;
 }
 
 /// @func card_get_category(_id)
@@ -320,7 +360,20 @@ function card_in_category(_id, _name)
     if (_c == undefined)
         return false;
 
-    return (_c.major == _name || _c.minor == _name || _c.sub == _name);
+    for (var i = 0; i < array_length(_c.levels); i++)
+    {
+        if (_c.levels[i] == _name) return true;
+    }
+    return false;
+}
+
+/// @func card_get_levels(_id)
+/// @desc 这张卡的完整层级（从大分类到最细一层，已跳过空层）
+function card_get_levels(_id)
+{
+    var _c = card_get_category(_id);
+    if (_c == undefined) return [];
+    return _c.levels;
 }
 
 /// @func get_cards_in_category(_name)
@@ -333,115 +386,4 @@ function get_cards_in_category(_name)
         return undefined;
 
     return ds_map_find_value(global.card_category_index, _name);
-}
-
-/// @func card_category_buff_group_name(_group)
-/// @desc 增幅分组键 -> 分类名（分组的唯一映射来源）
-function card_category_buff_group_name(_group)
-{
-    switch (_group)
-    {
-        case "thrower":  return "投掷类";
-        case "tracker":  return "追踪类";
-        case "five_dir": return "多向类";
-        case "multi_dir": return "多向类";
-        case "sprayer":  return "喷壶类";
-    }
-
-    return "";
-}
-
-/// @func mod_apply_category_buff_map()
-/// @desc 按分类重建 global.plant_buff_map 的增幅分组，覆盖手工维护的旧分组
-///       仅覆盖这 4 个「可网格化」分组；固定轨迹 / 产能 / 全体 由各自对象实现。
-/// @return {real} 写入的卡片条目数
-function mod_apply_category_buff_map()
-{
-    if (!variable_global_exists("card_category_index"))
-        return 0;
-
-    // multi_dir 排在 five_dir 前面：两者名单重叠时「后写的覆盖」，
-    //   五向卡最终落在 five_dir（主类型 = 五行蛇），再由下面的副类型补 multi_dir（丰饶神）
-    var _groups = ["thrower", "tracker", "multi_dir", "five_dir", "sprayer"];
-    var _total = 0;
-
-    for (var g = 0; g < array_length(_groups); g++)
-    {
-        var _group = _groups[g];
-        var _list = get_cards_in_category(card_category_buff_group_name(_group));
-
-        if (_list == undefined)
-            continue;
-
-        for (var i = 0; i < ds_list_size(_list); i++)
-        {
-            var _card_id = ds_list_find_value(_list, i);
-            var _allowed = false;
-            switch (_group)
-            {
-                case "thrower": _allowed = card_in_category(_card_id, "投掷类") || _card_id == "gaia"; break;
-                case "tracker": _allowed = _card_id == "guiyuanma" || _card_id == "takoyaki" || _card_id == "juxie" || _card_id == "moon_god" || _card_id == "yufengma" || _card_id == "gaia"; break;
-                case "five_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo" && _card_id != "youyu_god"; break;
-                case "multi_dir": _allowed = card_in_category(_card_id, "多向类") && _card_id != "niuyouguo"; break;
-                case "sprayer": _allowed = card_in_category(_card_id, "旋转喷壶类") || card_in_category(_card_id, "直线喷壶类") || _card_id == "hongliukaochuan" || _card_id == "hufa_god"; break;
-            }
-            if (_allowed)
-            {
-                ds_map_set(global.plant_buff_map, _card_id, _group);
-                _total++;
-            }
-        }
-    }
-
-    // 五向类同时吃多向增幅（丰饶神）：副类型写 multi_dir，结算时与主类型 five_dir 取较高值
-    var _five_list = get_cards_in_category("多向类");
-    if (_five_list != undefined)
-    {
-        for (var _fi = 0; _fi < ds_list_size(_five_list); _fi++)
-        {
-            var _fid = ds_list_find_value(_five_list, _fi);
-            if (_fid == "niuyouguo" || _fid == "youyu_god") continue;
-            ds_map_set(global.plant_buff_map_2, _fid, "multi_dir");
-        }
-    }
-
-    // Cross-category targets named explicitly by the buff rules.
-    ds_map_set(global.plant_buff_map, "yufengma", "tracker");
-    var _advanced_tracker = get_cards_in_category("群轰追踪");
-    for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
-        ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
-    _advanced_tracker = get_cards_in_category("散点追踪");
-    for (var i = 0; i < ds_list_size(_advanced_tracker); i++)
-        ds_map_set(global.plant_buff_map, ds_list_find_value(_advanced_tracker, i), "tracker_advanced");
-
-    // 2026-11-07 新卡：火箭猪属群轰追踪（主类型 tracker_advanced = 宴飨女神），
-    //   但按数值表注「吃香料虎 / 宴飨女神」→ 副类型再写 tracker，结算时与主类型取较高倍率。
-    //   ⚠️ 只新增这一张，别的卡的归属一行没改。
-    ds_map_set(global.plant_buff_map_2, "huojianzhu", "tracker");
-
-    // 冷萃机（散点追踪）同时吃两档追踪增幅：
-    //   主类型 tracker_berry    = 莓果点心（apply_buff 里按 plant_id 单独写的那一格）
-    //   次类型 tracker_advanced = 宴飨女神（散点追踪整体那一档），两者取较高倍率
-    // ⚠️ 必须写在上面「散点追踪」循环之后：那条循环会把 cold_drew 覆盖成 tracker_advanced，
-    //    导致莓果点心的格子写了却没人读（2026-10-22 修复）
-    // 2026-11-13 用户口径：雪球兔和冷萃机一致，也要吃莓果点心 / 香料虎（tracker 那一档），
-    //   主类型仍是散点追踪（宴飨女神），副类型补 tracker，结算时取较高倍率
-    ds_map_set(global.plant_buff_map_2, "snowrabbit", "tracker");
-
-    ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
-    ds_map_set(global.plant_buff_map_2, "cold_drew", "tracker_advanced");
-    ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");
-    ds_map_set(global.plant_buff_map, "joker", "tracker_advanced");
-    ds_map_set(global.plant_buff_map_2, "joker", "xiangshui");
-    ds_map_set(global.plant_buff_map, "hongliukaochuan", "sprayer");
-    ds_map_set(global.plant_buff_map, "hufa_god", "sprayer");
-    ds_map_set(global.plant_buff_map, "gaia", "thrower");
-    ds_map_set(global.plant_buff_map_2, "gaia", "tracker");
-
-    // 2026-11-13 用户口径：汽水（直射类·特殊直线）吃「喷壶档」增幅 —— 魔杖蛇（含本行整行）、榨汁机。
-    //   海洋女神那边单独按「附加类 5×1」算，见 ocean_god_buff.gml 的 mod_get_ocean_buff_type。
-    ds_map_set(global.plant_buff_map, "qishui", "sprayer");
-
-    show_debug_message("增幅分组按分类重建：" + string(_total) + " 条");
-    return _total;
 }

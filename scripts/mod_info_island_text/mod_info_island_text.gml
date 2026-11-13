@@ -303,86 +303,143 @@ function info_island_text_spans(_raw, _cid, _shape, _level, _skill){
     return _out;
 }
 
-/// @func info_island_text_engine_lines(text, sep, w)
-/// @desc 引擎按 (sep, w) 会把这段文字排成几行 —— 直接问 string_height_ext，不用猜
-function info_island_text_engine_lines(_text, _sep, _w){
-    if (!is_string(_text) || _text == "") return 1;
-    var _h = string_height_ext(_text, _sep, _w);
-    return max(1, round(_h / _sep));
+/// @func info_island_text_break_after(s)
+/// @desc 这一串的最后一个字是「可以在它后面断行」的收尾标点
+function info_island_text_break_after(_s){
+    if (_s == "") return false;
+    // 丨（增幅分段）和 +（配方）后面也是天然断点
+    return (string_pos(string_char_at(_s, string_length(_s)), "，。、；：！？）】》」』…丨+") > 0);
+}
+
+/// @func info_island_text_no_head(s)
+/// @desc 这一串不能停在行首（标点不顶行首）
+function info_island_text_no_head(_s){
+    if (_s == "") return false;
+    return (string_pos(string_char_at(_s, 1), "，。、；：！？）】》」』%…") > 0);
+}
+
+/// @func info_island_text_is_numchar(ch)
+/// @desc 数字/英文串的组成字符（. % * / + - x × 也算在内）
+function info_island_text_is_numchar(_c){
+    var _o = ord(_c);
+    if (_o >= 48 && _o <= 57) return true;
+    if (_o >= 65 && _o <= 90) return true;
+    if (_o >= 97 && _o <= 122) return true;
+    return (string_pos(_c, ".%*/+-x×") > 0);
+}
+
+/// @func info_island_text_is_numstart(ch)
+/// @desc 这一段是不是数字/英文串的开头
+function info_island_text_is_numstart(_c){
+    var _o = ord(_c);
+    return (_o >= 48 && _o <= 57) || (_o >= 65 && _o <= 90) || (_o >= 97 && _o <= 122);
+}
+
+/// @func info_island_text_units(spans)
+/// @desc 切「最小断行单位」：`[占位符]` 整体、数字串连同紧跟的一个汉字整体（15%概率 / 1.5秒 / 3发）、其余按字
+function info_island_text_units(_spans){
+    var _u = [];
+    for (var _s = 0; _s < array_length(_spans); _s++){
+        var _txt  = _spans[_s][0];
+        var _kind = _spans[_s][1];
+        var _n    = string_length(_txt);
+        var _i    = 1;
+        while (_i <= _n){
+            var _ch = string_char_at(_txt, _i);
+            if (_ch == "["){
+                var _close = string_pos("]", string_copy(_txt, _i, _n - _i + 1));
+                if (_close > 1){
+                    array_push(_u, [string_copy(_txt, _i, _close), _kind]);
+                    _i += _close;
+                    continue;
+                }
+            }
+            if (info_island_text_is_numstart(_ch)){
+                var _j = _i;
+                while (_j <= _n && info_island_text_is_numchar(string_char_at(_txt, _j))) _j++;
+                // 数字后面紧跟的汉字一起带走，别把「15%概率」拆成两半
+                if (_j <= _n && ord(string_char_at(_txt, _j)) > 255) _j++;
+                array_push(_u, [string_copy(_txt, _i, _j - _i), _kind]);
+                _i = _j;
+                continue;
+            }
+            array_push(_u, [_ch, _kind]);
+            _i++;
+        }
+    }
+    return _u;
 }
 
 /// @func info_island_text_lines(spans, wrap)
-/// @desc 自己排版：按像素宽度贪心断行，返回「行数组」，每行是若干 [文本, 类型] 段
-///   段类型同 info_island_text_spans：0 普通 / 1 数值 / 2 括号
+/// @desc 唯一的折行实现：按像素宽度排。返回行数组，每行是若干 [文本, 类型] 段。
+///   ① 占位符 / 数字串不断开 ② 只在行宽 ≥80% 之后才吃收尾标点 ③ 标点不顶行首
 function info_island_text_lines(_spans, _wrap){
+    var _units = info_island_text_units(_spans);
     var _lines = [];
-    var _line  = [];            // 当前行的段
-    var _buf   = "";            // 当前段还没落行的文字
-    var _kind  = 0;
-    var _w     = 0;             // 当前行已占宽度
+    var _cur   = [];
+    var _w     = 0;
 
-    for (var _s = 0; _s < array_length(_spans); _s++){
-        var _txt = _spans[_s][0];
-        var _k   = _spans[_s][1];
-        if (_buf != "" && _k != _kind){
-            array_push(_line, [_buf, _kind]);
-            _buf = "";
+    for (var _u = 0; _u < array_length(_units); _u++){
+        var _unit = _units[_u][0];
+        if (_unit == "\n"){
+            array_push(_lines, _cur);
+            _cur = [];
+            _w = 0;
+            continue;
         }
-        _kind = _k;
+        var _uw = string_width(_unit);
 
-        var _len = string_length(_txt);
-        for (var _i = 1; _i <= _len; _i++){
-            var _ch = string_char_at(_txt, _i);
+        if (_w + _uw <= _wrap || array_length(_cur) == 0){
+            array_push(_cur, _units[_u]);
+            _w += _uw;
+            continue;
+        }
 
-            if (_ch == "\n"){
-                if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
-                array_push(_lines, _line);
-                _line = [];
-                _w = 0;
+        // 断点：靠右 80% 之后的最后一个收尾标点
+        var _cut = -1;
+        var _acc = 0;
+        for (var _k = 0; _k < array_length(_cur); _k++){
+            _acc += string_width(_cur[_k][0]);
+            if (_acc >= _wrap * 0.8 && info_island_text_break_after(_cur[_k][0])) _cut = _k;
+        }
+        if (_cut >= 0 && _cut < array_length(_cur) - 1){
+            var _rest = [];
+            var _rest_w = 0;
+            for (var _r = _cut + 1; _r < array_length(_cur); _r++){
+                array_push(_rest, _cur[_r]);
+                _rest_w += string_width(_cur[_r][0]);
+            }
+            if (_rest_w + _uw <= _wrap){
+                var _head = [];
+                for (var _h = 0; _h <= _cut; _h++) array_push(_head, _cur[_h]);
+                array_push(_lines, _head);
+                _cur = _rest;
+                _w = _rest_w;
+                array_push(_cur, _units[_u]);
+                _w += _uw;
                 continue;
             }
-
-            var _nw  = _w + string_width(_ch);
-            if (_w > 0 && _nw > _wrap){
-                if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
-                array_push(_lines, _line);
-                _line = [];
-                _w = 0;
-                _nw = string_width(_ch);
-            }
-            _buf += _ch;
-            _w = _nw;
         }
-        if (_buf != ""){ array_push(_line, [_buf, _kind]); _buf = ""; }
+
+        // 标点不顶行首：把上一行最后一个单位带下来陪它
+        if (info_island_text_no_head(_unit) && array_length(_cur) > 1){
+            var _last = _cur[array_length(_cur) - 1];
+            array_delete(_cur, array_length(_cur) - 1, 1);
+            array_push(_lines, _cur);
+            _cur = [_last];
+            _w = string_width(_last[0]);
+        } else {
+            array_push(_lines, _cur);
+            _cur = [];
+            _w = 0;
+        }
+        array_push(_cur, _units[_u]);
+        _w += _uw;
     }
-    if (array_length(_line) > 0) array_push(_lines, _line);
+
+    if (array_length(_cur) > 0) array_push(_lines, _cur);
     if (array_length(_lines) == 0) array_push(_lines, []);
     return _lines;
-}
-
-/// @func info_island_text_auto_wrap(spans, text, wrap, sep)
-/// @desc 扫宽度：找「自己排出来的行数 == 引擎行数」的宽度区间，取中间值
-///   找到返回该宽度；找不到返回 -1（调用方退回白字）
-function info_island_text_auto_wrap(_spans, _text, _wrap, _sep){
-    var _target = info_island_text_engine_lines(_text, _sep, _wrap);
-
-    var _lo = max(40, _wrap);
-    var _hi = _wrap * 3;
-    var _best_lo = -1;
-    var _best_hi = -1;
-
-    for (var _w = _lo; _w <= _hi; _w += 4){
-        var _n = array_length(info_island_text_lines(_spans, _w));
-        if (_n == _target){
-            if (_best_lo < 0) _best_lo = _w;
-            _best_hi = _w;
-        }
-        else if (_best_lo >= 0){
-            break;              // 已经出了匹配区间，收工
-        }
-    }
-    if (_best_lo < 0) return -1;
-    return (_best_lo + _best_hi) * 0.5;
 }
 
 /// @func info_island_text_draw_lines(x, y, lines, line_h, col_normal, col_value, col_bracket, bold)
@@ -411,40 +468,28 @@ function info_island_text_draw_lines(_x, _y, _lines, _line_h, _cn, _cv, _cb, _bo
 }
 
 /// @func info_island_text_draw_rich(px, py, raw, cid, shape, level, skill, wrap, line_h, cn, cv, cb, bold)
-/// @desc 对外唯一入口：能对齐引擎就用分段上色，对不齐就**原样白字**（等于没变）
-///   返回 true = 已用分段绘制；false = 调用方自己去 draw_text_ext
-///   结果按「卡 + 形态 + 星级 + 技能」缓存，文本框不变时不重排
+/// @desc 情报岛正文的唯一绘制入口：自己排版 + 数值上色。
+///   折行宽度由调用方给（obj_info_island_bg/Draw_0 传 720），不再反解引擎行数。
+///   结果按「卡 + 形态 + 星级 + 技能 + 宽度」缓存，换卡才重排。
+///   返回 true = 已画；false = 调用方自己兜底（只有文案缺失时才会 false）
 function info_island_text_draw_rich(_px, _py, _raw, _cid, _shape, _level, _skill, _wrap, _line_h, _cn, _cv, _cb, _bold){
     if (!is_string(_raw) || _raw == "") return false;
-    // 文案里没有 {变量}（老卡全是 [攻击力] 这种）→ 一个数值都不会变色，直接不用做，省一次排版
-    if (string_pos("{", _raw) <= 0) return false;
     draw_set_font(font_yuan);
 
     if (!variable_global_exists("iit_cache") || !ds_exists(global.iit_cache, ds_type_map)){
         global.iit_cache = ds_map_create();
     }
-    // key 里带上文案长度：以后改文案（长度变了）就会重排，不会拿到旧结果
-    var _key = _cid + "|" + string(_shape) + "|" + string(_level) + "|" + string(_skill) + "|" + string(string_length(_raw));
+    var _key = _cid + "|" + string(_shape) + "|" + string(_level) + "|" + string(_skill)
+             + "|" + string(_wrap) + "|" + string(string_length(_raw));
 
     var _entry;
     if (ds_map_exists(global.iit_cache, _key)){
         _entry = global.iit_cache[? _key];
     }
     else{
-        var _text  = info_island_text_render(_raw, _cid, _shape, _level, _skill);
-        var _spans = info_island_text_spans(_raw, _cid, _shape, _level, _skill);
-
-        var _wrap_ok = info_island_text_auto_wrap(_spans, _text, _wrap, _line_h);
-        if (_wrap_ok < 0){
-            _entry = undefined;          // 对不齐 → 记成“不做”，下次也不用再算
-        }
-        else{
-            _entry = info_island_text_lines(_spans, _wrap_ok);
-        }
+        _entry = info_island_text_lines(info_island_text_spans(_raw, _cid, _shape, _level, _skill), _wrap);
         global.iit_cache[? _key] = _entry;
     }
-
-    if (is_undefined(_entry)) return false;
 
     info_island_text_draw_lines(_px, _py, _entry, _line_h, _cn, _cv, _cb, _bold);
     return true;

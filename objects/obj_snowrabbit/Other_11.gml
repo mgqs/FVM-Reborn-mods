@@ -62,7 +62,7 @@ for (var _j = 0; _j < array_length(_targets); _j++){
     _b.splash_ratio   = sr_splash_ratio;
     _b.splash_cells   = sr_splash_cells;
     _b.move_speed     = 14;
-    _b.fall_delay     = 0;          // 2026-11-13 用户口径：同时落下，不要依次错帧（同冷萃机）
+    _b.fall_delay     = _j * 10;    // 一个个落下（同冷萃机 / 雅典娜）：每发错开 10 帧
     _b.start_y        = _by;
 
     // 三形态共用同一张冰球（_1/_2 与本体相同，2026-11-13 已删）

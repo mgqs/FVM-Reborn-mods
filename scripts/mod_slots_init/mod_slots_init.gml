@@ -3398,7 +3398,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     register_card("shiguangji", obj_shiguangji, [
     {
         shape: 0,
-        sprite: spr_shiguangji,
+        sprite: spr_shiguangji_card,
         cost: 275,
         cooldown: 3300,
         description: "13周年时光机：随机为格子内卡片升星或者降星",
@@ -3409,7 +3409,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     },
     {
         shape: 1,
-        sprite: spr_shiguangji_1,
+        sprite: spr_shiguangji_card_1,
         cost: 275,
         cooldown: 3300,
         description: "超载时光机：随机为格子内卡片升星或者降星",
@@ -3420,7 +3420,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     },
     {
         shape: 2,
-        sprite: spr_shiguangji_2,
+        sprite: spr_shiguangji_card_2,
         cost: 275,
         cooldown: 3300,
         description: "未来时光机：随机为格子内卡片升星或者降星",

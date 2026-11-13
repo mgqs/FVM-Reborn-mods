@@ -415,13 +415,13 @@ function hex_b3_attack_major(_id) {
 }
 
 /// @function hex_b3_is_pierce_card(_id)
-/// @desc 穿透卡：子分类为「直线穿透类 / 过火穿透类」
+/// @desc 穿透卡：子分类为「A型穿透类 / B型穿透类」（官方 11.直射 命名）
 function hex_b3_is_pierce_card(_id) {
     var _c = card_get_category(_id);
     if (is_undefined(_c)) return false;
-    if (_c.minor == "直线穿透类") return true;
-    if (_c.sub == "过火穿透类") return true;
-    if (_c.minor == "过火穿透类") return true;
+    if (_c.minor == "A型穿透类") return true;
+    if (_c.sub == "B型穿透类") return true;
+    if (_c.minor == "B型穿透类") return true;
     return false;
 }
 

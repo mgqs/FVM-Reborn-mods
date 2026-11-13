@@ -3,13 +3,20 @@
 ///   结构：**按身份分组登记**（card_flag_add 批量写入），不是一张一张抄行。
 ///         新卡 = 往对应那组的 id 数组里加一个，所有读名单的地方一起生效。
 ///
-///   四列 + 一个例外开关：
+///   六列 + 一个例外开关：
 ///     no_entity        —— 非实体卡：不吃「对卡片生效」类效果（变星 / 缩冷却）
 ///                          **变星卡、缩 CD 卡、复制类卡 本身都算非实体**
 ///     no_copy          —— 不能当「复制 / 变身 / 读上一张 / **复活**」的源卡
 ///     no_death_record  —— 死了不进 global.dead_cards（炸弹 / 一次性 / 辅助 / 复制类 等）
 ///     cd_reducer       —— 缩 CD 的施放者本身（互不影响；2 转极寒冰沙也不缩它们）
+///     hazard_fire      —— 子弹可过火（**展示用事实表**，判定仍在子弹层，见下）
+///     hazard_rebound   —— 子弹可被反弹（同上）
 ///     copy_ok（例外）  —— 放行复制 / 复活（当前只有时间神：它虽是施放者但可被复制）
+///
+///   🔴 hazard_* 两列只给情报岛「可用增幅」用，**不参与任何战斗判定**。
+///      真正的开关是子弹自己 Create 里的 `hazard_fire` / `hazard_rebound`（父类 obj_bullet_parent
+///      的两个 Collision 事件统一处理）。加新卡能过火/被反弹，改子弹对象即可；
+///      改完记得回来同步这两列（`card_hazard_flags()` 只读这张表）。
 ///
 ///   🔴 不要在各对象里另抄名单，也别新建第二张表。
 ///   🔴 唯一写在对象里的例外：**极寒冰沙（冰激凌 2 转）刷新全体卡槽** ——
@@ -48,6 +55,35 @@ function card_flag_data(){
         "steel_wool", "time_god", "ventilation_fan", "wanpilong", "whisky_bomb", "wine_bottle_bomb", "wooden_cork",
         "xuanfengniu", "yeziguo", "zhanqima", "zhiyumiao",
     ], ["no_death_record"]);
+
+    // 五、子弹可过火（火盆类增幅：火盆 / 火神 / 金牛座 / 能量喵 / 融合火盆）
+    //   口径来源：子弹 Create 里的 hazard_fire（与官方 xlsx 11.直射 r92 一致）
+    //   共享弹别漏：小笼包系变体共用 obj_xiaolongbao_bullet / obj_icelongbao_bullet，生肖弹共用 obj_zodiac_projectile
+    card_flag_add(_t, [
+        "bbq", "corn_shooter", "double_ice_long_bao", "double_long_bao",
+        "double_water_pipe", "fashishe", "fenjima", "gatlin_ice_long_bao",
+        "gatlin_long_bao", "guiyuanma", "houyi_god", "ice_long_bao",
+        "king_triple_long_bao", "love_god", "mianbao", "nut_frier",
+        "odin", "ronghesanxian", "rongheshuanggu", "sheshou",
+        "shuanggu", "starrabbit", "tar_sprayer", "tiancheng",
+        "triple_ice_long_bao", "triple_long_bao", "triple_wine_rack", "war_god",
+        "xiandima", "xiao_long_bao", "yanhuangma", "youyu_god",
+        "yufengma", "zhuzhuliaoliji",
+    ], ["hazard_fire"]);
+
+    // 六、子弹可被反弹（反弹类增幅：樱桃布丁 / 布丁汪 / 水神）
+    //   生肖弹带 kind_gate（只认 kind = fire / star），归元马 / 仙笛马 / 炎凰马 / 御风马因此不可反弹
+    card_flag_add(_t, [
+        "bbq", "caihongshe", "coal_starfish", "corn_shooter",
+        "double_ice_long_bao", "double_long_bao", "double_water_pipe", "fashishe",
+        "fenjima", "gatlin_ice_long_bao", "gatlin_long_bao", "ghost_god",
+        "houyi_god", "ice_long_bao", "king_triple_long_bao", "love_god",
+        "mianbao", "niuyouguo", "nut_frier", "odin",
+        "rig", "ronghehaixing", "ronghesanxian", "rongheshuanggu",
+        "sheshou", "shuanggu", "starrabbit", "tiancheng",
+        "triple_ice_long_bao", "triple_long_bao", "triple_wine_rack", "war_god",
+        "xiao_long_bao", "youyu_god", "zhuzhuliaoliji",
+    ], ["hazard_rebound"]);
 
     global.card_flag_cache = _t;
     return _t;
@@ -112,4 +148,28 @@ function card_cd_target_ok(_id, _allow_no_entity = false){
 function card_records_death(_id){
     if (_id == "") return false;
     return !card_has_flag(_id, "no_death_record");
+}
+
+/// @func card_hazard_flags(_id)
+/// @desc 这张卡的子弹能不能过火 / 被反弹 → { burn, rebound }（只读事实表，不给战斗用）
+function card_hazard_flags(_id){
+    var _t = card_flag_data();
+    var _r = variable_struct_exists(_t, _id) ? _t[$ _id] : {};
+    return {
+        burn:    variable_struct_exists(_r, "hazard_fire"),
+        rebound: variable_struct_exists(_r, "hazard_rebound"),
+    };
+}
+
+/// @func card_buff_note(_id)
+/// @desc 可用增幅行的自定义括号文本（空 = 不显示括号）。
+///   只填「有条件才吃」且**文案里不方便写**的特例；文本自由写、要精确到段就写清是哪一段：
+///     例：某卡过火只给正后那一发、反弹不限方向 → 写「过火仅后向子弹」，别只写「仅后向子弹」
+///   🔴 猪猪料理机 / 火影怪味鱿鱼的过火限制已写进情报岛正文，这里不留条目（2026-11-14 用户口径），
+///      以后要恢复显示，把 id 加回下表即可。
+function card_buff_note(_id){
+    static _t = {
+    };
+    if (!variable_struct_exists(_t, _id)) return "";
+    return _t[$ _id];
 }

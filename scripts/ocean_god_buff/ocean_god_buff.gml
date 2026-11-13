@@ -1,65 +1,3 @@
-/// @func refresh_ocean_buff_cells()
-/// @desc 刷新海洋女神的三类增幅范围格子
-function refresh_ocean_buff_cells()
-{
-    ocean_buff_cells_sprayer = [];
-    ocean_buff_cells_attach = [];
-    ocean_buff_cells_coffee = [];
-    
-    var val = ocean_buff_value;
-    var col = grid_col;
-    var row = grid_row;
-    
-    // 终转全屏模式
-    if (ocean_fullscreen)
-    {
-        // 全屏：所有格子都加入三类增幅
-        for (var c = 0; c < global.grid_cols; c++)
-        {
-            for (var r = 0; r < global.grid_rows; r++)
-            {
-                array_push(ocean_buff_cells_sprayer, [c, r, val]);
-                array_push(ocean_buff_cells_attach, [c, r, val]);
-                array_push(ocean_buff_cells_coffee, [c, r, val]);
-            }
-        }
-        return;
-    }
-    
-    // ===== 喷壶类：5x5 范围 =====
-    var dx = -2;
-    while (dx <= 2)
-    {
-        var dy = -2;
-        while (dy <= 2)
-        {
-            var cc = col + dx;
-            var rr = row + dy;
-            if (cc >= 0 && cc < global.grid_cols && rr >= 0 && rr < global.grid_rows)
-                array_push(ocean_buff_cells_sprayer, [cc, rr, val]);
-            dy++;
-        }
-        dx++;
-    }
-    
-    // ===== 附加类：5x1 横向范围 =====
-    var dx2 = -2;
-    while (dx2 <= 2)
-    {
-        var cc2 = col + dx2;
-        var rr2 = row;
-        if (cc2 >= 0 && cc2 < global.grid_cols && rr2 >= 0 && rr2 < global.grid_rows)
-            array_push(ocean_buff_cells_attach, [cc2, rr2, val]);
-        dx2++;
-    }
-    
-    // ===== 咖啡喷壶类：本行范围 =====
-    for (var c3 = 0; c3 < global.grid_cols; c3++)
-    {
-        array_push(ocean_buff_cells_coffee, [c3, row, val]);
-    }
-}
-
 /// @desc 按目标卡的逻辑坐标计算海洋增幅，不依赖放置顺序或格子列表缓存。
 function get_ocean_buff_multiplier(card)
 {
@@ -68,10 +6,8 @@ function get_ocean_buff_multiplier(card)
         || card.grid_row < 0 || card.grid_row >= global.grid_rows)
         return multiplier;
 
-    var buff_type = mod_get_ocean_buff_type(card.plant_id);
-    var is_coffee = (card.plant_type == "coffee");
-    // row_sprayer（直线喷壶/咖啡喷壶类）也属于喷壶类，需要参与后续判定
-    if (buff_type == "none" && !is_coffee)
+    var _t = mod_get_ocean_buff_type(card.plant_id);
+    if (_t == "none")
         return multiplier;
 
     // 仅统计当前战场上有效的海洋女神，排除跨局残留的来源列表。
@@ -92,22 +28,13 @@ function get_ocean_buff_multiplier(card)
         var in_range = (source.shape == 3 && count >= 4);
         if (!in_range)
         {
-            // 1. 直线喷壶（咖啡喷壶类 / row_sprayer）：本行整行增幅
-            if (buff_type == "row_sprayer" && dr == 0)
+            // 范围（对上官方 4.增幅 r113：5×5 旋喷 / 5×5 直线 / 本行 咖啡 / 5×1 附加）
+            switch (_t)
             {
-                in_range = true;
+                case "sprayer": in_range = (dc <= 2 && dr <= 2);  break;   // 5×5（旋转喷壶类 + 金刚马/红柳/护法神）
+                case "coffee":  in_range = (dr == 0);             break;   // 本行整行（咖啡喷壶类）
+                case "attach":  in_range = (dc <= 2 && dr == 0);  break;   // 5×1（汽水 + 真·附加类）
             }
-            // 2. 普通喷壶类 + 附加类：5x5 喷壶范围 / 5x1 附加范围
-            else
-            {
-                var _sprayer_ok = (buff_type == "sprayer" || buff_type == "both") && dc <= 2 && dr <= 2;
-                var _attach_ok  = (buff_type == "attach"  || buff_type == "both") && dc <= 2 && dr == 0;
-                in_range = _sprayer_ok || _attach_ok;
-            }
-
-            // 3. 兜底：plant_type 为 "coffee" 的卡片也享受本行增幅
-            if (!in_range && is_coffee && dr == 0)
-                in_range = true;
         }
         // 多个海洋女神的增幅不叠加，取最高倍率。
         if (in_range && source.ocean_buff_value > max_buff)
@@ -128,12 +55,8 @@ function rebuild_ocean_buff()
 /// @desc 获取战旗马对卡片的倍率（增幅所有卡片，多个战旗马取最高倍率，不叠加）。
 function get_zhanqima_buff_multiplier(card)
 {
-    // 战旗马不增幅自身
-    if (card.plant_id == "zhanqima")
-        return 1;
-
-    var attack_major_categories = ["直射类", "投掷类", "多向类", "专业防空类", "喷壶类", "追踪类", "非远程类", "灰烬类"];
-    if (array_get_index(attack_major_categories, card_get_major(card.plant_id)) < 0)
+    // 谁吃战旗马：目标表里的 zhanqima 档（8 个攻击大分类，排除战旗马自己）
+    if (!buff_channel_ok(card.plant_id, "zhanqima"))
         return 1;
 
     var best = 1;
@@ -152,43 +75,16 @@ function get_zhanqima_buff_multiplier(card)
     return best;
 }
 
-/// @func mod_get_ocean_buff_type(arg0)
-/// @desc 获取卡片在海洋女神系统中的 buff 类型
-/// @param {string} arg0 卡片 plant_id
-/// @return {string} buff 类型（"row_sprayer"/"sprayer"/"attach"/"both"/"none"）
-function mod_get_ocean_buff_type(arg0)
+/// @func mod_get_ocean_buff_type(_id)
+/// @desc 海洋女神的增幅分组：直接读目标表 —— 吃哪条喷壶通道，就是海洋的哪一组
+///   sprayer 5×5 / coffee 本行整行 / attach 5×1（名单与范围都只在 scripts/buff_target 里维护）
+/// @param {string} _id 卡片 plant_id
+/// @return {string} "sprayer" / "coffee" / "attach" / "none"
+function mod_get_ocean_buff_type(_id)
 {
-    // 2026-11-13 用户口径：汽水吃海洋的「附加类」5×1（本行 ±2 列），不吃喷壶 5×5
-    if (arg0 == "qishui") return "attach";
-
-    var type = mod_get_buff_type(arg0);
-
-    // 喷壶类
-    if (type == "sprayer")
-    {
-        // 直线喷壶（咖啡喷壶类）：单独分类，享受本行整行增幅
-        if (is_row_sprayer_card(arg0))
-            return "row_sprayer";
-        return "sprayer";
-    }
-
-    // 附加类
-    if (ds_map_exists(global.plant_buff_map, arg0))
-    {
-        var t = ds_map_find_value(global.plant_buff_map, arg0);
-        if (t == "attach")
-            return "attach";
-    }
-
-    // 第二类型检查
-    if (ds_map_exists(global.plant_buff_map_2, arg0))
-    {
-        var t2 = ds_map_find_value(global.plant_buff_map_2, arg0);
-        if (t2 == "attach")
-            return "attach";
-        if (t2 == "sprayer")
-            return "both";
-    }
+    if (buff_channels_has(_id, "sprayer"))        return "sprayer";
+    if (buff_channels_has(_id, "sprayer_coffee")) return "coffee";
+    if (buff_channels_has(_id, "sprayer_attach")) return "attach";
 
     return "none";
 }

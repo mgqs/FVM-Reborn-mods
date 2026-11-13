@@ -307,19 +307,17 @@ if info_button_select == 1 {
 		if (_info_txt == "") _info_txt = "\n（暂无情报记录）";
 		// 🔴 2026-11-06 合并修正：这里**不要再无条件 draw_text_ext 一遍**。
 		//    上游那条兜底是直接画，跟下面的金色分段绘制同一个坐标 → 整段文字叠两层（数字发虚像描边）。
-		// 🔴 金色绘制必须吃**原文**（`global.info_island` 里带 {变量} 的那份），不能吃 _info_txt：
-		//    _info_txt 是 info_island_text_render 渲染过的，`{攻击力}` 已经变成数字，
-		//    脚本第一步 `string_pos("{", _raw)` 直接判「没变量」返回 false → 整段掉回白字（2026-11-06 踩过）。
-		//    原文是 undefined（礼盒类卡）时脚本自己会 return false，兜底那句再画 _info_txt，不会报 argument 4。
+		// 正文走**原文**（`global.info_island` 里带 {变量} 的那份）：info_island_text_spans 只认 `{…}` 上色，
+		//   传渲染过的文本就一个数字都变不了色。原文是 undefined（礼盒这类）时它自己返回 false，走下面兜底。
 		var _raw_txt = global.info_island[? card_id];
 		if (!is_undefined(_raw_txt) && !is_string(_raw_txt)) _raw_txt = "";
-		// 2026-11-06：数值金色。能不能上色由脚本自己判断：
-		//   只有当「自己排出来的行数 == 引擎 string_height_ext 给的行数」时才用分段绘制（行数一致 = 高度一致，不会顶出面板）
-		//   对不齐就直接返回 false，走下面这句原来的 draw_text_ext —— 最差等于没做这个功能，排版不会变样
-		//   参数：wrap 300 / 行高 30 / 正文白 / 数值金 (255,215,107) / 括号白 / bold = false（想伪加粗改 true）
-		if (!info_island_text_draw_rich(x-390, y-100, _raw_txt, card_id, current_view_shape, view_card_level, view_card_skill,
-				300, 30, c_white, make_colour_rgb(255, 215, 107), c_white, false)){
-			draw_text_ext(x-390,y-100,_info_txt,30,300)
+		// 🔵 2026-11-14 S4：折行只在 info_island_text_draw_rich 里做（720px + 标点优先 + 占位符不断开），
+		//    它已经不需要「行数对齐引擎」，所以只有文案缺失时才会返回 false。
+		//    参数：行宽 720 / 行高 30 / 正文白 / 数值金 (255,215,107) / 括号白 / bold = false
+		//    文本顶 y-150，压到卡面立绘就改 -140；行宽想窄一点改 690
+		if (!info_island_text_draw_rich(x-390, y-150, _raw_txt, card_id, current_view_shape, view_card_level, view_card_skill,
+				720, 30, c_white, make_colour_rgb(255, 215, 107), c_white, false)){
+			draw_text_ext(x-390,y-150,_info_txt,30,720)
 		}
 		draw_set_font(font_yuan)
 	}

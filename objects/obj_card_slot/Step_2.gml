@@ -48,8 +48,13 @@ if card_id == "magic_chicken"{
 				if cooldown < 13.5 * 60{
 					cooldown = 13.5 * 60
 				}
-				// 🔴 这里**不要**写 cooldown_timer = 0 / is_ready = false
-				//   —— 那会让 READY 的幻幻鸡被源卡拖进冷却（用户 2026-11-12 明确：只换时长）
+				// 🔴 换完时长必须把计时器对齐到新时长：进这个分支的前提是「已冷却完」
+				//   （cooldown_timer >= cooldown），如果新时长比旧的长，而计时器还停在旧值上，
+				//   下一帧就变成 cooldown_timer < cooldown —— 一个 READY 的卡槽被硬拖进冷却，
+				//   看起来就是「幻幻鸡的冷却被换成新卡的 CD」。
+				//   注意不是清零（那才是 2026-11-12 用户否掉的写法）：这里只是让 READY 保持 READY。
+				cooldown_timer = cooldown
+				is_ready = true
 			}
 			var card_slot_data = deck_get_card_data(global.last_placed_card_id,card_save_data.shape)
 			if card_slot_data != noone{

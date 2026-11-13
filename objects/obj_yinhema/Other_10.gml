@@ -16,7 +16,7 @@ if (hp <= 0) exit;
 var _c = global.zodiac_query_card;
 if (get_plant_upgrade(_c.plant_id,0,0) == undefined) exit;
 // 仅对「直射类 / 固定轨迹类」卡片生效（分类来自 docs/卡片分类.md，见 card_buff_category 模块）
-if (!card_in_category(_c.plant_id, "固定轨迹类")) exit;
+if (!buff_channels_has(_c.plant_id, "fixed_track")) exit;
 var _r = shape == 0 ? 1 : 2; // 0转3×3，1/2转5×5
 if (abs(grid_col-_c.grid_col) <= _r && abs(grid_row-_c.grid_row) <= _r) {
     var _d = get_plant_data_with_skill(plant_id,shape,current_level,skill);

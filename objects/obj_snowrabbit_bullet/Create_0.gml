@@ -34,5 +34,5 @@ image_angle  = 0;
 // 三形态共用同一张冰球（_1/_2 与本体前 10 帧逐像素相同，2026-11-13 已删）
 sprite_index = spr_snowrabbit_bullet;
 
-image_xscale = 1.4;
-image_yscale = 1.4;
+image_xscale = 1;
+image_yscale = 1;

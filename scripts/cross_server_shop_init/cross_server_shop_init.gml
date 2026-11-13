@@ -1,32 +1,26 @@
 function cross_server_shop_init()
 {
     var _cross_server_goods = [
-        // 勺勺兔：2026-11-09 本体从跨服挪回普通商店（80000 金币，见 mod_shop_init），
-        //   所以这里不再打 cross_server_shop 标；一/二转凭证照旧在威望商店。
+        // 这张表只负责「改价 + 打跨服标」，商品本体由 shop_init / mod_shop_init 注册。
+        // 归属只看 cross_server_shop 字段：有标 → 只在跨服；没标 → 只在普通商店。
         "baibianshe", "double_blade_snake", "laipishe", "magic_chicken", "xuanfengniu",
-        "zhanqima", "zhanqima_1", "zhanqima_2", "niuyouguo", "fashishe", "huanyingshe", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
-        // 椰子果一/二转：2026-11-08 本体挪回普通商店后，这里只留「打标再剔除」的两个转职商品，
-        //   见下面 _moved_to_prestige（本体走普通商店 55000，转职在威望商店）
-        "yeziguo_1", "yeziguo_2",
+        "zhanqima", "niuyouguo", "fashishe", "huanyingshe", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
         "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem", "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
         "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
-        // 2026-11-13：金刚马 / 蛇蛇酒 / 转龙壶 本体改到跨服白银页售卖（原普通商店金币价下架）
+        // 金刚马 / 蛇蛇酒 / 转龙壶：本体在跨服白银页（价目见下）；本体商品仍在 mod_shop_init 注册，这里只改价
         "jingangma", "sheshejiu", "zhuanlonghu",
-        "yanyantu", "yanyantu_1", "yanyantu_2", "wugushe", "wugushe_1", "wugushe_2", "kuileima", "kuileima_1", "kuileima_2", "yufengma", "yufengma_1", "yufengma_2", "fenjima", "fenjima_1", "fenjima_2", "guiyuanma_1", "guiyuanma_2", "yanhuangma", "yanhuangma_1", "yanhuangma_2", "yinhema", "yinhema_1", "yinhema_2", "xiandima", "xiandima_1", "xiandima_2", "xingqiongma_1", "xingqiongma_2", "starrabbit", "starrabbit_1", "starrabbit_2", "yinghuoshe_1", "yinghuoshe_2", "wuxingshe"
+        "yanyantu", "wugushe", "kuileima", "yufengma", "fenjima", "yanhuangma", "yinhema", "xiandima", "starrabbit", "wuxingshe"
     ];
 
     var _cross_server_prices = {
         baibianshe: {cost: "1510", shop: "silver"}, double_blade_snake: {cost: "1320", shop: "silver"}, laipishe: {cost: "1320", shop: "silver"},
-        // spoon_rabbit 已挪回普通商店（80000 金币），不再有跨服价目
         magic_chicken: {cost: "1130", shop: "silver"}, xuanfengniu: {cost: "1020", shop: "silver"},
-        zhanqima: {cost: "1900", shop: "silver"}, zhanqima_1: {cost: "225", shop: "gold"}, zhanqima_2: {cost: "228", shop: "gold"},
-        // 法师蛇 / 幻影蛇：2026-11-08 本体从普通商店挪进跨服（白银页）
+        zhanqima: {cost: "1900", shop: "silver"},
+        // 法师蛇 / 幻影蛇：本体在跨服白银页
         fashishe: {cost: "2000", shop: "silver"},
         huanyingshe: {cost: "1700", shop: "silver"},
-        // 椰子果：本体回普通商店（55000 金币）；下面两条只用来给一/二转打「跨服」标再剔除显示
-        yeziguo_1: {cost: "260", shop: "gold"}, yeziguo_2: {cost: "530", shop: "gold"},
         niuyouguo: {cost: "2030", shop: "silver"},
         master_shield: {cost: "900", shop: "silver"}, hades_scythe: {cost: "900", shop: "silver"}, zeus_bolt: {cost: "900", shop: "silver"},
         divine_blessing_gem: {cost: "900", shop: "silver"}, divine_protect_gem: {cost: "900", shop: "silver"}, divine_holy_gem: {cost: "900", shop: "silver"}, divine_shenji_gem: {cost: "900", shop: "silver"},
@@ -35,7 +29,7 @@ function cross_server_shop_init()
         star_wand: {cost: "500", shop: "gold"}, star_wand_gem_1: {cost: "500", shop: "gold"}, star_wand_gem_2: {cost: "750", shop: "gold"}, star_wand_gem_3: {cost: "500", shop: "gold"}, star_wand_gem_4: {cost: "500", shop: "gold"}, star_wand_gem_5: {cost: "500", shop: "gold"},
         rose_shield: {cost: "500", shop: "gold"}, rose_shield_gem_1: {cost: "500", shop: "gold"}, rose_shield_gem_2: {cost: "500", shop: "gold"}, rose_shield_gem_3: {cost: "500", shop: "gold"}, rose_shield_gem_4: {cost: "500", shop: "gold"}, rose_shield_gem_5: {cost: "750", shop: "gold"},
         aladdin_lamp: {cost: "500", shop: "gold"}, aladdin_lamp_gem_1: {cost: "500", shop: "gold"}, aladdin_lamp_gem_2: {cost: "750", shop: "gold"}, aladdin_lamp_gem_3: {cost: "500", shop: "gold"}, aladdin_lamp_gem_4: {cost: "500", shop: "gold"}, aladdin_lamp_gem_5: {cost: "500", shop: "gold"},
-        yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, guiyuanma: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, xingqiongma: {cost: "1900", shop: "silver"}, yanyantu_1: {cost: "225", shop: "gold"}, yanyantu_2: {cost: "228", shop: "gold"}, wugushe_1: {cost: "225", shop: "gold"}, wugushe_2: {cost: "228", shop: "gold"}, kuileima_1: {cost: "225", shop: "gold"}, kuileima_2: {cost: "228", shop: "gold"}, yufengma_1: {cost: "225", shop: "gold"}, yufengma_2: {cost: "228", shop: "gold"}, fenjima_1: {cost: "225", shop: "gold"}, fenjima_2: {cost: "228", shop: "gold"}, guiyuanma_1: {cost: "225", shop: "gold"}, guiyuanma_2: {cost: "228", shop: "gold"}, yanhuangma_1: {cost: "225", shop: "gold"}, yanhuangma_2: {cost: "228", shop: "gold"}, yinhema_1: {cost: "225", shop: "gold"}, yinhema_2: {cost: "228", shop: "gold"}, xiandima_1: {cost: "225", shop: "gold"}, xiandima_2: {cost: "228", shop: "gold"}, xingqiongma_1: {cost: "225", shop: "gold"}, xingqiongma_2: {cost: "228", shop: "gold"},
+        yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, starrabbit: {cost: "1900", shop: "silver"},
         wuxingshe: {cost: "1500", shop: "silver"},
         // 2026-11-13 用户口径：三张新卡本体上跨服白银页
         jingangma: {cost: "3000", shop: "silver"},
@@ -43,35 +37,23 @@ function cross_server_shop_init()
         zhuanlonghu: {cost: "2300", shop: "silver"}
     };
 
-    // 新生肖 / 泡椒春笋仅在跨服商店兑换，三个形态的价格取自 _cross_server_prices（没写自己价目的回落战旗马那一档）。
-    // 米线本体为松露大厅首通奖励，一转 / 二转改为魔塔关卡首通奖励（1-1 给一转、13-1 给二转），跨服商店不再上架。
-    // 烤串机本体为百味关首通奖励、泡椒春笋本体为赤霞渡（日）首通奖励（2026-10-27），
-    // 两者本体从跨服商店下架，只保留一转 / 二转在黄金页签兑换。
-    var _cross_server_card_ids = ["yanyantu","wugushe","kuileima","yufengma","fenjima","guiyuanma","yanhuangma","yinhema","xiandima","xingqiongma","starrabbit","yinghuoshe"];
-    var _base_form_level_reward = ["chunsun"];
-    // 2026-11-08：以下三张的**本体**从跨服挪回普通商店（金币价，见 mod_shop_init），
-    //   所以 0 形态在这里不注册（不会被打上 cross_server_shop 标）、一/二转照旧（仍由威望商店卖）。
-    var _base_form_normal_shop = ["yinghuoshe", "guiyuanma", "xingqiongma"];
+    // ── 跨服白银页卖的卡片本体 ────────────────────────────────────
+    //   一 / 二转凭证已经在凭证页（credit_shop_init 的 credit_xxx_1/_2）卖，跨服不再出售任何
+    //   转职商品 —— 这里只挂 0 形态。以后要加新卡往名单里加 id + 在 _cross_server_prices 补价目。
+    var _cross_server_card_ids = ["yanyantu", "wugushe", "kuileima", "yufengma", "fenjima",
+                                  "yanhuangma", "yinhema", "xiandima", "starrabbit"];
     for (var _z = 0; _z < array_length(_cross_server_card_ids); _z++) {
         var _zid = _cross_server_card_ids[_z];
-        for (var _shape = 0; _shape < 3; _shape++) {
-            // 本体改为关卡首通奖励的卡：不在商店注册 0 形态（既不上跨服，也不进金币商店）。
-            if (_shape == 0 && array_get_index(_base_form_level_reward, _zid) != -1) continue;
-            // 本体已挪回普通商店的卡：0 形态也不上跨服（本体由 mod_shop_init 的 register_goods 负责）
-            if (_shape == 0 && array_get_index(_base_form_normal_shop, _zid) != -1) continue;
-            var _suffix = _shape == 0 ? "" : "_" + string(_shape);
-            var _price_id = _zid + _suffix;
-            var _template = variable_struct_exists(_cross_server_prices, _price_id) ? _cross_server_prices[$ _price_id] : _cross_server_prices[$ "zhanqima" + _suffix];
-            var _shape_data = get_plant_shape_data(_zid,_shape);
-            var _entry = {
-                type: "card", card_id: _zid, card_shape: _shape,
-                cost: _template.cost, cross_server_shop: _template.shop,
-                unlock_item_id: _zid,
-                description: _shape_data[? "description"], display_name: _shape_data[? "name"]
-            };
-            if (_shape > 0) _entry.required_card_shape = _shape - 1;
-            register_goods(_zid + _suffix, _entry);
-        }
+        if (!variable_struct_exists(_cross_server_prices, _zid)) continue;
+
+        var _template = _cross_server_prices[$ _zid];
+        var _shape_data = get_plant_shape_data(_zid, 0);
+        register_goods(_zid, {
+            type: "card", card_id: _zid, card_shape: 0,
+            cost: _template.cost, cross_server_shop: _template.shop,
+            unlock_item_id: _zid,
+            description: _shape_data[? "description"], display_name: _shape_data[? "name"]
+        });
     }
 
     for (var _i = 0; _i < array_length(_cross_server_goods); _i++) {

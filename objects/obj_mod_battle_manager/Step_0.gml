@@ -48,12 +48,6 @@ else
                 just_initialized = true;
             }
             
-            if (!variable_instance_exists(self.id, "buff_type"))
-            {
-                self.buff_type = mod_get_buff_type(self.plant_id);
-                just_initialized = true;
-            }
-            
             if (!variable_instance_exists(self.id, "buff_applied_id"))
             {
                 self.buff_applied_id = -1;
@@ -107,144 +101,8 @@ else
                     continue;
                 }
 
-                var buff_multiplier = 1;
-
-                if (!is_undefined(self.buff_type))
-                {
-                    switch (self.buff_type)
-                    {
-                        case "thrower":
-                            var grid_thrower = ds_map_find_value(global.buff_grid, "thrower");
-                            var buff_au = get_aurora_buff(self.grid_col, self.grid_row);
-                            buff_multiplier = max(grid_thrower[self.grid_col][self.grid_row], buff_au);
-                            break;
-
-                        case "tracker":
-                            var grid_tracker = ds_map_find_value(global.buff_grid, "tracker");
-                            var stack_tracker = ds_map_find_value(global.buff_stack_grid, "tracker");
-                            var tr_normal = grid_tracker[self.grid_col][self.grid_row];
-                            var tr_stack = stack_tracker[self.grid_col][self.grid_row];
-                            buff_multiplier = max(tr_normal, tr_stack);
-                            break;
-
-                        case "tracker_advanced":
-                            var grid_tracker_advanced = ds_map_find_value(global.buff_grid, "tracker_advanced");
-                            var stack_tracker_advanced = ds_map_find_value(global.buff_stack_grid, "tracker_advanced");
-                            buff_multiplier = max(grid_tracker_advanced[self.grid_col][self.grid_row], stack_tracker_advanced[self.grid_col][self.grid_row]);
-                            break;
-
-                        case "tracker_berry":
-                            var grid_tracker_berry = ds_map_find_value(global.buff_grid, "tracker_berry");
-                            buff_multiplier = grid_tracker_berry[self.grid_col][self.grid_row];
-                            break;
-
-                        case "xiangshui":
-                            var grid_xiangshui = ds_map_find_value(global.buff_grid, "xiangshui");
-                            var stack_xiangshui = ds_map_find_value(global.buff_stack_grid, "xiangshui");
-                            var xs_normal = grid_xiangshui[self.grid_col][self.grid_row];
-                            var xs_stack = stack_xiangshui[self.grid_col][self.grid_row];
-                            buff_multiplier = max(xs_normal, xs_stack);
-                            break;
-
-                        case "sprayer":
-                            var grid_sprayer = ds_map_find_value(global.buff_grid,
-                                is_row_sprayer_card(self.plant_id) ? "sprayer_row" : "sprayer");
-                            buff_multiplier = grid_sprayer[self.grid_col][self.grid_row];
-                            break;
-
-                        case "five_dir":
-                            // 五向增幅（五行蛇）：只给五向类；鱿鱼不在名单里（它的主类型是 multi_dir）
-                            var grid_five_dir = ds_map_find_value(global.buff_grid, "five_dir");
-                            var stack_five_dir = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                            var fd_normal = grid_five_dir[self.grid_col][self.grid_row];
-                            var fd_stack = stack_five_dir[self.grid_col][self.grid_row];
-                            buff_multiplier = max(fd_normal, fd_stack);
-                            break;
-
-                        case "multi_dir":
-                            // 多向增幅（丰饶神）：多向类全体，含鱿鱼神
-                            var grid_multi_dir = ds_map_find_value(global.buff_grid, "multi_dir");
-                            var stack_multi_dir = ds_map_find_value(global.buff_stack_grid, "multi_dir");
-                            var md_normal = grid_multi_dir[self.grid_col][self.grid_row];
-                            var md_stack = stack_multi_dir[self.grid_col][self.grid_row];
-                            buff_multiplier = max(md_normal, md_stack);
-                            break;
-
-                        default:
-                            buff_multiplier = 1;
-                            break;
-                    }
-                }
-
-                // 第二buff类型：取与第一buff的较大值（避免同一增幅源重复计算）
-                var buff_type_2 = "";
-                if (variable_global_exists("plant_buff_map_2") && ds_exists(global.plant_buff_map_2, ds_type_map) && ds_map_exists(global.plant_buff_map_2, self.plant_id))
-                    buff_type_2 = ds_map_find_value(global.plant_buff_map_2, self.plant_id);
-
-                if (buff_type_2 != "" && buff_type_2 != self.buff_type)
-                {
-                    var buff2_multiplier = 1;
-                    switch (buff_type_2)
-                    {
-                        case "thrower":
-                            var grid_thrower2 = ds_map_find_value(global.buff_grid, "thrower");
-                            var buff_au2 = get_aurora_buff(self.grid_col, self.grid_row);
-                            buff2_multiplier = max(grid_thrower2[self.grid_col][self.grid_row], buff_au2);
-                            break;
-
-                        case "tracker":
-                            var grid_tracker2 = ds_map_find_value(global.buff_grid, "tracker");
-                            var stack_tracker2 = ds_map_find_value(global.buff_stack_grid, "tracker");
-                            var tr2_normal = grid_tracker2[self.grid_col][self.grid_row];
-                            var tr2_stack = stack_tracker2[self.grid_col][self.grid_row];
-                            buff2_multiplier = max(tr2_normal, tr2_stack);
-                            break;
-
-                        case "tracker_advanced":
-                            var grid_tracker_advanced2 = ds_map_find_value(global.buff_grid, "tracker_advanced");
-                            var stack_tracker_advanced2 = ds_map_find_value(global.buff_stack_grid, "tracker_advanced");
-                            buff2_multiplier = max(grid_tracker_advanced2[self.grid_col][self.grid_row], stack_tracker_advanced2[self.grid_col][self.grid_row]);
-                            break;
-
-                        case "tracker_berry":
-                            var grid_tracker_berry2 = ds_map_find_value(global.buff_grid, "tracker_berry");
-                            buff2_multiplier = grid_tracker_berry2[self.grid_col][self.grid_row];
-                            break;
-
-                        case "xiangshui":
-                            var grid_xiangshui2 = ds_map_find_value(global.buff_grid, "xiangshui");
-                            var stack_xiangshui2 = ds_map_find_value(global.buff_stack_grid, "xiangshui");
-                            var xs2_normal = grid_xiangshui2[self.grid_col][self.grid_row];
-                            var xs2_stack = stack_xiangshui2[self.grid_col][self.grid_row];
-                            buff2_multiplier = max(xs2_normal, xs2_stack);
-                            break;
-
-                        case "sprayer":
-                            var grid_sprayer2 = ds_map_find_value(global.buff_grid,
-                                is_row_sprayer_card(self.plant_id) ? "sprayer_row" : "sprayer");
-                            buff2_multiplier = grid_sprayer2[self.grid_col][self.grid_row];
-                            break;
-
-                        case "five_dir":
-                            // 第二类型分支：五向卡的主类型是 five_dir、副类型是 multi_dir（丰饶神），两边取较高值
-                            var grid_five_dir2 = ds_map_find_value(global.buff_grid, "five_dir");
-                            var stack_five_dir2 = ds_map_find_value(global.buff_stack_grid, "five_dir");
-                            var fd2_normal = grid_five_dir2[self.grid_col][self.grid_row];
-                            var fd2_stack = stack_five_dir2[self.grid_col][self.grid_row];
-                            buff2_multiplier = max(fd2_normal, fd2_stack);
-                            break;
-
-                        case "multi_dir":
-                            var grid_multi_dir2 = ds_map_find_value(global.buff_grid, "multi_dir");
-                            var stack_multi_dir2 = ds_map_find_value(global.buff_stack_grid, "multi_dir");
-                            var md2_normal = grid_multi_dir2[self.grid_col][self.grid_row];
-                            var md2_stack = stack_multi_dir2[self.grid_col][self.grid_row];
-                            buff2_multiplier = max(md2_normal, md2_stack);
-                            break;
-                    }
-
-                    buff_multiplier = max(buff_multiplier, buff2_multiplier);
-                }
+                // 增幅：该卡所有可吃通道取最大（目标表见 scripts/buff_target）
+                var buff_multiplier = buff_channels_multiplier(self.plant_id, self.grid_col, self.grid_row);
 
                 // 海洋女神与榨汁机、魔杖蛇的喷壶增幅不叠加，取较高倍率。
                 var ocean_mult = 1;
@@ -253,7 +111,9 @@ else
 
                 var zhanqima_mult = get_zhanqima_buff_multiplier(self.id);
 
-                var has_sprayer_buff = (self.buff_type == "sprayer" || buff_type_2 == "sprayer");
+                // 喷壶三档（旋喷 / 咖啡 / 附加）任意一档 → 与海洋女神取高不叠乘
+                var has_sprayer_buff = buff_channels_has_any(self.plant_id,
+                    ["sprayer", "sprayer_coffee", "sprayer_attach"]);
                 var combined_buff_multiplier = has_sprayer_buff
                     ? max(buff_multiplier, ocean_mult)
                     : buff_multiplier * ocean_mult;

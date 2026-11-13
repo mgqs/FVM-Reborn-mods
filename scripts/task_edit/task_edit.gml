@@ -1,6 +1,7 @@
 function unlock_task(task_id){
 	if !is_task_unlocked(task_id){
 		var task_data = get_task_data(task_id)
+		if task_data == undefined return   // 注册表里没有这条 → 不建空壳任务
 		var length = array_length(task_data.requirements)
 		var task_struct = {
 			"id":task_id,
@@ -42,6 +43,9 @@ function ensure_task_progress_size(task_id){
 	if is_task_unlocked(task_id){
 		var task_index = get_task_index(task_id)
 		var task_data = get_task_data(task_id)
+		// 存档里有这条任务、注册表里没有（老存档残留 / 动态任务没重建）→ 跳过，
+		//   否则 task_data.requirements 会报 Variable <unknown>.requirements 崩掉
+		if task_data == undefined return
 		var required_size = array_length(task_data.requirements)
 		var current_size = array_length(global.save_data.tasks[task_index].progress)
 		while(current_size < required_size){
@@ -192,6 +196,12 @@ function card_info_task_sync(card_id){
 ///            ③ 进度已经打满（state 被别处改脏的兜底）  → 只补 state，不再提示
 function card_info_task_complete(card_id){
 	if card_id == "" || card_id == undefined return
+	// 兼容调用方直接传 player_deck 的卡条目（结构体）而不是 card_id
+	if is_struct(card_id) card_id = (variable_struct_exists(card_id, "id") ? card_id.id : "")
+	if card_id == "" return
+	// 动态任务 info_view_* 的池条目是启动时按 unlocked_cards 补的；这张卡若不在
+	//   unlocked_cards（老存档 / 外部 mod 卡），池里就没有它 → 现场补一次，避免下面查进度崩
+	card_info_task_sync(card_id)
 	var _tid = card_info_task_id(card_id)
 
 	if is_array(global.save_data.completed_tasks){

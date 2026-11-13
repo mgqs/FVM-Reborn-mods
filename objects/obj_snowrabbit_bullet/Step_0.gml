@@ -8,8 +8,14 @@ if (global.is_paused) exit;
 // ── 错帧等待 ──
 if (fall_delay > 0){
     fall_delay--;
+    image_alpha = 0;                     // 等待期间隐藏，别悬在目标头上
+    if (instance_exists(target_id) && target_id.hp > 0){
+        x = target_id.x;
+        y = target_id.y;
+    }
     exit;
 }
+image_alpha = 1;
 
 // ── 落点始终贴着目标（追踪；目标死了就停在最后位置） ──
 if (instance_exists(target_id) && target_id.hp > 0){

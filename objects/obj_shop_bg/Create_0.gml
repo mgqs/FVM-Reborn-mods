@@ -11,28 +11,8 @@ credit_tab = 0
 
 goods_list = ds_list_create()
 
-// These items are exclusive to the cross-server medal shop.
-cross_server_exchange_ids = [
-    // 白银商店卡片
-    // 勺勺兔 2026-11-09 挪回普通商店（80000）→ 不在这里剔除
-    "baibianshe", "double_blade_snake", "laipishe", "magic_chicken", "xuanfengniu",
-    // 黄金商店武器
-    "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
-    // 黄金商店宝石
-    "divine_blessing_gem", "divine_protect_gem", "divine_holy_gem", "divine_shenji_gem",
-    "ghost_strike_gem", "ghost_spark_gem", "ghost_pact_gem", "ghost_caijue_gem",
-    "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem",
-    "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
-    "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
-    "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
-    // 红柳烤串机（本体 / 一转 / 二转）的商品已在 mod_shop_init 注销，这三个 id 一并清掉
-    "zhanqima", "zhanqima_1", "zhanqima_2",
-    // 椰子果：2026-11-08 本体重回普通商店（55000 金币），一/二转在跨服那边打标 + 剔除显示，
-    //   所以这里三个 id 都不用再列（本体靠「无 cross_server_shop 标」自然出现）
-    // 牛油果（0转银牌商店；1、2转凭证改在威望商店，普通商店一律不显示）、五行蛇（0转银牌商店）
-    //   2026-10-30 补：这两张一直漏在名单外，普通商店会按金币重复显示（同一个 goods 结构体被跨服覆写过 cost）
-    "niuyouguo", "niuyouguo_1", "niuyouguo_2", "wuxingshe"
-]
+// 普通商店只卖「没有 cross_server_shop 字段」的商品（见下面 _normal_goods 的通用过滤），
+// 不再维护「哪些 id 归跨服」的交叉名单 —— 归属只由商品自身的 cross_server_shop 字段决定。
 
 instance_create_depth(x+800,y-430,depth-1,obj_closeshop_btn)
 
@@ -97,7 +77,7 @@ function shop_list_recharge(){
 		//先添加所有武器，并记录武器顺序
 		var weapon_id_list = ds_list_create()
 		for(var i = 0; i < goods_array_size;i++){
-			if global.goods_map[? map_array[i]].type == "weapon" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+			if global.goods_map[? map_array[i]].type == "weapon"{
 				ds_list_add(goods_list,map_array[i])
 				ds_list_add(weapon_id_list, global.goods_map[? map_array[i]].unlock_item_id)
 			}
@@ -108,7 +88,7 @@ function shop_list_recharge(){
 		for(var w = 0; w < ds_list_size(weapon_id_list); w++){
 			var weapon_id = ds_list_find_value(weapon_id_list, w)
 			for(var i = 0; i < goods_array_size;i++){
-				if global.goods_map[? map_array[i]].type == "gem" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+				if global.goods_map[? map_array[i]].type == "gem"{
 					var gem_id = global.goods_map[? map_array[i]].unlock_item_id
 					//检查是否已添加
 					var already_added = false
@@ -136,7 +116,7 @@ function shop_list_recharge(){
 		}
 		//最后添加通用宝石（没有专属武器的宝石）
 		for(var i = 0; i < goods_array_size;i++){
-			if global.goods_map[? map_array[i]].type == "gem" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+			if global.goods_map[? map_array[i]].type == "gem"{
 				var already_added = false
 				for(var a = 0; a < ds_list_size(added_gems); a++){
 					if ds_list_find_value(added_gems, a) == map_array[i]{
@@ -156,7 +136,7 @@ function shop_list_recharge(){
 		for(var i = 0; i < goods_array_size;i++){
 			//获取卡片类型商品
 			if shop_button_select == 1{
-                if global.goods_map[? map_array[i]].type == "card" && array_get_index(cross_server_exchange_ids, global.goods_map[? map_array[i]].unlock_item_id) == -1{
+                if global.goods_map[? map_array[i]].type == "card"{
 					//将商品id添加到商品列表中
 					//var card_data = deck_get_card_data(global.goods_map[? map_array[i]].unlock_item_id,0)
 					ds_list_add(goods_list,map_array[i])

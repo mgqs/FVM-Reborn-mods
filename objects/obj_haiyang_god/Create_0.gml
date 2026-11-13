@@ -27,10 +27,6 @@ else
 // 增幅倍率 = atk / 100
 ocean_buff_value = atk / 100;
 
-// 三类增幅范围的格子列表
-ocean_buff_cells_sprayer = [];   // 喷壶类 5x5
-ocean_buff_cells_attach = [];    // 附加类 5x1
-ocean_buff_cells_coffee = [];    // 咖啡喷壶类 本行
 
 // 刷新标记
 ocean_buff_refreshed = false;

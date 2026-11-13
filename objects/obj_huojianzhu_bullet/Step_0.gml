@@ -8,8 +8,17 @@ if (global.is_paused) exit;
 if (launch_delay > 0)
 {
     launch_delay--;
+    image_alpha = 0;                     // 等待期间隐藏，否则后几发会「卡在天上」
+    if (instance_exists(target_enemy) && target_enemy.hp > 0)
+    {
+        x = target_enemy.x;
+        y = target_enemy.y - 45;
+        grid_row = target_enemy.grid_row;
+        grid_col = target_enemy.grid_col;
+    }
     exit;
 }
+image_alpha = 1;
 
 // 下落期间贴住目标（还活着才跟），保证落点始终是它脚下那格
 if (instance_exists(target_enemy) && target_enemy.hp > 0)

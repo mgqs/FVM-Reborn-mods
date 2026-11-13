@@ -14,5 +14,8 @@
     {"name":"a22ba9e4-b0b2-4c15-89e9-1f92660bfbfe","path":"sprites/spr_shiguangji/spr_shiguangji.yy",},
     {"name":"dfb64bc7-c084-4b08-bb85-d3945e9861d4","path":"sprites/spr_shiguangji_1/spr_shiguangji_1.yy",},
     {"name":"eef74627-7d51-4341-bfca-c4e4ba8fefbf","path":"sprites/spr_shiguangji_2/spr_shiguangji_2.yy",},
+{"name":"spr_shiguangji_card","path":"sprites/spr_shiguangji_card/spr_shiguangji_card.yy",},
+{"name":"spr_shiguangji_card_1","path":"sprites/spr_shiguangji_card_1/spr_shiguangji_card_1.yy",},
+{"name":"spr_shiguangji_card_2","path":"sprites/spr_shiguangji_card_2/spr_shiguangji_card_2.yy",},
 ],
 }

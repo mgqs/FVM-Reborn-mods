@@ -28,6 +28,11 @@ if (shape == 2 && !tb_siblings_done)
         var _used = {};
         _used[$ string(grid_col) + "_" + string(grid_row)] = true;
 
+        // 🔴 兄弟（分身）一律只找**空位**，不能继承玩家的「替换放置」开关 ——
+        //   否则 can_place_at_position 会判「已占格也能放」，三只直接叠在别人身上
+        var _prev_replace = global.replace_placement;
+        global.replace_placement = false;
+
         var _cells = baibianshe_layout_cells(grid_col, grid_row, _used);
         for (var _ci = 0; _ci < array_length(_cells); _ci++)
         {
@@ -39,6 +44,8 @@ if (shape == 2 && !tb_siblings_done)
             _sib.tb_siblings_done = true;   // 🔴 先立旗：否则兄弟会在自己的 Step 里继续往下生
             card_created(_sib, _cell[0], _cell[1]);
         }
+
+        global.replace_placement = _prev_replace;
     }
 }
 

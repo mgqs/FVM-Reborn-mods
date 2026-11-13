@@ -4802,7 +4802,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 4.5]])
+        custom: info_custom([["前摇", 2.5]])
     },
     {
         name: "金鱼逗猫棒",
@@ -4814,7 +4814,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 4.5]])
+        custom: info_custom([["前摇", 2.5]])
     },
     {
         name: "鼠鼠逗猫棒",
@@ -4826,7 +4826,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 4.5]])
+        custom: info_custom([["前摇", 2.5]])
     }
     ], false);
 
@@ -5247,7 +5247,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 2.7]])
+        custom: info_custom([["前摇", 1.9]])
     },
     {
         name: "超载时光机",
@@ -5259,7 +5259,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 2.7]])
+        custom: info_custom([["前摇", 1.9]])
     },
     {
         name: "未来时光机",
@@ -5271,7 +5271,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
         cycle: array_create(17, 0),
-        custom: info_custom([["前摇", 2.7]])
+        custom: info_custom([["前摇", 1.9]])
     }
     ], false);
 
@@ -5400,7 +5400,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 30], ["前摇", 2.3]])
+        custom: info_custom([["冷却缩减", 30], ["前摇", 1.5]])
     },
     {
         name: "充能转龙壶",
@@ -5412,7 +5412,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
+        custom: info_custom([["冷却缩减", 50], ["前摇", 1.5]])
     },
     {
         name: "巨星转龙壶",
@@ -5424,7 +5424,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
+        custom: info_custom([["冷却缩减", 50], ["前摇", 1.5]])
     }
     ], false);
 
