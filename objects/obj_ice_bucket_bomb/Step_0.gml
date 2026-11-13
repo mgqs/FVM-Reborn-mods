@@ -27,6 +27,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+if (state == CARD_STATE.IDLE || state == CARD_STATE.ATTACK) external_animation_sync_native(id, current_flash_speed);
 
 if awake_buff_timer > 0{
 	awake_buff_timer--
@@ -38,6 +39,7 @@ if awake_buff_timer > 0{
 if state == CARD_STATE.SLEEP{
 	anim_timer++
 	image_index = floor(anim_timer/current_flash_speed) mod 11
+	external_animation_sync_native(id, current_flash_speed, anim_timer, "anim_timer");
 	//if anim_timer > 60{
 	//	state = CARD_STATE.AWAKE
 	//}
@@ -46,6 +48,7 @@ if state == CARD_STATE.AWAKE{
 	invincible = true
 	wake_timer++
 	image_index = floor(wake_timer/current_flash_speed) mod 4 + 11
+	external_animation_sync_native(id, current_flash_speed, wake_timer, "wake_timer");
 	if wake_timer >= 3*current_flash_speed{
 		sprite_index = spr_ice_bucket_bomb;
 		if shape == 1{

@@ -50,6 +50,32 @@ switch (button_select) {
 		//draw_set_valign(fa_top);
 		draw_sprite(spr_option_menu_text,1,x-360,y+30)
 
+		// 己方攻击显示：0% 完全隐藏，100% 保持原有显示。
+		var _attack_x0 = x + attack_opacity_min_dx;
+		var _attack_x1 = x + attack_opacity_max_dx;
+		var _attack_cx = (_attack_x0 + _attack_x1) * 0.5;
+		var _attack_y = y + attack_opacity_dy;
+		draw_set_color(c_white);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(_attack_cx, _attack_y - 110, "己方子弹 / 攻击特效");
+		draw_text(_attack_cx, _attack_y - 65, "不透明度 " + string(round(global.friendly_attack_opacity * 100)) + "%");
+		draw_sprite_ext(spr_option_volume_bar, 0, _attack_cx + 2, _attack_y,
+			(_attack_x1 - _attack_x0) / sprite_get_width(spr_option_volume_bar), 1, 0, c_white, 1);
+		var _attack_knob = lerp(_attack_x0, _attack_x1, global.friendly_attack_opacity);
+		if (_attack_knob < _attack_x1) {
+			draw_set_color(#17314C);
+			draw_roundrect(_attack_knob, _attack_y - 15, _attack_x1, _attack_y + 15, false);
+		}
+		draw_sprite(spr_option_volume_slider, 0, _attack_knob, _attack_y);
+		draw_set_color(c_white);
+		draw_set_halign(fa_left);
+		draw_text(_attack_x0, _attack_y + 50, "隐藏");
+		draw_set_halign(fa_right);
+		draw_text(_attack_x1, _attack_y + 50, "完整显示");
+		draw_set_halign(fa_center);
+		draw_text(_attack_cx, _attack_y + 105, "仅影响显示，伤害照常生效");
+
 		// ── 动效分级：三档滑块（左→右 = 关闭 / 基础 / 完全，档位即 global.ui_anim）──
 		var _sy   = y + ui_anim_slider_dy;          // 第 6 行（上面五行开关在 y-170..y+230，同 100 间距）
 		var _knob = x + ui_anim_knob_dx;            // 旋钮当前显示位置（拖动 1:1 / 松手 ease-out 回弹）

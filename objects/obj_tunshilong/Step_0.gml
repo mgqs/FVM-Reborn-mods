@@ -34,6 +34,7 @@ if (eat_phase > 0){
         }
         else image_index = _fs2;
     }
+    external_animation_sync_native(id, flash_speed, eat_t, "eat_t");
     exit;
 }
 
@@ -96,4 +97,5 @@ swallow_t = 1;
 eat_phase = 1;
 eat_t = 0;
 image_index = TUN_BITE_FIRST;
+external_animation_sync_native(id, flash_speed, eat_t, "eat_t");
 event_user(1);       // 播吞咽用的音效 / 表现

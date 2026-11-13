@@ -76,6 +76,7 @@ if (state == CARD_STATE.ATTACK)
     tc_atk_t++;
     var _fi = min(tc_atk_t div _step_frames, _atk_len - 1);
     image_index = _atk_start + _fi;
+    external_animation_sync_native(id, _step_frames, tc_atk_t, "tc_atk_t");
 
     // 脱手帧投出：tc_fired = 本轮已投（锁存，只在开新一轮时复位）；
     //   tc_shot_cd ≥ 12 是硬门槛 —— 任何路径都不可能连着投第二颗
@@ -102,4 +103,5 @@ else
 {
     tc_anim_t++;
     image_index = (tc_anim_t div _step_frames) mod 12;      // 待机 0~11
+    external_animation_sync_native(id, _step_frames, tc_anim_t, "tc_anim_t");
 }

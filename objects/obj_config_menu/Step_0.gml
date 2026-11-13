@@ -230,7 +230,7 @@ function draw_audio_page(){
     // 必须在这里手动回填：obj_setting_toggle 的 Create 事件早于 config_key 赋值，
     // 它内部那些 if (config_key == ...) 分支全都命中不到（其它页的开关同样是手动设的）。
     _boss_tog.state = global.boss_music_random;
-    _boss_tog.tooltip_text = "打开后，BOSS 波会从曲库里随机播放一首音乐\n曲库位置：%LOCALAPPDATA%\\FVM_Reborn_makk\\boss_music（只认 .ogg）";
+    _boss_tog.tooltip_text = "打开后，BOSS 波会从曲库里随机播放一首音乐\n曲库位置：" + boss_music_dir() + "（只认 .ogg）";
     array_push(setting_buttons, _boss_tog);
     
 	    // 标记当前设置页面
@@ -398,6 +398,32 @@ function ui_anim_slider_step(){
 }
 
 // 只有停在「画面设置」页才响应滑块；切走时清掉拖动状态
+// 透明度滑块随页面一起绘制；等切页/开关动画结束再接受输入。
+if (button_select == 2 && pnl_o >= 0.999 && !pnl_closing && pg_t < 0) {
+	var _attack_y = y + attack_opacity_dy;
+	var _attack_x0 = x + attack_opacity_min_dx;
+	var _attack_x1 = x + attack_opacity_max_dx;
+	if (mouse_check_button_pressed(mb_left)
+		&& point_in_rectangle(mouse_x, mouse_y, _attack_x0 - 18, _attack_y - 26, _attack_x1 + 18, _attack_y + 26)) {
+		attack_opacity_drag = true;
+	}
+	if (attack_opacity_drag) {
+		var _attack_value = round(clamp((mouse_x - _attack_x0) / (_attack_x1 - _attack_x0), 0, 1) * 100) / 100;
+		if (_attack_value != global.friendly_attack_opacity) {
+			global.friendly_attack_opacity = _attack_value;
+			attack_opacity_dirty = true;
+		}
+	}
+} else {
+	attack_opacity_drag = false;
+}
+// Save on release, tab switch or close, including a close during a drag.
+if (!mouse_check_button(mb_left)) attack_opacity_drag = false;
+if (!attack_opacity_drag && attack_opacity_dirty) {
+	friendly_attack_opacity_save();
+	attack_opacity_dirty = false;
+}
+
 if (button_select == 2) {
 	ui_anim_slider_step();
 } else {

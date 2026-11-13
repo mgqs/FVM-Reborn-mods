@@ -19,6 +19,7 @@ if is_frozen || state == CARD_STATE.SLEEP{
 if state == CARD_STATE.GROW{
 	sprite_index = upgrade_spr_list[bun_count-1]
 	image_index = floor(upgrade_timer/5)
+	external_animation_sync_native(id, 5, upgrade_timer, "upgrade_timer");
 	upgrade_timer ++
 	if upgrade_timer >= 49{
 		state = CARD_STATE.IDLE

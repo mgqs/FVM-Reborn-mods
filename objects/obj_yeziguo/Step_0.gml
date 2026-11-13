@@ -182,7 +182,7 @@ if (yyz_phase == 1) {
 			yyz_cell_col = _ccol;
 			yyz_cell_row = _crow;
 			grid_col = _ccol;
-			grid_row = _crow;
+			grid_row = combat_targets_row_value(id, _crow);
 
 			sort_plants_in_grid(_ccol, _crow);
 			sort_plants_in_grid(_old_col, _old_row);

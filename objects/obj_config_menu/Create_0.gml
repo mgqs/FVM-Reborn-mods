@@ -3,6 +3,11 @@ image_yscale = 1;
 button_select = 0;
 current_settings = noone; // 当前设置页面的控制器
 setting_buttons = []; // 存储创建的设置按钮
+attack_opacity_drag = false;
+attack_opacity_dirty = false;
+attack_opacity_min_dx = 60;
+attack_opacity_max_dx = 380;
+attack_opacity_dy = -60;
 
 // 创建界面按钮
 closemenu_btn = instance_create_depth(x+470, y-330, depth-1, obj_closemenu_btn);

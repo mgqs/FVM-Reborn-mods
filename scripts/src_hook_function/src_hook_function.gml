@@ -8,11 +8,25 @@ global._last_platform = -1
 #macro instance_destroy_origfunc instance_destroy
 #macro instance_destroy          obj_pool_instance_destroy
 
+// Visual-only sprite routing. Native aliases prevent recursive interception.
+#macro draw_self_origfunc draw_self
+#macro draw_self external_animation_draw_self
+#macro draw_sprite_origfunc draw_sprite
+#macro draw_sprite external_animation_draw_sprite
+#macro draw_sprite_ext_origfunc draw_sprite_ext
+#macro draw_sprite_ext external_animation_draw_sprite_ext
+#macro draw_sprite_part_origfunc draw_sprite_part
+#macro draw_sprite_part external_animation_draw_sprite_part
+#macro draw_sprite_part_ext_origfunc draw_sprite_part_ext
+#macro draw_sprite_part_ext external_animation_draw_sprite_part_ext
+
 
 function instance_create_depth_define(_x, _y, _depth, _obj, _variables = undefined) {
 
 	if (is_undefined(_variables) && obj_pool_is_poolable(_obj)) {
 		var _inst = obj_pool_acquire(_obj, _x, _y, _depth);
+		combat_targets_invalidate(_obj);
+		friendly_attack_visual_tag_spawn(_inst);
 		array_push(global._move_instance_pre_arr,_inst);
 		if (_obj == obj_platform)
 			global._last_platform = _inst;
@@ -24,6 +38,8 @@ function instance_create_depth_define(_x, _y, _depth, _obj, _variables = undefin
 	var _previous_context = variable_global_exists("_external_spawn_context") ? global._external_spawn_context : undefined;
 	if (!is_undefined(_variables)) global._external_spawn_context = _variables;
 	var _inst = instance_create_depth_origfunc(_x, _y, _depth, _obj);
+	combat_targets_invalidate(_obj);
+	friendly_attack_visual_tag_spawn(_inst);
 	if (!is_undefined(_variables)) global._external_spawn_context = _previous_context;
 	array_push(global._move_instance_pre_arr,_inst);
 	if (_obj == obj_platform)

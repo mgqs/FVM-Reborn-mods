@@ -2,6 +2,7 @@
   "$GMObject": "",
   "%Name": "obj_light_atk_effect_1",
   "eventList": [
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0"},
     {
       "$GMEvent": "v1",
       "%Name": "",

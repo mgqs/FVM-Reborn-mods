@@ -1,26 +1,33 @@
 #!/bin/bash
+set -euo pipefail
 
-cd "$(dirname "$0")"
-
-if [[ -z "$ToolType" ]]; then
-echo "Missing ToolType definition!"
-exit 1
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+tools_dir="${FVM_TEXTURE_TOOLS_DIR:-$script_dir/../../.macos-build/texture-tools}"
+if [[ "$(uname -s)" != "Darwin" ]]; then
+    tools_dir="$script_dir"
 fi
+read -r -a custom_options <<< "${CustomOptions:-}"
 
-if [ "$ToolType" = "ASTC" ]; then
-echo "Encoding as ASTC"
-export ToolPath=${PWD}/astcenc
-chmod +x "$ToolPath"
-"$ToolPath" -cl "$InputFile" "$OutputFile.astc" $CustomOptions
-cp -f "$OutputFile.astc" "$OutputFile"
+case "${ToolType:-}" in
+    ASTC)
+        tool_path="$tools_dir/astcenc"
+        suffix=astc
+        arguments=(-cl "${InputFile:?Missing InputFile}" "${OutputFile:?Missing OutputFile}.astc" "${custom_options[@]}")
+        ;;
+    BCN)
+        tool_path="$tools_dir/bc7enc"
+        suffix=dds
+        arguments=(-g "${custom_options[@]}" "${InputFile:?Missing InputFile}" "${OutputFile:?Missing OutputFile}.dds")
+        ;;
+    *)
+        echo "Unsupported or missing ToolType: ${ToolType:-}" >&2
+        exit 1
+        ;;
+esac
+
+if [[ ! -x "$tool_path" ]]; then
+    echo "Missing signed texture encoder. Run: python3 tools/build_macos.py --native-only" >&2
+    exit 1
 fi
-
-if [ "$ToolType" = "BCN" ]; then
-echo "Encoding as BCn"
-export ToolPath=${PWD}/bc7enc
-chmod +x "$ToolPath"
-"$ToolPath" -g $CustomOptions "$InputFile" "$OutputFile.dds"
-cp -f "$OutputFile.dds" "$OutputFile"
-fi
-
-cd -
+"$tool_path" "${arguments[@]}"
+mv -f "$OutputFile.$suffix" "$OutputFile"

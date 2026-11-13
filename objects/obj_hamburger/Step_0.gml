@@ -36,9 +36,11 @@ if state == CARD_STATE.RELAX{
 	relax_timer ++
 	if relax_timer < cycle - 10 * current_flash_speed{
 		image_index = floor(relax_timer/current_flash_speed) mod eat_anim
+		external_animation_sync_native(id, current_flash_speed, relax_timer, "relax_timer");
 	}
 	else{
 		image_index = floor(relax_timer/current_flash_speed) mod 10 + eat_anim
+		external_animation_sync_native(id, current_flash_speed, relax_timer, "relax_timer");
 	}
 	if relax_timer >= cycle{
 		state = CARD_STATE.IDLE

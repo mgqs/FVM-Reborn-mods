@@ -26,15 +26,23 @@ var anim = mod_animation;
 var old = mod_animation_frame;
 var next = old + anim.fps / 60 / (is_slowdown ? 2 : 1);
 var count = sprite_get_number(sprite_index);
-for (var i = 0; i < array_length(anim.events); i++) {
-    var evt = anim.events[i];
-    // JSON frame 1 means first frame; trigger when playback enters that frame.
-    var frame = evt.frame - 1;
-    if ((frame == 0 && old == 0) || (frame > old && frame <= next)) {
-        var previous_anim = mod_animation_name;
-        external_mod_callback(id, "on_animation_event", {name: evt.name, frame: evt.frame, animation: previous_anim});
+var generation = mod_animation_generation;
+var entered = mod_animation_entry;
+mod_animation_entry = false;
+// Dispatch the tail first, then events entered after a loop wraps to frame zero.
+for (var pass = 0; pass < 2; pass++) {
+    if (pass == 1 && (!anim.loop || next < count)) break;
+    for (var i = 0; i < array_length(anim.events); i++) {
+        var evt = anim.events[i];
+        var frame = evt.frame - 1;
+        var triggered = pass == 0
+            ? ((entered && frame == 0) || (frame > old && frame <= next))
+            : (frame <= next - count && !(entered && frame == 0));
+        if (!triggered) continue;
+        external_mod_callback(id, "on_animation_event", {name: evt.name, frame: evt.frame, animation: mod_animation_name});
         if (!instance_exists(id)) exit;
-        if (mod_animation_name != previous_anim) exit;
+        // Restarting the same animation is also a transition, not just a name change.
+        if (mod_animation_generation != generation) exit;
     }
 }
 if (next >= count) {

@@ -1,5 +1,6 @@
 // Lua 5.4 bridge. Each card instance owns a state; no files, OS or native modules.
 #include "json.hpp"
+#include "Typedef.h"
 #include <cstdlib>
 #include <memory>
 #include <string>
@@ -119,7 +120,7 @@ int initialize(lua_State* L) {
 const char* reply(const Json& j) { result = j.dump(); return result.c_str(); }
 }
 
-extern "C" __declspec(dllexport) const char* ModLuaCreate(const char* source) {
+GmlCallable const char* ModLuaCreate(const char* source) {
     try {
         auto r = std::make_unique<Runtime>();
         r->L = lua_newstate(allocate, r.get());
@@ -138,7 +139,7 @@ extern "C" __declspec(dllexport) const char* ModLuaCreate(const char* source) {
         return reply({{"ok", true}, {"handle", id}});
     } catch (const std::exception& e) { return reply({{"ok", false}, {"error", e.what()}}); }
 }
-extern "C" __declspec(dllexport) const char* ModLuaCall(double handle, const char* event, const char* context) {
+GmlCallable const char* ModLuaCall(double handle, const char* event, const char* context) {
     try {
         auto it = states.find(static_cast<int>(handle));
         if (it == states.end()) return reply({{"ok", false}, {"error", "Invalid Lua handle"}});
@@ -167,6 +168,6 @@ extern "C" __declspec(dllexport) const char* ModLuaCall(double handle, const cha
         return reply({{"ok", true}, {"commands", r.commands}});
     } catch (const std::exception& e) { return reply({{"ok", false}, {"error", e.what()}}); }
 }
-extern "C" __declspec(dllexport) double ModLuaDestroy(double handle) {
+GmlCallable double ModLuaDestroy(double handle) {
     return states.erase(static_cast<int>(handle)) ? 0.0 : 1.0;
 }

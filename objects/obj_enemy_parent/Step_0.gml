@@ -110,9 +110,6 @@ if is_frozen || is_scare || is_stun{
 timer++;
 if (climb_cooldown > 0) climb_cooldown--;
 
-// 本实例的「能上梯 / 能翻障碍」标记；with 块内读不到 self 的实例变量，先取到局部变量备用
-var _can_use_ladder = can_use_ladder;
-
 // ================= 上梯越过植物（梯子功能）=================
 // 说明：
 //   - climb_stage 0 = 未越障
@@ -284,61 +281,7 @@ switch(state) {
 			}
 		}
         
-        // 检测前方植物
-        var plant_in_range = noone;
-		
-		var plant_order_list = [noone,noone,noone,noone]
-        
-		
-        // 使用碰撞检测查找攻击范围内的植物
-        with (obj_card_parent) {
-			// 高跷鼠只把三种高大面包视为可攻击目标，其余低矮植物直接忽略
-			if (other.mouse_id == "longyuan_gaoqiao"
-				&& plant_id != "chocolate_bread"
-				&& plant_id != "pineapple_explosive_bread"
-				&& plant_id != "mianbao"
-				&& plant_id != "lightning_baguette") continue;
-			var dx = x - other.x;
-			var dy = y - other.y;
-			var is_in_front = false
-			if other.attack_range > 0{
-				is_in_front = (dx < 0 && dx > -other.attack_range);
-			}
-			else{
-				is_in_front = (dx > 0 && dx < -other.attack_range);
-			}
-
-            // 检查是否在攻击范围内
-            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
-            var _skip_by_ladder = false;
-            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
-                var _this_plant_id = id;
-                with (obj_ladder) {
-                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
-                }
-            }
-            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
-                // 按铲除顺序优先选择
-                for (var i = 0; i < ds_list_size(global.eat_order); i++) {
-                    var tar_type = ds_list_find_value(global.eat_order, i);
-
-                    if (plant_type == tar_type) {
-                        plant_order_list[i] = id;
-                        break;
-                    }
-                }
-
-
-                if (plant_in_range != noone) break;
-            }
-        }
-
-		for(var i = 0 ; i < 4 ; i++){
-			if plant_order_list[i] != noone{
-				plant_in_range = plant_order_list[i]
-				break
-			}
-		}
+        var plant_in_range = combat_enemy_find_plant(id);
 
         // 如果找到目标植物，进入攻击状态
         if (plant_in_range != noone) {
@@ -405,59 +348,7 @@ switch(state) {
 		        }
 			}
 		}
-        // 攻击动画
-        // 检测前方植物
-        var plant_in_range = noone;
-        
-		var plant_order_list = [noone,noone,noone,noone]
-		
-        // 使用碰撞检测查找攻击范围内的植物
-        with (obj_card_parent) {
-			// 高跷鼠只把三种高大面包视为可攻击目标，其余低矮植物直接忽略
-			if (other.mouse_id == "longyuan_gaoqiao"
-				&& plant_id != "chocolate_bread"
-				&& plant_id != "pineapple_explosive_bread"
-				&& plant_id != "mianbao"
-				&& plant_id != "lightning_baguette") continue;
-			var dx = x - other.x;
-			var dy = y - other.y;
-			var is_in_front = false
-			if other.attack_range > 0{
-				is_in_front = (dx < 0 && dx > -other.attack_range);
-			}
-			else{
-				is_in_front = (dx > 0 && dx < -other.attack_range);
-			}
-
-            // 检查是否在攻击范围内
-            // 若该植物身上挂着梯子，则跳过（改由「上梯」逻辑处理），不啃它
-            var _skip_by_ladder = false;
-            if (_can_use_ladder && instance_number(obj_ladder) > 0) {
-                var _this_plant_id = id;
-                with (obj_ladder) {
-                    if (host_plant == _this_plant_id) _skip_by_ladder = true;
-                }
-            }
-            if (is_in_front && zombie_grid.row == grid_row && !_skip_by_ladder && (feature_type!="dwarf" || (feature_type=="dwarf" && other.giant_type))) {
-                // 按铲除顺序优先选择
-                for (var i = 0; i < ds_list_size(global.eat_order); i++) {
-                    var tar_type = ds_list_find_value(global.eat_order, i);
-                    
-                    if (plant_type == tar_type) {
-                        plant_order_list[i] = id;
-                        break;
-                    }
-                }
-                
-                if (plant_in_range != noone) break;
-            }
-        }
-		for(var i = 0 ; i < 4 ; i++){
-			if plant_order_list[i] != noone{
-				plant_in_range = plant_order_list[i]
-				break
-			}
-		}
+        var plant_in_range = combat_enemy_find_plant(id);
 		if (plant_in_range != noone) {
             target_plant = plant_in_range;
         }

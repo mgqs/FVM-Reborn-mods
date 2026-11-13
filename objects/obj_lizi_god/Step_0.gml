@@ -58,6 +58,7 @@ if (attacking)
     var _fi = min(attack_timer div current_flash_speed, attack_anim - 1);
     var _frame = idle_anim + 1 + _fi;
     image_index = _frame;
+    external_animation_sync_native(id, current_flash_speed, attack_timer, "attack_timer");
 
     // 🔴 脱手帧 = 第 19 帧（0 基，即第 20 帧）。原来按 (attack_anim-5)*flash 会卡到第 17 帧就投
     if (!lizi_fired && _frame >= 19)

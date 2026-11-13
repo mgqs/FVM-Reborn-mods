@@ -1,5 +1,8 @@
 if (!instance_exists(obj_battle))
+{
     instance_destroy();
+    exit;
+}
 
 if (global.buff_dirty)
 {

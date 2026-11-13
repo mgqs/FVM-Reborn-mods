@@ -23,6 +23,28 @@ self.state = {
     ///   { bg, bg_focus, border, border_focus, text, placeholder }
     theme: undefined,
 }
+self.mac_editor = new MacTextInput(id)
+
+function layout_native_editor() {
+    var _color = is_undefined(self.state.theme) ? c_black : self.state.theme.text
+    self.mac_editor.layout(self.state.left + 12, self.state.top + 2,
+        max(1, self.state.width - 24), self.state.height - 4, 21, _color)
+}
+
+/// Cocoa reports only Return/Escape that were not used by an IME candidate.
+function accept_pressed() {
+    if (!self.mac_editor.enabled) return keyboard_check_pressed(vk_enter)
+    var _pressed = self.mac_editor.submitted
+    self.mac_editor.submitted = false
+    return _pressed
+}
+
+function cancel_pressed() {
+    if (!self.mac_editor.enabled) return keyboard_check_pressed(vk_escape)
+    var _pressed = self.mac_editor.cancelled
+    self.mac_editor.cancelled = false
+    return _pressed
+}
 
 /// @func set_theme(theme) 换配色（不调它 = 原来的米色 + 描边字）
 function set_theme(_theme) {
@@ -72,6 +94,7 @@ function get_text() {
 
 function set_text(_text) {
     self.state.text = string(_text)
+    self.mac_editor.set_text(self.state.text)
     // 2026-11-05：外部改文字时光标跟到末尾，并把 keyboard_string 对齐 —— 否则下一帧的
     //   「新旧串比对」会拿旧串当输入，把刚设进去的文字覆盖回去
     self.state.caret = string_length(self.state.text)
@@ -97,7 +120,11 @@ function focus() {
     keyboard_string = self.state.text
     self.state.kb_prev = keyboard_string
     self.state.caret = string_length(self.state.text)
-    if (variable_global_exists("ime_block") && native_enable_ime != undefined) {
+    if (self.mac_editor.enabled) {
+        layout_native_editor()
+        self.mac_editor.begin(self.state.text, 64, self.state.placeholder)
+    }
+    if (os_type == os_windows && variable_global_exists("ime_block") && native_enable_ime != undefined) {
         native_enable_ime(window_handle())
     }
 }
@@ -105,6 +132,13 @@ function focus() {
 function blur() {
     if (!self.state.focused) {
         return
+    }
+    if (self.mac_editor.enabled) {
+        var _before = self.state.text
+        self.mac_editor.finish()
+        self.state.text = self.mac_editor.text
+        self.state.caret = self.mac_editor.caret
+        if (self.state.text != _before) emit_change()
     }
     self.state.focused = false
     if (variable_global_exists("ime_block") && global.ime_block && native_disable_ime != undefined) {
@@ -155,6 +189,7 @@ function on_create() {
 
 function on_step() {
     if (!visible) {
+        if (self.state.focused) blur()
         exit
     }
     if (!self.state.should_correspond()) {
@@ -169,13 +204,24 @@ function on_step() {
         var _my = device_mouse_y_to_gui(0)
         if (contains_point(_mx, _my)) {
             focus()
-            set_caret_from_mouse(_mx)      // 2026-11-05：点哪就把光标放到哪
+            if (!self.mac_editor.enabled) set_caret_from_mouse(_mx)
         } else if (self.state.focused) {
             blur()
         }
     }
 
     if (!self.state.focused) {
+        exit
+    }
+
+    if (self.mac_editor.enabled) {
+        layout_native_editor()
+        var _before_native = self.state.text
+        self.mac_editor.poll()
+        self.state.text = self.mac_editor.text
+        self.state.caret = self.mac_editor.caret
+        if (self.state.text != _before_native) emit_change()
+        if (self.mac_editor.cancelled || !self.mac_editor.active) blur()
         exit
     }
 
@@ -260,6 +306,11 @@ function on_draw() {
         draw_set_color(_s.focused ? _th.border_focus : _th.border)
         draw_roundrect(_s.left, _s.top, _s.left + _s.width, _s.top + _s.height, true)
 
+        if (self.mac_editor.active) {
+            if (!is_undefined(_s.on_draw_extra)) _s.on_draw_extra()
+            exit
+        }
+
         draw_set_font(font_yuan)
         draw_set_halign(fa_left)
         draw_set_valign(fa_middle)
@@ -295,6 +346,11 @@ function on_draw() {
     draw_set_alpha(1)
     draw_set_color(_s.focused ? make_color_rgb(120, 82, 40) : make_color_rgb(90, 72, 48))
     draw_roundrect(_s.left, _s.top, _s.left + _s.width, _s.top + _s.height, true)
+
+    if (self.mac_editor.active) {
+        if (!is_undefined(_s.on_draw_extra)) _s.on_draw_extra()
+        exit
+    }
 
     var _label = _s.text
     var _color_name = "font_hei_outline_4dir_black"

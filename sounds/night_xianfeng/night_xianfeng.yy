@@ -1,6 +1,7 @@
 {
   "$GMSound":"v2",
   "%Name":"night_xianfeng",
+  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",

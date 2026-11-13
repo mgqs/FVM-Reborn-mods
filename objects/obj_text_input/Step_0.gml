@@ -7,6 +7,21 @@ if (cursor_timer >= cursor_blink_rate) {
 }
 
 // 如果输入框处于活动状态，检查键盘输入
+if (mac_editor.enabled) {
+    if (active && visible) {
+        mac_editor.layout(x + 5, y, max(1, width - 10), height, 24, text_color);
+        if (!mac_editor.active) mac_editor.begin(text, max_length, placeholder);
+        else mac_editor.poll();
+        text = mac_editor.text;
+        if (mac_editor.submitted || mac_editor.cancelled || !mac_editor.active) active = false;
+    }
+    if ((!active || !visible) && mac_editor.opened) {
+        mac_editor.finish();
+        text = mac_editor.text;
+    }
+    exit;
+}
+
 if (active) {
     // 检查退格键
     if (keyboard_check_pressed(vk_backspace)) {

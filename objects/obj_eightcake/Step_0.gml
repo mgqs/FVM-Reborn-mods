@@ -88,6 +88,7 @@ if (state == CARD_STATE.ATTACK)
     ec_atk_t++;
     var _fi = min(ec_atk_t div _step_frames, _atk_len - 1);
     image_index = _atk_start + _fi;
+    external_animation_sync_native(id, _step_frames, ec_atk_t, "ec_atk_t");
 
     // 挥到脱手帧才投出。ec_firing = 「本轮已投过」的**锁存位**：
     //   这里置 true，只有下一轮攻击开始（上面那段）才复位；Other_11 只管消费、不回写。
@@ -140,4 +141,5 @@ else
             image_index = (ec_phase_t div _step_frames) mod 10;
             break;
     }
+    external_animation_sync_native(id, (ec_phase == 1 || ec_phase == 3 || ec_phase == 4) ? _load_frames : _step_frames, ec_phase_t, "ec_phase_t");
 }

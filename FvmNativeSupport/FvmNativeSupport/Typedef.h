@@ -2,7 +2,11 @@
 
 #include <string>
 
+#ifdef _WIN32
 #define GmlCallable extern "C" __declspec(dllexport)
+#else
+#define GmlCallable extern "C" __attribute__((visibility("default")))
+#endif
 
 // 自定义错误码使用负数，避免与 Win32 / ShellExecute / SHFileOperation
 // 等平台正数错误码冲突。

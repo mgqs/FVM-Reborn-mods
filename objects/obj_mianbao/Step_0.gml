@@ -142,6 +142,7 @@ if (shoot_anim_t >= 0){
 	}
 	else{
 		image_index = _sidx;
+		external_animation_sync_native(id, shoot_flash_speed, shoot_anim_t, "shoot_anim_t");
 		shoot_anim_t++;
 	}
 }
@@ -156,6 +157,7 @@ if (shoot_anim_t < 0 && fire_anim_t >= 0){
 	}
 	else{
 		image_index = _idx;
+		external_animation_sync_native(id, fire_flash_speed[shape], fire_anim_t, "fire_anim_t");
 		fire_anim_t++;
 	}
 }
@@ -164,4 +166,5 @@ if (shoot_anim_t < 0 && fire_anim_t < 0){
 	// 待机段：该档 13 帧里循环 12 帧（第 13 帧与第 1 帧同图）
 	idle_t++;
 	image_index = SEG_IDLE_FIRST[anim_tier] + (floor(idle_t / flash_speed) mod SEG_IDLE_LEN);
+	external_animation_sync_native(id, flash_speed, idle_t, "idle_t");
 }

@@ -69,9 +69,11 @@ if (cai_atk_t >= 0){
         cai_idle_t = 0;
         state = CARD_STATE.IDLE;
         image_index = _idle_s;
+        external_animation_sync_native(id, 1, 0, "reset");
     }
     else{
         image_index = _atk_s + _step;
+        external_animation_sync_native(id, _fs, cai_atk_t, "cai_atk_t");
         if (!fired_this_attack && _step >= _fire_step){
             fired_this_attack = true;
             event_user(1);
@@ -83,6 +85,7 @@ else{
     // 待机：健康 0~13 / 虚弱 14~27 各自循环，永远不走进开火段和爆炸段
     cai_idle_t++;
     image_index = _idle_s + ((cai_idle_t div _fs) mod 14);
+    external_animation_sync_native(id, _fs, cai_idle_t, "cai_idle_t");
 }
 
 // ---------- 错帧连射（2 转 3 发）：Other_11 只打第一发，后面几发在这里补 ----------

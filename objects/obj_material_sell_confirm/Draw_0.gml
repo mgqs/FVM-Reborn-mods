@@ -89,7 +89,7 @@ var _cursor = (cursor_blink < 30) ? "|" : " "
 draw_set_halign(fa_center)
 draw_set_valign(fa_middle)
 draw_set_font(font_number)
-draw_text(x, y + layout_input_y, _display_text + _cursor)
+if (!mac_editor.active) draw_text(x, y + layout_input_y, _display_text + _cursor)
 
 // ===== 总计金额 =====
 draw_set_font(font_yuan)

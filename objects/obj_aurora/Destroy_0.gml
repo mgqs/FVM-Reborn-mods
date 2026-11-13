@@ -5,10 +5,7 @@ card_destroyed(id);
 if (instance_exists(aurora_effect_obj))
     instance_destroy(aurora_effect_obj);
 
-var idx = ds_list_find_index(global.buff_sources, id);
-
-if (idx != -1)
-    ds_list_delete(global.buff_sources, idx);
+mod_buff_source_remove(id);
 
 global.buff_dirty = true;
 var effect_inst = instance_create_depth(x, y, depth, obj_aurora_dead_explode);

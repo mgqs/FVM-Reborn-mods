@@ -6,7 +6,7 @@ if (variable_global_exists("auth_gate_open") && global.auth_gate_open) {
 
 if obj_player_info_ui.menu_type == 0{
 	global.audio.play(snd_button,0,0)
-	texture_prefetch("cards")
+	resource_texture_prepare("cards")
 	if target_screen == "quit"{//退出按钮
 		if room == room_map{
 			global.gui_stack.pop()

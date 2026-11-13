@@ -34,29 +34,23 @@ if (point_in_rectangle(mouse_x, mouse_y, x - 420, y - 305, x - 245, y - 270) && 
             notify_result("压缩包名称无效");
             exit;
         }
-        var target = mod_root + "\\" + base_name;
+        var target = global.native_util.join_path(mod_root, base_name);
         if (native_folder_exists(target)) target += "_" + string(current_time);
         directory_create(target);
         var code = native_unzip_map_file(selected, target);
         if (code == 0) {
             try {
                 var pack = external_mod_validate(target);
-                var imported_ids = {};
-                for (var c = 0; c < array_length(pack.cards); c++) imported_ids[$ pack.cards[c].id] = true;
-                // Compare with installed packages, including disabled ones.
-                for (var m = 0; m < array_length(mods); m++) {
-                    var existing_pack;
-                    try { existing_pack = external_mod_validate(mod_root + "/" + mods[m].folder); }
-                    catch (_invalid_existing) { continue; }
-                    for (var c = 0; c < array_length(existing_pack.cards); c++) {
-                        if (variable_struct_exists(imported_ids, existing_pack.cards[c].id)) throw "已安装同 ID 卡片：" + existing_pack.cards[c].id;
-                    }
-                }
-                refresh_mods();
-                for (var imported_index = 0; imported_index < array_length(mods); imported_index++) {
-                    if (mods[imported_index].folder == filename_name(target)) mods[imported_index].enabled = true;
-                }
-                if (save_state()) notify_result("已导入并开启：" + pack.name + "\n请完全退出并重新启动游戏，卡片才会加入背包、情报岛和选卡界面。");
+                var enabled = true;
+                var conflict_message = "";
+                try { external_mod_check_enabled_conflicts(pack, mods, mod_root); }
+                catch (conflict) { enabled = false; conflict_message = external_mod_error_text(conflict); }
+                // Seed the state before refresh so a conflicting variant is never auto-enabled.
+                array_push(mods, {folder: filename_name(target), name: pack.name, enabled: enabled});
+                refresh_mods(false);
+                if (save_state()) notify_result(enabled
+                    ? "已导入并开启：" + pack.name + "\n请完全退出并重新启动游戏，Mod 才会生效。"
+                    : "已导入，保持关闭：" + pack.name + "\n" + conflict_message + "\n先关闭冲突包，再开启此包。重启游戏后生效。");
                 else notify_result("压缩包已解压，但开启状态保存失败，请检查目录权限。");
             } catch (_validation_error) {
                 native_delete_folder(target);
@@ -80,13 +74,16 @@ for (var i = 0; i < array_length(mods); i++) {
     if (row_y - 25 < list_top || row_y + 25 > list_bottom) continue;
     if (point_in_rectangle(mouse_x, mouse_y, x - 430, row_y - 25, x + 235, row_y + 25) && mouse_check_button_pressed(mb_left)) {
         if (variable_global_exists("external_mod_errors") && variable_struct_exists(global.external_mod_errors, mods[i].folder)) {
-            notify_result("上次启动时加载失败：" + mods[i].name + "\n" + global.external_mod_errors[$ mods[i].folder] + "\n修正文件后请重新启动游戏。");
+            notify_result("Mod 运行或加载时发现问题：" + mods[i].name + "\n" + global.external_mod_errors[$ mods[i].folder] + "\n修正文件后请重新启动游戏。");
         }
         exit;
     }
     if (point_in_rectangle(mouse_x, mouse_y, x + 245, row_y - 17, x + 325, row_y + 17) && mouse_check_button_pressed(mb_left)) {
         if (!mods[i].enabled) {
-            try { external_mod_validate(mod_root + "/" + mods[i].folder); }
+            try {
+                var pack = external_mod_validate(global.native_util.join_path(mod_root, mods[i].folder));
+                external_mod_check_enabled_conflicts(pack, mods, mod_root, mods[i].folder);
+            }
             catch (_enable_error) {
                 notify_result("无法开启：" + external_mod_error_text(_enable_error));
                 exit;
@@ -98,7 +95,7 @@ for (var i = 0; i < array_length(mods); i++) {
         audio_play_sound(snd_button, 0, 0);
     }
     if (point_in_rectangle(mouse_x, mouse_y, x + 335, row_y - 17, x + 415, row_y + 17) && mouse_check_button_pressed(mb_left)) {
-        var delete_code = native_delete_folder(mod_root + "\\" + mods[i].folder);
+        var delete_code = native_delete_folder(global.native_util.join_path(mod_root, mods[i].folder));
         if (delete_code == 0) {
             status_text = "已删除：" + mods[i].name + "，重启后生效；保留卡片进度";
             refresh_mods();

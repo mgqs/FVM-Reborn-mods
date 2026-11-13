@@ -10,6 +10,8 @@ function get_grid_position_from_world(wx, wy) {
     // 计算网格索引
     var col = floor(rel_x / global.grid_cell_size_x);
     var row = floor(rel_y / global.grid_cell_size_y);
+    // Invalidate before a logical row update; unchanged rows keep their buckets.
+    combat_targets_row_value(self, row);
     
     // 计算网格中心位置
     var center_x = global.grid_offset_x + col * global.grid_cell_size_x + global.grid_cell_size_x / 2;

@@ -70,6 +70,7 @@ if (has_enemy) {
 		atk_t++
 		image_index = atk_start_frame + floor(atk_t / current_flash_speed)
 		if (image_index > atk_end_frame) image_index = atk_end_frame
+		external_animation_sync_native(id, current_flash_speed, atk_t, "atk_t");
 
 		// 到动画开火帧才出弹；一次齐射 = 一路一发（齐射时两路各一发）
 		// 多发（1/2 转 3 发）在开火帧之后错 5 帧继续齐射

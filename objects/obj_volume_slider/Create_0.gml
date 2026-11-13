@@ -19,7 +19,7 @@ function update_volume(){
 	if (volume_type == "music") {
 	    global.music_volume = volume;
 	    // 立即应用音乐音量
-	    audio_group_set_gain(music,global.music_volume,0)
+	    music_apply_volume()
 
 	} else if (volume_type == "sound") {
 	    global.sound_volume = volume;

@@ -10,7 +10,7 @@ if (volume_type == "music") {
     }
     
     // 应用音量
-    audio_group_set_gain(music,global.music_volume,0)
+    music_apply_volume()
 	audio_group_set_gain(sound,global.sound_volume,0)
     
     // 保存设置
@@ -26,7 +26,7 @@ if (volume_type == "music") {
         global.sound_volume = global.sound_volume_before_mute > 0 ? global.sound_volume_before_mute : 0.7;
     }
 	
-	audio_group_set_gain(music,global.music_volume,0)
+	music_apply_volume()
 	audio_group_set_gain(sound,global.sound_volume,0)
     
     ini_open("config.ini");

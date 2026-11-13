@@ -36,7 +36,7 @@ if (!enemy_registered || enemy_registered_type != target_type) {
 x = decoy_card.x;
 y = decoy_card.y;
 grid_col = decoy_card.grid_col;
-grid_row = decoy_card.grid_row;
+grid_row = combat_targets_row_value(id, decoy_card.grid_row);
 depth = decoy_card.depth;
 
 // 清除一切控制/位移状态
