@@ -23,14 +23,100 @@ function resource_dynamic_groups() {
     return _groups;
 }
 
+/// Metadata only: source sprite IDs index shared group records without allocating
+/// strings in draw hooks. Runtime sprites (including Mod textures) are not owned here.
+function resource_residency_state() {
+    if (!variable_global_exists("resource_residency")) {
+        var _state = {groups: {}, by_sprite: [], pending: []};
+        var _names = texturegroup_get_names();
+        var _dynamic = resource_dynamic_groups();
+        for (var i = 0; i < array_length(_names); i++) {
+            // Maps intentionally fetch individual pages, never the whole library.
+            var _managed = _names[i] != "maps" && array_get_index(_dynamic, _names[i]) >= 0;
+            var _entry = {name: _names[i], managed: _managed,
+                ready: !_managed, requested: false, failed: false};
+            _state.groups[$ _names[i]] = _entry;
+            var _sprites = texturegroup_get_sprites(_names[i]);
+            for (var j = 0; j < array_length(_sprites); j++) {
+                _state.by_sprite[real(_sprites[j])] = _entry;
+            }
+        }
+        global.resource_residency = _state;
+    }
+    return global.resource_residency;
+}
+
+function resource_sprite_group(_sprite) {
+    if (is_undefined(_sprite) || _sprite == -1) return undefined;
+    var _key = real(_sprite);
+    var _state = resource_residency_state();
+    if (_key < 0 || _key != floor(_key) || _key >= array_length(_state.by_sprite)) return undefined;
+    var _entry = _state.by_sprite[_key];
+    return is_struct(_entry) ? _entry : undefined;
+}
+
+function resource_texture_queue(_entry) {
+    if (_entry.ready || _entry.requested || _entry.failed) return;
+    _entry.requested = true;
+    array_push(global.resource_residency.pending, _entry);
+}
+
+/// Run in Step/Room Start, never from a draw hook. Loading can remain pending
+/// after texturegroup_load returns; only "fetched" permits native sprite drawing.
+function resource_texture_update(_entry) {
+    if (_entry.ready) return true;
+    if (_entry.failed) return false;
+    var _status = texturegroup_get_status(_entry.name);
+    if (_status == texturegroup_status_unloaded) {
+        if (texturegroup_load(_entry.name, true) < 0) {
+            _entry.failed = true;
+            show_debug_message("[Textures] Cannot load group: " + _entry.name);
+            return false;
+        }
+    } else if (_status == texturegroup_status_loaded) {
+        texture_prefetch(_entry.name);
+    }
+    _entry.ready = texturegroup_get_status(_entry.name) == texturegroup_status_fetched;
+    return _entry.ready;
+}
+
+function resource_residency_step() {
+    if (!resource_memory_enabled()) return;
+    var _state = resource_residency_state();
+    for (var i = array_length(_state.pending) - 1; i >= 0; i--) {
+        var _entry = _state.pending[i];
+        if (!_entry.requested || _entry.failed || resource_texture_update(_entry)) {
+            _entry.requested = false;
+            array_delete(_state.pending, i, 1);
+        }
+    }
+}
+
+/// Newly encountered source assets enqueue their group for the next Step.
+/// Never trigger implicit loading midway through a shader/overlay draw sequence.
+function resource_sprite_ready(_sprite) {
+    if (!resource_memory_enabled()) return true;
+    var _entry = resource_sprite_group(_sprite);
+    if (!is_struct(_entry) || _entry.ready) return true;
+    resource_texture_queue(_entry);
+    return false;
+}
+
 function resource_texture_prepare(_group) {
-    if (resource_memory_enabled() && _group == "maps") {
+    if (!resource_memory_enabled()) {
+        texture_prefetch(_group);
+        return true;
+    }
+    if (_group == "maps") {
         resource_scene_maps(room);
         return true;
     }
-    if (resource_memory_enabled() && array_get_index(resource_dynamic_groups(), _group) >= 0) {
-        if (texturegroup_get_status(_group) == texturegroup_status_unloaded) {
-            if (texturegroup_load(_group, false) < 0) return false;
+    var _state = resource_residency_state();
+    if (variable_struct_exists(_state.groups, _group)) {
+        var _entry = _state.groups[$ _group];
+        if (_entry.managed) {
+            resource_texture_queue(_entry);
+            return resource_texture_update(_entry);
         }
     }
     texture_prefetch(_group);
@@ -60,21 +146,8 @@ function resource_add_group(_groups, _group) {
 
 function resource_add_sprite_group(_groups, _sprite) {
     if (is_undefined(_sprite) || _sprite == -1 || !sprite_exists(_sprite)) return _groups;
-    if (!variable_global_exists("resource_sprite_groups")) {
-        global.resource_sprite_groups = {};
-        var _names = texturegroup_get_names();
-        for (var i = 0; i < array_length(_names); i++) {
-            // Metadata lookup does not fetch texture pixels into GPU memory.
-            var _sprites = texturegroup_get_sprites(_names[i]);
-            for (var j = 0; j < array_length(_sprites); j++) {
-                global.resource_sprite_groups[$ string(_sprites[j])] = _names[i];
-            }
-        }
-    }
-    var _key = string(_sprite);
-    if (variable_struct_exists(global.resource_sprite_groups, _key)) {
-        _groups = resource_add_group(_groups, global.resource_sprite_groups[$ _key]);
-    }
+    var _entry = resource_sprite_group(_sprite);
+    if (is_struct(_entry)) _groups = resource_add_group(_groups, _entry.name);
     return _groups;
 }
 
@@ -92,6 +165,18 @@ function resource_add_enemy_groups(_groups, _type) {
         if (variable_struct_exists(_boss, "icon")) _groups = resource_add_sprite_group(_groups, _boss.icon);
     }
     return _groups;
+}
+
+/// Test spawns are not listed in the level's waves. Request their source and
+/// portrait groups before Create can spawn additional parts of the enemy.
+function resource_enemy_prepare(_type) {
+    if (!resource_memory_enabled()) return true;
+    var _groups = resource_add_enemy_groups([], _type);
+    var _ready = true;
+    for (var i = 0; i < array_length(_groups); i++) {
+        if (!resource_texture_prepare(_groups[i])) _ready = false;
+    }
+    return _ready;
 }
 
 function resource_scene_groups(_room) {
@@ -139,10 +224,25 @@ function resource_scene_enter(_room) {
     var _started = get_timer();
     var _required = resource_scene_groups(_room);
     var _dynamic = resource_dynamic_groups();
+    var _state = resource_residency_state();
+    // Discard outgoing requests so they cannot reload a group after unloading.
+    _state.pending = [];
+    var _names = variable_struct_get_names(_state.groups);
+    for (var g = 0; g < array_length(_names); g++) {
+        var _record = _state.groups[$ _names[g]];
+        _record.requested = false;
+        _record.ready = !_record.managed;
+        _record.failed = false;
+    }
     for (var i = 0; i < array_length(_dynamic); i++) {
         // Maps share a group but not a lifetime. Drop pages from the previous room
         // even when the next room also has a map. Unload also handles partial loads.
         if (_dynamic[i] == "maps" || array_get_index(_required, _dynamic[i]) < 0) {
+            if (variable_struct_exists(_state.groups, _dynamic[i])) {
+                var _entry = _state.groups[$ _dynamic[i]];
+                _entry.ready = !_entry.managed;
+                _entry.failed = false;
+            }
             texturegroup_unload(_dynamic[i]);
         }
     }
