@@ -51,7 +51,9 @@ function MacTextInput(_owner) constructor {
         };
     }
 
-    static begin = function(_text, _limit, _label, _digits = false) {
+    // 方法名不能叫 begin：begin/end 是 GML 保留字（GM1030），会连带打崩所有调用点。
+    // 发给原生库的协议字符串仍是 "begin"，保持与 DLL 侧一致。
+    static begin_edit = function(_text, _limit, _label, _digits = false) {
         self.text = string(_text);
         self.bounds.text = string(_text);
         self.bounds.limit = _limit;

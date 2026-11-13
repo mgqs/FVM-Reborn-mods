@@ -122,7 +122,7 @@ function focus() {
     self.state.caret = string_length(self.state.text)
     if (self.mac_editor.enabled) {
         layout_native_editor()
-        self.mac_editor.begin(self.state.text, 64, self.state.placeholder)
+        self.mac_editor.begin_edit(self.state.text, 64, self.state.placeholder)
     }
     if (os_type == os_windows && variable_global_exists("ime_block") && native_enable_ime != undefined) {
         native_enable_ime(window_handle())

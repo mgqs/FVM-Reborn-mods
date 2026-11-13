@@ -1,7 +1,6 @@
 {
   "$GMSound":"v2",
   "%Name":"mus_volcanic_island_night_elite",
-  "ConfigValues":{"macOS":{"compression":"3",},},
   "audioGroupId":{
     "name":"music",
     "path":"audiogroups/music",
@@ -10,6 +9,11 @@
   "channelFormat":0,
   "compression":0,
   "compressionQuality":4,
+  "ConfigValues":{
+    "macOS":{
+      "compression":"3",
+    },
+  },
   "conversionMode":0,
   "duration":56.844013,
   "exportDir":"",

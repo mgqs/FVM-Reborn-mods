@@ -451,14 +451,16 @@ function external_animation_clock_number(inst, field) {
 function external_animation_phase(inst, clock, source_sprite, source_frame, trace = undefined) {
     if (is_struct(clock)) {
         var value = external_animation_clock_number(inst, clock.field) + clock.offset;
+        // period 必须在 if 之外声明：GML 的 var 是块级作用域，写进 if 里 trace 那段就取不到了
+        var period = 1;
         if (clock.type == "counter") {
-            var period = clock.period_field == "" ? clock.ticks_per_frame : external_animation_clock_number(inst, clock.period_field);
+            period = clock.period_field == "" ? clock.ticks_per_frame : external_animation_clock_number(inst, clock.period_field);
             if (period <= 0) throw "动画时钟换帧周期必须大于零";
             value /= period;
         }
         if (is_struct(trace)) {
             trace.clock_source = clock.type + ":" + clock.field;
-            trace.period = clock.type == "counter" ? period : 1;
+            trace.period = period;
             trace.counter = external_animation_clock_number(inst, clock.field);
         }
         if (is_nan(value) || is_infinity(value)) throw "动画时钟计算结果必须为有限数值";

@@ -2,7 +2,7 @@
 if (mac_editor.enabled) {
     mac_editor.layout(x - layout_input_w / 2 + 6, y + layout_input_y - layout_input_h / 2,
         layout_input_w - 12, layout_input_h, 22, c_white)
-    if (!mac_editor.opened) mac_editor.begin(keyboard_string, 64, "出售或购买数量", true)
+    if (!mac_editor.opened) mac_editor.begin_edit(keyboard_string, 64, "出售或购买数量", true)
     else mac_editor.poll()
     keyboard_string = mac_editor.text
 }
