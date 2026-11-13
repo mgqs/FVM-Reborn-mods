@@ -2,9 +2,22 @@
 
 function NativeUtil() constructor {
 
-    /// GML and Windows native file APIs both accept forward slashes.
+    /// Portable form for parsing paths; use file_path before filesystem I/O.
     static normalize_path = function(_path) {
         return string_replace_all(string(_path), "\\", "/")
+    }
+
+    /// Windows GML sandbox checks require canonical backslashes in absolute paths.
+    static file_path = function(_path) {
+        if (os_type == os_windows) return string_replace_all(string(_path), "/", "\\")
+        return self.normalize_path(_path)
+    }
+
+    /// Join trusted components and normalize the complete filesystem path.
+    static join_path = function(_root, _child) {
+        var _joined = self.normalize_path(_root)
+        if (_joined != "" && !string_ends_with(_joined, "/")) _joined += "/"
+        return self.file_path(_joined + string(_child))
     }
 
     /// @param {String} _path 
@@ -15,7 +28,7 @@ function NativeUtil() constructor {
             _relative = string_delete(_relative, 1, 1)
         }
         if (os_type == os_windows) {
-            return self.normalize_path(environment_get_variable("LOCALAPPDATA")) + "/" + _relative
+            return self.join_path(environment_get_variable("LOCALAPPDATA"), _relative)
         }
 
         // Native operations must use the same location as relative GML save paths.
@@ -35,7 +48,7 @@ function NativeUtil() constructor {
     static to_native_absolute = function(_rel) {
         _rel = self.normalize_path(_rel)
         if (string_starts_with(_rel, "/") || (string_length(_rel) >= 2 && string_char_at(_rel, 2) == ":")) {
-            return _rel
+            return self.file_path(_rel)
         }
         return self.get_path_in_local_appdata("FVM_Reborn_makk/" + _rel)
     }
@@ -44,7 +57,7 @@ function NativeUtil() constructor {
     /// @returns {String}
     static transfer_path_to_windows = function(_path) {
         // Kept for existing callers; return a path valid on the current platform.
-        return self.normalize_path(_path)
+        return self.file_path(_path)
     }
 
     /// @param {Real} _code 

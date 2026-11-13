@@ -10,8 +10,7 @@
 ///      id 调 audio_stop_sound，销毁早了会报「索引不映射到音频资产」
 
 /// 沙盒相对路径：GM 会自动映射到 %LOCALAPPDATA%\<项目名>\boss_music\
-/// 用绝对路径喂 file_find_first / audio_create_stream 在沙盒模式下会失败，这是
-/// 「开关打开了却没声音」的根因。
+/// 优先使用沙盒相对路径；绝对路径兜底通过 join_path 拼接，确保 Windows 沙盒能识别。
 #macro kBossMusicRelDir "boss_music"
 
 /// 绝对路径只用于「打开文件夹」这类给玩家看的场景
@@ -54,9 +53,9 @@ function boss_music_scan() {
 	if (array_length(_out) == 0) {
 		var _abs = boss_music_dir();
 		if (directory_exists(_abs)) {
-			_f = file_find_first(_abs + "/*.ogg", fa_readonly | fa_archive);
+			_f = file_find_first(global.native_util.join_path(_abs, "*.ogg"), fa_readonly | fa_archive);
 			while (_f != "") {
-				array_push(_out, _abs + "/" + _f);
+				array_push(_out, global.native_util.join_path(_abs, _f));
 				_f = file_find_next();
 			}
 			file_find_close();
@@ -158,8 +157,7 @@ function boss_music_resolve(_fallback) {
 
 		// 兜底：玩家目录里的歌，相对路径失败时换绝对路径再试一次
 		if (_loaded == -1 && !string_starts_with(_path, kBossMusicPackDir)) {
-			var _abs2 = global.native_util.get_path_in_local_appdata(kBossMusicFolderSuffix)
-			            + "/" + filename_name(_path);
+			var _abs2 = global.native_util.join_path(boss_music_dir(), filename_name(_path));
 			_loaded = audio_create_stream(_abs2);
 			if (_loaded != -1) _path = _abs2;
 		}

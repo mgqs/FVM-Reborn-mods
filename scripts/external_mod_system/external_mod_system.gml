@@ -11,8 +11,10 @@ function external_mod_error_text(error_data) {
 function external_mod_lua_bind() {
     if (variable_global_exists("external_mod_lua_functions")) return;
     var library = os_type == os_macosx ? "libFvmNativeSupport.dylib" : "FvmNativeSupport.dll";
-    if (file_exists(working_directory + "native/" + library)) library = working_directory + "native/" + library;
-    else if (file_exists(working_directory + library)) library = working_directory + library;
+    var native_library = global.native_util.join_path(working_directory, "native/" + library);
+    var root_library = global.native_util.join_path(working_directory, library);
+    if (file_exists(native_library)) library = native_library;
+    else if (file_exists(root_library)) library = root_library;
     var create = external_define(library, "ModLuaCreate", dll_cdecl, ty_string, 1, ty_string);
     var call = external_define(library, "ModLuaCall", dll_cdecl, ty_string, 3, ty_real, ty_string, ty_string);
     var destroy = external_define(library, "ModLuaDestroy", dll_cdecl, ty_real, 1, ty_real);
@@ -37,6 +39,7 @@ function external_mod_card_max_level(cid) {
 }
 
 function external_mod_read(path) {
+    path = global.native_util.file_path(path);
     if (!file_exists(path)) throw "文件不存在：" + path;
     var b = buffer_load(path);
     if (!buffer_exists(b)) throw "无法读取文件：" + path;
@@ -53,7 +56,7 @@ function external_mod_path(root, relative) {
     for (var i = 0; i < array_length(parts); i++) {
         if (parts[i] == ".." || parts[i] == "" || parts[i] == ".") throw "资源路径包含无效目录";
     }
-    return root + "/" + p;
+    return global.native_util.join_path(root, p);
 }
 
 function external_mod_id_valid(cid) {
@@ -66,18 +69,19 @@ function external_mod_id_valid(cid) {
 }
 
 function external_mod_root(folder) {
-    if (file_exists(folder + "/manifest.json") || file_exists(folder + "/card.json")) return folder;
+    folder = global.native_util.file_path(folder);
+    if (file_exists(global.native_util.join_path(folder, "manifest.json")) || file_exists(global.native_util.join_path(folder, "card.json"))) return folder;
     var roots = [];
     var names = [];
-    var n = file_find_first(folder + "/*", fa_directory);
+    var n = file_find_first(global.native_util.join_path(folder, "*"), fa_directory);
     while (n != "") {
-        if (n != "." && n != ".." && directory_exists(folder + "/" + n)) array_push(names, n);
+        if (n != "." && n != ".." && directory_exists(global.native_util.join_path(folder, n))) array_push(names, n);
         n = file_find_next();
     }
     file_find_close();
     for (var i = 0; i < array_length(names); i++) {
-        var p = folder + "/" + names[i];
-        if (file_exists(p + "/manifest.json") || file_exists(p + "/card.json")) array_push(roots, p);
+        var p = global.native_util.join_path(folder, names[i]);
+        if (file_exists(global.native_util.join_path(p, "manifest.json")) || file_exists(global.native_util.join_path(p, "card.json"))) array_push(roots, p);
     }
     if (array_length(roots) != 1) throw "包内需要 manifest.json 或 card.json（允许一层外目录）";
     return roots[0];
@@ -146,7 +150,8 @@ function external_mod_animation_validate(root, payload) {
 /// Validate without registering resources, running Lua or writing saves.
 function external_mod_validate(folder) {
     var root = external_mod_root(folder);
-    var manifest = file_exists(root + "/manifest.json") ? json_parse(external_mod_read(root + "/manifest.json")) : {};
+    var manifest_path = global.native_util.join_path(root, "manifest.json");
+    var manifest = file_exists(manifest_path) ? json_parse(external_mod_read(manifest_path)) : {};
     if (external_mod_field(manifest, "api_version", 1) != 1) throw "不支持的 Mod API 版本";
     var pack_type = external_mod_field(manifest, "type", "cards");
     if (pack_type == "animation_override") return external_animation_validate(root, manifest);
@@ -347,13 +352,14 @@ function external_mod_load_all() {
     global.external_mod_loaded = {};
     global.external_mod_assets = [];
     var root = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\mod");
+    var state_path = global.native_util.join_path(root, "mod_state.json");
     var state = [];
-    try { if (file_exists(root + "/mod_state.json")) state = json_parse(external_mod_read(root + "/mod_state.json")); } catch (e) { state = []; }
+    try { if (file_exists(state_path)) state = json_parse(external_mod_read(state_path)); } catch (e) { state = []; }
     if (!is_array(state)) state = [];
     var folders = [];
-    var f = file_find_first(root + "/*", fa_directory);
+    var f = file_find_first(global.native_util.join_path(root, "*"), fa_directory);
     while (f != "") {
-        if (f != "." && f != ".." && directory_exists(root + "/" + f)) array_push(folders, f);
+        if (f != "." && f != ".." && directory_exists(global.native_util.join_path(root, f))) array_push(folders, f);
         f = file_find_next();
     }
     file_find_close();
@@ -367,7 +373,7 @@ function external_mod_load_all() {
         var registered = [];
         var assets = ds_list_create();
         try {
-            var pack = external_mod_validate(root + "/" + folder);
+            var pack = external_mod_validate(global.native_util.join_path(root, folder));
             if (pack.type == "animation_override") {
                 external_animation_register(pack, folder);
                 global.external_mod_loaded[$ folder] = array_length(pack.overrides);

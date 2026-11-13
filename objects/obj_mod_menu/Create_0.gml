@@ -1,6 +1,6 @@
 mod_root = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\mod");
 if (!native_folder_exists(mod_root)) directory_create(mod_root);
-state_path = mod_root + "/mod_state.json";
+state_path = global.native_util.join_path(mod_root, "mod_state.json");
 scroll_offset = 0;
 row_height = 58;
 list_top = y - 205;
@@ -57,8 +57,8 @@ save_state = function() {
 manifest_name = function(folder_path, fallback) {
     var root;
     try { root = external_mod_root(folder_path); } catch (_missing_manifest) { return fallback; }
-    var p = root + "/manifest.json";
-    if (!file_exists(p)) p = root + "/card.json";
+    var p = global.native_util.join_path(root, "manifest.json");
+    if (!file_exists(p)) p = global.native_util.join_path(root, "card.json");
     if (!file_exists(p)) return fallback;
     var b = buffer_load(p);
     if (!buffer_exists(b)) return fallback;
@@ -79,9 +79,9 @@ refresh_mods = function() {
     mods = [];
     // Collect names first: resolving an outer package directory also uses file_find.
     var folders = [];
-    var folder = file_find_first(mod_root + "/*", fa_directory);
+    var folder = file_find_first(global.native_util.join_path(mod_root, "*"), fa_directory);
     while (folder != "") {
-        if (folder != "." && folder != ".." && directory_exists(mod_root + "/" + folder)) {
+        if (folder != "." && folder != ".." && directory_exists(global.native_util.join_path(mod_root, folder))) {
             array_push(folders, folder);
         }
         folder = file_find_next();
@@ -97,7 +97,7 @@ refresh_mods = function() {
                     break;
                 }
             }
-            array_push(mods, { folder: folder, name: manifest_name(mod_root + "/" + folder, folder), enabled: enabled });
+            array_push(mods, { folder: folder, name: manifest_name(global.native_util.join_path(mod_root, folder), folder), enabled: enabled });
     }
     array_sort(mods, function(a, b) {
         return a.folder == b.folder ? 0 : (a.folder < b.folder ? -1 : 1);

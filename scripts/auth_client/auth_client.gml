@@ -181,7 +181,7 @@ function auth_verify_code(_code) {
 }
 
 function auth_file_path() {
-    return global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk") + "/auth.dat";
+    return global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\auth.dat");
 }
 
 /// 本地绑定记录的自校验，防止手改 auth.dat 塞一个别人的码
