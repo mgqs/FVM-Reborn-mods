@@ -38,6 +38,9 @@
 | 想「扫一遍仓库找出所有引用」 | `rg -n -F "<名字>" objects scripts datafiles`（**0.14~0.31 s**）或 `tools/lookup.ps1 <名字>`；别用 `Get-ChildItem -Recurse`（15~22 秒/次） | A11 |
 | 要下 GitHub release 资产（zip/exe） | 用 `https://ghproxy.net/https://github.com/...` 前缀；直链会 `curl (56) Connection was reset` | A12 |
 | 全仓 `rg` 仍要 1~2 秒 | 少了「排大目录」或「文本白名单」：同时写 `-g "!{sprites,sounds,fonts,tilesets,shaders}/**"` 和 `-g "*.gml"`，立刻降到 0.1~0.2 s | A13 |
+| `git merge` / 大区间 `git diff` 在 Bash 里被 SIGTERM，或报 `index.lock: File exists` | 上千文件级别的 git 操作改用 **PowerShell 工具**跑（同一命令即可成功）；残留锁先 `Remove-Item .git\index.lock -Force` 再 `git checkout -- .` 复原 | A15 |
+| 多文件补丁里有一条旧内容没命中 → 整个补丁静默不写入 | 上下文从目标文件原样复制（连已有字段一起抄全）；失败先 `git diff` 看现状，再用精确上下文重试 | A16 |
+| Runtime 里比较 `draw_get_alpha()` / `shader_current()` 结果误报，或改 `.yy` 后旧编译器报字段解析错 | 先把返回值存变量再比较（别拿字面量硬比）；改 `.yy` 单字段只替换目标值，保持原格式，禁止整份重新序列化 | A17 |
 | 想一次校验多个目录 | `verify_gml.ps1` **只收一个位置参数**：写 `foreach ($p in @('a','b')){ ... -File tools\verify_gml.ps1 $p }`；直传两个目录报「A positional parameter cannot be found」 | A14 |
 | 改了看板首行 y / 可见行数 | 三个文件必须同改：`obj_task_bg/Create_0`（首行 y）、`obj_task_bg/Mouse_60/61`（步长与边界）、`obj_task_line_bg/Step_2`（可见上界 + `else { y = -9999 }`）；只改一个会串位或叠到可见区 | C19 |
 | 动态任务（`info_view_<卡>`）导致看板/领奖报错 | `get_task_data` 可能是 `undefined`：所有 `array_length(task_data.requirements)` 前加 `if task_data == undefined continue`；Draw 里还要判 `target_task_index < array_length(current_task_list)` | C20 |
@@ -158,7 +161,28 @@
   然后 `if ($o -match '失败 [1-9]')` 判失败，别只看最后一行。
 - **证据**：2026-11-13 实施卡片情报任务时实测。
 
+### A15 Bash 工具里跑上千文件的 `git merge` / `git diff` → SIGTERM 中断 + 残留 `.git/index.lock`
+- **症状**：Bash 工具执行 `git merge --ff-only pr39`、`git diff --name-status <大区间> pr39` 被 `SIGTERM` 杀掉（exit 1、无输出），HEAD 不动但工作区已被删掉一批文件（`git status` 一片 `D`）；随后任何 git 写操作报 `fatal: Unable to create '.git/index.lock': File exists`。
+- **错路**：以为命令本身出错反复重跑（撞锁）；`git diff` 加 `--no-renames` 后仍被杀；用 `core.renameLimit` 调参无效。
+- **正确路径**：
+  1. **上千文件的 git 操作（merge / reset / checkout / 大区间 diff）走 PowerShell 工具**，同一命令（`git merge --no-ff pr39 -F msg.txt`）一次成功。
+  2. 中断后先判活：`Get-Process -Name git` 无进程 → `Remove-Item .git\index.lock -Force`；再查 `.git\MERGE_HEAD` / `.git\rebase-merge` 是否存在。
+  3. 工作区被中途删文件：`git checkout -- .` 复原（`git status` 的 `D` 不是真实删除）。
+  4. 合并提交的中文信息用 `Write` 写 UTF-8 文件 + `git merge -F`，别用 `-m` 直接传中文（PowerShell 控制台按 GBK 解码会显示乱码，虽未必写坏）。
+- **证据**：2026-11-13 合并 PR39（1825 文件）时实测：Bash 两次 SIGTERM，PowerShell 一次成功。
+
 ---
+
+### A16 多文件补丁上下文不完整导致整体校验失败
+- **症状**：补丁没有命中 CHANGELOG 原有条目，整个补丁未写入。
+- **错路**：手抄上下文时遗漏已有的 `hitted` 字段。
+- **正确路径**：从目标文件复制完整上下文；失败后先检查 `git diff`，再用精确上下文重试。
+- **证据**：2026-11-13 纹理驻留改动，`CHANGELOG.md` 的元素蛇修复条目。
+
+### A17 GameMaker Runtime 临时检查的取值与资源格式
+- **症状**：直接用 `0.5` 比较绘制 Alpha 导致误报；为修改纹理页尺寸重新序列化选项文件，触发旧编译器的字段解析错误。
+- **正确路径**：保存 `draw_get_alpha()` / `shader_current()` 实际返回值再比较；单字段修改保持原 `.yy` 格式，只替换目标值。
+- **证据**：2026-11-13 `.macos-build/texture-residency-check/`；修正检查方式后 69 项 Runtime 检查通过。
 
 ## B. 判断与定位（先查这里，别从代码猜）
 
