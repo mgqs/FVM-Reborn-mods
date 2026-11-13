@@ -1,3 +1,8 @@
+global.external_mod_context_epoch = 0;
+global.external_mod_enemy_snapshot_epoch = -1;
+global.external_mod_enemy_snapshot_count = -1;
+global.external_mod_enemy_snapshot = [];
+
 /// External Mod API v1. Numeric cooldown/cycle values are game ticks (60 = 1 second).
 function external_mod_field(payload, key, fallback) {
     return is_struct(payload) && variable_struct_exists(payload, key) ? payload[$ key] : fallback;
@@ -68,6 +73,104 @@ function external_mod_id_valid(cid) {
     return true;
 }
 
+/// A malformed state must not silently enable every installed package.
+function external_mod_state_decode(raw) {
+    var entries = json_parse(raw);
+    if (!is_array(entries)) throw "Mod 开关状态必须为数组";
+    var seen = {};
+    for (var i = 0; i < array_length(entries); i++) {
+        var entry = entries[i];
+        var folder = external_mod_field(entry, "folder", "");
+        if (!is_string(folder) || folder == "" || folder == "." || folder == ".."
+            || string_pos("/", folder) > 0 || string_pos("\\", folder) > 0 || string_pos(":", folder) > 0
+            || !is_bool(external_mod_field(entry, "enabled", undefined))) throw "Mod 开关记录无效";
+        if (variable_struct_exists(seen, folder)) throw "Mod 开关记录重复";
+        seen[$ folder] = true;
+    }
+    return entries;
+}
+
+function external_mod_state_load(path) {
+    var found = false;
+    for (var i = 0; i < 2; i++) {
+        var candidate = path + (i == 0 ? "" : ".bak");
+        if (!file_exists(candidate)) continue;
+        found = true;
+        try {
+            var entries = external_mod_state_decode(external_mod_read(candidate));
+            return {entries: entries, safe: true, default_enabled: i == 0,
+                notice: i == 0 ? "" : "Mod 开关状态已从备份恢复；请核对后保存。"};
+        } catch (error_data) {}
+    }
+    return {entries: [], safe: !found, default_enabled: !found,
+        notice: found ? "Mod 开关状态损坏，已暂停自动开启；请在管理界面逐项重新开启。" : ""};
+}
+
+function external_mod_state_save(path, entries) {
+    var temporary = path + ".tmp";
+    var backup = path + ".bak";
+    var file = -1;
+    try {
+        var raw = json_stringify(entries);
+        external_mod_state_decode(raw);
+        file = file_text_open_write(temporary);
+        if (file == -1) return false;
+        file_text_write_string(file, raw);
+        file_text_close(file);
+        file = -1;
+        if (external_mod_read(temporary) != raw) throw "Mod 开关状态写入不完整";
+        if (file_exists(path)) {
+            var previous_good = false;
+            try { external_mod_state_decode(external_mod_read(path)); previous_good = true; } catch (error_data) {}
+            if (previous_good) {
+                if (file_exists(backup)) file_delete(backup);
+                file_rename(path, backup);
+                if (file_exists(path) || !file_exists(backup)) throw "无法备份 Mod 开关状态";
+            } else file_delete(path);
+        }
+        file_rename(temporary, path);
+        if (!file_exists(path) || external_mod_read(path) != raw) throw "无法替换 Mod 开关状态";
+        return true;
+    } catch (error_data) {
+        if (file != -1) file_text_close(file);
+        if (file_exists(temporary)) file_delete(temporary);
+        // The reader also recovers .bak after an interrupted rename.
+        if (!file_exists(path) && file_exists(backup)) file_copy(backup, path);
+        show_debug_message("[Mod state] " + external_mod_error_text(error_data));
+        return false;
+    }
+}
+
+/// Conflict checks need identities and object scopes, not another full PNG scan.
+function external_mod_conflict_index(folder) {
+    var root = external_mod_root(folder);
+    var manifest_path = global.native_util.join_path(root, "manifest.json");
+    var manifest = file_exists(manifest_path) ? json_parse(external_mod_read(manifest_path)) : {};
+    var animation = external_mod_field(manifest, "type", "cards") == "animation_override";
+    var paths = external_mod_field(manifest, animation ? "overrides" : "cards", animation ? [] : ["card.json"]);
+    var pack = {cards: [], overrides: []};
+    if (!is_array(paths)) throw "Mod 索引格式无效";
+    for (var i = 0; i < array_length(paths); i++) {
+        var d = json_parse(external_mod_read(external_mod_path(root, paths[i])));
+        if (animation) {
+            var actor = asset_get_index(external_mod_field(d, "object", ""));
+            if (actor == -1 || asset_get_type(actor) != asset_object) throw "覆盖对象不存在";
+            array_push(pack.overrides, {sprite: external_mod_field(d, "sprite", ""), object_asset: actor});
+        } else array_push(pack.cards, {id: external_mod_field(d, "id", "")});
+    }
+    return pack;
+}
+
+function external_mod_check_enabled_conflicts(pack, mods, root, exclude_folder = "") {
+    for (var i = 0; i < array_length(mods); i++) {
+        if (!mods[i].enabled || mods[i].folder == exclude_folder) continue;
+        var installed;
+        try { installed = external_mod_conflict_index(global.native_util.join_path(root, mods[i].folder)); }
+        catch (invalid_existing) { continue; }
+        external_mod_check_conflicts(pack, installed);
+    }
+}
+
 function external_mod_root(folder) {
     folder = global.native_util.file_path(folder);
     if (file_exists(global.native_util.join_path(folder, "manifest.json")) || file_exists(global.native_util.join_path(folder, "card.json"))) return folder;
@@ -109,7 +212,11 @@ function external_mod_animation_frames(payload) {
     dpos += percent - 1;
     var token = string_copy(pattern, percent, dpos - percent + 1);
     var width_text = string_replace_all(string_replace_all(token, "%", ""), "d", "");
-    var width = string_length(width_text);
+    for (var digit = 1; digit <= string_length(width_text); digit++) {
+        if (string_pos(string_char_at(width_text, digit), "0123456789") == 0) return [];
+    }
+    var width = width_text == "" ? 0 : real(width_text);
+    if (!is_numeric(width) || is_nan(width) || is_infinity(width) || width < 0 || width > 32 || floor(width) != width) return [];
     frames = [];
     for (var n = floor(start); n <= floor(finish) && array_length(frames) < 256; n++) {
         var number = string(n);
@@ -142,7 +249,10 @@ function external_mod_animation_validate(root, payload) {
         var ename = external_mod_field(events[i], "name", "");
         if (!is_numeric(f) || f != floor(f) || f < 1 || f > array_length(frames) || !is_string(ename) || ename == "") throw "动画事件 frame 从 1 开始且不能超过帧数";
     }
-    return {frames: frames, fps: animation_fps, loop: external_mod_field(payload, "loop", true), events: events,
+    array_sort(events, function(a, b) { return a.frame - b.frame; });
+    var loop = external_mod_field(payload, "loop", true);
+    if (!is_bool(loop)) throw "动画 loop 必须为布尔值";
+    return {frames: frames, fps: animation_fps, loop: loop, events: events,
         origin: external_mod_field(payload, "origin", undefined),
         origin_x: external_mod_field(payload, "origin_x", undefined), origin_y: external_mod_field(payload, "origin_y", undefined)};
 }
@@ -250,7 +360,8 @@ function external_mod_check_conflicts(incoming, installed) {
     }
     for (var i = 0; i < array_length(incoming.overrides); i++) {
         for (var j = 0; j < array_length(installed.overrides); j++) {
-            if (incoming.overrides[i].sprite == installed.overrides[j].sprite) throw "已安装同精灵动画覆盖：" + incoming.overrides[i].sprite;
+            if (incoming.overrides[i].sprite == installed.overrides[j].sprite
+                && external_animation_scopes_overlap(incoming.overrides[i], installed.overrides[j])) throw "已安装同精灵动画覆盖：" + incoming.overrides[i].sprite;
         }
     }
 }
@@ -281,6 +392,8 @@ function external_mod_sprite(root, anim, assets, default_origin = "bottom_center
         else {
             if (sprite_get_width(frame) != sprite_get_width(spr) || sprite_get_height(frame) != sprite_get_height(spr)) throw "同一动画的 PNG 尺寸必须一致";
             sprite_merge(spr, frame);
+            sprite_delete(frame);
+            ds_list_delete(assets, ds_list_size(assets) - 1);
         }
     }
     switch (origin_mode) {
@@ -353,9 +466,9 @@ function external_mod_load_all() {
     global.external_mod_assets = [];
     var root = global.native_util.get_path_in_local_appdata("\\FVM_Reborn_makk\\mod");
     var state_path = global.native_util.join_path(root, "mod_state.json");
-    var state = [];
-    try { if (file_exists(state_path)) state = json_parse(external_mod_read(state_path)); } catch (e) { state = []; }
-    if (!is_array(state)) state = [];
+    var state_result = external_mod_state_load(state_path);
+    var state = state_result.entries;
+    global.external_mod_state_notice = state_result.notice;
     var folders = [];
     var f = file_find_first(global.native_util.join_path(root, "*"), fa_directory);
     while (f != "") {
@@ -367,7 +480,7 @@ function external_mod_load_all() {
     if (!variable_struct_exists(global.save_data, "external_card_ids")) global.save_data.external_card_ids = [];
     for (var i = 0; i < array_length(folders); i++) {
         var folder = folders[i];
-        var enabled = true;
+        var enabled = state_result.default_enabled;
         for (var j = 0; j < array_length(state); j++) if (external_mod_field(state[j], "folder", "") == folder) enabled = external_mod_field(state[j], "enabled", true) == true;
         if (!enabled) continue;
         var registered = [];
@@ -468,11 +581,63 @@ function external_mod_spawn(px, py, z, cid, card_shape = -1, level = -1, card_sk
     return instance_create_depth_define(px, py, z, obj, {external_spawn_id: cid, external_spawn_shape: s, external_spawn_level: l, external_spawn_skill: sk});
 }
 
+function external_mod_context_begin_step() {
+    global.external_mod_context_epoch++;
+}
+
+function external_mod_context_candidates() {
+    var count = instance_number(obj_enemy_parent);
+    if (global.external_mod_enemy_snapshot_epoch != global.external_mod_context_epoch
+        || global.external_mod_enemy_snapshot_count != count) {
+        var candidates = [];
+        for (var i = 0; i < count; i++) array_push(candidates, instance_find(obj_enemy_parent, i));
+        global.external_mod_enemy_snapshot = candidates;
+        global.external_mod_enemy_snapshot_epoch = global.external_mod_context_epoch;
+        global.external_mod_enemy_snapshot_count = count;
+    }
+    return global.external_mod_enemy_snapshot;
+}
+
 function external_mod_context(inst, extra = undefined) {
+    if (!variable_instance_exists(inst, "mod_context_cache") || inst.mod_context_cache.epoch != global.external_mod_context_epoch
+        || inst.mod_context_cache.px != inst.x || inst.mod_context_cache.py != inst.y
+        || inst.mod_context_cache.row != inst.grid_row || inst.mod_context_cache.target_type != inst.target_type
+        || inst.mod_context_cache.population != instance_number(obj_enemy_parent)) {
+        // Bound the payload while choosing nearby useful targets, not creation order.
+        // Native priority queues avoid a GML comparator for every enemy pair.
+        var queues = [ds_priority_create(), ds_priority_create(), ds_priority_create(), ds_priority_create()];
+        var total = 0;
+        var selected = [];
+        try {
+            var candidates = external_mod_context_candidates();
+            for (var i = 0; i < array_length(candidates); i++) {
+                var e = candidates[i];
+                if (!instance_exists(e) || e.hp <= 0 || !can_target_on(inst.target_type, e.target_type)) continue;
+                total++;
+                var group = (e.grid_row == inst.grid_row ? 0 : 2) + (e.x >= inst.x ? 0 : 1);
+                var queue = queues[group];
+                ds_priority_add(queue, e.id, sqr(e.x - inst.x) + sqr(e.y - inst.y));
+                if (ds_priority_size(queue) > 128) ds_priority_delete_max(queue);
+            }
+            for (var group = 0; group < 4; group++) {
+                var queue = queues[group];
+                while (!ds_priority_empty(queue) && array_length(selected) < 128) array_push(selected, ds_priority_delete_min(queue));
+            }
+        } catch (error_data) {
+            for (var group = 0; group < 4; group++) ds_priority_destroy(queues[group]);
+            throw error_data;
+        }
+        for (var group = 0; group < 4; group++) ds_priority_destroy(queues[group]);
+        inst.mod_context_cache = {epoch: global.external_mod_context_epoch, px: inst.x, py: inst.y, row: inst.grid_row,
+            target_type: inst.target_type, population: instance_number(obj_enemy_parent), targets: selected, total: total};
+    }
     var enemies = [];
-    for (var i = 0; i < instance_number(obj_enemy_parent) && array_length(enemies) < 128; i++) {
-        var e = instance_find(obj_enemy_parent, i);
-        if (e.hp > 0 && can_target_on(inst.target_type, e.target_type)) array_push(enemies, {id: e.id, x: e.x, y: e.y, row: e.grid_row, col: e.grid_col, hp: e.hp});
+    var selected = inst.mod_context_cache.targets;
+    for (var i = 0; i < array_length(selected); i++) {
+        var e = selected[i];
+        if (instance_exists(e) && e.hp > 0 && can_target_on(inst.target_type, e.target_type)) {
+            array_push(enemies, {id: e.id, x: e.x, y: e.y, row: e.grid_row, col: e.grid_col, hp: e.hp});
+        }
     }
     return {id: inst.id, x: inst.x, y: inst.y, row: inst.grid_row, col: inst.grid_col,
         hp: inst.hp, max_hp: inst.max_hp, atk: inst.atk, cycle: inst.cycle, range: inst.range,
@@ -480,12 +645,15 @@ function external_mod_context(inst, extra = undefined) {
         rows: global.grid_rows, row_height: global.grid_cell_size_y,
         slowed: inst.is_slowdown,
         params: external_mod_field(inst.mod_definition.shapes[inst.shape], "behavior_params", inst.mod_definition.behavior_params),
-        enemies: enemies, event: extra};
+        enemies: enemies, enemy_count: inst.mod_context_cache.total,
+        enemies_truncated: inst.mod_context_cache.total > 128, event: extra};
 }
 
 function external_mod_animate(inst, anim_name) {
     var animations = inst.mod_definition.shapes[inst.shape].animations;
     if (!variable_struct_exists(animations, anim_name)) return;
+    inst.mod_animation_generation = variable_instance_exists(inst, "mod_animation_generation") ? inst.mod_animation_generation + 1 : 1;
+    inst.mod_animation_entry = true;
     inst.mod_animation_name = anim_name;
     inst.mod_animation = animations[$ anim_name];
     inst.sprite_index = inst.mod_animation.sprite;

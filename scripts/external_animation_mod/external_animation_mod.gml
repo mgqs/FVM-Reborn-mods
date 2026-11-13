@@ -2,6 +2,8 @@
 #macro EXTERNAL_ANIMATION_MAX_OVERRIDES 4096
 #macro EXTERNAL_ANIMATION_MAX_PACKAGE_BYTES 8589934592
 #macro EXTERNAL_ANIMATION_CACHE_BYTES 536870912
+#macro EXTERNAL_ANIMATION_LOAD_FRAMES 8
+#macro EXTERNAL_ANIMATION_LOAD_MICROSECONDS 4000
 
 global.external_animation_active = false;
 global.external_animation_by_sprite = [];
@@ -12,12 +14,23 @@ global.external_animation_debug_last_log = "";
 
 /// Only compiled source sprites enter this table. Dynamic replacement IDs and -1
 /// are misses, never array growth or string conversions on the drawing path.
-function external_animation_lookup(spr) {
+function external_animation_lookup(spr, actor = undefined) {
     if (!is_numeric(spr)) return undefined;
     var key = real(spr);
-    if (key < 0 || key != floor(key) || key >= array_length(global.external_animation_by_sprite)) return undefined;
-    var definition = global.external_animation_by_sprite[key];
-    return is_struct(definition) ? definition : undefined;
+    if (is_nan(key) || is_infinity(key) || key < 0 || key != floor(key) || key >= array_length(global.external_animation_by_sprite)) return undefined;
+    var entries = global.external_animation_by_sprite[key];
+    if (!is_array(entries)) return undefined;
+    for (var i = 0; i < array_length(entries); i++) {
+        var d = entries[i];
+        if (is_undefined(actor) || actor == d.object_asset || object_is_ancestor(actor, d.object_asset)) return d;
+    }
+    return undefined;
+}
+
+function external_animation_scopes_overlap(left, right) {
+    return left.object_asset == right.object_asset
+        || object_is_ancestor(left.object_asset, right.object_asset)
+        || object_is_ancestor(right.object_asset, left.object_asset);
 }
 
 function external_animation_integer(value, minimum, maximum, label) {
@@ -28,24 +41,25 @@ function external_animation_integer(value, minimum, maximum, label) {
 }
 
 function external_animation_png_validate(path, expected_width, expected_height) {
-    var b = buffer_load(path);
-    if (!buffer_exists(b)) throw "无法读取 PNG：" + path;
-    var valid = buffer_get_size(b) >= 33;
+    var file = file_bin_open(path, 0);
+    if (file == -1) throw "无法读取 PNG：" + path;
+    var header = array_create(33, 0);
+    var valid = file_bin_size(file) >= 33;
+    if (valid) for (var i = 0; i < 33; i++) header[i] = file_bin_read_byte(file);
+    file_bin_close(file);
     var signature = [137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82];
-    for (var i = 0; valid && i < array_length(signature); i++) valid = buffer_peek(b, i, buffer_u8) == signature[i];
+    for (var i = 0; valid && i < array_length(signature); i++) valid = header[i] == signature[i];
     var w = 0;
     var h = 0;
     if (valid) {
         for (var i = 0; i < 4; i++) {
-            w = w * 256 + buffer_peek(b, 16 + i, buffer_u8);
-            h = h * 256 + buffer_peek(b, 20 + i, buffer_u8);
+            w = w * 256 + header[16 + i];
+            h = h * 256 + header[20 + i];
         }
     }
-    buffer_delete(b);
     if (!valid || w != expected_width || h != expected_height) throw "覆盖 PNG 必须保持原尺寸：" + path;
 }
 
-/// A clock only reads existing animation state; it never advances game time.
 function external_animation_clock_validate(payload) {
     if (is_string(payload)) {
         if (array_get_index(["card_parent", "enemy_parent", "image_index"], payload) == -1) throw "不支持的动画时钟：" + payload;
@@ -87,8 +101,12 @@ function external_animation_validate(root, manifest) {
         d.object_asset = asset_get_index(d.object);
         if (d.sprite_asset == -1 || asset_get_type(d.sprite_asset) != asset_sprite) throw "找不到原版精灵：" + d.sprite;
         if (d.object_asset == -1 || asset_get_type(d.object_asset) != asset_object) throw "找不到原有对象：" + d.object;
-        if (variable_struct_exists(seen, d.sprite)) throw "重复覆盖精灵：" + d.sprite;
-        seen[$ d.sprite] = true;
+        var scopes = external_mod_field(seen, d.sprite, []);
+        for (var previous = 0; previous < array_length(scopes); previous++) {
+            if (external_animation_scopes_overlap(d, scopes[previous])) throw "同精灵的对象范围重叠：" + d.sprite;
+        }
+        array_push(scopes, d);
+        seen[$ d.sprite] = scopes;
         var source = external_mod_field(d, "source", {});
         var properties = ["frames", "width", "height", "origin_x", "origin_y"];
         var actual = [sprite_get_number(d.sprite_asset), sprite_get_width(d.sprite_asset), sprite_get_height(d.sprite_asset),
@@ -131,6 +149,12 @@ function external_animation_validate(root, manifest) {
                 external_animation_png_validate(p, source.width, source.height);
             }
             clip.sprite_asset = -1;
+            clip.loading_sprite = -1;
+            clip.loading_index = 0;
+            clip.queued = false;
+            clip.load_urgent = false;
+            clip.failed = false;
+            clip.error = "";
             clip.cache_frame = -1;
             clip.cache_used = 0;
             d.clips[c] = clip;
@@ -149,12 +173,21 @@ function external_animation_release() {
         for (var c = 0; c < array_length(d.clips); c++) {
             var clip = d.clips[c];
             if (clip.sprite_asset != -1 && sprite_exists(clip.sprite_asset)) sprite_delete(clip.sprite_asset);
+            if (clip.loading_sprite != -1 && sprite_exists(clip.loading_sprite)) sprite_delete(clip.loading_sprite);
+            clip.loading_sprite = -1;
+            clip.loading_index = 0;
+            clip.queued = false;
+            clip.load_urgent = false;
             clip.sprite_asset = -1;
             clip.cache_frame = -1;
             clip.cache_used = 0;
         }
     }
     global.external_animation_bytes = 0;
+    global.external_animation_loading_bytes = 0;
+    global.external_animation_loading_job = undefined;
+    global.external_animation_load_queue = [];
+    global.external_animation_queued_bytes = 0;
     global.external_animation_cache = [];
     global.external_animation_cache_frame = 0;
     global.external_animation_cache_serial = 0;
@@ -170,11 +203,20 @@ function external_animation_init() {
     global.external_animation_cache_frame = 0;
     global.external_animation_cache_serial = 0;
     global.external_animation_cache_budget = EXTERNAL_ANIMATION_CACHE_BYTES;
+    global.external_animation_loading_bytes = 0;
+    global.external_animation_loading_job = undefined;
+    global.external_animation_load_queue = [];
+    global.external_animation_queued_bytes = 0;
 }
 
 /// One epoch covers every Draw/Draw GUI event and every view in this game step.
 function external_animation_cache_step() {
-    if (global.external_animation_active) global.external_animation_cache_frame++;
+    if (!global.external_animation_active) return;
+    global.external_animation_cache_frame++;
+    // Failed clips retire only after all draws that referenced them have ended.
+    for (var i = array_length(global.external_animation_cache) - 1; i >= 0; i--) {
+        if (global.external_animation_cache[i].clip.failed) external_animation_cache_drop(i);
+    }
 }
 
 function external_animation_cache_touch(clip) {
@@ -197,7 +239,7 @@ function external_animation_cache_drop(cache_index) {
 /// Never delete a sprite already sampled this frame: callers can reuse its visual
 /// for another overlay and GameMaker can still have pending draw commands for it.
 function external_animation_cache_reserve(bytes) {
-    var needed = global.external_animation_bytes + bytes - global.external_animation_cache_budget;
+    var needed = global.external_animation_bytes + global.external_animation_loading_bytes + bytes - global.external_animation_cache_budget;
     if (needed <= 0) return true;
     var available = 0;
     for (var i = 0; i < array_length(global.external_animation_cache); i++) {
@@ -205,7 +247,7 @@ function external_animation_cache_reserve(bytes) {
         if (clip.cache_frame != global.external_animation_cache_frame) available += clip.bytes;
     }
     if (available < needed) return false;
-    while (global.external_animation_bytes + bytes > global.external_animation_cache_budget) {
+    while (global.external_animation_bytes + global.external_animation_loading_bytes + bytes > global.external_animation_cache_budget) {
         var oldest_index = -1;
         var oldest_used = global.external_animation_cache_serial + 1;
         for (var i = 0; i < array_length(global.external_animation_cache); i++) {
@@ -221,83 +263,172 @@ function external_animation_cache_reserve(bytes) {
 }
 
 function external_animation_register(pack, folder) {
-    // Check the entire package before publishing any entries.
     for (var i = 0; i < array_length(pack.overrides); i++) {
         var d = pack.overrides[i];
-        if (variable_struct_exists(global.external_animation_registry, string(d.sprite_asset))) throw "精灵已被其他 Mod 覆盖：" + d.sprite;
+        var key = real(d.sprite_asset);
+        if (key >= array_length(global.external_animation_by_sprite)) continue;
+        var entries = global.external_animation_by_sprite[key];
+        if (!is_array(entries)) continue;
+        for (var j = 0; j < array_length(entries); j++) {
+            if (external_animation_scopes_overlap(d, entries[j])) throw "精灵的对象范围已被其他 Mod 覆盖：" + d.sprite;
+        }
     }
     for (var i = 0; i < array_length(pack.overrides); i++) {
         var d = pack.overrides[i];
         d.folder = folder;
-        global.external_animation_registry[$ string(d.sprite_asset)] = d;
-        global.external_animation_by_sprite[real(d.sprite_asset)] = d;
+        global.external_animation_registry[$ string(d.sprite_asset) + ":" + string(d.object_asset)] = d;
+        var key = real(d.sprite_asset);
+        var entries = key < array_length(global.external_animation_by_sprite) ? global.external_animation_by_sprite[key] : undefined;
+        if (!is_array(entries)) entries = [];
+        array_push(entries, d);
+        global.external_animation_by_sprite[key] = entries;
     }
     global.external_animation_active = true;
 }
 
-function external_animation_fail(folder, message) {
-    global.external_mod_errors[$ folder] = message;
-    show_debug_message("[Animation Mod " + folder + "] " + message);
-    var keys = variable_struct_get_names(global.external_animation_registry);
-    for (var i = 0; i < array_length(keys); i++) {
-        var d = global.external_animation_registry[$ keys[i]];
-        if (d.folder != folder) continue;
-        d.failed = true;
-        for (var c = 0; c < array_length(d.clips); c++) {
-            var clip = d.clips[c];
-            if (clip.sprite_asset == -1) continue;
-            if (sprite_exists(clip.sprite_asset)) sprite_delete(clip.sprite_asset);
-            clip.sprite_asset = -1;
-            clip.cache_frame = -1;
-            clip.cache_used = 0;
-            global.external_animation_bytes -= clip.bytes;
-        }
-    }
-    for (var i = array_length(global.external_animation_cache) - 1; i >= 0; i--) {
-        if (global.external_animation_cache[i].folder == folder) array_delete(global.external_animation_cache, i, 1);
-    }
+function external_animation_fail(d, clip, message) {
+    clip.failed = true;
+    clip.error = message;
+    var detail = d.sprite + " / " + d.object + " / " + external_mod_field(clip, "name", string(clip.first));
+    global.external_mod_errors[$ d.folder] = "部分动画已回退：" + detail + "\n" + message;
+    show_debug_message("[Animation Mod " + d.folder + "] " + detail + ": " + message);
+    // Loaded textures may already be referenced by this frame's draw commands.
+    // cache_step retires the failed clip on the following step.
 }
 
-/// Shared, lazy textures. Temporary sprites are deleted immediately after merging.
 function external_animation_load(d, clip) {
+    if (clip.failed) return -1;
     if (clip.sprite_asset != -1) {
         external_animation_cache_touch(clip);
         return clip.sprite_asset;
     }
-    // A busy frame falls back only for this draw and retries when space is free.
-    if (!external_animation_cache_reserve(clip.bytes)) return -1;
-    var result = -1;
-    var part = -1;
-    try {
-        for (var i = 0; i < array_length(clip.frames); i++) {
-            part = sprite_add(external_mod_path(d.root, clip.frames[i]), 1, false, false, d.source.origin_x, d.source.origin_y);
-            if (part == -1) throw "PNG 解码失败：" + clip.frames[i];
-            if (sprite_get_width(part) != d.source.width || sprite_get_height(part) != d.source.height) throw "PNG 尺寸已改变：" + clip.frames[i];
-            if (result == -1) result = part;
-            else { sprite_merge(result, part); sprite_delete(part); }
-            part = -1;
+    external_animation_enqueue(d, clip, true);
+    return -1;
+}
+
+/// Draw requests have priority over speculative warming. Nothing decodes in Draw.
+function external_animation_enqueue(d, clip, urgent = false) {
+    if (clip.failed || clip.sprite_asset != -1) return false;
+    if (clip.queued) {
+        if (urgent && !clip.load_urgent && clip.loading_index == 0) {
+            for (var i = 0; i < array_length(global.external_animation_load_queue); i++) {
+                if (global.external_animation_load_queue[i].clip != clip) continue;
+                var waiting = global.external_animation_load_queue[i];
+                waiting.urgent = true;
+                clip.load_urgent = true;
+                array_delete(global.external_animation_load_queue, i, 1);
+                array_insert(global.external_animation_load_queue, 0, waiting);
+                break;
+            }
         }
-        clip.sprite_asset = result;
-        global.external_animation_bytes += clip.bytes;
-        external_animation_cache_touch(clip);
-        array_push(global.external_animation_cache, {clip: clip, folder: d.folder});
-        return result;
-    } catch (error_data) {
-        if (part != -1 && part != result && sprite_exists(part)) sprite_delete(part);
-        if (result != -1 && sprite_exists(result)) sprite_delete(result);
-        external_animation_fail(d.folder, external_mod_error_text(error_data));
-        return -1;
+        return false;
+    }
+    if (!urgent && global.external_animation_bytes + global.external_animation_loading_bytes
+        + global.external_animation_queued_bytes + clip.bytes > global.external_animation_cache_budget) return false;
+    if (array_length(global.external_animation_load_queue) >= EXTERNAL_ANIMATION_MAX_OVERRIDES) return false;
+    clip.queued = true;
+    clip.load_urgent = urgent;
+    global.external_animation_queued_bytes += clip.bytes;
+    var job = {definition: d, clip: clip, urgent: urgent};
+    if (urgent) array_insert(global.external_animation_load_queue, 0, job);
+    else array_push(global.external_animation_load_queue, job);
+    return true;
+}
+
+function external_animation_load_step() {
+    if (!global.external_animation_active) return;
+    var started = get_timer();
+    var frames = 0;
+    while (frames < EXTERNAL_ANIMATION_LOAD_FRAMES && get_timer() - started < EXTERNAL_ANIMATION_LOAD_MICROSECONDS) {
+        var job = global.external_animation_loading_job;
+        if (is_undefined(job)) {
+            if (array_length(global.external_animation_load_queue) == 0) return;
+            job = global.external_animation_load_queue[0];
+            array_delete(global.external_animation_load_queue, 0, 1);
+            global.external_animation_queued_bytes -= job.clip.bytes;
+            if (job.clip.failed) { job.clip.queued = false; continue; }
+            if (!job.urgent && global.external_animation_bytes + job.clip.bytes > global.external_animation_cache_budget) {
+                job.clip.queued = false;
+                continue;
+            }
+            if (!external_animation_cache_reserve(job.clip.bytes)) {
+                array_push(global.external_animation_load_queue, job);
+                global.external_animation_queued_bytes += job.clip.bytes;
+                return;
+            }
+            global.external_animation_loading_job = job;
+            global.external_animation_loading_bytes = job.clip.bytes;
+        }
+        var d = job.definition;
+        var clip = job.clip;
+        var part = -1;
+        try {
+            if (clip.failed) throw clip.error;
+            part = sprite_add(external_mod_path(d.root, clip.frames[clip.loading_index]), 1, false, false, d.source.origin_x, d.source.origin_y);
+            if (part == -1) throw "PNG 解码失败：" + clip.frames[clip.loading_index];
+            if (sprite_get_width(part) != d.source.width || sprite_get_height(part) != d.source.height) throw "PNG 尺寸已改变：" + clip.frames[clip.loading_index];
+            if (clip.loading_sprite == -1) clip.loading_sprite = part;
+            else { sprite_merge(clip.loading_sprite, part); sprite_delete(part); }
+            part = -1;
+            clip.loading_index++;
+            frames++;
+            if (clip.loading_index == array_length(clip.frames)) {
+                clip.sprite_asset = clip.loading_sprite;
+                clip.loading_sprite = -1;
+                clip.loading_index = 0;
+                clip.queued = false;
+                global.external_animation_loading_bytes = 0;
+                global.external_animation_loading_job = undefined;
+                global.external_animation_bytes += clip.bytes;
+                external_animation_cache_touch(clip);
+                array_push(global.external_animation_cache, {clip: clip, folder: d.folder});
+            }
+        } catch (error_data) {
+            if (part != -1 && part != clip.loading_sprite && sprite_exists(part)) sprite_delete(part);
+            if (clip.loading_sprite != -1 && sprite_exists(clip.loading_sprite)) sprite_delete(clip.loading_sprite);
+            clip.loading_sprite = -1;
+            clip.loading_index = 0;
+            clip.queued = false;
+            global.external_animation_loading_bytes = 0;
+            global.external_animation_loading_job = undefined;
+            if (!clip.failed) external_animation_fail(d, clip, external_mod_error_text(error_data));
+        }
     }
 }
 
-/// Called only where the original parent actually advances its animation clock.
-/// Pausing/freezing leaves the previous sample intact; Draw never advances time.
+/// Source integration API: warm an object's clips without changing game clocks.
+function external_animation_prewarm_object(actor) {
+    if (!global.external_animation_active) return;
+    var keys = variable_struct_get_names(global.external_animation_registry);
+    for (var i = 0; i < array_length(keys); i++) {
+        var d = global.external_animation_registry[$ keys[i]];
+        if (actor != d.object_asset && !object_is_ancestor(actor, d.object_asset)) continue;
+        for (var c = 0; c < array_length(d.clips); c++) external_animation_enqueue(d, d.clips[c]);
+    }
+}
+
+function external_animation_prewarm_deck() {
+    if (!global.external_animation_active || !variable_global_exists("selected_deck")) return;
+    if (!ds_exists(global.selected_deck, ds_type_list)) return;
+    if (!variable_global_exists("_obj_pool_deck_map")) global._obj_pool_deck_map = obj_pool_build_deck_map();
+    for (var i = 0; i < ds_list_size(global.selected_deck); i++) {
+        var entry = global.selected_deck[| i];
+        if (!ds_exists(entry, ds_type_map) || !ds_map_exists(entry, "data")) continue;
+        var data = entry[? "data"];
+        if (!ds_exists(data, ds_type_map) || !ds_map_exists(data, "obj")) continue;
+        var actor = data[? "obj"];
+        external_animation_prewarm_object(actor);
+        var related = external_mod_field(global._obj_pool_deck_map, object_get_name(actor), []);
+        for (var j = 0; j < array_length(related); j++) external_animation_prewarm_object(related[j]);
+    }
+}
+
 function external_animation_sync(inst, period, counter = undefined, label = "card_parent", explicit_clock = false) {
     var inspecting = global.external_animation_debug_enabled && inst == global.external_animation_debug_target;
     if (!global.external_animation_active && !inspecting) return;
     // The parent Step can destroy a dying card before reaching the clock hook.
     if (!instance_exists(inst)) return;
-    if (is_undefined(external_animation_lookup(inst.sprite_index)) && !inspecting) return;
+    if (is_undefined(external_animation_lookup(inst.sprite_index, inst.object_index)) && !inspecting) return;
     if (is_undefined(counter)) counter = inst.timer;
     inst.external_animation_snapshot = {sprite: inst.sprite_index, frame: inst.image_index, timer: counter,
         state: inst.state, period: max(1, period), label: label, explicit_clock: explicit_clock};
@@ -376,9 +507,10 @@ function external_animation_sample(inst, requested_sprite = undefined, requested
         sprite: requested_sprite, raw_frame: requested_frame, source_frame: floor(requested_frame),
         clock: "", clock_source: "", counter: 0, period: 1, fraction: 0, clip: "", first: -1, last: -1,
         samples_per_frame: 0, sample: -1, cached: false, folder: "", reason: "no_override", error: ""};
-    var d = external_animation_lookup(requested_sprite);
+    var d = external_animation_lookup(requested_sprite, valid_instance ? inst.object_index : undefined);
     if (is_undefined(d) || !valid_instance) {
         if (!inspect_only) return original;
+        if (!is_undefined(external_animation_lookup(requested_sprite))) trace.reason = "object_mismatch";
         if (valid_instance) {
             var clock = "image_index";
             if (inst.object_index == obj_card_parent || object_is_ancestor(inst.object_index, obj_card_parent)) clock = "card_parent";
@@ -409,16 +541,20 @@ function external_animation_sample(inst, requested_sprite = undefined, requested
     for (var i = 0; i < array_length(d.clips); i++) {
         var clip = d.clips[i];
         if (source_frame < clip.first || source_frame > clip.last) continue;
-        var fraction;
         if (inspect_only) {
             trace.clip = external_mod_field(clip, "name", string(i)); trace.first = clip.first; trace.last = clip.last;
             trace.samples_per_frame = clip.samples_per_frame;
             trace.clock = is_struct(clip.clock) ? clip.clock.type : clip.clock;
         }
+        if (clip.failed) {
+            if (inspect_only) { trace.reason = "clip_failed"; trace.error = clip.error; return trace; }
+            return original;
+        }
+        var fraction;
         try { fraction = external_animation_phase(inst, clip.clock, requested_sprite, frame_value, trace); }
         catch (error_data) {
             if (inspect_only) { trace.reason = "clock_error"; trace.error = external_mod_error_text(error_data); return trace; }
-            external_animation_fail(d.folder, external_mod_error_text(error_data));
+            external_animation_fail(d, clip, external_mod_error_text(error_data));
             return original;
         }
         var frame = source_frame;
@@ -431,9 +567,9 @@ function external_animation_sample(inst, requested_sprite = undefined, requested
         var sample = (frame - clip.first) * clip.samples_per_frame + min(clip.samples_per_frame - 1, floor(fraction * clip.samples_per_frame));
         if (inspect_only) {
             trace.fraction = fraction; trace.sample = sample; trace.cached = clip.sprite_asset != -1;
-            trace.reason = trace.cached ? "override" : "not_loaded";
-            if (!trace.cached && global.external_animation_bytes + clip.bytes > global.external_animation_cache_budget) {
-                var available = global.external_animation_cache_budget - global.external_animation_bytes;
+            trace.reason = trace.cached ? "override" : (clip.queued ? "loading" : "not_loaded");
+            if (!trace.cached && !clip.queued && global.external_animation_bytes + global.external_animation_loading_bytes + clip.bytes > global.external_animation_cache_budget) {
+                var available = global.external_animation_cache_budget - global.external_animation_bytes - global.external_animation_loading_bytes;
                 for (var j = 0; j < array_length(global.external_animation_cache); j++) {
                     var old = global.external_animation_cache[j].clip;
                     if (old.cache_frame != global.external_animation_cache_frame) available += old.bytes;
@@ -495,7 +631,8 @@ function external_animation_debug_draw() {
         text += "\n结果 " + trace.reason + "  包 " + trace.folder + "  已缓存 " + string(trace.cached);
         if (trace.error != "") text += "\n" + trace.error;
         text += "\n缓存 " + string_format(global.external_animation_bytes / 1048576, 1, 1)
-            + " / " + string(global.external_animation_cache_budget / 1048576) + " MiB";
+            + " / " + string(global.external_animation_cache_budget / 1048576) + " MiB"
+            + "  加载预留 " + string_format(global.external_animation_loading_bytes / 1048576, 1, 1) + " MiB";
         // At most four lines per second, only for the selected instance and only
         // when its state changes. Never print from every draw wrapper.
         if (current_time >= global.external_animation_debug_next_log) {

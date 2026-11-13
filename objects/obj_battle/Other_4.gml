@@ -10,3 +10,5 @@ else if global.map_id == "undersea_vortex"{
 	resource_texture_prepare("pack_undersea_vortex")
 }
 resource_texture_prepare("time_god");
+
+external_animation_prewarm_deck();

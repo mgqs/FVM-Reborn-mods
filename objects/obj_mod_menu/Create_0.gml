@@ -21,32 +21,20 @@ close_panel = function() {
 dragging_scroll = false;
 drag_scroll_offset = 0;
 
+state_read_failed = false;
+state_default_enabled = true;
 load_state = function() {
-    var result = [];
-    if (!file_exists(state_path)) return result;
-    var b = buffer_load(state_path);
-    if (!buffer_exists(b)) return result;
-    var raw = buffer_read(b, buffer_string);
-    buffer_delete(b);
-    try {
-        var parsed = json_parse(raw);
-        if (is_array(parsed)) {
-            for (var i = 0; i < array_length(parsed); i++) {
-                var entry = parsed[i];
-                if (is_struct(entry) && variable_struct_exists(entry, "folder") && variable_struct_exists(entry, "enabled") && is_string(entry.folder) && is_bool(entry.enabled)) {
-                    array_push(result, entry);
-                }
-            }
-        }
-    } catch (_error) {}
-    return result;
+    var state = external_mod_state_load(state_path);
+    state_read_failed = !state.safe;
+    state_default_enabled = state.default_enabled;
+    if (state.notice != "") status_text = state.notice;
+    return state.entries;
 };
 
 save_state = function() {
-    var f = file_text_open_write(state_path);
-    if (f != -1) {
-        file_text_write_string(f, json_stringify(mods));
-        file_text_close(f);
+    if (external_mod_state_save(state_path, mods)) {
+        state_read_failed = false;
+        state_default_enabled = true;
         global.external_mods = mods;
         return true;
     }
@@ -74,7 +62,7 @@ manifest_name = function(folder_path, fallback) {
     return fallback;
 };
 
-refresh_mods = function() {
+refresh_mods = function(persist_state = true) {
     var previous = mods;
     mods = [];
     // Collect names first: resolving an outer package directory also uses file_find.
@@ -90,7 +78,7 @@ refresh_mods = function() {
     for (var f = 0; f < array_length(folders); f++) {
             folder = folders[f];
             // 新导入的 Mod 默认开启；已有 Mod 保留上次状态。
-            var enabled = true;
+            var enabled = state_default_enabled;
             for (var j = 0; j < array_length(previous); j++) {
                 if (previous[j].folder == folder) {
                     enabled = previous[j].enabled;
@@ -102,7 +90,7 @@ refresh_mods = function() {
     array_sort(mods, function(a, b) {
         return a.folder == b.folder ? 0 : (a.folder < b.folder ? -1 : 1);
     });
-    save_state();
+    if (persist_state && !state_read_failed) save_state();
     scroll_offset = clamp(scroll_offset, 0, max(0, array_length(mods) * row_height - (list_bottom - list_top)));
 };
 
