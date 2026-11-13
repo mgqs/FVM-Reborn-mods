@@ -831,7 +831,7 @@ register_gods_goods("xiangshui_god_3",
     cost: "10",
     unlock_item_id: "xiangshui_god",
     target_shape: 3,
-    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升，范围扩大至5x7（终转）"
+    description: "至尊宴飨女神：冰神类卡片共享增幅，增幅倍数大幅提升，范围扩大至5x7，倍率最高叠加到原有加成倍率的2倍（终转）"
 });
 
 register_gods_goods("fengrao_god",
@@ -866,7 +866,7 @@ register_gods_goods("fengrao_god_3",
     cost: "10",
     unlock_item_id: "fengrao_god",
     target_shape: 3,
-    description: "至尊丰饶神：同类卡片加成可叠加2次"
+    description: "至尊丰饶神：倍率最高叠加到原有加成倍率的3倍"
 });
 
 register_gods_goods("panduola_god",
@@ -1069,6 +1069,15 @@ register_gods_goods("shennong_god_2",
     description: "炎帝·神农氏：攻击力大幅提升，神焰威力增强"
 });
 
+register_gods_goods("shennong_god_3",
+{
+    type: "tvoucher",
+    cost: "10",
+    unlock_item_id: "shennong_god",
+    target_shape: 3,
+    description: "至尊炎帝：左右对向召唤三只朱雀神焰，单只神焰伤害范围扩大到3行，沿途5行分别受击1/2/3/2/1次；场上炎帝超过7只时，攻击力最高的1只每5秒召唤竖向陨焰轰击7~9列"
+});
+
 register_gods_goods("chongsheng_god",
 {
     type: "evo",
@@ -1172,6 +1181,42 @@ register_gods_goods("haiyang_god_3",
     unlock_item_id: "haiyang_god",
     target_shape: 3,
     description: "至尊海洋女神：场上满4张后，增幅范围扩大至全屏"
+});
+
+// 2026-11-13 新卡：星轨神·阿斯特（金卡进化 ← 忘忧浮生茶 + 玲珑音盒马）
+register_gods_goods("xinggui_god",
+{
+    type: "evo",
+    cost: "25",
+    unlock_item_id: "xinggui_god",
+    description: "阿斯特神使：为5×5范围内固定轨迹类卡片增伤，同类增幅不叠加",
+});
+
+register_gods_goods("xinggui_god_1",
+{
+    type: "tvoucher",
+    cost: "10",
+    unlock_item_id: "xinggui_god",
+    target_shape: 1,
+    description: "阿斯特圣神：悬浮卡，不占用格子，增幅倍率提升"
+});
+
+register_gods_goods("xinggui_god_2",
+{
+    type: "tvoucher",
+    cost: "10",
+    unlock_item_id: "xinggui_god",
+    target_shape: 2,
+    description: "星轨神·阿斯特：倍率大幅提升；每多放置1张四转以上星轨神额外+0.7（上限+2.1）"
+});
+
+register_gods_goods("xinggui_god_3",
+{
+    type: "tvoucher",
+    cost: "15",
+    unlock_item_id: "xinggui_god",
+    target_shape: 3,
+    description: "至尊星轨神：场上满4张星轨神后增幅范围扩大至全屏，倍率再次提升"
 });
 
 // 融合卡：本体 + 一转 / 二转凭证进入诸神商店。

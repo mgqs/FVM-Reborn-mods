@@ -25,6 +25,10 @@
     {"name":"c5d8ab3c-0c2b-4503-9f31-b7c68c84d3d1","path":"sprites/spr_houyi_god_fire_3/spr_houyi_god_fire_3.yy",},
     {"name":"0d4ffd32-c6b2-4661-a957-1a5d504985c9","path":"sprites/spr_houyi_god_pin1/spr_houyi_god_pin1.yy",},
     {"name":"b97707ad-1cfb-4d2a-a336-67d11ae341b7","path":"sprites/spr_houyi_god_pin2/spr_houyi_god_pin2.yy",},
-    {"name":"436fdd7b-1c62-4630-96ea-38495c763be8","path":"sprites/spr_houyi_god_pin3/spr_houyi_god_pin3.yy",}
+    {"name":"436fdd7b-1c62-4630-96ea-38495c763be8","path":"sprites/spr_houyi_god_pin3/spr_houyi_god_pin3.yy",},
+    {"name":"07df9105-2a56-4711-ab34-f7c2970a9e39","path":"sprites/spr_houyi_god_ground_fire/spr_houyi_god_ground_fire.yy",},
+    {"name":"f17d71b2-ca34-486b-b98f-cceff244376c","path":"sprites/spr_houyi_god_ground_fire_1/spr_houyi_god_ground_fire_1.yy",},
+    {"name":"befaad53-d515-4f77-a935-bb49b5564e9e","path":"sprites/spr_houyi_god_ground_fire_2/spr_houyi_god_ground_fire_2.yy",},
+    {"name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",}
   ],
 }

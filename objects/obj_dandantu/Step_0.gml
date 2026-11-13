@@ -72,6 +72,7 @@ if (is_exploding)
     else
     {
         image_index = anim_frame;
+        external_animation_sync_native(id, flash_speed, anim_timer, "anim_timer");
     }
 }
 else
@@ -112,6 +113,7 @@ else
             anim_frame = _seg_start;
     }
     image_index = anim_frame;
+    external_animation_sync_native(id, flash_speed, anim_timer, "anim_timer");
 
     if (storage_ratio > 0)
     {

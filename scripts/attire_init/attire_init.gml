@@ -613,7 +613,7 @@ function attire_init(){
 		"player_attire_tianshenzhiyingbanbensan",
 		{
 			"target_card":"player",
-			"name":"天神之影（版本三）",
+			"name":"天神之影女",
 			"icon":spr_player_attire_tianshenzhiyingbanbensan_icon,
 			"spr":spr_player_attire_tianshenzhiyingbanbensan,
 		}
@@ -649,7 +649,7 @@ function attire_init(){
 		"player_attire_shouhuzhishen",
 		{
 			"target_card":"player",
-			"name":"守护之神",
+			"name":"魔影迅疾女",
 			"icon":spr_player_attire_shouhuzhishen_icon,
 			"spr":spr_player_attire_shouhuzhishen,
 		}
@@ -883,9 +883,64 @@ function attire_init(){
 		"player_attire_xingzhihuanbianshen3",
 		{
 			"target_card":"player",
-			"name":"星之焕变身3",
+			"name":"星之焕女",
 			"icon":spr_player_attire_xingzhihuanbianshen3_icon,
 			"spr":spr_player_attire_xingzhihuanbianshen3,
+		}
+	)
+	// ── 神装（2026-11-13）：9 套「宝石 + 套装」变装的对应套装，缺少的 6 套 ──
+	register_attire(
+		"player_attire_moyingshengyi_nan",
+		{
+			"target_card":"player",
+			"name":"魔影圣衣男",
+			"icon":spr_player_attire_moyingshengyi_nan_icon,
+			"spr":spr_player_attire_moyingshengyi_nan,
+		}
+	)
+	register_attire(
+		"player_attire_moyingxunji_nan",
+		{
+			"target_card":"player",
+			"name":"魔影迅疾男",
+			"icon":spr_player_attire_moyingxunji_nan_icon,
+			"spr":spr_player_attire_moyingxunji_nan,
+		}
+	)
+	register_attire(
+		"player_attire_tianshenzhiying_nan",
+		{
+			"target_card":"player",
+			"name":"天神之影男",
+			"icon":spr_player_attire_tianshenzhiying_nan_icon,
+			"spr":spr_player_attire_tianshenzhiying_nan,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhihuan_nan",
+		{
+			"target_card":"player",
+			"name":"星之焕男",
+			"icon":spr_player_attire_xingzhihuan_nan_icon,
+			"spr":spr_player_attire_xingzhihuan_nan,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhiyao_nan",
+		{
+			"target_card":"player",
+			"name":"星之耀男",
+			"icon":spr_player_attire_xingzhiyao_nan_icon,
+			"spr":spr_player_attire_xingzhiyao_nan,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhiyao_nv",
+		{
+			"target_card":"player",
+			"name":"星之耀女",
+			"icon":spr_player_attire_xingzhiyao_nv_icon,
+			"spr":spr_player_attire_xingzhiyao_nv,
 		}
 	)
 	register_attire(

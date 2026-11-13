@@ -35,6 +35,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0
 }
+external_animation_sync_native(id, current_flash_speed);
 
 // 部署后延迟一会儿再释放（给玩家看到放下的动画）
 if (!cleared) {

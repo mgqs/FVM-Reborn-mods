@@ -42,6 +42,7 @@ else
     
     timer = 0;
 }
+if (state == CARD_STATE.IDLE || state == CARD_STATE.ATTACK) external_animation_sync_native(id, current_flash_speed);
 
 if (hp <= 0)
     instance_destroy();

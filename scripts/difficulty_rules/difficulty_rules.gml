@@ -64,6 +64,7 @@ function random_gift_sync_unlock() {
         if (_lihe_index == -1) {
             array_push(global.save_data.unlocked_cards,
                 {id: "lihe", level: 0, shape: 0, skill: 0, max_level: 0, max_shape: 0});
+            card_info_task_sync("lihe");
         } else if (global.save_data.unlocked_cards[_lihe_index].level == 0
             && global.save_data.unlocked_cards[_lihe_index].max_level == 16) {
             global.save_data.unlocked_cards[_lihe_index].max_level = 0;
@@ -100,6 +101,7 @@ function random_gift_prepare_selected_deck() {
     }
     if (!_wanpilong_unlocked) array_push(global.save_data.unlocked_cards,
         {id: "wanpilong", level: 0, shape: 2, skill: 0, max_level: 0, max_shape: 2});
+    card_info_task_sync("wanpilong");
     deck_ensure_size();
     var has_gift = false;
     var has_wanpilong = false;

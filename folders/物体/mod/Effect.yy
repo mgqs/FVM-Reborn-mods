@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_xinggui_god_effect","path":"objects/obj_xinggui_god_effect/obj_xinggui_god_effect.yy",},
+    {"name":"obj_yuansushe_fx","path":"objects/obj_yuansushe_fx/obj_yuansushe_fx.yy",},
     {"name":"obj_mianbao_boom","path":"objects/obj_mianbao_boom/obj_mianbao_boom.yy",},
     {"name":"obj_mianbao_burn_fx","path":"objects/obj_mianbao_burn_fx/obj_mianbao_burn_fx.yy",},
     {"name":"obj_12yinliao_effect","path":"objects/obj_12yinliao_effect/obj_12yinliao_effect.yy",},
@@ -36,6 +38,7 @@
     {"name":"obj_hammer_pult_bullet_s_effect_2","path":"objects/obj_hammer_pult_bullet_s_effect_2/obj_hammer_pult_bullet_s_effect_2.yy",},
     {"name":"obj_heian_god_effect","path":"objects/obj_heian_god_effect/obj_heian_god_effect.yy",},
     {"name":"obj_houyi_god_fire","path":"objects/obj_houyi_god_fire/obj_houyi_god_fire.yy",},
+    {"name":"obj_houyi_god_ground_fire","path":"objects/obj_houyi_god_ground_fire/obj_houyi_god_ground_fire.yy",},
     {"name":"obj_hundun_god_effect","path":"objects/obj_hundun_god_effect/obj_hundun_god_effect.yy",},
     {"name":"obj_ice_god_bullet_effect","path":"objects/obj_ice_god_bullet_effect/obj_ice_god_bullet_effect.yy",},
     {"name":"obj_joker_bullet_effect_1","path":"objects/obj_joker_bullet_effect_1/obj_joker_bullet_effect_1.yy",},

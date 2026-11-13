@@ -9,6 +9,11 @@
   "channelFormat":0,
   "compression":0,
   "compressionQuality":4,
+  "ConfigValues":{
+    "macOS":{
+      "compression":"3",
+    },
+  },
   "conversionMode":0,
   "duration":52.488003,
   "exportDir":"",

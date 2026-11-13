@@ -115,6 +115,9 @@ function mod_evo_table(){
                                         {id:"triple_wine_rack", slot:1, need:2} ] },  // 丘比特神使 ← 射手座星宿 + 终结者酒架
         panduola_god:            { cards:[ {id:"aquarius_elve", slot:0, need:2},
                                         {id:"pufferfish", slot:1, need:2} ] },  // 潘多拉 ← 水瓶座精灵（星座槽）+ 爆辣河豚（2026-10-28 改）
+        // 2026-11-13 新卡：星轨神·阿斯特 ← 忘忧浮生茶（二转）+ 玲珑音盒马（二转）+ 进化凭证
+        xinggui_god:             { cards:[ {id:"fushengcha", slot:0, need:2},
+                                        {id:"yinhema", slot:1, need:2} ] },
         lingrong_god:            { cards:[ {id:"cotton_candy", slot:0, need:2} ] }  // 魔导士软糖 ← 棉花糖（星座槽）
     };
 }
@@ -216,6 +219,7 @@ function mod_evo_credit_face(){
     firework_dragon_real: [49, 95, 73, 72],
     hera: [0, 2, 100, 46],
     ice_god: [2, 63, 89, 88],
+    xinggui_god: [3, 6, 72, 68],   // 2026-11-13 新卡：spr_xinggui_god 第 0 帧内容框
     zeus: [62, 511, 75, 69],
     love_god: [18, 0, 93, 88],
     panduola_god: [80, 73, 59, 55],

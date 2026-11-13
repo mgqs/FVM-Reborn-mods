@@ -72,6 +72,14 @@ function mod_shop_init()
         description: "加速榨汁机：为3x3范围内喷壶类卡片提供增伤",
         display_name: "加速榨汁机"
     });
+    register_goods("shiliu_baobao_bing",
+    {
+        type: "card",
+        cost: "75000",            // 数据表：本体商城；魔塔层数比玉兔灯笼高 1~2 层、威望 1.5 倍（50000 × 1.5）
+        unlock_item_id: "shiliu_baobao_bing",
+        description: "石榴爆爆冰：落地灰烬爆炸并附加冰冻减速，同时对范围内最近的地面目标碾压",
+        display_name: "石榴爆爆冰"
+    });
     register_goods("master_shield", 
     {
         type: "weapon",
@@ -698,6 +706,9 @@ function mod_shop_init()
     register_goods("guiyuanma", { type: "card", cost: "80000", unlock_item_id: "guiyuanma", description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", display_name: "归元马" });
     register_goods("xingqiongma", { type: "card", cost: "85000", unlock_item_id: "xingqiongma", description: "星穹马：复活5*5范围内1张死亡的卡片", display_name: "星穹马" });
     register_goods("tianxie", { type: "card", cost: "100000", unlock_item_id: "tianxie", description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）", display_name: "天蝎座精灵" });
+    // 2026-11-13 新卡：元素蛇（表内「商城价格，魔塔层数和价格可以类似御风马」）/ 银河马（火箭猪高 1~2 层）
+    register_goods("yuansushe", { type: "card", cost: "95000", unlock_item_id: "yuansushe", description: "元素蛇：向本行前方发射1发带不同效果的穿透子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击）", display_name: "元素蛇" });
+    register_goods("galaxy_horse", { type: "card", cost: "115000", unlock_item_id: "galaxy_horse", description: "银河马：召唤1颗陨石对本行老鼠进行海陆空全方位打击，击杀灰烬", display_name: "银河马" });
     register_goods("jingangma", { type: "card", cost: "90000", unlock_item_id: "jingangma", description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠", display_name: "金刚马" });
     register_goods("qiedanlong", { type: "card", cost: "80000", unlock_item_id: "qiedanlong", description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸", display_name: "窃蛋龙" });
     register_goods("qishui", { type: "card", cost: "60000", unlock_item_id: "qishui", description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只", display_name: "弹珠汽水" });

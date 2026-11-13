@@ -1,3 +1,4 @@
+combat_targets_invalidate(object_index);
 // 海克斯二期：中指的义理 / 重燃的火光 / 鼠鼠爱财宝 / 起源 / 以我残躯化烈火
 // 必须在实例还活着的时候结算（要读坐标、mouse_id、is_boss）
 if (hex_enabled()) hex_b3_on_enemy_death(id);

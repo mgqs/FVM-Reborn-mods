@@ -47,6 +47,7 @@ if (zodiac_dying) {
 }
 
 event_inherited();
+if (zodiac_dying) external_animation_sync_native(id, flash_speed, zodiac_death_timer, "zodiac_death_timer");
 if (hp <= 0) exit;
 
 // 代理被吞噬/吹走等直接销毁时（不经过伤害转发），绑定目标存活则立即重建

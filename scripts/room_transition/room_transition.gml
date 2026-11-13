@@ -51,6 +51,7 @@ function map_switch_apply(_data) {
     if (_data == undefined) return
     global.map_name = _data.name
     global.map_id = _data.id
+    resource_scene_enter(room)
 }
 
 function room_transition_step() {

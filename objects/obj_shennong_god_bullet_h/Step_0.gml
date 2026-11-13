@@ -35,15 +35,32 @@ if (variable_global_exists("enemy_by_type"))
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
+
+            // 命中行与伤害倍率：
+            // row_hits 为空 → 旧行为（只打 row 这一行，倍率 1）
+            // row_hits 非空 → 终转（shape 3），按「该行受击次数」给倍率，实现上行/中路/下行分别受击
+            var _row_mul = 0;
+            if (array_length(row_hits) > 0)
+            {
+                var _gr = _e.grid_row;
+                if (_gr >= 0 && _gr < array_length(row_hits))
+                    _row_mul = row_hits[_gr];
+            }
+            else if (row == _e.grid_row)
+            {
+                _row_mul = 1;
+            }
+
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
-                && row == _e.grid_row
+                && _row_mul > 0
                 && precise_bbox_collision(id, _e))
             {
                 var _prev_hp = _e.hp;
                 // 炎帝对魂系（符咒鼠/符咒魂鼠/执念鼠魂体/开路鼠魂体）与药罐鼠造成 2 倍基础伤害。
                 // 倍率统一取自 longyuan_soul_bonus_mult()，不要在此另写数字。
-                var _dmg = longyuan_is_soul_bonus_target(_e) ? floor(damage * longyuan_soul_bonus_mult(obj_shennong_god)) : damage;
+                var _base_dmg = damage * _row_mul;
+                var _dmg = longyuan_is_soul_bonus_target(_e) ? floor(_base_dmg * longyuan_soul_bonus_mult(obj_shennong_god)) : _base_dmg;
 
                 with (_e)
                 {

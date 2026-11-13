@@ -35,7 +35,7 @@ if (instance_exists(decoy_card)) {
     x = decoy_card.x;
     y = decoy_card.y;
     grid_col = decoy_card.grid_col;
-    grid_row = decoy_card.grid_row;
+    grid_row = combat_targets_row_value(id, decoy_card.grid_row);
 }
 if (instance_exists(decoy_target) && decoy_target.hp > 0) hp = decoy_target.hp;
 state = ENEMY_STATE.NORMAL;

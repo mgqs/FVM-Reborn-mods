@@ -51,6 +51,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+if (state == CARD_STATE.IDLE || state == CARD_STATE.ATTACK) external_animation_sync_native(id, current_flash_speed);
 
 
 

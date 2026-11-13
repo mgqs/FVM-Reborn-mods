@@ -1,3 +1,7 @@
+// 列表可能在同帧内被 refresh_task_list 重建（翻页 / 切页签）→ btn_index 越界时本帧直接不画
+if !instance_exists(obj_task_bg) exit
+if btn_index < 0 || btn_index >= array_length(obj_task_bg.current_task_list) exit
+
 if (wf_t < wf_dur) {
 	wf_t++
 	var _p = clamp(wf_t / wf_dur, 0, 1)

@@ -21,6 +21,7 @@ if (attack_timer < first_produce_delay) {
     // 初始延迟阶段
     state = CARD_STATE.IDLE;
     image_index = (attack_timer div current_flash_speed) mod (idle_anim + 1);
+    external_animation_sync_native(id, current_flash_speed, attack_timer, "attack_timer");
 } else if (!zhiyumiao_skill_triggered) {
     // 施法动画阶段
     state = CARD_STATE.ATTACK;
@@ -39,6 +40,7 @@ if (attack_timer < first_produce_delay) {
         state = CARD_STATE.IDLE;
     } else {
         image_index = idle_anim + 1 + _attack_frame;
+        external_animation_sync_native(id, current_flash_speed, _attack_pos, "attack_pos");
     }
 } else {
     // 技能已释放，短暂闪光后销毁卡片

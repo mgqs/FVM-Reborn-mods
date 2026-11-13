@@ -1,3 +1,4 @@
+if (attack_opacity_dirty) friendly_attack_opacity_save();
 // 销毁所有创建的实例
 if (instance_exists(closemenu_btn)) instance_destroy(closemenu_btn);
 if (instance_exists(menu_btn1)) instance_destroy(menu_btn1);

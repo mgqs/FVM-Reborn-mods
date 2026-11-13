@@ -34,6 +34,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+if (state == CARD_STATE.IDLE || state == CARD_STATE.ATTACK) external_animation_sync_native(id, current_flash_speed);
 
 // （清梯子已在 Destroy_0 里做了 —— 和另外 4 个炸弹一样，放在爆炸时；Step 里再来一份等于每帧清）
 

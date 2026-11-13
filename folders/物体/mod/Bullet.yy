@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_yuansushe_bullet","path":"objects/obj_yuansushe_bullet/obj_yuansushe_bullet.yy",},
+    {"name":"obj_galaxy_horse_bullet","path":"objects/obj_galaxy_horse_bullet/obj_galaxy_horse_bullet.yy",},
     {"name":"obj_jingangma_bullet","path":"objects/obj_jingangma_bullet/obj_jingangma_bullet.yy",},
     {"name":"obj_qiedanlong_bullet","path":"objects/obj_qiedanlong_bullet/obj_qiedanlong_bullet.yy",},
     {"name":"obj_qishui_bullet","path":"objects/obj_qishui_bullet/obj_qishui_bullet.yy",},
@@ -73,6 +75,7 @@
     {"name":"obj_zhurong_bullet","path":"objects/obj_zhurong_bullet/obj_zhurong_bullet.yy",},
     {"name":"obj_shennong_god_bullet_h","path":"objects/obj_shennong_god_bullet_h/obj_shennong_god_bullet_h.yy",},
     {"name":"obj_shennong_god_bullet_v","path":"objects/obj_shennong_god_bullet_v/obj_shennong_god_bullet_v.yy",},
+    {"name":"obj_shennong_god_bullet_v3","path":"objects/obj_shennong_god_bullet_v3/obj_shennong_god_bullet_v3.yy",},
     {"name":"obj_hongliukaochuan_bullet","path":"objects/obj_hongliukaochuan_bullet/obj_hongliukaochuan_bullet.yy",},
     {"name":"obj_lizi_god_bullet","path":"objects/obj_lizi_god_bullet/obj_lizi_god_bullet.yy",},
     {"name":"obj_youyu_god_bullet","path":"objects/obj_youyu_god_bullet/obj_youyu_god_bullet.yy",},

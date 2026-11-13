@@ -48,7 +48,7 @@ function MapDownloadManager() constructor {
     /// @param {String} _title
     /// @returns {String}
     static get_download_folder = function(_title) {
-        return self.laboratory_appdata() + "\\download\\" + self.sanitize_title(_title)
+        return self.laboratory_appdata() + "/download/" + self.sanitize_title(_title)
     }
 
     /// @param {String} _rel

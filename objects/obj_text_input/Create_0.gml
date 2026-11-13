@@ -16,3 +16,4 @@ placeholder_color = c_gray;
 border_color = c_black;
 border_active_color = c_blue;
 border_width = 2;
+mac_editor = new MacTextInput(id);

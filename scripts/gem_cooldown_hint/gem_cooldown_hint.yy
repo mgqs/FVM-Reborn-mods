@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"gem_cooldown_hint",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"gem_cooldown_hint",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

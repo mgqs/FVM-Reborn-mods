@@ -12,7 +12,7 @@ function card_created(plant_inst, col, row) {
     
     // 设置植物的网格位置
     plant_inst.grid_col = col;
-    plant_inst.grid_row = row;
+    plant_inst.grid_row = combat_targets_row_value(plant_inst, row);
     
     // 更新植物的深度偏移（根据层级）
     plant_inst.depth_offset = ds_list_size(plant_list) * 5;

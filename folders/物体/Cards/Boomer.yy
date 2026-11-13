@@ -25,6 +25,7 @@
     {"name":"obj_lightning_baguette","path":"objects/obj_lightning_baguette/obj_lightning_baguette.yy",},
     {"name":"obj_mouse_clip","path":"objects/obj_mouse_clip/obj_mouse_clip.yy",},
     {"name":"obj_rabbit_lantern","path":"objects/obj_rabbit_lantern/obj_rabbit_lantern.yy",},
+    {"name":"obj_shiliu_baobao_bing","path":"objects/obj_shiliu_baobao_bing/obj_shiliu_baobao_bing.yy",},
     {"name":"obj_skewer_bomb","path":"objects/obj_skewer_bomb/obj_skewer_bomb.yy",},
     {"name":"obj_steel_wool","path":"objects/obj_steel_wool/obj_steel_wool.yy",},
     {"name":"obj_whisky_bomb","path":"objects/obj_whisky_bomb/obj_whisky_bomb.yy",},

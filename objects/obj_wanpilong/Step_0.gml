@@ -162,7 +162,7 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
 
     // 5. 更新实体自身的网格坐标
     _entity.grid_col = _to_col;
-    _entity.grid_row = _to_row;
+    _entity.grid_row = combat_targets_row_value(_entity, _to_row);
 
     // 6. 移动绑定对象（星级贴图、水面特效、睡眠特效等）
     if (variable_instance_exists(_entity, "banding_star_obj") && instance_exists(_entity.banding_star_obj))
@@ -211,7 +211,7 @@ function wanpilong_move_entity(_entity, _from_col, _from_row, _to_col, _to_row)
                 if (variable_instance_exists(id, "grid_col"))
                     grid_col = _to_col;
                 if (variable_instance_exists(id, "grid_row"))
-                    grid_row = _to_row;
+                    grid_row = combat_targets_row_value(id, _to_row);
 
                 // 如果是盾牌，还需要移动其特效数组中的特效
                 if (variable_instance_exists(id, "shield_vfx_insts") && is_array(shield_vfx_insts))
@@ -277,6 +277,7 @@ function step_idle()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 等待被激活（通过点击释放技能）
     // 实际激活由 card_slot 的点击事件触发
@@ -298,6 +299,7 @@ function step_targeting_source()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 鼠标位置转网格
     var _mouse_grid = get_grid_position_from_world(mouse_x, mouse_y);
@@ -368,6 +370,7 @@ function step_pre_swing()
     image_index += 0.2;
     if (image_index >= idle_anim)
         image_index = idle_anim - 1;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     pre_swing_timer++;
 
@@ -448,6 +451,7 @@ function step_targeting_dest()
     image_index += 0.15;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     // 源目标实时校验
     if (!wanpilong_is_valid_source(source_entity))
@@ -546,6 +550,7 @@ function step_cooldown()
     image_index += 0.05;
     if (image_index >= idle_anim)
         image_index = 0;
+    external_animation_sync_native(id, 1, image_index, "image_index");
 
     cooldown_timer++;
 

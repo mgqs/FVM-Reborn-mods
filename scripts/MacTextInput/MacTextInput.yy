@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"MacTextInput",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"MacTextInput",
+  "parent":{
+    "name":"Util",
+    "path":"folders/Util.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

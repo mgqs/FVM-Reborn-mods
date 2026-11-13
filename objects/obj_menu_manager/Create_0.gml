@@ -53,6 +53,9 @@ self.texture_to_load = [
 	"pack_explore_camp"
 ]
 
+// Desktop dynamic groups are warmed by scene; do not fetch every enemy region at startup.
+if (resource_memory_enabled()) self.texture_to_load = ["UI", "player", "maps"]
+
 self.texture_count = array_length(self.texture_to_load)
 self.texture_loaded = 0
 global.preloaded = variable_global_exists("preloaded") ? global.preloaded : false
@@ -136,7 +139,7 @@ function pre_load_texture() {
     }
 
     if (self.texture_loaded < self.texture_count) {
-        texture_prefetch(self.texture_to_load[self.texture_loaded]);
+        resource_texture_prepare(self.texture_to_load[self.texture_loaded]);
         self.texture_loaded += 1;
         self.animating = true;
     }

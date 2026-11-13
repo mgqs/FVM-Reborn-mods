@@ -1,5 +1,39 @@
+/// DS handles outlive their instance unless explicitly destroyed. Reset each
+/// handle immediately so a repeated cleanup cannot destroy a recycled ID.
+function mod_battle_buff_grid_clear()
+{
+    static names = ["buff_grid", "buff_stack_grid", "buff_stack_count"];
+    for (var i = 0; i < array_length(names); i++)
+    {
+        var key = names[i];
+        if (!variable_global_exists(key)) continue;
+        var handle = variable_global_get(key);
+        if (ds_exists(handle, ds_type_map)) ds_map_destroy(handle);
+        variable_global_set(key, -1);
+    }
+}
+
+function mod_battle_resources_clear()
+{
+    mod_battle_buff_grid_clear();
+    if (variable_global_exists("buff_sources"))
+    {
+        if (ds_exists(global.buff_sources, ds_type_list)) ds_list_destroy(global.buff_sources);
+        global.buff_sources = -1;
+    }
+}
+
+/// Room cleanup may dispose of the manager before a source's Destroy callback.
+function mod_buff_source_remove(source)
+{
+    if (!variable_global_exists("buff_sources") || !ds_exists(global.buff_sources, ds_type_list)) return;
+    var index = ds_list_find_index(global.buff_sources, source);
+    if (index != -1) ds_list_delete(global.buff_sources, index);
+}
+
 function build_buff_grid()
 {
+    mod_battle_buff_grid_clear();
     global.buff_grid = ds_map_create();
     var types = ["tracker", "tracker_berry", "tracker_advanced", "thrower", "sprayer", "sprayer_row", "five_dir", "multi_dir", "xiangshui"];
     

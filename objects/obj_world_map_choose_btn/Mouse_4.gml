@@ -3,7 +3,7 @@ if unlocked{
 	obj_world_map_button.world_map = 0
 	panel_anim_close(obj_world_map_menu)
 	if map_id == "undersea_vortex"{
-		texture_prefetch("pack_undersea_vortex")
+		resource_texture_prepare("pack_undersea_vortex")
 	}
 	if map_id != "tower_cake"{
 		var _known_map = ds_map_exists(global.maps_map, map_id)

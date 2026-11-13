@@ -348,6 +348,15 @@ function credit_shop_init()
         description: "一转凭证\n在合成屋-卡片转职中使用"
     });
 
+    // 石榴爆爆冰：数据表口径「魔塔层数比玉兔高 1~2 层、威望 1.5 倍」
+    //   玉兔 7500 / 33750 威望，12-1 / 24-2 → 石榴 11250 / 50625 威望，13-1 / 25-2
+    register_goods("credit_shiliu_baobao_bing_1", {
+        type: "credit", cost: "11250", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "13-1",
+        unlock_item_id: transfer_credit_id("shiliu_baobao_bing", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+
     register_goods("credit_xinjiang_fried_noodles_1", {
         type: "credit", cost: "4000", coin_type: "prestige", credit_shape: 1,
         tower_floor: "5-1",
@@ -1064,6 +1073,13 @@ function credit_shop_init()
         type: "credit", cost: "33750", coin_type: "prestige", credit_shape: 2,
         tower_floor: "24-2",
         unlock_item_id: transfer_credit_id("rabbit_lantern", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+
+    register_goods("credit_shiliu_baobao_bing_2", {
+        type: "credit", cost: "50625", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "25-2",
+        unlock_item_id: transfer_credit_id("shiliu_baobao_bing", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
 
@@ -1916,6 +1932,32 @@ function credit_shop_init()
         type: "credit", cost: "36800", coin_type: "prestige", credit_shape: 2,
         tower_floor: "20-2",
         unlock_item_id: transfer_credit_id("tianxie", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+
+    // 2026-11-13 新卡：元素蛇（转职价位/层数参考御风马）/ 银河马（参考火箭猪，层数高 1~2 层、威望 1.2~1.5 倍）
+    register_goods("credit_yuansushe_1", {
+        type: "credit", cost: "6000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "13-1",
+        unlock_item_id: transfer_credit_id("yuansushe", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_yuansushe_2", {
+        type: "credit", cost: "22000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "24-1",
+        unlock_item_id: transfer_credit_id("yuansushe", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_galaxy_horse_1", {
+        type: "credit", cost: "11000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "17-1",
+        unlock_item_id: transfer_credit_id("galaxy_horse", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_galaxy_horse_2", {
+        type: "credit", cost: "40000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "27-2",
+        unlock_item_id: transfer_credit_id("galaxy_horse", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
     register_goods("credit_jingangma_1", {

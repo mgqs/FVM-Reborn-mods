@@ -1,0 +1,10 @@
+{
+  "$GMScript":"v1",
+  "%Name":"friendly_attack_visuals",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"friendly_attack_visuals",
+  "parent":{"name":"mod","path":"folders/脚本/mod.yy",},
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

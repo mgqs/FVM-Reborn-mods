@@ -13,14 +13,7 @@ if (is_slowdown)
 
 var has_enemy = false;
 
-with (obj_enemy_parent)
-{
-    if (grid_row >= (other.grid_row - 1) && grid_row <= (other.grid_row + 1) && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type, target_type))
-    {
-        has_enemy = true;
-        break;
-    }
-}
+has_enemy = combat_enemy_in_rows(id, grid_row - 1, grid_row + 1, grid_col, global.grid_cols + 1, target_type);
 
 // ── 攻击循环：1-12 待机 / 13-23 攻击，第 20 帧发射（上中下三发）──────────
 if (state != CARD_STATE.ATTACK)

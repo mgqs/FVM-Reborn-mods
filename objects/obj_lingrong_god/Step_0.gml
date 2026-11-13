@@ -87,6 +87,7 @@ if anim_timer < current_flash_speed - 1 {
         }
     }
 }
+external_animation_sync_native(id, current_flash_speed, anim_timer, "anim_timer");
 
 if !spawn_init && !is_clone {
     spawn_init = true

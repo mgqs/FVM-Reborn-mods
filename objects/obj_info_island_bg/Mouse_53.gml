@@ -12,6 +12,13 @@ if not is_submenu_opened{
 if hover_card_index != -1{
 	global.audio.play(snd_button,0,0)
 	select_card_index = hover_card_index
+	// ★ 卡片情报任务：防御卡页签（info_button_select == 1）里点开一张卡 = 看过情报
+	if info_button_select == 1 && hover_card_index < array_length(info_view){
+		var _view_entry = info_view[hover_card_index]
+		if _view_entry >= 0 && _view_entry < ds_list_size(global.player_deck){
+			card_info_task_complete(global.player_deck[| _view_entry])
+		}
+	}
 	if (global.level_id == "test_level" && variable_global_exists("test_info_island_mode")
 	    && global.test_info_island_mode && info_button_select == 2)
 	{

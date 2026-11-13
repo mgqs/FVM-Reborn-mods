@@ -29,6 +29,7 @@ function unlock_card(card_id, level, shape, skill) {
     };
     
     array_push(global.save_data.unlocked_cards, new_card);
+    card_info_task_sync(card_id); // 新卡 → 生成"在情报岛查看这张卡"任务（幂等）
     save_file(global.save_slot); // 立即保存
     return true;
 }

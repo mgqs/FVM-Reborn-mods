@@ -3,7 +3,7 @@
     GML / YY / MD 文件一键校验：BOM、括号配平、字节数、行数。
 
 .DESCRIPTION
-    对应 AGENTS.md 第 2.2 条：编辑后必跑。
+    对应 AGENTS.md §1.2：编辑后必跑。
     剔除行注释、块注释、字符串字面量后再数括号，避免误报。
 
 .PARAMETER Path

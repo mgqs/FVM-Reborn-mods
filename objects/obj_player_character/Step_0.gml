@@ -21,6 +21,7 @@ if is_placed{
 	    }
 	    timer = 0;
 	}
+    external_animation_sync(id, flash_speed);
 }
 
 

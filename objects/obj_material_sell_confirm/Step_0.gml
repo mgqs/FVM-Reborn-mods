@@ -1,4 +1,11 @@
 // ===== 输入框文字处理 =====
+if (mac_editor.enabled) {
+    mac_editor.layout(x - layout_input_w / 2 + 6, y + layout_input_y - layout_input_h / 2,
+        layout_input_w - 12, layout_input_h, 22, c_white)
+    if (!mac_editor.opened) mac_editor.begin_edit(keyboard_string, 64, "出售或购买数量", true)
+    else mac_editor.poll()
+    keyboard_string = mac_editor.text
+}
 var _raw = keyboard_string
 var _filtered = ""
 
@@ -42,6 +49,7 @@ if (_filtered != "" && input_quantity < 1) {
 // 同步 keyboard_string
 if (_filtered != _raw) {
     keyboard_string = _filtered
+    mac_editor.set_text(_filtered)
 }
 
 // 光标闪烁
@@ -82,6 +90,7 @@ for (var i = 0; i < array_length(buttons); i++) {
                     // 最大数量
                     input_quantity = max_amount
                     keyboard_string = string(max_amount)
+                    mac_editor.set_text(keyboard_string)
                     break
                 case 1:
                     // 确定
@@ -100,7 +109,7 @@ for (var i = 0; i < array_length(buttons); i++) {
 
 // ===== 键盘快捷键 =====
 // 回车键确认
-if (keyboard_check_pressed(vk_enter)) {
+if (mac_editor.enabled ? mac_editor.submitted : keyboard_check_pressed(vk_enter)) {
     if (input_quantity > 0 && input_quantity <= max_amount && max_amount > 0) {
         audio_play_sound(snd_button, 0, 0)
         trade_confirm()
@@ -108,7 +117,7 @@ if (keyboard_check_pressed(vk_enter)) {
 }
 
 // ESC键取消
-if (keyboard_check_pressed(vk_escape)) {
+if (mac_editor.enabled ? mac_editor.cancelled : keyboard_check_pressed(vk_escape)) {
     trade_close()
     instance_destroy()
 }

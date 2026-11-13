@@ -84,6 +84,7 @@ if timer < current_flash_speed - 1 {
     }
     timer = 0;
 }
+if (state == CARD_STATE.IDLE || state == CARD_STATE.ATTACK || state == CARD_STATE.GROW) external_animation_sync_native(id, current_flash_speed);
 
 // 生产逻辑
 current_flash_speed = flash_speed

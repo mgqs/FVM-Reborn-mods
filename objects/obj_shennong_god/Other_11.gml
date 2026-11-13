@@ -1,11 +1,137 @@
 // ========== 炎帝：发射水平轨迹子弹 ==========
-// 基础：召唤2只子弹，沿2条固定行轨迹移动（上路、中路，从左向右飞行）
+// 基础（shape 0/1/2）：召唤2只子弹，沿2条固定行轨迹移动（上路、中路，从左向右飞行）
 // 场上至少8张炎帝时：增加下路轨迹，变为3行攻击
+//
+// 终转（shape 3）：依据《数据信息.xlsx》A6 / A19-B21
+//   · 子弹从场地左右两边对向飞出，飞到对面边界消失
+//   · 单只朱雀子弹伤害范围扩大到 3 行（自身行 ±1）
+//   · 沿途上中下 5 行分别受击 1/2/3/2/1 次（合计 9 次）
+//   · 边路特化：
+//       炎帝在第1行 → 子弹在 1,1,2 行，对 1~3 行造成 5/3/1 倍伤害
+//       炎帝在第2行 → 子弹在 1,2,3 行，对 1~4 行造成 3/3/2/1 倍伤害
 
 var col0_x = get_world_position_from_grid(0, 0).x;
 var col_last_x = get_world_position_from_grid(global.grid_cols - 1, 0).x;
 var grid_cell_y = global.grid_cell_size_y;
 var middle_y_offset = 30; // 子弹y偏移
+
+// ==================== 终转（shape 3） ====================
+if (shape == 3)
+{
+    var _rows_n = global.grid_rows;
+    var _r = grid_row;
+
+    // ---- 1. 三发子弹的飞行行（绝对行号），越界夹到边界 ----
+    var _fly_off = [-1, 0, 1];
+    var _fly_rows = array_create(3, 0);
+
+    for (var _b1 = 0; _b1 < 3; _b1++)
+    {
+        _fly_rows[_b1] = clamp(_r + _fly_off[_b1], 0, _rows_n - 1);
+    }
+
+    // ---- 2. 逐行伤害倍率表（数据表口径，合计 9） ----
+    var _mult = array_create(_rows_n, 0);
+
+    if (_r == 0)
+    {
+        // 炎帝在第1行：子弹在 1,1,2 行，对 1~3 行 5/3/1 倍
+        _mult[0] = 5;
+        if (_rows_n > 1) _mult[1] = 3;
+        if (_rows_n > 2) _mult[2] = 1;
+    }
+    else if (_r == 1 && _rows_n >= 4)
+    {
+        // 炎帝在第2行：子弹在 1,2,3 行，对 1~4 行 3/3/2/1 倍
+        _mult[0] = 3;
+        _mult[1] = 3;
+        _mult[2] = 2;
+        _mult[3] = 1;
+    }
+    else
+    {
+        // 常规：每发覆盖自身行 ±1，5 行合计 1/2/3/2/1
+        for (var _b2 = 0; _b2 < 3; _b2++)
+        {
+            for (var _d = -1; _d <= 1; _d++)
+            {
+                var _tr = _fly_rows[_b2] + _d;
+                if (_tr >= 0 && _tr < _rows_n)
+                    _mult[_tr] += 1;
+            }
+        }
+    }
+
+    // ---- 3. 把每行的倍率平摊给覆盖该行的子弹，保证合计不变 ----
+    var _share = array_create(3);
+    for (var _i = 0; _i < 3; _i++)
+    {
+        _share[_i] = array_create(_rows_n, 0);
+    }
+
+    for (var _ri = 0; _ri < _rows_n; _ri++)
+    {
+        var _k = _mult[_ri];
+        if (_k <= 0) continue;
+
+        var _cover = [];
+        for (var _j = 0; _j < 3; _j++)
+        {
+            if (abs(_fly_rows[_j] - _ri) <= 1)
+                array_push(_cover, _j);
+        }
+
+        var _m = array_length(_cover);
+        if (_m <= 0) continue;
+
+        var _per = floor(_k / _m);
+        var _extra = _k - _per * _m;
+
+        for (var _c = 0; _c < _m; _c++)
+        {
+            var _bi = _cover[_c];
+            _share[_bi][_ri] = _per + ((_c < _extra) ? 1 : 0);
+        }
+    }
+
+    // ---- 4. 生成 3 发朱雀：上路/下路由左向右，中路（自身行）由右向左 ----
+    var _from_right = [false, true, false];
+
+    for (var _i2 = 0; _i2 < 3; _i2++)
+    {
+        var _row_y = global.grid_offset_y + grid_cell_y * _fly_rows[_i2] + middle_y_offset;
+        var _sx = col0_x - 40;
+        var _spd = 6;
+
+        if (_from_right[_i2])
+        {
+            _sx = col_last_x + 40;
+            _spd = -6;
+        }
+
+        var _inst = instance_create_depth(_sx, _row_y, depth - 500, obj_shennong_god_bullet_h);
+        _inst.damage = atk; // 行倍率走 row_hits，这里不再乘 dmg_mul
+        _inst.move_speed = _spd;
+        _inst.row = _fly_rows[_i2];
+        _inst.target_row = _fly_rows[_i2];
+        _inst.shape = 3;
+        _inst.ash_kill = true;
+        _inst.target_type = "all";
+        _inst.row_hits = _share[_i2];
+
+        // 精灵原点贴在包围盒右端（spr_shennong_god_bullet_3 origin 242,50），
+        // 翻转 image_xscale 会让判定框跑到图像另一侧（precise_bbox_collision 不读缩放/翻转），
+        // 因此统一不镜像，只靠移动方向区分「从左向右 / 从右向左」。
+        _inst.sprite_index = spr_shennong_god_bullet_3;
+        _inst.image_xscale = 1.5;
+        _inst.image_yscale = 1.5;
+    }
+
+    audio_play_sound(snd_shot, 0, 0);
+    exit;
+}
+
+// ==================== shape 0 / 1 / 2（原逻辑） ====================
 
 // 根据shape计算伤害倍率
 var dmg_mul = 1;

@@ -60,6 +60,7 @@ function card_category_data()
         ["fenjima", "直射类", "特殊直线类", ""],
         ["double_blade_snake", "直射类", "直线穿透类", ""],
         ["yufengma", "直射类", "直线穿透类", ""],
+        ["yuansushe", "直射类", "直线穿透类", ""],   // 2026-11-13 新卡：元素蛇（四色循环弹）
         ["laipishe", "直射类", "固定轨迹类", ""],
         ["pizza_oven", "直射类", "固定轨迹类", ""],
         ["gongjiang_god", "直射类", "固定轨迹类", ""],
@@ -110,6 +111,7 @@ function card_category_data()
         ["haiyang_god", "增幅类", "名单类增幅", "喷壶增幅"],
         ["yinhema", "增幅类", "名单类增幅", "固定轨迹增幅"],
         ["fushengcha", "增幅类", "名单类增幅", "固定轨迹增幅"],
+        ["xinggui_god", "增幅类", "名单类增幅", "固定轨迹增幅"],   // 2026-11-13 新卡：星轨神·阿斯特
         ["mixian", "辅助类", "地形类", ""],
         ["yanyantu", "增幅类", "名单类增幅", "产能增幅"],
         ["zhanqima", "增幅类", "全能增幅", ""],
@@ -193,6 +195,7 @@ function card_category_data()
         ["iron_fishbone", "非远程类", "鱼刺类", ""],
         ["fishbone", "非远程类", "鱼刺类", ""],
         ["chocolate_cannon", "灰烬类", "轰炸类", ""],
+        ["galaxy_horse", "灰烬类", "轰炸类", ""],   // 2026-11-13 新卡：银河马（陨石）
         ["ronghedapao", "灰烬类", "轰炸类", ""],
         ["ronghekafei", "直射类", "传统直线类", ""],
         ["gaia", "灰烬类", "轰炸类", ""],
@@ -250,6 +253,7 @@ function card_category_data()
         ["honeytrap", "追踪类", "集火追踪", ""],
         ["huanyingshe", "投掷类", "多线投手", ""],
         ["tianxie", "直射类", "直线穿透类", ""],
+        ["shiliu_baobao_bing", "灰烬类", "瞬发类", "爆炸类"],
         ["jingangma", "喷壶类", "旋转喷壶类", ""],
         ["qiedanlong", "投掷类", "多线投手", ""],
         ["qishui", "直射类", "特殊直线类", ""],

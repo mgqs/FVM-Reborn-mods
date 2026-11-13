@@ -4,8 +4,7 @@ for (var i = 0; i < array_length(wuxingshe_effects); i++) {
 }
 array_resize(wuxingshe_effects, 0);
 
-var idx = ds_list_find_index(global.buff_sources, id);
-if (idx != -1) ds_list_delete(global.buff_sources, idx);
+mod_buff_source_remove(id);
 
 global.buff_dirty = true;
 event_inherited();

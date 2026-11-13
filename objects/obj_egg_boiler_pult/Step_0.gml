@@ -12,18 +12,9 @@ if is_slowdown{
 // 检测自身右方是否有敌人，并获取最近的敌人
 var has_enemy = false
 var target_enemy = noone
-var min_distance = 10000 // 设置一个足够大的初始值
 
-with(obj_enemy_parent){
-    if (grid_row == other.grid_row && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1) && can_target_on(other.target_type,target_type)){
-        var distance = grid_col - other.grid_col
-        if (distance < min_distance) {
-            min_distance = distance
-            target_enemy = id
-            has_enemy = true
-        }
-    }
-}
+target_enemy = combat_enemy_nearest_in_row(id, target_type);
+has_enemy = (target_enemy != noone);
 
 // 存储目标敌人信息
 if (has_enemy) {

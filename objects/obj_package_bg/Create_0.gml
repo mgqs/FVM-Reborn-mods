@@ -57,8 +57,15 @@ hover_material_index = -1
 hover_transfer_index = -1
 view_max_shapes = 0
 
+// 「变装特效」按钮（2026-11-13）：面板右上角空白处
+// 位置按「内容坐标」换算：主武器标签画在 (x-1220, y-380)，截图里绿框中心在它右 +707 / 下 +8
+// → 按钮中心 = (x-513, y-372)。别改成面板精灵的中心（面板可视框并不以实例 x 为中心）
+instance_create_depth(x - 513, y - 372, depth - 2, obj_attire_fx_help);
+
 panel_anim_init(id, 0.28, 0.18, 260, 1);
+// 按钮要在 panel_anim_kids 之前建好，才会被登记成「跟着面板一起滑入」的子对象
 panel_anim_kids(id, [obj_closepackage_btn, obj_packageselect_btn,
     obj_card_edit_menu, obj_card_edit_select_btn, obj_card_edit_btn,
     obj_card_attire_menu, obj_card_attire_select_btn,
-    obj_gem_edit_menu, obj_gem_edit_select_btn, obj_gem_edit_btn]);
+    obj_gem_edit_menu, obj_gem_edit_select_btn, obj_gem_edit_btn,
+    obj_attire_fx_help]);

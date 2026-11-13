@@ -1,3 +1,8 @@
+// 「变装特效」说明弹窗开着 / 刚关掉的那一帧：吃掉点击，别让底下面板跟着响应
+// （弹窗本体在 obj_attire_fx_help，latch 由它的 Step 置 2、本对象的 Draw 递减）
+if (variable_global_exists("attire_fx_help_open")
+ && (global.attire_fx_help_open || global.attire_fx_help_latch > 0)) exit;
+
 if package_button_select == 1{
 	if not is_submenu_opened{
 		if hover_card_index != -1{
