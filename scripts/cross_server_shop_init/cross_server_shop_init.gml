@@ -12,6 +12,8 @@ function cross_server_shop_init()
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
         "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
+        // 2026-11-13：金刚马 / 蛇蛇酒 / 转龙壶 本体改到跨服白银页售卖（原普通商店金币价下架）
+        "jingangma", "sheshejiu", "zhuanlonghu",
         "yanyantu", "yanyantu_1", "yanyantu_2", "wugushe", "wugushe_1", "wugushe_2", "kuileima", "kuileima_1", "kuileima_2", "yufengma", "yufengma_1", "yufengma_2", "fenjima", "fenjima_1", "fenjima_2", "guiyuanma_1", "guiyuanma_2", "yanhuangma", "yanhuangma_1", "yanhuangma_2", "yinhema", "yinhema_1", "yinhema_2", "xiandima", "xiandima_1", "xiandima_2", "xingqiongma_1", "xingqiongma_2", "starrabbit", "starrabbit_1", "starrabbit_2", "yinghuoshe_1", "yinghuoshe_2", "wuxingshe"
     ];
 
@@ -34,7 +36,11 @@ function cross_server_shop_init()
         rose_shield: {cost: "500", shop: "gold"}, rose_shield_gem_1: {cost: "500", shop: "gold"}, rose_shield_gem_2: {cost: "500", shop: "gold"}, rose_shield_gem_3: {cost: "500", shop: "gold"}, rose_shield_gem_4: {cost: "500", shop: "gold"}, rose_shield_gem_5: {cost: "750", shop: "gold"},
         aladdin_lamp: {cost: "500", shop: "gold"}, aladdin_lamp_gem_1: {cost: "500", shop: "gold"}, aladdin_lamp_gem_2: {cost: "750", shop: "gold"}, aladdin_lamp_gem_3: {cost: "500", shop: "gold"}, aladdin_lamp_gem_4: {cost: "500", shop: "gold"}, aladdin_lamp_gem_5: {cost: "500", shop: "gold"},
         yanyantu: {cost: "1900", shop: "silver"}, wugushe: {cost: "1900", shop: "silver"}, kuileima: {cost: "1900", shop: "silver"}, yufengma: {cost: "1900", shop: "silver"}, fenjima: {cost: "1900", shop: "silver"}, guiyuanma: {cost: "1900", shop: "silver"}, yanhuangma: {cost: "1900", shop: "silver"}, yinhema: {cost: "1900", shop: "silver"}, xiandima: {cost: "1900", shop: "silver"}, xingqiongma: {cost: "1900", shop: "silver"}, yanyantu_1: {cost: "225", shop: "gold"}, yanyantu_2: {cost: "228", shop: "gold"}, wugushe_1: {cost: "225", shop: "gold"}, wugushe_2: {cost: "228", shop: "gold"}, kuileima_1: {cost: "225", shop: "gold"}, kuileima_2: {cost: "228", shop: "gold"}, yufengma_1: {cost: "225", shop: "gold"}, yufengma_2: {cost: "228", shop: "gold"}, fenjima_1: {cost: "225", shop: "gold"}, fenjima_2: {cost: "228", shop: "gold"}, guiyuanma_1: {cost: "225", shop: "gold"}, guiyuanma_2: {cost: "228", shop: "gold"}, yanhuangma_1: {cost: "225", shop: "gold"}, yanhuangma_2: {cost: "228", shop: "gold"}, yinhema_1: {cost: "225", shop: "gold"}, yinhema_2: {cost: "228", shop: "gold"}, xiandima_1: {cost: "225", shop: "gold"}, xiandima_2: {cost: "228", shop: "gold"}, xingqiongma_1: {cost: "225", shop: "gold"}, xingqiongma_2: {cost: "228", shop: "gold"},
-        wuxingshe: {cost: "1500", shop: "silver"}
+        wuxingshe: {cost: "1500", shop: "silver"},
+        // 2026-11-13 用户口径：三张新卡本体上跨服白银页
+        jingangma: {cost: "3000", shop: "silver"},
+        sheshejiu: {cost: "2500", shop: "silver"},
+        zhuanlonghu: {cost: "2300", shop: "silver"}
     };
 
     // 新生肖 / 泡椒春笋仅在跨服商店兑换，三个形态的价格取自 _cross_server_prices（没写自己价目的回落战旗马那一档）。

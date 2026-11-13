@@ -13,6 +13,8 @@
     {"name":"honeytrap","path":"folders/精灵/mod/Cards/Track/honeytrap.yy",},
     {"name":"huojianzhu","path":"folders/精灵/mod/Cards/Track/huojianzhu.yy",},
     {"name":"fangkongmiao","path":"folders/精灵/mod/Cards/Track/fangkongmiao.yy",},
+    {"name":"snowrabbit","path":"folders/精灵/mod/Cards/Track/snowrabbit.yy",},
+    {"name":"tanhuanghu","path":"folders/精灵/mod/Cards/Track/tanhuanghu.yy",},
   ],
   "listItems":[],
 }

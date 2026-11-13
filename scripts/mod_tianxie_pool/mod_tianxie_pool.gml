@@ -184,7 +184,7 @@ function tx_pool_data()
                 { nm: "祝融神使", o: obj_zhurong_bullet, dx: 20, dy: -105, spd: 8, a: true, shape: 3, wt: 30 },   // 满转落点 7 行 × 5 列灼烧
             ] },
             { name: "类海星类", cards: [
-                { nm: "里格神使", o: obj_rig_bullet, dx: 60, dy: -40, spd: 8, n: 5, sp: "ang", mix: [obj_rig_bullet, obj_rig_bullet_oblique, obj_rig_bullet_oblique, obj_rig_bullet_oblique, obj_rig_bullet_oblique], ang: [0, 45, -45, 22.5, -22.5], wt: 50 },   // 1 直射 + 4 斜射
+                { nm: "里格神使", o: obj_rig_bullet, spr: spr_rig_bullet_3, shape: 3, dx: 60, dy: -40, spd: 8, n: 5, sp: "ang", mix: [obj_rig_bullet, obj_rig_bullet_oblique, obj_rig_bullet_oblique, obj_rig_bullet_oblique, obj_rig_bullet_oblique], ang: [0, 45, -45, 22.5, -22.5], wt: 50 },   // 1 直射 + 4 斜射（终转贴图 spr_rig_bullet_3）
             ] },
             { name: "纯对空类", cards: [
                 { nm: "赫丘利神使", o: obj_power_god_bullet_1, dx: 40, dy: -80, spd: 8, n: 4, per: 1, gap: 10, sp: "none", wt: 10 },

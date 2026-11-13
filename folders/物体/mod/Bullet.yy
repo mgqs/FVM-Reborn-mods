@@ -14,6 +14,11 @@
     {"name":"obj_shiliu_bullet","path":"objects/obj_shiliu_bullet/obj_shiliu_bullet.yy",},
     {"name":"obj_yuansushe_bullet","path":"objects/obj_yuansushe_bullet/obj_yuansushe_bullet.yy",},
     {"name":"obj_galaxy_horse_bullet","path":"objects/obj_galaxy_horse_bullet/obj_galaxy_horse_bullet.yy",},
+    {"name":"obj_jingangma_bullet","path":"objects/obj_jingangma_bullet/obj_jingangma_bullet.yy",},
+    {"name":"obj_qiedanlong_bullet","path":"objects/obj_qiedanlong_bullet/obj_qiedanlong_bullet.yy",},
+    {"name":"obj_qishui_bullet","path":"objects/obj_qishui_bullet/obj_qishui_bullet.yy",},
+    {"name":"obj_snowrabbit_bullet","path":"objects/obj_snowrabbit_bullet/obj_snowrabbit_bullet.yy",},
+    {"name":"obj_tanhuanghu_bullet","path":"objects/obj_tanhuanghu_bullet/obj_tanhuanghu_bullet.yy",},
     {"name":"obj_mianbao_bullet","path":"objects/obj_mianbao_bullet/obj_mianbao_bullet.yy",},
     {"name":"obj_aladdin_lamp_bullet","path":"objects/obj_aladdin_lamp_bullet/obj_aladdin_lamp_bullet.yy",},
     {"name":"obj_athena_bullet","path":"objects/obj_athena_bullet/obj_athena_bullet.yy",},
@@ -98,5 +103,6 @@
     {"name":"obj_honeytrap_bee","path":"objects/obj_honeytrap_bee/obj_honeytrap_bee.yy",},
     {"name":"obj_huanyingshe_bullet","path":"objects/obj_huanyingshe_bullet/obj_huanyingshe_bullet.yy",},
     {"name":"obj_tianxie_alt","path":"objects/obj_tianxie_alt/obj_tianxie_alt.yy",},
+    {"name":"obj_jingangma_hit","path":"objects/obj_jingangma_hit/obj_jingangma_hit.yy",},
   ],
 }

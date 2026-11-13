@@ -6,7 +6,8 @@ event_inherited();
 // ── 二转：放下来就一起占 3 格（2026-11-08 用户口径）──
 //   「从变 3 个变成放 3 个」：本格 + 同列上一格 + 同列下一格各放一只百变蛇，
 //   之后玩家种下一张卡时**每只各变 1 张**（不是一只变 3 张）。
-//   上下格被占 → baibianshe_free_cell 由近到远找最近可放格；顶/底没有那一行就不补（只放 2 只）。
+//   上下格被占 / 顶底没有那一行 → 行号 clamp 到最边行后，由 baibianshe_free_cell 由近到远找最近可放格，
+//   只有周围半径 2 格内实在没地方才放弃那一只（2026-11-12 用户口径，不再「只放 2 只」）。
 //   等自己被 card_created 登记进网格后再动手（否则 grid_col / grid_row 还是初始值）。
 if (shape == 2 && !tb_siblings_done)
 {
@@ -15,15 +16,22 @@ if (shape == 2 && !tb_siblings_done)
     {
         tb_siblings_done = true;
 
-        var _rows = [grid_row - 1, grid_row + 1];
-        for (var _si = 0; _si < array_length(_rows); _si++)
+        // 2026-11-12 修（用户口径，按九宫格标数看，5 = 本格）：
+        //      1 2 3
+        //      4 5 6
+        //      7 8 9
+        //   ① 先占 2 / 8（两只都在 = 竖排）；
+        //   ② 某一侧被挡 → 替补落在**被挡那一侧同一行的左右**（2 挡 → 1/3，8 挡 → 7/9）；
+        //   ③ 2 和 8 都被挡 → 横着放（4/6）；
+        //   ④ 3×3 九个格都满 → 才用远距离兜底。
+        //   排布算法只有一份：scripts/baibianshe_preview_cell → baibianshe_layout_cells（预览同源）。
+        var _used = {};
+        _used[$ string(grid_col) + "_" + string(grid_row)] = true;
+
+        var _cells = baibianshe_layout_cells(grid_col, grid_row, _used);
+        for (var _ci = 0; _ci < array_length(_cells); _ci++)
         {
-            var _rr = _rows[_si];
-            if (_rr < 0 || _rr >= global.grid_rows) continue;
-
-            var _cell = baibianshe_free_cell(grid_col, _rr);
-            if (array_length(_cell) == 0) continue;
-
+            var _cell = _cells[_ci];
             var _w = get_world_position_from_grid(_cell[0], _cell[1]);
             var _sib = external_mod_spawn(_w.x, _w.y, depth, "baibianshe", shape, current_level,
                                           variable_instance_exists(id, "skill") ? skill : 0);

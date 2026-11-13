@@ -74,7 +74,17 @@ if (has_enemy) {
     //   2 转（2026-11-06 用户口径）：动画截断到 18 帧、只在 index 15（编辑器第 16 帧）打**一次**，
     //     但那一次里**错帧连发 2 发** —— 第一轮当帧出，第二轮隔 burst_gap 帧再调一次 event_user(1)
     var _fire_frame = (shape >= 2) ? 15 : 21;
-    if (state == CARD_STATE.ATTACK && !fired_this_attack && image_index >= _fire_frame) {
+    // 🔴 2026-11-12 修「0·1 转攻速过快时整轮不出子弹」：
+    //   出弹死等 image_index 到发射帧，但从攻击段首帧 11 走到 21 要 (21-11)×5 = 50 帧；
+    //   cycle 被攻速压到 50 以下（8 技能 / 神速契约这类 ×2 词条：78 → 39）时，
+    //   窗口里根本走不到那一帧 → 一次都不出弹（旧版攻速到不了这么快，所以以前正常）。
+    //   兜底：只在「窗口内走不到发射帧」时，改在窗口最后一帧强制出弹；走得到时行为完全不变。
+    var _need_t = (_fire_frame - (idle_anim + 1)) * current_flash_speed;   // 走到发射帧需要的帧数
+    var _seg0   = max(0, cycle - attack_anim * current_flash_speed + 1);   // 攻击段首帧对应的 attack_timer
+    var _avail  = cycle - _seg0 + 1;                                       // 窗口内可用帧数
+    if (state == CARD_STATE.ATTACK && !fired_this_attack
+        && (image_index >= _fire_frame
+            || (_need_t > _avail && attack_timer >= cycle))) {
         fired_this_attack = true;
         shots_fired++;
         event_user(1);

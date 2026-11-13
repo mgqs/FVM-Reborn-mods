@@ -480,6 +480,15 @@ tx_spawn_at = function(_card, _si)
                 _b.move_x = lengthdir_x(_v, _ang);
                 _b.move_y = lengthdir_y(_v, _ang);
             }
+            // 里格那种「Step 是 x += move_speed_x; y += move_speed_y」的弹体：
+            //   它没有 move_speed / move_x / move_y，上面两个分支都写不到它 → 速度恒 0 → 卡在原地。
+            //   这里按角度拆成分量（8@45 = 5.657, 8@22.5 = 7.391/3.062，与原卡 obj_rig 的硬写值一致）
+            if (variable_instance_exists(_b, "move_speed_x"))
+            {
+                var _vx = is_undefined(_angs) ? 8 : (variable_struct_exists(_card, "spd") ? _card.spd : 8);
+                _b.move_speed_x = lengthdir_x(_vx, _ang);
+                if (variable_instance_exists(_b, "move_speed_y")) _b.move_speed_y = lengthdir_y(_vx, _ang);
+            }
             _b.image_angle = _ang;
         }
 

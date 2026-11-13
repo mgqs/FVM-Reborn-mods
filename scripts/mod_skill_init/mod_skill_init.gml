@@ -155,6 +155,14 @@ function mod_skill_init()
     register_card_skill("honeytrap", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("huanyingshe", "cycle", [138, 135, 132, 129, 126, 123, 117, 111, 102]);
     register_card_skill("tianxie", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
-    // 石榴爆爆冰：数据表「技能训练 = 冷却速度」，基础 3300 tick，9 级训练逐级压到 1800
+    register_card_skill("jingangma", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 48]);
+    register_card_skill("qiedanlong", "cycle", [132, 129, 126, 123, 120, 117, 114, 111, 105]);
+    register_card_skill("qishui", "cycle", [120, 117, 114, 111, 108, 102, 96, 90, 78]);
+    register_card_skill("sheshejiu", "升降持续", [45, 48, 51, 54, 57, 60, 65, 70, 80]);
+    register_card_skill("shiguangji", "前摇", [2.7, 2.5, 2.3, 2.1, 1.9, 1.7, 1.5, 1.3, 1.1]);
+    register_card_skill("snowrabbit", "cycle", [330, 318, 306, 294, 282, 270, 258, 240, 210]);
+    register_card_skill("tanhuanghu", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
+    register_card_skill("yuanqiniu", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
+    register_card_skill("zhuanlonghu", "前摇", [2.3, 2.1, 1.9, 1.7, 1.5, 1.3, 1.1, 0.9, 0.7]);
     register_card_skill("shiliu_baobao_bing", "cooldown", [3300, 3120, 2940, 2760, 2580, 2400, 2100, 1800, 1500]);
 }

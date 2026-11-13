@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[
     {"name":"doumaobang","path":"folders/精灵/mod/Cards/Melee/doumaobang.yy",},
+    {"name":"jingangma","path":"folders/精灵/mod/Cards/Melee/jingangma.yy",},
+    {"name":"yuanqiniu","path":"folders/精灵/mod/Cards/Melee/yuanqiniu.yy",},
   ],
   "listItems":[],
 }

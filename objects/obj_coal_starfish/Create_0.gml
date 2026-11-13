@@ -38,4 +38,4 @@ shots_fired = 0;
 // 二转「错帧连发」剩余轮数与计时
 burst_left  = 0
 burst_timer = 0
-burst_gap   = 6
+burst_gap   = 8        // 2026-11-13 用户口径：6 → 8 帧（64px），两批之间拉开一点，不再首尾搭接

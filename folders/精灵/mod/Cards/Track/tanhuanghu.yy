@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"tanhuanghu",
+  "folderPath":"folders/精灵/mod/Cards/Track/tanhuanghu.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"tanhuanghu",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"497306db-6636-4d13-8df4-88c93992f5e6","path":"sprites/spr_tanhuanghu/spr_tanhuanghu.yy",},
+    {"name":"7fcc6867-8efb-42ac-a146-613c49064be2","path":"sprites/spr_tanhuanghu_1/spr_tanhuanghu_1.yy",},
+    {"name":"1037d1c9-92ce-4d3f-aad8-8ad6fdcf6346","path":"sprites/spr_tanhuanghu_2/spr_tanhuanghu_2.yy",},
+    {"name":"38cd7d69-c409-4897-b167-7ef864c4129c","path":"sprites/spr_tanhuanghu_bullet/spr_tanhuanghu_bullet.yy",},
+    {"name":"bd71aed0-7667-4379-b420-924ede810cbe","path":"sprites/spr_tanhuanghu_bullet_1/spr_tanhuanghu_bullet_1.yy",},
+    {"name":"a56b2f67-d5b8-493b-8d1b-4975082f21bc","path":"sprites/spr_tanhuanghu_bullet_2/spr_tanhuanghu_bullet_2.yy",}
+],
+}

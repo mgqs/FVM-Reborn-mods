@@ -10,7 +10,14 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(c_black);
 draw_set_font(font_number);
-draw_text_ext_transformed(x-12, y+44, string(current_cost),25,1800,1,1,0);
+// 2026-11-13：能量不守恒的卡（场上每多一张 +50）在能耗后面带 +
+//   plus_card_map 的 N = 从几转开始「能量守恒」，cshape < N 才还会涨 → 才显示
+var _cost_txt = string(current_cost);
+if (ds_exists(global.plus_card_map, ds_type_map)){
+    var _plus_info = ds_map_find_value(global.plus_card_map, card_id);
+    if (_plus_info != undefined && cshape < _plus_info[1]) _cost_txt += "+";
+}
+draw_text_ext_transformed(x-12, y+44, _cost_txt,25,1800,1,1,0);
 draw_sprite_ext(spr_flame, 0, x-24, y+43, 0.3, 0.3, 0, c_white, 1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);

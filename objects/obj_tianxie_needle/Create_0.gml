@@ -58,6 +58,7 @@ fx_hit_cell = function(_col)
         if (!can_target_on("pierce", _e.target_type)) continue;
 
         ds_list_add(fx_hit, _e.id);
+        if (ds_list_size(fx_hit) == 1) audio_play_sound(snd_hit1, 0, 0);   // 2026-11-13 补：这组针第一次命中才响
         with (_e)
         {
             damage_amount        = other.fx_dmg;

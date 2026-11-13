@@ -39,6 +39,7 @@ if (phase == 1){
         ticks   = 0;
         tick_timer = 0;
         image_index = 18;
+        audio_play_sound(snd_bullet_burnt, 0, 0);   // 2026-11-13 补：落地起火音（只响这一次，后续每跳不重复）
     }
     exit;
 }

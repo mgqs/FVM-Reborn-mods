@@ -706,7 +706,15 @@ function mod_shop_init()
     register_goods("guiyuanma", { type: "card", cost: "80000", unlock_item_id: "guiyuanma", description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", display_name: "归元马" });
     register_goods("xingqiongma", { type: "card", cost: "85000", unlock_item_id: "xingqiongma", description: "星穹马：复活5*5范围内1张死亡的卡片", display_name: "星穹马" });
     register_goods("tianxie", { type: "card", cost: "100000", unlock_item_id: "tianxie", description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）", display_name: "天蝎座精灵" });
-    // 2026-11-13 新卡：元素蛇（表内「商城价格，魔塔层数和价格可以类似御风马」）/ 银河马（火箭猪高 1~2 层）
     register_goods("yuansushe", { type: "card", cost: "95000", unlock_item_id: "yuansushe", description: "元素蛇：向本行前方发射1发带不同效果的穿透子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击）", display_name: "元素蛇" });
     register_goods("galaxy_horse", { type: "card", cost: "115000", unlock_item_id: "galaxy_horse", description: "银河马：召唤1颗陨石对本行老鼠进行海陆空全方位打击，击杀灰烬", display_name: "银河马" });
+    register_goods("jingangma", { type: "card", cost: "90000", unlock_item_id: "jingangma", description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠", display_name: "金刚马" });
+    register_goods("qiedanlong", { type: "card", cost: "80000", unlock_item_id: "qiedanlong", description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸", display_name: "窃蛋龙" });
+    register_goods("qishui", { type: "card", cost: "80000", unlock_item_id: "qishui", description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只", display_name: "弹珠汽水" });
+    register_goods("sheshejiu", { type: "card", cost: "120000", unlock_item_id: "sheshejiu", description: "蛇蛇酒：为3*3范围内卡片随机升星或者降星，持续一段时间后恢复", display_name: "蛇蛇酒" });
+    register_goods("shiguangji", { type: "card", cost: "60000", unlock_item_id: "shiguangji", description: "13周年时光机：随机为本格卡片升星或者降星", display_name: "13周年时光机" });
+    register_goods("snowrabbit", { type: "card", cost: "100000", unlock_item_id: "snowrabbit", description: "雪球兔：召唤雪球同时攻击全屏最多5只老鼠", display_name: "雪球兔" });
+    register_goods("tanhuanghu", { type: "card", cost: "150000", unlock_item_id: "tanhuanghu", description: "弹簧虎：连续发射2发带溅射的子弹攻击本行，优先空中，子弹可穿过岩浆和障碍", display_name: "弹簧虎" });
+    register_goods("yuanqiniu", { type: "card", cost: "40000", unlock_item_id: "yuanqiniu", description: "元气牛：连续散发全方位伤害气泡波，场上每多1张同类卡伤害提升1次", display_name: "元气牛" });
+    register_goods("zhuanlonghu", { type: "card", cost: "105000", unlock_item_id: "zhuanlonghu", description: "转龙壶：缩减3*3范围内正在冷却的美食的冷却时间30%", display_name: "转龙壶" });
 }

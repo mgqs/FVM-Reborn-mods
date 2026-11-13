@@ -253,8 +253,17 @@ function card_category_data()
         ["honeytrap", "追踪类", "集火追踪", ""],
         ["huanyingshe", "投掷类", "多线投手", ""],
         ["tianxie", "直射类", "直线穿透类", ""],
-        ["shiliu_baobao_bing", "灰烬类", "瞬发类", "爆炸类"]
-    ];
+        ["shiliu_baobao_bing", "灰烬类", "瞬发类", "爆炸类"],
+        ["jingangma", "喷壶类", "旋转喷壶类", ""],
+        ["qiedanlong", "投掷类", "多线投手", ""],
+        ["qishui", "直射类", "特殊直线类", ""],
+        ["sheshejiu", "辅助类", "变星类", ""],
+        ["shiguangji", "辅助类", "变星类", ""],
+        ["snowrabbit", "追踪类", "散点追踪", ""],
+        ["tanhuanghu", "专业防空类", "陆空兼备类", ""],
+        ["yuanqiniu", "喷壶类", "旋转喷壶类", ""],
+        ["zhuanlonghu", "辅助类", "冷却类", ""],
+];
 }
 
 /// @func card_category_index_add(_name, _id)
@@ -415,6 +424,10 @@ function mod_apply_category_buff_map()
     //   次类型 tracker_advanced = 宴飨女神（散点追踪整体那一档），两者取较高倍率
     // ⚠️ 必须写在上面「散点追踪」循环之后：那条循环会把 cold_drew 覆盖成 tracker_advanced，
     //    导致莓果点心的格子写了却没人读（2026-10-22 修复）
+    // 2026-11-13 用户口径：雪球兔和冷萃机一致，也要吃莓果点心 / 香料虎（tracker 那一档），
+    //   主类型仍是散点追踪（宴飨女神），副类型补 tracker，结算时取较高倍率
+    ds_map_set(global.plant_buff_map_2, "snowrabbit", "tracker");
+
     ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
     ds_map_set(global.plant_buff_map_2, "cold_drew", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");
@@ -424,6 +437,10 @@ function mod_apply_category_buff_map()
     ds_map_set(global.plant_buff_map, "hufa_god", "sprayer");
     ds_map_set(global.plant_buff_map, "gaia", "thrower");
     ds_map_set(global.plant_buff_map_2, "gaia", "tracker");
+
+    // 2026-11-13 用户口径：汽水（直射类·特殊直线）吃「喷壶档」增幅 —— 魔杖蛇（含本行整行）、榨汁机。
+    //   海洋女神那边单独按「附加类 5×1」算，见 ocean_god_buff.gml 的 mod_get_ocean_buff_type。
+    ds_map_set(global.plant_buff_map, "qishui", "sprayer");
 
     show_debug_message("增幅分组按分类重建：" + string(_total) + " 条");
     return _total;

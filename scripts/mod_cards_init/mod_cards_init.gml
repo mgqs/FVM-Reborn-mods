@@ -4801,7 +4801,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     },
     {
         name: "金鱼逗猫棒",
@@ -4812,7 +4813,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     },
     {
         name: "鼠鼠逗猫棒",
@@ -4823,7 +4825,8 @@ mod_register_plant_lite("xuanfengniu", [
         atk: array_create(17, 900),
         range: array_create(17, 1),
         cooldown: [3600, 3480, 3360, 3240, 3120, 3000, 2880, 2700, 2520, 2340, 2160, 1920, 1680, 1440, 1200, 900, 600],
-        cycle: array_create(17, 0)
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 4.5]])
     }
     ], false);
 
@@ -4874,7 +4877,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.3]])
+        custom: info_custom([["溅射比例", 0.3], ["子弹数", 3]])
     },
     {
         name: "羽翼幻影蛇",
@@ -4886,7 +4889,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.45]])
+        custom: info_custom([["溅射比例", 0.45], ["子弹数", 3]])
     },
     {
         name: "金盔幻影蛇",
@@ -4898,7 +4901,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 3),
         cooldown: array_create(17, 420),
         cycle: array_create(17, 138),
-        custom: info_custom([["溅射比例", 0.45]])
+        custom: info_custom([["溅射比例", 0.45], ["子弹数", 6]])
     }
     ], false);
 
@@ -5075,5 +5078,354 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(19, 60)
     }
     ]);
+
+
+    mod_register_plant_lite("jingangma", [
+    {
+        name: "金刚马",
+        shape: 0,
+        description: "金刚马：海陆空全方位攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 285),
+        atk: [80, 100, 120, 140, 160, 200, 240, 280, 340, 400, 460, 520, 640, 800, 960, 1120, 1330],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 1]])
+    },
+    {
+        name: "魔铃金刚马",
+        shape: 1,
+        description: "魔铃金刚马：海陆空全方位攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 285),
+        atk: [160, 200, 240, 280, 320, 400, 480, 560, 680, 800, 920, 1040, 1280, 1600, 1920, 2240, 2660],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 2]])
+    },
+    {
+        name: "梵音金刚马",
+        shape: 2,
+        description: "梵音金刚马：海陆空全方位攻击鼠军",
+        hp: array_create(17, 50),
+        cost: array_create(17, 285),
+        atk: [240, 300, 360, 420, 480, 600, 720, 840, 1020, 1200, 1380, 1560, 1920, 2400, 2880, 3360, 3990],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 3]])
+    }
+    ], false);
+
+    mod_register_plant_lite("qiedanlong", [
+    {
+        name: "窃蛋龙",
+        shape: 0,
+        description: "窃蛋龙：向前方3行投掷龙蛋",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132),
+        custom: info_custom([["子弹数", 3]])
+    },
+    {
+        name: "蓝角窃蛋龙",
+        shape: 1,
+        description: "蓝角窃蛋龙：向前方3行投掷龙蛋",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132),
+        custom: info_custom([["子弹数", 4]])
+    },
+    {
+        name: "钢爪窃蛋龙",
+        shape: 2,
+        description: "钢爪窃蛋龙：向前方3行投掷龙蛋",
+        hp: array_create(17, 50),
+        cost: array_create(17, 350),
+        atk: [50, 60, 70, 80, 100, 120, 140, 170, 200, 230, 260, 290, 350, 410, 510, 610, 720],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132),
+        custom: info_custom([["子弹数", 6]])
+    }
+    ], false);
+
+    mod_register_plant_lite("qishui", [
+    {
+        name: "弹珠汽水",
+        shape: 0,
+        description: "弹珠汽水：向前喷射可弹射攻击的弹珠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120),
+        custom: info_custom([["子弹数", 1]])
+    },
+    {
+        name: "香橙弹珠汽水",
+        shape: 1,
+        description: "香橙弹珠汽水：向前喷射可弹射攻击的弹珠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120),
+        custom: info_custom([["子弹数", 2]])
+    },
+    {
+        name: "果味弹珠汽水",
+        shape: 2,
+        description: "果味弹珠汽水：向前喷射可弹射攻击的弹珠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 220),
+        atk: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 80, 120, 160, 200, 240, 280, 320],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 120),
+        custom: info_custom([["子弹数", 3]])
+    }
+    ], false);
+
+    mod_register_plant_lite("sheshejiu", [
+    {
+        name: "蛇蛇酒",
+        shape: 0,
+        description: "蛇蛇酒：一段时间内改变卡片星级",
+        hp: array_create(17, 50),
+        cost: array_create(17, 380),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
+    },
+    {
+        name: "仙露蛇蛇酒",
+        shape: 1,
+        description: "仙露蛇蛇酒：一段时间内改变卡片星级",
+        hp: array_create(17, 50),
+        cost: array_create(17, 380),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
+    },
+    {
+        name: "琼浆蛇蛇酒",
+        shape: 2,
+        description: "琼浆蛇蛇酒：一段时间内改变卡片星级",
+        hp: array_create(17, 50),
+        cost: array_create(17, 380),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
+    }
+    ], false);
+
+    mod_register_plant_lite("shiguangji", [
+    {
+        name: "13周年时光机",
+        shape: 0,
+        description: "13周年时光机：随机为格子内卡片升星或者降星",
+        hp: array_create(17, 50),
+        cost: array_create(17, 275),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
+    },
+    {
+        name: "超载时光机",
+        shape: 1,
+        description: "超载时光机：随机为格子内卡片升星或者降星",
+        hp: array_create(17, 50),
+        cost: array_create(17, 275),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
+    },
+    {
+        name: "未来时光机",
+        shape: 2,
+        description: "未来时光机：随机为格子内卡片升星或者降星",
+        hp: array_create(17, 50),
+        cost: array_create(17, 275),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3300, 3240, 3180, 3120, 3000, 2880, 2760, 2580, 2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 960],
+        cycle: array_create(17, 0),
+        custom: info_custom([["前摇", 2.7]])
+    }
+    ], false);
+
+    mod_register_plant_lite("snowrabbit", [
+    {
+        name: "雪球兔",
+        shape: 0,
+        description: "雪球兔：召唤雪球攻击全屏老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 330),
+        custom: info_custom([["攻击上限", 5]])
+    },
+    {
+        name: "见习雪球兔",
+        shape: 1,
+        description: "见习雪球兔：召唤雪球攻击全屏老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 330),
+        custom: info_custom([["攻击上限", 5]])
+    },
+    {
+        name: "导师雪球兔",
+        shape: 2,
+        description: "导师雪球兔：召唤雪球攻击全屏老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 280),
+        atk: [60, 75, 90, 105, 125, 145, 165, 195, 225, 265, 305, 345, 395, 495, 695, 895, 1195],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 900),
+        cycle: array_create(17, 330),
+        custom: info_custom([["攻击上限", 8]])
+    }
+    ], false);
+
+    mod_register_plant_lite("tanhuanghu", [
+    {
+        name: "弹簧虎",
+        shape: 0,
+        description: "弹簧虎：连续攻击本行敌人，优先伤害空中",
+        hp: array_create(17, 50),
+        cost: array_create(17, 195),
+        atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 2]])
+    },
+    {
+        name: "飞行弹簧虎",
+        shape: 1,
+        description: "飞行弹簧虎：连续攻击本行敌人，优先伤害空中",
+        hp: array_create(17, 50),
+        cost: array_create(17, 195),
+        atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 2]])
+    },
+    {
+        name: "机器弹簧虎",
+        shape: 2,
+        description: "机器弹簧虎：连续攻击本行敌人，优先伤害空中",
+        hp: array_create(17, 50),
+        cost: array_create(17, 195),
+        atk: [145, 155, 165, 175, 200, 225, 250, 280, 330, 380, 430, 480, 530, 580, 630, 680, 750],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 78),
+        custom: info_custom([["子弹数", 3]])
+    }
+    ], false);
+
+    mod_register_plant_lite("yuanqiniu", [
+    {
+        name: "元气牛",
+        shape: 0,
+        description: "元气牛：全方位攻击范围内的老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 225),
+        atk: [50, 58, 66, 74, 82, 90, 98, 110, 130, 150, 190, 230, 270, 310, 350, 390, 450],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 1800),
+        cycle: array_create(17, 108)
+    },
+    {
+        name: "泡泡元气牛",
+        shape: 1,
+        description: "泡泡元气牛：全方位攻击范围内的老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 225),
+        atk: [50, 58, 66, 74, 82, 90, 98, 110, 130, 150, 190, 230, 270, 310, 350, 390, 450],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 1800),
+        cycle: array_create(17, 108)
+    },
+    {
+        name: "酷酷元气牛",
+        shape: 2,
+        description: "酷酷元气牛：全方位攻击范围内的老鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 225),
+        atk: [75, 87, 99, 111, 123, 135, 147, 165, 195, 225, 285, 345, 405, 465, 525, 585, 675],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 1800),
+        cycle: array_create(17, 108)
+    }
+    ], false);
+
+    mod_register_plant_lite("zhuanlonghu", [
+    {
+        name: "转龙壶",
+        shape: 0,
+        description: "转龙壶：缩减范围内卡片冷却时间",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["冷却缩减", 30], ["前摇", 2.3]])
+    },
+    {
+        name: "充能转龙壶",
+        shape: 1,
+        description: "充能转龙壶：缩减范围内卡片冷却时间",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
+    },
+    {
+        name: "巨星转龙壶",
+        shape: 2,
+        description: "巨星转龙壶：缩减范围内卡片冷却时间",
+        hp: array_create(17, 50),
+        cost: array_create(17, 200),
+        atk: array_create(17, 0),
+        range: array_create(17, 0),
+        cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
+        cycle: array_create(17, 0),
+        custom: info_custom([["冷却缩减", 50], ["前摇", 2.3]])
+    }
+    ], false);
 
 }

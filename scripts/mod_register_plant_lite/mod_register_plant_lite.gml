@@ -95,7 +95,10 @@ function mod_register_plant_lite(arg0, arg1, arg2 = true)
 // ═════════════════════════════════════════════════════════════════════════
 
 /// @func info_island_text_brace_names(raw)
-/// @desc 抽出文案里所有 `{…}` 的变量名（遇运算符截断、忽略各种空白），自检用
+/// @desc 抽出文案里所有 `{…}` 用到的**变量名**（自检用）
+///   2026-11-13 修：原来遇运算符就截断，只取第一个操作数 → `{2*攻击力}` 被当成变量名 "2"，
+///   自检报「取不到 {2}」。现在按运算符切分，**把所有操作数都收进来、纯数字跳过**，
+///   与 info_island_text_eval 的语法保持一致。
 function info_island_text_brace_names(_raw){
     var _out = [];
     if (!is_string(_raw)) return _out;
@@ -103,17 +106,29 @@ function info_island_text_brace_names(_raw){
     var _i = 1;
     while (_i <= _n){
         if (string_char_at(_raw, _i) != "{"){ _i++; continue; }
+
+        var _expr = "";
         var _j = _i + 1;
-        var _name = "";
         while (_j <= _n){
             var _c = string_char_at(_raw, _j);
             if (_c == "}") break;
-            if (_c == "+" || _c == "-" || _c == "*" || _c == "/") break;
-            if (_c != " " && _c != "　" && _c != "\n" && _c != "\r" && _c != "\t") _name += _c;
+            _expr += _c;
             _j++;
         }
-        if (_name != "") array_push(_out, _name);
         _i = _j + 1;
+
+        // 按 + - * / 切操作数
+        var _tok = "";
+        var _len = string_length(_expr);
+        for (var _k = 1; _k <= _len + 1; _k++){
+            var _ch = (_k <= _len) ? string_char_at(_expr, _k) : "+";
+            if (_ch == "+" || _ch == "-" || _ch == "*" || _ch == "/"){
+                if (_tok != "" && !info_island_text_is_number(_tok)) array_push(_out, _tok);
+                _tok = "";
+                continue;
+            }
+            if (_ch != " " && _ch != "　" && _ch != "\n" && _ch != "\r" && _ch != "\t") _tok += _ch;
+        }
     }
     return _out;
 }
@@ -143,14 +158,6 @@ function mod_custom_key_check(){
         var _sk = ds_map_keys_to_array(_shapes);
         if (array_length(_sk) == 0) continue;
 
-        // 这张卡的技能字段名（撞了就会被技能值盖掉）
-        var _skill_key = "";
-        if (ds_map_exists(global.skill_registry, _id)){
-            var _se = global.skill_registry[? _id];
-            if (is_array(_se) && array_length(_se) >= 1) _skill_key = string(_se[0]);
-        }
-
-        var _where = {};                 // key → 出现在哪些形态
         for (var _s = 0; _s < array_length(_sk); _s++){
             var _shape_s = _sk[_s];
             var _sd = _shapes[? _shape_s];
@@ -161,33 +168,17 @@ function mod_custom_key_check(){
                 var _key = _keys[_k];
                 var _val = variable_struct_get(_cs, _key);
 
-                if (!variable_struct_exists(_where, _key)) variable_struct_set(_where, _key, []);
-                array_push(variable_struct_get(_where, _key), _shape_s);
-
                 if (array_contains(_builtin, _key)){
                     show_debug_message(_tag + "✗ 撞内置字段 " + _id + " shape" + string(_shape_s) + " [" + _key + "]：ds_map_add 静默失败，这个值不会生效");
                     _bad++;
                 }
-                if (_skill_key != "" && _key == _skill_key){
-                    // 自定义值与技能字段同名 = 技能值覆盖自定义值，这是**支持的用法**
-                    //   （春笋 custom["准备时间"] 只是基础值，技能等级会覆盖它，情报岛要能取到）。
-                    //   2026-11-08 用户确认属预期 → 不再计入问题，只留一行提示。
-                    show_debug_message(_tag + "· 与技能同名 " + _id + " [" + _key + "]：技能值会覆盖自定义值（一般是有意的）");
-                }
+                // 2026-11-13 用户口径：以下两类不再报——它们都有兜底、不影响运行
+                //   ① 自定义 key 与技能字段同名：技能值按档位覆盖，属预期用法（春笋「准备时间」就是）
+                //   ② 某形态漏写某个 key：运行时会有跨形态兜底（info_island_text_vars 里补一遍）
                 if (!is_real(_val) && !is_array(_val)){
                     show_debug_message(_tag + "✗ 值类型 " + _id + " shape" + string(_shape_s) + " [" + _key + "]：只能写数字或按星级取值的数组");
                     _bad++;
                 }
-            }
-        }
-
-        // ③ 同卡形态漏写
-        var _wk = variable_struct_get_names(_where);
-        for (var _w = 0; _w < array_length(_wk); _w++){
-            var _arr = variable_struct_get(_where, _wk[_w]);
-            if (array_length(_arr) < array_length(_sk)){
-                show_debug_message(_tag + "! 形态不全 " + _id + " [" + _wk[_w] + "]：只在 shape " + string(_arr) + "，共 " + string(array_length(_sk)) + " 个形态（漏的形态会取到别的形态的值）");
-                _bad++;
             }
         }
     }
@@ -229,11 +220,12 @@ function mod_custom_key_check(){
                 for (var _c2 = 0; _c2 < array_length(_ck2); _c2++) variable_struct_set(_avail, _ck2[_c2], true);
             }
 
-            // 技能值派生出来的名字：情报岛把技能表里的 duration（帧）显示成「持续时间」（秒），
-            //   见 info_island_text_vars 的 duration → 持续时间。自检原先不认这个名字，
-            //   计时器 / 电鳗这种只写技能、没写 custom 的卡就会被误报「取不到」。2026-11-08
+            // 技能字段名：运行时 get_plant_data_with_skill 会把技能值并进数据表，
+            //   情报岛文案直接能用（蛇蛇酒「持续时间」、时光机/转龙壶「前摇」都是这条路）
             if (ds_map_exists(global.skill_registry, _cid)){
                 var _se3 = global.skill_registry[? _cid];
+                if (is_array(_se3) && array_length(_se3) >= 1) variable_struct_set(_avail, string(_se3[0]), true);
+                // 技能表里叫 duration 的，情报岛显示成「持续时间」（见 info_island_text_vars 的换算）
                 if (is_array(_se3) && array_length(_se3) >= 1 && string(_se3[0]) == "duration")
                     variable_struct_set(_avail, "持续时间", true);
             }
@@ -248,6 +240,6 @@ function mod_custom_key_check(){
     }
 
     if (_bad == 0) show_debug_message(_tag + "自检通过：自定义数值 / 文案变量全部正常");
-    else show_debug_message(_tag + "自检发现 " + string(_bad) + " 条问题（往上翻找 ✗ / ! 开头的行）");
+    else show_debug_message(_tag + "自检发现 " + string(_bad) + " 条问题（往上翻找 ✗ 开头的行）");
     return _bad;
 }
