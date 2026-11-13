@@ -30,8 +30,9 @@ sr_firing    = false;
 
 // ── 可调参数 ──
 sr_art_up     = 60;
-sr_lead       = 4;
-sr_fire_delay = 1;
+// 2026-11-13：出弹绑「攻击动画第 17 帧」——雪球这时候才砸下来，之后动画继续播到第 22 帧收尾
+//   （原来按 cycle 末尾 -5 帧出弹，等于动画放完才落球，全落在后摇里）
+sr_fire_index = 17;
 
 // ── 注册表 custom ──
 var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
@@ -54,3 +55,7 @@ sr_same_count = max(1, sr_same_count);
 sr_atk_mult   = 1 + sr_same_bonus * (sr_same_count - 1);
 // 上限走 custom["加成上限"]（1 转起 1.64 = 9 只）
 if (sr_atk_mult > sr_cap) sr_atk_mult = sr_cap;
+
+// 2026-11-13 用户口径：同类增伤直接抬「初始攻击力 base_atk」（再被增幅一起放大）
+sr_atk_base    = -1;          // 不含同类加成的基准（首帧 Step 取 base_atk）
+sr_atk_written = -1;          // 上一次写出去的 base_atk

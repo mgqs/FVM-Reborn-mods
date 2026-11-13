@@ -8,7 +8,7 @@ _b.shape          = shape;
 _b.row            = grid_row;
 _b.hittable_types = get_hittable_enemy_types(target_type);
 _b.bounce_times   = qs_bounce_times;
-_b.chain_left     = qs_bounce_times - 1;   // 直线命中算 1 只，剩下继续弹
+_b.chain_left     = qs_bounce_times;       // 直射 + 弹射 3 次 = 最多打 4 只
 _b.bounce_mult    = qs_bounce_mult;
 _b.bounce_cells   = qs_bounce_cells;
 _b.slow_frames    = qs_slow_frames;

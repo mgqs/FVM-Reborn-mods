@@ -27,6 +27,10 @@ splash_cells = 1;
 
 thrower_y = 0;
 land_y    = 0;
+land_target = noone;      // 发射时锁定的那只（半路没撞到时，落点也按它的身体中心炸）
+
+// 爆炸图自己的中心在原点上方多少（实测 0 转 18 / 1 转 20 / 2 转 23 px，×1.4 缩放 = 25 / 28 / 32）
+//   ⚠ shape 是建完实例之后由 Other_11 赋的，所以这个值在 Step 里按 shape 现算，不在这里定。
 
 image_speed = 0;
 image_index = 0;

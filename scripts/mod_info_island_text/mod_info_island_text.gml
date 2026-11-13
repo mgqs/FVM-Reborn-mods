@@ -106,6 +106,11 @@ function info_island_text_vars(_cid, _shape, _level, _skill){
 function info_island_text_is_number(_s){
     if (!is_string(_s) || _s == "") return false;
     var _len = string_length(_s);
+    // 2026-11-13：支持「35%」这种百分比写法（末尾一个 %），换算成 0.35
+    if (string_char_at(_s, _len) == "%"){
+        _len--;
+        if (_len <= 0) return false;
+    }
     var _dot = 0;
     for (var _d = 1; _d <= _len; _d++){
         var _dc = string_char_at(_s, _d);
@@ -123,7 +128,12 @@ function info_island_text_is_number(_s){
 /// @desc 取一个操作数：纯数字直接转 real，否则当变量名查表（必须数值型）。取不到返回 undefined
 function info_island_text_operand(_tok, _v){
     if (!is_string(_tok) || _tok == "") return undefined;
-    if (info_island_text_is_number(_tok)) return real(_tok);
+    if (info_island_text_is_number(_tok)){
+        // 2026-11-13：`35%` → 0.35，方便直接写 {35%*攻击力}
+        if (string_char_at(_tok, string_length(_tok)) == "%")
+            return real(string_copy(_tok, 1, string_length(_tok) - 1)) / 100;
+        return real(_tok);
+    }
     if (!ds_map_exists(_v, _tok)) return undefined;
     var _raw = _v[? _tok];
     if (!is_real(_raw)) return undefined;              // 形态名这类字符串不参与运算

@@ -16,44 +16,40 @@ if (!ss_init_done){
     }
 }
 
-// ── ① 待机帧（只在还没开始倒酒时，在 [from..to] 里循环）──
-if (!ss_pouring){
-    ss_anim_tick++;
-    if (ss_anim_tick >= flash_speed){
-        ss_anim_tick = 0;
-        ss_anim_i++;
-        if (ss_anim_i > ss_anim_to) ss_anim_i = ss_anim_from;
-    }
-    image_index = ss_anim_i;      // 每帧都写：父对象也在推帧，只在自己这一步写会被它顶回去
+// ── 统一时间轴（2026-11-13 重写）：前摇 66 帧 → 倒酒 11~18 帧 → 消失 ──
+//   旧写法靠 ss_pouring / ss_pour_i 多个状态位互相配合，一旦某帧没推进就永远停在那一帧；
+//   现在所有帧号都由 ss_t 算出来，只要 Step 在跑就一定往前走。
+ss_t++;
+
+if (!ss_cast_done && ss_t >= ss_cast_delay){
+    ss_cast_done  = true;
+    ss_rest_timer = 0;
+    ss_pouring    = true;
+    event_user(1);                 // 效果在施法那一刻生效
 }
 
-// ── ② 前摇 → 施法（生效）+ 开始播倒酒段 ──
 if (!ss_cast_done){
-    ss_timer++;
-    if (ss_timer >= ss_cast_delay){
-        ss_cast_done  = true;
-        ss_rest_timer = 0;
-        event_user(1);            // 效果立刻生效
-        ss_pouring    = true;     // 倒酒演出：11~18 只播一次（不是循环）
-        ss_pour_i     = ss_pour_from;
-        ss_pour_tick  = 0;
-    }
+    // 前摇：把 0~10 这 11 帧**均摊**到整个前摇长度上（66/11 = 6 帧一张）
+    //   2026-11-13：原来按 flash_speed=5 算，55 帧就走完 11 帧，剩下 11 帧死停在最后一帧
+    //   → 看着就是「倒酒前卡一下」。均摊后最后一帧正好在前摇结束那一刻，无停顿。
+    var _idle_frames = max(1, ss_anim_to - ss_anim_from + 1);
+    var _idle_step   = max(1, ceil(ss_cast_delay / _idle_frames));
+    image_index = min(ss_anim_to, ss_anim_from + floor(ss_t / _idle_step));
     exit;
 }
 
-// ── ③ 倒酒段播完 → 移出网格 + 隐藏（一次性卡），实例留到复原再销毁 ──
 if (!ss_gone){
-    ss_pour_tick++;
-    if (ss_pour_tick >= flash_speed){
-        ss_pour_tick = 0;
-        ss_pour_i++;
-    }
-    image_index = min(ss_pour_i, ss_pour_to);
-    if (ss_pour_i > ss_pour_to){
+    var _pi = ss_pour_from + floor((ss_t - ss_cast_delay) / flash_speed);
+    if (_pi > ss_pour_to){
         ss_gone = true;
-        card_destroyed(id);       // 只摘网格引用，不触发回收/死亡效果（同百变蛇）
+        card_destroyed(id);        // 只摘网格引用，不触发回收/死亡效果（同百变蛇）
+        // 一次性卡消失后星级图标还留在场上 —— 它是父对象挂的 banding_star_obj，visible=false 带不走
+        if (instance_exists(banding_star_obj)) instance_destroy(banding_star_obj);
+        banding_star_obj = noone;
         visible = false;
+        exit;
     }
+    image_index = _pi;
     exit;
 }
 

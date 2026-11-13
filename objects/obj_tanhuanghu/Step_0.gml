@@ -17,7 +17,6 @@ if (!th_attacking){
             other.th_target_t = "air_only";
             other.th_attacking = true;
             other.attack_timer = 0;
-            other.state = CARD_STATE.ATTACK;
             _found = true;
         }
     }
@@ -28,7 +27,6 @@ if (!th_attacking){
                 && can_target_on(other.target_type, target_type)){
                 other.th_attacking = true;
                 other.attack_timer = 0;
-                other.state = CARD_STATE.ATTACK;
                 _found = true;
             }
         }
@@ -45,8 +43,17 @@ attack_timer++;
 
 // 连发必须排在周期内：首发提前到「cycle 前 (fire_delay + 所有错帧)」，
 //   攻击段长度用 cycle（原来用 attack_anim*_cfs = 50 帧，比 cycle 78 短 → 间隔错、第 2 发被截断）
-var _burst_span = (th_bullet_count - 1) * th_burst_gap;
-var _fire_now   = cycle - th_fire_delay * _cfs - _burst_span;
+// 2026-11-13 用户口径：弹簧虎第 14~26 帧是攻击段、第 17 帧出弹；
+//   原来按「cycle 末尾提前几帧」算发射点，动画早跑完好几轮 → 子弹一直出但动画没跟上。
+//   现在整段攻击动画塞在 cycle 末尾，出弹绑在动画第 17 帧（index 16）。
+var _atk_span = attack_anim * _cfs;
+var _anim_t0  = max(0, cycle - _atk_span);
+var _fire_now = _anim_t0 + (16 - (idle_anim + 1)) * _cfs;
+
+if (attack_timer >= _anim_t0 && state != CARD_STATE.ATTACK){
+    state       = CARD_STATE.ATTACK;
+    image_index = idle_anim + 1;
+}
 
 if (attack_timer == _fire_now){
     th_burst_left  = th_bullet_count;

@@ -47,6 +47,7 @@ attack_anim = 0;
 // ── 前摇 1.1 秒（xlsx）──
 ss_cast_delay = 66;
 ss_timer      = 0;
+ss_t          = 0;            // 2026-11-13：统一时间轴（前摇 → 倒酒 → 消散都按它算，避免状态机卡死）
 ss_cast_done  = false;
 ss_rest_timer = 0;
 

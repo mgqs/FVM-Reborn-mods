@@ -14,6 +14,18 @@ if (shape == 0)      sprite_index = spr_zhuanlonghu;
 else if (shape == 1) sprite_index = spr_zhuanlonghu_1;
 else                 sprite_index = spr_zhuanlonghu_2;
 
+// ── 整卡抬高（2026-11-13 用户口径）──
+//   这张卡的 3×3 / 5×5 范围框是**画在贴图里**的（4~15 帧整张画布就是那个框，全工程只它有），
+//   量出来框心比格心低：0/1 转 ≈8px、2 转 ≈20px。
+//   辅助类卡不占格、也不参与啃食 / 格子阻挡（`can_place_at_position` 的 coffee 分支永远 return true），
+//   所以直接把**放下来的位置**抬高最省事，贴图一行都不用改。
+//   想微调就改这两个数（正数 = 往上抬）。
+zl_lift      = 16;     // 0 / 1 转
+zl_lift_2    = 28;     // 2 转（5×5 框低得更多）
+var _lift = (shape >= 2) ? zl_lift_2 : zl_lift;
+y -= _lift;
+if (instance_exists(banding_star_obj)) banding_star_obj.y -= _lift;   // 星级图标跟着走
+
 plant_type   = "coffee";      // 冷却类：老鼠不啃、不吃海水（同极寒冰沙 / 计时器）
 feature_type = "normal";
 target_type  = "normal";

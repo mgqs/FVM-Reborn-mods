@@ -424,6 +424,10 @@ function mod_apply_category_buff_map()
     //   次类型 tracker_advanced = 宴飨女神（散点追踪整体那一档），两者取较高倍率
     // ⚠️ 必须写在上面「散点追踪」循环之后：那条循环会把 cold_drew 覆盖成 tracker_advanced，
     //    导致莓果点心的格子写了却没人读（2026-10-22 修复）
+    // 2026-11-13 用户口径：雪球兔和冷萃机一致，也要吃莓果点心 / 香料虎（tracker 那一档），
+    //   主类型仍是散点追踪（宴飨女神），副类型补 tracker，结算时取较高倍率
+    ds_map_set(global.plant_buff_map_2, "snowrabbit", "tracker");
+
     ds_map_set(global.plant_buff_map, "cold_drew", "tracker_berry");
     ds_map_set(global.plant_buff_map_2, "cold_drew", "tracker_advanced");
     ds_map_set(global.plant_buff_map, "power_god", "tracker_advanced");

@@ -53,7 +53,7 @@ qs_anim_span   = 40;               // 攻击动画占多少帧（从开始摆姿
 var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _info = get_plant_data_with_skill("qishui", shape, clamp(current_level, 0, 16), _sk);
 
-qs_bounce_times = 3;      // 总计命中 3 只 —— 固定值，写死
+qs_bounce_times = 3;      // 弹射 **3 次**（直射 1 + 弹 3 = 最多 4 只）—— 固定值，写死
 qs_bounce_mult  = 1;      // 弹射段伤害倍率：弹射 = 攻击表原值（直射才是 2 倍）
 qs_direct_mult  = 2;      // 直射段伤害倍率：攻击表 × 2（2026-11-13 用户口径）
 qs_bounce_cells = (shape >= 2) ? 2 : 1;   // 弹射范围 3*3 / 3*3 / 5*5

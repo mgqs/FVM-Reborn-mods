@@ -5208,7 +5208,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["升降持续", 45]])
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
     },
     {
         name: "仙露蛇蛇酒",
@@ -5220,7 +5220,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["升降持续", 45]])
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
     },
     {
         name: "琼浆蛇蛇酒",
@@ -5232,7 +5232,7 @@ mod_register_plant_lite("xuanfengniu", [
         range: array_create(17, 0),
         cooldown: [3600, 3540, 3480, 3420, 3300, 3180, 3060, 2880, 2700, 2520, 2340, 2160, 1980, 1800, 1620, 1440, 1260],
         cycle: array_create(17, 0),
-        custom: info_custom([["升降持续", 45]])
+        custom: info_custom([["升降持续", 45], ["前摇", 1.1]])
     }
     ], false);
 

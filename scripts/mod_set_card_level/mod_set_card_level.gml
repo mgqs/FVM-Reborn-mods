@@ -58,7 +58,14 @@ function mod_set_card_level(_inst, _level)
     var _has = variable_instance_exists(_inst, "banding_star_obj")
                && instance_exists(_inst.banding_star_obj);
 
-    if (_has){
+    // 2026-11-13：**不可见的卡不挂星级图标**。
+    //   蛇蛇酒那种一次性卡播完就 visible = false、实例留在后台计时；
+    //   这时如果被时光机 / 别的变星效果改了星级，原逻辑会新建一颗星 → 场上孤零零一颗星留在原地。
+    if (!_inst.visible){
+        if (_has) instance_destroy(_inst.banding_star_obj);
+        _inst.banding_star_obj = noone;
+    }
+    else if (_has){
         if (_lv < 4) instance_destroy(_inst.banding_star_obj);
         else _inst.banding_star_obj.sprite_index = _spr;
     }
@@ -68,6 +75,9 @@ function mod_set_card_level(_inst, _level)
         _st.parent_card = _inst;
         _inst.banding_star_obj = _st.id;
     }
+
+    // 2026-11-13：星级版本号 —— 蛇蛇酒记快照时记下它，复原时对不上就说明中途被永久改过（时光机 / 克洛托），不覆盖
+    _inst.star_ver = (variable_instance_exists(_inst, "star_ver") ? _inst.star_ver : 0) + 1;
 
     // 属性变了 → 让护盾 / 增幅格子重算（同 obj_clotho 结尾两行）
     if (variable_instance_exists(_inst, "shield_buffed")) _inst.shield_buffed = false;

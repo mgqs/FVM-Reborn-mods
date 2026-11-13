@@ -14,7 +14,10 @@ with (obj_card_parent)
     var dx = abs(grid_col - other.grid_col);
     var dy = abs(grid_row - other.grid_row);
     
-    if (plant_id != "clotho" && plant_id != "player" && plant_id != "kuileima" && dx <= col_offset && dy <= row_offset)
+    // 2026-11-13：蛇蛇酒 / 时光机也是变星类，三者互相不能加减星级
+    if (plant_id != "clotho" && plant_id != "player" && plant_id != "kuileima"
+        && plant_id != "sheshejiu" && plant_id != "shiguangji"
+        && dx <= col_offset && dy <= row_offset)
     {
         var new_level = clamp(current_level + level_offset, 0, 16 + max_level_offset);
         

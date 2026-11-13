@@ -4,11 +4,9 @@ if (global.is_paused) exit;
 
 // ── 推进 ──
 if (is_bounce){
-    // 目标没了 / 根本没找到下一个 → 原地停住，淡出后消失（用户：范围内没得弹就不动）
+    // 目标没了 → 直接消失（普通子弹打中就该没了，不留淡出残留）
     if (!instance_exists(bounce_target) || bounce_target.hp <= 0){
-        bounce_wait++;
-        image_alpha = max(0, 1 - bounce_wait / 20);
-        if (bounce_wait > 20) instance_destroy();
+        instance_destroy();
         exit;
     }
 
@@ -17,9 +15,21 @@ if (is_bounce){
         bounce_t++;
         var _p  = bounce_t / bounce_total;
         var _tx = bounce_target.x;
-        var _ty = bounce_target.y - 20;
+        // 2026-11-13 用户口径：弹到**头上**再结算，不是贴身上
+        var _ty = (bounce_target.sprite_index != -1)
+            ? bounce_target.bbox_top + 10
+            : bounce_target.y - 20;
         x = lerp(bs_x, _tx, _p);
         y = lerp(bs_y, _ty, _p) - sin(_p * pi) * bounce_arc;
+    } else {
+        // 2026-11-13 修「气泡卡在走动老鼠头上」：
+        //   老鼠在走，而 lerp 的目标点是**起飞那一刻**的坐标，飞到了人也走了 → 气泡停在半空不动。
+        //   到点后把位置贴到目标**当前的头顶**，并跳过节流让本帧就结算。
+        x = bounce_target.x;
+        y = (bounce_target.sprite_index != -1)
+            ? bounce_target.bbox_top + 10
+            : bounce_target.y - 20;
+        hit_tick = global.bullet_hit_interval;
     }
 
     bounce_life++;
@@ -62,7 +72,8 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
         if (!is_bounce && _e.grid_row != row) continue;
         if (is_bounce && _e.id != bounce_target) continue;
 
-        if (!precise_bbox_collision(id, _e)) continue;
+        // 直线段照旧用 bbox 判定；弹射段**到点即命中**（目标一直在走，bbox 判定会漏 → 气泡黏在头上不动）
+        if (!(is_bounce && bounce_t >= bounce_total) && !precise_bbox_collision(id, _e)) continue;
 
         hitted_enemy = _e.id;
         has_hit = true;
@@ -146,12 +157,8 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
                 exit;   // 不销毁，抛物线跳过去
             }
 
-            // 范围内没有可弹射的别的老鼠 → 原地停住、淡出（不再往前飞、也不再结算）
-            is_bounce     = true;
-            bounce_target = noone;
-            bounce_wait   = 0;
-            sprite_index  = spr_qishui_bullet_2;
-            hit_tick      = 0;
+            // 范围内没有可弹射的别的老鼠 → 当普通子弹处理：**命中即消失**，不进入弹射态
+            instance_destroy();
             exit;
         }
 

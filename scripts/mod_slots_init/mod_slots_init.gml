@@ -3366,7 +3366,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 380,
         cooldown: 3600,
         description: "蛇蛇酒：一段时间内改变卡片星级",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_sheshejiu
@@ -3377,7 +3377,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 380,
         cooldown: 3600,
         description: "仙露蛇蛇酒：一段时间内改变卡片星级",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_sheshejiu_1
@@ -3388,7 +3388,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 380,
         cooldown: 3600,
         description: "琼浆蛇蛇酒：一段时间内改变卡片星级",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_sheshejiu_2
@@ -3402,7 +3402,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 275,
         cooldown: 3300,
         description: "13周年时光机：随机为格子内卡片升星或者降星",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_shiguangji
@@ -3413,7 +3413,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 275,
         cooldown: 3300,
         description: "超载时光机：随机为格子内卡片升星或者降星",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_shiguangji_1
@@ -3424,7 +3424,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 275,
         cooldown: 3300,
         description: "未来时光机：随机为格子内卡片升星或者降星",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_shiguangji_2
@@ -3546,7 +3546,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 200,
         cooldown: 3600,
         description: "转龙壶：缩减范围内卡片冷却时间",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_zhuanlonghu
@@ -3557,7 +3557,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 200,
         cooldown: 3600,
         description: "充能转龙壶：缩减范围内卡片冷却时间",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_zhuanlonghu_1
@@ -3568,7 +3568,7 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
         cost: 200,
         cooldown: 3600,
         description: "巨星转龙壶：缩减范围内卡片冷却时间",
-        plant_type: "normal",
+        plant_type: "coffee",
         feature_type: "normal",
         target_card: "none",
         place_preview: spr_zhuanlonghu_2

@@ -1,6 +1,17 @@
 /// 弹簧虎 弹体 Step
 if (global.is_paused) exit;
 
+// ── 命中特效副本：只播爆炸帧 10~14，播完自毁 ──
+if (is_effect){
+    image_index += 0.4;
+    if (image_index >= 15) instance_destroy();
+    exit;
+}
+
+// ── 飞行帧：0~9 循环（10 以后是爆炸，不能当飞行播）──
+anim_t++;
+image_index = floor(anim_t / 3) mod 10;
+
 x += move_speed;
 
 if (x > combat_right_x() + 200 || x < combat_left_x() - 200){
@@ -55,4 +66,11 @@ for (var _t = 0; _t < array_length(hittable_types); _t++){
     if (_hit) break;
 }
 
-if (_hit) instance_destroy();
+if (_hit){
+    // 命中：原地留一个只播爆炸帧的副本，本体照常销毁（溅射由 Destroy 结算）
+    var _fx = instance_create_depth(x, y, depth, obj_tanhuanghu_bullet);
+    _fx.is_effect    = true;
+    _fx.sprite_index = sprite_index;
+    _fx.image_index  = 10;
+    instance_destroy();
+}

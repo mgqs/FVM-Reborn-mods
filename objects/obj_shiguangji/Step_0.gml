@@ -16,14 +16,14 @@ if (!sg_init_done){
     }
 }
 
-// ── ① 帧循环（前摇待机 0~9）──
+// ── ① 前摇演出：把第 2~10 帧**均摊**到整段前摇上，播一遍就停，不再循环 ──
+//   2026-11-13 用户口径：一次性卡不该「原地待机转圈」——
+//   前摇走完那一刻出效果，中间这段就是它的前摇演出（写法同蛇蛇酒）。
+//   原来按 flash_speed=5 播，9 帧只要 45 帧，而前摇 162 帧（2.7 秒）→ 会循环 3~4 圈。
 if (sg_play == 0){
-    sg_anim_tick++;
-    if (sg_anim_tick >= flash_speed){
-        sg_anim_tick = 0;
-        sg_anim_i++;
-        if (sg_anim_i > sg_idle_to) sg_anim_i = sg_idle_from;
-    }
+    var _idle_n    = max(1, sg_idle_to - sg_idle_from + 1);
+    var _idle_step = max(1, ceil(sg_cast_delay / _idle_n));
+    sg_anim_i   = min(sg_idle_to, sg_idle_from + floor(sg_timer / _idle_step));
     image_index = sg_anim_i;      // 每帧都写：父对象也在推帧
 }
 
@@ -34,22 +34,25 @@ if (!sg_cast_done){
         sg_cast_done = true;
         event_user(1);                                       // 效果立刻生效，并把净星数记进 sg_net
         sg_play = (sg_net >= 0) ? 1 : -1;                    // 净升/净降决定播哪一段
-        sg_anim_i = (sg_play == 1) ? sg_up_from : sg_down_to;
+        // 升星从第 11 帧起（10）；降星从第 21 帧起（20），两段都是正着播
+        sg_anim_i = (sg_play == 1) ? sg_up_from : sg_down_from;
         sg_anim_tick = 0;
+        image_index = sg_anim_i;      // 同帧就切到演出首帧，避免父对象那一帧推出来的空挡帧闪一下
     }
     exit;
 }
 
-// ── ③ 演出：升星 10→19；降星 30→20（倒转）；播完自毁 ──
+// ── ③ 演出：升星 10→19；降星 20→30；都是正向播，播完自毁 ──
 if (!sg_anim_done){
     sg_anim_tick++;
     if (sg_anim_tick >= flash_speed){
         sg_anim_tick = 0;
-        sg_anim_i += (sg_play == 1) ? 1 : -1;
+        sg_anim_i++;
     }
     image_index = sg_anim_i;
 
-    var _fin = (sg_play == 1) ? (sg_anim_i > sg_up_to) : (sg_anim_i < sg_down_from);
+    var _end = (sg_play == 1) ? sg_up_to : sg_down_to;
+    var _fin = (sg_anim_i > _end);
     if (_fin){
         sg_anim_done = true;
         instance_destroy();

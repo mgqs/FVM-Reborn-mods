@@ -12,6 +12,10 @@ if (hex_enabled()) hex_b3_card_destroyed(id);
 if (variable_instance_exists(id, "awake_mark_obj") && instance_exists(awake_mark_obj)) instance_destroy(awake_mark_obj);
 if (variable_instance_exists(id, "guard_mark_obj") && instance_exists(guard_mark_obj)) instance_destroy(guard_mark_obj);
 
+// 2026-11-13：星级图标是独立对象，父对象销毁时**必须一起带走**
+//   （以前没清：时光机自毁 / 卡被啃死 / 被铲掉 / 被顶掉都会留一颗星在场上）
+if (variable_instance_exists(id, "banding_star_obj") && instance_exists(banding_star_obj)) instance_destroy(banding_star_obj);
+
 var _was_shoveled = variable_instance_exists(id, "is_shoveled") && is_shoveled;
 var _no_revive_record = variable_instance_exists(id, "no_revive_record") && no_revive_record;
 

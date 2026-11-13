@@ -9,7 +9,8 @@ shape      = 0;
 
 target_type    = "pierce";
 damage_type    = "pierce";
-hittable_types = ["normal", "air", "obstacle"];   // 2026-11-13：陆空兼备，去掉 非主流/钻地/幽灵
+hittable_types = ["normal", "air", "obstacle"];   // 由 Other_11 按「这一发打空还是打地」覆写
+is_air_volley  = false;                            // true = 对空弹（只打 air）
 
 hit_tick   = 0;
 hitted_enemy = noone;
@@ -22,6 +23,10 @@ if (shape == 1)      sprite_index = spr_tanhuanghu_bullet_1;
 else if (shape == 2) sprite_index = spr_tanhuanghu_bullet_2;
 else                 sprite_index = spr_tanhuanghu_bullet;
 
-image_speed  = 1;
+// 2026-11-13：精灵 0~9 帧是飞行、10~14 帧是命中爆炸 → 飞行只循环 0~9，命中后另起一个副本播爆炸
+image_speed  = 0;
+image_index  = 0;
+anim_t       = 0;
+is_effect    = false;      // true = 命中特效副本（只播 10~14 帧）
 image_xscale = 1.4;
 image_yscale = 1.4;

@@ -1,6 +1,10 @@
 /// 雪球兔 开火事件：挑最靠前的 N 个目标，各砸一颗雪球
-///   目标不足 N 时按实际数量发；一颗雪球对一个目标
+///   1 转起「集火」：目标不够攻击上限时，多余的雪球全部堆到**主目标**上（冷萃机 2 转同款）
+///   一颗雪球对一个目标；集火时会有多颗砸同一只
 var _list = ds_priority_create();
+// ⚠️ 主目标要用**实例变量**：`with` 里读不到调用方的 var（交接 坑 12）
+sr_main       = noone;        // 主目标（BOSS 优先，其次最靠前）
+sr_main_score = 999999;
 
 with (obj_enemy_parent){
     // ⚠️ 这里必须是 continue：GML 里 with 内写 exit 会直接跳出整个事件，
@@ -12,12 +16,32 @@ with (obj_enemy_parent){
     var _score = grid_col * 1000 + random(99);
     if (is_boss) _score -= 100000;
     ds_priority_add(_list, id, _score);
+    if (_score < other.sr_main_score){
+        other.sr_main_score = _score;
+        other.sr_main       = id;
+    }
 }
 
-var _n = min(sr_target_max, ds_priority_size(_list));
+// ── 组发射列表 ──
+//   1 转起（shape >= 1）：雪球数固定 = 攻击上限（5 / 8），目标不够就把剩下的堆给主目标
+//   0 转：有几个目标打几颗（不集火）
+var _targets = [];
+var _have    = ds_priority_size(_list);
+var _n       = min(sr_target_max, _have);
 
 for (var _i = 0; _i < _n; _i++){
-    var _t = ds_priority_delete_min(_list);
+    array_push(_targets, ds_priority_delete_min(_list));
+}
+
+if (shape >= 1 && _have > 0 && _have < sr_target_max && instance_exists(sr_main)){
+    var _extra = sr_target_max - _have;
+    for (var _k = 0; _k < _extra; _k++){
+        array_push(_targets, sr_main);    // 集火：多余的雪球砸同一只
+    }
+}
+
+for (var _j = 0; _j < array_length(_targets); _j++){
+    var _t = _targets[_j];
     if (!instance_exists(_t)) continue;
 
     // 2026-11-13：直接生在目标脚底 —— 精灵 spr_snowrabbit_bullet 自带「从天而降 → 砸中 → 碎冰」动画
@@ -25,7 +49,8 @@ for (var _i = 0; _i < _n; _i++){
     var _bx = _t.x;
     var _by = _t.y;
     var _b = instance_create_depth(_bx, _by, depth - 500, obj_snowrabbit_bullet);
-    _b.damage         = round(atk * sr_atk_mult);
+    // 2026-11-13：同类加成已经折进 base_atk（→ atk），这里直接用 atk，别再乘一次
+    _b.damage         = round(atk);
     _b.base_atk       = atk;
     _b.shape          = shape;
     _b.row            = _t.grid_row;

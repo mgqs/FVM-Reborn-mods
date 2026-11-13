@@ -1,7 +1,8 @@
 // obj_shiguangji 用户事件 1：范围内变星（永久生效）
 //   一张都没作用到 → 清空自身卡槽的冷却（xlsx：「未作用于任何卡则清空自身CD」）
+// 2026-11-13：把蛇蛇酒也排除（互相作用会出现星级残留 / 永久效果被复原覆盖）
 var _mb_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho", "kuileima",
-                     "shegengbao", "baibianshe", "xingqiongma", "shiguangji", "player"];
+                     "shegengbao", "baibianshe", "xingqiongma", "shiguangji", "sheshejiu", "player"];
 
 var _mc      = grid_col;
 var _mr      = grid_row;
