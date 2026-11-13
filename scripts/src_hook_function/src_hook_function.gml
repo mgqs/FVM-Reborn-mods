@@ -25,6 +25,7 @@ function instance_create_depth_define(_x, _y, _depth, _obj, _variables = undefin
 
 	if (is_undefined(_variables) && obj_pool_is_poolable(_obj)) {
 		var _inst = obj_pool_acquire(_obj, _x, _y, _depth);
+		friendly_attack_visual_tag_spawn(_inst);
 		array_push(global._move_instance_pre_arr,_inst);
 		if (_obj == obj_platform)
 			global._last_platform = _inst;
@@ -36,6 +37,7 @@ function instance_create_depth_define(_x, _y, _depth, _obj, _variables = undefin
 	var _previous_context = variable_global_exists("_external_spawn_context") ? global._external_spawn_context : undefined;
 	if (!is_undefined(_variables)) global._external_spawn_context = _variables;
 	var _inst = instance_create_depth_origfunc(_x, _y, _depth, _obj);
+	friendly_attack_visual_tag_spawn(_inst);
 	if (!is_undefined(_variables)) global._external_spawn_context = _previous_context;
 	array_push(global._move_instance_pre_arr,_inst);
 	if (_obj == obj_platform)

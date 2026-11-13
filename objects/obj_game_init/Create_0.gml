@@ -136,6 +136,7 @@ global.replace_placement = ini_read_bool("settings", "replace_placement", false)
 global.card_hpbar = ini_read_bool("settings", "card_hpbar", false);
 global.enemy_hpbar = ini_read_bool("settings", "enemy_hpbar", false);
 global.tex_fliter = ini_read_bool("settings", "tex_fliter", true);
+friendly_attack_opacity_load();
 // 难度与玩法模式分开保存。旧版 6/7 是"难度+玩法"合并编号：
 //   6 = 星际级 + 抽卡版，7 = 不朽级 + 欧皇版
 // 无论 play_mode 键是否存在，都先把难度归一到实际基础难度，

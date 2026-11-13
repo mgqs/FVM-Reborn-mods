@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -13,6 +14,7 @@ import struct
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 
 from desktop_resources import prepare_project
@@ -21,19 +23,30 @@ from test_macos_resources import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 
+@contextmanager
+def timed_phase(label: str):
+    started = time.perf_counter()
+    try:
+        yield
+    finally:
+        print(f"[time] {label}: {time.perf_counter() - started:.2f}s", flush=True)
+
+
 def assemble(archive: Path, output: Path) -> dict:
     output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".fvm-windows-", dir=output) as temporary:
         stage = Path(temporary)
         with zipfile.ZipFile(archive) as package:
-            bad = package.testzip()
-            if bad:
-                raise RuntimeError("Corrupt ZIP member: " + bad)
             for item in package.infolist():
                 relative = Path(item.filename.replace("\\", "/"))
                 if relative.is_absolute() or ".." in relative.parts:
                     raise RuntimeError("Unsafe path in GameMaker package")
-            package.extractall(stage)
+            # Reading each entry to EOF during extraction already verifies CRC.
+            # testzip() beforehand would decompress the whole game twice.
+            try:
+                package.extractall(stage)
+            except zipfile.BadZipFile as error:
+                raise RuntimeError("Corrupt ZIP member: " + str(error)) from error
         candidates = list(stage.rglob("data.win"))
         if len(candidates) != 1:
             raise RuntimeError("Expected exactly one data.win in Windows package")
@@ -76,7 +89,8 @@ def main() -> int:
     work.mkdir(exist_ok=True)
     archive = work / "FVM_Reborn_makk-Windows-x64.zip"
     try:
-        project = prepare_project(ROOT, work, "Windows", copy_assets=True)
+        with timed_phase("Windows project staging"):
+            project = prepare_project(ROOT, work, "Windows", copy_assets=True)
         command = ["powershell.exe", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File",
                    str(ROOT / "tools/build_windows.ps1"), "-Project", str(project),
                    "-Work", str(work), "-Output", str(archive), "-Jobs", str(args.jobs)]
@@ -84,13 +98,15 @@ def main() -> int:
             command += ["-RuntimePath", args.runtime_path]
         if args.user_dir:
             command += ["-UserDir", args.user_dir]
-        subprocess.run(command, check=True)
-        report = assemble(archive, args.output.expanduser().resolve())
+        with timed_phase("GameMaker Windows package"):
+            subprocess.run(command, check=True)
+        with timed_phase("Package extraction and validation"):
+            report = assemble(archive, args.output.expanduser().resolve())
         (work / "resources.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(report), flush=True)
         print(f"App: {args.output / 'FVM_Reborn_makk/FVM_Reborn_makk.exe'}\n"
               f"ZIP: {args.output / 'FVM_Reborn_makk-Windows-x64.zip'}", flush=True)
-    except (RuntimeError, OSError, subprocess.SubprocessError, ValueError) as error:
+    except (RuntimeError, OSError, subprocess.SubprocessError, ValueError, zipfile.BadZipFile) as error:
         print(f"Build failed: {error}", file=sys.stderr)
         return 1
     return 0

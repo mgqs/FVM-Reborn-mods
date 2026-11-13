@@ -76,6 +76,57 @@ class MacProjectTests(unittest.TestCase):
         self.assertTrue((self.root / "sprites").is_dir())
         self.assertEqual((self.root / "sounds/music_example/music_example.wav").read_bytes(), b"source-audio")
 
+    def test_unchanged_rebuild_preserves_generated_metadata_and_links(self):
+        staged = build_macos.prepare_macos_project(self.work)
+        paths = [staged, staged.parent / "sounds/music_example/music_example.yy",
+                 staged.parent / "sounds/music_example/music_example.wav",
+                 staged.parent / "sounds/sound_example"]
+        # Old fixed timestamps make the assertion independent of clock resolution.
+        import os
+        for path in paths:
+            os.utime(path, ns=(1234567890000000000, 1234567890000000000), follow_symlinks=False)
+        before = [(path.lstat().st_ino, path.lstat().st_mtime_ns) for path in paths]
+        build_macos.prepare_macos_project(self.work)
+        self.assertEqual(before, [(path.lstat().st_ino, path.lstat().st_mtime_ns) for path in paths])
+
+    def test_only_changed_metadata_is_rewritten(self):
+        staged = build_macos.prepare_macos_project(self.work)
+        before = staged.stat().st_mtime_ns
+        original = self.root / "sounds/music_example/music_example.yy"
+        data = build_macos.read_yy(original)
+        data["volume"] = 0.3
+        original.write_text(json.dumps(data))
+        build_macos.prepare_macos_project(self.work)
+        self.assertEqual(build_macos.read_yy(staged.parent / "sounds/music_example/music_example.yy")["volume"], 0.3)
+        self.assertEqual(staged.stat().st_mtime_ns, before)
+
+    def test_stale_resources_are_pruned_without_removing_sources(self):
+        staged = build_macos.prepare_macos_project(self.work)
+        project = build_macos.read_yy(self.project)
+        project["resources"] = []
+        self.project.write_text(json.dumps(project))
+        build_macos.prepare_macos_project(self.work)
+        self.assertFalse(list((staged.parent / "sounds").iterdir()))
+        self.assertTrue((self.root / "sounds/music_example/music_example.wav").is_file())
+        self.assertTrue((self.root / "sounds/sound_example/sound_example.yy").is_file())
+
+    def test_resource_can_switch_between_shared_and_generated_metadata(self):
+        original = self.root / "sounds/sound_example/sound_example.yy"
+        before = original.read_bytes()
+        staged = build_macos.prepare_macos_project(self.work)
+        folder = staged.parent / "sounds/sound_example"
+        self.assertTrue(folder.is_symlink())
+        data = json.loads(before)
+        data["ConfigValues"] = {"macOS": {"volume": "0.4"}}
+        original.write_text(json.dumps(data))
+        build_macos.prepare_macos_project(self.work)
+        self.assertFalse(folder.is_symlink())
+        self.assertEqual(build_macos.read_yy(folder / original.name)["volume"], 0.4)
+        original.write_bytes(before)
+        build_macos.prepare_macos_project(self.work)
+        self.assertTrue(folder.is_symlink())
+        self.assertEqual(original.read_bytes(), before)
+
     def test_configuration_values_keep_strings_and_decode_scalars(self):
         data = build_macos.macos_configuration({"name": "asset", "ConfigValues": {"macOS": {
             "loadType": "dynamicpages", "compression": "3", "preload": "false"}}})

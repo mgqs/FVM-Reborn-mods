@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 import os
 from pathlib import Path
 import platform
@@ -14,14 +15,25 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 
+from build_cache import build_if_changed
 from desktop_resources import configuration, prepare_project, read_yy, sprite_group, texture_groups
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY_NAME = "libFvmNativeSupport.dylib"
 LAUNCHER_NAME = "FVM_Launcher"
 MAC_ARCH = "arm64"
+
+
+@contextmanager
+def timed_phase(label: str):
+    started = time.perf_counter()
+    try:
+        yield
+    finally:
+        print(f"[time] {label}: {time.perf_counter() - started:.2f}s", flush=True)
 
 
 def run(args: list[str | Path], **kwargs) -> None:
@@ -64,32 +76,60 @@ def build_native(work: Path, jobs: int, identity: str) -> Path:
     objects_dir.mkdir(parents=True, exist_ok=True)
     common = ["-arch", MAC_ARCH, "-isysroot", sdk, "-mmacosx-version-min=11.0",
               "-O2", "-fPIC", "-fvisibility=hidden"]
+    compiler = subprocess.check_output(["xcrun", "clang", "--version"], text=True).strip()
+    # Headers and toolchain changes invalidate objects even when .c files do not.
+    build_sources = [Path(__file__), Path(__file__).with_name("build_cache.py")]
+    sdk_settings = Path(sdk) / "SDKSettings.json"
+    if sdk_settings.is_file():
+        build_sources.append(sdk_settings)
+    lua_inputs = [*lua.glob("*.h"), *build_sources]
 
-    def compile_lua(path: Path) -> Path:
+    def compile_lua(path: Path) -> tuple[Path, bool]:
         output = objects_dir / (path.stem + ".o")
-        run(["xcrun", "clang", *common, "-DLUA_USE_MACOSX", "-c", path, "-o", output])
-        return output
+        command = ["xcrun", "clang", *common, "-DLUA_USE_MACOSX", "-c", path, "-o", output]
+        changed = build_if_changed(output, [path, *lua_inputs],
+                                   {"compiler": compiler, "command": list(map(str, command))},
+                                   lambda: run(command))
+        return output, changed
 
     with ThreadPoolExecutor(max_workers=jobs) as executor:
-        objects = list(executor.map(compile_lua, lua_sources))
+        compiled = list(executor.map(compile_lua, lua_sources))
+    objects = [path for path, changed in compiled]
+    print(f"Lua objects: {sum(changed for path, changed in compiled)} rebuilt, "
+          f"{sum(not changed for path, changed in compiled)} cached", flush=True)
     library = objects_dir / LIBRARY_NAME
-    run(["xcrun", "clang++", *common, "-std=c++17", "-fobjc-arc", "-dynamiclib",
-         source / "macos/native_support.mm", source / "macos/text_input.mm",
-         source / "FvmNativeSupport/mod_lua.cpp",
-         *objects, "-framework", "AppKit", "-framework", "UniformTypeIdentifiers",
-         "-larchive", "-Wl,-install_name,@rpath/" + LIBRARY_NAME, "-o", library])
+    native_sources = [source / "macos/native_support.mm", source / "macos/text_input.mm",
+                      source / "FvmNativeSupport/mod_lua.cpp"]
+    native_headers = [*source.glob("macos/*.h"), *source.glob("macos/*.hpp"),
+                      *source.glob("FvmNativeSupport/*.h"), *source.glob("FvmNativeSupport/*.hpp")]
+    command = ["xcrun", "clang++", *common, "-std=c++17", "-fobjc-arc", "-dynamiclib",
+               *native_sources, *objects, "-framework", "AppKit", "-framework", "UniformTypeIdentifiers",
+               "-larchive", "-Wl,-install_name,@rpath/" + LIBRARY_NAME, "-o", library]
+    linked = build_if_changed(library, [*native_sources, *native_headers, *lua_inputs, *objects],
+                             {"compiler": compiler, "command": list(map(str, command))},
+                             lambda: run(command))
+    print("Native library: " + ("rebuilt" if linked else "cached"), flush=True)
     destination = ROOT / "extensions/WindowsNative" / LIBRARY_NAME
-    with tempfile.TemporaryDirectory(prefix="native-", dir=work) as temp:
-        fresh = Path(temp) / LIBRARY_NAME
-        shutil.copy2(library, fresh)
-        os.replace(fresh, destination)
-    sign(destination, identity)
-    run(["codesign", "--verify", "--strict", destination])
+
+    def install_native() -> None:
+        with tempfile.TemporaryDirectory(prefix="native-", dir=work) as temp:
+            fresh = Path(temp) / LIBRARY_NAME
+            shutil.copy2(library, fresh)
+            sign(fresh, identity)
+            run(["codesign", "--verify", "--strict", fresh])
+            os.replace(fresh, destination)
+
+    # Keep stamps under .macos-build, and preserve the extension's source-tree
+    # mtime on a hit: rewriting it would also invalidate GameMaker's cache.
+    build_if_changed(destination, [library, *build_sources], {"identity": identity}, install_native,
+                     stamp=objects_dir / ("installed-" + LIBRARY_NAME + ".build.json"))
     run([sys.executable, ROOT / "tools/test_macos_native.py", destination])
     text_test = work / "test-macos-text-input"
-    run(["xcrun", "clang++", "-std=c++17", "-fobjc-arc", "-arch", MAC_ARCH,
-         "-mmacosx-version-min=11.0", "-framework", "AppKit",
-         ROOT / "tools/test_macos_text_input.mm", "-o", text_test])
+    text_source = ROOT / "tools/test_macos_text_input.mm"
+    command = ["xcrun", "clang++", "-std=c++17", "-fobjc-arc", "-arch", MAC_ARCH,
+               "-mmacosx-version-min=11.0", "-framework", "AppKit", text_source, "-o", text_test]
+    build_if_changed(text_test, [text_source, *build_sources],
+                     {"compiler": compiler, "command": list(map(str, command))}, lambda: run(command))
     run([text_test])
     prepare_texture_tools(work)
     return destination
@@ -99,27 +139,38 @@ def prepare_texture_tools(work: Path) -> Path:
     # Keep signatures out of the third-party binaries tracked in Git.
     destination = work / "texture-tools"
     destination.mkdir(parents=True, exist_ok=True)
-    # Always sign a fresh inode: overwriting an executable in place can retain
-    # macOS's cached validation of an earlier unsigned version.
-    with tempfile.TemporaryDirectory(prefix="texture-tools-", dir=work) as temp:
-        stage = Path(temp)
-        for name in ("bc7enc", "astcenc"):
-            path = stage / name
-            shutil.copyfile(ROOT / "extensions/TextureEncode" / name, path)
-            path.chmod(0o755)
-            # Release only our generated copies from ZIP-download quarantine.
-            clear_build_quarantine(path)
-            thin_to_arm64(path)
-            sign(path, "-")
-            run(["codesign", "--verify", "--all-architectures", "--strict", path])
-        image = next((ROOT / "sprites/spr_hex_mark").glob("*.png"))
-        encoded = stage / "test.dds"
-        run([stage / "bc7enc", "-g", "-3", "-u4", image, encoded],
-            stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, timeout=30)
-        if not encoded.is_file() or encoded.read_bytes()[:4] != b"DDS ":
-            raise RuntimeError("The locally signed BC3 texture encoder did not produce a DDS file.")
-        for name in ("bc7enc", "astcenc"):
-            os.replace(stage / name, destination / name)
+    rebuilt = False
+    for name in ("bc7enc", "astcenc"):
+        def install_tool() -> None:
+            # When rebuilding, sign a fresh inode to avoid macOS retaining its
+            # validation of an earlier unsigned executable. Hits keep that inode.
+            with tempfile.TemporaryDirectory(prefix="texture-tools-", dir=work) as temp:
+                path = Path(temp) / name
+                shutil.copyfile(ROOT / "extensions/TextureEncode" / name, path)
+                path.chmod(0o755)
+                clear_build_quarantine(path)
+                thin_to_arm64(path)
+                sign(path, "-")
+                run(["codesign", "--verify", "--all-architectures", "--strict", path])
+                os.replace(path, destination / name)
+
+        rebuilt |= build_if_changed(destination / name,
+                                    [ROOT / "extensions/TextureEncode" / name, Path(__file__)],
+                                    {"arch": MAC_ARCH, "identity": "-"}, install_tool)
+    if rebuilt:
+        try:
+            with tempfile.TemporaryDirectory(prefix="texture-test-", dir=work) as temp:
+                image = next((ROOT / "sprites/spr_hex_mark").glob("*.png"))
+                encoded = Path(temp) / "test.dds"
+                run([destination / "bc7enc", "-g", "-3", "-u4", image, encoded],
+                    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, timeout=30)
+                if not encoded.is_file() or encoded.read_bytes()[:4] != b"DDS ":
+                    raise RuntimeError("The locally signed BC3 texture encoder did not produce a DDS file.")
+        except BaseException:
+            # A failed/interrupted execution check must be retried next time.
+            for name in ("bc7enc", "astcenc"):
+                (destination / (name + ".build.json")).unlink(missing_ok=True)
+            raise
     return destination
 
 
@@ -288,7 +339,8 @@ def build_game(args, work: Path, runtime: Path, user: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
     stage = Path(tempfile.mkdtemp(prefix="package-", dir=work))
     log_path = work / "build.log"
-    project = prepare_macos_project(work)
+    with timed_phase("Project staging"):
+        project = prepare_macos_project(work)
     command = [*igor_command(runtime), f"--project={project}",
                f"--rp={runtime}", f"--uf={user}", f"--cache={work / 'cache'}",
                f"--temp={work / 'temp'}",
@@ -306,25 +358,31 @@ def build_game(args, work: Path, runtime: Path, user: Path) -> None:
     # https://github.com/YoYoGames/GameMaker-Bugs/issues/15357
     environment["COMPlus_ZapDisable"] = "1"
     environment["FVM_TEXTURE_TOOLS_DIR"] = str(work / "texture-tools")
-    with log_path.open("w") as log:
+    with timed_phase("GameMaker compile"), log_path.open("w") as log:
         result = subprocess.run([str(arg) for arg in command], cwd=ROOT, env=environment,
                                 stdout=log, stderr=subprocess.STDOUT)
     if result.returncode:
         print("\n".join(log_path.read_text(errors="replace").splitlines()[-60:]), file=sys.stderr)
         raise RuntimeError(f"GameMaker build failed ({result.returncode}); see {log_path}")
-    destination = assemble_app(stage, runtime, output, args.sign_identity, work)
-    run([sys.executable, ROOT / "tools/test_macos_resources.py", destination])
+    with timed_phase("App assembly and signing"):
+        destination = assemble_app(stage, runtime, output, args.sign_identity, work)
+    with timed_phase("Bundle validation"):
+        run([sys.executable, ROOT / "tools/test_macos_resources.py", destination])
     archive = output / "FVM_Reborn_makk-macOS.zip"
-    if archive.exists():
-        archive.unlink()
-    run(["ditto", "-c", "-k", "--sequesterRsrc", "--keepParent", destination, archive])
+    if not getattr(args, "no_zip", False):
+        with timed_phase("ZIP packaging"):
+            if archive.exists():
+                archive.unlink()
+            run(["ditto", "-c", "-k", "--sequesterRsrc", "--keepParent", destination, archive])
     shutil.rmtree(stage)
-    print(f"App: {destination}\nZIP: {archive}", flush=True)
+    print(f"App: {destination}", flush=True)
+    print("ZIP: skipped (--no-zip)" if getattr(args, "no_zip", False) else f"ZIP: {archive}", flush=True)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native-only", action="store_true", help="build and test only the macOS native extension")
+    parser.add_argument("--no-zip", action="store_true", help="build and validate the app without creating a distribution ZIP")
     parser.add_argument("--runtime-path", default=os.environ.get("GAMEMAKER_RUNTIME"))
     parser.add_argument("--user-dir", default=os.environ.get("GAMEMAKER_USER_DIR"))
     parser.add_argument("--output", type=Path, default=ROOT / "dist/macos")
@@ -345,7 +403,8 @@ def main() -> int:
         if not args.native_only:
             runtime = runtime_path(args.runtime_path)
             user = user_path(args.user_dir)
-        library = build_native(work, args.jobs, args.sign_identity)
+        with timed_phase("Native build and checks"):
+            library = build_native(work, args.jobs, args.sign_identity)
         print(f"Native extension: {library}", flush=True)
         if not args.native_only:
             build_game(args, work, runtime, user)

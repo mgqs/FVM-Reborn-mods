@@ -398,6 +398,32 @@ function ui_anim_slider_step(){
 }
 
 // 只有停在「画面设置」页才响应滑块；切走时清掉拖动状态
+// 透明度滑块随页面一起绘制；等切页/开关动画结束再接受输入。
+if (button_select == 2 && pnl_o >= 0.999 && !pnl_closing && pg_t < 0) {
+	var _attack_y = y + attack_opacity_dy;
+	var _attack_x0 = x + attack_opacity_min_dx;
+	var _attack_x1 = x + attack_opacity_max_dx;
+	if (mouse_check_button_pressed(mb_left)
+		&& point_in_rectangle(mouse_x, mouse_y, _attack_x0 - 18, _attack_y - 26, _attack_x1 + 18, _attack_y + 26)) {
+		attack_opacity_drag = true;
+	}
+	if (attack_opacity_drag) {
+		var _attack_value = round(clamp((mouse_x - _attack_x0) / (_attack_x1 - _attack_x0), 0, 1) * 100) / 100;
+		if (_attack_value != global.friendly_attack_opacity) {
+			global.friendly_attack_opacity = _attack_value;
+			attack_opacity_dirty = true;
+		}
+	}
+} else {
+	attack_opacity_drag = false;
+}
+// Save on release, tab switch or close, including a close during a drag.
+if (!mouse_check_button(mb_left)) attack_opacity_drag = false;
+if (!attack_opacity_drag && attack_opacity_dirty) {
+	friendly_attack_opacity_save();
+	attack_opacity_dirty = false;
+}
+
 if (button_select == 2) {
 	ui_anim_slider_step();
 } else {

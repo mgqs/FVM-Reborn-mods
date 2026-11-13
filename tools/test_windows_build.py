@@ -41,6 +41,27 @@ class WindowsProjectTests(unittest.TestCase):
                   for name in ("Default", "UI", "cards", "enemy_tower")]
         (self.root / "FVM_Reborn_makk.yyp").write_text(json.dumps({"resources": resources, "TextureGroups": groups}))
 
+    def test_copied_assets_are_incremental_and_removed_assets_do_not_linger(self):
+        staged = prepare_project(self.root, self.work, "Windows", copy_assets=True)
+        asset = staged.parent / "sounds/music_example/source.bin"
+        before = (asset.stat().st_ino, asset.stat().st_mtime_ns)
+        prepare_project(self.root, self.work, "Windows", copy_assets=True)
+        self.assertEqual((asset.stat().st_ino, asset.stat().st_mtime_ns), before)
+        source = self.root / "sounds/music_example/source.bin"
+        source.write_bytes(b"updated audio")
+        prepare_project(self.root, self.work, "Windows", copy_assets=True)
+        self.assertEqual(asset.read_bytes(), b"updated audio")
+        source.unlink()
+        prepare_project(self.root, self.work, "Windows", copy_assets=True)
+        self.assertFalse(asset.exists())
+
+    def test_switching_copy_and_link_modes_preserves_original_assets(self):
+        for copy_assets in (False, True, False, True):
+            staged = prepare_project(self.root, self.work, "Windows", copy_assets=copy_assets)
+            for name in ("music_example", "short_sound"):
+                self.assertEqual((self.root / f"sounds/{name}/source.bin").read_bytes(), b"original asset")
+                self.assertEqual((staged.parent / f"sounds/{name}/source.bin").read_bytes(), b"original asset")
+
     def test_windows_streams_music_and_keeps_bc7_with_shared_animation_layout(self):
         staged = prepare_project(self.root, self.work, "Windows")
         data = read_yy(staged)
@@ -87,6 +108,27 @@ class WindowsProjectTests(unittest.TestCase):
             z.writestr("FVM_Reborn_makk.exe", b"incomplete")
         with self.assertRaisesRegex(RuntimeError, "FvmNativeSupport.dll"):
             build_windows.assemble(archive, self.root / "dist/windows")
+
+    def test_extraction_detects_corrupt_crc_and_preserves_previous_distribution(self):
+        archive = self.work / "corrupt.zip"
+        with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_STORED) as package:
+            package.writestr("data.win", b"compiled-game")
+        with zipfile.ZipFile(archive) as package:
+            header_offset = package.getinfo("data.win").header_offset
+        content = bytearray(archive.read_bytes())
+        name_length, extra_length = struct.unpack_from("<HH", content, header_offset + 26)
+        content[header_offset + 30 + name_length + extra_length] ^= 1
+        archive.write_bytes(content)
+        output = self.root / "dist/windows"
+        previous = output / "FVM_Reborn_makk/data.win"
+        previous.parent.mkdir(parents=True)
+        previous.write_bytes(b"previous-working-game")
+        old_zip = output / "FVM_Reborn_makk-Windows-x64.zip"
+        old_zip.write_bytes(b"previous-working-zip")
+        with self.assertRaisesRegex(RuntimeError, "Corrupt ZIP member"):
+            build_windows.assemble(archive, output)
+        self.assertEqual(previous.read_bytes(), b"previous-working-game")
+        self.assertEqual(old_zip.read_bytes(), b"previous-working-zip")
 
     def test_portable_zip_matches_the_organized_application_tree(self):
         archive = self.work / "compiler.zip"
