@@ -13,6 +13,7 @@
     {"name":"appendage","path":"folders/物体/Effects/appendage.yy",}
   ],
   "listItems":[
+    {"name":"obj_gem_cooldown_flash","path":"objects/obj_gem_cooldown_flash/obj_gem_cooldown_flash.yy",},
     {"name":"obj_card_buff_mark","path":"objects/obj_card_buff_mark/obj_card_buff_mark.yy",},
     {"name":"obj_card_heal_effect","path":"objects/obj_card_heal_effect/obj_card_heal_effect.yy",},
     {"name":"obj_card_inhale_effect","path":"objects/obj_card_inhale_effect/obj_card_inhale_effect.yy",},
@@ -35,6 +36,7 @@
     {"name":"obj_qingse_shishi_persimmon","path":"objects/obj_qingse_shishi_persimmon/obj_qingse_shishi_persimmon.yy",},
     {"name":"obj_place_effect","path":"objects/obj_place_effect/obj_place_effect.yy",},
     {"name":"obj_screen_flash_manager","path":"objects/obj_screen_flash_manager/obj_screen_flash_manager.yy",},
+    {"name":"obj_shiliu_freeze_burst","path":"objects/obj_shiliu_freeze_burst/obj_shiliu_freeze_burst.yy",},
     {"name":"obj_sleep_effect","path":"objects/obj_sleep_effect/obj_sleep_effect.yy",},
     {"name":"obj_wine_bottle_bomb_explode","path":"objects/obj_wine_bottle_bomb_explode/obj_wine_bottle_bomb_explode.yy",}
   ],

@@ -15,6 +15,12 @@ function mod_skill_init()
     register_card_skill("yinhema", "cooldown", [2700, 2580, 2460, 2340, 2220, 2040, 1800, 1500, 900]);
     // 浮生茶冷却 50/48/46/44/40/35/30/25/18 秒；9 星起沿用 18 秒（mod_cards_init 的 1080）
     register_card_skill("fushengcha", "cooldown", [3000, 2880, 2760, 2640, 2400, 2100, 1800, 1500, 1080]);
+    // 2026-11-13 新卡：元素蛇攻击间隔 2.5/2.4/2.3/2.2/2.1/2/1.9/1.8/1.5 秒（表内只有 9 个值 = 技能档）
+    register_card_skill("yuansushe", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
+    // 银河马攻击间隔 19/18.5/18/17.5/17/16/15/14/11 秒
+    register_card_skill("galaxy_horse", "cycle", [1140, 1110, 1080, 1050, 1020, 960, 900, 840, 660]);
+    // 星轨神冷却 40/38/36/33/29/25/21/17/12 秒（星级强化 = 增幅倍率，冷却只吃技能）
+    register_card_skill("xinggui_god", "cooldown", [2400, 2280, 2160, 1980, 1740, 1500, 1260, 1020, 720]);
     register_card_skill("xiandima", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("xingqiongma", "zodiac_guard_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);
     register_card_skill("starrabbit", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
@@ -149,4 +155,6 @@ function mod_skill_init()
     register_card_skill("honeytrap", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("huanyingshe", "cycle", [138, 135, 132, 129, 126, 123, 117, 111, 102]);
     register_card_skill("tianxie", "cycle", [90, 87, 84, 81, 78, 75, 72, 66, 60]);
+    // 石榴爆爆冰：数据表「技能训练 = 冷却速度」，基础 3300 tick，9 级训练逐级压到 1800
+    register_card_skill("shiliu_baobao_bing", "cooldown", [3300, 3120, 2940, 2760, 2580, 2400, 2100, 1800, 1500]);
 }

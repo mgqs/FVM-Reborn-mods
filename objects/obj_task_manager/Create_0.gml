@@ -41,6 +41,9 @@ function refresh_task_progress(){
 		var task_id = global.save_data.tasks[i].id
 		if global.save_data.tasks[i].state != "completed"  && global.save_data.tasks[i].state != "claimed"{
 			var task_data = get_task_data(task_id)
+			// 动态任务（卡片情报）在卡被清掉后可能只剩存档条目、注册表里已没有 →
+			// 不拦就会 array_length(undefined) 崩在进战斗那一帧
+			if task_data == undefined continue
 			var complete_require = array_length(task_data.requirements)
 			var complete_count = 0
 			for(var j = 0 ; j < array_length(task_data.requirements) ; j++){

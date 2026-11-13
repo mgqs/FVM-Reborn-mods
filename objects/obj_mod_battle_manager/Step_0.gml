@@ -274,7 +274,14 @@ else
                 with (obj_fushengcha) event_user(0);
                 var fushengcha_mult = global.fushengcha_mult;
 
-                var track_buff_mult = max(zodiac_mult, fushengcha_mult);
+                // 星轨神·阿斯特：同为「固定轨迹增幅」，与音盒马 / 浮生茶并列为同一乘区，取最高、不叠乘。
+                //   四转起的「每多 1 张 +0.7」与终转全屏判定都在 obj_xinggui_god/Other_10 里算完再交上来。
+                global.xinggui_mult = 1;
+                global.xinggui_query_card = self.id;
+                with (obj_xinggui_god) event_user(0);
+                var xinggui_mult = global.xinggui_mult;
+
+                var track_buff_mult = max(zodiac_mult, max(fushengcha_mult, xinggui_mult));
                 self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * track_buff_mult;
 
                 // ══ 海克斯：乘在全部既有乘区之后（增幅/星级/地形/技能都不改） ══

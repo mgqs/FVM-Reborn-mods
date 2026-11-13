@@ -79,6 +79,75 @@ if (variable_global_exists("enemy_by_type"))
                     }
                 }
 
+                // ── 地火（2026-11-13）：首次命中就在本行命中格往右铺地面火焰 ──
+                //   0/1/2/3 转分别是 3/5/5/5 格，持续 0.5s（30 帧），格内每只敌人整段吃一次 700。
+                //   一发只铺一次（ground_fire_done）：穿透弹烧到后面几只时不重复铺，否则格子会叠成一片。
+                if (!ground_fire_done)
+                {
+                    ground_fire_done = true;
+
+                    var _cells = ground_fire_cells;
+                    if (_cells <= 0)
+                    {
+                        if (shape == 0) _cells = 3;
+                        else            _cells = 5;
+                    }
+
+                    // 铺格用的实心内容框（20 帧并集 alpha>=128）：底心 = 精灵原点，
+                    //   所以摆放只要「x = 格中心、y = 视觉格子底边」，缩放直接把内容框撑满一格
+                    var _gf_spr = spr_houyi_god_ground_fire;
+                    var _gf_fw  = 81,  _gf_fh = 85;    // shape0 / shape1
+                    if (shape == 1)      _gf_spr = spr_houyi_god_ground_fire_1;
+                    else if (shape == 2)
+                    {
+                        _gf_spr = spr_houyi_god_ground_fire_2;
+                        _gf_fw = 100; _gf_fh = 104;
+                    }
+                    else if (shape == 3)
+                    {
+                        _gf_spr = spr_houyi_god_ground_fire_3;
+                        _gf_fw = 116; _gf_fh = 115;
+                    }
+
+                    var _gf_sx = global.grid_cell_size_x / _gf_fw;
+                    var _gf_sy = global.grid_cell_size_y / _gf_fh;
+                    var _gf_art_up = 36;   // 贴图格线比逻辑网格高 36px（同 bbq_art_up / fashishe_art_up）
+
+                    for (var _gfi = 0; _gfi < _cells; _gfi++)
+                    {
+                        var _gcol = _e.grid_col + _gfi;      // 命中格算第 1 格，往右依次铺
+                        if (!combat_col_in(_gcol)) break;    // 出战斗域就停（第 10 列 = BOSS 出生位仍算）
+                        var _grow = _e.grid_row;
+                        if (!combat_row_in(_grow)) continue;
+
+                        var _gcell = get_world_position_from_grid(_gcol, _grow);
+                        var _gx = _gcell.x;
+                        var _gy = _gcell.y - _gf_art_up + global.grid_cell_size_y * 0.5;
+
+                        var _gf = instance_create_depth(_gx, _gy, -10 - _grow * 45, obj_houyi_god_ground_fire);
+                        _gf.sprite_index = _gf_spr;
+                        _gf.image_xscale = _gf_sx;
+                        _gf.image_yscale = _gf_sy;
+                        _gf.frame_start  = 0;
+                        _gf.frame_end    = sprite_get_number(_gf_spr) - 1;
+                        _gf.anim_loop_frames = 0;       // 整段 life 播一遍，末帧正好火散
+                        _gf.life         = ground_fire_life;
+                        _gf.damage       = ground_fire_damage;
+                        _gf.damage_type  = "fire";
+                        _gf.lock_grid    = true;
+                        _gf.grid_col     = _gcol;
+                        _gf.grid_row     = _grow;
+                        _gf.extra_col_right = 0;        // 每格只烧自己那一列，相邻格不重复烧同一只
+                        _gf.single_hit   = true;
+                        // 地面火固定烧地面上的一切（含钻地/地下/舞者/隐形/障碍），与烤肉地火同口径
+                        _gf.hittable_types = ["normal", "dance", "invisible", "diver", "obstacle", "underground"];
+                        _gf.shape        = shape;
+                        _gf.mouse_fx_scale = 1.8;
+                        _gf.mouse_fx_y_off = 50;
+                        _gf.mouse_fx_life  = 30;        // 身上着火 0.5s，与地火同寿命
+                    }
+                }
+
                 if (random(1) < fire_chance)
                 {
                     var fire_spr = spr_houyi_god_fire;

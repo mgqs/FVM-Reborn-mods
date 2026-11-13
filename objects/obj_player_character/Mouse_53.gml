@@ -25,60 +25,23 @@ if not is_placed{
 		card_created(id,grid_col,grid_row)
 		global.audio.play(snd_place1,0,0)
 		instance_create_depth(x,y,-2,obj_place_effect)
-		var _equipped_attire_id = card_equipped_attire_id("player");
-		var _transformation_sprite = -1;
-		var _equipped_items = global.save_data.equipped_items;
-		var _gem_slots = [_equipped_items.main_weapon, _equipped_items.secondary_weapon, _equipped_items.super_weapon];
-		for (var _slot_index = 0; _slot_index < array_length(_gem_slots); _slot_index++) {
-			var _slot_gems = _gem_slots[_slot_index].gems;
-			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen2"
-				&& array_get_index(_slot_gems, "star_wand_gem_1") != -1) {
-				_transformation_sprite = spr_huan_bianshen2;
-				break;
-			}
-			if (_equipped_attire_id == "player_attire_xingzhihuanbianshen3"
-				&& array_get_index(_slot_gems, "star_wand_gem_5") != -1) {
-				_transformation_sprite = spr_yao_bianshen2;
-				break;
-			}
-			if (_equipped_attire_id == "player_attire_shouhuzhishen"
-				&& array_get_index(_slot_gems, "zeus_ren_gem") != -1) {
-				_transformation_sprite = spr_bianshen2;
-				break;
-			}
-		}
-		if (_transformation_sprite != -1) {
-			var _transformation_effect = instance_create_depth(0, 0, -10000, obj_12yinliao_effect);
-			_transformation_effect.sprite_index = _transformation_sprite;
-			_transformation_effect.is_one_shot = true;
-			_transformation_effect.center_screen = true;
-			_transformation_effect.flash_speed = 6;
-			if (_transformation_sprite != spr_bianshen2) {
-				// 两种「星之耀」变身立绘（妖化 / 幻之耀）统一铺满屏幕左半边：
-				// 不再叠 scale_multiplier=2、也不再居中铺全屏。内容框 = 立绘稳定帧的可见区实测值
-				// （画布都是 1811x2044，只有中间这一块有像素）；缩放与裁剪在
-				// obj_12yinliao_effect/Draw_0 里算，这里只给框。
-				_transformation_effect.left_half = true;
-				if (_transformation_sprite == spr_huan_bianshen2) {
-					_transformation_effect.half_src_x = 685;
-					_transformation_effect.half_src_y = 679;
-					_transformation_effect.half_src_w = 518;
-					_transformation_effect.half_src_h = 604;
-				}
-				else {
-					_transformation_effect.half_src_x = 684;
-					_transformation_effect.half_src_y = 679;
-					_transformation_effect.half_src_w = 519;
-					_transformation_effect.half_src_h = 604;
-				}
-				var _entrance_effect = instance_create_depth(x, y, depth - 2, obj_place_effect);
-				_entrance_effect.sprite_index = spr_ruchang;
-				_entrance_effect.image_xscale = image_xscale;
-				_entrance_effect.image_yscale = image_yscale;
-				_entrance_effect.depth = -10001;
-				_entrance_effect.custom_playback = true;
-				_entrance_effect.playback_speed = 0.2;
-			}
+		// ── 神装入场特效（2026-11-13 重写）──
+		// 两件事完全独立，别再并回一个 if：
+		//   ① 变装立绘：必须「携带对应宝石」+「穿对应套装」**同时满足**才播。
+		//      配置表与判定都在 scripts/attire_transformation，这里只负责播放。
+		//   ② 星之神杖本体入场特效（spr_ruchang 入场圈）：只看有没有装备星之神杖，
+		//      与携带什么宝石、穿什么套装无关（用户 2026-11-13 明确要求）。
+		var _attire_id = card_equipped_attire_id("player");
+		var _trans = attire_fx_find(_attire_id);
+		if (is_struct(_trans)) attire_fx_play(_trans);
+
+		if (player_has_weapon("star_wand")) {
+			var _entrance_effect = instance_create_depth(x, y, -10001, obj_place_effect);
+			_entrance_effect.sprite_index = spr_ruchang;
+			_entrance_effect.image_xscale = image_xscale;
+			_entrance_effect.image_yscale = image_yscale;
+			_entrance_effect.custom_playback = true;
+			_entrance_effect.playback_speed = 0.2;
 		}
 		var plany_list = ds_grid_get(global.grid_plants,grid_col,grid_row)
 		if global.grid_terrains[grid_row][grid_col].type == "water"{

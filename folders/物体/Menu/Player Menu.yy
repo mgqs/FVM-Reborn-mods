@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_attire_fx_help","path":"objects/obj_attire_fx_help/obj_attire_fx_help.yy",},
     {"name":"obj_card_attire_menu","path":"objects/obj_card_attire_menu/obj_card_attire_menu.yy",},
     {"name":"obj_card_attire_select_btn","path":"objects/obj_card_attire_select_btn/obj_card_attire_select_btn.yy",},
     {"name":"obj_card_edit_btn","path":"objects/obj_card_edit_btn/obj_card_edit_btn.yy",},

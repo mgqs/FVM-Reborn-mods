@@ -7,7 +7,12 @@ draw_set_alpha(1);
 panel_anim_begin(id)
 draw_self()
 
-if target_task_index != -1{
+// 卡片情报页按状态重排后，target_task_index 可能越界（列表变短）或指向已被移除的任务
+var _detail_ok = (target_task_index != -1 && target_task_index < array_length(current_task_list))
+if _detail_ok{
+	_detail_ok = (get_task_data(current_task_list[target_task_index].id) != undefined)
+}
+if _detail_ok{
 	var current_task_save_data = current_task_list[target_task_index]
 	var current_task_info = get_task_data(current_task_save_data.id)
 	draw_set_font(font_yuan)

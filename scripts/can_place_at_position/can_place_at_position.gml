@@ -68,8 +68,9 @@ function can_place_at_position(x, y, plant_type,feature_type,target_card,card_id
     // 获取该网格的植物列表
     var plant_list = ds_grid_get(global.grid_plants, col, row);
 
-    // 同一格最多放一张海洋女神和一张战旗马，二者可以互相叠放。
-    if ((card_id == "haiyang_god" || card_id == "zhanqima") && !global.replace_placement)
+    // 同一格最多放一张海洋女神 / 一张战旗马 / 一张星轨神，三者可互相叠放。
+    //   2026-11-13：星轨神（阿斯特家族）加入本规则 —— 它是悬浮增幅卡，同一格重复放没有意义。
+    if ((card_id == "haiyang_god" || card_id == "zhanqima" || card_id == "xinggui_god") && !global.replace_placement)
     {
         for (var i = 0; i < ds_list_size(plant_list); i++)
         {

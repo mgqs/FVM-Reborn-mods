@@ -20,8 +20,10 @@ is_slowdown = false;
 buffer_type = "multi_dir";
 
 // 五向增幅只对应「多向类」（分类驱动），不再挂载 multi_dir 第二类型。
+// 终转（shape 3）可叠加：多张丰饶神覆盖同一格时倍率累加，
+//   上限 3 层 = 原有加成倍率的 3 倍（2026-11-13 用户口径，情报岛文案同步改为 3 倍）。
 buff_stacking = (shape >= 3);
-buff_max_stacks = 2;
+buff_max_stacks = (shape >= 3) ? 3 : 2;
 
 buff_value = atk / 100;
 buff_shape = "5x5";

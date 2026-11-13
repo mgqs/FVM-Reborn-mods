@@ -1,149 +1,90 @@
 {
-  "$GMSprite": "v2",
-  "%Name": "spr_player_attire_tianshenzhiyingbanbensan_icon",
-  "bboxMode": 0,
-  "bbox_bottom": 117,
-  "bbox_left": 4,
-  "bbox_right": 123,
-  "bbox_top": 9,
-  "collisionKind": 1,
-  "collisionTolerance": 0,
-  "DynamicTexturePage": false,
-  "edgeFiltering": false,
-  "For3D": false,
-  "frames": [
-    {
-      "$GMSpriteFrame": "v1",
-      "%Name": "215cab17-3bb4-41cd-ab54-e495830989f9",
-      "name": "215cab17-3bb4-41cd-ab54-e495830989f9",
-      "resourceType": "GMSpriteFrame",
-      "resourceVersion": "2.0"
-    }
+  "$GMSprite":"v2",
+  "%Name":"spr_player_attire_tianshenzhiyingbanbensan_icon",
+  "bboxMode":0,
+  "bbox_bottom":108,
+  "bbox_left":6,
+  "bbox_right":121,
+  "bbox_top":4,
+  "collisionKind":0,
+  "collisionTolerance":0,
+  "DynamicTexturePage":false,
+  "edgeFiltering":false,
+  "For3D":false,
+  "frames":[
+    {"$GMSpriteFrame":"v1","%Name":"d7f817e3-c347-48b6-8959-2bdffba30db5","name":"d7f817e3-c347-48b6-8959-2bdffba30db5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
-  "gridX": 0,
-  "gridY": 0,
-  "height": 128,
-  "HTile": false,
-  "layers": [
-    {
-      "$GMImageLayer": "",
-      "%Name": "204999ab-fefa-4299-9e25-c9ab6bab4e68",
-      "blendMode": 0,
-      "displayName": "default",
-      "isLocked": false,
-      "name": "204999ab-fefa-4299-9e25-c9ab6bab4e68",
-      "opacity": 100.0,
-      "resourceType": "GMImageLayer",
-      "resourceVersion": "2.0",
-      "visible": true
-    }
+  "gridX":0,
+  "gridY":0,
+  "height":128,
+  "HTile":false,
+  "layers":[
+    {"$GMImageLayer":"","%Name":"35a03a68-a6cf-424f-a7d6-95e2dfb71b1d","blendMode":0,"displayName":"default","isLocked":false,"name":"35a03a68-a6cf-424f-a7d6-95e2dfb71b1d","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name": "spr_player_attire_tianshenzhiyingbanbensan_icon",
-  "nineSlice": null,
-  "origin": 4,
-  "parent": {
-    "name": "attire",
-    "path": "folders/精灵/Player/attire.yy"
+  "name":"spr_player_attire_tianshenzhiyingbanbensan_icon",
+  "nineSlice":null,
+  "origin":4,
+  "parent":{
+    "name":"mod",
+    "path":"folders/精灵/mod.yy",
   },
-  "preMultiplyAlpha": false,
-  "resourceType": "GMSprite",
-  "resourceVersion": "2.0",
-  "sequence": {
-    "$GMSequence": "v1",
-    "%Name": "spr_player_attire_tianshenzhiyingbanbensan_icon",
-    "autoRecord": true,
-    "backdropHeight": 768,
-    "backdropImageOpacity": 0.5,
-    "backdropImagePath": "",
-    "backdropWidth": 1366,
-    "backdropXOffset": 0.0,
-    "backdropYOffset": 0.0,
-    "events": {
-      "$KeyframeStore<MessageEventKeyframe>": "",
-      "Keyframes": [],
-      "resourceType": "KeyframeStore<MessageEventKeyframe>",
-      "resourceVersion": "2.0"
+  "preMultiplyAlpha":false,
+  "resourceType":"GMSprite",
+  "resourceVersion":"2.0",
+  "sequence":{
+    "$GMSequence":"v1",
+    "%Name":"spr_player_attire_tianshenzhiyingbanbensan_icon",
+    "autoRecord":true,
+    "backdropHeight":768,
+    "backdropImageOpacity":0.5,
+    "backdropImagePath":"",
+    "backdropWidth":1366,
+    "backdropXOffset":0.0,
+    "backdropYOffset":0.0,
+    "events":{
+      "$KeyframeStore<MessageEventKeyframe>":"",
+      "Keyframes":[],
+      "resourceType":"KeyframeStore<MessageEventKeyframe>",
+      "resourceVersion":"2.0",
     },
-    "eventStubScript": null,
-    "eventToFunction": {},
-    "length": 1.0,
-    "lockOrigin": false,
-    "moments": {
-      "$KeyframeStore<MomentsEventKeyframe>": "",
-      "Keyframes": [],
-      "resourceType": "KeyframeStore<MomentsEventKeyframe>",
-      "resourceVersion": "2.0"
+    "eventStubScript":null,
+    "eventToFunction":{},
+    "length":1.0,
+    "lockOrigin":false,
+    "moments":{
+      "$KeyframeStore<MomentsEventKeyframe>":"",
+      "Keyframes":[],
+      "resourceType":"KeyframeStore<MomentsEventKeyframe>",
+      "resourceVersion":"2.0",
     },
-    "name": "spr_player_attire_tianshenzhiyingbanbensan_icon",
-    "playback": 1,
-    "playbackSpeed": 30.0,
-    "playbackSpeedType": 0,
-    "resourceType": "GMSequence",
-    "resourceVersion": "2.0",
-    "seqHeight": 128.0,
-    "seqWidth": 128.0,
-    "showBackdrop": true,
-    "showBackdropImage": false,
-    "timeUnits": 1,
-    "tracks": [
-      {
-        "$GMSpriteFramesTrack": "",
-        "builtinName": 0,
-        "events": [],
-        "inheritsTrackColour": true,
-        "interpolation": 1,
-        "isCreationTrack": false,
-        "keyframes": {
-          "$KeyframeStore<SpriteFrameKeyframe>": "",
-          "Keyframes": [
-            {
-              "$Keyframe<SpriteFrameKeyframe>": "",
-              "Channels": {
-                "0": {
-                  "$SpriteFrameKeyframe": "",
-                  "Id": {
-                    "name": "215cab17-3bb4-41cd-ab54-e495830989f9",
-                    "path": "sprites/spr_player_attire_tianshenzhiyingbanbensan_icon/spr_player_attire_tianshenzhiyingbanbensan_icon.yy"
-                  },
-                  "resourceType": "SpriteFrameKeyframe",
-                  "resourceVersion": "2.0"
-                }
-              },
-              "Disabled": false,
-              "id": "bff1e5c1-2715-4abe-b849-8579f1a4d8aa",
-              "IsCreationKey": false,
-              "Key": 0.0,
-              "Length": 1.0,
-              "resourceType": "Keyframe<SpriteFrameKeyframe>",
-              "resourceVersion": "2.0",
-              "Stretch": false
-            }
-          ],
-          "resourceType": "KeyframeStore<SpriteFrameKeyframe>",
-          "resourceVersion": "2.0"
-        },
-        "modifiers": [],
-        "name": "frames",
-        "resourceType": "GMSpriteFramesTrack",
-        "resourceVersion": "2.0",
-        "spriteId": null,
-        "trackColour": 0,
-        "tracks": [],
-        "traits": 0
-      }
+    "name":"spr_player_attire_tianshenzhiyingbanbensan_icon",
+    "playback":1,
+    "playbackSpeed":30.0,
+    "playbackSpeedType":0,
+    "resourceType":"GMSequence",
+    "resourceVersion":"2.0",
+    "showBackdrop":true,
+    "showBackdropImage":false,
+    "timeUnits":1,
+    "tracks":[
+      {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d7f817e3-c347-48b6-8959-2bdffba30db5","path":"sprites/spr_player_attire_tianshenzhiyingbanbensan_icon/spr_player_attire_tianshenzhiyingbanbensan_icon.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"8ef3bbc4-75f7-4002-a602-101755ca4db2","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+          ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
-    "visibleRange": null,
-    "volume": 1.0,
-    "xorigin": 64,
-    "yorigin": 64
+    "visibleRange":null,
+    "volume":1.0,
+    "xorigin":64,
+    "yorigin":64,
   },
-  "swatchColours": null,
-  "swfPrecision": 0.5,
-  "textureGroupId": {
-    "name": "player",
-    "path": "texturegroups/player"
+  "swatchColours":null,
+  "swfPrecision":2.525,
+  "textureGroupId":{
+    "name":"player",
+    "path":"texturegroups/player",
   },
-  "type": 0,
-  "VTile": false,
-  "width": 128
+  "type":0,
+  "VTile":false,
+  "width":128,
 }

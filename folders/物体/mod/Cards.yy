@@ -17,6 +17,9 @@
     {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",},
   ],
   "listItems":[
+    {"name":"obj_xinggui_god","path":"objects/obj_xinggui_god/obj_xinggui_god.yy",},
+    {"name":"obj_yuansushe","path":"objects/obj_yuansushe/obj_yuansushe.yy",},
+    {"name":"obj_galaxy_horse","path":"objects/obj_galaxy_horse/obj_galaxy_horse.yy",},
     {"name":"obj_fire_source","path":"objects/obj_fire_source/obj_fire_source.yy",},
     {"name":"obj_rebound_source","path":"objects/obj_rebound_source/obj_rebound_source.yy",},
     {"name":"obj_mianbao","path":"objects/obj_mianbao/obj_mianbao.yy",},
