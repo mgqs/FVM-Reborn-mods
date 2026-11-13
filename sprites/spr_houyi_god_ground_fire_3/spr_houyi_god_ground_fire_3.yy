@@ -12,22 +12,22 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"f41dc957-91a1-4828-95b5-6c0540e1cfb5","name":"f41dc957-91a1-4828-95b5-6c0540e1cfb5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"beac46e8-b33e-412a-9c66-2a090232a29c","name":"beac46e8-b33e-412a-9c66-2a090232a29c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"f0b39655-8fe4-4e07-a238-a1a2baf9aab5","name":"f0b39655-8fe4-4e07-a238-a1a2baf9aab5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"4643b9a1-0744-4c4a-bef7-18442ad7e4c4","name":"4643b9a1-0744-4c4a-bef7-18442ad7e4c4","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"e722ede6-95e1-48d1-a40f-640a98538826","name":"e722ede6-95e1-48d1-a40f-640a98538826","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"cdd2ae70-ad7d-48bb-b80a-ab139e76dcaa","name":"cdd2ae70-ad7d-48bb-b80a-ab139e76dcaa","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"613ec955-09a0-477a-b3f0-5f9adcc54290","name":"613ec955-09a0-477a-b3f0-5f9adcc54290","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"4a10f837-98eb-4791-b50f-0559101be2b6","name":"4a10f837-98eb-4791-b50f-0559101be2b6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"05e75951-fbef-43b5-b3d1-90dcdb88a027","name":"05e75951-fbef-43b5-b3d1-90dcdb88a027","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"97f4d11e-560c-4cf2-a16b-da182c67a431","name":"97f4d11e-560c-4cf2-a16b-da182c67a431","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"bc3c7144-cac4-4d40-b626-1a555f2de474","name":"bc3c7144-cac4-4d40-b626-1a555f2de474","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"ba5e10ae-bc2d-40a0-ba33-a502620083dc","name":"ba5e10ae-bc2d-40a0-ba33-a502620083dc","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"99ccc992-7ecd-4d50-90a1-c52c80476303","name":"99ccc992-7ecd-4d50-90a1-c52c80476303","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"739658d8-4c9c-43f8-9bf9-43a3e3a59509","name":"739658d8-4c9c-43f8-9bf9-43a3e3a59509","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
-    {"$GMSpriteFrame":"v1","%Name":"d28d0de7-a404-447c-a546-3d2b26cd3b15","name":"d28d0de7-a404-447c-a546-3d2b26cd3b15","resourceType":"GMSpriteFrame","resourceVersion":"2.0",}
+    {"$GMSpriteFrame":"v1","%Name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f41dc957-91a1-4828-95b5-6c0540e1cfb5","name":"f41dc957-91a1-4828-95b5-6c0540e1cfb5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"beac46e8-b33e-412a-9c66-2a090232a29c","name":"beac46e8-b33e-412a-9c66-2a090232a29c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f0b39655-8fe4-4e07-a238-a1a2baf9aab5","name":"f0b39655-8fe4-4e07-a238-a1a2baf9aab5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4643b9a1-0744-4c4a-bef7-18442ad7e4c4","name":"4643b9a1-0744-4c4a-bef7-18442ad7e4c4","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e722ede6-95e1-48d1-a40f-640a98538826","name":"e722ede6-95e1-48d1-a40f-640a98538826","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"cdd2ae70-ad7d-48bb-b80a-ab139e76dcaa","name":"cdd2ae70-ad7d-48bb-b80a-ab139e76dcaa","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"613ec955-09a0-477a-b3f0-5f9adcc54290","name":"613ec955-09a0-477a-b3f0-5f9adcc54290","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4a10f837-98eb-4791-b50f-0559101be2b6","name":"4a10f837-98eb-4791-b50f-0559101be2b6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"05e75951-fbef-43b5-b3d1-90dcdb88a027","name":"05e75951-fbef-43b5-b3d1-90dcdb88a027","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"97f4d11e-560c-4cf2-a16b-da182c67a431","name":"97f4d11e-560c-4cf2-a16b-da182c67a431","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"bc3c7144-cac4-4d40-b626-1a555f2de474","name":"bc3c7144-cac4-4d40-b626-1a555f2de474","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"ba5e10ae-bc2d-40a0-ba33-a502620083dc","name":"ba5e10ae-bc2d-40a0-ba33-a502620083dc","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"99ccc992-7ecd-4d50-90a1-c52c80476303","name":"99ccc992-7ecd-4d50-90a1-c52c80476303","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"739658d8-4c9c-43f8-9bf9-43a3e3a59509","name":"739658d8-4c9c-43f8-9bf9-43a3e3a59509","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"d28d0de7-a404-447c-a546-3d2b26cd3b15","name":"d28d0de7-a404-447c-a546-3d2b26cd3b15","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"8d200172-9b38-4d5d-9c7e-4edfff619114","name":"8d200172-9b38-4d5d-9c7e-4edfff619114","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
@@ -86,52 +86,52 @@
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3a72cd31-71e8-47f2-b049-b408a9fe5b37","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"ec2a6a61-288c-4c47-a43e-4d9b4ba00217","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"ec2a6a61-288c-4c47-a43e-4d9b4ba00217","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f41dc957-91a1-4828-95b5-6c0540e1cfb5","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"2ad716b8-d122-46ee-ac9a-dbafdb9c7f77","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"2ad716b8-d122-46ee-ac9a-dbafdb9c7f77","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"beac46e8-b33e-412a-9c66-2a090232a29c","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"20685e38-525e-4135-bb31-1fe85a456c57","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"20685e38-525e-4135-bb31-1fe85a456c57","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f0b39655-8fe4-4e07-a238-a1a2baf9aab5","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"012f1bf3-4944-4216-ada8-cee142e72ebb","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"012f1bf3-4944-4216-ada8-cee142e72ebb","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4643b9a1-0744-4c4a-bef7-18442ad7e4c4","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"6c204652-6c62-4899-9a25-955b1ddb3033","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"6c204652-6c62-4899-9a25-955b1ddb3033","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e722ede6-95e1-48d1-a40f-640a98538826","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"7dab6feb-6480-4b2e-9606-808dd08ab6d9","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"7dab6feb-6480-4b2e-9606-808dd08ab6d9","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cdd2ae70-ad7d-48bb-b80a-ab139e76dcaa","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"bf85a0c9-dd1f-41d3-b4b3-6b57baa593f8","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"bf85a0c9-dd1f-41d3-b4b3-6b57baa593f8","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"613ec955-09a0-477a-b3f0-5f9adcc54290","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"ff834e3d-22b2-45d3-b41a-f984bd29cc9e","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"ff834e3d-22b2-45d3-b41a-f984bd29cc9e","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4a10f837-98eb-4791-b50f-0559101be2b6","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"c32b50db-2829-410d-bc55-469bc74bd8ce","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"c32b50db-2829-410d-bc55-469bc74bd8ce","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"05e75951-fbef-43b5-b3d1-90dcdb88a027","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a2ace141-ed40-45a7-ac32-bec02655c06d","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"a2ace141-ed40-45a7-ac32-bec02655c06d","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"97f4d11e-560c-4cf2-a16b-da182c67a431","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"23e4eb64-fd1d-450e-a2b1-16f1c776bd2f","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"23e4eb64-fd1d-450e-a2b1-16f1c776bd2f","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"bc3c7144-cac4-4d40-b626-1a555f2de474","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f5d98172-5236-49ae-a448-7b9cd84898d1","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"f5d98172-5236-49ae-a448-7b9cd84898d1","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ba5e10ae-bc2d-40a0-ba33-a502620083dc","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0f4e8b28-b7cf-44ab-ad66-278fa855c9ce","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"0f4e8b28-b7cf-44ab-ad66-278fa855c9ce","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"99ccc992-7ecd-4d50-90a1-c52c80476303","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"62abaa2c-6cff-49df-853c-d13db1dff730","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"62abaa2c-6cff-49df-853c-d13db1dff730","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"739658d8-4c9c-43f8-9bf9-43a3e3a59509","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"34177070-1dfe-4b2a-be55-86b488548b50","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"34177070-1dfe-4b2a-be55-86b488548b50","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d28d0de7-a404-447c-a546-3d2b26cd3b15","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"4365d4f6-b31a-42d9-b32a-2fab38506c4b","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,}
+              },"Disabled":false,"id":"4365d4f6-b31a-42d9-b32a-2fab38506c4b","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8d200172-9b38-4d5d-9c7e-4edfff619114","path":"sprites/spr_houyi_god_ground_fire_3/spr_houyi_god_ground_fire_3.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"bfb1bdfc-538b-4403-b4d9-308fd2aedd03","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},

@@ -680,6 +680,7 @@ function external_animation_instance_field(inst, field, fallback) {
 /// hooks. Apply friendly opacity after animation selection, preserving the
 /// instance's alpha and all transform, colour, crop and shader state.
 function external_animation_draw_self() {
+    if (!is_struct(self) && instance_exists(self) && !resource_sprite_ready(sprite_index)) return;
     var opacity = friendly_attack_visual_alpha();
     if (!global.external_animation_active && opacity == 1) { draw_self_origfunc(); return; }
     if (is_struct(self) || !instance_exists(self)) { draw_self_origfunc(); return; }
@@ -694,6 +695,7 @@ function external_animation_draw_self() {
 }
 
 function external_animation_draw_sprite(spr, subimg, px, py) {
+    if (!resource_sprite_ready(spr)) return;
     var opacity = friendly_attack_visual_alpha();
     if (!global.external_animation_active && opacity == 1) { draw_sprite_origfunc(spr, subimg, px, py); return; }
     var old_alpha = draw_get_alpha();
@@ -706,6 +708,7 @@ function external_animation_draw_sprite(spr, subimg, px, py) {
 }
 
 function external_animation_draw_sprite_ext(spr, subimg, px, py, sx, sy, rotation, colour, alpha) {
+    if (!resource_sprite_ready(spr)) return;
     alpha *= friendly_attack_visual_alpha();
     if (!global.external_animation_active) { draw_sprite_ext_origfunc(spr, subimg, px, py, sx, sy, rotation, colour, alpha); return; }
     var visual = external_animation_sample(self, spr, subimg);
@@ -713,6 +716,7 @@ function external_animation_draw_sprite_ext(spr, subimg, px, py, sx, sy, rotatio
 }
 
 function external_animation_draw_sprite_part(spr, subimg, left, top, width, height, px, py) {
+    if (!resource_sprite_ready(spr)) return;
     var opacity = friendly_attack_visual_alpha();
     if (!global.external_animation_active && opacity == 1) { draw_sprite_part_origfunc(spr, subimg, left, top, width, height, px, py); return; }
     var old_alpha = draw_get_alpha();
@@ -725,6 +729,7 @@ function external_animation_draw_sprite_part(spr, subimg, left, top, width, heig
 }
 
 function external_animation_draw_sprite_part_ext(spr, subimg, left, top, width, height, px, py, sx, sy, colour, alpha) {
+    if (!resource_sprite_ready(spr)) return;
     alpha *= friendly_attack_visual_alpha();
     if (!global.external_animation_active) { draw_sprite_part_ext_origfunc(spr, subimg, left, top, width, height, px, py, sx, sy, colour, alpha); return; }
     var visual = external_animation_sample(self, spr, subimg);

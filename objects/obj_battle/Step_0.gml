@@ -142,6 +142,7 @@ if (global.level_id == "test_level")
         {
             var enemy_data = global.enemy_map[? global.test_mouse_picker_id];
             var place_world = get_world_position_from_grid(place_pos.col, place_pos.row);
+            resource_enemy_prepare(global.test_mouse_picker_id);
 
             if (variable_global_exists("test_place_original") && global.test_place_original)
             {
