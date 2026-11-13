@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_shiliu_ash_fx","path":"objects/obj_shiliu_ash_fx/obj_shiliu_ash_fx.yy",},
     {"name":"obj_xinggui_god_effect","path":"objects/obj_xinggui_god_effect/obj_xinggui_god_effect.yy",},
     {"name":"obj_yuansushe_fx","path":"objects/obj_yuansushe_fx/obj_yuansushe_fx.yy",},
     {"name":"obj_mianbao_boom","path":"objects/obj_mianbao_boom/obj_mianbao_boom.yy",},

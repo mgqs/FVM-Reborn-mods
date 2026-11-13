@@ -183,20 +183,48 @@ function card_info_task_sync(card_id){
 
 /// @function card_info_task_complete(card_id)
 /// @desc 情报岛点开卡片时调用：置 progress 1 + state completed + 提示（幂等）
+///       🔴 2026-11-13 用户口径：判「已经完成过」要看**完成**，不是看**领取**。
+///          原先只比 state == completed / claimed，且完成后**不落盘** ——
+///          玩家看完卡片就退游戏时 state 还停在内存里，下次进游戏又变回 new，于是同一张卡再弹一次
+///          「任务完成」。现在三重判定 + 完成即落盘：
+///            ① completed_tasks 里记过（已领奖 / 已归档）→ 完成过
+///            ② state 已是 completed / claimed          → 完成过
+///            ③ 进度已经打满（state 被别处改脏的兜底）  → 只补 state，不再提示
 function card_info_task_complete(card_id){
 	if card_id == "" || card_id == undefined return
 	var _tid = card_info_task_id(card_id)
+
+	if is_array(global.save_data.completed_tasks){
+		if is_task_complete(_tid) return
+	}
 	if !is_task_unlocked(_tid) return
+
 	var _st = get_task_state(_tid)
 	if _st == "completed" || _st == "claimed" return
+
+	// 进度已满 = 之前完成过，只是 state 被改脏了：补状态、不弹提示、不重复发进度
+	if get_task_progress(_tid, 0) >= 1{
+		edit_task_state(_tid, "completed")
+		save_file(global.save_slot)
+		return
+	}
+
 	edit_task_progress(_tid, 0, 1)
 	edit_task_state(_tid, "completed")
 	show_notice("任务完成：查看【" + card_info_task_name(card_id) + "】的情报", 60)
+	// 完成即落盘：不落盘的话本次状态只活在内存里，退游戏重进又回到 new → 同一张卡再弹一次
+	save_file(global.save_slot)
 }
 
 /// @function card_info_task_prune()
 /// @desc 清掉「卡已经不在存档里」的情报任务（mod 卡被卸载 / 孤儿卡被清理）
 ///       否则这些任务会永远挂在存档里，点不开也领不了
+///       🔴 2026-11-13 修复：判据只看「卡还在不在解锁列表里」，**不再看 task_pool 有没有条目**。
+///          动态任务（info_view_*）的池条目是 card_info_task_sync 现场注册的，
+///          而 task_init 只注册 90 条静态任务 —— 启动时 prune 跑在 sync 之前的话池里根本没有 info_view_*，
+///          旧写法 `get_task_data(_tid) == undefined` 会把**全部**情报任务当孤儿删掉，
+///          紧接着 sync 又按 new 重建 → 已完成（还没领奖）的任务每局退回待办，
+///          玩家再点开同一张卡就重复弹「任务完成」。
 function card_info_task_prune(){
 	if !is_array(global.save_data.tasks) return 0
 	var _removed = 0
@@ -204,13 +232,12 @@ function card_info_task_prune(){
 		var _tid = global.save_data.tasks[i].id
 		var _cid = card_info_task_card_id(_tid)
 		if _cid == "" continue
-		if get_task_data(_tid) == undefined || !is_card_unlocked(_cid){
-			// 外部 mod 包只是被禁用时卡仍在存档里（unlocked_cards 保留进度），
-			// 但 player_deck 里没有它 → is_card_unlocked 仍为真，这里只在注册表真丢了才清
-			if external_mod_known(_cid) continue
-			remove_task(_tid, 0)
-			_removed++
-		}
+		// 卡还在存档里 → 任务必须原样保留（state / progress 一个字都不动）
+		if is_card_unlocked(_cid) continue
+		// 外部 mod 包只是被禁用时卡仍在外部注册表里 → 也不清
+		if external_mod_known(_cid) continue
+		remove_task(_tid, 0)
+		_removed++
 	}
 	return _removed
 }

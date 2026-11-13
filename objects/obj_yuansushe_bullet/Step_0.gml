@@ -49,7 +49,8 @@ for (var _t = 0; _t < array_length(ys_hittable); _t++)
                 if (_is_crit)
                 {
                     var _cfx = instance_create_depth(x, y - 40, depth - 20, obj_yuansushe_fx);
-                    _cfx.sprite_index = spr_yuansushe_fx_crit;
+                    _cfx.sprite_index     = spr_yuansushe_fx_crit;
+                    _cfx.fx_frame_ticks   = 3;    // 5 帧 × 3 tick ≈ 0.25 秒（1 tick/帧只有 0.08 秒，看不到）
                     _cfx.image_xscale = 1.6;
                     _cfx.image_yscale = 1.6;
                     flash_value = 220;
@@ -60,57 +61,68 @@ for (var _t = 0; _t < array_length(ys_hittable); _t++)
                 event_user(0);
 
                 // ── 四色附加效果 ──────────────────────────────
-                if (hp > 0)
+                // 🔴 不再包 `if (hp > 0)`。
+                //   元素蛇攻击力很高（120~2700），命中基本都是一击必杀，而老鼠一死 hp 就 <= 0，
+                //   写成「活着才附加」的话绝大多数命中都不会出效果/特效 ——
+                //   玩家看到的就是「不同子弹效果有时候（几乎总是不）生效」。
+                //   现在命中即判定：活着 → 状态生效；刚被打死 → 状态写进去也无害（实例本帧就销毁），
+                //   毒气更是照放（它会在原地毒到周围其它老鼠，跟目标死活无关）。
+                switch (other.ys_color)
                 {
-                    switch (other.ys_color)
-                    {
-                        case 0:  // 黄：定身
-                            if (random(1) < other.ys_pin_chance)
-                            {
-                                if (stun_timer < other.ys_pin_ticks)
-                                    stun_timer = other.ys_pin_ticks;
-                                var _dfx = instance_create_depth(x, y - 90, depth - 20, obj_yuansushe_fx);
-                                _dfx.sprite_index = spr_yuansushe_fx_dizzy;
-                                _dfx.image_xscale = 1.4;
-                                _dfx.image_yscale = 1.4;
-                            }
-                            break;
+                    case 0:  // 黄：定身
+                        if (random(1) < other.ys_pin_chance)
+                        {
+                            if (stun_timer < other.ys_pin_ticks)
+                                stun_timer = other.ys_pin_ticks;
+                            var _dfx = instance_create_depth(x, y - 90, depth - 20, obj_yuansushe_fx);
+                            _dfx.sprite_index     = spr_yuansushe_fx_dizzy;
+                            _dfx.fx_frame_ticks   = 6;    // 20 帧 × 6 tick ≈ 2 秒，覆盖定身 1.5 秒
+                            _dfx.image_xscale = 1.4;
+                            _dfx.image_yscale = 1.4;
+                        }
+                        break;
 
-                        case 1:  // 紫：毒气（1 次固定伤害，范围沿用毒雾对象自己的判定）
-                            if (random(1) < other.ys_poison_chance)
-                            {
-                                var _p = instance_create_depth(x, y - 40, depth - 30, other.ys_poison_obj);
-                                _p.sprite_index    = spr_yuansushe_fx_poison;
-                                _p.damage          = other.ys_poison_damage;
-                                _p.damage_type     = "normal";
-                                _p.target_type     = "normal";
-                                _p.grid_row        = grid_row;
-                                _p.grid_col        = grid_col;
-                                _p.image_xscale    = 1.8;
-                                _p.image_yscale    = 1.8;
-                            }
-                            break;
+                    case 1:  // 紫：毒气（1 次固定伤害，范围沿用毒雾对象自己的判定）
+                        if (random(1) < other.ys_poison_chance)
+                        {
+                            var _p = instance_create_depth(x, y - 40, depth - 30, other.ys_poison_obj);
+                            _p.sprite_index    = spr_yuansushe_fx_poison;
+                            _p.damage          = other.ys_poison_damage;
+                            // 毒气沿用元素蛇的命中口径（穿透）：写 "normal" 的话
+                            // can_target_on("normal", "dance"/"invisible") 是 false，
+                            // 非主流鼠 / 未显形幽灵吃不到毒。
+                            _p.damage_type     = "pierce";
+                            _p.target_type     = "pierce";
+                            _p.grid_row        = grid_row;
+                            _p.grid_col        = grid_col;
+                            _p.image_xscale    = 1.8;
+                            _p.image_yscale    = 1.8;
+                        }
+                        break;
 
-                        case 2:  // 蓝：冰冻 2 秒后减速 2 秒
-                            if (random(1) < other.ys_freeze_chance)
-                            {
-                                if (frozen_timer < other.ys_freeze_ticks)
-                                    frozen_timer = other.ys_freeze_ticks;
-                                // ice_timer 与 frozen_timer 同时倒计时：设成 冰冻+减速 的总和，
-                                // 冰冻结束后还剩 2 秒减速
-                                if (ice_timer < other.ys_slow_ticks)
-                                    ice_timer = other.ys_slow_ticks;
-                                var _ffx = instance_create_depth(x, y - 60, depth - 20, obj_yuansushe_fx);
-                                _ffx.sprite_index = spr_yuansushe_fx_froze;
-                                _ffx.image_xscale = 0.9;
-                                _ffx.image_yscale = 0.9;
-                            }
-                            break;
+                    case 2:  // 蓝：冰冻 2 秒后减速 2 秒
+                        if (random(1) < other.ys_freeze_chance)
+                        {
+                            if (frozen_timer < other.ys_freeze_ticks)
+                                frozen_timer = other.ys_freeze_ticks;
+                            // ice_timer 与 frozen_timer 同时倒计时：设成 冰冻+减速 的总和，
+                            // 冰冻结束后还剩 2 秒减速
+                            if (ice_timer < other.ys_slow_ticks)
+                                ice_timer = other.ys_slow_ticks;
+                            var _ffx = instance_create_depth(x, y - 60, depth - 20, obj_yuansushe_fx);
+                            _ffx.sprite_index     = spr_yuansushe_fx_froze;
+                            _ffx.fx_frame_ticks   = 4;    // 6 帧 × 4 tick ≈ 0.4 秒（1 tick/帧只有 0.1 秒，看不见）
+                            _ffx.image_xscale = 0.9;
+                            _ffx.image_yscale = 0.9;
+                        }
+                        break;
 
-                        case 3:  // 红：暴击（伤害已在上面乘过）
-                            break;
-                    }
+                    case 3:  // 红：暴击（伤害已在上面乘过）
+                        break;
                 }
+
+                // 不穿透老鼠：打到非障碍物就地停住（障碍物穿过继续飞）
+                if (target_type != "obstacle") other.ys_stop = true;
 
                 audio_play_sound(hit_sound, 0, 0);
 
@@ -132,7 +144,19 @@ for (var _t = 0; _t < array_length(ys_hittable); _t++)
                 }
             }
         }
+
+        // 已打到老鼠 → 不再继续找后面的目标（不穿透）
+        if (ys_stop) break;
     }
+
+    if (ys_stop) break;
+}
+
+// 命中老鼠：子弹当帧消失（伤害 / 特效已在上面结算完）
+if (ys_stop)
+{
+    instance_destroy();
+    exit;
 }
 
 // 出界消散：向右飞出地图右沿 / 被弹回后向左飞出地图左沿
