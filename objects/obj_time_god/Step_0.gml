@@ -17,8 +17,6 @@ if (lifetime_timer <= 0)
     exit;
 }
 
-var _tg_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho", "kuileima"];
-
 var col_offset = 1;
 var row_offset = 1;
 var cd_ratio = 0.7;
@@ -67,7 +65,7 @@ if (exec_count < max_exec)
 
         with (obj_card_parent)
         {
-            if (plant_id != "time_god" && plant_id != "player" && array_get_index(_tg_blacklist, plant_id) == -1)
+            if (card_cd_target_ok(plant_id))
             {
                 var dx = abs(grid_col - my_col);
                 var dy = abs(grid_row - my_row);

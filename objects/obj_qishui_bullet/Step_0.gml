@@ -56,7 +56,8 @@ if (!bullet_enemy_reachable(id)) exit;
 
 for (var _i = 0; _i < array_length(hittable_types); _i++){
     var _key = hittable_types[_i];
-    if (_key == "obstacle") continue;   // 汽水弹不打障碍
+    // 2026-11-13：障碍照样参与直射命中（正常直射口径 normal + obstacle），
+    //   打到飞猪这类临时障碍与打到老鼠同待遇 —— 结算伤害、并且照常触发弹射。
 
     _sap_gen = -1;
     var _list = bullet_sap_type_list(id, _key);
@@ -102,8 +103,8 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
                 if (ice_timer < other.slow_frames) ice_timer = other.slow_frames;
             }
 
-            // 2 转：击杀碎冰
-            if (other.ice_death && hp <= 0){
+            // 2 转：击杀碎冰（障碍不吃这套「鼠型碎冰」演出，只按正常死亡处理）
+            if (other.ice_death && hp <= 0 && target_type != "obstacle"){
                 var _ash = instance_create_depth(x, y - 20, depth, obj_mouse_ash_death);
                 _ash.sprite_index = spr_mouse_ice_death;
                 instance_destroy();
@@ -119,7 +120,7 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
 
             with (obj_enemy_parent){
                 if (hp <= 0) continue;
-                if (target_type == "obstacle") continue;
+                // 2026-11-13：障碍也能当弹射目标（can_target_on 里 normal 本来就放行 obstacle）
                 if (abs(grid_col - other.hit_col) > other.bounce_cells) continue;
                 if (abs(grid_row - other.hit_row) > other.bounce_cells) continue;
                 if (!can_target_on(other.target_type, target_type)) continue;

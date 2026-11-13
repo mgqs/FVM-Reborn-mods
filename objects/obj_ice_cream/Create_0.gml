@@ -25,5 +25,3 @@ if shape >= 2{
 flash_speed = 5
 plant_type = "coffee"
 is_slowdown = false
-ignore_list = ["ice_cream","magic_chicken","time_god","kuileima"]
-if (shape == 2) ignore_list = ["ice_cream","magic_chicken","time_god"]

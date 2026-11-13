@@ -19,6 +19,7 @@
     {"name":"zhuore_boss_init","path":"scripts/zhuore_boss_init/zhuore_boss_init.yy",},
     {"name":"bullet_homing","path":"scripts/bullet_homing/bullet_homing.yy",},
     {"name":"card_buff_category","path":"scripts/card_buff_category/card_buff_category.yy",},
+    {"name":"card_special_flags","path":"scripts/card_special_flags/card_special_flags.yy",},
     {"name":"cross_server_star_gate","path":"scripts/cross_server_star_gate/cross_server_star_gate.yy",},
     {"name":"cross_server_level_index","path":"scripts/cross_server_level_index/cross_server_level_index.yy",},
     {"name":"difficulty_rules","path":"scripts/difficulty_rules/difficulty_rules.yy",},

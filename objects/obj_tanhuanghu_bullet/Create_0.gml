@@ -7,9 +7,10 @@ move_speed = 11;
 row        = 0;
 shape      = 0;
 
-target_type    = "pierce";
-damage_type    = "pierce";
-hittable_types = ["normal", "air", "obstacle"];   // 由 Other_11 按「这一发打空还是打地」覆写
+// target_type 只是默认值，实际由 obj_tanhuanghu/Other_11 按「这一发打空还是打地」覆写为 air_only / normal
+target_type    = "normal";
+damage_type    = "pierce";                        // 同参考卡 多拿滋弹体：pierce = 同时打护盾与本体
+hittable_types = get_hittable_enemy_types("normal");   // 由 Other_11 覆写为 air_only / normal 派生结果
 is_air_volley  = false;                            // true = 对空弹（只打 air）
 
 hit_tick   = 0;

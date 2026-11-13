@@ -53,11 +53,10 @@ if (!copied && !is_derivative && image_index >= tb_anim_end)
     // 自己按普通卡占格（plant_type = normal）——出卡判定会把自己这一格算成「已占」，
     //   所以先把引用从网格列表里摘掉（只移除引用，不触发回收/死亡效果），本帧末尾再销毁实例。
     card_destroyed(id);
-    var _blacklist = ["brahma", "magic_chicken", "ice_cream", "baibianshe", "shegengbao", "kuileima", "xingqiongma"];
     // 每只百变蛇只变 1 张 —— 二转的「3 张」由**放下来时的 3 只蛇**各变 1 张凑成（见 Step 顶部）
     var _copy_count = 1;
 
-    var _valid_target = target_card != "" && array_get_index(_blacklist, target_card) == -1;
+    var _valid_target = card_is_copy_src(target_card);
     var card_save_data = false;
 
     if (_valid_target)

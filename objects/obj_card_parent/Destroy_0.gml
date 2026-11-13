@@ -30,21 +30,8 @@ if (variable_instance_exists(id, "plant_id") && !_was_shoveled && !_no_revive_re
 
     if (should_record)
     {
-        var _no_record_ids = [
-            "baibianshe", "anranxiaohunfan", "chongsheng_god",
-
-            "coke_bomb", "ice_bucket_bomb", "kettle_bomb", "wine_bottle_bomb", "whisky_bomb", "skewer_bomb",
-            "chili_powder", "rabbit_lantern", "delicacy_firework", "bull_firework", "aquarius_elve", "mouse_clip",
-            "flour_sack", "pufferfish", "yeziguo", "steel_wool", "baiyang", "save_god", "hundun_god", "qingse_shishi", "panduola_god",
-            "dandantu", "shuiping", "shiliu_baobao_bing",
-
-            "12yinliao", "coffee_grounds", "ice_cream", "magic_chicken", "clotho", "time_god", "heian_god",
-            "zhiyumiao", "shegengbao", "wooden_cork", "baobaoji", "ventilation_fan", "xuanfengniu", "nizhuanniu",
-            "wanpilong", "brahma", "mojie", "cotton_candy", "zhanqima", "dragon_fruit", "durian",
-            "firework_dragon", "firework_dragon_real", "kuileima", "xingqiongma", "chunsun"
-        ];
-
-        if (array_get_index(_no_record_ids, plant_id) != -1)
+        // 不记进死亡名单的卡（炸弹 / 一次性 / 辅助 / 复制类…）统一在 card_special_flags 的 no_death_record
+        if (!card_records_death(plant_id))
             should_record = false;
     }
 }

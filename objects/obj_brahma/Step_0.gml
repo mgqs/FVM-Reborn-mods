@@ -6,7 +6,6 @@ event_inherited();
 if (!copied && !is_derivative && image_index >= 14)
 {
     copied = true;
-    var _blacklist = ["brahma", "magic_chicken", "ice_cream", "shegengbao", "kuileima", "xingqiongma"];
     var _copy_count = 2;
     
     if (shape == 2)
@@ -14,7 +13,7 @@ if (!copied && !is_derivative && image_index >= 14)
     else if (shape == 3)
         _copy_count = 5;
     
-    var _valid_target = target_card != "" && array_get_index(_blacklist, target_card) == -1;
+    var _valid_target = card_is_copy_src(target_card);
     var card_save_data = false;
     
     if (_valid_target)

@@ -26,7 +26,7 @@ if (zodiac_age >= 72) {
         if (!ds_exists(d,ds_type_map)) continue;
         if (d[? "death_cause"] == "shovel") continue;
         var card_id = d[? "plant_id"];
-        if (array_contains(["brahma","baibianshe","magic_chicken","kuileima","xingqiongma"],card_id)) continue;
+        if (!card_is_copy_src(card_id)) continue;
         var col = d[? "grid_col"], row = d[? "grid_row"];
         if (abs(col-grid_col) > 2 || abs(row-grid_row) > 2) continue;
         var card = deck_get_card_data(card_id,d[? "shape"]);

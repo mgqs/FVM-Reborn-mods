@@ -109,7 +109,7 @@ function mod_evo_table(){
         hera:                    { cards:[ {id:"chunv", slot:0, need:2},
                                         {id:"melon_shield", slot:1, need:2} ] },  // 天后 ← 处女座精灵 + 瓜皮护罩
         ice_god:                 { cards:[ {id:"cold_drew", slot:0, need:2},
-                                        {id:"ice_bucket_bomb", slot:1, need:2} ] },  // 典伊神使 ← 迅捷冷萃机 + 杂果冰桶炸弹
+                                        {id:"snowrabbit", slot:1, need:2} ] },  // 典伊神使 ← 迅捷冷萃机 + 导师雪球兔
         zeus:                    { cards:[ {id:"athena", slot:0, need:2} ] },  // 宙斯神使 ← 雅典娜守护（2026-10-28：取消第 2 槽咖喱龙虾炮，只需一张）
         love_god:                { cards:[ {id:"sheshou", slot:0, need:2},
                                         {id:"triple_wine_rack", slot:1, need:2} ] },  // 丘比特神使 ← 射手座星宿 + 终结者酒架

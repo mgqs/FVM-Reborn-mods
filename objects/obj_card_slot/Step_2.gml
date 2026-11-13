@@ -1,6 +1,5 @@
 if card_id == "magic_chicken"{
-	var _blacklist = ["brahma","magic_chicken","ice_cream","kuileima","xingqiongma"]
-	if global.last_placed_card_id != "" && array_get_index(_blacklist,global.last_placed_card_id) == -1{
+	if (card_is_copy_src(global.last_placed_card_id)){
 		var card_save_data = get_card_info_simple(global.last_placed_card_id)
 		if card_save_data != false{
 			var prev_card_info = get_plant_data_with_skill(global.last_placed_card_id,card_save_data.shape,card_save_data.level,card_save_data.skill)
