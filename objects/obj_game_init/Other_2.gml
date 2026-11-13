@@ -180,12 +180,15 @@ global.total_time = global.save_data.player.total_time
 // 卡片情报任务：为所有已解锁的卡补发一次（老存档兼容）
 // 幂等 —— 已注册的任务只做 unlock 兜底，state / progress 不动
 // 放在这里：load_file 已跑完、cards_init 与 obj_mod_manager 都已就绪（卡名取得到）
-// 先清掉指向「已不存在的卡」的残留任务（mod 卡被卸载 / 孤儿卡被清理），再补发
-card_info_task_prune()
+// 🔴 顺序：**先补发、再清理**（2026-11-13 修）。
+//    动态任务 info_view_* 的 task_pool 条目由 card_info_task_sync 现场注册，task_init 只注册静态任务；
+//    反过来先 prune 的话，池里还没有 info_view_* → 全部被当孤儿删掉、随后又按 new 重建，
+//    已完成（未领奖）的任务每局退回待办，玩家再点开同一张卡就重复弹「任务完成」。
 var _cit_before = array_length(global.save_data.tasks)
 for (var _ci = 0; _ci < array_length(global.save_data.unlocked_cards); _ci++){
 	card_info_task_sync(global.save_data.unlocked_cards[_ci].id)
 }
+card_info_task_prune()
 // 补发 / 清理之后要落盘，否则下次进游戏还得再算一遍（幂等所以不出错，只是白跑）
 if (array_length(global.save_data.tasks) != _cit_before) save_file(global.save_slot)
 

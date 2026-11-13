@@ -17,6 +17,13 @@
 | 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿文件，永不执行 | B1 |
 | 动画看起来播了两遍 | 先查 sprite 表里有没有重复段，别先怀疑代码重播 | B2 |
 | 贴图朝向反了 | 先开 `ViewImage` 看 sprite 首帧本身朝哪边，再决定翻转 | B3 |
+| 卡片待机像「一直在长大 / 帧序错乱」 | 量每帧不透明 bbox 宽度分段：生长段单调增、爆炸段橙色像素=0、待机段稳定且末帧=首帧；别拿「项目帧 vs 源帧像素一致」当帧序没问题的证据 | B14 |
+| 特效一闪一闪 / 消失又出现 | 逐帧量 `(alpha>8).mean()`：末帧 0% 的是一次性脉冲，不能 loop → 加 `hold` 帧锁在常亮段 | B15 |
+| 动态任务每局都退回「待办」/ 重复弹完成提示 | 查启动顺序：`prune` 必须排在 `sync`（动态注册）之后，且 prune 不能用 `get_task_data == undefined` 当判据 | B16 |
+| 范围框 / 光环大小和技能范围对不上（还「形态越高框越小」） | 用**四角括号臂跨度**换算（每行/每列不透明像素数最多的那条）；画布尺寸和 bbox 都不行——星芒把 bbox 撑大且各形态比例不同；中心取格心 | B17 |
+| 卡片击杀后掉率 / 击杀结算没触发 | 别 `instance_destroy(敌人)`；置 `ash_death = true` + `image_alpha = 0`，让 `obj_enemy_parent/Step_0:427` 走完结算 | B18 |
+| 改了精灵帧/像素，游戏里没变 | 同时写 `sprites/<名>/<帧GUID>.png`（顶层合成图，运行时读它）和 `layers/<帧GUID>/<图层>.png` | B19 |
+| 卡片的元素效果 / 附加状态「有时候不生效」 | 四连查：① 效果是否包在 `if (hp > 0)` 里（秒杀即跳过）② `image_xscale` 与 `visual_scale_*` 是否同值（bbox vs 绘制）③ 特效用 `image_speed=1` 时短帧是否 0.1 秒就没了 ④ 派生伤害的 `target_type` 是否跟原卡一致 | B20 |
 | 报「贴图缺失」 | 先查 `sprites/<n>/layers/<frame>/<layer>/png` 层级与 `frames × layers` 数量，文件通常没丢 | B4 |
 | 改关卡 `rewards[0]` 却没变化 | 发奖只读 `rewards[1]`；`rewards[0]` 仅用于 `obj_battle_pause_manager/Draw_0.gml:319` 显示 | B9 |
 | 改了某张卡的数值，游戏里没变 | 数值唯一源是 `scripts/mod_cards_init/mod_cards_init.gml`；`mod_slots_init` 只是卡槽显示 | B10 |
@@ -214,6 +221,98 @@
 - **正确路径**：**逐帧逐像素**比：`Image.open(a).convert('RGBA').tobytes() == Image.open(b).convert('RGBA').tobytes()`，计数后看 `18/18` 还是 `3/18`，量级差得很明显。同尺寸同构图的两套素材一定比到「N/总帧数」级别一致才认。
   实测归属：`星之焕男变身` ≠ SWF（3/18），`spr_huan_bianshen2` = SWF（18/18）。
 - **证据**：2026-11-13 日志；`scripts/attire_transformation/attire_transformation.gml:29-36`。
+
+### B14 卡片待机像「一直长大 / 帧序错乱」→ 先量每帧包围盒再定段落
+- **症状**：`spr_shiliu_0/1/2` 待机时果实从 62px 一路涨到 74px 再跳回，用户报「精灵帧顺序不对」。
+- **错路**：只比对「项目帧 vs 源帧」逐像素一致（结果全 0 差异）就下结论「帧序没问题，是代码问题」——像素一致只证明**导入没打乱**，证明不了**源文件名的顺序就是播放顺序**。
+- **正确路径**：按帧打开、算不透明像素的 bbox 宽度序列，段落一眼分明：
+  `[生长 宽 62→74 单调增] [爆炸 宽 165~331 且橙色像素=0] [成熟 宽 82~88 稳定，且末帧与段首帧逐字节相同 = 闭环]`。
+  **段落切好之后还要问一句「卡片实际应该按什么顺序播」**——石榴的答案不是「待机在前」，
+  而是 **生长 → 成熟 → 爆炸**（一次性卡先长出来再炸）。所以最终重排是
+  `[生长 idx0..8][成熟 idx9..20][爆炸 idx21..][留档重复帧]`，`idle_anim = 20`。
+  匹配不上「一次性序列」还会踩第二个坑：父类 IDLE 是 `0..idle_anim` 死循环，播完成熟段会回卷到幼苗，
+  必须在 Step 里把回卷目标改到成熟段首帧（`image_index = 成熟起点 + (idx mod 成熟长度)`）。
+  **闭环重复帧要留在成熟段末尾，不能丢到帧表最后**——帧表最后一段必须是「动作段」（爆炸/攻击），
+  否则在 IDE 缩略图/预览里最后一眼看到的是一颗完好的果实，会被当成帧序还没修好。
+  重排脚本：`tools/fix_shiliu_sprite_order.py`（原地重写每帧 PNG，GUID / `.yy` / 原点不动，帧总数不变）。
+- **证据**：2026-11-13 日志；`objects/obj_shiliu_baobao_bing/Create_0.gml:17-36`、`Step_0.gml:32-42`。
+
+### B15 特效「一闪一闪 / 消失又出现」→ 先量 alpha 曲线，别急着查代码
+- **症状**：星轨神本体光环每播一遍就整片消失再淡入；用户描述为「特效应该一直存在，而不是消失又出现」。
+- **错路**：先怀疑是不是特效对象被销毁 / 被 `visible` 开关切了（`xg_halo.visible = !xg_fullscreen` 确实是次要原因）。
+- **正确路径**：对特效精灵逐帧算 `(alpha>8).mean()`：末帧 0.00% 的就是**一次性脉冲**（淡入→常亮→淡出→空），
+  这类精灵**不能循环**，必须「播到常亮帧后 hold」：给特效对象加 `xg_hold_frame`，`image_index >= hold` 就 `image_speed = 0` 并锁帧。
+  对照：`spr_haiyang_god_effect` 全程 alpha 28~35、无空帧 → 可以放心循环，所以海洋不闪。
+- **证据**：2026-11-13 日志；`objects/obj_xinggui_god_effect/Step_0.gml`、`objects/obj_xinggui_god/Create_0.gml:60`。
+
+### B16 动态任务每次进游戏都退回「待办」→ 查启动时的 prune / sync 顺序
+- **症状**：卡片情报任务（`info_view_*`）完成后再开一次游戏又变待办，情报岛重复弹「任务完成」。
+- **错路**：先怀疑 `card_info_task_complete` 的幂等判断 / state 没写进去（那两处确实也该加固，但不是主因）。
+- **正确路径**：看启动流程 `objects/obj_game_init/Other_2.gml` —— 原来是 `prune → sync`，而
+  `task_init()` **只注册 90 条静态任务**，动态 `info_view_*` 的池条目由 `card_info_task_sync()` 现场注册；
+  prune 那一刻池里没有这些 key → `get_task_data(tid) == undefined` 成立 → 全部当孤儿删除，
+  紧接着 sync 按 `new` 重建。修法：① prune 只用「卡还在不在解锁列表」判定；② 启动顺序改成 `sync → prune`。
+- **证据**：2026-11-13 日志；`scripts/task_edit/task_edit.gml:219`、`objects/obj_game_init/Other_2.gml:180`。
+
+### B17 范围框/光环画出来比技能范围大或小 → 按「括号臂跨度」换算，画布和 bbox 都不行
+- **症状**：星轨神情报写 5*5。第一版用画布算：四转/终转的光环只有 4.4 格（0 转几乎准，越往后越缩）。
+  第二版改用 bbox 算：shape0 5.2 格、shape1 5.0 格、**shape2 只剩 4.2 格**（用户三联截图直接指出）。
+- **两层错路**（都要避开）：
+  1. 用 `sprite_get_width/height`（**画布**）—— 特效素材为了容纳扩散/发光，四周留了大量透明边。
+  2. 用**常亮帧的不透明 bbox** —— 四角括号的角上还挂着星芒/光晕，bbox 比「括号本体」大一圈，
+     而且**各形态撑大的比例不一样**（shape0 +5%、shape1 +6%、shape2 +28%/+16%）。
+     拿 bbox 当分母 = 按「星芒尖端」对齐，括号本体自然偏小，且形态越高越小。
+- **正确路径**：摊成 alpha 掩码后统计**每一行 / 每一列的不透明像素数**，
+  像素最多的那一行 / 那一列就是四角括号的四条臂，**臂的跨度才是玩家眼里的「框」**。
+  `scale = 目标格数 * grid_cell_size / 臂跨度`，各轴独立；中心取**格心**
+  （`grid_offset + (col+0.5)*cell`），别拿卡片 `x/y`（脚底原点 / 悬浮偏移会整体错半格）。
+  脚本：`tools/measure_xinggui_halo.py`（换素材重跑，把常量表填回 Create）。三个形态的臂跨度量出来
+  几乎相同（295~307 × 313~324）→ 说明美术本来就画成同一尺寸，按它缩放后三者视觉必然一致。
+- **验证**：把缩放后的帧贴到 `9x7` 网格模拟图上、画目标 5*5 红框，四角必须贴在框角（三形态各一张并排比）。
+- **证据**：2026-11-13 日志；`objects/obj_xinggui_god/Create_0.gml`（`_vis_w/_vis_h` 表）、`tools/measure_xinggui_halo.py`。
+
+### B18 卡片击杀后直接 `instance_destroy(敌人)` → 漏掉掉落 / 击杀结算
+- **症状**：石榴爆爆冰旧实现把老鼠打死就 `instance_destroy()` + 自己贴灰烬特效；海克斯模式下的
+  `hex_on_kill` / `hex_try_drop` / 塔之诅咒全都不触发（掉卡、火苗、诅咒爆炸都没了）。
+- **根因**：敌人死亡分两步 —— `obj_enemy_parent/Other_10.gml` 只负责扣血，**不销毁**；
+  真正的死亡结算在 `Step_0.gml:427` 的 `if (hp <= 0 && state != ENEMY_STATE.DEAD)`：
+  `hex_batch2_on_enemy_death` → `hex_on_kill` → `hex_try_drop` → `state = DEAD`；
+  然后 `image_alpha <= 0 && state == DEAD` 才 `instance_destroy`。直接销毁 = 把整段跳过。
+- **正确做法**：想「击杀但不播死亡动画」时置 `with (_t) { ash_death = true; image_alpha = 0; }`，
+  父类会立刻隐形、照常走完结算再自己销毁；特效由卡片侧另建（如 `obj_shiliu_ash_fx`）。
+- **另一个坑**：`obj_mouse_ash_death` 有自己的生命周期（`life 90` → `image_index 14` 定格 → 淡出），
+  拿它贴自定义碎冰图并 `image_speed = 0` 结果是**永远不动**。要「完整播一遍」就写独立特效对象。
+- **证据**：2026-11-13 日志；`objects/obj_shiliu_bullet/Step_0.gml`、`objects/obj_enemy_parent/Step_0.gml:427`。
+
+### B19 改了精灵帧内容，游戏里却还是老画面 → 顶层合成图没同步
+- **症状**：石榴帧序重排后 `--check` 逐帧全 OK，但游戏里播的还是旧顺序（用户报「没有按照你给的帧顺序实现」）。
+- **根因**：GMS 精灵目录里有**两套图**：
+  - `sprites/<名>/layers/<帧GUID>/<图层GUID>.png` —— 图层源图，IDE 编辑器读它；
+  - `sprites/<名>/<帧GUID>.png` —— **顶层合成图，运行时和 IDE 预览读的是这一张**。
+  只覆盖前者等于什么都没改。单图层无偏移时两者内容必须完全相同（可用 md5 校验）。
+- **正确做法**：任何「原地重写精灵像素」的脚本都要两边一起写。
+  `tools/make_multi_frame_sprite.py` 一直是对的（两个路径都 copy）；
+  `tools/fix_shiliu_sprite_order.py` 已补齐，`--check` 也两边都比。
+- **验证**：对每个精灵的每帧比 `md5(顶层) == md5(图层)`，不一致的报出来。
+- **证据**：2026-11-13 日志；`tools/fix_shiliu_sprite_order.py:layer_png()`。
+
+---
+
+### B20 「子弹特效 / 附加效果有时候不生效」→ 四处静默吞掉，逐一排查
+- **症状**：元素蛇四色子弹（定身 / 毒气 / 冰冻 / 暴击）大部分命中都没反应，偶尔才有。
+- **四个原因**（全都不会报错）：
+  1. **附加效果包在 `if (hp > 0)` 里**：卡攻击力高 → 命中基本秒杀 → 老鼠一死 `hp <= 0` 就整段跳过。
+     元素效果应当「命中即判定」：已死目标写状态无害，毒气尤其要照放（它会在原地毒到周围）。
+  2. **判定盒比画出来的小**：本项目子弹的 `bbox` 只看 `image_xscale`，而父类 `Draw_0` 优先用
+     `visual_scale_*` 绘制。只设 `visual_scale = 1.3` 而 `image_scale = 1` → 判定盒比视觉小 30%，
+     边缘命中被静默漏掉。**两个都要设成同一值**（父 Draw 优先 visual_scale，不会双倍放大）。
+  3. **特效用 `image_speed = 1` 播**：素材帧数差很多（暴击 5 帧 / 冰晶 6 帧 / 眩晕 20 帧），
+     短特效只有 0.08~0.1 秒，肉眼看不到 → 用 `image_speed = 0` + 每帧停留 N tick，寿命按帧数算。
+  4. **派生伤害的 `target_type` 抄错**：毒气沿用 `"normal"` 时 `can_target_on("normal","dance"/"invisible")`
+     为 false，非主流鼠 / 未显形幽灵吃不到毒 → 应跟原卡一致（`"pierce"`）。
+- **通用检查顺序**：先看「效果代码有没有被执行」（击杀分支 / hp 判定），再看「判定有没有命中」（bbox vs 视觉），
+  最后看「特效有没有播出来」（帧数 × tick）。
+- **证据**：2026-11-13 日志；`objects/obj_yuansushe_bullet/Step_0.gml`、`objects/obj_yuansushe_fx/*.gml`。
 
 ---
 

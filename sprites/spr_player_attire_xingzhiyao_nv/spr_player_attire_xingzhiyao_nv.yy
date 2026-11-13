@@ -38,8 +38,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"mod",
-    "path":"folders/精灵/mod.yy",
+    "name":"attire",
+    "path":"folders/精灵/Player/attire.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -11,6 +11,7 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_shiliu_bullet","path":"objects/obj_shiliu_bullet/obj_shiliu_bullet.yy",},
     {"name":"obj_yuansushe_bullet","path":"objects/obj_yuansushe_bullet/obj_yuansushe_bullet.yy",},
     {"name":"obj_galaxy_horse_bullet","path":"objects/obj_galaxy_horse_bullet/obj_galaxy_horse_bullet.yy",},
     {"name":"obj_mianbao_bullet","path":"objects/obj_mianbao_bullet/obj_mianbao_bullet.yy",},

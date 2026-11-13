@@ -53,12 +53,41 @@ if (shape == 1)      _halo_spr = spr_xinggui_god_effect_1;
 else if (shape == 2) _halo_spr = spr_xinggui_god_effect_2;
 else if (shape >= 3) _halo_spr = spr_xinggui_god_effect_3;
 
-xg_halo = instance_create_depth(x, y, -3000, obj_xinggui_god_effect);
+// 常驻光环图层：与海洋女神 / 丰饶神 / 时间神 的光环**同层 = depth 0**。
+// 深度越小越靠前：手牌卡槽 obj_card_slot 是 depth = -slot_index - 1000（-1000 起），
+// 卡片本体 calculate_plant_depth 在 -10 ~ -330。
+// 原来写 -2500 会压在卡槽和整个 HUD 之上（底行卡片的 5*5 框一直盖住手牌），
+// 2026-11-13 用户反馈改为与其它神卡一致的地面层，落在卡槽之下、卡片之下。
+xg_halo = instance_create_depth(x, y, 0, obj_xinggui_god_effect);
 xg_halo.sprite_index = _halo_spr;
 xg_halo.image_index  = 0;
 xg_halo.image_speed  = 0.5;
-// 光环比精灵原始尺寸放大到正好铺满 5*5（格心为中心，所以按格数换算即可）
-xg_halo.image_xscale = (xg_range * 2 + 1) * global.grid_cell_size_x / sprite_get_width(_halo_spr);
-xg_halo.image_yscale = (xg_range * 2 + 1) * global.grid_cell_size_y / sprite_get_height(_halo_spr);
+// 光环精灵是「淡入 0~2 → 常亮 3~13 → 淡出 14~16 → 17 全透明」的一次性脉冲，
+// 循环播会变成一闪一闪；播到第 10 帧（常亮段中部）就锁死，特效此后一直亮着。
+xg_halo.xg_hold_frame = 10;
+// 光环是「四角括号框」（中间空），要让它正好框住 5*5 格区。
+//
+// 🔴 缩放基准必须是「括号视觉框」，不能用 bbox：
+//   bbox 会被四角星芒 / 光晕撑大，而且**形态越高撑得越多**（shape0 只多 15%，shape2 多 42%），
+//   按 bbox 算的结果就是「形态越高、框越小」——用户 2026-11-13 22:00 三张截图：
+//   shape2 只有 4.2 格、shape1 5.0 格、shape0 5.2 格，所以单看 shape2 的框明显比红色边框小一圈。
+//
+// 视觉框的取法：把常亮帧（xg_hold_frame = 10）摊成 alpha 掩码，统计每一行 / 每一列的不透明像素数，
+// **像素最多的那一行 / 那一列就是四角括号的臂**，臂的跨度就是玩家眼里的「框」。
+// 量测脚本：tools/measure_xinggui_halo.py（换素材后重跑一次，把下表更新掉）
+//   shape0    x  9..303 / y  8..320  → 295 x 313   （bbox 311x327，星芒各多出 5%）
+//   shape1    x 13..319 / y  9..332  → 307 x 324   （bbox 325x334，多 6%）
+//   shape2/3  x 51..356 / y 57..375  → 306 x 319   （bbox 392x370，多 28% / 16%）
+// 三个形态的臂跨度几乎一样（295~307 x 313~324）＝ 美术本来就画成同一尺寸，
+// 所以按视觉框缩放之后三者视觉大小完全一致。
+// 视觉框中心与精灵原点（画布中心）重合，直接按原点缩放即可，位置不用补偿。
+var _vis_w = 295, _vis_h = 313;
+if (shape == 1)      { _vis_w = 307; _vis_h = 324; }
+else if (shape >= 2) { _vis_w = 306; _vis_h = 319; }
+// 严格 5*5（情报范围），不额外外扩 —— 臂外沿正好压在 5*5 的格线上
+var _span_x = (xg_range * 2 + 1) * global.grid_cell_size_x;
+var _span_y = (xg_range * 2 + 1) * global.grid_cell_size_y;
+xg_halo.image_xscale = _span_x / _vis_w;
+xg_halo.image_yscale = _span_y / _vis_h;
 
 if (variable_global_exists("buff_apply_id")) global.buff_apply_id++;

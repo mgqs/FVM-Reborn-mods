@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"mod",
-    "path":"folders/精灵/mod.yy",
+    "name":"UI",
+    "path":"folders/精灵/mod/UI.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
