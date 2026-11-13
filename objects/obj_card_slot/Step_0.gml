@@ -379,9 +379,6 @@ if (is_selected) {
             // 重置冷却计时器
             cooldown_timer = 0;
             is_ready = false;
-			if array_get_index(cooldown_ignore_list,card_id) == -1{
-				global.prev_place_id = card_id
-			}
             
 			if global.grid_terrains[logical_row][logical_col].type == "normal"{
 				global.audio.play(snd_place1,0,0)
