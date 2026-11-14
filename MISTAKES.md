@@ -36,6 +36,7 @@
 | 结构体字段想叫 `pi` / 撞内置常量 | 换名（`pi_value`），否则 GM1031 或静默取到常量值 | C8 |
 | 想改某张卡的 `shape` 做测试 | 实例层改会被 `obj_card_parent/Other_10` 每帧按存档重建覆盖 | C9 |
 | 想「扫一遍仓库找出所有引用」 | `rg -n -F "<名字>" objects scripts datafiles`（**0.14~0.31 s**）或 `tools/lookup.ps1 <名字>`；别用 `Get-ChildItem -Recurse`（15~22 秒/次） | A11 |
+| 临时 GameMaker 项目混用 GML 与原生文件操作 | 用 `game_save_id` 下独立目录做可写夹具，原生接口和 GML 共用同一个绝对路径 | A18 |
 | 要下 GitHub release 资产（zip/exe） | 用 `https://ghproxy.net/https://github.com/...` 前缀；直链会 `curl (56) Connection was reset` | A12 |
 | 全仓 `rg` 仍要 1~2 秒 | 少了「排大目录」或「文本白名单」：同时写 `-g "!{sprites,sounds,fonts,tilesets,shaders}/**"` 和 `-g "*.gml"`，立刻降到 0.1~0.2 s | A13 |
 | `git merge` / 大区间 `git diff` 在 Bash 里被 SIGTERM，或报 `index.lock: File exists` | 上千文件级别的 git 操作改用 **PowerShell 工具**跑（同一命令即可成功）；残留锁先 `Remove-Item .git\index.lock -Force` 再 `git checkout -- .` 复原 | A15 |
@@ -105,6 +106,7 @@
 - **症状**：`ParserError: 字符串缺少终止符`，脚本根本没跑。
 - **正确路径**：`write` 一个 `.py` 文件 → `python .workbuddy\tmp\x.py`；中文输出设 `$env:PYTHONIOENCODING='utf-8'`，或写文件后用 `read` 看。
 - **证据**：2026-11-13 批量改 AGENTS.md 时反复撞。
+- **补充证据**：2026-11-13 Windows 构建产物预检，PowerShell 5.1 调用 `python -c $code` 时也会吞掉内嵌双引号；改为上传 `.py` 并按文件执行，最终产物校验通过。
 
 ### A4 用 python 改 `.ps1`（CRLF + BOM）断言失败
 - **症状**：`AssertionError: quiet block not found`，明明字符串就在文件里。
@@ -183,6 +185,19 @@
 - **症状**：直接用 `0.5` 比较绘制 Alpha 导致误报；为修改纹理页尺寸重新序列化选项文件，触发旧编译器的字段解析错误。
 - **正确路径**：保存 `draw_get_alpha()` / `shader_current()` 实际返回值再比较；单字段修改保持原 `.yy` 格式，只替换目标值。
 - **证据**：2026-11-13 `.macos-build/texture-residency-check/`；修正检查方式后 69 项 Runtime 检查通过。
+- **补充证据**：2026-11-13 Mod 管理夹具改名后，Windows 构建参数也必须同步到新 `.yyp`；项目路径不存在时 AssetCompiler 仅输出退出码 -1。临时 `.tmp` 目录可能被写入失败的清理逻辑移除，夹具收尾先检查存在性。
+
+### A18 GameMaker 导入夹具把工作目录当作可写沙盒
+- **症状**：原生解压和 PNG 校验成功，但夹具在保存 Mod 状态或发布时失败。
+- **错路**：把 `working_directory` 下的目录作为安装根，假定 GML 写入与原生文件操作会落到相同位置。
+- **正确路径**：可写夹具使用 `game_save_id` 下带唯一标识的独立子目录；沿用真实 `NativeUtil` 的路径规范化，确保两套接口访问同一路径。
+- **证据**：2026-11-13 `.macos-build/mod-import/`，修正夹具路径后有效包、冲突、状态回滚和大包导入通过 23 项 Runtime 检查。
+
+### A19 Windows 原生构建与解压检查需要单独确认环境和后端
+- **症状**：Windows 能编译 GameMaker VM，但没有 C++ 编译器或 7-Zip SDK；跨平台原生检查把普通文件识别为分卷流的结果误当成失败退出。
+- **错路**：从 GameMaker 构建成功推定 DLL 构建依赖齐全，并要求不同解压后端返回相同的错误阶段。
+- **正确路径**：先检查原生工具链、SDK 和系统链接库；C++ 使用显式头文件与标准 `filesystem::path` 文件流。分别检查解压任务生命周期和最终 Mod 校验，普通文件缺少清单时必须拒绝安装。
+- **证据**：2026-11-13 `.macos-build/mod-import/`，LLVM-MinGW 构建及 Windows 7-Zip 分卷流检查。
 
 ## B. 判断与定位（先查这里，别从代码猜）
 
@@ -377,6 +392,7 @@
 ### C8 结构体字段撞内置常量
 - **现象**：`_s.pi = x` → GM1031；读取时静默拿到 3.14159，只有赋值才炸。
 - **正确路径**：换名 `pi_value`。
+- **补充证据**：2026-11-13 Mod 开关优化中，局部循环变量 `path_index` 也会撞 GameMaker 内置变量并导致编译失败；改为 `frame_path_index` 后编译与 Runtime 检查通过。
 
 ### C9 实例层改 `shape` 被覆盖
 - **事实**：`obj_card_parent/Other_10` 每帧按存档重建 shape。

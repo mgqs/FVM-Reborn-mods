@@ -18,6 +18,9 @@
     <ClCompile Include="test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="archive_jobs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="archive_extractor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

@@ -1,3 +1,35 @@
+var import_job = global.external_mod_import_job;
+if (is_struct(import_job) && !import_job.done && import_job.owner != id) {
+    if (point_in_rectangle(mouse_x, mouse_y, x + 405, y - 305, x + 465, y - 270) && mouse_check_button_pressed(mb_left)) close_panel();
+    exit;
+}
+if (is_struct(import_job) && import_job.owner == id) {
+    if (import_job.done) {
+        if (import_job.phase == "complete") {
+            mods = import_job.next_entries;
+            state_read_failed = false;
+            state_default_enabled = true;
+            if (external_mod_field(import_job, "operation", "import") == "import") refresh_mods(false);
+            else scroll_offset = clamp(scroll_offset, 0, max(0, array_length(mods) * row_height - (list_bottom - list_top)));
+        }
+        global.external_mod_import_job = undefined;
+        if (import_close_when_done) { close_panel(); exit; }
+        if (import_job.phase == "cancelled") status_text = import_job.message;
+        else if (import_job.phase == "complete" && external_mod_field(import_job, "operation", "import") != "import" && !external_mod_field(import_job, "warning", false)) status_text = import_job.message;
+        else notify_result(import_job.message);
+    } else {
+        if (mouse_check_button_pressed(mb_left)) {
+            if (point_in_rectangle(mouse_x, mouse_y, x + 405, y - 305, x + 465, y - 270)) {
+                import_close_when_done = true;
+                external_mod_import_cancel();
+            } else if (point_in_rectangle(mouse_x, mouse_y, x - 78, y + 83, x + 78, y + 123)) {
+                external_mod_import_cancel();
+            }
+        }
+        exit;
+    }
+}
+
 if (mouse_wheel_up()) scroll_offset = max(0, scroll_offset - row_height);
 if (mouse_wheel_down()) scroll_offset = min(max(0, array_length(mods) * row_height - (list_bottom - list_top)), scroll_offset + row_height);
 
@@ -23,43 +55,8 @@ if (point_in_rectangle(mouse_x, mouse_y, x + 405, y - 305, x + 465, y - 270) && 
 if (point_in_rectangle(mouse_x, mouse_y, x - 420, y - 305, x - 245, y - 270) && mouse_check_button_pressed(mb_left)) {
     var selected = get_open_filename("Mod package|*.fvmmod;*.zip|All files|*.*", "");
     if (selected != "") {
-        var extension = string_lower(filename_ext(selected));
-        if (extension != ".zip" && extension != ".fvmmod") {
-            notify_result("请选择 ZIP 或 .fvmmod 压缩包");
-            exit;
-        }
-        var base_name = filename_name(selected);
-        base_name = string_copy(base_name, 1, string_length(base_name) - string_length(extension));
-        if (base_name == "" || base_name == "." || base_name == "..") {
-            notify_result("压缩包名称无效");
-            exit;
-        }
-        var target = global.native_util.join_path(mod_root, base_name);
-        if (native_folder_exists(target)) target += "_" + string(current_time);
-        directory_create(target);
-        var code = native_unzip_map_file(selected, target);
-        if (code == 0) {
-            try {
-                var pack = external_mod_validate(target);
-                var enabled = true;
-                var conflict_message = "";
-                try { external_mod_check_enabled_conflicts(pack, mods, mod_root); }
-                catch (conflict) { enabled = false; conflict_message = external_mod_error_text(conflict); }
-                // Seed the state before refresh so a conflicting variant is never auto-enabled.
-                array_push(mods, {folder: filename_name(target), name: pack.name, enabled: enabled});
-                refresh_mods(false);
-                if (save_state()) notify_result(enabled
-                    ? "已导入并开启：" + pack.name + "\n请完全退出并重新启动游戏，Mod 才会生效。"
-                    : "已导入，保持关闭：" + pack.name + "\n" + conflict_message + "\n先关闭冲突包，再开启此包。重启游戏后生效。");
-                else notify_result("压缩包已解压，但开启状态保存失败，请检查目录权限。");
-            } catch (_validation_error) {
-                native_delete_folder(target);
-                notify_result("Mod 校验失败：" + external_mod_error_text(_validation_error));
-            }
-        } else {
-            native_delete_folder(target);
-            notify_result("解压失败，错误码：" + string(code));
-        }
+        try { external_mod_import_start(selected, self); }
+        catch (import_error) { notify_result(external_mod_error_text(import_error)); }
     }
     exit;
 }
@@ -79,29 +76,13 @@ for (var i = 0; i < array_length(mods); i++) {
         exit;
     }
     if (point_in_rectangle(mouse_x, mouse_y, x + 245, row_y - 17, x + 325, row_y + 17) && mouse_check_button_pressed(mb_left)) {
-        if (!mods[i].enabled) {
-            try {
-                var pack = external_mod_validate(global.native_util.join_path(mod_root, mods[i].folder));
-                external_mod_check_enabled_conflicts(pack, mods, mod_root, mods[i].folder);
-            }
-            catch (_enable_error) {
-                notify_result("无法开启：" + external_mod_error_text(_enable_error));
-                exit;
-            }
-        }
-        mods[i].enabled = !mods[i].enabled;
-        if (!save_state()) mods[i].enabled = !mods[i].enabled;
-        else status_text = (mods[i].enabled ? "已开启：" : "已关闭：") + mods[i].name + "，重启游戏后生效";
+        try { external_mod_manage_start(mods[i].enabled ? "disable" : "enable", self, i); }
+        catch (manage_error) { notify_result(external_mod_error_text(manage_error)); }
         audio_play_sound(snd_button, 0, 0);
     }
     if (point_in_rectangle(mouse_x, mouse_y, x + 335, row_y - 17, x + 415, row_y + 17) && mouse_check_button_pressed(mb_left)) {
-        var delete_code = native_delete_folder(global.native_util.join_path(mod_root, mods[i].folder));
-        if (delete_code == 0) {
-            status_text = "已删除：" + mods[i].name + "，重启后生效；保留卡片进度";
-            refresh_mods();
-        } else {
-            status_text = "删除失败，错误码：" + string(delete_code);
-        }
+        try { external_mod_manage_start("delete", self, i); }
+        catch (manage_error) { notify_result(external_mod_error_text(manage_error)); }
         audio_play_sound(snd_button, 0, 0);
         break;
     }

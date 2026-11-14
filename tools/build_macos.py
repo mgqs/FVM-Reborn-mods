@@ -99,7 +99,7 @@ def build_native(work: Path, jobs: int, identity: str) -> Path:
           f"{sum(not changed for path, changed in compiled)} cached", flush=True)
     library = objects_dir / LIBRARY_NAME
     native_sources = [source / "macos/native_support.mm", source / "macos/text_input.mm",
-                      source / "FvmNativeSupport/mod_lua.cpp"]
+                      source / "FvmNativeSupport/mod_lua.cpp", source / "FvmNativeSupport/archive_jobs.cpp"]
     native_headers = [*source.glob("macos/*.h"), *source.glob("macos/*.hpp"),
                       *source.glob("FvmNativeSupport/*.h"), *source.glob("FvmNativeSupport/*.hpp")]
     command = ["xcrun", "clang++", *common, "-std=c++17", "-fobjc-arc", "-dynamiclib",

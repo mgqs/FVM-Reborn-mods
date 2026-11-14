@@ -204,6 +204,7 @@ copy /Y "$(TargetPath)" "$(ProjectDir)..\..\extensions\WindowsNative\"</Command>
     <ClCompile Include="..\third_party\lua-5.4.8\src\lvm.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
     <ClCompile Include="..\third_party\lua-5.4.8\src\lzio.c"><CompileAs>CompileAsC</CompileAs></ClCompile>
     <ClCompile Include="archive_extractor.cpp" />
+    <ClCompile Include="archive_jobs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file_system.h" />
