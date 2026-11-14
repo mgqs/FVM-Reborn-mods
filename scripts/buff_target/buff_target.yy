@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"mod_get_buff_type",
+  "%Name":"buff_target",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"mod_get_buff_type",
+  "name":"buff_target",
   "parent":{
     "name":"mod",
     "path":"folders/脚本/mod.yy",

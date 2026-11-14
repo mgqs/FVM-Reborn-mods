@@ -188,6 +188,15 @@ var _cit_before = array_length(global.save_data.tasks)
 for (var _ci = 0; _ci < array_length(global.save_data.unlocked_cards); _ci++){
 	card_info_task_sync(global.save_data.unlocked_cards[_ci].id)
 }
+// 兜底：存档里已有、但对应卡不在 unlocked_cards 的情报任务（老存档 / 外部 mod 卡），
+//   池条目也要补回来，否则点开那张卡时 get_task_data 会是 undefined
+for (var _ci2 = 0; _ci2 < array_length(global.save_data.tasks); _ci2++){
+	var _tid2 = global.save_data.tasks[_ci2].id
+	var _cid2 = card_info_task_card_id(_tid2)
+	if (_cid2 == "") continue
+	if ds_map_exists(global.task_pool, _tid2) continue
+	card_info_task_sync(_cid2)
+}
 card_info_task_prune()
 // 补发 / 清理之后要落盘，否则下次进游戏还得再算一遍（幂等所以不出错，只是白跑）
 if (array_length(global.save_data.tasks) != _cit_before) save_file(global.save_slot)

@@ -246,7 +246,6 @@ if is_real(global.level_file.version){
 }
 
 current_wave_max_time = wave_max_time
-global.prev_place_id = ""
 boss_waiting_clear = false
 
 function enemy_subwave_summon(){

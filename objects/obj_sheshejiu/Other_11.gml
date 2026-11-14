@@ -1,17 +1,12 @@
 // obj_sheshejiu 用户事件 1：3*3 变星（把**这次实际加减了几星**记进 ss_snap，持续时间到点由 Other_12 反向复原）
-//   非实体卡走黑名单（同美味计时器那套）+ 自身 + player
 //   星级上下限 0~16；2 转表里没有负数 → 天然「只升不降」
-// 2026-11-13：把时光机也排除 —— 两卡互相作用会出现「星级图标留在原地」，
-//   而且时光机是**永久**改星、蛇蛇酒有计时，混在一起会被复原覆盖掉。
-var _mb_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho", "kuileima",
-                     "shegengbao", "baibianshe", "xingqiongma", "sheshejiu", "shiguangji", "player"];
 
 var _mc = grid_col;
 var _mr = grid_row;
 var _n  = array_length(ss_off);
 
 with (obj_card_parent){
-    if (array_get_index(_mb_blacklist, plant_id) != -1) continue;
+    if (card_no_entity(plant_id)) continue;
     if (abs(grid_col - _mc) > 1) continue;
     if (abs(grid_row - _mr) > 1) continue;
     if (!variable_instance_exists(id, "current_level")) continue;

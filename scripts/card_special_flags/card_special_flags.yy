@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"mod_buff_init",
+  "%Name":"card_special_flags",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"mod_buff_init",
+  "name":"card_special_flags",
   "parent":{
     "name":"mod",
     "path":"folders/脚本/mod.yy",

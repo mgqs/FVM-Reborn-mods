@@ -929,7 +929,8 @@ function transfer_credit_price_scan_map(_map, _out, _phase = 0){
                 }
             }
             else {
-                // 跨服商店的「一转 / 二转卡」：买下去发的是凭证（cross_shop_buy_do 里 add_material_amount 那张）
+                // 跨服商店的转职商品：2026-11-14 起跨服只卖本体，凭证统一在凭证页，
+                //   所以这段目前不会命中；留着是为了以后跨服重新上架凭证时不用再改。
                 if (_type == "card" && variable_struct_exists(_g, "cross_server_shop")
                     && variable_struct_exists(_g, "card_id") && variable_struct_exists(_g, "card_shape")
                     && _g.card_shape > 0) {

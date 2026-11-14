@@ -39,6 +39,8 @@ if (variable_global_exists("enemy_by_type") && bullet_enemy_reachable(id) && pre
         for (var _i = 0; _i < array_length(_list); _i++){
             var _e = _list[_i];
             if (!instance_exists(_e) || _e.hp <= 0) continue;
+            // 🔴 只打本行：糖豆是水平直飞（vy=0），不判行会蹭到上下行的老鼠
+            if (_e.grid_row != row) continue;
             if (_e.bbox_right < _al || _e.bbox_left > _ar || _e.bbox_bottom < _at || _e.bbox_top > _aq) continue;
             _hit = _e;
             break;

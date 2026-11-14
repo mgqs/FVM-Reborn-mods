@@ -9,7 +9,10 @@ shape      = 0;
 
 target_type    = "normal";
 damage_type    = "normal";
-hittable_types = ["normal", "obstacle", "invisible"];
+// 2026-11-13：按**正常直射口径**取表 = `get_hittable_enemy_types("normal")` → 普通 + 障碍。
+//   · 障碍（含夸父飞猪这种临时障碍）挡在弹道上时，和打到老鼠一样结算、一样触发弹射；
+//   · 不打幽灵（原来手写多写了 invisible，属于配错的溢出）。
+hittable_types = get_hittable_enemy_types(target_type);
 
 hit_tick     = 0;
 hitted_enemy = noone;

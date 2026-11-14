@@ -17,7 +17,7 @@ if attack_timer == 1{
 				if(other.shape == 0 && grid_row == other.grid_row && grid_col == other.grid_col)
 				||(other.shape == 1 && grid_row >= other.grid_row-1 && grid_row <= other.grid_row+1 && grid_col >= other.grid_col-1 && grid_col <= other.grid_col+1)
 				{
-					if array_get_index(other.ignore_list,plant_id) == -1{
+					if (card_cd_target_ok(plant_id)){
 						with obj_card_slot{
 							if card_id == other.plant_id{
 								cooldown_timer = cooldown
@@ -29,8 +29,9 @@ if attack_timer == 1{
 		}
 	}
 	else{
+		// 2 转：全体卡槽，非实体也刷（只排缩 CD 施放者）
 		with obj_card_slot{
-			if array_get_index(other.ignore_list,card_id) == -1{
+			if (card_cd_target_ok(card_id, true)){
 				cooldown_timer = cooldown
 			}
 		}

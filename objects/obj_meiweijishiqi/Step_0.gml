@@ -24,13 +24,6 @@ exec_timer--;
 
 if (exec_timer <= 0){
     // ── 到点：结算范围内正在冷却的实体卡 ──
-    //   非实体卡走黑名单：时间神那份（brahma / ice_cream / magic_chicken / clotho / kuileima）
-    //   再并上工程里其它「变化中、没有实体本体」的卡（蛇羹煲 / 百变蛇 / 星空穹马）
-    //   自身和 player 也排除
-    var _mb_blacklist = ["brahma", "ice_cream", "magic_chicken", "clotho", "kuileima",
-                         "shegengbao", "baibianshe", "xingqiongma",
-                         "meiweijishiqi", "player"];
-
     var _mc = grid_col;
     var _mr = grid_row;
     var _rc = range_col;
@@ -38,7 +31,7 @@ if (exec_timer <= 0){
 
     var _ids = ds_list_create();
     with (obj_card_parent){
-        if (array_get_index(_mb_blacklist, plant_id) == -1
+        if (card_cd_target_ok(plant_id)
             && abs(grid_col - _mc) <= _rc && abs(grid_row - _mr) <= _rr){
             if (ds_list_find_index(_ids, plant_id) == -1) ds_list_add(_ids, plant_id);
         }

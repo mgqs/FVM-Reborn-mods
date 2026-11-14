@@ -15,9 +15,8 @@ if (!variable_global_exists("zodiac_query_card") || !instance_exists(global.zodi
 if (hp <= 0) exit;
 var _c = global.zodiac_query_card;
 if (get_plant_upgrade(_c.plant_id,0,0) == undefined) exit;
-// 仅增幅常规主职产火卡。
-var _flame_targets = ["small_fire", "goblet_lamp", "large_fire", "shuangzi", "warm_birds", "sun_god"];
-if (array_get_index(_flame_targets, _c.plant_id) < 0) exit;
+// 仅增幅「产能类-主职产火-常规型」（名单见 scripts/buff_target 的 production 档）
+if (!buff_channels_has(_c.plant_id, "production")) exit;
 var _r = shape == 2 ? 2 : 1; // 0/1转3×3，2转5×5
 if (abs(grid_col-_c.grid_col) <= _r && abs(grid_row-_c.grid_row) <= _r) {
     var _d = get_plant_data_with_skill(plant_id,shape,current_level,skill);

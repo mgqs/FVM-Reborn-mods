@@ -21,7 +21,7 @@ var _c = global.xinggui_query_card;
 if (get_plant_upgrade(_c.plant_id, 0, 0) == undefined) exit;
 
 // 仅对「直射类 / 固定轨迹类」卡片生效（分类来自 card_buff_category 模块）
-if (!card_in_category(_c.plant_id, "固定轨迹类")) exit;
+if (!buff_channels_has(_c.plant_id, "fixed_track")) exit;
 
 // ── 覆盖范围：终转且场上 >= 4 张星轨神 → 全屏；否则 5*5 ──────────────
 var _n_all = 0;      // 场上存活的星轨神总数（终转全屏条件）

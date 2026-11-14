@@ -1,10 +1,7 @@
 // obj_yuansushe_bullet（元素蛇子弹）Create 事件
-// 直线穿透弹：沿本行往右飞，飞出地图右沿消散；被布丁 / 烤盘这类反弹源弹回后往左飞。
+// 直线穿透弹：沿本行往右飞，飞出地图右沿消散。
 //   · 「可过障碍」= 本对象不做任何屏障碰撞，只按 global.enemy_by_type 的白名单逐只判包围盒；
-//   · 「可反弹」= 声明 hazard_rebound（父对象 obj_bullet_parent 的 Collision_obj_rebound_source
-//     会调 bullet_hazard_rebound，字段名必须对齐：move_speed / row / damage / hitted）；
-//   · 「不受火盆类影响」= **不声明 hazard_fire**，父对象的 Collision_obj_fire_source 走进去直接
-//     返回 false，火焰倍率与冰弹掉效果都不会发生（官方：冰弹不会失去减速）。
+//   · 「不可过火、不可反弹」= hazard_fire / hazard_rebound 都不声明（官方 11.直射 r19「A型穿透类」口径）。
 event_inherited();
 
 image_speed = 1;
@@ -21,10 +18,6 @@ ys_delay     = 0;
 // 当前所在列（Step 每帧按 x 反算）：命中判定用「同行 + 同列」，
 // 与精灵尺寸 / 缩放 / 原点全部解耦，不再依赖像素包围盒（见 Step_0 的注释）
 ys_col_now   = 0;
-
-// 反弹：默认参数（axis = move_speed 翻转、judge = row 只认同行源卡、回程清空命中表）
-//   angle180 关掉：翻转用 visual_scale_x 做左右镜像，比整体旋转 180° 好看（见 Step）
-hazard_rebound = { angle180: false };
 
 ys_pin_chance    = 0;
 ys_pin_ticks     = 90;

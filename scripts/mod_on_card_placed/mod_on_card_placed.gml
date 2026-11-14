@@ -1,6 +1,6 @@
 function mod_on_card_placed(arg0, arg1)
 {
-    if (arg0 != "brahma" && arg0 != "ice_cream" && arg0 != "magic_chicken" && arg0 != "baibianshe" && arg0 != "kuileima" && arg0 != "xingqiongma")
+    if (card_is_copy_src(arg0))
     {
         show_debug_message("已记录" + string(arg0) + string(arg1));
         global.last_placed_card_id = arg0;
@@ -11,10 +11,8 @@ function mod_on_card_placed(arg0, arg1)
         //     幻幻鸡 / 梵天 / 百变蛇自己复制出来的卡不算「放下下一张卡」
         //   · 只认比它晚放下的卡（id 更大），避免 5 帧轮询把「上一张卡」误当下一张
         //   · 0 转只认本卡 5x5 范围内落下的卡；1 转起全屏（与本卡复制范围同口径）
-        //   · 卡名黑名单：上面 6 条已被外面的 if 排掉，蛇羹煲在这里额外排
-        //     （百变蛇 Step 里那份 7 条名单是兜底复核，别只改一边）
         var _from_hand = variable_instance_exists(self, "from_player_hand") && self.from_player_hand;
-        if (_from_hand && arg0 != "shegengbao")
+        if (_from_hand)
         {
             var _src_id  = self.id;
             var _src_col = self.grid_col;

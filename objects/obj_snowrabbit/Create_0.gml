@@ -15,7 +15,7 @@ else                 sprite_index = spr_snowrabbit_2;
 
 plant_type   = "normal";
 feature_type = "normal";
-target_type  = "track";
+target_type  = "all";        // 与冷萃机一致：全类型（含地鼠 underground）
 is_slowdown  = false;
 image_speed  = 0;
 flash_speed  = 5;

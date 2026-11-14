@@ -15,7 +15,6 @@ image_yscale = 1.6;
 hittable_types = get_hittable_enemy_types(target_type);
 hit_tick = 0;
 
-// ── 环境交互（2026-11-10）：吃火 / 可反弹 + 需要的参数都在这里声明，碰撞事件由父类 obj_bullet_parent 统一处理
-hazard_fire = true;      // 可被火盆 / 火神 / 金牛 / 能量喵 / 融合火盆 点燃
-hazard_rebound = true;   // 可被樱桃布丁 / 布丁汪 / 水神 反弹
-fire_mult = 1;           // 对象池会复用实例：不重置就会带着上一发的过火倍率出生，导致这一发点不着
+// 敌方子弹：**不声明** hazard_fire / hazard_rebound。
+//   否则玩家的火盆会把倍率乘到它的伤害上，布丁反弹还会把玩家攻击力加进来 —— 等于帮敌人。
+//   父类 obj_bullet_parent 的过火/反弹入口默认是关的，不写就是全关。

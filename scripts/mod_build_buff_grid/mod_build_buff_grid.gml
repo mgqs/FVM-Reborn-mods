@@ -35,7 +35,12 @@ function build_buff_grid()
 {
     mod_battle_buff_grid_clear();
     global.buff_grid = ds_map_create();
-    var types = ["tracker", "tracker_berry", "tracker_advanced", "thrower", "sprayer", "sprayer_row", "five_dir", "multi_dir", "xiangshui"];
+    // 增幅通道（与 scripts/buff_target 的 buff_channel_order 一致）
+    //   喷壶三档：sprayer 旋喷 / sprayer_coffee 咖啡（本行） / sprayer_attach 附加（汽水）
+    var types = ["thrower", "sprayer", "sprayer_coffee", "sprayer_attach",
+                 "five_dir", "multi_dir",
+                 "track_berry", "track_spice", "track_feast", "track_feast4",
+                 "fixed_track", "production"];
     
     for (var t = 0; t < array_length(types); t++)
     {
@@ -115,7 +120,33 @@ function apply_buff(arg0)
 {
     if (arg0.plant_id == "aurora" && arg0.shape >= 3)
         exit;
-    
+
+    // ── 多通道输出（2026-11-14）──────────────────────────────────────────
+    //   源卡自带 buff_outputs（[{type, cells}, …]）就只为这些通道铺格子，然后收工；
+    //   没带的卡继续走下面的单通道老逻辑，行为不变。
+    //   例：魔杖蛇 = sprayer 5×5 + sprayer_attach 5×5 + sprayer_coffee 本行
+    if (variable_instance_exists(arg0, "buff_outputs") && !is_undefined(arg0.buff_outputs))
+    {
+        var _outs = arg0.buff_outputs;
+        for (var _o = 0; _o < array_length(_outs); _o++)
+        {
+            var _og = ds_map_find_value(global.buff_grid, _outs[_o].type);
+            if (_og == undefined) continue;
+
+            var _oc = _outs[_o].cells;
+            for (var _n = 0; _n < array_length(_oc); _n++)
+            {
+                var _nc = _oc[_n][0];
+                var _nr = _oc[_n][1];
+                var _nv = _oc[_n][2];
+                if (_nc < 0 || _nr < 0) continue;
+                if (_nc >= array_length(_og) || _nr >= array_length(_og[0])) continue;
+                if (_nv > _og[_nc][_nr]) _og[_nc][_nr] = _nv;
+            }
+        }
+        exit;
+    }
+
     var type = arg0.buffer_type;
     var grid = ds_map_find_value(global.buff_grid, type);
     var cells = arg0.buff_cells;
@@ -147,13 +178,6 @@ function apply_buff(arg0)
         if (c >= array_length(grid) || r >= array_length(grid[0]))
             exit;
 
-        // 直线喷壶保留其他来源的范围，仅将魔杖蛇的增幅限制在本行。
-        if (type == "sprayer" && arg0.plant_id == "mozhang" && r == arg0.grid_row)
-        {
-            var row_sprayer_grid = ds_map_find_value(global.buff_grid, "sprayer_row");
-            row_sprayer_grid[c][r] = max(row_sprayer_grid[c][r], v);
-        }
-        
         if (stacking && stack_grid != undefined && stack_count != undefined)
         {
             if (stack_count[c][r] < max_stacks)
@@ -168,36 +192,6 @@ function apply_buff(arg0)
                 grid[c][r] = v;
         }
 
-        // 追踪增幅的「名单」原样再写一格 tracker_berry：
-        //   莓果点心 / 香料虎 名单完全同步（2026-11-06 用户口径），只认 tracker_berry 的卡
-        //   （冰块冷萃机）以前只有莓果点心吃得到，香料虎写了 tracker 也进不了它那一档。
-        if (arg0.plant_id == "berry_dessert" || arg0.plant_id == "xiangliaohu")
-        {
-            var berry_tracker_grid = ds_map_find_value(global.buff_grid, "tracker_berry");
-            if (v > berry_tracker_grid[c][r]) berry_tracker_grid[c][r] = v;
-        }
-
-        // 香水神另写一格「xiangshui」专属通道：只给显式挂 plant_buff_map_2 = "xiangshui" 的卡吃
-        // （目前只有小丑神 joker / 埃罗斯，2026-11-03 用户口径「专门给的」）。
-        // 它和 tracker 分组（莓果点心 + 香水神共用）分开，别的卡进不来。
-        if (arg0.plant_id == "xiangshui_god")
-        {
-            var xs_grid = ds_map_find_value(global.buff_grid, "xiangshui");
-            if (xs_grid != undefined && c < array_length(xs_grid) && r < array_length(xs_grid[0]))
-            {
-                if (v > xs_grid[c][r]) xs_grid[c][r] = v;
-            }
-            if (stacking)
-            {
-                var xs_stack_grid = ds_map_find_value(global.buff_stack_grid, "xiangshui");
-                var xs_stack_count = ds_map_find_value(global.buff_stack_count, "xiangshui");
-                if (xs_stack_grid != undefined && xs_stack_count != undefined && xs_stack_count[c][r] < max_stacks)
-                {
-                    xs_stack_grid[c][r] += v;
-                    xs_stack_count[c][r]++;
-                }
-            }
-        }
         
         if (variable_instance_exists(arg0, "buffer_type_2") && !is_undefined(arg0.buffer_type_2))
         {

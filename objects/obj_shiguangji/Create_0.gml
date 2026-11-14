@@ -1,5 +1,5 @@
 // obj_shiguangji（13周年时光机 / 超载时光机 / 未来时光机）Create 事件
-// 辅助类·变星类：放下后走「前摇 2.7 → 1.1 秒」（register_card_skill 的「前摇」9 档），
+// 辅助类·变星类：放下后走固定「前摇 1.9 秒」（xlsx 官方值，技能等级不影响前摇），
 //   到点把范围内（0 转本格 / 1·2 转 3*3）的实体卡随机升降星，**永久生效**，然后自己消失
 //   星级上下限 0~16；**范围里一张卡都没作用到 → 清空自身卡槽 CD**（xlsx 备注）
 // 概率表（卡面数值，不进 custom）：
@@ -44,9 +44,9 @@ image_index  = sg_anim_i;
 idle_anim   = sg_idle_to;     // 父对象推帧要读
 attack_anim = 0;
 
-// ── 前摇：技能 9 档，走 register_card_skill("shiguangji", "前摇", [...]) ──
-//   情报岛文案 {前摇} 也吃这份值
-sg_cast_delay = 162;
+// ── 前摇：1.9 秒（xlsx 官方值，技能等级不影响）──
+//   情报岛文案 {前摇} 读的是 custom 里的固定值
+sg_cast_delay = 114;       // 1.9s × 60
 sg_init_done  = false;
 sg_timer      = 0;
 sg_cast_done  = false;

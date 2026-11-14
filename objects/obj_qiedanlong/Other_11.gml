@@ -14,7 +14,8 @@ for (var _i = 0; _i < array_length(qd_lane_rows); _i++){
             && grid_col >= other.grid_col
             && grid_col <= global.grid_cols + 1
             && can_target_on(other.target_type, target_type)){
-            if (!instance_exists(_t) || grid_col > _t.grid_col){
+            // 老鼠从右往左走 → grid_col 越小越靠前（离投手越近），取最小的那只
+            if (!instance_exists(_t) || grid_col < _t.grid_col){
                 _t = id;
             }
         }

@@ -125,7 +125,7 @@ function mod_fusion_table(){
             prereq: "rotating_coffee_pot",                    // 原子咖啡壶（原版 2 转）
             cards: [
                 { main:{ id:"rotating_coffee_pot", need:2 }, sub:{ id:"coffee_pot",      need:2 } },  // 红温咖啡喷壶
-                { main:{ id:"xuanzhuan_ronghe",           need:0 }, sub:{ id:"ice_bucket_bomb", need:2 } },  // 二转冰桶炸弹
+                { main:{ id:"xuanzhuan_ronghe",           need:0 }, sub:{ id:"qishui", need:2 } },  // 果味弹珠汽水
                 { main:{ id:"xuanzhuan_ronghe",           need:1 }, sub:{ id:"coffee_grounds",  need:2 } }   // 皇族咖啡粉
             ]
         }

@@ -76,6 +76,24 @@ function add_row(arg0, arg1, arg2)
         array_push(arg0, [c, arg1, arg2]);
 }
 
+/// @func cells_square(col, row, radius, value)
+/// @desc 返回一份 N×N 的增幅格子（不依赖任何实例变量，供 buff_outputs 用）
+function cells_square(_c, _r, _radius, _v)
+{
+    var _a = [];
+    add_square(_a, _c, _r, _radius, _v);
+    return _a;
+}
+
+/// @func cells_row(row, value)
+/// @desc 返回一整行增幅格子（「本行」档用）
+function cells_row(_r, _v)
+{
+    var _a = [];
+    add_row(_a, _r, _v);
+    return _a;
+}
+
 function refresh_buff_cells()
 {
     buff_cells = build_buff_cells(grid_col, grid_row, buff_shape, buff_value);

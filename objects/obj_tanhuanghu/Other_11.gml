@@ -3,7 +3,8 @@
 //   本行有空军 → 这一发是「对空弹」，只打 air，路过地面老鼠不打
 //   本行没空军 → 「对地弹」，只打 normal + obstacle，路过空军不打
 var _air_volley = (th_target_t == "air_only");
-var _hittable = _air_volley ? ["air"] : ["normal", "obstacle"];
+// 命中表**按类型派生**，不手写：air_only → ["air"]；normal → ["normal", "obstacle"]
+var _hittable = get_hittable_enemy_types(_air_volley ? "air_only" : "normal");
 
 // 出弹点：优先空军时按本行空军**身体 bbox 中心**对齐（同多拿滋 2026-11-06 写法）
 //   固定 y-26 永远够不到空军，表现就是「索敌了但打不中」

@@ -16,10 +16,10 @@ idle_anim = 12;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-buffer_type = "tracker";
-buffer_type_2 = (shape >= 3) ? "tracker_advanced" : undefined;
+buffer_type = "track_feast";
+if (shape >= 2) buffer_type_2 = "track_feast4";   // 四转追加（金卡 shape 1=三转 / 2=四转 / 3=终转）
 
-// 追踪增幅统一由 tracker 分组承担（分类驱动），不再需要 xiangshui 第二类型。
+// 有轨迹追踪走 track_feast 档；四转起再用 buffer_type_2 追加 track_feast4（无轨迹追踪）档。
 buff_value = atk / 100;
 
 if (shape < 3)

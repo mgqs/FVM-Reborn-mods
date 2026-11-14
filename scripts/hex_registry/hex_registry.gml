@@ -249,7 +249,7 @@ function hex_register_builtin() {
         tier: 0, form: "A", name: "薄切",
         card_desc: "直线穿透类攻击 +12%", enemy_desc: "老鼠生命 +8%",
         stack: 1, impl: true,
-        ex: { cat_atk: [ ["直线穿透类", 0.12] ] }, en: { e_hp: 0.08 }
+        ex: { cat_atk: [ ["A型穿透类", 0.12] ] }, en: { e_hp: 0.08 }
     });
     hex_register("hex_024", {
         tier: 0, form: "A", name: "油温够高",

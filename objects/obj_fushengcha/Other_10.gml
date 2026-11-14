@@ -19,7 +19,7 @@ var _c = global.fushengcha_query_card;
 if (get_plant_upgrade(_c.plant_id, 0, 0) == undefined) exit;
 
 // 仅对「直射类 / 固定轨迹类」卡片生效（分类来自 docs/卡片分类.md，见 card_buff_category 模块）
-if (!card_in_category(_c.plant_id, "固定轨迹类")) exit;
+if (!buff_channels_has(_c.plant_id, "fixed_track")) exit;
 
 // 0转 3*3，1/2转 5*5
 var _r = (shape == 0) ? 1 : 2;

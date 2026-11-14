@@ -11,8 +11,7 @@ if is_slowdown{
 attack_timer++
 
 if attack_timer == 15 * current_flash_speed - 1{
-	var _blacklist = ["brahma","magic_chicken","ice_cream","shegengbao","kuileima","xingqiongma"]
-	if target_card == "" || array_get_index(_blacklist,target_card) != -1{
+	if !card_is_copy_src(target_card){
 		exit
 	}
 	var card_save_data = get_card_info_simple(target_card)

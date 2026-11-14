@@ -448,6 +448,8 @@ function external_mod_unregister(cid) {
         ds_list_delete(global.player_deck, i + 1); ds_list_delete(global.player_deck, i);
     }
     ds_map_delete(global.info_island, cid);
+    // 原文表同步删：否则 info_island_compose_all() 会把它从 raw 里重新生成回来
+    if (variable_global_exists("info_island_raw")) ds_map_delete(global.info_island_raw, cid);
     ds_map_delete(global.skill_registry, cid);
     ds_map_delete(global.plus_card_map, cid);
     variable_struct_remove(global.external_card_registry, cid);

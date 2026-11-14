@@ -10,7 +10,6 @@ depth = calculate_plant_depth(grid_col, grid_row, plant_type) - 400;
 if (!ocean_buff_refreshed)
 {
     ocean_buff_value = atk / 100;
-    refresh_ocean_buff_cells();
     global.ocean_buff_dirty = true;
     ocean_buff_refreshed = true;
     ocean_last_col = grid_col;
@@ -28,7 +27,6 @@ else if (grid_col != ocean_last_col || grid_row != ocean_last_row || shape != oc
     else
         plant_type = "normal";
     
-    refresh_ocean_buff_cells();
     global.ocean_buff_dirty = true;
     ocean_last_col = grid_col;
     ocean_last_row = grid_row;
@@ -108,7 +106,6 @@ if (instance_exists(haiyang_effect_obj))
                 global.ocean_corner_effect_owner = noone;
         }
 
-        refresh_ocean_buff_cells();
         global.ocean_buff_dirty = true;
     }
 }
