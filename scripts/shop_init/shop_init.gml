@@ -12,8 +12,6 @@ function shop_init(){
 	register_goods("tar_sprayer",{"type":"card","cost":"80000","unlock_item_id":"tar_sprayer","description":"焦油喷壶：喷出可被点燃的油滴穿透攻击四格内敌人","display_name":"焦油喷壶"})
 	register_goods("durian",{"type":"card","cost":"30000","unlock_item_id":"durian","description":"榴莲：伤害3*3范围敌人","display_name":"榴莲"})
 	register_goods("dragon_fruit",{"type":"card","cost":"50000","unlock_item_id":"dragon_fruit","description":"火龙果：伤害3*3范围敌人","display_name":"火龙果"})
-	register_goods("magic_chicken",{"type":"card","cost":"80000","unlock_item_id":"magic_chicken","description":"幻幻鸡：复制成上一张放置的卡片","display_name":"幻幻鸡"})
-	register_goods("baibianshe",{"type":"card","cost":"100000","unlock_item_id":"baibianshe","description":"百变蛇：变身成为范围内上一张种下的卡片","display_name":"百变蛇"})
 register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhang","description":"魔杖蛇：给周围3*3范围旋转攻击卡片和本行直线喷射类卡片提高攻击力","display_name":"魔杖蛇"})
 	register_goods("bull_firework",{"type":"card","cost":"50000","unlock_item_id":"bull_firework","description":"金牛烟花：召唤1只烟花牛冲撞敌人","display_name":"金牛烟花"})
 	register_goods("rabbit_lantern",{"type":"card","cost":"50000","unlock_item_id":"rabbit_lantern","description":"玉兔灯笼：准备完成后造成3*3范围高伤害爆炸并留下火焰","display_name":"玉兔灯笼"})
@@ -225,7 +223,6 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 
 	register_goods("liehuohu",{"type":"card","cost":"100000","unlock_item_id":"liehuohu","description":"烈火虎：生产火苗并储能，消失时返还剩余储能","display_name":"烈火虎"})
 	register_goods("shegengbao",{"type":"card","cost":"25000","unlock_item_id":"shegengbao","description":"蛇羹煲：无需格子，回收目标格全部卡片的火苗能量","display_name":"蛇羹煲"})
-	register_goods("xuanfengniu",{"type":"card","cost":"60000","unlock_item_id":"xuanfengniu","description":"旋风牛：吹走全屏特定空中老鼠，一转可清障，二转不需要格子","display_name":"旋风牛"})
 	register_goods("sugar_roxburghii_1",{"type":"camp","cost":"3","unlock_item_id":"sugar_roxburghii","description":"烟熏刺梨：购买后解锁糖渍刺梨一转","display_name":"烟熏刺梨（一转）","coin_type":"less_camp_coin","target_shape":1})
 	register_goods("sugar_roxburghii_2",{"type":"camp","cost":"3","unlock_item_id":"sugar_roxburghii","description":"生腌酸刺梨：购买后解锁糖渍刺梨二转","display_name":"生腌酸刺梨（二转）","coin_type":"camp_coin","target_shape":2})
 	register_goods("nut_frier_1",{"type":"camp","cost":"3","unlock_item_id":"nut_frier","description":"橡子搅拌机：购买后解锁坚果爆炒机一转","display_name":"橡子搅拌机（一转）","coin_type":"less_camp_coin","target_shape":1})

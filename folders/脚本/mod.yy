@@ -35,6 +35,7 @@
     {"name":"mod_cards_init","path":"scripts/mod_cards_init/mod_cards_init.yy",},
     {"name":"mod_clotho_get_random_level","path":"scripts/mod_clotho_get_random_level/mod_clotho_get_random_level.yy",},
     {"name":"buff_target","path":"scripts/buff_target/buff_target.yy",},
+    {"name":"card_attack_target","path":"scripts/card_attack_target/card_attack_target.yy",},
     {"name":"mod_info_island_init","path":"scripts/mod_info_island_init/mod_info_island_init.yy",},
     {"name":"mod_info_island_search","path":"scripts/mod_info_island_search/mod_info_island_search.yy",},
     {"name":"mod_info_island_pinyin","path":"scripts/mod_info_island_pinyin/mod_info_island_pinyin.yy",},

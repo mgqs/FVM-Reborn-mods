@@ -1,7 +1,7 @@
 function cross_server_shop_init()
 {
     var _cross_server_goods = [
-        // 这张表只负责「改价 + 打跨服标」，商品本体由 shop_init / mod_shop_init 注册。
+        // 卡片本体的商品在下面直接注册；这份名单只管「改价 + 打跨服标」。
         // 归属只看 cross_server_shop 字段：有标 → 只在跨服；没标 → 只在普通商店。
         "baibianshe", "double_blade_snake", "laipishe", "magic_chicken", "xuanfengniu",
         "zhanqima", "niuyouguo", "fashishe", "huanyingshe", "master_shield", "hades_scythe", "zeus_bolt", "star_wand", "rose_shield", "aladdin_lamp",
@@ -9,7 +9,7 @@ function cross_server_shop_init()
         "zeus_shadow_gem", "zeus_power_gem", "zeus_anger_gem", "zeus_ren_gem", "star_wand_gem_1", "star_wand_gem_2", "star_wand_gem_3", "star_wand_gem_4", "star_wand_gem_5",
         "rose_shield_gem_1", "rose_shield_gem_2", "rose_shield_gem_3", "rose_shield_gem_4", "rose_shield_gem_5",
         "aladdin_lamp_gem_1", "aladdin_lamp_gem_2", "aladdin_lamp_gem_3", "aladdin_lamp_gem_4", "aladdin_lamp_gem_5",
-        // 金刚马 / 蛇蛇酒 / 转龙壶：本体在跨服白银页（价目见下）；本体商品仍在 mod_shop_init 注册，这里只改价
+        // 金刚马 / 蛇蛇酒 / 转龙壶：本体商品也在本文件注册（见下面的直接注册块）
         "jingangma", "sheshejiu", "zhuanlonghu",
         "yanyantu", "wugushe", "kuileima", "yufengma", "fenjima", "yanhuangma", "yinhema", "xiandima", "starrabbit", "wuxingshe"
     ];
@@ -36,6 +36,21 @@ function cross_server_shop_init()
         sheshejiu: {cost: "2500", shop: "silver"},
         zhuanlonghu: {cost: "2300", shop: "silver"}
     };
+
+    // ── 只在跨服卖的商品，注册点就在这里（普通商店那两个文件不再出现）──
+    register_goods("magic_chicken", { type: "card", cost: "1130", unlock_item_id: "magic_chicken", description: "幻幻鸡：复制成上一张放置的卡片", display_name: "幻幻鸡" });
+    register_goods("baibianshe", { type: "card", cost: "1510", unlock_item_id: "baibianshe", description: "百变蛇：变身成为范围内上一张种下的卡片", display_name: "百变蛇" });
+    register_goods("xuanfengniu", { type: "card", cost: "1020", unlock_item_id: "xuanfengniu", description: "旋风牛：吹走全屏特定空中老鼠，一转可清障，二转不需要格子", display_name: "旋风牛" });
+    register_goods("laipishe", { type: "card", cost: "1320", unlock_item_id: "laipishe", description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠", display_name: "赖皮蛇" });
+    register_goods("double_blade_snake", { type: "card", cost: "1320", unlock_item_id: "double_blade_snake", description: "双刃蛇：向前发射2发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠", display_name: "双刃蛇" });
+    register_goods("zhanqima", { type: "card", cost: "1900", unlock_item_id: "zhanqima", description: "战旗马：5*5范围内主动攻击型卡片提高基础攻击力", display_name: "战旗马" });
+    register_goods("niuyouguo", { type: "card", cost: "2030", unlock_item_id: "niuyouguo", description: "邪恶牛油果：向前方三个方向各发射1发穿透飞镖", display_name: "邪恶牛油果" });
+    register_goods("wuxingshe", { type: "card", cost: "1500", unlock_item_id: "wuxingshe", description: "五行蛇：为3*3范围内5方向卡片增加攻击力", display_name: "五行蛇" });
+    register_goods("fashishe", { type: "card", cost: "2000", unlock_item_id: "fashishe", description: "法师蛇：向前发射整行穿透毒子弹", display_name: "法师蛇" });
+    register_goods("huanyingshe", { type: "card", cost: "1700", unlock_item_id: "huanyingshe", description: "幻影蛇：大范围发射可追踪的投掷类子弹", display_name: "幻影蛇" });
+    register_goods("jingangma", { type: "card", cost: "3000", unlock_item_id: "jingangma", description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠", display_name: "金刚马" });
+    register_goods("sheshejiu", { type: "card", cost: "2500", unlock_item_id: "sheshejiu", description: "蛇蛇酒：为3*3范围内卡片随机升星或者降星，持续一段时间后恢复", display_name: "蛇蛇酒" });
+    register_goods("zhuanlonghu", { type: "card", cost: "2300", unlock_item_id: "zhuanlonghu", description: "转龙壶：缩减3*3范围内正在冷却的美食的冷却时间30%", display_name: "转龙壶" });
 
     // ── 跨服白银页卖的卡片本体 ────────────────────────────────────
     //   一 / 二转凭证已经在凭证页（credit_shop_init 的 credit_xxx_1/_2）卖，跨服不再出售任何
