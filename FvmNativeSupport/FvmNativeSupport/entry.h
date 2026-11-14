@@ -286,7 +286,7 @@ GmlCallable auto RestoreBackupWithTargetFile(const char *saves_dir,
                     "RestoreBackupWithTargetFile: target file not found");
   }
 
-  std::ifstream ifs(w_target);
+  std::ifstream ifs{std::filesystem::path(w_target)};
   if (!ifs.is_open()) {
     return FailWith(ERROR_FILE_NOT_FOUND,
                     "RestoreBackupWithTargetFile: failed to open target file");

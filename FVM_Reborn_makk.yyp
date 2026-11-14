@@ -2450,6 +2450,7 @@
     {"id":{"name":"enemy_registry","path":"scripts/enemy_registry/enemy_registry.yy",},},
     {"id":{"name":"Enum_Init","path":"scripts/Enum_Init/Enum_Init.yy",},},
     {"id":{"name":"external_animation_mod","path":"scripts/external_animation_mod/external_animation_mod.yy",},},
+    {"id":{"name":"external_mod_import","path":"scripts/external_mod_import/external_mod_import.yy",},},
     {"id":{"name":"external_mod_system","path":"scripts/external_mod_system/external_mod_system.yy",},},
     {"id":{"name":"FileUtil","path":"scripts/FileUtil/FileUtil.yy",},},
     {"id":{"name":"friendly_attack_visuals","path":"scripts/friendly_attack_visuals/friendly_attack_visuals.yy",},},

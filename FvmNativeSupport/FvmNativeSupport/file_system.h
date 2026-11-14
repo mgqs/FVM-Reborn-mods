@@ -2,9 +2,10 @@
 #include <windows.h>
 //
 #include <Commdlg.h>
-#include <ShlObj_core.h>
+#include <shlobj.h>
 #include <shellapi.h>
 
+#include <atomic>
 #include <filesystem>
 #include <map>
 #include <string>

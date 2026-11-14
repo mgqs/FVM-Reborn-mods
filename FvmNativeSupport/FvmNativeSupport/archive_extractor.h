@@ -1,6 +1,8 @@
 #pragma once
 
 #include <filesystem>
+#include <cstdint>
+#include <functional>
 #include <stdexcept>
 #include <string>
 
@@ -27,15 +29,32 @@ class ArchiveException : public std::runtime_error {
   int code_;
 };
 
+struct ArchiveProgress;
+
 class ArchiveExtractor {
  public:
   explicit ArchiveExtractor(std::filesystem::path seven_zip_dll);
 
   void extract(const std::filesystem::path& archive,
-               const std::filesystem::path& output_directory);
+               const std::filesystem::path& output_directory,
+               ArchiveProgress* progress = nullptr);
 
   static auto FindSevenZipDll() -> std::filesystem::path;
 
  private:
   std::filesystem::path dll_path_;
 };
+
+// Callbacks run on the extraction worker, never on the GameMaker thread.
+struct ArchiveProgress {
+  std::function<bool()> cancelled;
+  std::function<void(std::uint64_t, std::uint64_t)> total;
+  std::function<void(const std::filesystem::path&, bool)> begin;
+  std::function<void(const std::filesystem::path&, std::uint64_t,
+                     const void*, std::size_t)> data;
+  std::function<void(const std::filesystem::path&)> end;
+};
+
+void ExtractArchiveWithProgress(const std::filesystem::path& archive,
+                                const std::filesystem::path& output,
+                                ArchiveProgress* progress);

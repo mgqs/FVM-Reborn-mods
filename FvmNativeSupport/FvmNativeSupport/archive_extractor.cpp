@@ -140,6 +140,7 @@ class SevenZipLibrary {
 Z7_CLASS_IMP_IInStream(CInFileStreamWin)
   HANDLE handle_ = INVALID_HANDLE_VALUE;
 
+
  public:
   CInFileStreamWin() = default;
   ~CInFileStreamWin() { Close(); }
@@ -204,13 +205,18 @@ class COutFileStreamWin Z7_final : public ISequentialOutStream,
                                    public CMyUnknownImp {
   Z7_IFACES_IMP_UNK_1(ISequentialOutStream)
   HANDLE handle_ = INVALID_HANDLE_VALUE;
+  ArchiveProgress* progress_ = nullptr;
+  std::filesystem::path relative_;
+  std::uint64_t offset_ = 0;
 
  public:
   COutFileStreamWin() = default;
   ~COutFileStreamWin() { Close(); }
 
-  bool CreateAlways(const std::filesystem::path& path) {
+  bool CreateAlways(const std::filesystem::path& path, ArchiveProgress* progress,
+                    const std::filesystem::path& relative) {
     Close();
+    progress_ = progress; relative_ = relative; offset_ = 0;
     handle_ = CreateFileW(PathToWide(path).c_str(), GENERIC_WRITE, 0, nullptr,
                           CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
     return handle_ != INVALID_HANDLE_VALUE;
@@ -227,6 +233,7 @@ class COutFileStreamWin Z7_final : public ISequentialOutStream,
 Z7_COM7F_IMF(COutFileStreamWin::Write(const void* data, UInt32 size,
                                       UInt32* processedSize))
 {
+  if (progress_ && progress_->cancelled()) return E_ABORT;
   if (processedSize) {
     *processedSize = 0;
   }
@@ -243,6 +250,8 @@ Z7_COM7F_IMF(COutFileStreamWin::Write(const void* data, UInt32 size,
   if (processedSize) {
     *processedSize = written;
   }
+  if (progress_) progress_->data(relative_, offset_, data, written);
+  offset_ += written;
   return S_OK;
 }
 
@@ -277,15 +286,19 @@ class CArchiveExtractCallback Z7_final : public IArchiveExtractCallback,
   std::filesystem::path output_dir_;
   COutFileStreamWin* out_file_spec_ = nullptr;
   CMyComPtr<ISequentialOutStream> out_file_;
+  ArchiveProgress* progress_ = nullptr;
+  std::filesystem::path current_;
 
  public:
   bool password_required = false;
   int error_code = ArchiveErr::Ok;
   std::string error_message;
 
-  void Init(IInArchive* archive, const std::filesystem::path& output_dir) {
+  void Init(IInArchive* archive, const std::filesystem::path& output_dir,
+            ArchiveProgress* progress) {
     archive_ = archive;
     output_dir_ = output_dir;
+    progress_ = progress;
   }
 
   void SetError(int code, const char* message) {
@@ -296,9 +309,13 @@ class CArchiveExtractCallback Z7_final : public IArchiveExtractCallback,
   }
 };
 
-Z7_COM7F_IMF(CArchiveExtractCallback::SetTotal(UInt64)) { return S_OK; }
+Z7_COM7F_IMF(CArchiveExtractCallback::SetTotal(UInt64 length)) {
+  if (progress_) progress_->total(0, length);
+  return S_OK;
+}
 
 Z7_COM7F_IMF(CArchiveExtractCallback::SetCompleted(const UInt64*)) {
+  if (progress_ && progress_->cancelled()) return E_ABORT;
   return S_OK;
 }
 
@@ -327,6 +344,7 @@ Z7_COM7F_IMF(CArchiveExtractCallback::GetStream(
     UInt32 index, ISequentialOutStream** outStream, Int32 askExtractMode))
 {
   *outStream = nullptr;
+  if (progress_ && progress_->cancelled()) return E_ABORT;
   out_file_.Release();
   out_file_spec_ = nullptr;
 
@@ -362,6 +380,9 @@ Z7_COM7F_IMF(CArchiveExtractCallback::GetStream(
     return E_FAIL;
   }
 
+  current_ = dest.lexically_relative(output_dir_);
+  if (progress_) progress_->begin(current_, is_dir);
+
   std::error_code ec;
   if (is_dir) {
     std::filesystem::create_directories(dest, ec);
@@ -380,7 +401,7 @@ Z7_COM7F_IMF(CArchiveExtractCallback::GetStream(
 
   out_file_spec_ = new COutFileStreamWin();
   CMyComPtr<ISequentialOutStream> stream(out_file_spec_);
-  if (!out_file_spec_->CreateAlways(dest)) {
+  if (!out_file_spec_->CreateAlways(dest, progress_, current_)) {
     SetError(ArchiveErr::FileCreateFailed, "Failed to create output file");
     return E_FAIL;
   }
@@ -396,6 +417,7 @@ Z7_COM7F_IMF(CArchiveExtractCallback::SetOperationResult(Int32 opRes))
   out_file_.Release();
   out_file_spec_ = nullptr;
   if (opRes == NArchive::NExtract::NOperationResult::kOK) {
+    if (progress_) progress_->end(current_);
     return S_OK;
   }
   if (opRes == NArchive::NExtract::NOperationResult::kWrongPassword) {
@@ -522,7 +544,8 @@ auto ArchiveExtractor::FindSevenZipDll() -> std::filesystem::path {
 }
 
 void ArchiveExtractor::extract(const std::filesystem::path& archive,
-                               const std::filesystem::path& output_directory) {
+                               const std::filesystem::path& output_directory,
+                               ArchiveProgress* progress) {
   if (archive.empty() || output_directory.empty()) {
     throw ArchiveException(ArchiveErr::InvalidArchive, "Empty archive or output path");
   }
@@ -564,7 +587,11 @@ void ArchiveExtractor::extract(const std::filesystem::path& archive,
 
   CArchiveExtractCallback* extract_spec = new CArchiveExtractCallback();
   CMyComPtr<IArchiveExtractCallback> extract_callback(extract_spec);
-  extract_spec->Init(in_archive, output_directory);
+  extract_spec->Init(in_archive, output_directory, progress);
+  if (progress) {
+    UInt32 count = 0;
+    if (in_archive->GetNumberOfItems(&count) == S_OK) progress->total(count, 0);
+  }
 
   const HRESULT hr =
       in_archive->Extract(nullptr, static_cast<UInt32>(-1), 0, extract_spec);
@@ -579,4 +606,10 @@ void ArchiveExtractor::extract(const std::filesystem::path& archive,
   if (hr != S_OK) {
     throw ArchiveException(ArchiveErr::ExtractFailed, "Extract failed");
   }
+}
+
+void ExtractArchiveWithProgress(const std::filesystem::path& archive,
+                                const std::filesystem::path& output,
+                                ArchiveProgress* progress) {
+  ArchiveExtractor(ArchiveExtractor::FindSevenZipDll()).extract(archive, output, progress);
 }
