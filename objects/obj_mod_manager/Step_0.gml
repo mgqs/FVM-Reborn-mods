@@ -1,4 +1,5 @@
 external_animation_cache_step();
+external_mod_import_step();
 external_animation_load_step();
 external_animation_debug_step();
 external_mod_burn_step();

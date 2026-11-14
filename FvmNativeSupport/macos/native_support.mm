@@ -88,7 +88,7 @@ void ArchiveFailure(archive* reader, int fallback) {
     throw ArchiveException(code, message ? message : "Archive operation failed");
 }
 
-void Extract(const fs::path& source, const fs::path& output) {
+void Extract(const fs::path& source, const fs::path& output, ArchiveProgress* progress = nullptr) {
     std::unique_ptr<archive, decltype(&archive_read_free)>
         reader(archive_read_new(), archive_read_free);
     std::unique_ptr<archive, decltype(&archive_write_free)>
@@ -108,6 +108,7 @@ void Extract(const fs::path& source, const fs::path& output) {
     archive_entry* entry = nullptr;
     int status;
     while ((status = archive_read_next_header(reader.get(), &entry)) != ARCHIVE_EOF) {
+        if (progress && progress->cancelled()) throw ArchiveException(NativeError::OperationCancelled, "Cancelled");
         if (status != ARCHIVE_OK) ArchiveFailure(reader.get(), ArchiveErr::ExtractFailed);
         const char* name = archive_entry_pathname_utf8(entry);
         if (!name) name = archive_entry_pathname(entry);
@@ -138,6 +139,7 @@ void Extract(const fs::path& source, const fs::path& output) {
         }
         archive_entry_set_pathname(entry, target.c_str());
         archive_entry_set_perm(entry, type == AE_IFDIR ? 0755 : 0644);
+        if (progress) progress->begin(relative, type == AE_IFDIR);
         if (archive_write_header(writer.get(), entry) != ARCHIVE_OK) {
             throw ArchiveException(ArchiveErr::FileCreateFailed, "Cannot create archive output");
         }
@@ -146,18 +148,27 @@ void Extract(const fs::path& source, const fs::path& output) {
             size_t size;
             la_int64_t offset;
             while ((status = archive_read_data_block(reader.get(), &buffer, &size, &offset)) != ARCHIVE_EOF) {
+                if (progress && progress->cancelled()) throw ArchiveException(NativeError::OperationCancelled, "Cancelled");
                 if (status != ARCHIVE_OK) ArchiveFailure(reader.get(), ArchiveErr::ExtractFailed);
                 if (archive_write_data_block(writer.get(), buffer, size, offset) != ARCHIVE_OK) {
                     throw ArchiveException(ArchiveErr::ExtractFailed, "Cannot write archive output");
                 }
+                if (progress) progress->data(relative, static_cast<std::uint64_t>(offset), buffer, size);
             }
         }
         if (archive_write_finish_entry(writer.get()) != ARCHIVE_OK) {
             throw ArchiveException(ArchiveErr::ExtractFailed, "Cannot finish archive output");
         }
+        if (progress) progress->end(relative);
     }
 }
 } // namespace
+
+void ExtractArchiveWithProgress(const std::filesystem::path& source,
+                                const std::filesystem::path& output,
+                                ArchiveProgress* progress) {
+    Extract(source, output, progress);
+}
 
 GmlCallable double SetNativeLogFilePath(const char* path) {
     if (!path || !*path) return NativeError::InvalidArgument;

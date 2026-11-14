@@ -7,6 +7,10 @@ list_top = y - 205;
 list_bottom = y + 205;
 mods = [];
 status_text = "";
+import_close_when_done = false;
+if (is_struct(global.external_mod_import_job) && !instance_exists(global.external_mod_import_job.owner)) {
+    global.external_mod_import_job.owner = id;
+}
 notify_result = function(message) {
     status_text = message;
     show_message(message);
@@ -63,6 +67,7 @@ manifest_name = function(folder_path, fallback) {
 };
 
 refresh_mods = function(persist_state = true) {
+    if (is_struct(global.external_mod_import_job) && !global.external_mod_import_job.done) persist_state = false;
     var previous = mods;
     mods = [];
     // Collect names first: resolving an outer package directory also uses file_find.

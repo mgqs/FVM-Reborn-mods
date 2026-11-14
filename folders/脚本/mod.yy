@@ -13,6 +13,7 @@
     {"name":"Craft","path":"folders/脚本/mod/Craft.yy",},
   ],
   "listItems":[
+    {"name":"external_mod_import","path":"scripts/external_mod_import/external_mod_import.yy",},
     {"name":"attire_transformation","path":"scripts/attire_transformation/attire_transformation.yy",},
     {"name":"gem_cooldown_hint","path":"scripts/gem_cooldown_hint/gem_cooldown_hint.yy",},
     {"name":"zhuore_enemy_init","path":"scripts/zhuore_enemy_init/zhuore_enemy_init.yy",},

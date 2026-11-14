@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"external_mod_import",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"external_mod_import",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

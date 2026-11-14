@@ -226,7 +226,7 @@ function external_mod_animation_frames(payload) {
     return frames;
 }
 
-function external_mod_animation_validate(root, payload) {
+function external_mod_animation_validate(root, payload, check_images = true) {
     var frames = external_mod_animation_frames(payload);
     if (!is_array(frames) || array_length(frames) == 0 || array_length(frames) > 256) throw "动画需要 1–256 张 PNG";
     var animation_fps = external_mod_field(payload, "fps", 12);
@@ -240,7 +240,7 @@ function external_mod_animation_validate(root, payload) {
     }
     for (var i = 0; i < array_length(frames); i++) {
         var p = external_mod_path(root, frames[i]);
-        if (string_lower(filename_ext(p)) != ".png" || !file_exists(p)) throw "PNG 不存在：" + p;
+        if (string_lower(filename_ext(p)) != ".png" || (check_images && !file_exists(p))) throw "PNG 不存在：" + p;
     }
     var events = external_mod_field(payload, "events", []);
     if (!is_array(events) || array_length(events) > 128) throw "动画事件格式无效";
@@ -271,85 +271,90 @@ function external_mod_validate(folder) {
     var cards = [];
     var ids = {};
     for (var c = 0; c < array_length(files); c++) {
-        var file = external_mod_path(root, files[c]);
-        var d = json_parse(external_mod_read(file));
-        var cid = external_mod_field(d, "id", "");
-        if (!external_mod_id_valid(cid) || variable_struct_exists(ids, cid)) throw "卡片 ID 无效或重复：" + string(cid);
-        ids[$ cid] = true;
-        if (external_mod_field(d, "api_version", 1) != 1) throw "不支持的卡片 API 版本";
-        if (!is_string(external_mod_field(d, "name", undefined)) || d.name == "") throw "卡片缺少名称";
-        if (!is_string(external_mod_field(d, "description", undefined)) || d.description == "") throw "卡片缺少描述";
-        d.root = filename_dir(file);
-        // Accept both names used by the design document and the current template.
-        // Only gold cards have temporary 17/18-star data for Clotho.
-        d.is_god = external_mod_field(d, "is_gold", external_mod_field(d, "is_god", false)) == true;
-        d.is_gold = d.is_god;
-        d.max_level = d.is_god ? 18 : 16;
-        var declared_max = external_mod_field(d, "max_star", d.max_level);
-        if (!is_numeric(declared_max) || floor(declared_max) != declared_max || (declared_max != 16 && declared_max != 18)) throw "max_star 只能是 16 或 18";
-        if (declared_max == 18 && !d.is_gold) throw "18 星卡片必须是金卡";
-        d.max_level = declared_max;
-        d.script_path = external_mod_path(d.root, external_mod_field(d, "script", "logic.lua"));
-        if (string_lower(filename_ext(d.script_path)) != ".lua") throw "行为脚本必须是 .lua";
-        d.source = external_mod_read(d.script_path);
-        if (string_byte_length(d.source) > 262144) throw "Lua 脚本不能超过 256 KB";
-        // Legacy single-card form becomes a separate shape struct, avoiding a self reference.
-        d.shapes = external_mod_field(d, "shapes", [json_parse(external_mod_read(file))]);
-        if (!is_array(d.shapes) || array_length(d.shapes) < 1 || array_length(d.shapes) > 6) throw "需要 1–6 个连续形态";
-        for (var s = 0; s < array_length(d.shapes); s++) {
-            var sh = d.shapes[s];
-            if (!is_struct(sh) || external_mod_field(sh, "shape", s) != s) throw "shape 必须从 0 连续编号";
-            sh.shape = s;
-            sh.is_gold = d.is_gold;
-            sh.name = external_mod_field(sh, "name", d.name);
-            sh.description = external_mod_field(sh, "description", d.description);
-            var fields = ["hp", "cost", "atk", "range", "cooldown", "cycle"];
-            var defaults = [50, 100, 20, 10, 420, 120];
-            for (var k = 0; k < array_length(fields); k++) sh[$ fields[k]] = external_mod_numbers(external_mod_field(sh, fields[k], defaults[k]), d.max_level + 1, fields[k]);
-            sh.plant_type = external_mod_field(sh, "plant_type", "normal");
-            sh.feature_type = external_mod_field(sh, "feature_type", "normal");
-            sh.target_card = external_mod_field(sh, "target_card", "none");
-            sh.target_type = external_mod_field(sh, "target_type", "normal");
-            if (array_get_index(["normal", "air", "air_only", "throw", "track", "pierce", "pierce_air", "rotate", "d_fruit", "all"], sh.target_type) < 0) throw "卡片 target_type 无效：" + string(sh.target_type);
-            sh.behavior_params = external_mod_field(sh, "behavior_params", external_mod_field(d, "behavior_params", {}));
-            sh.icon = external_mod_field(sh, "icon", external_mod_field(d, "icon", external_mod_field(d, "sprite", "card.png")));
-            var icon_path = external_mod_path(d.root, sh.icon);
-            if (!file_exists(icon_path) || string_lower(filename_ext(icon_path)) != ".png") throw "卡片图标不存在：" + icon_path;
-            var anims = external_mod_field(sh, "animations", external_mod_field(d, "animations", {idle: {frames: [sh.icon], fps: 1}}));
-            if (!is_struct(anims) || !variable_struct_exists(anims, "idle")) throw "缺少 idle 动画";
-            sh.animations = {};
-            var keys = variable_struct_get_names(anims);
-            for (var k = 0; k < array_length(keys); k++) {
-                sh.animations[$ keys[k]] = external_mod_animation_validate(d.root, anims[$ keys[k]]);
-                if (keys[k] == "bullet") sh.animations[$ keys[k]].rules = external_mod_projectile_rules(anims[$ keys[k]]);
-            }
-            d.shapes[s] = sh;
-        }
-        d.skill = external_mod_field(d, "skill", undefined);
-        if (!is_undefined(d.skill)) {
-            var property = external_mod_field(d.skill, "property", "");
-            if (array_get_index(["hp", "atk", "cost", "range", "cycle", "cooldown", "flame_produce"], property) == -1) throw "不支持的技能属性";
-            d.skill.values = external_mod_numbers(external_mod_field(d.skill, "values", []), 9, "技能 values");
-        }
-        d.projectiles = external_mod_field(d, "projectiles", {});
-        if (!is_struct(d.projectiles)) throw "projectiles 必须为对象";
-        // The design document allows a bullet animation inside a shape. Promote it
-        // to the projectile registry so api.shoot({sprite="bullet"}) works too.
-        if (variable_struct_exists(d.shapes[0].animations, "bullet") && !variable_struct_exists(d.projectiles, "bullet")) {
-            d.projectiles.bullet = d.shapes[0].animations.bullet;
-        }
-        var pkeys = variable_struct_get_names(d.projectiles);
-        for (var k = 0; k < array_length(pkeys); k++) {
-            var projectile_payload = d.projectiles[$ pkeys[k]];
-            var projectile_animation = external_mod_animation_validate(d.root, projectile_payload);
-            projectile_animation.rules = external_mod_field(projectile_payload, "rules", external_mod_projectile_rules(projectile_payload));
-            d.projectiles[$ pkeys[k]] = projectile_animation;
-        }
-        d.behavior_params = external_mod_field(d, "behavior_params", {});
-        d.initial_unlock = external_mod_field(d, "initial_unlock", {level: 0, shape: 0, skill: 0});
-        array_push(cards, d);
+        array_push(cards, external_mod_validate_card(root, files[c], ids));
     }
     return {type: "cards", root: root, name: external_mod_field(manifest, "name", filename_name(folder)), cards: cards, overrides: []};
+}
+
+/// One card is also the incremental importer's validation unit.
+function external_mod_validate_card(root, relative, ids, check_images = true) {
+    var file = external_mod_path(root, relative);
+    var d = json_parse(external_mod_read(file));
+    var cid = external_mod_field(d, "id", "");
+    if (!external_mod_id_valid(cid) || variable_struct_exists(ids, cid)) throw "卡片 ID 无效或重复：" + string(cid);
+    ids[$ cid] = true;
+    if (external_mod_field(d, "api_version", 1) != 1) throw "不支持的卡片 API 版本";
+    if (!is_string(external_mod_field(d, "name", undefined)) || d.name == "") throw "卡片缺少名称";
+    if (!is_string(external_mod_field(d, "description", undefined)) || d.description == "") throw "卡片缺少描述";
+    d.root = filename_dir(file);
+    // Accept both names used by the design document and the current template.
+    // Only gold cards have temporary 17/18-star data for Clotho.
+    d.is_god = external_mod_field(d, "is_gold", external_mod_field(d, "is_god", false)) == true;
+    d.is_gold = d.is_god;
+    d.max_level = d.is_god ? 18 : 16;
+    var declared_max = external_mod_field(d, "max_star", d.max_level);
+    if (!is_numeric(declared_max) || floor(declared_max) != declared_max || (declared_max != 16 && declared_max != 18)) throw "max_star 只能是 16 或 18";
+    if (declared_max == 18 && !d.is_gold) throw "18 星卡片必须是金卡";
+    d.max_level = declared_max;
+    d.script_path = external_mod_path(d.root, external_mod_field(d, "script", "logic.lua"));
+    if (string_lower(filename_ext(d.script_path)) != ".lua") throw "行为脚本必须是 .lua";
+    d.source = external_mod_read(d.script_path);
+    if (string_byte_length(d.source) > 262144) throw "Lua 脚本不能超过 256 KB";
+    // Legacy single-card form becomes a separate shape struct, avoiding a self reference.
+    d.shapes = external_mod_field(d, "shapes", [json_parse(external_mod_read(file))]);
+    if (!is_array(d.shapes) || array_length(d.shapes) < 1 || array_length(d.shapes) > 6) throw "需要 1–6 个连续形态";
+    for (var s = 0; s < array_length(d.shapes); s++) {
+        var sh = d.shapes[s];
+        if (!is_struct(sh) || external_mod_field(sh, "shape", s) != s) throw "shape 必须从 0 连续编号";
+        sh.shape = s;
+        sh.is_gold = d.is_gold;
+        sh.name = external_mod_field(sh, "name", d.name);
+        sh.description = external_mod_field(sh, "description", d.description);
+        var fields = ["hp", "cost", "atk", "range", "cooldown", "cycle"];
+        var defaults = [50, 100, 20, 10, 420, 120];
+        for (var k = 0; k < array_length(fields); k++) sh[$ fields[k]] = external_mod_numbers(external_mod_field(sh, fields[k], defaults[k]), d.max_level + 1, fields[k]);
+        sh.plant_type = external_mod_field(sh, "plant_type", "normal");
+        sh.feature_type = external_mod_field(sh, "feature_type", "normal");
+        sh.target_card = external_mod_field(sh, "target_card", "none");
+        sh.target_type = external_mod_field(sh, "target_type", "normal");
+        if (array_get_index(["normal", "air", "air_only", "throw", "track", "pierce", "pierce_air", "rotate", "d_fruit", "all"], sh.target_type) < 0) throw "卡片 target_type 无效：" + string(sh.target_type);
+        sh.behavior_params = external_mod_field(sh, "behavior_params", external_mod_field(d, "behavior_params", {}));
+        sh.icon = external_mod_field(sh, "icon", external_mod_field(d, "icon", external_mod_field(d, "sprite", "card.png")));
+        var icon_path = external_mod_path(d.root, sh.icon);
+        if ((check_images && !file_exists(icon_path)) || string_lower(filename_ext(icon_path)) != ".png") throw "卡片图标不存在：" + icon_path;
+        var anims = external_mod_field(sh, "animations", external_mod_field(d, "animations", {idle: {frames: [sh.icon], fps: 1}}));
+        if (!is_struct(anims) || !variable_struct_exists(anims, "idle")) throw "缺少 idle 动画";
+        sh.animations = {};
+        var keys = variable_struct_get_names(anims);
+        for (var k = 0; k < array_length(keys); k++) {
+            sh.animations[$ keys[k]] = external_mod_animation_validate(d.root, anims[$ keys[k]], check_images);
+            if (keys[k] == "bullet") sh.animations[$ keys[k]].rules = external_mod_projectile_rules(anims[$ keys[k]]);
+        }
+        d.shapes[s] = sh;
+    }
+    d.skill = external_mod_field(d, "skill", undefined);
+    if (!is_undefined(d.skill)) {
+        var property = external_mod_field(d.skill, "property", "");
+        if (array_get_index(["hp", "atk", "cost", "range", "cycle", "cooldown", "flame_produce"], property) == -1) throw "不支持的技能属性";
+        d.skill.values = external_mod_numbers(external_mod_field(d.skill, "values", []), 9, "技能 values");
+    }
+    d.projectiles = external_mod_field(d, "projectiles", {});
+    if (!is_struct(d.projectiles)) throw "projectiles 必须为对象";
+    // The design document allows a bullet animation inside a shape. Promote it
+    // to the projectile registry so api.shoot({sprite="bullet"}) works too.
+    if (variable_struct_exists(d.shapes[0].animations, "bullet") && !variable_struct_exists(d.projectiles, "bullet")) {
+        d.projectiles.bullet = d.shapes[0].animations.bullet;
+    }
+    var pkeys = variable_struct_get_names(d.projectiles);
+    for (var k = 0; k < array_length(pkeys); k++) {
+        var projectile_payload = d.projectiles[$ pkeys[k]];
+        var projectile_animation = external_mod_animation_validate(d.root, projectile_payload, check_images);
+        projectile_animation.rules = external_mod_field(projectile_payload, "rules", external_mod_projectile_rules(projectile_payload));
+        d.projectiles[$ pkeys[k]] = projectile_animation;
+    }
+    d.behavior_params = external_mod_field(d, "behavior_params", {});
+    d.initial_unlock = external_mod_field(d, "initial_unlock", {level: 0, shape: 0, skill: 0});
+    return d;
 }
 
 function external_mod_check_conflicts(incoming, installed) {

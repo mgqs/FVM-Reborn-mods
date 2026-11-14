@@ -82,87 +82,149 @@ function external_animation_clock_validate(payload) {
         period_field: period_field, ticks_per_frame: period};
 }
 
-/// Validation reads files, but does not allocate textures or execute scripts.
-function external_animation_validate(root, manifest) {
+/// Share exactly the same checks between synchronous startup and sliced imports.
+function external_animation_validation_begin(root, manifest, archive_job = -1, check_images = true) {
     var paths = external_mod_field(manifest, "overrides", []);
     if (!is_array(paths) || array_length(paths) < 1 || array_length(paths) > EXTERNAL_ANIMATION_MAX_OVERRIDES) throw "overrides 需要 1–4096 个配置路径";
-    var definitions = [];
-    var seen = {};
-    var package_bytes = 0;
-    for (var i = 0; i < array_length(paths); i++) {
-        var config_path = external_mod_path(root, paths[i]);
-        var d = json_parse(external_mod_read(config_path));
-        if (!is_struct(d)) throw "动画覆盖配置必须为对象";
-        d.root = filename_dir(config_path);
-        d.sprite = external_mod_field(d, "sprite", "");
-        d.object = external_mod_field(d, "object", "");
-        if (!is_string(d.sprite) || !is_string(d.object)) throw "sprite 和 object 必须为资源名称";
-        d.sprite_asset = asset_get_index(d.sprite);
-        d.object_asset = asset_get_index(d.object);
-        if (d.sprite_asset == -1 || asset_get_type(d.sprite_asset) != asset_sprite) throw "找不到原版精灵：" + d.sprite;
-        if (d.object_asset == -1 || asset_get_type(d.object_asset) != asset_object) throw "找不到原有对象：" + d.object;
-        var scopes = external_mod_field(seen, d.sprite, []);
-        for (var previous = 0; previous < array_length(scopes); previous++) {
-            if (external_animation_scopes_overlap(d, scopes[previous])) throw "同精灵的对象范围重叠：" + d.sprite;
-        }
-        array_push(scopes, d);
-        seen[$ d.sprite] = scopes;
-        var source = external_mod_field(d, "source", {});
-        var properties = ["frames", "width", "height", "origin_x", "origin_y"];
-        var actual = [sprite_get_number(d.sprite_asset), sprite_get_width(d.sprite_asset), sprite_get_height(d.sprite_asset),
-            sprite_get_xoffset(d.sprite_asset), sprite_get_yoffset(d.sprite_asset)];
-        for (var k = 0; k < array_length(properties); k++) {
-            var declared = external_mod_field(source, properties[k], undefined);
-            if (!is_numeric(declared) || declared != actual[k]) throw "原素材版本不匹配：" + d.sprite + " / " + properties[k];
-        }
-        d.source = source;
-        var default_clock = "image_index";
-        if (d.object_asset == obj_card_parent || object_is_ancestor(d.object_asset, obj_card_parent)) default_clock = "card_parent";
-        else if (d.object_asset == obj_enemy_parent || object_is_ancestor(d.object_asset, obj_enemy_parent)) default_clock = "enemy_parent";
-        d.clock = external_animation_clock_validate(external_mod_field(d, "clock", default_clock));
-        d.clips = external_mod_field(d, "clips", []);
-        if (!is_array(d.clips) || array_length(d.clips) < 1 || array_length(d.clips) > 32) throw "clips 需要 1–32 个动作段";
-        var covered = array_create(source.frames, false);
-        for (var c = 0; c < array_length(d.clips); c++) {
-            var clip = d.clips[c];
-            if (!is_struct(clip)) throw "动作段必须为对象";
-            clip.first = external_animation_integer(external_mod_field(clip, "first", -1), 0, source.frames - 1, "first");
-            clip.last = external_animation_integer(external_mod_field(clip, "last", -1), clip.first, source.frames - 1, "last");
-            clip.samples_per_frame = external_animation_integer(external_mod_field(clip, "samples_per_frame", 1), 1, 16, "samples_per_frame");
-            clip.loop = external_mod_field(clip, "loop", false);
-            if (!is_bool(clip.loop)) throw "loop 必须为布尔值";
-            clip.clock = external_animation_clock_validate(external_mod_field(clip, "clock", d.clock));
-            clip.frames = external_mod_field(clip, "frames", []);
-            var expected = (clip.last - clip.first + 1) * clip.samples_per_frame;
-            if (!is_array(clip.frames) || array_length(clip.frames) != expected || expected > 4096) throw "动作段 PNG 数量必须等于原帧数 × samples_per_frame，最多 4096 张";
-            for (var f = clip.first; f <= clip.last; f++) {
-                if (covered[f]) throw "动作段的原帧区间不能重叠";
-                covered[f] = true;
-            }
-            clip.bytes = source.width * source.height * 4 * expected;
-            if (clip.bytes > EXTERNAL_ANIMATION_CACHE_BYTES) throw "单个动作解码后超过 512 MiB，请细分动作段";
-            package_bytes += clip.bytes;
-            if (package_bytes > EXTERNAL_ANIMATION_MAX_PACKAGE_BYTES) throw "动画包解码估算量超过 8 GiB，请拆分素材包";
-            for (var f = 0; f < expected; f++) {
-                var p = external_mod_path(d.root, clip.frames[f]);
-                if (string_lower(filename_ext(p)) != ".png" || !file_exists(p)) throw "PNG 不存在：" + p;
-                external_animation_png_validate(p, source.width, source.height);
-            }
-            clip.sprite_asset = -1;
-            clip.loading_sprite = -1;
-            clip.loading_index = 0;
-            clip.queued = false;
-            clip.load_urgent = false;
-            clip.failed = false;
-            clip.error = "";
-            clip.cache_frame = -1;
-            clip.cache_used = 0;
-            d.clips[c] = clip;
-        }
-        d.failed = false;
-        array_push(definitions, d);
+    return {root: root, paths: paths, archive_job: archive_job, check_images: check_images, definitions: [], seen: {},
+        package_bytes: 0, total_frames: 0, checked: 0, config_index: 0,
+        definition_index: 0, clip_index: 0, frame_index: 0, done: false, phase: "configs",
+        name: external_mod_field(manifest, "name", filename_name(root)), result: undefined};
+}
+
+function external_animation_validation_definition(validation) {
+    var config_path = external_mod_path(validation.root, validation.paths[validation.config_index]);
+    var d = json_parse(external_mod_read(config_path));
+    if (!is_struct(d)) throw "动画覆盖配置必须为对象";
+    d.root = filename_dir(config_path);
+    d.sprite = external_mod_field(d, "sprite", "");
+    d.object = external_mod_field(d, "object", "");
+    if (!is_string(d.sprite) || !is_string(d.object)) throw "sprite 和 object 必须为资源名称";
+    d.sprite_asset = asset_get_index(d.sprite);
+    d.object_asset = asset_get_index(d.object);
+    if (d.sprite_asset == -1 || asset_get_type(d.sprite_asset) != asset_sprite) throw "找不到原版精灵：" + d.sprite;
+    if (d.object_asset == -1 || asset_get_type(d.object_asset) != asset_object) throw "找不到原有对象：" + d.object;
+    var scopes = external_mod_field(validation.seen, d.sprite, []);
+    for (var previous = 0; previous < array_length(scopes); previous++) {
+        if (external_animation_scopes_overlap(d, scopes[previous])) throw "同精灵的对象范围重叠：" + d.sprite;
     }
-    return {type: "animation_override", root: root, name: external_mod_field(manifest, "name", filename_name(root)), cards: [], overrides: definitions};
+    array_push(scopes, d);
+    validation.seen[$ d.sprite] = scopes;
+    var source = external_mod_field(d, "source", {});
+    var properties = ["frames", "width", "height", "origin_x", "origin_y"];
+    var actual = [sprite_get_number(d.sprite_asset), sprite_get_width(d.sprite_asset), sprite_get_height(d.sprite_asset),
+        sprite_get_xoffset(d.sprite_asset), sprite_get_yoffset(d.sprite_asset)];
+    for (var k = 0; k < array_length(properties); k++) {
+        var declared = external_mod_field(source, properties[k], undefined);
+        if (!is_numeric(declared) || declared != actual[k]) throw "原素材版本不匹配：" + d.sprite + " / " + properties[k];
+    }
+    d.source = source;
+    var default_clock = "image_index";
+    if (d.object_asset == obj_card_parent || object_is_ancestor(d.object_asset, obj_card_parent)) default_clock = "card_parent";
+    else if (d.object_asset == obj_enemy_parent || object_is_ancestor(d.object_asset, obj_enemy_parent)) default_clock = "enemy_parent";
+    d.clock = external_animation_clock_validate(external_mod_field(d, "clock", default_clock));
+    d.clips = external_mod_field(d, "clips", []);
+    if (!is_array(d.clips) || array_length(d.clips) < 1 || array_length(d.clips) > 32) throw "clips 需要 1–32 个动作段";
+    var covered = array_create(source.frames, false);
+    for (var c = 0; c < array_length(d.clips); c++) {
+        var clip = d.clips[c];
+        if (!is_struct(clip)) throw "动作段必须为对象";
+        clip.first = external_animation_integer(external_mod_field(clip, "first", -1), 0, source.frames - 1, "first");
+        clip.last = external_animation_integer(external_mod_field(clip, "last", -1), clip.first, source.frames - 1, "last");
+        clip.samples_per_frame = external_animation_integer(external_mod_field(clip, "samples_per_frame", 1), 1, 16, "samples_per_frame");
+        clip.loop = external_mod_field(clip, "loop", false);
+        if (!is_bool(clip.loop)) throw "loop 必须为布尔值";
+        clip.clock = external_animation_clock_validate(external_mod_field(clip, "clock", d.clock));
+        clip.frames = external_mod_field(clip, "frames", []);
+        var expected = (clip.last - clip.first + 1) * clip.samples_per_frame;
+        if (!is_array(clip.frames) || array_length(clip.frames) != expected || expected > 4096) throw "动作段 PNG 数量必须等于原帧数 × samples_per_frame，最多 4096 张";
+        for (var f = clip.first; f <= clip.last; f++) {
+            if (covered[f]) throw "动作段的原帧区间不能重叠";
+            covered[f] = true;
+        }
+        if (!validation.check_images) {
+            // Toggle checks validate references without opening every PNG again.
+            for (var frame_path_index = 0; frame_path_index < array_length(clip.frames); frame_path_index++) {
+                var path = external_mod_path(d.root, clip.frames[frame_path_index]);
+                if (string_lower(filename_ext(path)) != ".png") throw "PNG 扩展名无效：" + path;
+            }
+        }
+        clip.bytes = source.width * source.height * 4 * expected;
+        if (clip.bytes > EXTERNAL_ANIMATION_CACHE_BYTES) throw "单个动作解码后超过 512 MiB，请细分动作段";
+        validation.package_bytes += clip.bytes;
+        validation.total_frames += expected;
+        if (validation.package_bytes > EXTERNAL_ANIMATION_MAX_PACKAGE_BYTES) throw "动画包解码估算量超过 8 GiB，请拆分素材包";
+        clip.sprite_asset = -1;
+        clip.loading_sprite = -1;
+        clip.loading_index = 0;
+        clip.queued = false;
+        clip.load_urgent = false;
+        clip.failed = false;
+        clip.error = "";
+        clip.cache_frame = -1;
+        clip.cache_used = 0;
+        d.clips[c] = clip;
+    }
+    d.failed = false;
+    return d;
+}
+
+/// Budgets are soft: one JSON parse or one bounded batch finishes before yielding.
+function external_animation_validation_step(validation, budget_us = 4000, max_units = 16) {
+    var started = get_timer();
+    var units = 0;
+    while (!validation.done) {
+        if (validation.config_index < array_length(validation.paths)) {
+            var definition = external_animation_validation_definition(validation);
+            array_push(validation.definitions, definition);
+            validation.config_index++;
+        } else if (!validation.check_images || validation.definition_index >= array_length(validation.definitions)) {
+            validation.done = true;
+            validation.result = {type: "animation_override", root: validation.root,
+                name: validation.name, cards: [], overrides: validation.definitions};
+        } else {
+            validation.phase = "pngs";
+            var d = validation.definitions[validation.definition_index];
+            var clip = d.clips[validation.clip_index];
+            var count = min(32, array_length(clip.frames) - validation.frame_index);
+            var paths = [];
+            for (var f = 0; f < count; f++) {
+                var path = external_mod_path(d.root, clip.frames[validation.frame_index + f]);
+                if (string_lower(filename_ext(path)) != ".png") throw "PNG 扩展名无效：" + path;
+                array_push(paths, path);
+            }
+            if (validation.archive_job > 0) {
+                var checked = external_mod_import_png_batch(validation.archive_job, d.source.width, d.source.height, paths);
+                if (!external_mod_field(checked, "ok", false)) throw "覆盖 PNG 必须存在且保持原尺寸：" + string(external_mod_field(checked, "path", paths[0]));
+            } else {
+                for (var f = 0; f < count; f++) {
+                    if (!file_exists(paths[f])) throw "PNG 不存在：" + paths[f];
+                    external_animation_png_validate(paths[f], d.source.width, d.source.height);
+                }
+            }
+            validation.checked += count;
+            validation.frame_index += count;
+            if (validation.frame_index >= array_length(clip.frames)) {
+                validation.frame_index = 0;
+                validation.clip_index++;
+                if (validation.clip_index >= array_length(d.clips)) {
+                    validation.clip_index = 0;
+                    validation.definition_index++;
+                }
+            }
+        }
+        units++;
+        if (max_units > 0 && units >= max_units) break;
+        if (budget_us > 0 && get_timer() - started >= budget_us) break;
+    }
+    return validation.done;
+}
+
+/// Validation reads files, but does not allocate textures or execute scripts.
+function external_animation_validate(root, manifest) {
+    var validation = external_animation_validation_begin(root, manifest);
+    while (!external_animation_validation_step(validation, 0, 0)) {}
+    return validation.result;
 }
 
 function external_animation_release() {

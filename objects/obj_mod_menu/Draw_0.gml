@@ -77,3 +77,42 @@ if (status_text != "") {
 }
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+
+var import_job = global.external_mod_import_job;
+if (is_struct(import_job) && import_job.owner == id && !import_job.done) {
+    draw_set_alpha(0.65);
+    draw_set_color(c_black);
+    draw_rectangle(x - 470, y - 335, x + 470, y + 335, false);
+    draw_set_alpha(1);
+    draw_set_color(#17314C);
+    draw_roundrect(x - 365, y - 125, x + 365, y + 145, false);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_color(c_white);
+    var import_name = import_job.base_name;
+    while (string_length(import_name) > 0 && string_width(import_name) > 590) import_name = string_delete(import_name, string_length(import_name), 1);
+    if (import_name != import_job.base_name) import_name += "…";
+    draw_text(x, y - 82, external_mod_field(import_job, "title", "正在导入：") + import_name);
+    draw_text(x, y - 40, import_job.label);
+    draw_set_color(#42657C);
+    draw_rectangle(x - 320, y + 7, x + 320, y + 23, false);
+    draw_set_color(#9DCFEC);
+    if (import_job.progress >= 0) {
+        draw_rectangle(x - 320, y + 7, x - 320 + 640 * clamp(import_job.progress, 0, 1), y + 23, false);
+    } else {
+        var pulse = (sin(current_time / 450) + 1) / 2;
+        draw_rectangle(x - 320 + 520 * pulse, y + 7, x - 200 + 520 * pulse, y + 23, false);
+    }
+    draw_set_color(c_white);
+    draw_text(x, y + 48, "已用时 " + string_format((get_timer() - import_job.started) / 1000000, 1, 1) + " 秒");
+    var can_cancel = !import_job.cancel_requested && import_job.phase != "publishing";
+    draw_set_color(can_cancel ? #D9F3FF : #7BA7B8);
+    draw_roundrect(x - 78, y + 83, x + 78, y + 123, false);
+    draw_set_color(#17314C);
+    var cancel_label = external_mod_field(import_job, "operation", "import") == "import" ? "取消导入" : "取消检查";
+    if (import_job.cancel_requested) cancel_label = "正在取消";
+    else if (import_job.phase == "publishing") cancel_label = "处理中";
+    draw_text(x, y + 103, cancel_label);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+}
