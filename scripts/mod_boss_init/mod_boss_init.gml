@@ -19,4 +19,6 @@ function mod_boss_init()
         icon: spr_infected_bingzha_icon
     });
     zhuore_boss_init();
+    shuihuo_boss_init();
+    wudu_boss_init();
 }

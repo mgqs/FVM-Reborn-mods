@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"hulk",
+  "folderPath":"folders/物体/Enemy/kuafu/wuduyanjiusuo/boss/hulk.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hulk",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_wd_hulk","path":"objects/obj_kf_wd_hulk/obj_kf_wd_hulk.yy",},
+    {"name":"obj_kf_wd_hulk_destroy_effect","path":"objects/obj_kf_wd_hulk_destroy_effect/obj_kf_wd_hulk_destroy_effect.yy",},
+  ],
+}

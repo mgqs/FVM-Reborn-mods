@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"xiaoguai",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xiaoguai",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"rowboat","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/rowboat.yy",},
+    {"name":"dragon_boat","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/dragon_boat.yy",},
+    {"name":"flagship","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/flagship.yy",},
+    {"name":"kof_submarine","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/kof_submarine.yy",},
+  ],
+  "listItems":[
+  ],
+}

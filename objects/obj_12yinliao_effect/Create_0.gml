@@ -16,3 +16,12 @@ half_src_x = 0;
 half_src_y = 0;
 half_src_w = 0;
 half_src_h = 0;
+
+// center_screen 用的「内容框」（源图像素）+ 缩放倍数（2026-11-14，神装横版变身立绘）。
+// 与 left_half 的区别只在目标：left_half 铺满左半屏，center_screen 按内容框等比放大后
+// 中心对齐房间中心。横版横幅（1332x239~416）画布四周同样有留白，而且内容贴底、
+// 垂直方向并不以画布中心对称，所以必须给稳定内容框，不能按画布或 bbox 定位。
+center_src_x = 0;
+center_src_y = 0;
+center_src_w = 0;
+center_src_h = 0;

@@ -11,5 +11,7 @@
   "visible":true,
   "folders":[
   ],
-  "listItems":[],
+  "listItems":[
+    {"name":"spr_kuafu_boss_shield","path":"sprites/spr_kuafu_boss_shield/spr_kuafu_boss_shield.yy",},
+  ],
 }

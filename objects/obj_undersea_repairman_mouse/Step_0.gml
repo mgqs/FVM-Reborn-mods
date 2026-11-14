@@ -36,7 +36,8 @@ if (instance_exists(target_plant)) {
 		var _plist = ds_grid_get(global.grid_plants, _gc, _gr);
 		for (var _i = 0; _i < ds_list_size(_plist); _i++) {
 			var _p = ds_list_find_value(_plist, _i);
-			if (instance_exists(_p) && _p.have_loder) {
+			// 同 obj_repairman_mouse：格子里可能有未继承 obj_card_parent/Create 的对象，字段不存在会崩
+			if (instance_exists(_p) && variable_instance_exists(_p, "have_loder") && _p.have_loder) {
 				_cell_free = false;
 				break;
 			}

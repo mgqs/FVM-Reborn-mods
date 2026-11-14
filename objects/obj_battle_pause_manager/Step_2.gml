@@ -167,11 +167,12 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         }
                         
                         // 跨服远征关卡：特殊奖励（银徽章 + 金徽章 + 金币），档位表见 cross_server_reward()
+                        // 2026-11-14：跨服关卡不再吃难度等级奖励倍率，只保留海克斯倍率（见 cross_server_reward_mult()）
                         var _cs_rw = cross_server_reward(global.level_data.id, true);
                         if (_cs_rw != undefined) {
-                            add_material_amount("cross_server_silver_medal", _cs_rw.silver * reward_multiplier);
-                            add_material_amount("cross_server_gold_medal", _cs_rw.gold_medal * reward_multiplier);
-                            global.save_data.player.gold += _cs_rw.coins * reward_multiplier;
+                            add_material_amount("cross_server_silver_medal", _cs_rw.silver * cross_server_reward_mult());
+                            add_material_amount("cross_server_gold_medal", _cs_rw.gold_medal * cross_server_reward_mult());
+                            global.save_data.player.gold += _cs_rw.coins * cross_server_reward_mult();
                         } else {
                             global.save_data.player.gold += global.level_file.rewards[1].gold * reward_multiplier;
                         }
@@ -206,9 +207,9 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
                         // 非首次普通通关：重复通关奖励
                         var _cs_rw_r = cross_server_reward(global.level_data.id, false);
                         if (_cs_rw_r != undefined) {
-                            add_material_amount("cross_server_silver_medal", _cs_rw_r.silver * reward_multiplier);
-                            add_material_amount("cross_server_gold_medal", _cs_rw_r.gold_medal * reward_multiplier);
-                            global.save_data.player.gold += _cs_rw_r.coins * reward_multiplier;
+                            add_material_amount("cross_server_silver_medal", _cs_rw_r.silver * cross_server_reward_mult());
+                            add_material_amount("cross_server_gold_medal", _cs_rw_r.gold_medal * cross_server_reward_mult());
+                            global.save_data.player.gold += _cs_rw_r.coins * cross_server_reward_mult();
                         } else {
                             global.save_data.player.gold += global.level_file.rewards[0].gold * reward_multiplier;
                         }
@@ -408,11 +409,12 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 								
 								}
 							// 跨服远征关卡：特殊奖励（银徽章 + 金徽章 + 金币），档位表见 cross_server_reward()
+							// 2026-11-14：跨服关卡不再吃难度等级奖励倍率，只保留海克斯倍率（见 cross_server_reward_mult()）
 							var _cs_rw2 = cross_server_reward(global.level_data.id, true);
 							if (_cs_rw2 != undefined) {
-                                add_material_amount("cross_server_silver_medal", _cs_rw2.silver * reward_multiplier);
-                                add_material_amount("cross_server_gold_medal", _cs_rw2.gold_medal * reward_multiplier);
-                                global.save_data.player.gold += _cs_rw2.coins * reward_multiplier;
+                                add_material_amount("cross_server_silver_medal", _cs_rw2.silver * cross_server_reward_mult());
+                                add_material_amount("cross_server_gold_medal", _cs_rw2.gold_medal * cross_server_reward_mult());
+                                global.save_data.player.gold += _cs_rw2.coins * cross_server_reward_mult();
 							} else {
 								global.save_data.player.gold += global.level_file.rewards[1].gold * reward_multiplier
 							}
@@ -449,11 +451,12 @@ if (keyboard_check_pressed(vk_space) || (mouse_check_button_pressed(mb_left) && 
 							}
 							else{
 								// 跨服远征关卡：重复通关特殊奖励
+								// 2026-11-14：跨服关卡不再吃难度等级奖励倍率，只保留海克斯倍率（见 cross_server_reward_mult()）
 								var _cs_rw_r2 = cross_server_reward(global.level_data.id, false);
 								if (_cs_rw_r2 != undefined) {
-								add_material_amount("cross_server_silver_medal", _cs_rw_r2.silver * reward_multiplier);
-								add_material_amount("cross_server_gold_medal", _cs_rw_r2.gold_medal * reward_multiplier);
-								global.save_data.player.gold += _cs_rw_r2.coins * reward_multiplier;
+								add_material_amount("cross_server_silver_medal", _cs_rw_r2.silver * cross_server_reward_mult());
+								add_material_amount("cross_server_gold_medal", _cs_rw_r2.gold_medal * cross_server_reward_mult());
+								global.save_data.player.gold += _cs_rw_r2.coins * cross_server_reward_mult();
 								} else {
 									global.save_data.player.gold += global.level_file.rewards[0].gold * reward_multiplier
 								}

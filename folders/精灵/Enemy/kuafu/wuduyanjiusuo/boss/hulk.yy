@@ -1,0 +1,27 @@
+{
+  "$GMFolder":"",
+  "%Name":"hulk",
+  "folderPath":"folders/精灵/Enemy/kuafu/wuduyanjiusuo/boss/hulk.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"hulk",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_wd_hulk_appear","path":"sprites/spr_kf_wd_hulk_appear/spr_kf_wd_hulk_appear.yy",},
+    {"name":"spr_kf_wd_hulk_idle","path":"sprites/spr_kf_wd_hulk_idle/spr_kf_wd_hulk_idle.yy",},
+    {"name":"spr_kf_wd_hulk_skill_1_ready","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},
+    {"name":"spr_kf_wd_hulk_skill_1","path":"sprites/spr_kf_wd_hulk_skill_1/spr_kf_wd_hulk_skill_1.yy",},
+    {"name":"spr_kf_wd_hulk_skill_2","path":"sprites/spr_kf_wd_hulk_skill_2/spr_kf_wd_hulk_skill_2.yy",},
+    {"name":"spr_kf_wd_hulk_skill_3","path":"sprites/spr_kf_wd_hulk_skill_3/spr_kf_wd_hulk_skill_3.yy",},
+    {"name":"spr_kf_wd_hulk_move_fast","path":"sprites/spr_kf_wd_hulk_move_fast/spr_kf_wd_hulk_move_fast.yy",},
+    {"name":"spr_kf_wd_hulk_move_slow","path":"sprites/spr_kf_wd_hulk_move_slow/spr_kf_wd_hulk_move_slow.yy",},
+    {"name":"spr_kf_wd_hulk_death","path":"sprites/spr_kf_wd_hulk_death/spr_kf_wd_hulk_death.yy",},
+    {"name":"spr_kf_wd_hulk_skill_effect_2","path":"sprites/spr_kf_wd_hulk_skill_effect_2/spr_kf_wd_hulk_skill_effect_2.yy",},
+    {"name":"spr_kf_wd_hulk_skill_effect_3","path":"sprites/spr_kf_wd_hulk_skill_effect_3/spr_kf_wd_hulk_skill_effect_3.yy",},
+  ],
+}

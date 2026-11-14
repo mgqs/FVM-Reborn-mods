@@ -3235,9 +3235,9 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
 
     // ── 2026-11-13 新卡（桌面\皮特\11月份做卡11.12）────────────────────
     register_card("yuansushe", obj_yuansushe, [
-    { shape: 0, sprite: spr_yuansushe, cost: 290, cooldown: 420, description: "元素蛇：向本行前方发射1发带不同效果的穿透子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe },
-    { shape: 1, sprite: spr_yuansushe_1, cost: 290, cooldown: 420, description: "烈暴元素蛇：向本行前方发射1发带不同效果的穿透子弹，元素效果提升", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe_1 },
-    { shape: 2, sprite: spr_yuansushe_2, cost: 290, cooldown: 420, description: "流星元素蛇：连续发射2发带不同效果的穿透子弹（第二发恒为红色暴击弹）", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe_2 }]);
+    { shape: 0, sprite: spr_yuansushe, cost: 290, cooldown: 420, description: "元素蛇：向本行前方发射1发带不同效果的子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击），可穿过障碍物但不穿透老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe },
+    { shape: 1, sprite: spr_yuansushe_1, cost: 290, cooldown: 420, description: "烈暴元素蛇：向本行前方发射1发带不同效果的子弹，元素效果提升，可穿过障碍物但不穿透老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe_1 },
+    { shape: 2, sprite: spr_yuansushe_2, cost: 290, cooldown: 420, description: "流星元素蛇：连续发射2发带不同效果的子弹（第二发恒为红色暴击弹），可穿过障碍物但不穿透老鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yuansushe_2 }]);
 
     register_card("galaxy_horse", obj_galaxy_horse, [
     { shape: 0, sprite: spr_galaxy_horse, cost: 380, cooldown: 2700, description: "银河马：召唤1颗陨石对本行老鼠进行海陆空全方位打击，击杀灰烬", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_galaxy_horse },

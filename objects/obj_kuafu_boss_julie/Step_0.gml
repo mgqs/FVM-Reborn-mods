@@ -378,6 +378,11 @@ switch state{
 		break
 }
 
+// 变异护盾：落地召唤变异中尉(SKILL2)与加血(SKILL3)期间展开，其余状态（迷雾 SKILL1 / 导弹 SKILL4 / 待机）收起
+shield_active = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3) && hp > 0
+if shield_active{
+	shield_anim ++
+}
 
 timer ++
 

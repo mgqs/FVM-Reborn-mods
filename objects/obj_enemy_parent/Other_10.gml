@@ -1,4 +1,3 @@
-flash_value = 150
 // 海克斯第二批：出场无敌 / 轻装伏击（未啃咬过不可攻击）/ BOSS 石护盾。
 // 返回 0 表示这一下完全无效，必须在这里就 exit，不能让它继续走到 hp -=
 if (hex_enabled()) {
@@ -24,6 +23,7 @@ if (variable_global_exists("level_id") && global.level_id == "test_level") {
 	global.test_damage_total_all += damage_amount;
 }
 var _hp_before_dmg = hp;
+var _shield_before_dmg = shield_hp;
 if shield_hp > 0{
 	if damage_type == "normal"{
 		shield_hp -= damage_amount
@@ -40,6 +40,21 @@ else{
 	hp -= damage_amount
 }
 var _hp_real_lost = max(0, _hp_before_dmg - hp);
+// 护盾吃掉的部分也算「挨了一下」：带盾敌人挨打时形体没掉血，但玩家需要一个受击反馈，
+// 否则石护盾/彩甲类敌人会显得完全没被命中。
+var _shield_lost = max(0, _shield_before_dmg - shield_hp);
+var _hit_taken = _hp_real_lost;
+if (_hit_taken <= 0 && _shield_lost > 0) _hit_taken = 1;
+
+// 受击闪光（2026-11-14 移到这里）：原来这行在事件第一行，任何一次「进入受伤事件」都会
+// 重置 150，包括被海克斯无敌/石护盾完全挡掉、damage_amount 归零后 exit 的假命中；而且
+// 衰减是每帧 -10，150 需要 15 帧（0.5 秒）才褪完，连续命中时会一直停在最高白度。
+// 现在只在「真的掉了血」时才点亮，并按本次伤害量决定强度（上限仍是 150），
+// 既保证一下重击有明确反馈，也不会让小喀嚓把大体积敌人刷成常驻白影。
+if (_hit_taken > 0) {
+	var _flash_gain = max(60, min(150, 60 + _hp_real_lost / max(1, maxhp) * 900));
+	flash_value = max(flash_value, _flash_gain);
+}
 
 // 海克斯二期后置：受伤层数（齿轮的烟气）/ 美食吸血（血魔的渴血）/ 命中火焰（重燃的火光）
 if (hex_enabled()) {

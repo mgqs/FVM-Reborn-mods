@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"rowboat",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/rowboat.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rowboat",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_rowboat","path":"objects/obj_kf_sh_rowboat/obj_kf_sh_rowboat.yy",},
+  ],
+}

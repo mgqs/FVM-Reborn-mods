@@ -1,0 +1,997 @@
+{
+    "version": 1.2,
+    "level_name": "wudu_0",
+    "level_time_feature": "night",
+    "map_sprite": "spr_wuduyanjiusuo_0",
+    "bg_draw": {
+        "x": 2,
+        "y": 36,
+        "sx": 1.8,
+        "sy": 1.8
+    },
+    "time_limit": 300,
+    "map_cols": 9,
+    "map_rows": 7,
+    "starting_flame": 3000,
+    "first_wave_delay": 11,
+    "total_waves": 2,
+    "elite_wave": 1,
+    "boss_wave": 1,
+    "map": [
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "obstacle",
+                "plant": [],
+                "object": [
+                    "wind_tunnel"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "obstacle",
+                "plant": [],
+                "object": [
+                    "wind_tunnel"
+                ]
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            }
+        ],
+        [
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "normal",
+                "plant": [],
+                "object": []
+            },
+            {
+                "type": "obstacle",
+                "plant": [],
+                "object": [
+                    "wind_tunnel"
+                ]
+            }
+        ]
+    ],
+    "waves": [
+        {
+            "boss_wave": true,
+            "wave_index": 1,
+            "boss": "kuafu_boss_buzz",
+            "boss_1_hp_modify": 0.7,
+            "boss2": "kuafu_boss_buzz",
+            "boss_2_hp_modify": 0.7,
+            "subwaves": [
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "boss_wave": true,
+            "wave_index": 2,
+            "boss": "infected_pharaoh",
+            "boss_1_hp_modify": 1.0,
+            "boss2": "infected_pharaoh",
+            "boss_2_hp_modify": 1.0,
+            "subwaves": [
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_football_fan_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "kf_zr_mole"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                },
+                {
+                    "subwave_index": 0,
+                    "enemy_list": [
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        },
+                        {
+                            "row": -1,
+                            "prosperity": 0,
+                            "type": "infected_normal_mouse"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "rewards": [
+        {
+            "gold": 0,
+            "items": []
+        },
+        {
+            "gold": 0,
+            "player_level": 2,
+            "skill_level": 1,
+            "items": [],
+            "gem_unlock": [],
+            "card_unlock": [],
+            "weapon_unlock": []
+        }
+    ],
+    "hp_modify": 1,
+    "min_wave_time": 240,
+    "max_wave_time": 300
+}

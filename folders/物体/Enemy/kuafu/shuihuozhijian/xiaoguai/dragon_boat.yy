@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"dragon_boat",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/dragon_boat.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dragon_boat",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_dragon_boat","path":"objects/obj_kf_sh_dragon_boat/obj_kf_sh_dragon_boat.yy",},
+  ],
+}

@@ -119,12 +119,15 @@ if (shape == 3)
         _inst.target_type = "all";
         _inst.row_hits = _share[_i2];
 
-        // 精灵原点贴在包围盒右端（spr_shennong_god_bullet_3 origin 242,50），
-        // 翻转 image_xscale 会让判定框跑到图像另一侧（precise_bbox_collision 不读缩放/翻转），
-        // 因此统一不镜像，只靠移动方向区分「从左向右 / 从右向左」。
+        // 精灵原点是「鸟头」（spr_shennong_god_bullet_3 origin 242,50，贴图朝右飞）。
+        // 中路是从右往左飞的，不转 180° 就是「倒着飞」——用户 2026-11-14 报的正是这个。
+        // 这里用 image_angle 而不是 image_xscale = -1：衣服 ① `obj_bullet_parent/BeginStep_0`
+        // 每帧把 image_xscale 夹回 1、只留 visual_scale_* 给绘制；② `precise_bbox_collision`
+        // 会按 image_angle 旋转判定框、但**不读缩放与翻转**——用角度翻转，图与判定框才一起转头。
         _inst.sprite_index = spr_shennong_god_bullet_3;
         _inst.image_xscale = 1.5;
         _inst.image_yscale = 1.5;
+        _inst.image_angle = _from_right[_i2] ? 180 : 0;
     }
 
     audio_play_sound(snd_shot, 0, 0);

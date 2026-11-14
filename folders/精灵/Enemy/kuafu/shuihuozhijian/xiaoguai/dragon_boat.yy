@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"dragon_boat",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/dragon_boat.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"dragon_boat",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_dragon_boat","path":"sprites/spr_kf_sh_dragon_boat/spr_kf_sh_dragon_boat.yy",},
+    {"name":"spr_kf_sh_dragon_boat_appear","path":"sprites/spr_kf_sh_dragon_boat_appear/spr_kf_sh_dragon_boat_appear.yy",},
+  ],
+}

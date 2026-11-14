@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"kof_submarine",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/kof_submarine.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"kof_submarine",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_kof_submarine_land","path":"sprites/spr_kf_sh_kof_submarine_land/spr_kf_sh_kof_submarine_land.yy",},
+    {"name":"spr_kf_sh_kof_submarine","path":"sprites/spr_kf_sh_kof_submarine/spr_kf_sh_kof_submarine.yy",},
+    {"name":"spr_kf_sh_kof_submarine_enter","path":"sprites/spr_kf_sh_kof_submarine_enter/spr_kf_sh_kof_submarine_enter.yy",},
+  ],
+}

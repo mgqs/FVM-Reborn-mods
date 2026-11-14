@@ -68,6 +68,26 @@ function is_digging_dijing(_inst){
 		&& variable_instance_exists(_inst, "ly_mode") && _inst.ly_mode == "dig";
 }
 
+/// 是否为「非主流」家族老鼠（银河马等卡面写「无法攻击非主流」时用这个入口）
+/// 三只：obj_non_mainstream_mouse（非主流鼠）/ obj_ly_gaoqiao（龙渊高跷鼠，行为 1:1 仿非主流）
+///       / obj_kf_zr_nonmain（跨服灼热僵尸非主流）。
+/// 🔴 不能只靠 target_type 排除：这三只在**啃食**时会把 target_type 从 "dance" 改回 "normal"
+///    （obj_non_mainstream_mouse/Step_0.gml:3-8、obj_ly_gaoqiao/Step_0.gml:5-6、
+///      obj_kf_zr_nonmain/Step_0.gml:3-8），那一瞬间白名单里的 dance 排除就失效了，
+///    卡片会照常索敌并打中 —— 银河马「能打到非主流」就是这么来的（2026-11-14 用户报）。
+///    所以这里按**身份**判：object_index 三只直接命中，换皮/派生走 mouse_id。
+function is_non_mainstream(_inst){
+	if (!instance_exists(_inst)) return false;
+	if (_inst.object_index == obj_non_mainstream_mouse
+		|| _inst.object_index == obj_ly_gaoqiao
+		|| _inst.object_index == obj_kf_zr_nonmain) return true;
+	if (variable_instance_exists(_inst, "mouse_id")){
+		var _mid = _inst.mouse_id;
+		if (_mid == "non_mainstream_mouse" || _mid == "longyuan_gaoqiao" || _mid == "kf_zr_nonmain") return true;
+	}
+	return false;
+}
+
 function get_hittable_enemy_types(bullet_target_type){
 	var _types = [];
 	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground", "invisible"];

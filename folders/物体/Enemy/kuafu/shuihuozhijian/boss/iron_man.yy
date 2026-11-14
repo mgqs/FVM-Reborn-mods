@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"iron_man",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/boss/iron_man.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"iron_man",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_iron_man","path":"objects/obj_kf_sh_iron_man/obj_kf_sh_iron_man.yy",},
+    {"name":"obj_kf_sh_iron_man_laser","path":"objects/obj_kf_sh_iron_man_laser/obj_kf_sh_iron_man_laser.yy",},
+    {"name":"obj_kf_sh_iron_man_bullet","path":"objects/obj_kf_sh_iron_man_bullet/obj_kf_sh_iron_man_bullet.yy",},
+  ],
+}
