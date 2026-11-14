@@ -17,7 +17,7 @@ if (instance_exists(obj_enemy_parent))
 {
     with (obj_enemy_parent)
     {
-        if (can_target_on(other.target_type, target_type) && target_type == "air")
+        if (can_target_on(other.target_type, target_type))
             has_enemy = true;
     }
 }

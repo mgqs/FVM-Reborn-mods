@@ -2,7 +2,7 @@
 damage = 0
 move_speed = 8
 damage_type = "pierce"
-target_type = "pierce"
+target_type = "normal"
 image_speed = 1
 
 // 穿透相关 - 记录已击中的敌人，避免重复伤害

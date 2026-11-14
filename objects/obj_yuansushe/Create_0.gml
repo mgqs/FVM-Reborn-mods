@@ -26,8 +26,8 @@ event_user(0);
 
 plant_type   = "normal";
 feature_type = "normal";
-// 穿透：能打 普通 + 非主流 + 障碍 + 未显形幽灵（同双刃蛇 / 天蝎座），不打空军 / 潜水 / 钻地
-target_type  = "pierce";
+// 攻击类型：normal（陆鼠 + 障碍）。穿地形 / 穿一排看 damage_type 与子弹 Step，与此无关
+target_type  = "normal";
 is_slowdown  = false;
 image_speed  = 0;      // 🔴 必须 0：帧由父对象 timer 推
 flash_speed  = 5;

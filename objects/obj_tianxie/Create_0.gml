@@ -33,12 +33,10 @@ else                 sprite_index = spr_tianxie_2;
 
 plant_type   = "normal";
 feature_type = "normal";
-// 攻击类型 = 穿透（`pierce`，2026-11-09 用户口径：分类是「直射类·直线穿透类」，
-//   与双刃蛇同口径 —— 它的 target_type / damage_type 两个都是 pierce）。
-//   能打 普通 + 非主流(舞步) + 障碍 + 未显形幽灵；不打空军 / 潜水 / 钻地。
+// 攻击类型：normal（陆鼠 + 障碍）；2 转火格另有自己的手写 6 类，与本行无关
 //   🔴 三个字段别混：`target_type` 决定「能打谁」，`damage_type` 决定「怎么扣血」，
 //      「子弹打穿一排」是子弹 Step 里的循环，跟这两个字段都无关。
-target_type  = "pierce";
+target_type  = "normal";
 is_slowdown  = false;
 image_speed  = 0;            // 🔴 必须 0：帧由父对象 timer 推（同法师蛇）
 flash_speed  = 5;

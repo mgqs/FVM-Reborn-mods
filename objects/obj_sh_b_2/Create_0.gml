@@ -10,4 +10,5 @@ image_yscale = 1.8;
 image_speed = 0;
 timer = 0;
 banding_card_obj = -4;
-hittable_types = get_hittable_enemy_types(target_type);
+// 四转起：陆 + 非主流 + 障碍 + 幽灵 + 空 + 地；不含潜水鼠（所以不用 all）
+hittable_types = ["normal", "dance", "obstacle", "invisible", "air", "underground"];

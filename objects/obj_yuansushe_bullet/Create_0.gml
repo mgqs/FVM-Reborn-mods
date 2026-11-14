@@ -10,7 +10,7 @@ row          = 0;
 ys_color     = 0;
 damage       = 0;
 // 命中口径：穿透（父对象 BeginStep 的 hex_b3_bullet_tag 与各类记账都会读这两个字段）
-target_type  = "pierce";
+target_type  = "normal";
 damage_type  = "pierce";
 move_speed   = 9;
 ys_end_col   = global.grid_cols + 1;

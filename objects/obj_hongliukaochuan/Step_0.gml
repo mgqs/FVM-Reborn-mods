@@ -11,8 +11,8 @@ var current_flash_speed = flash_speed;
 if (is_slowdown)
     current_flash_speed *= 2;
 
-// 红柳烤串机：攻击陆、空、幽灵（魂系）鼠军；喷壶类可命中钻地中的地精鼠
-var _hittable = ["normal", "air", "invisible", "underground"];
+// 红柳烤串机：攻击陆、空、幽灵（魂系）鼠军，不打钻地
+var _hittable = ["normal", "air", "invisible"];
 
 var has_enemy = false;
 

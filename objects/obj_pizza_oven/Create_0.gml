@@ -20,6 +20,7 @@ idle_anim = 12
 flash_speed = 5
 plant_type = "normal"
 is_slowdown = false
-target_type = "pierce"
+// 攻击类型：normal（陆鼠 + 障碍）；「穿透披萨」是子弹行为，与此无关
+target_type = "normal"
 
 b_count = 0

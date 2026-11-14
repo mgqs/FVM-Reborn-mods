@@ -24,10 +24,16 @@ awake_anim = 0;
 anim_timer = 0;
 base_atk = atk;
 
-if (shape == 2)
-    target_type = "all";
-else if (shape == 3)
-    target_type = "all";
-else
+// ── 攻击口径（Step_0 索敌读 sh_hittable）──
+//   0/1 转：陆鼠 + 非主流·高跷 + 障碍 + 幽灵鼠
+//   2/3 转：再加 空军 + 地鼠军；不含潜水鼠（所以不能用 all）
+if (shape >= 2){
+    target_type = "all";          // 仅用于敌人侧读取；实际可打看 sh_hittable
+    sh_hittable = ["normal", "dance", "obstacle", "invisible", "air", "underground"];
+    sh_dig_ok   = true;
+} else {
     target_type = "pierce";
+    sh_hittable = ["normal", "dance", "obstacle", "invisible"];
+    sh_dig_ok   = false;
+}
 

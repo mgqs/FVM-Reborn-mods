@@ -4,7 +4,7 @@ function find_priority_air_enemy()
     
     with (obj_enemy_parent)
     {
-        if (hp > 0 && can_hit(other.target_type, target_type) && target_type == "air")
+        if (hp > 0 && can_hit(other.target_type, target_type))
         {
             if (air_enemy == -4 || x < air_enemy.x)
                 air_enemy = id;
