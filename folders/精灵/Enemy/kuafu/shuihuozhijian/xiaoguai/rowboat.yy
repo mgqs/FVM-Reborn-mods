@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"rowboat",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/rowboat.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"rowboat",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_rowboat","path":"sprites/spr_kf_sh_rowboat/spr_kf_sh_rowboat.yy",},
+    {"name":"spr_kf_sh_rowboat_appear","path":"sprites/spr_kf_sh_rowboat_appear/spr_kf_sh_rowboat_appear.yy",},
+  ],
+}

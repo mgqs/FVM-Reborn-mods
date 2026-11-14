@@ -61,23 +61,39 @@ else if (shape >= 2) gh_bullet_spr = spr_galaxy_horse_bullet_2;
 gh_target_list = [];   // 本轮每颗陨石的落点列（Other_11 里填）
 
 /// 这只老鼠能不能被本卡打到（官方：海陆空全方位，不含非主流 & 幽灵）
+/// 🔴 命中类型判定的**唯一**入口：Other_11 收候选、Step 结算都调它，别在各处重复写数组查询。
+/// 守 target_type：obj_enemy_parent 的 297 个直接子对象里有没写这个字段的
+/// （obj_beverage_skill_1_bullet / _3_bullet），直接读是硬崩。
 gh_can_hit = function(_e)
 {
     if (!instance_exists(_e)) return false;
+    if (!variable_instance_exists(_e, "hp")) return false;
     if (_e.hp <= 0) return false;
+    if (!variable_instance_exists(_e, "target_type")) return false;
+    // 卡面「无法攻击非主流」：非主流三兄弟啃食时 target_type 会变回 "normal"（见 is_non_mainstream
+    // 的注释），只查 gh_hittable 白名单拦不住 → 按身份排一次。
+    if (is_non_mainstream(_e)) return false;
     return (array_get_index(gh_hittable, _e.target_type) != -1);
 };
 
 /// 索敌：本行 ±gh_search_rows 行、卡片前方（含自身格）有没有可打目标
+/// 🔴 口径必须与 Other_11 收集落点候选**完全一致**：两者不一致就会出现
+///    「开火了但没有候选 → 陨石砸空地」（2026-11-14 用户报的索敌问题就是这种）。
+///    改动这里时同步改 Other_11。
 gh_has_target = function()
 {
     var _hit = false;
     with (obj_enemy_parent)
     {
+        // 守 3 个字段：297 个直接子对象里有没写 target_type 的，直接读会硬崩
         if (hp > 0
+            && variable_instance_exists(id, "target_type")
+            && variable_instance_exists(id, "grid_row")
+            && variable_instance_exists(id, "grid_col")
             && abs(grid_row - other.grid_row) <= other.gh_search_rows
             && grid_col >= other.grid_col
             && grid_col <= global.grid_cols + 1
+            && !is_non_mainstream(id)
             && array_get_index(other.gh_hittable, target_type) != -1)
         {
             _hit = true;

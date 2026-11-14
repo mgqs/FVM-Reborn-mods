@@ -332,6 +332,11 @@ switch state{
 		break
 }
 
+// 变异护盾：导弹(SKILL2)/钢爪(SKILL3)/尖刺(SKILL4) 在地面释放期间展开，其余状态（含踩踏 SKILL1 / 待机 / 钻地）收起
+shield_active = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3 || state == BOSS_STATE.SKILL4) && hp > 0
+if shield_active{
+	shield_anim ++
+}
 
 timer ++
 

@@ -4,10 +4,10 @@
     "level_time_feature": "night",
     "map_sprite": "spr_zhuorediyu",
     "bg_draw": {
-        "x": 2,
-        "y": 36,
-        "sx": 1.8,
-        "sy": 1.8
+        "x": 9,
+        "y": 42,
+        "sx": 1.786,
+        "sy": 1.798
     },
     "time_limit": 300,
     "map_cols": 9,

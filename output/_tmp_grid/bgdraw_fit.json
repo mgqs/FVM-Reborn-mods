@@ -1,0 +1,164 @@
+{
+ "spr_mengyantiankong_0": {
+  "sx": 1.8045,
+  "dx": -16.9,
+  "sy": 1.7925,
+  "dy": 36.8
+ },
+ "spr_mengyantiankong_1": {
+  "sx": 1.777,
+  "dx": 3.7,
+  "sy": 1.7885,
+  "dy": 37.8
+ },
+ "spr_mengyantiankong_2": {
+  "sx": 1.777,
+  "dx": 3.7,
+  "sy": 1.7885,
+  "dy": 37.8
+ },
+ "spr_mengyantiankong_3": {
+  "sx": 1.7745,
+  "dx": 5.5,
+  "sy": 1.8505,
+  "dy": 21.5
+ },
+ "spr_mengyantiankong_4": {
+  "sx": 1.7798,
+  "dx": 1.4,
+  "sy": 1.8497,
+  "dy": 22.1
+ },
+ "spr_mengyantiankong_5": {
+  "sx": 1.7798,
+  "dx": 1.4,
+  "sy": 1.8497,
+  "dy": 22.1
+ },
+ "spr_mengyantiankong_6": {
+  "sx": 1.8125,
+  "dx": -23.1,
+  "sy": 1.8624,
+  "dy": 13.2
+ },
+ "spr_mengyantiankong_7": {
+  "sx": 1.783,
+  "dx": -0.9,
+  "sy": 1.8884,
+  "dy": 2.7
+ },
+ "spr_mod_ancient_castle_0": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.017,
+  "dy": -10.8
+ },
+ "spr_mod_ancient_castle_1": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.0147,
+  "dy": -7.8
+ },
+ "spr_mod_ancient_castle_2": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.0153,
+  "dy": -8.5
+ },
+ "spr_mod_ancient_castle_3": {
+  "sx": 1.0085,
+  "dx": -13.3,
+  "sy": 1.0102,
+  "dy": -3.9
+ },
+ "spr_mod_ancient_castle_4": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.012,
+  "dy": -6.9
+ },
+ "spr_mod_ancient_castle_5": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.0117,
+  "dy": -6.6
+ },
+ "spr_mod_ancient_castle_6": {
+  "sx": 1.0094,
+  "dx": -14.9,
+  "sy": 1.0112,
+  "dy": -5.9
+ },
+ "spr_mod_ancient_castle_7": {
+  "sx": 1.0088,
+  "dx": -13.8,
+  "sy": 1.0145,
+  "dy": -8.2
+ },
+ "spr_shuihuozhijian_0": {
+  "sx": 1.7749,
+  "dx": 19.7,
+  "sy": 1.7973,
+  "dy": 44.2
+ },
+ "spr_shuihuozhijian_1": {
+  "sx": 1.7784,
+  "dx": 22.8,
+  "sy": 1.7981,
+  "dy": 45.4
+ },
+ "spr_wuduyanjiusuo_0": {
+  "sx": 1.7926,
+  "dx": 4.6,
+  "sy": 1.8125,
+  "dy": 33.5
+ },
+ "spr_wuduyanjiusuo_1": {
+  "sx": 1.7901,
+  "dx": 6.0,
+  "sy": 1.787,
+  "dy": 39.5
+ },
+ "spr_wuduyanjiusuo_2": {
+  "sx": 1.7922,
+  "dx": 5.1,
+  "sy": 1.8077,
+  "dy": 34.5
+ },
+ "spr_wuduyanjiusuo_3": {
+  "sx": 1.7897,
+  "dx": 5.1,
+  "sy": 1.7753,
+  "dy": 46.1
+ },
+ "spr_wuduyanjiusuo_4": {
+  "sx": 1.7802,
+  "dx": 9.8,
+  "sy": 1.7973,
+  "dy": 35.2
+ },
+ "spr_wuduyanjiusuo_5": {
+  "sx": 1.7655,
+  "dx": 24.3,
+  "sy": 1.8117,
+  "dy": 35.2
+ },
+ "spr_wuduyanjiusuo_6": {
+  "sx": 1.8019,
+  "dx": -2.9,
+  "sy": 1.8247,
+  "dy": 29.1
+ },
+ "spr_wuduyanjiusuo_7": {
+  "sx": 1.7883,
+  "dx": 6.1,
+  "sy": 1.7807,
+  "dy": 39.2
+ },
+ "spr_zhuorediyu": {
+  "sx": 1.7862,
+  "dx": 10.6,
+  "sy": 1.7965,
+  "dy": 40.6
+ }
+}

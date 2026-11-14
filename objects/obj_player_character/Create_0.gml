@@ -29,3 +29,8 @@ if card_equipped_attire_id("player")!= -1{
 }
 
 awake_buff_timer = 0
+
+// 人物是 obj_card_parent 的子对象，但本事件没有 event_inherited()（父 Create 会重置 hp 等，
+// 见 Other_12 的注释），所以父对象里的 have_loder 在这份实例上不存在。
+// 修理工鼠判「同格已放梯子」会读这个字段 → 必须自己补一份默认值。
+have_loder = false

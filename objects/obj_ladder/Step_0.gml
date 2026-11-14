@@ -32,7 +32,9 @@ if (host_plant == noone) {
 	var _best_dist = 999999;
 	// 同一行、且列在自身格 ±1 范围内的植物中，取离梯子最近的一株
 	with (obj_card_parent) {
-		if (grid_row == _row) {
+		// 只绑真正带 have_loder 的卡：人物 obj_player_character 也是 obj_card_parent 的子对象，
+		// 但它 Create_0 没 event_inherited()，绑上它再写 have_loder 会炸（见 obj_repairman_mouse 崩溃）
+		if (variable_instance_exists(id, "have_loder") && grid_row == _row) {
 			if (abs(grid_col - _col) <= 1) {
 				var _d = abs(x - other.x);
 				// _best / _best_dist 是 var（函数级作用域），跨 with 共享，必须用裸名访问

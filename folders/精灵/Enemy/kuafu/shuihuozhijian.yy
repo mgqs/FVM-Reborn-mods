@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"shuihuozhijian",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"shuihuozhijian",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"xiaoguai","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai.yy",},
+    {"name":"boss","path":"folders/精灵/Enemy/kuafu/shuihuozhijian/boss.yy",},
+  ],
+  "listItems":[
+  ],
+}

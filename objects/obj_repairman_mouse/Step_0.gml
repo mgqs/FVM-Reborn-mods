@@ -36,14 +36,16 @@ if (instance_exists(target_plant)) {
 		var _plist = ds_grid_get(global.grid_plants, _gc, _gr);
 		for (var _i = 0; _i < ds_list_size(_plist); _i++) {
 			var _p = ds_list_find_value(_plist, _i);
-			if (instance_exists(_p) && _p.have_loder) {
+			// 不能直接读 _p.have_loder：格子里可能有「继承 obj_card_parent 但没写 event_inherited()」
+			// 的对象（如 obj_player_character），在它身上这个字段根本不存在 → Variable not set 崩溃。
+			if (instance_exists(_p) && variable_instance_exists(_p, "have_loder") && _p.have_loder) {
 				_cell_free = false;
 				break;
 			}
 		}
 	}
 }
-if state == ENEMY_STATE.ATTACK && _cell_free && (array_get_index(can_place_list,target_plant.plant_id) != -1) && !placed && shield_hp > 0{
+if state == ENEMY_STATE.ATTACK && _cell_free && instance_exists(target_plant) && (array_get_index(can_place_list,target_plant.plant_id) != -1) && !placed && shield_hp > 0{
 	sprite_index = spr_repairman_mouse_place
 	timer = 0
 	state = ENEMY_STATE.ACTING

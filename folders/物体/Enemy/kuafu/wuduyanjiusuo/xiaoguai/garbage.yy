@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"garbage",
+  "folderPath":"folders/物体/Enemy/kuafu/wuduyanjiusuo/xiaoguai/garbage.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"garbage",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_wd_garbage","path":"objects/obj_kf_wd_garbage/obj_kf_wd_garbage.yy",},
+  ],
+}

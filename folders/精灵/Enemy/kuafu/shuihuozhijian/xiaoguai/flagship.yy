@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"flagship",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/flagship.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flagship",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_flagship","path":"sprites/spr_kf_sh_flagship/spr_kf_sh_flagship.yy",},
+    {"name":"spr_kf_sh_flagship_appear","path":"sprites/spr_kf_sh_flagship_appear/spr_kf_sh_flagship_appear.yy",},
+  ],
+}

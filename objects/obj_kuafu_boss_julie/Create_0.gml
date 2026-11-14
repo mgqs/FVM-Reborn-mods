@@ -34,3 +34,14 @@ hpbar_inst.boss_id = mouse_id
 if obj_battle.boss_count > 0{
 	hpbar_inst.y -= 40
 }
+
+// 变异护盾：落地召唤变异中尉/加血期间展开，非投掷卡片减伤 60%（判定抄牡蛎鼠 damage_type != "throw"）
+shield_active = false
+shield_anim = 0
+shield_spr = spr_kuafu_boss_shield
+shield_take_mult = 0.4
+// 绘制位置/缩放：按 239x175 立绘、origin(110,169) 折算的身形中心（暂用皮特同款护盾素材）
+shield_dx = 10
+shield_dy = -82
+shield_sx = 1.8
+shield_sy = 1.0

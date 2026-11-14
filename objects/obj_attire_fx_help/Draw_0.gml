@@ -69,6 +69,8 @@ draw_text(_hx, _hy, "变装特效");
 draw_set_halign(fa_center);
 draw_text(_r[0] + 330, _hy, "宝石");
 draw_text(_r[0] + 556, _hy, "套装");
+var _hbr = attire_fx_row_rect(0);
+draw_text((_hbr[0] + _hbr[2]) * 0.5, _hy, "操作");
 
 // 9 行
 var _top = _r[1] + 184;
@@ -123,6 +125,47 @@ for (var _i = 0; _i < array_length(_rows); _i++) {
     draw_set_colour(make_colour_rgb(180, 255, 210));
     draw_set_halign(fa_left);
     draw_text(_r[0] + 556, _y, _aname);
+
+    // ── 行尾「穿戴」按钮（2026-11-14）──
+    // 三种状态：已穿戴（绿）/ 可穿戴（亮蓝）/ 缺件（灰蓝，点了只弹提示不改存档）
+    var _br = attire_fx_row_rect(_i);
+    var _bx = (_br[0] + _br[2]) * 0.5;
+    var _by = (_br[1] + _br[3]) * 0.5;
+    var _own = attire_fx_own_all(_c);
+    var _worn = attire_fx_is_worn(_c);
+    var _bover = point_in_rectangle(mouse_x, mouse_y, _br[0], _br[1], _br[2], _br[3]);
+    var _bfill = make_colour_rgb(26, 58, 88);
+    var _bline = make_colour_rgb(74, 118, 158);
+    var _btxt = make_colour_rgb(150, 176, 200);
+    if (_own) {
+        _bfill = make_colour_rgb(30, 96, 148);
+        _bline = make_colour_rgb(126, 200, 255);
+        _btxt = c_white;
+    }
+    if (_worn) {
+        _bfill = make_colour_rgb(28, 104, 80);
+        _bline = make_colour_rgb(126, 235, 170);
+        _btxt = make_colour_rgb(200, 255, 226);
+    }
+    if (_bover) {
+        // 悬停提亮一档；按下再压暗（不写嵌套三元，改成顺序 if）
+        _bfill = make_colour_rgb(
+            min(255, color_get_red(_bfill) + 26),
+            min(255, color_get_green(_bfill) + 26),
+            min(255, color_get_blue(_bfill) + 26));
+        if (mouse_check_button(mb_left)) _bfill = make_colour_rgb(16, 44, 68);
+    }
+    draw_roundrect_colour_ext(_br[0], _br[1], _br[2], _br[3], 10, 10, _bfill, _bfill, false);
+    draw_roundrect_colour_ext(_br[0], _br[1], _br[2], _br[3], 10, 10, _bline, _bline, true);
+    draw_set_font(font_yuan);
+    draw_set_colour(_btxt);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    if (_worn) {
+        draw_text(_bx, _by, "已穿戴");
+    } else {
+        draw_text(_bx, _by, "穿戴");
+    }
 }
 
 // 确定按钮

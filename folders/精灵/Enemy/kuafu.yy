@@ -12,6 +12,8 @@
   "folders":[
     {"name":"mengyantiankong","path":"folders/精灵/Enemy/kuafu/mengyantiankong.yy",},
     {"name":"zhuorediyu","path":"folders/精灵/Enemy/kuafu/zhuorediyu.yy",},
+    {"name":"shuihuozhijian","path":"folders/精灵/Enemy/kuafu/shuihuozhijian.yy",},
+    {"name":"wuduyanjiusuo","path":"folders/精灵/Enemy/kuafu/wuduyanjiusuo.yy",},
   ],
   "listItems":[
   ],

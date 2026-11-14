@@ -10,6 +10,9 @@
 /// 只看 half_src_*，不看 sprite 原点、也不看 x/y ——
 /// spr_yao_bianshen2 的画布是 1811x2044，而 xorigin/yorigin 是裁图时留下的残值 (-160,488)，
 /// 按原点定位会整体偏出屏幕，所以这里整块按「源矩形 → 目标矩形」直接映射。
+///
+/// center_screen：把 center_src_* 这块内容框等比放大 scale_multiplier 倍、中心对齐房间中心
+/// （2026-11-14，神装横版变身立绘；同样不看原点与 x/y，原因见下面的分支注释）。
 if (left_half) {
     var _tw = room_width * 0.5;
     var _th = room_height;
@@ -27,6 +30,26 @@ if (left_half) {
         // 目标矩形就是 0.._tw，天然不会越过中线，不需要 surface 裁剪。
         draw_sprite_part_ext(sprite_index, image_index, _sx, _sy, _sw, _sh,
             0, 0, _tw / _sw, _th / _sh, c_white, image_alpha);
+    }
+} else if (center_screen) {
+    // 居中放大（2026-11-14 神装横版立绘）：按 center_src_* 这块「内容框」等比放大
+    // scale_multiplier 倍，中心对齐房间中心。不看 sprite 原点、也不看 x/y
+    // （横版横幅画布 1332 宽但内容只有中间 1021 宽，且内容贴底、垂直方向不以画布中心对称）。
+    // 内容框宽了会左右各溢出一点，只溢出到纯色渐变边，不裁角色。
+    var _sx = center_src_x, _sy = center_src_y, _sw = center_src_w, _sh = center_src_h;
+    if (_sw <= 0 || _sh <= 0) {
+        // 调用方没给内容框 → 退回 sprite 自身的 bbox
+        _sx = sprite_get_bbox_left(sprite_index);
+        _sy = sprite_get_bbox_top(sprite_index);
+        _sw = sprite_get_bbox_right(sprite_index) - _sx + 1;
+        _sh = sprite_get_bbox_bottom(sprite_index) - _sy + 1;
+    }
+    if (_sw > 0 && _sh > 0) {
+        var _k = scale_multiplier;
+        draw_sprite_part_ext(sprite_index, image_index, _sx, _sy, _sw, _sh,
+            room_width * 0.5 - _sw * _k * 0.5,
+            room_height * 0.5 - _sh * _k * 0.5,
+            _k, _k, c_white, image_alpha);
     }
 } else {
     // 与「没有 Draw 事件」时的引擎默认行为完全一致，保证其余用法零变化

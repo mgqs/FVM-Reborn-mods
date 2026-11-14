@@ -62,5 +62,9 @@
     {"name":"mod_bullet_hazard","path":"scripts/mod_bullet_hazard/mod_bullet_hazard.yy",},
     {"name":"baibianshe_preview_cell","path":"scripts/baibianshe_preview_cell/baibianshe_preview_cell.yy",},
     {"name":"mod_set_card_level","path":"scripts/mod_set_card_level/mod_set_card_level.yy",},
+    {"name":"shuihuo_enemy_init","path":"scripts/shuihuo_enemy_init/shuihuo_enemy_init.yy",},
+    {"name":"wudu_enemy_init","path":"scripts/wudu_enemy_init/wudu_enemy_init.yy",},
+    {"name":"shuihuo_boss_init","path":"scripts/shuihuo_boss_init/shuihuo_boss_init.yy",},
+    {"name":"wudu_boss_init","path":"scripts/wudu_boss_init/wudu_boss_init.yy",},
   ],
 }

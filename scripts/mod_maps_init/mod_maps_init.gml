@@ -313,4 +313,214 @@ function mod_maps_init()
         }
         ]
     });
+    // ===== 跨服·水火之间（入口：spr_mod_cs_level_choose 第 4 帧，8~15 星门槛）=====
+    // 奖励走 cross_server_reward()（shuihuo_ 分支未给档位表，暂落入古堡同档兜底），rewards 留空。
+    register_map("cross_server_water_fire",
+    {
+        map_name: "水火之间",
+        map_sprite: spr_mod_cs_bg,
+        levels_data: [
+        {
+            id: "shuihuo_0",
+            name: "水火相遇",
+            level_file: "cross/shuihuo_0.json",
+            hard_level_file: "cross/shuihuo_0.json",
+            level_sprite: spr_shuihuozhijian_0,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "none",
+            rewards: []
+        },
+        {
+            id: "shuihuo_1",
+            name: "水火相融",
+            level_file: "cross/shuihuo_1.json",
+            hard_level_file: "cross/shuihuo_1.json",
+            level_sprite: spr_shuihuozhijian_0,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_0",
+            rewards: []
+        },
+        {
+            id: "shuihuo_2",
+            name: "水火相拦",
+            level_file: "cross/shuihuo_2.json",
+            hard_level_file: "cross/shuihuo_2.json",
+            level_sprite: spr_shuihuozhijian_0,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_1",
+            rewards: []
+        },
+        {
+            id: "shuihuo_3",
+            name: "水火相斥",
+            level_file: "cross/shuihuo_3.json",
+            hard_level_file: "cross/shuihuo_3.json",
+            level_sprite: spr_shuihuozhijian_0,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_2",
+            rewards: []
+        },
+        {
+            id: "shuihuo_4",
+            name: "水火相位",
+            level_file: "cross/shuihuo_4.json",
+            hard_level_file: "cross/shuihuo_4.json",
+            level_sprite: spr_shuihuozhijian_1,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_3",
+            rewards: []
+        },
+        {
+            id: "shuihuo_5",
+            name: "水火相争",
+            level_file: "cross/shuihuo_5.json",
+            hard_level_file: "cross/shuihuo_5.json",
+            level_sprite: spr_shuihuozhijian_1,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_4",
+            rewards: []
+        },
+        {
+            id: "shuihuo_6",
+            name: "水火相噬",
+            level_file: "cross/shuihuo_6.json",
+            hard_level_file: "cross/shuihuo_6.json",
+            level_sprite: spr_shuihuozhijian_1,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_5",
+            rewards: []
+        },
+        {
+            id: "shuihuo_7",
+            name: "水火相灭",
+            level_file: "cross/shuihuo_7.json",
+            hard_level_file: "cross/shuihuo_7.json",
+            level_sprite: spr_shuihuozhijian_1,
+            pre_music: mus_cross_server_day,
+            elite_music: mus_cross_server_day,
+            boss_music: mus_cross_server_day_boss,
+            pre_level: "shuihuo_6",
+            rewards: []
+        }
+        ]
+    });
+    // ===== 跨服·巫毒研究所（入口：spr_mod_cs_level_choose 第 5 帧，8~15 星门槛）=====
+    // 奖励走 cross_server_reward()（wudu_ 分支未给档位表，暂落入古堡同档兜底），rewards 留空。
+    register_map("cross_server_voodoo_lab",
+    {
+        map_name: "巫毒研究所",
+        map_sprite: spr_mod_cs_bg,
+        levels_data: [
+        {
+            id: "wudu_0",
+            name: "五毒入口",
+            level_file: "cross/wudu_0.json",
+            hard_level_file: "cross/wudu_0.json",
+            level_sprite: spr_wuduyanjiusuo_0,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "none",
+            rewards: []
+        },
+        {
+            id: "wudu_1",
+            name: "巫毒走道",
+            level_file: "cross/wudu_1.json",
+            hard_level_file: "cross/wudu_1.json",
+            level_sprite: spr_wuduyanjiusuo_1,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_0",
+            rewards: []
+        },
+        {
+            id: "wudu_2",
+            name: "巫毒一室",
+            level_file: "cross/wudu_2.json",
+            hard_level_file: "cross/wudu_2.json",
+            level_sprite: spr_wuduyanjiusuo_2,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_1",
+            rewards: []
+        },
+        {
+            id: "wudu_3",
+            name: "巫毒二室",
+            level_file: "cross/wudu_3.json",
+            hard_level_file: "cross/wudu_3.json",
+            level_sprite: spr_wuduyanjiusuo_3,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_2",
+            rewards: []
+        },
+        {
+            id: "wudu_4",
+            name: "巫毒回廊",
+            level_file: "cross/wudu_4.json",
+            hard_level_file: "cross/wudu_4.json",
+            level_sprite: spr_wuduyanjiusuo_4,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_3",
+            rewards: []
+        },
+        {
+            id: "wudu_5",
+            name: "巫毒暗道",
+            level_file: "cross/wudu_5.json",
+            hard_level_file: "cross/wudu_5.json",
+            level_sprite: spr_wuduyanjiusuo_5,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_4",
+            rewards: []
+        },
+        {
+            id: "wudu_6",
+            name: "巫毒密室",
+            level_file: "cross/wudu_6.json",
+            hard_level_file: "cross/wudu_6.json",
+            level_sprite: spr_wuduyanjiusuo_6,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_5",
+            rewards: []
+        },
+        {
+            id: "wudu_7",
+            name: "巫毒核心",
+            level_file: "cross/wudu_7.json",
+            hard_level_file: "cross/wudu_7.json",
+            level_sprite: spr_wuduyanjiusuo_7,
+            pre_music: mus_cross_server_night,
+            elite_music: mus_cross_server_night,
+            boss_music: mus_cross_server_night_boss,
+            pre_level: "wudu_6",
+            rewards: []
+        }
+        ]
+    });
 }

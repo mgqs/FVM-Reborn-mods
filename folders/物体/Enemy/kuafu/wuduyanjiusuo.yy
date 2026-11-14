@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"wuduyanjiusuo",
+  "folderPath":"folders/物体/Enemy/kuafu/wuduyanjiusuo.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"wuduyanjiusuo",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"xiaoguai","path":"folders/物体/Enemy/kuafu/wuduyanjiusuo/xiaoguai.yy",},
+    {"name":"boss","path":"folders/物体/Enemy/kuafu/wuduyanjiusuo/boss.yy",},
+  ],
+  "listItems":[
+  ],
+}

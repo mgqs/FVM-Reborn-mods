@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"flagship",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/flagship.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"flagship",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_flagship","path":"objects/obj_kf_sh_flagship/obj_kf_sh_flagship.yy",},
+  ],
+}

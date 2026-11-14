@@ -442,6 +442,12 @@ function mod_apply_category_buff_map()
     //   海洋女神那边单独按「附加类 5×1」算，见 ocean_god_buff.gml 的 mod_get_ocean_buff_type。
     ds_map_set(global.plant_buff_map, "qishui", "sprayer");
 
+    // 银河马（灰烬·轰炸）：数值表 115 行脚注原文「受精灵龙&宴飨女神增幅」，
+    //   但它的分类是「灰烬类·轰炸类」，不在 tracker 的自动扫描组里 → 2026-11-14 用户报
+    //   「银河马没有吃到宴飨女神增伤」。按用户口径直接归入追踪类，吃 tracker 这一格
+    //   （与莓果点心 / 香料虎 / 塔利亚同格，2026-11-14 用户明确「不用新建 type」）。
+    ds_map_set(global.plant_buff_map, "galaxy_horse", "tracker");
+
     show_debug_message("增幅分组按分类重建：" + string(_total) + " 条");
     return _total;
 }

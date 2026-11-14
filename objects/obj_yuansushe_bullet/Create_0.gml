@@ -12,9 +12,15 @@ image_speed = 1;
 row          = 0;
 ys_color     = 0;
 damage       = 0;
+// 命中口径：穿透（父对象 BeginStep 的 hex_b3_bullet_tag 与各类记账都会读这两个字段）
+target_type  = "pierce";
+damage_type  = "pierce";
 move_speed   = 9;
 ys_end_col   = global.grid_cols + 1;
 ys_delay     = 0;
+// 当前所在列（Step 每帧按 x 反算）：命中判定用「同行 + 同列」，
+// 与精灵尺寸 / 缩放 / 原点全部解耦，不再依赖像素包围盒（见 Step_0 的注释）
+ys_col_now   = 0;
 
 // 反弹：默认参数（axis = move_speed 翻转、judge = row 只认同行源卡、回程清空命中表）
 //   angle180 关掉：翻转用 visual_scale_x 做左右镜像，比整体旋转 180° 好看（见 Step）
@@ -30,11 +36,16 @@ ys_slow_ticks    = 240;
 ys_crit_chance   = 0;
 ys_crit_mult     = 2;
 
-// 穿透类命中白名单（同 can_target_on 的 pierce 分支：普通 / 非主流 / 障碍 / 未显形幽灵）
-ys_hittable = ["normal", "dance", "obstacle", "invisible"];
+// 命中白名单不再在子弹里维护：Step 改为 `with (obj_enemy_parent)` 全量扫描，
+// 每只敌人用 can_hit(target_type, 敌人 target_type) 现场过滤（等价于 can_target_on）。
+//   早期版本用 get_hittable_enemy_types("pierce") 得到 ["normal","dance","obstacle","invisible"]
+//   再按 global.enemy_by_type 逐类遍历 —— 那张表由敌人自己在 Step 里注册，
+//   而工程里有 57 个敌人对象重写 Step 却没有 event_inherited()、其中一部分没写注册代码，
+//   它们永远不在表里，子弹就「从身上飞过去毫无反应」。改成全量扫描后这条链路彻底不依赖注册表。
 
-// 命中即停标记：打到**老鼠**就置真（子弹当帧销毁，不穿透老鼠）；
-// 打到**障碍物**（target_type == "obstacle"）不置 → 直接穿过去继续飞（用户 2026-11-13 口径）。
+// 命中口径（2026-11-14 用户定稿）：**穿透障碍，不穿透老鼠**。
+//   命中障碍物 → 继续飞；命中任何非障碍目标 → 当帧结算完就自毁（ys_stop）。
+//   所以这里要有一个 ys_stop 标记位（Step 里置 true，循环结束后据它销毁）。
 ys_stop = false;
 
 // 名字必须叫 hitted：bullet_hazard_rebound 的 reset_hits 只清这几个约定名，
@@ -46,11 +57,9 @@ hitted = ds_list_create();
 ys_poison_obj = obj_ronghedan_god_poison_effect;
 
 // 父对象 Draw_0 优先用 visual_scale_* 绘制（没有才退回 image_scale），
-// 但 **bbox 只看 image_xscale / image_yscale**。
-// 所以这里 image_scale 也要设成 1.3：画多大、判定就多大。
-//   原来 image_scale = 1 而视觉 1.3 → 判定盒比画出来的小 30%，
-//   子弹本体只有 60x28（垂直方向尤其窄），边缘命中会被静默漏掉，
-//   玩家看到的就是「子弹明显穿过去了，但没伤害、也没出元素效果」。
+// bbox 只认 image_xscale / image_yscale —— 画多大、判定就该多大。
+//   注意：obj_bullet_parent/BeginStep_0 每帧把 image_scale 夹回 1（只把原值拷进 visual_scale），
+//   所以这里的赋值只对「创建当帧」有效；真正让判定盒一直保持 1.3 的是 Step_0.gml 里每帧的重设。
 visual_scale_x = 1.3;
 visual_scale_y = 1.3;
 image_xscale = 1.3;

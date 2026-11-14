@@ -1,9 +1,10 @@
 /// 跨服章节关卡 id → 关卡序号（0 起）；非跨服关卡返回 -1
-/// 约定：ancient_castle_N / nightmare_sky_N / zhuore_N 都属于跨服章节，奖励走 cross_server_reward()。
+/// 约定：ancient_castle_N / nightmare_sky_N / zhuore_N / shuihuo_N / wudu_N 都属于跨服章节，
+/// 奖励走 cross_server_reward()。
 /// 项目里原本有 9 处写死 string_pos("ancient_castle_", id) == 1，新增跨服章节一律走这里，
 /// 不要再复制前缀判断（否则奖励会落到普通关分支去读 rewards[].gold 而报错）。
 function cross_server_level_index(_id){
-    var _prefixes = ["ancient_castle_", "nightmare_sky_", "zhuore_"];
+    var _prefixes = ["ancient_castle_", "nightmare_sky_", "zhuore_", "shuihuo_", "wudu_"];
     var _n = array_length(_prefixes);
     for (var i = 0; i < _n; i++){
         var _p = _prefixes[i];
@@ -32,6 +33,8 @@ function is_cross_server_level(_id){
 ///   灼热地域 zhuore_N     —— 用户 2026-11-05 的两张表「首通 / 重复」，
 ///                           下标 0~7 对应 8 星炼狱之始 ~ 15 星炼狱之末；
 ///                           该表同样只有银/金，金币沿用古堡同档
+///   水火之间 shuihuo_N / 巫毒研究所 wudu_N —— 用户 2026-11-14 的两张表「首通 / 首通后」，
+///                           下标 0~7 对应 水火8~15 / 巫毒8~15（按星级门槛排，正好是关卡 0~7）
 function cross_server_reward(_id, _is_first){
     var _i = cross_server_level_index(_id);
     if (_i < 0) return undefined;
@@ -61,6 +64,32 @@ function cross_server_reward(_id, _is_first){
         var _g2 = [33, 47, 65, 81, 101, 143, 229, 315];
         var _c2 = [30000, 42000, 52000, 64500, 70000, 80000, 95000, 110000];
         return { silver: _s2[_k], gold_medal: _g2[_k], coins: _c2[_k] };
+    }
+
+    if (string_pos("shuihuo_", _id) == 1){
+        if (_is_first){
+            var _s7 = [560, 780, 920, 1060, 1120, 1080, 840, 600];
+            var _g7 = [144, 212, 288, 364, 448, 632, 1016, 1400];
+            var _c7 = [96000, 136000, 168000, 200000, 224000, 256000, 304000, 352000];
+            return { silver: _s7[_k], gold_medal: _g7[_k], coins: _c7[_k] };
+        }
+        var _s8 = [167, 233, 275, 317, 335, 323, 251, 179];
+        var _g8 = [43, 63, 87, 109, 135, 189, 305, 419];
+        var _c8 = [48000, 68000, 84000, 100000, 112000, 128000, 152000, 176000];
+        return { silver: _s8[_k], gold_medal: _g8[_k], coins: _c8[_k] };
+    }
+
+    if (string_pos("wudu_", _id) == 1){
+        if (_is_first){
+            var _s9 = [630, 890, 1025, 1205, 1260, 1215, 945, 675];
+            var _g9 = [162, 251, 325, 397, 504, 711, 1143, 1575];
+            var _c9 = [108000, 157000, 188000, 224000, 252000, 288000, 342000, 396000];
+            return { silver: _s9[_k], gold_medal: _g9[_k], coins: _c9[_k] };
+        }
+        var _s10 = [189, 267, 307, 361, 377, 365, 283, 203];
+        var _g10 = [49, 75, 97, 119, 151, 213, 343, 473];
+        var _c10 = [54000, 78500, 94000, 112000, 126000, 144000, 171000, 198000];
+        return { silver: _s10[_k], gold_medal: _g10[_k], coins: _c10[_k] };
     }
 
     if (_is_first){

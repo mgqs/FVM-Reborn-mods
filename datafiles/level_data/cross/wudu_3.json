@@ -1,0 +1,1350 @@
+{
+  "version": 1.2,
+  "level_name": "wudu_3",
+  "level_time_feature": "night",
+  "map_sprite": "spr_wuduyanjiusuo_3",
+  "bg_draw": {
+    "x": 2,
+    "y": 36,
+    "sx": 1.8,
+    "sy": 1.8
+  },
+  "time_limit": 300,
+  "map_cols": 9,
+  "map_rows": 7,
+  "starting_flame": 3000,
+  "first_wave_delay": 11,
+  "total_waves": 2,
+  "elite_wave": 1,
+  "boss_wave": 1,
+  "map": [
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "water",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "water",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "wind_tunnel"
+        ]
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "obstacle"
+        ]
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "wind_tunnel"
+        ]
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "obstacle"
+        ]
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "wind_tunnel"
+        ]
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      }
+    ],
+    [
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "water",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "water",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "normal",
+        "plant": [],
+        "object": []
+      },
+      {
+        "type": "obstacle",
+        "plant": [],
+        "object": [
+          "wind_tunnel"
+        ]
+      }
+    ]
+  ],
+  "waves": [
+    {
+      "boss_wave": true,
+      "wave_index": 1,
+      "boss": "war_god",
+      "boss_1_hp_modify": 0.93,
+      "boss2": "infected_arno",
+      "boss_2_hp_modify": 8.611111,
+      "subwaves": [
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_arson"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_can"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_iron_pan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_skateboard_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "repairman_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_arson"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_can"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_iron_pan_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_skateboard_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "repairman_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_arson"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_can"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_iron_pan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_arson"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_arson"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_flower"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        }
+      ]
+    },
+    {
+      "boss_wave": true,
+      "wave_index": 2,
+      "boss": "war_god",
+      "boss_1_hp_modify": 0.93,
+      "boss2": "infected_mario_mouse",
+      "boss_2_hp_modify": 7.75,
+      "subwaves": [
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_football_fan_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "kf_zr_mole"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        },
+        {
+          "subwave_index": 0,
+          "enemy_list": [
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            },
+            {
+              "row": -1,
+              "prosperity": 0,
+              "type": "infected_normal_mouse"
+            }
+          ],
+          "local_min_wave_time": -1,
+          "local_max_wave_time": -1
+        }
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "gold": 0,
+      "items": []
+    },
+    {
+      "gold": 0,
+      "player_level": 2,
+      "skill_level": 1,
+      "items": [],
+      "gem_unlock": [],
+      "card_unlock": [],
+      "weapon_unlock": []
+    }
+  ],
+  "hp_modify": 1,
+  "min_wave_time": 240,
+  "max_wave_time": 300,
+  "display_name": "",
+  "author": "",
+  "pre_music": "",
+  "elite_music": "",
+  "boss_music": "",
+  "desc": "",
+  "events": []
+}

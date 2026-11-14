@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"boss",
+  "folderPath":"folders/精灵/Enemy/kuafu/wuduyanjiusuo/boss.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"boss",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"hulk","path":"folders/精灵/Enemy/kuafu/wuduyanjiusuo/boss/hulk.yy",},
+  ],
+  "listItems":[
+  ],
+}

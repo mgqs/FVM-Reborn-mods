@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"xiaoguai",
+  "folderPath":"folders/物体/Enemy/kuafu/wuduyanjiusuo/xiaoguai.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"xiaoguai",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+    {"name":"garbage","path":"folders/物体/Enemy/kuafu/wuduyanjiusuo/xiaoguai/garbage.yy",},
+  ],
+  "listItems":[
+  ],
+}
