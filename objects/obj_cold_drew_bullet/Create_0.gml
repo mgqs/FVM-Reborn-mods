@@ -5,7 +5,8 @@ target_id = -4;
 row = 0;
 damage = 0;
 damage_type = "normal";
-target_type = "split";
+// 溅射与本体同口径（all）；直击走 with(target_id)，不判类型
+target_type = "all";
 delay = 0;
 hit_frame = 3;
 hit_done = false;

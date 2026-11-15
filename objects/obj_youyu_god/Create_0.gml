@@ -14,7 +14,8 @@ attack_anim = 11;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-target_type = "track";
+// 攻击类型：normal（索敌与命中本来都按 normal 跑，这里只是把字段对齐）
+target_type = "normal";
 
 // 本次攻击是否已开火（开火时机绑在攻击动画第 20 帧，见 Step_0）
 fired_this_attack = false;

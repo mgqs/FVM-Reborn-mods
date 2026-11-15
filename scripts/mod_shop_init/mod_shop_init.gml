@@ -592,14 +592,6 @@ function mod_shop_init()
         description: "蛋蛋兔：储存3x3范围内子弹伤害，死亡时释放穿透型子弹攻击整行老鼠",
         display_name: "蛋蛋兔"
     });
-    register_goods("laipishe",
-    {
-        type: "card",
-        cost: "100000",
-        unlock_item_id: "laipishe",
-        description: "赖皮蛇：召唤沿固定轨迹飞行的海胆子弹，伤害轨迹上的海陆空老鼠",
-        display_name: "赖皮蛇"
-    });
     register_goods("zhiyumiao",
     {
         type: "card",
@@ -607,14 +599,6 @@ function mod_shop_init()
         unlock_item_id: "zhiyumiao",
         description: "治愈喵：为范围内卡片瞬间恢复5点体力，一转增加3秒补血Buff，二转全屏补血",
         display_name: "治愈喵"
-    });
-    register_goods("double_blade_snake",
-    {
-        type: "card",
-        cost: "80000",
-        unlock_item_id: "double_blade_snake",
-        description: "双刃蛇：向前发射2发穿透剑气子弹，可斩杀生命值≤15%的普通老鼠",
-        display_name: "双刃蛇"
     });
     register_goods("nizhuanniu",
     {
@@ -648,9 +632,6 @@ function mod_shop_init()
         description: "青涩柿柿：向前方一定范围内的老鼠发起重击",
         display_name: "青涩柿柿"
     });
-    // 战旗马：本体这条由 cross_server_shop_init 改价成白银页 1900（跨服只改价、不新建商品，
-    //   所以本体必须在这里注册）；一 / 二转凭证只在威望商店（credit_zhanqima_1/_2），这里不注册。
-    register_goods("zhanqima", { type: "card", cost: "1900", unlock_item_id: "zhanqima", description: "战旗马：5*5范围内主动攻击型卡片提高基础攻击力", display_name: "战旗马" });
     // 红柳烤串机（本体 / 茴香·一转 / 星火·二转）不在这里注册：
     //   本体是百味关首通奖励（地图专属），一·二转凭证在威望商店。
 
@@ -670,10 +651,6 @@ function mod_shop_init()
 
     // 牛油果：本体这条由 cross_server_shop_init 改价成白银页 2030（同战旗马）；
     //   一 / 二转凭证只在威望商店（credit_niuyouguo_1/_2），这里不注册。
-    register_goods("niuyouguo", { type: "card", cost: "2030", unlock_item_id: "niuyouguo", description: "邪恶牛油果：向前方三个方向各发射1发穿透飞镖", display_name: "邪恶牛油果" });
-
-    register_goods("wuxingshe", { type: "card", cost: "1500", unlock_item_id: "wuxingshe", description: "五行蛇：为3*3范围内5方向卡片增加攻击力", display_name: "五行蛇" });
-
     register_goods("bbq", { type: "card", cost: "35000", unlock_item_id: "bbq", description: "街头烤肉大师：沿本行发射穿透串串子弹", display_name: "街头烤肉大师" });
     register_goods("eightcake", { type: "card", cost: "20000", unlock_item_id: "eightcake", description: "8周年蛋糕：投掷蛋糕子弹，每3次攻击附带灼烧", display_name: "8周年蛋糕" });
     register_goods("tangchaolizi", { type: "card", cost: "60000", unlock_item_id: "tangchaolizi", description: "糖炒栗子：向前方喷出持续灼烧老鼠的滚烫栗子（3×3 十字灼烧）", display_name: "糖炒栗子" });
@@ -690,25 +667,20 @@ function mod_shop_init()
     register_goods("tunshilong", { type: "card", cost: "50000", unlock_item_id: "tunshilong", description: "吞噬龙：吞掉周围的地面老鼠", display_name: "吞噬龙" });
     register_goods("xiangliaohu", { type: "card", cost: "150000", unlock_item_id: "xiangliaohu", description: "香料虎：为周围追踪卡片提升攻击力", display_name: "香料虎" });
     register_goods("zhuanzhuanji", { type: "card", cost: "40000", unlock_item_id: "zhuanzhuanji", description: "转转鸡：连续快速向周边攻击", display_name: "转转鸡" });
-    register_goods("fashishe", { type: "card", cost: "2000", unlock_item_id: "fashishe", description: "法师蛇：向前发射整行穿透毒子弹", display_name: "法师蛇" });
     register_goods("fangkongmiao", { type: "card", cost: "75000", unlock_item_id: "fangkongmiao", description: "防空喵：高伤害轰炸空中鼠军", display_name: "防空喵" });
     register_goods("huojianzhu", { type: "card", cost: "80000", unlock_item_id: "huojianzhu", description: "火箭猪：全屏追踪攻击", display_name: "火箭猪" });
     register_goods("doumaobang", { type: "card", cost: "90000", unlock_item_id: "doumaobang", description: "逗猫棒：撞伤整行老鼠", display_name: "逗猫棒" });
     register_goods("honeytrap", { type: "card", cost: "110000", unlock_item_id: "honeytrap", description: "蜜糖陷阱：吸引强力蜜蜂集火攻击鼠军", display_name: "蜜糖陷阱" });
-    register_goods("huanyingshe", { type: "card", cost: "1700", unlock_item_id: "huanyingshe", description: "幻影蛇：大范围发射可追踪的投掷类子弹", display_name: "幻影蛇" });
     register_goods("yinghuoshe", { type: "card", cost: "45000", unlock_item_id: "yinghuoshe", description: "萤火蛇：产火并照亮全场，伤害3*3范围内老鼠", display_name: "萤火蛇" });
     register_goods("guiyuanma", { type: "card", cost: "80000", unlock_item_id: "guiyuanma", description: "归元马：将前方3行范围内距离最近的普通老鼠送回起点并初始还原，斩杀低血量百分比精英", display_name: "归元马" });
     register_goods("xingqiongma", { type: "card", cost: "85000", unlock_item_id: "xingqiongma", description: "星穹马：复活5*5范围内1张死亡的卡片", display_name: "星穹马" });
     register_goods("tianxie", { type: "card", cost: "100000", unlock_item_id: "tianxie", description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）", display_name: "天蝎座精灵" });
     register_goods("yuansushe", { type: "card", cost: "95000", unlock_item_id: "yuansushe", description: "元素蛇：向本行前方发射1发带不同效果的穿透子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击）", display_name: "元素蛇" });
     register_goods("galaxy_horse", { type: "card", cost: "115000", unlock_item_id: "galaxy_horse", description: "银河马：召唤1颗陨石对本行老鼠进行海陆空全方位打击，击杀灰烬", display_name: "银河马" });
-    register_goods("jingangma", { type: "card", cost: "90000", unlock_item_id: "jingangma", description: "金刚马：全屏索敌最远目标，发射追踪穿透音波，可伤害幽灵鼠", display_name: "金刚马" });
     register_goods("qiedanlong", { type: "card", cost: "100000", unlock_item_id: "qiedanlong", description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸", display_name: "窃蛋龙" });
     register_goods("qishui", { type: "card", cost: "80000", unlock_item_id: "qishui", description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只", display_name: "弹珠汽水" });
-    register_goods("sheshejiu", { type: "card", cost: "120000", unlock_item_id: "sheshejiu", description: "蛇蛇酒：为3*3范围内卡片随机升星或者降星，持续一段时间后恢复", display_name: "蛇蛇酒" });
     register_goods("shiguangji", { type: "card", cost: "80000", unlock_item_id: "shiguangji", description: "13周年时光机：随机为本格卡片升星或者降星", display_name: "13周年时光机" });
     register_goods("snowrabbit", { type: "card", cost: "180000", unlock_item_id: "snowrabbit", description: "雪球兔：召唤雪球同时攻击全屏最多5只老鼠", display_name: "雪球兔" });
     register_goods("tanhuanghu", { type: "card", cost: "200000", unlock_item_id: "tanhuanghu", description: "弹簧虎：连续发射2发带溅射的子弹攻击本行，优先空中，子弹可穿过岩浆和障碍", display_name: "弹簧虎" });
     register_goods("yuanqiniu", { type: "card", cost: "50000", unlock_item_id: "yuanqiniu", description: "元气牛：连续散发全方位伤害气泡波，场上每多1张同类卡伤害提升1次", display_name: "元气牛" });
-    register_goods("zhuanlonghu", { type: "card", cost: "105000", unlock_item_id: "zhuanlonghu", description: "转龙壶：缩减3*3范围内正在冷却的美食的冷却时间30%", display_name: "转龙壶" });
 }

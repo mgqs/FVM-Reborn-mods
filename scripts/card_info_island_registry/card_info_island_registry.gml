@@ -42,7 +42,7 @@ function info_island_build(_id, _txt) {
 /// @description 合并手写软换行：原来文案是按 35 字硬折的，绘制端改成按像素折行以后，
 ///   这些手写断点会把行截短（行尾一片空白），所以先合并回整段。
 ///   **保留**换行的情况：空行 / 标题行（来源·卡片分类·可用增幅）/ 结构行（基础能力·
-///   一~终转·`*`·`·`·`-`·`Tip`·`注`·`【`）/ 上一行以 `。！？…` 或 `：` 结尾。
+///   一~终转能力·初级/深度/灵魂/终极融合·`*`·`·`·`-`·`Tip`·`注`·`【`）/ 上一行以 `。！？…` 或 `：` 结尾。
 function info_island_unwrap(_txt) {
 	var _lines = string_split(_txt, "\n");
 	var _out = [];
@@ -73,15 +73,18 @@ function info_island_starts_block(_s) {
 	if (string_copy(_s, 1, 3) == "Tip") return true;
 	if (string_copy(_s, 1, 1) == "注") return true;
 	// 一转能力 / 二转能力 / 三转能力 / 四转能力 / 终转能力
-	return (string_pos("转能力", string_copy(_s, 1, 5)) > 0);
+	if (string_pos("转能力", string_copy(_s, 1, 5)) > 0) return true;
+	// 初级融合 / 深度融合 / 灵魂融合 / 终极融合（融合卡的分段结构，与转能力同级）
+	return (string_pos("融合", string_copy(_s, 1, 5)) > 0);
 }
 
 
 /// @function info_island_is_title_line(_s)
-/// @description 来源 / 卡片分类 / 可用增幅 这三行只说一件事，后面必须换行。
+/// @description 来源 / 卡片分类 / 可以攻击 / 可用增幅 这几行只说一件事，后面必须换行。
 function info_island_is_title_line(_s) {
 	if (string_copy(_s, 1, 2) == "来源") return true;
 	if (string_copy(_s, 1, 4) == "卡片分类") return true;
+	if (string_copy(_s, 1, 4) == "可以攻击") return true;
 	return (string_copy(_s, 1, 4) == "可用增幅");
 }
 
@@ -172,6 +175,17 @@ function info_island_card_name(_id) {
 }
 
 
+/// @function buff_source_min_shape(_sid, _ch)
+/// @description 源卡从哪个形态开始给这条通道（没列出的 = 0 形态就给）。
+///   只收「高形态才追加通道」的源卡：香水四转（shape>=2，金卡 1=三转 / 2=四转）才吃无轨迹追踪、
+///   丰饶神三转（shape>=1）才吃多向类。
+function buff_source_min_shape(_sid, _ch) {
+	if (_sid == "xiangshui_god" && _ch == "track_feast4") return 2;
+	if (_sid == "fengrao_god" && _ch == "multi_dir") return 1;
+	return 0;
+}
+
+
 /// @function info_island_buff_groups()
 /// @description 可用增幅的显示分组（数组顺序 = 显示顺序；段内用 `、`，段间用 `丨`）。
 ///   每段一个数组，元素是 `[源卡 id, 它覆盖的通道 ...]` —— 通道挂在**源卡**上，
@@ -209,12 +223,15 @@ function info_island_buff_line(_id) {
 		for (var _j = 0; _j < array_length(_grp); _j++) {
 			var _e = _grp[_j];
 			var _hit = false;
+			var _need = 99;             // 命中的通道里取最低形态（玩家能用低形态吃到的那一档）
 			for (var _k = 1; _k < array_length(_e); _k++) {
-				if (buff_channel_ok(_id, _e[_k])) { _hit = true; break; }
+				if (!buff_channel_ok(_id, _e[_k])) continue;
+				_hit = true;
+				_need = min(_need, buff_source_min_shape(_e[0], _e[_k]));
 			}
 			if (!_hit) continue;
 			if (_names != "") _names += "、";
-			_names += info_island_card_name(_e[0]);
+			_names += info_island_shape_name(_e[0], _need);
 		}
 		if (_names != "") array_push(_segs, _names);
 	}
@@ -298,7 +315,7 @@ function info_island_recipe_text(_id) {
 
 
 /// @function info_island_compose(_id, _txt)
-/// @description 情报岛版式统一：来源 → 卡片分类（自动生成）→ 可用增幅 → 空行 → 正文。
+/// @description 情报岛版式统一：来源 → 卡片分类 → 可以攻击（自动生成）→ 可用增幅 → 空行 → 正文。
 ///   先删文案里手写的分类行 / 增幅行再按上面结构插回；幂等（重复调用结果不变）。
 function info_island_compose(_id, _txt) {
 	if (!is_string(_txt)) return _txt;
@@ -346,6 +363,7 @@ function info_island_compose(_id, _txt) {
 
 	var _head = [];
 	if (_cat  != "") array_push(_head, _cat);
+	if (card_attack_shown(_id)) array_push(_head, "可以攻击：{可以攻击}");
 	if (_buff != "") array_push(_head, _buff);
 	if (array_length(_head) == 0) return info_island_join_lines(_kept);
 

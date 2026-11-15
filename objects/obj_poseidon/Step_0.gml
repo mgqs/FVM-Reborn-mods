@@ -23,7 +23,7 @@ if (shape == 3)
 
 with (obj_enemy_parent)
 {
-    if (hp > 0 && hp > 0 && hp > 0 && abs(grid_row - other.grid_row) <= 2 && abs(grid_col - other.grid_col) <= _range)
+    if (hp > 0 && abs(grid_row - other.grid_row) <= 2 && abs(grid_col - other.grid_col) <= _range)
         has_enemy = true;
 }
 

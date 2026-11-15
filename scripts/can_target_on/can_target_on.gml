@@ -1,3 +1,7 @@
+/// @function can_target_on(card_target_type, enemy_target_type)
+/// @desc 类型命中口径，全工程唯一。合法取值只有 10 个：
+///   normal / throw / pierce / track / air / air_only / pierce_air / rotate / d_fruit / all
+///   新增类型必须同步改三处：本函数、get_hittable_enemy_types、external_mod_system.gml:313 白名单。
 function can_target_on(card_target_type,enemy_target_type){
 	// "pierce_air" = 穿透 + 对空（牛油果飞镖）：**只认普通 / 空军 / 障碍**
 	//   🔴 不能再转成 "pierce" —— pierce 额外含 dance（非主流、龙王高跷）和 invisible（幽灵鼠），

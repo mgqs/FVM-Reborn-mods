@@ -17,7 +17,8 @@ idle_anim = 11;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-target_type = "split";
+// 攻击类型：normal（陆鼠 + 障碍）；灰烬入口 can_hit_ash 另放行 非主流·高跷
+target_type = "normal";
 target_x = -4;
 target_y = 0;
 target_row = 0;

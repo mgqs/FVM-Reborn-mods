@@ -17,5 +17,6 @@ attack_anim = 13;
 idle_anim = 9;
 flash_speed = 5;
 plant_type = "normal";
+target_type  = "all";      // 本体纯格子伤害（5×5 / 3 转 7 列），无类型过滤，连钻地也吃
 is_slowdown = false;
 anim_timer = 0;

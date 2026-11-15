@@ -104,19 +104,15 @@ else
                 // 增幅：该卡所有可吃通道取最大（目标表见 scripts/buff_target）
                 var buff_multiplier = buff_channels_multiplier(self.plant_id, self.grid_col, self.grid_row);
 
-                // 海洋女神与榨汁机、魔杖蛇的喷壶增幅不叠加，取较高倍率。
+                // 海洋女神本身就是「喷壶增幅」的另一个源（官方 r113 与魔杖蛇 / 榨汁机同档），
+                //   所以和网格增幅同乘区取最高、不叠乘。非喷壶卡 ocean_mult 恒为 1，等价于没乘。
                 var ocean_mult = 1;
                 if (variable_instance_exists(self.id, "ocean_buff_multiplier"))
                     ocean_mult = self.ocean_buff_multiplier;
 
                 var zhanqima_mult = get_zhanqima_buff_multiplier(self.id);
 
-                // 喷壶三档（旋喷 / 咖啡 / 附加）任意一档 → 与海洋女神取高不叠乘
-                var has_sprayer_buff = buff_channels_has_any(self.plant_id,
-                    ["sprayer", "sprayer_coffee", "sprayer_attach"]);
-                var combined_buff_multiplier = has_sprayer_buff
-                    ? max(buff_multiplier, ocean_mult)
-                    : buff_multiplier * ocean_mult;
+                var combined_buff_multiplier = max(buff_multiplier, ocean_mult);
 
                 // 海克斯「增幅类卡片倍率」：只放大「增幅给出的那一部分」，本体 1.0 不放大
                 if (hex_enabled()) {
@@ -144,8 +140,13 @@ else
                 with (obj_xinggui_god) event_user(0);
                 var xinggui_mult = global.xinggui_mult;
 
+                // 固定轨迹增幅（音盒马 / 浮生茶 / 星轨神）三者取最高，再并进同一个增幅池取最高。
+                //   这三张走的是「查询式」实现（源卡自己往全局变量里 max），不是铺网格，
+                //   但目标卡只有固定轨迹类，和网格通道不重叠 → 并进 max 池与原来相乘等价。
                 var track_buff_mult = max(zodiac_mult, max(fushengcha_mult, xinggui_mult));
-                self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult * track_buff_mult;
+                combined_buff_multiplier = max(combined_buff_multiplier, track_buff_mult);
+
+                self.atk = self.base_atk * combined_buff_multiplier * zhanqima_mult * _shield_gem_mult;
 
                 // ══ 海克斯：乘在全部既有乘区之后（增幅/星级/地形/技能都不改） ══
                 // hex_* 系列在非海克斯模式恒返回 1.0，所以这里不需要 if 包住 atk

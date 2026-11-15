@@ -10,13 +10,24 @@
 /// =====================================================================
 
 /// @func info_island_text_num(value)
-/// @desc 数值格式化：整数不带小数点，小数最多 2 位；undefined → 无
+/// @desc 数值格式化：整数不带小数点；小数最多 2 位，**末尾的 0 一律去掉**
+///   15.60 → 15.6 ｜ 124.80 → 124.8 ｜ 18.85 → 18.85（两位有效小数保留）｜ 18.00 → 18
+///   🔴 末位 0 不是「精度」，只是 string() 的隐式补位；留着会白占宽度把整行挤到换行
+///      （雪球兔一转：741px → 713px，行宽 720，就差这两个 0）
 function info_island_text_num(_v){
     if (is_undefined(_v)) return "无";
     if (is_string(_v)) return _v;
     var _r = round(_v * 100) / 100;
     if (abs(_r - round(_r)) < 0.0001) return string(round(_r));
-    return string(_r);
+
+    var _s = string_format(_r, 1, 2);          // 固定两位（string() 的补位规则不保证，显式更稳）
+    while (string_length(_s) > 0 && string_char_at(_s, string_length(_s)) == "0"){
+        _s = string_delete(_s, string_length(_s), 1);
+    }
+    if (string_length(_s) > 0 && string_char_at(_s, string_length(_s)) == "."){
+        _s = string_delete(_s, string_length(_s), 1);
+    }
+    return _s;
 }
 
 /// @func info_island_text_vars(card_id, shape, level, skill)
@@ -52,6 +63,7 @@ function info_island_text_vars(_cid, _shape, _level, _skill){
     _v[? "技能"] = _skill;
     var _sd = get_plant_shape_data(_cid, _shape);
     if (_sd != undefined && ds_map_exists(_sd, "name")) _v[? "形态名"] = string(_sd[? "name"]);
+    _v[? "可以攻击"] = card_attack_text(_cid, _shape);
 
     // custom 结构体（注册时直接挂在形态数据上，比升级表更可靠）：按当前星级取值，覆盖同名项
     // 🔴 2026-11-13 用户口径：卡片和技能表都有同一个 key 时，**以技能表为准**。
@@ -287,7 +299,8 @@ function info_island_text_spans(_raw, _cid, _shape, _level, _skill){
         }
         else{
             if (_buf != ""){ array_push(_out, [_buf, 0]); _buf = ""; }
-            array_push(_out, [string(_val), 1]);
+            // 非数值变量（形态名 / 可以攻击 这类文字串）按普通文字上白色，别染金
+            array_push(_out, [string(_val), is_string(_val) ? 0 : 1]);
         }
         _i = _j + 1;
     }

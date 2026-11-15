@@ -3657,10 +3657,12 @@ mod_register_plant_lite("xuanfengniu", [
         description: "酱香锅烤栗子：投掷栗子造成3*3范围灼烧", hp:array_create(17,160), cost:array_create(17,160), atk:[7,10,12,16,19,24,28,33,40,46,54,62,72,83,94,105,116], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)},
         {name: "可乐香烤栗子",
         shape: 1,
-        description: "可乐香烤栗子：投掷栗子造成3*3范围灼烧，周期性追加爆炸", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)},
+        description: "可乐香烤栗子：投掷栗子造成3*3范围灼烧，周期性追加爆炸", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228),
+        custom: info_custom([["爆炸伤害", [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 920, 930, 950, 970, 1000, 1100, 1200]], ["爆炸周期", [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 3]]])},
         {name: "如意香烤栗子",
         shape: 2,
-        description: "如意香烤栗子：向前方3行投掷栗子造成3*3范围灼烧，周期性追加爆炸", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228)}
+        description: "如意香烤栗子：向前方3行投掷栗子造成3*3范围灼烧，周期性追加爆炸", hp:array_create(17,160), cost:array_create(17,160), atk:[7,13,15,20,24,30,35,42,50,58,68,78,91,104,118,131,146], range:array_create(17,8), cooldown:array_create(17,420), cycle:array_create(17,228),
+        custom: info_custom([["爆炸伤害", [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 920, 930, 950, 970, 1000, 1100, 1200]], ["爆炸周期", [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 3]]])}
     ], false);
     mod_register_plant_lite("youyu_god", [
         {name: "火影怪味鱿鱼",

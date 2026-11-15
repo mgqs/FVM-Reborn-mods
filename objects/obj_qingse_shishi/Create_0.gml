@@ -26,12 +26,12 @@ attack_hit_count = 0  // 本次攻击已触发的次数（0/1/2）
 plant_type = "normal"
 invincible = false
 
-// 目标类型：0/1转 d_fruit（陆地+地下），2转 all（追加空中）
+// 目标类型：0/1 转 normal（陆鼠 + 障碍），2 转 all（追加空中）
 if shape >= 2{
 	target_type = "all"
 }
 else{
-	target_type = "d_fruit"
+	target_type = "normal"
 }
 
 // 攻击前摇帧数

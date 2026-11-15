@@ -26,13 +26,16 @@ cooldown_timer = cycle - 75;
 attacking = false;
 lizi_fired = false;     // 本轮是否已经脱手（第 19 帧出弹，见 Step_0）
 
-// 深度融合（shape>=1）：爆炸伤害 / 周期，按星级 0~16
-// 数值直接写在本对象里（来源：这组卡的推荐数值和情报岛.xlsx），不走植物注册表
-var _deep_boom_damage = [900, 900, 900, 900, 900, 900, 900, 900, 900, 900, 920, 930, 950, 970, 1000, 1100, 1200];
-var _deep_boom_period = [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 3];
-var _db_level = clamp(current_level, 0, array_length(_deep_boom_damage) - 1);
-deep_boom_damage = _deep_boom_damage[_db_level];
-deep_boom_period = _deep_boom_period[_db_level];
+// 深度融合（shape>=1）：爆炸伤害 / 爆炸周期，按星级 0~16 读注册表 custom
+//   （lizi_god 的 1/2 形态各一份；改表即生效，这里不再存数值）
+var _bsk   = variable_instance_exists(id, "skill") ? skill : 0;
+var _binfo = get_plant_data_with_skill("lizi_god", shape, clamp(current_level, 0, 16), _bsk);
+deep_boom_damage = 0;
+deep_boom_period = 1;
+if (_binfo != undefined){
+    if (ds_map_exists(_binfo, "爆炸伤害")) deep_boom_damage = _binfo[? "爆炸伤害"];
+    if (ds_map_exists(_binfo, "爆炸周期")) deep_boom_period = _binfo[? "爆炸周期"];
+}
 
 // 深度爆炸计数，0 = 本次攻击即爆炸（首次攻击即爆炸）
 deep_boom_counter = 0;

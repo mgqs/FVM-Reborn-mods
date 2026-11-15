@@ -2,7 +2,8 @@ damage = 0;
 move_speed = 0;
 bullet_shape = 0;
 damage_type = "normal";
-target_type = "air";
+// 与卡片同步：纯对空
+target_type = "air_only";
 timer = 0;
 target_enemy = -4;
 banding_card_obj = -4;
