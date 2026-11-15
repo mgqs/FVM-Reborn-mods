@@ -293,6 +293,14 @@ function info_island_text_spans(_raw, _cid, _shape, _level, _skill){
             _buf += string_copy(_raw, _i, _n - _i + 1);
             break;
         }
+        // eval 出口是 info_island_text_num()，**数值也被格式化成字符串**，返回值一律 string，
+        // 不能靠 is_string 判断；要回查变量表：值是 real = 数值（金），否则是文字（白）
+        var _vk = string_replace_all(string_replace_all(_expr, " ", ""), "　", "");
+        var _is_text = false;
+        if (ds_map_exists(_v, _vk)){
+            var _raw0 = _v[? _vk];
+            if (!is_real(_raw0)) _is_text = true;
+        }
         var _val = info_island_text_eval(_expr, _v);
         if (is_undefined(_val)){
             _buf += "{" + _expr + "}";      // 取不到就原样留着（一眼能看出写错）
@@ -300,7 +308,7 @@ function info_island_text_spans(_raw, _cid, _shape, _level, _skill){
         else{
             if (_buf != ""){ array_push(_out, [_buf, 0]); _buf = ""; }
             // 非数值变量（形态名 / 可以攻击 这类文字串）按普通文字上白色，别染金
-            array_push(_out, [string(_val), is_string(_val) ? 0 : 1]);
+            array_push(_out, [string(_val), _is_text ? 0 : 1]);
         }
         _i = _j + 1;
     }

@@ -4,6 +4,7 @@ obj_type = object_index;
 event_user(0);
 
 plant_type = "normal";
+target_type  = "normal";  // 炎凰只命中已显形陆军
 feature_type = "lava";
 sprite_index = spr_yanhuangma;
 if (shape == 1) sprite_index = spr_yanhuangma_1;

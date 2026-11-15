@@ -16,7 +16,7 @@ idle_anim = 12;          // 闲置帧：0-12（共13帧）
 flash_speed = 5;
 fire_frame_index = 6;    // 子弹在攻击动画第7帧（索引6 = 总帧19）射出
 plant_type = "normal";
-target_type = "all";    // 可攻击地下/陆地/飞行老鼠
+target_type = "air";    // 可攻击地下/陆地/飞行老鼠
 is_slowdown = false;
 
 // 三转(含以上)命中后 20% 概率定身 1.5 秒（90 帧）

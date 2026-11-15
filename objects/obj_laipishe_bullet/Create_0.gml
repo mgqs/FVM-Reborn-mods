@@ -2,7 +2,7 @@
 // 三段式弹道：卡片→右下角→沿最右列向上→右上角→返回卡片销毁
 damage = 0;
 move_speed = 6;
-target_type = "track";
+target_type = "air";
 damage_type = "normal";
 hittable_types = get_hittable_enemy_types(target_type);
 

@@ -63,7 +63,13 @@ if (is_top_attacker)
             _vb.col_left = 6 + _vb_i;
             _vb.col_hits = [1, 1];
             _vb.ash_kill = true;
-            _vb.target_type = "all";
+            if (shape >= 2) {
+                _vb.target_type = "all";   // 四转起：陆 + 空 + 地（不含潜水 / 非主流 / 幽灵）
+                _vb.hittable_types = ["normal", "air", "underground", "obstacle"];
+            } else {
+                _vb.target_type = "normal";
+                _vb.hittable_types = get_hittable_enemy_types("normal");
+            }
         }
 
         audio_play_sound(snd_shot, 0, 0);

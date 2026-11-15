@@ -116,7 +116,13 @@ if (shape == 3)
         _inst.target_row = _fly_rows[_i2];
         _inst.shape = 3;
         _inst.ash_kill = true;
-        _inst.target_type = "all";
+        if (shape >= 2) {
+            _inst.target_type = "all";   // 四转起：陆 + 空 + 地（不含潜水 / 非主流 / 幽灵）
+            _inst.hittable_types = ["normal", "air", "underground", "obstacle"];
+        } else {
+            _inst.target_type = "normal";
+            _inst.hittable_types = get_hittable_enemy_types("normal");
+        }
         _inst.row_hits = _share[_i2];
 
         // 精灵原点是「鸟头」（spr_shennong_god_bullet_3 origin 242,50，贴图朝右飞）。
@@ -199,7 +205,13 @@ for (var i = 0; i < array_length(bullet_rows); i++)
     inst.target_row = target_row;
     inst.shape = shape;
     inst.ash_kill = ash_kill;
-    inst.target_type = "all"; // 可攻击所有类型
+    if (shape >= 2) {
+        inst.target_type = "all";   // 四转起：陆 + 空 + 地（不含潜水 / 非主流 / 幽灵）
+        inst.hittable_types = ["normal", "air", "underground", "obstacle"];
+    } else {
+        inst.target_type = "normal";
+        inst.hittable_types = get_hittable_enemy_types("normal");
+    }
 
     // 设置子弹精灵
     if (shape == 0)

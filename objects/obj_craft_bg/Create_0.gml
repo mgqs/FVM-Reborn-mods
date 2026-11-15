@@ -404,12 +404,58 @@ function fusion_confirm_draw(){
 	draw_text(_px, _py - 112, "系统提示");
 	draw_text(_px, _py - 20, "融合后，菜谱以及融合剂");
 	draw_text(_px, _py + 12, "将消失，是否消耗金币继续？");
+	// 材料卡会被打回刚解锁状态，跟"保险金"提示同一套红字样式
+	draw_set_colour(make_colour_rgb(215, 40, 40));
+	draw_text_transformed(_px, _py + 112, "所用卡的星级与转职将清零", 1.1, 1.1, 0);
+	draw_set_colour(c_white);
 	var _lbl = ["确定", "取消"];
 	for (var _i = 0; _i < 2; _i++){
 		var _r  = fusion_confirm_rect(_i);
 		var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
 		var _fr = (fusion_confirm_hover == _i) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
 		mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);   // 按钮原点是右下角，统一由该函数补正（见 mod_craft_transfer_table）
+		draw_set_colour(c_white);
+		draw_text(_bx, _by, _lbl[_i]);
+	}
+	draw_set_colour(c_white);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_set_alpha(1);
+}
+
+/// @func evo_confirm_rect(_i) 进化确认弹窗按钮矩形（与融合弹窗同一套坐标）
+function evo_confirm_rect(_i){
+	var _bx = room_width * 0.5 + ((_i == 0) ? -80 : 80);
+	var _by = room_height * 0.5 + 70;
+	var _hw = sprite_get_width(spr_common_button) * 0.75;
+	var _hh = sprite_get_height(spr_common_button) * 0.75;
+	return [_bx - _hw, _by - _hh, _bx + _hw, _by + _hh];
+}
+
+/// @func evo_confirm_draw() 进化确认弹窗：点「进化」先问一句（材料卡会被清零）
+function evo_confirm_draw(){
+	var _px = room_width * 0.5, _py = room_height * 0.5;
+	draw_set_alpha(0.55);
+	draw_rectangle_color(0, 0, room_width, room_height, c_black, c_black, c_black, c_black, false);
+	draw_set_alpha(1);
+	draw_sprite_ext(spr_battle_escape_menu, 0, _px, _py, 1.5, 1.5, 0, c_white, 1);
+	draw_set_font(font_yuan);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_colour(c_white);
+	draw_text(_px, _py - 112, "系统提示");
+	draw_text(_px, _py - 20, "进化后，进化凭证将被消耗，");
+	draw_text(_px, _py + 12, "是否继续？");
+	// 材料卡会被打回刚解锁状态，跟"保险金"提示同一套红字样式
+	draw_set_colour(make_colour_rgb(215, 40, 40));
+	draw_text_transformed(_px, _py + 112, "所用卡的星级与转职将清零", 1.1, 1.1, 0);
+	draw_set_colour(c_white);
+	var _lbl = ["确定", "取消"];
+	for (var _i = 0; _i < 2; _i++){
+		var _r  = evo_confirm_rect(_i);
+		var _bx = (_r[0] + _r[2]) * 0.5, _by = (_r[1] + _r[3]) * 0.5;
+		var _fr = (evo_confirm_hover == _i) ? (mouse_check_button(mb_left) ? 2 : 1) : 0;
+		mod_ui_common_btn_draw(_fr, _bx, _by, 0.75);
 		draw_set_colour(c_white);
 		draw_text(_bx, _by, _lbl[_i]);
 	}
@@ -887,6 +933,8 @@ evo_fx_t    = 0
 evo_fx_frames = 55                             // spr_evo_fx 共 55 帧
 evo_fx_speed  = 0.5
 evo_fx_pending = undefined
+evo_confirm       = false                       // 进化确认弹窗（材料卡会被清零，必须先问一句）
+evo_confirm_hover = -1
 evo_list    = []
 evo_meta    = {}
 evo_list_dirty = true
