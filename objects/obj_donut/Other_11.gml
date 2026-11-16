@@ -15,8 +15,10 @@ var inst = instance_create_depth(x + 20, y + _oy, depth - 45, obj_donut_bullet);
 inst.damage = atk;
 inst.move_speed = 6;
 inst.row = grid_row;
-inst.target_type = target_t;
-inst.hittable_types = get_hittable_enemy_types(inst.target_type);
+// 2026-11-17 用户口径：子弹 = air 类型（同时打空中 + 陆地），
+//   「优先对空」只体现在炮口高度（target_t == "air_only" 时对到空军身体中心）
+inst.target_type = "air";
+inst.hittable_types = get_hittable_enemy_types("air");
 inst.shape = shape;
 var spr = spr_donut_bullet;
 

@@ -151,3 +151,23 @@ function can_hit_segment_bbox(_x1, _y1, _x2, _y2, _inst, _pad_x = 0, _shrink_y =
 
 	return true;
 }
+
+/// @func air_ahead_in_row(bullet)
+/// @desc 这颗子弹所在行、前方（含身旁 40px 内）还有活着的空军吗 —— 「优先对空」用
+///   弹簧虎 / 多拿滋 / 恶作剧神：子弹本身是 air 类型（两类都能打），
+///   但本行只要还有空军，这一帧就只认空军 —— 哪怕陆军站得更靠前也先放过
+function air_ahead_in_row(_bullet) {
+	if (!instance_exists(_bullet)) return false;
+	if (!variable_global_exists("enemy_by_type")) return false;
+	if (!variable_struct_exists(global.enemy_by_type, "air")) return false;
+	var _list = global.enemy_by_type[$ "air"];
+	for (var _i = 0; _i < array_length(_list); _i++) {
+		var _e = _list[_i];
+		if (!instance_exists(_e)) continue;
+		if (_e.hp <= 0) continue;
+		if (variable_instance_exists(_e, "grid_row") && _e.grid_row != _bullet.row) continue;
+		if (_e.x < _bullet.x - 40) continue;      // 已经越过去的空军不再霸占优先权
+		return true;
+	}
+	return false;
+}

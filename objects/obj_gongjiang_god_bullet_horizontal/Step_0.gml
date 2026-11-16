@@ -47,39 +47,18 @@ if (_dist <= move_speed)
     x = _tx;
     y = _ty;
 
-    if (phase == 1)
+    if (phase == 3)
     {
-        var _turn_spr = spr_gongjiang_god_effect_1_1;
-        if (shape == 1) _turn_spr = spr_gongjiang_god_effect_2_2;
-        else if (shape == 2) _turn_spr = spr_gongjiang_god_effect_3_2;
-        else if (shape == 3) _turn_spr = spr_gongjiang_god_effect_3_3;
-        var _turn_fx = instance_create_depth(x, y, depth - 10, obj_gongjiang_god_effect);
-        _turn_fx.sprite_index = _turn_spr;
-        _turn_fx.effect_kind = "turn";
-
-        if (wp1_x == wp2_x && wp1_y == wp2_y)
-            phase = 3;
-        else
-            phase = 2;
-    }
-    else if (phase == 2)
-    {
-        var _turn_spr2 = spr_gongjiang_god_effect_1_1;
-        if (shape == 1) _turn_spr2 = spr_gongjiang_god_effect_2_2;
-        else if (shape == 2) _turn_spr2 = spr_gongjiang_god_effect_3_2;
-        else if (shape == 3) _turn_spr2 = spr_gongjiang_god_effect_3_3;
-        var _turn_fx2 = instance_create_depth(x, y, depth - 10, obj_gongjiang_god_effect);
-        _turn_fx2.sprite_index = _turn_spr2;
-        _turn_fx2.effect_kind = "turn";
-        phase = 3;
-    }
-    else
-    {
-        phase = 4;
         if (ds_exists(hitted_enemy, ds_type_list)) ds_list_destroy(hitted_enemy);
         instance_destroy();
         exit;
     }
+
+    // 走到第 1 个路径点转第 2 段；两段重合时直接返航（拐点不播特效）
+    if (phase == 1 && !(wp1_x == wp2_x && wp1_y == wp2_y))
+        phase = 2;
+    else
+        phase = 3;
 }
 else
 {
@@ -123,14 +102,19 @@ if (variable_global_exists("enemy_by_type"))
                     if (!ds_exists(hitted_enemy, ds_type_list)) break;
                     ds_list_add(hitted_enemy, _e.id);
 
-                    if (pin_chance > 0 && instance_exists(_e) && _e.hp > 0 && random(1) < pin_chance)
-                        _e.frozen_timer = max(_e.frozen_timer, pin_duration);
-
-                    if (poison_chance > 0 && poison_spr != -1 && instance_exists(_e) && random(1) < poison_chance)
+                    // 河豚毒素 = 定身：掷中即 stun_timer（BOSS 由敌人父对象清零）
+                    if (pin_chance > 0 && instance_exists(_e) && _e.hp > 0 && !_e.is_boss && random(1) < pin_chance)
                     {
-                        var _pfx = instance_create_depth(_e.x, _e.y, _e.depth - 10, obj_gongjiang_god_effect);
-                        _pfx.sprite_index = poison_spr;
+                        _e.stun_timer = max(_e.stun_timer, pin_duration);
+                        _e.stun_hide_icon = true;   // 河豚毒素自带毒雾，不画默认眩晕星星
+
+                        // 毒雾固定用绿骷髅，压在老鼠头顶（M4 可调：dy 高度 / scale 大小）
+                        var _pfx = instance_create_depth(_e.x, _e.y - 95 * _e.image_yscale,
+                            _e.depth - 10, obj_gongjiang_god_effect);
+                        _pfx.sprite_index = spr_gongjiang_god_effect_1_1;
                         _pfx.effect_kind = "poison";
+                        _pfx.image_xscale = 1.4;
+                        _pfx.image_yscale = 1.4;
                     }
 
                     var _is_kill = (!instance_exists(_e) || _e.hp <= 0 || _hp_before <= damage);

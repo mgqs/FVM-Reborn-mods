@@ -15,8 +15,6 @@ shape = 0;
 pin_chance = 0;
 pin_duration = 90;
 
-poison_chance = 0;
-poison_spr = -1;
 
 max_life_frames = 600;
 life_frames = 0;

@@ -40,6 +40,7 @@
     {"name":"4b90aa29-5010-4ddd-bd88-eaa28328be8f","path":"sprites/spr_pixel/spr_pixel.yy",},
     {"name":"61fea9ba-3934-440b-9049-692f1909faa3","path":"sprites/spr_place_effect/spr_place_effect.yy",},
     {"name":"cbf9a69a-f0e8-4988-be6b-604b62804738","path":"sprites/spr_skewer_bomb_effect/spr_skewer_bomb_effect.yy",},
-    {"name":"1d6c79dc-32f1-42e2-93c2-4afe710f3dff","path":"sprites/spr_wine_bottle_bomb_explode/spr_wine_bottle_bomb_explode.yy",}
+    {"name":"1d6c79dc-32f1-42e2-93c2-4afe710f3dff","path":"sprites/spr_wine_bottle_bomb_explode/spr_wine_bottle_bomb_explode.yy",},
+    {"name":"ce9390af-e4e5-4d90-aab2-935ba2d53cf6","path":"sprites/spr_joker_bat_ash/spr_joker_bat_ash.yy",}
   ],
 }

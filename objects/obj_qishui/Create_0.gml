@@ -49,13 +49,12 @@ qs_anim_span   = 40;               // 攻击动画占多少帧（从开始摆姿
                                    // 调大 → 前摇更慢、待机时间变短；调小 → 更利落（别再让它占满整个 cycle）
 
 // ── 注册表 custom（标量：子弹数 1/2/3、弹射次数、减速时间 0/2/2）──
-//   弹射倍率「2 倍伤害」三形态都是攻击力×2 → 写死，不进 custom
+//   弹射 = 攻击表 ÷2、直射 = 攻击表原值（2026-11-17 口径：atk 表已 ×2，直射不再额外乘）
 var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _info = get_plant_data_with_skill("qishui", shape, clamp(current_level, 0, 16), _sk);
 
 qs_bounce_times = 3;      // 弹射 **3 次**（直射 1 + 弹 3 = 最多 4 只）—— 固定值，写死
-qs_bounce_mult  = 1;      // 弹射段伤害倍率：弹射 = 攻击表原值（直射才是 2 倍）
-qs_direct_mult  = 2;      // 直射段伤害倍率：攻击表 × 2（2026-11-13 用户口径）
+qs_bounce_mult  = 0.5;    // 弹射段伤害倍率：弹射 = 攻击表 ÷2
 qs_bounce_cells = (shape >= 2) ? 2 : 1;   // 弹射范围 3*3 / 3*3 / 5*5
 qs_slow_time    = (shape >= 1) ? 2 : 0;   // 1 转起命中减速 2 秒
 qs_shot_count   = (shape >= 2) ? 3 : ((shape == 1) ? 2 : 1);

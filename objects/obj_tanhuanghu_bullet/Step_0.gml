@@ -28,8 +28,11 @@ if (!variable_global_exists("enemy_by_type")) exit;
 
 var _hit = false;
 
+// 优先对空（2026-11-17）：本行前方还有活的空军就只认空军
+var _air_first = air_ahead_in_row(id);
 for (var _t = 0; _t < array_length(hittable_types); _t++){
     var _key = hittable_types[_t];
+    if (_air_first && _key != "air") continue;
     if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
 
     if (_key == "obstacle"){
@@ -48,7 +51,7 @@ for (var _t = 0; _t < array_length(hittable_types); _t++){
         // 🔴 只打本行：子弹贴图放大 1.4 倍，光靠 bbox 会蹭到上下行的老鼠
         if (_e.grid_row != row) continue;
         if (!precise_bbox_collision(id, _e)) continue;
-        audio_play_sound(snd_hit1, 0, 0);     // 2026-11-12 补：命中音
+        audio_play_sound(snd_tanhuanghu_hit, 0, 0);   // 专属命中音
 
         with (_e){
             damage_amount         = other.damage;

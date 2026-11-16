@@ -14,9 +14,12 @@ if (hit_tick >= global.bullet_hit_interval)
 	if (bullet_enemy_reachable(id)) {
 if (variable_global_exists("enemy_by_type"))
 {
+    // 优先对空（2026-11-17）：本行前方还有活的空军就只认空军
+    var _air_first = air_ahead_in_row(id);
     for (var _t = 0; _t < array_length(hittable_types); _t++)
     {
         var _key = hittable_types[_t];
+        if (_air_first && _key != "air") continue;
         if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
         var _list = bullet_sap_type_list(id, _key);
         for (var _i = 0; _i < array_length(_list); _i++)

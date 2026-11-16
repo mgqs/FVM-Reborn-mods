@@ -61,6 +61,7 @@ if stun_timer > 0{
 else{
 	is_stun = false
 	stun_sprite = spr_mouse_stun
+	stun_hide_icon = false
 }
 if flash_value > 0 {
 	flash_value -= 10

@@ -15,7 +15,7 @@
 ///   mode = 另走 tx_special_shot 的原卡口径：
 ///     "zeus" "gaia" "cannon_lane" "cannon_target" "missile" "fashishe"
 ///     "huagao"（灯影花糕 8 只魂虫）"phoenix"（炎凰马 4 发）"cold_drew"（冰块 6 颗）
-///     "gongjiang"（鲁班 2 折返 + 4 竖弹）"ice_god"（典伊 12 发）"baiyang"（白羊座冲撞车）
+///     "gongjiang"（鲁班 2 折返各 1 发 + 2 竖弹）"ice_god"（典伊 12 发）"baiyang"（白羊座冲撞车）
 ///     → 后 6 个是**整轮一次生成**
 ///     "bun"（小笼包族 8 张）：一批一个开火事件，n = 批数、per = 1、gap = 批间隔帧
 ///       bn_h / bn_x0 / bn_step = 每批水平发数 / 出膛点 x / 水平间距
@@ -161,7 +161,7 @@ function tx_pool_data()
             ] },
             { name: "固定轨迹类", cards: [
                 { nm: "神农氏神使", o: obj_shennong_god_bullet_h, dx: 40, dy: -80, spd: 6, n: 2, sp: "rows3", shape: 3, wt: 50 },   // 上行 + 本行各 1，同帧
-                { nm: "鲁班神使", o: obj_gongjiang_god_bullet_horizontal, mode: "gongjiang", n: 6, wt: 50 },   // 满转 2 条折返 + 第 0/1 列上下竖弹 4 颗
+                { nm: "鲁班神使", o: obj_gongjiang_god_bullet_horizontal, mode: "gongjiang", n: 4, wt: 50 },   // 满转 2 条折返各 1 发 + 后路 1 上 2 下各 1 发
             ] },
             { name: "多线投手", cards: [
                 { nm: "尤弥尔神使", o: obj_ymir_bullet, dx: 40, dy: -80, spd: 8, a: true, n: 12, per: 3, gap: 5, sp: "rows3", shape: 3, wt: 30 },   // 满转 4 批 × 3 行
@@ -343,7 +343,7 @@ function tx_poison_at(_self, _row)
 ///     "huagao"        灯影花糕 8 只魂虫   ← obj_huagao/Step_0
 ///     "phoenix"       炎凰马 4 发         ← obj_yanhuangma/Step_0
 ///     "cold_drew"     冰块冷萃机 6 颗     ← obj_cold_drew/Other_11
-///     "gongjiang"     鲁班 2 折返 + 4 竖弹 ← obj_gongjiang_god/Other_11
+///     "gongjiang"     鲁班 2 折返各 1 发 + 2 竖弹 ← obj_gongjiang_god/Other_11
 ///     "ice_god"       典伊 12 发          ← obj_ice_god/Other_11
 ///     "baiyang"       白羊座 1 行冲撞车    ← obj_baiyang/Step_0
 ///   后 6 个是**整轮一次生成**（tx_is_whole_mode），不看 n / per / gap。
@@ -595,9 +595,9 @@ function tx_special_shot(_self, _card, _si)
         return;
     }
 
-    // ── 鲁班神使：**整轮 6 颗一次铺完**（原卡 obj_gongjiang_god/Other_11）────────
-    //   2 条水平折返（上路→中、下路→中）+ 第 0/1 列上下 4 颗竖弹；
-    //   命中 20% 定身 90 帧、30% 毒雾（满转数值）、击杀灰烬（弹体自己处理）
+    // ── 鲁班神使：**整轮一次铺完**（原卡 obj_gongjiang_god/Other_11）────────────
+    //   往前 2 条折返轨迹各 1 发 + 后路 1 列往上、2 列往下各 1 发单程（后路伤害 = 往前 × 2/3）；
+    //   命中 20% 河豚毒素（= 定身 90 帧，弹体自己按 stun_timer 播绿骷髅）、击杀灰烬（弹体自己处理）
     if (_card.mode == "gongjiang")
     {
         var _gj_col  = combat_max_col();
@@ -607,7 +607,6 @@ function tx_special_shot(_self, _card, _si)
         var _gj_wmid = get_world_position_from_grid(_gj_col, _gj_mid);
         var _gj_bot  = get_world_position_from_grid(_gj_col, clamp(6, 0, global.grid_rows - 1));
         var _gj_spr  = spr_gongjiang_god_bullet_3;
-        var _gj_pspr = spr_gongjiang_god_effect_3_2;
 
         for (var _gd = 0; _gd < 2; _gd++)
         {
@@ -615,8 +614,8 @@ function tx_special_shot(_self, _card, _si)
             _gh.damage         = _self.atk;
             _gh.move_speed     = 8;
             _gh.damage_type    = "normal";
-            _gh.target_type    = "all";
-            _gh.hittable_types = get_hittable_enemy_types("all");
+            _gh.target_type    = "air";
+            _gh.hittable_types = get_hittable_enemy_types("air");
             _gh.shape          = 3;
             _gh.origin_card_id = _self.id;
             _gh.start_x        = _self.x;
@@ -628,31 +627,27 @@ function tx_special_shot(_self, _card, _si)
             _gh.sprite_index   = _gj_spr;
             _gh.pin_chance     = 0.20;
             _gh.pin_duration   = 90;
-            _gh.poison_chance  = 0.30;
-            _gh.poison_spr     = _gj_pspr;
         }
 
+        var _gj_vtop = global.grid_offset_y - 40;
+        var _gj_vbot = global.grid_offset_y + global.grid_cell_size_y * global.grid_rows + 40;
         for (var _gc = 0; _gc <= 1; _gc++)
         {
-            var _gp = get_world_position_from_grid(_gc, _gj_mid);
-            for (var _gv = 0; _gv < 2; _gv++)
-            {
-                var _gb = instance_create_depth(_gp.x, _gp.y, _self.depth - 500, obj_gongjiang_god_bullet_vertical);
-                _gb.damage         = _self.atk;
-                _gb.move_speed     = 8;
-                _gb.vertical_dir   = (_gv == 0) ? -1 : 1;
-                _gb.col            = _gc;
-                _gb.shape          = 3;
-                _gb.damage_type    = "normal";
-                _gb.target_type    = "all";
-                _gb.hittable_types = get_hittable_enemy_types("all");
-                _gb.sprite_index   = _gj_spr;
-                _gb.image_angle    = (_gv == 0) ? 90 : 270;
-                _gb.pin_chance     = 0.20;
-                _gb.pin_duration   = 90;
-                _gb.poison_chance  = 0.30;
-                _gb.poison_spr     = _gj_pspr;
-            }
+            var _gj_down = (_gc == 1);
+            var _gb = instance_create_depth(get_world_position_from_grid(_gc, _gj_mid).x,
+                _gj_down ? _gj_vtop : _gj_vbot, _self.depth - 500, obj_gongjiang_god_bullet_vertical);
+            _gb.damage         = _self.atk * 2 / 3;
+            _gb.move_speed     = 8;
+            _gb.vertical_dir   = _gj_down ? 1 : -1;
+            _gb.col            = _gc;
+            _gb.shape          = 3;
+            _gb.damage_type    = "normal";
+            _gb.target_type    = "air";
+            _gb.hittable_types = get_hittable_enemy_types("air");
+            _gb.sprite_index   = _gj_spr;
+            _gb.image_angle    = _gj_down ? 270 : 90;
+            _gb.pin_chance     = 0.20;
+            _gb.pin_duration   = 90;
         }
         return;
     }

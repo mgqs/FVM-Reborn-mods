@@ -78,7 +78,6 @@ function card_attack_target_data()
         "ice_long_bao": "normal",
         "iron_fishbone": "pierce",
         "jingangma": "pierce",
-        "joker": "rotate",
         "juxie": "track",
         "kettle_bomb": "normal",
         "king_long_bao": "normal",
@@ -135,7 +134,7 @@ function card_attack_target_data()
         "tanchitu": "normal",
         "tang_hu_lu": "air_only",
         "tangchaolizi": "throw",
-        "tanhuanghu": "pierce_air",
+        "tanhuanghu": "air",
         "tar_sprayer": "pierce",
         "thor": "throw",
         "tiancheng": "normal",
@@ -184,7 +183,9 @@ function card_attack_target_override()
         "fashishe": "陆地鼠军",
         "tianxie": "陆地鼠军",
         "shennong_god": ["陆地鼠军", "陆地鼠军", "陆地鼠军丨空军丨地鼠", "陆地鼠军丨空军丨地鼠"],
-        "sheng_huo": ["陆地鼠军丨非主流丨幽灵", "陆地鼠军丨非主流丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵"]
+        "sheng_huo": ["陆地鼠军丨非主流丨幽灵", "陆地鼠军丨非主流丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵"],
+        // 恶作剧神：子弹打 空中 / 陆地 / 潜水 / 地下（没有单一类型名能表达，手写覆盖）
+        "joker": "陆地鼠军丨空军丨潜水丨地鼠"
     };
     return _o;
 }

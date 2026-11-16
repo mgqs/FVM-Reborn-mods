@@ -16,7 +16,7 @@ function friendly_attack_visual_kind(_obj) {
     static _effects = [
         obj_12yinliao_effect, obj_aurora_dead_explode, obj_aurora_effect,
         obj_baiyang_effect, obj_bbq_mouse_burn, obj_beefhotpot_bullet,
-        obj_burn_cell, obj_burn_effect, obj_chocolatecannon_bullet,
+        obj_burn_cell, obj_burn_effect, obj_bbq_burn_cell, obj_chocolatecannon_bullet,
         obj_chocolatecannon_bullet_effect, obj_chunsun_launch_fx,
         obj_clotho_effect, obj_clotho_star_effect, obj_coffeecup_bullet_effect,
         obj_coffeepot_bullet, obj_corn_shooter_effect, obj_corn_shooter_effect_1,

@@ -55,6 +55,9 @@
     {"name":"sound","path":"sounds/snd_throw/snd_throw.yy",},
     {"name":"sound","path":"sounds/snd_win/snd_win.yy",},
     {"name":"sound","path":"sounds/snd_wooden_cork/snd_wooden_cork.yy",},
-    {"name":"sound","path":"sounds/snd_zeus/snd_zeus.yy",}
+    {"name":"sound","path":"sounds/snd_zeus/snd_zeus.yy",},
+    {"name":"sound","path":"sounds/snd_tanhuanghu_hit/snd_tanhuanghu_hit.yy",},
+    {"name":"sound","path":"sounds/snd_snowrabbit_hit/snd_snowrabbit_hit.yy",},
+    {"name":"sound","path":"sounds/snd_huojianzhu_hit/snd_huojianzhu_hit.yy",}
   ],
 }

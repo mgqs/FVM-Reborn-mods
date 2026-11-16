@@ -1,4 +1,4 @@
-/// 弹簧虎 弹体 Destroy（命中后做 3*3 溅射；没命中直接飞出图外则不溅射）
+/// 弹簧虎 弹体 Destroy（命中后做 3×3 溅射；没命中直接飞出图外则不溅射）
 if (!instance_exists(hitted_enemy)) exit;
 
 var _cx = hitted_enemy.x;
@@ -6,14 +6,13 @@ var _cx = hitted_enemy.x;
 with (obj_enemy_parent){
     if (hp <= 0) continue;
     if (id == other.hitted_enemy) continue;
+    // 3×3：本行 ±1 行、命中点左右各 1.5 格
     if (abs(grid_row - other.row) > other.splash_cells) continue;
     if (abs(x - _cx) > global.grid_cell_size_x * 1.5) continue;
-    // 2026-11-13：溅射口径**与本体完全一致** —— 直接读类型，不写死列表：
-    //   对空弹按 air_only（只认空军）；对地弹按 normal（普通 + 障碍）；
-    //   障碍只是被「穿过」、本体不吃伤害，所以溅射这里也跳过它。
-    //   原来走 can_hit_ash("pierce", …) → 非主流 / 幽灵 / 障碍全都能吃，凭空变成穿透口径。
-    if (!can_target_on(other.is_air_volley ? "air_only" : "normal", target_type)) continue;
-    if (target_type == "obstacle") continue;
+    // 2026-11-17 用户口径：溅射范围 = 空中 / 陆地 / 地下，**不跟子弹本体类型走**；
+    //   障碍、幽灵、非主流不在这三类里，所以不吃溅射
+    if (target_type != "normal" && target_type != "air" && target_type != "underground") continue;
+    if (target_type == "underground" && !is_digging_dijing(id)) continue;
 
     damage_amount         = other.damage * other.splash_ratio;
     damage_type           = other.damage_type;

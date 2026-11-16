@@ -5,21 +5,12 @@ event_inherited();
 
 if (is_frozen) exit;
 
-// ── 前摇按技能档取（Create 时 skill 还没赋）──
-if (!sg_init_done){
-    sg_init_done = true;
-
-    var _sk   = variable_instance_exists(id, "skill") ? clamp(skill, 0, 8) : 0;
-    var _info = get_plant_data_with_skill("shiguangji", shape, clamp(current_level, 0, 16), _sk);
-    if (_info != undefined && ds_map_exists(_info, "前摇")){
-        sg_cast_delay = round(_info[? "前摇"] * 60);
-    }
-}
+// 前摇固定 1.9 秒（= Create 里的 sg_cast_delay 114 帧），2026-11-17 起不再读注册表
 
 // ── ① 前摇演出：把第 2~10 帧**均摊**到整段前摇上，播一遍就停，不再循环 ──
 //   2026-11-13 用户口径：一次性卡不该「原地待机转圈」——
 //   前摇走完那一刻出效果，中间这段就是它的前摇演出（写法同蛇蛇酒）。
-//   原来按 flash_speed=5 播，9 帧只要 45 帧，而前摇 162 帧（2.7 秒）→ 会循环 3~4 圈。
+//   原来按 flash_speed=5 播，9 帧只要 45 帧，而前摇 114 帧（1.9 秒）→ 会循环 2 圈多。
 if (sg_play == 0){
     var _idle_n    = max(1, sg_idle_to - sg_idle_from + 1);
     var _idle_step = max(1, ceil(sg_cast_delay / _idle_n));

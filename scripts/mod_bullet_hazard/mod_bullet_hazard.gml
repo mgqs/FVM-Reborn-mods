@@ -281,6 +281,17 @@ function bullet_hazard_rebound(_bullet, _src) {
         && variable_instance_exists(_bullet, "fire_mult")) _fm = _bullet.fire_mult;
     _bullet.damage += round((variable_instance_exists(_src, "atk") ? _src.atk : 0) * _fm);
 
+    // 水神终转：反弹子弹伤害翻倍（含刚加上的附伤）
+    if (variable_instance_exists(_src, "wg_final_double") && _src.wg_final_double)
+        _bullet.damage = round(_bullet.damage * 2);
+
+    // 水神：反弹出去的子弹带毒，命中时按概率挂「反弹毒伤」（见 Other_10 末尾）
+    if (variable_instance_exists(_src, "wg_poison_dmg") && _src.wg_poison_dmg > 0) {
+        _bullet.wg_poison_dmg    = _src.wg_poison_dmg;
+        _bullet.wg_poison_chance = _src.wg_poison_chance;
+        _bullet.wg_poison_ticks  = _src.wg_poison_ticks;
+    }
+
     // 刷新命中记录：被弹回来的子弹可以再打一次已经打过的老鼠（只清命中表，别的状态一律不动）
     if (_c.reset_hits) {
         var _names = ["hitted", "hit_enemies", "hit_list", "hit_targets"];
@@ -291,6 +302,29 @@ function bullet_hazard_rebound(_bullet, _src) {
         }
     }
 
+    // 源卡要播「反弹动作」的（水神：第 14 帧起）打一拍，卡片自己的 Step 负责推帧
+    if (variable_instance_exists(_src, "wg_reflect_t")) _src.wg_reflect_t = 1;
+
     hazard_dbg(_nm + " 反弹，源=" + object_get_name(_src.object_index));
     return true;
+}
+
+/// @function water_god_poison_apply(_enemy, _dmg, _ticks)
+/// @desc 水神反弹毒伤：同一只只保留一份，重复命中只刷新（xlsx：每 1 秒 1 跳、共 3 跳、只刷新不叠加）
+function water_god_poison_apply(_enemy, _dmg, _ticks) {
+	if (!instance_exists(_enemy)) return;
+
+	if (variable_instance_exists(_enemy, "wg_poison_fx") && instance_exists(_enemy.wg_poison_fx)) {
+		var _old = _enemy.wg_poison_fx;
+		_old.dmg   = max(_old.dmg, _dmg);
+		_old.ticks = max(_old.ticks, _ticks);
+		_old.t     = 0;
+		return;
+	}
+
+	var _p = instance_create_depth(_enemy.x, _enemy.y, _enemy.depth - 1, obj_water_god_poison);
+	_p.target = _enemy;
+	_p.dmg    = _dmg;
+	_p.ticks  = _ticks;
+	_enemy.wg_poison_fx = _p;
 }

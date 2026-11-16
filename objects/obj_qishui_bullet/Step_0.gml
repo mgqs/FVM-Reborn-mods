@@ -113,7 +113,7 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
 
         // ── 弹射：同一颗子弹原地切「弹射态」，抛物线跳到下一只 ──
         //   2026-11-13：旧写法在 Destroy 里 instance_create 新弹，实测打完第一只气泡就没了；
-        //   现在不销毁、不复用新实例，按色拉那种弧线跳到 3×3 / 5×5 内最近的另一只（直射 2 倍 / 弹射原值）
+        //   现在不销毁、不复用新实例，按色拉那种弧线跳到 3×3 / 5×5 内最近的另一只（直射按表 / 弹射表值÷2）
         if (chain_left > 0){
             var _next     = noone;
             var _best_dis = 999999;
@@ -140,7 +140,7 @@ for (var _i = 0; _i < array_length(hittable_types); _i++){
 
             if (_next != noone){
                 chain_left--;
-                // 弹射段 = 攻击表原值（直射段才是 2 倍）
+                // 弹射段 = 攻击表 ÷2（直射段按攻击表原值）
                 damage        = base_atk * bounce_mult;
                 is_bounce     = true;
                 bounce_target = _next;

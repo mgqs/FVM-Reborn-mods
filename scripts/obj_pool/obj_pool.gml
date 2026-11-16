@@ -138,6 +138,14 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         image_blend  = c_white;
         image_index  = 0;
 
+        // 水神反弹毒标：实例变量会跟着池复用一起搬走，不清就会出现
+        //   「别的卡的子弹凭空带毒」（同 image_angle 残留那类问题）
+        if (variable_instance_exists(id, "wg_poison_dmg")) {
+            wg_poison_dmg    = 0;
+            wg_poison_chance = 0;
+            wg_poison_ticks  = 0;
+        }
+
         instance_change(_obj, true);
         event_user(14);
 

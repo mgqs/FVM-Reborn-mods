@@ -1,7 +1,7 @@
 /// 弹珠汽水 开火事件：本行直线弹
 var _b = instance_create_depth(x + qs_muzzle_x, y + qs_art_up, depth - 500, obj_qishui_bullet);
-// 2026-11-13 用户口径：**直射弹 = 攻击表 2 倍伤害**，弹射弹 = 攻击表原值（不是反过来）
-_b.damage         = atk * qs_direct_mult;
+// 2026-11-17 用户口径：atk 表已 ×2，**直射 = 攻击表原值**（不再乘），弹射弹 = 攻击表 ÷2
+_b.damage         = atk;
 _b.base_atk       = atk;
 _b.move_speed     = 10;
 _b.shape          = shape;

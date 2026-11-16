@@ -1,10 +1,8 @@
-/// 弹簧虎 开火事件：本行直线弹（穿透，可越过岩浆/障碍），命中后溅射
-// 命中桶：**这一发打谁就只认谁**（2026-11-13 用户口径：空地区分，同多拿滋）
-//   本行有空军 → 这一发是「对空弹」，只打 air，路过地面老鼠不打
-//   本行没空军 → 「对地弹」，只打 normal + obstacle，路过空军不打
-var _air_volley = (th_target_t == "air_only");
-// 命中表**按类型派生**，不手写：air_only → ["air"]；normal → ["normal", "obstacle"]
-var _hittable = get_hittable_enemy_types(_air_volley ? "air_only" : "normal");
+/// 弹簧虎 开火事件：本行直线弹（可越过岩浆/障碍），命中后 3×3 溅射
+// 2026-11-17 用户口径：子弹 = **air 类型**（同时打空中 + 陆地），不再做纯对空弹；
+//   「优先对空」只体现在**炮口高度**（本行有空军就对到空军身体中心），子弹本身两种都打，
+//   所以空军清掉之后同一串子弹仍能打到陆地（下一轮的索敌也会自动转成打地面）
+var _hittable = get_hittable_enemy_types("air");
 
 // 出弹点：优先空军时按本行空军**身体 bbox 中心**对齐（同多拿滋 2026-11-06 写法）
 //   固定 y-26 永远够不到空军，表现就是「索敌了但打不中」
@@ -25,9 +23,8 @@ _b.base_atk       = atk;
 _b.move_speed     = 11;
 _b.shape          = shape;
 _b.row            = grid_row;
-_b.target_type    = th_target_t;
+_b.target_type    = "air";
 _b.hittable_types = _hittable;
-_b.is_air_volley  = _air_volley;
 _b.splash_ratio   = th_splash_ratio;
 _b.splash_cells   = th_splash_cells;
 

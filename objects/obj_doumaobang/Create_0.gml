@@ -27,11 +27,9 @@ state        = CARD_STATE.IDLE;
 attack_anim = 0;
 idle_anim   = sprite_get_number(sprite_index)-1;
 
-// 前摇 2.5 秒（xlsx 官方值，技能等级不影响：技能一改前摇，召唤时机就和动画对不上）
-var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
-var _info = get_plant_data_with_skill("doumaobang", shape, clamp(current_level, 0, 16), _sk);
+// 前摇 2.5 秒（xlsx 官方固定值，技能等级不影响：技能一改前摇，召唤时机就和动画对不上）
+//   2026-11-17 用户口径：固定值直接写死，不再走 custom["前摇"] / 注册表
 windup_time = 2.5;
-if (_info != undefined && ds_map_exists(_info, "前摇")) windup_time = _info[? "前摇"];
 windup_frames = round(windup_time * 60);
 
 windup_t = 0;

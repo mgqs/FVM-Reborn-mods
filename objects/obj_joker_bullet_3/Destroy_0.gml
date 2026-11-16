@@ -1,20 +1,3 @@
-if (shape >= 1)
-{
-    var _x = x;
-    
-    if (instance_exists(hitted_enemy))
-        _x = hitted_enemy.x;
-    
-    var _range = 165;
-    var splash_ratio = 1;
-    
-    with (obj_enemy_parent)
-    {
-        if (hp > 0 && abs(x - _x) < _range && abs(grid_row - other.row) <= 1 && id != other.hitted_enemy && can_hit("rotate", target_type))
-        {
-            damage_amount = other.damage * splash_ratio;
-            damage_type = other.damage_type;
-            event_user(0);
-        }
-    }
-}
+/// 终转弹 Destroy：溅射已在命中时逐只结算（见 Step），这里只回收命中记账
+if (ds_exists(hit_log, ds_type_list))
+    ds_list_destroy(hit_log);

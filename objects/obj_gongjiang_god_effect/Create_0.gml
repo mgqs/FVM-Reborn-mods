@@ -1,5 +1,5 @@
 // 工匠神特效 - 创建事件
-// effect_kind: "kill"(击杀泡沫) 或 "turn"(转向)；sprite_index 由创建方覆盖
+// effect_kind: "kill"(击杀泡沫) / "poison"(河豚毒素)；sprite_index 由创建方覆盖
 effect_kind = "kill";
 sprite_index = spr_gongjiang_god_effect_death;
 image_xscale = 1.5;

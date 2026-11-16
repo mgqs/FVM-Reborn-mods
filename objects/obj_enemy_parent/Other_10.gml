@@ -76,3 +76,13 @@ if (hex_enabled()) {
 		if (variable_instance_exists(other, "hex_src_inst")) hex_b3_bullet_hit(other, id);
 	}
 }
+
+// 水神：被反弹的子弹带毒 → 命中时按概率挂「反弹毒伤」（0 转 5% / 一转起必定）
+//   毒伤本体由 obj_water_god_poison 自己按 1 秒 1 跳结算，这里只负责挂/刷新
+if (_hit_taken > 0 && other != noone && instance_exists(other)
+	&& variable_instance_exists(other, "wg_poison_dmg") && other.wg_poison_dmg > 0
+	&& variable_instance_exists(other, "bounced") && other.bounced) {
+	// 每命中一只都独立掷一次（穿透弹会连续命中），毒伤本体自己「只刷新不叠加」
+	if (random(100) < other.wg_poison_chance)
+		water_god_poison_apply(id, other.wg_poison_dmg, other.wg_poison_ticks);
+}

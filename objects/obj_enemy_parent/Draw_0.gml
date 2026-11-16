@@ -51,7 +51,7 @@ if is_frozen{
 if is_scare{
 	draw_sprite_ext(spr_mouse_scared,0,x-45,y-125,1.8,1.8,0,c_white,1)
 }
-if is_stun{
+if is_stun && !stun_hide_icon{
 	draw_sprite_ext(stun_sprite,sprite_get_number(stun_sprite)-(floor(stun_timer/5) mod sprite_get_number(stun_sprite)),x-20,y-150,1.8,1.8,0,c_white,1)
 }
 // 海克斯「食指的指令」：被标记的鼠军头顶挂标记图案

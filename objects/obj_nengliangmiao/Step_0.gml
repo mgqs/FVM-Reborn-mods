@@ -10,6 +10,7 @@ if (current_level != _nl_lv || skill != _nl_sk || shape != _nl_sh)
     _nl_lv = current_level; _nl_sk = skill; _nl_sh = shape;
     var _ni = get_plant_data_with_skill("nengliangmiao", shape, clamp(current_level, 0, 16), skill);
     throw_buff_value = (_ni != undefined && ds_map_exists(_ni, "投掷增幅")) ? _ni[? "投掷增幅"] : 1;
+    fire_mult_override = (_ni != undefined && ds_map_exists(_ni, "过火倍率")) ? _ni[? "过火倍率"] : 1;
     buff_value = throw_buff_value;
     refresh_buff_cells();
     global.buff_dirty = true;
