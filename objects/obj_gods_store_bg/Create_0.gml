@@ -43,7 +43,9 @@ function gods_shop_list_recharge()
         if (shop_button_select == 1)
         {
             // 防御卡：只放卡本体 + 进化凭证（**所有融合菜谱，含初融，都已挪到第 3 页「配方材料」**）
-            if ((_g1.type == "card" && !_is_base_recipe1) || _g1.type == "evo") array_push(_picked, _gid1);
+            //   2026-11-16：神器 / 宝石进化凭证（type gear_evo）也在这一页 —— 同属「进化凭证」
+            if ((_g1.type == "card" && !_is_base_recipe1) || _g1.type == "evo"
+                || _g1.type == "gear_evo") array_push(_picked, _gid1);
         }
         else if (shop_button_select == 2)
         {
@@ -73,7 +75,8 @@ function gods_shop_list_recharge()
             var _card_id2 = variable_struct_exists(_goods2, "unlock_item_id") ? _goods2.unlock_item_id : _gid2;
 
             var _tier = 2;
-            if (is_fusion_card(_card_id2)) _tier = 0;
+            if (variable_struct_exists(_goods2, "sort_tier")) _tier = _goods2.sort_tier;
+            else if (is_fusion_card(_card_id2)) _tier = 0;
             else
             {
                 var _shape_data = deck_get_card_data(_card_id2, 0);
@@ -153,6 +156,9 @@ function gods_shop_list_recharge()
                     //   与背包凭证页同一套字（mod_evo_tooltip），2026-10-28 用户要求
                     if (_goods_b1.type == "evo") {
                         inst.tooltip_text = mod_evo_tooltip(_goods_b1.unlock_item_id, _goods_b1.description);
+                    } else if (_goods_b1.type == "gear_evo") {
+                        // 神器 / 宝石进化凭证（2026-11-16）：四行字跟背包凭证页同一套
+                        inst.tooltip_text = mod_gear_evo_shop_tip(_goods_b1.unlock_item_id);
                     } else if (_is_recipe_b1) {
                         // 菜谱提示统一走食灵融合页那一套（菜谱名 / 主卡 / 副卡），2026-11-01
                         inst.tooltip_text = mod_fusion_recipe_tip(_goods_b1.unlock_item_id, 0);
@@ -170,8 +176,14 @@ function gods_shop_list_recharge()
                         if (variable_struct_exists(_goods_b1, "target_shape")) inst.recipe_shape = _goods_b1.target_shape;
                     }
                     // 2026-10-27：第一页的「金卡」已换成进化凭证（type "evo"），买的是道具不是卡
-                    var _is_evo_b1 = (_goods_b1.type == "evo");
-                    inst.btn_type = _is_recipe_b1 ? "recipe" : (_is_evo_b1 ? "evo" : "card");
+                    // 2026-11-16：神器 / 宝石进化凭证（gear_evo）也是「买道具」，别落进 card 分支
+                    //   ⚠️ 三层三元太容易看错（AGENTS §1.3 只允许一层）→ 这里顺序 if
+                    var _is_evo_b1  = (_goods_b1.type == "evo");
+                    var _is_gear_b1 = (_goods_b1.type == "gear_evo");
+                    inst.btn_type = "card";
+                    if (_is_recipe_b1)     inst.btn_type = "recipe";
+                    else if (_is_evo_b1)   inst.btn_type = "evo";
+                    else if (_is_gear_b1)  inst.btn_type = "gear_evo";
 
                     if (_is_recipe_b1)
                     {
@@ -186,6 +198,12 @@ function gods_shop_list_recharge()
                         // 进化凭证：**只能有 1 张** —— 背包里已有一张，或这张金卡已经进化出来了 → 售完
                         //   判定统一走 mod_evo_buyable_locked（Draw 的售罄罩调的是同一个，别再各写一份）
                         inst.is_disabled = mod_evo_buyable_locked(_goods_b1.unlock_item_id);
+                    }
+                    else if (_is_gear_b1)
+                    {
+                        // 神器 / 宝石进化凭证：同样**只能有 1 张** —— 背包已有一张、或这一阶已经
+                        //   进化出来了 → 售完（判定只在 mod_gear_evo_buyable_locked 里写一份，Draw 共用）
+                        inst.is_disabled = mod_gear_evo_buyable_locked(_goods_b1.unlock_item_id);
                     }
                     else
                     {

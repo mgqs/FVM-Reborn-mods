@@ -405,7 +405,8 @@ def write_all(name, data, raw, new_glyphs, new_codes, dry=False):
 
 
 # ────────────────────────── 主流程 ──────────────────────────
-def process(name, only_screen=False, fill_level2=True, dry=False, verbose=True):
+def process(name, only_screen=False, fill_level2=True, dry=False, verbose=True, force_chars=None,
+            only_chars=False):
     raw, data = load_yy(name)
     cfg = CONFIG[name]
     cal = calibrate(name, data, cfg)
@@ -436,11 +437,17 @@ def process(name, only_screen=False, fill_level2=True, dry=False, verbose=True):
         if 0xFF00 <= o <= 0xFF60 or 0xFFE0 <= o <= 0xFFE6:   # 全角 ASCII
             return (5, o)
         return (3, o)
-    groups = [
-        ("上屏缺字", [c for c in sorted(sc) if ord(c) not in have]),
-        ("符号区", sorted([c for c in gb2312_symbols() if ord(c) not in have], key=sym_rank)),
-    ]
-    if not only_screen:
+    groups = []
+    if force_chars:
+        groups.append(("指定字", [c for c in force_chars if ord(c) not in have]))
+    if force_chars and only_chars:
+        pass
+    else:
+        groups += [
+            ("上屏缺字", [c for c in sorted(sc) if ord(c) not in have]),
+            ("符号区", sorted([c for c in gb2312_symbols() if ord(c) not in have], key=sym_rank)),
+        ]
+    if not only_screen and not only_chars:
         groups.append(("一级汉字", [c for c in gb2312_level(1) if ord(c) not in have]))
         if fill_level2:
             groups.append(("二级汉字", [c for c in gb2312_level(2) if ord(c) not in have]))
@@ -528,10 +535,13 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--only-screen", action="store_true")
     ap.add_argument("--no-level2", action="store_true")
+    ap.add_argument("--chars", default=None, help="指定要补的字符（优先于自动候选）")
+    ap.add_argument("--only-chars", action="store_true", help="只补 --chars 指定的字，不补自动候选")
     args = ap.parse_args()
     names = [args.font] if args.font else ["font_yuan", "font_hei", "font_pixel"]
     for n in names:
-        process(n, only_screen=args.only_screen, fill_level2=not args.no_level2, dry=args.dry_run)
+        process(n, only_screen=args.only_screen, fill_level2=not args.no_level2, dry=args.dry_run,
+                force_chars=args.chars, only_chars=args.only_chars)
 
 
 if __name__ == "__main__":

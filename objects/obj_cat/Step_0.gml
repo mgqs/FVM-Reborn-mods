@@ -35,6 +35,11 @@ with obj_enemy_parent{
 			other.timer = 0
 		}
 		if other.state != "idle" && other.row == grid_row && hp > 0  && (array_get_index(other.ignore_list,mouse_id) == -1){
+			// 2026-11-16 用户口径：**BOSS 一律挡得住冲撞**（撞不飞也不吃秒杀）。
+			//   原来这条只在 can_loss == false 的猫（金牛烟花 / 猫眼宝石这类爆炸冲撞）上生效，
+			//   普通猫直接走下面的撞飞分支 —— 变异钢铁侠 / 变异绿巨 / 变异火渣 / 变异冰渣
+			//   就是这么被第 0 列的猫撞掉的。
+			if (is_boss) continue;
 			// 爆炸/冲撞类（金牛烟花、猫眼宝石等 can_loss=false 的猫）：
 			// 只有魂系鼠与 BOSS 挡得住冲撞，其余敌人一律撞死（判据统一走 crash_immune_enemy）
 			if (!other.can_loss && crash_immune_enemy(id)) continue;

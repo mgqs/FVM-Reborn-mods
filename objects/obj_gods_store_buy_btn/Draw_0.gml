@@ -1,7 +1,7 @@
 // 抽卡模式（含欧皇）：卡片本体 / 进化凭证 / **初融菜谱**不能买；
 //   **深度融合 / 灵魂融合菜谱可以买**，转职凭证本来就能买（2026-10-28 用户口径）
 //   随机礼盒模式不在此列（用户 2026-10-27：随机礼盒照原逻辑）
-var _gacha_block = ((btn_type == "evo" || btn_type == "card"
+var _gacha_block = ((btn_type == "evo" || btn_type == "gear_evo" || btn_type == "card"
     || (btn_type == "recipe" && recipe_shape == 0))
     && is_eternal_gacha_mode());
 if (is_disabled || _gacha_block)

@@ -14,6 +14,8 @@ for (var _i = 0; _i < array_length(_goods_ids); _i++) {
     var _id = _goods_ids[_i];
     var _goods = global.goods_map[? _id];
     if (!variable_struct_exists(_goods, "cross_server_shop")) continue;
+    // 进化后的武器 / 宝石已下架（cross_server_shop_init 末尾统一打标，判据在装备进化表）
+    if (variable_struct_exists(_goods, "cross_server_hidden") && _goods.cross_server_hidden) continue;
     if (_goods.cross_server_shop == "gold") array_push(exchange_cards, _id);
     else if (_goods.cross_server_shop == "silver") array_push(silver_cards, _id);
 }

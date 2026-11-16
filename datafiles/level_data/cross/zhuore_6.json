@@ -3,12 +3,7 @@
     "level_name": "zhuore_6",
     "level_time_feature": "night",
     "map_sprite": "spr_zhuorediyu",
-    "bg_draw": {
-        "x": 9,
-        "y": 42,
-        "sx": 1.786,
-        "sy": 1.798
-    },
+    "bg_draw": {"x": 18.55, "y": 6.07, "sx": 1.7833, "sy": 1.8172},
     "time_limit": 300,
     "map_cols": 9,
     "map_rows": 7,

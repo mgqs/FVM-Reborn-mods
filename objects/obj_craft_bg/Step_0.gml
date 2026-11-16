@@ -20,14 +20,15 @@ if (fusion_confirm){
 	craft_tab_hover = -1;
 	rate_toggle_hover = false;
 	assure_toggle_hover = false;
-	// 弹窗期间把合成屋的 X 藏起来（GM 的鼠标事件不派发给 visible=false 的实例 → 也点不到）
+	// 弹窗期间把合成屋的 X 藏起来
+	// ⚠️ visible = false **拦不住鼠标**（只跳过 Draw），点击拦截在 obj_closecraft_btn/Mouse_4 里
 	with (obj_closecraft_btn) visible = !other.fusion_confirm;
 	exit;
 }
 
 // ── 演出锁定（2026-11-11）：融合演出 / 转职特效 / 进化特效播放期间 ──────────────
 //   这三段都是「播完那一帧才落账」，中途退出一律白扣材料 / 白转，所以整段锁死：
-//   页签切不了、档位和升格按钮点不了、右上角 X 隐藏（GM 不给 invisible 的实例派发鼠标事件）、
+//   页签切不了、档位和升格按钮点不了、右上角 X 隐藏（点击由各对象自己的 Mouse 事件拦，见 obj_closecraft_btn）、
 //   ESC 在 obj_menu_manager / obj_map_manager 里吃掉、窗口 X 由本对象的 Close Button 事件接管
 var _anim_lock = craft_anim_lock();
 
@@ -228,8 +229,41 @@ else{
 	fusion_up_hover = false
 }
 
+// ── 神级进化页 · 三个子页按钮（2026-11-16）：金卡进化 / 神器进化 / 宝石进化 ──
+//   切页 = 清槽 + 列表置脏 + 滚动归零（金卡 / 神器 / 宝石三套状态互不串）
+//   按在按钮上不 exit：下面那几段的热区都不在书页左侧，同帧不会误命中
+gear_tab_hover = -1;
+if (craft_top_tab == 3 && !_anim_lock && !gear_fx){
+	var _tab_hit = -1;
+	for (var _gp = 0; _gp < 3; _gp++){
+		// 热区：宽 ±60（美术只有 83 宽，贴着边点容易漏判）、高 ±73（= 间距 147 的一半，
+		// 再大就会和相邻按钮的热区重叠，点接缝会选到下格）
+		if (point_in_rectangle(mouse_x, mouse_y, gear_left_x - 60, gear_left_y[_gp] - 73,
+			gear_left_x + 60, gear_left_y[_gp] + 73)) _tab_hit = _gp;
+	}
+	gear_tab_hover = _tab_hit;
+	if (_tab_hit >= 0 && mouse_check_button_pressed(mb_left) && gear_evo_page != _tab_hit){
+		gear_evo_page = _tab_hit;
+		evo_clear();
+		gear_clear();
+		evo_list_dirty = true;
+		gear_list_dirty = true;
+		evo_scroll        = 0;
+		evo_scroll_target = 0;
+		gear_scroll       = 0;
+		evo_btn_press     = 0;
+		gear_btn_press    = 0;
+		audio_play_sound(snd_button, 0, 0);
+	}
+}
+
 // ── 神级进化页（craft_top_tab == 3，2026-10-26）：金卡进化交互 ──
 if (craft_top_tab == 3) {
+	// 神器 / 宝石两页：交互整段在 gear_input()（Create_0 里），这里只管分流
+	if (gear_evo_page != 0){
+		gear_input();
+	}
+	else {
 	if (evo_list_dirty) evo_rebuild();
 	if (evo_btn_press > 0) evo_btn_press -= 1;
 
@@ -290,6 +324,7 @@ if (craft_top_tab == 3) {
 	// 🔴 2026-10-27 修：这里原来有一句 exit（在 if 块内、非点击分支之后），
 	//    会把事件尾部「close_timer → panel_anim_close」整段跳过 → 在神级进化页点右上角 X 关不掉窗口。
 	//    exit 只保留在上面的各个点击分支里。
+	}   // ← else 结束（金卡进化页分支）
 }
 
 

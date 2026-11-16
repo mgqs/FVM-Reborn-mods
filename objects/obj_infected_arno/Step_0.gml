@@ -45,10 +45,12 @@ switch (state)
     case UnknownEnum.Value_1:
         sprite_index = spr_infected_arno_idle;
         
+        // 待机精灵只有 12 帧（进场循环 3 + 进场 9），没有受伤变体，
+        // 两分支必须走同一段；原来 else 里 +12 会取到 12~23，超出 12 帧范围。
         if (hp > (maxhp * hurt_rate))
             image_index = floor(timer / 5) % 12;
         else
-            image_index = (floor(timer / 5) % 12) + 12;
+            image_index = floor(timer / 5) % 12;
         
         if (timer >= wait_time)
         {
@@ -127,29 +129,33 @@ switch (state)
         break;
     
     case UnknownEnum.Value_3:
-        if (timer <= 194)
+        // 变异阿诺的冲刺预备精灵 20 帧 = 正常 10 + 受伤 10，冲刺精灵 28 帧 = 正常 14 + 受伤 14
+        // （原版阿诺是 13+13 / 11+11，这里不能照抄原版常量，否则索引越界）
+        var _ready_ticks = 10 * 5 * 3;
+        
+        if (timer <= _ready_ticks - 1)
         {
             sprite_index = spr_infected_arno_skill_2_ready;
             
             if (hp > (maxhp * hurt_rate))
-                image_index = floor(timer / 5) % 13;
+                image_index = floor(timer / 5) % 10;
             else
-                image_index = (floor(timer / 5) % 13) + 13;
+                image_index = (floor(timer / 5) % 10) + 10;
         }
         else
         {
             sprite_index = spr_infected_arno_skill_2;
             
             if (hp > (maxhp * hurt_rate))
-                image_index = floor((timer - 195) / 5) % 11;
+                image_index = floor((timer - _ready_ticks) / 5) % 14;
             else
-                image_index = (floor((timer - 195) / 5) % 11) + 11;
+                image_index = (floor((timer - _ready_ticks) / 5) % 14) + 14;
         }
         
-        if (timer > 195)
+        if (timer > _ready_ticks)
             x -= 4.5;
         
-        if (timer == (195 + (30 * jump_times) + 1))
+        if (timer == (_ready_ticks + (30 * jump_times) + 1))
         {
             jump_times++;
             var erase_col = 9 - (jump_times * 1);

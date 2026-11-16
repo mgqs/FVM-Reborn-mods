@@ -145,9 +145,14 @@ switch state{
 		
 	case BOSS_STATE.SKILL2:
 		
-			// 感染法老的召唤动画只有 19 帧（没有受伤变体），整段循环播放
+			// 召唤精灵 38 帧 = 正常 19（召唤木乃伊 12 + 释放召唤 7）+ 受伤 19
 			sprite_index = spr_infected_pharaoh_skill_2
-			image_index = floor(timer/5) mod 19
+			if hp > maxhp * hurt_rate{
+				image_index = floor(timer/5) mod 19
+			}
+			else{
+				image_index = floor(timer/5) mod 19 + 19
+			}
 		
 		
 		if timer == 1{

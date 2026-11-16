@@ -8,7 +8,7 @@ var grid_pos = get_grid_position_from_world(x,y)
 col = grid_pos.col
 row = grid_pos.row
 
-var target_pos = get_world_position_from_grid(1,0)
+var target_pos = get_world_position_from_grid(fade_col,0)
 
 if x > target_pos.x{
 	if !is_hole && image_alpha < 1{

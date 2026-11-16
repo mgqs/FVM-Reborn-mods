@@ -37,7 +37,7 @@ buff_max_stacks = 2;
 buff_cells = build_buff_cells(grid_col, grid_row, buff_shape, buff_value);
 buff_cells_refreshed = false;
 
-ds_list_add(global.buff_sources, id);
+mod_buff_source_add(id);
 global.buff_dirty = true;
 
 xiangshui_effect_obj = instance_create_depth(x, y, 0, obj_xiangshui_god_effect);

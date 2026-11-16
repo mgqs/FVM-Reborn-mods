@@ -1,0 +1,8 @@
+wudu_0 shift=(+0,+0) peak=0.981 diff=6.42% bbox=(800, 36, 985, 596)
+wudu_1 shift=(+0,+0) peak=0.987 diff=6.80% bbox=(727, 36, 985, 596)
+wudu_2 shift=(+0,+0) peak=0.988 diff=7.11% bbox=(728, 36, 985, 596)
+wudu_3 shift=(+0,+0) peak=0.969 diff=10.19% bbox=(771, 36, 985, 596)
+wudu_4 shift=(+0,+0) peak=0.983 diff=8.90% bbox=(565, 36, 985, 596)
+wudu_5 shift=(+0,+0) peak=0.984 diff=6.32% bbox=(749, 36, 985, 596)
+wudu_6 shift=(+0,+0) peak=0.996 diff=7.16% bbox=(800, 36, 985, 596)
+wudu_7 shift=(+0,+0) peak=0.935 diff=14.68% bbox=(565, 36, 985, 596)

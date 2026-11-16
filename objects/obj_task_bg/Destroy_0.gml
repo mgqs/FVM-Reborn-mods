@@ -1,5 +1,6 @@
 instance_destroy(obj_closetask_btn)
 instance_destroy(obj_task_claim_btn)
+instance_destroy(obj_task_claim_all_btn)
 instance_destroy(obj_task_line_bg)
 instance_destroy(obj_task_select_btn)
 panel_anim_free(id)

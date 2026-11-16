@@ -2,10 +2,10 @@
   "$GMSprite":"v2",
   "%Name":"spr_kf_wd_hulk_skill_1_ready",
   "bboxMode":0,
-  "bbox_bottom":453,
-  "bbox_left":0,
-  "bbox_right":531,
-  "bbox_top":0,
+  "bbox_bottom":430,
+  "bbox_left":203,
+  "bbox_right":497,
+  "bbox_top":100,
   "collisionKind":0,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -28,6 +28,12 @@
     {"$GMSpriteFrame":"v1","%Name":"f38c8e21-1056-4933-b121-857e991935c2","name":"f38c8e21-1056-4933-b121-857e991935c2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"ba92ed7e-1c0d-40c5-b683-8f9dcf765edd","name":"ba92ed7e-1c0d-40c5-b683-8f9dcf765edd","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"0f3a3981-33fe-4160-b44f-e3dd7ed0e6a5","name":"0f3a3981-33fe-4160-b44f-e3dd7ed0e6a5","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f76c2ba5-2c04-4cc5-bcb9-7ec930e7ed08","name":"f76c2ba5-2c04-4cc5-bcb9-7ec930e7ed08","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"28deeadf-b40d-4916-9e20-ad7de0b41c3e","name":"28deeadf-b40d-4916-9e20-ad7de0b41c3e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"7b93547a-d4ae-449d-be00-8461286afcbb","name":"7b93547a-d4ae-449d-be00-8461286afcbb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"837aecdb-9d9e-4563-931e-24c368a4218d","name":"837aecdb-9d9e-4563-931e-24c368a4218d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4562b198-5459-4603-af1f-76028c233f16","name":"4562b198-5459-4603-af1f-76028c233f16","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e2f780e3-7b65-4acf-a979-af0b4e5fba10","name":"e2f780e3-7b65-4acf-a979-af0b4e5fba10","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -64,7 +70,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":16.0,
+    "length":22.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -85,52 +91,70 @@
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2866c3ed-1a01-4e9c-aea6-8e9472e92859","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"fdbeb6ad-17fb-4350-89d5-7031741ab54b","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"1035d85b-fa7a-446f-8ee2-ed206785c0dd","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3dc28fee-be2e-4794-b93a-9ce80b914e21","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"fe250cfe-404c-4f49-bebd-3243763114ba","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"52fbf8e9-985b-4622-99c2-ae987a262bdc","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b360d59f-47a1-4555-9a21-f9c4091e58fc","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"261463f5-c9ad-4983-a5af-1c17c1d43558","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"3d88a7f1-9561-4519-ae43-97c16fdf0a6b","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1348f420-c647-48ca-8552-e6a6d09bf74e","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"7319f492-716a-4d09-96d5-ab1985b862ca","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"1386ed1c-9d5e-4bcb-9cd6-a101af86b75d","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7a2e967b-d887-4de9-9fce-e35c33f6c6f4","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f7e266d3-8562-4b9c-b631-423b27c40896","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"cf1e80cb-a8fd-4c21-a500-3989f0aff1cb","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2255ee5e-6d59-4521-bc64-acde1de071bb","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"2eb22cfe-9ede-40ce-9ae8-fb32f9b47f96","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"87cba025-b967-4728-902a-b35ae01be40d","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ae2aa091-59e4-4963-8644-da7e63f0a5dd","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"d6bffc22-ec67-4ce3-b708-af6a96676131","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"f3654c22-f35a-4c3f-8162-e500f583c3d4","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b829dbc7-215c-4e74-863d-8fe14cb2ebb5","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"d701c768-74c5-4fc2-8da0-4871d8e99027","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"cc064b26-1e64-4e56-8e3d-02b9f0867548","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cd0700a6-2b51-431c-9e87-074b3c06bf9f","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f115aa27-50ee-4201-87b9-a9b8ffba0534","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"38ef9cb6-657d-496d-92eb-70286bd87a89","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"60f3c7cd-f975-4b86-8e66-aa5b217c9cb8","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"e88b71b0-cae3-465a-a4d7-34bd06e2776d","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"a27930ca-4607-485b-a7cb-bbc0246d6036","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"38c31b95-9feb-498c-977f-dc2205645796","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"103384fe-213b-40c6-8949-13e9b5f46206","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"7d8fd46c-723a-4477-9c36-8a027a0023e5","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9edfaccb-b776-4f71-9345-79cae3862ff0","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f577fa3e-7601-409d-951f-2c4d8d97994a","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"f1aababb-7376-40cf-998d-c109ddc16f9f","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"dd40c08b-8121-409a-9168-e5ba6e937075","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"04c7b998-fe17-46cc-bc9e-c25d9b463d5a","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"b46c4319-e82c-49b6-a00d-e02561d43b80","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f38c8e21-1056-4933-b121-857e991935c2","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"b1132490-23af-4d7d-b7b6-23454fd29a05","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"78317794-bcd3-4cd4-abb9-eed5ad9d46ad","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ba92ed7e-1c0d-40c5-b683-8f9dcf765edd","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"45333957-844a-4cac-a411-10b3454fca75","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"29a5dd4c-036c-4496-b1e8-63feb44c9503","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0f3a3981-33fe-4160-b44f-e3dd7ed0e6a5","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"ae358ee9-ca47-49b5-b020-53bb46967a24","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"03e9992e-bcbc-45d6-94a7-467d32ba0f64","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f76c2ba5-2c04-4cc5-bcb9-7ec930e7ed08","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"674d9981-36bf-4444-a2d7-bd3c0de0196f","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"28deeadf-b40d-4916-9e20-ad7de0b41c3e","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"a4cfd6de-63e8-429d-8a67-d5577c5e0c2e","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7b93547a-d4ae-449d-be00-8461286afcbb","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c088a1d8-f94b-433e-803c-ea5aa95522ca","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"837aecdb-9d9e-4563-931e-24c368a4218d","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ffef443c-3acd-444a-98db-f044699dee03","IsCreationKey":false,"Key":19.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4562b198-5459-4603-af1f-76028c233f16","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"930822ad-d1c7-4015-9e25-8fad95abec52","IsCreationKey":false,"Key":20.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e2f780e3-7b65-4acf-a979-af0b4e5fba10","path":"sprites/spr_kf_wd_hulk_skill_1_ready/spr_kf_wd_hulk_skill_1_ready.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"7d72dcc6-dfff-4907-aa9d-7282265929df","IsCreationKey":false,"Key":21.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

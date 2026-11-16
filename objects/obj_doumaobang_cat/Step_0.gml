@@ -21,8 +21,9 @@ with (obj_enemy_parent)
 
     ds_list_add(other.hitted, id);
 
-    // 跨服远征的 BOSS 不参与冲撞（同白羊座）
-    if (is_boss && global.map_name == "跨服远征") continue;
+    // 2026-11-16 用户口径：所有 BOSS 都不参与冲撞（不再只认「跨服远征」这个地图名，
+    // 新章 map_name 是 水火之间 / 巫毒研究所，老写法会把新章 BOSS 一起撞飞）
+    if (is_boss) continue;
 
     if (crash_immune_enemy(id))
     {

@@ -37,8 +37,8 @@ YY_TMPL = '''{
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"mod",
-    "path":"folders/精灵/mod.yy",
+    "name":"%(pname)s",
+    "path":"folders/精灵/%(pdir)s.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -107,7 +107,8 @@ KEY_TMPL = ('            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{\n'
             '              },"Disabled":false,"id":"%(k)s","IsCreationKey":false,"Key":%(key).1f,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},')
 
 
-def build(name, pngs, w, h, ox, oy, texture_group, force_parent_list=True):
+def build(name, pngs, w, h, ox, oy, texture_group, pdir='mod', force_parent_list=True):
+    """pdir：工程里 folders/精灵/ 下的目标文件夹（如 'mod' / 'mod/Craft'）。"""
     d = os.path.join(ROOT, 'sprites', name)
     if os.path.isdir(d):
         shutil.rmtree(d)
@@ -130,7 +131,8 @@ def build(name, pngs, w, h, ox, oy, texture_group, force_parent_list=True):
 
     yy = YY_TMPL % dict(name=name, frames='\n'.join(frames), layers='\n'.join(layers),
                         keys='\n'.join(keys), w=w, h=h, w1=w - 1, h1=h - 1,
-                        ox=ox, oy=oy, tg=texture_group, length=float(len(pngs)))
+                        ox=ox, oy=oy, tg=texture_group, length=float(len(pngs)),
+                        pname=pdir.split('/')[-1], pdir=pdir)
     with open(os.path.join(d, name + '.yy'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(yy)
     print('精灵已生成:', d, len(pngs), '帧')
@@ -147,18 +149,19 @@ def build(name, pngs, w, h, ox, oy, texture_group, force_parent_list=True):
     else:
         print('yyp 已有')
 
-    # folders/精灵/mod.yy
-    modf = os.path.join(ROOT, 'folders', '精灵', 'mod.yy')
+    # folders/精灵/<pdir>.yy
+    modf = os.path.join(ROOT, 'folders', '精灵', *pdir.split('/')) + '.yy'
     s = open(modf, encoding='utf-8').read()
     fentry = '    {"name":"%s","path":"sprites/%s/%s.yy",},\n' % (name, name, name)
     if fentry not in s:
-        m = re.search(r'( *)"listViewItems":\[\n', s)
+        # mod.yy 用 listViewItems，mod/Craft.yy 用 listItems —— 两个锚点都试
+        m = re.search(r'( *)"list(?:View)?Items":\[\n', s)
         if m:
             s = s[:m.end()] + fentry + s[m.end():]
             open(modf, 'w', encoding='utf-8', newline='\n').write(s)
-            print('folder 已注册')
+            print('folder 已注册:', pdir)
         else:
-            print('!! mod.yy 没有 listViewItems')
+            print('!! %s.yy 找不到 listItems / listViewItems 锚点' % pdir)
     else:
         print('folder 已有')
 

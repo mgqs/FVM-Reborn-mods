@@ -112,4 +112,20 @@ function cross_server_shop_init()
         if (!ds_map_exists(global.goods_map, _goods_id)) continue;
         global.goods_map[? _goods_id].required_gem_id = _gem_prerequisites[$ _goods_id];
     }
+
+    // ── 跨服下架「进化后的武器 / 宝石」（2026-11-16 用户口径）───────────────
+    //   跨服只留**进化底层**（链首那件，普通商店也在卖的那一档）；进化出来的形态一律下架
+    //   —— 有了合成屋的神器/宝石进化，再从跨服直接买成品等于跳过进化，且价格也没台阶。
+    //   判据唯一出口：mod_gear_evo_build().steps 的 .to（= 所有「被进化出来」的 id），
+    //   别回 _cross_server_goods 名单里手删 —— 以后挪路线 / 加补强宝石又会漏。
+    //   用 cross_server_hidden 打标，而不是 ds_map_delete：
+    //     删 key 会让 required_weapon_id / required_gem_id 指向空键
+    //     （obj_cross_server_shop/Draw_0:150 是直接取 map 的，会炸）。
+    var _evo_steps = mod_gear_evo_build().steps;
+    for (var _es = 0; _es < array_length(_evo_steps); _es++) {
+        var _evo_to = _evo_steps[_es].to;
+        if (ds_map_exists(global.goods_map, _evo_to)) {
+            global.goods_map[? _evo_to].cross_server_hidden = true;
+        }
+    }
 }

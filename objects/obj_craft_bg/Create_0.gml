@@ -922,6 +922,7 @@ function craft_anim_lock(){
     if (fusion_phase == 1) return true;   // 食灵融合演出
     if (tg_fx)             return true;   // 卡片转职成功特效
     if (evo_fx)            return true;   // 金卡进化特效
+    if (gear_fx)           return true;   // 神器 / 宝石进化特效（2026-11-16）
     return false;
 }
 
@@ -1048,6 +1049,462 @@ function evo_rebuild(){
     }
     evo_list = _out;
     evo_list_dirty = false;
+}
+
+// ─────────────────────────────────────────────────────────────
+// 神级进化页 · 子页（2026-11-16）
+//   gear_evo_page：0 = 金卡进化（原有三槽那套）/ 1 = 神器进化 / 2 = 宝石进化
+//   书页左侧原来是**一张**烤了「金卡进化」字的 spr_evo_left_on，现在画**三个**竖排按钮，
+//   三张都是原版美术（字烤在图里，别自绘）：
+//     spr_evo_left_on（1 帧）/ spr_evo_left_artifact（2 帧）/ spr_evo_left_gem（2 帧）。
+//   神器 / 宝石两页共用「旧物槽 + 凭证槽 → ▼ → 结果槽 → 进化按钮 + 右侧列表 + 底部凭证架」。
+//   🔴 链 / 判定 / 落账全在 scripts/mod_craft_evo_table 的 mod_gear_evo_*，对象里不存第二份。
+//      用户口径（2026-11-16）：宝石进化后**星级归 0 且不退任何材料**；按钮下方**不写任何说明文字**。
+// ─────────────────────────────────────────────────────────────
+gear_evo_page  = 0
+gear_tab_hover = -1                             // 左侧三个子页按钮的悬停项（Draw 只用它做增亮）
+gear_left_x    = x - 660
+gear_left_y    = [y - 67, y + 80, y + 227]      // 三个竖排按钮中心（整组中心仍 = y+80）
+//   间距 147（不是 150）：精灵 46×85 ×1.8 = **153 高**，四角圆角各 3px（×1.8 = 5.4）。
+//   相邻两块必须重叠 ≥ 圆角，接缝才不会露出底图纸色 —— 153 - 147 = 6px 重叠刚好盖住。
+//   原来是 160（缝 7px，用户 2026-11-16 报的「有缝」），150 时只剩 3px 重叠、圆角处仍会漏一线。
+//   ⚠️ 热区半高必须 ≤ 间距/2（Step_0 里用 ±73），否则相邻热区重叠、点接缝会选到下格。
+gear_slot_x    = [x - 455, x - 155]             // 旧物 / 凭证（间距 300，与金卡页一致）
+gear_slot_y    = y - 40
+gear_arrow_x   = x - 305
+gear_arrow_y   = y + 34
+gear_res_x     = x - 305
+gear_res_y     = y + 118
+gear_btn_x     = x - 305
+gear_btn_y     = y + 216
+gear_list_x    = x + 196
+gear_list_y    = y - 321
+gear_kind      = "weapon"                       // 由 gear_evo_page 推：1 → weapon / 2 → gem
+gear_slot_id   = ""                             // 旧物槽 id（没拥有也填，画灰）
+gear_target    = ""                             // 结果槽 id
+gear_hover     = -1
+gear_btn_press = 0
+gear_fx        = false
+gear_fx_t      = 0
+gear_fx_pending = undefined
+gear_list      = []
+gear_list_dirty = true
+
+// 底部凭证架：几何按 **spr_craft_bg_bar 底图实测**（道具条深蓝内壁 159~1080 × 948~1037）。
+//   ⚠️ 别直接抄「食灵融合」页那组 _bar_* —— 那页的底图是按 1.8 另画的一张，
+//      y 比这里低 7px，照搬会导致凭证压出格子上沿（2026-11-16 实测对比）。
+gear_bar_x      = x - 797                       // 163
+gear_bar_y      = y + 411                       // 951（内壁 948~1037，上下各留 3px）
+gear_bar_w      = 914
+gear_bar_h      = 83
+gear_bar_pitch  = gear_bar_w / 10
+gear_bar_cell_w = gear_bar_pitch - 3
+gear_bar_n      = 10                            // 一屏 10 格（与道具条同宽）
+gear_scroll     = 0                             // 第几格开始（整数格，不是像素）
+
+/// @func gear_kind_of_page() 当前子页对应的装备类别
+function gear_kind_of_page(){
+    return (gear_evo_page == 2) ? "gem" : "weapon";
+}
+
+/// @func gear_clear() 两个槽一起清
+function gear_clear(){
+    gear_slot_id = "";
+    gear_target  = "";
+}
+
+/// @func gear_cur_step() 当前槽对应的进化步（槽空 / 已是终点 → undefined）
+function gear_cur_step(){
+    if (gear_slot_id == "") return undefined;
+    return mod_gear_evo_step_from(gear_slot_id);
+}
+
+/// @func gear_apply(step) 选中一步 → 两个槽都填上
+///   旧物没拥有也照样填：绘制时套灰（照金卡进化「缺卡占位」的既有做法），玩家一眼看出缺什么
+function gear_apply(_step){
+    if (is_undefined(_step)){ gear_clear(); return; }
+    gear_slot_id = _step.from;
+    gear_target  = _step.to;
+}
+
+/// @func gear_credit_ids() 当前子页的凭证，顺序 = 进化链顺序（与右侧列表同一口径）
+///   ⚠️ 用户口径（2026-11-16）：「道具下方仅显示已有的」——**只列背包里 ≥1 张的凭证**，
+///   31 张全铺出来（即使全是 0）会把凭证架塞满、还得翻 4 页。0 张的不出现在架上。
+function gear_credit_ids(){
+    var _steps = mod_gear_evo_steps(gear_kind_of_page());
+    var _out = [];
+    for (var _i = 0; _i < array_length(_steps); _i++){
+        if (mod_gear_evo_credit_count(_steps[_i].credit) <= 0) continue;
+        array_push(_out, _steps[_i].credit);
+    }
+    return _out;
+}
+
+/// @func gear_cell_cx(i) 底部第 i 格的**中心** x（i = 绝对格位，已含滚动）
+function gear_cell_cx(_i){
+    return gear_bar_x + (_i - gear_scroll) * gear_bar_pitch + gear_bar_cell_w * 0.5;
+}
+
+/// @func gear_rebuild() 右侧列表：**只列「已拥有 且 还能进化」**的本类装备
+///   用户口径（2026-11-16）：不能进化（已是链末形态 / 压根不在进化链里）的武器和宝石不显示。
+///   顺序仍按进化链（与凭证架、数据表一致）：同一条链上从头到尾走，末位是终点 → 不进列表。
+///   链外的（主宰 / 荆棘玫瑰那几颗专属宝石）没有 step → 自动被过滤掉，不用单独排除。
+function gear_rebuild(){
+    var _kind = gear_kind_of_page();
+    var _pool = (_kind == "weapon") ? global.save_data.unlocked_weapons : global.save_data.unlocked_gems;
+    var _own  = {};
+    for (var _i = 0; _i < array_length(_pool); _i++){
+        var _p   = _pool[_i];
+        var _id  = is_struct(_p) ? _p.id : _p;
+        var _inf = mod_gear_evo_item_info(_id);
+        if (is_undefined(_inf) || _inf.kind != _kind) continue;
+        if (mod_gear_evo_owned(_id)) _own[$ _id] = true;
+    }
+    // 能进化的判据只有一个：「它在某一步里当过 from」（= 有下一形态）
+    var _can = {};
+    var _steps = mod_gear_evo_steps(_kind);
+    for (var _si = 0; _si < array_length(_steps); _si++) _can[$ _steps[_si].from] = true;
+
+    var _out = [];
+    var _defs = mod_gear_evo_defs();
+    var _chains = _defs[$ _kind];
+    for (var _ci = 0; _ci < array_length(_chains); _ci++){
+        var _ch = _chains[_ci];
+        for (var _j = 0; _j < array_length(_ch); _j++){
+            var _cid = _ch[_j];
+            if (!variable_struct_exists(_own, _cid)) continue;
+            if (!variable_struct_exists(_can, _cid)) continue;   // 链末形态：没得进化
+            array_push(_out, _cid);
+        }
+    }
+    gear_list = _out;
+    gear_list_dirty = false;
+}
+
+/// @func gear_input() 神器 / 宝石页的全部交互（Step_0 每帧调；特效期间只推进帧）
+function gear_input(){
+    if (gear_list_dirty) gear_rebuild();
+    if (gear_btn_press > 0) gear_btn_press -= 1;
+
+    // 特效播放中：只推进帧，播完那一帧才落账（与金卡进化同一套「延迟结算」）
+    if (gear_fx){
+        gear_fx_t += evo_fx_speed;
+        if (gear_fx_t >= evo_fx_frames){
+            gear_fx = false;
+            gear_fx_t = 0;
+            var _p = gear_fx_pending;
+            gear_fx_pending = undefined;
+            if (!is_undefined(_p)) mod_gear_evo_commit(_p);
+            gear_clear();
+            gear_list_dirty = true;
+            if (variable_global_exists("notice_list")) global.notice_list = [];
+            show_notice("进化成功！", 80);
+        }
+        exit;
+    }
+
+    if (!mouse_check_button_pressed(mb_left)) return;
+
+    // ① 右侧列表：点已拥有的装备 → 整组落槽（终点会明确提示，不做暗失败）
+    var _n   = array_length(gear_list);
+    var _off = floor(evo_scroll);
+    for (var _r = 0; _r < evo_grows; _r++){
+        for (var _c = 0; _c < evo_gcols; _c++){
+            var _ci = (_r + _off) * evo_gcols + _c;
+            if (_ci >= _n) break;
+            var _gx = gear_list_x + _c * evo_gpx;
+            var _gy = gear_list_y + _r * evo_gpy;
+            if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)){
+                var _st = mod_gear_evo_step_from(gear_list[_ci]);
+                if (is_undefined(_st)){
+                    show_notice(mod_gear_evo_name(gear_list[_ci]) + "：已经是最终形态", 70);
+                } else {
+                    gear_apply(_st);
+                    audio_play_sound(snd_button, 0, 0);
+                }
+                exit;
+            }
+        }
+    }
+
+    // ② 两个槽：点一下整组取回（照金卡进化「点已填槽 = 下卡」）
+    for (var _i = 0; _i < 2; _i++){
+        if (point_in_rectangle(mouse_x, mouse_y, gear_slot_x[_i] - 40, gear_slot_y - 46,
+            gear_slot_x[_i] + 40, gear_slot_y + 46)){
+            if (gear_slot_id != "" || gear_target != ""){
+                gear_clear();
+                audio_play_sound(snd_button, 0, 0);
+            }
+            exit;
+        }
+    }
+
+    // ③ 进化按钮
+    if (point_in_rectangle(mouse_x, mouse_y, gear_btn_x - 73, gear_btn_y - 36,
+        gear_btn_x + 73, gear_btn_y + 36)){
+        var _cs = gear_cur_step();
+        var _r2 = mod_gear_evo_check(_cs);
+        if (!_r2.ok){
+            show_notice(_r2.reason, 70);
+        } else {
+            gear_fx_pending = _cs;
+            gear_fx = true;
+            gear_fx_t = 0;
+            gear_btn_press = 8;
+            audio_play_sound(snd_button, 0, 0);
+        }
+        exit;
+    }
+
+    // ④ 底部凭证架：架上只有已拥有的凭证（见 gear_credit_ids），
+    //    翻页交给滚轮（Mouse_60/61），不再画「‹ N/M ›」那行字（用户 2026-11-16 要求删掉）
+    var _credits = gear_credit_ids();
+
+    // ⑤ 底部凭证架：点凭证 → 反查它属于哪一步 → 两个槽一起填（金卡进化「点列表 → 落槽」的镜像）
+    var _cn  = array_length(_credits);
+    var _vis = min(gear_bar_n, max(0, _cn - gear_scroll));
+    for (var _ci2 = 0; _ci2 < _vis; _ci2++){
+        var _cx = gear_bar_x + _ci2 * gear_bar_pitch;
+        if (!point_in_rectangle(mouse_x, mouse_y, _cx, gear_bar_y, _cx + gear_bar_cell_w, gear_bar_y + gear_bar_h)) continue;
+        var _st2 = mod_gear_evo_step_credit(_credits[_ci2 + gear_scroll]);
+        if (is_undefined(_st2)) continue;
+        gear_apply(_st2);
+        audio_play_sound(snd_button, 0, 0);
+        exit;
+    }
+}
+
+/// @func gear_draw() 神器 / 宝石页的整页绘制（Draw_0 的 craft_top_tab == 3 分支里调）
+function gear_draw(){
+    if (gear_list_dirty) gear_rebuild();
+
+    // 列表滚动平滑（跟金卡进化共用 evo_scroll / evo_scroll_target，几何完全一样）
+    if (ui_anim_on(1)) {
+        evo_scroll += (evo_scroll_target - evo_scroll) * 0.28;
+        if (abs(evo_scroll_target - evo_scroll) < 0.5) evo_scroll = evo_scroll_target;
+    } else {
+        evo_scroll = evo_scroll_target;
+    }
+    var _cs   = gear_cur_step();
+    var _isGem = (gear_kind_of_page() == "gem");
+
+    // ── ① 旧物槽：卡形底 58×68@1.8 ──
+    draw_sprite_ext(spr_evo_slot_card, 0, gear_slot_x[0], gear_slot_y, 1.8, 1.8, 0, c_white, 1);
+    if (gear_slot_id != ""){
+        var _si  = mod_gear_evo_item_info(gear_slot_id);
+        var _has = mod_gear_evo_owned(gear_slot_id);
+        if (!_has) shader_set(sh_fusion_gray);
+        if (!is_undefined(_si)){
+            var _ic = _si.icon;
+            var _iw = sprite_get_width(_ic), _ih = sprite_get_height(_ic);
+            var _sc = min(78 / max(1, _iw), 78 / max(1, _ih));
+            draw_sprite_ext(_ic, 0,
+                gear_slot_x[0] + (sprite_get_xoffset(_ic) - _iw * 0.5) * _sc,
+                gear_slot_y + (sprite_get_yoffset(_ic) - _ih * 0.5) * _sc,
+                _sc, _sc, 0, c_white, 1);
+        }
+        if (!_has) shader_reset();
+        var _star = mod_gear_evo_star(gear_slot_id);
+        if (_star > 0){
+            draw_sprite_ext(spr_star_slot, min(_star, sprite_get_number(spr_star_slot)) - 1,
+                gear_slot_x[0] - 25, gear_slot_y - 35, 0.7, 0.7, 0, c_white, 1);
+        }
+    } else {
+        // 空槽放**原版固定美术**（用户 2026-11-16 提供的 162.png / 164.png → spr_gear_evo_label）：
+        //   帧 0 = 武器 / 1 = 进化凭证 / 2 = 神器 / 3 = 宝石；1.8 与槽位图纸同比例。
+        //   ⚠️ 别再改回 draw_text —— 用户口径是「槽位放固定的东西，不加字体」。
+        draw_sprite_ext(spr_gear_evo_label, _isGem ? 3 : 2, gear_slot_x[0], gear_slot_y, 1.8, 1.8, 0, c_white, 1);
+    }
+
+    // ── ② 凭证槽：方框 58×58@1.8，纵向 +9 居中（别被 122 的高拉长）──
+    draw_sprite_ext(spr_evo_slot_prop, 0, gear_slot_x[1], gear_slot_y, 1.8, 1.8, 0, c_white, 1);
+    if (!is_undefined(_cs)){
+        var _cnt = mod_gear_evo_credit_count(_cs.credit);
+        mod_gear_evo_draw_credit(_cs.to, gear_slot_x[1], gear_slot_y,
+            mod_gear_evo_has_credit(_cs.credit), 84);
+        draw_set_font(font_number);
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+        draw_set_colour(c_black);
+        draw_text_transformed(gear_slot_x[1] + 44 + 1, gear_slot_y + 44 + 1, "x" + string(_cnt), 1, 1, 0);
+        draw_set_colour((_cnt > 0 || global.debug) ? make_colour_rgb(200, 255, 176) : make_colour_rgb(255, 156, 156));
+        draw_text_transformed(gear_slot_x[1] + 44, gear_slot_y + 44, "x" + string(_cnt), 1, 1, 0);
+        draw_set_colour(c_white);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+    } else {
+        // 凭证空槽同样用原版美术：帧 1 = 「进化」「凭证」两行
+        draw_sprite_ext(spr_gear_evo_label, 1, gear_slot_x[1], gear_slot_y, 1.8, 1.8, 0, c_white, 1);
+    }
+
+    // ── ③ 下箭头 ──
+    draw_sprite_ext(spr_evo_arrow, 0, gear_arrow_x, gear_arrow_y, 1.8, 1.8, 0, c_white, 1);
+
+    // ── ④ 结果槽：有目标就画目标装备，没有就画问号 ──
+    draw_sprite_ext(spr_evo_slot_result, 0, gear_res_x, gear_res_y, 1.8, 1.8, 0, c_white, 1);
+    if (gear_target != ""){
+        var _ti = mod_gear_evo_item_info(gear_target);
+        if (!is_undefined(_ti)){
+            var _tic = _ti.icon;
+            var _tw = sprite_get_width(_tic), _th = sprite_get_height(_tic);
+            var _tsc = min(78 / max(1, _tw), 78 / max(1, _th));
+            draw_sprite_ext(_tic, 0,
+                gear_res_x + (sprite_get_xoffset(_tic) - _tw * 0.5) * _tsc,
+                gear_res_y + (sprite_get_yoffset(_tic) - _th * 0.5) * _tsc,
+                _tsc, _tsc, 0, c_white, 1);
+        }
+    } else {
+        draw_sprite_ext(spr_evo_question, 0, gear_res_x, gear_res_y, 2.2, 2.2, 0, c_white, 1);
+    }
+
+    // ── ⑤ 进化按钮：三态 0/1/2；不能进化 → 灰＋不给悬停高亮 ──
+    //   ⚠️ 用户口径（2026-11-16）：按钮下方**不写任何说明文字**，别再加提示行
+    var _ck  = mod_gear_evo_check(_cs);
+    var _hov = _ck.ok && point_in_rectangle(mouse_x, mouse_y, gear_btn_x - 73, gear_btn_y - 36,
+        gear_btn_x + 73, gear_btn_y + 36);
+    var _bf  = (gear_btn_press > 0) ? 2 : (_hov ? 1 : 0);
+    var _bsc = 1.8 * ((gear_btn_press > 0) ? 0.96 : 1);
+    draw_sprite_ext(spr_evo_btn, _bf, gear_btn_x, gear_btn_y, _bsc, _bsc, 0,
+        _ck.ok ? c_white : make_colour_rgb(150, 150, 150), 1);
+
+    // ── ⑥ 右侧列表：只列已拥有（栏头写「已拥有武器 / 宝石」，别复用融合页那张「防御卡」）──
+    draw_set_font(font_yuan);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_colour(make_colour_rgb(60, 40, 18));
+    draw_text_transformed(gear_list_x - 44 + 33 * 1.8 + 1, gear_list_y - 52 - 21 * 1.8 + 1,
+        _isGem ? "已拥有宝石" : "已拥有武器", 1.1, 1.1, 0);
+    draw_set_colour(make_colour_rgb(255, 246, 224));
+    draw_text_transformed(gear_list_x - 44 + 33 * 1.8, gear_list_y - 52 - 21 * 1.8,
+        _isGem ? "已拥有宝石" : "已拥有武器", 1.1, 1.1, 0);
+    draw_set_colour(c_white);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+
+    var _n    = array_length(gear_list);
+    var _rows = max(1, ceil(_n / evo_gcols));
+    evo_rows_max      = max(0, _rows - evo_grows);
+    evo_scroll_target = clamp(evo_scroll_target, 0, evo_rows_max);
+    gear_hover = -1;
+    var _off = floor(evo_scroll);
+    for (var _r = 0; _r < evo_grows; _r++){
+        for (var _c = 0; _c < evo_gcols; _c++){
+            var _ci = (_r + _off) * evo_gcols + _c;
+            var _gx = gear_list_x + _c * evo_gpx;
+            var _gy = gear_list_y + _r * evo_gpy;
+            draw_sprite_ext(spr_package_slot_bg, 0, _gx, _gy, 0.9, 0.9, 0, c_white, 1);
+            if (_ci >= _n) continue;
+            var _gid  = gear_list[_ci];
+            var _gin  = mod_gear_evo_item_info(_gid);
+            if (!is_undefined(_gin)){
+                var _gic = _gin.icon;
+                var _gw = sprite_get_width(_gic), _gh = sprite_get_height(_gic);
+                var _gsc = min(62 / max(1, _gw), 62 / max(1, _gh));
+                draw_sprite_ext(_gic, 0,
+                    _gx + (sprite_get_xoffset(_gic) - _gw * 0.5) * _gsc,
+                    _gy - 4 + (sprite_get_yoffset(_gic) - _gh * 0.5) * _gsc,
+                    _gsc, _gsc, 0, c_white, 1);
+                // 星级（宝石才有；0 星不画，与强化页一致）
+                var _gs = mod_gear_evo_star(_gid);
+                if (_gs > 0){
+                    draw_sprite_ext(spr_star_slot, min(_gs, sprite_get_number(spr_star_slot)) - 1,
+                        _gx - 25, _gy - 35, 0.7, 0.7, 0, c_white, 1);
+                }
+                // 名字（格子底部，font_pixel 12 号，4 个汉字刚好 48px）
+                draw_set_font(font_pixel);
+                draw_set_halign(fa_center);
+                draw_set_valign(fa_bottom);
+                draw_set_colour(c_black);
+                draw_text(_gx + 1, _gy + 38, _gin.name);
+                draw_set_colour(make_colour_rgb(232, 244, 255));
+                draw_text(_gx, _gy + 37, _gin.name);
+                draw_set_colour(c_white);
+                draw_set_halign(fa_left);
+                draw_set_valign(fa_top);
+            }
+            if (point_in_rectangle(mouse_x, mouse_y, _gx - 42, _gy - 48, _gx + 42, _gy + 48)) gear_hover = _ci;
+        }
+    }
+    if (gear_hover != -1){
+        var _hid = gear_list[gear_hover];
+        var _hst = mod_gear_evo_step_from(_hid);
+        draw_set_font(font_yuan);
+        tooltip_set(mouse_x - 15, mouse_y - 15,
+            is_undefined(_hst) ? (mod_gear_evo_name(_hid) + "（最终形态）")
+                               : ("点击放入进化槽 → " + mod_gear_evo_name(_hst.to)), -1);
+    }
+
+    // 列表滑块（与金卡进化同一套，拖拽状态各存一份）
+    var _sb = craft_list_sb(gear_list_y - 48, evo_grows * evo_gpy, evo_rows_max, evo_scroll, evo_scroll_target, evo_sb);
+    evo_scroll        = _sb.cur;
+    evo_scroll_target = _sb.target;
+
+    // ── ⑦ 金币（与转职 / 金卡进化同一个位置）──
+    draw_set_font(font_number);
+    draw_set_halign(fa_right);
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_yellow);
+    draw_text(x + 758, y + 473, string(global.save_data.player.gold));
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_set_colour(c_white);
+
+    // ── ⑧ 底部凭证架：10 个自绘格（几何按底图内壁实测，见 Create 的 gear_bar_*）──
+    for (var _bi = 0; _bi < gear_bar_n; _bi++){
+        var _bx1 = gear_bar_x + _bi * gear_bar_pitch;
+        draw_set_alpha(1);
+        draw_set_colour(make_colour_rgb(9, 58, 102));
+        draw_roundrect_ext(_bx1, gear_bar_y, _bx1 + gear_bar_cell_w, gear_bar_y + gear_bar_h,
+            4 * 1.8, 4 * 1.8, false);
+        draw_set_colour(make_colour_rgb(0, 26, 52));
+        draw_roundrect_ext(_bx1, gear_bar_y, _bx1 + gear_bar_cell_w, gear_bar_y + gear_bar_h,
+            4 * 1.8, 4 * 1.8, true);
+    }
+    var _credits = gear_credit_ids();
+    var _cn      = array_length(_credits);
+    gear_scroll  = clamp(gear_scroll, 0, max(0, _cn - gear_bar_n));
+    var _vis     = min(gear_bar_n, max(0, _cn - gear_scroll));
+    for (var _vi = 0; _vi < _vis; _vi++){
+        var _idx = gear_scroll + _vi;
+        var _ccx = gear_bar_x + _vi * gear_bar_pitch + gear_bar_cell_w * 0.5;
+        var _ccy = gear_bar_y + gear_bar_h * 0.47;
+        var _cst = mod_gear_evo_step_credit(_credits[_idx]);
+        var _ccnt = mod_gear_evo_credit_count(_credits[_idx]);
+        if (is_undefined(_cst)) continue;
+        mod_gear_evo_draw_credit(_cst.to, _ccx, _ccy, (_ccnt > 0 || global.debug), gear_bar_cell_w * 0.74);
+        // 选中：格子外沿套一圈金边（与「选择框」视觉一致）
+        if (!is_undefined(_cs) && _cs.credit == _credits[_idx]){
+            draw_set_colour(make_colour_rgb(255, 214, 96));
+            draw_roundrect_ext(_ccx - gear_bar_cell_w * 0.5 + 1, gear_bar_y + 1,
+                _ccx + gear_bar_cell_w * 0.5 - 1, gear_bar_y + gear_bar_h - 1, 6 * 1.8, 6 * 1.8, true);
+            draw_roundrect_ext(_ccx - gear_bar_cell_w * 0.5 + 3, gear_bar_y + 3,
+                _ccx + gear_bar_cell_w * 0.5 - 3, gear_bar_y + gear_bar_h - 3, 5 * 1.8, 5 * 1.8, true);
+            draw_set_colour(c_white);
+        }
+        // 数量：格子右下角（黑描边 + 白字，压在金底上也能看清）
+        var _ctxt = (_ccnt < 10000) ? string(_ccnt) : string(floor(_ccnt / 10000)) + "w";
+        draw_set_font(font_number);
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+        draw_set_colour(c_black);
+        draw_text_transformed(_ccx + gear_bar_cell_w * 0.5 - 5 + 1, gear_bar_y + gear_bar_h - 5 + 1, _ctxt, 1, 1, 0);
+        draw_set_colour((_ccnt > 0 || global.debug) ? c_white : make_colour_rgb(255, 170, 170));
+        draw_text_transformed(_ccx + gear_bar_cell_w * 0.5 - 5, gear_bar_y + gear_bar_h - 5, _ctxt, 1, 1, 0);
+        draw_set_colour(c_white);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+    }
+    // 翻页数字（「‹ N/M ›」）按用户口径（2026-11-16）删掉：架上只放已拥有的凭证，
+    // 一屏 10 格够用；真超过一屏时滚轮仍可翻（Mouse_60/61），只是不再显示页码。
+
+    // ── ⑨ 进化特效（55 帧，按画布中心对齐结果槽）──
+    if (gear_fx){
+        var _ff = clamp(floor(gear_fx_t), 0, evo_fx_frames - 1);
+        var _fw = sprite_get_width(spr_evo_fx) * 1.8;
+        var _fh = sprite_get_height(spr_evo_fx) * 1.8;
+        draw_sprite_ext(spr_evo_fx, _ff, gear_res_x - _fw * 0.5, gear_res_y - _fh * 0.5,
+            1.8, 1.8, 0, c_white, 1);
+    }
 }
 
 panel_anim_init(id, 0.28, 0.18, 260)

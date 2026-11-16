@@ -35,8 +35,8 @@ if (_col_has_enemy && variable_global_exists("enemy_by_type") && precise_bbox_pr
         if (grid_col != other.grid_col) continue;
         if (ds_list_find_index(other.hitted, id) != -1) continue;
         if (bbox_right < other.pbc_l || bbox_left > other.pbc_r || bbox_bottom < other.pbc_t || bbox_top > other.pbc_b) continue;
-        // 跨服远征的 BOSS 不参与冲撞（同白羊座 obj_baiyang_effect）
-        if (is_boss && global.map_name == "跨服远征") continue;
+        // 2026-11-16 用户口径：所有 BOSS 都不参与冲撞（不再看 map_name，见 obj_baiyang_effect 同条）
+        if (is_boss) continue;
         ds_list_add(other.hitted, id);
 
         // 🔴 2026-11-06 用户口径：冲撞型就该像白羊座那样**把老鼠撞飞**，不是扣血。

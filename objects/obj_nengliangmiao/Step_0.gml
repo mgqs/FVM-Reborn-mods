@@ -18,7 +18,7 @@ if (current_level != _nl_lv || skill != _nl_sk || shape != _nl_sh)
 if (!buff_cells_refreshed)
 {
     buff_value = throw_buff_value;   // Create 里从 custom["投掷增幅"] 取好（不再借 cycle 存）
-    ds_list_add(global.buff_sources, id);
+    mod_buff_source_add(id);
     refresh_buff_cells();
     global.buff_dirty = true;
     buff_cells_refreshed = true;

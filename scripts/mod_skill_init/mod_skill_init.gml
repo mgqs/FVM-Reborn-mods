@@ -142,6 +142,8 @@ function mod_skill_init()
     register_card_skill("budingwang", "cooldown", [840, 780, 720, 660, 600, 540, 480, 420, 360]);
     register_card_skill("caihongshe", "cycle", [120, 117, 114, 111, 108, 105, 102, 96, 90]);
     register_card_skill("meiweijishiqi", "duration", [510, 540, 570, 600, 630, 660, 690, 720, 900]);
+    // 蛋蛋兔冷却 90/87/84/81/76/71/66/61/50 秒（用户表：星级只吃攻击力，冷却只吃技能）
+    register_card_skill("dandantu", "cooldown", [5400, 5220, 5040, 4860, 4560, 4260, 3960, 3660, 3000]);
     register_card_skill("dangdanghu", "cycle", [228, 222, 210, 198, 186, 174, 162, 150, 132]);
     register_card_skill("dianman", "duration", [600, 660, 720, 780, 900, 1020, 1320, 1620, 1920]);
 	register_card_skill("tanchitu", "atk", [900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300]);

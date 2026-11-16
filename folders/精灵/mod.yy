@@ -4,6 +4,8 @@
   "folderPath":"folders/精灵/mod.yy",
   "isDefaultView":false,
   "listViewItems":[
+    {"name":"spr_task_claim_all_btn","path":"sprites/spr_task_claim_all_btn/spr_task_claim_all_btn.yy",},
+    {"name":"spr_infected_zhanshen_icon","path":"sprites/spr_infected_zhanshen_icon/spr_infected_zhanshen_icon.yy",},
     {"name":"spr_galaxy_horse_bullet_2","path":"sprites/spr_galaxy_horse_bullet_2/spr_galaxy_horse_bullet_2.yy",},
     {"name":"spr_galaxy_horse_bullet_1","path":"sprites/spr_galaxy_horse_bullet_1/spr_galaxy_horse_bullet_1.yy",},
     {"name":"spr_galaxy_horse_bullet","path":"sprites/spr_galaxy_horse_bullet/spr_galaxy_horse_bullet.yy",},

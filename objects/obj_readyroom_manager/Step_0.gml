@@ -6,13 +6,12 @@
         global.audio.play(readyroom_music, 0, 0);
     }
 if keyboard_check_pressed(vk_escape) || mouse_check_button_pressed(mb_right){
-	if instance_exists(obj_quit_confirm){
-		instance_destroy(obj_quit_confirm)
-	}
-	else{
-		if !is_submenu_open{
-			instance_create_depth(room_width / 2,room_height / 2,-100,obj_quit_confirm)
-		}
+	// 2026-11-16 用户口径：连点两次要停在「是否退出」框上，不能把框点没。
+	//   原来这里是 toggle（框已存在就 instance_destroy），右键/ESC 连点两次 =
+	//   弹出来又被自己关掉，玩家看到的就是「没框、直接离开」。
+	//   现在框存在时不再响应，关闭只走框里的「取消」或框自己的 ESC。
+	if (!instance_exists(obj_quit_confirm) && !is_submenu_open){
+		instance_create_depth(room_width / 2,room_height / 2,-100,obj_quit_confirm)
 	}
 }
 

@@ -34,14 +34,11 @@ if not obj_shop_bg.is_submenu_opened and not is_disabled{
 			show_notice(is_random_gift_mode() ? "随机礼盒模式无法购买卡片" : "抽卡模式无法购买卡片", 60);
 			exit;
 		}
-		// 抽卡模式：禁用MOD武器购买
-		if (btn_type == "weapon" && is_eternal_gacha_mode() && gacha_is_mod_weapon(target_item)) {
-			show_notice("抽卡模式通过随机奖励获取MOD武器", 60);
-			exit;
-		}
-		// 抽卡模式：禁用MOD宝石购买
-		if (btn_type == "gem" && is_eternal_gacha_mode() && gacha_is_mod_gem(target_item)) {
-			show_notice("抽卡模式通过随机奖励获取MOD宝石", 60);
+		// 抽卡模式：MOD 武器 / 宝石只能靠随机奖励拿
+		//   判据统一走 gacha_shop_locked（诸神之盾那条线是商城直售例外，见该函数注释）
+		if ((btn_type == "weapon" || btn_type == "gem") && is_eternal_gacha_mode() && gacha_shop_locked(btn_type, target_item)) {
+			if (btn_type == "weapon") show_notice("抽卡模式通过随机奖励获取MOD武器", 60);
+			else show_notice("抽卡模式通过随机奖励获取MOD宝石", 60);
 			exit;
 		}
 		if global.save_data.player.gold >= cost || global.debug{

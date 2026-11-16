@@ -17,6 +17,9 @@ is_boss = true
 y_move_speed = 0
 x_move = 0
 skill_timer = 0
+// 技能2（送变异熊猫）本轮目标格：本体飞过去的格 = 熊猫出现的格
+panda_col = 0
+panda_row = 0
 
 skill_choose = 0
 skill_count = 0

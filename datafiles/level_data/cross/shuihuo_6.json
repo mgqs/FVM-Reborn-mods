@@ -3,12 +3,7 @@
     "level_name": "shuihuo_6",
     "level_time_feature": "night",
     "map_sprite": "spr_shuihuozhijian_1",
-    "bg_draw": {
-        "x": 21,
-        "y": 44,
-        "sx": 1.7765,
-        "sy": 1.811
-    },
+    "bg_draw": {"x": 20.86, "y": 10.5, "sx": 1.7866, "sy": 1.8125},
     "time_limit": 300,
     "map_cols": 9,
     "map_rows": 7,

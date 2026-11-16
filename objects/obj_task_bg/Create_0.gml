@@ -11,6 +11,8 @@ y_offset = 0
 
 instance_create_depth(x+680,y-450,depth-1,obj_closetask_btn)
 instance_create_depth(x+300,y+400,depth-1,obj_task_claim_btn)
+// 一键领取：标题栏右侧、关闭按钮左边（2026-11-15 用户指定位置，面板内相对坐标 +504/-450）
+instance_create_depth(x+504,y-450,depth-1,obj_task_claim_all_btn)
 
 var btn1 = instance_create_depth(x-400,y-290,depth-1,obj_task_select_btn)
 btn1.btn_index = 0
@@ -123,4 +125,4 @@ if (task_red_dot("task")){
 }
 
 panel_anim_init(id, 0.28, 0.18, 260)
-panel_anim_kids(id, [obj_closetask_btn, obj_task_claim_btn, obj_task_line_bg, obj_task_select_btn])
+panel_anim_kids(id, [obj_closetask_btn, obj_task_claim_btn, obj_task_claim_all_btn, obj_task_line_bg, obj_task_select_btn])

@@ -59,6 +59,25 @@ for (var i = 0; i < 4; i++)
                     }
                     continue;
                 }
+                // 2026-11-16：神器 / 宝石进化凭证 —— 同一种「金色底板 + 目标装备图标」的画法，
+                //   只是里面画的是武器/宝石图标（mod_gear_evo_draw_credit），不用卡立绘
+                if (_goods_d1.type == "gear_evo")
+                {
+                    var _qcx = ((x - 618) + (411 * j)) - 122;
+                    var _qcy = (y - 248) + (165 * i);
+                    mod_gear_evo_draw_credit(_goods_d1.unlock_item_id, _qcx, _qcy, true, 96);
+                    // 售罄口径与 Create_0 的 is_disabled 走同一个判定
+                    if (mod_gear_evo_buyable_locked(_goods_d1.unlock_item_id))
+                    {
+                        draw_set_color(c_black);
+                        draw_set_alpha(0.5);
+                        draw_rectangle(((x - 618) + (411 * j)) - 205, ((y - 248) + (165 * i)) - 82, (x - 618) + (411 * j) + 205, (y - 248) + (165 * i) + 82, false);
+                        draw_set_alpha(1);
+                        draw_sprite_ext(spr_sold_out, 0, (x - 618) + (411 * j), (y - 248) + (165 * i), 1.8, 1.8, 0, c_white, 1);
+                        draw_set_color(c_white);
+                    }
+                    continue;
+                }
                 // 2026-10-27：进化凭证（type "evo"）不画卡图 —— 改画「金色底板 + 该金卡立绘」，
                 //   跟背包 / 金卡进化页 / 抽卡弹窗同一套 mod_evo_draw_credit；凭证没有阳光消耗，卡底和造价都不画
                 if (_goods_d1.type == "evo")

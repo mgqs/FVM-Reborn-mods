@@ -60,6 +60,10 @@ if (!_ime_typing && ime_tick >= 60) {
     }
 }
 
+// 鼠标帧锁定（mouse_limit_hz / native_start_mouse_limit）已停用，整段注释掉。
+//   global.mouse_limit_hz 在 obj_game_init/Create_0.gml 里恒为 0，这里不再装 WH_MOUSE_LL 钩子。
+//   保留 native_stop_mouse_limit 的一次性卸载：老版本装过的钩子不会跨进程残留，
+//   但同一进程内热更新/重进房间时仍有必要清一次。
 if (!variable_instance_exists(id, "ml_tick")) {
     ml_tick = 10;
     ml_on = false;
@@ -67,33 +71,35 @@ if (!variable_instance_exists(id, "ml_tick")) {
     ml_focus_count = 0;
     if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
 }
-ml_tick++;
-if (ml_tick >= 10) {
-    ml_tick = 0;
-    if (global.mouse_limit_hz > 0 && native_start_mouse_limit != undefined) {
-        var _ml_focus = window_has_focus();
-        if (_ml_focus != ml_focus_stable) {
-            ml_focus_count++;
-            if (ml_focus_count >= 3) {
-                ml_focus_stable = _ml_focus;
-                ml_focus_count = 0;
-            }
-        } else {
-            ml_focus_count = 0;
-        }
-        if (ml_focus_stable && !ml_on) {
-            native_start_mouse_limit(global.mouse_limit_hz, window_handle());
-            ml_on = true;
-        } else if (!ml_focus_stable && ml_on) {
-            native_stop_mouse_limit();
-            ml_on = false;
-        }
-    } else if (ml_on) {
-        // 关闭限频（mouse_limit_hz 改成 0 后热生效）：必须卸钩子，
-        // 否则已装好的 WH_MOUSE_LL 会一直留在系统里继续吞移动事件。
-        if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
-        ml_on = false;
-        ml_focus_stable = false;
-        ml_focus_count = 0;
-    }
-}
+// ml_tick++;
+// if (ml_tick >= 10) {
+//     ml_tick = 0;
+//     if (global.mouse_limit_hz > 0 && native_start_mouse_limit != undefined) {
+//         var _ml_focus = window_has_focus();
+//         if (_ml_focus != ml_focus_stable) {
+//             ml_focus_count++;
+//             if (ml_focus_count >= 3) {
+//                 ml_focus_stable = _ml_focus;
+//                 ml_focus_count = 0;
+//             }
+//         } else {
+//             ml_focus_count = 0;
+//         }
+//         if (ml_focus_stable && !ml_on) {
+//             native_start_mouse_limit(global.mouse_limit_hz, window_handle());
+//             ml_on = true;
+//         } else if (!ml_focus_stable && ml_on) {
+//             native_stop_mouse_limit();
+//             ml_on = false;
+//         }
+//     } else if (ml_on) {
+//         // 关闭限频（mouse_limit_hz 改成 0 后热生效）：必须卸钩子，
+//         // 否则已装好的 WH_MOUSE_LL 会一直留在系统里继续吞移动事件。
+//         if (native_stop_mouse_limit != undefined) native_stop_mouse_limit();
+//         ml_on = false;
+//         ml_focus_stable = false;
+//         ml_focus_count = 0;
+//     }
+// }
+if (ml_on && native_stop_mouse_limit != undefined) native_stop_mouse_limit();
+ml_on = false;

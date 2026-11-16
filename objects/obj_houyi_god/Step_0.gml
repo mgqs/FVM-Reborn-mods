@@ -13,7 +13,22 @@ if (is_slowdown)
 
 var has_enemy = false;
 
-has_enemy = combat_enemy_in_rows(id, grid_row - 1, grid_row + 1, grid_col, global.grid_cols + 1, target_type);
+// 🔴 2026-11-16 用户报「后羿不索敌、不出弹，老鼠也不啃它」：
+//   d6ae7a5b7d 把这里的直扫换成了按行桶查询 combat_enemy_in_rows(id, grid_row-1, grid_row+1, …)，
+//   单行桶那条路在别的卡上没问题，但后羿是三行窗口 —— 桶是按 string(grid_row) 分键的，
+//   多行窗口一旦取到空桶就整段判「没有敌人」，攻击计时器每帧被清零 → 永远不出弹。
+//   这里恢复直扫（3 行 ±1 一次遍历），只保留存活判定，行为与改造前一致。
+with (obj_enemy_parent)
+{
+    if (!combat_target_alive(id)) continue;
+    if (grid_row >= (other.grid_row - 1) && grid_row <= (other.grid_row + 1)
+        && grid_col >= other.grid_col && grid_col <= (global.grid_cols + 1)
+        && can_target_on(other.target_type, target_type))
+    {
+        has_enemy = true;
+        break;
+    }
+}
 
 // ── 攻击循环：1-12 待机 / 13-23 攻击，第 20 帧发射（上中下三发）──────────
 if (state != CARD_STATE.ATTACK)

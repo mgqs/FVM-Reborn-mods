@@ -378,8 +378,18 @@ switch state{
 		break
 }
 
-// 变异护盾：落地召唤变异中尉(SKILL2)与加血(SKILL3)期间展开，其余状态（迷雾 SKILL1 / 导弹 SKILL4 / 待机）收起
-shield_active = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3) && hp > 0
+// 变异护盾：落地召唤变异中尉(SKILL2)与加血(SKILL3)期间展开，其余状态（迷雾 SKILL1 / 导弹 SKILL4 / 待机）收起。
+// 技能动画播完后继续保留 shield_tail 帧，让减伤覆盖「召唤中尉落地 / 加血余波」，
+// 而不是随动画结束立刻消失导致护盾一闪就没。隐身（钻地/现身）期间不画。
+var _casting = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3)
+if (_casting){
+	shield_hold = shield_tail
+}
+else if (shield_hold > 0){
+	shield_hold --
+}
+var _visible = (state != BOSS_STATE.DISAPPEAR && state != BOSS_STATE.APPEAR)
+shield_active = (_casting || shield_hold > 0) && _visible && hp > 0
 if shield_active{
 	shield_anim ++
 }

@@ -32,7 +32,7 @@ function boss_init(){
 	register_boss("lobster_knight",{"name":"龙虾骑士","hp":90000,"icon":spr_lobster_knight_icon})
 	register_boss("electric_jellyfish",{"name":"电光水母","hp":90000,"icon":spr_electric_jellyfish_icon})
 	register_boss("war_god",{"name":"战神","hp":250000,"icon":spr_mario_mouse_icon})
-	register_boss("infected_zhanshen",{"name":"变异战神","hp":250000,"icon":spr_infected_zhanshen_idle})
+	register_boss("infected_zhanshen",{"name":"变异战神","hp":250000,"icon":spr_infected_zhanshen_icon})
 	register_boss("hercules",{"name":"大力神","hp":400000,"icon":spr_rumble_icon})
 	register_boss("thor",{"name":"雷神","hp":800000,"icon":spr_rumble_icon})
 	// ===== 龙渊（长渊）关卡 BOSS =====

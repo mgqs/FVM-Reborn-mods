@@ -1883,11 +1883,24 @@ function hex_card_cooldown(_base, _card_id = "") {
     if (!hex_enabled()) return _base;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return _base;
     if (global.hex_state.zero_cd) return 0;
-    if (_card_id != "") {
-        var _m = hex_batch2_id_cycle(_card_id);
-        if (_m != 1.0) return max(1, round(_base * _m));
+    if (_card_id == "") return _base;
+    var _m = hex_batch2_id_cycle(_card_id);
+    // 灰烬类（一次性）卡片压根不走 cycle —— 它们的「冷却」就是这个卡槽冷却。
+    // 原来这里只乘 hex_batch2_id_cycle（按卡 id 的专属倍率），分类冷却一条都吃不到，
+    // 所以「疾风龙魂：灰烬类冷却 -50%」「明火：灰烬卡冷却 +80%」在实机上完全没反应。
+    // 只对「不放 cycle 的灰烬卡」落 cat_cycle：
+    //   · 直射类 / 投掷类那些 cat_cycle 是攻速，已经由 hex_cycle_mult_for_card 乘过，这里再乘就重复；
+    //   · 灰烬类里的轰炸型 / 持续型（巧克力大炮、榴莲、火龙果…）也走 cycle 攻击，同上；
+    //   · 剩下的瞬爆型 / 触发型 / 碾压型 / 冲撞型才是「放完即消失」的一次性卡，
+    //     它们根本没有 cycle，冷却就是这个卡槽冷却 —— 词条只能落在这里。
+    if (card_get_major(_card_id) == "灰烬类") {
+        var _minor = card_get_minor(_card_id);
+        if (_minor != "轰炸型" && _minor != "持续型") {
+            _m *= hex_category_mult(_card_id, "cat_cycle");
+        }
     }
-    return _base;
+    if (_m == 1.0) return _base;
+    return max(1, round(_base * _m));
 }
 
 /// @function hex_zero_cd_flame_loss()

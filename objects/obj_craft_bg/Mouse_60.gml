@@ -2,6 +2,13 @@
 // 神级进化页：滚轮只滚右侧列表（整行滚，上限 Draw 每帧算）
 // 不写这段的话滚轮会一路漏到下面的强化页 y_offset_target（2026-10-27 补）
 if craft_top_tab == 3{
+	// 神器 / 宝石页：滚轮在底部凭证架上是**翻凭证**，在别处才滚右侧列表（2026-11-16）
+	if gear_evo_page != 0 && point_in_rectangle(mouse_x, mouse_y,
+		gear_bar_x, gear_bar_y - 60, gear_bar_x + gear_bar_w, gear_bar_y + gear_bar_h){
+		var _cn = array_length(gear_credit_ids())
+		gear_scroll = clamp(gear_scroll - 1, 0, max(0, _cn - gear_bar_n))
+		exit
+	}
 	evo_scroll_target = clamp(evo_scroll_target -1, 0, evo_rows_max)
 	exit
 }

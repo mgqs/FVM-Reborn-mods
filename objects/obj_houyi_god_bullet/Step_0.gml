@@ -79,19 +79,13 @@ if (variable_global_exists("enemy_by_type"))
                     }
                 }
 
-                // ── 地火（2026-11-13）：首次命中就在本行命中格往右铺地面火焰 ──
-                //   0/1/2/3 转分别是 3/5/5/5 格，持续 0.5s（30 帧），格内每只敌人整段吃一次 700。
+                // ── 地火（2026-11-16 用户口径）：命中格为中心的 **3×3**（上下左右各 1 格）──
+                //   原来是「本行命中格往右铺 3/5 格」的横条（0/1/2/3 转 3/5/5/5），实际只看到一格。
+                //   现在固定铺 3 行 × 3 列共 9 格，持续 0.5s（30 帧），格内每只敌人整段吃一次 700。
                 //   一发只铺一次（ground_fire_done）：穿透弹烧到后面几只时不重复铺，否则格子会叠成一片。
                 if (!ground_fire_done)
                 {
                     ground_fire_done = true;
-
-                    var _cells = ground_fire_cells;
-                    if (_cells <= 0)
-                    {
-                        if (shape == 0) _cells = 3;
-                        else            _cells = 5;
-                    }
 
                     // 铺格用的实心内容框（20 帧并集 alpha>=128）：底心 = 精灵原点，
                     //   所以摆放只要「x = 格中心、y = 视觉格子底边」，缩放直接把内容框撑满一格
@@ -113,38 +107,43 @@ if (variable_global_exists("enemy_by_type"))
                     var _gf_sy = global.grid_cell_size_y / _gf_fh;
                     var _gf_art_up = 36;   // 贴图格线比逻辑网格高 36px（同 bbq_art_up / fashishe_art_up）
 
-                    for (var _gfi = 0; _gfi < _cells; _gfi++)
+                    // 3 行 × 3 列：命中格是中心（_gyi / _gxi 取 -1、0、+1）
+                    for (var _gyi = -1; _gyi <= 1; _gyi++)
                     {
-                        var _gcol = _e.grid_col + _gfi;      // 命中格算第 1 格，往右依次铺
-                        if (!combat_col_in(_gcol)) break;    // 出战斗域就停（第 10 列 = BOSS 出生位仍算）
-                        var _grow = _e.grid_row;
+                        var _grow = _e.grid_row + _gyi;
                         if (!combat_row_in(_grow)) continue;
 
-                        var _gcell = get_world_position_from_grid(_gcol, _grow);
-                        var _gx = _gcell.x;
-                        var _gy = _gcell.y - _gf_art_up + global.grid_cell_size_y * 0.5;
+                        for (var _gxi = -1; _gxi <= 1; _gxi++)
+                        {
+                            var _gcol = _e.grid_col + _gxi;
+                            if (!combat_col_in(_gcol)) continue;   // 出战斗域就跳过（第 10 列 = BOSS 出生位仍算）
 
-                        var _gf = instance_create_depth(_gx, _gy, -10 - _grow * 45, obj_houyi_god_ground_fire);
-                        _gf.sprite_index = _gf_spr;
-                        _gf.image_xscale = _gf_sx;
-                        _gf.image_yscale = _gf_sy;
-                        _gf.frame_start  = 0;
-                        _gf.frame_end    = sprite_get_number(_gf_spr) - 1;
-                        _gf.anim_loop_frames = 0;       // 整段 life 播一遍，末帧正好火散
-                        _gf.life         = ground_fire_life;
-                        _gf.damage       = ground_fire_damage;
-                        _gf.damage_type  = "fire";
-                        _gf.lock_grid    = true;
-                        _gf.grid_col     = _gcol;
-                        _gf.grid_row     = _grow;
-                        _gf.extra_col_right = 0;        // 每格只烧自己那一列，相邻格不重复烧同一只
-                        _gf.single_hit   = true;
-                        // 地面火固定烧地面上的一切（含钻地/地下/舞者/隐形/障碍），与烤肉地火同口径
-                        _gf.hittable_types = ["normal", "dance", "invisible", "diver", "obstacle", "underground"];
-                        _gf.shape        = shape;
-                        _gf.mouse_fx_scale = 1.8;
-                        _gf.mouse_fx_y_off = 50;
-                        _gf.mouse_fx_life  = 30;        // 身上着火 0.5s，与地火同寿命
+                            var _gcell = get_world_position_from_grid(_gcol, _grow);
+                            var _gx = _gcell.x;
+                            var _gy = _gcell.y - _gf_art_up + global.grid_cell_size_y * 0.5;
+
+                            var _gf = instance_create_depth(_gx, _gy, -10 - _grow * 45, obj_houyi_god_ground_fire);
+                            _gf.sprite_index = _gf_spr;
+                            _gf.image_xscale = _gf_sx;
+                            _gf.image_yscale = _gf_sy;
+                            _gf.frame_start  = 0;
+                            _gf.frame_end    = sprite_get_number(_gf_spr) - 1;
+                            _gf.anim_loop_frames = 0;       // 整段 life 播一遍，末帧正好火散
+                            _gf.life         = ground_fire_life;
+                            _gf.damage       = ground_fire_damage;
+                            _gf.damage_type  = "fire";
+                            _gf.lock_grid    = true;
+                            _gf.grid_col     = _gcol;
+                            _gf.grid_row     = _grow;
+                            _gf.extra_col_right = 0;        // 每格只烧自己那一列，相邻格不重复烧同一只
+                            _gf.single_hit   = true;
+                            // 地面火固定烧地面上的一切（含钻地/地下/舞者/隐形/障碍），与烤肉地火同口径
+                            _gf.hittable_types = ["normal", "dance", "invisible", "diver", "obstacle", "underground"];
+                            _gf.shape        = shape;
+                            _gf.mouse_fx_scale = 1.8;
+                            _gf.mouse_fx_y_off = 50;
+                            _gf.mouse_fx_life  = 30;        // 身上着火 0.5s，与地火同寿命
+                        }
                     }
                 }
 

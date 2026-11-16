@@ -1319,10 +1319,37 @@ register_gods_goods("heian_god_3",
     description: "至尊黑暗神：每攻击一次敌人伤害翻倍,击杀增加灰烬效果"
 });
 
+    gods_shop_register_gear_evo();
+}
+
+/// @func gods_shop_register_gear_evo() 神器 / 宝石进化凭证上架（2026-11-16 用户口径）
+///   · 顺序 = mod_gear_evo_steps() 的**登记表顺序**（先 6 张神器，再 25 张宝石）
+///   · 价格 = 按**进化档位**：新神器/新宝石凭证 25、超神器/超宝石凭证 50、补强宝石凭证 75
+///     （唯一出口 mod_gear_evo_credit_price，别在这里再写一份；2026-11-16 用户纠正：
+///      不是「每张 +25」，三个档位最贵 75）
+///   · id 前缀 gear_evo_01..31（两位补零）：商店是「按 goods id 字母序收集再排档」的，
+///     补零才能让商店里的顺序正好等于登记表顺序（排序见 obj_gods_store_bg/Create_0 的 sort_tier）
+///   · 这里**不写名字/图标**：名字走 gods_goods_name()、图标走 mod_gear_evo_draw_credit()，
+///     都由目标装备反查，免得 31 条硬编码漂移
+function gods_shop_register_gear_evo(){
+    var _steps = mod_gear_evo_steps();
+    for (var _i = 0; _i < array_length(_steps); _i++){
+        var _s  = _steps[_i];
+        var _no = (_i + 1 < 10) ? "0" + string(_i + 1) : string(_i + 1);
+        register_gods_goods("gear_evo_" + _no,
+        {
+            type: "gear_evo",
+            cost: string(mod_gear_evo_credit_price(_s)),
+            unlock_item_id: _s.to,
+            // 第 1 页里排在「融合卡 / 金卡 / 普卡与卡凭证」之后（0/1/2 是原有档位）
+            sort_tier: 3
+        });
+    }
 }
 
 /// @func gods_goods_name(goods) 诸神商店一条商品的显示名 —— **唯一取名入口**
 ///   evo（金卡进化凭证）  → 卡名（进化凭证）
+///   gear_evo（神器/宝石进化凭证）→ 装备名（进化凭证）
 ///   tvoucher（三/四/终转）→ 卡名（X转凭证），跟威望商店同一套 transfer_credit_name_from_id
 ///   recipe / card        → recipe_name → display_name（这两类没有实时名字来源，字段保留）
 ///   都没有 → 空串（2026-10-27：删了 evo/tvoucher 的 display_name 后，
@@ -1331,6 +1358,9 @@ function gods_goods_name(_g){
     var _t = variable_struct_exists(_g, "type") ? _g.type : "";
     if (_t == "evo"){
         return transfer_credit_card_name(_g.unlock_item_id) + "（进化凭证）";
+    }
+    if (_t == "gear_evo"){
+        return mod_gear_evo_name(_g.unlock_item_id) + "（进化凭证）";
     }
     if (_t == "tvoucher"){
         if (!variable_struct_exists(_g, "target_shape")) return transfer_credit_card_name(_g.unlock_item_id);

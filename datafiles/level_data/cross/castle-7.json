@@ -3,6 +3,7 @@
     "level_name": "ancient_castle_7",
     "level_time_feature": "daytime",
     "map_sprite": "spr_mod_ancient_castle_7",
+    "bg_draw": {"x": 12.14, "y": 11.05, "sx": 0.9835, "sy": 0.9858},
     "time_limit": 300,
     "map_cols": 9,
     "map_rows": 7,
