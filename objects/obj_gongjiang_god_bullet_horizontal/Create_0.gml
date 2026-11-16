@@ -3,7 +3,7 @@ event_inherited();
 damage = 0;
 move_speed = 8;
 damage_type = "normal";
-target_type = "normal";
+target_type = "air";
 hittable_types = get_hittable_enemy_types(target_type);
 hit_tick = 0;
 

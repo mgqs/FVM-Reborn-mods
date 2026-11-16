@@ -193,8 +193,10 @@ if (craft_top_tab == 3) {
 			1.8, 1.8, 0, c_white, 1);
 	}
 
-	tooltip_draw();
+	if (!evo_confirm) tooltip_draw();
 	panel_anim_end_parts(id, craft_parts, 260);
+	// 确认弹窗画在面板贴回之后 → 盖在整页最上层
+	if (evo_confirm) evo_confirm_draw();
 	exit;
 }
 

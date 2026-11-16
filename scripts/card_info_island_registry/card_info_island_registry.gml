@@ -237,8 +237,8 @@ function info_island_buff_line(_id) {
 	}
 
 	var _hz = card_hazard_flags(_id);
-	if (_hz.burn)    array_push(_segs, "火盆类增幅");
-	if (_hz.rebound) array_push(_segs, "反弹类增幅");
+	if (_hz.burn)    array_push(_segs, "火盆类");
+	if (_hz.rebound) array_push(_segs, "反弹类");
 
 	// 战旗马固定最后。🔴 它不是网格通道、不在 buff_channel_order 里，
 	//   buff_channels_has_any 永远查不到它，只能直接问 buff_channel_ok

@@ -4,6 +4,7 @@
 ///      只在表里（或例外区）的卡才显示这一行，没列出的一律不显示。
 ///   ② card_attack_target_exclude() 生成了也不显示的卡（写了 target_type 但实际不出伤害）
 ///   ③ card_attack_target_override() 口径与 target_type 对不上的卡，手写覆盖（按形态）
+///      写了这里的卡不再写进 ①，显示只读这里
 ///   ④ card_attack_text()           拼成「陆地鼠军丨潜水丨空军」；障碍默认不显示
 ///   ①② 由 桌面/fvm的ai/生成卡牌可攻击表.py 维护，③ 手写脚本不动。
 ///   判定口径的唯一真相仍是 scripts/can_target_on。
@@ -15,7 +16,6 @@ function card_attack_target_data()
         "12yinliao": "normal",
         "aquarius_elve": "normal",
         "athena": "track",
-        "bbq": "all",
         "beef_hotpot": "pierce",
         "brahma": "normal",
         "bull_firework": "normal",
@@ -48,7 +48,6 @@ function card_attack_target_data()
         "egg_boiler_pult": "throw",
         "eightcake": "throw",
         "fangkongmiao": "air_only",
-        "fashishe": "all",
         "fenjima": "normal",
         "fishbone": "pierce",
         "flour_sack": "normal",
@@ -57,7 +56,7 @@ function card_attack_target_data()
         "gatlin_ice_long_bao": "normal",
         "gatlin_long_bao": "normal",
         "ghost_god": "normal",
-        "gongjiang_god": "all",
+        "gongjiang_god": "air",
         "grilled_lizard_pult": "throw",
         "guangming_god": ["d_fruit", "all", "all", "all"],
         "guiyuanma": "normal",
@@ -68,6 +67,7 @@ function card_attack_target_data()
         "hongliukaochuan": "normal",
         "hotdog_cannon": "air",
         "houyi_god": "normal",
+        "huagao": "normal",
         "huanyingshe": "throw",
         "hufa_god": "normal",
         "hundun_god": "normal",
@@ -84,7 +84,7 @@ function card_attack_target_data()
         "king_long_bao": "normal",
         "king_triple_long_bao": "normal",
         "kuileima": "all",
-        "laipishe": "track",
+        "laipishe": "air",
         "lizi_god": "throw",
         "love_god": "normal",
         "mianbao": "all",
@@ -98,7 +98,7 @@ function card_attack_target_data()
         "odin": "normal",
         "pan_fried_bun": "throw",
         "panduola_god": "all",
-        "pizza_oven": "normal",
+        "pizza_oven": "air",
         "poseidon": "all",
         "power_god": "air_only",
         "pufferfish": "all",
@@ -117,8 +117,6 @@ function card_attack_target_data()
         "rotating_coffee_pot": "rotate",
         "salad_pult": "throw",
         "sausage": "air",
-        "sheng_huo": ["pierce", "pierce", "all", "all"],
-        "shennong_god": "all",
         "sheshou": "normal",
         "shiliu_baobao_bing": "all",
         "shizi": "all",
@@ -141,7 +139,6 @@ function card_attack_target_data()
         "tar_sprayer": "pierce",
         "thor": "throw",
         "tiancheng": "normal",
-        "tianxie": "all",
         "time_god": "all",
         "triple_ice_long_bao": "normal",
         "triple_long_bao": "normal",
@@ -186,6 +183,7 @@ function card_attack_target_override()
         "bbq": "陆地鼠军",
         "fashishe": "陆地鼠军",
         "tianxie": "陆地鼠军",
+        "shennong_god": ["陆地鼠军", "陆地鼠军", "陆地鼠军丨空军丨地鼠", "陆地鼠军丨空军丨地鼠"],
         "sheng_huo": ["陆地鼠军丨非主流丨幽灵", "陆地鼠军丨非主流丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵"]
     };
     return _o;

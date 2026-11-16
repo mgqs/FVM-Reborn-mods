@@ -5,7 +5,7 @@ move_speed = 8;
 vertical_dir = 1;
 col = 0;
 damage_type = "normal";
-target_type = "normal";
+target_type = "air";
 hittable_types = get_hittable_enemy_types(target_type);
 hit_tick = 0;
 

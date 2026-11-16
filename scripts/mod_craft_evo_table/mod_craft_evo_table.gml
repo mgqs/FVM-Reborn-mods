@@ -435,6 +435,11 @@ function mod_evo_reward(_target){
     var _lvl = global.save_data.unlocked_items.max_skill_level;
     if (!global.debug) add_material_amount(mod_evo_credit_id(_target), -1);
     unlock_card(_target, 0, 0, _lvl);
+    // 前置卡被消耗：星级 / 转职 / 历史最高全清（debug 下不毁档）
+    if (!global.debug){
+        var _cs = mod_evo_cards(_target);
+        for (var _i = 0; _i < array_length(_cs); _i++) reset_card_to_new(_cs[_i].id);
+    }
 }
 
 // =============================================================================

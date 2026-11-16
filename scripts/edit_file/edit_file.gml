@@ -34,6 +34,23 @@ function unlock_card(card_id, level, shape, skill) {
     return true;
 }
 
+/// @function reset_card_to_new(card_id)
+/// @desc 把这张卡打回「刚解锁」状态：星级 / 转职 / 历史最高清零（技能是全局的，不动）
+///       融合、金卡进化成功后用来"消耗"作为材料的前置卡
+function reset_card_to_new(card_id) {
+    var _uc = global.save_data.unlocked_cards;
+    for (var _i = 0; _i < array_length(_uc); _i++) {
+        if (_uc[_i].id != card_id) continue;
+        _uc[_i].level = 0;
+        _uc[_i].shape = 0;
+        if (variable_struct_exists(_uc[_i], "max_level")) _uc[_i].max_level = 0;
+        if (variable_struct_exists(_uc[_i], "max_shape")) _uc[_i].max_shape = 0;
+        save_file(global.save_slot);
+        return true;
+    }
+    return false;
+}
+
 /// @function remove_card(card_id)
 /// @desc 移除已解锁的卡片并保存存档
 /// @param {string} card_id 卡片ID

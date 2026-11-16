@@ -20,7 +20,7 @@ laipishe_fired = false;
 plant_type = "normal";
 is_slowdown = false;
 attack_type = ATTACK_TYPE.SHOOTER;
-target_type = "track";
+target_type = "air";
 
 // 子弹数量：所有形态均为一发
 bullet_count = 1;
