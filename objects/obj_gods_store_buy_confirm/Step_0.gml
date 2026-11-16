@@ -34,6 +34,13 @@ for (var i = 0; i < array_length(buttons); i++)
                             add_material_amount("oracle_stone", -cost);
                             add_material_amount(mod_evo_credit_id(target_item), 1);
                         }
+                        else if (btn_type == "gear_evo")
+                        {
+                            // 神器 / 宝石进化凭证：只进背包（合成屋-神器进化 / 宝石进化 用），
+                            //   同样不解锁装备；凭证 id = evo_credit_<目标装备 id>
+                            add_material_amount("oracle_stone", -cost);
+                            add_material_amount(mod_gear_evo_credit_id(target_item), 1);
+                        }
                         else if (btn_type == "card")
                         {
                             add_material_amount("oracle_stone", -cost);

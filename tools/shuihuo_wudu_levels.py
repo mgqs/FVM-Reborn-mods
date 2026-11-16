@@ -272,13 +272,29 @@ def build_waves(counts, bosses):
     return waves
 
 
+def _bg_draw(sprite):
+    """底图参数不要手写：跨服底图的 sx/sy 与相位由 tools/cross_bg_align.py 从美术格距反解，
+    手调过的那一版（{2,36,1.8,1.8}）六张底图全部偏 15~33px（MISTAKES.md B29）。"""
+    try:
+        from cross_bg_align import family_of, solve
+    except ImportError:
+        import os
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from cross_bg_align import family_of, solve
+    fam = family_of(sprite)
+    if fam is None:
+        raise SystemExit("cross_bg_align 里没有这个底图的标定: " + sprite)
+    return solve(fam)
+
+
 def build_level(prefix, lv, counts, bosses, map_fn, sprite):
     d = {
         "version": 1.2,
         "level_name": "%s_%d" % (prefix, lv),
         "level_time_feature": "night",
         "map_sprite": sprite,
-        "bg_draw": {"x": 2, "y": 36, "sx": 1.8, "sy": 1.8},
+        "bg_draw": _bg_draw(sprite),
         "time_limit": 300,
         "map_cols": 9,
         "map_rows": 7,

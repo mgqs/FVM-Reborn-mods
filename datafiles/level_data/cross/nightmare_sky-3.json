@@ -6,12 +6,7 @@
     "display_name": "天空迷雾",
     "author": "",
     "desc": "",
-    "bg_draw": {
-        "x": 2,
-        "y": 10,
-        "sx": 1.777,
-        "sy": 1.884
-    },
+    "bg_draw": {"x": 13.2, "y": 12.39, "sx": 1.7833, "sy": 1.78},
     "time_limit": 300,
     "map_cols": 9,
     "map_rows": 7,
@@ -1435,8 +1430,8 @@
     "events": [
         {
             "id": "cloud",
-            "interval": 5,
-            "spawn_interval": 5,
+            "interval": 30,
+            "spawn_interval": 8,
             "cloud_rows": [
                 1,
                 2,
@@ -1446,7 +1441,9 @@
                 6,
                 7
             ],
-            "cloud_type": "night"
+            "cloud_type": "night",
+            "no_resident": true,
+            "fade_col": 1
         }
     ]
 }

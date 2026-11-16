@@ -48,11 +48,12 @@ if (hp <= 0 && state != BOSS_STATE.DEATH) {
 switch state{
 	case BOSS_STATE.IDLE:
 		sprite_index = spr_list[1]
+		// 念咒精灵 16 帧 = 正常 8 + 受伤 8
 		if hp > maxhp * hurt_rate{
-			image_index = floor(timer/5) mod 12
+			image_index = floor(timer/5) mod 8
 		}
 		else{
-			image_index = floor(timer/5) mod 12
+			image_index = floor(timer/5) mod 8 + 8
 		}
 		if timer >= wait_time{
 			timer = 0
@@ -84,11 +85,12 @@ switch state{
 	
 	case BOSS_STATE.SKILL2:
 		sprite_index = spr_list[3]
+		// 攻击精灵 35 帧 = 正常 17 + 受伤 18（受伤多 1 帧，末帧不用）
 		if hp > maxhp * hurt_rate{
-			image_index = floor(timer/5) mod 19
+			image_index = floor(timer/5) mod 17
 		}
 		else{
-			image_index = floor(timer/5) mod 19 + 19
+			image_index = floor(timer/5) mod 17 + 17
 		}
 		
 		var target_col = 0
@@ -144,19 +146,19 @@ switch state{
 		if timer <= 8 * 10 * 3 - 1{
 			sprite_index = spr_list[1]
 			if hp > maxhp * hurt_rate{
-				image_index = floor(timer/5) mod 9
+				image_index = floor(timer/5) mod 8
 			}
 			else{
-				image_index = floor(timer/5) mod 9 + 9
+				image_index = floor(timer/5) mod 8 + 8
 			}
 		}
 		else{
 			sprite_index = spr_list[2]
 			if hp > maxhp * hurt_rate{
-				image_index = floor((timer - 8 * 5 * 3)/5) mod 18
+				image_index = floor((timer - 8 * 5 * 3)/5) mod 16
 			}
 			else{
-				image_index = floor((timer - 8 * 5 * 3)/5) mod 18 + 18
+				image_index = floor((timer - 8 * 5 * 3)/5) mod 16 + 16
 			}
 		}
 		

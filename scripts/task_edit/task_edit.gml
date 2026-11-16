@@ -113,7 +113,7 @@ function get_task_index(task_id){
 
 // ══════════════════════════════════════════════════════════════════════════
 //  卡片情报任务（card_info_task）
-//  需求：每解锁一张新卡 → 生成一个任务「在情报岛查看这张卡的信息」→ 奖励 5000 金币
+//  需求：每解锁一张新卡 → 生成一个任务「在情报岛查看这张卡的信息」→ 奖励 2000 金币
 //  任务 id 用动态形式 info_view_<card_id>，与静态任务池共存于 global.task_pool
 //  ⚠ register_task 是 ds_map_add（重复 key 静默失败），所以注册前必须先 ds_map_exists
 // ══════════════════════════════════════════════════════════════════════════
@@ -177,7 +177,7 @@ function card_info_task_sync(card_id){
 			"rewards":[
 				{
 					"type":"gold",
-					"amount":5000
+					"amount":2000
 				}
 			]
 		})
@@ -271,4 +271,30 @@ function task_red_dot(kind){
 		}
 	}
 	return false
+}
+
+/// @function task_grant_rewards(task_id)
+/// @desc 发放一条任务的奖励（材料 / 金币）并解锁后续任务。
+///       **只发奖：不改 state、不落盘、不刷 UI** —— 由调用方决定后面怎么收尾：
+///         · 单个领取（obj_task_claim_btn/Mouse_4）→ 发完立刻置 claimed + 落盘；
+///         · 一键领取（obj_task_claim_all_btn/Mouse_4）→ 全部发完只落盘一次。
+///       2026-11-15 抽出来，避免两处各写一份发奖分支；将来加奖励类型（卡牌 / 凭证）时漏改一边就会「一键领少东西」。
+function task_grant_rewards(task_id){
+	var task_info = get_task_data(task_id)
+	if task_info == undefined return
+	var reward_list = task_info.rewards
+	for(var i = 0 ; i < array_length(reward_list) ; i++){
+		if reward_list[i].type == "item"{
+			add_material_amount(reward_list[i].item_id,reward_list[i].amount)
+		}
+		else if reward_list[i].type == "gold"{
+			global.save_data.player.gold += reward_list[i].amount
+		}
+	}
+	// 后续任务解锁（卡片情报任务写的是 "none"，只有主线 / 支线才有解锁链）
+	if task_info.task_unlock != "none"{
+		if !is_task_unlocked(task_info.task_unlock){
+			unlock_task(task_info.task_unlock)
+		}
+	}
 }

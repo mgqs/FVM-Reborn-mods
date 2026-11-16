@@ -2636,14 +2636,19 @@ function hex_b3_levelup_card(_card_id, _cap) {
         if (!is_struct(_c)) continue;
         if (!variable_struct_exists(_c, "id")) continue;
         if (_c.id != _card_id) continue;
-        if (!variable_struct_exists(_c, "level")) continue;
-        // 真正的上限是这张卡自己记录的 max_level（进度相关），岛屿上限只是外层封顶
-        var _cap2 = _cap;
-        if (variable_struct_exists(_c, "max_level") && _c.max_level > 0) {
-            _cap2 = min(_cap, _c.max_level);
-        }
-        if (_c.level >= _cap2) return false;
-        _c.level = min(_cap2, _c.level + irandom_range(1, 2));
+        // 界面上画的星星读的是 max_level，不是 level（合成屋 / 背包 / 转职槽一律如此，
+        // 见 scripts/transfer_credit/transfer_credit.gml:606-622 的说明）。
+        // 只加 level 的话表现出来就是用户报的两件事：
+        //   ① 存档里等级涨了，但合成屋一颗星都不多（它读 max_level）；
+        //   ② 合成屋的「当前星级」也读 max_level = 0 → 从 0 星开始强化。
+        // 所以两个字段必须一起抬。
+        var _lv = 0;
+        if (variable_struct_exists(_c, "max_level")) _lv = max(_lv, _c.max_level);
+        if (variable_struct_exists(_c, "level"))     _lv = max(_lv, _c.level);
+        if (_lv >= _cap) return false;
+        var _new = min(_cap, _lv + irandom_range(1, 2));
+        _c.level     = _new;
+        _c.max_level = max(variable_struct_exists(_c, "max_level") ? _c.max_level : 0, _new);
         return true;
     }
     return false;

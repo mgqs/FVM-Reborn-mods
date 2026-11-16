@@ -15,10 +15,23 @@ if (shape >= 1 && plant_type != "gridless")
 
 xg_age++;
 
+// ── 场上星轨神统计：全屏判定与光环显隐共用，每帧只遍历一次 ──────────
+// _any_full 与每张卡自己的 _should_full 同口径（终转 shape>=3 + 总数够），
+// 所以「有人进入全屏」= 全场进入全屏，4 张的范围框不会一半收一半留。
+var _n_all    = 0;
+var _max_shape = -1;
+with (obj_xinggui_god)
+{
+    if (hp > 0 && grid_col >= 0 && grid_col < global.grid_cols
+        && grid_row >= 0 && grid_row < global.grid_rows)
+    {
+        _n_all++;
+        if (shape > _max_shape) _max_shape = shape;
+    }
+}
+var _any_full = (_max_shape >= 3 && _n_all >= xg_fullscreen_need);
+
 // 光环跟随卡片（被铲子/板块挪动时一起走）
-// 不随全屏切换隐藏：终转全屏时四角装饰是**另加**的一层，本体光环照常亮着
-//（海洋女神同理：它的本体光环和四角装饰是同时显示的）。原来这里写 visible = !xg_fullscreen，
-//  一旦 4 张条件被满足/失效就会「光环消失 → 四角出现」，看起来正好像是特效闪了一下。
 // 位置取**格心**而不是卡片 x/y：卡片原点在脚底 / 悬浮卡还有额外偏移，
 // 用卡片坐标当圆心会让 5*5 范围框整体错位半格。
 if (instance_exists(xg_halo))
@@ -36,7 +49,19 @@ if (instance_exists(xg_halo))
         xg_halo.x = x;
         xg_halo.y = y;
     }
-    xg_halo.visible = true;
+
+    // 🔴 2026-11-15 用户口径：满 4 张进入全屏后**只保留全屏四角特效**。
+    //   原来这里写死 visible = true，4 个 5*5 范围框会和四角全屏装饰叠在一起，
+    //   屏幕上同时有 4 个框 + 1 套全屏，糊成一片。
+    //   不能直接切 visible：上一版就是「光环突然消失 → 四角突然出现」被当成闪，
+    //   所以改成 image_alpha 渐变（0.1/帧 ≈ 0.17 秒），淡到 0 才 visible = false；
+    //   恢复时 alpha 先抬起来再显形，肉眼看是「收光 → 出全屏」而不是跳变。
+    var _target_alpha = _any_full ? 0 : 1;
+    if (xg_halo.image_alpha < _target_alpha)
+        xg_halo.image_alpha = min(_target_alpha, xg_halo.image_alpha + 0.1);
+    else
+        xg_halo.image_alpha = max(_target_alpha, xg_halo.image_alpha - 0.1);
+    xg_halo.visible = (xg_halo.image_alpha > 0.02);
 }
 
 // ── 终转全屏判定：场上 4 张星轨神起全屏 ─────────────────────────────
@@ -44,14 +69,7 @@ if (instance_exists(xg_halo))
 // 旧写法是「谁判定成功谁就建一套」，4 张终转星轨同帧各建一套 → 角落位置叠 16 层，
 // 而且任何一张数量抖动都会整批销毁重建（image_index 归零）→ 看起来就是四角装饰在闪。
 {
-    var _n_all = 0;
-    with (obj_xinggui_god)
-    {
-        if (hp > 0 && grid_col >= 0 && grid_col < global.grid_cols
-            && grid_row >= 0 && grid_row < global.grid_rows)
-            _n_all++;
-    }
-
+    // _n_all 已在上面统计过（含存活与网格有效性过滤），这里不再重复遍历
     var _should_full = (shape >= 3 && hp > 0 && _n_all >= xg_fullscreen_need);
     var _owner_ok = (variable_global_exists("xg_corner_owner")
                      && instance_exists(global.xg_corner_owner)
@@ -104,6 +122,8 @@ if (instance_exists(xg_halo))
                 _fx.image_speed   = _fx.xg_fx_speed;
                 _fx.image_xscale  = _sx[_k];
                 _fx.image_yscale  = _sy[_k];
+                // 从全透明淡入，与 5*5 光环的淡出（0.1/帧）交叉过渡，避免「框突然消失、四角突然满亮」
+                _fx.image_alpha   = 0;
                 array_push(xg_corner_effects, _fx);
             }
             if (variable_global_exists("buff_apply_id")) global.buff_apply_id++;
@@ -124,6 +144,15 @@ if (instance_exists(xg_halo))
 
         xg_fullscreen = false;
         if (variable_global_exists("buff_apply_id")) global.buff_apply_id++;
+    }
+
+    // 四角装饰淡入：创建时 alpha = 0，逐帧抬到 1（0.08/帧 ≈ 0.2 秒），
+    // 与 5*5 光环淡出同步完成「收框 → 出全屏」的交接。
+    for (var _ci = 0; _ci < array_length(xg_corner_effects); _ci++)
+    {
+        var _ce = xg_corner_effects[_ci];
+        if (instance_exists(_ce) && _ce.image_alpha < 1)
+            _ce.image_alpha = min(1, _ce.image_alpha + 0.08);
     }
 }
 

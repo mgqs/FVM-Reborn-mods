@@ -10,11 +10,13 @@
 
 | 你正要做的动作 / 看到的症状 | 立刻改成这样 | 条目 |
 |---|---|---|
+| 跨服底图「格子/卡片错位」，想靠量周期/自相关定格距 | 用窄带缝检测定 pitch+phase，再钉到原生关系 `(698,199) mod (107,116)`；跑 `tools/cross_bg_align.py --verify` 目检 | B29 |
 | 想用 `Get-Content` 看 `.gml` 中文 | 用 `read` / `grep` 工具；pwsh 只用 `[IO.File]::ReadAllText($p,[Text.Encoding]::UTF8)` | A1 |
 | 想用 `Get-Content` 数行数 | 用 `read` 工具或数 LF；`Get-Content` 会把 283 行数成 171 | A2 |
 | 想把多行 python 塞进 `pwsh -Command` | 写 `.py` 文件再 `python x.py`，中文加 `PYTHONIOENCODING=utf-8` | A3 |
 | 要用 python 改 `.ps1`（CRLF + BOM） | 先 `if '\r\n' in s` 规范化再比较，改完跑 `verify_gml.ps1` 确认 BOM 还在 | A4 |
 | 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿文件，永不执行 | B1 |
+| 点某个按钮却跳到别的页 / 被藏起来的按钮照样能点 | `visible = false` **只跳过 Draw**，Mouse 事件照样派发 → 在被藏对象的 `Mouse_4` 里 `if (!visible) exit` + 按页签再拦一道；别指望「藏起来就点不到」 | B39 |
 | 动画看起来播了两遍 | 先查 sprite 表里有没有重复段，别先怀疑代码重播 | B2 |
 | 贴图朝向反了 | 先开 `ViewImage` 看 sprite 首帧本身朝哪边，再决定翻转 | B3 |
 | 卡片待机像「一直在长大 / 帧序错乱」 | 量每帧不透明 bbox 宽度分段：生长段单调增、爆炸段橙色像素=0、待机段稳定且末帧=首帧；别拿「项目帧 vs 源帧像素一致」当帧序没问题的证据 | B14 |
@@ -38,6 +40,7 @@
 | 某张卡的增幅「一点都没吃到」，且它不在四大分组（投掷/追踪/多向/喷壶）里 | 先 `rg -n "<plant_id>" scripts/card_buff_category` 确认 `plant_buff_map` 有没有它的条目；没有就是 `mod_get_buff_type` 返回 `"normal"`、switch 落 `default`、倍率恒 1。修法只加一行 `ds_map_set(global.plant_buff_map, "<id>", "tracker")`，**不要新建 type** | C22 |
 | 卡面写「打不到某类老鼠」（非主流 / 幽灵），白名单也排除了，游戏里照样命中 | 那只老鼠的 `Step_0` 会**逐帧改写** `target_type`（非主流啃食→`normal`、幽灵见光→`normal`），类型白名单不可靠。按身份判：`is_non_mainstream(_inst)`（`can_target_on.gml:79`），索敌/候选/结算/单实例入口四处统一调用 | C23 |
 | 攻击间隔压小后卡不发射 | `attack_timer == cycle - N*frame` 精确等号遇小数永不成立 → 取整 cycle，或置 `uses_fire_frame = true` | C2 |
+| 用户说「某关地图位置不对 / 格子里的东西错位」 | 先分清是**底图整体偏移**（量格线）还是**地图对象（obj_*）与底图装饰错位**：跨服底图美术会把风洞/岩浆等的静态外观直接画进图里，`map_object_init` 的 `x_offset/y_offset` 与 `image_xscale` 是按「底图没画装饰」的原版章调节的 → 换到预画装饰的新章就会大面积错位。判据：量底图装饰块的 bbox（低饱和中亮度 mask，别用暗部 mask）算尺寸与中心偏移，再对特效做同尺寸同中心 | B27 |
 | 想给对象加自定义速度 | 名字不要叫 `speed`（内置每帧按 `direction` 自动位移）；用 `xxx_speed` 并把 `speed/hspeed/vspeed = 0` | C1 |
 | 想 `json.dump` 回写关卡 JSON | 手工改文本；回写会把 `1.666667` 变科学计数，且 203/314 个文件尾带 NUL | C6 |
 | 想写嵌套三元 | 老 GML 运行时不认链式三元，要整体加括号 `(a) ? 1 : ((b) ? 2 : 3)` | C7 |
@@ -63,6 +66,18 @@
 | 写脚本扫 `objects/` 下所有 `.yy`，输出条数是 0 | `objects/` 没有直接放 `.yy`：用 `Get-ChildItem objects -Directory` 拼 `<目录>/<名>.yy`，或 `rg -l -g '*.yy' --pcre2 '"parentObjectId":\s*\{\s*"name":"obj_card_parent"' objects` | A23 |
 | 报 `Variable obj_xxx.<字段> not set before reading it`，而父对象 `Create_0` 里明明有这个字段 | 那个子对象 `Create_0` 没写 `event_inherited()`，父 `Create` 一行没执行。读取侧一律 `variable_instance_exists(_p,"字段") && _p.字段`；需要该字段就在子对象 `Create_0` 补默认值 | A24 |
 | 想用 ffmpeg 从屏幕录像抽帧 / 裁一块 | 本机 ffmpeg 是裁剪版（无 image2 muxer、无 crop 滤镜），抽帧只能 WPF `MediaPlayer` + `RenderTargetBitmap`；`CroppedBitmap` 直接出图会静默 0 字节，必须全幅抓完再用 Pillow 裁；本机无网，别 `pip install` | A22 |
+| 用正则扫 `register_enemy` / `register_enemy_info_island` 出「同名重复 156 条 / 未注册」 | 别用 `r'name\s*:\s*"'` 抓名字：单行式注册写的是 `{"name":"X",...}`（带引号的键），多行式才是 `name: "X"` → `r'(?:"name"|\bname)\s*:\s*"'`；且结构体跨多行，必须按括号配平切出实参再在实参内搜，不要用固定长度 `tail` 窗口 | A26 |
+| 精灵某几帧「变成噪点/雪花」 | 先 `git log --oneline -- sprites/<名>` 找好提交，`git show <好提交>:sprites/<名>/<帧GUID>.png` 回填，别急着重解包 SWF；判据用孤立像素占比（干净 ≤0.47 / 噪 ≥0.85） | B30 |
+| 脚本 `shutil.rmtree` 删精灵多余图层被安全护栏拦 | 改成 `shutil.move` 挪到 `output/_tmp/orphan_*/`，别删 | A27 |
+| 按 SWF FrameLabel 帧号去取 `ffdec-cli` 导出的 `N.png` 差一帧 | 帧号 +1 = PNG 文件名（label 0 基、导出 1 基），受伤段偏移也按 PNG 口径算 | A28 |
+| 「修复前」对比图整排看着像空白残影 | 噪点帧 alpha 只有 70~120，展示时 alpha×3 并在标题注明；修复前一律取 `git show HEAD:sprites/...`，别用本地备份 | B31 |
+| 跨服 BOSS 某段动画定帧 / 闪空 / 播成别的动作 | **别改精灵帧数**：先 `tools/swf_align.py` 证明切片连续精确，再用 `tools/check_frame_range.py <对象>` 抓 Step 里越界的 `mod N`/`+N`（原版精灵帧数不同，常量不能照抄） | B32 |
+| 技能播的是**别的动作**（该滚动却在挥拳） | `swf_align` 单帧代价不为 `0.00` = 切错段：按 `swf_frame_labels.py` 的标签重切（`sprite_frames_patch.py` 加 PLAN 项），Step 里 `mod N`/倒放基准同步；帧数不够铺满原 tick 就 `floor(timer*N/ticks)`，别改 timer 阈值 | B33 |
+| 对象（风洞等）与底图美术「看着差不多但就是没对齐」 | 别用「覆盖范围能盖住」判断：用「金属+网面」掩码在**不受窗口裁剪**的情况下做行投影，比**底边**（实心、不受半透明边缘影响），差值就是偏移量 | B34 |
+| 护盾/屏障画到了**身后**、或技能一播完就消失 | 朝左的立绘「身前」= 屏幕左侧，`shield_dx` 必须是**负值**；时长别只绑 `state`，地面残留（钢爪/尖刺/导弹）带 `owner_boss` 判定或加 `shield_tail` 尾期 | B35 |
+| 变星后某张增幅卡的倍率莫名翻倍 / 越用越高，像「叠加上限没夹住」 | 先查 `global.buff_sources` 有没有重复登记：变星置 `buff_cells_refreshed=false` 会让增幅源 Step 重跑一遍 `ds_list_add`；登记一律走幂等 `mod_buff_source_add(id)` | C27 |
+| 某张卡（尤其三行窗口的，如后羿）不索敌不出弹，同函数的单行卡却正常 | 别改 `combat_enemy_in_rows`：行桶按 `string(grid_row)` 分键、只配单行查询，多行窗口一律恢复 `with (obj_enemy_parent)` 直扫 | B37 |
+| BOSS 被撞飞 / 被白羊等冲撞卡秒杀 | 豁免别写 `global.map_name == "跨服远征"`（进关会被 `register_map` 的 name 覆盖）；只认 `is_boss`，顺带查 `obj_cat` 的 `!can_loss` 分支 | B38 |
 
 ### A11 用 `Get-ChildItem -Recurse` 找文件 → 每次 15~22 秒
 - **症状**：一件「找一下哪些文件引用了 X」的活儿拖到几十秒；换个关键词再扫一遍，时间线性叠加。
@@ -738,10 +753,193 @@
 - **正确路径**：水陆**只认 `global.enemy_map[? id].feature`**（`obj_battle/Create_0.gml:317-386` 按它强制分派行；`row=-1` 才走自动分派）。一次性导出全表：`rg -n 'register_enemy\(' scripts | ...` 抽 `feature`；注意单行式注册写的是 `"feature":"land"`（带引号的键），多行式是 `feature: "land"`，正则要写成 `"?feature"?\s*:\s*"([^"]*)"`，否则 200+ 条会被误判成「未登记」。实测 `assault_mouse`（突袭鼠）、`butterfly_mouse`（蝴蝶鼠）、`frog_prince_mouse`、`diver_mouse` 全是 `water`。
 - **证据**：2026-11-14 重排 `shuihuo_0..7` / `wudu_0..7`；`scripts/enemy_init/enemy_init.gml:23-24`（突袭鼠/青蛙王子 feature=water）。
 
+### A25 想把截图里的报错弹窗放大看清 → `Add-Type -AssemblyName System.Drawing` 直接被安全策略拦
+- **症状**：`PowerShell` 报 `Command blocked for security: Add-Type compiles and loads .NET code at runtime`，裁图脚本一行没跑。
+- **错路**：用 PowerShell + `System.Drawing` 裁剪缩放（`/c/Windows/system32/convert` 是文件系统转换工具，不是 ImageMagick；本机没装 magick/ffmpeg）。
+- **正确路径**：`python -m pip install pillow` → `Image.open(p).crop(box).resize((w*5,h*5), Image.LANCZOS).save(out)`，本机 pip 可联网。裁剪比例按原图宽高取（本例弹窗正文在 0.335~0.66 × 0.28~0.64），5 倍 LANCZOS 足够逐字读。
+- **证据**：2026-11-15 读 `obj_egg_boiler_pult` 的 Code Error 弹窗（`Clipboard_Screenshot.png`）。
+
+### A26 用正则统计「情报岛同名重复 / 未注册」→ 156 条假阳性，真重复只有 2 条
+- **症状**：写完去重脚本跑出「同名重复 156 条」外加 139 条「无 register_enemy」，号叫什么的一堆 `<未注册敌人>`；按它下判断会把整张表都当成坏的。
+- **错路**：① 用 `register_enemy\(\s*"([^"]+)"\s*,` 抓 id 后，拿 `s[m.end():m.end()+600]` 这种**固定长度窗口**去找 `name:` —— 单行注册的名字就在窗口里，多行结构体（`register_enemy("kf_zr_garbage", {` 换行 `name: "垃圾车僵尸鼠",`）也能碰上，但窗口截断/越界后命中的是**下一条**注册的 name，于是这一条的 id 被记成别人的名字；② 名字正则只写 `r'name\s*:\s*"'`，漏掉单行式的 `"name":"..."`（带引号键），那一批全变成 `<无 name>`，再被当成同一个名字合并。
+- **正确路径**：两步都做对再统计 —— ① 按**括号配平**切出 `register_enemy(...)` 的完整实参（扫描时跳过字符串字面量与 `\\` 转义，深度归零即返回），只在实参内部搜字段；② 名字正则写 `(?:"name"|\bname)\s*:\s*"([^"]*)"`，`hp` / `feature` 同理加 `"?字段"?`。实测修好后 `register_enemy` 唯一 id 238 条、情报岛条目 204 条（唯一 204，无重复 id），同名只剩 `捧花僵尸鼠`（`zombie_with_flower_pot` / `kf_zr_flower`）与 `轰隆隆`（`rumble` / `honglonglong`）两对，都是**本体＋跨服/变异版、各有独立条目**的既有设计，不是 bug。
+- **附带教训**：这类一次性统计脚本别塞进 `pwsh -Command` 的 here-doc（`python - <<'EOF'` 在 PowerShell 里是解析错误，`<` 被当重定向），写成 `tools\_tmp_*.py` 跑完即删。
+- **证据**：2026-11-15 情报岛「垃圾车僵尸鼠」去重，`scripts/enemy_info_island_init/enemy_info_island_init.gml:144`（`kf_zr_garbage`）与 `scripts/zhuore_enemy_init/zhuore_enemy_init.gml:43` 的单行/多行两种写法差异。
+
+### B27 跨服底图「美术已把地图对象画进图里」→ 只校格线会误判成「无问题」
+- **症状**：用户报「巫毒地图位置不对」，截图里铁笼（风洞）与格子/相邻元素错乱；但量底图格线时偏差只有 ±3px，看起来一切正常。
+- **错路**：只把「底图格线 vs 引擎格线（695/228/107×116）」当唯一判据，得出「无需修正」；实际错的是 `obj_wind_tunnel` 这个**地图对象**：`scripts/map_object_init` 给它注册的是 `x_offset: 5, y_offset: -35`，`Create_0` 里 `image_xscale/yscale = 1.8`（123×131 → 221×236 ≈ 2×2 格）。原版 `macchiato_port` / `tower_cake_15_*` 的底图**没有**画铁笼，特效自己就是铁笼，所以 2 格大 + 上偏 35px 是对的；换到巫毒（底图美术把 147×170 的铁笼画在格心 (+6,+2)）就变成「大网格 + 小铁笼」双层错位，还盖住相邻行。
+- **正确路径**：① 判据要加一条「底图上有没有预画这个对象的静态外观」：用 `map_object_init` 里的 id 对照底图，肉眼或检测都行；② 量底图装饰块尺寸**别用暗部 mask**（`mx<=130 & sat<=45` 只框到笼内深色网格，得 104×117 偏小），要用**低饱和 + 中亮度**（`(mx-mn)<=50 and 55<=mx<=215`）再按 2% 分位裁噪，实测 147×170、中心 (+6,+2)；③ 修法只在新章节加分支（`objects/obj_wind_tunnel/Create_0.gml:15`），把 `x/y` 从 obj_battle 传入的「格心 +(5,-35)」回正到装饰中心、`image_xscale/yscale` 改成覆盖装饰的倍率（1.53），原版章节不动。
+- **最终修法（同日推翻上一步）**：与其缩特效去贴底图，不如**把底图上画的铁笼擦掉**。8 张巫毒底图是同一套网格美术、同为 night，同一格在别的关卡里常常是干净的 → 直接跨图同位置拷贝，连光照渐变都一致，肉眼看不出补丁（`tools/wudu_erase_windtunnel.py`）。只有 (row0,col8)/(row6,col8) 两格 8 关都有笼，用同列/同行 ±2~4 格兜底。教训：**「美术把对象画进底图」这类问题，先想想能不能删掉底图上的那份**，比让引擎对象去迁就底图干净得多。
+- **证据**：2026-11-15 修 `obj_wind_tunnel`；`datafiles/level_data/volcanic/macchiato_port_warrior.json`（col8 row1/3/5、col6 row2/4，底图无铁笼）vs `wudu_0..7.json`（同 id、底图有铁笼）。
+
+### B28 跨图拷贝补一块地面，只校验「格子本体」会把邻格的铁笼一起搬过来
+- **症状**：巫毒底图擦铁笼，第一版用「跨图同位置整块拷贝」，结果补丁区里冒出别的关卡的小铁笼/红圈残片。
+- **错路**：判断「源位置干不干净」时只看目标格本体（59×64）；而实际搬运的框是 110×120（铁笼含四角钉 + 投影余量），**它同时覆盖了上下左右四格的一部分**，邻格里的铁笼就有机会被一起搬过来。
+- **正确路径**：① 校验范围必须 = 「拷贝框 ∩ 整个网格」——既要覆盖框实际会搬的每一块，又要排除网格外的顶栏/侧墙装饰（那里的暗色会被误判成铁笼网面）；② 「干净」判据用**地面色占比**而不是「没有灰色」：地面是蓝紫系（`b>r+25 and b>90 and b-g>45`），铁笼灰白框的 `b-g` 只有 29，红圈/绿标也都不满足，一条就能全排掉；③ 阈值取 `metal<0.004 且 floor>0.88`，宽一格就会漏。
+- **证据**：2026-11-15 `tools/wudu_erase_windtunnel.py` 的 `box_stats()`；复检脚本 `tools/wudu_erase_selfcheck.py`（网格内金属像素应为 0）。
+
+### C25 星级改动只写 `level` 不写 `max_level` → 界面一颗星都不变
+- **症状**：海克斯「低声耳环」每局结束提示提升了等级，但合成屋/背包里星级不变，强化入口还从 0 星起算。
+- **错路**：把 `save_data.unlocked_cards[].level` 当成唯一等级字段去改。全工程**画星星与读「当前星级」一律读 `max_level`**，`level` 只有 `obj_card_edit_*` 那套调试菜单在用。
+- **正确路径**：任何「提升星级」的写入都要两个字段一起抬：`_c.level = _new; _c.max_level = max(_c.max_level, _new);`。上限别用 `min(岛屿上限, max_level)`——`max_level` 本身就是当前星级，这么写第二次结算就判满级原地不动。判据：`rg -n "max_level" objects/obj_craft_bg scripts/transfer_credit` 能看到界面读的是哪个字段（`transfer_credit_card_level` 的注释直接写明了这条口径）。
+- **证据**：2026-11-15 修 `scripts/hex_batch3/hex_batch3.gml` 的 `hex_b3_levelup_card`；口径出处 `scripts/transfer_credit/transfer_credit.gml:606-622`、绘制处 `objects/obj_craft_bg/Draw_0.gml:979-980`。
+
+### C26 按分类给的「冷却」词条落在 cycle 上，一次性卡根本读不到
+- **症状**：「疾风龙魂：灰烬类（一次性）冷却 -50%」抽到了，实测冷却没变；同类的「明火：灰烬卡冷却 +80%」也一样。
+- **错路**：以为所有卡都走 `cycle`，于是只在 `hex_cycle_mult_for_card` 链路里查。实际上灰烬类里的瞬爆型/触发型/碾压型/冲撞型是「放下即消失」，没有 cycle，它们的冷却 = **卡槽冷却**，走 `hex_card_cooldown(raw_cooldown, card_id)`（`objects/obj_card_slot/Step_0.gml:20`、`Other_10.gml:20`、`scripts/create_battle_slots/create_battle_slots.gml:49`）。
+- **正确路径**：先判断这张卡到底有没有 cycle：`rg -n "cycle" objects/obj_<卡>/Step_0.gml`。没有 cycle 的，冷却必须落在 `hex_card_cooldown` 里；但那里**只对不走 cycle 的分类**加 `hex_category_mult(card_id, "cat_cycle")`（`card_get_major(id) == "灰烬类"` 且 `card_get_minor` 不是轰炸型/持续型），否则会和 `hex_cycle_mult_for_card` 重复计算。
+- **证据**：2026-11-15 修 `scripts/hex_core/hex_core.gml:1882-1904`；一次性卡证据 `objects/obj_coke_bomb/Step_0.gml:10-16`（只读 `upgrade_data[? "cycle"]` 播动画，不按它攻击）、`objects/obj_mouse_clip/Step_0.gml:85`。
+
 ---
 
-## 追加模板
+### B29 跨服底图错位：靠周期图/自相关定格距 → 谐波、模板匹配、手调 `bg_draw` 全是错路
+- **症状**：用户报「跨服所有的地图全部存在着错位」（2026-11-15），六张跨服底图（古堡 / 梦魇天空 / 灼热 / 水火 ×2 / 巫毒）全都偏，但幅度不同（15~33px），像"每张图各自手调过"。
+- **错路（四条，全白费）**：① 周期图 / 方波 FFT 在纹理底图上锁谐波（`spr_shuihuozhijian` X 给 70.34、castle 给 112.51、wudu 撞搜索上界 100），和缝检测结论差 10px 以上；② 全参数暴力梳状搜索（p 步 0.02 × ph 步 0.25 × 40 关）>120 s 被 kill；③ 多尺度 NCC 模板匹配反推用户截图是哪个关卡：最佳 0.33~0.55 且 scale 撞上界 —— 截图是局部裁剪，不是整屏缩放，**根本不该用它定量**；④ 语义锚定（lava 掩码 vs `map` 的 lava 格）看着 96.8% 很准，但目标函数对 ±30px 相位不敏感，不能用来定相位。
+- **正确路径（一条命令复现）**：`python tools/cross_bg_align.py --verify` / `--apply`。
+  1. 先立基准：原生 `spr_salad_island_land`（2005×1080，1:1 直绘，无 bg_draw）用**窄带缝检测**（取纯地板窄带，`mean+k*std` 阈值 + 最小间距 9px）实测格缝 `X=698+107.3k`、`Y=199+115.9k` → **美术格缝 ≡ 引擎列线 +3、行线 −29**，这就是原版美术与逻辑网格的既定关系（和 `obj_bbq/Other_11` 记过的 36px 是一回事）。
+  2. 同理量跨服底图：半尺寸美术真实格距是 **60×64**（不是 107/2×116/2），castle 是 108.8×117.7。**永远别用周期图/自相关定这个数**，用窄带缝序列取等差。
+  3. 反解：`sx = 107/美术格距X`、`sy = 116/美术格距Y`，再令 `x = 698 - 首缝X*sx`、`y = 199 - 首缝Y*sy`，最后平移整数格距（`mod 107/116`）选覆盖屏幕的分支。**缩放和相位必须分开算** —— 上一版把两者一起手调，`sy` 全偏（1.798 / 1.805 / 1.884），逐行累积才显出"全部错位"。
+  4. 复检用**语义**而不是眼睛：把美术按新参数还原到 1920×1080，逐格取样比 `map` 里的 `object:["lava"]` / `row[1].type == "water"`。水火 12/9 格、灼热 61/63 格 100% 吻合即通过。
+- **附带坑**：`bg_draw` 精确对齐后不负责铺满屏幕（四边露 10~20px），而 `room_battle` 是 `clearViewBackground = false` → 露出来是脏像素，必须在 `obj_battle/Draw_0` 先按 cover 比例用同一张图铺一层兜底。
+- **证据**：`tools/cross_bg_align.py`；`objects/obj_battle/Draw_0.gml:3-16`；`objects/obj_battle/Create_0.gml:36-41`；`objects/obj_bbq/Other_11.gml:51-54`；40 个 `datafiles/level_data/cross/*.json` 的 `bg_draw`。
 
+### B30 精灵整批「帧变噪点」→ 先翻 git 历史，别急着重解包 SWF
+- **症状**：`spr_infected_zhanshen_*` 里 death/duck/gear/wood/summon/bullet 的帧全是 RGB 噪点 + 抖动 alpha，只有第 0 帧干净；`spr_kf_wd_hulk_move_*` 则是滚动球。
+- **错路**：先怀疑素材本身、又去 `ffdec-cli` 解包 `变异战神.swf` 重导（能导，但 6 个 DefineSprite 的帧号还要跟 FrameLabel 对齐，代价高），直到发现 `git log --oneline -- sprites/<名>` 只有两条提交、老的那条干净。
+- **正确路径**：
+  1. `git log --oneline -- sprites/<精灵名>` → 找「好提交」（通常是坏提交的前一条）；
+  2. `git show <好提交>:sprites/<名>/<帧GUID>.png` 取出帧，和当前帧比 `isolated_ratio()`（横向邻域孤立像素占比：干净帧 ≤0.47，噪帧 ≥0.85）；
+  3. 只替换判定为噪点的帧，**同时写** `layers/<帧GUID>/<图层>.png` 与 `<帧GUID>.png`；
+  4. 好提交里也没有的帧，用前一帧顶替并在 CHANGELOG 注明。
+- **证据**：`tools/inf_zhanshen_restore.py`（GOOD=`4ec67fb2a6`，坏提交 `c9780a4f5f`）；2026-11-15 日志。
+
+### A27 `shutil.rmtree` 删精灵目录被安全护栏拦（WinError 1455 页面文件太小）
+- **症状**：批量改精灵时脚本在 `rmtree(layers/<layerGUID>)` 处抛 `[safe-delete][SAFE_DELETE_BULK_GUARD_ERROR]`，前面几个精灵已改完、后面全没动。
+- **错路**：`shutil.rmtree` / `os.remove` 循环删。
+- **正确路径**：多余文件与写反的图层目录一律 **`shutil.move` 挪到 `output/_tmp/orphan_*/`**，别删。`tools/inf_zhanshen_repair.py` 的 `move_aside()` 是现成写法。
+- **证据**：2026-11-15 日志；`tools/inf_zhanshen_repair.py`。
+
+### A28 `swf_frame_labels` 帧号 0 基，`ffdec-cli` 导出 PNG 是 1 基 → 差一帧
+- **症状**：按 FrameLabel 的「跳跃预备 109」去取 `109.png`，拿到的还是蜷成球的帧，动作从球开始。
+- **错路**：直接把 label 帧号当 PNG 文件名。
+- **正确路径**：`label 帧号 + 1 = PNG 文件名`。受伤段偏移同理按 PNG 口径算（本 SWF 健康/受伤差 **+210**）。取完先拼一张 `boss_seg_sheet.py` 式的目视条带确认。
+- **证据**：2026-11-15 绿巨人跳跃段（`tools/hulk_move_to_jump.py` 注释）。
+
+### B31 「修复前 vs 修复后」对比图里，修复前看着像空白残影（用户判定「这图是错的」）
+- **症状**：噪点帧贴灰底后几乎看不见，整排像空白色块；用户看图以为没修好或图做错了。实测 `spr_infected_zhanshen_duck` 噪帧 alpha 均值只有 74（正常帧 236）。
+- **错路**：① 「修复前」直接拿本地 `output/_tmp/bak_*` 备份——备份是修到一半时的快照，不一定等于仓库真实状态，无法复核；② 原样合成，没管 alpha 只有 70~120 的噪帧在半透明下视觉效果等于「空白」。
+- **正确路径**：
+  1. 「修复前」一律取 `git show HEAD:sprites/<名>/<帧GUID>.png`（与提交一致、可复核）；本地备份只当兜底。
+  2. 展示噪帧前把 alpha ×3（`a.point(lambda v: min(255, v*3))`），并在标题注明「alpha×3 才看得见」。**只改展示用副本，不写磁盘**。
+  3. 每格标 `f<帧号> 修复前/修复后`，上下同列同帧；再补一张全帧对照，别只抽 5 帧。
+  4. 脚本 `tools/inf_zhanshen_diff_sheet.py`（`--check` 只打印抽样帧）。
+- **证据**：`output/inf_zhanshen_before_after.png`、`output/inf_zhanshen_duck_full_compare.png`；2026-11-15 日志。
+
+### B32 跨服 BOSS 动画“某段定帧 / 闪空 / 播成别的动作”→ 先对精灵，再对 Step 里的取模常量
+- **症状**：阿诺 / 冰渣 / 火渣 / 法老的部分动作不对（待机、冲刺、念咒、放球、召唤），ice/fire 两种形态同时坏。
+- **错路**：拿 SWF FrameLabel 的帧数差当依据，直接给精灵「补帧」（把 `spr_infected_arno_idle` 从 12 改成 24、给 `pharaoh_skill_2` 改帧数），越改越糟——那 24 帧从第 8 帧起已经串到射击段（对不上 SWF 任何 idle 帧）。
+- **正确路径**：
+  1. 先证明精灵本身对不对：`python tools/swf_align.py <sprite名> <swf精灵目录>` 做单调对齐。全段 `0.00` 逐帧精确且连续 → 精灵没问题，**不要动它**。
+  2. 再查 Step：`image_index = ... mod N` 与 `... mod N + N` 是「正常段 / 受伤段」两半，要求 `2N <= 精灵帧数`。原版精灵帧数不同（阿诺 12/26/22 vs 变异 12/20/28；冰渣念咒/放球/攻击 8/16/17 vs 误写的 9/18/19），照抄原版常量必越界。
+  3. 一条命令查全部越界：`python tools/check_frame_range.py <对象名>`（`--all` 扫全量 `obj_infected_*`）。
+  4. 两段划分时先看 FrameLabel：`正常X` 与 `受伤X` 两个标签的间距就是 N。
+- **证据**：`objects/obj_infected_bingzha/Step_0.gml` 原 `mod 19`（精灵 35 帧）、`objects/obj_infected_arno/Step_0.gml` 待机 `+12`（精灵 12 帧）；2026-11-15 日志。
+
+### B33 技能播的是「别的动作」→ `swf_align` 代价不为 0.00 就是切错了段，别当噪声放过
+- **症状**：变异绿巨人技能1 应该是滚动冲撞，实际播的是原地挥拳/抬腿（用户直接指出「应该是滚动」）。
+- **错路**：只核「帧数够不够、有没有越界」就收工；`swf_align` 打出 1.19 / 6.06 的单帧代价，当成缩略图噪声忽略。实际上正常切片是 **0.00**，远大于 0 就说明这 14 帧是从别处拼来的。
+- **正确路径**：
+  1. `python tools/swf_align.py <sprite名> <swf精灵目录>` —— 代价必须逐帧 `0.00` 且 SWF 帧号单调连续；有一帧不是 0 就是切错段。
+  2. 用 `tools/swf_frame_labels.py <swf>` 拿标签，按标签区间重切；切帧走 `tools/sprite_frames_patch.py`：在 `PLAN` 里加一项 `key: (精灵名, 源目录, [(起,止 0基), ...], 说明)`，先 `--check` 再执行。
+  3. 帧数变了必须同步 Step：`mod N` / `+N` 两半、倒放段的基准、以及段时长（把 N 帧铺满原 tick 数就用 `floor(timer * N / ticks)`，**不要动 timer 阈值**，否则后面一堆硬编码基准全要跟着改）。
+  4. 最后跑 `tools/check_frame_range.py <对象名>`，再用脚本模拟全时段 0..结束 tick，确认无越界且每帧都播到。
+- **证据**：`spr_kf_wd_hulk_skill_1` 原 14 帧对齐到 SWF `#114 #128 #142 #157 #323 #338`（跳跃段）；重建后 `变滚球` 94..104 + `受伤变滚球` 304..314、`滚球` 105..108 + `受伤滚球` 315..318；2026-11-15 日志。
+
+### B34 对象与底图美术「看着差不多但就是没对齐」→ 用行投影比底边，别用覆盖范围
+- **症状**：巫毒 8 张底图的铁笼擦掉、改由 `obj_wind_tunnel` 绘制后，每个风洞比原位偏下约 1/3 格（用户截图标注红线 32px）。
+- **错路**：`obj_wind_tunnel/Create_0.gml` 原注释写「精灵内容 175x196，完整覆盖原铁笼区域 155x171」——按「能盖住」判断就当成对齐了，实际底部差 31.4px。另有一个陷阱：在**格内窗口**里统计像素求 bbox，结果会被窗口裁成 `h=窗口高、dy≈0`，看起来完美对齐，其实是假的。
+- **正确路径**：
+  1. 判据用「金属 + 网面」双色掩码（`min>105 且 b-r<70 且 |g-r|<45`，或 `r,g,b<78~95`），别用「中性灰」——游戏里铁笼偏蓝，`max-min<78` 会判不出来。
+  2. **不要限制在格内窗口**，按列做 y 方向逐行计数（`x = 格心 ±45`，每行 ≥25 像素算一行），找连续段。
+  3. 比**底边**（实心金属，不受顶部半透明气流影响），不比中心、不比高度——顶部形态两侧差太多会导致中心漂移。
+  4. 底图用擦除前备份 `output/_tmp/bak_wuduyanjiusuo_*`，按 `bg_draw` 的 `(x,y,sx,sy)` 换算成世界像素再比。
+- **证据**：底图铁笼底边 格心 **+40.6**，游戏精灵内容底边 格心 **+72** → 差 31.4；`objects/obj_wind_tunnel/Create_0.gml` 由 `y += 35` 改为 `y += 35 - 32`；2026-11-15 日志。
+
+### B35 护盾「画在身后 / 一放完就没」→ 身前方向看立绘朝向，时长看地面残留而不是 state
+- **症状**：变异皮特 / 变异朱莉的蜂巢护盾画在身体右下方（皮特压腿、朱莉盖住整个人），且技能动画播完护盾立刻消失；钢爪还在地上 2 秒，减伤已经没了。
+- **错路**：`shield_dx` 写正数就以为「往前推」——立绘是**朝左**的，屏幕右 = 身后；`shield_active` 只绑 `state == SKILL2/3/4`，而技能动画（84 tick）远短于它放出的地面物（钢爪 180 tick、导弹 ~120 tick）。
+- **正确路径**：
+  1. 先确认立绘朝向（打开 sprite 首帧看脸朝哪边），朝左 → `shield_dx` 取负。
+  2. 用 `tools/kuafu_shield_preview.py` 按 origin 对齐合成「立绘 + 护盾」，按参考图折算比例（护盾宽 ≈ 立绘宽 40~50%、高 ≈ 70~80%），别凭感觉放大。
+  3. 时长别只看 `state`：给地面物件加 `owner_boss`（创建时 `inst.owner_boss = id`），BOSS 侧
+     `with (obj_x) { if (owner_boss == other.id) _residue = true; }` 判断「自己的东西还在不在」；
+     没有地面物的（召唤/加血）用 `shield_tail` 尾期帧数。
+  4. 隐身状态（DISAPPEAR / APPEAR）要显式排除，否则护盾会跟着钻地一起出现。
+- **证据**：`objects/obj_kuafu_boss_pete/Create_0.gml` 原 `shield_dx = 60` → `-101`；`obj_kuafu_boss_julie/Create_0.gml` 原 `+10` → `-130`；两只的 `Step_0.gml` 末尾 `shield_active` 判定；2026-11-15 日志。
+
+### C27 变星卡的 buff 倍率越用越高 → 增幅源被重复登记，不是叠加上限写错
+- **症状**：至尊丰饶神（终转）连吃时光机，倍率 2.5 → 5.12 → 7.32 → 7.5，看着像「每被升星类卡影响一次就叠一倍」，容易误判成 3 倍上限没夹住。
+- **错路**：先查 `buff_max_stacks` / `stack_count` 的夹逼（那里是对的），再怀疑 atk 表与 `atk / 100` 的取整。真正的病灶在「谁进了 `buff_sources`」。
+- **正确路径**：增幅源 Step 的 `if (!buff_cells_refreshed)` 分支里**同时**做了两件事——重建格子、`ds_list_add(global.buff_sources, id)`；而 `mod_set_card_level:84` 每次变星都置 `buff_cells_refreshed = false` → 变一次星就往表里多塞一条自己。`rebuild_buff_grid` 按表逐条 `apply_buff`，`buff_stacking` 卡的叠层数 = 表里重复条数，等于「一张卡当三张卡用」。
+  修法：登记一律走幂等封装 `mod_buff_source_add(id)`（`scripts/mod_build_buff_grid/mod_build_buff_grid.gml:42`，已存在就 return）；重建格子照旧保留，别把整段 `buff_cells_refreshed` 逻辑删掉。
+  判据：`rg -n "ds_list_add\(global\.buff_sources" objects scripts` 应**只剩封装内部那一行**。
+- **证据**：2026-11-15；`scripts/mod_build_buff_grid/mod_build_buff_grid.gml:34-48`、`scripts/mod_set_card_level/mod_set_card_level.gml:84`、`objects/obj_fengrao_god/Step_0.gml:6-15`；复现脚本 `output/_tmp/fengrao_stack_sim.py`（修复前 2.50/5.12/7.32/7.50，与用户截图逐项一致）。
+
+### B36 关卡「还是两层云」→ 别只盯云事件，先看底图被画了几遍 + 补排间隔是否大于云走一格的时间
+- **症状**：跨服·梦魇天空改完底图（col0-1 画死云墙、col2-8 清空）并关掉常驻云后，用户仍报「还是两层云」，要求照棉花糖天空的设置方法改。
+- **错路（两条）**：
+  ① 只往「云事件铺了几层」方向查（`no_resident` / `static_cloud` / `spawn_interval`），没注意 `objects/obj_battle/Draw_0.gml:3-17` 在 `bg_draw` 分支里**先把整张底图按 cover 比例画一遍、再画精确份**，两份缩放 1.8090 vs 1.7833、水平错开 56.3 px → 底图里的云和六芒星各出现两次。
+  ② 修完双画以为搞定（差分只占 0.23% 像素），没算补排速度：`obj_cloud/Step_0.gml:5` 是 `x -= 0.25`，走完一格 107 px 需 428 帧 ≈ 7.1 秒；而梦魇天空的 `spawn_interval` 写 5 秒 < 7.1 → 补排快于消耗，同屏从 7 朵堆到 77 朵，前后三排叠成一片，视觉上就是第二层。
+- **正确路径**：
+  1. 先做**图层差分**判断底图被画了几遍：同一张精灵按 `bg_draw` 单画一次 vs 复刻 `Draw_0` 画法，逐像素相减，`>24` 的占比超过 0.1% 就说明有重影（`tools/_sky_diff_double.py`）。
+  2. 补边不要用 cover 比例整图重绘，改 `draw_sprite_part_ext` 取原图**边缘 1 像素拉成条带**补四边 + 四角，条带与精确份共用格线，天然无重影。
+  3. 报「云层数」之前先跑一次**逐帧模拟**（生成间隔 + 速度 + 淡出列），把 1/10/30/60/90 秒的存活朵数列出来：稳态朵数 ≈ 每排朵数 ×（走完一列所需帧数 ÷ 补排间隔帧数）。间隔必须 ≥ 走一格时间（428 帧），否则必然堆积。
+  4. 棉花糖天空的「一层」不是靠少铺云，而是靠**接缝**：流动性云飘到第 2 列格心（`get_world_position_from_grid(1,0)`）才淡出，正好接上底图左两列画死的云墙；把淡出列改到 col2 会留一条缝，反而读成两层。
+- **证据**：2026-11-15；`objects/obj_battle/Draw_0.gml:3-17`（旧 cover 兜底）、`objects/obj_cloud/Step_0.gml:5,11`、`objects/obj_event_manager/Step_0.gml:327-362`（棉花糖 1800/480 帧）、`datafiles/level_data/cross/nightmare_sky-0..7.json`；模拟数字：旧配置 56/56/56/77 朵 vs 新配置 7/14/28/49 朵。
+
+### B37 三行/多行窗口的索敌改按行桶查询后「完全不索敌」→ 多行窗口一律直扫，行桶只配单行
+- **症状**：后羿（`obj_houyi_god`）不索敌、不出弹；接得上的还有「老鼠也不啃它」（同一套按行分桶）。单行卡（小笼包 / 玉米 / 咖啡杯）同一条函数却没事。
+- **错路**：以为 `combat_enemy_in_rows` 本身写错，去逐行读桶的建表/失效逻辑（`combat_targets_row` 的 dirty / step / count 三条件都是对的）。
+- **正确路径**：`d6ae7a5b7d` 把后羿原来的 `with (obj_enemy_parent)` 直扫换成
+  `combat_enemy_in_rows(id, grid_row-1, grid_row+1, …)`。行桶按 `string(grid_row)` 分键，**是为单行查询设计的**；
+  卡片拿 ±1 行去遍历时一取到空桶就整段判「没有敌人」，`attack_timer` 每帧被清零 → 永远不出弹。
+  多行窗口（后羿 3 行）恢复直扫，只保留 `combat_target_alive(id)` 存活判定即可；
+  报「某张卡不索敌」时先看它的行窗口是不是单行，别去改公用函数。
+- **证据**：`git show d6ae7a5b7d -- objects/obj_houyi_god/`；`objects/obj_houyi_god/Step_0.gml:14-31`（2026-11-16 改回直扫）。
+
+### B38 「BOSS 被撞飞 / 被冲撞卡秒杀」→ 别用 `global.map_name` 当章节判据
+- **症状**：变异钢铁侠 / 变异绿巨（水火、巫毒）/ 变异火渣 / 变异冰渣（美味岛）撞不飞、能被白羊等冲撞卡秒杀；老章节的 BOSS 却正常。
+- **错路**：以为这几只没写 `is_boss`（实际 `Create_0` 第 13~15 行都有），去查 `crash_immune_enemy`。
+- **正确路径**：三处豁免写的是 `is_boss && global.map_name == "跨服远征"`，而进关时
+  `room_transition.gml:52` 会用 `register_map` 的 name 覆盖 `map_name`（水火之间 / 巫毒研究所 / 灼热地域 / 美味岛）——
+  只有古堡那章的字面值是「跨服远征」。**BOSS 豁免只认 `is_boss`**，章节判定要走 `is_cross_server_level(global.level_id)`。
+  另一处漏网：`obj_cat`（第 0 列的猫）只在 `!can_loss`（爆炸/冲撞型）时才查 `crash_immune_enemy`，普通猫会把 BOSS 撞飞。
+- **证据**：`objects/obj_baiyang_effect/Step_0.gml:13`（旧）、`obj_doumaobang_cat/Step_0.gml:25`（旧）、`obj_tanchitu_rabbit/Step_0.gml:39`（旧）、`obj_cat/Step_0.gml:36-42`、`scripts/mod_maps_init/mod_maps_init.gml:5,108,215,320,425`。
+
+### B39 「点神器进化却跳回卡片宝石页」→ `visible = false` 拦不住鼠标
+- **症状**：合成屋神级进化页，点左侧「神器进化」/「宝石进化」，画面跳回 `craft_top_tab == 0` 的卡片宝石页，
+  左侧还高亮成「宝石强化」（用户 2026-11-16 截图）。按钮本身没有任何反应。
+- **错路**：先怀疑新建的 `gear_*` 热区算错（`gear_left_x/gear_left_y`）或 Step 里被 `exit` 吃掉，
+  逐行核对 Step_0:236-257 与 Draw_0 的坐标——两边一致，改宽热区到 ±60/±80 无效。
+- **正确路径**：真正抢走点击的是**旧的那三个左侧按钮** `obj_craft_select_btn`。它们在
+  `obj_craft_bg/Step_0:76` 只是 `visible = false` 被藏掉（不销毁），而 `Mouse_4` 里只拦了
+  `tg_fx / tg_confirm`，没拦页签。位置又和神级进化页三个子页按钮几乎重合：
+  旧 `x-661, y-50/+100/+250`（46×84×1.8）vs 新 `x-660, y-80/+80/+240`（46×85×1.8），x 差 1px。
+  点「神器进化」上半 → 命中 btn1（卡片强化），下半 → 命中 btn2（宝石强化）；
+  点「宝石进化」→ 命中 btn3（卡片转职）。修法：
+  ```gml
+  if (!instance_exists(obj_craft_bg)) exit
+  if (!visible) exit
+  if (obj_craft_bg.craft_top_tab == 1 || obj_craft_bg.craft_top_tab == 3) exit
+  ```
+  **`visible = false` 只让 Draw 事件跳过，Mouse 事件照样派发**——这是 GameMaker 的常识性坑，
+  同族先例 `obj_craft_confirm_btn/Mouse_4` 早就是按 `craft_top_tab != 0` 拦的，`obj_closecraft_btn` 这次也补了 `if (!visible) exit`
+  （否则融合确认弹窗期间点隐藏的 X 会把整个合成屋关掉）。
+- **证据**：`objects/obj_craft_bg/Step_0.gml:76`、`objects/obj_craft_select_btn/Mouse_4.gml:1-15`、
+  `objects/obj_craft_bg/Create_0.gml:10-20`（旧按钮坐标）、`objects/obj_craft_bg/Create_0.gml:1065-1066`（新按钮坐标）。
+
+## 追加模板
 ```
 ### X{n} <一句话症状>
 - **症状**：看到什么、在哪一步暴露。

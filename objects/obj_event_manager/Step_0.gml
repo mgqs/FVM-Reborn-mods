@@ -463,7 +463,10 @@ if is_real(global.level_file.version){
 				if event_timer mod (event_list[i].interval*60) == (event_list[i].interval*60 - 1){
 					can_cloud_hole_summon = true
 				}
-				if event_timer == 1{
+				// 常驻云开关：关卡在 cloud 事件里写 no_resident:true 时，开局不铺 col2-8 的整屏云，
+				// 只保留下方 col9 飘入的那一层（梦魇天空用这个，避免「底图云 + 对象云」两层叠加）。
+				if event_timer == 1 && !variable_struct_exists(event_list[i], "no_resident"){
+					var _cloud_fade = variable_struct_exists(event_list[i], "fade_col") ? event_list[i].fade_col : 1;
 					for(var c_col = 2 ; c_col < global.grid_cols  ; c_col ++){
 						for(var c_row = 0 ; c_row < global.grid_rows  ; c_row ++){
 							if array_get_index(event_list[i].cloud_rows,c_row+1) != -1{
@@ -472,6 +475,7 @@ if is_real(global.level_file.version){
 								cloud_inst.image_index = cloud_count mod 2
 								cloud_inst.depth += cloud_count mod 2
 								cloud_inst.image_alpha = 1
+								cloud_inst.fade_col = _cloud_fade
 								if event_list[i].cloud_type == "night"{
 									cloud_inst.sprite_index = spr_cloud_night
 								}
@@ -498,6 +502,7 @@ if is_real(global.level_file.version){
 							var cloud_inst = instance_create_depth(cloud_pos.x,cloud_pos.y-10,-5,obj_cloud)
 							cloud_inst.image_index = cloud_count mod 2
 							cloud_inst.depth += cloud_count mod 2
+							cloud_inst.fade_col = variable_struct_exists(event_list[i], "fade_col") ? event_list[i].fade_col : 1
 							if event_list[i].cloud_type == "night"{
 								cloud_inst.sprite_index = spr_cloud_night
 							}

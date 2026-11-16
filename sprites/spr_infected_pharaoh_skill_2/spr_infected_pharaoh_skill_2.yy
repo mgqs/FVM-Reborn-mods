@@ -31,6 +31,25 @@
     {"$GMSpriteFrame":"v1","%Name":"e19dca9c-4791-4ea0-9605-e9f46ad3d571","name":"e19dca9c-4791-4ea0-9605-e9f46ad3d571","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"6c52f2ec-5bf1-4736-bb35-4f5cb2badd88","name":"6c52f2ec-5bf1-4736-bb35-4f5cb2badd88","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"6f1ce3b9-ec05-4a82-b96a-82408cdbfdf2","name":"6f1ce3b9-ec05-4a82-b96a-82408cdbfdf2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"8f3dbd58-0abb-4187-84cb-b899267be854","name":"8f3dbd58-0abb-4187-84cb-b899267be854","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"ab300180-aaa0-4ba6-ba6c-2da8aaaed653","name":"ab300180-aaa0-4ba6-ba6c-2da8aaaed653","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"51f0fdff-06a4-4d43-8122-cbc32eaefa2b","name":"51f0fdff-06a4-4d43-8122-cbc32eaefa2b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0ab964d9-dd56-4d74-8d51-6b6360e5d7ca","name":"0ab964d9-dd56-4d74-8d51-6b6360e5d7ca","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0d1fe631-4e64-43d1-847d-ccb65780fdb7","name":"0d1fe631-4e64-43d1-847d-ccb65780fdb7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"7cc5975d-2408-4005-81e5-2792dad2190e","name":"7cc5975d-2408-4005-81e5-2792dad2190e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"b1c1810d-2594-4d93-8920-5da490560c41","name":"b1c1810d-2594-4d93-8920-5da490560c41","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e03b145d-5922-4698-aa50-8d06136dde0f","name":"e03b145d-5922-4698-aa50-8d06136dde0f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"be516015-6c5c-4490-853e-64894df6beeb","name":"be516015-6c5c-4490-853e-64894df6beeb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f12542d0-2f60-44db-9a0c-08e0ed219a0a","name":"f12542d0-2f60-44db-9a0c-08e0ed219a0a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"95f7d5fb-6869-47fb-8077-e2bf94e9ecdf","name":"95f7d5fb-6869-47fb-8077-e2bf94e9ecdf","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"e96c8060-5ed4-4d62-a552-b659bc0cdbe0","name":"e96c8060-5ed4-4d62-a552-b659bc0cdbe0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"4baf3667-125e-48ea-bca8-2fa9d19f00b8","name":"4baf3667-125e-48ea-bca8-2fa9d19f00b8","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"519ae3ca-0ccf-4209-bf0c-142928d192e8","name":"519ae3ca-0ccf-4209-bf0c-142928d192e8","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3ed329c5-96de-4412-9410-34676492d33f","name":"3ed329c5-96de-4412-9410-34676492d33f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"6e3e5ba4-3dc6-4aa0-8602-aa76091cdde2","name":"6e3e5ba4-3dc6-4aa0-8602-aa76091cdde2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"c65f419c-4d2b-4763-8140-002decb2f95d","name":"c65f419c-4d2b-4763-8140-002decb2f95d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"1dc25601-ec25-4f06-abd1-5bedcebcb9ac","name":"1dc25601-ec25-4f06-abd1-5bedcebcb9ac","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0b42f449-9aa6-427c-a5d6-69ede7d10e9d","name":"0b42f449-9aa6-427c-a5d6-69ede7d10e9d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -67,7 +86,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":19.0,
+    "length":38.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -88,61 +107,118 @@
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d57c5fb0-4a0a-44b2-8d03-4a1d9dea2bed","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f3077797-7395-44f2-ae63-5f1316025df0","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"85b31dd8-303c-4a91-bc5e-d754db6a5609","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1c0052eb-b1ee-4f18-a583-1ec38bcffb98","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a110127c-a111-409c-b6b2-f0adfccee624","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"774e3e3c-dd46-479e-9baf-72a49846a369","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"53368ad3-34b3-488c-a0c1-bf05f8db428e","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"9da32362-83c9-4768-bbe4-6ec784bca90d","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"53b893e4-ba49-4747-831f-2cef374f2f52","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2654f0bc-33cf-4fd0-ae24-92eb48be9b90","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"9f08a79a-9924-44db-9be7-8562d6561d39","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"a1c40b0d-ee2e-418a-b242-a872154e35d1","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a93e080e-629a-44b8-900e-4fd25b35ec1d","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"917828a7-347e-4763-bb3c-69efce9d3fa5","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"7334b8ff-50a8-49f7-9b48-93b558f37042","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e5db8a2c-cfbd-4e8a-9d84-bd67335e1029","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"c7c3adda-f95b-42c2-990d-cfac8f0c73b4","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"387d63fc-620c-4c9d-83b8-6b0aecd508e8","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3c4cda90-b2ec-4eec-8fb4-824b1a960bb5","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"529c8b2b-52c1-474f-9c10-7f37fa6303f2","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"830c7e4a-1d7a-4b43-becc-710e1c004908","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"76acc8dd-8b12-4965-965f-6b9110db04fe","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"cf2d576c-ecd5-4f10-a70c-844fbfbcaa14","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"f4b77905-03db-4799-befa-7b305a0a1548","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"32d26e85-d976-49ff-a0a9-08c73c5466e1","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f0998957-83d2-4646-aeea-8e75eea9e168","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"4505ceca-7f6c-4229-a84e-c6752298cfdb","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"517dca71-c040-487b-8755-04bb27b97617","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"ef63083b-899d-42b1-90c8-4d882c7435bd","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"53d695f1-9b36-4671-893c-1b93eb0adf9f","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5523780d-4888-4c57-ab0b-059a2ac287b0","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"c1b2e896-5acf-4f70-a8e7-1890fe99f86a","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"020ce4ad-10a2-4a55-8d17-0afc957aa448","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"319c54dd-a72b-43ec-abbb-8042c2a81254","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"5f282bc2-ffca-42aa-8782-aa2d1f7ca21a","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"ae755aa0-a203-4166-806f-3dec4d9dd25d","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d9009933-ff26-4e78-9555-048c06947c3b","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"3ddcbf1d-84b6-4956-971b-02609b4f8817","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"04f16b70-3879-433a-962a-51566ff2d675","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ed76378c-e58c-4943-9307-1484fb10b671","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"57821cc1-d4ce-438a-b4fb-941bcf592f5e","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"86b21fe2-3723-4132-918e-12bb713d9d7a","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"fd2886af-71c6-4edb-9a78-75a92847a5c3","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"68a8566d-bd29-4f1e-9113-bbec50c961f9","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"c36178b5-5a9b-4977-9075-4dbfae5985ea","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b6479c42-02c3-4f6d-bf51-e015bff04ff2","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a87b243d-f84f-4216-90c5-0636689cb5f1","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"a7faec3a-6b7c-4c72-a952-d6525c5f5c90","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e19dca9c-4791-4ea0-9605-e9f46ad3d571","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a82d7af9-4c80-4855-ac1f-4efad6eca1b8","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"f13e586a-b5fe-4ece-a4da-a53cac329ae5","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6c52f2ec-5bf1-4736-bb35-4f5cb2badd88","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"cc3dbf0f-fd71-44e5-a0bc-5553a8e4ea03","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"976ea50d-6624-45ed-b37d-786fb42137e1","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6f1ce3b9-ec05-4a82-b96a-82408cdbfdf2","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"5b0b49ce-f9cf-493b-b004-16f5fe939c03","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"505481f2-35fa-41b9-b525-d598b91fab36","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8f3dbd58-0abb-4187-84cb-b899267be854","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f1a68088-f570-4f64-adbe-d264fd7feff5","IsCreationKey":false,"Key":19.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ab300180-aaa0-4ba6-ba6c-2da8aaaed653","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"60e34b1e-ba37-4497-8b22-fef0cd81a64c","IsCreationKey":false,"Key":20.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"51f0fdff-06a4-4d43-8122-cbc32eaefa2b","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"4ccabdaa-4932-4a72-b1ea-9221681d33ea","IsCreationKey":false,"Key":21.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0ab964d9-dd56-4d74-8d51-6b6360e5d7ca","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"51459eb3-2cb8-43fc-9290-1040f4aa63a3","IsCreationKey":false,"Key":22.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0d1fe631-4e64-43d1-847d-ccb65780fdb7","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"10893c22-910c-4211-9d69-bcd16c458930","IsCreationKey":false,"Key":23.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7cc5975d-2408-4005-81e5-2792dad2190e","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"52969627-8386-49ab-87e6-a76741cc0e4d","IsCreationKey":false,"Key":24.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b1c1810d-2594-4d93-8920-5da490560c41","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"53437d89-a9cb-41b7-9753-e80445046048","IsCreationKey":false,"Key":25.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e03b145d-5922-4698-aa50-8d06136dde0f","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"593689ad-5c71-485e-8e1f-2f23f40a9b95","IsCreationKey":false,"Key":26.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"be516015-6c5c-4490-853e-64894df6beeb","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"7f174675-2d13-43cd-b40c-2274143da36e","IsCreationKey":false,"Key":27.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f12542d0-2f60-44db-9a0c-08e0ed219a0a","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"57bb0954-275a-4698-a65a-c4f9439412bb","IsCreationKey":false,"Key":28.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"95f7d5fb-6869-47fb-8077-e2bf94e9ecdf","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"6bc3cc55-6e9b-4110-81dc-ef25b2634bfb","IsCreationKey":false,"Key":29.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"e96c8060-5ed4-4d62-a552-b659bc0cdbe0","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"e7556c79-e4bb-4dc7-a687-49e2f6ff5235","IsCreationKey":false,"Key":30.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4baf3667-125e-48ea-bca8-2fa9d19f00b8","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c74dfcaf-391c-4738-b82c-c4338303ef56","IsCreationKey":false,"Key":31.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"519ae3ca-0ccf-4209-bf0c-142928d192e8","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"21489414-1a4a-449b-8779-b81bc513ee0e","IsCreationKey":false,"Key":32.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3ed329c5-96de-4412-9410-34676492d33f","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"0f4426aa-cce2-4ccf-b6cf-d013f3ddfc1f","IsCreationKey":false,"Key":33.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6e3e5ba4-3dc6-4aa0-8602-aa76091cdde2","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"81758ea1-f242-4ba4-94d7-0b1418c6c748","IsCreationKey":false,"Key":34.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c65f419c-4d2b-4763-8140-002decb2f95d","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ba5fd960-0be2-4724-9db6-09d667430d09","IsCreationKey":false,"Key":35.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1dc25601-ec25-4f06-abd1-5bedcebcb9ac","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"7ff97716-c76b-4f6f-b032-51cabedbbd69","IsCreationKey":false,"Key":36.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0b42f449-9aa6-427c-a5d6-69ede7d10e9d","path":"sprites/spr_infected_pharaoh_skill_2/spr_infected_pharaoh_skill_2.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"950224b9-667b-46f4-ab9e-7563f768c006","IsCreationKey":false,"Key":37.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

@@ -107,32 +107,37 @@ switch state{
 		break
 	
 	case BOSS_STATE.SKILL1:
-		if timer <= 8 * 5 - 1{
+		// 精灵分段（变异绿巨人.swf → DefineSprite_190）：
+		//   变滚球 11 帧 + 受伤变滚球 11 帧 = spr_kf_wd_hulk_skill_1_ready（22 帧）
+		//   滚球    4 帧 + 受伤滚球 4 帧   = spr_kf_wd_hulk_skill_1（8 帧）
+		// 段时长沿用原版节奏（变身 40 tick、滚动 55 tick），11 帧按比例铺满 40 tick。
+		var _s1_in = 8 * 5;
+		if timer <= _s1_in - 1{
 			sprite_index = spr_kf_wd_hulk_skill_1_ready
 			if hp > maxhp * hurt_rate{
-				image_index = floor(timer /5) mod 8
+				image_index = floor(timer * 11 / _s1_in)
 			}
 			else{
-				image_index = floor(timer /5) mod 8 + 8
+				image_index = floor(timer * 11 / _s1_in) + 11
 			}
 		}
 		else if timer <= 95{
 			sprite_index = spr_kf_wd_hulk_skill_1
 			if hp > maxhp * hurt_rate{
-				image_index = floor((timer-8*5) /3) mod 7
+				image_index = floor((timer-_s1_in) /3) mod 4
 			}
 			else{
-				image_index = floor((timer-8*5) /3) mod 7
+				image_index = floor((timer-_s1_in) /3) mod 4 + 4
 			}
 			x -= 10
 		}
-		else if timer <= 95 + 8 * 5 - 1{
+		else if timer <= 95 + _s1_in - 1{
 			sprite_index = spr_kf_wd_hulk_skill_1_ready
 			if hp > maxhp * hurt_rate{
-				image_index = 8 - (floor((timer-95) /5) mod 8)
+				image_index = 10 - floor((timer-95) * 11 / _s1_in)
 			}
 			else{
-				image_index = 16 - (floor((timer-95) /5) mod 8)
+				image_index = 21 - floor((timer-95) * 11 / _s1_in)
 			}
 		}
 		else if timer <= 95 + 20 * 5 - 1{
@@ -147,29 +152,29 @@ switch state{
 		else if timer <= 95 + 28 * 5 - 1{
 			sprite_index = spr_kf_wd_hulk_skill_1_ready
 			if hp > maxhp * hurt_rate{
-				image_index = floor((timer-195)/5) mod 8
+				image_index = floor((timer-195) * 11 / _s1_in)
 			}
 			else{
-				image_index = floor((timer-195)/5) mod 8 + 8
+				image_index = floor((timer-195) * 11 / _s1_in) + 11
 			}
 		}
 		else if timer <= 150 + 28 * 5 - 1{
 			sprite_index = spr_kf_wd_hulk_skill_1
 			if hp > maxhp * hurt_rate{
-				image_index = floor((timer-235) /3) mod 7
+				image_index = floor((timer-235) /3) mod 4
 			}
 			else{
-				image_index = floor((timer-235) /3) mod 7
+				image_index = floor((timer-235) /3) mod 4 + 4
 			}
 			x -= 10
 		}
 		else if timer <= 150 + 36 * 5 - 1{
 			sprite_index = spr_kf_wd_hulk_skill_1_ready
 			if hp > maxhp * hurt_rate{
-				image_index = 8 - (floor((timer-290) /5) mod 8)
+				image_index = 10 - floor((timer-290) * 11 / _s1_in)
 			}
 			else{
-				image_index = 16 - (floor((timer-290) /5) mod 8)
+				image_index = 21 - floor((timer-290) * 11 / _s1_in)
 			}
 		}
 		

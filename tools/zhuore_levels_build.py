@@ -23,9 +23,23 @@ OUT_DIR = os.path.join(ROOT, "datafiles", "level_data", "cross")
 
 PREFIX = "zhuore_"
 MAP_SPRITE = "spr_zhuorediyu"
-# 底图 1114x600 × 1.8 = 2005x1080，与古堡底图同尺寸；
-# (2,36) 是按底图格子实测反推的，能让 695/228/107/116 的网格压在原画格子上（误差 <2px）
-BG_DRAW = {"x": 2, "y": 36, "sx": 1.8, "sy": 1.8}
+# 底图参数不要手写：由 tools/cross_bg_align.py 从美术格距反解（sx = 107/格距X、sy = 116/格距Y，
+# 再把第一条美术格缝钉到原生底图关系 (698,199) mod (107,116)）。手调那版 {2,36,1.8,1.8}
+# 让美术比逻辑网格低 33px，六张跨服底图全部错位（MISTAKES.md B29）。
+def _bg_draw(sprite):
+    try:
+        from cross_bg_align import family_of, solve
+    except ImportError:
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from cross_bg_align import family_of, solve
+    fam = family_of(sprite)
+    if fam is None:
+        raise SystemExit("cross_bg_align 里没有这个底图的标定: " + sprite)
+    return solve(fam)
+
+
+BG_DRAW = _bg_draw(MAP_SPRITE)
 
 TIME_LIMIT = 300
 STARTING_FLAME = 3000

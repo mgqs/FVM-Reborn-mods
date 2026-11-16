@@ -195,6 +195,7 @@ switch state{
 			for(var i = 0 ; i < global.grid_rows ; i++){
 				var spike_pos = get_world_position_from_grid(grid_col-1,i)
 				var spike_inst = instance_create_depth(x-125,spike_pos.y+25,depth,obj_kuafu_boss_pete_spike)
+				spike_inst.owner_boss = id		// 护盾据此判断「自己的尖刺还在场上」
 				spike_inst.maxhp *= (1+((maxhp - 40000)/40000)*0.5)
 				spike_inst.hp = spike_inst.maxhp
 				spike_inst.hp_modified = true
@@ -247,6 +248,7 @@ switch state{
 				var coord = target_coord[i]
 				var bandage_pos = get_world_position_from_grid(coord[0],coord[1])
 				var claw_inst = instance_create_depth(bandage_pos.x+10,bandage_pos.y+20,-800,obj_kuafu_boss_pete_claw)
+				claw_inst.owner_boss = id		// 护盾据此判断「自己的钢爪还在场上」
 				claw_inst.maxhp *= (1 + ((maxhp-40000)/40000)*0.5)
 				claw_inst.hp = claw_inst.maxhp
 				claw_inst.hp_modified = true
@@ -279,6 +281,7 @@ switch state{
 		// 变异：一次技能发射 12 发导弹
 		if timer > 35 && (timer-35) mod 30 == 15 && timer < 395{
 			var inst = instance_create_depth(x,y-285,-800,obj_kuafu_boss_pete_missile)
+			inst.owner_boss = id		// 护盾据此判断「自己的导弹还在空中」
 			inst.target_col = irandom_range(0,8)
 			inst.target_row = irandom_range(0,global.grid_rows-1)
 		}
@@ -332,8 +335,17 @@ switch state{
 		break
 }
 
-// 变异护盾：导弹(SKILL2)/钢爪(SKILL3)/尖刺(SKILL4) 在地面释放期间展开，其余状态（含踩踏 SKILL1 / 待机 / 钻地）收起
-shield_active = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3 || state == BOSS_STATE.SKILL4) && hp > 0
+// 变异护盾：施法状态（导弹 SKILL2 / 钢爪 SKILL3 / 尖刺 SKILL4）展开；
+// 技能动画结束后只要自己放出的钢爪、导弹、尖刺还在场上（钢爪 3 秒、尖刺 8 秒，
+// 都远长于技能动画），护盾就继续保持——减伤要盖住「地面物体停留」的全过程。
+// 踩踏 SKILL1 / 待机 / 钻地（隐身）收起。
+var _casting = (state == BOSS_STATE.SKILL2 || state == BOSS_STATE.SKILL3 || state == BOSS_STATE.SKILL4);
+var _residue = false;
+with (obj_kuafu_boss_pete_claw)    { if (owner_boss == other.id) _residue = true; }
+with (obj_kuafu_boss_pete_spike)   { if (owner_boss == other.id) _residue = true; }
+with (obj_kuafu_boss_pete_missile) { if (owner_boss == other.id) _residue = true; }
+var _visible = (state != BOSS_STATE.DISAPPEAR && state != BOSS_STATE.APPEAR);
+shield_active = (_casting || _residue) && _visible && hp > 0;
 if shield_active{
 	shield_anim ++
 }

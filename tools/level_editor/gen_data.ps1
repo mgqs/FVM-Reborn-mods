@@ -204,7 +204,11 @@ $enemyFiles = @(
     @{ path = "scripts\mod_enemy_init\mod_enemy_init.gml";             series = "mod" },
     @{ path = "scripts\longyuan_enemy_init\longyuan_enemy_init.gml";   series = "longyuan" },
     @{ path = "scripts\zhuore_enemy_init\zhuore_enemy_init.gml";       series = "zhuore" },
-    @{ path = "scripts\zhuore_boss_init\zhuore_boss_init.gml";         series = "zhuore" }
+    @{ path = "scripts\zhuore_boss_init\zhuore_boss_init.gml";         series = "zhuore" },
+    @{ path = "scripts\shuihuo_enemy_init\shuihuo_enemy_init.gml";     series = "cross" },
+    @{ path = "scripts\shuihuo_boss_init\shuihuo_boss_init.gml";       series = "cross" },
+    @{ path = "scripts\wudu_enemy_init\wudu_enemy_init.gml";           series = "cross" },
+    @{ path = "scripts\wudu_boss_init\wudu_boss_init.gml";             series = "cross" }
 )
 $enemies = New-Object System.Collections.ArrayList
 $seen = @{}
@@ -232,6 +236,8 @@ foreach ($ef in $enemyFiles) {
         if ($nSpr.Success) { $spr = Resolve-Sprite $nSpr.Groups[1].Value }
         $series = $ef.series
         if ($id -like "kuafu_*") { $series = "cross" }
+        elseif ($id -like "kf_sh_*") { $series = "shuihuo" }
+        elseif ($id -like "kf_wd_*") { $series = "wudu" }
         elseif ($id -like "longyuan_*") { $series = "longyuan" }
         elseif ($id -like "zhuore_*") { $series = "zhuore" }
         $isBoss = $false

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>合成屋 · 神器进化 / 宝石进化 — 预览</title>
+<style>
+  @font-face { font-family: "GameCN"; src: local("Microsoft YaHei UI Bold"), local("Microsoft YaHei UI"), local("Microsoft YaHei"); font-weight: 700; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: #0b1220; overflow: hidden; }
+  #wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #stage { position: relative; width: 1920px; height: 1080px; transform-origin: center center;
+    background: radial-gradient(120% 90% at 50% 40%, #12283f 0%, #08131f 70%, #04080d 100%); }
+  #stage img.bg { position: absolute; image-rendering: auto; }
+  .abs { position: absolute; }
+  .cn { font-family: "GameCN", "Microsoft YaHei", sans-serif; font-weight: 700; }
+  .parch-text { color: #6b4522; text-shadow: 0 1px 0 rgba(255,248,225,.85); letter-spacing: 1px; }
+  .dark-text { color: #fff6de; text-shadow: 0 2px 2px rgba(0,0,0,.75), 0 0 4px rgba(0,0,0,.5); }
+
+  /* 顶部页签 */
+  .tab { cursor: pointer; }
+  .tab.dim { filter: brightness(.72) saturate(.9); }
+  .tab:hover { filter: brightness(1.08); }
+
+  /* 左侧竖排按钮 */
+  .navbtn { position: absolute; width: 82.8px; height: 151.2px; cursor: pointer; }
+  .navbtn .navbg { position: absolute; inset: 0; background-size: 100% 100%; }
+  .navbtn .navtxt { position: absolute; inset: 0; display: flex; flex-direction: column;
+     align-items: center; justify-content: center; gap: 2px; line-height: 1.0; }
+  .navbtn .navtxt span { font-size: 24px; letter-spacing: 1px; }
+  .navbtn.off .navtxt span { color: #fdf3dd; text-shadow: 0 2px 2px rgba(60,20,0,.55); }
+  .navbtn.on  .navtxt span { color: #6a3f18; text-shadow: 0 1px 0 rgba(255,252,235,.9); }
+  .navbtn:hover { filter: brightness(1.06); }
+
+  /* 槽位 */
+  .slot { position: absolute; width: 104.4px; height: 122.4px; cursor: pointer; }
+  .slot .slotbg { position: absolute; inset: 0; background-size: 100% 100%; }
+  .slot .sloticon { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) scale(1); }
+  .slot .tag { position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%); white-space: nowrap; font-size: 17px; }
+  .slot.empty .tag { color: #fff3dc; text-shadow: 0 2px 3px rgba(40,16,0,.85), 0 0 6px rgba(60,26,0,.7); }
+  .slot .lv { position: absolute; right: 2px; top: 4px; font-size: 15px; color: #fff;
+     background: rgba(120,40,10,.82); border-radius: 8px; padding: 0 5px; }
+  .slot .cnt { position: absolute; right: 9px; bottom: 11px; font-size: 16px; color: #fff;
+     text-shadow: 0 1px 2px #000; }
+  .slot.hover .slotbg { filter: brightness(1.12); }
+
+  /* 进化按钮 */
+  #btn { position: absolute; width: 145.8px; height: 75.6px; cursor: pointer; background-size: 100% 100%; }
+  #btn.dis { filter: grayscale(.55) brightness(.9); cursor: not-allowed; }
+  #btn.press { transform: scale(.96); }
+
+  /* 右侧列表 */
+  .cell { position: absolute; width: 76px; height: 88px; border-radius: 8px;
+     background: linear-gradient(#1f4a72, #12304d); border: 2px solid #2f6b9c; cursor: pointer;
+     box-shadow: inset 0 0 10px rgba(0,0,0,.55); }
+  .cell:hover { border-color: #7fd0ff; }
+  .cell.notown { filter: grayscale(1) brightness(.55); cursor: default; }
+  .cell.sel { border-color: #ffd45e; box-shadow: 0 0 10px rgba(255,200,80,.75), inset 0 0 10px rgba(0,0,0,.55); }
+  .cell img { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); max-width: 62px; max-height: 62px; }
+  .cell .nm { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); font-size: 12px;
+     color: #dff1ff; white-space: nowrap; }
+  .cell .badge { position: absolute; right: -3px; top: -5px; font-size: 11px; color: #3a1d00;
+     background: linear-gradient(#ffe07a,#f5a623); border-radius: 7px; padding: 0 4px; border: 1px solid #8a4b00; }
+  .cell .lvb { position: absolute; left: 2px; top: 1px; font-size: 11px; color: #fff; text-shadow: 0 1px 2px #000; }
+
+  /* 底部道具栏（凭证架，可点选） */
+  #propsWrap { position: absolute; left: 296px; top: 946px; width: 660px; height: 74px;
+     overflow-x: auto; overflow-y: hidden; }
+  #propsWrap::-webkit-scrollbar { height: 0; display: none; }
+  #props { position: relative; height: 74px; }
+  .prop { position: absolute; width: 60px; height: 60px; top: 6px; border-radius: 12px;
+     cursor: pointer; transition: filter .12s ease; }
+  .prop:hover { filter: brightness(1.18) drop-shadow(0 0 6px rgba(255,220,120,.85)); }
+  .prop.zero { filter: grayscale(.65) brightness(.8); }
+  .prop.zero:hover { filter: grayscale(.25) brightness(1.02); }
+  .prop.sel, .prop.zero.sel, .prop.zero.sel:hover {
+     filter: none; box-shadow: 0 0 0 2px #ffd45e, 0 0 14px rgba(255,200,80,.9); }
+  .prop img { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); max-width: 58px; max-height: 58px; }
+  .prop .pb { position: absolute; right: -2px; bottom: -2px; font-size: 15px; color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; }
+  #pl, #pr { position: absolute; top: 946px; width: 34px; height: 74px; display: none;
+     align-items: center; justify-content: center; font-size: 26px; color: #cfe8ff; cursor: pointer;
+     text-shadow: 0 2px 3px #000; }
+  #pl { left: 256px; } #pr { left: 966px; }
+  #pl:hover, #pr:hover { color: #fff; }
+
+  #hint { position: absolute; left: 655px; top: 806px; transform: translateX(-50%); width: 700px;
+     text-align: center; font-size: 19px; }
+  #title0, #slots, #arrow, #res, #grid, #props { position: absolute; left: 0; top: 0; }
+  #title0 { left: 655px; top: 404px; transform: translateX(-50%); white-space: nowrap; font-size: 22px; letter-spacing: 4px; }
+  #toast { position: absolute; left: 960px; top: 430px; transform: translate(-50%,-50%) scale(.9);
+     padding: 14px 34px; border-radius: 14px; background: rgba(12,30,52,.92); border: 2px solid #6cc0ff;
+     color: #eaf7ff; font-size: 26px; opacity: 0; transition: all .22s ease; pointer-events: none; white-space: nowrap; }
+  #toast.on { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  #fx { position: absolute; left: 655px; top: 658px; width: 300px; height: 300px; transform: translate(-50%,-50%);
+     pointer-events: none; opacity: 0; }
+  #fx.on { animation: fxpop .75s ease-out; }
+  @keyframes fxpop {
+     0% { opacity: 0; transform: translate(-50%,-50%) scale(.3) rotate(-12deg); }
+     35% { opacity: 1; transform: translate(-50%,-50%) scale(1.05) rotate(0deg); }
+     100% { opacity: 0; transform: translate(-50%,-50%) scale(1.35); }
+  }
+  #fx span { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 120px;
+     color: #fff3b0; text-shadow: 0 0 30px #ffb43c, 0 0 60px #ff8a1f; }
+  .lbl { position: absolute; font-size: 15px; }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+
+  <img class="bg" id="b0" src="assets/bg_base.png">
+  <img class="bg" id="b1" src="assets/bg_left.png">
+  <img class="bg" id="b2" src="assets/bg_right.png">
+  <img class="bg" id="b3" src="assets/bg_bar.png">
+
+  <img class="abs tab" id="tab0" src="assets/tab_cardgem_1.png">
+  <img class="abs tab" id="tab1" src="assets/tab_evo_0.png">
+  <img class="abs tab" id="tab2" src="assets/tab_fusion_1.png">
+
+  <div id="navs"></div>
+
+  <div id="title0" class="cn parch-text"></div>
+  <div id="slots"></div>
+  <div id="arrow"></div>
+  <div id="res"></div>
+  <div id="btn"></div>
+  <div id="hint" class="cn parch-text"></div>
+
+  <div id="grid"></div>
+
+  <div id="propsWrap"><div id="props"></div></div>
+  <div id="pl" class="cn">‹</div>
+  <div id="pr" class="cn">›</div>
+  <div id="credName" class="cn" style="position:absolute;left:296px;top:904px;font-size:14px;color:#cfe8ff;text-shadow:0 1px 2px #000;"></div>
+  <div id="gold" class="cn" style="position:absolute;font-size:26px;color:#ffd75e;text-shadow:0 2px 3px #000;"></div>
+  <div id="toast" class="cn"></div>
+  <div id="fx"><span>✦</span></div>
+  <div id="tips" class="cn" style="position:absolute;left:1140px;top:1000px;font-size:15px;color:#9fd2ff;"></div>
+</div></div>
+
+<script>
+/* ───────────────── 常量（与 obj_craft_bg / obj_craft_select_btn 对齐）───────────────── */
+const W = 1920, H = 1080, CX = 960, CY = 540;
+const BG_S = 0.9, BG_W = 1844, BG_H = 1166;
+const TAB = { left: CX - 922 * BG_S + 16 * 1.8, top: CY - 583 * BG_S + 28 * 1.8, s: 1.35, w: 119, h: 31, gap: 119 * 1.35 + 10 };
+const NAV = { x: CX - 660, y0: 460, pitch: 160, s: 1.8 };   // 三个竖排按钮：金卡 / 神器 / 宝石（书页 386~863 内三等分）
+const SLOT = { x1: CX - 455, x2: CX - 155, y: CY - 40, s: 1.8 };
+const ARROW = { x: CX - 305, y: CY + 34 };
+const RES = { x: CX - 305, y: CY + 118 };
+const BTN = { x: CX - 305, y: CY + 216 };
+const GRID = { x: CX + 204, y: CY - 321, cw: 84, ch: 96, cols: 7, rows: 8 };
+
+/* ───────────────── 数据：xlsx 15 条路线 = 3 条神器链 + 12 条宝石系（27 步）───────────────── */
+const WEAPON_CHAINS = [
+  { key: '海神镖枪系', items: [
+      { id: 'poseidon_dart_gun', name: '海神镖枪', icon: 'poseidon_dart_gun_icon.png' },
+      { id: 'zeus_bolt',         name: '宙斯神弩', icon: 'zeus_bolt_icon.png' },
+      { id: 'star_wand',         name: '星之神杖', icon: 'star_wand_icon.png' } ],
+    credits: ['神弩进化凭证', '神杖进化凭证'] },
+  { key: '诸神之盾系', items: [
+      { id: 'gods_shield',   name: '诸神之盾', icon: 'gods_shield_icon.png' },
+      { id: 'master_shield', name: '主宰之盾', icon: 'master_shield_icon.png' },
+      { id: 'rose_shield',   name: '荆棘玫瑰', icon: 'rose_shield_icon.png' } ],
+    credits: ['神盾进化凭证', '荆棘玫瑰进化凭证'] },
+  { key: '死神镰刀系', items: [
+      { id: 'death_scythe', name: '死神镰刀', icon: 'death_scythe_icon.png' },
+      { id: 'hades_scythe', name: '冥王战镰', icon: 'hades_scythe_icon.png' },
+      { id: 'aladdin_lamp', name: '阿拉丁神灯', icon: 'aladdin_lamp_icon.png' } ],
+    credits: ['战镰进化凭证', '神灯进化凭证'] },
+];
+
+const GEM_CHAINS = [
+  { key: '星之力系', items: [
+      { id: 'poseidon_dart_gun_gem_1', name: '魔影圣衣', icon: 'poseidon_dart_gun_gem_1.png' },
+      { id: 'zeus_shadow_gem',         name: '天神之影', icon: 'zeus_shadow_gem_icon.png' },
+      { id: 'star_wand_gem_1',         name: '星之焕',   icon: 'star_wand_gem_1.png' },
+      { id: 'star_wand_gem_5',         name: '星之耀',   icon: 'star_wand_gem_5.png' } ] },
+  { key: '星之力系', items: [
+      { id: 'poseidon_dart_gun_gem_2', name: '魔影蛮力', icon: 'poseidon_dart_gun_gem_2.png' },
+      { id: 'zeus_power_gem',          name: '天神之力', icon: 'zeus_power_gem_icon.png' },
+      { id: 'star_wand_gem_2',         name: '星之吻',   icon: 'star_wand_gem_2.png' } ] },
+  { key: '星之力系', items: [
+      { id: 'poseidon_dart_gun_gem_3', name: '魔影超刃', icon: 'poseidon_dart_gun_gem_3.png' },
+      { id: 'zeus_anger_gem',          name: '天神之怒', icon: 'zeus_anger_gem_icon.png' },
+      { id: 'star_wand_gem_3',         name: '星之雨',   icon: 'star_wand_gem_3.png' } ] },
+  { key: '星之力系', items: [
+      { id: 'poseidon_dart_gun_gem_4', name: '魔影迅疾', icon: 'poseidon_dart_gun_gem_4.png' },
+      { id: 'zeus_ren_gem',            name: '天神之刃', icon: 'zeus_ren_gem_icon.png' },
+      { id: 'star_wand_gem_4',         name: '星之闪',   icon: 'star_wand_gem_4.png' } ] },
+
+  { key: '火苗系', items: [
+      { id: 'gods_shield_gem_1',      name: '光能之源', icon: 'gods_shield_gem_1.png' },
+      { id: 'divine_blessing_gem',    name: '神佑之眼', icon: 'divine_blessing_gem_icon.png' },
+      { id: 'rose_shield_gem_1',      name: '光合作用', icon: 'rose_shield_gem_1.png' } ] },
+  { key: '撕裂系', items: [
+      { id: 'gods_shield_gem_2',   name: '撕裂之源', icon: 'gods_shield_gem_2.png' },
+      { id: 'divine_shenji_gem',   name: '神忌之眼', icon: 'divine_shenji_gem_icon.png' },
+      { id: 'rose_shield_gem_2',   name: '荆棘之刺', icon: 'rose_shield_gem_2.png' } ] },
+  { key: '增幅系', items: [
+      { id: 'gods_shield_gem_3',   name: '永恒之源', icon: 'gods_shield_gem_3.png' },
+      { id: 'divine_protect_gem',  name: '神护之眼', icon: 'divine_protect_gem_icon.png' },
+      { id: 'rose_shield_gem_3',   name: '玫瑰之护', icon: 'rose_shield_gem_3.png' },
+      { id: 'rose_shield_gem_5',   name: '玫瑰之心', icon: 'rose_shield_gem_5.png' } ] },
+  { key: '生命系', items: [
+      { id: 'gods_shield_gem_4',   name: '生命之源', icon: 'gods_shield_gem_4.png' },
+      { id: 'divine_holy_gem',     name: '神圣之眼', icon: 'divine_holy_gem_icon.png' },
+      { id: 'divine_forbidden',    name: '狡诈伪装', icon: 'divine_forbidden_gem_icon.png' } ] },
+
+  { key: '亡灵系', items: [
+      { id: 'death_scythe_gem_1', name: '死神一击', icon: 'death_scythe_gem_1.png' },
+      { id: 'ghost_strike_gem',   name: '亡灵强袭', icon: 'ghost_strike_gem_icon.png' },
+      { id: 'aladdin_lamp_gem_1', name: '灯神原力', icon: 'aladdin_lamp_gem_1.png' },
+      { id: 'aladdin_lamp_gem_5', name: '灯神涅槃', icon: 'aladdin_lamp_gem_5.png' } ] },
+  { key: '亡灵系', items: [
+      { id: 'death_scythe_gem_2', name: '死神收割', icon: 'death_scythe_gem_2.png' },
+      { id: 'ghost_spark_gem',    name: '亡灵星火', icon: 'ghost_spark_gem_icon.png' },
+      { id: 'aladdin_lamp_gem_2', name: '灯神疾速', icon: 'aladdin_lamp_gem_2.png' } ] },
+  { key: '亡灵系', items: [
+      { id: 'death_scythe_gem_3', name: '死神苏醒', icon: 'death_scythe_gem_3.png' },
+      { id: 'ghost_pact_gem',     name: '亡灵契约', icon: 'ghost_pact_gem_icon.png' },
+      { id: 'aladdin_lamp_gem_3', name: '灯神召唤', icon: 'aladdin_lamp_gem_3.png' } ] },
+  { key: '亡灵系', items: [
+      { id: 'death_scythe_gem_4', name: '死神意志', icon: 'death_scythe_gem_4.png' },
+      { id: 'ghost_caijue_gem',   name: '亡灵裁决', icon: 'ghost_caijue_gem_icon.png' },
+      { id: 'aladdin_lamp_gem_4', name: '灯神迷雾', icon: 'aladdin_lamp_gem_4.png' } ] },
+];
+
+/* 宝石进化返还阶梯（cost_gem_level 0~15 → [强化水晶, 高级强化水晶]） */
+const GEM_REFUND = [[0,0],[0,0],[15,0],[30,0],[55,0],[90,0],[185,0],[275,0],[375,0],[505,0],[1000,0],[1000,400],[1000,800],[1000,1850],[1000,3900],[1000,6800]];
+
+/* 凭证默认名字 = 目标物名 + 进化凭证（唯一例外：神弩进化凭证） */
+function creditName(chain, i, target) {
+  if (chain.credits && chain.credits[i]) return chain.credits[i];
+  if (target.name === '宙斯神弩') return '神弩进化凭证';
+  return target.name + '进化凭证';
+}
+
+/* ───────────────── 玩家状态（预览用假存档）───────────────── */
+const state = {
+  page: 'weapon',                  // weapon / gem
+  own: {},                         // id -> {lv, n}
+  credits: {},                     // 凭证名 -> 数量
+  sel: null,                       // {chainKey, step}
+  slotA: null,                     // {id,name,icon,lv}
+  gold: 11763091,
+};
+
+function give(id, lv = 1, n = 1) { state.own[id] = { lv, n }; }
+function giveCredit(name, n) { state.credits[name] = (state.credits[name] || 0) + n; }
+
+function initState() {
+  give('poseidon_dart_gun', 8); give('zeus_bolt', 6); give('gods_shield', 10);
+  give('death_scythe', 5); give('hades_scythe', 3);
+  give('poseidon_dart_gun_gem_1', 4); give('poseidon_dart_gun_gem_3', 7);
+  give('zeus_shadow_gem', 6); give('zeus_power_gem', 3); give('zeus_anger_gem', 5);
+  give('star_wand_gem_1', 2);
+  give('gods_shield_gem_1', 9); give('gods_shield_gem_3', 5);
+  give('divine_protect_gem', 4);
+  give('death_scythe_gem_1', 6); give('death_scythe_gem_2', 4);
+  give('ghost_strike_gem', 5);
+  give('aladdin_lamp_gem_1', 3);
+  giveCredit('神弩进化凭证', 2); giveCredit('神杖进化凭证', 1);
+  giveCredit('天神之影进化凭证', 3); giveCredit('天神之怒进化凭证', 1);
+  giveCredit('星之焕进化凭证', 1); giveCredit('神盾进化凭证', 1);
+  giveCredit('神护之眼进化凭证', 2); giveCredit('玫瑰之护进化凭证', 0);
+  giveCredit('亡灵强袭进化凭证', 2); giveCredit('灯神原力进化凭证', 1);
+  giveCredit('战镰进化凭证', 1); giveCredit('星之耀进化凭证', 0);
+}
+initState();
+
+/* ───────────────── 步骤模型 ───────────────── */
+function chains() { return state.page === 'weapon' ? WEAPON_CHAINS : GEM_CHAINS; }
+function stepsOfPage() {
+  const out = [];
+  chains().forEach((ch, ci) => {
+    for (let i = 0; i < ch.items.length - 1; i++) {
+      const from = ch.items[i], to = ch.items[i + 1];
+      out.push({ ci, si: i, chain: ch, from, to, credit: creditName(ch, i, to) });
+    }
+  });
+  return out;
+}
+function findStepStep(fromId) {
+  return stepsOfPage().find(s => s.from.id === fromId) || null;
+}
+function allItemsOfPage() {
+  const seen = new Map();
+  chains().forEach(ch => ch.items.forEach(it => { if (!seen.has(it.id)) seen.set(it.id, it); }));
+  return [...seen.values()];
+}
+
+/* ───────────────── 绘制 ───────────────── */
+const stage = document.getElementById('stage');
+const credName = document.getElementById('credName');
+
+// 底部凭证架：滚轮横滚 + 两端翻页（凭证数量随页签变，宝石页 27 张要能翻）
+(function () {
+  const wrap = document.getElementById('propsWrap');
+  wrap.addEventListener('wheel', e => {
+    if (wrap.scrollWidth <= wrap.clientWidth) return;
+    wrap.scrollLeft += (e.deltaY || e.deltaX);
+    e.preventDefault();
+    updatePropArrows();
+  }, { passive: false });
+  wrap.addEventListener('scroll', updatePropArrows);
+  document.getElementById('pl').onclick = () => { wrap.scrollLeft -= PROP.pitch * 5; updatePropArrows(); };
+  document.getElementById('pr').onclick = () => { wrap.scrollLeft += PROP.pitch * 5; updatePropArrows(); };
+})();
+
+function placeBG() {
+  const l = CX - BG_W * BG_S / 2, t = CY - BG_H * BG_S / 2;
+  ['b0', 'b1', 'b2', 'b3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.left = l + 'px'; el.style.top = t + 'px';
+    el.style.width = (BG_W * BG_S) + 'px'; el.style.height = (BG_H * BG_S) + 'px';
+  });
+}
+function placeTabs() {
+  const ids = [['tab0', 0], ['tab1', 1], ['tab2', 2]];
+  ids.forEach(([id, i]) => {
+    const el = document.getElementById(id);
+    el.style.left = (TAB.left + i * TAB.gap) + 'px';
+    el.style.top = TAB.top + 'px';
+    el.style.width = (TAB.w * TAB.s) + 'px';
+    el.style.height = (TAB.h * TAB.s) + 'px';
+  });
+  document.getElementById('tab1').classList.remove('dim');
+  document.getElementById('tab0').classList.add('dim');
+  document.getElementById('tab2').classList.add('dim');
+}
+
+const NAVS = [
+  { id: 'card', lines: ['金卡', '进化'], page: 'card' },
+  { id: 'weapon', lines: ['神器', '进化'], page: 'weapon' },
+  { id: 'gem', lines: ['宝石', '进化'], page: 'gem' },
+];
+function buildNav() {
+  const host = document.getElementById('navs'); host.innerHTML = '';
+  NAVS.forEach((n, i) => {
+    const el = document.createElement('div');
+    el.className = 'navbtn ' + (state.page === n.id ? 'on' : 'off');
+    el.style.left = (NAV.x - 82.8 / 2) + 'px';
+    el.style.top = (NAV.y0 + i * NAV.pitch - 151.2 / 2) + 'px';
+    el.innerHTML = '<div class="navbg" style="background-image:url(assets/'
+      + (state.page === n.id ? 'btnsel_1.png' : 'btnsel_0.png') + ')"></div>'
+      + '<div class="navtxt cn"><span>' + n.lines[0] + '</span><span>' + n.lines[1] + '</span></div>';
+    el.onclick = () => {
+      if (n.id === 'card') { toast('金卡进化页已在游戏内实现，本预览只看神器 / 宝石'); return; }
+      state.page = n.id; state.sel = null; state.slotA = null; render();
+    };
+    host.appendChild(el);
+  });
+}
+
+function slotHTML(x, y, item, size) {
+  const s = size || 1;
+  let inner = '';
+  if (item) {
+    const maxPx = 96 * s;
+    inner = '<img class="sloticon" src="assets/' + item.icon + '" style="max-width:' + maxPx + 'px;max-height:' + maxPx + 'px;">';
+    if (item.lv) inner += '<div class="lv cn">' + item.lv + '</div>';
+  }
+  return '<div class="slotbg" style="background-image:url(assets/slot_card.png)"></div>' + inner;
+}
+
+function creditIcon(iconName, px) {
+  return '<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:' + px + 'px;height:' + px + 'px;">'
+    + '<img src="assets/credit_bg.png" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:' + px + 'px;height:' + px + 'px;">'
+    + '<img src="assets/' + iconName + '" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:' + (px * 0.62) + 'px;max-height:' + (px * 0.62) + 'px;">'
+    + '</div>';
+}
+
+
+function selectItem(id) {
+  const it = allItemsOfPage().find(x => x.id === id);
+  if (!it) return;
+  if (!state.own[id]) { toast('未拥有：' + it.name); return; }
+  const stp = findStepStep(id);
+  if (!stp) { toast(it.name + ' 已是该系最终形态'); return; }
+  state.slotA = { id: it.id, name: it.name, icon: it.icon, lv: state.own[it.id].lv };
+  state.sel = { ci: stp.ci, si: stp.si };
+  render();
+}
+
+// 反方向：点下方凭证 → 反查它属于哪一步 → 回填旧物槽（旧物没拥有就只填凭证，提示缺什么）
+function selectCredit(name) {
+  const stp = stepsOfPage().find(s => s.credit === name);
+  if (!stp) { toast('这张凭证不在当前页'); return; }
+  state.sel = { ci: stp.ci, si: stp.si };
+  const own = state.own[stp.from.id];
+  state.slotA = own ? { id: stp.from.id, name: stp.from.name, icon: stp.from.icon, lv: own.lv } : null;
+  render();
+  if (!own) toast('凭证已放入，但缺少「' + stp.from.name + '」');
+  else if ((state.credits[name] || 0) <= 0) toast('凭证已放入，但这张凭证数量为 0');
+}
+
+function render() {
+  buildNav();
+  renderPanel();
+  renderGrid();
+  renderProps();
+  document.getElementById('gold').textContent = state.gold.toLocaleString('en-US');
+  document.getElementById('gold').style.left = (CX + 758 - 200) + 'px';
+  document.getElementById('gold').style.top = (CY + 473 - 14) + 'px';
+  document.getElementById('gold').style.width = '200px';
+  document.getElementById('gold').style.textAlign = 'right';
+  document.getElementById('gold').style.fontFamily = 'GameCN';
+}
+
+function renderPanel() {
+  const isW = state.page === 'weapon';
+  const st = state.sel ? stepsOfPage().find(s => s.ci === state.sel.ci && s.si === state.sel.si) : null;
+  document.getElementById('title0').textContent = isW ? '神器进化' : '宝石进化';
+
+  const slots = document.getElementById('slots'); slots.innerHTML = '';
+  const res = document.getElementById('res'); res.innerHTML = '';
+  const arrow = document.getElementById('arrow'); arrow.innerHTML = '';
+
+  // 左槽：原物
+  const s1 = document.createElement('div');
+  s1.className = 'slot' + (state.slotA ? '' : ' empty');
+  s1.style.left = (SLOT.x1 - 104.4 / 2) + 'px';
+  s1.style.top = (SLOT.y - 122.4 / 2) + 'px';
+  s1.innerHTML = state.slotA
+    ? slotHTML(0, 0, state.slotA, 1)
+    : '<div class="slotbg" style="background-image:url(assets/slot_card.png);opacity:.85"></div>'
+      + '<div class="tag cn" style="top:50%;bottom:auto;transform:translate(-50%,-50%)">' + (isW ? '放武器' : '放宝石') + '</div>';
+  s1.onclick = () => { state.slotA = null; state.sel = null; render(); };
+  s1.onmouseenter = () => s1.classList.add('hover');
+  s1.onmouseleave = () => s1.classList.remove('hover');
+  slots.appendChild(s1);
+
+  // 右槽：凭证（可点：点一下取回整组，与金卡进化「点槽下卡」一致）
+  const s2 = document.createElement('div');
+  const cName = st ? st.credit : '';
+  const cNum = cName ? (state.credits[cName] || 0) : 0;
+  s2.className = 'slot' + (cName ? '' : ' empty');
+  s2.style.left = (SLOT.x2 - 104.4 / 2) + 'px';
+  s2.style.top = (SLOT.y - 122.4 / 2) + 'px';
+  if (cName) {
+    s2.innerHTML = '<div class="slotbg" style="background-image:url(assets/slot_prop.png);height:104.4px;top:9px"></div>'
+      + creditIcon(st.to.icon, 84)
+      + '<div class="cnt cn" style="color:' + (cNum > 0 ? '#c8ffb0' : '#ff9c9c') + '">x' + cNum + '</div>';
+    s2.title = '点击取回凭证';
+    s2.onclick = () => { state.slotA = null; state.sel = null; render(); };
+  } else {
+    s2.innerHTML = '<div class="slotbg" style="background-image:url(assets/slot_prop.png);height:104.4px;top:9px;opacity:.85"></div>'
+      + '<div class="tag cn" style="top:50%;bottom:auto;transform:translate(-50%,-50%)">放凭证</div>';
+    s2.title = '在下方道具栏点一张凭证';
+  }
+  s2.onmouseenter = () => s2.classList.add('hover');
+  s2.onmouseleave = () => s2.classList.remove('hover');
+  slots.appendChild(s2);
+
+  // 箭头
+  arrow.innerHTML = '<img src="assets/arrow.png" style="width:' + (34 * 1.8) + 'px;height:' + (34 * 1.8) + 'px;">';
+  arrow.style.left = (ARROW.x - 34 * 1.8 / 2) + 'px';
+  arrow.style.top = (ARROW.y - 34 * 1.8 / 2) + 'px';
+
+  // 结果槽
+  const r = document.createElement('div');
+  r.className = 'slot';
+  r.style.left = (RES.x - 104.4 / 2) + 'px';
+  r.style.top = (RES.y - 122.4 / 2) + 'px';
+  if (st) {
+    r.innerHTML = '<div class="slotbg" style="background-image:url(assets/slot_result.png)"></div>'
+      + '<img class="sloticon" src="assets/' + st.to.icon + '" style="max-width:96px;max-height:96px;">';
+  } else {
+    r.innerHTML = '<div class="slotbg" style="background-image:url(assets/slot_result.png)"></div>'
+      + '<img src="assets/question.png" style="position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:' + (19 * 2.2) + 'px;">';
+  }
+  res.appendChild(r);
+  res.style.left = '0'; res.style.top = '0';
+
+  // 进化按钮
+  const ok = !!(st && state.slotA && cNum > 0);
+  const btn = document.getElementById('btn');
+  btn.style.left = (BTN.x - 145.8 / 2) + 'px';
+  btn.style.top = (BTN.y - 75.6 / 2) + 'px';
+  btn.style.backgroundImage = 'url(assets/btn_' + (ok ? 0 : 2) + '.png)';
+  btn.className = ok ? '' : 'dis';
+  btn.onmouseenter = () => { if (ok) btn.style.backgroundImage = 'url(assets/btn_1.png)'; };
+  btn.onmouseleave = () => { btn.style.backgroundImage = 'url(assets/btn_' + (ok ? 0 : 2) + '.png)'; };
+  btn.onclick = () => { if (ok) doEvolve(st, cName); };
+
+  // 提示行
+  const hint = document.getElementById('hint');
+  if (st) {
+    const lv = state.slotA ? (state.slotA.lv || 1) : 1;
+    let line2 = '';
+    if (!state.slotA) line2 += '<span style="color:#b33">缺少「' + st.from.name + '」（未拥有）</span>';
+    if (cNum <= 0) line2 += (line2 ? ' ｜ ' : '') + '<span style="color:#b33">凭证不足</span>';
+    if (!line2) {
+      if (isW) {
+        line2 = '<span style="color:#7a5a2e">武器等级保留</span>';
+      } else {
+        const rf = GEM_REFUND[Math.min(lv, 15)];
+        line2 = '进化后 <strong>Lv.0</strong>，返还 强化水晶 x' + rf[0]
+          + (rf[1] ? ' + 高级强化水晶 x' + rf[1] : '');
+      }
+    }
+    hint.innerHTML = st.from.name + ' + <span style="color:#a1431a">' + st.credit + '</span> x1 &nbsp;→&nbsp; '
+      + '<span style="color:#a1431a">' + st.to.name + '</span><br>' + line2;
+  } else if (state.page === 'weapon') {
+    hint.innerHTML = '点右侧<strong>武器</strong>，或点下方<strong>凭证</strong> → 自动配好另一件';
+  } else {
+    hint.innerHTML = '点右侧<strong>宝石</strong>，或点下方<strong>凭证</strong> → 自动配好另一件';
+  }
+}
+
+function renderGrid() {
+  const host = document.getElementById('grid'); host.innerHTML = '';
+  const items = allItemsOfPage();
+  items.forEach((it, i) => {
+    const c = i % GRID.cols, r = Math.floor(i / GRID.cols);
+    if (r >= GRID.rows) return;
+    const owned = !!state.own[it.id];
+    const stp = findStepStep(it.id);
+    const canEvo = owned && stp && (state.credits[stp.credit] || 0) > 0;
+    const el = document.createElement('div');
+    el.className = 'cell' + (owned ? '' : ' notown')
+      + (state.slotA && state.slotA.id === it.id ? ' sel' : '');
+    el.style.left = (GRID.x - 76 / 2 + c * GRID.cw) + 'px';
+    el.style.top = (GRID.y - 88 / 2 + r * GRID.ch) + 'px';
+    el.innerHTML = '<img src="assets/' + it.icon + '">'
+      + '<div class="nm cn">' + it.name + '</div>'
+      + (owned ? '<div class="lvb cn">' + state.own[it.id].lv + '</div>' : '')
+      + (canEvo ? '<div class="badge cn">可进化</div>' : '');
+    el.onclick = () => selectItem(it.id);
+    host.appendChild(el);
+  });
+}
+
+function creditIconOf(name) {
+  const st = stepsOfPage().concat(
+    (state.page === 'weapon' ? [] : WEAPON_CHAINS.flatMap(ch => {
+      const o = []; for (let i = 0; i < ch.items.length - 1; i++) o.push({ to: ch.items[i + 1], credit: creditName(ch, i, ch.items[i + 1]) }); return o;
+    }))
+  ).find(s => s.credit === name);
+  if (st) return st.to.icon;
+  for (const ch of GEM_CHAINS) {
+    for (let i = 0; i < ch.items.length - 1; i++) {
+      if (creditName(ch, i, ch.items[i + 1]) === name) return ch.items[i + 1].icon;
+    }
+  }
+  for (const ch of WEAPON_CHAINS) {
+    for (let i = 0; i < ch.items.length - 1; i++) {
+      if (creditName(ch, i, ch.items[i + 1]) === name) return ch.items[i + 1].icon;
+    }
+  }
+  return null;
+}
+
+const PROP = { pitch: 66, pad: 6 };
+
+// 当前页的凭证，按链顺序去重（点选顺序 = 右侧列表顺序，手感一致）
+function pageCreditNames() {
+  const out = [];
+  stepsOfPage().forEach(s => { if (out.indexOf(s.credit) < 0) out.push(s.credit); });
+  return out;
+}
+
+function renderProps() {
+  const host = document.getElementById('props');
+  const wrap = document.getElementById('propsWrap');
+  host.innerHTML = '';
+  const names = pageCreditNames();
+  host.style.width = (names.length * PROP.pitch + PROP.pad * 2) + 'px';
+
+  const st = state.sel ? stepsOfPage().find(s => s.ci === state.sel.ci && s.si === state.sel.si) : null;
+  const curCredit = st ? st.credit : '';
+
+  names.forEach((n, i) => {
+    const cnt = state.credits[n] || 0;
+    const el = document.createElement('div');
+    el.className = 'prop' + (cnt > 0 ? '' : ' zero') + (n === curCredit ? ' sel' : '');
+    el.style.left = (i * PROP.pitch + PROP.pad) + 'px';
+    el.innerHTML = creditIcon(creditIconOf(n), 56)
+      + '<div class="pb cn" style="color:' + (cnt > 0 ? '#e9ffd8' : '#ff9d9d') + '">' + cnt + '</div>';
+    el.onclick = () => selectCredit(n);
+    el.onmouseenter = () => { credName.textContent = '凭证：' + n + (cnt > 0 ? '  ×' + cnt : '（未获得）'); };
+    el.onmouseleave = () => { credName.textContent = ''; };
+    host.appendChild(el);
+  });
+
+  if (wrap.dataset.page !== state.page) { wrap.dataset.page = state.page; wrap.scrollLeft = 0; }
+  credName.textContent = '';
+
+  // 选中项自动滚进可视区（宝石页 27 张，避免「选了却看不到」）
+  const selEl = host.querySelector('.prop.sel');
+  if (selEl) {
+    const l = selEl.offsetLeft;
+    if (l < wrap.scrollLeft) wrap.scrollLeft = Math.max(0, l - 8);
+    else if (l + 60 > wrap.scrollLeft + wrap.clientWidth) wrap.scrollLeft = l + 60 - wrap.clientWidth + 8;
+  }
+  updatePropArrows();
+}
+
+function updatePropArrows() {
+  const wrap = document.getElementById('propsWrap');
+  const over = wrap.scrollWidth > wrap.clientWidth + 4;
+  document.getElementById('pl').style.display = (over && wrap.scrollLeft > 2) ? 'flex' : 'none';
+  document.getElementById('pr').style.display =
+    (over && wrap.scrollLeft < wrap.scrollWidth - wrap.clientWidth - 2) ? 'flex' : 'none';
+}
+
+/* ───────────────── 进化 ───────────────── */
+function doEvolve(st, cName) {
+  const btn = document.getElementById('btn');
+  btn.classList.add('press'); setTimeout(() => btn.classList.remove('press'), 120);
+  state.credits[cName] -= 1;
+  delete state.own[st.from.id];
+  const toLv = state.own[st.to.id] ? state.own[st.to.id].lv : 1;
+  state.own[st.to.id] = { lv: Math.max(toLv, 1), n: 1 };
+  const fx = document.getElementById('fx');
+  fx.classList.remove('on'); void fx.offsetWidth; fx.classList.add('on');
+  toast('进化成功：' + st.from.name + ' → ' + st.to.name);
+  state.slotA = null; state.sel = null;
+  setTimeout(render, 260);
+}
+
+let toastT = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('on'), 1600);
+}
+
+/* ───────────────── 缩放 ───────────────── */
+function fit() {
+  const s = Math.min(window.innerWidth / W, window.innerHeight / H);
+  stage.style.transform = 'scale(' + s + ')';
+}
+window.addEventListener('resize', () => { fit(); updatePropArrows(); });
+
+/* ───────────────── 启动 ───────────────── */
+const _q = new URLSearchParams(location.search);
+if (_q.get('auto') === 'gem') state.page = 'gem';
+placeBG(); placeTabs(); render();
+if (_q.get('auto')) {
+  if (_q.get('auto') === 'gem') selectItem('poseidon_dart_gun_gem_1');
+  else if (_q.get('auto') === 'weapon2') selectItem('zeus_bolt');
+  else if (_q.get('auto') === 'gem2') { state.page = 'gem'; render(); selectItem('zeus_shadow_gem'); }
+  else selectItem('poseidon_dart_gun');
+}
+// 便于验证：?pick=<凭证名> 直接模拟「点下方凭证」
+if (_q.get('pick')) selectCredit(_q.get('pick'));
+fit();
+document.getElementById('tab0').onclick = () => toast('卡片宝石（强化）页：本次不改');
+document.getElementById('tab2').onclick = () => toast('食灵融合页：本次不改');
+document.getElementById('tab1').onclick = () => toast('当前就在「神级进化」页签下');
+</script>
+</body>
+</html>

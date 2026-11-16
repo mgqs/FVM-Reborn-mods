@@ -19,6 +19,33 @@ draw_sprite_ext(spr_craft_tab_fusion,  craft_top_tab == 1 ? 0 : 1, tab_fusion_x,
 
 // ── 神级进化页（craft_top_tab == 3，2026-10-26）──
 if (craft_top_tab == 3) {
+	// ① 左侧三个子页按钮：金卡进化 / 神器进化 / 宝石进化（2026-11-16）
+	//   全部用**原版固定美术**（字烤在图里，别重画）：
+	//     spr_evo_left_on        1 帧，浅底 —— 金卡进化
+	//     spr_evo_left_artifact  2 帧，0 = 浅底选中 / 1 = 深底未选中 —— 神器进化
+	//     spr_evo_left_gem       2 帧，同上 —— 宝石进化
+	//   金卡那张只有一帧，未选中时用颜色压暗，观感与另外两格的深底对齐。
+	var _gear_spr = [spr_evo_left_on, spr_evo_left_artifact, spr_evo_left_gem];
+	for (var _gp = 0; _gp < 3; _gp++){
+		var _gsel = (gear_evo_page == _gp);
+		var _gspr = _gear_spr[_gp];
+		var _gfrm = (_gp == 0) ? 0 : (_gsel ? 0 : 1);
+		var _gcol = (_gp == 0 && !_gsel) ? make_colour_rgb(150, 118, 86) : c_white;
+		draw_sprite_ext(_gspr, _gfrm, gear_left_x, gear_left_y[_gp], 1.8, 1.8, 0, _gcol, 1);
+		// 悬停增亮（未选中时）：叠一层同图 22% 白，兼作「热区确实在按钮上」的目视反馈
+		if (gear_tab_hover == _gp && !_gsel){
+			draw_sprite_ext(_gspr, _gfrm, gear_left_x, gear_left_y[_gp], 1.8, 1.8, 0, c_white, 0.22);
+		}
+	}
+
+	// 神器 / 宝石两页：整页绘制在 gear_draw()（列表、槽、按钮、底部凭证架都在里面）
+	if (gear_evo_page != 0){
+		gear_draw();
+		tooltip_draw();
+		panel_anim_end_parts(id, craft_parts, 260);
+		exit;
+	}
+
 	if (evo_list_dirty) evo_rebuild();
 	// 列表滚动平滑（跟转职页 / 强化页一个手感）
 	if (ui_anim_on(1)) {
@@ -29,8 +56,7 @@ if (craft_top_tab == 3) {
 	}
 	var _chk_e = evo_check();
 
-	// ① 左侧「金卡进化」竖排按钮（神级进化页目前只有这一个子页）
-	draw_sprite_ext(spr_evo_left_on, 0, evo_left_x, evo_left_y, 1.8, 1.8, 0, c_white, 1);
+	// 三个子页按钮已在上方统一画完（原来这里是单张 spr_evo_left_on）
 
 	// ② 三个槽：星座卡 / 普通卡 / 进化凭证（空槽用官方「二转·星座卡 / 二转·普通卡 / 进化·凭证」文字）
 	for (var _i = 0; _i < 3; _i++) {

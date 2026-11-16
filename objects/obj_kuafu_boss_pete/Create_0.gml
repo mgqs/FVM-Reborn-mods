@@ -32,8 +32,10 @@ shield_active = false
 shield_anim = 0
 shield_spr = spr_kuafu_boss_shield
 shield_take_mult = 0.5
-// 绘制位置/缩放：按 271x296 立绘、origin(74,290) 折算的身形中心
-shield_dx = 60
-shield_dy = -145
-shield_sx = 2.0
-shield_sy = 1.45
+// 绘制位置/缩放：皮特朝左，护盾挡在身前（屏幕左侧）。
+// 按 271x296 立绘、origin(74,290) 折算：护盾中心落在 origin 左下方，
+// 右缘与左爪轻微重叠，高约立绘的 78%（对照用户给的参考图）。
+shield_dx = -101
+shield_dy = -134
+shield_sx = 0.95
+shield_sy = 1.05

@@ -16,7 +16,8 @@ if (!obj_gods_store_bg.is_submenu_opened && !is_disabled)
     // 抽卡模式（含欧皇）：卡片本体 / 进化凭证 / **初融菜谱**不能买
     //   2026-10-28 用户口径：**深度融合、灵魂融合菜谱放开**（recipe_shape >= 1 可买，初融仍禁）；
     //   转职凭证（tvoucher）本来就能买，随机礼盒不在此列
-    if ((btn_type == "evo" || btn_type == "card"
+    //   2026-11-16：神器 / 宝石进化凭证（gear_evo）同属进化凭证，一并禁
+    if ((btn_type == "evo" || btn_type == "gear_evo" || btn_type == "card"
         || (btn_type == "recipe" && recipe_shape == 0))
         && is_eternal_gacha_mode())
     {
@@ -26,6 +27,21 @@ if (!obj_gods_store_bg.is_submenu_opened && !is_disabled)
 
     if (btn_type == "evo")
     {
+        if (amt >= cost || global.debug)
+        {
+            var inst = instance_create_depth(room_width / 2, room_height / 2, depth - 3, obj_gods_store_buy_confirm);
+            inst.banding_buy_btn = id;
+            obj_gods_store_bg.is_submenu_opened = true;
+        }
+        else
+        {
+            show_notice("神谕之石不足", 60);
+        }
+    }
+    else if (btn_type == "gear_evo")
+    {
+        // 神器 / 宝石进化凭证：同样是「买道具进背包」，跟 evo 一样走确认框（不限量在这里不适用：
+        //   售罄判定已经在 Create_0 里把「已有一张」挡掉了）
         if (amt >= cost || global.debug)
         {
             var inst = instance_create_depth(room_width / 2, room_height / 2, depth - 3, obj_gods_store_buy_confirm);

@@ -28,4 +28,8 @@ if (shape == 3)
 clotho_effect_obj = instance_create_depth(x, y - 30, 0, obj_clotho_effect);
 clotho_effect_obj.parent_plant = id;
 clotho_effect_obj.sprite_index = spr;
-gold_cards = ["gaia", "aurora", "zhurong", "rig", "ghost_god", "odin", "sun_god", "moon_god", "thor", "war_god", "hera", "poseidon", "love_god", "zeus", "ice_god", "fire_god", "water_god", "power_god", "sheng_huo", "ymir", "joker", "brahma", "time_god", "firework_dragon_real", "save_god", "xiangshui_god", "fengrao_god", "houyi_god", "heian_god", "guangming_god", "hundun_god", "shennong_god", "hufa_god", "haiyang_god", "chongsheng_god", "gongjiang_god"];
+// 命运女神能「升到 UM（17/18 星）」的金卡名单：Other_11 里 new_level >= 17 时要求
+//   这张卡在这里（或外部 mod 声明 is_god），否则会被 min(new_level, 16) 夹回 16 星。
+// 2026-11-16 补：xinggui_god / lingrong_god / panduola_god —— 三张金卡都没登记，
+//   用户报「星轨神无法通过命运女神升到 UM」（另外两张同病）。新金卡记得同步这里。
+gold_cards = ["gaia", "aurora", "zhurong", "rig", "ghost_god", "odin", "sun_god", "moon_god", "thor", "war_god", "hera", "poseidon", "love_god", "zeus", "ice_god", "fire_god", "water_god", "power_god", "sheng_huo", "ymir", "joker", "brahma", "time_god", "firework_dragon_real", "save_god", "xiangshui_god", "fengrao_god", "houyi_god", "heian_god", "guangming_god", "hundun_god", "shennong_god", "hufa_god", "haiyang_god", "chongsheng_god", "gongjiang_god", "xinggui_god", "lingrong_god", "panduola_god"];

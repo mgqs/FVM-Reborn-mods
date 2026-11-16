@@ -31,6 +31,22 @@ function mod_buff_source_remove(source)
     if (index != -1) ds_list_delete(global.buff_sources, index);
 }
 
+/// @func mod_buff_source_add(_source)
+/// @desc 把增幅源登记进 global.buff_sources —— **幂等**，已在表里就不再加。
+///   背景（2026-11-15 用户报的 bug）：增幅源的 Step 是「buff_cells_refreshed == false 就登记 +
+///   重建格子」，而时光机 / 克洛托 / 蛇蛇酒这类变星卡会把目标的 buff_cells_refreshed 置 false
+///   （mod_set_card_level:84）。于是「变一次星 → 再登记一次」，同一条实例在 buff_sources 里
+///   越堆越多；rebuild_buff_grid 是按表逐条 apply_buff 的，至尊丰饶神（buff_stacking）就按
+///   重复条数叠层 → 升一星 2.5→5.12、降二星→7.32，看起来像「被升星类卡叠一倍」，实际是重复登记。
+///   去重后：一个实例每轮重建只 apply 一次，3 层上限仍然只在「3 张不同的终转丰饶神重叠」时达成。
+function mod_buff_source_add(_source)
+{
+    if (!instance_exists(_source)) return;
+    if (!variable_global_exists("buff_sources") || !ds_exists(global.buff_sources, ds_type_list)) return;
+    if (ds_list_find_index(global.buff_sources, _source) != -1) return;
+    ds_list_add(global.buff_sources, _source);
+}
+
 function build_buff_grid()
 {
     mod_battle_buff_grid_clear();

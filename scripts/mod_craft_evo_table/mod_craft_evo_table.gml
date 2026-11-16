@@ -441,3 +441,283 @@ function mod_evo_reward(_target){
         for (var _i = 0; _i < array_length(_cs); _i++) reset_card_to_new(_cs[_i].id);
     }
 }
+
+// =============================================================================
+// 神器 / 宝石进化（2026-11-16）
+//   数据：桌面\武器进化.xlsx；与原版 res\合成屋.swf 的 compose_tab 2/3 一致
+//         （解析产物 output/god_evolution.json，工具 tools/god_evolution_extract.py）
+//   3 条神器链（6 步）+ 11 条宝石系（25 步）= 31 步 / 31 张凭证
+//   （xlsx 里生命系第 3 阶「狡诈伪装」未实装，那 2 步暂缺，见下面的注释留位）
+//
+//   凭证 id = "evo_credit_" + 目标 id —— 故意沿用金卡凭证的同一个前缀：
+//   背包「进化凭证」段、抽卡 / 商店的 evo 分支靠前缀识别（transfer_credit.gml:499），
+//   这里不用注册 material，也不用改那些分支。
+//
+//   规则（用户 2026-11-16 口径）：
+//     · 宝石：消耗当前宝石 + 1 张凭证 → 产出**星级归 0**的下一阶，**不返还任何材料**
+//             （原版会按原等级退强化水晶，这里刻意不退）
+//     · 武器：消耗当前武器 + 1 张凭证 → 解锁下一阶；若正装备着就**就地换**成新武器，
+//             不兼容的专属宝石由 weapon_gems_reconcile 卸回背包（不丢失）
+// =============================================================================
+
+/// @func mod_gear_evo_defs() 进化链（**唯一事实源**：改路线只改这里）
+///   每条链 = 由低到高的 id 数组；kind 决定走武器还是宝石分支
+function mod_gear_evo_defs(){
+    return {
+        weapon: [
+            ["poseidon_dart_gun", "zeus_bolt",     "star_wand"],       // 海神镖枪 → 宙斯神弩 → 星之神杖
+            ["gods_shield",       "master_shield", "rose_shield"],     // 诸神之盾 → 主宰之盾 → 荆棘玫瑰
+            ["death_scythe",      "hades_scythe",  "aladdin_lamp"]     // 死神镰刀 → 冥王战镰 → 阿拉丁神灯
+        ],
+        gem: [
+            ["poseidon_dart_gun_gem_1", "zeus_shadow_gem",  "star_wand_gem_1", "star_wand_gem_5"],
+            ["poseidon_dart_gun_gem_2", "zeus_power_gem",   "star_wand_gem_2"],
+            ["poseidon_dart_gun_gem_3", "zeus_anger_gem",   "star_wand_gem_3"],
+            ["poseidon_dart_gun_gem_4", "zeus_ren_gem",     "star_wand_gem_4"],
+            ["gods_shield_gem_1",       "divine_blessing_gem", "rose_shield_gem_1"],
+            ["gods_shield_gem_2",       "divine_shenji_gem",   "rose_shield_gem_2"],
+            ["gods_shield_gem_3",       "divine_protect_gem",  "rose_shield_gem_3", "rose_shield_gem_5"],
+            // ["gods_shield_gem_4", "divine_holy_gem", "divine_forbidden"],
+            //   ↑ 生命系第 3 阶「狡诈伪装」还没注册（只有素材 spr_divine_forbidden_gem_icon，
+            //     没有 register_gem / obj）。一旦实装，把这行取消注释即可，UI 不用改。
+            ["death_scythe_gem_1",      "ghost_strike_gem", "aladdin_lamp_gem_1", "aladdin_lamp_gem_5"],
+            ["death_scythe_gem_2",      "ghost_spark_gem",  "aladdin_lamp_gem_2"],
+            ["death_scythe_gem_3",      "ghost_pact_gem",   "aladdin_lamp_gem_3"],
+            ["death_scythe_gem_4",      "ghost_caijue_gem", "aladdin_lamp_gem_4"]
+        ]
+    };
+}
+
+/// @func mod_gear_evo_build() 把链展开成「步」并缓存到全局（每帧都查，别重复展开）
+///   步 = { from, to, kind, credit }；同一条链的顺序即进化顺序
+function mod_gear_evo_build(){
+    if (variable_global_exists("mod_gear_evo_c") && is_struct(global.mod_gear_evo_c)) return global.mod_gear_evo_c;
+    var _d = mod_gear_evo_defs();
+    var _kinds = ["weapon", "gem"];
+    var _steps = [], _by_from = {}, _by_credit = {};
+    for (var _k = 0; _k < 2; _k++){
+        var _kind = _kinds[_k];
+        var _chains = _d[$ _kind];
+        for (var _ci = 0; _ci < array_length(_chains); _ci++){
+            var _ch = _chains[_ci];
+            for (var _i = 0; _i < array_length(_ch) - 1; _i++){
+                var _s = { from: _ch[_i], to: _ch[_i + 1], kind: _kind,
+                           tier: _i,                                   // 链内第几档（0/1/2）= 凭证等级
+                           credit: "evo_credit_" + string(_ch[_i + 1]) };
+                array_push(_steps, _s);
+                _by_from[$ _s.from]     = _s;   // 一件装备只会往下进化一级
+                _by_credit[$ _s.credit] = _s;
+            }
+        }
+    }
+    global.mod_gear_evo_c = { steps: _steps, by_from: _by_from, by_credit: _by_credit };
+    return global.mod_gear_evo_c;
+}
+
+/// @func mod_gear_evo_steps(kind) 某一类（"weapon" / "gem"）的全部步；kind 省略 = 全部
+function mod_gear_evo_steps(_kind = ""){
+    var _all = mod_gear_evo_build().steps;
+    if (_kind == "") return _all;
+    var _out = [];
+    for (var _i = 0; _i < array_length(_all); _i++){
+        if (_all[_i].kind == _kind) array_push(_out, _all[_i]);
+    }
+    return _out;
+}
+
+/// @func mod_gear_evo_step_from(id) 这件装备的下一步（终点 / 不在表里 → undefined）
+function mod_gear_evo_step_from(_id){
+    var _c = mod_gear_evo_build();
+    if (variable_struct_exists(_c.by_from, _id)) return _c.by_from[$ _id];
+    return undefined;
+}
+
+/// @func mod_gear_evo_step_credit(credit_id) 这张凭证对应的步（不是本系统的 → undefined）
+function mod_gear_evo_step_credit(_credit){
+    var _c = mod_gear_evo_build();
+    if (variable_struct_exists(_c.by_credit, _credit)) return _c.by_credit[$ _credit];
+    return undefined;
+}
+
+/// @func mod_gear_evo_credit_id(target_id) 凭证 id（与金卡同前缀）
+function mod_gear_evo_credit_id(_to){ return "evo_credit_" + string(_to); }
+
+/// @func mod_gear_evo_is_credit(id) 这个 id 是不是本系统的凭证
+function mod_gear_evo_is_credit(_credit){
+    return (string_pos("evo_credit_", string(_credit)) == 1 && !is_undefined(mod_gear_evo_step_credit(_credit)));
+}
+
+/// @func mod_gear_evo_item_info(id) 装备显示信息 { kind, name, icon, sprite }；查不到 → undefined
+function mod_gear_evo_item_info(_id){
+    var _w = get_weapon_info(_id);
+    if (!is_undefined(_w)) return { kind:"weapon", name:string(_w.name), icon:_w.icon, sprite:_w.sprite };
+    var _g = get_gem_info(_id);
+    if (!is_undefined(_g)) return { kind:"gem",    name:string(_g.name), icon:_g.icon, sprite:_g.icon };
+    return undefined;
+}
+
+/// @func mod_gear_evo_name(id) 名字（查不到就回 id）
+function mod_gear_evo_name(_id){
+    var _i = mod_gear_evo_item_info(_id);
+    return is_undefined(_i) ? string(_id) : _i.name;
+}
+
+/// @func mod_gear_evo_owned(id) 是否已拥有（武器 / 宝石分开判，别混用两套存档字段）
+function mod_gear_evo_owned(_id){
+    var _i = mod_gear_evo_item_info(_id);
+    if (is_undefined(_i)) return false;
+    if (_i.kind == "weapon") return is_weapon_unlocked(_id);
+    return is_gem_unlocked(_id);
+}
+
+/// @func mod_gear_evo_star(id) 星级（= 存档 max_level，与合成屋/背包画星星的口径一致）；武器恒 0
+function mod_gear_evo_star(_id){
+    var _i = mod_gear_evo_item_info(_id);
+    if (is_undefined(_i) || _i.kind != "gem") return 0;
+    return get_gem_max_level(_id);
+}
+
+/// @func mod_gear_evo_credit_count(credit_id) 持有数量
+function mod_gear_evo_credit_count(_credit){
+    return get_material_amount(_credit);
+}
+
+/// @func mod_gear_evo_has_credit(credit_id) 够不够用（debug 恒真，跟金卡凭证一个口径）
+function mod_gear_evo_has_credit(_credit){
+    if (global.debug) return true;
+    return get_material_amount(_credit) > 0;
+}
+
+/// @func mod_gear_evo_check(step) 能不能进化 → { ok, reason }
+function mod_gear_evo_check(_step){
+    var _r = { ok:false, reason:"" };
+    if (is_undefined(_step)){ _r.reason = "先放一件要进化的装备"; return _r; }
+    var _to = mod_gear_evo_item_info(_step.to);
+    if (is_undefined(_to)){ _r.reason = "下一形态尚未实装"; return _r; }
+    if (!mod_gear_evo_owned(_step.from)){ _r.reason = "还没有" + mod_gear_evo_name(_step.from); return _r; }
+    if (mod_gear_evo_owned(_step.to)){ _r.reason = "已经拥有" + _to.name; return _r; }
+    if (!mod_gear_evo_has_credit(_step.credit)){ _r.reason = "缺少进化凭证"; return _r; }
+    _r.ok = true;
+    return _r;
+}
+
+/// @func mod_gear_evo_commit(step) 落账：扣凭证 → 消耗旧装备 → 产出新装备
+///   界面在特效播完那一帧调它（与金卡进化同一套「延迟结算」），别在点击当帧直接调
+function mod_gear_evo_commit(_step){
+    if (is_undefined(_step)) return false;
+    if (!global.debug) add_material_amount(_step.credit, -1);
+
+    var _from = _step.from, _to = _step.to;
+
+    if (_step.kind == "gem"){
+        // 正装备着先卸下（remove_gem 内部会写一次存档）
+        if (get_gem_index(_from) != -1) remove_gem(_from);
+        var _ug = global.save_data.unlocked_gems;
+        for (var _i = array_length(_ug) - 1; _i >= 0; _i--){
+            if (_ug[_i].id == _from) array_delete(_ug, _i, 1);
+        }
+        // 新宝石：level 0 + max_level 0 → 星级归零；**不退强化水晶**（用户口径）
+        unlock_gem(_to);
+    } else {
+        var _slot = get_weapon_slot(_from);          // "" = 没装备
+        var _uw = global.save_data.unlocked_weapons;
+        for (var _i = array_length(_uw) - 1; _i >= 0; _i--){
+            var _w = _uw[_i];
+            if ((is_struct(_w) ? _w.id : _w) == _from) array_delete(_uw, _i, 1);
+        }
+        unlock_weapon(_to);
+        // 就地换装：equip_weapon 会先快照旧宝石到记忆表，再按 allowed_weapons 把不兼容的卸下
+        if (_slot != "") equip_weapon(_to, _slot);
+    }
+    save_file(global.save_slot);
+    return true;
+}
+
+/// @func mod_gear_evo_draw_credit(target_id, cx, cy, has, box) 凭证图标 = 金色底板 + 目标装备图标
+///   与金卡凭证 mod_evo_draw_credit 同一套画法（同一张 spr_evo_credit_bg），只是里面换成装备图标
+function mod_gear_evo_draw_credit(_to, _cx, _cy, _has, _box = 56){
+    var _bg = spr_evo_credit_bg;
+    var _bw = sprite_get_width(_bg), _bh = sprite_get_height(_bg);
+    var _bs = _box / max(_bw, _bh);
+    if (!_has) shader_set(sh_fusion_gray);
+    draw_sprite_ext(_bg, 0,
+        _cx + (sprite_get_xoffset(_bg) - _bw * 0.5) * _bs,
+        _cy + (sprite_get_yoffset(_bg) - _bh * 0.5) * _bs,
+        _bs, _bs, 0, c_white, 1);
+    var _info = mod_gear_evo_item_info(_to);
+    if (!is_undefined(_info)){
+        var _is = _info.icon;
+        var _iw = sprite_get_width(_is), _ih = sprite_get_height(_is);
+        var _sc = min(_box * 0.62 / max(1, _iw), _box * 0.62 / max(1, _ih));
+        draw_sprite_ext(_is, 0,
+            _cx + (sprite_get_xoffset(_is) - _iw * 0.5) * _sc,
+            _cy + (sprite_get_yoffset(_is) - _ih * 0.5) * _sc,
+            _sc, _sc, 0, c_white, 1);
+    }
+    if (!_has) shader_reset();
+}
+
+/// @func mod_gear_evo_route_text(step) 进化路线文案（悬停提示 / 背包用）
+function mod_gear_evo_route_text(_step){
+    if (is_undefined(_step)) return "";
+    return mod_gear_evo_name(_step.from) + " → " + mod_gear_evo_name(_step.to)
+        + "（消耗 " + mod_gear_evo_name(_step.from) + " + 进化凭证 x1）";
+}
+
+/// @func mod_gear_evo_step_of_target(target_id) 目标装备 → 对应的步（商店只有 unlock_item_id，靠它反查）
+///   查不到 → undefined（链外的 id，别硬用）
+function mod_gear_evo_step_of_target(_to){
+    if (_to == "") return undefined;
+    return mod_gear_evo_step_credit(mod_gear_evo_credit_id(_to));
+}
+
+/// @func mod_gear_evo_credit_price(step) 凭证售价（2026-11-16 用户口径：**按进化档位**）
+///   原版登记表只有三个档位的凭证，不是每张 +25：
+///     新神器 / 新宝石进化凭证 → 25
+///     超神器 / 超宝石进化凭证 → 50
+///     补强宝石进化凭证        → 75
+///   档位 = 该步在自己链里的下标（mod_gear_evo_build 里写成 step.tier），所以**最贵 75**。
+///   ⚠️ 别改回「按登记顺序 ×25」——那样第 31 张会卖到 775，是错的口径（2026-11-16 用户纠正）。
+function mod_gear_evo_credit_price(_step){
+    if (is_undefined(_step)) return 0;
+    var _tier = variable_struct_exists(_step, "tier") ? _step.tier : 0;
+    return 25 * (_tier + 1);
+}
+
+/// @func mod_gear_evo_buyable_locked(target_id) 商店售罄判定（与 mod_evo_buyable_locked 同口径）
+///   已有一张凭证 / 这一阶已经进化出来了 → 售罄。每张凭证一辈子只用 1 次，不必囤。
+function mod_gear_evo_buyable_locked(_to){
+    if (_to == "") return true;
+    if (mod_gear_evo_credit_count(mod_gear_evo_credit_id(_to)) > 0) return true;
+    if (mod_gear_evo_owned(_to)) return true;
+    return false;
+}
+
+/// @func mod_gear_evo_shop_tip(target_id) 商店悬停提示（与背包凭证页同一套四行字）
+function mod_gear_evo_shop_tip(_to){
+    var _st = mod_gear_evo_step_of_target(_to);
+    if (is_undefined(_st)) return "";
+    return mod_gear_evo_name(_to) + "（进化凭证）"
+        + "\n进化路线：" + mod_gear_evo_route_text(_st)
+        + "\n在合成屋-" + ((_st.kind == "gem") ? "宝石进化" : "神器进化") + "中使用";
+}
+
+/// @func mod_gear_evo_selfcheck() 自检：链上的 id 是否都注册、有没有重复、凭证是否撞车
+///   返回 { ok, errors[] }；控制台在 debug 下由 obj_craft_bg 首次打开时打一次
+function mod_gear_evo_selfcheck(){
+    var _err = [];
+    var _c = mod_gear_evo_build();
+    var _seen_to = {};
+    for (var _i = 0; _i < array_length(_c.steps); _i++){
+        var _s = _c.steps[_i];
+        if (is_undefined(mod_gear_evo_item_info(_s.from))) array_push(_err, "未注册（from）：" + _s.from);
+        if (is_undefined(mod_gear_evo_item_info(_s.to)))   array_push(_err, "未注册（to）：" + _s.to);
+        if (variable_struct_exists(_seen_to, _s.to))       array_push(_err, "同一目标出现两次：" + _s.to);
+        _seen_to[$ _s.to] = true;
+        if (_s.credit != mod_gear_evo_credit_id(_s.to))     array_push(_err, "凭证 id 不一致：" + _s.credit);
+        // 售价只看档位（25/50/75），算到 0 或越界 = 这条步的 tier 没算出来
+        var _pr = mod_gear_evo_credit_price(_s);
+        if (_pr < 25 || _pr > 75 || (_pr mod 25) != 0) array_push(_err, "售价算不出：" + _s.to);
+    }
+    return { ok: array_length(_err) == 0, errors: _err };
+}

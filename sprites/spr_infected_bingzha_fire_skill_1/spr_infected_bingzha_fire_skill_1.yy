@@ -2,10 +2,10 @@
   "$GMSprite":"v2",
   "%Name":"spr_infected_bingzha_fire_skill_1",
   "bboxMode":2,
-  "bbox_bottom":237,
-  "bbox_left":0,
-  "bbox_right":198,
-  "bbox_top":0,
+  "bbox_bottom":203,
+  "bbox_left":32,
+  "bbox_right":137,
+  "bbox_top":74,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -28,6 +28,22 @@
     {"$GMSpriteFrame":"v1","%Name":"9ea3720c-6978-4d8f-b922-3dc89fd50f80","name":"9ea3720c-6978-4d8f-b922-3dc89fd50f80","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"82d58970-108c-4b6e-8c65-a917d14f8389","name":"82d58970-108c-4b6e-8c65-a917d14f8389","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"f39bcde0-df2c-43de-924c-dc6f4d0f73ae","name":"f39bcde0-df2c-43de-924c-dc6f4d0f73ae","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"af3751ca-3c22-478a-83fc-0550c1b7b708","name":"af3751ca-3c22-478a-83fc-0550c1b7b708","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"0fd95c47-f3dc-42cf-b2a7-ffeaf74e6912","name":"0fd95c47-f3dc-42cf-b2a7-ffeaf74e6912","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"a4fd449d-cbc5-4302-99dd-33fb66be6389","name":"a4fd449d-cbc5-4302-99dd-33fb66be6389","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"71e3f486-b060-44da-b070-3af64670ec38","name":"71e3f486-b060-44da-b070-3af64670ec38","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"664e76a1-7c7f-4ac6-8b8e-ebde85e1df29","name":"664e76a1-7c7f-4ac6-8b8e-ebde85e1df29","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"62c3878e-bb76-4787-ac1b-6c8b5efa5de1","name":"62c3878e-bb76-4787-ac1b-6c8b5efa5de1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"2c4ed018-d2b2-4dd4-95d3-140dbc87e498","name":"2c4ed018-d2b2-4dd4-95d3-140dbc87e498","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"9dfe4cdb-2155-424c-bdff-313fcd76490e","name":"9dfe4cdb-2155-424c-bdff-313fcd76490e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"c6e9e6b3-6aba-4d64-9f6c-02d6779cf942","name":"c6e9e6b3-6aba-4d64-9f6c-02d6779cf942","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"a8605cbb-e743-44f4-8616-35a6b0d76fc3","name":"a8605cbb-e743-44f4-8616-35a6b0d76fc3","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"ceea44d0-214b-4535-ac1f-2c29f805602d","name":"ceea44d0-214b-4535-ac1f-2c29f805602d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"3e048ec3-1c5a-4d58-926e-a909de856142","name":"3e048ec3-1c5a-4d58-926e-a909de856142","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"50432c23-db3e-4eef-81c4-c276e6aa8565","name":"50432c23-db3e-4eef-81c4-c276e6aa8565","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"09907556-5a82-4de1-a0b6-d120882d7091","name":"09907556-5a82-4de1-a0b6-d120882d7091","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"cf585cc3-2339-469f-b8d2-c518c753cc46","name":"cf585cc3-2339-469f-b8d2-c518c753cc46","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"996b5921-a401-490d-bfdd-6b5f3e659cc9","name":"996b5921-a401-490d-bfdd-6b5f3e659cc9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -64,7 +80,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":16.0,
+    "length":32.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -85,52 +101,100 @@
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"abc4f8d4-50cd-42d2-a84c-bf02401ea296","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"62de2042-e6c4-454c-b00b-68c3c17f571e","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"2e42252e-408e-4a57-acf3-8bc0616cebb3","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c968e407-c4de-41cc-ad1e-54ccd4c91f02","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"f63b59f0-f7fc-489c-964b-e065338430eb","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"407c50f4-d875-47c0-b9e3-9f9548a7a3ac","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"afb26769-fd85-4900-94c9-bab0cf4612c3","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"754fec71-009c-43a1-926c-f1b5a472a147","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"facf626a-88f8-4ecf-aa91-c04743d29c4e","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0794f8f1-a49d-4768-b25b-38f6e99fdcde","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"6a9eb459-c356-4bcd-a276-a357651f224e","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"cde5c8fc-bada-402a-9014-2e3f70a271d3","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"56eab746-e366-47c5-a414-4f01b2ba870f","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"5c385035-aa2b-4f66-82ca-fae91fc8f6ce","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"b2905b95-0397-4280-9e5f-46d994dcddb9","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"486d276f-5367-49d1-8928-d267e8e14cda","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"166bc102-dd96-4e23-bc71-5d91373f0e10","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"68dd4e28-12cb-4f6a-b5d8-c738b00e68d6","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b88fb601-6580-4d50-b0be-8c6826f0ab88","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"d54269c2-bb35-4a7e-89da-fe23100ecc76","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"51123fab-fc13-40d5-9f63-7a496425d32a","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"60a42539-b1d9-47cf-ba82-212d2348fe4d","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a8a8a617-7910-4b58-9467-93beb6e5df69","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"c786c19a-3d00-4403-a535-95c9ac4f14a1","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"610ebed8-9f03-4d8f-b7c5-ec099e10ccd9","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"70f492f1-e402-4591-94cc-4b7f8b4d2455","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"ca030794-8e38-477f-8b5c-ff90dbb62cc7","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0e994336-bd57-4711-a915-7c00b75ee5d2","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0395028e-1bb6-49c0-ace3-d7c575a1b499","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"4e65948f-a931-48a1-8c23-26f0493dd3d0","IsCreationKey":false,"Key":9.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"556f6317-2d08-4c20-b586-ea31a75fd4f6","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"32848cf3-ba79-4255-b85b-45ee393de83e","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"1e4c368b-51f5-4396-af83-564906e22717","IsCreationKey":false,"Key":10.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"aa277075-8658-42c6-ab6f-37df67c09fc0","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"abf8849e-dfe5-4496-97d1-74dd1f2c60e8","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"95c71bd8-d796-464d-a9c3-d762fecf56f4","IsCreationKey":false,"Key":11.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5a02a398-8231-4018-9b5c-ef82219a8420","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"7524bac7-374e-424e-bc06-3e66729a83da","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"23d03cc7-053e-4440-bbef-e9825d4209ab","IsCreationKey":false,"Key":12.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9ea3720c-6978-4d8f-b922-3dc89fd50f80","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"ca743c01-cec1-4d3d-987e-f8acebc4900e","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"94ad5878-f958-47d9-aa09-738851d0c0fe","IsCreationKey":false,"Key":13.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"82d58970-108c-4b6e-8c65-a917d14f8389","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"602aaf03-dfa0-47c9-89ae-b66359bf0eab","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"eeb7f25d-6d1f-41cb-a09f-96f420ea12ad","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f39bcde0-df2c-43de-924c-dc6f4d0f73ae","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"7eef9c58-530a-4f65-940f-8c4b7129677a","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"d9c0d6f6-327c-49de-9d4e-18e3b6e6c1f1","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"af3751ca-3c22-478a-83fc-0550c1b7b708","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"1cc69210-5f81-47cb-bc9e-2ee871611df3","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"0fd95c47-f3dc-42cf-b2a7-ffeaf74e6912","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"244c9b22-d997-467f-a060-c05bd4160ae4","IsCreationKey":false,"Key":17.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a4fd449d-cbc5-4302-99dd-33fb66be6389","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"24a84be5-ea90-4caf-830f-e1d719d7638a","IsCreationKey":false,"Key":18.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"71e3f486-b060-44da-b070-3af64670ec38","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"2b76e0ce-9d80-4012-9404-4fc10e7b68f4","IsCreationKey":false,"Key":19.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"664e76a1-7c7f-4ac6-8b8e-ebde85e1df29","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"10902181-3c77-4ccc-afe7-137994c156f3","IsCreationKey":false,"Key":20.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"62c3878e-bb76-4787-ac1b-6c8b5efa5de1","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"fed5cd04-39cb-46ae-a128-4602942cc2a9","IsCreationKey":false,"Key":21.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"2c4ed018-d2b2-4dd4-95d3-140dbc87e498","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ebe9313a-18ad-4b0b-8aad-600dbb4648f1","IsCreationKey":false,"Key":22.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9dfe4cdb-2155-424c-bdff-313fcd76490e","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"d5f8cc96-172e-4a8a-ad9a-eb028ca024cc","IsCreationKey":false,"Key":23.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c6e9e6b3-6aba-4d64-9f6c-02d6779cf942","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"367e235a-668d-444c-80e0-383697fab8bb","IsCreationKey":false,"Key":24.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a8605cbb-e743-44f4-8616-35a6b0d76fc3","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ef4f5866-73e7-44c7-b7f6-858f43d91d1c","IsCreationKey":false,"Key":25.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ceea44d0-214b-4535-ac1f-2c29f805602d","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"d8cfcd32-cfea-4ddf-949a-a43e306d57d0","IsCreationKey":false,"Key":26.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3e048ec3-1c5a-4d58-926e-a909de856142","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"026d9068-0202-4250-b5b9-d2c732132314","IsCreationKey":false,"Key":27.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"50432c23-db3e-4eef-81c4-c276e6aa8565","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"69cb90cc-a6cd-4be1-bb82-eb98d12481b7","IsCreationKey":false,"Key":28.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"09907556-5a82-4de1-a0b6-d120882d7091","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"376e05d8-d164-4fac-988d-53939ddddf96","IsCreationKey":false,"Key":29.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"cf585cc3-2339-469f-b8d2-c518c753cc46","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"e07f1850-6a12-45ff-ac4d-12db605bc38f","IsCreationKey":false,"Key":30.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"996b5921-a401-490d-bfdd-6b5f3e659cc9","path":"sprites/spr_infected_bingzha_fire_skill_1/spr_infected_bingzha_fire_skill_1.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"2a2608f3-a663-4da2-8b81-3061ea360fc1","IsCreationKey":false,"Key":31.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

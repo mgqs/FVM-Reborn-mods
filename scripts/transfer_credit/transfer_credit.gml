@@ -541,7 +541,11 @@ function transfer_credit_tab_rows(_items, _starts, _cols){
 
 /// @func transfer_credit_tab_name(item) 凭证名（背包格子悬停、商店等处共用）
 function transfer_credit_tab_name(_it){
-    if (_it.kind == "evo") return transfer_credit_card_name(_it.card_id) + "（进化凭证）";
+    if (_it.kind == "evo"){
+        // 神器 / 宝石进化凭证（2026-11-16）：同一个前缀，但目标不是卡 → 名字走装备表
+        if (mod_gear_evo_is_credit(_it.id)) return mod_gear_evo_name(_it.card_id) + "（进化凭证）";
+        return transfer_credit_card_name(_it.card_id) + "（进化凭证）";
+    }
     if (_it.kind == "recipe") return fusion_recipe_display_name(_it.card_id, _it.shape);
     return transfer_credit_name(_it.card_id, _it.shape);
 }
@@ -551,6 +555,11 @@ function transfer_credit_tab_name(_it){
 function transfer_credit_tab_tip(_it){
     var _head = transfer_credit_tab_name(_it) + "\n持有：" + string(_it.amount);
     if (_it.kind == "evo"){
+        // 神器 / 宝石：路线与用途都走装备表（mod_gear_evo_*），别落到金卡那套上
+        if (mod_gear_evo_is_credit(_it.id)){
+            return _head + "\n进化路线：" + mod_gear_evo_route_text(mod_gear_evo_step_credit(_it.id))
+                + "\n进化凭证：在合成屋-神器进化 / 宝石进化中使用";
+        }
         // 进化路线写进提示（与诸神商店共用 mod_evo_route_text，2026-10-28）
         return _head + "\n进化路线：" + mod_evo_route_text(_it.card_id)
             + "\n进化凭证：在合成屋-金卡进化中使用";
@@ -575,6 +584,11 @@ function transfer_credit_tab_draw(_it, _x, _y, _size){
         exit;
     }
     if (_it.kind == "evo"){
+        // 神器 / 宝石进化凭证：底板 + 目标装备图标（与合成屋底部凭证架同一套画法）
+        if (mod_gear_evo_is_credit(_it.id)){
+            mod_gear_evo_draw_credit(_it.card_id, _x + _size * 0.5, _y + _size * 0.5, true, _size * 0.92);
+            exit;
+        }
         // 进化凭证没有单独图标：底板 + 该金卡的 0 形态立绘（跟进化页第 3 槽同一套画法）
         mod_evo_draw_credit(_it.card_id, _x + _size * 0.5, _y + _size * 0.5, true,
             _size * 0.92, _size * 0.68);

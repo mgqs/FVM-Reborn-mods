@@ -11,6 +11,9 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"spr_gear_evo_label","path":"sprites/spr_gear_evo_label/spr_gear_evo_label.yy",},
+    {"name":"d18a100f-5bdb-4c2f-ac44-3cd4f2a75945","path":"sprites/spr_evo_left_gem/spr_evo_left_gem.yy",},
+    {"name":"e926b1f3-a7fd-4e4f-bc66-e724a1350a1f","path":"sprites/spr_evo_left_artifact/spr_evo_left_artifact.yy",},
     {"name":"a23f479f-8261-42cf-8d49-4b43bc315d4d","path":"sprites/spr_recipe_plate_2/spr_recipe_plate_2.yy",},
     {"name":"32087004-5b71-4c08-9cba-74a75ae3ee71","path":"sprites/spr_recipe_plate_1/spr_recipe_plate_1.yy",},
     {"name":"fd44c9ec-53fd-4ff5-ac70-d87b0a2cc2b0","path":"sprites/spr_recipe_plate_0/spr_recipe_plate_0.yy",},

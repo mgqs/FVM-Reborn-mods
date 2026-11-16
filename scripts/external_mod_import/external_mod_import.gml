@@ -124,7 +124,7 @@ function external_mod_import_validation_step(job) {
     job.phase_started = get_timer();
     job.label = "正在检查已安装 Mod 的兼容性";
     job.progress = -1;
-    job.conflict = {folder_index: 0, current: undefined, path_index: 0, compare_index: 0, indexed: false};
+    job.conflict = {folder_index: 0, current: undefined, path_cursor: 0, compare_index: 0, indexed: false};
 }
 
 /// Index one installed configuration at a time; never rescan its PNGs.
@@ -150,7 +150,7 @@ function external_mod_import_conflict_step(job) {
                 var paths = external_mod_field(manifest, field, fallback);
                 if (!is_array(paths)) throw "Mod 索引格式无效";
                 state.current = {root: root, paths: paths, animation: animation, entries: []};
-                state.path_index = 0;
+                state.path_cursor = 0;
                 state.compare_index = 0;
                 state.indexed = false;
             } catch (invalid_index) { state.folder_index++; continue; }
@@ -158,8 +158,8 @@ function external_mod_import_conflict_step(job) {
         var current = state.current;
         if (!state.indexed) {
             try {
-                if (state.path_index < array_length(current.paths)) {
-                    var d = json_parse(external_mod_read(external_mod_path(current.root, current.paths[state.path_index])));
+                if (state.path_cursor < array_length(current.paths)) {
+                    var d = json_parse(external_mod_read(external_mod_path(current.root, current.paths[state.path_cursor])));
                     var item;
                     if (current.animation) {
                         var actor = asset_get_index(external_mod_field(d, "object", ""));
@@ -167,9 +167,9 @@ function external_mod_import_conflict_step(job) {
                         item = {sprite: external_mod_field(d, "sprite", ""), object_asset: actor};
                     } else item = {id: external_mod_field(d, "id", "")};
                     array_push(current.entries, item);
-                    state.path_index++;
+                    state.path_cursor++;
                 }
-                state.indexed = state.path_index >= array_length(current.paths);
+                state.indexed = state.path_cursor >= array_length(current.paths);
             } catch (invalid_existing) { state.current = undefined; state.folder_index++; }
         } else if (state.compare_index < array_length(current.entries)) {
             var installed = {cards: [], overrides: []};

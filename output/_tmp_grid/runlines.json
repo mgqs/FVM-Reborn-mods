@@ -1,0 +1,62 @@
+{
+ "spr_salad_island_land": {
+  "cols": [
+   [
+    577.0,
+    0.5703703703703704
+   ],
+   [
+    698.0,
+    0.7509259259259259
+   ],
+   [
+    1664.0,
+    0.6111111111111112
+   ]
+  ],
+  "rows": [
+   [
+    136.0,
+    0.5825436408977556
+   ]
+  ],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_wuduyanjiusuo_0": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_zhuorediyu": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_shuihuozhijian_0": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_shuihuozhijian_1": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_mengyantiankong_0": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ },
+ "spr_mod_ancient_castle_0": {
+  "cols": [],
+  "rows": [],
+  "Xprog": null,
+  "Yprog": null
+ }
+}

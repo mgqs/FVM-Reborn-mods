@@ -1,9 +1,9 @@
 var _page_alpha = (instance_exists(obj_shop_bg)) ? obj_shop_bg.pg_alpha : 1;
 draw_set_alpha(_page_alpha);
 var gacha_card_disabled = (btn_type == "card" && (is_eternal_gacha_mode() || is_random_gift_mode()));
-var gacha_weapon_disabled = (btn_type == "weapon" && is_eternal_gacha_mode() && gacha_is_mod_weapon(target_item));
-var gacha_gem_disabled = (btn_type == "gem" && is_eternal_gacha_mode() && gacha_is_mod_gem(target_item));
-if is_disabled || gacha_card_disabled || gacha_weapon_disabled || gacha_gem_disabled{
+// 武器 / 宝石共用一条判据：gacha_shop_locked（诸神之盾那条线 = 商城直售，不置灰）
+var gacha_shop_disabled = ((btn_type == "weapon" || btn_type == "gem") && is_eternal_gacha_mode() && gacha_shop_locked(btn_type, target_item));
+if is_disabled || gacha_card_disabled || gacha_shop_disabled{
 	image_blend = c_gray
 }
 if btn_type == "attire" && is_attire_owned{

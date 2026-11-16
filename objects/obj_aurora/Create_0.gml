@@ -41,5 +41,5 @@ if (shape >= 3)
     aurora_effect_obj.parent_plant = id;
 }
 
-ds_list_add(global.buff_sources, id);
+mod_buff_source_add(id);
 global.buff_dirty = true;

@@ -312,19 +312,21 @@ switch state{
 			if jump_times < 5{
 				skill_timer ++
 				if skill_timer == 1{
-					t_pos = get_world_position_from_grid(irandom_range(3,7),irandom_range(0,global.grid_rows-1))
+					// 本体先飞向「这一轮要送熊猫的那一列」（jump_times 0~4 → 第 1~5 列），
+					// 落点就是熊猫出现的格子，避免本体飞到 3~7 列、熊猫却出现在 1~5 列的位置错位。
+					panda_col = jump_times;
+					panda_row = irandom_range(0,global.grid_rows-1);
+					t_pos = get_world_position_from_grid(panda_col,panda_row)
 			
 					y_move_speed = (t_pos.y+33-y)/90
-					x_move = (t_pos.x-80-x)/90
+					x_move = (t_pos.x-x)/90
 				}
 				if skill_timer > 1 && skill_timer <= 90{
 					x += x_move
 					y += y_move_speed
 				}
 				if skill_timer == 91{
-					// 变异：把变异熊猫鼠直接送到第 1~5 列（jump_times 0~4）的随机行
-					var panda_col = jump_times;
-					var panda_row = irandom_range(0,global.grid_rows-1);
+					// 变异：把变异熊猫鼠送到本体所在格（就是上面飞过去的那一格）
 					var panda_pos = get_world_position_from_grid(panda_col,panda_row);
 					var panda_inst = instance_create_depth(panda_pos.x,panda_pos.y+33,-100,obj_kuafu_panda);
 					panda_inst.grid_col = panda_col;
@@ -332,7 +334,7 @@ switch state{
 					t_pos = get_world_position_from_grid(9,irandom_range(0,global.grid_rows-1))
 			
 					y_move_speed = (t_pos.y+33-y)/90
-					x_move = (t_pos.x-80-x)/90
+					x_move = (t_pos.x-x)/90
 				}
 				if skill_timer > 120 && skill_timer <= 210{
 					x += x_move

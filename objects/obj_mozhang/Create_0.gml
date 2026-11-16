@@ -28,5 +28,5 @@ buff_outputs = [
 ];
 buff_cells_refreshed = false;
 
-ds_list_add(global.buff_sources, id);
+mod_buff_source_add(id);
 global.buff_dirty = true;

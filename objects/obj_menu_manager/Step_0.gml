@@ -74,7 +74,10 @@ if keyboard_check_pressed(vk_escape){
 		}
 	}
 	else if instance_exists(obj_quit_confirm){
-		game_end()
+		// 2026-11-16 用户口径：**连按两次退出键不许直接离开游戏**，必须让「是否退出」框停在原地。
+		//   原来这里写的是 game_end() —— 退出确认框还开着时再按一次就当场杀进程，
+		//   玩家手快连点（右键/ESC 两次）看到的就是「没弹窗、直接退游戏」。
+		//   现在交回 obj_quit_confirm 自己处理（确定 / 取消 / ESC 关闭），这里不做任何事。
 	}
 	else{
 		instance_create_depth(room_width /2,room_height/2,-20,obj_quit_confirm)

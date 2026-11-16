@@ -267,11 +267,13 @@ function gacha_is_zodiac_card(card_id) {
 /// @param {string} weapon_id
 /// @return {bool}
 function gacha_is_mod_weapon(weapon_id) {
-    // MOD武器列表（来自mod_weapons_init.gml）
+    // 抽卡池里的 MOD 武器（来自 mod_weapons_init.gml）
+    // 2026-11-15 用户口径：**诸神之盾不进抽卡池**，改为商城直售（200000 金币，见 mod_shop_init）。
+    //   只从本名单移除即可同时达成两件事：不进 weapon_candidates，且抽卡模式下商城不再禁售
+    //   （obj_shop_buy_btn 的禁售判据走 gacha_shop_locked）—— 所以这里不要为它另开分支。
     var mod_weapons = [
         "zeus_bolt",
         "hades_scythe",
-        "gods_shield",
         "master_shield",
         "star_wand",
         "rose_shield",
@@ -323,6 +325,31 @@ function gacha_is_mod_gem(gem_id) {
         "aladdin_lamp_gem_5"
     ];
     return array_get_index(mod_gems, gem_id) != -1;
+}
+
+/// @function gacha_shop_locked(_type, _id)
+/// @desc 抽卡模式下这件商品是否「商城禁售、只能靠随机奖励拿」
+///       默认口径 = 在抽卡池名单里就禁售（gacha_is_mod_weapon / gacha_is_mod_gem，原本两个用途复用一张表）。
+///       例外（2026-11-15 用户口径）：诸神之盾那条线**商城直售**——
+///         武器已从抽卡池移出（见 gacha_is_mod_weapon），所以武器侧无需再列例外；
+///         4 颗「之源」宝石**仍留在抽卡池可抽**（前提是已拥有诸神之盾），但商城里也能买。
+/// @param {string} _type 商品类型（"weapon" / "gem"）
+/// @param {string} _id 武器 / 宝石 id
+/// @return {bool} 是否禁售
+function gacha_shop_locked(_type, _id) {
+    if (_type == "weapon") return gacha_is_mod_weapon(_id);
+    if (_type == "gem") {
+        // 诸神之盾专属宝石在抽卡模式下的商城例外（价格见 mod_shop_init，与死神镰刀系同为直售）
+        var _shop_gems = [
+            "gods_shield_gem_1",
+            "gods_shield_gem_2",
+            "gods_shield_gem_3",
+            "gods_shield_gem_4"
+        ];
+        if (array_get_index(_shop_gems, _id) != -1) return false;
+        return gacha_is_mod_gem(_id);
+    }
+    return false;
 }
 
 /// @function gacha_get_weapon_icon(weapon_id)
