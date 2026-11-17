@@ -944,7 +944,7 @@ register_gods_goods("gongjiang_god",
     type: "evo",
     cost: "30",
     unlock_item_id: "gongjiang_god",
-    description: "鲁班神使：发射1发河豚子弹（4倍伤害）沿固定轨迹往返，可攻击地下/陆地/飞行老鼠",
+    description: "鲁班神使：发射固定轨迹河豚子弹",
 });
 
 register_gods_goods("gongjiang_god_1",
@@ -953,7 +953,7 @@ register_gods_goods("gongjiang_god_1",
     cost: "10",
     unlock_item_id: "gongjiang_god",
     target_shape: 1,
-    description: "鲁班圣神：子弹威力提升，概率附加河豚毒素"
+    description: "鲁班圣神：发射固定轨迹河豚子弹"
 });
 
 register_gods_goods("gongjiang_god_2",
@@ -962,7 +962,7 @@ register_gods_goods("gongjiang_god_2",
     cost: "10",
     unlock_item_id: "gongjiang_god",
     target_shape: 2,
-    description: "工匠神·鲁班：子弹威力提升至5倍，概率释放河豚毒素"
+    description: "工匠神·鲁班：发射固定轨迹河豚子弹"
 });
 
 register_gods_goods("gongjiang_god_3",
@@ -971,7 +971,7 @@ register_gods_goods("gongjiang_god_3",
     cost: "15",
     unlock_item_id: "gongjiang_god",
     target_shape: 3,
-    description: "至尊工匠神：第1、2列增加上下竖向子弹，子弹威力再次提升"
+    description: "至尊工匠神：发射固定轨迹河豚子弹"
 });
 
 

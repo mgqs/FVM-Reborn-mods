@@ -198,8 +198,9 @@ function mod_custom_key_check(){
 
             // 可用变量名：固定几个 + 第 0 档升级表的所有 key（含 custom）+ 各形态 custom
             var _avail = {};
+            // 必须与 info_island_text_vars 里现算的那几个同名（少一个就整卡刷假报错）
             var _fixed = ["攻击力", "生命值", "体力", "能量消耗", "攻击间隔", "冷却时间", "范围",
-                          "火苗产量", "星级", "转职", "技能", "形态名"];
+                          "火苗产量", "星级", "转职", "技能", "形态名", "可以攻击"];
             for (var _f = 0; _f < array_length(_fixed); _f++) variable_struct_set(_avail, _fixed[_f], true);
 
             var _sd0 = get_plant_shape_data(_cid, 0);

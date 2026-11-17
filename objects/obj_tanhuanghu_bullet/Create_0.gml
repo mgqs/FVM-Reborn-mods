@@ -7,11 +7,10 @@ move_speed = 11;
 row        = 0;
 shape      = 0;
 
-// target_type 只是默认值，实际由 obj_tanhuanghu/Other_11 按「这一发打空还是打地」覆写为 air_only / normal
-target_type    = "normal";
+// 子弹是 air 类型：陆地 + 空军都打（「优先对空」在卡片的炮口高度上做）
+target_type    = "air";
 damage_type    = "pierce";                        // 同参考卡 多拿滋弹体：pierce = 同时打护盾与本体
-hittable_types = get_hittable_enemy_types("normal");   // 由 Other_11 覆写为 air_only / normal 派生结果
-is_air_volley  = false;                            // true = 对空弹（只打 air）
+hittable_types = get_hittable_enemy_types("air");       // 由 Other_11 覆写：air = 陆地 + 空军
 
 hit_tick   = 0;
 hitted_enemy = noone;

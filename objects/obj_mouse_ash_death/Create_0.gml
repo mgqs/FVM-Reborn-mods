@@ -12,4 +12,5 @@ timer = 11
 life = 90
 can_destroy = false
 special_ash = false
+ash_cycle_set = false
 hit_shader = hit_effect_2

@@ -62,6 +62,8 @@
     {"name":"obj_lizi_god_bullet_effect","path":"objects/obj_lizi_god_bullet_effect/obj_lizi_god_bullet_effect.yy",},
     {"name":"obj_chunsun_launch_fx","path":"objects/obj_chunsun_launch_fx/obj_chunsun_launch_fx.yy",},
     {"name":"obj_burn_cell","path":"objects/obj_burn_cell/obj_burn_cell.yy",},
+    {"name":"obj_bbq_burn_cell","path":"objects/obj_bbq_burn_cell/obj_bbq_burn_cell.yy",},
+    {"name":"obj_water_god_poison","path":"objects/obj_water_god_poison/obj_water_god_poison.yy",},
     {"name":"obj_eightcake_burn_cell","path":"objects/obj_eightcake_burn_cell/obj_eightcake_burn_cell.yy",},
     {"name":"obj_bbq_mouse_burn","path":"objects/obj_bbq_mouse_burn/obj_bbq_mouse_burn.yy",},
     {"name":"obj_guihuajiu_boom","path":"objects/obj_guihuajiu_boom/obj_guihuajiu_boom.yy",},
@@ -74,5 +76,6 @@
     {"name":"obj_dianman_effect","path":"objects/obj_dianman_effect/obj_dianman_effect.yy",},
     {"name":"obj_fashishe_poison_cell","path":"objects/obj_fashishe_poison_cell/obj_fashishe_poison_cell.yy",},
     {"name":"obj_tianxie_needle","path":"objects/obj_tianxie_needle/obj_tianxie_needle.yy",},
+    {"name":"obj_joker_bat_ash","path":"objects/obj_joker_bat_ash/obj_joker_bat_ash.yy",},
   ],
 }

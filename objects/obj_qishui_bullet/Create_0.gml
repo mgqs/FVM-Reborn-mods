@@ -42,7 +42,7 @@ bounce_wait  = 0;         // 找不到下一个目标 → 原地停留（淡出�
 bounce_times = 3;    // 总计能打几只（含直线命中那一下）
 chain_left   = 0;    // 这颗子弹命中后还能再弹几次
 chain_ids    = [];   // 已经打过的敌人 id（防止弹射绕回同一只）
-bounce_mult  = 2;
+bounce_mult  = 0.5;   // 弹射伤害 = base_atk（= 攻击表值）× 0.5
 bounce_cells = 1;
 slow_frames  = 0;
 ice_death    = false;

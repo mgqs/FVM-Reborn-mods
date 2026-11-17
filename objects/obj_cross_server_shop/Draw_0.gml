@@ -113,9 +113,9 @@ for (var _slot = 0; _slot < 16; _slot++) {
         mod_gear_evo_draw_credit(_goods.unlock_item_id, _gx - 122, _gy + 5, true, 96);
     } else if (_goods_type == "material") {
         // 香料（2026-11-17）：直接画材料图集那一帧，尺寸对齐卡片的粉红放射区（与幸运星商店同口径）
-        var _csm_info = global.material_pool[? _goods.material_id];
+        var _csm_info = global.material_pool[? _goods.material_id];   // value 是 struct
         var _csm_s    = 124 / 88;
-        draw_sprite_ext(spr_craft_material, _csm_info[? "icon"], _gx - 122, _gy - 2,
+        draw_sprite_ext(spr_craft_material, _csm_info.icon, _gx - 122, _gy - 2,
             _csm_s, _csm_s, 0, c_white, 1);
     }
 

@@ -73,7 +73,7 @@ function mod_skill_init()
     register_card_skill("poseidon", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
     register_card_skill("love_god", "cycle", [78, 75, 72, 69, 66, 63, 60, 54, 48]);
     register_card_skill("fire_god", "cooldown", [420, 402, 384, 360, 330, 300, 270, 240, 210]);
-    register_card_skill("water_god", "cooldown", [420, 390, 360, 330, 300, 270, 240, 210, 180]);
+    register_card_skill("water_god", "毒伤", [100, 120, 140, 160, 180, 200, 220, 250, 300]);
     register_card_skill("zeus", "cycle", [360, 348, 336, 324, 312, 300, 288, 270, 240]);
     register_card_skill("ghost_god", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
     register_card_skill("ice_god", "cycle", [360, 348, 336, 324, 312, 300, 282, 264, 240]);

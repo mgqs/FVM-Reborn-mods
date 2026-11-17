@@ -1,8 +1,8 @@
 /// 金刚马 / 梵音金刚马 / 金刚马神使（jingangma）Create 事件
 /// 直射类·穿透追踪：全屏索敌「最远」目标（x 最大），发射追踪穿透音波，
 ///   一路穿过沿途陆/空/幽灵鼠军；命中后音波不消失，继续直线飞出。
-///   0 转 1 发 / 1 转 2 发（+15% 定身 1.5s）/ 2 转 3 发（+秒杀平民鼠）
-/// 数值走注册表：子弹数 / 定身概率 / 定身时间 → custom 标量（每个形态各写一份，不进数组）
+///   原版 1/2/3 发已压成**每轮 1 发**（伤害写进 atk 表 = 官方每发 × 原版发数）
+/// 数值走注册表：atk（已含原版发数倍数）；定身 / 秒杀按形态写死，不进 custom
 event_inherited();
 
 plant_id = "jingangma";
@@ -29,20 +29,10 @@ attack_timer = 0;
 state = CARD_STATE.IDLE;
 
 // ── 可调参数 ──
-jg_shot_count = 1;       // 一轮音波数，下面按形态 / custom["子弹数"] 覆写
-jg_fired      = 0;       // 本轮已出膛的音波数
-jg_burst_gap  = 10;      // 连发间隔（帧）：10 帧 × 9px/帧 ≈ 90px ≈ 一个弹身 → 前后两发头尾相接、不叠
-jg_burst_timer = 0;      // 距上一发的计时
+jg_fired      = false;   // 本轮已出膛（压缩后每轮恒 1 发）
 jg_tail       = false;   // 收尾标记：攻击段到点后继续把 22~24 帧（铃铛放下段）播完再回待机
 jg_art_up     = -18;     // 出膛点相对卡片 y 的偏移（音波从头部冒出）
-jg_fire_frame = idle_anim + 7;   // 首发绑动画第 18 帧（index 17）＝铃铛晃动段 18~21 开头；之后按 jg_burst_gap 连发
-
-// ── 注册表 custom（每个形态各写标量：子弹数 1/2/3、定身概率 0/15/15）──
-var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
-var _info = get_plant_data_with_skill("jingangma", shape, clamp(current_level, 0, 16), _sk);
-
-jg_shot_count  = (shape >= 2) ? 3 : ((shape == 1) ? 2 : 1);
-if (_info != undefined && ds_map_exists(_info, "子弹数")) jg_shot_count = _info[? "子弹数"];
+jg_fire_frame = idle_anim + 7;   // 出弹绑动画第 18 帧（index 17）＝铃铛晃动段 18~21 开头
 
 // 定身：1 转起 15% / 1.5 秒 —— 固定值，写死（不进 custom）
 jg_stun_time   = (shape >= 1) ? 1.5 : 0;

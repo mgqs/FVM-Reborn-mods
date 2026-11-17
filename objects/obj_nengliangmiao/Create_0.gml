@@ -28,8 +28,8 @@ buff_max_stacks = 1;
 //      海克斯攻速词条会乘它 → 一改就把增幅倍率改坏；面板/情报岛读出来还是「攻击间隔 130 秒」。
 //      注册表里本卡 cycle 已归还成 0（本体不攻击，它什么都不该装）。
 //   数值口径：0/1 转 1.3~4.1；2 转整体 ×1.15（= 1.495~4.715，对应「二转威力提高15%」）。
-//   **平射增幅就是 atk 本身**（2026-11-10 起：0/1 转 2.2~4.3，2 转 2.53~4.945），
-//      不再存「220 这种百分数再 /100」——父类事件统一按 other.atk * fire_mult_scale（=1）取。两套增幅互不影响。
+//   平射（点火）增幅 → 注册表 custom["过火倍率"]（2026-11-16 用户口径：atk 表置 0、倍率单独注册，
+//      本体不攻击，攻击力栏不该有数）。父类事件按 fire_mult_override 取，没有这个字段的火源仍用 atk。
 //   custom 值按星级已经写进升级表（mod_register_plant_lite / add_plant_upgrade_lite），直接读即可。
 //   关卡里星级不会再变（升星会重建卡片），所以只在 Create 取一次，Step 里直接用 throw_buff_value。
 var _nl_info = get_plant_data_with_skill("nengliangmiao", shape, clamp(current_level, 0, 16),
@@ -39,6 +39,12 @@ if (_nl_info != undefined && ds_map_exists(_nl_info, "投掷增幅")){
 	throw_buff_value = _nl_info[? "投掷增幅"];
 }
 buff_value = throw_buff_value;
+
+// 平射（点火）倍率：口径同投掷增幅，读 custom["过火倍率"]（atk 已置 0，不能再当倍率用）
+fire_mult_override = 1;
+if (_nl_info != undefined && ds_map_exists(_nl_info, "过火倍率")){
+	fire_mult_override = _nl_info[? "过火倍率"];
+}
 // 记一份当前状态：星级 / 技能 / 形态**可能在建实例之后才写入**（升星、转职、换技能），
 //   Step 里靠这三个值判断要不要重取一次倍率（同 obj_mianbao 的写法）
 _nl_lv = current_level;

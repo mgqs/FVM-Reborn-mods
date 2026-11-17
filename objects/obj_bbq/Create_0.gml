@@ -5,7 +5,7 @@
 //       父对象按 idle_anim / attack_anim 划段：IDLE 走 0~12，ATTACK 走 13~21
 // 数值取自「食神谱金卡融合卡前置补全\基本信息.xlsx」第 216~222 行（街头烤肉大师那一段）。
 // 机制：沿本行向右发射穿透串串子弹；**每第 4 发**换成爆辣烤串（见 Other_11 的 _burn_every），并在该行最右 1 格留下灼烧：
-//       存在 2 秒，**每 0.5 秒烫一次**（共 4 跳）→ 站满 4 跳（见 bbq_spawn_burn_cell / obj_burn_cell）。
+//       存在 2 秒，**每 0.5 秒烫一次**（共 4 跳）→ 站满 4 跳（见 bbq_spawn_burn_cell / obj_bbq_burn_cell）。
 //       2026-11-08 用户改口径：灼烧**每跳伤害**直接读卡片 atk（同法师蛇，不再 ×2、不再走 custom）；
 //         持续秒数 / 跳数走 custom["灼烧持续"] / ["灼烧跳数"]（默认 2 秒 4 跳）。
 //       其余节奏（0.5 秒 / 4 跳 / 2 秒）不动，仍写在对象里。
@@ -55,6 +55,9 @@ burn_duration = 2;   // custom["灼烧持续"]（秒）
 burn_ticks    = 4;   // custom["灼烧跳数"]（跳）
 if (_binfo != undefined && ds_map_exists(_binfo, "灼烧持续")) burn_duration = _binfo[? "灼烧持续"];
 if (_binfo != undefined && ds_map_exists(_binfo, "灼烧跳数")) burn_ticks    = _binfo[? "灼烧跳数"];
+// 同一格灼烧区叠加上限（xlsx 11.直射 R131「可叠加 4 层」，多片各自跳伤 = 叠层伤害）
+bbq_stack_max = 4;
+if (_binfo != undefined && ds_map_exists(_binfo, "叠加层数")) bbq_stack_max = _binfo[? "叠加层数"];
 burn_life          = max(1, round(burn_duration * 60));                 // 总帧数
 burn_tick_interval = max(1, round(burn_life / max(1, burn_ticks)));     // 每跳间隔帧
 
@@ -69,6 +72,21 @@ bbq_burn_extra_col = 1;
 bbq_spawn_burn_cell = function(_row)
 {
     var _bc = global.grid_cols - 1;
+
+    // 叠加上限：同一格已有 >= bbq_stack_max 片就不再铺。
+    //   火格用 bbq 专用对象 obj_bbq_burn_cell，直接数它
+    if (bbq_stack_max > 0)
+    {
+        var _cnt = 0;
+        var _bn = instance_number(obj_bbq_burn_cell);
+        for (var _bi = 0; _bi < _bn; _bi++)
+        {
+            var _bg = instance_find(obj_bbq_burn_cell, _bi);
+            if (_bg.grid_col == _bc && _bg.grid_row == _row) _cnt++;
+        }
+        if (_cnt >= bbq_stack_max) return;
+    }
+
     var _cell = get_world_position_from_grid(_bc, _row);
     // 🔴 贴图 112×141 的画布里只有中间一块是火：按画布缩放只会铺出一小块，必须按**实心火**的内容框放大。
     //   _fw/_fh/_fcx/_fcy = 20 帧并集里 alpha≥128 的实心区域（x 28~84 / y 48~114，中心 (56,81)）；
@@ -81,7 +99,7 @@ bbq_spawn_burn_cell = function(_row)
     var _bx = (_cell.x + _fire_dx) - (_fcx - sprite_get_xoffset(spr_bbq_burn_ground)) * _sx;
     var _by = (_cell.y - bbq_art_up + _fire_dy) - (_fcy - sprite_get_yoffset(spr_bbq_burn_ground)) * _sy;
     // 图层：压在老鼠和卡片后面（跟 calculate_plant_depth 同一套行距，但取「行首之外」的值）
-    var _b = instance_create_depth(_bx, _by, -10 - _row * 45, obj_burn_cell);
+    var _b = instance_create_depth(_bx, _by, -10 - _row * 45, obj_bbq_burn_cell);
     _b.sprite_index = spr_bbq_burn_ground;
     // 只播「火最旺」的 3~16 段：0/1/18/19 帧几乎全透明（烧起来前 / 灭掉后），
     //   整段循环会看到火格「闪一下没了」，2026-10-31 用户反馈的问题

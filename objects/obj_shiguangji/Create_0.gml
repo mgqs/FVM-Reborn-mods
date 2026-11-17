@@ -47,7 +47,6 @@ attack_anim = 0;
 // ── 前摇：1.9 秒（xlsx 官方值，技能等级不影响）──
 //   情报岛文案 {前摇} 读的是 custom 里的固定值
 sg_cast_delay = 114;       // 1.9s × 60
-sg_init_done  = false;
 sg_timer      = 0;
 sg_cast_done  = false;
 sg_end_timer  = 0;

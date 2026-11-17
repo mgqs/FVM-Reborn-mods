@@ -5,7 +5,7 @@ event_inherited();
 
 if (is_frozen) exit;
 
-// ── 首次 Step 取数值（冷却缩减是 custom 标量，前摇按技能档）──
+// ── 首次 Step 取数值（冷却缩减是 custom 标量；前摇是固定值，写在 Create）──
 if (!zl_init_done){
     zl_init_done = true;
 
@@ -16,9 +16,7 @@ if (!zl_init_done){
         zl_reduce_pct   = _info[? "冷却缩减"];
         zl_reduce_ratio = zl_reduce_pct / 100;
     }
-    if (_info != undefined && ds_map_exists(_info, "前摇")){
-        zl_cast_delay = round(_info[? "前摇"] * 60);
-    }
+    // 前摇固定 1.5 秒（= Create 里的 zl_cast_delay 90 帧），2026-11-17 起不再读注册表
 }
 
 // ── ① 转圈：帧号 = 前摇进度 ──

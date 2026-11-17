@@ -7,18 +7,22 @@
 // 1 转起：**每轮子弹数量 +1（2 发）** —— 原「灼烧频率翻倍」口径 2026-11-03 作废，改成加弹。
 //   一拍两发 → 第 4 发落在**第 2 轮的第 2 发**（第 1 轮 = 第 1、2 发，第 2 轮 = 第 3、4 发）。
 //   2026-11-04 用户口径：第二发**不在同一帧冒出**，要从发射点**晚一点**出来（第一发当帧出，后面的延迟出膛）。
-// 灼烧区：该行第 9 格整格铺满，**存在 2 秒**，每秒一跳 100（共 200）；详见 obj_burn_cell。
+// 灼烧区：该行第 9 格整格铺满，**存在 2 秒**，每秒一跳 100（共 200）；详见 obj_bbq_burn_cell。
 //   2026-11-04 用户口径：火格**跟烤串那一发同帧铺**（延迟出膛的第二发就是烤串时，火格也一起延后），
 //   不能再随「本轮第一发」提前出现 —— 铺法统一在 Create_0 的 bbq_spawn_burn_cell()。
 
 // 🔧 可调参数（改这里就行，不用往下翻）
-var _per_row   = (shape >= 1) ? 2 : 1;   // 每行每轮子弹数：0 转 1 发 / 1·2 转 2 发
+// 压缩口径（2026-11-16 用户）：每行每轮恒 1 发，伤害按「原版发数」翻倍写进 atk 表
+var _per_row   = 1;
+var _shots_n   = (shape >= 1) ? 2 : 1;   // 这一发代表原版几发（0 转 1 / 1·2 转 2）
 var _shot_delay = 14;                    // 第二发比第一发**晚几帧**出膛（14 帧 ≈ 0.23s ≈ 75px 间距）
 var _split_dx  = 0;                      // 同轮多发的 x 偏移；0 = 同一点出膛，间距只靠 _shot_delay 拉开
 var _burn_every = 4;                     // 每几「发」出一颗爆辣烤串
 
-var _shot_base = bbq_shot_count;
-bbq_shot_count += _per_row;
+// 「每 4 发一颗爆辣烤串」按原版发数累计折算（N=2 → 每 2 轮一颗）
+var _prev_shots = bbq_shot_count;
+bbq_shot_count += _shots_n;
+var _burn_n = floor(bbq_shot_count / _burn_every) - floor(_prev_shots / _burn_every);
 
 // 上一轮如果还有没出膛的（正常不会，cycle 远大于延迟），先补发，别吞掉一发
 if (array_length(bbq_pending) > 0)
@@ -77,9 +81,8 @@ for (var _r = 0; _r < array_length(_rows); _r++)
 
     for (var _j = 0; _j < _per_row; _j++)
     {
-        // 这一发的序号（按「发」数，跨轮累加）→ 每 _burn_every 发一颗烤串
-        var _shot_no = _shot_base + _j + 1;
-        var _burn = (_shot_no mod _burn_every == 0);
+        // 这一发是不是烤串（按原版发数累计，跨轮折算）
+        var _burn = (_burn_n > 0);
 
         // 出膛点：_split_dx = 0 时两发同一点；要微调可以给个几像素
         var _bx0 = _start_x + _j * _split_dx;
@@ -100,7 +103,7 @@ for (var _r = 0; _r < array_length(_rows); _r++)
             {
                 inst.sprite_index = spr_bbq_bullet_burn;
                 // 🔴 火格跟着**烤串本身**铺：这一发就是烤串 → 当帧同步铺
-                bbq_spawn_burn_cell(_row);
+                for (var _bn = 0; _bn < _burn_n; _bn++) bbq_spawn_burn_cell(_row);
             }
         }
         else

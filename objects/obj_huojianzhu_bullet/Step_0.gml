@@ -64,5 +64,5 @@ with (obj_enemy_parent)
 var _fx = instance_create_depth(x, y, depth - 20, obj_huojianzhu_boom);
 _fx.sprite_index = sprite_index;
 
-audio_play_sound(snd_fire_hit, 0, 0);
+audio_play_sound(snd_huojianzhu_hit, 0, 0);
 instance_destroy();

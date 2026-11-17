@@ -28,7 +28,7 @@ image_index += 0.55;
 // ── 砸中（第 4 帧 = index 3）结算 ──
 if (!has_hit && image_index >= 3){
     has_hit = true;
-    audio_play_sound(snd_hit1, 0, 0);
+    audio_play_sound(snd_snowrabbit_hit, 0, 0);
 
     // 主目标：优先仍是锁定的那只
     var _e = noone;

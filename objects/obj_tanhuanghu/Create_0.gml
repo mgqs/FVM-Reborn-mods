@@ -14,7 +14,7 @@ else                 sprite_index = spr_tanhuanghu_2;
 
 plant_type   = "normal";
 feature_type = "normal";
-target_type  = "pierce_air";    // 2026-11-13：陆空兼备 = 普通 + 空军 + 障碍（可穿），不含 非主流/钻地/幽灵
+target_type  = "air";            // 2026-11-17：陆空兼备 = 普通 + 空军；障碍只穿不打，所以不用 pierce_air
 is_slowdown  = false;
 attack_type  = ATTACK_TYPE.SHOOTER;
 image_speed  = 0;
@@ -43,9 +43,10 @@ var _sk   = variable_instance_exists(id, "skill") ? skill : 0;
 var _info = get_plant_data_with_skill("tanhuanghu", shape, clamp(current_level, 0, 16), _sk);
 
 th_bullet_count = (shape >= 2) ? 3 : 2;                  // custom 标量 2 / 2 / 3
-th_splash_ratio = (shape >= 2) ? 0.40 : 0.25;         // 攻击力 × 25% / 40%，写死
+th_splash_ratio = (shape >= 1) ? 0.40 : 0.25;         // custom 小数 0.25 / 0.4 / 0.4
 th_splash_cells = 1;                                  // 3*3 溅射
 if (_info != undefined && ds_map_exists(_info, "子弹数")) th_bullet_count = _info[? "子弹数"];
+if (_info != undefined && ds_map_exists(_info, "溅射比例")) th_splash_ratio = _info[? "溅射比例"];
 
 // 优先空中：本行有空军时，子弹按目标身体中心的高度出膛（同多拿滋写法）
 th_air_muzzle_dy = -60;       // 兜底：扫不到空军时用半个身位

@@ -16,8 +16,6 @@ if (attack_timer == (cycle - attack_anim * current_flash_speed))
 
 if (attack_timer == (cycle - (attack_anim - fire_frame_index) * current_flash_speed))
 {
-    fire_dir1 = true;
-    fire_dir2 = true;
     event_user(1);
 }
 

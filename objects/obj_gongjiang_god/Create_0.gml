@@ -9,17 +9,15 @@ else if (shape == 1) sprite_index = spr_gongjiang_god_1;
 else if (shape == 2) sprite_index = spr_gongjiang_god_2;
 else if (shape == 3) sprite_index = spr_gongjiang_god_3;
 
-fire_dir1 = false;
-fire_dir2 = false;
 attack_anim = 12;        // 攻击帧：13-24（共12帧）
 idle_anim = 12;          // 闲置帧：0-12（共13帧）
 flash_speed = 5;
 fire_frame_index = 6;    // 子弹在攻击动画第7帧（索引6 = 总帧19）射出
 plant_type = "normal";
-target_type = "air";    // 可攻击地下/陆地/飞行老鼠
+target_type = "air";     // 陆地鼠军 + 空军
 is_slowdown = false;
 
-// 三转(含以上)命中后 20% 概率定身 1.5 秒（90 帧）
+// 三转(shape >= 1)起命中后 20% 概率附加河豚毒素（= 定身 1.5 秒 / 90 帧）
 pin_chance = 0.20;
 pin_duration = 90;
 

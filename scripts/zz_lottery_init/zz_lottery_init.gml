@@ -201,11 +201,11 @@ function zz_aggregate(_items) {
 /// @desc 道具显示名（材料 → 卡片 → 兜底 id）
 function zz_item_name(_id) {
 	if (_id == "gold") return "金币";
-	// global.material_pool 是 ds_map（register_material 用 ds_map_add），
-	//   以前这里写的是 variable_struct_exists → 永远 false，商店里会显示英文 id
+	// global.material_pool 是 ds_map，但 value 是 struct（register_material 传的是 {} 字面量）
+	//   → 外层用 ds_map_exists，里层必须用 variable_struct_exists
 	if (ds_map_exists(global.material_pool, _id)) {
 		var _info = global.material_pool[? _id];
-		if (ds_map_exists(_info, "name")) return _info[? "name"];
+		if (variable_struct_exists(_info, "name")) return _info.name;
 	}
 	var _shape = get_plant_shape_data(_id, 0);
 	if (_shape != undefined && ds_map_exists(_shape, "name")) return _shape[? "name"];
