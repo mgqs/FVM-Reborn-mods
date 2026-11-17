@@ -1543,7 +1543,9 @@ function hex_effect_rows() {
     if (variable_global_exists("hex_mult")) {
         array_push(_card, { label: "全队攻击",   value: hex_fmt_pct(global.hex_mult.atk),   tag: "攻击" });
         array_push(_card, { label: "全队生命",   value: hex_fmt_pct(global.hex_mult.hp),    tag: "生命" });
-        array_push(_card, { label: "攻击间隔",   value: hex_fmt_pct(global.hex_mult.cycle), tag: "间隔" });
+        // 这一条同时驱动「卡槽冷却」（hex_card_cooldown）与「攻击间隔」
+        // （hex_cycle_mult_for_card），词条文案都写的是「全部卡片冷却」，所以按冷却命名
+        array_push(_card, { label: "全队冷却",   value: hex_fmt_pct(global.hex_mult.cycle), tag: "冷却" });
     }
 
     // 火苗
@@ -1876,15 +1878,26 @@ function hex_buff_grant_mult() {
 }
 
 /// @function hex_card_cooldown(_base, _card_id)
-/// @desc 卡槽冷却（不是攻击间隔）：火候观察的 0 冷却 + 指定卡的冷却倍率。
+/// @desc 卡槽冷却（不是攻击间隔）：火候观察的 0 冷却 + 全局 / 分类 / 指定卡三级冷却倍率。
 ///       爆爆鸡 / 旋风牛这类一次性卡片，"冷却" 就是卡槽冷却，只改 cycle 是没用的，
-///       所以「爱打洞的老鼠」的 -75% 必须在这里落地，_card_id 缺省时只处理 0 冷却。
+///       所以「爱打洞的老鼠」的 -75%、「疾风龙魂」的灰烬 -50%、「我是老曙」的全卡 -50%
+///       都必须在这里落地，_card_id 缺省时只处理 0 冷却。
 function hex_card_cooldown(_base, _card_id = "") {
     if (!hex_enabled()) return _base;
     if (!variable_global_exists("hex_state") || !is_struct(global.hex_state)) return _base;
     if (global.hex_state.zero_cd) return 0;
     if (_card_id == "") return _base;
     var _m = hex_batch2_id_cycle(_card_id);
+    // 「全部卡片冷却 ±X%」这一类走的是全局 hex_mult.cycle（我是老曙 / 快手翻炒 /
+    // 冷冻保鲜 / 冰封千里…）。原来这里只读「按卡 id」与「按分类」两个通道，全局那一条
+    // 一格都没落地 —— 所以「我是老曙：所有美食冷却 -50%」在卡槽冷却上完全是空转
+    // （老鼠血量那一半走 en 通道，于是出现「加血量生效、减冷却不生效」）。
+    // 卡槽冷却就是玩家看到的「冷却」，全局冷却必须在这里乘一次；它与按分类（疾风龙魂）、
+    // 按卡 id（爱打洞的老鼠）的倍率一律相乘：老曙 + 疾风龙魂 = 0.5 × 0.5 = 25%。
+    if (variable_global_exists("hex_mult") && is_struct(global.hex_mult)
+        && variable_struct_exists(global.hex_mult, "cycle")) {
+        _m *= global.hex_mult.cycle;
+    }
     // 灰烬类（一次性）卡片压根不走 cycle —— 它们的「冷却」就是这个卡槽冷却。
     // 原来这里只乘 hex_batch2_id_cycle（按卡 id 的专属倍率），分类冷却一条都吃不到，
     // 所以「疾风龙魂：灰烬类冷却 -50%」「明火：灰烬卡冷却 +80%」在实机上完全没反应。

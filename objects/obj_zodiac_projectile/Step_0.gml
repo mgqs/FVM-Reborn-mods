@@ -25,6 +25,15 @@ if (kind == "star" && burnt >= 1 && sprite_index != spr_ronghehuopen_ice_bullet)
     image_xscale = 1.8;
     image_yscale = 1.8;
 }
+// 炎凰马横向炎凰：出生方向锁死，单程飞向对面边界，到界即销毁（见下方 phoenix 边界判定）。
+//   2026-11-17 用户报「两侧各一发但会折返」：子弹一旦被任何来源改了 move_x 符号，
+//   原来的边界判定（按 move_x 正负比较两侧边界）就再也命中不了，表现为来回横穿场地。
+//   这里把发射初速写回，方向从构造上不会再变；竖直炎凰不受影响（vertical 分支）。
+if (kind == "phoenix" && !vertical && variable_instance_exists(id, "phoenix_vx")
+    && !is_undefined(phoenix_vx)) {
+    move_x = phoenix_vx;
+    move_y = 0;
+}
 var old_x = x, old_y = y;
 if (kind == "return" || kind == "flute") {
     if (!instance_exists(target_id) || target_id.hp <= 0) {

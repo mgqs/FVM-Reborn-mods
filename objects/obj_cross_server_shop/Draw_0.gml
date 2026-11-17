@@ -74,6 +74,10 @@ for (var _slot = 0; _slot < 16; _slot++) {
         if (variable_struct_exists(_goods, "required_gem_id")) {
             _prerequisite_met = is_gem_unlocked(_goods.required_gem_id);
         }
+    } else if (_goods_type == "gear_evo") {
+        // 神器 / 宝石进化凭证：一次性商品 —— 已持有一张 或 这一阶已经进化出来 → 售罄
+        //   判据与诸神商店共用 mod_gear_evo_buyable_locked，别在这里另写一份
+        _owned = mod_gear_evo_buyable_locked(_goods.unlock_item_id);
     }
 
     // 绘制商品图标
@@ -104,15 +108,26 @@ for (var _slot = 0; _slot < 16; _slot++) {
         if (_gem_info != noone) {
             draw_sprite_ext(_gem_info.icon, 0, _gx - 122, _gy - 20 + 25, 0.9, 0.9, 0, c_white, 1);
         }
+    } else if (_goods_type == "gear_evo") {
+        // 进化凭证：金色底板 + 目标装备图标（与诸神商店 / 背包凭证页同一套画法）
+        mod_gear_evo_draw_credit(_goods.unlock_item_id, _gx - 122, _gy + 5, true, 96);
+    } else if (_goods_type == "material") {
+        // 香料（2026-11-17）：直接画材料图集那一帧，尺寸对齐卡片的粉红放射区（与幸运星商店同口径）
+        var _csm_info = global.material_pool[? _goods.material_id];
+        var _csm_s    = 124 / 88;
+        draw_sprite_ext(spr_craft_material, _csm_info[? "icon"], _gx - 122, _gy - 2,
+            _csm_s, _csm_s, 0, c_white, 1);
     }
 
     if (point_in_rectangle(mouse_x, mouse_y, _gx - 205, _gy - 82, _gx + 205, _gy + 82)) {
         _hover_desc = variable_struct_exists(_goods, "description") ? _goods.description : "";
     }
 
-    // 抽卡 / 欧皇模式：只有**转职凭证（一转·二转，card_shape > 0）**能买，其余置灰；
+    // 抽卡 / 欧皇模式：**凭证类**能买，其余置灰；
     //   随机礼盒模式整店置灰（2026-10-28 用户口径，与 Mouse_4 的判定保持一致）
-    var _is_credit = (_goods_type == "card" && _card_shape > 0);
+    //   2026-11-17：神器/宝石进化凭证也归「凭证」—— 它是拿那些装备的唯一途径，
+    //   抽卡模式同样要能买（诸神商店 2026-10-27 已按同一口径放开）
+    var _is_credit = (_goods_type == "card" && _card_shape > 0) || (_goods_type == "gear_evo");
     var _gacha_disabled = is_random_gift_mode() || (is_eternal_gacha_mode() && !_is_credit);
 
     draw_sprite_ext(spr_shop_buy_btn, 0, _gx + 77, _gy + 60, 1.8, 1.8, 0, (_gacha_disabled || !_prerequisite_met) ? c_gray : c_white, 1);
@@ -123,7 +138,15 @@ for (var _slot = 0; _slot < 16; _slot++) {
     // 一转 / 二转卖的是凭证 → 名字写「卡名（一转凭证）」，跟背包 / 商店同一套叫法
     var _show_name = _goods.display_name;
     if (_goods_type == "card" && _card_shape > 0) _show_name = transfer_credit_name(_card_id, _card_shape);
-    draw_text(_gx + 77, _gy - 46, _show_name);
+    // 香料的名字左移给「×200」让位（名称牌精灵坐标 92..220 = 屏幕 -38..+193）
+    draw_text((_goods_type == "material") ? _gx + 56 : _gx + 77, _gy - 46, _show_name);
+    if (_goods_type == "material") {
+        draw_set_halign(fa_right);
+        draw_set_color(make_color_rgb(140, 78, 20));
+        draw_text(_gx + 186, _gy - 46, "×" + string(_goods.material_qty));
+        draw_set_halign(fa_center);
+        draw_set_color(c_black);
+    }
     draw_set_font(font_number);
     draw_set_color(c_yellow);
     draw_text(_gx + 69, _gy + 2, string(_medals));
@@ -135,7 +158,8 @@ for (var _slot = 0; _slot < 16; _slot++) {
         draw_set_alpha(1);
         draw_set_font(font_yuan);
         draw_set_color(c_white);
-        draw_text(_gx + 77, _gy + 60, "已兑换");
+        // 凭证是消耗品，写「已拥有」比「已兑换」准确
+        draw_text(_gx + 77, _gy + 60, (_goods_type == "gear_evo") ? "已拥有" : "已兑换");
     } else if (_gacha_disabled) {
         draw_set_font(font_yuan);
         draw_set_color(c_white);

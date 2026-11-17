@@ -1,5 +1,113 @@
 # v2.7.0
 ## 优化与修复
+- **幸运星兑换页整份改成商城的画法：16 格固定 + 翻页箭头 + 商城购买按钮 + 兑换确认框（2026-11-17 用户报）**：
+  - `obj_zz_shop_bg` 重写：`spr_shop_bg`（0.9）→ `spr_shop_bg_2`（1.8，`y+58`）→ **4×4 = 16 格
+    `spr_shop_goods_bg` 固定绘制**（没商品的格子也画），格坐标逐像素照抄 `obj_shop_bg`
+    （`x-618+411*col` / `y-190+165*row` = 342/753/1164/1575 × 350/515/680/845）。
+  - 兑换按钮换成**商城原按钮** `spr_shop_buy_btn`（「购买」两字烘焙在图里），位置/缩放同
+    `obj_shop_buy_btn`：格心 `+77/+60`、1.8 倍、悬停切 frame 1、不可买时 `c_gray`。
+  - 页码两侧补 `spr_shop_page_btn`（1.8 倍；「下一页」用 `image_xscale = -1` 翻转，与
+    `obj_shop_page_btn` 同法），位置取商城原坐标 `面板中心 +285 / +485 / +387, +435`；
+    `zz_page / zz_max_page` 走 `zz_slot_item()` 分页（每页 16 格）。
+  - 新增 `objects/obj_zz_buy_confirm`：与 `obj_shop_buy_confirm` 同一精灵/同一套面板动画
+    （`spr_battle_escape_menu` 1.5 倍 + `spr_common_button`），标题「兑换确认」、
+    正文「确定以 N 幸运星兑换 X 吗？」，确定后才调 `zz_buy_shop()` 扣星并 `show_notice` 结果。
+    按钮按画布中心定位（`spr_common_button` 的 `.yy` 原点 78,32 已被裁切过，不能直接吃）。
+  - 删掉页名「幸运星兑换」与底部说明文字（用户 2026-11-17 指定），压暗底图 0.72 → 0.5 与商城一致。
+  - `tools/register_zz_assets.py`：`OBJ_YY_TMPL` 的 parent 改用 `FOLDER_NAME/FOLDER_PATH`
+    （原来写死「金马盛典」，新对象会挂到不存在的文件夹）；新增 `OBJ_SPRITES` 映射、
+    注册 `obj_zz_buy_confirm`。`folders/物体/mod/zhuanzhuan.yy` 一并补齐并挂进 `mod.yy`。
+  - `tools/zz_layout_preview.py`：`draw_shop()` 按新版式重画，新增 `draw_confirm()`，
+    输出 `gml_shop.png` / `gml_confirm.png` 供离线核对。
+- **炎帝（终转前）：子弹改为「夹在两行之间」打上下两行，三行受击 1/2/1（2026-11-17 用户报）**：
+  - 旧实现把子弹放在**单行正中**（`grid_offset_y + cell*row + 30`），`Step` 只认 `row == e.grid_row`
+    → 每发只打本行，实测三行受击 1/1/0。
+  - 改为与炎凰马同构的**缝隙制**：炎帝在第 R 行时，2 发子弹分别落在缝隙 R 与 R+1
+    （`grid_offset_y + (gap-0.25)*cell`，夹在 R-1/R 与 R/R+1 之间），每发覆盖上下两行
+    → 三行受击 **1/2/1**；场上炎帝 > 7 只时追加缝隙 R+2 → 覆盖到 R+2，受击 1/2/2/1。
+    贴边时缝隙 `clamp` 到 `[1, grid_rows-1]`，两条重合即那两行各吃两次（同旧「越界改中路」语义）。
+  - `obj_shennong_god_bullet_h` 新增 `cover_a / cover_b`（默认 -1 = 不启用）：命中走「行号匹配 + 水平距离 26px」，
+    **不再用 bbox 的 y**（子弹在两行交界，几何上与任何一行都不相交）；同时给
+    `bullet_sap_type_list` 传 `y_margin = grid_cell_size_y`，否则 SAP 候选集里没有上下两行的老鼠。
+  - 终转（shape 3，`row_hits` 倍率表）与天邪池按行铺的复刻弹走 `cover_a = -1` 分支，行为不变。
+  - 情报岛文案同步：「召唤2只沿两行之间缝隙移动的穿透神焰，每只同时覆盖上下2行，三行分别受击1/2/1次」。
+- **炎凰马：攻击力换成官方「C. 固定轨迹类」表 + 两侧炎凰不再"折返"（2026-11-17 用户报）**：
+  1. `scripts/mod_cards_init` 三形态 `atk` 改为 `75/85/95/110/130/150/170/200/250/300/400/500/650/800/1000/1200/1400`
+     （本体与一转同值；二转保持「×1.5 攻击提升」口径同步为 `113~2100`）。
+  2. 折返有两个来源，都修了：
+     - **镜像跨发残留**：`obj_bullet_parent/BeginStep_0` 只在 `image_xscale != 1` 时把它转存到 `visual_scale_x`，
+       而 `obj_pool_acquire` 既不清 `image_xscale` 也不清 `visual_scale_*` → 复用过"朝左镜像弹"的实例
+       给朝右那发时，`visual_scale_x` 还是 -1，被画成倒着飞。池子清理块补 `image_xscale/yscale = 1`，
+       `instance_change` 之后同步 `visual_scale_*`；炎凰马发射处四项缩放全部显式写死。
+     - **方向被反转**：横向炎凰在 Create 留 `phoenix_vx = undefined`，发射处写入初速，Step 每帧
+       `move_x = phoenix_vx` 锁死单程；边界销毁按 `move_x` 正负判象限，锁死后一定会命中。
+  3. `scripts/mod_tianxie_pool` 的炎凰复刻（天邪）同步。
+- **修「我是老曙」的「所有美食冷却 -50%」在卡槽冷却上完全不生效（2026-11-17 用户报）**：
+  该词条注册为 `ex: { atk: 2.0, cycle: -0.5 }`、`en: { b3_e_hp_roll: true }`（`scripts/hex_batch3`，
+  `hex_234`）。老鼠血量那一半走 `hex_b3_enemy_hp_extra()`（`en` 通道）照常生效；
+  卡片侧 `cycle` 只进了 `global.hex_mult.cycle`，而 `hex_card_cooldown()`（卡槽冷却的唯一出口）
+  原来只读「按卡 id」（`hex_batch2_id_cycle`）与「按分类」（灰烬类的 `cat_cycle`）两个通道，
+  **全局那一条一格都没读** —— 一次性卡片（可乐炸弹 / 冰桶炸弹 / 老鼠夹…）的「冷却」就是卡槽冷却，
+  它们的攻击间隔根本不存在，于是整条词条的冷却一半在实机上完全是空转。
+  同一类「全部卡片冷却 ±X%」的词条（`hex_010` 快手翻炒 -8%、`hex_041` 冷冻保鲜 +8%、
+  `hex_106` 冰封千里 +40%）也一并修好。
+  改法：`hex_card_cooldown()` 里乘一次 `global.hex_mult.cycle`，与按分类 / 按卡 id 的倍率
+  **一律相乘**（不做加算）：老曙 + 疾风龙魂 = 0.5 × 0.5 = 25% 冷却；
+  选乘算而不是加算是因为加算到 -100% 会做出「0 冷却炸弹无限刷」，而 0 冷却在这套系统里
+  是「火候观察」（`zero_cd`）独占的通道，不该被两条 -50% 拼出来。
+  `hex_effect_rows()` 里这一行的标签同步从「攻击间隔」改成「全队冷却」（它现在同时驱动
+  卡槽冷却与攻击间隔，与词条文案「全部卡片冷却」一致）。
+  注：`atk: 2.0`（攻击 +200%）那一半复查过链路（`hex_apply_core` → `hex_sync_globals` 的
+  `clamp(0.25, 8.0)` → `obj_mod_battle_manager/Step_0` 的 `self.atk *= hex_atk_mult_for_card()`）
+  是通的，实机看着"没变"多半是同一词条的鼠军血量 ×3~×729 把攻击涨幅抵掉了。
+- **蝙蝠鼠 / 变异蝙蝠鼠不再卡波次与结算（2026-11-17 用户报）**：
+  `obj_battle/Step_2` 每帧把场上所有 `obj_enemy_parent`（`target_type != "obstacle"`、`hp > 0`）
+  都算进 `current_wave_alive_count` / `current_wave_hp`。蝙蝠鼠（`obj_bat_mouse`，由 `bat_mouse_spawn`
+  事件按 `interval` 定时刷）与变异蝙蝠鼠（`obj_kuafu_bat`）会在天上盘旋、吊绳往返好一段时间，
+  于是「等清场」的四条分支全部被拖住：`:82` 压时间、`:98` 魔塔秒进下一波、`:152`/`:161` 召唤 BOSS、`:234` 结算。
+  改法：
+  1. `obj_enemy_parent/Create_0` 新增 `wave_ignore = false`（默认参与统计）；
+  2. `obj_bat_mouse` / `obj_kuafu_bat` 各自 Create 里置 `wave_ignore = true`；
+  3. `obj_battle/Step_2` 的统计循环跳过它们（`variable_instance_exists` 兜底，避免漏初始化时报错）。
+  蝙蝠自身行为不变（照样偷卡、照样能被击杀、`obj_kuafu_bat` 的自动配对标靶逻辑保留）。
+  安全性：全量扫过 314 个关卡 JSON，含蝙蝠的 39 个 subwave **没有一个是纯蝙蝠**，
+  所以不会出现「波次刚开就被判清空」；不涉及 BOSS 阶段（BOSS 阵亡直接 `battle_finish_win`）。
+- **修「Step Event0 崩 `Unable to find instance for object index`」（2026-11-17 用户第三次报）**：
+  崩溃点是 `scripts/combat_targets` 里的三段索敌/啃食查询。根因不是判据不够严，而是**取数方式**：
+  `combat_targets_row` 的行桶存的是「本 step 首次查询那一瞬间的实例 id 快照」，同一 step 里之后
+  被打死的敌人、或被对象池 `instance_change(obj_pool_holder)` 换走的尸体仍留在数组里；
+  `instance_exists` 对「同 step 内刚失效」的 id 仍可能返回 true（它只保证跨 step 的死 id 为 false），
+  于是 `combat_target_alive` 放行 → 紧跟的 `with (死 id)` 直接抛错，行号报 -1。
+  11-14 的 `instance_exists && !object_exists`、11-16 的 `obj_pool_holder` 判死都只挡跨 step 的情况，
+  所以连着两次没修掉。现全部改为**直扫活实例**：
+  1. `combat_enemy_in_rows`（long bao 系 / 奥丁 / 伊米尔 / 爱神 / 射手等 20 张卡）→ `with (obj_enemy_parent)`；
+  2. `combat_enemy_nearest_in_row`（臭豆腐投石车 / 鸡蛋锅 / 冰鸡蛋锅 / 沙拉 / 巧克力 / 烤蜥蜴 / 雷神 8 个调用点）→ 同上；
+  3. `combat_enemy_find_plant`（每只老鼠每帧找啃食目标）→ `with (obj_card_parent)`，避免卡片被啃掉的同 step 里读尸体属性。
+  语义与重构前一致（原生 `with` 顺序 = 行桶构建顺序，等距优先 / 每层最后一张卡 / 啃食优先级规则都不变）。
+  随后按用户口径**把行桶整套删掉**：`combat_targets_state` / `combat_targets_begin_step` /
+  `combat_targets_invalidate` / `combat_targets_row` 全部移除，8 处调用点一并清掉
+  （`obj_battle/Create_0`、`obj_mod_manager/Step_1`、卡片与敌人父对象的 Create/Destroy 各 2 处、
+  `src_hook_function` 的两个 spawn 分支）；`combat_targets_row_value` 保留成只回写 `row` 的兼容入口，
+  20 处行赋值调用点（`card_created` / `get_grid_position_from_world` / 猫箱 / 面粉袋 / 孟婆传送 / 平台 / 万辟龙 等）不用改。
+- **神器 / 宝石进化：补生命系第 4 支 + 进化凭证上架跨服（2026-11-17 用户报）**：
+  1. **神圣之眼（`divine_holy_gem`）此前既没有凭证、跨服也没下架**：`mod_craft_evo_defs()`
+     里 `["gods_shield_gem_4", "divine_holy_gem", "divine_forbidden"]` 整条被注释（当时以为末阶
+     「狡诈伪装」没实装），导致它不在 `steps` 里 → 诸神商店没有它的凭证，跨服也没被
+     `cross_server_hidden` 打标。
+  2. **「狡诈伪装」就是「玫瑰之绞」**（用户 2026-11-17 口径）：xlsx / SWF 登记表里那格写
+     「狡诈伪装」，mod 里这颗宝石注册名是 `rose_shield_gem_4`「玫瑰之绞」，是同一个东西
+     （荆棘玫瑰专属，`allowed_weapons: ["rose_shield"]`）。所以链直接写成
+     `["gods_shield_gem_4", "divine_holy_gem", "rose_shield_gem_4"]`，
+     **不需要另做 `divine_forbidden`**（那个 id 只有素材、从没 `register_gem` / 建 obj）。
+     步数 31 → 33、凭证 31 → 33 张（宝石 12 支 27 步 + 神器 3 支 6 步），
+     售价仍走 `mod_gear_evo_credit_price` 的 25/50/75 三档（末阶 75 = 补强宝石档）。
+     两颗成品因此自动进跨服下架名单，`cross_server_shop_init` 不再需要任何手写名单。
+  3. **进化凭证上架跨服商店黄金页**（`cross_server_shop_init` 注册 `cs_gear_evo_01..33`）：
+     价格沿用 `mod_gear_evo_credit_price`（25/50/75，与诸神商店同一份表），一次性商品、
+     售罄判据与诸神商店共用 `mod_gear_evo_buyable_locked`。`obj_cross_server_shop` 三处补
+     `gear_evo` 分支：图标走 `mod_gear_evo_draw_credit`、发货写 `evo_credit_<目标>`、
+     列表排序 rank 3 按登记序号聚在黄金页最后。凭证同时计入「凭证类」→
+     抽卡模式下也能买（与诸神商店 2026-10-27 口径一致）。
 - **神器 / 宝石进化页三处口径统一（2026-11-16 用户给图）**：
   1. **空槽放原版固定美术**：新增精灵 `spr_gear_evo_label`（4 帧 34×28，素材 = 用户提供的
      `138.png`武器 / `160.png`进化凭证 / `162.png`神器 / `164.png`宝石，`tools/make_gear_evo_label_sprite.py`

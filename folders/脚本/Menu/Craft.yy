@@ -11,7 +11,8 @@
   "visible":true,
   "folders":[],
   "listItems":[
-    {"name":"craft_rule_init","path":"scripts/craft_rule_init/craft_rule_init.yy",},
+
+    {"name":"zz_lottery_init","path":"scripts/zz_lottery_init/zz_lottery_init.yy",},    {"name":"craft_rule_init","path":"scripts/craft_rule_init/craft_rule_init.yy",},
     {"name":"material_init","path":"scripts/material_init/material_init.yy",},
     {"name":"material_registry","path":"scripts/material_registry/material_registry.yy",},
     {"name":"material_sell_init","path":"scripts/material_sell_init/material_sell_init.yy",}

@@ -38,16 +38,27 @@ if (state == CARD_STATE.ATTACK) {
             yb.base_damage = atk;
             yb.shape = shape;
             yb.target_id = noone;
-            yb.move_x = lengthdir_x(8,yh_dirs[yh_i]);
+            var yh_vx = lengthdir_x(8,yh_dirs[yh_i]);
+            yb.move_x = yh_vx;
             yb.move_y = lengthdir_y(8,yh_dirs[yh_i]);
-            yb.image_angle = yh_dirs[yh_i];
+            yb.phoenix_vx = yh_vx;          // 单程锁：Step 每帧把 move_x 拉回发射初速
             yb.sprite_index = yh_spr;
             yb.can_dandantu_store = false;
             yb.cover_a = yh_gaps[yh_i]-1;
             yb.cover_b = yh_gaps[yh_i];
+            // 朝向 + 缩放四项全部显式写死：原图朝右，右端镜像。
+            //   ⚠️ 对象池复用时**不会**重置 visual_scale_x，而父类 BeginStep 只在
+            //   image_xscale != 1 时才把值转存进 visual_scale_x → 漏写这一项时，
+            //   朝右那一发会继承上一发（朝左镜像）的 -1，被画成"倒着飞"，很像折返。
+            yb.image_angle = 0;
+            yb.image_yscale = 1;
+            yb.visual_scale_y = 1;
             if (yh_dirs[yh_i] == 180) {
-                yb.image_angle = 0;
                 yb.image_xscale = -1;
+                yb.visual_scale_x = -1;
+            } else {
+                yb.image_xscale = 1;
+                yb.visual_scale_x = 1;
             }
         }
     }

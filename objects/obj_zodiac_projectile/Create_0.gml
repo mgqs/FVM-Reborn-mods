@@ -21,6 +21,9 @@ center_row = 0;
 cover_a = -1;  // 炎凰马子弹覆盖的行/列对（横向=行，竖向=列）
 cover_b = -1;
 vertical = false;
+// 炎凰马横向炎凰是**单程固定轨迹**：发射处把初速写进来，Step 每帧强制回归，
+//   任何外力（反弹源 / 其它卡的脚本）都改不了它的前进方向（2026-11-17 用户报「会折返」）
+phoenix_vx = undefined;
 can_dandantu_store = false;
 brazier_list = ds_list_create();
 stored = false;      // 仙笛马飞马停靠状态：不移动、不计时、不碰撞

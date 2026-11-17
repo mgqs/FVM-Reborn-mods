@@ -446,8 +446,9 @@ function mod_evo_reward(_target){
 // 神器 / 宝石进化（2026-11-16）
 //   数据：桌面\武器进化.xlsx；与原版 res\合成屋.swf 的 compose_tab 2/3 一致
 //         （解析产物 output/god_evolution.json，工具 tools/god_evolution_extract.py）
-//   3 条神器链（6 步）+ 11 条宝石系（25 步）= 31 步 / 31 张凭证
-//   （xlsx 里生命系第 3 阶「狡诈伪装」未实装，那 2 步暂缺，见下面的注释留位）
+//   3 条神器链（6 步）+ 12 条宝石系（27 步）= 33 步 / 33 张凭证
+//   （2026-11-17 补齐生命系第 4 支：生命之源 → 神圣之眼 → 玫瑰之绞；登记表里末格写的是
+//     「狡诈伪装」，mod 里这颗宝石叫「玫瑰之绞」，同一个东西 —— 全 12 支已闭合，无留位）
 //
 //   凭证 id = "evo_credit_" + 目标 id —— 故意沿用金卡凭证的同一个前缀：
 //   背包「进化凭证」段、抽卡 / 商店的 evo 分支靠前缀识别（transfer_credit.gml:499），
@@ -477,9 +478,13 @@ function mod_gear_evo_defs(){
             ["gods_shield_gem_1",       "divine_blessing_gem", "rose_shield_gem_1"],
             ["gods_shield_gem_2",       "divine_shenji_gem",   "rose_shield_gem_2"],
             ["gods_shield_gem_3",       "divine_protect_gem",  "rose_shield_gem_3", "rose_shield_gem_5"],
-            // ["gods_shield_gem_4", "divine_holy_gem", "divine_forbidden"],
-            //   ↑ 生命系第 3 阶「狡诈伪装」还没注册（只有素材 spr_divine_forbidden_gem_icon，
-            //     没有 register_gem / obj）。一旦实装，把这行取消注释即可，UI 不用改。
+            ["gods_shield_gem_4",       "divine_holy_gem",  "rose_shield_gem_4"],
+            //   ↑ 生命之源 → 神圣之眼 → 狡诈伪装
+            //   **狡诈伪装 = 玫瑰之绞（rose_shield_gem_4）**（用户 2026-11-17 口径）：
+            //     xlsx / SWF 登记表里那一格叫「狡诈伪装」，mod 里这颗宝石的注册名是「玫瑰之绞」，
+            //     是同一颗（荆棘玫瑰专属，`allowed_weapons: ["rose_shield"]`）。
+            //     所以这条链**直接用 rose_shield_gem_4 收尾**，不需要另做 divine_forbidden
+            //     （那个 id 只有素材 spr_divine_forbidden_gem_icon，从没 register_gem / 建 obj）。
             ["death_scythe_gem_1",      "ghost_strike_gem", "aladdin_lamp_gem_1", "aladdin_lamp_gem_5"],
             ["death_scythe_gem_2",      "ghost_spark_gem",  "aladdin_lamp_gem_2"],
             ["death_scythe_gem_3",      "ghost_pact_gem",   "aladdin_lamp_gem_3"],

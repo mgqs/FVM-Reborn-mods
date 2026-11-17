@@ -1,4 +1,3 @@
-combat_targets_invalidate(object_index);
 if hp < max_hp && !invincible{
 	obj_task_manager.card_loss ++
 }

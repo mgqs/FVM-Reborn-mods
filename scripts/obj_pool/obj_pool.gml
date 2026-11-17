@@ -137,6 +137,10 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         image_alpha  = 1;
         image_blend  = c_white;
         image_index  = 0;
+        // 镜像缩放同样会跨发残留：被打过 -1 的子弹（朝左画）复用后，新一发若在 Create 里
+        // 不设 image_xscale，就会继承 -1 → 贴图倒着飞（炎凰马「两侧各一发却像折返」即此）。
+        image_xscale = 1;
+        image_yscale = 1;
 
         instance_change(_obj, true);
         event_user(14);
@@ -153,6 +157,14 @@ function obj_pool_acquire(_obj, _x, _y, _depth) {
         if (!sprite_exists(sprite_index)) {
             var _def = object_get_sprite(_obj);
             if (sprite_exists(_def)) sprite_index = _def;
+        }
+
+        // 父类 obj_bullet_parent/BeginStep_0 只在 image_xscale != 1 时才把值转存到
+        // visual_scale_x，所以复用后必须主动同步一次：否则上一发留下的 -1（朝左镜像）
+        // 会挂在 visual_scale_x 上，新一发即使 image_xscale = 1 也照旧被画成镜像。
+        if (variable_instance_exists(id, "visual_scale_x")) {
+            visual_scale_x = image_xscale;
+            visual_scale_y = image_yscale;
         }
 
         if (obj_pool_is_enemy_whitelisted(_obj)) {

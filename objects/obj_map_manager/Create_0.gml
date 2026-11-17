@@ -46,7 +46,7 @@ for(var i = 0 ; i <button_array_length ; i++){
 }
 
 // 测试关卡入口（所有岛屿通用）
-var test_inst = instance_create_depth(1120,56,-2,obj_levelselect_button)
+var test_inst = instance_create_depth(1150,56,-2,obj_levelselect_button)
 test_inst.image_xscale = 0.18
 test_inst.image_yscale = 0.18
 test_inst.target_level_id = "test_level"

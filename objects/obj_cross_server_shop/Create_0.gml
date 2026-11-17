@@ -38,7 +38,13 @@ for (var _list_index = 0; _list_index < array_length(_shop_lists); _list_index++
     for (var _i = 0; _i < array_length(_list); _i++) {
         var _id = _list[_i];
         var _goods = global.goods_map[? _id];
+        var _is_gear_evo = variable_struct_exists(_goods, "type") && _goods.type == "gear_evo";
+        var _is_material = variable_struct_exists(_goods, "type") && _goods.type == "material";
         var _group_id = variable_struct_exists(_goods, "card_id") ? _goods.card_id : _id;
+        // 进化凭证 32 张共用一组：group_order 相同 + _sub = 登记表序号 → 永远按登记顺序聚在一起
+        if (_is_gear_evo) _group_id = "cs_gear_evo_all";
+        // 香料 5 件共用一组：排序时永远挨在一起，分页不会被拆开
+        if (_is_material) _group_id = "cs_spices";
         if (!ds_map_exists(_group_order, _group_id)) {
             ds_map_add(_group_order, _group_id, _next_group_order);
             _next_group_order++;
@@ -55,6 +61,15 @@ for (var _list_index = 0; _list_index < array_length(_shop_lists); _list_index++
             else {
                 _rank = (_shape >= 2) ? 1 : 0;    // 0 = 1 转，1 = 2 转
             }
+        } else if (_is_gear_evo) {
+            _rank = 3;                    // 3 = 进化凭证，排在宝石武器之后（2026-11-17）
+            _sub  = variable_struct_exists(_goods, "sort_no") ? _goods.sort_no : 0;
+        } else if (_is_material) {
+            // 香料（2026-11-17）：消耗品，放在白银页**最前**（rank 与卡片同档但 sub = -1 抢先）
+            //   —— 5 件连着，分页也不会被拆到两页；同档内按自己的 sort_no 排
+            _rank  = 0;
+            _sub   = -1;
+            _shape = variable_struct_exists(_goods, "sort_no") ? _goods.sort_no : 0;
         }
         ds_map_add(_keys, _id, [_rank, _sub, ds_map_find_value(_group_order, _group_id), _shape]);
     }
@@ -116,6 +131,10 @@ function cross_shop_confirm_open(_id){
         confirm_name = transfer_credit_name(_g.card_id, _g.card_shape);
     else
         confirm_name = variable_struct_exists(_g, "display_name") ? _g.display_name : _id;
+    // 香料一次卖一批 → 确认窗写「皇室香料 ×200」，别让人以为 400 勋章只给 1 个
+    if (variable_struct_exists(_g, "type") && _g.type == "material"
+        && variable_struct_exists(_g, "material_qty"))
+        confirm_name += " ×" + string(_g.material_qty);
     confirm_cost       = real(_g.cost);
     confirm_medal      = (shop_type == 0) ? "cross_server_gold_medal" : "cross_server_silver_medal";
     confirm_medal_name = (shop_type == 0) ? "金色勋章" : "白银勋章";
@@ -156,6 +175,12 @@ function cross_shop_buy_do(){
         unlock_weapon(_id);
     } else if (_type == "gem"){
         unlock_gem(_id);
+    } else if (_type == "gear_evo"){
+        // 神器 / 宝石进化凭证：直接进背包（id = evo_credit_<目标>，与合成屋、诸神商店同一套）
+        add_material_amount(mod_gear_evo_credit_id(_g.unlock_item_id), 1);
+    } else if (_type == "material"){
+        // 香料等消耗品（2026-11-17）：一次发一批（material_qty），没有「已拥有」概念，可反复买
+        add_material_amount(_g.material_id, _g.material_qty);
     }
     save_file(global.save_slot);
     audio_play_sound(snd_button, 0, 0);

@@ -73,7 +73,7 @@ for (var _slot = 0; _slot < 16; _slot++) {
     // 抽卡 / 欧皇模式：**一转·二转凭证照常可买**，其余（卡本体 / 武器 / 宝石）仍禁买；
     //   随机礼盒模式整店禁买（2026-10-28 用户口径）
     //   跨服黄金页的一/二转卖的就是转职凭证（card_shape > 0），跟威望商店、诸神的凭证一致
-    var _is_credit = (_goods_type == "card" && _card_shape > 0);
+    var _is_credit = (_goods_type == "card" && _card_shape > 0) || (_goods_type == "gear_evo");
     if (is_random_gift_mode()) {
         show_notice("随机礼盒模式无法使用跨服商店", 60);
         exit;
@@ -117,6 +117,9 @@ for (var _slot = 0; _slot < 16; _slot++) {
             _required_gem_id = _goods.required_gem_id;
             _prerequisite_met = is_gem_unlocked(_required_gem_id);
         }
+    } else if (_goods_type == "gear_evo") {
+        // 神器 / 宝石进化凭证（2026-11-17）：一次性商品，判据与诸神商店共用
+        _owned = mod_gear_evo_buyable_locked(_goods.unlock_item_id);
     }
 
     var _medal_id = shop_type == 0 ? "cross_server_gold_medal" : "cross_server_silver_medal";

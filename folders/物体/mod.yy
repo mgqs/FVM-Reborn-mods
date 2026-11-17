@@ -10,6 +10,8 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"zhuanzhuan","path":"folders/物体/mod/zhuanzhuan.yy",},
+    {"name":"金马盛典","path":"folders/物体/mod/金马盛典.yy",},
     {"name":"Cards","path":"folders/物体/mod/Cards.yy",},
     {"name":"Effect","path":"folders/物体/mod/Effect.yy",},
     {"name":"UI","path":"folders/物体/mod/UI.yy",},

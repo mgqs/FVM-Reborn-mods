@@ -545,17 +545,27 @@ function tx_special_shot(_self, _card, _si)
             _ph_b.base_damage      = _self.atk;
             _ph_b.shape            = 2;
             _ph_b.target_id        = noone;
-            _ph_b.move_x           = lengthdir_x(8, _ph_dirs[_pi]);
+            var _ph_vx             = lengthdir_x(8, _ph_dirs[_pi]);
+            _ph_b.move_x           = _ph_vx;
             _ph_b.move_y           = lengthdir_y(8, _ph_dirs[_pi]);
-            _ph_b.image_angle      = _ph_dirs[_pi];
+            _ph_b.phoenix_vx       = _ph_vx;      // 单程锁（同 obj_yanhuangma/Step_0）
             _ph_b.sprite_index     = _ph_spr;
             _ph_b.can_dandantu_store = false;
             _ph_b.cover_a          = _ph_gaps[_pi] - 1;
             _ph_b.cover_b          = _ph_gaps[_pi];
+            // 朝向 / 缩放显式写死，避免对象池复用残留 visual_scale_x 把朝右那发画成朝左
+            _ph_b.image_angle  = 0;
+            _ph_b.image_yscale = 1;
+            _ph_b.visual_scale_y = 1;
             if (_ph_dirs[_pi] == 180)
             {
-                _ph_b.image_angle  = 0;
-                _ph_b.image_xscale = -1;
+                _ph_b.image_xscale   = -1;
+                _ph_b.visual_scale_x = -1;
+            }
+            else
+            {
+                _ph_b.image_xscale   = 1;
+                _ph_b.visual_scale_x = 1;
             }
         }
         return;

@@ -140,7 +140,7 @@ if (shape == 3)
     exit;
 }
 
-// ==================== shape 0 / 1 / 2（原逻辑） ====================
+// ==================== shape 0 / 1 / 2 ====================
 
 // 根据shape计算伤害倍率
 var dmg_mul = 1;
@@ -159,50 +159,45 @@ switch (shape)
         break;
 }
 
-// 边路补偿机制：越界的子弹改为中路（自身行），确保始终2发/3发
-// 基础：上路(-1) + 中路(0)，上路越界则改为中路 → 2发中路
-// >7只：增加下路(+1)，下路越界则改为中路 → 中路多1发
-var bullet_rows = [];
+// 2026-11-17 用户口径：子弹要像炎凰马那样夹在**两行之间**，每发同时打中上下两行，
+//   而不是落在单行正中只打本行（旧版实测三行受击 1/1/0）。
+//   缝隙 g = 第 g-1 行与第 g 行之间；炎帝在第 R 行时：
+//     2 发 → 缝隙 R、R+1         → 覆盖 R-1 / R / R+1，受击 1 / 2 / 1
+//     3 发（场上 >7 只）→ 追加缝隙 R+2 → 覆盖到 R+2，受击 1 / 2 / 2 / 1
+//   缝隙夹到 [1, rows-1]：贴边越界时两条缝隙会重合 → 该两行各吃两次，
+//   与旧版「越界改中路」的重叠语义一致，不会凭空多打一行。
+var _gap_max = max(1, global.grid_rows - 1);
+var bullet_gaps = [];
+bullet_gaps[0] = clamp(grid_row,     1, _gap_max);
+bullet_gaps[1] = clamp(grid_row + 1, 1, _gap_max);
 
-// 第一行：上路，越界则中路
-if (grid_row - 1 >= 0)
-    bullet_rows[0] = -1;
-else
-    bullet_rows[0] = 0;
-
-// 第二行：中路（自身所在行）
-bullet_rows[1] = 0;
-
-// 场上炎帝>7只时，增加第三行
+// 场上炎帝>7只时，增加一条轨迹（向下延伸一行）
 var shennong_count = instance_number(obj_shennong_god);
 if (shennong_count > 7)
 {
-    // 下路，越界则中路
-    if (grid_row + 1 < global.grid_rows)
-        bullet_rows[2] = 1;
-    else
-        bullet_rows[2] = 0;
+    bullet_gaps[2] = clamp(grid_row + 2, 1, _gap_max);
 }
 
-for (var i = 0; i < array_length(bullet_rows); i++)
+for (var i = 0; i < array_length(bullet_gaps); i++)
 {
-    var row_off = bullet_rows[i];
-    var target_row = grid_row + row_off;
+    var gap = bullet_gaps[i];
 
     var start_x = col0_x - 40;
-    if (row_off == 0 && i != 1) {
-        if (i == 0)
-            start_x -= 20;
-        else
-            start_x -= 40;
-    }
-    var start_y = global.grid_offset_y + (grid_cell_y * target_row) + middle_y_offset;
+    // 缝隙重合（贴边）时把后面的几发错开，否则两张贴图完全叠在一起看不出是多发
+    var _dup = 0;
+    for (var _d = 0; _d < i; _d++) if (bullet_gaps[_d] == gap) _dup++;
+    if (_dup > 0) start_x -= 40 * _dup;
+
+    // 与炎凰马同一条公式：缝隙 g 的视觉中心 = 第 g 行上移 0.25 格（夹在 g-1 / g 之间）
+    var start_y = global.grid_offset_y + (gap - 0.25) * grid_cell_y;
 
     var inst = instance_create_depth(start_x, start_y, depth - 500, obj_shennong_god_bullet_h);
     inst.damage = atk * dmg_mul;
     inst.move_speed = 6;
-    inst.row = target_row;
-    inst.target_row = target_row;
+    inst.row = gap - 1;
+    inst.target_row = gap - 1;
+    inst.cover_a = gap - 1;   // 缝隙制：上下两行都吃这一发
+    inst.cover_b = gap;
     inst.shape = shape;
     inst.ash_kill = ash_kill;
     if (shape >= 2) {

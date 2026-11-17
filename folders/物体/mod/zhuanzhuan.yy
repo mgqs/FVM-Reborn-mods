@@ -1,0 +1,20 @@
+{
+  "$GMFolder":"",
+  "%Name":"zhuanzhuan",
+  "folderPath":"folders/物体/mod/zhuanzhuan.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"zhuanzhuan",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+
+    {"name":"obj_zz_buy_confirm","path":"objects/obj_zz_buy_confirm/obj_zz_buy_confirm.yy",},
+    {"name":"obj_zz_shop_bg","path":"objects/obj_zz_shop_bg/obj_zz_shop_bg.yy",},
+    {"name":"obj_zz_bg","path":"objects/obj_zz_bg/obj_zz_bg.yy",},
+    {"name":"obj_zz_enter","path":"objects/obj_zz_enter/obj_zz_enter.yy",},
+  ],
+}

@@ -122,13 +122,16 @@ function craft_rule_init(){
 		"gold_amount":1300
 		}
 	)
+	// ── 11~16★（2026-11-17 用户口径）──
+	//   皇室香料只能强化 11~12★；13★ 起改用金马盛典新增香料（珍珠/王冠/羽翼/圣泉），每级 200 个
+	//   四叶草门槛整体前移两星：11★ 3级×3 / 12★ 4级×4 / 13★ 5级×3 / 14★ 6级×3 / 15★ S级×3 / 16★ SS级×3
 	register_card_craft_rule(
 		"11",
 		{
 		"spices_require":"royal_spices",
 		"spices_amount":200,
-		"clover_require":"none",
-		"clover_amount":0,
+		"clover_require":"clover_3",
+		"clover_amount":3,
 		"gold_amount":2600
 		}
 	)
@@ -137,17 +140,17 @@ function craft_rule_init(){
 		{
 		"spices_require":"royal_spices",
 		"spices_amount":245,
-		"clover_require":"none",
-		"clover_amount":0,
+		"clover_require":"clover_4",
+		"clover_amount":4,
 		"gold_amount":2600
 		}
 	)
 	register_card_craft_rule(
 		"13",
 		{
-		"spices_require":"royal_spices",
-		"spices_amount":300,
-		"clover_require":"clover_3",
+		"spices_require":"magic_spices",
+		"spices_amount":200,
+		"clover_require":"clover_5",
 		"clover_amount":3,
 		"gold_amount":5200
 		}
@@ -155,30 +158,30 @@ function craft_rule_init(){
 	register_card_craft_rule(
 		"14",
 		{
-		"spices_require":"royal_spices",
-		"spices_amount":355,
-		"clover_require":"clover_4",
-		"clover_amount":4,
+		"spices_require":"elf_spices",
+		"spices_amount":200,
+		"clover_require":"clover_6",
+		"clover_amount":3,
 		"gold_amount":5200
 		}
 	)
 	register_card_craft_rule(
 		"15",
 		{
-		"spices_require":"royal_spices",
-		"spices_amount":420,
-		"clover_require":"none",
-		"clover_amount":0,
+		"spices_require":"angel_spices",
+		"spices_amount":200,
+		"clover_require":"clover_s",
+		"clover_amount":3,
 		"gold_amount":10000
 		}
 	)
 	register_card_craft_rule(
 		"16",
 		{
-		"spices_require":"royal_spices",
-		"spices_amount":500,
-		"clover_require":"none",
-		"clover_amount":0,
+		"spices_require":"saint_spices",
+		"spices_amount":200,
+		"clover_require":"clover_ss",
+		"clover_amount":3,
 		"gold_amount":10000
 		}
 	)
