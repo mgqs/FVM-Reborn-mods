@@ -62,15 +62,15 @@ function cross_server_shop_init()
     for (var _csm = 0; _csm < array_length(_cs_material_goods); _csm++) {
         var _cmi = _cs_material_goods[_csm];
         if (!ds_map_exists(global.material_pool, _cmi.id)) continue;
-        var _cmdata = global.material_pool[? _cmi.id];
+        var _cmdata = global.material_pool[? _cmi.id];      // material_pool 的 value 是 struct
         register_goods(_cmi.id, {
             type: "material",
             material_id: _cmi.id,
             material_qty: _cmi.qty,
             cost: string(_cmi.cost),
             cross_server_shop: "silver",
-            display_name: _cmdata[? "name"],
-            description: _cmdata[? "description"],
+            display_name: _cmdata.name,
+            description: _cmdata.description,
             sort_no: _csm + 1            // 白银页排最前，5 件挨在一起（排序见 obj_cross_server_shop/Create_0）
         });
     }
