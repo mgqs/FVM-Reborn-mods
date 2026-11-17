@@ -2,7 +2,10 @@
 // 三形态：0转 刺梨烧烤盘 / 1转 冰榴莲烤盘 / 2转 缤纷杂果冰盘
 // 机制：过火增幅（子弹伤害 × atk 增幅倍率，冰弹除外）+ 啃咬反伤（咬多少弹多少）；
 //       1转起每隔[寒气间隔]在周围 5*5 释放一次寒气（单次结算 = 原 8 跳合并为 1 跳、伤害 ×8，减速 4 秒）；
-//       2转过火子弹按官方设定为冰弹（冰弹贴图待接入，暂时沿用火盆点燃后的火弹表现）。
+//       过火外观按融合档位走：初融 / 深融 = 火弹（spr_ronghehuopen_fire_bullet），
+//       灵融 = 冰火弹（spr_ronghehuopen_ice_bullet）；标记（brazier_list 哨兵）在 scripts/mod_bullet_hazard
+//       的 bullet_hazard_ronghe_look 里打，真正的换图由 obj_bullet_parent 的 Begin Draw
+//       调 bullet_hazard_look 在绘制前统一做，卡片本身不管。
 //       数值取自「这组卡的推荐数值和情报岛.xlsx」新普卡-融合卡 81-89 行。
 event_inherited();  // 继承父对象属性
 plant_id = "ronghehuopen";

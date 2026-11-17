@@ -8,7 +8,7 @@ function material_init(){
 	register_material("secret_spices",{"name":"秘制香料",
 										"description":"秘制香料：强化7~10星卡片所需材料\n在火山岛关卡获取",
 										"icon":1,
-										"pos_x":1,
+										"pos_x":2,
 										"pos_y":0})
 	register_material("royal_spices",{"name":"皇室香料",
 										"description":"皇室香料：强化11~12星卡片所需材料\n在浮空岛卤料花园之后的关卡获取，或在跨服商店·白银页兑换",
@@ -42,7 +42,7 @@ function material_init(){
 	register_material("superior_spices",{"name":"上等香料",
 										"description":"上等香料：高阶卡片强化材料",
 										"icon":24,
-										"pos_x":2,
+										"pos_x":1,
 										"pos_y":0})
 	register_material("supreme_spices",{"name":"极品香料",
 										"description":"极品香料：高阶卡片强化材料",

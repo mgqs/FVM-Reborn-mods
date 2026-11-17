@@ -917,12 +917,23 @@ for(var i = 0 ; i < 8 ; i++){
 
 if button_select == 0{
 	//绘制卡片强化UI背景
-	draw_sprite_ext(spr_craft_slot_bg,0,x-305,y+100,1.8,1.8,0,c_white,1)
-	draw_sprite_ext(spr_craft_material_bg,0,x-455,y-20,1.8,1.8,0,c_white,1)
-	draw_sprite_ext(spr_craft_material_bg,0,x-155,y-20,1.8,1.8,0,c_white,1)
-	draw_sprite_ext(spr_craft_slot_text,0,x-305,y+100,1.8,1.8,0,c_white,1)
-	draw_sprite_ext(spr_craft_slot_text,1,x-455,y-20,1.8,1.8,0,c_white,1)
-	draw_sprite_ext(spr_craft_slot_text,2,x-155,y-20,1.8,1.8,0,c_white,1)
+	// 槽位布局走表：scripts/mod_craft_slot_table 的 craft_slot_table()
+	//   表里 = 主卡 + 香料①~③（上 / 左 / 右）+ 四叶草（左下）；坐标只写在那张表，这里只按表画
+	var _slot_tbl = craft_slot_table();
+	var _slot_ofs = _slot_tbl.text_ofs;
+	var _slot_pos = {};
+	for (var _si = 0; _si < array_length(_slot_tbl.slots); _si++) {
+		var _sl = _slot_tbl.slots[_si];
+		var _px = x + _sl.dx;
+		var _py = y + _sl.dy;
+		draw_sprite_ext(asset_get_index(_sl.bg_spr), 0, _px, _py, _sl.scale, _sl.scale, 0, c_white, 1);
+		draw_sprite_ext(spr_craft_slot_text, _sl.label_spr, _px, _py, _sl.scale, _sl.scale, 0, c_white, 1);
+		_slot_pos[$ _sl.id] = { x: _px, y: _py };
+	}
+	var _slot_sp1_x = _slot_pos[$ "spice1"].x;
+	var _slot_sp1_y = _slot_pos[$ "spice1"].y;
+	var _slot_clv_x = _slot_pos[$ "clover"].x;
+	var _slot_clv_y = _slot_pos[$ "clover"].y;
 	//绘制卡片强化材料（两行：香料 7 个 / 四叶草 8 个，下标见 card_material_row_break）
 	for(var i = 0 ; i < array_length(card_material_id_list) ; i++){
 		var material_id = card_material_id_list[i]
@@ -1105,8 +1116,9 @@ if button_select == 0{
 				draw_set_colour(c_white)
 				draw_set_halign(fa_left)
 			}
-			draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.spices_require).icon, x-455, y-20, 0.9, 0.9, 0, c_white, 1)
-			draw_set_halign(fa_center)
+			draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.spices_require).icon, _slot_sp1_x, _slot_sp1_y, 0.9, 0.9, 0, c_white, 1)
+			// 香料数量写在默认槽（上槽）右侧：槽下方是主卡槽，写了会压到主卡边框
+			draw_set_halign(fa_left)
 			draw_set_colour(c_black)
 			//如果低级材料不足，尝试获取高级材料
 			var display_spices_amount = 0
@@ -1123,11 +1135,11 @@ if button_select == 0{
 			else{
 				display_spices_amount = get_material_amount(craft_rule.spices_require)
 			}
-			draw_text(x-455,y+35,string(display_spices_amount)+"/"+string(craft_rule.spices_amount))
+			draw_text(_slot_sp1_x + _slot_ofs.spices_x, _slot_sp1_y + _slot_ofs.spices_y, string(display_spices_amount)+"/"+string(craft_rule.spices_amount))
 			draw_set_font(font_yuan)
 			if use_enhanced_spices{
 				draw_set_colour(c_red)
-				draw_text(x-455,y+60,"使用了高级香料")
+				draw_text(_slot_sp1_x + _slot_ofs.spices_x, _slot_sp1_y + _slot_ofs.spices_hint_y, "使用了高级香料")
 			}
 			if craft_rule.clover_require != "none"{
 				//如果低级材料不足，尝试获取高级材料
@@ -1145,15 +1157,15 @@ if button_select == 0{
 				else{
 					display_clover_amount = get_material_amount(craft_rule.clover_require)
 				}
-				draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.clover_require).icon, x-155, y-20, 0.9, 0.9, 0, c_white, 1)
+				draw_sprite_ext(spr_craft_material, get_material_info(craft_rule.clover_require).icon, _slot_clv_x, _slot_clv_y, 0.9, 0.9, 0, c_white, 1)
 				draw_set_halign(fa_center)
 				draw_set_colour(c_black)
 				draw_set_font(font_number)
-				draw_text(x-155,y+35,string(display_clover_amount)+"/"+string(craft_rule.clover_amount))
+				draw_text(_slot_clv_x, _slot_clv_y + _slot_ofs.clover_y, string(display_clover_amount)+"/"+string(craft_rule.clover_amount))
 				draw_set_font(font_yuan)
 				if use_enhanced_clover{
 					draw_set_colour(c_red)
-					draw_text(x-155,y+60,"使用了高级四叶草")
+					draw_text(_slot_clv_x, _slot_clv_y + _slot_ofs.clover_hint_y, "使用了高级四叶草")
 				}
 			}
 		}

@@ -19,8 +19,11 @@ if (kind == "star" && variable_global_exists("enemy_sx_n") && variable_global_ex
 if (timer > (kind == "star" ? 300 : 600)) {instance_destroy();exit;}
 // 过火表现：烧起来的星弹换火焰弹贴图（与炭烧海星 / 融合鱿鱼等子弹同口径）
 //   火焰弹贴图只有 41×14，按 1.8 倍画（= 融合火盆「点燃放大一圈」的同一口径），观感才跟星弹接近
-//   ⚠️ 融合火盆 2 转会把子弹改成冰弹贴图，那种情况别覆盖（别写成无条件赋值）
-if (kind == "star" && burnt >= 1 && sprite_index != spr_ronghehuopen_ice_bullet) {
+//   ⚠️ 融合火盆 2 转的冰弹贴图由 obj_bullet_parent 的 Begin Draw 出，那一拍比这里晚，
+//      所以不能比 sprite_index，要认 brazier_list 里的 -9999 哨兵
+var _ronghe_ice = (variable_instance_exists(id, "brazier_list")
+    && ds_list_find_index(brazier_list, -9999) != -1);
+if (kind == "star" && burnt >= 1 && !_ronghe_ice) {
     sprite_index = spr_fire_bullet;
     image_xscale = 1.8;
     image_yscale = 1.8;

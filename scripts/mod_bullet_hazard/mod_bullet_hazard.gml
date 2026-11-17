@@ -127,13 +127,12 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         return false;
     }
 
-    // 融合火盆 2 转（缤纷杂果冰盘）：点燃后把子弹换成冰弹外观
-    //   用 ancestor 判断，以后给融盆加子对象也认
-    var _ice_pit = false;
-    if ((_src.object_index == obj_ronghehuopen
-         || object_is_ancestor(_src.object_index, obj_ronghehuopen))
-        && variable_instance_exists(_src, "shape"))
-        _ice_pit = (_src.shape >= 2);
+    // 融合火盆：子弹外观按「融合档位」走（初融 / 深融 = 火弹，灵融 = 冰火弹）
+    //   判定用 ancestor，以后给融盆加子对象也认；只有融盆会进下面这段，
+    //   火盆 / 火神 / 金牛 / 能量喵等其它火源完全不受影响。
+    var _ronghe = ((_src.object_index == obj_ronghehuopen
+                    || object_is_ancestor(_src.object_index, obj_ronghehuopen))
+                   && variable_instance_exists(_src, "shape"));
 
     // ── 冰弹两步：0→1 只融化（不增幅、fire_mult 归 1），1→2 才点燃 ──
     if (_is_ice && _cfg.step2 && _bullet.burnt < 2) {
@@ -151,6 +150,11 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
             return false;
         }
     }
+
+    // ── 融盆档位外观：放在倍率判断**之前**，档位比倍率优先 ──
+    //   🔴 旧版把换贴图放在「倍率更高才生效」之后，子弹已经吃过高倍率再遇灵融时
+    //      伤害变了但贴图不换（看着就是没反应）。融盆的档位必须无条件生效。
+    if (_ronghe) bullet_hazard_ronghe_look(_bullet, _src);
 
     // ── 到这里 = 要点燃 / 提升倍率 ──
     // 过火取最高：不高于当前已获得的倍率就不生效（相等也不算）
@@ -173,34 +177,22 @@ function bullet_hazard_fire(_bullet, _src, _mult, _scale = 1.8) {
         && variable_instance_exists(_bullet, "base_damage"))
         _bullet.base_damage = round(_bullet.base_damage / _cur * _mult);
 
-    // 冰火弹标记：融盆二转在 brazier_list 里插的哨兵 -9999
-    var _frozen_fire = (ds_list_find_index(_bullet.brazier_list, -9999) != -1);
-
-    if (_ice_pit) {
-        // 融盆二转：变冰弹（已经是冰火弹就保持冰样，只是倍率又变高了）
-        // 贴图 / 尺寸由 obj_ronghehuopen_ice_ctrl 每帧接管（减速 + 击杀碎冰）
-        if (ds_list_find_index(_bullet.brazier_list, -9999) == -1)
-            ds_list_add(_bullet.brazier_list, -9999);
-        _bullet.sprite_index = spr_ronghehuopen_ice_bullet;
-        _bullet.image_xscale = 1.4;
-        _bullet.image_yscale = 1.4;
-        if (!instance_exists(obj_ronghehuopen_ice_ctrl))
-            instance_create_depth(0, 0, -10000, obj_ronghehuopen_ice_ctrl);
-    } else if (_frozen_fire) {
-        // 🔴 冰火弹被**更高倍率**的普通火源再点燃（能走到这里 = 倍率确实提升）：
-        //    必须解除冰化、换回普通火弹外观。否则 obj_ronghehuopen_ice_ctrl 的 End Step
-        //    每帧把贴图和尺寸锁回冰弹 1.4，玩家完全看不出倍率已经提升，等于「过火没反应」。
-        var _fi = ds_list_find_index(_bullet.brazier_list, -9999);
-        if (_fi != -1) ds_list_delete(_bullet.brazier_list, _fi);
-        _bullet.sprite_index = spr_fire_bullet;
+    // 融盆的档位外观已经在上面处理（bullet_hazard_ronghe_look），这里只管「别的火源」：
+    //   🔴 冰火弹 / 融盆火弹被**更高倍率**的普通火源再点燃时，必须还原成普通火弹外观，
+    //      否则融盆控制器每帧把贴图锁回原样，玩家完全看不出倍率已经提升（老坑）。
+    if (!_ronghe) {
+        var _im = ds_list_find_index(_bullet.brazier_list, -9999);
+        var _fm = ds_list_find_index(_bullet.brazier_list, -9998);
+        if (_im != -1 || _fm != -1) {
+            if (_im != -1) ds_list_delete(_bullet.brazier_list, _im);
+            _fm = ds_list_find_index(_bullet.brazier_list, -9998);
+            if (_fm != -1) ds_list_delete(_bullet.brazier_list, _fm);
+            _bullet.sprite_index = spr_fire_bullet;
+        }
         if (_scale > 0) {                    // scale:0 的子弹（bbq / 星弹等）自己管尺寸，别硬套 1.8
             _bullet.image_xscale = _scale;
             _bullet.image_yscale = _scale;
         }
-    } else if (_scale > 0) {
-        // 普通火源：点燃后放大一圈
-        _bullet.image_xscale = _scale;
-        _bullet.image_yscale = _scale;
     }
 
     if (!_seen) ds_list_add(_bullet.brazier_list, _src.id);
@@ -327,4 +319,54 @@ function water_god_poison_apply(_enemy, _dmg, _ticks) {
 	_p.dmg    = _dmg;
 	_p.ticks  = _ticks;
 	_enemy.wg_poison_fx = _p;
+}
+
+/// @function bullet_hazard_ronghe_look(_bullet, _src)
+/// @desc 融合火盆专用：按火源的融合档位打标记
+///       初融 / 深融（shape 0 / 1）→ 哨兵 -9998（融盆火弹）
+///       灵融（shape 2）        → 哨兵 -9999（灵融冰火弹）
+///       🔴 不看倍率：档位优先。子弹已经是灵融冰火弹时**不降档**（低档融盆不会把它换回火样）。
+///       🔴 这里**只写哨兵、不写 sprite_index**：子弹自己的 Step 每帧会把贴图写回 spr_fire_bullet，
+///          在 Step 里改完立刻被顶掉。真正的换图在父类 Begin Draw 调 bullet_hazard_look() 做。
+function bullet_hazard_ronghe_look(_bullet, _src) {
+	if (!instance_exists(_bullet) || !instance_exists(_src)) return;
+	if (!variable_instance_exists(_bullet, "brazier_list")) return;
+	if (!variable_instance_exists(_src, "shape")) return;
+
+	var _ice      = (_src.shape >= 2);
+	var _ice_mark = (ds_list_find_index(_bullet.brazier_list, -9999) != -1);
+	var _fire_i   = ds_list_find_index(_bullet.brazier_list, -9998);
+
+	if (_ice) {
+		if (!_ice_mark) ds_list_add(_bullet.brazier_list, -9999);
+		if (_fire_i != -1) ds_list_delete(_bullet.brazier_list, _fire_i);
+	} else if (!_ice_mark) {
+		if (_fire_i == -1) ds_list_add(_bullet.brazier_list, -9998);
+	}
+
+	// 灵融冰火弹的命中减速 / 碎冰死亡 / 冰冻命中特效仍归这个控制器（跟贴图无关）
+	if (!instance_exists(obj_ronghehuopen_ice_ctrl))
+		instance_create_depth(0, 0, -10000, obj_ronghehuopen_ice_ctrl);
+}
+
+/// @function bullet_hazard_look(_bullet)
+/// @desc 绘制前统一应用「熔炼外观」—— obj_bullet_parent 的 Begin Draw 调它。
+///       放在 Begin Draw 的原因：子弹自己的 Step 每帧都会写 sprite_index（典型写法
+///       `if (burnt == 1) sprite_index = spr_fire_bullet;`），只有绘制前这一拍改才不会被顶掉，
+///       也就不需要外部控制器每帧再锁一次图。
+///       靠 brazier_list 的哨兵认档（-9999 灵融冰火弹 / -9998 融盆火弹）：
+///       这个列表每颗子弹每条命都由 Create 重建，池化复用天然复位，不用额外声明字段。
+function bullet_hazard_look(_bullet) {
+	if (!variable_instance_exists(_bullet, "brazier_list")) return;
+
+	var _spr = -1;
+	if (ds_list_find_index(_bullet.brazier_list, -9999) != -1)      _spr = spr_ronghehuopen_ice_bullet;
+	else if (ds_list_find_index(_bullet.brazier_list, -9998) != -1) _spr = spr_ronghehuopen_fire_bullet;
+	if (_spr == -1) return;
+
+	_bullet.sprite_index = _spr;
+	_bullet.image_xscale = 1.8;      // 与工程其它子弹同档（素材 1:1，工程统一 1.8）
+	_bullet.image_yscale = 1.8;
+	// 帧数跟贴图走：融盆火弹 8 帧、冰火弹 3 帧，而各子弹 Step 里普遍是 `mod 4`，不接管就卡在前 4 帧
+	_bullet.image_index = floor(current_time / 83) mod sprite_get_number(_spr);   // ≈12fps
 }

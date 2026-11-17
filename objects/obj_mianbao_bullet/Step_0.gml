@@ -6,8 +6,12 @@ if global.is_paused{
 
 // 过火（融合火盆 / 火盆 / 火神 / 金牛 / 能量喵）→ 换火焰弹贴图
 // 🔴 原来整段漏了这句：burnt 会涨、damage 会乘，但贴图不变，玩家看着就是「过不了火」。
-//    与 obj_xiaolongbao_bullet / obj_corn_shooter_bullet 同款；2 转冰化贴图（spr_ronghehuopen_ice_bullet）不要覆盖。
-if (burnt >= 1 && sprite_index != spr_ronghehuopen_ice_bullet){
+//    与 obj_xiaolongbao_bullet / obj_corn_shooter_bullet 同款；2 转冰化贴图不要覆盖。
+//    🔴 融盆的换图已经挪到 obj_bullet_parent 的 Begin Draw（bullet_hazard_look），
+//       这里不能再比 sprite_index（那一拍还没生效），要认 brazier_list 里的 -9999 哨兵。
+var _ronghe_ice = (variable_instance_exists(id, "brazier_list")
+    && ds_list_find_index(brazier_list, -9999) != -1);
+if (burnt >= 1 && !_ronghe_ice){
 	sprite_index = spr_fire_bullet;
 }
 

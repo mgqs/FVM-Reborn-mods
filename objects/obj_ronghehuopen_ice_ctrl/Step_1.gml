@@ -66,6 +66,9 @@ if (array_length(_ice) > 0){
 	ds_list_destroy(_near);
 }
 
+// 场上没有冰弹就计时自毁。
+//   融盆火弹（-9998）不再需要本控制器 —— 贴图由 obj_bullet_parent 的 Begin Draw 出，
+//   所以空闲判定只看冰弹，火弹飞着也不会拖住控制器。
 if (array_length(_ice) == 0){
 	idle_frames++;
 	if (idle_frames > 300) instance_destroy();

@@ -1,6 +1,9 @@
-// obj_ronghehuopen_ice_ctrl（融合火盆·二转冰弹控制器）Create 事件
-// 为什么需要独立控制器：冰弹的「贴图锁定 / 命中减速 / 命中特效」不能挂在融盆卡片上 ——
-// 卡片被铲掉后冰弹会被自己的 Step 改回火弹贴图（子弹 Step 里有 `if (burnt == 1) sprite_index = spr_fire_bullet;`）。
+// obj_ronghehuopen_ice_ctrl（融合火盆·冰弹逻辑控制器）Create 事件
+// 只管灵融「冰火弹」（brazier_list 哨兵 -9999）的运行时逻辑：命中减速 / 碎冰死亡 / 冰冻命中特效。
+//   换贴图不归这里 —— obj_bullet_parent 的 Begin Draw 调 bullet_hazard_look() 在绘制前统一做，
+//   所以控制器不在场（或卡片被铲掉）也不会闪回普通火弹。
+// 为什么还要独立控制器：上面那几件事都要「每帧扫附近的敌人」，
+//   挂不到融盆卡片上（卡片铲掉后冰弹还在飞）。
 // 卡片只要点燃过冰弹就确保本控制器存在（见 obj_ronghehuopen/Step_0.gml），场上不再有冰弹时自行销毁。
 idle_frames = 0
 

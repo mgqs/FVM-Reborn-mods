@@ -1,6 +1,5 @@
 function mod_skill_init()
 {
-    // 生肖卡技能注册
     register_card_skill("yanyantu", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
     register_card_skill("wugushe", "cycle", [108, 105, 102, 99, 96, 93, 90, 87, 84]);
     register_card_skill("kuileima", "cycle", [900, 960, 1020, 1080, 1200, 1320, 1440, 1680, 2100]);
@@ -9,17 +8,11 @@ function mod_skill_init()
     register_card_skill("guiyuanma", "cycle", [156, 153, 150, 147, 144, 141, 138, 132, 120]);
     register_card_skill("huagao", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 168]);
     register_card_skill("yanhuangma", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 150]);
-    // 神农氏：情报岛口径「星级影响[攻击力],技能影响[攻击间隔]」。星级表已改成恒定 210，
-    // 攻速只由技能等级决定（与灯影花糕同基础 210、同递减节奏，9 级 168）。
     register_card_skill("shennong_god", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 168]);
     register_card_skill("yinhema", "cooldown", [2700, 2580, 2460, 2340, 2220, 2040, 1800, 1500, 900]);
-    // 浮生茶冷却 50/48/46/44/40/35/30/25/18 秒；9 星起沿用 18 秒（mod_cards_init 的 1080）
     register_card_skill("fushengcha", "cooldown", [3000, 2880, 2760, 2640, 2400, 2100, 1800, 1500, 1080]);
-    // 2026-11-13 新卡：元素蛇攻击间隔 2.5/2.4/2.3/2.2/2.1/2/1.9/1.8/1.5 秒（表内只有 9 个值 = 技能档）
     register_card_skill("yuansushe", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
-    // 银河马攻击间隔 19/18.5/18/17.5/17/16/15/14/11 秒
     register_card_skill("galaxy_horse", "cycle", [1140, 1110, 1080, 1050, 1020, 960, 900, 840, 660]);
-    // 星轨神冷却 40/38/36/33/29/25/21/17/12 秒（星级强化 = 增幅倍率，冷却只吃技能）
     register_card_skill("xinggui_god", "cooldown", [2400, 2280, 2160, 1980, 1740, 1500, 1260, 1020, 720]);
     register_card_skill("xiandima", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("xingqiongma", "zodiac_guard_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);
@@ -85,19 +78,12 @@ function mod_skill_init()
     register_card_skill("fengrao_god", "cooldown", [2100, 1980, 1860, 1740, 1620, 1500, 1320, 1080, 720]);
     register_card_skill("houyi_god", "cycle", [75, 72, 69, 66, 63, 60, 57, 54, 51]);
     register_card_skill("heian_god","cycle",[15*60,16*60,17*60,18*60,20*60,22*60,26*60,31*60,36*60]);
-    // 混沌神：情报岛口径「星级影响[攻击间隔],技能影响[冷却时间]」。
-    // 攻击间隔 = mod_cards_init 的 cycle（35→2 秒随星级），技能只压冷却：35/32/29/26/23/19/15/11/7 秒。
     register_card_skill("hundun_god", "cooldown", [2100, 1920, 1740, 1560, 1380, 1140, 900, 660, 420]);
-    // 光明神：情报岛口径「星级影响[攻击力],技能影响[攻击间隔]」，冷却固定 21 秒（mod_cards_init 的 1260）。
-    // 攻击间隔按技能 3.5→2.8 秒。
     register_card_skill("guangming_god", "cycle", [210, 207, 204, 201, 198, 192, 186, 180, 168]);
     register_card_skill("lingrong_god", "hp", [100, 140, 180, 220, 300, 400, 520, 640, 760]);
     register_card_skill("laipishe", "cycle", [210, 204, 198, 192, 186, 180, 168, 156, 120]);
     register_card_skill("liehuohu", "cooldown", [3300, 3120, 2940, 2940, 2580, 2400, 2220, 2040, 1800]);
     register_card_skill("double_blade_snake", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 51]);
-    // 重生神：情报岛口径「星级影响[冷却时间]，技能影响[攻击间隔]」。
-    // 攻击间隔（=复活瞬间的无敌时长）按技能 2.5→3.5 秒；减伤BUFF持续按技能 15→20 秒；
-    // 减伤比例仍按技能 30%→80%。冷却走 mod_cards_init 的星级表。
     register_card_skill("chongsheng_god", "cycle", [150, 153, 156, 159, 162, 165, 168, 180, 210]);
     register_card_skill("chongsheng_god", "chongsheng_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);
     register_card_skill("chongsheng_god", "chongsheng_reduction", [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8]);
@@ -117,9 +103,6 @@ function mod_skill_init()
     register_card_skill("ronghedapao", "cooldown", [1500, 1410, 1320, 1230, 1140, 1050, 960, 870, 780]);
     register_card_skill("ronghekafei", "cycle", [78, 75, 72, 69, 66, 63, 60, 57, 54]);
     register_card_skill("wuxingshe", "cooldown", [2400, 2220, 2040, 1860, 1680, 1500, 1320, 1140, 900]);
-    // ── 情报岛声明「技能影响」但原先未落地的四张卡（2026-10-30 补齐） ──
-    // 工匠神：星级影响[攻击力],技能影响[攻击间隔]。星级表已恒定 210，
-    // 攻速只由技能决定；端点沿用原星级表首尾 210→120。
     register_card_skill("gongjiang_god", "cycle", [210, 204, 198, 192, 186, 180, 168, 144, 120]);
     // 凤羽魔杖蛇：星级影响[攻击力],技能影响[冷却时间]。星级表已恒定 2520，
     // 原星级表前 9 档即本曲线，第 9 档起用 900 封顶。

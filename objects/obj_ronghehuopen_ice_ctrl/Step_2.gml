@@ -1,5 +1,5 @@
 // obj_ronghehuopen_ice_ctrl End Step 事件
-// ① 锁冰弹贴图 + 尺寸固定（子弹自己的 Step 每帧会把贴图改回火弹，必须在所有 Step 之后再锁一次）
+// ① 收集当前存活冰弹的位置（给 ③ 的命中特效配对用）
 // ② 冰弹「直接打死」→ 换成冰桶二转的碎冰死亡动画（spr_mouse_ice_death）
 // ③ 把「本帧新出现、且就在冰弹附近」的命中特效就地换成冰冻命中特效（obj_icelongbao_bullet_effect）
 //    子弹自己命中时播的是各弹种自己的命中特效、卡片/控制器都拿不到命中回调，
@@ -9,17 +9,16 @@ if (global.is_paused){
 	exit
 }
 
-// ① 锁贴图 + 固定尺寸；同时收集当前存活冰弹的位置
+// ① 只收集冰弹坐标。
+//   贴图 / 尺寸 / 帧号已经交给 obj_bullet_parent 的 Begin Draw（bullet_hazard_look）——
+//   子弹的 Step 每帧会把 sprite_index 写回 spr_fire_bullet，只有在绘制前那一拍改才不会被顶掉，
+//   所以这里不再锁图（旧做法每帧锁一次，控制器不在场还会闪一帧旧贴图）。
+//   融盆火弹（-9998）只换外观、不参与冰冻逻辑，不用收集。
 var _live_x = [];
 var _live_y = [];
 with (obj_bullet_parent){
-	if (variable_instance_exists(id, "brazier_list") && ds_list_find_index(brazier_list, -9999) != -1){
-		sprite_index = spr_ronghehuopen_ice_bullet;
-		image_xscale = 1.4;   // 尺寸固定 1.4（不跟随原弹的 1.6 / 1.8 等档位）
-		image_yscale = 1.4;
-		var _fn = sprite_get_number(spr_ronghehuopen_ice_bullet);
-		if (image_index >= _fn) image_index = 0;
-		if (_fn > 1 && image_speed <= 0) image_speed = 0.25;   // 单帧素材不需要驱动动画
+	if (variable_instance_exists(id, "brazier_list")
+		&& ds_list_find_index(brazier_list, -9999) != -1){
 		array_push(_live_x, x);
 		array_push(_live_y, y);
 	}
