@@ -13,29 +13,41 @@ function material_init(){
 	register_material("royal_spices",{"name":"皇室香料",
 										"description":"皇室香料：强化11~12星卡片所需材料\n在浮空岛卤料花园之后的关卡获取，或在跨服商店·白银页兑换",
 										"icon":2,
-										"pos_x":2,
+										"pos_x":4,
 										"pos_y":0})
 	// ── 金马盛典新增：13~16★ 香料（皇室香料只到 12★，2026-11-17 用户口径）──
 	// icon 15~18 = spr_craft_material 追加帧（tools/add_zz_material_frames.py）
 	register_material("magic_spices",{"name":"魔幻香料",
 										"description":"魔幻香料：强化13星卡片所需材料\n在跨服商店·白银页兑换（600 白银/200个）",
 										"icon":15,
-										"pos_x":3,
+										"pos_x":5,
 										"pos_y":0})
 	register_material("elf_spices",{"name":"精灵香料",
 										"description":"精灵香料：强化14星卡片所需材料\n在跨服商店·白银页兑换（800 白银/200个）",
 										"icon":16,
-										"pos_x":4,
+										"pos_x":6,
 										"pos_y":0})
 	register_material("angel_spices",{"name":"天使香料",
 										"description":"天使香料：强化15星卡片所需材料\n在跨服商店·白银页兑换（1000 白银/200个）",
 										"icon":17,
-										"pos_x":5,
+										"pos_x":7,
 										"pos_y":0})
 	register_material("saint_spices",{"name":"圣灵香料",
 										"description":"圣灵香料：强化16星卡片所需材料\n在跨服商店·白银页兑换（1200 白银/200个）",
 										"icon":18,
-										"pos_x":6,
+										"pos_x":8,
+										"pos_y":0})
+	// ── 上等 / 极品香料（2026-11-17，图标 icon 24 / 25）──
+	//   用户口径：先只做图标 + 材料登记，星级用途与商店价格待定（暂无 craft 规则 / 未上架）
+	register_material("superior_spices",{"name":"上等香料",
+										"description":"上等香料：高阶卡片强化材料",
+										"icon":24,
+										"pos_x":2,
+										"pos_y":0})
+	register_material("supreme_spices",{"name":"极品香料",
+										"description":"极品香料：高阶卡片强化材料",
+										"icon":25,
+										"pos_x":3,
 										"pos_y":0})
 	register_material("clover_1",{"name":"1级四叶草",
 										"description":"1级四叶草：将卡片突破至7星所需材料\n在深渊岛之后的关卡获取",

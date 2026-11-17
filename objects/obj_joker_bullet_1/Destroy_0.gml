@@ -11,7 +11,9 @@ with (obj_enemy_parent)
     if (abs(grid_row - other.row) > 1) continue;
     if (abs(x - _cx) > global.grid_cell_size_x * 1.5) continue;
     if (target_type != "normal" && target_type != "air" && target_type != "underground" && target_type != "diver") continue;
-    if (target_type == "underground" && !is_digging_dijing(id)) continue;
+    // 只有「地精站在地面」（type 仍写 underground）才排除；普通地鼠 / 牙医鼠这类
+    //   underground 敌人本来就在地下，照常吃溅射
+    if (is_walking_dijing(id)) continue;
 
     damage_amount = other.damage * other.splash_ratio;
     damage_type   = other.damage_type;

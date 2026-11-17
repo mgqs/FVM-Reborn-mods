@@ -26,12 +26,15 @@ if (variable_global_exists("enemy_by_type"))
         for (var _pt = 0; _pt < array_length(_prio); _pt++){
             var _pk = _prio[_pt];
             if (!variable_struct_exists(global.enemy_by_type, _pk)) continue;
-            var _pl = bullet_sap_type_list(id, _pk);
+            // 全表扫：bullet_sap_type_list() 只返 ±128px 内的敌人，空军在更前面时会被地面鼠抢先
+            var _pl = global.enemy_by_type[$ _pk];
             for (var _pi = 0; _pi < array_length(_pl); _pi++){
                 var _pe = _pl[_pi];
                 if (!instance_exists(_pe)) continue;
+                if (object_exists(_pe)) continue;
                 if (_pe.hp <= 0) continue;
-                if (_pe.grid_row != row) continue;
+                if (_pe.target_type != _pk) continue;                  // 类型表按 target_type 维护，双保险
+                if (variable_instance_exists(_pe, "grid_row") && _pe.grid_row != row) continue;
                 if (_pe.x < x - 40) continue;
                 _pick = _pk;
                 break;

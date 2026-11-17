@@ -12,7 +12,9 @@ with (obj_enemy_parent){
     // 2026-11-17 用户口径：溅射范围 = 空中 / 陆地 / 地下，**不跟子弹本体类型走**；
     //   障碍、幽灵、非主流不在这三类里，所以不吃溅射
     if (target_type != "normal" && target_type != "air" && target_type != "underground") continue;
-    if (target_type == "underground" && !is_digging_dijing(id)) continue;
+    // 只有「地精站在地面」（type 仍写 underground）才排除；普通地鼠 / 牙医鼠这类
+    //   underground 敌人本来就在地下，照常吃溅射
+    if (is_walking_dijing(id)) continue;
 
     damage_amount         = other.damage * other.splash_ratio;
     damage_type           = other.damage_type;

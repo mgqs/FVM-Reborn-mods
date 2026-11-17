@@ -179,6 +179,20 @@
       "name": "0b29a159-cd06-4a76-9bb6-0a3a67df3c99",
       "resourceType": "GMSpriteFrame",
       "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "e4ae6b95-b1e2-4ab8-9c9a-fedb4acd452c",
+      "name": "e4ae6b95-b1e2-4ab8-9c9a-fedb4acd452c",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMSpriteFrame": "v1",
+      "%Name": "3b938bfa-8c3f-419c-a55f-9d1896438c36",
+      "name": "3b938bfa-8c3f-419c-a55f-9d1896438c36",
+      "resourceType": "GMSpriteFrame",
+      "resourceVersion": "2.0"
     }
   ],
   "gridX": 0,
@@ -227,7 +241,7 @@
     },
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 24.0,
+    "length": 26.0,
     "lockOrigin": false,
     "moments": {
       "$KeyframeStore<MomentsEventKeyframe>": "",
@@ -778,6 +792,50 @@
               "id": "c7430f56-d173-405b-b3cb-0df5f75607a5",
               "IsCreationKey": false,
               "Key": 23.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "e4ae6b95-b1e2-4ab8-9c9a-fedb4acd452c",
+                    "path": "sprites/spr_craft_material/spr_craft_material.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "8292ebb0-a3cd-43c3-9810-241c6bd3b776",
+              "IsCreationKey": false,
+              "Key": 24.0,
+              "Length": 1.0,
+              "resourceType": "Keyframe<SpriteFrameKeyframe>",
+              "resourceVersion": "2.0",
+              "Stretch": false
+            },
+            {
+              "$Keyframe<SpriteFrameKeyframe>": "",
+              "Channels": {
+                "0": {
+                  "$SpriteFrameKeyframe": "",
+                  "Id": {
+                    "name": "3b938bfa-8c3f-419c-a55f-9d1896438c36",
+                    "path": "sprites/spr_craft_material/spr_craft_material.yy"
+                  },
+                  "resourceType": "SpriteFrameKeyframe",
+                  "resourceVersion": "2.0"
+                }
+              },
+              "Disabled": false,
+              "id": "7ef64981-1711-477f-a59e-74a800de0200",
+              "IsCreationKey": false,
+              "Key": 25.0,
               "Length": 1.0,
               "resourceType": "Keyframe<SpriteFrameKeyframe>",
               "resourceVersion": "2.0",

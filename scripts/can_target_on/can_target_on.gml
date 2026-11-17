@@ -72,6 +72,17 @@ function is_digging_dijing(_inst){
 		&& variable_instance_exists(_inst, "ly_mode") && _inst.ly_mode == "dig";
 }
 
+/// @function is_walking_dijing(_inst)
+/// @desc 龙渊地精「target_type 一直是 underground、人却在地面上走动」的那一档
+///   打地下 / 溅射判定要用它排除（地精在地面上不该吃「打地下」的伤害）；
+///   普通地鼠 / 牙医鼠这些 underground 类型本身就是钻在地下的，不受影响。
+function is_walking_dijing(_inst){
+	return instance_exists(_inst)
+		&& !object_exists(_inst)
+		&& variable_instance_exists(_inst, "mouse_id") && _inst.mouse_id == "longyuan_dijing"
+		&& variable_instance_exists(_inst, "ly_mode") && _inst.ly_mode != "dig";
+}
+
 /// 是否为「非主流」家族老鼠（银河马等卡面写「无法攻击非主流」时用这个入口）
 /// 三只：obj_non_mainstream_mouse（非主流鼠）/ obj_ly_gaoqiao（龙渊高跷鼠，行为 1:1 仿非主流）
 ///       / obj_kf_zr_nonmain（跨服灼热僵尸非主流）。
