@@ -1,4 +1,3 @@
-combat_targets_invalidate(object_index);
 // obj_plant_parent 的 Create 事件
 // ========== 基础属性 ==========
 name = "未命名植物"

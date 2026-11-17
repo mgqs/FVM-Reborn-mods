@@ -11,9 +11,31 @@ function material_init(){
 										"pos_x":1,
 										"pos_y":0})
 	register_material("royal_spices",{"name":"皇室香料",
-										"description":"皇室香料：强化11~16星卡片所需材料\n在浮空岛卤料花园之后的关卡获取",
+										"description":"皇室香料：强化11~12星卡片所需材料\n在浮空岛卤料花园之后的关卡获取，或在跨服商店·白银页兑换",
 										"icon":2,
 										"pos_x":2,
+										"pos_y":0})
+	// ── 金马盛典新增：13~16★ 香料（皇室香料只到 12★，2026-11-17 用户口径）──
+	// icon 15~18 = spr_craft_material 追加帧（tools/add_zz_material_frames.py）
+	register_material("magic_spices",{"name":"魔幻香料",
+										"description":"魔幻香料：强化13星卡片所需材料\n在跨服商店·白银页兑换（600 白银/200个）",
+										"icon":15,
+										"pos_x":3,
+										"pos_y":0})
+	register_material("elf_spices",{"name":"精灵香料",
+										"description":"精灵香料：强化14星卡片所需材料\n在跨服商店·白银页兑换（800 白银/200个）",
+										"icon":16,
+										"pos_x":4,
+										"pos_y":0})
+	register_material("angel_spices",{"name":"天使香料",
+										"description":"天使香料：强化15星卡片所需材料\n在跨服商店·白银页兑换（1000 白银/200个）",
+										"icon":17,
+										"pos_x":5,
+										"pos_y":0})
+	register_material("saint_spices",{"name":"圣灵香料",
+										"description":"圣灵香料：强化16星卡片所需材料\n在跨服商店·白银页兑换（1200 白银/200个）",
+										"icon":18,
+										"pos_x":6,
 										"pos_y":0})
 	register_material("clover_1",{"name":"1级四叶草",
 										"description":"1级四叶草：将卡片突破至7星所需材料\n在深渊岛之后的关卡获取",
@@ -26,14 +48,35 @@ function material_init(){
 										"pos_x":1,
 										"pos_y":1})
 	register_material("clover_3",{"name":"3级四叶草",
-										"description":"3级四叶草：将卡片突破至13星所需材料\n在浮空岛十三香中心岛之后的关卡获取",
+										"description":"3级四叶草：将卡片突破至11星所需材料\n在浮空岛十三香中心岛之后的关卡获取",
 										"icon":5,
 										"pos_x":2,
 										"pos_y":1})
 	register_material("clover_4",{"name":"4级四叶草",
-										"description":"4级四叶草：将卡片突破至14星所需材料\n等待星际穿越开放获取",
+										"description":"4级四叶草：将卡片突破至12星所需材料\n等待星际穿越开放获取",
 										"icon":9,
 										"pos_x":3,
+										"pos_y":1})
+	// ── 金马盛典新增：5 / 6 / S / SS 级四叶草（icon 19~22）──
+	register_material("clover_5",{"name":"5级四叶草",
+										"description":"5级四叶草：将卡片突破至13星所需材料\n在金马盛典获取",
+										"icon":19,
+										"pos_x":4,
+										"pos_y":1})
+	register_material("clover_6",{"name":"6级四叶草",
+										"description":"6级四叶草：将卡片突破至14星所需材料\n在金马盛典获取",
+										"icon":20,
+										"pos_x":5,
+										"pos_y":1})
+	register_material("clover_s",{"name":"S级四叶草",
+										"description":"S级四叶草：将卡片突破至15星所需材料\n在金马盛典获取",
+										"icon":21,
+										"pos_x":6,
+										"pos_y":1})
+	register_material("clover_ss",{"name":"SS级四叶草",
+										"description":"SS级四叶草：将卡片突破至16星所需材料\n在金马盛典获取",
+										"icon":22,
+										"pos_x":7,
 										"pos_y":1})
 	register_material("less_crystal",{"name":"初级强化水晶",
 										"description":"初级强化水晶：强化1~5星宝石所需材料",
@@ -68,8 +111,8 @@ function material_init(){
 	register_material("oracle_stone",{"name": "神谕之石",
 										"description": "神谕之石：在诸神商店兑换神使和凭证所需材料",
 										"icon": 13,        // 取决于图集中下一个可用的图标索引
-										"pos_x": 3,       // 在背包网格中的显示位置
-										"pos_y": 0
+										"pos_x": 4,       // 在背包网格中的显示位置
+										"pos_y": 2
 	});
 	register_material("cross_server_gold_medal",{"name": "黄金徽章",
 										"description": "黄金徽章：跨服远征奖励，用于跨服黄金商店兑换",
@@ -93,6 +136,12 @@ function material_init(){
 										"icon":14,
 										"pos_x":1,
 										"pos_y":4})
+	// ── 金马盛典兑换货币（icon 23 = 幸运星）──
+	register_material("zz_star",{"name":"幸运星",
+										"description":"幸运星：在金马盛典兑换商店换取13~16星养成材料\n参与金马盛典转转抽奖获取",
+										"icon":23,
+										"pos_x":5,
+										"pos_y":2})
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -113,6 +162,15 @@ function material_min_source_list(_material_id) {
 		case "clover_2":          return ["雪顶火山", "勇士神殿", "海葵洋流", "坚果高台"];
 		case "clover_3":          return ["十三香中心岛", "勇士火山", "勇士天妇罗"];
 		case "clover_4":          return ["诸神宝殿"];
+		case "zz_star":           return ["金马盛典"];
+		case "magic_spices":      return ["金马盛典"];
+		case "elf_spices":        return ["金马盛典"];
+		case "angel_spices":      return ["金马盛典"];
+		case "saint_spices":      return ["金马盛典"];
+		case "clover_5":          return ["金马盛典"];
+		case "clover_6":          return ["金马盛典"];
+		case "clover_s":          return ["金马盛典"];
+		case "clover_ss":         return ["金马盛典"];
 		case "less_crystal":      return ["神殿"];
 		case "middle_crystal":    return ["勇士神殿", "芥末小屋", "戚风营地", "金枪鱼洋流", "松露大厅"];
 		case "advanced_crystal":  return ["诸神宝殿"];

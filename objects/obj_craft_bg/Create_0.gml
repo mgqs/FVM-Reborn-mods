@@ -18,8 +18,13 @@ var btn3 = instance_create_depth(x-661,y+250,depth-1,obj_craft_select_btn)
 btn3.button_index = 2
 btn3.text_spr = spr_transfer_tab_text
 
-card_material_id_list = ["natural_spices","secret_spices","royal_spices","clover_1","clover_2","clover_3","clover_4"]
+// 底部材料余量条：卡片页 15 项（7 香料 + 8 四叶草），按 7 / 8 排两行（Draw_0 的 _strip_row_break）
+// 顺序：先香料（低→高，13★ 起是金马盛典新增的珍珠/王冠/羽翼/圣泉），再四叶草（1→4→5→6→S→SS）
+card_material_id_list = ["natural_spices","secret_spices","royal_spices","magic_spices","elf_spices","angel_spices","saint_spices","clover_1","clover_2","clover_3","clover_4","clover_5","clover_6","clover_s","clover_ss"]
+card_material_row_break = 7   // 下标 < 7 走第一行（香料），其余走第二行（四叶草）
 gem_material_id_list = ["less_crystal","middle_crystal","advanced_crystal"]
+// 融合页底部道具栏固定 10 格，塞不下 15 种 → 单独一张表，保持原来 7 项不变
+fusion_material_id_list = ["natural_spices","secret_spices","royal_spices","clover_1","clover_2","clover_3","clover_4"]
 
 
 hover_card_index = -1
@@ -608,8 +613,8 @@ assure_toggle_x = x - 90
 assure_toggle_y = y + 202
 assure_toggle_hover = false
 
-spices_use_order = ["natural_spices","secret_spices","royal_spices"]
-clover_use_order = ["clover_1","clover_2","clover_3","clover_4"]
+spices_use_order = ["natural_spices","secret_spices","royal_spices","magic_spices","elf_spices","angel_spices","saint_spices"]
+clover_use_order = ["clover_1","clover_2","clover_3","clover_4","clover_5","clover_6","clover_s","clover_ss"]
 crystal_use_order = ["less_crystal","middle_crystal","advanced_crystal"]
 
 // 整块面板的进出场过渡（实现在 scripts/GuiStack/GuiStack.gml）
@@ -1177,7 +1182,7 @@ function gear_apply(_step){
 
 /// @func gear_credit_ids() 当前子页的凭证，顺序 = 进化链顺序（与右侧列表同一口径）
 ///   ⚠️ 用户口径（2026-11-16）：「道具下方仅显示已有的」——**只列背包里 ≥1 张的凭证**，
-///   31 张全铺出来（即使全是 0）会把凭证架塞满、还得翻 4 页。0 张的不出现在架上。
+///   全部凭证铺出来（即使全是 0）会把凭证架塞满、还得翻好几页。0 张的不出现在架上。
 function gear_credit_ids(){
     var _steps = mod_gear_evo_steps(gear_kind_of_page());
     var _out = [];

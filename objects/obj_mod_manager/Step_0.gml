@@ -34,6 +34,13 @@ if (!instance_exists(obj_longyuan_enter))
         instance_create_depth(950, 56, -3, obj_longyuan_enter);
 }
 
+// 金马盛典入口按钮
+if (!instance_exists(obj_zz_enter))
+{
+    if (room == room_map || room == room_menu)
+        instance_create_depth(1010, 20, -3, obj_zz_enter);
+}
+
 if (!noticed && variable_global_exists("preloaded") && global.preloaded == true)
 {
     if (room == room_menu)

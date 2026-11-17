@@ -24,21 +24,25 @@ if (hit_tick >= global.bullet_hit_interval)
 {
 	hit_tick = 0;
 	if (bullet_enemy_reachable(id)) {
+// 缝隙制（shape 0/1/2）的子弹中心落在两行交界，几何 bbox 跟哪一行都不相交 →
+//   SAP 的空间裁剪必须放宽一整格，否则候选集里根本没有老鼠可判。
+var _sap_y_margin = (cover_a >= 0) ? global.grid_cell_size_y : 0;
 if (variable_global_exists("enemy_by_type"))
 {
     for (var _t = 0; _t < array_length(hittable_types); _t++)
     {
         var _key = hittable_types[_t];
         if (!variable_struct_exists(global.enemy_by_type, _key)) continue;
-        var _list = bullet_sap_type_list(id, _key);
+        var _list = bullet_sap_type_list(id, _key, _sap_y_margin);
         for (var _i = 0; _i < array_length(_list); _i++)
         {
             var _e = _list[_i];
             if (!instance_exists(_e)) continue;
 
             // 命中行与伤害倍率：
-            // row_hits 为空 → 旧行为（只打 row 这一行，倍率 1）
-            // row_hits 非空 → 终转（shape 3），按「该行受击次数」给倍率，实现上行/中路/下行分别受击
+            // row_hits 非空 → 终转（shape 3），按「该行受击次数」给倍率
+            // cover_a >= 0 → 缝隙制（shape 0/1/2）：上下两行各吃 1 次
+            // 都不是 → 旧行为（只打 row 这一行）
             var _row_mul = 0;
             if (array_length(row_hits) > 0)
             {
@@ -46,15 +50,25 @@ if (variable_global_exists("enemy_by_type"))
                 if (_gr >= 0 && _gr < array_length(row_hits))
                     _row_mul = row_hits[_gr];
             }
+            else if (cover_a >= 0)
+            {
+                var _cgr = _e.grid_row;
+                if (_cgr == cover_a || _cgr == cover_b) _row_mul = 1;
+            }
             else if (row == _e.grid_row)
             {
                 _row_mul = 1;
             }
 
+            // 缝隙制的几何判定只用水平距离（子弹就飞在两行之间，纵向必然错开）
+            var _geo_hit = (cover_a >= 0 && array_length(row_hits) == 0)
+                ? (abs(_e.x - x) <= 26)
+                : precise_bbox_collision(id, _e);
+
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0
                 && _row_mul > 0
-                && precise_bbox_collision(id, _e))
+                && _geo_hit)
             {
                 var _prev_hp = _e.hp;
                 // 炎帝对魂系（符咒鼠/符咒魂鼠/执念鼠魂体/开路鼠魂体）与药罐鼠造成 2 倍基础伤害。

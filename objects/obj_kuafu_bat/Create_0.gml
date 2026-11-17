@@ -9,6 +9,9 @@ move_speed = 0
 immune_to_ash = true
 mouse_id = "kuafu_bat"
 attack_range = 90
+// 2026-11-17 用户口径：变异蝙蝠鼠同样是定时刷新的干扰单位（跨服·梦魇天空），
+//   不参与波次清场判定，没死光也能进下一波 / 结算。
+wave_ignore = true
 
 target_type = "air"
 

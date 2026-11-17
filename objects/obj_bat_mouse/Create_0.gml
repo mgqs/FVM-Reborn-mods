@@ -8,6 +8,9 @@ death_anim = 12
 move_speed = 0
 mouse_id = "bat_mouse"
 attack_range = 90
+// 2026-11-17 用户口径：蝙蝠鼠是 obj_event_manager 按 interval 定时刷的干扰单位，
+//   没死光也应当能进入下一波 / 结算 —— 否则它赖在场上会一直卡住清场判定。
+wave_ignore = true
 
 target_type = "air"
 

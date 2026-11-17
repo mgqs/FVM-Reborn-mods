@@ -18,6 +18,7 @@
 | 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿文件，永不执行 | B1 |
 | 点某个按钮却跳到别的页 / 被藏起来的按钮照样能点 | `visible = false` **只跳过 Draw**，Mouse 事件照样派发 → 在被藏对象的 `Mouse_4` 里 `if (!visible) exit` + 按页签再拦一道；别指望「藏起来就点不到」 | B39 |
 | 动画看起来播了两遍 | 先查 sprite 表里有没有重复段，别先怀疑代码重播 | B2 |
+| 报 `Variable obj_xxx.spr_yyy not set before reading it`（标识符是精灵名） | 精灵**目录/图齐全也不算数**：查 yyp `resources` 有没有这一条，缺就补注册再 reload | D6 |
 | 贴图朝向反了 | 先开 `ViewImage` 看 sprite 首帧本身朝哪边，再决定翻转 | B3 |
 | 卡片待机像「一直在长大 / 帧序错乱」 | 量每帧不透明 bbox 宽度分段：生长段单调增、爆炸段橙色像素=0、待机段稳定且末帧=首帧；别拿「项目帧 vs 源帧像素一致」当帧序没问题的证据 | B14 |
 | 特效一闪一闪 / 消失又出现 | 逐帧量 `(alpha>8).mean()`：末帧 0% 的是一次性脉冲，不能 loop → 加 `hold` 帧锁在常亮段 | B15 |
@@ -68,6 +69,7 @@
 | 想用 ffmpeg 从屏幕录像抽帧 / 裁一块 | 本机 ffmpeg 是裁剪版（无 image2 muxer、无 crop 滤镜），抽帧只能 WPF `MediaPlayer` + `RenderTargetBitmap`；`CroppedBitmap` 直接出图会静默 0 字节，必须全幅抓完再用 Pillow 裁；本机无网，别 `pip install` | A22 |
 | 用正则扫 `register_enemy` / `register_enemy_info_island` 出「同名重复 156 条 / 未注册」 | 别用 `r'name\s*:\s*"'` 抓名字：单行式注册写的是 `{"name":"X",...}`（带引号的键），多行式才是 `name: "X"` → `r'(?:"name"|\bname)\s*:\s*"'`；且结构体跨多行，必须按括号配平切出实参再在实参内搜，不要用固定长度 `tail` 窗口 | A26 |
 | 精灵某几帧「变成噪点/雪花」 | 先 `git log --oneline -- sprites/<名>` 找好提交，`git show <好提交>:sprites/<名>/<帧GUID>.png` 回填，别急着重解包 SWF；判据用孤立像素占比（干净 ≤0.47 / 噪 ≥0.85） | B30 |
+| 数据表/登记表里的某件装备 `register_gem`/`register_weapon` 查不到，想判定「这阶没实装」 | **先找同 `allowed_weapons` / 同章节同位置那颗**：表里的名字是原版口径，mod 里可能早换名实装了（狡诈伪装 = 玫瑰之绞 `rose_shield_gem_4`）。别急着新建 id，更别把整条链注释掉 | B40 |
 | 脚本 `shutil.rmtree` 删精灵多余图层被安全护栏拦 | 改成 `shutil.move` 挪到 `output/_tmp/orphan_*/`，别删 | A27 |
 | 按 SWF FrameLabel 帧号去取 `ffdec-cli` 导出的 `N.png` 差一帧 | 帧号 +1 = PNG 文件名（label 0 基、导出 1 基），受伤段偏移也按 PNG 口径算 | A28 |
 | 「修复前」对比图整排看着像空白残影 | 噪点帧 alpha 只有 70~120，展示时 alpha×3 并在标题注明；修复前一律取 `git show HEAD:sprites/...`，别用本地备份 | B31 |
@@ -78,6 +80,9 @@
 | 变星后某张增幅卡的倍率莫名翻倍 / 越用越高，像「叠加上限没夹住」 | 先查 `global.buff_sources` 有没有重复登记：变星置 `buff_cells_refreshed=false` 会让增幅源 Step 重跑一遍 `ds_list_add`；登记一律走幂等 `mod_buff_source_add(id)` | C27 |
 | 某张卡（尤其三行窗口的，如后羿）不索敌不出弹，同函数的单行卡却正常 | 别改 `combat_enemy_in_rows`：行桶按 `string(grid_row)` 分键、只配单行查询，多行窗口一律恢复 `with (obj_enemy_parent)` 直扫 | B37 |
 | BOSS 被撞飞 / 被白羊等冲撞卡秒杀 | 豁免别写 `global.map_name == "跨服远征"`（进关会被 `register_map` 的 name 覆盖）；只认 `is_boss`，顺带查 `obj_cat` 的 `!can_loss` 分支 | B38 |
+| 两侧对向发弹的卡，有一发像"倒着飞 / 折返" | 镜像弹要写全 `image_xscale`+`visual_scale_x` 四项；对象池 `acquire` 不清 `visual_scale_*`，镜像会跨发残留。直线弹另用 `phoenix_vx` 锁方向 | B41 |
+| 子弹改成"夹在两行之间、打上下两行"后一发都打不中 | 别只挪 y：bbox 几何判定和 SAP 纵向裁剪会同时失效。加 `cover_a/cover_b` 按行号判 + 水平距离判命中，并给 `bullet_sap_type_list` 传 `y_margin = grid_cell_size_y` | B42 |
+| 投手卡 / 老鼠 Step 崩 `Unable to find instance for object index N`，堆栈指向 `combat_enemy_*` 且行号 -1 | 别再往 `combat_target_alive` 加判据：行桶存的是同 step 快照 id，`instance_exists` 对「同 step 内刚失效」的 id 仍为 true → 一律改 `with (obj_enemy_parent)` / `with (obj_card_parent)` 直扫活实例 | B40 |
 
 ### A11 用 `Get-ChildItem -Recurse` 找文件 → 每次 15~22 秒
 - **症状**：一件「找一下哪些文件引用了 X」的活儿拖到几十秒；换个关键词再扫一遍，时间线性叠加。
@@ -938,6 +943,96 @@
   （否则融合确认弹窗期间点隐藏的 X 会把整个合成屋关掉）。
 - **证据**：`objects/obj_craft_bg/Step_0.gml:76`、`objects/obj_craft_select_btn/Mouse_4.gml:1-15`、
   `objects/obj_craft_bg/Create_0.gml:10-20`（旧按钮坐标）、`objects/obj_craft_bg/Create_0.gml:1065-1066`（新按钮坐标）。
+
+### B40 「狡诈伪装没实装」→ 其实它就是已有的「玫瑰之绞」（换名，不是新东西）
+- **症状**：按 xlsx / SWF 登记表补神器·宝石进化链，生命系第 4 支末格写「狡诈伪装」，
+  `rg "divine_forbidden"` 只有素材、没有 `register_gem` → 判定「这阶没实装」，
+  把整条 `["gods_shield_gem_4", "divine_holy_gem", "divine_forbidden"]` 注释掉。
+  后果：`divine_holy_gem`（神圣之眼）连带不在 `steps` 里 → 诸神商店没有它的凭证、
+  跨服也不下架（用户 2026-11-17 报「还有 2 颗宝石没变成凭证」）。
+- **错路**：只按 id 找 `register_gem("divine_forbidden")`，把「有素材但没注册」当成
+  「功能未实装」；也没横向比对同 `allowed_weapons` 的另一颗宝石就下结论
+  「玫瑰之绞不在原版链上」（这句是错的）。
+- **正确路径**：登记表里出现查不到的 id 时，先在**同一章节 / 同一 `allowed_weapons`** 里找
+  同位置那颗 —— `rose_shield_gem_4`（玫瑰之绞，`allowed_weapons: ["rose_shield"]`，
+  「5×7 巨额伤害」）就是登记表里的「狡诈伪装」。链直接写
+  `["gods_shield_gem_4", "divine_holy_gem", "rose_shield_gem_4"]`；**不要新建 `divine_forbidden`**
+  （它只有素材 `spr_divine_forbidden_gem_icon`、从没 `register_gem` / 建 obj，也没玩过它）。
+  原则：**表里的名字是原版口径，mod 里可能早就换名实装了；改名 ≠ 新东西。**
+- **证据**：`scripts/mod_craft_evo_table/mod_craft_evo_table.gml:480-490`、
+  `scripts/mod_weapons_init/mod_weapons_init.gml:531-545`（`rose_shield_gem_4` = 玫瑰之绞）、
+  `output/god_evolution.json` tabs[3] 第 26 行（`狡诈伪装 <- ['神圣之眼']`）、2026-11-17 日志。
+
+### B40 「投手卡 / 老鼠 Step 崩 Unable to find instance for object index」→ 查询一律直扫活实例，别用行桶快照 id
+- **症状**：进战斗后随机崩，堆栈 `Step Event0 for object obj_stinky_tofu_pult` /
+  `obj_egg_boiler_pult` → `gml_Script_combat_enemy_nearest_in_row (line -1)`，
+  报错 `Unable to find instance for object index 103546`（另一次是 `100203`）。
+  行号永远是 -1，因为它崩在原生 `with` 解析 id 那一步，不是某一行 GML。
+- **错路**：前两轮都在加判据——11-14 加 `instance_exists && !object_exists`（仿 `bullet_sap_type_list`）、
+  11-16 加 `object_index == obj_pool_holder` 判死。这两个只能识别**跨 step** 的过期 id。
+  `combat_targets_row` 的行桶是「本 step 首次查询那一瞬间的实例 id 快照」，建好之后同一 step 里
+  被打死的敌人 / 被 `instance_change(obj_pool_holder)` 收走的尸体仍在数组里，
+  `instance_exists` 对「同 step 内刚失效」的 id 仍可能返回 true → 判据放行 → `with (死 id)` 抛错。
+  行桶自带的 `instance_number` 计数比对也救不了：同 step「死一只 + 生一只」计数不变，桶不重建。
+- **正确路径**：**不要再往 `combat_target_alive` 里加判据**，换掉取数方式——
+  `combat_enemy_in_rows` / `combat_enemy_nearest_in_row` 改 `with (obj_enemy_parent)`，
+  `combat_enemy_find_plant` 改 `with (obj_card_parent)`：引擎只枚举活实例，构造上不可能取到死 id。
+  语义不变（原生 `with` 顺序 = 行桶构建顺序，等距优先 / 每层最后一张卡 / 啃食优先级都对得上）；
+  代价只是每个调用点每帧 O(场上敌人数/卡片数)，与 `d6ae7a5b7d` 重构前一致。
+  随后把行桶**整套删除**（`combat_targets_state` / `begin_step` / `invalidate` / `row` + 8 处调用点：
+  `obj_battle/Create_0:1`、`obj_mod_manager/Step_1:1`、卡片与敌人父对象的 Create/Destroy 各 2 处、
+  `src_hook_function` 两个 spawn 分支）；`combat_targets_row_value` 退化成只回写 `row` 的兼容入口，
+  20 处行赋值调用点不动。**以后不要再引入按行缓存实例 id 的索引。**
+- **顺带一条交付教训**：本轮修复第一次写入后，磁盘上又变回旧内容（`git status` 干净、mtime 变成
+  重新加载那一刻）——GM IDE 开着时如果脚本文件在编辑器里被打开过，Reload/保存会用旧缓冲覆盖外部写入。
+  改完 `combat_targets` 这类被 IDE 打开过的脚本，**必须回读一次文件确认内容还在**，再让用户 Reload。
+- **证据**：`scripts/combat_targets/combat_targets.gml:70-136`（新实现）、
+  `objects/obj_houyi_god/Step_0.gml`（同类：多行窗口用直扫）、`2026-11-17 日志`。
+
+### B41 「两侧对向发弹的卡有一发像在倒着飞 / 折返」→ 对象池不重置 `visual_scale_*`，镜像会跨发残留
+- **症状**：炎凰马每轮左右两侧各发一发凤凰，看其中一发像是"掉头往回飞"（贴图朝后、运动朝前），
+  或干脆在场地里来回横穿。精灵原图朝右、右端那发靠 `image_xscale = -1` 镜像。
+- **根因**：`obj_bullet_parent/BeginStep_0` 只在 `image_xscale != 1` 时把值转存到 `visual_scale_x`，
+  随后把 `image_xscale` 归一为 1；而 `obj_pool_acquire` 原来只清 `image_angle/alpha/blend/index`，
+  **不清 `image_xscale` 与 `visual_scale_x`**。于是回收过的"朝左镜像弹"复用给朝右那发时：
+  `image_xscale` 残留 -1 且 Create 不设它 → BeginStep 不更新 → `visual_scale_x` 还是上一发的 -1 → 倒着画。
+  方向真被反转则是另一条路：`move_x` 只有 `bullet_hazard_rebound` 会取反，虽然 `kind_gate` 已把
+  `phoenix` 挡在外面，但边界销毁判定是按 `move_x` 正负比两侧边界的 —— 一旦符号被改就永远命中不了。
+- **正确路径**：
+  1. 画镜像的发射处**四项全写**：`image_xscale` / `image_yscale` / `visual_scale_x` / `visual_scale_y`；
+  2. 直线弹在 Create 里留 `phoenix_vx = undefined`，发射处写入初速，Step 每帧 `move_x = phoenix_vx` 锁死方向；
+  3. 池子层统一修：`obj_pool_acquire` 的清理块补 `image_xscale = 1; image_yscale = 1;`，
+     `instance_change` 之后再 `visual_scale_x = image_xscale; visual_scale_y = image_yscale;`。
+- **证据**：`scripts/obj_pool/obj_pool.gml:140-143`、`:167-172`、`objects/obj_yanhuangma/Step_0.gml:34-66`、
+  `objects/obj_zodiac_projectile/Step_0.gml:27-36`。
+
+### B42 「子弹该夹在两行之间打上下两行」→ 光挪 y 不够，bbox 判定与 SAP 纵向裁剪会一起失灵
+- **症状**：某张多行卡改成「缝隙弹」（子弹中心落在两行交界，覆盖上下两行）后，
+  子弹从两行中间飞过去，一发都打不中，看着像完全没判定。
+- **根因**：命中判定走 `precise_bbox_collision(id, e)`（纯几何）+ `bullet_sap_type_list` 的 SAP 候选集
+  （按子弹 bbox ± `bullet_range_margin` 在 x、按 bbox ± `_y_margin` 在 y 上裁剪）。
+  子弹挪到两行交界后，纵向 bbox 与任何一行的老鼠都不相交 → 几何判定 false；
+  候选集本身也建不出来（SAP 的 `_qt/_qb` 不含两行）。
+- **正确路径**（炎凰马 `obj_zodiac_projectile` 早就这么写，照抄即可）：
+  1. 子弹加 `cover_a / cover_b` 两个字段（默认 -1 = 不启用），发射处写「缝隙 g 覆盖 g-1 / g 两行」；
+  2. Step 的行判定改成 `e.grid_row == cover_a || e.grid_row == cover_b`，**不再比 bbox 的 y**；
+  3. 几何只判水平：`abs(e.x - x) <= 26`（弹速 6、`bullet_hit_interval` 2 → 每判 12px，窗口够）；
+  4. `bullet_sap_type_list(id, key, y_margin)` 传 `global.grid_cell_size_y`，否则候选集没有上下行；
+  5. 贴边时把缝隙 `clamp(…, 1, grid_rows-1)`，两条重合即那两行各吃两次（与旧「越界改中路」同义）。
+- **证据**：`objects/obj_shennong_god/Other_11.gml:162-217`、
+  `objects/obj_shennong_god_bullet_h/Step_0.gml:26-71`、
+  `objects/obj_zodiac_projectile/Step_0.gml:126-130`（参考实现）。
+
+### D6 精灵目录在磁盘上、`.yy` 也在，但没进 yyp `resources` → 一跑就崩
+- **症状**：兑换页报 `Variable obj_zz_shop_bg.spr_mod_cs_exchange_card(118065, -2147483648) not set before reading it.`
+  工程能打开、能编译；报错点在 Draw 里，像是「对象变量没初始化」。
+- **根因**：GML 把编译器不认识的标识符当**实例变量**。精灵没进 yyp `resources` → 不生成常量 →
+  运行期才炸，静态检查全绿（`sprites/spr_mod_cs_exchange_card/` 目录、`.yy`、顶层 PNG、
+  `layers/<帧GUID>/<图层GUID>.png` 全都在，parent 文件夹也注册了）。
+- **正确路径**：新增精灵 = 建目录/文件 + `add_yyp('sprites', name)`（范例 `tools/register_zz_assets.py`）
+  + 跑 `verify()`；verify 必须扫「对象/脚本里出现的每一个 `spr_*` 都在 resources 里」，否则这类漏注册查不出来。
+- **区分**：缺 yyp `Folders` → IDE 直接报 `Cannot find folder path` 打不开（2026-11-17 13:5x）；
+  缺 yyp `resources` → 能开能编译，运行到那行才崩（同日 15:3x）。**两次都是「文件在、注册没跟上」**。
 
 ## 追加模板
 ```

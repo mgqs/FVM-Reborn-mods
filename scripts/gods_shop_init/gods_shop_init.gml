@@ -1327,10 +1327,10 @@ register_gods_goods("heian_god_3",
 ///   · 价格 = 按**进化档位**：新神器/新宝石凭证 25、超神器/超宝石凭证 50、补强宝石凭证 75
 ///     （唯一出口 mod_gear_evo_credit_price，别在这里再写一份；2026-11-16 用户纠正：
 ///      不是「每张 +25」，三个档位最贵 75）
-///   · id 前缀 gear_evo_01..31（两位补零）：商店是「按 goods id 字母序收集再排档」的，
+///   · id 前缀 gear_evo_01..NN（两位补零）：商店是「按 goods id 字母序收集再排档」的，
 ///     补零才能让商店里的顺序正好等于登记表顺序（排序见 obj_gods_store_bg/Create_0 的 sort_tier）
 ///   · 这里**不写名字/图标**：名字走 gods_goods_name()、图标走 mod_gear_evo_draw_credit()，
-///     都由目标装备反查，免得 31 条硬编码漂移
+///     都由目标装备反查，免得几十条硬编码漂移
 function gods_shop_register_gear_evo(){
     var _steps = mod_gear_evo_steps();
     for (var _i = 0; _i < array_length(_steps); _i++){

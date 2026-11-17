@@ -31,7 +31,13 @@ global._move_instance_pre_arr = [];
 current_wave_hp = 0
 current_wave_alive_count = 0
 with obj_enemy_parent{
-	if target_type != "obstacle"{
+	// 2026-11-17 用户口径：定时刷新的蝙蝠鼠 / 变异蝙蝠鼠（wave_ignore = true）
+	//   不参与「本波是否清空」的统计。它们是 obj_event_manager 每 interval 秒刷的
+	//   干扰单位，没死光也应当能进入下一波 / 召唤 BOSS / 结算；
+	//   算进来的话会一直卡住 current_wave_alive_count == 0 的所有分支
+	//   （Step_2:82 压时间、:98 魔塔秒进下一波、:152/:161 召唤 BOSS、:234 结算）。
+	var _wave_ignore = variable_instance_exists(id, "wave_ignore") && wave_ignore;
+	if target_type != "obstacle" && !_wave_ignore{
 		other.current_wave_hp += hp
 		if hp > 0 {
 			other.current_wave_alive_count += 1

@@ -1,3 +1,6 @@
+/// ⚠️ 2026-11-17：行桶（combat_targets_state / begin_step / invalidate / row）已从工程中**整套删除**，
+///   生产查询见 scripts/combat_targets（一律直扫活实例）。本文件里依赖行桶的用例
+///   （combat_targets_begin_step / combat_targets_row 那些）只作历史差分参考，要跑得先把这些调用摘掉。
 /// Differential reference: the original native with-loop, including layer order.
 function combat_probe_legacy_plant() {
     var zombie_grid = {row: grid_row};

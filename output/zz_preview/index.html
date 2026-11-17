@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>金马盛典 · 界面预览</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; background:#0d0a18;
+    font-family:"Microsoft YaHei","PingFang SC",sans-serif; -webkit-font-smoothing:antialiased; }
+  #wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  #stage { position:relative; width:1080px; height:720px; transform-origin:center center;
+    background:#1a1030; overflow:hidden; }
+
+  /* ── 通用 ── */
+  .abs { position:absolute; }
+  img.el { display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+  .btn { cursor:pointer; transition:transform .08s ease, filter .12s ease; }
+  .btn:hover { filter:brightness(1.12); }
+  .btn:active { transform:scale(.96); }
+  .stroke { color:#fff; -webkit-text-stroke:3px #3b2a6b; paint-order:stroke fill;
+    text-shadow:0 2px 0 rgba(0,0,0,.25); }
+  .gold-text { color:#ffe06a; -webkit-text-stroke:3px #8a4a12; paint-order:stroke fill; }
+
+  /* ── 主界面 ── */
+  #view-main { position:absolute; inset:0; }
+  #bg { position:absolute; inset:0; }
+  #bg img { width:100%; height:100%; object-fit:cover; }
+  #machine { left:90px; top:104px; width:900px; height:568px; }
+
+  #brand { left:390px; top:12px; width:300px; height:76px; }
+  #title { left:435px; top:26px; width:210px; height:52px; filter:drop-shadow(0 3px 6px rgba(255,140,220,.55)); }
+
+  .tab { width:130px; height:38px; top:212px; }
+  #tab-lucky { left:247px; }
+  #tab-deluxe { left:381px; }
+
+  #pity { left:404px; top:214px; width:440px; height:32px; display:flex; align-items:center; gap:8px;
+    font-size:13px; color:#f2e8ff; text-shadow:0 1px 3px rgba(0,0,0,.65); }
+  #pity .dot { width:22px; height:22px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#fff,#7b5bd6 55%,#2c1b5e);
+    box-shadow:0 0 8px rgba(160,120,255,.8), inset 0 0 6px rgba(255,255,255,.5); flex:none; }
+  #pity b { color:#ffe06a; font-size:15px; }
+
+  /* 格子 */
+  .cell { position:absolute; width:74px; height:74px; }
+  .cell .frame { position:absolute; inset:-4px; width:auto; height:auto; opacity:0;
+    transition:opacity .06s; z-index:3; }
+  .cell.lit .frame { opacity:1; }
+  .cell.lit { filter:brightness(1.35) drop-shadow(0 0 10px rgba(255,235,140,.9)); }
+  .cell .icon { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:56px; height:56px; }
+  .cell .cnt { position:absolute; left:1px; top:1px; min-width:15px; height:15px; padding:0 3px;
+    border-radius:8px; background:linear-gradient(180deg,#ffd75c,#eda01a); box-shadow:0 1px 2px rgba(0,0,0,.35);
+    font-size:11px; line-height:15px; font-weight:700; color:#7a3a06; text-align:center; z-index:4; }
+
+  /* 中间宝物展示 */
+  #treasure { left:345px; top:326px; width:386px; height:150px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(88,32,132,.92), rgba(52,18,92,.94));
+    box-shadow:inset 0 0 0 3px #a75cf0, inset 0 0 22px rgba(180,90,255,.5), 0 0 18px rgba(120,50,200,.5); }
+  #treasure .cap { position:absolute; left:0; right:0; top:8px; text-align:center; }
+  #treasure .cap img { width:112px; margin:0 auto; }
+  #exshop { position:absolute; right:14px; top:6px; width:86px; height:32px; }
+  #treasure .row { position:absolute; left:26px; right:26px; top:44px; bottom:10px;
+    display:flex; align-items:center; justify-content:space-between; }
+  #treasure .row .slot { width:42px; height:42px; border-radius:8px;
+    background:linear-gradient(180deg,#7d3fc0,#4d1f80); box-shadow:inset 0 0 0 2px #b06bff; }
+  #treasure .arrow { position:absolute; top:60px; width:26px; height:28px; }
+  #treasure .arrow.l { left:2px; transform:scaleX(-1); }
+  #treasure .arrow.r { right:2px; }
+
+  /* 底部操作：三个金币档位 */
+  .price { width:190px; height:61px; top:603px; }
+  #price-20000 { left:243px; }
+  #price-100000 { left:443px; }
+  #price-1000000 { left:643px; }
+
+  /* 金币余额 */
+  #wallet { position:absolute; right:20px; top:20px; display:flex; align-items:center; gap:6px;
+    padding:5px 14px 5px 8px; border-radius:16px; background:rgba(20,12,46,.55);
+    box-shadow:inset 0 0 0 2px rgba(255,214,120,.55); font-size:15px; font-weight:700;
+    color:#ffe9a8; text-shadow:0 1px 2px rgba(0,0,0,.6); }
+  #wallet img { width:24px; height:24px; }
+
+  #side { position:absolute; right:8px; top:266px; width:116px; }
+  #side .s { width:116px; height:56px; margin-bottom:10px; }
+
+  #tips { position:absolute; left:0; right:0; top:684px; text-align:center; font-size:13px; color:#c9b4f0; }
+
+  /* ── 兑换商店 ── */
+  #view-shop { position:absolute; inset:0; display:none;
+    background:radial-gradient(120% 90% at 50% 0%, #2f7fb8 0%, #1d5c94 45%, #123a67 100%); }
+  #view-shop.on { display:block; }
+  #shop-panel { position:absolute; left:28px; top:78px; right:28px; bottom:24px; border-radius:18px;
+    background:linear-gradient(180deg,#2f8ec4,#1f6ba3 40%,#175a90);
+    box-shadow:inset 0 0 0 4px rgba(255,255,255,.35), inset 0 0 0 7px #1a5588, 0 10px 30px rgba(0,0,0,.35); }
+  #shop-head { position:absolute; left:0; right:0; top:-46px; height:52px; display:flex; align-items:center; justify-content:center; }
+  #shop-head .t { font-size:34px; font-weight:900; letter-spacing:4px; color:#fff;
+    -webkit-text-stroke:6px #1d5c94; paint-order:stroke fill;
+    text-shadow:0 4px 0 #12456e, 0 0 18px rgba(140,225,255,.9); }
+
+  .stop { position:absolute; left:14px; top:12px; display:flex; gap:6px; }
+  .stop .t { width:88px; height:34px; border-radius:8px 8px 0 0; display:flex; align-items:center;
+    justify-content:center; font-size:15px; font-weight:700; color:#d9f1ff;
+    background:linear-gradient(180deg,#1d5f96,#164a76); box-shadow:inset 0 0 0 2px rgba(120,200,255,.45); cursor:pointer; }
+  .stop .t.on { color:#0d3c60; background:linear-gradient(180deg,#eaf8ff,#bfe6ff); box-shadow:inset 0 0 0 2px #fff; }
+
+  #shop-wallet { position:absolute; right:18px; top:10px; display:flex; align-items:center; gap:10px;
+    font-size:14px; color:#d6efff; }
+  #shop-wallet .box { display:flex; align-items:center; gap:6px; padding:3px 10px; border-radius:14px;
+    background:rgba(9,45,74,.55); box-shadow:inset 0 0 0 2px rgba(130,205,255,.4); }
+  #shop-wallet .box img { width:22px; height:22px; }
+  #shop-wallet .box b { color:#ffe06a; font-size:16px; }
+
+  #shop-cats { position:absolute; right:14px; top:56px; display:flex; gap:8px; }
+  #shop-cats .c { padding:4px 12px; border-radius:12px; font-size:13px; color:#bfe4ff; cursor:pointer;
+    background:rgba(10,50,82,.5); box-shadow:inset 0 0 0 2px rgba(120,200,255,.35); }
+  #shop-cats .c.on { color:#0d3c60; background:linear-gradient(180deg,#ffe98a,#ffc93c); box-shadow:inset 0 0 0 2px #fff6c9; font-weight:700; }
+
+  #shop-grid { position:absolute; left:16px; right:16px; top:92px; bottom:62px;
+    display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr); gap:10px; }
+  .card { position:relative; border-radius:10px; overflow:hidden;
+    background:linear-gradient(180deg,#ffd9ea,#ffc0dd);
+    box-shadow:inset 0 0 0 3px #ff8bc0, 0 3px 0 rgba(0,0,0,.18); display:flex; }
+  .card .thumb { position:relative; width:56px; flex:none; margin:6px 0 6px 6px; border-radius:8px;
+    background:linear-gradient(180deg,#8fd4ff,#5aa9e6); box-shadow:inset 0 0 0 2px #e8f7ff;
+    display:flex; align-items:center; justify-content:center; }
+  .card .thumb img { width:44px; height:44px; object-fit:contain; }
+  .card .thumb .lv { position:absolute; left:2px; bottom:0; font-size:12px; font-weight:700; color:#fff;
+    -webkit-text-stroke:2.5px #2b6b9e; paint-order:stroke fill; }
+  .card .body { flex:1; padding:5px 8px 5px 6px; display:flex; flex-direction:column; justify-content:space-between; }
+  .card .name { font-size:13px; font-weight:700; color:#6b3a1f; text-align:center;
+    background:#fff6d8; border-radius:8px; box-shadow:inset 0 0 0 2px #e6b45a; padding:3px 4px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card .cost { display:flex; align-items:center; justify-content:center; gap:4px; font-size:12px;
+    color:#2a5f8a; background:rgba(255,255,255,.72); border-radius:8px; padding:2px 4px; }
+  .card .cost img { width:16px; height:16px; }
+  .card .cost b { color:#e0562a; font-size:13px; }
+  .card .buy { align-self:center; width:72px; height:26px; position:relative; }
+
+  #shop-page { position:absolute; left:0; right:0; bottom:12px; display:flex; align-items:center;
+    justify-content:center; gap:14px; font-size:15px; color:#e6f6ff; font-weight:700; }
+  #shop-page .a { width:26px; height:26px; cursor:pointer; opacity:.9; }
+  #shop-page .a.l { transform:scaleX(-1); }
+
+  #shop-back { position:absolute; right:-2px; top:-52px; width:46px; height:46px; }
+
+  /* ── 结果弹窗 ── */
+  #ov-result { position:absolute; inset:0; display:none; align-items:center; justify-content:center;
+    background:rgba(18,8,36,.62); z-index:20; }
+  #ov-result.on { display:flex; }
+  #res-panel { position:relative; width:660px; height:500px; }
+  #res-panel .bgimg { position:absolute; inset:0; width:100%; height:100%; object-fit:fill;
+    filter:drop-shadow(0 18px 40px rgba(0,0,0,.5)); }
+  #res-title { position:absolute; left:50%; top:2px; transform:translateX(-50%); width:288px; height:78px; }
+  #res-close { position:absolute; right:26px; top:16px; width:52px; height:52px; }
+  #res-top { position:absolute; left:0; right:0; top:96px; display:flex; justify-content:center; gap:56px; }
+  #res-top .k { text-align:center; font-size:12px; font-weight:700; color:#4a3b8a; }
+  #res-top .k .slot { width:56px; height:56px; margin:4px auto 0; border-radius:10px;
+    background:linear-gradient(180deg,#ffd7ee,#f5a9d4); box-shadow:inset 0 0 0 3px #fff, 0 2px 0 rgba(0,0,0,.12);
+    display:flex; align-items:center; justify-content:center; }
+  #res-top .k .slot img { width:44px; height:44px; }
+  #res-top .k .n { font-size:13px; color:#4a3b6b; font-weight:700; margin-top:2px; }
+
+  #res-items { position:absolute; left:56px; right:56px; top:210px; height:150px; border-radius:12px;
+    background:rgba(255,236,170,.35); box-shadow:inset 0 0 0 3px #e8c86a; padding:10px calc(50% - 160px);
+    display:grid; grid-template-columns:repeat(5,64px); grid-auto-rows:64px; gap:8px; justify-content:center; }
+  #res-items .ri { position:relative; border-radius:10px; background:linear-gradient(180deg,#ffe6a8,#ffcf7a);
+    box-shadow:inset 0 0 0 2px #fff3cd; display:flex; align-items:center; justify-content:center; }
+  #res-items .ri img { width:50px; height:50px; }
+  #res-items .ri .cnt { position:absolute; right:3px; bottom:0; font-size:11px; font-weight:700; color:#7a4a12; }
+  #res-items .ri .lv { position:absolute; left:3px; top:1px; font-size:10px; font-weight:700; color:#fff;
+    -webkit-text-stroke:2px #b0561a; paint-order:stroke fill; }
+  #res-items .ri.pity { box-shadow:inset 0 0 0 3px #ff8a3c, 0 0 12px rgba(255,150,60,.85); }
+  #res-items.single { grid-template-columns:64px; padding:10px 0; }
+  #res-items.agg { display:flex; flex-wrap:wrap; justify-content:center; align-content:center;
+    gap:8px; padding:10px 0; }
+  #res-items.agg .ri { width:64px; height:64px; flex:none; }
+
+  #res-btns { position:absolute; left:0; right:0; bottom:44px; display:flex; justify-content:center; gap:16px; }
+  #res-btns .b { width:146px; height:50px; position:relative; }
+  #res-btns .b-tag { position:absolute; right:-8px; top:-8px; min-width:28px; height:26px; padding:0 5px;
+    border-radius:13px; background:linear-gradient(180deg,#ff9a5c,#e0402a); color:#fff; font-size:13px;
+    font-weight:700; line-height:26px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,.35), inset 0 0 0 2px #ffd9b8; }
+
+  /* ── 主城入口 ── */
+  #view-town { position:absolute; inset:0;
+    background:linear-gradient(180deg,#8fd0e8,#a8dcc0 55%,#7fbf8a); }
+  #view-town .hint { position:absolute; left:0; right:0; top:40px; text-align:center; font-size:18px;
+    color:#2c5a44; font-weight:700; }
+  #enter-btn { position:absolute; left:50%; top:52%; transform:translate(-50%,-50%);
+    width:150px; height:126px; border-radius:22px; cursor:pointer;
+    background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(226,244,255,.85));
+    box-shadow:0 8px 0 rgba(90,140,175,.45), inset 0 0 0 4px #fff, 0 0 0 4px rgba(255,255,255,.55);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+  #enter-btn:hover { transform:translate(-50%,-52%) scale(1.04); }
+  #enter-btn img { width:76px; height:64px; object-fit:contain; }
+  #enter-btn span { font-size:14px; font-weight:700; color:#3c6f96; }
+  #enter-btn .badge { position:absolute; right:-6px; top:-6px; width:30px; height:30px; border-radius:50%;
+    background:linear-gradient(180deg,#ff7a7a,#e0342f); color:#fff; font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 3px #fff; }
+
+  /* 提示条 */
+  #toast { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); z-index:40;
+    padding:12px 26px; border-radius:12px; background:rgba(24,10,44,.9); color:#fff; font-size:16px;
+    box-shadow:0 0 0 2px rgba(190,140,255,.7); opacity:0; transition:opacity .18s; pointer-events:none; }
+  #toast.on { opacity:1; }
+
+  /* 预览开关 */
+  #hud { position:fixed; left:10px; bottom:10px; display:flex; gap:8px; z-index:100; }
+  #hud button { padding:6px 12px; border-radius:8px; border:0; background:rgba(255,255,255,.14);
+    color:#d8c8ff; font-size:12px; cursor:pointer; backdrop-filter:blur(4px); }
+  #hud button:hover { background:rgba(255,255,255,.26); }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="stage">
+
+    <!-- ═══ 主城入口 ═══ -->
+    <div id="view-town">
+      <div class="hint">主城 —— 活动入口（与诸神商店入口同一套九宫格入口位）</div>
+      <div id="enter-btn" class="btn">
+        <span class="badge">!</span>
+        <img src="assets/enter_lottery.png" alt="">
+        <span>金马盛典</span>
+      </div>
+    </div>
+
+    <!-- ═══ 主界面 ═══ -->
+    <div id="view-main" style="display:none">
+      <div id="bg"><img src="assets/bg_stage.png" alt=""></div>
+      <div id="machine" class="abs"><img src="assets/machine.png" class="el" alt=""></div>
+
+      <div id="brand" class="abs"><img src="assets/banner.png" class="el" alt=""></div>
+      <div id="title" class="abs"><img src="assets/title.png" class="el" alt=""></div>
+
+      <div id="tab-lucky" class="tab abs"><img src="assets/tab_lucky_on.png" class="el" alt=""></div>
+
+      <div id="pity" class="abs">
+        <div class="dot"></div>
+        <div>距离下次保底 剩余：<b id="pity-left">50</b> 次</div>
+      </div>
+
+      <div id="wallet"><img src="assets/icon_coin.png" alt=""><span id="coin-num">1000000</span></div>
+
+      <div id="grid"></div>
+
+      <div id="treasure" class="abs">
+        <div class="cap"><img src="assets/txt_treasure.png" alt=""></div>
+        <div id="exshop" class="btn"><img src="assets/btn_exshop.png" class="el" alt=""></div>
+        <div class="row">
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+          <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        </div>
+        <div class="arrow l btn"><img src="assets/arrow_right.png" class="el" alt=""></div>
+        <div class="arrow r btn"><img src="assets/arrow_right.png" class="el" alt=""></div>
+      </div>
+
+      <div id="price-20000" class="price abs btn"><img src="assets/price_20000.png" class="el" alt=""></div>
+      <div id="price-100000" class="price abs btn"><img src="assets/price_100000.png" class="el" alt=""></div>
+      <div id="price-1000000" class="price abs btn"><img src="assets/price_1000000.png" class="el" alt=""></div>
+
+      <div id="side">
+        <div class="s btn"><img src="assets/side_lucky_on.png" class="el" alt=""></div>
+        <div class="s btn"><img src="assets/side_gift_off.png" class="el" alt=""></div>
+      </div>
+
+      <div id="tips">消耗金币购买四叶草，就有机会获得马年生肖卡等稀有道具</div>
+    </div>
+
+    <!-- ═══ 兑换商店 ═══ -->
+    <div id="view-shop">
+      <div id="shop-panel">
+        <div id="shop-head"><div class="t">兑换商店</div></div>
+        <div class="stop" id="shop-tabs">
+          <div class="t on">兑换</div><div class="t">分解</div><div class="t">召唤</div>
+        </div>
+        <div id="shop-wallet">
+          <div>幸运转转累计消费</div>
+          <div class="box"><img src="assets/icon_coin.png" alt="" style="width:18px;height:18px"><b id="shop-spent">360000</b></div>
+          <div class="box"><img src="assets/icon_luckystar.png" alt=""><b id="shop-star">0</b></div>
+        </div>
+        <div id="shop-cats">
+          <div class="c">转职凭证</div><div class="c">防御卡</div><div class="c">技能书</div>
+          <div class="c on">全部</div>
+        </div>
+        <div id="shop-grid"></div>
+        <div id="shop-page">
+          <div class="a l btn"><img src="assets/arrow_right.png" class="el" alt=""></div>
+          <div><span id="pg-now">1</span> / <span id="pg-all">32</span></div>
+          <div class="a btn"><img src="assets/arrow_right.png" class="el" alt=""></div>
+        </div>
+        <div id="shop-back" class="btn"><img src="assets/btn_close.png" class="el" alt=""></div>
+      </div>
+    </div>
+
+    <!-- ═══ 抽奖结果 ═══ -->
+    <div id="ov-result">
+      <div id="res-panel">
+        <img class="bgimg" src="assets/panel_ribbon.png" alt="">
+        <div id="res-title"><img src="assets/txt_congrats.png" class="el" alt=""></div>
+        <div id="res-close" class="btn"><img src="assets/btn_close.png" class="el" alt=""></div>
+        <div id="res-top">
+          <div class="k">
+            <div>本次消耗</div>
+            <div class="slot"><img src="assets/icon_coin.png" alt=""></div>
+            <div class="n" id="res-cost">20000 金币</div>
+          </div>
+          <div class="k">
+            <div>获得幸运星</div>
+            <div class="slot"><img src="assets/icon_luckystar.png" alt=""></div>
+            <div class="n">×<span id="res-star">0</span></div>
+          </div>
+        </div>
+        <div id="res-items"></div>
+        <div id="res-btns">
+          <div class="b btn"><img src="assets/btn_again1.png" class="el" alt=""></div>
+          <div class="b btn"><img src="assets/btn_again10.png" class="el" alt=""></div>
+          <div class="b btn"><img src="assets/btn_again50.png" class="el" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+  </div>
+</div>
+
+<div id="hud">
+  <button data-view="town">主城入口</button>
+  <button data-view="main">抽奖主界面</button>
+  <button data-view="shop">兑换商店</button>
+  <button data-view="result">结果弹窗</button>
+</div>
+
+<script>
+/* ══════════════ 素材 ══════════════
+   1 级 / 2 级四叶草图标暂缺，先用 3 级图 + 左上角等级角标区分
+   ═════════════════════════════════ */
+const IMG = {
+  c1:'assets/clover_1.png',
+  c2:'assets/clover_2.png',
+  c3:'assets/clover_3.png',
+  c4:'assets/clover_4.png',
+  c5:'assets/clover_5.png',
+  c6:'assets/clover_6.png',
+  cs:'assets/clover_s.png',
+  css:'assets/clover_ss.png',
+  star:'assets/icon_luckystar.png',
+  coin:'assets/icon_coin.png',
+  q:'assets/icon_question.png'
+};
+/* 四叶草图标自带 1~4 级角标，不需要再叠等级数字 */
+const LV = {};
+
+/* ══════════════ 奖励池 ══════════════ */
+const POOL = [
+  {id:'coin', name:'金币',      qty:2000,  w:244},
+  {id:'coin', name:'金币',      qty:5000,  w:90},
+  {id:'coin', name:'金币',      qty:10000, w:40},
+  {id:'c1',   name:'1 级四叶草', qty:1, w:200},
+  {id:'c2',   name:'2 级四叶草', qty:1, w:180},
+  {id:'c3',   name:'3 级四叶草', qty:1, w:140},
+  {id:'c4',   name:'4 级四叶草', qty:1, w:70},
+  {id:'c5',   name:'5 级四叶草', qty:1, w:20},
+  {id:'c6',   name:'6 级四叶草', qty:1, w:7},
+  {id:'cs',   name:'S 级四叶草', qty:1, w:2},
+  {id:'css',  name:'SS 级四叶草', qty:1, w:1},
+  {id:'star', name:'幸运星',    qty:5,   w:3},
+  {id:'star', name:'幸运星',    qty:10,  w:2},
+  {id:'star', name:'幸运星',    qty:25,  w:1}
+];
+
+/* ══════════════ 保底：每 50 抽一次 ══════════════
+   奇数轮 → 幸运星 5 / 10 / 15 / 25
+   偶数轮 → 4 级四叶草 8 / 16 / 24 / 32
+   ════════════════════════════════════════════ */
+const PITY_EVERY = 50;
+const PITY_CLOVER = [8, 16, 24, 32];
+
+/* 幸运星档：60% / 20% / 15% / 5%（沿用诸神 60-20-20 的「主/次/稀有」结构，稀有档拆成 15 与 25） */
+function pityStar() {
+  const r = Math.floor(Math.random() * 100);
+  if (r < 60) return {id:'star', name:'幸运星', qty:5,  pity:true};
+  if (r < 80) return {id:'star', name:'幸运星', qty:10, pity:true};
+  if (r < 95) return {id:'star', name:'幸运星', qty:15, pity:true};
+  return {id:'star', name:'幸运星', qty:25, pity:true};
+}
+
+/* 保底：偶数轮 80% 4 级四叶草 / 20% 幸运星；奇数轮全幸运星
+   —— 对应 gods_hall_get_guarantee_reward() 的 60/20/20 结构（同族 60+20 合并） */
+function pityReward(level) {
+  if (level % 2 === 0) {
+    if (Math.floor(Math.random() * 100) < 80) {
+      const step = Math.min(Math.floor(level / 2), 3);
+      return {id:'c4', name:'4 级四叶草', qty:PITY_CLOVER[step], pity:true};
+    }
+    return pityStar();
+  }
+  return pityStar();
+}
+
+/* ══════════════ 状态 ══════════════ */
+const S = { coin:1000000, star:0, pulls:0, pityLevel:0, clover:{c1:0, c2:0, c3:0, c4:0} };
+
+/* ══════════════ 18 格布局：7 / 2 / 2 / 7 ══════════════ */
+const CELL_BG = ['cell_orange','cell_purple','cell_red','cell_blue','cell_green','cell_pink'];
+const GRID = [];
+for (let c = 0; c < 7; c++) GRID.push({c, r:0});
+GRID.push({c:0, r:1}); GRID.push({c:6, r:1});
+GRID.push({c:0, r:2}); GRID.push({c:6, r:2});
+for (let c = 0; c < 7; c++) GRID.push({c, r:3});
+
+const CELL = 74, GAP = 4, COLX = 267, ROWY = 250;
+const gridEl = document.getElementById('grid');
+
+/* 格子内容按奖励池循环铺，角标写等级 */
+const CELL_ORDER = ['c1','c2','c3','c4','c5','c6','cs','css','star','coin','c5','c1','c3','c4','c6','c2','cs','coin'];
+GRID.forEach((g, i) => {
+  const d = document.createElement('div');
+  d.className = 'cell';
+  d.style.left = (COLX + g.c * (CELL + GAP)) + 'px';
+  d.style.top  = (ROWY + g.r * (CELL + GAP + 2)) + 'px';
+  d.dataset.i = i;
+  const id = CELL_ORDER[i];
+  d.innerHTML = `<img class="el" src="assets/${CELL_BG[i % CELL_BG.length]}.png" alt="">
+    <img class="icon" src="${IMG[id]}" alt="">
+    <img class="frame el" src="assets/frame_sel.png" alt="">
+    ${LV[id] ? `<div class="cnt">${LV[id]}</div>` : ''}`;
+  gridEl.appendChild(d);
+});
+const cells = [...gridEl.querySelectorAll('.cell')];
+
+/* ══════════════ 视图 ══════════════ */
+const V = {
+  town: document.getElementById('view-town'),
+  main: document.getElementById('view-main'),
+  shop: document.getElementById('view-shop')
+};
+function show(k) {
+  Object.keys(V).forEach(x => { V[x].style.display = 'none'; });
+  V[k].style.display = 'block';
+  document.getElementById('ov-result').classList.remove('on');
+}
+document.querySelectorAll('#hud button').forEach(b => {
+  b.onclick = () => {
+    const v = b.dataset.view;
+    if (v === 'result') { show('main'); doPull(100000); }
+    else show(v);
+  };
+});
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 1500);
+}
+
+function renderWallet() {
+  document.getElementById('coin-num').textContent = S.coin.toLocaleString('en-US');
+  document.getElementById('pity-left').textContent = PITY_EVERY - (S.pulls % PITY_EVERY);
+  document.getElementById('res-star') && (document.getElementById('res-star').textContent = S.star);
+  const sp = document.getElementById('shop-spent');
+  if (sp) sp.textContent = (S.pulls * 20000).toLocaleString('en-US');
+}
+
+/* ══════════════ 抽奖核心 ══════════════ */
+function rollOne() {
+  const isPity = (S.pulls % PITY_EVERY) === PITY_EVERY - 1;
+  let r;
+  if (isPity) {
+    r = pityReward(S.pityLevel);
+    S.pityLevel++;
+  } else {
+    const total = POOL.reduce((a, b) => a + b.w, 0);
+    let rnd = Math.random() * total, pick = POOL[0];
+    for (const it of POOL) { rnd -= it.w; if (rnd <= 0) { pick = it; break; } }
+    r = {id:pick.id, name:pick.name, qty:pick.qty};
+  }
+  S.pulls++;
+  if (r.id === 'coin') S.coin += r.qty;
+  else if (r.id === 'star') S.star += r.qty;
+  else S.clover[r.id] = (S.clover[r.id] || 0) + r.qty;
+  return r;
+}
+
+let spinning = false;
+function lightOnly(idx) { cells.forEach((c, i) => c.classList.toggle('lit', i === idx)); }
+
+function doPull(cost) {
+  if (spinning) return;
+  if (S.coin < cost) return toast('金币不足');
+  S.coin -= cost;
+  const n = cost >= 1000000 ? 50 : (cost >= 100000 ? 10 : 1);
+  const items = [];
+  for (let i = 0; i < n; i++) items.push(rollOne());
+  renderWallet();
+
+  spinning = true;
+  const total = 18;
+  let step = 0, delay = 55;
+  const target = Math.floor(Math.random() * 18);
+  const run = () => {
+    lightOnly(step % total);
+    step++;
+    if (step < 26 + target) {
+      if (step > 18) delay += 14;
+      setTimeout(run, delay);
+    } else {
+      setTimeout(() => { spinning = false; openResult(items, cost); }, 300);
+    }
+  };
+  run();
+}
+
+document.getElementById('price-20000').onclick   = () => doPull(20000);
+document.getElementById('price-100000').onclick  = () => doPull(100000);
+document.getElementById('price-1000000').onclick = () => doPull(1000000);
+
+/* 侧栏 */
+document.querySelectorAll('#side .s')[0].onclick = () => toast('幸运转转页（同主界面）');
+document.querySelectorAll('#side .s')[1].onclick = () => toast('限时送礼——资源未包含，待定');
+document.getElementById('exshop').onclick = () => show('shop');
+document.getElementById('shop-back').onclick = () => show('main');
+document.getElementById('enter-btn').onclick = () => show('main');
+
+/* ══════════════ 结果弹窗 ══════════════ */
+const AGG_ORDER = ['c1','c2','c3','c4','c5','c6','cs','css','star','coin'];
+function openResult(items, cost) {
+  const box = document.getElementById('res-items');
+  let list = items, agg = false;
+  if (items.length > 10) {                     // 50 抽：按品类汇总
+    const m = {};
+    items.forEach(r => { m[r.id] = (m[r.id] || 0) + r.qty; });
+    list = AGG_ORDER.filter(k => m[k]).map(k => ({id:k, qty:m[k], pity:false}));
+    agg = true;
+  }
+  box.className = agg ? 'agg' : (items.length === 1 ? 'single' : '');
+  box.innerHTML = '';
+  list.forEach(r => {
+    const d = document.createElement('div');
+    d.className = 'ri' + (r.pity ? ' pity' : '');
+    d.innerHTML = `<img src="${IMG[r.id]}" alt="">
+      ${LV[r.id] ? `<div class="lv">${LV[r.id]}级</div>` : ''}
+      <div class="cnt">×${r.qty}</div>`;
+    box.appendChild(d);
+  });
+  const n = items.length;
+  document.getElementById('res-cost').textContent =
+    cost.toLocaleString('en-US') + ' 金币' + (n > 1 ? `（${n} 抽）` : '');
+  document.getElementById('res-star').textContent = S.star;
+  document.getElementById('ov-result').classList.add('on');
+}
+document.getElementById('res-close').onclick = () => document.getElementById('ov-result').classList.remove('on');
+document.querySelectorAll('#res-btns .b').forEach((b, i) => {
+  b.onclick = () => {
+    document.getElementById('ov-result').classList.remove('on');
+    doPull([20000, 100000, 1000000][i]);
+  };
+});
+
+/* ══════════════ 兑换商店 ══════════════ */
+const SHOP = [
+  ['星穹马','159',350],['金乌马','145',380],['霹雳马','128',200],['御风马','116',280],
+  ['金刚马','132',285],['结界马','128',180],['星穹马(一转凭证A)','215',''],['星穹马(一转凭证B)','215',''],
+  ['星穹马(二转凭证A)','288',''],['星穹马(二转凭证B)','288',''],['星穹马(二转凭证C)','288',''],['金乌马(一转凭证A)','180',''],
+  ['金乌马(一转凭证B)','180',''],['金乌马(二转凭证A)','245',''],['金乌马(二转凭证B)','245',''],['金乌马(二转凭证C)','245','']
+];
+const shopGrid = document.getElementById('shop-grid');
+SHOP.forEach((it, i) => {
+  const d = document.createElement('div');
+  d.className = 'card';
+  const ic = i < 6 ? 'q' : (i % 3 === 0 ? 'c3' : 'q');
+  d.innerHTML = `
+    <div class="thumb"><img src="${IMG[ic]}" alt="">${it[2] ? `<div class="lv">${it[2]}</div>` : ''}</div>
+    <div class="body">
+      <div class="name">${it[0]}</div>
+      <div class="cost">消耗 <b>${it[1]}</b> 个 <img src="assets/icon_luckystar.png" alt=""></div>
+      <div class="buy btn"><img src="assets/btn_exchange.png" class="el" alt=""></div>
+    </div>`;
+  d.querySelector('.buy').onclick = () => {
+    if (S.star < +it[1]) return toast(`幸运星不足（需 ${it[1]}，当前 ${S.star}）`);
+    S.star -= +it[1];
+    document.getElementById('shop-star').textContent = S.star;
+    toast(`兑换成功：${it[0]}`);
+  };
+  shopGrid.appendChild(d);
+});
+document.querySelectorAll('#shop-cats .c').forEach(c => {
+  c.onclick = () => {
+    document.querySelectorAll('#shop-cats .c').forEach(x => x.classList.remove('on'));
+    c.classList.add('on');
+  };
+});
+document.querySelectorAll('#shop-tabs .t').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('#shop-tabs .t').forEach(x => x.classList.remove('on'));
+    t.classList.add('on');
+    if (t.textContent.trim() !== '兑换') toast('该页签暂无素材');
+  };
+});
+document.querySelectorAll('#shop-page .a').forEach(a => {
+  a.onclick = () => {
+    const e = document.getElementById('pg-now');
+    let v = +e.textContent + (a.classList.contains('l') ? -1 : 1);
+    v = Math.min(32, Math.max(1, v));
+    e.textContent = v;
+  };
+});
+
+/* ══════════════ 自适应 / 截图定位 ══════════════ */
+function fit() {
+  const s = Math.min(innerWidth / 1080, innerHeight / 720);
+  document.getElementById('stage').style.transform = `scale(${s})`;
+}
+addEventListener('resize', fit); fit();
+renderWallet();
+document.getElementById('shop-star').textContent = S.star;
+
+(function () {
+  const q = new URLSearchParams(location.search);
+  // ?pulls=N 预置已抽次数，用来演示保底进度（必须在 doPull 之前）
+  const pre = +q.get('pulls') || 0;
+  for (let i = 0; i < pre; i++) rollOne();
+  if (pre > 0) { S.coin = 1000000; renderWallet(); }
+
+  const v = q.get('v') || 'town';
+  const tier = {'1':20000, '10':100000, '50':1000000}[q.get('n')] || 100000;
+  if (v === 'result') { show('main'); doPull(tier); }
+  else show(V[v] ? v : 'town');
+})();
+</script>
+</body>
+</html>

@@ -723,8 +723,8 @@ if (craft_top_tab == 1) {
 	// 🔴 spr_craft_material 的原点是「正中心」，不能走 fusion_draw_center（那个按左上角原点减半宽高）
 	// 缩放倍率跟强化页底部道具栏一致（那里就是 0.9）；原来按「缩到 32*ws」算，图标比强化页小一圈
 	var _ic_scl = 0.9;
-	for (var _mj = 0; _mj < array_length(card_material_id_list); _mj++){
-		var _mid = card_material_id_list[_mj];
+	for (var _mj = 0; _mj < array_length(fusion_material_id_list); _mj++){
+		var _mid = fusion_material_id_list[_mj];
 		var _ccx = _bar_x + _mj*_bar_pitch + _cell_w*0.5;
 		draw_sprite_ext(spr_craft_material, get_material_info(_mid).icon,
 			_ccx, _tbar_y + _bar_h*0.47, _ic_scl, _ic_scl, 0, c_white, 1);
@@ -907,8 +907,12 @@ draw_text(x+758,y+473,string(global.save_data.player.gold))
 draw_set_colour(c_white)
 draw_set_valign(fa_top)
 draw_set_halign(fa_left)
-for(var i = 0 ; i < 10 ; i++){
-    draw_sprite_ext(spr_package_slot_bg, 1, x-752+i*84, y + 454, 0.9, 0.9, 0, c_white, 1)
+// 底部材料余量条底格：卡片页 2 行（7 香料 + 8 四叶草），宝石页 1 行
+var _strip_rows = (button_select == 0) ? 2 : 1
+for(var i = 0 ; i < 8 ; i++){
+    for(var _sr = 0 ; _sr < _strip_rows ; _sr++){
+        draw_sprite_ext(spr_package_slot_bg, 1, x-752+i*84, y + 454 - _sr*84, 0.9, 0.9, 0, c_white, 1)
+    }
 }
 
 if button_select == 0{
@@ -919,21 +923,24 @@ if button_select == 0{
 	draw_sprite_ext(spr_craft_slot_text,0,x-305,y+100,1.8,1.8,0,c_white,1)
 	draw_sprite_ext(spr_craft_slot_text,1,x-455,y-20,1.8,1.8,0,c_white,1)
 	draw_sprite_ext(spr_craft_slot_text,2,x-155,y-20,1.8,1.8,0,c_white,1)
-	//绘制卡片强化材料
+	//绘制卡片强化材料（两行：香料 7 个 / 四叶草 8 个，下标见 card_material_row_break）
 	for(var i = 0 ; i < array_length(card_material_id_list) ; i++){
 		var material_id = card_material_id_list[i]
 		var material_info = get_material_info(material_id)
 		var material_amount = get_material_amount(material_id)
-		draw_sprite_ext(spr_craft_material, material_info.icon, x-752+i*84, y + 454, 0.9, 0.9, 0, c_white, 1)
+		var _mc  = (i < card_material_row_break) ? i : (i - card_material_row_break)
+		var _mcy = y + 454 - ((i < card_material_row_break) ? 0 : 84)
+		var _mcx = x - 752 + _mc*84
+		draw_sprite_ext(spr_craft_material, material_info.icon, _mcx, _mcy, 0.9, 0.9, 0, c_white, 1)
 		draw_set_halign(fa_right);
 		draw_set_valign(fa_bottom);
 		draw_set_colour(c_white)
 		draw_set_font(font_number)
 		if get_material_amount(material_id) < 10000{
-			draw_text(x-752+i*84+40,y + 454+42,string(get_material_amount(material_id)))
+			draw_text(_mcx+40,_mcy+42,string(get_material_amount(material_id)))
 		}
 		else{
-			draw_text(x-752+i*84+40,y + 454+42,string(floor(get_material_amount(material_id)/10000))+"w")
+			draw_text(_mcx+40,_mcy+42,string(floor(get_material_amount(material_id)/10000))+"w")
 		}
 		
 	}
