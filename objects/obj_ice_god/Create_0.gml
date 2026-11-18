@@ -18,5 +18,7 @@ idle_anim = 10;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-target_type = "track";
+// 与同类卡（cold_drew / snowrabbit）一致：全类型。冰晶由 Other_11 按 x 排序轮流丢给全场敌人，
+// 这里若留 track，场上只剩地鼠 / 幽灵时 Step 会判定"没有敌人"而不开火。
+target_type = "all";
 attack_timer = 0;

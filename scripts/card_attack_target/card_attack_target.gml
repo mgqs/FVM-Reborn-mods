@@ -23,7 +23,6 @@ function card_attack_target_data()
         "cat_box": "normal",
         "cat_chest": "normal",
         "chili_powder": "normal",
-        "chocolate_cannon": "throw",
         "chocolate_pult": "throw",
         "chunsun": "all",
         "coal_starfish": "normal",
@@ -74,7 +73,7 @@ function card_attack_target_data()
         "huojianzhu": "track",
         "ice_bucket_bomb": "normal",
         "ice_egg_boiler_pult": "throw",
-        "ice_god": "track",
+        "ice_god": "all",
         "ice_long_bao": "normal",
         "iron_fishbone": "pierce",
         "jingangma": "pierce",
@@ -107,7 +106,6 @@ function card_attack_target_data()
         "rabbit_lantern": "all",
         "rig": "normal",
         "ronghedan_god": "throw",
-        "ronghedapao": "throw",
         "ronghehaixing": "track",
         "ronghehuopen": "all",
         "ronghekafei": "normal",
@@ -185,7 +183,11 @@ function card_attack_target_override()
         "shennong_god": ["陆地鼠军", "陆地鼠军", "陆地鼠军丨空军丨地鼠", "陆地鼠军丨空军丨地鼠"],
         "sheng_huo": ["陆地鼠军丨非主流丨幽灵", "陆地鼠军丨非主流丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵"],
         // 恶作剧神：子弹打 空中 / 陆地 / 潜水 / 地下（没有单一类型名能表达，手写覆盖）
-        "joker": "陆地鼠军丨空军丨潜水丨地鼠"
+        "joker": "陆地鼠军丨空军丨潜水丨地鼠",
+        // 灰烬轰炸（固定落点）：子弹 Destroy 里 with (obj_enemy_parent) 扫全表、只按距离与行列筛，
+        // 不做类型判定，实际全打；卡片上的 target_type 只用来选落点，别拿它当口径。
+        "chocolate_cannon": "陆地鼠军丨潜水丨空军丨非主流丨地鼠丨幽灵",
+        "ronghedapao": "陆地鼠军丨潜水丨空军丨非主流丨地鼠丨幽灵"
     };
     return _o;
 }
