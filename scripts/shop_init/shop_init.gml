@@ -40,7 +40,7 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("ice_gem",{"type":"gem","cost":"30000","unlock_item_id":"ice_gem","description":"减速宝石：对伤害到的老鼠造成减速\n需镶嵌于超级武器槽位","display_name":"减速宝石（超级武器）"})
 	// 2026-11-18 用户口径：神圣宝石（主武器）以前只在 weapons_init 里 register_gem 了本体，
 	//   没有 register_goods → 商店「武器/宝石」页永远不显示（用户报「商店没神圣宝石」）。补上上架条目。
-	register_goods("holy_gem",{"type":"gem","cost":"150000","unlock_item_id":"holy_gem","description":"神圣宝石：使全屏卡片锁定为满生命值\n需镶嵌于主武器槽位","display_name":"神圣宝石"})
+	register_goods("holy_gem",{"type":"gem","cost":"200000","unlock_item_id":"holy_gem","description":"神圣宝石：使全屏卡片锁定为满生命值\n需镶嵌于主武器槽位","display_name":"神圣宝石"})
 	register_goods("ice_spoon_crossbow",{"type":"weapon","cost":"20000","unlock_item_id":"ice_spoon_crossbow","description":"冰勺弩枪：投掷减速冰鸡蛋","display_name":"冰勺弩枪"})
 	register_goods("poseidon_dart_gun",{"type":"weapon","cost":"200000","unlock_item_id":"poseidon_dart_gun","description":"海神镖枪：连续发射追踪飞镖，可溅射","display_name":"海神镖枪"})
 	register_goods("double_ice_crossbow",{"type":"weapon","cost":"50000","unlock_item_id":"double_ice_crossbow","description":"冰霜连弩：投掷两个减速冰鸡蛋","display_name":"冰霜连弩"})
