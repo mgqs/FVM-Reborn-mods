@@ -11,8 +11,10 @@ with (obj_enemy_parent)
 {
     // 钻地中的龙渊地精鼠按「不攻击类型」直接跳过（散点不该锁它，也不该为它耗一发）
     if (scatter_target_blocked(id)) continue;
-    if (hp > 0)
-        ds_priority_add(enemy_queue, id, x);
+    // 候选表要跟卡片 target_type 同口径（陆 / 空 / 地鼠），否则会给人看不见的潜水 / 幽灵分配冰晶
+    if (hp <= 0) continue;
+    if (!can_target_on(other.target_type, target_type)) continue;
+    ds_priority_add(enemy_queue, id, x);
 }
 
 var valid_enemies = [];

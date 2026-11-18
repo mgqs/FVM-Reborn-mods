@@ -1,13 +1,18 @@
 /// @function can_target_on(card_target_type, enemy_target_type)
-/// @desc 类型命中口径，全工程唯一。合法取值只有 10 个：
-///   normal / throw / pierce / track / air / air_only / pierce_air / rotate / d_fruit / all
-///   新增类型必须同步改三处：本函数、get_hittable_enemy_types、external_mod_system.gml:313 白名单。
+/// @desc 类型命中口径，全工程唯一。合法取值只有 11 个：
+///   normal / throw / pierce / track / air / air_only / pierce_air / rotate / d_fruit / land_air_ug / all
+///   新增类型必须同步改三处：本函数、get_hittable_enemy_types、external_mod_system.gml:320 白名单。
 function can_target_on(card_target_type,enemy_target_type){
 	// "pierce_air" = 穿透 + 对空（牛油果飞镖）：**只认普通 / 空军 / 障碍**
 	//   🔴 不能再转成 "pierce" —— pierce 额外含 dance（非主流、龙王高跷）和 invisible（幽灵鼠），
 	//      那两类不吃「穿透」，牛油果飞镖不该顺路打中它们（2026-10-29 用户口径：只有穿透功能）
 	if (card_target_type == "pierce_air"){
 		return (enemy_target_type == "normal" || enemy_target_type == "air" || enemy_target_type == "obstacle")
+	}
+	// "land_air_ug" = 陆地鼠军 + 空军 + 地鼠（underground）：全屏打击类的通用口径
+	//   不含 潜水(diver) / 非主流(dance) / 幽灵(invisible) / 障碍(obstacle)
+	if (card_target_type == "land_air_ug"){
+		return (enemy_target_type == "normal" || enemy_target_type == "air" || enemy_target_type == "underground")
 	}
 	if enemy_target_type == "normal"{
 		if card_target_type != "air_only"{
@@ -114,6 +119,8 @@ function is_non_mainstream(_inst){
 function get_hittable_enemy_types(bullet_target_type){
 	var _types = [];
 	if (bullet_target_type == "all") return ["normal", "diver", "air", "dance", "obstacle", "underground", "invisible"];
+	// "land_air_ug" = 陆地 + 空军 + 地鼠（全屏打击类），与 can_target_on 同口径
+	if (bullet_target_type == "land_air_ug") return ["normal", "air", "underground"];
 	// "pierce_air" = 穿透 + 对空（牛油果飞镖）：普通 + 空军 + 障碍，**不含 dance / invisible**
 	if (bullet_target_type == "pierce_air") return ["normal", "air", "obstacle"];
 

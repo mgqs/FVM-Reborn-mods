@@ -29,7 +29,7 @@ function card_attack_target_data()
         "coffee_cup": "normal",
         "coffee_pot": "pierce",
         "coke_bomb": "all",
-        "cold_drew": "all",
+        "cold_drew": "land_air_ug",
         "corn_shooter": "normal",
         "curry_lobster_cannon": "track",
         "dandantu": "normal",
@@ -73,7 +73,7 @@ function card_attack_target_data()
         "huojianzhu": "track",
         "ice_bucket_bomb": "normal",
         "ice_egg_boiler_pult": "throw",
-        "ice_god": "all",
+        "ice_god": "land_air_ug",
         "ice_long_bao": "normal",
         "iron_fishbone": "pierce",
         "jingangma": "pierce",
@@ -120,7 +120,7 @@ function card_attack_target_data()
         "shuanggu": "air",
         "shuangyu": "throw",
         "skewer_bomb": "normal",
-        "snowrabbit": "all",
+        "snowrabbit": "land_air_ug",
         "spicy_pot": "pierce",
         "spoon_rabbit": "throw",
         "starrabbit": "normal",
@@ -222,6 +222,7 @@ function card_attack_text(_id, _shape)
         "pierce_air": "陆地鼠军丨空军",
         "rotate":     "陆地鼠军丨空军丨非主流丨地鼠丨幽灵",
         "d_fruit":    "陆地鼠军丨空军丨非主流丨地鼠丨幽灵",
+        "land_air_ug": "陆地鼠军丨空军丨地鼠",
         "all":        "陆地鼠军丨潜水丨空军丨非主流丨地鼠丨幽灵"
     };
     var _t = card_attack_target_of(_id, _shape);

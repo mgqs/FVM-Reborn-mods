@@ -10,9 +10,9 @@ with (obj_enemy_parent){
     // ⚠️ 这里必须是 continue：GML 里 with 内写 exit 会直接跳出整个事件，
     //    第一只老鼠不合格就一个目标都选不出来（2026-11-13 修）
     if (hp <= 0) continue;
-    if (target_type == "obstacle") continue;
     // 钻地中的龙渊地精鼠按「不攻击类型」直接跳过（散点不该锁它，也不该为它耗一发）
     if (scatter_target_blocked(id)) continue;
+    // 障碍 / 潜水 / 非主流 / 幽灵都由 target_type（land_air_ug）挡掉，不用再单独判
     if (!can_target_on(other.target_type, target_type)) continue;
     // 越靠前（grid_col 越小）越优先，BOSS 加权
     var _score = grid_col * 1000 + random(99);
@@ -42,6 +42,8 @@ if (shape >= 1 && _have > 0 && _have < sr_target_max && instance_exists(sr_main)
     }
 }
 
+// 集火时同一主目标已经砸了几发（决定这一发错开几帧）；分散弹不受影响
+var _repeat = 0;
 for (var _j = 0; _j < array_length(_targets); _j++){
     var _t = _targets[_j];
     if (!instance_exists(_t)) continue;
@@ -64,7 +66,14 @@ for (var _j = 0; _j < array_length(_targets); _j++){
     _b.splash_ratio   = sr_splash_ratio;
     _b.splash_cells   = sr_splash_cells;
     _b.move_speed     = 14;
-    _b.fall_delay     = _j * 10;    // 一个个落下（同冷萃机 / 雅典娜）：每发错开 10 帧
+    // 分散弹同时落；只有集火（多余的雪球砸同一主目标）才一发发错开 10 帧 —— 与冷萃机同口径
+    if (_t == sr_main){
+        _b.fall_delay = _repeat * 10;
+        _repeat++;
+    }
+    else{
+        _b.fall_delay = 0;
+    }
     _b.start_y        = _by;
 
     // 三形态共用同一张冰球（_1/_2 与本体相同，2026-11-13 已删）

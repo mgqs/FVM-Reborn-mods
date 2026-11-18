@@ -18,7 +18,7 @@ idle_anim = 10;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-// 与同类卡（cold_drew / snowrabbit）一致：全类型。冰晶由 Other_11 按 x 排序轮流丢给全场敌人，
-// 这里若留 track，场上只剩地鼠 / 幽灵时 Step 会判定"没有敌人"而不开火。
-target_type = "all";
+// 陆 / 空 / 地鼠（全屏打击口径）：不含 潜水·非主流·幽灵·障碍；钻地中的龙渊地精由 scatter_target_blocked 另排。
+// 不能留 track：冰晶由 Other_11 按 x 排序随机丢，只剩地鼠时 Step 会判"没有敌人"而彻底不开火。
+target_type = "land_air_ug";
 attack_timer = 0;

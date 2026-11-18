@@ -20,6 +20,7 @@ idle_anim = 11;
 flash_speed = 5;
 plant_type = "normal";
 is_slowdown = false;
-target_type = "all";
+// 陆 / 空 / 地鼠（全屏打击口径）：不含 潜水·非主流·幽灵·障碍；钻地中的龙渊地精由 scatter_target_blocked 另排
+target_type = "land_air_ug";
 main_target = -4;
 cooldown = cycle;

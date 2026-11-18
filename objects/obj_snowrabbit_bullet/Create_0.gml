@@ -8,8 +8,8 @@ row        = 0;
 shape      = 0;
 
 // 直击走 with(目标实例)、不判类型；这里只给二转 3*3 溅射筛用（can_target_on）。
-// 卡片层是 all，溅射必须同口径 —— 留 track 会让地鼠 / 幽灵 / 非主流吃不到溅射。
-target_type    = "all";
+// 必须与卡片层一致（陆 / 空 / 地鼠），否则溅射会比直击宽或窄。
+target_type    = "land_air_ug";
 damage_type    = "normal";
 hittable_types = get_hittable_enemy_types(target_type);
 

@@ -30,14 +30,17 @@ if (!has_hit && image_index >= 3){
     has_hit = true;
     audio_play_sound(snd_snowrabbit_hit, 0, 0);
 
-    // 主目标：优先仍是锁定的那只
+    // 主目标：优先仍是锁定的那只（飞行中钻地了就不认，转去另找）
     var _e = noone;
-    if (instance_exists(target_id) && target_id.hp > 0){
+    if (instance_exists(target_id) && target_id.hp > 0 && !scatter_target_blocked(target_id)){
         _e = target_id;
     } else {
         var _best = 999999;
         with (obj_enemy_parent){
             if (hp <= 0) continue;
+            // 补漏：落点兜底也要守同一套口径（地精钻地 / 潜水 / 非主流 / 幽灵 / 障碍都不砸）
+            if (scatter_target_blocked(id)) continue;
+            if (!can_target_on(other.target_type, target_type)) continue;
             if (abs(grid_row - other.row) > 1) continue;
             if (abs(x - other.x) > global.grid_cell_size_x * 0.6) continue;
             var _d = point_distance(x, y, other.x, other.y);
