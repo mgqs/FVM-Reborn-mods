@@ -3244,6 +3244,18 @@ register_card("rongheshuanggu", obj_rongheshuanggu, [
     { shape: 1, sprite: spr_galaxy_horse_1, cost: 380, cooldown: 2700, description: "星渊银河马：陨石攻击力提升25%，命中后眩晕防爆鼠2秒", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_galaxy_horse_1 },
     { shape: 2, sprite: spr_galaxy_horse_2, cost: 380, cooldown: 2700, description: "创世银河马：一次召唤3颗陨石，索敌5行、溅射范围扩大至3*5，命中后眩晕防爆鼠2秒", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_galaxy_horse_2 }]);
 
+    // 结界马家族（2026-11-18 新卡）：二转是悬浮卡，卡槽里 plant_type 就必须写 gridless，
+    //   否则放置预览会按普通卡占格画，与 obj_jiejiema 的判定对不上
+    register_card("jiejiema", obj_jiejiema, [
+    { shape: 0, sprite: spr_jiejiema, cost: 180, cooldown: 1500, description: "结界马：单独在场时攻击本格与前方1格，多只在场时围成结界攻击内部空陆地鼠军", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_jiejiema },
+    { shape: 1, sprite: spr_jiejiema_1, cost: 180, cooldown: 1500, description: "一转结界马：结界内同一只老鼠连续受击伤害递增，最高3倍", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_jiejiema_1 },
+    { shape: 2, sprite: spr_jiejiema_2, cost: 180, cooldown: 1500, description: "二转结界马：攻击力翻倍，悬浮状态无需格子且可被铲除", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_jiejiema_2 }]);
+
+    register_card("yinyangshe", obj_yinyangshe, [
+    { shape: 0, sprite: spr_yinyangshe, cost: 295, cooldown: 420, description: "阴阳蛇：阴蛇发射5连子弹，每5发的第1发附带毒伤，可攻击未照明幽灵鼠", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinyangshe },
+    { shape: 1, sprite: spr_yinyangshe_1, cost: 295, cooldown: 420, description: "一转阴阳蛇：多一只阳蛇，一轮共发射10连子弹，首发毒伤依旧", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinyangshe_1 },
+    { shape: 2, sprite: spr_yinyangshe_2, cost: 295, cooldown: 420, description: "二转阴阳蛇：阳蛇子弹穿透老鼠，阴蛇毒伤提升至4.5倍", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 0, place_preview: spr_yinyangshe_2 }]);
+
     register_card("xinggui_god", obj_xinggui_god, [
     { shape: 0, sprite: spr_xinggui_god, cost: 345, cooldown: 2400, description: "阿斯特神使：为5*5范围内固定轨迹类卡片提高攻击力，同类卡片效果不叠加", plant_type: "normal", feature_type: "normal", target_card: "none", is_gold: 1, place_preview: spr_xinggui_god },
     { shape: 1, sprite: spr_xinggui_god_1, cost: 345, cooldown: 2400, description: "阿斯特圣神：为5*5范围内固定轨迹类卡片提高攻击力，无需格子即可放置", plant_type: "gridless", feature_type: "normal", target_card: "none", is_gold: 1, place_preview: spr_xinggui_god_1 },

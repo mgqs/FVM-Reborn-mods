@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"minion",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_minion","path":"objects/obj_kf_sh_minion/obj_kf_sh_minion.yy",},
+  ],
+}

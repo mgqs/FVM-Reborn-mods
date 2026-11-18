@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"ninja",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/ninja.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ninja",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_ninja","path":"objects/obj_kf_sh_ninja/obj_kf_sh_ninja.yy",},
+  ],
+}

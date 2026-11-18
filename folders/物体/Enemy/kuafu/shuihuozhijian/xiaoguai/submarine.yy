@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"submarine",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/submarine.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"submarine",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_submarine","path":"objects/obj_kf_sh_submarine/obj_kf_sh_submarine.yy",},
+  ],
+}

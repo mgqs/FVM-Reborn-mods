@@ -67,7 +67,7 @@ function card_flag_data(){
         "odin", "ronghesanxian", "rongheshuanggu", "sheshou",
         "shuanggu", "starrabbit", "tar_sprayer", "tiancheng",
         "triple_ice_long_bao", "triple_long_bao", "triple_wine_rack", "war_god",
-        "xiandima", "xiao_long_bao", "yanhuangma", "youyu_god",
+        "xiandima", "xiao_long_bao", "yanhuangma", "yinyangshe", "youyu_god",
         "yufengma", "zhuzhuliaoliji",
     ], ["hazard_fire"]);
 
@@ -82,7 +82,7 @@ function card_flag_data(){
         "rig", "ronghehaixing", "ronghesanxian", "rongheshuanggu",
         "sheshou", "shuanggu", "starrabbit", "tiancheng",
         "triple_ice_long_bao", "triple_long_bao", "triple_wine_rack", "war_god",
-        "xiao_long_bao", "youyu_god", "zhuzhuliaoliji",
+        "xiao_long_bao", "yinyangshe", "youyu_god", "zhuzhuliaoliji",
     ], ["hazard_rebound"]);
 
     global.card_flag_cache = _t;

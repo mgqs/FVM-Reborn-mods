@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"ninja",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/ninja.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"ninja",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_ninja","path":"sprites/spr_kf_sh_ninja/spr_kf_sh_ninja.yy",},
+    {"name":"spr_kf_sh_ninja_summon","path":"sprites/spr_kf_sh_ninja_summon/spr_kf_sh_ninja_summon.yy",},
+  ],
+}

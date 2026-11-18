@@ -114,3 +114,13 @@ function cross_server_reward_mult(){
     if (!hex_enabled()) return 1.0;
     return hex_batch2_reward_mult();
 }
+
+/// @function cross_server_coin_mult()
+/// @desc 跨服关卡「金币」那一项的入账倍率（2026-11-18 用户口径）
+///       徽章仍然只吃海克斯倍率；**金币改为也吃难度等级奖励倍率**
+///       （美味1 / 火山1 / 浮空2 / 星际3 / 永恒4 / 不朽7），与普通关金币同一口径。
+///       海克斯倍率已含在 cross_server_reward_mult() 里，这里只额外叠难度部分，
+///       别改成 difficulty_get_reward_multiplier()（那个内部已经乘过一次海克斯，会双计）。
+function cross_server_coin_mult(){
+    return cross_server_reward_mult() * difficulty_get_reward_multiplier_for(global.difficulty);
+}

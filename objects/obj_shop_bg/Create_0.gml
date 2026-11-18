@@ -183,6 +183,35 @@ function shop_list_recharge(){
 		}
 	}
 
+	// ── 角色皮肤页：按「注册顺序」稳定排序（2026-11-18）──
+	//   上面 map_array 来自 ds_map_keys_to_array(global.goods_map) = **哈希遍历序**，
+	//   同一批新加的商品会被打散到不同页：178 件时装 ÷ 16 = 12 页，
+	//   玩家翻完 12 页也未必找得到某一套（用户实测找不到「星之耀男B」，其实它在表里）。
+	//   排序键 = global.goods_id_pool 的下标 = shop_init 的书写顺序 → 稳定可预期，
+	//   新注册的商品自然排在末段、同批写入的彼此相邻。只影响页签 5，其它页签顺序不动。
+	if (shop_button_select == 5){
+		var _ord5 = ds_map_create();
+		for (var _p5 = 0; _p5 < array_length(global.goods_id_pool); _p5++){
+			var _id5 = global.goods_id_pool[_p5];
+			if (!ds_map_exists(_ord5, _id5)) _ord5[? _id5] = _p5;
+		}
+		var _sn5 = ds_list_size(goods_list);
+		for (var _a5 = 1; _a5 < _sn5; _a5++){
+			var _cur5 = ds_list_find_value(goods_list, _a5);
+			var _ck5 = _ord5[? _cur5];
+			if (is_undefined(_ck5)) continue;
+			var _b5 = _a5 - 1;
+			while (_b5 >= 0){
+				var _pk5 = _ord5[? ds_list_find_value(goods_list, _b5)];
+				if (is_undefined(_pk5) || _pk5 <= _ck5) break;
+				ds_list_replace(goods_list, _b5 + 1, ds_list_find_value(goods_list, _b5));
+				_b5 -= 1;
+			}
+			ds_list_replace(goods_list, _b5 + 1, _cur5);
+		}
+		ds_map_destroy(_ord5);
+	}
+
 	// 搜索过滤（2026-10-27 凭证页 / 2026-11-08 起**全页签**都有）
 	//   过滤完再排序 / 分页，所以页码、售罄遮罩、购买按钮全都自动跟着走
 	//   口径见 shop_search_filter：卡片 / 凭证页 = 情报岛那套（分类词 + 卡名 + 拼音，凭证页额外保留层数），

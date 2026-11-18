@@ -13,6 +13,11 @@ function mod_skill_init()
     register_card_skill("fushengcha", "cooldown", [3000, 2880, 2760, 2640, 2400, 2100, 1800, 1500, 1080]);
     register_card_skill("yuansushe", "cycle", [150, 144, 138, 132, 126, 120, 114, 108, 90]);
     register_card_skill("galaxy_horse", "cycle", [1140, 1110, 1080, 1050, 1020, 960, 900, 840, 660]);
+    // 结界马「持续时间」25/26/27/28/30/33/36/40/45 秒（技能 0~8 级）
+    //   星级只影响攻击力，持续时间这条完全走技能；卡本体 obj_jiejiema 自己读这个自定义键
+    register_card_skill("jiejiema", "duration", [1500, 1560, 1620, 1680, 1800, 1980, 2160, 2400, 2700]);
+    // 阴阳蛇攻击间隔 2.2/2.15/2.1/2/1.9/1.8/1.7/1.6/1.5 秒
+    register_card_skill("yinyangshe", "cycle", [132, 129, 126, 120, 114, 108, 102, 96, 90]);
     register_card_skill("xinggui_god", "cooldown", [2400, 2280, 2160, 1980, 1740, 1500, 1260, 1020, 720]);
     register_card_skill("xiandima", "cycle", [900, 846, 792, 738, 648, 558, 468, 378, 270]);
     register_card_skill("xingqiongma", "zodiac_guard_duration", [900, 930, 960, 990, 1020, 1050, 1080, 1110, 1200]);

@@ -123,12 +123,15 @@ for (var _slot = 0; _slot < 16; _slot++) {
         _hover_desc = variable_struct_exists(_goods, "description") ? _goods.description : "";
     }
 
-    // 抽卡 / 欧皇模式：**凭证类**能买，其余置灰；
+    // 抽卡 / 欧皇模式：**凭证类 + 香料**能买，其余置灰；
     //   随机礼盒模式整店置灰（2026-10-28 用户口径，与 Mouse_4 的判定保持一致）
     //   2026-11-17：神器/宝石进化凭证也归「凭证」—— 它是拿那些装备的唯一途径，
     //   抽卡模式同样要能买（诸神商店 2026-10-27 已按同一口径放开）
-    var _is_credit = (_goods_type == "card" && _card_shape > 0) || (_goods_type == "gear_evo");
-    var _gacha_disabled = is_random_gift_mode() || (is_eternal_gacha_mode() && !_is_credit);
+    //   2026-11-18：香料同样放开（抽卡模式的养成材料，皇室及以上都要能买）
+    var _gacha_ok = (_goods_type == "card" && _card_shape > 0)
+        || (_goods_type == "gear_evo")
+        || (_goods_type == "material");
+    var _gacha_disabled = is_random_gift_mode() || (is_eternal_gacha_mode() && !_gacha_ok);
 
     draw_sprite_ext(spr_shop_buy_btn, 0, _gx + 77, _gy + 60, 1.8, 1.8, 0, (_gacha_disabled || !_prerequisite_met) ? c_gray : c_white, 1);
     draw_set_font(font_yuan);

@@ -11,6 +11,8 @@
   "visible":true,
   "folders":[],
   "listItems":[
+    {"name":"obj_yinyangshe_poison","path":"objects/obj_yinyangshe_poison/obj_yinyangshe_poison.yy",},
+    {"name":"obj_jiejiema_field","path":"objects/obj_jiejiema_field/obj_jiejiema_field.yy",},
     {"name":"obj_shiliu_ash_fx","path":"objects/obj_shiliu_ash_fx/obj_shiliu_ash_fx.yy",},
     {"name":"obj_xinggui_god_effect","path":"objects/obj_xinggui_god_effect/obj_xinggui_god_effect.yy",},
     {"name":"obj_yuansushe_fx","path":"objects/obj_yuansushe_fx/obj_yuansushe_fx.yy",},

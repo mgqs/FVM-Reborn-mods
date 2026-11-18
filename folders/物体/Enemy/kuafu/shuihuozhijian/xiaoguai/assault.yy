@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"assault",
+  "folderPath":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/assault.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"assault",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"obj_kf_sh_assault","path":"objects/obj_kf_sh_assault/obj_kf_sh_assault.yy",},
+  ],
+}

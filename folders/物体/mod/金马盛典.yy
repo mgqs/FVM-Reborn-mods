@@ -1,0 +1,19 @@
+{
+  "$GMFolder":"",
+  "%Name":"金马盛典",
+  "folderPath":"folders/物体/mod/金马盛典.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"金马盛典",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+
+    {"name":"obj_zz_shop_bg","path":"objects/obj_zz_shop_bg/obj_zz_shop_bg.yy",},
+    {"name":"obj_zz_bg","path":"objects/obj_zz_bg/obj_zz_bg.yy",},
+    {"name":"obj_zz_enter","path":"objects/obj_zz_enter/obj_zz_enter.yy",},
+  ],
+}

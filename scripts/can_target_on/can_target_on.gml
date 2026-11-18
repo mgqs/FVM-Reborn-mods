@@ -72,6 +72,14 @@ function is_digging_dijing(_inst){
 		&& variable_instance_exists(_inst, "ly_mode") && _inst.ly_mode == "dig";
 }
 
+/// 散点追踪类（雪球兔 / 冰块冷萃机 / 典伊神使）的索敌排除
+/// 2026-11-18 用户口径：龙渊地精鼠**钻地期间直接算「不攻击类型」**——
+///   这类「全屏自动散点 / 逐只投掷」的攻击即不能锁它、也不该为它白扔一发。
+/// 🔴 只给散点那三张卡用。旋转喷壶 / 地火 / 灰烬等仍按各自白名单放行（obj_ly_dijing/Other_10）。
+function scatter_target_blocked(_inst){
+	return is_digging_dijing(_inst);
+}
+
 /// @function is_walking_dijing(_inst)
 /// @desc 龙渊地精「target_type 一直是 underground、人却在地面上走动」的那一档
 ///   打地下 / 溅射判定要用它排除（地精在地面上不该吃「打地下」的伤害）；

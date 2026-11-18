@@ -1,0 +1,17 @@
+ // Inherit the parent event
+event_inherited();
+mouse_id = "kf_sh_ninja"
+immune_to_ash = true
+hp = 860
+maxhp = 860
+move_anim = 12
+attack_anim = 29
+death_anim = 12
+move_speed = 0.257
+dash = true
+summon = false
+inst_up = noone
+inst_down = noone
+inst_left = noone
+inst_right = noone
+summon_cooldown = 900

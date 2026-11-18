@@ -410,7 +410,7 @@ for(var i = deck_first_slot_index; i < deck_first_slot_index+11;i++){
 			if (_cs_rw_rd != undefined) {
 					draw_text(100,820,"白银徽章（"+string(_cs_rw_rd.silver)+"）");
 					draw_text(100,860,"黄金徽章（"+string(_cs_rw_rd.gold_medal)+"）");
-					draw_text(100,900,"金币（"+string(_cs_rw_rd.coins)+"）");
+					draw_text(100,900,"金币（"+string(round(_cs_rw_rd.coins * cross_server_coin_mult()))+"）");
 				} else {
 				draw_text(100,820,"金币（"+string(global.level_file.rewards[1].gold)+"）")
 				draw_text(100,860,"技能："+string(global.level_file.rewards[1].skill_level)+"级")

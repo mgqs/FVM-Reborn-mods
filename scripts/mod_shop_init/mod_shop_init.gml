@@ -677,6 +677,8 @@ function mod_shop_init()
     register_goods("tianxie", { type: "card", cost: "100000", unlock_item_id: "tianxie", description: "天蝎座精灵：猩红毒针，一行连续4格穿透伤害（无视障碍）", display_name: "天蝎座精灵" });
     register_goods("yuansushe", { type: "card", cost: "95000", unlock_item_id: "yuansushe", description: "元素蛇：向本行前方发射1发带不同效果的子弹（黄定身 / 紫毒气 / 蓝冰冻减速 / 红暴击），可穿过障碍物但不穿透老鼠", display_name: "元素蛇" });
     register_goods("galaxy_horse", { type: "card", cost: "115000", unlock_item_id: "galaxy_horse", description: "银河马：召唤1颗陨石对本行老鼠进行海陆空全方位打击，击杀灰烬", display_name: "银河马" });
+    register_goods("jiejiema", { type: "card", cost: "95000", unlock_item_id: "jiejiema", description: "结界马：单独在场时攻击本格与前方1格，多只在场时围成结界攻击内部空陆地鼠军", display_name: "结界马" });
+    register_goods("yinyangshe", { type: "card", cost: "105000", unlock_item_id: "yinyangshe", description: "阴阳蛇：阴蛇发射5连子弹，每5发的第1发附带毒伤，可攻击未照明幽灵鼠", display_name: "阴阳蛇" });
     register_goods("qiedanlong", { type: "card", cost: "100000", unlock_item_id: "qiedanlong", description: "窃蛋龙：向前方3行投掷带溅射的龙蛋，未命中也会爆炸", display_name: "窃蛋龙" });
     register_goods("qishui", { type: "card", cost: "80000", unlock_item_id: "qishui", description: "弹珠汽水：直线弹命中后产生2倍伤害的弹射子弹，向周围3*3最近目标弹射，共3只", display_name: "弹珠汽水" });
     register_goods("shiguangji", { type: "card", cost: "80000", unlock_item_id: "shiguangji", description: "13周年时光机：随机为本格卡片升星或者降星", display_name: "13周年时光机" });

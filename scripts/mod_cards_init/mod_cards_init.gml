@@ -5449,4 +5449,86 @@ mod_register_plant_lite("xuanfengniu", [
     }
     ], false);
 
+    // ── 结界马家族（非远程类·连携类，耗能 180，2026-11-18 新卡）────────────
+    //   攻击力：xlsx Sheet1 第 4 行（70~730）；二转第 5 行是**直给的 2 倍**（140~1460），
+    //          不是倍率叠加，别再乘一次。
+    //   持续时间：25~45 秒写在 mod_skill_init 的 `duration` 技能表（9 个值 = 技能 0~8 级），
+    //          所以三个形态的星级表这里不参与，卡本体自己读技能键。
+    //   冷却 25 秒 / 体力 350 / 攻击间隔 2 秒（cycle 恒 120）。
+    mod_register_plant_lite("jiejiema", [
+    {
+        name: "结界马",
+        shape: 0,
+        description: "结界马：单独在场时攻击本格与前方1格，多只在场时围成结界攻击内部空陆地鼠军",
+        hp: array_create(17, 350),
+        cost: array_create(17, 180),
+        atk: [70, 80, 90, 120, 140, 160, 180, 220, 260, 300, 340, 380, 450, 520, 590, 660, 730],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 1500),
+        cycle: array_create(17, 120)
+    },
+    {
+        name: "一转结界马",
+        shape: 1,
+        description: "一转结界马：结界内同一只老鼠连续受击伤害递增，最高3倍",
+        hp: array_create(17, 350),
+        cost: array_create(17, 180),
+        atk: [70, 80, 90, 120, 140, 160, 180, 220, 260, 300, 340, 380, 450, 520, 590, 660, 730],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 1500),
+        cycle: array_create(17, 120)
+    },
+    {
+        name: "二转结界马",
+        shape: 2,
+        description: "二转结界马：攻击力翻倍，悬浮状态无需格子且可被铲除",
+        hp: array_create(17, 350),
+        cost: array_create(17, 180),
+        atk: [140, 160, 180, 240, 280, 320, 360, 440, 520, 600, 680, 760, 900, 1040, 1180, 1320, 1460],
+        range: array_create(17, 1),
+        cooldown: array_create(17, 1500),
+        cycle: array_create(17, 120)
+    }
+    ], false);
+
+    // ── 阴阳蛇家族（直射类·传统直线类，耗能 295，2026-11-18 新卡）──────────
+    //   攻击力：xlsx Sheet1 第 30 行（10~145），三形态同表（差异在弹数与毒伤倍率）。
+    //   攻击间隔：2.2~1.5 秒写在 mod_skill_init 的 `cycle` 技能表（9 个值 = 技能 0~8 级）。
+    //   体力 / 冷却表内未给，参照元素蛇取 50 / 7 秒（2026-11-18 用户确认）。
+    mod_register_plant_lite("yinyangshe", [
+    {
+        name: "阴阳蛇",
+        shape: 0,
+        description: "阴阳蛇：阴蛇发射5连子弹，每5发的第1发附带毒伤，可攻击未照明幽灵鼠",
+        hp: array_create(17, 50),
+        cost: array_create(17, 295),
+        atk: [10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132)
+    },
+    {
+        name: "一转阴阳蛇",
+        shape: 1,
+        description: "一转阴阳蛇：多一只阳蛇，一轮共发射10连子弹，首发毒伤依旧",
+        hp: array_create(17, 50),
+        cost: array_create(17, 295),
+        atk: [10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132)
+    },
+    {
+        name: "二转阴阳蛇",
+        shape: 2,
+        description: "二转阴阳蛇：阳蛇子弹穿透老鼠，阴蛇毒伤提升至4.5倍",
+        hp: array_create(17, 50),
+        cost: array_create(17, 295),
+        atk: [10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],
+        range: array_create(17, 10),
+        cooldown: array_create(17, 420),
+        cycle: array_create(17, 132)
+    }
+    ], false);
+
 }

@@ -46,7 +46,8 @@ if (!hit_done && image_index == hit_frame)
             
             with (obj_enemy_parent)
             {
-                if (hp > 0 && grid_row <= (other.row + 1) && grid_row >= (other.row - 1) && abs(x - _x) < _range && id != other.target_id && can_hit(other.target_type, target_type))
+                if (hp > 0 && grid_row <= (other.row + 1) && grid_row >= (other.row - 1) && abs(x - _x) < _range && id != other.target_id
+                    && !scatter_target_blocked(id) && can_hit(other.target_type, target_type))
                 {
                     damage_amount = other.damage * splash_ratio;
                     damage_type = other.damage_type;

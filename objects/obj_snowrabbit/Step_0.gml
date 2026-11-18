@@ -40,6 +40,7 @@ if (state == CARD_STATE.IDLE){
     var _has = false;
     with (obj_enemy_parent){
         if (!_has && hp > 0 && target_type != "obstacle"
+            && !scatter_target_blocked(id)
             && can_target_on(other.target_type, target_type)){
             _has = true;
         }

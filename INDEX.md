@@ -13,6 +13,8 @@
 | 卡片槽位显示（背包里看到的描述） | `scripts/mod_slots_init/mod_slots_init.gml` | 只显示，无 atk 字段 |
 | 卡片情报岛文案 | `scripts/mod_info_island_init/mod_info_island_init.gml` | 215 个 register 调用点 |
 | 卡片技能覆盖（0~8 级） | `scripts/mod_skill_init/mod_skill_init.gml` | 只对未注册的 key 生效 |
+| **结界马**（非远程 · 连携 · 结界多边形） | `objects/obj_jiejiema/*` + `objects/obj_jiejiema_field/*` + `scripts/jiejiema_field/jiejiema_field.gml` | 凸包→格集；7 段递增倍率，结界成形即清零 |
+| **阴阳蛇**（直射 · 5 连毒弹） | `objects/obj_yinyangshe/*` + `objects/obj_yinyangshe_bullet/*` + `objects/obj_yinyangshe_poison/*` | 首发毒 = atk × 过火 × 3/4.5；二转阳蛇穿透 |
 | 卡片分类（212 张，三级） | `scripts/card_buff_category/card_buff_category.gml:41-252` | `card_get_category` :268 |
 | 分类增幅落点（主/副类型） | `scripts/card_buff_category/card_buff_category.gml:345` | `_allowed` 名单 :367-374 |
 | 卡面骨架/出弹时机 | `objects/obj_card_parent/Step_0.gml` | `_anim_flash` 出弹兜底 :274-290 |

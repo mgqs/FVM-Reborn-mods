@@ -9,11 +9,19 @@ if (hp <= 0) {
 event_inherited();
 
 // 自动修复：通过通用生成器创建时 banding_target_inst 为 noone，需自动创建配对 target
+//   2026-11-18 修：旧写法无条件用 (x, y) 反推格子 —— 而 y 在屏幕上方，行号是负数，
+//   target 的目标点被算到地图外，蝙蝠落不下来（关卡里看不到）。现在只补缺失的落点，
+//   并把落点夹进地图范围、出生点贴到落点上方 480px，配对 target 也建在落点上方。
 if (banding_target_inst == noone) {
-    var _grid = get_grid_position_from_world(x, y)
-    target_col = _grid.col
-    target_row = _grid.row
-    var _target_inst = instance_create_depth(x, y - room_height, -500, obj_bat_mouse_target)
+    if (target_col < 0 || target_row < 0) {
+        var _grid = get_grid_position_from_world(x, y)
+        target_col = clamp(_grid.col, 0, global.grid_cols - 1)
+        target_row = clamp(_grid.row, 0, global.grid_rows - 1)
+    }
+    var _home = get_world_position_from_grid(target_col, target_row)
+    x = _home.x + 10
+    y = min(y, _home.y - 480)
+    var _target_inst = instance_create_depth(_home.x + 10, _home.y - 290, -500, obj_bat_mouse_target)
     _target_inst.target_col = target_col
     _target_inst.target_row = target_row
     banding_target_inst = _target_inst

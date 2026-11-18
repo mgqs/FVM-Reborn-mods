@@ -17,6 +17,8 @@
     {"name":"haiyang_god","path":"folders/物体/mod/Cards/haiyang_god.yy",},{"name":"zhanqima","path":"folders/物体/mod/Cards/zhanqima.yy",},
   ],
   "listItems":[
+    {"name":"obj_yinyangshe","path":"objects/obj_yinyangshe/obj_yinyangshe.yy",},
+    {"name":"obj_jiejiema","path":"objects/obj_jiejiema/obj_jiejiema.yy",},
     {"name":"obj_jingangma","path":"objects/obj_jingangma/obj_jingangma.yy",},
     {"name":"obj_qiedanlong","path":"objects/obj_qiedanlong/obj_qiedanlong.yy",},
     {"name":"obj_qishui","path":"objects/obj_qishui/obj_qishui.yy",},

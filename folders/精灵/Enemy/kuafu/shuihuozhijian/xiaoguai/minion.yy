@@ -1,0 +1,18 @@
+{
+  "$GMFolder":"",
+  "%Name":"minion",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/minion.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"minion",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_minion","path":"sprites/spr_kf_sh_minion/spr_kf_sh_minion.yy",},
+    {"name":"spr_kf_sh_minion_summon","path":"sprites/spr_kf_sh_minion_summon/spr_kf_sh_minion_summon.yy",},
+  ],
+}

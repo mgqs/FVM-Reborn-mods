@@ -70,16 +70,19 @@ for (var _slot = 0; _slot < 16; _slot++) {
     var _required_gem_id = "";
     var _required_weapon_id = "";
 
-    // 抽卡 / 欧皇模式：**一转·二转凭证照常可买**，其余（卡本体 / 武器 / 宝石）仍禁买；
+    // 抽卡 / 欧皇模式：**凭证类 + 香料**照常可买，其余（卡本体 / 武器 / 宝石）仍禁买；
     //   随机礼盒模式整店禁买（2026-10-28 用户口径）
     //   跨服黄金页的一/二转卖的就是转职凭证（card_shape > 0），跟威望商店、诸神的凭证一致
-    var _is_credit = (_goods_type == "card" && _card_shape > 0) || (_goods_type == "gear_evo");
+    //   2026-11-18 用户口径：香料（皇室及以上）本来就是抽卡模式的养成材料，必须能买
+    var _gacha_ok = (_goods_type == "card" && _card_shape > 0)
+        || (_goods_type == "gear_evo")
+        || (_goods_type == "material");
     if (is_random_gift_mode()) {
         show_notice("随机礼盒模式无法使用跨服商店", 60);
         exit;
     }
-    if (is_eternal_gacha_mode() && !_is_credit) {
-        show_notice("抽卡模式只能购买转职凭证", 60);
+    if (is_eternal_gacha_mode() && !_gacha_ok) {
+        show_notice("抽卡模式只能购买转职凭证与香料", 60);
         exit;
     }
 

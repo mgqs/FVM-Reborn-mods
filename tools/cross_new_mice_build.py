@@ -69,7 +69,9 @@ def resample(seq, n):
 
 
 def src_frames(case):
-    base = os.path.join(SRC_ROOT, case["src"].replace("/", os.sep))
+    src = case["src"].replace("/", os.sep)
+    # 绝对路径（如 SWF 导出目录）直接用；相对路径挂到 SRC_ROOT 下
+    base = src if os.path.isabs(src) else os.path.join(SRC_ROOT, src)
     files = [f for f in os.listdir(base) if f.lower().endswith(".png")]
     files.sort(key=lambda f: int(os.path.splitext(f)[0]))
     if len(files) != case["total_src"]:
@@ -243,9 +245,11 @@ def build_sprites(only=None):
                                    % (case["cn"], suffix, len(picks), total_frames))
             images = [Image.open(p).convert("RGBA") for p in picks]
             # 空帧守卫：原版该帧有内容、新帧全透明 → 取错帧
+            # （目标帧数多于原版帧数时，超出的部分不做比对）
+            old_n = len(sprite_meta(old_spr)["frames"])
             oo = [frame_image(old_spr, i).split()[3].getbbox() is not None
-                  for i in range(total_frames)]
-            lost = [i for i in range(total_frames)
+                  for i in range(min(total_frames, old_n))]
+            lost = [i for i in range(min(total_frames, old_n))
                     if oo[i] and images[i].split()[3].getbbox() is None]
             if lost:
                 raise RuntimeError("%s/%s: 第 %s 帧空白但原版有内容" % (case["cn"], suffix, lost))
@@ -307,14 +311,19 @@ def build_objects(only=None):
                 txt = io.open(sp, encoding="utf-8-sig").read()
                 for o in sorted(smap, key=len, reverse=True):
                     txt = re.sub(r"\b%s\b" % re.escape(o), smap[o], txt)
+                # 对象引用替换（例：忍者首领召唤本体的随从 → 新的僵尸小喽啰）
+                for o, n in sorted(case.get("obj_map", ()), key=lambda x: -len(x[0])):
+                    txt = re.sub(r"\b%s\b" % re.escape(o), n, txt)
                 txt = re.sub(r"^hp\s*=\s*[0-9]+", "hp = %d" % case["hp"], txt, flags=re.M)
                 txt = re.sub(r"^maxhp\s*=\s*[0-9]+", "maxhp = %d" % case["hp"], txt, flags=re.M)
                 # 防爆：注册表只影响情报岛显示，真正生效的是对象里的 immune_to_ash
-                if fn == "Create_0.gml":
+                if fn == "Create_0.gml" and case.get("enemy", True):
+                    want_ash = case.get("ash_proof", True)
                     if re.search(r"^immune_to_ash\s*=\s*\w+", txt, re.M):
-                        txt = re.sub(r"^immune_to_ash\s*=\s*\w+", "immune_to_ash = true",
+                        txt = re.sub(r"^immune_to_ash\s*=\s*\w+",
+                                     "immune_to_ash = %s" % ("true" if want_ash else "false"),
                                      txt, flags=re.M)
-                    else:
+                    elif want_ash:
                         txt = re.sub(r"^(event_inherited\(\);)",
                                      r"\1\nimmune_to_ash = true", txt, count=1, flags=re.M)
                     # 本体没写 mouse_id 的对象（潜艇）也要补，图鉴/情报岛按它索引
@@ -325,6 +334,11 @@ def build_objects(only=None):
                 for pfn, old_v, new_v in case.get("ms_patch", ()):
                     if pfn == fn:
                         txt = patch_move_speed(txt, old_v, new_v, case["cn"])
+                for pfn, old_t, new_t in case.get("text_patch", ()):
+                    if pfn == fn:
+                        if old_t not in txt:
+                            raise RuntimeError("%s/%s: 找不到待替换文本 %r" % (case["cn"], fn, old_t))
+                        txt = txt.replace(old_t, new_t)
                 txt = re.sub(r'mouse_id\s*=\s*"[^"]*"',
                              'mouse_id = "%s%s"' % (case["prefix"], case["key"]), txt)
                 io.open(os.path.join(dst, fn), "w", encoding="utf-8", newline="\n").write(txt)
@@ -354,7 +368,7 @@ REG_TMPL = """    // %(cn)s：%(desc_short)s
         atk: %(atk)d,
         cycle: %(cycle)d,
         range: %(range)d,
-        ash_proof: true,
+        ash_proof: %(ash)s,
         spr: %(spr)s,
         feature: "%(feature)s",
     });
@@ -376,6 +390,7 @@ def build_init_scripts():
                 id=eid, name=reg["name"], obj="obj_" + eid,
                 hp=case["hp"], speed=case["speed"], desc=reg["desc"],
                 atk=reg["atk"], cycle=reg["cycle"], range=reg["range"],
+                ash="true" if case.get("ash_proof", True) else "false",
                 spr=sprite_name(case, main_suffix), feature=reg["feature"]))
         title = {"sh": "水火之间", "wd": "巫毒研究所"}[tag]
         txt = INIT_TMPL % dict(title=title, func=cfg["func"], _objs=" / ".join(objs),

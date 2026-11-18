@@ -10,6 +10,8 @@
   "viewLocked":false,
   "visible":true,
   "folders":[
+    {"name":"yinyangshe","path":"folders/精灵/mod/Cards/yinyangshe.yy",},
+    {"name":"jiejiema","path":"folders/精灵/mod/Cards/jiejiema.yy",},
     {"name":"Track","path":"folders/精灵/mod/Cards/Track.yy",},
     {"name":"huanyingshe","path":"folders/精灵/mod/Cards/Pult/huanyingshe.yy",},
     {"name":"honeytrap","path":"folders/精灵/mod/Cards/Track/honeytrap.yy",},

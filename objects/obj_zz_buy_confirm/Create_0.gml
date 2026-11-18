@@ -9,16 +9,18 @@ width  = sprite_get_width(bg);
 height = sprite_get_height(bg);
 
 buttons = [
-	[-80, "确定", 110, 40],
-	[80,  "取消", 110, 40]
+	[-80, "确定", 120, 52],
+	[80,  "取消", 120, 52]
 ];
 
 selected_button = -1;
 zz_idx = -1;
 
-// 按钮绘制缩放：spr_common_button 是 78×33，1.35 倍 → 105×45，
-// 与参考稿里那对按钮（108×37）体量一致，又不至于撑破对话框下沿
-zz_btn_scale = 1.35;
+// 按钮绘制缩放：与商城 obj_shop_buy_confirm 完全一致（0.75）。
+//   注意 spr_common_button 的 .yy 声明是 78×33，但贴图实际是 156×66（裁切前的旧值），
+//   所以**不能**再按 sprite_get_width 算尺寸自己减半定位——那样会画成两倍大、还会歪。
+//   照商城的写法：把按钮中心坐标直接交给精灵原点（78,32 ≈ 贴图正中）去居中。
+zz_btn_scale = 0.75;
 
 // 定位到屏幕中心
 x = room_width / 2;

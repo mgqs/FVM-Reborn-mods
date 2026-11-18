@@ -35,7 +35,7 @@ YY_TMPL = '''{
   ],
   "name":"%(name)s",
   "nineSlice":null,
-  "origin":4,
+  "origin":%(origin)d,
   "parent":{
     "name":"%(pname)s",
     "path":"folders/精灵/%(pdir)s.yy",
@@ -107,8 +107,9 @@ KEY_TMPL = ('            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{\n'
             '              },"Disabled":false,"id":"%(k)s","IsCreationKey":false,"Key":%(key).1f,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},')
 
 
-def build(name, pngs, w, h, ox, oy, texture_group, pdir='mod', force_parent_list=True):
-    """pdir：工程里 folders/精灵/ 下的目标文件夹（如 'mod' / 'mod/Craft'）。"""
+def build(name, pngs, w, h, ox, oy, texture_group, pdir='mod', force_parent_list=True, origin=4):
+    """pdir：工程里 folders/精灵/ 下的目标文件夹（如 'mod' / 'mod/Craft'）。
+    origin：GMS 源点索引（4=middle_center，7=bottom_center）；xorigin/yorigin 由 ox/oy 给。"""
     d = os.path.join(ROOT, 'sprites', name)
     if os.path.isdir(d):
         shutil.rmtree(d)
@@ -132,7 +133,7 @@ def build(name, pngs, w, h, ox, oy, texture_group, pdir='mod', force_parent_list
     yy = YY_TMPL % dict(name=name, frames='\n'.join(frames), layers='\n'.join(layers),
                         keys='\n'.join(keys), w=w, h=h, w1=w - 1, h1=h - 1,
                         ox=ox, oy=oy, tg=texture_group, length=float(len(pngs)),
-                        pname=pdir.split('/')[-1], pdir=pdir)
+                        pname=pdir.split('/')[-1], pdir=pdir, origin=origin)
     with open(os.path.join(d, name + '.yy'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(yy)
     print('精灵已生成:', d, len(pngs), '帧')

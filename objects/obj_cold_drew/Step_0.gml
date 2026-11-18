@@ -26,6 +26,8 @@ var has_enemy = false;
 
 with (obj_enemy_parent)
 {
+    // 钻地中的龙渊地精鼠按「不攻击类型」直接跳过（散点不该锁它，也不该为它耗一发）
+    if (scatter_target_blocked(id)) continue;
     if (can_target_on(other.target_type, target_type))
     {
         has_enemy = true;
