@@ -8,12 +8,26 @@ if (hp <= 0) {
 }
 event_inherited();
 
-// 自动修复：通过通用生成器创建时 banding_target_inst 为 noone，需自动创建配对 target
+// 落点 / 配对 target：与蝙蝠鼠（obj_bat_mouse/Step_0）同一套写法。
+//   - obj_event_manager 的 kuafu_bat_spawn 成对创建时 banding_target_inst 已有值，这里跳过；
+//   - 关卡 waves 里直接放 kuafu_bat（通用生成器不建 target）时在这里补齐。
+//     与蝙蝠鼠唯一的差别：这里出生高度贴得更近（落点上方 80px，target 上方 120px）。
+//     蝙蝠鼠是「定时事件」刷的，有整局时间从天上吊下来；变异蝙蝠是「编在波次里」的，
+//     波次清完就进下一波 / 直接结算，出生在屏幕上方 480px 的话整段下降还没走完关卡就结束了
+//     —— 表现就是「设置了变异蝙蝠但关卡里看不到」。贴近落点后第一帧就在屏幕内。
 if (banding_target_inst == noone) {
-    var _grid = get_grid_position_from_world(x, y)
-    target_col = _grid.col
-    target_row = _grid.row
-    var _target_inst = instance_create_depth(x, y - room_height, -500, obj_kuafu_bat_target)
+    if (target_col < 0 || target_row < 0) {
+        var _grid = get_grid_position_from_world(x, y)
+        target_col = clamp(_grid.col, 0, global.grid_cols - 1)
+        target_row = clamp(_grid.row, 0, global.grid_rows - 1)
+        // 关卡 waves 里放的变异蝙蝠：列洗成地图内随机一列（通用生成器一律把敌人刷在最右列），
+        // 行沿用生成器挑好的行，免得落到空行 / 水行上。
+        target_col = irandom_range(0, global.grid_cols - 1)
+    }
+    var _home = get_world_position_from_grid(target_col, target_row)
+    x = _home.x + 30
+    y = min(y, _home.y - 80)
+    var _target_inst = instance_create_depth(_home.x + 30, _home.y - 120, -500, obj_kuafu_bat_target)
     _target_inst.target_col = target_col
     _target_inst.target_row = target_row
     banding_target_inst = _target_inst

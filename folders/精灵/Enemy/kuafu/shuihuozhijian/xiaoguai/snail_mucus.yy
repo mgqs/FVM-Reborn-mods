@@ -1,0 +1,17 @@
+{
+  "$GMFolder":"",
+  "%Name":"snail_mucus",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/snail_mucus.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"snail_mucus",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_snail_mucus","path":"sprites/spr_kf_sh_snail_mucus/spr_kf_sh_snail_mucus.yy",},
+  ],
+}

@@ -18,6 +18,12 @@
 | 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿文件，永不执行 | B1 |
 | 点某个按钮却跳到别的页 / 被藏起来的按钮照样能点 | `visible = false` **只跳过 Draw**，Mouse 事件照样派发 → 在被藏对象的 `Mouse_4` 里 `if (!visible) exit` + 按页签再拦一道；别指望「藏起来就点不到」 | B39 |
 | 动画看起来播了两遍 | 先查 sprite 表里有没有重复段，别先怀疑代码重播 | B2 |
+| 新卡「待机动画里带着施法/张嘴姿势」「攻击姿势永远不播」 | 别靠 `ViewImage` 肉眼判断「这批帧全是待机」——去 SWF 里读 `FrameLabelTag` 定分段：`java -jar ffdec.jar -swf2xml out.xml x.swf`，在 `DefineSpriteTag/subTags` 里按 `ShowFrameTag` 累计帧号，看「待机 / 攻击 / 技能」各落在第几帧 | B46 |
+| 「子弹比动作先出来」/ 要定攻击段里哪一帧出弹 | 段标签只给段起点，不给吐弹帧：先逐帧像素差分找峰值（阴阳蛇 17→18 帧差 2960 px、右缘 77→91），再把候选帧头部放大 8~10 倍拼图看姿态；落到代码就盯 `image_index` 别再数固定帧 | B46 |
+| 子弹过火了：伤害和倍率都对，但**看起来还是原来那颗弹** | 换贴图**不是** `bullet_hazard_fire` 干的（普通火源分支只改倍率 / 尺寸 / 音效）→ 子弹自己的 Step 里写 `if (burnt > 0 && !冰弹) { sprite_index = spr_fire_bullet; image_speed = 0; image_index = (life div 4) mod 4; 放大 1.8 }`；融盆二转冰弹要让路（`brazier_list` 有 `-9999` 就跳过） | B47 |
+| 新加的不占格（gridless）卡能同一格无限叠 | 去 `place_mutex_class` 加一行 `case "<card_id>": return "<类名>";`；别改 `can_place_at_position` 的 gridless 分支（`return true` 是故意的） | C28 |
+| 新卡特效糊在卡片前面 / 反而看不见 | depth **越小越靠前**：卡片是 `-10-45*row-5*col-层偏移`（全在 -10~-330）→ 要压卡片之下取 `-10-45*row_min+1`，别超过 `obj_battle` 的 `+50` | C29 |
+| 多边形/区域特效「糊成一个方框」，跑到边线外面 | 方形贴图按包围盒拉伸裁不出斜边（四角也带 alpha）→ 用 `draw_primitive_begin_texture(pr_trianglefan)` 自己造几何：顶点=凸包、扇心=质心、uv 走 `sprite_get_uvs` 按包围盒映射，越界的地方没有三角形就不会被画 | C30 |
 | 报 `Variable obj_xxx.spr_yyy not set before reading it`（标识符是精灵名） | 精灵**目录/图齐全也不算数**：查 yyp `resources` 有没有这一条，缺就补注册再 reload | D6 |
 | 贴图朝向反了 | 先开 `ViewImage` 看 sprite 首帧本身朝哪边，再决定翻转 | B3 |
 | 卡片待机像「一直在长大 / 帧序错乱」 | 量每帧不透明 bbox 宽度分段：生长段单调增、爆炸段橙色像素=0、待机段稳定且末帧=首帧；别拿「项目帧 vs 源帧像素一致」当帧序没问题的证据 | B14 |
@@ -83,6 +89,9 @@
 | 两侧对向发弹的卡，有一发像"倒着飞 / 折返" | 镜像弹要写全 `image_xscale`+`visual_scale_x` 四项；对象池 `acquire` 不清 `visual_scale_*`，镜像会跨发残留。直线弹另用 `phoenix_vx` 锁方向 | B41 |
 | 子弹改成"夹在两行之间、打上下两行"后一发都打不中 | 别只挪 y：bbox 几何判定和 SAP 纵向裁剪会同时失效。加 `cover_a/cover_b` 按行号判 + 水平距离判命中，并给 `bullet_sap_type_list` 传 `y_margin = grid_cell_size_y` | B42 |
 | 投手卡 / 老鼠 Step 崩 `Unable to find instance for object index N`，堆栈指向 `combat_enemy_*` 且行号 -1 | 别再往 `combat_target_alive` 加判据：行桶存的是同 step 快照 id，`instance_exists` 对「同 step 内刚失效」的 id 仍为 true → 一律改 `with (obj_enemy_parent)` / `with (obj_card_parent)` 直扫活实例 | B40 |
+| 编在 `waves[].subwaves[].enemy_list` 里的敌人「不出场」，`wave_ignore` 也修不好 | 看它出生高度：波次路径没有整局时间等它从天上吊下来。落点/配对 target 全交给 Step 的 `banding_target_inst == noone` 补齐块，出生高度贴近落点（`_home.y - 80`），Create 只管数据 | B43 |
+| 新敌人精灵「帧数跟原版一样」但游戏里播错段（走路播成攻击 / 死亡播一半） | 父类 `obj_enemy_parent` 按 `move*2 + attack*2 + death` 索引，**段序固定五段**：正常行走 / 受伤行走 / 正常攻击 / 受伤攻击 / 死亡。帧数要按原版精灵反推每段长度，不能照 SWF FrameLabel 顺序切 | B44 |
+| 商城「看不到某件商品」（如新上的某套时装） | 先算页数再怀疑数据：`shop_list_recharge` 的列表序是 `ds_map_keys_to_array` 的**哈希序**，每页 16 个 → 178 件时装 = 12 页，同批写入的会被打散。数据侧先核对 `goods_map` 与 `attire_pool` 条数是否相等（178=178），别一上来查精灵和绘制 | B45 |
 
 ### A11 用 `Get-ChildItem -Recurse` 找文件 → 每次 15~22 秒
 - **症状**：一件「找一下哪些文件引用了 X」的活儿拖到几十秒；换个关键词再扫一遍，时间线性叠加。
@@ -891,6 +900,41 @@
   判据：`rg -n "ds_list_add\(global\.buff_sources" objects scripts` 应**只剩封装内部那一行**。
 - **证据**：2026-11-15；`scripts/mod_build_buff_grid/mod_build_buff_grid.gml:34-48`、`scripts/mod_set_card_level/mod_set_card_level.gml:84`、`objects/obj_fengrao_god/Step_0.gml:6-15`；复现脚本 `output/_tmp/fengrao_stack_sim.py`（修复前 2.50/5.12/7.32/7.50，与用户截图逐项一致）。
 
+### C28 新增不占格（gridless）卡能「同一格无限叠」→ 少登记 `place_mutex_class`
+- **症状**：二转结界马是悬浮卡，同一格拖几张就叠几张（用户 2026-11-18 报，要求照海洋女神只留一张）。
+- **错路**：以为要改 `can_place_at_position` 的 `case "gridless"` 分支（那里 `return true` 是**故意的**：
+  悬浮卡之间本来就允许互相叠放，海洋女神 / 战旗马 / 星轨神也是靠前置白名单单个限制的）。
+- **正确路径**：加卡的「同格唯一」登记在 `scripts/place_mutex_class/place_mutex_class.gml`，
+  一行 `case "<card_id>": return "<唯一类名>";` 即可 —— 该检查在 `can_place_at_position:108` 跑，
+  **早于** `global.debug` 之后的 gridless 分支与海克斯「万物皆可炸」分支，所以绕不过去；也自动尊重
+  `global.replace_placement`（升级替换）。类名只填自己（本次 `jiejiema_self`）等价于「同名卡不能同格」。
+  0/1 转是 `plant_type="normal"`，本来就被 normal 同类判定拦住，登记后行为不变。
+- **证据**：`scripts/place_mutex_class/place_mutex_class.gml:9-24`、`scripts/can_place_at_position/can_place_at_position.gml:108-117`、2026-11-18 日志。
+
+### C29 新卡特效「盖在卡片前面」→ depth 要按 `calculate_plant_depth` 那套行距反着算
+- **症状**：结界马的结界格 / 连线 / 多边形墙画在所有卡片前面，把卡糊住了（用户 2026-11-18 报）。
+- **错路**：按「特效要显眼」的直觉给了 `depth = -400` —— 这个工程里 depth **越小越靠前**，
+  而卡片是 `-10 - row*45 - col*5 - 层偏移`（`scripts/card_depth`），全在 `-10 ~ -330`，所以 -400 直接冲到最前。
+- **正确路径**：想压在卡片之下就取**比卡片更大的值**。跨多行的特效取「场上最上一行（row 最小）」的
+  行基准再 +1：`depth = -10 - row_min*45 + 1`（`obj_bbq/Create_0:102` 的地面火用的就是 `-10 - row*45`）。
+  `+1` 是为了不跟同格 gridless 卡同深度（相等深度的绘制顺序未定义）。
+  上限别超过 `obj_battle` 的 `+50`，否则会掉到地图背景后面；`-10 ~ 0` 这一段就是「地面之上、卡片之下」。
+- **证据**：`objects/obj_jiejiema_field/Step_0.gml:59-73`、`objects/obj_jiejiema_field/Create_0.gml:6-10`、
+  `scripts/card_depth/card_depth.gml:6-31`、`objects/obj_battle/Create_0.gml:5`、2026-11-18 日志。
+
+### C30 多边形特效「糊成一个方框」→ 贴图是方的，按包围盒拉伸裁不出斜边
+- **症状**：结界马 3 只以上围出的结界，内部雾铺成一个方框、跑到连线外面，还叠着每格一块的方块，
+  观感是「一堆方格」而不是「一整片结界」（用户 2026-11-18 报，给了目标效果图）。
+- **错路**：指望「贴图自带形状」自己裁 —— `spr_jiejiema_fx_inside` 是 485×455 的方形图，
+  四角**也有 alpha**（均值 56/255、最大 214），按包围盒 `draw_sprite_ext` 拉伸时根本没有可用的斜边。
+- **正确路径**：几何自己造 —— `draw_primitive_begin_texture(pr_trianglefan, tex)` +
+  `draw_vertex_texture_color`，顶点用凸包、扇心用顶点质心（凸包 → 必在内部），
+  uv 用 `sprite_get_texture` + `sprite_get_uvs` 的前四个分量按包围盒线性映射。
+  画不出的地方就是没有三角形，**不需要 surface / stencil**。
+  贴图边缘是渐隐的，uv 要内缩 2% 免得边界断开；想加浓就叠第二层（uv 收到中央 32%、alpha 调低）。
+- **证据**：`objects/obj_jiejiema_field/Draw_0.gml:51-107`、`scripts/jiejiema_field/jiejiema_field.gml:276-303`、
+  2026-11-18 日志。
+
 ### B36 关卡「还是两层云」→ 别只盯云事件，先看底图被画了几遍 + 补排间隔是否大于云走一格的时间
 - **症状**：跨服·梦魇天空改完底图（col0-1 画死云墙、col2-8 清空）并关掉常驻云后，用户仍报「还是两层云」，要求照棉花糖天空的设置方法改。
 - **错路（两条）**：
@@ -1034,8 +1078,121 @@
 - **区分**：缺 yyp `Folders` → IDE 直接报 `Cannot find folder path` 打不开（2026-11-17 13:5x）；
   缺 yyp `resources` → 能开能编译，运行到那行才崩（同日 15:3x）。**两次都是「文件在、注册没跟上」**。
 
-## 追加模板
-```
+### B43 「编在波次里的敌人不出场」→ 先看它的出生高度，别在 Create 里自己搬位置
+- **症状**：梦魇天空的变异蝙蝠鼠（`type: "kuafu_bat"` 写在 `waves[].subwaves[].enemy_list`）进关卡看不到；
+  用户口径「真因不是 `wave_ignore`，直接参考蝙蝠鼠的形式」。
+- **错路**：在 `obj_kuafu_bat/Create_0` 里把 x/y 改成随机落点、出生点抬到落点上方 520px，
+  再让 Step 用 `(x,y)` 反推格子建 target —— 两处各自算一遍落点，容易对不上；即便对上了，
+  出生点在屏幕上方 480~520px、APPEAR 状态还要先等 120 帧才开始下降，
+  整段两秒多的「吊下来」还没走完，波次已经清完结算（`battle_finish_win()` 里 `global.is_paused = true`），
+  蝙蝠就永远留在屏幕外。
+- **正确路径**：整份照抄能用的那一个 —— `obj_bat_mouse`：Create 只管数据（不碰 x/y、不定落点），
+  落点/配对 target/出生高度全在 Step 的「`if (banding_target_inst == noone)` 自动补齐」块里做；
+  事件生成器（`obj_event_manager` 的 `bat_mouse_spawn` / `kuafu_bat_spawn`）成对创建 target + 敌人并互绑
+  `banding_target_inst`。**波次里放的**这一路要额外把出生高度贴近落点（`_home.y - 80`，target `- 120`），
+  否则两秒下降期照样赶不上结算。
+- **证据**：`objects/obj_kuafu_bat/{Create_0,Step_0}.gml`、`objects/obj_bat_mouse/Step_0.gml:11-28`、
+  `objects/obj_event_manager/Step_0.gml:372-404`、`scripts/battle_finish_win/battle_finish_win.gml:23-24`。
+
+### B44 「新敌人精灵帧数照原版」但播错段 → 父类动画索引是固定五段，按原版精灵反推每段长度
+- **症状**：跨服僵尸鼠四只（潜艇 / 突袭 / 忍者 / 小喽啰）精灵总帧数都对齐了原版同类鼠，
+  但游戏里走路播成攻击、死亡只播一半、受伤段完全不出现。
+- **错路**：拿 `ffdec` 导出的 `FrameLabel`（`DefineSprite` 里的标签名）当分段依据，按标签顺序切——
+  SWF 里标签的时间轴顺序 ≠ 游戏里精灵的帧顺序。例如潜艇 SWF 是「正常行走 0..12 / 受伤行走 20..32 /
+  正常攻击 54..58 / 受伤攻击 78..82 / 死亡 82..94」，但突袭 SWF 的攻击帧在 112..126（中间隔着陆地段），
+  标签顺序一套上去整段错位。
+- **正确路径**：**父类 `obj_enemy_parent` 只认一套固定五段布局**——
+  `正常行走 / 受伤行走 / 正常攻击 / 受伤攻击 / 死亡`，索引是 `move*2 + attack*2 + death`。
+  所以先读原版同名鼠精灵的 `move_anim / attack_anim / death_anim`，反推每段帧数
+  （潜艇 8/8/4/4/12、突袭 8/8/4/4/8、忍者 12/12/29/29/12、小喽啰 12/12/29/29/13、蜗牛 8/8/8/9+8），
+  再从 SWF 里挑对应的帧范围去重采样；**每段长度必须与原版相等**，否则一改就串。
+- **附带三条**：
+  1. 同一只鼠的所有精灵（main / land / helmet / enter / appear）**必须共用同一个 origin 参考帧**，
+     否则切换水陆形态会「跳一下」。
+  2. 全透明帧不能当参考帧：蜗牛爆炸末帧、黏液首帧都是全透明，改用相邻有内容的帧；
+     构建器加「空帧守卫」——原版帧有内容而新帧全空就报错，别让透明帧悄悄混进动画。
+  3. 1:1 复制的老素材（蜗牛 41 帧同构）直接把 Step 的 `mod` / 锁帧 / 阈值一起改，光换精灵不改节奏会卡帧。
+- **证据**：`tools/cross_new_mice_spec.py:112-265`、`objects/obj_enemy_parent` 动画索引、
+  `objects/obj_snail_mouse_mucus/Step_0.gml`（`mod 6`→`mod 10`）、2026-11-18 日志。
+
+### B45 商城「看不到某件商品」→ 先算页数，别先怀疑注册
+- **症状**：新上架的四套时装里，用户只报「星之耀男B 在商城里看不到」（其余三套他能看到）。
+- **错路**：先去翻 `register_goods` / `register_attire` / 8 个精灵的 `.yy` 与帧图 / `obj_shop_bg`
+  的 4×4 绘制循环——全部完好，白绕五六轮。真正的成因在**列表顺序**。
+- **正确路径**：
+  1. 先核对两边条数是否相等：`shop_init` 里 `"type":"player_attire"` 条数 vs
+     `attire_init` 里 `"target_card":"player"` 条数（本次 178 = 178，id 一一对应 → 没缺）。
+  2. 再看 `objects/obj_shop_bg/Create_0.gml` 的 `shop_list_recharge`：商品列表来自
+     `ds_map_keys_to_array(global.goods_map)`，那是 **ds_map 哈希遍历序**，不是书写序。
+     每页固定 16 个（`current_max_page = ceil(size/16)`，178 件 = 12 页）→ 同批写入的商品会被
+     打散到不同页，玩家翻完 12 页也未必看见某一件。
+  3. 自查话术给用户：搜索框输入系列名（如「星之耀」），能列全就说明数据在、只是翻不到。
+  4. 要根治就让该页签按 `global.goods_id_pool` 下标排序（`= shop_init` 书写顺序）。
+     插入排序块见 `objects/obj_shop_bg/Create_0.gml:186-212`（只挂 `shop_button_select == 5`，
+     变量一律带 `5` 后缀，避免与同函数里凭证页排序的 `_sn/_cur/_ck/_b` 撞名）。
+- **证据**：`objects/obj_shop_bg/Create_0.gml:186`（新排序块）、`scripts/shop_init/shop_init.gml:226-229`、
+  2026-11-18 日志。
+
+### B46 新卡动画「待机里带施法姿势 / 攻击姿势不播」→ 帧分段要读 SWF 的 FrameLabelTag
+- **症状**：阴阳蛇 22 帧整段当待机循环，待机动画里每隔一秒就张嘴喷一次；出弹时反而是呼吸姿势。
+  用户报「IDLE 帧和发射子弹的帧不对」。结界马同样中招（21/24 帧里后半段是「技能」）。
+- **错路**：靠 `ViewImage` 看 1.png / 11.png / 12.png / 14.png 的缩略图，觉得「几张长得一样 → 全是待机」，
+  于是写 `idle_anim = sprite_get_number(sprite_index) - 1; attack_anim = 0;`。
+  缩略图根本看不出 5px 的嘴部差异，这个方法从根上不可靠。
+- **正确路径**：
+  1. `java -jar ffdec.jar -swf2xml out.xml x.swf`（**必须绝对路径**，相对路径报 `File not found.`；
+     `ffdec-cli.jar` 只有 1.5 KB 是启动壳，用 5.8 MB 的 `ffdec.jar`）。
+  2. 解析 `DefineSpriteTag/subTags`：按 `ShowFrameTag` 累计帧号，`FrameLabelTag` 落在哪一帧就是段起点。
+     XML 里时间轴条目包在 `<subTags>` 里，直接遍历 `DefineSpriteTag` 的子节点拿不到标签。
+  3. 段 → 字段的换算（`obj_card_parent/Step_0:281-289`）：
+     `idle_anim` = **待机段末下标**（待机帧数 − 1），`attack_anim` = **攻击段长**（帧数）。
+     阴阳蛇 22 帧（待机 1~12 / 攻击 13~22）→ `idle_anim = 11` / `attack_anim = 10`；
+     结界马 21 帧（1~10 / 11~21）→ `9 / 11`，24 帧（1~12 / 13~24）→ `11 / 12`。
+     银河马就是照这个填的（25 帧 → `12 / 12`），可以当参照。
+  4. 只有「有目标才出弹」的卡才需要切 ATTACK；纯计时卡（结界马）用 `jj_skill_timer` 这种倒计时
+     在结界结算那一帧点亮，走完一轮自己回 IDLE。
+  5. **段内「出弹帧」怎么定**（2026-11-18 追加）：段标签只给「攻击从第几帧开始」，不给「第几帧才吐」。
+     两步定位：① 逐帧像素差分（相对上一帧）找峰值 —— 阴阳蛇 17→18 帧差 2960 像素、非透明区域右缘
+     从 77 突扩到 91，是全段唯一断点；② 把候选帧的头部区域裁出来放大 8~10 倍拼成 2 行图再看姿态
+     （16 帧低头闭嘴蓄力 → 17 帧抬头张嘴 → 18 帧甩头吐出）。整帧缩略图看不出这个差别。
+     落到代码**别数固定帧数**，直接盯 `image_index`：`yy_fire_frame = 17`，
+     父对象每 `flash_speed` 帧推一格；再配一个兜底（`yy_charge = 90`，减速态要 60 帧才到 17）。
+     发弹后才补「攻击段剩余帧」到 `yy_anim_hold`，否则会「吐完再做一遍起手」；
+     起手期间别停 `attack_timer`，否则整体攻速被拖慢。
+- **证据**：`objects/obj_yinyangshe/Create_0.gml:25-37`、`objects/obj_yinyangshe/Step_0.gml:29-41`、
+  `objects/obj_jiejiema/Create_0.gml:29-47`、`objects/obj_jiejiema_field/Step_0.gml:65-72`、
+  `res1118/11月份做卡11.14/spr-yinyangshe/0x11122600.swf`（spriteId=22、frame 1 待机 / frame 13 攻击）、
+  2026-11-18 日志。
+
+### B47 子弹过火「伤害对、外观没变」→ 换贴图是子弹自己的事，父类只改倍率
+
+- **症状**：阴阳蛇被火盆点燃后，`damage` / `fire_mult` 都对（毒伤也跟着乘了倍率），
+  但屏幕上还是蛇弹原图，不会变成火球。用户报「阴阳蛇过火没有火弹贴图」。
+- **错路**：以为 `bullet_hazard_fire` 是「过火的全部」，在子弹 Create 里声明
+  `hazard_fire = true` 就完事 —— 它只负责门禁 / 同排 / 取最高倍率 / 音效 / **尺寸**。
+- **正确路径**（`scripts/mod_bullet_hazard/mod_bullet_hazard.gml:189-204`）：
+  只有「冰火弹被更高倍率再点燃」这一支才 `sprite_index = spr_fire_bullet`；
+  普通火源分支只写 `image_xscale = _scale`。**换贴图必须写在子弹自己的 Step**：
+  ```gml
+  if (burnt > 0 && !_is_ice_bullet) {
+      sprite_index = spr_fire_bullet;                                  // 41×14，尖尾在左 = 默认朝右
+      image_speed  = 0;                                                // 帧自己推，别让引擎再叠
+      image_index  = (life div 4) mod sprite_get_number(spr_fire_bullet);  // 4 帧火苗
+      _sc = 1.8;                                                       // 与其它普通子弹过火一致
+  }
+  ```
+  两个配套点：
+  1. **冰弹让路**：`ds_list_find_index(brazier_list, -9999) != -1` 时不换，否则每帧被改回火球，
+     融盆二转的冰弹外观等于没有（bbq / 法士蛇 / 玉米子弹都写了这个守卫）。
+  2. 朝向沿用飞行的镜像（`move_speed >= 0 ? 1 : -1` 乘到 `visual_scale_x`）。若要更省事，
+     把 `hazard_fire` 声明成 `{ scale: 0 }` —— 父类普通分支会写**无符号**的
+     `image_xscale = 1.8`，被弹回朝左飞的那一帧会被掰正、闪一下；自己管尺寸就不打架。
+- **自查口诀**：过火三件事 —— 倍率（父类）、尺寸（父类或自己）、**贴图（一定自己）**。
+- **证据**：`objects/obj_yinyangshe_bullet/Step_0.gml:9-35`、`objects/obj_yinyangshe_bullet/Create_0.gml:24-33`、
+  `objects/obj_bbq_bullet/Step_0.gml:13-20`、`objects/obj_fashishe_bullet/Step_0.gml:17-25`、
+  `scripts/mod_bullet_hazard/mod_bullet_hazard.gml:155-204`、2026-11-18 日志。
+
+## 追加模板```
 ### X{n} <一句话症状>
 - **症状**：看到什么、在哪一步暴露。
 - **错路**：当时怎么做的。

@@ -1,0 +1,22 @@
+{
+  "$GMFolder":"",
+  "%Name":"jiejiema",
+  "folderPath":"folders/精灵/mod/Cards/jiejiema.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"jiejiema",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_jiejiema_fx_inside","path":"sprites/spr_jiejiema_fx_inside/spr_jiejiema_fx_inside.yy",},
+    {"name":"spr_jiejiema_fx_side","path":"sprites/spr_jiejiema_fx_side/spr_jiejiema_fx_side.yy",},
+    {"name":"spr_jiejiema_fx_line","path":"sprites/spr_jiejiema_fx_line/spr_jiejiema_fx_line.yy",},
+    {"name":"spr_jiejiema_fx_grid","path":"sprites/spr_jiejiema_fx_grid/spr_jiejiema_fx_grid.yy",},
+    {"name":"spr_jiejiema_2","path":"sprites/spr_jiejiema_2/spr_jiejiema_2.yy",},
+    {"name":"spr_jiejiema_1","path":"sprites/spr_jiejiema_1/spr_jiejiema_1.yy",},
+    {"name":"spr_jiejiema","path":"sprites/spr_jiejiema/spr_jiejiema.yy",},
+  ],
+}

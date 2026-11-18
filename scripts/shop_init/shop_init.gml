@@ -38,6 +38,9 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("guard_gem",{"type":"gem","cost":"20000","unlock_item_id":"guard_gem","description":"守护宝石：治疗周围卡片并增加生命上限","display_name":"守护宝石"})
 	register_goods("strength_gem",{"type":"gem","cost":"50000","unlock_item_id":"strength_gem","description":"蓄力宝石：增加周围卡片伤害","display_name":"蓄力宝石"})
 	register_goods("ice_gem",{"type":"gem","cost":"30000","unlock_item_id":"ice_gem","description":"减速宝石：对伤害到的老鼠造成减速\n需镶嵌于超级武器槽位","display_name":"减速宝石（超级武器）"})
+	// 2026-11-18 用户口径：神圣宝石（主武器）以前只在 weapons_init 里 register_gem 了本体，
+	//   没有 register_goods → 商店「武器/宝石」页永远不显示（用户报「商店没神圣宝石」）。补上上架条目。
+	register_goods("holy_gem",{"type":"gem","cost":"150000","unlock_item_id":"holy_gem","description":"神圣宝石：使全屏卡片锁定为满生命值\n需镶嵌于主武器槽位","display_name":"神圣宝石"})
 	register_goods("ice_spoon_crossbow",{"type":"weapon","cost":"20000","unlock_item_id":"ice_spoon_crossbow","description":"冰勺弩枪：投掷减速冰鸡蛋","display_name":"冰勺弩枪"})
 	register_goods("poseidon_dart_gun",{"type":"weapon","cost":"200000","unlock_item_id":"poseidon_dart_gun","description":"海神镖枪：连续发射追踪飞镖，可溅射","display_name":"海神镖枪"})
 	register_goods("double_ice_crossbow",{"type":"weapon","cost":"50000","unlock_item_id":"double_ice_crossbow","description":"冰霜连弩：投掷两个减速冰鸡蛋","display_name":"冰霜连弩"})
@@ -220,6 +223,10 @@ register_goods("mozhang",{"type":"card","cost":"100000","unlock_item_id":"mozhan
 	register_goods("player_attire_xingzhihuan_nan",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhihuan_nan","description":"角色的星之焕男时装","display_name":"星之焕男"})
 	register_goods("player_attire_xingzhiyao_nan",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nan","description":"角色的星之耀男时装","display_name":"星之耀男"})
 	register_goods("player_attire_xingzhiyao_nv",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nv","description":"角色的星之耀女时装","display_name":"星之耀女"})
+	register_goods("player_attire_xingzhiyao_nan_a",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nan_a","description":"角色的星之耀男A时装","display_name":"星之耀男A"})
+	register_goods("player_attire_xingzhiyao_nan_b",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nan_b","description":"角色的星之耀男B时装","display_name":"星之耀男B"})
+	register_goods("player_attire_xingzhiyao_nv_a",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nv_a","description":"角色的星之耀女A时装","display_name":"星之耀女A"})
+	register_goods("player_attire_xingzhiyao_nv_b",{"type":"player_attire","cost":"50000","unlock_item_id":"player_attire_xingzhiyao_nv_b","description":"角色的星之耀女B时装","display_name":"星之耀女B"})
 
 	register_goods("liehuohu",{"type":"card","cost":"100000","unlock_item_id":"liehuohu","description":"烈火虎：生产火苗并储能，消失时返还剩余储能","display_name":"烈火虎"})
 	register_goods("shegengbao",{"type":"card","cost":"25000","unlock_item_id":"shegengbao","description":"蛇羹煲：无需格子，回收目标格全部卡片的火苗能量","display_name":"蛇羹煲"})

@@ -1960,6 +1960,33 @@ function credit_shop_init()
         unlock_item_id: transfer_credit_id("galaxy_horse", 2),
         description: "二转凭证\n在合成屋-卡片转职中使用"
     });
+    // 2026-11-18 新卡：结界马（参照雷电长棍面包，层数高 3 层、威望 1.5~1.75 倍）
+    //   雷电长棍面包：一转 1900 / 7-1、二转 11700 / 19-2
+    register_goods("credit_jiejiema_1", {
+        type: "credit", cost: "2850", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "10-1",
+        unlock_item_id: transfer_credit_id("jiejiema", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_jiejiema_2", {
+        type: "credit", cost: "20500", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "22-2",
+        unlock_item_id: transfer_credit_id("jiejiema", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
+    // 阴阳蛇：表内没有价位口径，参照元素蛇（同为直射类新卡）
+    register_goods("credit_yinyangshe_1", {
+        type: "credit", cost: "6000", coin_type: "prestige", credit_shape: 1,
+        tower_floor: "13-1",
+        unlock_item_id: transfer_credit_id("yinyangshe", 1),
+        description: "一转凭证\n在合成屋-卡片转职中使用"
+    });
+    register_goods("credit_yinyangshe_2", {
+        type: "credit", cost: "22000", coin_type: "prestige", credit_shape: 2,
+        tower_floor: "24-1",
+        unlock_item_id: transfer_credit_id("yinyangshe", 2),
+        description: "二转凭证\n在合成屋-卡片转职中使用"
+    });
     register_goods("credit_jingangma_1", {
         type: "credit", cost: "16500", coin_type: "prestige", credit_shape: 1,
         tower_floor: "16-1",

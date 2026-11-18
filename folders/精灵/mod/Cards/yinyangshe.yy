@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"yinyangshe",
+  "folderPath":"folders/精灵/mod/Cards/yinyangshe.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"yinyangshe",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[],
+  "listItems":[
+    {"name":"spr_yinyangshe_fx_poison","path":"sprites/spr_yinyangshe_fx_poison/spr_yinyangshe_fx_poison.yy",},
+    {"name":"spr_yinyangshe_bullet_yang","path":"sprites/spr_yinyangshe_bullet_yang/spr_yinyangshe_bullet_yang.yy",},
+    {"name":"spr_yinyangshe_bullet_yin","path":"sprites/spr_yinyangshe_bullet_yin/spr_yinyangshe_bullet_yin.yy",},
+    {"name":"spr_yinyangshe_2","path":"sprites/spr_yinyangshe_2/spr_yinyangshe_2.yy",},
+    {"name":"spr_yinyangshe_1","path":"sprites/spr_yinyangshe_1/spr_yinyangshe_1.yy",},
+    {"name":"spr_yinyangshe","path":"sprites/spr_yinyangshe/spr_yinyangshe.yy",},
+  ],
+}

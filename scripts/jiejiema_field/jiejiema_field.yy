@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"jiejiema_field",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"jiejiema_field",
+  "parent":{
+    "name":"mod",
+    "path":"folders/脚本/mod.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

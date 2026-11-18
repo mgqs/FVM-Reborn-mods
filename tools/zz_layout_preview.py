@@ -347,9 +347,10 @@ def draw_confirm(canvas, txt='确定以36幸运星兑换炎炎兔吗？'):
     blit_at(canvas, sprite('spr_battle_escape_menu'), 960, 540, 1.5)
     stext(canvas, '兑换确认', 960, 428, 16, (255, 255, 255))
     stext(canvas, txt, 960, 530, 16, (255, 255, 255))
-    # spr_common_button 的 PNG 是 .yy 声明尺寸的 2 倍（78×33），按声明尺寸缩，才跟 GMS 一致
+    # spr_common_button 的 PNG 是 156×66（.yy 写的是 78×33），0.75 倍 = 117×50，
+    # 与商城确认框同写法：坐标即按钮中心
     for off, lab in ((-80, '确定'), (80, '取消')):
-        im = sprite('spr_common_button').resize((int(round(78 * 1.35)), int(round(33 * 1.35))),
+        im = sprite('spr_common_button').resize((int(round(156 * 0.75)), int(round(66 * 0.75))),
                                                 Image.LANCZOS)
         canvas.alpha_composite(im, (int(round(960 + off - im.width / 2)), int(round(610 - im.height / 2))))
         stext(canvas, lab, 960 + off, 610, 16, (255, 255, 255))

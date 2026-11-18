@@ -944,6 +944,42 @@ function attire_init(){
 		}
 	)
 	register_attire(
+		"player_attire_xingzhiyao_nan_a",
+		{
+			"target_card":"player",
+			"name":"星之耀男A",
+			"icon":spr_player_attire_xingzhiyao_nan_a_icon,
+			"spr":spr_player_attire_xingzhiyao_nan_a,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhiyao_nan_b",
+		{
+			"target_card":"player",
+			"name":"星之耀男B",
+			"icon":spr_player_attire_xingzhiyao_nan_b_icon,
+			"spr":spr_player_attire_xingzhiyao_nan_b,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhiyao_nv_a",
+		{
+			"target_card":"player",
+			"name":"星之耀女A",
+			"icon":spr_player_attire_xingzhiyao_nv_a_icon,
+			"spr":spr_player_attire_xingzhiyao_nv_a,
+		}
+	)
+	register_attire(
+		"player_attire_xingzhiyao_nv_b",
+		{
+			"target_card":"player",
+			"name":"星之耀女B",
+			"icon":spr_player_attire_xingzhiyao_nv_b_icon,
+			"spr":spr_player_attire_xingzhiyao_nv_b,
+		}
+	)
+	register_attire(
 		"player_attire_xingguizhimeng",
 		{
 			"target_card":"player",

@@ -53,7 +53,6 @@ if (!has_hit && image_index >= 3){
             damage_type           = other.damage_type;
             damage_source_object  = obj_snowrabbit;
             damage_source_card_id = "snowrabbit";
-            if (variable_instance_exists(id, "ly_dig_hittable")) ly_dig_hittable = true;
             event_user(0);
             damage_source_card_id = "";
         }
@@ -65,6 +64,8 @@ if (!has_hit && image_index >= 3){
                 if (id == other.hitted_enemy) continue;
                 if (abs(grid_row - other.row) > other.splash_cells) continue;
                 if (abs(x - other.x) > global.grid_cell_size_x * (other.splash_cells + 0.5)) continue;
+                // 钻地中的龙渊地精鼠属「不攻击类型」：溅射也不碰（2026-11-18 用户口径）
+                if (scatter_target_blocked(id)) continue;
                 if (!can_target_on(other.target_type, target_type)) continue;
 
                 damage_amount         = other.damage * other.splash_ratio;

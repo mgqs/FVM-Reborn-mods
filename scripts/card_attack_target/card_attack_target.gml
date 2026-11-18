@@ -157,6 +157,7 @@ function card_attack_target_data()
         "yinghuoshe": "all",
         "ymir": "throw",
         "youyu_god": "normal",
+        "yinyangshe": "pierce",
         "yuanqiniu": "rotate",
         "yuansushe": "pierce",
         "yufengma": "normal",
@@ -185,7 +186,9 @@ function card_attack_target_override()
         "shennong_god": ["陆地鼠军", "陆地鼠军", "陆地鼠军丨空军丨地鼠", "陆地鼠军丨空军丨地鼠"],
         "sheng_huo": ["陆地鼠军丨非主流丨幽灵", "陆地鼠军丨非主流丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵", "陆地鼠军丨空军丨非主流丨地鼠丨幽灵"],
         // 恶作剧神：子弹打 空中 / 陆地 / 潜水 / 地下（没有单一类型名能表达，手写覆盖）
-        "joker": "陆地鼠军丨空军丨潜水丨地鼠"
+        "joker": "陆地鼠军丨空军丨潜水丨地鼠",
+        // 结界马：结界内只打 空 / 陆 / 地鼠军（卡面原文），没有单一 target_type 能表达
+        "jiejiema": "陆地鼠军丨空军丨地鼠"
     };
     return _o;
 }

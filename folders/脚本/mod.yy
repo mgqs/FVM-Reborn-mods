@@ -13,6 +13,7 @@
     {"name":"Craft","path":"folders/脚本/mod/Craft.yy",},
   ],
   "listItems":[
+    {"name":"jiejiema_field","path":"scripts/jiejiema_field/jiejiema_field.yy",},
     {"name":"external_mod_import","path":"scripts/external_mod_import/external_mod_import.yy",},
     {"name":"attire_transformation","path":"scripts/attire_transformation/attire_transformation.yy",},
     {"name":"gem_cooldown_hint","path":"scripts/gem_cooldown_hint/gem_cooldown_hint.yy",},

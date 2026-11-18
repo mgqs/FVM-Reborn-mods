@@ -1,3 +1,207 @@
+# v2.8.1
+## 优化与修复
+- **阴阳蛇过火后换成火弹贴图（2026-11-18）**：
+  - 症状：被火盆点燃后伤害与倍率都对（附毒也跟着乘了倍率），但画面上仍是蛇弹原图。
+  - 原因：`bullet_hazard_fire` 的「普通火源」分支只改倍率 / 尺寸 / 播个音效，
+    **不换贴图**（只有「冰火弹被更高倍率再点燃」那一支才写 `sprite_index`）。
+    换成火球是每颗子弹自己 Step 里做的事（bbq / 法士蛇 / 玉米子弹都是这个写法），阴阳蛇漏了。
+  - 改法：`objects/obj_yinyangshe_bullet/Step_0.gml` 新增过火外观段 —— `burnt > 0` 时换
+    `spr_fire_bullet`（41×14，4 帧火苗，按 `yy_life div 4` 轮播）、`image_speed = 0`、
+    尺寸放到 1.8；朝向继续跟随 `move_speed` 的正负镜像。
+    融盆二转的冰弹让路（`brazier_list` 带哨兵 `-9999` 时不换），否则会每帧被改回火球。
+  - `Create_0`：`hazard_fire` 由 `true` 改为 `{ scale: 0 }`，尺寸完全由自己管 ——
+    父类普通分支写的是**无符号**的 `image_xscale = 1.8`，被布丁弹回朝左飞的那一帧会被掰正、闪一下。
+- **阴阳蛇改成「攻击动作播到第 18 帧才真的出弹」（2026-11-18）**：
+  - 症状：到了 `cycle` 就先创建子弹，攻击动画随后才播 —— 看起来像「先有子弹、后有动作」，
+    和美术做的「低头蓄力 → 抬头张嘴 → 甩头吐出」对不上。
+  - 定出弹帧：素材攻击段（第 13~22 帧）逐帧差分 + 头部放大，16 帧低头蓄力（嘴闭合）、
+    17 帧抬头张嘴起手、**18 帧甩头吐出**（相邻帧差分 2960 像素，是攻击段最大峰值；
+    非透明区域右缘从 77 一下扩到 91）。所以定在素材第 18 帧 = `image_index 17`。
+  - 改法：`objects/obj_yinyangshe/Step_0.gml` 新增「起手」阶段 —— 计时到点只设 `yy_charge`，
+    然后盯着 `image_index`（父对象每 `flash_speed` 帧推一格），播到 17 才 `event_user(1)` 排弹；
+    发弹时才把「攻击段剩余帧」补进 `yy_anim_hold`，不会出现「吐完又做一遍起手」。
+    `yy_fire_delay = 90` 是兜底（减速态要 60 帧才到 17），动画被卡也不会整轮空转。
+    起手期间继续攒 `attack_timer`，**整体攻击周期不变，只是出弹晚了半拍**。
+  - `Other_11` 里补 `yy_charge = 0`：海克斯「疑神疑鬼」的父对象空放会直接调这个事件，
+    不清标记的话起手到点会再排一轮、同一轮打两遍。
+- **结界马的多边形特效不再「糊成一个方框」（2026-11-18）**：
+  - 症状：3 只以上围出的结界，内部雾按**顶点包围盒** `draw_sprite_ext` 拉伸，而 `spr_jiejiema_fx_inside`
+    是方形贴图、四个角也带 alpha（均值 56/255）→ 雾铺成一个方框、跑到连线外面；
+    再叠上每格一块的 `spr_jiejiema_fx_grid`，整体观感是「一堆方格」而不是「一整片结界」。
+  - 改法：`objects/obj_jiejiema_field/Draw_0.gml` 的多边形分支改成**凸包三角扇 + 纹理 uv 映射**
+    （新函数 `jiejiema_draw_fog_fan`，在 `scripts/jiejiema_field`）：几何本身就是多边形，
+    超出连线范围的部分**根本不会被画出来**，不需要 surface / stencil 也能裁干净。
+    两层叠加 —— 外层铺满（uv inset 2%、alpha 0.88）、内层把贴图中央亮斑放大（inset 32%、alpha 0.32），
+    总浓度与原来的 0.85 相当，但边缘不再外溢。
+  - 多边形模式不再画逐格底光（`spr_jiejiema_fx_grid`），格子感随之消失；
+    1 只（`grid` 两格）与 2 只（`line` 一条连线带）**保留**方块，因为那两档本来就没有围合区域。
+- **地精鼠钻地时不再是「散点攻击」的目标（2026-11-18）**：
+  - 症状：龙渊地精鼠钻地期间照样被雪球兔的雪球砸（雪球兔 `target_type = "all"`，`can_target_on("all","underground")` 恒真），
+    而且 `obj_snowrabbit_bullet` 命中前主动把 `ly_dig_hittable` 置 true，绕过 `obj_ly_dijing/Other_10` 的钻地免疫，直接扣血；
+    冰块冷萃机 / 典伊神使虽然打不掉血，但仍会为它浪费一发（典伊还会把 `ice_timer` 冻住它）。
+  - 改法：新增 `scripts/can_target_on` 的 `scatter_target_blocked(inst)`（= `is_digging_dijing`），
+    三张散点追踪卡在**索敌阶段**直接跳过钻地中的地精鼠，按「不攻击类型」处理：
+    雪球兔 `objects/obj_snowrabbit/Step_0.gml`（索敌）/ `Other_11.gml`（选目标）/ `obj_snowrabbit_bullet/Step_0.gml`（去掉
+    `ly_dig_hittable` 放行 + 2 转 3×3 溅射跳过）、冰块冷萃机 `obj_cold_drew/Step_0.gml` + `obj_cold_drew_bullet/Step_0.gml`（溅射）、
+    典伊神使 `obj_ice_god/Other_11.gml`。
+  - 未动旋转喷壶 / 地火 / 灰烬等原有白名单：那些**仍可**命中钻地中的地精鼠（口径见 `obj_ly_dijing/Other_10`）。
+- **商店「角色皮肤」页改为按注册顺序稳定排序（2026-11-18）**：
+  - 症状：新上的「星之耀男B」在商城里找不到（同批的男A / 女A / 女B 也散落各处）。
+  - 成因不是注册缺失——`goods_map` 与 `attire_pool` 两边都有这 178 件时装，id 一一对应，
+    8 个精灵（4 本体 14 帧 + 4 图标）也完整；问题在 `shop_list_recharge` 的列表序：
+    `ds_map_keys_to_array(global.goods_map)` 是**哈希遍历序**，加上每页 16 个（178 件 = 12 页），
+    同一批写入的商品会被打散到不同页，玩家翻完 12 页也未必看见某一件。
+  - 改法：页签 5（角色皮肤）在分页前按 `global.goods_id_pool` 的下标（= `shop_init` 书写顺序）
+    做一次插入排序（`objects/obj_shop_bg/Create_0.gml:186-212`）。顺序从此稳定可预期，
+    新注册的时装自然排在末段、同批写入的彼此相邻 —— 星之耀六件现在连在 **第 11 页末四格 + 第 12 页头两格**。
+  - 只动页签 5，卡片 / 武器宝石 / 道具 / 卡牌皮肤 / 凭证页顺序不变（凭证页本来就有自己的排序）。
+  - 另：搜索框输入「星之耀」可一次列出全部 6 件，是这类「找不到某件」最快的自查方式。
+
+# v2.8.0
+## 新内容
+- **跨服·水火之间 新增 4 类僵尸鼠（2026-11-18）**：素材为桌面 `sprites` 下 SWF 导出
+  （`0x80100A` 忍者 / `0x80109D` 蜗牛 / `0x801109` 突袭 / `0x801171` 潜艇）。父类 `obj_enemy_parent`
+  按 `move*2 + attack*2 + death` 索引，段序固定「正常行走 / 受伤行走 / 正常攻击 / 受伤攻击 / 死亡」，
+  目标帧数严格等于原版同名鼠精灵帧数——帧数一变就播错段。
+  - 打击潜艇僵尸鼠 `kf_sh_submarine`（照抄 `obj_submarine_mouse`）：hp 4500、速度 20→0.6、防爆；
+    main / land 各 36（行走 8×2 + 攻击 4×2 + 死亡 12）、enter 16（入水 8 + 受伤入水 8）。
+    新素材没有陆地形态，land 复用同一批水上帧。
+  - 突袭僵尸鼠 `kf_sh_assault`（照抄 `obj_assault_mouse`，本体 + 头盔两段血）：hp 720（先破 280 头盔）、
+    速度 12→0.36、防爆；main / helmet / land / land_helmet 各 32（行走 8×2 + 进食 4×2 + 下沉 8）、appear 7（钻出）。
+  - 忍者首领僵尸鼠 `kf_sh_ninja`（照抄 `obj_ninja_mouse`）：hp 860、冲撞 1.2（表 40）/ 行走 0.257（表 8.57）、防爆；
+    撞卡扣 10 血（原版 Step 写死），召唤改为新做的僵尸小喽啰鼠，四向各 1 只；
+    main 94（行走 12×2 + 攻击 29×2 + 死亡 12）、summon 44（出场 6×2 + 召唤 16×2）。
+  - 僵尸小喽啰鼠 `kf_sh_minion`（照抄 `obj_minion_mouse`）：hp 100、速度 8.57→0.257、**不防爆**；
+    main 95（行进 12×2 + 攻击 29×2 + 死亡 13）、summon 10（出场）。
+  - 蜗牛僵尸鼠 `kf_sh_snail`（照抄 `obj_snail_mouse`）：hp 5400、速度 10→0.3、防爆，碾压 2000 + 留润滑黏液；
+    精灵 41 帧与原版同构（前进 8×2 + 技能 8 / 8 + 爆炸 9）；黏液 `obj_kf_sh_snail_mucus` 精灵 10 帧
+    （出现 8 + 持续 2），Step 的 `mod` / 锁帧 / 阈值同步为 10。
+  - 共 14 个精灵、6 个对象；`shuihuo_enemy_init` 扩到 9 只，情报岛补 5 条；纹理组 `enemy_volcanic`，
+    同一只鼠的所有精灵共用同一 origin（潜艇 land 与 main 一致、突袭 5 个精灵一致）。
+  - `tools/cross_new_mice_build.py` 扩展：素材支持绝对路径、每只独立 `ash_proof`、非敌人对象（`enemy=False`）、
+    `obj_map`（召唤物替换）、`text_patch`（头盔血量等）；新增 `tools/kf_zombie_sheet.py` 出核验图。
+- **新增两张卡：结界马（jiejiema · 连携 / 结界多边形）与阴阳蛇（yinyangshe · 直射 / 5 连毒弹）（2026-11-18）**：
+  素材源 `res/res1118/11月份做卡11.14`（数据 xlsx + 精灵图 + swf），按 17 档（0~16）注册。
+
+  **结界马 · 非远程类 / 连携类**（耗能 180、冷却 25s、体力 350、攻击间隔 2s、射程 1）：
+  - 攻击力（0/1 转）`70/80/90/120/140/160/180/220/260/300/340/380/450/520/590/660/730`；
+    2 转整体 ×2（`140 … 1460`）。
+  - **结界成形规则**（`scripts/jiejiema_field/jiejiema_field.gml` 纯几何、无实例依赖，可离线验算）：
+    1 只 = 本格 + 前方 1 格（`mode="grid"`）；2 只 = 两只之间 Bresenham 连线（`mode="line"`，**不要求同行**）；
+    ≥3 只 = 取所有马格子的**凸包**当顶点围多边形（`mode="poly"`），再逐格心射线法判定内部格，只打
+    空 / 陆 / 地鼠军（`jj_can_hit_types = ["normal","air","underground"]`）。凹边形按凸包填平，
+    符合「以最外圈为顶点围多边形」的口径。
+  - 攻击节奏：结界对象 `obj_jiejiema_field` 每 `cycle`（120 帧）结算一次，**每格各自判定**；
+    不防爆（`immune_to_ash` 为假）且非精英 → 直接 `hp = 0` 秒杀；否则吃 `攻击力 × 倍率`（`damage_type = "normal"`）。
+  - 倍率表（1 转起）：前 7 次受击 `1 / 1.2 / 1.4 / 1.6 / 1.8 / 2 / 2.5`，第 8 次起固定 `3`；
+    **结界每次重新成形（格集变化）就清零重数**（`jj_refresh` 递增 → 逐次计数 `jj_stage` 复位）。
+  - 持续时间走技能键 `duration`：`1500/1560/1620/1680/1800/1980/2160/2400/2700` 帧
+    （= 25/26/27/28/30/33/36/40/45 秒）。`obj_jiejiema` 只负责计时，最后 90 帧 `image_alpha` 闪烁预告；
+    结界图形由「id 最小的那只马」唯一持有，马 → 结界是 1 对 N 的领队关系，领队死/被铲就销毁结界。
+  - 二转 `plant_type = "gridless"`（**悬浮，可被铲掉**，与其它悬浮卡一致）。
+  - 视觉：每格 `spr_jiejiema_fx_grid` 按格大小缩放；`line` 模式按 `point_distance + cell*0.5` 拉伸 xscale +
+    `point_direction` 旋转；`poly` 模式按顶点包围盒铺 `spr_jiejiema_fx_inside`，再逐边拉伸 `spr_jiejiema_fx_side`。
+
+  **阴阳蛇 · 直射类 / 传统直线类**（耗能 295、体力 50、冷却 7s、射程 10）：
+  - 攻击力三形态同表 `10/12/14/16/18/20/22/26/32/40/55/70/85/100/115/130/145`。
+  - 攻击间隔走技能键 `cycle`：`132/129/126/120/114/108/102/96/90` 帧（= 2.2 … 1.5 秒）。
+  - 出弹：阴蛇 5 发、1 转起再加阳蛇 5 发（`yy_shot_count_yin=5` / `yy_shot_count_yang=(shape>=1)?5:0`），
+    每 6 帧一发（`yy_shot_gap`），阴/阳交替。**首发（每 5 发的第 1 发）阴蛇附带毒伤**
+    = `round(攻击力 × 过火倍率 × 3/3/4.5)`（按 shape 取系数），3 跳、每 20 帧一跳，跳在宿主身上。
+  - **阴蛇可打未照明幽灵**：`target_type = "pierce"`（`card_attack_target` 注册 + 场上判定走
+    `can_target_on`），阳蛇同表但命中即停。
+  - 二转阳蛇**穿透**（`yy_pierce = (shape>=2)`，命中不销毁继续飞）。
+  - 子弹 `obj_yinyangshe_bullet` 走 `obj_bullet_parent` 体系：自带 `hazard_fire=true` / `hazard_rebound=true`
+    （**可过火盆、可反弹**，`card_special_flags` 过火组 + 反弹组都登记了 `yinyangshe`），
+    `hitted` / `brazier_list` 名字与父类约定一致（`bullet_hazard_rebound` 的 reset_hits 只清 `hitted`）。
+
+  **精灵**（13 个，按「每张卡单独一个文件夹」放 `mod/Cards/jiejiema` 与 `mod/Cards/yinyangshe`）：
+  - 结界马 `spr_jiejiema 21 帧 / _1 21 / _2 24` + 特效 `fx_grid 20 / fx_line 20 (721×84) /
+    fx_side 20 (721×109) / fx_inside 10 (485×455)`。
+  - 阴阳蛇 `spr_yinyangshe 22 / _1 22 / _2 22` + `bullet_yin 7 (25×12) / bullet_yang 7 (24×13) /
+    fx_poison 20 (61×57)`。
+  - **素材全是待机帧，没有抬手/张嘴出弹帧** → `idle_anim = 帧数-1`、`attack_anim = 0`，攻击表现完全交给
+    结界图形与子弹，`image_speed` 恒 0，帧由父对象 `timer / flash_speed` 推。
+
+  **注册（9 处）**：`mod_cards_init`（17 档数值）、`mod_skill_init`（`duration` / `cycle`）、
+  `mod_slots_init`（各 3 条卡槽）、`mod_info_island_init`（情报岛文案）、`card_buff_category`（非远程/连携、
+  直射/传统直线）、`card_attack_target`（`pierce` + 索敌文案）、`card_special_flags`（过火 + 反弹）、
+  `credit_shop_init`（凭证：结界马 2850/10-1、20500/22-2；阴阳蛇 6000/13-1、22000/24-1）、
+  `mod_shop_init`（商城 95000 / 105000）。
+  - 工具：`tools/make_nov_cards_1118_sprites.py`（PNG 自带解码、alpha 包围盒定原点、精灵 + 文件夹三处注册）、
+    `tools/register_nov_cards_1118.py`（对象/脚本注册 + 自检：源码里每个 `obj_*` / `spr_*` 都必须在 yyp 里存在）。
+  - 索引页：`docs/newcard_index_20261118.html`（文件夹树 / 精灵清单 / 数值对照 / 注册触点 / 已定口径）。
+
+## 优化与修复
+- **两张新卡的待机 / 攻击帧分段修正（2026-11-18 用户报「阴阳蛇的 IDLE 帧和发射子弹的帧不对」）**：
+  - 事实：三份素材的 SWF 里都带 `FrameLabelTag`，段位是明确写死的 ——
+    阴阳蛇 22 帧 = 待机 1~12 + 攻击 13~22（0/1/2 转完全一致）；
+    结界马 21 帧 = 待机 1~10 + 技能 11~21，二转 24 帧 = 待机 1~12 + 技能 13~24。
+  - 之前误判「素材全是待机帧」，写成 `idle_anim = 帧数-1` / `attack_anim = 0`，结果待机循环里每圈都
+    把施法姿势当待机播一遍、真正的攻击段永远不播。
+  - 现在按 `obj_card_parent/Step_0:281-289` 的口径填：`idle_anim` = 待机段末下标、`attack_anim` = 攻击段长
+    → 阴阳蛇 `11 / 10`；结界马 `9 / 11`（0/1 转）、`11 / 12`（2 转）。
+  - 阴阳蛇：开火那一帧置 `yy_anim_hold = attack_anim * flash_speed`（= 攻击段一整轮 50 帧），
+    队列没吐完或动画没走完都保持 `CARD_STATE.ATTACK`，全结束才回 IDLE。
+  - 结界马：本身不出弹，改由 `obj_jiejiema_field` 每次结算那一帧给场上所有马点亮 `jj_skill_timer`
+    （= `attack_anim * flash_speed`），马据此播一遍「技能」段再回待机。
+  - 顺带把阴阳蛇的出膛口从写死常数改成按画布比例算（`-0.28W / -0.74H` 与 `+0.31W / -0.76H`），
+    三个形态（93×70 / 108×84 / 114×95）的弹都落在嘴边，二转不再从脖子以下冒出来。
+- **结界马二转不再同格无限叠加 / 结界特效压到卡片之下（2026-11-18 用户口径）**：
+  - 二转是 `plant_type = "gridless"`，`can_place_at_position` 的 gridless 分支对悬浮卡一律 `return true`
+    → 同一格能拖多少张叠多少张。现在按「参考海洋女神」的口径，在 `place_mutex_class` 登记
+    `jiejiema → "jiejiema_self"`：该检查在放置判定里跑得比 gridless 分支更早，同格已有结界马直接判不可放，
+    升级替换（`global.replace_placement`）仍然放行。0/1 转本来就是 `normal`，行为不变。
+  - 结界特效原来 `depth = -400`。这个工程里 **depth 越小越靠前**，而卡片是
+    `-10 - row*45 - col*5 - 层偏移`（`scripts/card_depth`，全在 -10 ~ -330），-400 等于把结界糊在卡片脸上。
+    改成取场上最上一行的行基准再 +1（`depth = -10 - row_min*45 + 1`，与 `obj_bbq` 的地面火同一套行距），
+    **压在卡片之下、地图背景（`obj_battle` 的 +50）之上**；+1 是为了不跟同格 gridless 卡同深度。
+
+# v2.7.2
+## 新内容
+- **新增「星之耀男A / 男B / 女A / 女B」四套玩家时装（2026-11-18）**：
+  - 素材来自 `res/res1118/星之耀男女AB/0x14D17110|1120|1210|1220.swf`。四个 SWF 都是 14 帧纸娃娃
+    时间轴（FrameLabel：待机 / 射出），位图是散件，必须用 FFDec 导「frame」合成帧；舞台 720×576、
+    底色 `#666666`，另有一圈 131×131 点击外框线（抠色去不掉，按内缩 4px 抹除）。
+  - 成品按 `res/套装/女角色/打工兔妹` 的形式给出：`01.png`..`14.png` + `head.png`，全部 128×128 RGBA，
+    目录 `output/xingzhiyao_attire/星之耀男A|男B|女A|女B/`。
+  - 对齐口径与同系列 `spr_player_attire_xingzhiyao_nan/nv` 一致：角色 bbox 中心 x=64、脚底 y=122，
+    换装不会出现上下错位；图标取头部特写放大后横向裁到 128，构图对齐其它时装图标。
+  - 工程侧：新增 8 个精灵（4 本体 14 帧 origin=7 64,128 + 4 图标 1 帧 origin=4 64,64，纹理组 `player`，
+    父文件夹 `folders/精灵/Player/attire`）；`attire_init` 注册 4 条时装、`shop_init` 上架 4 件
+    （各 50000 金币，与星之耀男/女同价）。
+  - 工具：`tools/import_xingzhiyao_attire.py`（SWF→帧→抠色→128 裁切→精灵三处注册，可重跑，缺 FFDec 自动下载）；
+    `tools/make_multi_frame_sprite.build` 新增可选 `origin` 参数（默认 4，旧调用不变）。
+
+# v2.7.1
+## 优化与修复
+- **跨服商店抽卡模式放开香料 / 跨服金币吃难度倍率 / 商店补神圣宝石 / 转转入口换图 / 变异蝙蝠不出（2026-11-18 用户报）**：
+  - **抽卡模式可以买香料**：`obj_cross_server_shop` 的 `_is_credit`（Mouse_4 判定 + Draw_0 置灰）
+    补上 `type == "material"` —— 皇室 / 魔幻 / 精灵 / 天使 / 圣灵香料本来就是抽卡模式的养成材料，
+    之前被「抽卡模式只能购买转职凭证」一刀切拦掉。提示文案改为「抽卡模式只能购买转职凭证与香料」。
+  - **跨服关卡金币改回吃难度奖励倍率**：新增 `cross_server_coin_mult()`（= 海克斯倍率 ×
+    `difficulty_get_reward_multiplier_for(global.difficulty)`），4 处结算（首通/重复 × 普通/精英）
+    的金币改用这个出口；**徽章仍只吃海克斯倍率**。结算面板与准备界面的金币预览同步按实发数显示。
+    别改成 `difficulty_get_reward_multiplier()`——它内部已含海克斯，会双计。
+  - **商店补「神圣宝石」**：`holy_gem` 只在 `weapons_init` 里 `register_gem` 注册了本体，
+    从来没有 `register_goods` → 商店「武器/宝石」页永远不显示。`shop_init` 补上架条目
+    （150000 金币，主武器槽，描述与宝石本体一致）。
+  - **转转入口换成 116.png**：`spr_zz_enter` 换帧（84×70 → 56×47，礼盒 + 「美食活动」），
+    `.yy` 的 width/height/bbox 同步；入口位置 `(1010,20)` → `(1010,32)`，与旁边几个入口图标中线齐平。
+  - **兑换确认框按钮画错**：`obj_zz_buy_confirm` 之前按 `sprite_get_width`（.yy 声明 78×33）
+    自己算尺寸再减半定位，而 `spr_common_button` 贴图实际是 156×66 → 按钮画成两倍大、
+    互相压住、文字跑到按钮角上。改成与 `obj_shop_buy_confirm` 同一写法：中心坐标直接交给精灵原点、
+    0.75 倍（117×50），命中框 `buttons` 同步 120×52。
+  - **变异蝙蝠鼠不出场**（2026-11-18 二次修，用户口径：直接照蝙蝠鼠的形式）：
+    `obj_kuafu_bat` 整份对齐 `obj_bat_mouse` —— Create 只管数据（不再自己改 x/y、不再自己随机落点），
+    落点/配对 target/出生高度全部交给 Step 里那段「自动补齐」（与蝙蝠鼠逐行同构，只是 target 换成
+    `obj_kuafu_bat_target`、x 偏移 +30）；`obj_event_manager` 的 `kuafu_bat_spawn` 改成
+    `bat_mouse_spawn` 的同一写法：随机取格 → **成对创建「落点 target + 蝙蝠」**，两只都吊在落点正上方
+    `room_height` 处并互相绑定 `banding_target_inst`。关卡 waves 里直接放的 kuafu_bat 走 Step 兜底补齐
+    （列随机、行沿用生成器挑的行；出生高度贴到落点上方 80px / target 上方 120px —— 蝙蝠鼠是定时事件刷的，
+    有整局时间吊下来，变异蝙蝠编在波次里，出生在屏幕上方 480px 时波次早清完结算了，根本看不到）。
+    `wave_ignore`（不参与清场判定）保留不变。
+
 # v2.7.0
 ## 优化与修复
 - **幸运星兑换页整份改成商城的画法：16 格固定 + 翻页箭头 + 商城购买按钮 + 兑换确认框（2026-11-17 用户报）**：

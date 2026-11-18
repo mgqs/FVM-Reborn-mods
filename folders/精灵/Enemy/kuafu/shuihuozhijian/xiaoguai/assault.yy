@@ -1,0 +1,21 @@
+{
+  "$GMFolder":"",
+  "%Name":"assault",
+  "folderPath":"folders/精灵/Enemy/kuafu/shuihuozhijian/xiaoguai/assault.yy",
+  "isDefaultView":false,
+  "listViewItems":[],
+  "name":"assault",
+  "resourceType":"GMFolder",
+  "resourceVersion":"2.0",
+  "viewLocked":false,
+  "visible":true,
+  "folders":[
+  ],
+  "listItems":[
+    {"name":"spr_kf_sh_assault","path":"sprites/spr_kf_sh_assault/spr_kf_sh_assault.yy",},
+    {"name":"spr_kf_sh_assault_helmet","path":"sprites/spr_kf_sh_assault_helmet/spr_kf_sh_assault_helmet.yy",},
+    {"name":"spr_kf_sh_assault_land","path":"sprites/spr_kf_sh_assault_land/spr_kf_sh_assault_land.yy",},
+    {"name":"spr_kf_sh_assault_land_helmet","path":"sprites/spr_kf_sh_assault_land_helmet/spr_kf_sh_assault_land_helmet.yy",},
+    {"name":"spr_kf_sh_assault_appear","path":"sprites/spr_kf_sh_assault_appear/spr_kf_sh_assault_appear.yy",},
+  ],
+}

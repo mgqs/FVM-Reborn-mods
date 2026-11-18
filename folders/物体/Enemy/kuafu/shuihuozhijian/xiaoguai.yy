@@ -14,6 +14,12 @@
     {"name":"dragon_boat","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/dragon_boat.yy",},
     {"name":"flagship","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/flagship.yy",},
     {"name":"kof_submarine","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/kof_submarine.yy",},
+    {"name":"submarine","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/submarine.yy",},
+    {"name":"assault","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/assault.yy",},
+    {"name":"ninja","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/ninja.yy",},
+    {"name":"minion","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/minion.yy",},
+    {"name":"snail","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/snail.yy",},
+    {"name":"snail_mucus","path":"folders/物体/Enemy/kuafu/shuihuozhijian/xiaoguai/snail_mucus.yy",},
   ],
   "listItems":[
   ],

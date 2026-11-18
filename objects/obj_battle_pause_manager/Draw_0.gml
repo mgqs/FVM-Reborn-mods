@@ -281,7 +281,7 @@ if (global.is_paused)
 						if (_cs_rw != undefined) {
 							draw_text(1200,260,"白银徽章（"+string(_cs_rw.silver)+"）");
 							draw_text(1200,285,"黄金徽章（"+string(_cs_rw.gold_medal)+"）");
-							draw_text(1200,310,"金币（"+string(_cs_rw.coins)+"）");
+							draw_text(1200,310,"金币（"+string(round(_cs_rw.coins * cross_server_coin_mult()))+"）");
 						} else {
 							draw_text(1200,260,"金币（"+string(global.level_file.rewards[1].gold)+"）")
 							draw_text(1200,285,"技能："+string(global.level_file.rewards[1].skill_level)+"级")
@@ -326,7 +326,7 @@ if (global.is_paused)
 						if (_cs_rw_r != undefined) {
 							draw_text(1200,260,"白银徽章（"+string(_cs_rw_r.silver)+"）");
 							draw_text(1200,285,"黄金徽章（"+string(_cs_rw_r.gold_medal)+"）");
-							draw_text(1200,310,"金币（"+string(_cs_rw_r.coins)+"）");
+							draw_text(1200,310,"金币（"+string(round(_cs_rw_r.coins * cross_server_coin_mult()))+"）");
 						} else {
 							draw_text(1200,260,"金币（"+string(global.level_file.rewards[0].gold)+"）")
 							draw_text(1200,285,item_string)

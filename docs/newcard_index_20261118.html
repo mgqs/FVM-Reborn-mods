@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>新卡落地索引 · 结界马 / 阴阳蛇</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --line:#e3e6ec; --ink:#1c2024; --ink2:#5a6371;
+    --accent:#c0392b; --accent2:#2c6fb5; --ok:#1f8a55; --warn:#b7791f; --code:#f0f2f5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:14px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 28px 72px}
+  header{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:26px}
+  h1{font-size:24px;margin:0 0 6px;letter-spacing:.5px}
+  .sub{color:var(--ink2);font-size:13px}
+  h2{font-size:16px;margin:34px 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:14px;margin:20px 0 8px;color:var(--ink2);font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13px}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#eef1f5;font-weight:600;color:#39414d;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums}
+  code,.mono{font-family:"Cascadia Mono",Consolas,"Courier New",monospace;font-size:12.5px}
+  code{background:var(--code);padding:1px 5px;border-radius:4px}
+  pre{background:#23272e;color:#e6e9ef;padding:14px 16px;border-radius:8px;
+    overflow-x:auto;font-family:"Cascadia Mono",Consolas,monospace;font-size:12.5px;line-height:1.65;margin:10px 0}
+  pre .d{color:#8b95a5}
+  pre .n{color:#f0b775}
+  pre .g{color:#7fbf7f}
+  .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:10px;
+    background:#e8f2ec;color:var(--ok);margin-left:6px}
+  .tag.q{background:#fdf3e0;color:var(--warn)}
+  .tag.b{background:#e8f0fa;color:var(--accent2)}
+  ul{margin:6px 0 6px 20px;padding:0}
+  li{margin:3px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .kv{display:flex;gap:8px;font-size:13px;margin:2px 0}
+  .kv b{min-width:78px;color:var(--ink2);font-weight:500}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink2);font-size:12px}
+  .hl{background:#fff8e1;padding:0 3px;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>新卡落地索引 · 结界马 / 阴阳蛇</h1>
+  <div class="sub">2026-11-18　·　来源素材 <code>res1118/11月份做卡11.14</code>　·　状态：<b>待批准，尚未写入工程</b></div>
+</header>
+
+<h2>一、GMS 文件夹（每张卡一个）</h2>
+<pre><span class="d">folders/精灵/mod/Cards/</span>
+├── <span class="n">jiejiema.yy</span>       <span class="d">← 新建，只装结界马的 7 个精灵</span>
+└── <span class="n">yinyangshe.yy</span>     <span class="d">← 新建，只装阴阳蛇的 6 个精灵</span>
+
+<span class="d">三处同步（缺一处就出问题）：</span>
+① <span class="g">FVM_Reborn_makk.yyp</span> → Folders 数组两条 $GMFolder
+② <span class="g">folders/精灵/mod/Cards.yy</span> → folders 子项
+③ 每个 <span class="g">sprites/spr_*/spr_*.yy</span> → parent.path</pre>
+<div class="card">
+  <b>顺带修存量问题</b>：上一批（元素蛇 / 银河马）精灵的 <code>parent</code> 指向
+  <code>folders/精灵/mod/Cards/Shooter/yuansushe.yy</code>，该文件夹文件<b>不存在</b>，
+  IDE 会报 <code>Cannot find folder path</code>。这次一并补建。
+</div>
+
+<h2>二、精灵清单（13 个）</h2>
+<table>
+  <thead><tr><th>精灵名</th><th>帧</th><th>尺寸</th><th>原点</th><th>文件夹</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">spr_jiejiema / _1 / _2</td><td class="num">21 / 21 / 24</td><td class="num">74×104 / 83×113 / 110×137</td><td>底边中心</td><td>jiejiema</td></tr>
+    <tr><td class="mono">spr_jiejiema_fx_grid</td><td class="num">20</td><td class="num">74×79</td><td>中心</td><td>jiejiema</td></tr>
+    <tr><td class="mono">spr_jiejiema_fx_line</td><td class="num">20</td><td class="num">721×84</td><td>左端中点</td><td>jiejiema</td></tr>
+    <tr><td class="mono">spr_jiejiema_fx_side</td><td class="num">20</td><td class="num">721×109</td><td>左端中点</td><td>jiejiema</td></tr>
+    <tr><td class="mono">spr_jiejiema_fx_inside</td><td class="num">10</td><td class="num">485×455</td><td>中心</td><td>jiejiema</td></tr>
+    <tr><td class="mono">spr_yinyangshe / _1 / _2</td><td class="num">22 / 22 / 22</td><td class="num">93×70 / 108×84 / 114×95</td><td>底边中心</td><td>yinyangshe</td></tr>
+    <tr><td class="mono">spr_yinyangshe_bullet_yin</td><td class="num">7</td><td class="num">25×12</td><td>右侧中点</td><td>yinyangshe</td></tr>
+    <tr><td class="mono">spr_yinyangshe_bullet_yang</td><td class="num">7</td><td class="num">24×13</td><td>右侧中点</td><td>yinyangshe</td></tr>
+    <tr><td class="mono">spr_yinyangshe_fx_poison</td><td class="num">20</td><td class="num">61×57</td><td>中心</td><td>yinyangshe</td></tr>
+  </tbody>
+</table>
+<div class="card">
+  <b>动画分段（2026-11-18 修正）</b>：素材 SWF 里带 <code>FrameLabelTag</code>，三段卡都<b>不是</b>「全帧待机」——
+  阴阳蛇 22 帧 = 待机 <b>1~12</b> + 攻击 <b>13~22</b>（三形态一致）→ <code>idle_anim = 11</code> / <code>attack_anim = 10</code>；
+  结界马 21 帧 = 待机 <b>1~10</b> + 技能 <b>11~21</b> → <code>9 / 11</code>，二转 24 帧 = <b>1~12 / 13~24</b> → <code>11 / 12</code>。
+  父对象里 <code>idle_anim</code> 是<b>待机段末下标</b>、<code>attack_anim</code> 是<b>攻击段帧数</b>
+  （<code>obj_card_parent/Step_0:281-289</code>）。
+</div>
+
+<h2>三、对象（5 个，挂 物体/mod/Cards）</h2>
+<table>
+  <thead><tr><th>对象</th><th>事件</th><th>职责</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">obj_jiejiema</td><td class="mono">Create / Step / Destroy / yy</td><td>卡本体：持续时间倒计时、结界领队选举、技能动画态、二转 gridless + 可铲</td></tr>
+    <tr><td class="mono">obj_jiejiema_field</td><td class="mono">Create / Step / Draw_0 / yy</td><td>结界单例（最小 id 的马托管）：凸包 → 格集、画 4 种特效、按节拍结算、depth 压在卡片之下</td></tr>
+    <tr><td class="mono">obj_yinyangshe</td><td class="mono">Create / Step / Other_11 / yy</td><td>本体：5 / 10 连发排期、首发放毒标记</td></tr>
+    <tr><td class="mono">obj_yinyangshe_bullet</td><td class="mono">Create / Step / Destroy / yy</td><td>子弹：阴/阳贴图、穿透、<code>hazard_fire</code> + <code>hazard_rebound</code>、记录过火倍率</td></tr>
+    <tr><td class="mono">obj_yinyangshe_poison</td><td class="mono">Create / Step / Draw_0 / yy</td><td>毒 DoT：<span class="hl">攻击力 × 火盆倍率 × 3/3/4.5</span>，配 posioneffect-onmouse</td></tr>
+  </tbody>
+</table>
+
+<h2>四、数值（17 档 0~16 星）</h2>
+<div class="grid2">
+  <div class="card">
+    <h3 style="margin-top:0">结界马 <span class="tag">非远程类 · 连携类</span></h3>
+    <div class="kv"><b>体力</b>350（恒定）</div>
+    <div class="kv"><b>耗能</b>180（恒定）</div>
+    <div class="kv"><b>冷却</b>25 秒 = 1500 帧</div>
+    <div class="kv"><b>攻击间隔</b>2 秒 = 120 帧</div>
+    <div class="kv"><b>攻击范围</b>1（本格 + 前方 1 格）</div>
+    <h3>攻击力 · 0/1 转</h3>
+    <div class="mono" style="font-size:12.5px;line-height:1.9">
+      70 / 80 / 90 / 120 / 140 / 160 / 180 / 220 / 260 /
+      300 / 340 / 380 / 450 / 520 / 590 / 660 / <b>730</b>
+    </div>
+    <h3>攻击力 · 2 转（表内即 2 倍）</h3>
+    <div class="mono" style="font-size:12.5px;line-height:1.9">
+      140 / 160 / 180 / 240 / 280 / 320 / 360 / 440 / 520 /
+      600 / 680 / 760 / 900 / 1040 / 1180 / 1320 / <b>1460</b>
+    </div>
+    <h3>持续时间（技能 0~8 级）</h3>
+    <div class="mono" style="font-size:12.5px">25 / 26 / 27 / 28 / 30 / 33 / 36 / 40 / 45 秒</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">阴阳蛇 <span class="tag">直射类 · 传统直线类</span></h3>
+    <div class="kv"><b>体力</b>50（参照元素蛇）</div>
+    <div class="kv"><b>耗能</b>295（恒定）</div>
+    <div class="kv"><b>冷却</b>7 秒 = 420 帧</div>
+    <div class="kv"><b>攻击范围</b>10（整行）</div>
+    <div class="kv"><b>子弹数</b>5 / 10 / 10</div>
+    <h3>攻击力 · 三形态同表</h3>
+    <div class="mono" style="font-size:12.5px;line-height:1.9">
+      10 / 12 / 14 / 16 / 18 / 20 / 22 / 26 / 32 /
+      40 / 55 / 70 / 85 / 100 / 115 / 130 / <b>145</b>
+    </div>
+    <h3>攻击间隔（技能 0~8 级）</h3>
+    <div class="mono" style="font-size:12.5px">2.2 / 2.15 / 2.1 / 2.0 / 1.9 / 1.8 / 1.7 / 1.6 / 1.5 秒</div>
+    <h3>弹序</h3>
+    <div style="font-size:13px">
+      0 转：阴蛇 毒·普·普·普·普<br>
+      1 转：阴蛇 同上 ＋ 阳蛇 普×5<br>
+      2 转：阴蛇 同上 ＋ 阳蛇 穿×5（毒伤 4.5 倍）
+    </div>
+  </div>
+</div>
+
+<h2>五、注册表改动（9 处）</h2>
+<table>
+  <thead><tr><th>文件</th><th>改什么</th></tr></thead>
+  <tbody>
+    <tr><td class="mono">scripts/mod_cards_init</td><td>两张卡各 3 形态，17 档表</td></tr>
+    <tr><td class="mono">scripts/mod_skill_init</td><td><code>jiejiema → duration</code>、<code>yinyangshe → cycle</code>（各 9 档）</td></tr>
+    <tr><td class="mono">scripts/mod_slots_init</td><td>6 条卡槽（二转结界马 <code>plant_type:"gridless"</code>）</td></tr>
+    <tr><td class="mono">scripts/mod_info_island_init</td><td>两条情报岛文案</td></tr>
+    <tr><td class="mono">scripts/card_buff_category</td><td>非远程类/连携类、直射类/传统直线类</td></tr>
+    <tr><td class="mono">scripts/card_attack_target</td><td>结界马走 override「陆地鼠军丨空军丨地鼠」；阴阳蛇 <code>pierce</code>（含幽灵）</td></tr>
+    <tr><td class="mono">scripts/card_special_flags</td><td>阴阳蛇进「可过火」「可反弹」两组</td></tr>
+    <tr><td class="mono">scripts/credit_shop_init</td><td>结界马 2850 / 10-1、20500 / 22-2；阴阳蛇 6000 / 13-1、22000 / 24-1</td></tr>
+    <tr><td class="mono">scripts/mod_shop_init</td><td>结界马 95000、阴阳蛇 105000</td></tr>
+  </tbody>
+</table>
+
+<h2>六、INDEX.md 追加两行</h2>
+<pre>| 结界马家族（连携 · 结界多边形） | objects/obj_jiejiema/* + scripts/mod_cards_init 末段 | 凸包→格集、7 段递增、持续时间走技能 |
+| 阴阳蛇家族（直射 · 5 连毒弹）   | objects/obj_yinyangshe/* + scripts/card_special_flags:62,76 | 首发毒 = atk × 过火 × 3/4.5 |</pre>
+
+<h2>七、已经定死的口径</h2>
+<ul>
+  <li><b>星级</b>：17 档（0~16），Max/Ultra 不注册（表内留空）。</li>
+  <li><b>秒杀</b>：不防爆 + 非精英 → 直接秒；其余吃「攻击力 × 倍率」。</li>
+  <li><b>7 段递增</b>：1/1.2/1.4/1.6/1.8/2/2.5，第 8 次起 3 倍；<b>结界每次刷新清零</b>。</li>
+  <li><b>凭证</b>：按雷电长棍面包高 2~4 层、威望 1.5~2 倍。</li>
+  <li><b>缺失值</b>：阴阳蛇 体力 50 / 冷却 7 秒；商城价 95000 / 105000。</li>
+  <li><b>二转同格唯一</b>：结界马是 gridless 悬浮卡，但同格只能放一张 —— 走
+    <code>place_mutex_class</code> 登记 <code>jiejiema → "jiejiema_self"</code>（比 gridless 分支更早判）。</li>
+  <li><b>结界特效图层</b>：压在卡片之下 —— <code>depth = -10 - row_min*45 + 1</code>
+    （卡片是 <code>-10-45*row-5*col-层偏移</code>，depth 越小越靠前）。</li>
+  <li><b>雾只在连线范围内</b>：多边形内部用 <b>凸包三角扇 + 纹理 uv</b> 画
+    （<code>jiejiema_draw_fog_fan</code>），几何就是多边形，超出连线的部分不会被画出来，
+    不再按包围盒拉伸成方框；多边形模式也不再画逐格方块。</li>
+  <li><b>阴阳蛇出弹帧</b>：攻击动画播到<b>素材第 18 帧</b>（<code>image_index 17</code>）才发弹 ——
+    16 帧低头蓄力、17 帧抬头张嘴、18 帧甩头吐出（差分峰值 2960 px）。
+    发弹后才把攻击段剩余帧补进 <code>yy_anim_hold</code>，整体周期不变、只是出弹晚半拍。</li>
+  <li><b>阴阳蛇过火</b>：火星子弹换成 <code>spr_fire_bullet</code>（4 帧火苗、1.8 倍）。
+    换贴图<b>不归</b> <code>bullet_hazard_fire</code> 管（它只改倍率 / 尺寸），
+    由子弹自己的 Step 写；融盆二转的冰弹（<code>brazier_list</code> 带 <code>-9999</code>）要让路。</li>
+</ul>
+
+<h2>八、结界雾是怎么裁到连线里的</h2>
+<div class="card">
+  <div class="sub" style="margin-bottom:10px">
+    多边形内部的雾不再用 <code>draw_sprite_ext</code> 按顶点包围盒拉伸，改成
+    <code>draw_primitive_begin_texture(pr_trianglefan)</code> + 逐顶点 uv（<code>jiejiema_draw_fog_fan</code>）。
+    几何本身就是凸包，所以「超出连线的部分」根本不会被画出来 —— 不需要 surface / stencil。
+  </div>
+  <svg viewBox="0 0 960 306" width="100%" style="max-width:960px;display:block">
+    <defs>
+      <radialGradient id="fogGrad" cx="50%" cy="50%" r="62%">
+        <stop offset="0%" stop-color="#f2fff5" stop-opacity="0.95"/>
+        <stop offset="55%" stop-color="#cfeecf" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#cfece6" stop-opacity="0.05"/>
+      </radialGradient>
+      <pattern id="cellGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+        <rect width="32" height="32" fill="none" stroke="#c9d3da" stroke-width="1"/>
+      </pattern>
+      <clipPath id="clipL"><polygon points="60,70 330,92 320,232 80,214"/></clipPath>
+      <clipPath id="clipR"><polygon points="520,70 790,92 780,232 540,214"/></clipPath>
+    </defs>
+
+    <text x="20" y="26" font-size="13" font-weight="600" fill="#c0392b">改动前 · 按包围盒拉伸</text>
+    <rect x="20" y="44" width="400" height="230" fill="#eef3f5" stroke="#dbe2e8"/>
+    <rect x="20" y="44" width="400" height="230" fill="url(#cellGrid)"/>
+    <rect x="20" y="44" width="400" height="230" fill="url(#fogGrad)" opacity="0.9"/>
+    <polygon points="60,70 330,92 320,232 80,214" fill="none" stroke="#31b3c9"
+             stroke-width="3" stroke-dasharray="11 7"/>
+    <text x="24" y="292" font-size="12" fill="#5a6371">
+      虚线才是多边形实际范围，雾却铺成一整个方框（四角也带 alpha，裁不掉）
+    </text>
+
+    <text x="480" y="26" font-size="13" font-weight="600" fill="#1f8a55">改动后 · 凸包三角扇</text>
+    <rect x="480" y="44" width="400" height="230" fill="#eef3f5" stroke="#dbe2e8"/>
+    <rect x="480" y="44" width="400" height="230" fill="url(#cellGrid)"/>
+    <rect x="480" y="44" width="400" height="230" fill="url(#fogGrad)"
+          opacity="0.95" clip-path="url(#clipR)"/>
+    <polygon points="520,70 790,92 780,232 540,214" fill="none" stroke="#31b3c9" stroke-width="3"/>
+    <g fill="#8fb9c6" stroke="#5a8fa0">
+      <rect x="514" y="64" width="12" height="12" rx="2"/>
+      <rect x="784" y="86" width="12" height="12" rx="2"/>
+      <rect x="774" y="226" width="12" height="12" rx="2"/>
+      <rect x="534" y="208" width="12" height="12" rx="2"/>
+    </g>
+    <text x="484" y="292" font-size="12" fill="#5a6371">
+      雾的边界＝顶点连线（青色边），逐格底光也去掉，不再露出格子感
+    </text>
+  </svg>
+</div>
+
+<h2>九、待你一句话</h2>
+<div class="card">
+  <span class="tag q">待确认</span>　文件夹名用英文 <code>jiejiema</code> / <code>yinyangshe</code>，还是中文「结界马」「阴阳蛇」？
+  <div class="sub" style="margin-top:6px">库里两种都有（<code>houyi_god.yy</code> 与 <code>shengxiaocard</code> 中文混用）。你不说的话我按英文 id 建。</div>
+</div>
+
+<footer>
+  本页是<b>落地前的索引预览</b>，不参与构建，随时可删。<br>
+  长期索引在仓库根 <code>INDEX.md</code>（主题 → 文件:行）；本页只服务这次新卡。
+</footer>
+
+</div>
+</body>
+</html>

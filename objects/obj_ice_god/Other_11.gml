@@ -9,6 +9,8 @@ var enemy_queue = ds_priority_create();
 
 with (obj_enemy_parent)
 {
+    // 钻地中的龙渊地精鼠按「不攻击类型」直接跳过（散点不该锁它，也不该为它耗一发）
+    if (scatter_target_blocked(id)) continue;
     if (hp > 0)
         ds_priority_add(enemy_queue, id, x);
 }

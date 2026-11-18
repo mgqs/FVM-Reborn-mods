@@ -16,6 +16,7 @@ else                 sprite_index = spr_snowrabbit_2;
 plant_type   = "normal";
 feature_type = "normal";
 target_type  = "all";        // 与冷萃机一致：全类型（含地鼠 underground）
+                             // 例外：钻地中的龙渊地精鼠在索敌阶段就被 scatter_target_blocked 排掉（2026-11-18）
 is_slowdown  = false;
 image_speed  = 0;
 flash_speed  = 5;

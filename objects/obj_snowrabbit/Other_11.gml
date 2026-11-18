@@ -11,6 +11,8 @@ with (obj_enemy_parent){
     //    第一只老鼠不合格就一个目标都选不出来（2026-11-13 修）
     if (hp <= 0) continue;
     if (target_type == "obstacle") continue;
+    // 钻地中的龙渊地精鼠按「不攻击类型」直接跳过（散点不该锁它，也不该为它耗一发）
+    if (scatter_target_blocked(id)) continue;
     if (!can_target_on(other.target_type, target_type)) continue;
     // 越靠前（grid_col 越小）越优先，BOSS 加权
     var _score = grid_col * 1000 + random(99);

@@ -57,6 +57,7 @@ function card_category_data()
         ["sheshou", "直射类", "三线类", ""],
         ["love_god", "直射类", "三线类", ""],
         ["xiao_long_bao", "直射类", "传统直线类", ""],
+        ["yinyangshe", "直射类", "传统直线类", ""],   // 2026-11-18 新卡：阴阳蛇（5 连毒弹）
         ["ice_long_bao", "直射类", "传统直线类", ""],
         ["double_long_bao", "直射类", "传统直线类", ""],
         ["double_ice_long_bao", "直射类", "传统直线类", ""],
@@ -204,6 +205,7 @@ function card_category_data()
         ["hamburger", "非远程类", "吞噬类", ""],
         ["hundun_god", "非远程类", "吞噬类", ""],
         ["lightning_baguette", "非远程类", "连携类", ""],
+        ["jiejiema", "非远程类", "连携类", ""],   // 2026-11-18 新卡：结界马（结界多边形）
         ["xinjiang_fried_noodles", "非远程类", "近战类", "拳击类"],
         ["iron_fishbone", "非远程类", "近战类", "鱼刺类"],
         ["fishbone", "非远程类", "近战类", "鱼刺类"],
