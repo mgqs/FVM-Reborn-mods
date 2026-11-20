@@ -50,7 +50,7 @@ zz_draw(spr_zz_btn_exshop, 631, 332 + zz_ui_dy, 86, 32, 1);
 // ── 三档价格按钮 ──
 var _price_spr = [spr_zz_price_20000, spr_zz_price_100000, spr_zz_price_1000000];
 var _price_x = [243, 443, 643];
-var _pull_txt = ["1 抽", "10 抽", "50 抽"];
+var _pull_txt = ["1 抽", "5 抽", "50 抽"];
 for (var _p = 0; _p < 3; _p++) {
 	zz_draw(_price_spr[_p], _price_x[_p], 603 + zz_ui_dy, 190, 61, 1);
 	zz_text(_pull_txt[_p], _price_x[_p] + 95, 585 + zz_ui_dy, 13, c_yellow, fa_center);

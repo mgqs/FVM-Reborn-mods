@@ -15,7 +15,8 @@
 | 想用 `Get-Content` 数行数 | 用 `read` 工具或数 LF；`Get-Content` 会把 283 行数成 171 | A2 |
 | 想把多行 python 塞进 `pwsh -Command` | 写 `.py` 文件再 `python x.py`，中文加 `PYTHONIOENCODING=utf-8` | A3 |
 | 要用 python 改 `.ps1`（CRLF + BOM） | 先 `if '\r\n' in s` 规范化再比较，改完跑 `verify_gml.ps1` 确认 BOM 还在 | A4 |
-| 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿文件，永不执行 | B1 |
+| 改了 `Draw_0.gml` 画面毫无变化 | 先看该对象 `.yy` 的 `eventList` 有没有 `eventType:8` —— 没有就是孤儿事件，永不执行 | B1 |
+| 统计「谁继承了某对象」得到 0 / 某事件查不到 | `.yy` 是跨行 JSON，匹配前先 `replace('\n','')` 或用 `re.S`；反常为 0 的结论必须换写法复核 | B48 |
 | 点某个按钮却跳到别的页 / 被藏起来的按钮照样能点 | `visible = false` **只跳过 Draw**，Mouse 事件照样派发 → 在被藏对象的 `Mouse_4` 里 `if (!visible) exit` + 按页签再拦一道；别指望「藏起来就点不到」 | B39 |
 | 动画看起来播了两遍 | 先查 sprite 表里有没有重复段，别先怀疑代码重播 | B2 |
 | 新卡「待机动画里带着施法/张嘴姿势」「攻击姿势永远不播」 | 别靠 `ViewImage` 肉眼判断「这批帧全是待机」——去 SWF 里读 `FrameLabelTag` 定分段：`java -jar ffdec.jar -swf2xml out.xml x.swf`，在 `DefineSpriteTag/subTags` 里按 `ShowFrameTag` 累计帧号，看「待机 / 攻击 / 技能」各落在第几帧 | B46 |
@@ -1191,6 +1192,38 @@
 - **证据**：`objects/obj_yinyangshe_bullet/Step_0.gml:9-35`、`objects/obj_yinyangshe_bullet/Create_0.gml:24-33`、
   `objects/obj_bbq_bullet/Step_0.gml:13-20`、`objects/obj_fashishe_bullet/Step_0.gml:17-25`、
   `scripts/mod_bullet_hazard/mod_bullet_hazard.gml:155-204`、2026-11-18 日志。
+
+### B48 统计「谁继承了某对象」别用单行正则 —— `.yy` 的 `parentObjectId` 是跨行 JSON
+
+- **症状**：查 `obj_bullet_parent` 的子对象数得到 **0**，据此认定「全工程没有子弹继承子弹父类、
+  出生认领从未执行」，把根因判错、还要去写一套全局扫描，实际子对象有 **140** 个。
+- **错路**：`s = open(yy).read().replace(' ', '')` 之后就按
+  `'"parentObjectId":{"name":"obj_bullet_parent"'` 匹配 —— 只去了空格没去换行，
+  `.yy` 里是 `"parentObjectId": {\n    "name": ...`，正则跨行匹配不到，**静默返回 0**（不报错）。
+- **正确路径**：先 `s.replace('\n', '')`，或用
+  `re.search(r'"parentObjectId":\s*\{[^}]*"name":\s*"([^"]*)"', s, re.S)`；
+  凡是拿到「0 / 空 / 全缺失」这种反常却干净的结论，**换一种写法复核一次再动手**。
+- **证据**：`objects/obj_bullet_parent/BeginStep_0.gml:20`（注释写着「122 个子弹一次覆盖」）、
+  `objects/*/**.yy` 实测 140 个 `parentObjectId` = `obj_bullet_parent`、2026-11-20 日志。
+
+### B49 叠层 UI 的点击：鼠标事件**先于** Step，depth 管不到谁收到点击
+
+- **症状**：抽卡 / 欧皇模式下在「金马盛典 → 兑换商城」点购买，弹的是**商城**的
+  `抽卡模式无法购买卡片`，幸运星花不出去；普通模式不易察觉（只会莫名弹商城确认框）。
+- **错路**：先在 `zz_shop_list` / `zz_buy_shop` / `obj_zz_shop_bg/Step_0` 里找模式门禁 ——
+  这三处一个 `play_mode` 都没有，白找一轮。
+- **正确路径**：**先按提示原文反查唯一出处**（`rg "<提示原文>"`），再问「这个对象的判定框
+  为什么和当前界面重合」。本例唯一出处是 `obj_shop_buy_btn/Mouse_4`，而兑换页
+  是照商城逐像素抄的（4×4 格 + 按钮同在「格心 +77/+60」+ 同一个 `spr_shop_buy_btn`），
+  商城还活着时两组按钮判定框完全重合。GMS 里 **Mouse 事件在 Step 之前执行**，
+  depth 只影响绘制顺序、不影响谁收到事件 → 底下那层的按钮先吃掉点击。
+  另外商城关闭时 `menu_type` 在收缩动画**开始前**就清零，所以「商城还在、上层界面已开」
+  是真实可达状态，只靠 `menu_type` 拦不住。
+- **自查口诀**：新面板抄旧面板版式时，**先给旧面板的按钮加「新面板在就 exit」的守卫**；
+  或者干脆把旧面板销毁。别指望 depth / `menu_type` 帮你隔离点击。
+- **证据**：`objects/obj_shop_buy_btn/Mouse_4.gml:1-12`（新守卫）、
+  `objects/obj_zz_enter/Mouse_4.gml:5-7`、`objects/obj_map_manager/Step_0.gml:30-33`、
+  `objects/obj_zz_shop_bg/Create_0.gml:26-33,57-67`、2026-11-20 日志。
 
 ## 追加模板```
 ### X{n} <一句话症状>

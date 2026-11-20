@@ -26,7 +26,12 @@ if (hit_tick >= global.bullet_hit_interval)
 	if (bullet_enemy_reachable(id)) {
 // 缝隙制（shape 0/1/2）的子弹中心落在两行交界，几何 bbox 跟哪一行都不相交 →
 //   SAP 的空间裁剪必须放宽一整格，否则候选集里根本没有老鼠可判。
-var _sap_y_margin = (cover_a >= 0) ? global.grid_cell_size_y : 0;
+// 终转（shape 3，row_hits 非空）的子弹要打「自身行 ±1」共 3 行，同理必须放宽两格，
+//   否则上下两行的老鼠根本进不了候选集（用户 2026-11-20 报「每颗子弹只打一行」）。
+var _has_row_hits = (array_length(row_hits) > 0);
+var _sap_y_margin = 0;
+if (_has_row_hits) _sap_y_margin = 2 * global.grid_cell_size_y;
+else if (cover_a >= 0) _sap_y_margin = global.grid_cell_size_y;
 if (variable_global_exists("enemy_by_type"))
 {
     for (var _t = 0; _t < array_length(hittable_types); _t++)
@@ -60,10 +65,21 @@ if (variable_global_exists("enemy_by_type"))
                 _row_mul = 1;
             }
 
-            // 缝隙制的几何判定只用水平距离（子弹就飞在两行之间，纵向必然错开）
-            var _geo_hit = (cover_a >= 0 && array_length(row_hits) == 0)
-                ? (abs(_e.x - x) <= 26)
-                : precise_bbox_collision(id, _e);
+            // 几何判定：
+            //   终转（row_hits 非空）→ 只看横向覆盖；行门禁由 row_hits 负责，
+            //     子弹本身只占飞行行那一行的 bbox，拿它判上下两行永远不相交。
+            //   缝隙制（cover_a >= 0）→ 同理，子弹飞在两行之间，纵向必然错开。
+            //   旧行为 → 原样用 bbox。
+            var _geo_hit;
+            if (_has_row_hits) {
+                _geo_hit = (x >= _e.bbox_left - 16 && x <= _e.bbox_right + 16);
+            }
+            else if (cover_a >= 0) {
+                _geo_hit = (abs(_e.x - x) <= 26);
+            }
+            else {
+                _geo_hit = precise_bbox_collision(id, _e);
+            }
 
             if (ds_list_find_index(hitted_enemy, _e.id) == -1
                 && _e.hp > 0

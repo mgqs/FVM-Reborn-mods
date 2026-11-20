@@ -31,12 +31,54 @@ else if (shape >= 2) _bspr = spr_shiliu_bullet_2;
 var _targets = [];            // { inst, freeze }
 var _used = ds_list_create();
 
-// ========== ① 爆炸范围内所有可打目标 ==========
+// ========== ① 爆炸范围内所有可打目标 → 立刻结算 ==========
+// 2026-11-20 用户口径：「爆炸 + 石榴籽碾压都有」。
+// 旧实现把爆炸范围内每只目标也做成一颗籽、伤害全等籽落地才扣，
+// 于是籽一旦没落地（时序 / 目标移动 / 实例被别的系统清掉）整张卡就「爆炸了但没伤害」。
+// 现在爆炸自己当场结算攻击力 + 冰冻减速，籽只负责碾压范围，两条路径互不依赖。
 with (obj_enemy_parent) {
     if (hp > 0 && can_hit_ash(_tgt, target_type)
         && abs(grid_col - _ccol) <= _expl && abs(grid_row - _crow) <= _expl) {
-        array_push(_targets, { inst: id, freeze: true });
         ds_list_add(_used, id);
+    }
+}
+
+var _blast_n = ds_list_size(_used);
+for (var _bi = 0; _bi < _blast_n; _bi++) {
+    var _be = _used[| _bi];
+    if (!instance_exists(_be) || _be.hp <= 0) continue;
+
+    var _bx = _be.x;
+    var _by = _be.y;
+    var _bd = _be.depth;
+
+    with (_be) {
+        damage_amount = _atk;
+        damage_type = "ash";     // 灰烬类：无视护盾（见 obj_enemy_parent/Other_10）
+        event_user(0);
+    }
+
+    if (!instance_exists(_be)) {
+        // 受伤流程里把实例销毁了 → 在记录的落点补播碎冰
+        instance_create_depth(_bx, _by - 20, _bd - 1, obj_shiliu_ash_fx);
+    }
+    else if (_be.hp > 0) {
+        // 未死亡：冰冻 + 减速 + 冰晶迸发
+        with (_be) {
+            if (frozen_timer < _freeze) frozen_timer = _freeze;
+            if (ice_timer < _slow)    ice_timer    = _slow;
+        }
+        var _burst = instance_create_depth(_be.x, _be.y - 40, _be.depth - 1, obj_shiliu_freeze_burst);
+        _burst.image_xscale = 1.5;
+        _burst.image_yscale = 1.5;
+    }
+    else {
+        // 死亡：只播碎冰，不硬删（让父类走完 hex_on_kill / 掉落 / 塔之诅咒结算）
+        with (_be) {
+            ash_death = true;
+            image_alpha = 0;
+        }
+        instance_create_depth(_bx, _by - 20, _bd - 1, obj_shiliu_ash_fx);
     }
 }
 

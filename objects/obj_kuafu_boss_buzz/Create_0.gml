@@ -20,6 +20,8 @@ skill_timer = 0
 // 技能2（送变异熊猫）本轮目标格：本体飞过去的格 = 熊猫出现的格
 panda_col = 0
 panda_row = 0
+// 技能2 每次技能的「第 2~6 列」随机顺序（5 只熊猫各占一列，不重叠）
+panda_col_order = [1,2,3,4,5]
 
 skill_choose = 0
 skill_count = 0

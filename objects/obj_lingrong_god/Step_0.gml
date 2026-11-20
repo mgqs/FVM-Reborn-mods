@@ -15,9 +15,12 @@ if remove_timer == 1 {
 // 地形决定精灵与帧布局：
 //   water   → *_water  ：1~5 变身（image_index 0~4）、6~14 待机循环（5~13），共 14 帧
 //   nowater → *_nowater：1~4 变身（0~3）、5~16 待机循环（4~15），共 16 帧
-// 地形变化时重播一次变身动画（两套精灵尺寸不同，硬切会跳）。
+// 2026-11-20 用户口径：地形只在「放下那一刻」判一次，之后地形被改（涨水 / 铺熔岩 / 熔岩消失）
+// 不再换贴图 —— 原来每帧重判，卡会在地形变化时突然变成另一套立绘并重播变身动画。
+// 注意锁的是「形态」，变身前后的帧区间仍按锁下来的形态走。
 var _in_water = false;
-if (grid_row >= 0 && grid_col >= 0 && grid_row < global.grid_rows && grid_col < global.grid_cols) {
+var _dst_ok = (grid_row >= 0 && grid_col >= 0 && grid_row < global.grid_rows && grid_col < global.grid_cols);
+if (_dst_ok) {
     var terrain_type = global.grid_terrains[grid_row][grid_col].type
     _in_water = (terrain_type == "water") && !on_lava
     if (terrain_type == "water" || on_lava) {
@@ -26,6 +29,17 @@ if (grid_row >= 0 && grid_col >= 0 && grid_row < global.grid_rows && grid_col < 
         plant_type = "coffee"
     }
 }
+
+if (!variable_instance_exists(id, "lr_form_locked")) {
+    lr_form_locked = false
+    lr_water_form  = false
+}
+// 第一次拿到合法格子坐标的那一帧才锁（放下前 grid_col 是 -1，不能拿它当判据）
+if (!lr_form_locked && _dst_ok) {
+    lr_water_form  = _in_water
+    lr_form_locked = true
+}
+if (lr_form_locked) _in_water = lr_water_form
 
 var _want_spr = lingrong_god_sprite(_in_water, shape)
 if (_want_spr != sprite_index) {

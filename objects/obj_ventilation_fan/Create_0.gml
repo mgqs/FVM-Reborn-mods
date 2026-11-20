@@ -32,5 +32,8 @@ ignore_list = ["mario_mouse","mario_pipeline","arno","pharaoh_coffin","temple_ph
 				"fog_julie","lieutenant_buzz","huang_xiaoming","angelababy","angelababy_diamond","mouse_train_1","aircraft_carrier","captain_america_mouse",
 				"captain_rainbow","iron_man_mouse","mouse_train_2","iron_man","machine_bomb_mouse","spider_man_mouse","hulk_mouse","mouse_train_3",
 				"mermaid_mary","mermaid_wave","machine_shark_1","undersea_submarine","lobster_knight","electric_jellyfish","jellyfish_bullet","war_god",
-				"war_god_duck","war_god_wood","hercules","thor","honglonglong"
+				"war_god_duck","war_god_wood","hercules","thor","honglonglong",
+				// 2026-11-20 用户口径：跨服的变异美队 / 变异钢铁侠 / 美队彩虹
+				// 都是「重量级 BOSS」，换气扇及其一转、二转一律不吹不退。
+				"kf_zrb_cap","kf_zrb_cap_rainbow","kf_zrb_cap_shield","kf_sh_iron_man"
 			]

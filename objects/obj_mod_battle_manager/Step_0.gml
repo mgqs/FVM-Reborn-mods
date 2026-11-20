@@ -13,6 +13,11 @@ if (global.buff_dirty)
     show_debug_message("buff地图更新");
 }
 
+// 海克斯二期：给刚出生的飞行物补来源归属（血魔的渴血 / 当头棒喝 / 重燃的火光 都要用）。
+// 放在这里而不是 obj_bullet_parent：那个父对象只覆盖有继承关系的子弹，
+// 技能弹 / 召唤弹 / 跨服弹都没有父类，原来一律拿不到出生归属。
+if (hex_enabled()) hex_b3_tag_pending_bullets();
+
 // 海洋女神增幅系统
 if (variable_global_exists("ocean_buff_dirty") && global.ocean_buff_dirty)
 {

@@ -1,6 +1,13 @@
 if not is_placed{
 	// 暂停菜单打开时不响应放置，避免点菜单按钮时顺手把人物放到菜单底下的格子
 	if (instance_exists(obj_pause_menu)) exit;
+	// 海克斯选牌面板（开局首抽 / Hana 的四卦 / 不公的契约）开着时同样不响应：
+	// 面板上点「选择」的那一下会同时触发本全局左键事件，原来会顺手把人物放到
+	// 鼠标下的格子 —— 玩家看到的却是「选完词条人物自己站到了一个没想放的格子」。
+	// 卡片侧有 hex_place_locked() 挡着，人物这条路径一直漏了同一个判断。
+	if (instance_exists(obj_hex_panel)) exit;
+	if (hex_place_locked()) exit;
+	if (global.is_paused) exit;
 	var logical_x = mouse_x;
 	var logical_y = mouse_y;
 	var platform_shift_x = 0;

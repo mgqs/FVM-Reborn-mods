@@ -1,3 +1,13 @@
+// 🔴 2026-11-20：转转（金马盛典）界面开着时，商城购买按钮一律不响应。
+//   兑换页的版式是照商城**逐像素抄**的（4×4 格、按钮都在「格心 +77/+60」、
+//   同一个 spr_shop_buy_btn），所以只要商城的按钮还活着（关闭动画期间 / 异常残留），
+//   两组按钮的判定框完全重叠。而 GMS 的鼠标事件**先于** Step 执行，
+//   于是点兑换会先被商城按钮吃掉 —— 抽卡 / 欧皇模式下就弹「抽卡模式无法购买卡片」，
+//   玩家看到的就是「幸运星换不了卡片」。
+//   判据只看「转转是不是在」，与玩法模式无关：普通模式下同样要防这层误触。
+if (instance_exists(obj_zz_bg) || instance_exists(obj_zz_shop_bg)
+	|| instance_exists(obj_zz_buy_confirm)) exit;
+
 // 被锁住的凭证：点一下要说明原因（不满足购买条件 = 已持有 / 已转职；或魔塔层数不足），
 // 否则点了完全没反应。credit_block 只有凭证按钮才有，「置灰」本身由 obj_shop_bg 判。
 if not obj_shop_bg.is_submenu_opened and is_disabled

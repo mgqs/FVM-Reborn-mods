@@ -8,8 +8,9 @@ if (global.is_paused) {
 }
 
 // ========== 索敌：作用范围内有老鼠才开始生长 ==========
-// 用户口径（2026-11-13）：范围内有老鼠先生长、再爆炸。没有老鼠就一直保持幼苗帧不动，
-// 引信也不走（否则卡会空放）。感知范围取碾压索敌范围 crush_radius。
+// 用户口径（2026-11-13）：范围内有老鼠才走引信、才引爆。
+// 用户口径（2026-11-20）：**没索敌时不要静止**——待机动画照常播，
+// 只是引信不走（否则卡会空放）。感知范围取碾压索敌范围 crush_radius。
 // 一旦开长就锁 shiliu_armed，老鼠中途走掉也把这一发走完。
 //
 // 判定**不查 can_hit_ash**：`can_target_on("all", "diver"/"underground")` 都返回 false
@@ -62,12 +63,13 @@ if (hp <= 0) {
 // 父对象的 IDLE 是 0..idle_anim 死循环，播到成熟段末帧后会回卷到 idx 0（幼苗）。
 // 石榴是一次性卡，回卷会让果实突然缩小再长大一遍；这里把回卷目标改到成熟段首帧，
 // 于是「生长 9 帧只播一次 + 成熟段无限呼吸」。
-// 还没等到老鼠（!shiliu_armed）时把帧压在幼苗 idx 0：父类会自己往前推，这里每帧压回去。
+//
+// 2026-11-20 用户口径：**没索敌时不要变成一张静止画**。
+// 旧版每帧把 image_index 压回 0 锁幼苗，卡片看着像贴了张不动的 PNG；
+// 现在待机动画照常播（生长 → 成熟呼吸），「没有目标不空放」只由引信闸门
+// （上面的 shiliu_armed 判定）负责，和动图无关。
 if (state == CARD_STATE.IDLE) {
-    if (!shiliu_armed) {
-        image_index = 0;
-    }
-    else if (shiliu_mature_start < idle_anim) {
+    if (shiliu_mature_start < idle_anim) {
         if (image_index >= shiliu_mature_start) shiliu_mature_locked = true;
 
         if (shiliu_mature_locked && image_index < shiliu_mature_start) {

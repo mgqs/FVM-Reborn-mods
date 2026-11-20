@@ -1,6 +1,15 @@
 if global.is_paused{
 	exit
 }
+// ── 2026-11-20：碰撞蒙版必须每帧与视觉尺寸对齐 ─────────────────────────
+// obj_bullet_parent/BeginStep_0:8-15 每帧先把 image_xscale/yscale 抄进 visual_scale_*，
+// 再把 image_xscale/yscale **无条件夹回 1**；而 precise_bbox_collision 是拿
+// image_xscale/image_yscale 算 bbox 的 —— 于是「画出来是 1.8 倍的水柱、判定框还是原尺寸」。
+// 潜水鼠出图啃植物时身体整体上浮（spr_diver_mouse_up 判定盒顶只到原点上方 75px，
+// 普通鼠大多 100px 以上），正好从缩水的判定框上沿擦过去，表现为「能索敌、打不到」。
+// 必须在自己的 Step 里每帧重设（同 obj_yuansushe_bullet，见 MISTAKES.md B20）。
+image_xscale = 1.8;
+image_yscale = 1.8;
 x += move_speed
 timer++
 if timer <= 4* 3 - 1{
@@ -48,9 +57,18 @@ if (variable_global_exists("enemy_by_type"))
 			var _e = _list[_i];
 			if (!instance_exists(_e)) continue;
 			if (!ds_exists(hitted_enemy, ds_type_list)) exit;
+			// 命中几何：先走精确 bbox；不中再看「同行纵向容差」。
+			// 焦油喷壶是一整条横贯本行的水柱，画面上只要盖住这只鼠就该判定命中；
+			// 而 row == _e.grid_row 已经把别的行挡在外面，放宽纵向不会串行。
+			// 潜水鼠 / 深海鼠这类「出图啃植物」时原点会整体偏出本行，光靠 bbox 会漏。
+			var _geo_hit = precise_bbox_collision(id, _e);
+			if (!_geo_hit) {
+				_geo_hit = !(bbox_right < _e.bbox_left || bbox_left > _e.bbox_right)
+					&& abs(_e.y - y) <= global.grid_cell_size_y;
+			}
 			if (ds_list_find_index(hitted_enemy, _e.id) == -1 && !disabled
 				&& _e.hp > 0 && row == _e.grid_row
-    && precise_bbox_collision(id, _e))
+    && _geo_hit)
 			{
 				with (_e)
 				{

@@ -126,11 +126,24 @@ var _longyuan_full_progression = string_copy(global.level_id, 1, 8) == "longyuan
 // 原来的「等最后一个 subwave 出完 + 全场清空」会把 BOSS 藏到几分钟甚至十几分钟后。
 // 快速关卡：进入 BOSS 波即召唤 BOSS，后续 subwave 的小怪继续按原逻辑刷出（BOSS 带小怪同场）。
 var _fast_boss_level = _longyuan_full_progression || (string_copy(global.level_id, 1, 13) == "abyss_warrior");
-// 精英波起切换「BOSS 随机音乐」，一直播到通关（含 BOSS 波）：
-// 开关关闭 / 曲库为空 / 加载失败时自动回退关卡自带的 elite_music。
+// 精英波起有「BOSS 随机音乐」开关：
+//   开启（music_random_active）→ 随机曲从精英段一路播到通关，BOSS 出现 / 死亡都不切；
+//   关闭 / 曲库为空 / 加载失败 → 精英段播 elite_music，BOSS 出现切关卡 boss_music，
+//                                BOSS 阵亡回 pre 时还原成切之前那首（见下）。
 // 每场只抽一次（music_picked），BOSS 阵亡回到 pre 阶段也不会重抽。
 // elite_wave 为 0 的关卡（魔塔系）没有精英段，退化为「从最后一波开始」。
 if (level_stage == "pre" && instance_exists(obj_battle_music_controller)) {
+	with (obj_battle_music_controller) {
+		// BOSS 阵亡（obj_*boss*/Destroy_0 → level_stage = "pre"）之后把曲子还原。
+		// 多 BOSS 关卡里第一只 BOSS 死了还要继续刷鼠军，不还原就会一直播 BOSS 曲。
+		// 只有「随机 BOSS 音乐关闭」时才会置 music_boss_phase（见下面的 BOSS 段），
+		// 所以随机音乐开启的关卡在这里一定什么都不做 —— 随机曲一路播到通关。
+		if (music_boss_phase) {
+			music_boss_phase = false;
+			new_battle_music = music_restore_sound;
+			event_user(10);
+		}
+	}
 	var _ew = global.level_file.elite_wave;
 	var _music_start_wave = (_ew > 0 && _ew < total_wave) ? _ew : max(0, total_wave - 1);
 	if (current_wave >= _music_start_wave) {
@@ -172,8 +185,13 @@ if boss_waiting_clear && level_stage == "pre" && (current_wave_alive_count == 0 
 	//  - 没抽到（开关关 / 曲库为空 / 加载失败）→ 切回关卡自带的 boss_music
 	if (instance_exists(obj_battle_music_controller)) {
 		with (obj_battle_music_controller) {
+			// 只在「随机 BOSS 音乐关闭」时才切关卡自带 BOSS 曲，并当场记下切之前
+			// 正在播的那首，供 BOSS 阵亡回 pre 时还原。
+			// 随机音乐开启 → 这里什么都不做，继续播精英段的随机曲（BOSS 出现 / 死亡都不切）。
 			if (!music_random_active) {
-				new_battle_music = global.level_data.boss_music;
+				music_boss_phase    = true;
+				music_restore_sound = battle_music;
+				new_battle_music    = global.level_data.boss_music;
 				event_user(10);
 			}
 		}

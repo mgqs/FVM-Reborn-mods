@@ -312,9 +312,23 @@ switch state{
 			if jump_times < 5{
 				skill_timer ++
 				if skill_timer == 1{
-					// 本体先飞向「这一轮要送熊猫的那一列」（jump_times 0~4 → 第 1~5 列），
-					// 落点就是熊猫出现的格子，避免本体飞到 3~7 列、熊猫却出现在 1~5 列的位置错位。
-					panda_col = jump_times;
+					// 本体先飞向「这一轮要送熊猫的那一列」，落点就是熊猫出现的格子，
+					// 避免本体飞到 3~7 列、熊猫却出现在 1~5 列的位置错位。
+					// 2026-11-20 用户口径：只落在**第 2~6 列**（col 1~5）的随机位置。
+					//   第 1 列（col 0）离玩家太近，熊猫一落地就直接啃到猫/人物，
+					//   原来 jump_times 0~4 = 第 1~5 列，正好包含这一列。
+					// 每次技能开始时重洗一遍列序，5 只熊猫各占一列、互不重叠。
+					if jump_times == 0{
+						panda_col_order = [1,2,3,4,5]
+						for (var _ps = 4; _ps > 0; _ps--){
+							var _pk = irandom(_ps)
+							var _pt = panda_col_order[_ps]
+							panda_col_order[_ps] = panda_col_order[_pk]
+							panda_col_order[_pk] = _pt
+						}
+					}
+					panda_col = panda_col_order[jump_times mod 5]
+					if (panda_col > global.grid_cols - 1) panda_col = global.grid_cols - 1
 					panda_row = irandom_range(0,global.grid_rows-1);
 					t_pos = get_world_position_from_grid(panda_col,panda_row)
 			

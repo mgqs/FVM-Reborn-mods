@@ -36,6 +36,9 @@ if state != ENEMY_STATE.DEAD{
 				is_collected = false
 				is_capture = true
 				speed = 15
+				// 记下「被谁吸的」：本鼠中途被打死时，要把还在飞的火苗一并返还
+				//（否则这些火苗会停在半空，既不到账也不会消失）
+				capture_owner = other.id
 				if global.is_paused{
 					speed = 0
 				}

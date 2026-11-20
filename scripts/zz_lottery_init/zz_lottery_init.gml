@@ -24,7 +24,9 @@ function zz_save_init() {
 	if (!variable_struct_exists(global.save_data.player, "zz_spent"))      global.save_data.player.zz_spent = 0;
 }
 
-/// @desc 档位消耗（0=单抽 1=十连 2=五十连）
+/// @desc 档位消耗（0=单抽 1=五连 2=五十连）
+///   2026-11-20 用户口径：三档抽数为 1 / 5 / 50，单价统一 2 万/抽
+///   （1 抽 2 万 / 5 抽 10 万 / 50 抽 100 万），中间档不再是十连。
 function zz_cost(_tier) {
 	switch (_tier) {
 		case 0: return 20000;
@@ -39,7 +41,7 @@ function zz_pull_count(_tier) {
 		case 0: return 1;
 		case 2: return 50;
 	}
-	return 10;
+	return 5;
 }
 
 /// @desc 档位按钮文案（金币数）
@@ -277,6 +279,12 @@ function zz_shop_list() {
 }
 
 /// @desc 兑换一件商品
+/// 🔴 与玩法模式**无关**：普通 / 抽卡 / 欧皇 / 随机礼盒 / 海克斯 一律照常兑换
+///    （2026-11-20 用户口径：抽卡、欧皇模式也要能正常兑换）。
+///    商城（obj_shop_bg）那套「抽卡模式禁用卡片购买」是**金币商店**的口径，
+///    幸运星兑换是活动货币、不属于抽卡路子，所以这里**不要**加 is_gacha_mode 之类的门禁。
+///    之前抽卡/欧皇模式兑换不了，是商城的 obj_shop_buy_btn 与兑换页按钮逐像素重合、
+///    抢走了鼠标点击（见 obj_shop_buy_btn/Mouse_4 顶部守卫），与这里的逻辑无关。
 /// @return {ok, msg}
 function zz_buy_shop(_idx) {
 	var _list = zz_shop_list();

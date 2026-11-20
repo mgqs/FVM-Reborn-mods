@@ -29,37 +29,35 @@ if (variable_global_exists("enemy_by_type"))
     && precise_bbox_collision(id, _e))
             {
                 var _damage = damage
+                // 一次命中必须换一次行（2026-11-20 用户报「打好几次才换行」）：
+                // 换行要靠 enemy 的 y 在 30 帧内走完一格，这 30 帧里 grid_row 每帧都被
+                // obj_enemy_parent/Step_0:28 按 y 重算，所以「还没走完」时挨的下一发会
+                // 拿旧行重新掷方向 —— 来回抵消，看起来就像「打了好几发都不换行」。
+                // 因此 frightened 期间不再重新决定方向；同时只挑「同地形」的相邻行，
+                // 避免把陆鼠推进水里（原逻辑上下都不同地形时干脆不换行）。
                 with (_e)
                 {
-                    scare_timer = 30
-                    left_move_flashs = 30
-                    if grid_row == 0 {
-                        if global.row_feature[1] == global.row_feature[0]{
-                            y_move = global.grid_cell_size_y/left_move_flashs
-                            grid_row += 1
-                        }
-                    }
-                    else if grid_row == global.grid_rows - 1{
-                        if global.row_feature[global.grid_rows - 2] == global.row_feature[global.grid_rows - 1]{
-                            y_move = -global.grid_cell_size_y/left_move_flashs
-                            grid_row -= 1
-                        }
-                    }
-                    else{
-                        var im = irandom_range(1,100)
-                        var up_water = global.row_feature[grid_row - 1] != global.row_feature[grid_row]
-                        var down_water = global.row_feature[grid_row + 1] != global.row_feature[grid_row]
-                        if down_water {im = 25}
-                        if up_water {im = 75}
-                        if not (up_water && down_water){
-                            if im > 50{
-                                y_move = global.grid_cell_size_y/left_move_flashs
-                                grid_row += 1
-                            }
-                            else{
-                                y_move = -global.grid_cell_size_y/left_move_flashs
-                                grid_row -= 1
-                            }
+                    if scare_timer <= 0
+                    {
+                        scare_timer = 30
+                        left_move_flashs = 30
+
+                        var _up_ok   = (grid_row > 0);
+                        var _down_ok = (grid_row < global.grid_rows - 1);
+                        if (_up_ok)
+                            _up_ok = (global.row_feature[grid_row - 1] == global.row_feature[grid_row]);
+                        if (_down_ok)
+                            _down_ok = (global.row_feature[grid_row + 1] == global.row_feature[grid_row]);
+
+                        var _dir = 0;      // 1 = 下移，-1 = 上移
+                        if (_up_ok && _down_ok)      _dir = (irandom_range(1,100) > 50) ? 1 : -1;
+                        else if (_down_ok)           _dir = 1;
+                        else if (_up_ok)             _dir = -1;
+
+                        if _dir != 0
+                        {
+                            y_move = _dir * global.grid_cell_size_y / left_move_flashs;
+                            grid_row += _dir;
                         }
                     }
                 }

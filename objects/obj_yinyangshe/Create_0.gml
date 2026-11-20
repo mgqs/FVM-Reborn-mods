@@ -59,7 +59,7 @@ yy_shot_count_yin = 5;                          // 阴蛇每轮 5 发
 yy_shot_count_yang = (shape >= 1) ? 5 : 0;      // 1 转起多一只阳蛇
 yy_pierce_yang = (shape >= 2);                  // 2 转阳蛇穿透
 yy_poison_mult = [3, 3, 4.5][min(shape, 2)];    // 毒伤倍率（0/1 转 3，2 转 4.5）
-yy_shot_gap    = 6;                             // 同一轮内每发间隔帧（60 帧/秒下 ≈ 0.1 秒）
+yy_shot_gap    = 4;                             // 同一轮内每发间隔帧（≈15 帧/秒，连成一串）
 yy_bullet_speed = 10;
 yy_end_col     = global.grid_cols + 1;
 
@@ -99,10 +99,12 @@ yy_fire = function(_kind, _poison)
     // 出膛口按两条蛇的位置错开：阴蛇在左下、阳蛇在右上。
     // 按精灵画布比例算，三个形态（93×70 / 108×84 / 114×95）都能落在嘴边；
     // 写死常数的话二转（114×95）的弹会在蛇脖子以下冒出来。
+    // 2026-11-20：原来两条蛇的 y 只差 0.02H（≈2px），黑白弹几乎叠在一条线上；
+    //   按素材里两个蛇头的高度差拉开到 0.2H，紫/白弹各走各的线，不再重叠。
     var _w = sprite_get_width(sprite_index);
     var _h = sprite_get_height(sprite_index);
-    var _dx = (_kind == 0) ? -0.28 * _w : 0.31 * _w;
-    var _dy = (_kind == 0) ? -0.74 * _h : -0.76 * _h;
+    var _dx = (_kind == 0) ? -0.22 * _w : 0.28 * _w;
+    var _dy = (_kind == 0) ? -0.46 * _h : -0.66 * _h;
 
     var _b = instance_create_depth(x + _dx, y + _dy, depth - 500, obj_yinyangshe_bullet);
     _b.sprite_index  = (_kind == 0) ? yy_bullet_yin : yy_bullet_yang;

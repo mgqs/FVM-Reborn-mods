@@ -1136,6 +1136,78 @@ function hex_b3_enemy_damage_pre(_inst, _dmg, _src = noone) {
     return max(0, _d);
 }
 
+/// @function hex_b3_src_card(_src)
+/// @desc 回溯「这一下伤害是哪张美食打出来的」。认不出就返回 noone。
+///       顺序：本身是卡 → 火苗/召唤物带的来源卡 → 子弹出生时认领的卡 → 出生点半径内最近的卡。
+///       最后一步必须用 hex_org_x/y（子弹出生那一刻记的），不能用子弹当前坐标：
+///       命中时子弹早就飞到老鼠身上了，按当前位置量出来永远是「挡在前面挨啃的那张卡」——
+///       那正是当初玩家抱怨的「血魔的渴血给别人的卡加血」。
+///       命中时才补认领的（hex_src_weak）连出生点都是命中点，所以两条回退都不给它用。
+function hex_b3_src_card(_src) {
+    if (!instance_exists(_src)) return noone;
+
+    // ① 近战 / 卡片本体直接造成
+    if (variable_instance_exists(_src, "plant_id")
+        && object_is_ancestor(_src.object_index, obj_card_parent)) return _src;
+
+    // ② 火苗 / 召唤物出生时写死的来源卡（hex_b3_spawn_fire）
+    if (variable_instance_exists(_src, "hex_src_card")) {
+        var _c0 = _src.hex_src_card;
+        if (instance_exists(_c0) && variable_instance_exists(_c0, "plant_id")) return _c0;
+    }
+
+    var _weak = (variable_instance_exists(_src, "hex_src_weak") && _src.hex_src_weak);
+    if (_weak) return noone;
+
+    // ③ 子弹出生时认领的卡片（obj_bullet_parent/BeginStep 或 hex_b3_tag_pending_bullets）
+    if (variable_instance_exists(_src, "hex_src_inst")) {
+        var _c1 = _src.hex_src_inst;
+        if (instance_exists(_c1) && variable_instance_exists(_c1, "plant_id")) return _c1;
+    }
+
+    // ④ 出生点回查：认领失败（出生点离卡超过 130px）时按出生位置再量一次
+    if (variable_instance_exists(_src, "hex_org_x") && variable_instance_exists(_src, "hex_org_y")) {
+        var _ox = _src.hex_org_x;
+        var _oy = _src.hex_org_y;
+        var _best = noone;
+        var _best_d = 150;
+        with (obj_card_parent) {
+            if (self.plant_id != "player") {
+                var _dd = point_distance(_ox, _oy, self.x, self.y);
+                if (_dd < _best_d) { _best_d = _dd; _best = self.id; }
+            }
+        }
+        if (instance_exists(_best)) return _best;
+    }
+
+    return noone;
+}
+
+/// @function hex_b3_row_shooter(_enemy)
+/// @desc 归属彻底认不出时的最后兜底：同一条行上、在老鼠左侧、且**全场只有一张卡**
+///       正在开火（CARD_STATE.ATTACK）时才认它。唯一性判定就是为了不重演
+///       「血魔的渴血给挡刀的那张卡加血」——只要一行里有两张卡在打，就宁可这次不加。
+function hex_b3_row_shooter(_enemy) {
+    if (!instance_exists(_enemy)) return noone;
+    if (!variable_instance_exists(_enemy, "grid_row")) return noone;
+    var _row = _enemy.grid_row;
+    if (_row < 0) return noone;
+    var _ex = _enemy.x;
+    var _found = noone;
+    var _n = 0;
+    with (obj_card_parent) {
+        if (self.plant_id != "player"
+            && self.grid_row == _row
+            && self.x < _ex
+            && self.state == CARD_STATE.ATTACK) {
+            _n += 1;
+            _found = self.id;
+        }
+    }
+    if (_n == 1) return _found;
+    return noone;
+}
+
 /// @function hex_b3_enemy_damage_post(_inst, _dmg)
 /// @desc 老鼠受伤后置：计受伤层数 / 血魔的渴血（美食吸血）/ 起源（致命一击来源）
 function hex_b3_enemy_damage_post(_inst, _dmg, _src = noone) {
@@ -1152,23 +1224,9 @@ function hex_b3_enemy_damage_post(_inst, _dmg, _src = noone) {
 
     // 血魔的渴血：造成伤害的美食按伤害量回血，满血转上限
     if (_s.b3_lifesteal && _dmg > 0) {
-        var _card = noone;
-        if (instance_exists(_src)) {
-            // ① 火焰 / 召唤物自己带的来源卡（hex_b3_spawn_fire 写入，最准）
-            if (variable_instance_exists(_src, "hex_src_card")) _card = _src.hex_src_card;
-            // ② 子弹 / 投掷物在出生时认领的卡片
-            if (!instance_exists(_card) && variable_instance_exists(_src, "hex_src_inst")) {
-                _card = _src.hex_src_inst;
-            }
-            // ③ 近战 / 直接由卡片自己造成
-            if (!instance_exists(_card) && _src.object_index == obj_card_parent) _card = _src;
-            // 命中时才补认领的来源是「就近猜的」（多半是挡在老鼠前面挨啃的那张卡），
-            // 不能拿它结算吸血 —— 那正是玩家抱怨的「血魔给别人的卡加血」。
-            if (variable_instance_exists(_src, "hex_src_weak") && _src.hex_src_weak) _card = noone;
-        }
-        // 认不出施法者就不回血。原来这里还有一段「按子弹出生点扫 260px 内最近的卡」，
-        // 结果永远是「被啃的那只老鼠前面挡刀的那张卡」在加血 —— 玩家看到的
-        // 就是「血魔的渴血给别人的卡加血」。宁可这次不加，也不猜。
+        var _card = hex_b3_src_card(_src);
+        // 出生归属也没有（老的技能弹 / 被删掉的卡）时，退到「本行唯一开火者」兜底
+        if (!instance_exists(_card)) _card = hex_b3_row_shooter(_inst);
         if (instance_exists(_card) && variable_instance_exists(_card, "plant_id")
             && _card.plant_id != "player") {
             var _missing = _card.max_hp - _card.hp;
@@ -1518,6 +1576,29 @@ function hex_b3_bullet_tag(_bullet, _late = false) {
         if (!_best.b3_shot_done) {
             _best.b3_shot_done   = true;
             _bullet.hex_first_shot = true;
+        }
+    }
+}
+
+/// @function hex_b3_tag_pending_bullets()
+/// @desc 每帧兜底认领：给「刚出现、还没有来源」的飞行物补一份出生归属。
+///       obj_bullet_parent/BeginStep 的认领只覆盖继承了它的对象；技能弹 / 召唤弹 /
+///       跨服弹这类没有父类的飞行物从来拿不到归属，只能落到「命中时才补认领」，
+///       而那种来源的出生点其实是命中点、不可信 —— 血魔的渴血就一次都不回血。
+///       这里在它们出生后的一两帧内补上，位置仍是发射格，归属才是准的。
+function hex_b3_tag_pending_bullets() {
+    if (!hex_enabled()) return;
+    if (!variable_hex_b3_state()) return;
+    var _s = global.hex_state;
+    // 只有靠得上这份归属的词条在场时才扫，其余时候直接返回，省帧
+    if (!_s.b3_lifesteal && !_s.b3_first_shot && _s.b3_bullet_fire <= 0) return;
+
+    with (all) {
+        if (!variable_instance_exists(id, "hex_src_inst")
+            && variable_instance_exists(id, "damage")
+            && !object_is_ancestor(object_index, obj_card_parent)
+            && !object_is_ancestor(object_index, obj_enemy_parent)) {
+            hex_b3_bullet_tag(id);
         }
     }
 }
@@ -3156,7 +3237,8 @@ function hex_register_batch3() {
         card_desc: "美食造成伤害时回复等量生命，满血则转为生命上限（上限 +300%）",
         enemy_desc: "无",
         stack: 1, impl: true,
-        ex: { b3_lifesteal: true }, en: {}
+        // 上限口径：b3_lifesteal_cap 是「倍率」不是「增量」，-1 之后才是 +300%
+        ex: { b3_lifesteal: true, b3_lifesteal_cap: 4.0 }, en: {}
     });
     hex_register("hex_229", {
         tier: 2, form: "C", name: "不公的契约",

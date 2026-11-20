@@ -5468,9 +5468,9 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 120)
     },
     {
-        name: "一转结界马",
+        name: "虚空结界马",
         shape: 1,
-        description: "一转结界马：结界内同一只老鼠连续受击伤害递增，最高3倍",
+        description: "虚空结界马：结界内同一只老鼠连续受击伤害递增，最高3倍",
         hp: array_create(17, 350),
         cost: array_create(17, 180),
         atk: [70, 80, 90, 120, 140, 160, 180, 220, 260, 300, 340, 380, 450, 520, 590, 660, 730],
@@ -5479,9 +5479,9 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 120)
     },
     {
-        name: "二转结界马",
+        name: "镜反结界马",
         shape: 2,
-        description: "二转结界马：攻击力翻倍，悬浮状态无需格子且可被铲除",
+        description: "镜反结界马：攻击力翻倍，悬浮状态无需格子且可被铲除",
         hp: array_create(17, 350),
         cost: array_create(17, 180),
         atk: [140, 160, 180, 240, 280, 320, 360, 440, 520, 600, 680, 760, 900, 1040, 1180, 1320, 1460],
@@ -5508,9 +5508,9 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 132)
     },
     {
-        name: "一转阴阳蛇",
+        name: "伯仲阴阳蛇",
         shape: 1,
-        description: "一转阴阳蛇：多一只阳蛇，一轮共发射10连子弹，首发毒伤依旧",
+        description: "伯仲阴阳蛇：多一只阳蛇，一轮共发射10连子弹，首发毒伤依旧",
         hp: array_create(17, 50),
         cost: array_create(17, 295),
         atk: [10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],
@@ -5519,9 +5519,9 @@ mod_register_plant_lite("xuanfengniu", [
         cycle: array_create(17, 132)
     },
     {
-        name: "二转阴阳蛇",
+        name: "龙虎阴阳蛇",
         shape: 2,
-        description: "二转阴阳蛇：阳蛇子弹穿透老鼠，阴蛇毒伤提升至4.5倍",
+        description: "龙虎阴阳蛇：阳蛇子弹穿透老鼠，阴蛇毒伤提升至4.5倍",
         hp: array_create(17, 50),
         cost: array_create(17, 295),
         atk: [10, 12, 14, 16, 18, 20, 22, 26, 32, 40, 55, 70, 85, 100, 115, 130, 145],

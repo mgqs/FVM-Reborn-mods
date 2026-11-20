@@ -9,6 +9,8 @@
 ///   **砸出去之后就不会中途消失**：后续每次若 5*5 内没有可索敌的敌人，就**原地砸**
 ///   （落点格 = 自己当前所在格），直到把 `yyz_crush_total` 次数砸满才 `instance_destroy()`。
 /// 注：伤害与碾压照常作用于 BOSS，只有**眩晕**对 BOSS 无效（is_boss 为 true 时不施加眩晕）。
+/// 注：索敌/结算额外放行 `target_type == "air"`（2026-11-20 用户口径：椰子果要能砸空军）。
+///     卡面 target_type 仍是 "normal"，只在两处判定里补 air，不扩大到地下/潜水。
 if (global.is_paused) exit;
 
 event_inherited();   // 父对象：动画帧推进 / 冻结处理
@@ -57,7 +59,7 @@ if (_search) {
 	var _best_dist = 999999;
 	with (obj_enemy_parent) {
 		if (hp > 0
-			&& can_hit_ash(other.target_type, target_type)
+			&& (can_hit_ash(other.target_type, target_type) || target_type == "air")
 			&& grid_col >= _c0 && grid_col <= _c1
 			&& grid_row >= _r0 && grid_row <= _r1) {
 			var _d = point_distance(x, y, other.x, other.y);
@@ -138,7 +140,7 @@ if (yyz_phase == 1) {
 		//     + 不防爆的直接碾压销毁（同面粉袋：秒杀、不生成任何特效）
 		with (obj_enemy_parent) {
 			if (hp > 0
-				&& can_hit_ash(other.target_type, target_type)
+				&& (can_hit_ash(other.target_type, target_type) || target_type == "air")
 				&& abs(grid_row - _crow) <= _aoe
 				&& abs(grid_col - _ccol) <= _aoe) {
 
